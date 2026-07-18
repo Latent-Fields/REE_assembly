@@ -2955,9 +2955,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-076": {
-    "assembly_state": "remaining",
-    "epistemic_stance": "believed",
-    "status": "candidate",
+    "assembly_state": "mature",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "residue.hippocampal_map_structural_deformation",
     "title": "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation).",
     "type": "mechanism_hypothesis"
@@ -3035,9 +3035,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-086": {
-    "assembly_state": "remaining",
-    "epistemic_stance": "believed",
-    "status": "candidate",
+    "assembly_state": "mature",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "dopamine.trajectory_selection_gain_plane",
     "title": "Dopamine as trajectory selection gain plane operating downstream of landscape, state, and encoding gate.",
     "type": "mechanism_hypothesis"
@@ -3759,7 +3759,7 @@
     "what_would_answer": "A clinical Alzheimer's cohort showing (or failing to show) that procedural/ habit memory is preserved relative to episodic/contextual memory in the early-to-middle stage, tracking consolidation-pipeline failure.\n"
   },
   "MECH-173": {
-    "assembly_state": "remaining",
+    "assembly_state": "enriching",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "pharmacology.rem_suppression_phase4_disruption",
@@ -4662,11 +4662,11 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-279": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "mature",
     "assembly_status": "built",
     "awaiting": "SD-036",
-    "epistemic_stance": "believed",
-    "status": "candidate",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "pag.gabaergic_freeze_gate",
     "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
     "type": "mechanism_hypothesis"
@@ -7644,6 +7644,14 @@
     "status": "candidate",
     "subject": "sleep.consolidation_pipeline_lesion_harness",
     "title": "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout (denoising-SNR / transfer-fidelity / precision-calibration-error) scored against INJECTED known content, so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by damage-tolerance staging order plus a REM passthrough-nudge-vs-generative-pass contrast, not by feed-forward error-compounding (which is topology-baked).",
+    "type": "design_decision"
+  },
+  "SD-069": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.phasic_surprise_burst",
+    "title": "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim.",
     "type": "design_decision"
   },
   "SENT-0": {

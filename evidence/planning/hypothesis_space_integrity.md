@@ -1,6 +1,6 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-18T04:47:26Z
+Generated: 2026-07-18T06:52:02Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the three ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate.
 

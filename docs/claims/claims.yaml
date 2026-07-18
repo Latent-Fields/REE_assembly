@@ -5503,11 +5503,25 @@
   claim_type: mechanism_hypothesis
   subject: residue.hippocampal_map_structural_deformation
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-18
     needs_review: false
+  evidence_quality_note: >
+    2026-07-18 governance: candidate -> provisional. V3-EXQ-773 (residue basin-geometry
+    dose-response; run_id v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3)
+    PASS/supports, self-route residue_basin_geometry_graded_and_at_a_distance, no adjudication flag.
+    First experimental entry for MECH-076 (exp_conf 0.774, lit_conf 0.753; 3 supports / 0 weakens).
+    Both load-bearing criteria pass and are non-degenerate: C1 peak-avoidance monotone in basin depth
+    (graded dose-response, not a discrete threshold) and C2 capture-vs-far share shift (avoidance acts
+    at a distance, i.e. geometry-mediated rather than a peak-only lookup gate). z_world grounded in
+    real substrate latents via an untrained frozen encoder (answers the synthetic_signals_only
+    objection); terrain-only elite selection (evaluate_trajectory, ARC-007 strict).
+    SCOPE: validates the BASIN-GEOMETRY leg only (evidence_class mechanistic_partial) -- the one
+    sub-claim the V3 substrate expresses. It does NOT establish the biological instantiation
+    (CA3 retraction / DG neurogenesis / reconsolidation palimpsest), which stays untested.
+    Distinct from INV-053 (binary attractor) and ARC-013/V3-EXQ-697 (decision separability).
   depends_on:
     - ARC-013
     - MECH-056
@@ -5899,11 +5913,30 @@
   claim_type: mechanism_hypothesis
   subject: dopamine.trajectory_selection_gain_plane
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-18
     needs_review: false
+  evidence_quality_note: >
+    2026-07-18 governance: candidate -> provisional. V3-EXQ-775 (dopamine selection-gain plane
+    dose-response; run_id v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3)
+    PASS/supports, self-route selection_gain_dose_response_confirmed, no adjudication flag.
+    First experimental entry for MECH-086 (exp_conf 0.774, lit_conf 0.738; 3 supports / 0 weakens).
+    All FOUR signatures pass on 3/3 seeds (majority required 2) and are non-degenerate:
+    S1 gain-monotonicity (decisiveness rises with DA gain on both landscapes -- an empirical
+    substrate result, not a softmax identity, since it is measured through the real e3.select()
+    path); S2 value-conditional benefit (trajectory quality improves with gain on a CLEAN landscape
+    but NOT on a distorted one -- the hierarchical-constraint claim that DA optimises over whatever
+    landscape it receives and cannot rescue upstream plane failure); S3a indecision pole at low gain;
+    S3b aberrant-salience pole (confident commitment to the WRONG trajectory at high gain over a
+    distorted landscape). Env-free controlled probe over a 5-point gain ladder x {clean, distorted}
+    factorial (10 arms x 3 seeds).
+    GAP CLOSED: MECH-086's own subject (DA = selection GAIN plane) had never been directly measured
+    -- V3-EXQ-674 exercised the same e3.select() softmax but tagged claim_ids=[MECH-087] only and
+    measured cross-plane ORDERING, explicitly disclaiming MECH-086 validation.
+    SCOPE: validates the selection-gain dose-response and the two pathology poles. The four-plane
+    hierarchical ORDERING claim remains MECH-087's (V3-EXQ-674), not established here.
   depends_on:
     - MECH-043
     - MECH-075
@@ -14970,8 +15003,26 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-07-18
     needs_review: false
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true  # substrate_queue MECH-204 amend (Phase 7 / Option B accuracy-anchored broadcast recalibration + waking confidence-inflation source); see failure_autopsy_V3-EXQ-774_2026-07-17
+  evidence_quality_note: >
+    2026-07-18 governance (V3-EXQ-774, diagnostic, claim_ids=[MECH-173];
+    failure_autopsy_V3-EXQ-774_2026-07-17, status confirmed): V3-EXQ-774 (diagnostic, excluded
+    from scoring) adjudicated substrate_ceiling. The built MECH-204 F1 precision-recalibration
+    produces MECH-173's DIRECTION (suppression removes epistemic humility) with the
+    accuracy-dissociation and REM-selectivity intact, but cannot express ABSOLUTE
+    overconfidence -- the F1 setpoint is a lagging low-pass of the agent's own
+    running_variance with no waking confidence-inflation source to correct, and precision
+    saturates before the recalibration lever gains headroom (effect present on 1/3 seeds only).
+    NOT falsification; a discovered prerequisite. Fires the sleep_substrate_plan Phase 7 /
+    Option B resume trigger (accuracy-anchored / broadcast recalibration; read
+    _persistent_zero_point, lit choice (a), already adjudicated).
+    evidence_direction inconclusive (PROMOTES / DEMOTES NOTHING); MECH-173 stays candidate.
+    pending_retest_after_substrate: routed to /implement-substrate as an AMEND on MECH-204
+    (see substrate_queue.json). Per the illusory-conflict-resolution rule this substrate-limited
+    result is recorded, not dropped from the conflict ratio.
   depends_on:
     - INV-048
     - MECH-123
@@ -18451,6 +18502,23 @@
     z_world-differentiation coupling is real-but-weak and high-variance, not a clean
     threshold effect. FIRST WEIGHTED entry for INV-088 (744 was inconclusive / not
     weighted); stays candidate.
+
+    2026-07-18 governance (reconfirmation routing update; PROMOTES/DEMOTES NOTHING, no
+    status change, decision stays hold_candidate_resolve_conflict): the substrate
+    reconfirmation path assigned by the 769 autopsy -- the GOV-FANOUT-1 MECH-457 portfolio
+    V3-EXQ-770 / 771 / 772 -- RAN and ALL THREE FAILED, each hitting its own pre-registered
+    null (failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18, confirmed;
+    non_contributory / competence_implementation_gap). So INV-088's reconfirmation DID NOT
+    OCCUR for the second consecutive routing (769, then 770/771/772), and no new evidence
+    bears on the real-but-weak 744a coupling either way. pending_substrate_reconfirmation
+    stays true. Reconfirmation is RE-ROUTED onto the successor portfolio opened by that
+    cluster autopsy: H-bc-prior (competence-directed behavioural-prior / imitation seed) vs
+    H-approach-primitive (innate non-extinguishing demonstrator-free approach drive). Note
+    the routing dependency is asymmetric -- INV-088 rides the MECH-457 competence portfolio
+    because a validly-moving z_world-differentiation gradient requires a converter that can
+    clear the foraging floor; until that discrimination resolves, INV-088 has no test-bed.
+    This is discovery debt: complex (probe-gated) -> puzzle (known rules), NOT a
+    substrate_ceiling (INV-088 explicitly retains 'Not substrate_ceiling' per its notes).
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -28912,15 +28980,45 @@
   location: docs/architecture/sd_036_gabaergic_decay_regulator.md
 
 - id: MECH-279
-  evidence_quality_note: "[update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524 cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense() per warmup step, agent.update_residue() never called (residue field empty / running_variance pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration + corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working session 2026-05-07."
+  evidence_quality_note: >
+    2026-07-18 governance: candidate -> provisional. V3-EXQ-776 (PAG freeze-gate functional
+    signature; run_id v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3)
+    PASS/supports, self-route pag_freeze_gate_functional_signature_confirmed, no adjudication flag.
+    All THREE signatures pass on 5/5 seeds and are non-degenerate, against gate_cfg
+    theta_freeze=2.0 / duration_input_threshold=0.4: S1 commit-law (freeze commits when
+    z_harm_a x duration exceeds theta_freeze -- MECH-279's primary falsifiable prediction);
+    S2 committed-state hysteresis (freeze is a sustained COMMITTED state with its own exit
+    criterion, not merely absence of movement -- the architectural core of the claim);
+    S3 gaba_tone exit-control (elevated gaba_tone accelerates exit, lowered gaba_tone sustains
+    freeze under mild harm = the catatonia phenotype -- MECH-279's secondary prediction).
+    Env-free DRIVEN probe of the real agent-instantiated gate reading real gaba_tone from SD-036.
+    Evidence state: exp_conf 0.774, lit_conf 0.896 (6 lit entries); 7 supports / 0 weakens.
+    DECONTAMINATION: this is the first clean experimental support for MECH-279. The
+    v3_pending=false clearance (2026-04-22) rested on V3-EXQ-475, which is inside the
+    contaminated cohort recorded below; V3-EXQ-776 is a fresh wall-independent probe outside
+    that cohort and does not inherit the update_z_goal defect.
+    SCOPE (important): 776 validates the gate's FUNCTIONAL LAW under driven z_harm_a. It does
+    NOT establish that the gate engages ECOLOGICALLY -- the standing MECH-280 / SD-037 finding
+    that pag_release_count_end=0 across all 12 runs of 483e (z_harm_a never clears
+    theta_freeze=2.0 in situ) is untouched by this run and still routes to the
+    PAGFreezeGateConfig.theta_freeze / duration_input_threshold recalibration.
+    ---
+    [update_z_goal_typeerror_swallowed] EXQ-471/475/483/483a/483b/490/490b/490c/490e/490f/524
+    cohort evidence is contaminated and superseded as of 2026-05-07 due to a script-side
+    TypeError in agent.update_z_goal that was silently swallowed by a bare except, leaving
+    GoalState.is_active() always False. Additional cohort-wide issues found: 2x agent.sense()
+    per warmup step, agent.update_residue() never called (residue field empty / running_variance
+    pinned), dACC bias diagnostic reading wrong tensor. Awaiting StepHarness migration +
+    corrected re-runs (EXQ-475a / EXQ-483c / EXQ-490g / EXQ-471a / EXQ-524a). See REE_Working
+    session 2026-05-07.
   title: "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia."
   claim_type: mechanism_hypothesis
   subject: pag.gabaergic_freeze_gate
   polarity: asserts
-  status: candidate
+  status: provisional
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: provisional
+    as_of: 2026-07-18
     needs_review: false
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-475 confirms PAG freeze gate firing (1000 active steps per seed in 3/3 seeds)
@@ -55410,6 +55508,34 @@
     disposition, not a granularity signal. INV-088 stays candidate/pending_substrate_
     reconfirmation (769 was its retest path; reconfirmation did not occur; unblock
     re-routed onto the 770/771/772 portfolio).
+    ---
+    2026-07-18 governance (V3-EXQ-770 / 771 / 772 CLUSTER, diagnostic, claim_ids=[MECH-457];
+    failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18, status confirmed): the GOV-FANOUT-1
+    discrimination portfolio routed by the 769 autopsy RAN and ALL THREE FAILED, each hitting
+    its OWN pre-registered null -- 770 drive_schedule_not_the_axis, 771
+    reward_coupling_not_the_axis, 772 credit_horizon_not_the_axis. Readiness met on every leg
+    (local_view_greedy 48-55, oracle 57-61 vs the 1.0 floor -- the env is solvable from the 5x5
+    view in all three), every treatment arm forages AT THE FLOOR (~0-1, random-walk level) on
+    BOTH z_world and raw, non_degenerate TRUE x3. Combined with 769 (capacity falsified) this
+    eliminates FOUR axes: capacity, drive-schedule, reward-coupling, credit-horizon.
+    REFRAME (user-confirmed at the autopsy Step-8 gate): this is a MISSING-DEPENDENCY finding,
+    NOT a substrate ceiling. The learned actor-critic converter cannot extract a competent
+    policy from a PROVABLY SUFFICIENT observation, and is invariant to every config / env /
+    credit / capacity lever tried. MECH-457 itself is INTACT but necessary-not-sufficient:
+    behavioural cloning (imitation 32.72) remains the ONLY floor-clearing existence proof, so
+    the gap is in the converter's bootstrap, not in the claim's assertion that a dedicated
+    actor-critic substrate is required.
+    epistemic_category competence_implementation_gap (explicitly NOT substrate_ceiling -- 0
+    ceiling verdicts added, GOV-CEIL-1 exhaustion count unaffected).
+    evidence_direction non_contributory (PROMOTES / DEMOTES NOTHING; MECH-457 stays
+    candidate/v3_pending). Re-derive brake FIRED (7th consecutive non_contributory MECH-457
+    autopsy): REFUSE any further config / env / credit / capacity re-queue on this axis.
+    Routing (user-chosen): a NEW GOV-FANOUT-1 discrimination portfolio FIRST -- H-bc-prior
+    (competence-directed behavioural-prior / imitation seed) vs H-approach-primitive (innate
+    non-extinguishing demonstrator-free approach drive), each with a declared null; the
+    substrate amend to mech457_competence_bootstrap_explorer is DEFERRED until that
+    discrimination resolves. Hypothesis-space ledger: H1/H2/H3 resolved eliminated (full bar
+    met), H-bc-prior / H-approach-primitive pre-registered alive (competence_floor 7 -> 12).
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic

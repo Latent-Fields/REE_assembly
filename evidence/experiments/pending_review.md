@@ -1,10 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-07-16T18:09:03Z`  
-Last review: `2026-07-16T18:08:56Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-18T06:41:36Z`  
+Last review: `2026-07-18T04:54:03Z`  
+Pending: **2** item(s) -- 0 PASS, 2 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## FAIL (action required)
+
+| Run ID | Timestamp | Claims | Failure signatures |
+|--------|-----------|--------|--------------------|
+| `v3_exq_777_mech063_orthogonal_control_axes_dissociation_20260717T155914Z_v3` | 2026-07-17T15:59 | MECH-063 | — |
+| `v3_exq_779_mech063_tonic_phasic_dissociation_20260717T191826Z_v3` | 2026-07-17T19:18 | MECH-063 | — |
 
 ---
 

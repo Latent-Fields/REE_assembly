@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-18T04:47:20Z",
+  "generated_at": "2026-07-18T06:51:55Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 110,
-      "built_modules": 89,
-      "fraction_built": 0.8091,
+      "built_modules": 88,
+      "fraction_built": 0.8,
       "state_counts": {
-        "proposed": 21,
-        "implemented": 66,
+        "proposed": 22,
+        "implemented": 65,
         "implemented_pending_validation": 13,
         "validated": 10
       },
-      "build_proof_gap": 79,
-      "build_proof_gap_note": "89 modules built, 79 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 78,
+      "build_proof_gap_note": "88 modules built, 78 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -47,37 +47,37 @@
       "date": "2026-07-11",
       "surviving": 23,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-13",
       "surviving": 21,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-15",
       "surviving": 17,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-16",
       "surviving": 16,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-17",
       "surviving": 13,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-18",
       "surviving": 12,
       "closure_pct": 77.5,
-      "build_pct": 80.9
+      "build_pct": 80.0
     }
   ],
   "questions": [
@@ -250,8 +250,10 @@
           "desc": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or oracle)",
           "axis": "learning-signal",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Existence proof: the BC arm cleared the floor (32.72). Live because the four config/env/credit/capacity axes are eliminated but 'which competence-directed dependency' is unresolved. Adjudicating run pending /queue-experiment.",
+          "evidence_runs": [
+            "V3-EXQ-780"
+          ],
+          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Existence proof: the BC arm cleared the floor (32.72). Live because the four config/env/credit/capacity axes are eliminated but 'which competence-directed dependency' is unresolved. Adjudicating run V3-EXQ-780 queued 2026-07-18 via /queue-experiment (pending completion).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -261,8 +263,10 @@
           "desc": "a sustained, demonstrator-free appetitive-approach drive toward resources, architecturally distinct from novelty-class drives (RND/SD-025) that self-attenuate via familiarity",
           "axis": "intrinsic-architecture",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Live alternative to H-bc-prior; kept demonstrator-free to avoid verdict-aliasing. Adjudicating run pending /queue-experiment.",
+          "evidence_runs": [
+            "V3-EXQ-781"
+          ],
+          "basis": "Pre-registered 2026-07-18 by failure_autopsy_MECH-457-fanout-770-771-772. Live alternative to H-bc-prior; kept demonstrator-free to avoid verdict-aliasing. Adjudicating run V3-EXQ-781 queued 2026-07-18 via /queue-experiment (pending completion).",
           "children": [],
           "met_elimination_bar": false
         }

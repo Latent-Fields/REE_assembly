@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-07-16T18:09:31Z
+Generated: 2026-07-18T06:52:07Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -22,7 +22,7 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 
 _None._
 
-## Assembly frontier -- resting, not drift (9)
+## Assembly frontier -- resting, not drift (10)
 
 Nodes with status `assembling` / `open_by_design`: required for v3 but under construction. They are a stable resting state -- NOT counted as drift or stale, and they need no recurring re-stamp to stay quiet. Listed here for visibility only. A node flagged **revisit_due** has passed its optional `revisit_after` date and should be reviewed (resume / re-state / extend the date).
 
@@ -36,9 +36,10 @@ Nodes with status `assembling` / `open_by_design`: required for v3 but under con
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P3-ofc` | assembling | _unset_ | built | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | assembling | _unset_ | ran_exhausted_for_substrate | _none_ | no |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:P4-learned-gating` | assembling | _unset_ | exhausted | _none_ | no |
+| conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | assembling | _unset_ | blocked_on_upstream | _none_ | no |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P1b` | assembling | conversion_ceiling_campaign:FULLSTACK -- 625e's confirmed au | in_progress | _none_ | no |
 
-## Status-plane drift -- projected `live` != stored `live` (0 of 98 collapsed node(s))
+## Status-plane drift -- projected `live` != stored `live` (0 of 99 collapsed node(s))
 
 SHP-2 two-plane nodes carry a stored `live:` head that is a pure projection over the append-only event log. This section re-projects each and flags any whose stored head has gone stale vs the events (a new autopsy / PASS manifest / decision landed, or the reconcile / brake state moved). In a governance cycle it is self-healing: Step 3c-pre-heal (scripts/heal_status_plane_drift.py) re-stamps every fully-collapsed drifted plan IN PLACE before this check runs (leaving the edited plan file uncommitted for a human to review + commit pathspec-limited), so a residual count here is normally a MIXED plan that still has un-collapsed blob nodes -- re-stamp it manually with `scripts/shp2_collapse_and_verify.py --plan <plan>` once collapsed (the collapse step re-projects already-collapsed drifted nodes in place, then re-runs this check as gate 4), or `scripts/shp2_collapse_plan.py --plan <plan>` for the re-stamp without the gates. Both regenerate `live:`+`join:` via the one projection path and are byte-identical no-ops on up-to-date nodes. Nodes with no `live:` block are not yet collapsed and are not checked here.
 

@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-17T07:10:14Z",
+  "last_review_utc": "2026-07-18T04:54:03Z",
   "discussed_experiment_dirs": [
     "v3_exq_763_mech304_conditioned_inhibition_behavioural_falsifier",
     "v3_exq_762_mech046_cea_mode_prior_context_conditioning",
@@ -857,7 +857,16 @@
     "v3_exq_766_mech232_da_modulated_representational_expansion",
     "v3_exq_680e_mech423_superadditivity_ablation",
     "v3_exq_767_sd025_curiosity_drive_selection_bias",
-    "v3_exq_768_arc057_da_curiosity_interaction_spike"
+    "v3_exq_768_arc057_da_curiosity_interaction_spike",
+    "v3_exq_770_mech457_drive_schedule_discrimination",
+    "v3_exq_771_mech457_metabolic_forage_survive_discrimination",
+    "v3_exq_772_mech457_dense_credit_forage_discrimination",
+    "v3_exq_774_mech173_rem_suppression_precision_calibration",
+    "v3_exq_775_mech086_selection_gain_dose_response",
+    "v3_exq_776_mech279_pag_freeze_gate_functional_signature",
+    "v3_exq_773_mech076_residue_basin_geometry_doseresponse",
+    "v3_exq_sd068_consolidation_staged_damage_diagnostic",
+    "v3_exq_sd068_consolidation_staging_power_diagnostic"
   ],
   "reviewed_run_ids": [
     "v3_exq_742m_mech457_bias_head_baseline_mint_20260715T013328Z_v3",
@@ -3395,7 +3404,17 @@
     "v3_exq_768_arc057_da_curiosity_interaction_spike_20260716T155307Z_v3",
     "v3_exq_767a_sd025_curiosity_drive_selection_bias_margin_20260716T201116Z_v3",
     "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3",
-    "v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3"
+    "v3_exq_768a_arc057_da_curiosity_interaction_spike_margin_20260717T064620Z_v3",
+    "v3_exq_770_mech457_drive_schedule_discrimination_20260717T134514Z_v3",
+    "v3_exq_771_mech457_metabolic_forage_survive_discrimination_20260718T004749Z_v3",
+    "v3_exq_772_mech457_dense_credit_forage_discrimination_20260717T132301Z_v3",
+    "v3_exq_774_mech173_rem_suppression_precision_calibration_20260717T152554Z_v3",
+    "v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3",
+    "v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3",
+    "v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3",
+    "v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T160320Z_v3",
+    "v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T161157Z_v3",
+    "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5305,6 +5324,23 @@
         "v3_exq_769_mech457_bootstrap_explorer_capacity_20260717T020118Z_v3"
       ],
       "note": "Failure autopsy of V3-EXQ-769 (MECH-457 capacity-amend post-build retest, supersedes 765; diagnostic, PROMOTES/DEMOTES NOTHING). FAIL bootstrap_explorer_plateaus_capacity_gap_remains -- and a REGRESSION: raw ON 6.48->0.12 (the one 765 clearing seed 15.9->0), z_world ON unchanged ~0.27 despite detaching. Capacity/reliability/integration axis EMPIRICALLY FALSIFIED. Behavioral signature: ON survives 200 steps/death 0/contamination-avoided/forage ~0 = avoidance WITHOUT approach; D3_hazard_free decouples survival from foraging. Diagnosis (user-confirmed Step-8): missing-dependency reframe (NOT substrate_ceiling; 0 substrate_ceiling verdicts preserved, GOV-CEIL-1 unaffected), epistemic competence_implementation_gap, ev_dir non_contributory. Re-derive brake FIRED (6th non_contributory MECH-457 autopsy): REFUSE any capacity/same-axis re-queue. Routing = GOV-FANOUT-1 discrimination portfolio (H1 drive-schedule / H2 reward-coupling / H3 credit-horizon), each with declared null, coordinate w/ in-flight approach-before-avoidance ordering falsifier. Secondary: 'bit-identical OFF' claim false (substrate_hash + OFF numbers changed). INV-088 stays candidate/pending_substrate_reconfirmation (769 was its retest path; not reconfirmed; unblock re-routed to portfolio). Artifact: failure_autopsy_V3-EXQ-769_2026-07-17.{md,json}. MECH-457 stays candidate/v3_pending."
+    },
+    {
+      "utc": "2026-07-18T04:54:03Z",
+      "session": "governance-86e36f (/governance cycle 2026-07-18)",
+      "reviewed": [
+        "v3_exq_770_mech457_drive_schedule_discrimination_20260717T134514Z_v3",
+        "v3_exq_771_mech457_metabolic_forage_survive_discrimination_20260718T004749Z_v3",
+        "v3_exq_772_mech457_dense_credit_forage_discrimination_20260717T132301Z_v3",
+        "v3_exq_774_mech173_rem_suppression_precision_calibration_20260717T152554Z_v3",
+        "v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3",
+        "v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3",
+        "v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3",
+        "v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T160320Z_v3",
+        "v3_exq_sd068_consolidation_staged_damage_diagnostic_20260717T161157Z_v3",
+        "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+      ],
+      "note": "Governance cycle 2026-07-18. APPLIED: (1) 3 promotions candidate->provisional on clean first exp PASSes -- MECH-086 (V3-EXQ-775, 4/4 selection-gain signatures 3/3 seeds), MECH-279 (V3-EXQ-776, 3/3 PAG freeze-gate signatures 5/5 seeds; first CLEAN support, prior 475 clearance sat in the update_z_goal contaminated cohort; scope = functional law under driven z_harm_a, NOT ecological engagement), MECH-076 (V3-EXQ-773, graded basin geometry + capture-at-a-distance; basin-geometry leg only). (2) MECH-457 cluster autopsy 770/771/772 applied non_contributory/competence_implementation_gap -- all three hit their pre-registered nulls, FOUR axes now eliminated (capacity/drive/reward/credit); missing-dependency REFRAME, NOT substrate_ceiling; re-derive brake fired (7th); stays candidate/v3_pending; new portfolio H-bc-prior vs H-approach-primitive routed. (3) MECH-173 (V3-EXQ-774) applied inconclusive/substrate_ceiling + pending_retest_after_substrate -> /implement-substrate AMEND MECH-204 Phase 7 Option B. (4) INV-088 keeps hold_candidate_resolve_conflict; reconfirmation re-routed (770/771/772 did not reconfirm). (5) SD-068 x3 diagnostics marked reviewed diagnostic-only (findings already banked to MECH-168/INV-047; MECH-121 held; promotes/demotes nothing). HELD PENDING (user route B): V3-EXQ-777 + V3-EXQ-779 (both MECH-063) un-adjudicated -- NO evidence_direction applied; /failure-autopsy chips spawned. MECH-063 NOT demoted on the un-adjudicated 777 'weakens' self-route."
     }
   ]
 }

@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-06-20T12:06:39Z",
+  "last_updated_utc": "2026-07-18T04:54:03Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -76,7 +76,10 @@
       "generation": "v4_leaning",
       "blocks_v3_critical_path": false,
       "in_flight": null,
-      "registered_candidate_claims": ["MECH-437", "MECH-438"],
+      "registered_candidate_claims": [
+        "MECH-437",
+        "MECH-438"
+      ],
       "last_known_state_note": "COMPLETED. Mine+Register executed 2026-06-17 (session convergence-rule-distinguishability-intake-20260617T1500Z): DreamCoder intake created (sources/dreamcoder/) + DreamerV3 codebook angle extended (sources/dreamer-v3/); promotion packet CPKT-RULE-DISTINGUISHABILITY-20260617 submitted; MECH-437 (maintenance-side consolidation/refactor) + MECH-438 (construction-side separable-key codebook) registered candidate/substrate_conditional/generation:v4, wired into the arc_062 cluster depends_on (landed REE_assembly master dcca2cb). HANDOFF reconciled 2026-06-19 (session convergence-handoff-reactivate-cdq-reconcile-20260619T1856Z): packet re-validated gate-ready; receipt CRCT-RULE-DISTINGUISHABILITY-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) and mirrored to REE_convergence/handoff/packets/receipts/ -- this re-activated the handoff pipeline (first batch since 2026-02-24). Direct claims.yaml registration superseded the tool register step; receipt promotes nothing. STALE BOOKKEEPING FIXED: prior in_flight pointer cited chip task_88e97a80, which is actually the closure-map process-lane task, not this work. Sense step should treat CDQ-001 as satisfied unless a new mechanism gap surfaces."
     },
     {
@@ -113,7 +116,10 @@
       "generation_basis": "Maps onto existing V3 claims MECH-313 (LC-NE noise floor) / MECH-314 (model-disagreement curiosity); target nodes are V3 closure nodes.",
       "blocks_v3_critical_path": false,
       "in_flight": "session convergence-cdq002-noisynet-intake-20260618T0643Z (Mine+Register DONE 2026-06-18)",
-      "registered_candidate_claims": ["MECH-440", "MECH-441"],
+      "registered_candidate_claims": [
+        "MECH-440",
+        "MECH-441"
+      ],
       "last_known_state_note": "Mine+Register executed 2026-06-18 (session convergence-cdq002-noisynet-intake-20260618T0643Z). NEW intakes sources/noisynet/ (primary, NoisyNet undirected tonic floor) + sources/rnd-plan2explore/ (secondary, RND/Plan2Explore directed model-disagreement curiosity); both schema-valid + ready_for_execution probe; cross-source synthesis reports/2026-06-18_tonic_exploration_noise_synthesis.md + README rows. Biology lit-pull BEFORE registering (Aston-Jones&Cohen 2005 adaptive gain + Tervo et al 2014 LC->ACC stochastic-choice gating + Daw et al 2006 frontopolar exploration; targeted_review_connectome_mech_313/_314) SUPPORTS the state-conditioned+self-annealing refinement (MECH-313's state-INDEPENDENT framing is biologically under-specified). Promotion packet CPKT-TONIC-EXPLORATION-NOISE-20260618 submitted via run_cross_repo_handoff.py (gate-ready; copied to evidence/planning/convergence_packets/inbox/). Registered (user-approved per-child) MECH-440 (state_conditioned_self_annealing_noise_floor, NoisyNet analog extending MECH-313; PROPAGATING weight-noise fixes the V3-EXQ-687 non-propagation) + MECH-441 (model_disagreement_directed_curiosity, RND/Plan2Explore analog extending MECH-314), both candidate/substrate_ceiling/v3/v3_pending, each with a falsifier, depends_on the GAP-C cluster (MECH-313/MECH-260/Q-045/ARC-065) + GAP-H curiosity leg (MECH-314/ARC-065); arch stub docs/architecture/state_conditioned_exploration_noise_floor.md; claims.json rebuilt (823 claims, validate_claims 0 errors). CANDIDATES ONLY -- promotes nothing, flips no node status, blocks no V3 node; GAP-C/GAP-H node frontmatter NOT touched. HANDOFF reconciled 2026-06-19: receipt CRCT-TONIC-EXPLORATION-NOISE-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) + mirrored to REE_convergence/handoff/packets/receipts/. Receipt promotes nothing (direct claims.yaml registration superseded the tool register step)."
     },
     {
@@ -143,7 +149,9 @@
       "generation_basis": "Structurally the top-k shortlist fix already validated by V3-EXQ-569i (a V3 experiment); behavioral_diversity_isolation:GAP-B is a V3 closure node.",
       "blocks_v3_critical_path": false,
       "in_flight": null,
-      "registered_candidate_claims": ["MECH-442"],
+      "registered_candidate_claims": [
+        "MECH-442"
+      ],
       "last_known_state_note": "COMPLETED 2026-06-18 (session convergence-cdq003-mapelites-intake-20260618T0643Z). Mine: REE_convergence/sources/quality-diversity/ intake (schema-valid; MAP-Elites behavioral-descriptor archive adapted onto the E3 committed-selection locus / e3_selector top-k path) + synthesis report + README row. Promotion packet CPKT-QUALITY-DIVERSITY-20260618 GATE-READY, submitted via run_cross_repo_handoff.py (copied to evidence/planning/convergence_packets/inbox/). Register: candidate MECH-442 registered candidate/substrate_conditional/generation v3 (NOT MECH-440 -- collided with concurrent CDQ-002 which took 440/441; took next free id 442), wired into the GAP-B conversion-ceiling cluster depends_on (ARC-065/MECH-341/MECH-439/MECH-294/ARC-062 + MECH-313 added per lit-pull), arch stub docs/architecture/quality_diversity_committed_archive.md. /lit-pull run BEFORE registering (user-directed): evidence/literature/targeted_review_connectome_mech_442/ 5 PubMed entries, lit_conf 0.777, verdict SUPPORTED-with-refinement (archive lives UPSTREAM of the winner-take-all commit -- Ponzi 2007 weakens the at-argmax reading; F-dominance is biologically faithful). PROMOTES NOTHING; GAP-B node status untouched. HANDOFF reconciled 2026-06-19: receipt CRCT-QUALITY-DIVERSITY-20260619 authored (accepted; decision_ref evidence/decisions/convergence_packet_adjudication_2026-06-19.md) + mirrored to REE_convergence/handoff/packets/receipts/. Receipt promotes nothing (direct claims.yaml registration superseded the tool register step)."
     },
     {
@@ -214,7 +222,10 @@
       "blocks_v3_critical_path": false,
       "in_flight": "Register DONE 2026-06-19 (convergence-cdq005-muzero-reanalyze-20260619T1856Z). Decide-whether-to-build DONE 2026-06-19 (mech443-444-decide-to-build-20260619T2159Z): packet evidence/planning/mech_443_444_decide_to_build_2026-06-19.md. VERDICTS -- MECH-443 = (b) DESIGN GAP (buildable on the landed MECH-319 write primitive; route a go/no-go non-degeneracy probe on the rule-arbitration retention/selectivity readout first; sequence any committed/behavioural validation behind the MECH-439 F-dominance conversion ceiling per V3-EXQ-654g); MECH-444 = (c) DON'T-BUILD-yet (analogy-only biology, needs a not-yet-existing target-recompute primitive, composes downstream of + gated on MECH-443). Both ceiling_decision: deferred markers LEFT IN PLACE (no claims.yaml/status change; marker removal must coincide with a substrate_queue routing home, a later user-elected queue step). NON-BLOCKING for V3 green-board.",
       "go_nogo_record": "2026-06-20 (session mech443-444-phaseA-falsifier-adjudicate-20260620T1206Z): chip-requested GO/NO-GO/KEEP-DEFERRED reconciliation of the 2026-06-19 packet -- doc evidence/planning/mech_443_444_go_nogo_reconciliation_2026-06-20.md. VERDICT: MECH-443 = GO ((b) DESIGN GAP -> proceed to the gated campaign; entry gate = the rule-layer non-degeneracy probe (chip Phase B1 == packet S2.4-Q1); behavioural payoff (Phase B2) sequenced behind the MECH-439 conversion-ceiling lift, keystone V3-EXQ-689a). MECH-444 = KEEP-DEFERRED ((c); blocked behind 443-built-and-keeps + a not-yet-scoped target-recompute primitive; analogy-only biology). Phase A also added explicit what_would_answer fields to both claims in claims.yaml. Both ceiling_decision: deferred markers HELD: 689a not yet landed (running on DLAPTOP-4.local, alive) so campaign not unblocked, AND no substrate_queue routing home exists (removal would re-orphan per packet S5). Biology divergence treated as LOAD-BEARING (443: priority=value-of-update not reward, Carey 2019; 444: reanalyze target-recompute has no measured hippocampal analog).",
-      "registered_candidate_claims": ["MECH-443", "MECH-444"],
+      "registered_candidate_claims": [
+        "MECH-443",
+        "MECH-444"
+      ],
       "last_known_state_note": "COMPLETED 2026-06-19 (session convergence-cdq005-muzero-reanalyze-20260619T1856Z). Register step executed: the MuZero/EfficientZero reanalyze intake (sources/muzero/, COMPLETED) pulled through to two registered candidate claims that EXTEND the already-owned MECH-319 binary simulation-mode rule-write gate (V3-EXQ-628 PASS/supports) -- NON-DUPLICATIVE: MECH-319 = WHETHER the replay channel is open; the new pair = the GRADED layer. MECH-443 (priority_weighted_replay_write_selection -- which/how-strongly admitted replayed transitions write, weighted by an update-utility/surprise/value-error proxy; MuZero/EfficientZero prioritized-replay analog) + MECH-444 (staleness_gated_target_refresh_on_replay_write -- recompute the write target against the current model before it updates the rule layer; MuZero reanalyze analog, the more speculative leg). Both candidate/substrate_ceiling/generation v3/v3_pending, each with a falsifier, depends_on MECH-319/MECH-094/MECH-312/ARC-062 (443) + MECH-319/MECH-443/MECH-094 (444); arch stub docs/architecture/prioritized_replay_write_gating.md. Biology /lit-pull BEFORE registering (SD-003/SD-010-011 discipline): evidence/literature/targeted_review_replay_prioritization_mech_319/, 5 sources, SYNTHESIS verdict SUPPORTED-with-refinement -- replay is demonstrably PRIORITIZED not uniform (Mattar & Daw 2018 gain x need; Olafsdottir 2015; Haga & Fukai 2018 write-gating; Milstein 2022 substrate availability) with the LOAD-BEARING refinement (Carey et al. 2019) that priority is update-utility, NOT reward magnitude. Promotion packet CPKT-MUZERO-REANALYZE-20260619 written + VALID + GATE-READY (handoff/packets/outbox/2026-06-19_cpkt_muzero_reanalyze.json). GAP-K node convergence_2026_06_19 note added (status/owner_exq/unblocks_claims UNCHANGED; last_updated bumped). PROMOTES NOTHING; off the V3 critical path. The actual cross-repo handoff RUN of the packet is left to the Convergence Demand Pipeline HANDOFF-REACTIVATE node (separate session)."
     },
     {
@@ -253,6 +264,43 @@
       "in_flight": "session mech442-convergence-query-and-689successor-20260619T1920Z (query brief written 2026-06-19)",
       "registered_candidate_claims": [],
       "last_known_state_note": "NEW 2026-06-19. Routed Q1 from the MECH-442 decide-to-build packet (evidence/planning/mech_442_decide_to_build_2026-06-19.md, verdict (b) DESIGN GAP). The decide-whether-to-build audit found every archive design parameter SETTLED (per-niche-elite F-safety envelope = top-k guarantee; coverage-commit rule = MECH-341 stratified+entropy; MECH-313 pairing built) EXCEPT the descriptor + niche-resolution + standing-vs-per-tick fork -- which is exactly the QD intake's own unresolved probes QD-Q-001 / QD-P-002 / QD-LIM-001 (see sources/quality-diversity/comparison_table.md + integration_deltas.md QD-DELTA-002/004). Query brief: REE_convergence/sources/quality-diversity/2026-06-19_descriptor_variant_query.md (three sub-questions SQ1 descriptor / SQ2 discretisation / SQ3 standing-vs-per-tick + candidate-variant table + the MECH-442 falsifier the answer must predict). Indirect support from V3-EXQ-689 (2026-06-19): the cheaper F-gap-keyed alternative (MECH-439 conflict-grade) self-routed substrate_not_ready_requeue (gap_spread_seeds=0, F-gap monostrategy-pinned) -- a behavioral-descriptor partition is ORTHOGONAL to F-rank, so it does not depend on F-gap spread. REGISTERS NO new claims (MECH-442 already exists). Build stays gated on the MECH-439 689-successor (decision packet Q2). NOT YET HANDED to the convergence pipeline Sense/Mine loop -- this row is the demand; the plan-doc Section-4 mirror is left to the next convergence HANDOFF/governance reconcile (append-only demand-queue row landed first to avoid racing the active convergence sessions)."
+    },
+    {
+      "row_id": "CDQ-007",
+      "routing_target": "convergence_intake",
+      "blocks_on": [],
+      "completion_criterion": {
+        "kind": "claims_registered",
+        "detail": "a competence-bootstrap mechanism candidate claim (behavioural-prior/imitation seed OR an actor-critic stabilisation recipe) registered + wired into MECH-457's depends_on, informing the H-bc-prior vs H-approach-primitive discrimination rather than pre-empting it",
+        "satisfied": false
+      },
+      "target_nodes": [
+        "conversion_ceiling_campaign:P-comp",
+        "behavioral_diversity_isolation:GAP-K"
+      ],
+      "mechanism_gap": "A learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation, and is invariant to every config / env / credit / capacity lever tried. Four axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772); readiness met on every leg (local_view_greedy 48-55, oracle 57-61) yet every treatment arm forages at the ~0-1 floor. Behavioural cloning (imitation 32.72) is the ONLY floor-clearing existence proof. Necessity is established (MECH-457 intact, necessary-not-sufficient); the MECHANISM that makes the converter bootstrap competence is unknown.",
+      "external_sources": [
+        {
+          "name": "DreamerV3",
+          "angle": "world-model actor-critic that solves sparse-reward long-horizon tasks (Minecraft diamond) from scratch with NO demonstrations and NO per-task tuning -- symlog value transform + percentile return normalisation + fixed entropy schedule. Speaks directly to the 'converter fails invariant to all config levers' signature; REE already has the world-model half (SD-056 e2 world-forward) + an actor-critic.",
+          "intake_state": "NEW",
+          "path": null
+        },
+        {
+          "name": "VPT (Video PreTraining) / AlphaStar BC-seed-then-RL",
+          "angle": "behavioural-prior seeding: a supervised/BC prior bootstraps a policy that RL then improves, exactly the H-bc-prior leg. Maps onto REE's one existence proof (imitation 32.72) and would name HOW to seed without a permanent demonstrator.",
+          "intake_state": "NEW",
+          "path": null
+        }
+      ],
+      "intake_state": "NEW",
+      "priority": "HIGH",
+      "generation": "v3",
+      "generation_basis": "MECH-457 is candidate/v3_pending on the V3 conversion-ceiling campaign; the competence floor is a V3 closure blocker, and lifting it is V3 work by definition (phase label follows the dependency).",
+      "blocks_v3_critical_path": false,
+      "in_flight": null,
+      "registered_candidate_claims": [],
+      "last_known_state_note": "Appended by /governance cycle 2026-07-18 Sense pass from the confirmed cluster autopsy failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18 (non_contributory / competence_implementation_gap; re-derive brake FIRED 7th -- REFUSE further config/env/credit/capacity re-queue). Qualifies as mechanism-unclear, NOT merely awaiting a run. Sense-only: no intake run, no claims registered, no REE_convergence thread opened. COORDINATION: the successor GOV-FANOUT-1 portfolio (H-bc-prior vs H-approach-primitive) is the live discrimination; an intake should INFORM which competence-directed dependency to build, never pre-empt the discrimination or trigger a blind build (the substrate_queue entry mech457_competence_bootstrap_explorer is blocked_pending_discrimination for exactly that reason)."
     }
   ]
 }
