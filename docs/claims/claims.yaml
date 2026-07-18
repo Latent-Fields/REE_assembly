@@ -49495,6 +49495,51 @@
     validation run is EXPERIMENT_PURPOSE=diagnostic and does not tag MECH-121 as
     promotion evidence; the NREM leg is substrate-plumbing-fidelity only. Glymphatic/
     amyloid structural half of MECH-169 has no V3 analog and is out of scope.
+
+    SWS READOUT REBUILT 2026-07-18 (session magical-lamport-37d09b), routed here by
+    failure_autopsy_V3-EXQ-778c_2026-07-18 -- experiment-layer only, zero ree_core
+    change, and NO substrate_queue entry (that autopsy's own
+    recommended_substrate_queue_entry.action is "none"). The content-free
+    sws_denoising_snr scored series in
+    ree-v3/experiments/_lib/consolidation_lesion_harness.py is replaced by
+    _sws_pattern_completion: a cosine retrieval margin of the post-SHY store against
+    the injected prototypes, probed with the UNSCALED base. Landed ree-v3 origin/main
+    8b18338; design rationale and caveats are in the "SWS readout rebuild" subsection
+    of the location doc (REE_assembly origin/master 1118cc5955).
+
+    VALIDATED 2026-07-18 by V3-EXQ-778g (run_id
+    v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3, 8 seeds,
+    ree-cloud-2, PASS, evidence_direction supports). Both LOAD-BEARING criteria met on
+    8/8 seeds: C1 null_slope_ratio_sws mean 0.1495 (sd 0.0218, CI95
+    [0.1344, 0.1646]) against the 0.25 ceiling with ceiling_inside_ci95 FALSE, versus
+    the retired readout's analytic 1.0000 (sd 2.7e-8) in 778c; and C3, the
+    content-scale ladder, with content-slope spread 0.1108 above the 0.01 floor. Both
+    preconditions met (injected-arm sigma-slope 0.323, range 0.323-0.358, far above the
+    1e-06 readiness floor) and criteria_non_degenerate true on all three. The earlier
+    3-seed local smoke is superseded by this 8-seed cloud run and should not be cited.
+    C3 was pre-registered precisely because the repaired readout is cosine-based and
+    therefore scale-invariant -- its null arm is flat in sigma partly BY CONSTRUCTION,
+    so the null ratio alone is a weaker check than it looks. C3 passing is what
+    discharges that caveat; the result does NOT rest on the null ratio alone.
+
+    SCOPE OF THAT VALIDATION -- narrow, and it does NOT restore the staging order.
+    778g gates on the sws leg ALONE (gated_phase sws; nrem and rem measured and
+    reported as context only, deliberately not gated, since the rem leg is known
+    degenerate at both clamp rails and gating on all three phases would FAIL
+    regardless of whether the sws repair worked). So what is now validated is the sws
+    INSTRUMENT's content-contingency, not any staging claim: the reverse-dependency
+    staging order remains UNSUPPORTED, and the rem leg remains open, owned by the
+    GOV-FANOUT-1 portfolio V3-EXQ-778d/e/f. 778c is NOT superseded -- its finding
+    about the OLD readout stands and is what motivated this build; 778g validates a
+    DIFFERENT instrument. Accordingly the 778c evidence_quality_note below is left
+    UNCHANGED by this note. Whether SD-068's non-vacuity contract should now be
+    re-widened to re-admit the sws leg is a GOVERNANCE adjudication for a /governance
+    cycle, not something this implementation_note performs. No status, confidence,
+    promotion or demotion change follows from 778g: experiment_purpose is diagnostic,
+    and diagnostic evidence does not weight governance confidence. MECH-121 hold
+    remains RESPECTED (deliberately not tagged); the run's
+    evidence_direction_per_claim is supports for SD-068 and unknown for MECH-168 /
+    INV-047 / MECH-169.
   validation_experiment: V3-EXQ-778 (staged-damage diagnostic; queued 2026-07-17, coordinator-live)
   evidence_quality_note: |
     [SCOPE NARROWED 2026-07-18 -- V3-EXQ-778c null-content control, FAIL/weakens,
