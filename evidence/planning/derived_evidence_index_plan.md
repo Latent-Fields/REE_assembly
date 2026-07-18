@@ -25,10 +25,11 @@ closure_plan:
     - id: "derived_evidence_index:P0b"
       title: "Phase 0b -- cache the uncached 3.7 MB claims.yaml yaml.safe_load in serve.py:_tl_load_claims, which profiling shows is 99.5% of /api/brain-map latency and runs TWICE per request."
       phase: 0
-      status: pending
+      status: done
       severity: high
       owner_exq: null
       last_updated: 2026-07-18
+      completion_note: "Landed 2026-07-18. mtime-keyed cache on serve.py:_tl_load_claims mirroring the Phase 0 _load_claim_evidence_claims pattern -- keyed on (st_mtime_ns, st_size), no TTL, shared read-only list, no deep copy. Profiling of the warm path then showed _brain_load_region_map was 78% of what remained (0.056s of 0.072s), so it got the same treatment. MEASURED: read_brain_map() 3.967s -> 0.028s warm (~140x). Live HTTP, same host: /api/brain-map 1.982s -> 0.006s (~330x), /api/timeline/events 3.718s -> 0.68s (~5.5x; the residue is event-building + 2.6 MB JSON serialisation, not YAML). Responses byte-identical in size and structurally identical except the per-request generated_at, verified against the live :8000 server. Fallbacks tested: missing file, deleted-after-cache, malformed YAML, _YAML_OK=False regex-fallback branch, and mtime invalidation on a scratch file -- all preserve prior behaviour."
     - id: "derived_evidence_index:P1"
       title: "Phase 1 -- emit a derived gitignored SQLite read-model from build_experiment_indexes.py at the point it already writes claim_evidence.v1.json, plus the build_meta skew gate that refuses a build when on-disk manifest count diverges from the git-tracked count."
       phase: 1
@@ -135,7 +136,34 @@ Consequences for this plan:
 
 - **P0b** (cache `_tl_load_claims` on mtime, reusing the loader pattern Phase 0
   already built and tested) is now the highest-value remaining item, and it is
-  *cheaper* than Phase 1. Do it first.
+  *cheaper* than Phase 1. Do it first. **-> DONE 2026-07-18; result below.**
+
+### 2a.1 P0b outcome (measured 2026-07-18)
+
+The prediction held, and unlike Phase 0 the endpoint-level win matched the
+unit-level one, because the cached thing really was the bottleneck:
+
+| Measurement | Before | After | Factor |
+|---|---|---|---|
+| `read_brain_map()` wall (cProfile harness) | 3.967 s | 0.028 s | ~140x |
+| `/api/brain-map` (live HTTP) | 1.982 s | 0.006 s | ~330x |
+| `/api/timeline/events` (live HTTP) | 3.718 s | 0.68 s | ~5.5x |
+
+Two things worth carrying forward:
+
+1. **Profiling the warm path found a second target the call-site sweep missed.**
+   With `claims.yaml` cached, `_brain_load_region_map()` (serve.py:1841, another
+   uncached `safe_load`) became 78% of a warm `/api/brain-map` -- 0.056 s of
+   0.072 s. It got the same mtime-keyed treatment. Re-profile *after* each fix;
+   the ranking changes underneath you.
+2. **`/api/timeline/events` keeps a 0.68 s floor** that is *not* YAML: it is
+   event construction plus serialising a 2.6 MB JSON response. That residue is a
+   payload problem, which is Phase 2's territory (§7), not a caching one --
+   another reason the Phase 1-2 justification never rested on latency.
+
+Server-side latency is now, as of P0b, **no longer an argument for Phase 1 at
+all**. Phases 1-2 stand entirely on the skew gate (§5), the lost-update fix
+(§3), the 10 MB browser payload (§7), and the absent query surface.
 - **Phases 1-2 are unaffected in their real justification.** They were never
   primarily about server latency -- they rest on the skew gate (§5), the
   lost-update fix (§3), the 10 MB browser payload (§7), and the absent query

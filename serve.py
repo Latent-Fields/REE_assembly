@@ -103,6 +103,9 @@ _TL_LITERATURE_DIR  = SERVE_DIR / "evidence" / "literature"
 # not deep-copied -- copying 10 MB per request would defeat the purpose.
 _CLAIM_EVIDENCE_CACHE: dict = {"key": None, "claims": {}}
 
+# Same contract for the 3.7 MB docs/claims/claims.yaml parse; see _tl_load_claims().
+_TL_CLAIMS_CACHE: dict = {"key": None, "claims": []}
+
 
 def _load_claim_evidence_claims() -> dict:
     """Return the `claims` map from claim_evidence.v1.json. READ-ONLY; shared."""
@@ -1835,14 +1838,34 @@ def _brain_prefix_index(map_doc: dict) -> dict[str, str]:
     return out
 
 
+_BRAIN_REGION_MAP_CACHE: dict = {"key": None, "doc": {}}
+
+
 def _brain_load_region_map() -> dict:
-    if not _YAML_OK or not BRAIN_REGION_MAP_FILE.exists():
+    """Region map from BRAIN_REGION_MAP_FILE. READ-ONLY; shared.
+
+    mtime-keyed like _tl_load_claims(); this parse is 0.056s and, once claims.yaml
+    is cached, is the dominant remaining cost of /api/brain-map (78% of a warm
+    request as profiled 2026-07-18).
+    """
+    if not _YAML_OK:
         return {}
     try:
-        raw = _yaml.safe_load(BRAIN_REGION_MAP_FILE.read_text(encoding="utf-8"))
-        return raw if isinstance(raw, dict) else {}
-    except Exception:
+        st = BRAIN_REGION_MAP_FILE.stat()
+    except OSError:
+        _BRAIN_REGION_MAP_CACHE["key"] = None
+        _BRAIN_REGION_MAP_CACHE["doc"] = {}
         return {}
+    key = (st.st_mtime_ns, st.st_size)
+    if _BRAIN_REGION_MAP_CACHE["key"] != key:
+        try:
+            raw = _yaml.safe_load(BRAIN_REGION_MAP_FILE.read_text(encoding="utf-8"))
+            doc = raw if isinstance(raw, dict) else {}
+        except Exception:
+            doc = {}
+        _BRAIN_REGION_MAP_CACHE["doc"] = doc
+        _BRAIN_REGION_MAP_CACHE["key"] = key
+    return _BRAIN_REGION_MAP_CACHE["doc"]
 
 
 def _brain_load_claim_evidence() -> dict:
@@ -5640,19 +5663,35 @@ def _tl_claim_date(claim: dict) -> tuple:
 
 
 def _tl_load_claims() -> list:
-    """Load claims list from claims.yaml. Returns [] on failure."""
-    if not _TL_CLAIMS_YAML.exists():
-        return []
+    """Load claims list from claims.yaml. Returns [] on failure.
+
+    Cached on (mtime_ns, size) of claims.yaml -- NOT a TTL -- for the same reason
+    as _load_claim_evidence_claims() above: a governance run or a manual
+    claims.yaml edit must be visible on the very next request, and a time-based
+    cache would reintroduce the staleness the explorer's no-cache posture exists
+    to prevent. The returned list is SHARED and must be treated as READ-ONLY;
+    it is not deep-copied (the parse it avoids is ~2.0s per call).
+    """
     try:
-        if _YAML_OK:
-            raw = _yaml.safe_load(_TL_CLAIMS_YAML.read_text())
-            claims_list = raw.get("claims", []) if isinstance(raw, dict) else (raw or [])
-        else:
-            # Minimal regex fallback if PyYAML unavailable
+        st = _TL_CLAIMS_YAML.stat()
+    except OSError:
+        _TL_CLAIMS_CACHE["key"] = None
+        _TL_CLAIMS_CACHE["claims"] = []
+        return []
+    key = (st.st_mtime_ns, st.st_size)
+    if _TL_CLAIMS_CACHE["key"] != key:
+        try:
+            if _YAML_OK:
+                raw = _yaml.safe_load(_TL_CLAIMS_YAML.read_text())
+                claims_list = raw.get("claims", []) if isinstance(raw, dict) else (raw or [])
+            else:
+                # Minimal regex fallback if PyYAML unavailable
+                claims_list = []
+        except Exception:
             claims_list = []
-    except Exception:
-        claims_list = []
-    return claims_list or []
+        _TL_CLAIMS_CACHE["claims"] = claims_list or []
+        _TL_CLAIMS_CACHE["key"] = key
+    return _TL_CLAIMS_CACHE["claims"]
 
 
 def _build_timeline_events() -> dict:
