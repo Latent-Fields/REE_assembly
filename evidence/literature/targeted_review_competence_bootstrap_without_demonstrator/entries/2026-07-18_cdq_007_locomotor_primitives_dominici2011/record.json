@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_locomotor_primitives_dominici2011",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "Locomotor primitives in newborn babies and their development.",
+    "authors": [
+      "Nadia Dominici",
+      "Yuri P Ivanenko",
+      "Germana Cappellini",
+      "Andrea d'Avella",
+      "Vito Mondi",
+      "Marika Cicchese",
+      "Adele Fabiano",
+      "Tiziana Silei",
+      "Ambrogio Di Paolo",
+      "Carlo Giannini",
+      "Richard E Poppele",
+      "Francesco Lacquaniti"
+    ],
+    "year": 2011,
+    "venue": "Science",
+    "doi": "10.1126/science.1210617",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22096202/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Landmark multi-muscle EMG study across four human developmental stages plus four non-human species. Directly measures the question at issue: whether competent locomotion is CONSTRUCTED from scratch by learning or REFINED from a pre-existing innate basis. The answer is unambiguous and cross-phyletic -- the two neonatal primitives are retained into adulthood and augmented, not replaced. Source quality very high; mapping to REE is by analogy (motor primitives vs a foraging policy) so mapping_fidelity is the limiting term.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The primitives measured are lumbosacral motoneuron activation patterns for stepping, not goal-directed foraging policies; the claim 'action repertoire is refined, not constructed' is demonstrated at the rhythm-generation level, not the decision-making level.",
+    "The study says nothing about WHERE the goal-direction comes from -- innate primitives supply the motor alphabet, not the objective. A REE converter given innate action primitives could still forage at floor if the primitives are never sequenced toward food.",
+    "Human infants in this study do have caregivers; the design isolates development from learning by age-staging, not by demonstrator deprivation, so it is not a clean demonstrator-free existence proof."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_approach_primitive",
+    "motor_primitives",
+    "cpg",
+    "innate_repertoire",
+    "development"
+  ],
+  "mapping": {
+    "source_claim_statement": "The two basic patterns of motoneuron activation identified in stepping neonates are retained through development into toddlerhood, childhood and adulthood, augmented by two additional patterns that first appear in toddlers; markedly similar primitives are found in rat, cat, macaque and guineafowl, suggesting a common ancestral generator.",
+    "ree_translation": "Biology does not construct a competent action repertoire from nothing. It ships an innate basis set and experience adds to and refines it. For CDQ-007 this is direct support for the H-approach-primitive framing that the REE converter's cold-start problem may be a MISSING PRIOR problem rather than a learning-signal problem -- the substrate is being asked to build primitives that biology never asks a learner to build.",
+    "mapping_caveat": "This is motor-pattern generation, not goal-selection. The paper demonstrates that the ACTION ALPHABET is innate and refined; it does not demonstrate that the goal-directedness that composes those primitives into foraging is innate. Reading it as support for an innate FORAGING drive would over-extend it -- it supports an innate action BASIS only.",
+    "source_context": "Multi-muscle surface EMG during stepping in human neonates, toddlers, preschoolers and adults; comparative EMG in rat, cat, macaque, guineafowl."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Very strong empirical source with a cross-species replication built in. Discounted for the motor-vs-policy level mismatch."
+  }
+}

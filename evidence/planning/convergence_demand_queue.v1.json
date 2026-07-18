@@ -3,7 +3,7 @@
   "title": "Convergence Demand Queue",
   "purpose": "Machine-readable mirror of the Section-4 demand-queue table in convergence_demand_pipeline_plan.md. Each row maps an OPEN closure node whose latest verdict is 'mechanism unclear' or 'substrate ceiling' to the external AI-assembly project whose solution maps onto its mechanism gap, plus the intake action that terminates in REGISTERED candidate claims (never survey prose). The Sense step (plan Section 5 step 1, wired into /governance Step 6b) appends rows here; the Mine/Register steps execute them per row.",
   "source_of_record": "evidence/planning/convergence_demand_pipeline_plan.md (Section 4)",
-  "last_updated_utc": "2026-07-18T04:54:03Z",
+  "last_updated_utc": "2026-07-18T07:22:38Z",
   "append_only": true,
   "invariants": {
     "registers_claims_not_prose": "Every executed row terminates in >=1 version-scoped candidate claim wired into the target node's depends_on with an arch-doc stub. 'Future-registration' prose is a pipeline failure.",
@@ -272,7 +272,9 @@
       "completion_criterion": {
         "kind": "claims_registered",
         "detail": "a competence-bootstrap mechanism candidate claim (behavioural-prior/imitation seed OR an actor-critic stabilisation recipe) registered + wired into MECH-457's depends_on, informing the H-bc-prior vs H-approach-primitive discrimination rather than pre-empting it",
-        "satisfied": false
+        "satisfied": true,
+        "satisfied_utc": "2026-07-18T07:22:38Z",
+        "satisfied_by": "Mine+Register executed 2026-07-18 (session hopeful-mcclintock-9b9948). Three candidate claims registered in docs/claims/claims.yaml, all status candidate / implementation_phase v3 / v3_pending, each with an explicit falsifier, and all three wired into MECH-457 depends_on. Architecture stub docs/architecture/competence_bootstrap_mechanisms.md."
       },
       "target_nodes": [
         "conversion_ceiling_campaign:P-comp",
@@ -283,24 +285,28 @@
         {
           "name": "DreamerV3",
           "angle": "world-model actor-critic that solves sparse-reward long-horizon tasks (Minecraft diamond) from scratch with NO demonstrations and NO per-task tuning -- symlog value transform + percentile return normalisation + fixed entropy schedule. Speaks directly to the 'converter fails invariant to all config levers' signature; REE already has the world-model half (SD-056 e2 world-forward) + an actor-critic.",
-          "intake_state": "NEW",
-          "path": null
+          "intake_state": "COMPLETED",
+          "path": "REE_convergence/sources/dreamer-v3/ (EXTENDED with a second lens: actor_critic_stabilisation.md + source.yaml claims DREAMER-V3-MOD-003/004, -OBJ-002/003/004, probes -P-007/008; the pre-existing intake covered only the categorical codebook lens -> MECH-438)"
         },
         {
           "name": "VPT (Video PreTraining) / AlphaStar BC-seed-then-RL",
           "angle": "behavioural-prior seeding: a supervised/BC prior bootstraps a policy that RL then improves, exactly the H-bc-prior leg. Maps onto REE's one existence proof (imitation 32.72) and would name HOW to seed without a permanent demonstrator.",
-          "intake_state": "NEW",
-          "path": null
+          "intake_state": "COMPLETED",
+          "path": "REE_convergence/sources/vpt-bc-seed/ (NEW: source.yaml + bc_seed_then_rl.md; mines VPT arXiv:2206.11795, AlphaStar Vinyals 2019, DQfD arXiv:1704.03732, JSRL arXiv:2204.02372)"
         }
       ],
-      "intake_state": "NEW",
+      "intake_state": "COMPLETED",
       "priority": "HIGH",
       "generation": "v3",
       "generation_basis": "MECH-457 is candidate/v3_pending on the V3 conversion-ceiling campaign; the competence floor is a V3 closure blocker, and lifting it is V3 work by definition (phase label follows the dependency).",
       "blocks_v3_critical_path": false,
       "in_flight": null,
-      "registered_candidate_claims": [],
-      "last_known_state_note": "Appended by /governance cycle 2026-07-18 Sense pass from the confirmed cluster autopsy failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18 (non_contributory / competence_implementation_gap; re-derive brake FIRED 7th -- REFUSE further config/env/credit/capacity re-queue). Qualifies as mechanism-unclear, NOT merely awaiting a run. Sense-only: no intake run, no claims registered, no REE_convergence thread opened. COORDINATION: the successor GOV-FANOUT-1 portfolio (H-bc-prior vs H-approach-primitive) is the live discrimination; an intake should INFORM which competence-directed dependency to build, never pre-empt the discrimination or trigger a blind build (the substrate_queue entry mech457_competence_bootstrap_explorer is blocked_pending_discrimination for exactly that reason)."
+      "registered_candidate_claims": [
+        "MECH-459",
+        "MECH-460",
+        "MECH-461"
+      ],
+      "last_known_state_note": "Appended by /governance cycle 2026-07-18 Sense pass from the confirmed cluster autopsy failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18 (non_contributory / competence_implementation_gap; re-derive brake FIRED 7th -- REFUSE further config/env/credit/capacity re-queue). Qualifies as mechanism-unclear, NOT merely awaiting a run. Sense-only: no intake run, no claims registered, no REE_convergence thread opened. COORDINATION: the successor GOV-FANOUT-1 portfolio (H-bc-prior vs H-approach-primitive) is the live discrimination; an intake should INFORM which competence-directed dependency to build, never pre-empt the discrimination or trigger a blind build (the substrate_queue entry mech457_competence_bootstrap_explorer is blocked_pending_discrimination for exactly that reason). || MINE+REGISTER COMPLETE 2026-07-18 (session hopeful-mcclintock-9b9948). Biology precondition discharged FIRST per biology_before_formal_definitions: evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/ (8 sources; Dominici 2011 innate motor-primitive basis retained-and-augmented across 5 species, Zeng 2021 self-generated-movement closed loop, Ahmadlou 2021 ZIm reward-independent investigatory drive, Kesner 2022 seeking-as-environment-prediction-error, Szczypka 2001 DA-deficient mice starve with perception/motor/hedonics intact, Mackevicius 2023 untutored self-organisation + tutor binding, Veit 2023 ghost control matching a live conspecific, Volman 1995 untutored song structured-but-abnormal). REGISTERED: MECH-459 (return-scale invariance blocks actor bootstrap -- REE stacks TWO two-sided normalisers, r/running_std then per-episode (adv-mean)/std, forming a scale-invariance operator that divides out magnitude levers BY CONSTRUCTION and re-amplifies a zero-forage episode to a unit-variance noise gradient; DreamerV3 corrective = stationary symlog + one-sided max(1,Per95-Per5) + twohot/CE critic), MECH-460 (transient behavioural-prior bootstrap -- the prior supplies tractable EXPLORATION primarily, with value-side grounding and diversity-preservation separable; REE already owns in-substrate demonstrators LocalViewGreedyPolicy/OraclePolicy so no permanent external demonstrator is needed; JSRL h->0 rollout handoff is the only strong transience construct in the literature), MECH-461 (innate action-primitive basis PLUS a reward-independent engagement drive -- the conjunction, with the Zeng closed-loop requirement that the drive output must train something). COORDINATION HONOURED: no build licensed, no experiment queued, V3-EXQ-780/781 left untouched as claimed, mech457_competence_bootstrap_explorer stays blocked_pending_discrimination, and hypothesis_space_registry.v1.json NOT amended -- MECH-459 is a THIRD route belonging to neither live leg, and whether competence_floor gains a third ALIVE hypothesis is deliberately left to /governance under the GOV-FANOUT-1 growth contract. MECH-460 and MECH-461 were registered as an EVEN-HANDED pair so the intake does not bias the discrimination toward the leg that already has the 32.72 existence proof; the claims record explicitly that BC clearing the floor does NOT discriminate among the three, since BC bypasses the return pathway entirely. NOTABLE FOR ADJUDICATION: if MECH-459 holds, the four \"eliminated\" axes (769/770/771/772) are weaker evidence than they appear -- a scale-invariant instrument could not have moved on them whatever their true effect. Honest counterweight recorded on the claim: 772 potential-based shaping changes advantage SHAPE not scale and still floored, so only the weaker noise-re-amplification form survives. MECH-457 unchanged: still candidate/v3_pending, necessary-not-sufficient."
     }
   ]
 }

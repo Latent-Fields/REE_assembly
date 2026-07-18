@@ -1,0 +1,60 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_innate_investigatory_drive_ahmadlou2021",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "A cell type-specific cortico-subcortical brain circuit for investigatory and novelty-seeking behavior.",
+    "authors": [
+      "Mehran Ahmadlou",
+      "Janou H W Houba",
+      "Jacqueline F M van Vierbergen",
+      "Maria Giannouli",
+      "Geoffrey-Alexander Gimenez",
+      "Christiaan van Weeghel",
+      "Maryam Darbanfouladi",
+      "Maryam Yasamin Shirazi",
+      "Julia Dziubek",
+      "Mejdy Kacem",
+      "Fred de Winter",
+      "J Alexander Heimel"
+    ],
+    "year": 2021,
+    "venue": "Science",
+    "doi": "10.1126/science.abe9681",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/33986154/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Optogenetic, cell-type-specific, causal identification of a dedicated circuit whose function is to INITIATE investigatory action toward objects and conspecifics -- i.e. a drive whose output is action, not valuation, and which operates in the absence of any learned reward association. This is close to the cleanest neural evidence available that a demonstrator-free, reward-independent approach drive exists as a distinct substrate. Rodent, and the behaviour is investigation rather than foraging, hence the discount.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The behaviour measured is object/conspecific investigation, not sustained goal-directed foraging to a food source; an innate investigatory drive is demonstrated, an innate FORAGING policy is not.",
+    "The paper does not test extinction under sustained non-reward, so 'non-extinguishing' -- the specific property H-approach-primitive needs -- is inferred from the reward-independence of the circuit, not measured directly.",
+    "ZIm activity is modulated by investigatory motivation level, so the drive is state-dependent rather than a fixed constant; a REE analog implemented as a constant action bonus would be a simplification of the biology."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_approach_primitive",
+    "novelty_seeking",
+    "zona_incerta",
+    "innate_drive",
+    "action_initiation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Inhibitory neurons in the medial zona incerta are essential for the DECISION to investigate an object or conspecific. They receive excitatory prelimbic input signalling exploration initiation, are modulated by investigatory motivation, and instigate deep investigative action by inhibiting the periaqueductal gray.",
+    "ree_translation": "There is a dedicated, genetically specified neural substrate whose job is to convert 'there is something there' into 'go and engage with it', independent of any learned reward value. This is the biological referent for the H-approach-primitive leg: an innate approach drive is not a theoretical convenience, it is an identified circuit with a necessity result.",
+    "mapping_caveat": "Investigation of a novel object is not foraging for food. The circuit demonstrates innate action-INITIATION toward salient stimuli; it does not demonstrate that such a drive is sufficient to produce a competent foraging policy, and non-extinguishing-under-non-reward is inferred rather than tested. Rodent-to-REE transfer is at the functional-role level only.",
+    "source_context": "Optogenetic activation/inhibition and cell-type-specific manipulation of medial zona incerta GABAergic (incl. TAC1+) neurons in mice; object and conspecific investigation assays."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.38,
+    "notes": "Science-tier causal circuit dissection with necessity and sufficiency arms. Discounted because investigation != foraging and non-extinction is not directly measured."
+  }
+}

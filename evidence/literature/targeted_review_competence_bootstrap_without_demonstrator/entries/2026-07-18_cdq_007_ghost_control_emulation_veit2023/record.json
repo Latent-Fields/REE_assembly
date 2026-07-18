@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_ghost_control_emulation_veit2023",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "Emulative learning of a two-step task in free-ranging domestic pigs.",
+    "authors": [
+      "Ariane Veit",
+      "Stefanie Weisshaupt",
+      "Arnaud Bruat",
+      "Marianne Wondrak",
+      "Ludwig Huber"
+    ],
+    "year": 2023,
+    "venue": "Animal Cognition",
+    "doi": "10.1007/s10071-022-01740-3",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/36652043/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "A well-controlled experiment with the decisive comparison built in: a 'ghost control' in which objects move with no agent present performed as well as a live conspecific demonstrator. This directly weakens the strong reading of H-bc-prior -- that what a learner needs is an ACTION-LEVEL policy to copy. What the pigs extracted was affordance information about the apparatus, obtainable without any demonstrator. Single species, single manipulative task, moderate n per group.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Observers of ALL kinds still beat non-observers, so some external information source was required -- the result weakens 'a conspecific demonstrator is needed', not 'external information is needed'.",
+    "The task is a two-step manipulation of a fixed apparatus, where affordance information is nearly the whole problem; in a foraging task where the difficulty is action SELECTION over time, action-level copying might carry weight that it does not carry here.",
+    "Free-ranging adult pigs already possess a competent exploratory and manipulative repertoire, so this is skill acquisition on top of competence, not a cold-start bootstrap."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_bc_prior",
+    "emulation",
+    "ghost_control",
+    "social_learning",
+    "affordance"
+  ],
+  "mapping": {
+    "source_claim_statement": "Free-ranging pigs given conspecific, human, ghost-control (self-moving objects), or ghost-plus-bystander demonstrations of a two-step foraging apparatus all solved it more often and engaged the relevant objects longer than non-observers, with NO difference between the four observer types -- indicating learning about the apparatus (emulation) rather than about the actions, and that social agents are not necessary.",
+    "ree_translation": "What a demonstrator supplies may be information about the TASK STRUCTURE rather than a policy to imitate. For CDQ-007 this weakens the specifically imitative reading of H-bc-prior: if BC's floor-clearing score of 32.72 works because it transmits structure rather than because it transmits a policy, then an affordance/structure channel could substitute for the demonstrator without any behavioural cloning at all.",
+    "mapping_caveat": "Observers of every type still outperformed non-observers, so this is evidence against the NECESSITY OF A CONSPECIFIC, not against the necessity of an external informational prior. The task is affordance-dominated (a fixed two-step apparatus); a temporally extended foraging policy may be a case where action-level information carries weight it does not carry here.",
+    "source_context": "36 free-ranging domestic pigs across four demonstration conditions plus 22 non-observer controls; two-step plug-and-slide foraging apparatus."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.42,
+    "notes": "The ghost-control design is exactly the right dissociation and is why this entry earns its place. Discounted for single-species, affordance-dominated task, and adult (non-cold-start) subjects."
+  }
+}

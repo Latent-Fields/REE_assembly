@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_dopamine_necessity_feeding_szczypka2001",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "Dopamine production in the caudate putamen restores feeding in dopamine-deficient mice.",
+    "authors": [
+      "M S Szczypka",
+      "K Kwok",
+      "M D Brot",
+      "B T Marck",
+      "A M Matsumoto",
+      "B A Donahue",
+      "R D Palmiter"
+    ],
+    "year": 2001,
+    "venue": "Neuron",
+    "doi": "10.1016/s0896-6273(01)00319-1",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/11430814/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "A genuine NECESSITY result, which is rare and is exactly the evidence-type CDQ-007 asked for: dopamine-deficient mice with intact sensory and motor systems and intact hedonic reactions become aphagic and starve, and targeted regional restoration rescues feeding. This is the strongest available demonstration that a tonic appetitive/approach substrate is REQUIRED for goal-directed action and cannot be substituted by reward learning. Discounted for being a knockout in an adult-developmental context rather than a cold-start bootstrap experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is loss-of-function in an animal that already possesses the innate behavioural repertoire, not a cold-start demonstration; it shows the drive is necessary to EXPRESS competence, not that it is sufficient to ACQUIRE it.",
+    "Dopamine loss also impairs movement initiation and coordination (not fully rescued by either regional restoration), so aphagia is partly confounded with motoric failure -- the paper itself flags that coordination is not fully restored.",
+    "Feeding-for-sustenance and preferring-palatable-substances dissociate anatomically here, which means 'the approach drive' is not one thing; a REE single-scalar drive parameter would be a coarse analog of a circuit biology has already split."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_approach_primitive",
+    "dopamine",
+    "necessity",
+    "foraging",
+    "aphagia"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mice unable to synthesise dopamine in dopaminergic neurons become hypoactive and hypophagic and die of starvation by four weeks. Viral restoration of dopamine synthesis in the caudate putamen restores feeding on chow and nest-building; restoration in nucleus accumbens restores exploratory behaviour; either restores preference for palatable diet without fully rescuing movement initiation or coordination.",
+    "ree_translation": "An animal with intact perception, intact motor apparatus and intact hedonic responses will nevertheless fail to forage -- to the point of death -- if the tonic dopaminergic drive substrate is absent. For CDQ-007 this is the closest biological analog of the observed REE failure signature: readiness met on every leg, yet foraging at floor. It is direct evidence that reward-contingent machinery alone does not produce goal-directed foraging.",
+    "mapping_caveat": "This is a knockout in an animal that already HAS the competence, so it evidences necessity-for-expression, not necessity-for-acquisition. The REE question is a cold-start acquisition question. Also, dopamine depletion degrades movement initiation, so the aphagia is not cleanly attributable to motivation alone.",
+    "source_context": "Genetically dopamine-deficient (tyrosine-hydroxylase-inactivated) mice with adenoviral region-targeted dopamine restoration; feeding, nest-building, exploration and preference assays."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Classic, heavily replicated necessity result from the Palmiter line. The necessity-for-expression vs necessity-for-acquisition gap is the main discount, along with the motoric confound the authors themselves report."
+  }
+}

@@ -9,7 +9,7 @@ closure_plan:
   generation: process
   title: "Convergence Demand Pipeline (closure-driven external-inspiration intake)"
   registered: 2026-06-17
-  last_updated: 2026-06-19
+  last_updated: 2026-07-18
   scope_claims: []
   nodes:
     - id: "convergence_demand_pipeline:QUEUE"
@@ -58,6 +58,37 @@ closure_plan:
       depends_on: ["convergence_demand_pipeline:HANDOFF-REACTIVATE"]
       last_updated: 2026-06-19
       resume_condition: "DONE 2026-06-19 (session convergence-cdq005-muzero-reanalyze-20260619T1856Z; CDQ-005). MuZero/EfficientZero reanalyze intake (sources/muzero/, COMPLETED) pulled through to registered candidate claims MECH-443 (priority_weighted_replay_write_selection) + MECH-444 (staleness_gated_target_refresh_on_replay_write), both candidate/substrate_ceiling/generation:v3/v3_pending, each with a falsifier, wired (claim depends_on) into the GAP-K cluster (MECH-319/MECH-094/MECH-312/ARC-062). NON-DUPLICATIVE vs MECH-319 (the already-owned BINARY block-vs-admit gate, V3-EXQ-628 PASS): the pair adds the GRADED layer (which/how-strongly + freshness). Biology /lit-pull discharged BEFORE registering (evidence/literature/targeted_review_replay_prioritization_mech_319/, 5 sources, SUPPORTED-with-refinement; priority is update-utility/gain x need NOT reward magnitude). Arch stub docs/architecture/prioritized_replay_write_gating.md; GAP-K node convergence_2026_06_19 note added (no status/owner change). Promotion packet CPKT-MUZERO-REANALYZE-20260619 written + VALID + GATE-READY in REE_convergence/handoff/packets/outbox/. Candidates only -- promotes nothing, adds no V3 dependency. RESIDUAL (not blocking this node): the cross-repo handoff RUN + receipt-mirror of the new packet rides the HANDOFF-REACTIVATE cadence (which, like CDQ-002/003, treats direct claims.yaml registration as the load-bearing step; receipts promote nothing)."
+    - id: "convergence_demand_pipeline:HIGH-CDQ007-COMPETENCE-BOOTSTRAP"
+      title: "Execute CDQ-007 (HIGH) -- DreamerV3 stabilisation lens + VPT/AlphaStar BC-seed intake -> competence-bootstrap candidate claims wired into MECH-457"
+      phase: 3
+      status: done
+      severity: high
+      depends_on: ["convergence_demand_pipeline:LOOP"]
+      last_updated: 2026-07-18
+      resume_condition: >
+        DONE 2026-07-18 (session hopeful-mcclintock-9b9948; CDQ-007). Routed by
+        failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18 (confirmed; non_contributory /
+        competence_implementation_gap; four axes eliminated -- capacity 769, drive-schedule 770,
+        reward-coupling 771, credit-horizon 772; re-derive brake FIRED 7th). Biology /lit-pull
+        discharged BEFORE registration per biology_before_formal_definitions:
+        evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/ (8 sources).
+        Mined: sources/dreamer-v3/ EXTENDED with a second, non-overlapping lens
+        (actor_critic_stabilisation.md; the pre-existing intake was codebook-only -> MECH-438) and
+        NEW sources/vpt-bc-seed/. Registered MECH-459 (return-scale invariance blocks actor
+        bootstrap), MECH-460 (transient behavioural-prior bootstrap), MECH-461 (innate
+        action-primitive basis + reward-independent engagement drive) -- all candidate /
+        implementation_phase v3 / v3_pending, each with a falsifier, all three wired into MECH-457
+        depends_on. Arch stub docs/architecture/competence_bootstrap_mechanisms.md.
+        COORDINATION HONOURED: the GOV-FANOUT-1 discrimination (V3-EXQ-780 H-bc-prior vs
+        V3-EXQ-781 H-approach-primitive) is untouched and un-pre-empted -- 460/461 registered as an
+        EVEN-HANDED pair, 459 flagged as a THIRD route belonging to neither leg,
+        hypothesis_space_registry.v1.json deliberately NOT amended (a third ALIVE leg is a
+        /governance decision under the GOV-FANOUT-1 growth contract),
+        mech457_competence_bootstrap_explorer stays blocked_pending_discrimination. No build
+        licensed, no experiment queued, nothing promoted. RESIDUAL (not blocking): the promotion
+        packet + cross-repo handoff receipt ride the HANDOFF-REACTIVATE cadence, which since
+        CDQ-002/003/005 treats direct claims.yaml registration as the load-bearing step (receipts
+        are acknowledgment lineage and promote nothing).
 ---
 
 # Convergence Demand Pipeline -- closure-driven external-inspiration intake
@@ -139,6 +170,7 @@ mechanism gap -> intake action. Sources already (even partially) in
 | `behavioral_diversity_isolation:GAP-C`; `arc_062_rule_apprehension:GAP-H` | Tonic, state-conditioned exploration noise floor (MECH-313 LC-NE analog) -- distinct from a fixed epsilon schedule | **NoisyNet** (learned per-parameter, self-annealing, state-dependent noise); secondary **RND / Plan2Explore** (model-disagreement curiosity = MECH-314) | COMPLETED -- MECH-440/441 registered + handed off (2026-06-18..19) | MED |
 | `behavioral_diversity_isolation:GAP-B` (conversion-to-committed-action) | Diversity must be maintained in a structure that survives the selection/commit step | **Quality-Diversity / MAP-Elites** (Cully et al. 2015: explicit behavioral-descriptor archive surviving selection) -- structurally the top-k shortlist fix already validated by V3-EXQ-569i | COMPLETED -- MECH-442 registered + handed off (2026-06-18..19) | MED |
 | `sd_037_axis_b:P1b` -> `P2`/`P3`/`P4` | Automatic curriculum that keeps a target signal (z_harm_a sustained-threat window) in a learnable band | **PLR / Prioritized Level Replay** + **POET**; affective framing: active-avoidance / anxiety-as-pessimistic-prior RL | NEW | LOW (P1b in flight via V3-EXQ-625d; intake feeds the axis-(c) escalation only if 625d exhausts the env-kwarg surface) |
+| `conversion_ceiling_campaign:P-comp`; `behavioral_diversity_isolation:GAP-K` (CDQ-007) | A learned actor-critic converter cannot extract a competent policy from a PROVABLY SUFFICIENT observation, and is invariant to every config/env/credit/capacity lever tried (four axes eliminated: 769 capacity, 770 drive-schedule, 771 reward-coupling, 772 credit-horizon). Readiness met on every leg (local_view_greedy 48-55, oracle 57-61 vs a 1.0 floor) yet every treatment arm forages at the ~0-1 floor. BC (imitation 32.72) is the only floor-clearing existence proof. | **DreamerV3** re-mined through the actor-critic STABILISATION lens (symlog, twohot/CE critic, one-sided percentile return normalisation, fixed entropy, imagination-horizon) + **VPT / AlphaStar / DQfD / JSRL** BC-seed-then-RL | COMPLETED 2026-07-18 -- MECH-459/460/461 registered + wired into MECH-457 `depends_on` | HIGH -- DONE |
 | `arc_062_rule_apprehension:GAP-K` (replay write-gating) | Gating which replayed/imagined transitions may write to the rule layer | **MuZero/EfficientZero reanalyze** + hippocampal SWR prioritized replay | MuZero COMPLETED (`sources/muzero/`) -- pull the adapter through to a registered claim | LOW |
 
 Maintained alongside this doc as a structured file: `convergence_demand_queue.v1.json`

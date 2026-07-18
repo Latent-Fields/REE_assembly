@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_seeking_information_drive_kesner2022",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "Seeking motivation and reward: Roles of dopamine, hippocampus, and supramammillo-septal pathway.",
+    "authors": [
+      "Andrew J Kesner",
+      "Coleman B Calva",
+      "Satoshi Ikemoto"
+    ],
+    "year": 2022,
+    "venue": "Progress in Neurobiology",
+    "doi": "10.1016/j.pneurobio.2022.102252",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/35227866/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Authoritative review that makes exactly the claim H-approach-primitive needs -- that exploratory and curiosity-driven behaviour occurs in the absence of a clear goal or reward and is regulated by an INNATE drive with identified substrates -- and reframes phasic dopamine as signalling potentially-important stimuli rather than reward. Its status as a review with an explicit theoretical proposal (environment prediction error) rather than a single decisive experiment caps the confidence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This is a review advancing a framework, not a decisive experiment; the 'innate drive' claim is a synthesis position and there are competing accounts that fold information-seeking back into reward learning as an intrinsic bonus.",
+    "'Environment prediction error' as the currency means the drive is still error-driven, just against a world-model rather than a reward-model -- so it is not obviously non-extinguishing; a well-modelled environment would quiesce it, which is the opposite of what H-approach-primitive requires for a cold-start.",
+    "The review does not address whether such a drive is SUFFICIENT to bootstrap competence absent a demonstrator; it addresses whether it exists and what implements it."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_approach_primitive",
+    "seeking",
+    "dopamine",
+    "curiosity",
+    "innate_drive"
+  ],
+  "mapping": {
+    "source_claim_statement": "Curiosity and exploratory behaviour occur in the absence of a clear goal or reward and have long been argued to be regulated by an innate drive. The supramammillary-to-hippocampal pathway carries the cognitive component (salience, uncertainty); supramammillary glutamatergic -> medial septal glutamatergic -> VTA dopaminergic projections set its vigour. Phasic dopamine signals potentially important stimuli rather than rewards.",
+    "ree_translation": "The 'SEEKING'-type appetitive drive is not a metaphor: it has an identified anatomical implementation distinct from the reward-prediction-error machinery, and it sets the VIGOUR of exploration independently of experienced reward. For CDQ-007 this supports the possibility that REE's converter is missing a drive channel that biology keeps architecturally separate from the critic.",
+    "mapping_caveat": "A review, so the evidence is synthesised rather than generated. More importantly, the proposed currency is ENVIRONMENT prediction error -- which means the drive quiesces as the world-model improves. That is a meaningfully different object from the non-extinguishing drive H-approach-primitive posits, and the difference must not be elided when mapping.",
+    "source_context": "Review of rodent and human literature on curiosity, exploration and information-seeking; hypothalamic-hippocampal-VTA circuitry."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "High-quality review in a strong venue making the exact architectural claim at issue, but review status plus the environment-prediction-error framing (which is error-driven, hence extinguishable) keep it moderate."
+  }
+}

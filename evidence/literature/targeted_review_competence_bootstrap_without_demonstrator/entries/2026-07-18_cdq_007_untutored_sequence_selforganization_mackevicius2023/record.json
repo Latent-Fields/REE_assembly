@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_untutored_sequence_selforganization_mackevicius2023",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "Self-organization of songbird neural sequences during social isolation.",
+    "authors": [
+      "Emily L Mackevicius",
+      "Shijie Gu",
+      "Natalia I Denisenko",
+      "Michale S Fee"
+    ],
+    "year": 2023,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.77262",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/37252761/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.8,
+  "confidence_rationale": "The single most informative paper in this pull for the CDQ-007 discrimination, because it disambiguates the two legs within one experiment: neural sequences form WITHOUT a tutor (H-approach-primitive), AND tutor exposure binds those pre-existing sequences to new syllables (H-bc-prior), AND birds whose untutored sequences had already crystallized FAILED to learn from the tutor (the prior is only usable inside a window). Calcium imaging with a clean delayed-tutoring design; songbird-to-REE transfer is the main discount.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sequences forming without a tutor does NOT mean competence forms without a tutor -- the untutored birds sing abnormal isolate song. The innate machinery supplies the SCAFFOLD; the demonstrator supplies the CONTENT.",
+    "Only half the delayed-tutoring birds learned new syllables, and the failures were exactly those whose pre-tutoring sequences were most crystallized -- an innate/self-organized prior that hardens becomes a BARRIER to later demonstrator-derived learning.",
+    "This is a vocal-motor sequence-learning system with a genetically specified critical period; a REE converter has no analogous maturational clock, so the timing result may not transfer even though the mechanism is suggestive."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_bc_prior",
+    "h_approach_primitive",
+    "birdsong",
+    "tutor",
+    "critical_period",
+    "self_organization"
+  ],
+  "mapping": {
+    "source_claim_statement": "Delaying tutor exposure in juvenile zebra finches and imaging HVC with calcium imaging shows neural sequences emerge in the ABSENCE of tutoring, so tutor experience is not necessary for sequence formation. After tutor exposure, pre-existing sequences can become tightly associated with newly learned syllables. Only half the delayed birds learned; the failures were those whose pre-tutoring sequences were already most 'crystallized' with their untutored song.",
+    "ree_translation": "Biology runs BOTH legs at once, in a specific order: an innate/self-organizing process builds the sequence scaffold demonstrator-free, and a demonstrator-derived prior is then bound onto that scaffold to supply competent content -- but only while the scaffold is still plastic. For CDQ-007 this maps the two hypotheses as COMPLEMENTARY STAGES rather than alternatives, and adds a timing constraint neither leg currently states.",
+    "mapping_caveat": "Vocal learning is a specialised, critical-period-gated system with a dedicated nucleus (HVC); generalising its two-stage structure to a foraging policy converter is an analogy, not an entailment. The 'crystallization blocks learning' result in particular depends on a maturational clock REE does not have, so it should inform hypothesis framing rather than be read as a predicted REE failure mode.",
+    "source_context": "Functional calcium imaging of HVC premotor sequences in juvenile zebra finches under delayed tutor exposure; song acoustic analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Rare within-experiment disambiguation of innate-scaffold vs demonstrator-content, with a timing result on top. Highest mapping_fidelity in the pull because the paper is structured around exactly the discrimination CDQ-007 poses."
+  }
+}

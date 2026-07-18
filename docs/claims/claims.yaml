@@ -55544,6 +55544,9 @@
   depends_on:
     - SD-056    # e2 world-forward contrastive encoder -- the prediction-trained representation the actor would ride (frozen per V3-EXQ-737, or permitted to adapt for action)
     - MECH-229  # VALENCE_WANTING -- the valence/reward signal an actor-critic reward-error (RPE) teacher would consume to shape the policy
+    - MECH-459  # CDQ-007 competence-bootstrap candidate: return-scale invariance blocks actor bootstrap (DreamerV3 stabilisation lens) -- the THIRD route, belongs to neither live discrimination leg
+    - MECH-460  # CDQ-007 competence-bootstrap candidate: transient behavioural-prior seed (VPT/AlphaStar/DQfD/JSRL) -- informs the H-bc-prior leg (V3-EXQ-780)
+    - MECH-461  # CDQ-007 competence-bootstrap candidate: innate action-primitive basis + reward-independent engagement drive (biology lit-pull) -- informs the H-approach-primitive leg (V3-EXQ-781)
   functional_restatement: >
     The V3-EXQ-724 competence-localization diagnostic held REE's foraging deficit
     invariant across P1 training budget, encoder-freeze, and mechanism count (and
@@ -55777,3 +55780,257 @@
     re-scope are the metabolization step. See [[project_curiosity_exploitation_amplifier_reframe]],
     [[project_monostrategy_representation_ceiling_root]] (differentiate-first),
     [[project_mech457_competence_floor_coldstart]], [[project_conversion_ceiling_four_roots]].
+
+- id: MECH-459
+  title: "return_scale_invariance_blocks_actor_bootstrap / one_sided_return_normalisation. REE's MECH-457 actor-critic update stacks TWO two-sided normalisers -- a Welford RUNNING reward std (r / running_std) followed by a per-episode advantage standardisation ((adv - mean) / (std + 1e-8)) -- which together form a SCALE-INVARIANCE OPERATOR: after it the policy gradient depends only on the SHAPE of the within-episode advantage vector and is exactly invariant to any multiplicative rescaling. This is sufficient to produce converter invariance to every MAGNITUDE lever by construction (the reward-coupling and drive-schedule axes eliminated by V3-EXQ-771 and 770), and it converts a zero-forage episode -- whose reward stream is harm_signal + novelty_bonus only, so whose advantage vector is pure critic error plus exploration jitter -- into a FULL-MAGNITUDE unit-variance noise gradient. DreamerV3 (Hafner 2023) names this exact failure ('amplification of near-zero returns', Appendix E) and prescribes the corrective: a STATIONARY magnitude compressor (symlog, explicitly against running-statistics normalisation, which injects non-stationarity because the target moves when the normaliser moves), a ONE-SIDED percentile normaliser adv / max(1, Per95 - Per5) that scales large returns down and never scales small returns up, and a DISTRIBUTIONAL twohot/cross-entropy critic in place of a scalar MSE head (which under a bimodal sparse-return distribution converges to the never-observed MEAN of the two modes, and whose gradient is linear in the error rather than bounded)."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.return_pathway_stabilisation
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-056    # e2 world-forward contrastive encoder -- the representation the converter rides
+  location: docs/architecture/competence_bootstrap_mechanisms.md#3-mech-459----return-scale-invariance-blocks-actor-bootstrap
+  functional_restatement: >
+    The MECH-457 converter's defining signature is not that it fails, but that it fails
+    INVARIANTLY -- four axes eliminated (capacity 769, drive-schedule 770, reward-coupling 771,
+    credit-horizon 772) with every treatment arm at the ~0-1 foraging floor despite readiness
+    met on every leg (local_view_greedy 48-55, oracle 57-61). This claim proposes that the
+    invariance is a PROPERTY OF THE MEASURING INSTRUMENT rather than a fact about the mechanisms
+    tested: a two-sided self-normalising advantage pathway divides magnitude levers out by
+    construction, so those axes could not have moved the floor whatever their true effect.
+    The corollary is that the eliminations are weaker evidence than they appear -- they
+    constrain the mechanisms only conditional on the normaliser not having masked them.
+  what_would_answer: >
+    A SHAPE-PRESERVING NORMALISER KNOCK-OUT: replace ONLY the per-episode
+    (adv - mean) / (std + 1e-8) at experiments/_lib/mech457_fanout.py::train_rawview_ac_rl
+    with adv / max(1, Per95(adv) - Per5(adv)), everything else byte-identical, and measure
+    foraging competence. SUPPORTED if the floor moves. FALSIFIED if it does not -- the
+    two-sided normaliser is then exonerated and the weaker noise-re-amplification form falls
+    with it. Two supporting readouts, both cheap and both on intermediate quantities:
+    (a) advantage COMPOSITION logged BEFORE standardisation (fraction of |adv| mass on
+    forage-contact steps vs novelty/harm steps) -- this claim predicts the forage fraction is
+    tiny pre-standardisation and rescaled to parity post-standardisation, whereas a
+    bootstrap-signal-absence account predicts it stays tiny in the gradient; (b) CRITIC
+    CALIBRATION on BC-visited states (BC reaches 32.72, so its state distribution contains
+    genuinely high-return states) -- the MSE/bimodal-collapse half predicts the critic assigns
+    them a value near the mean of the bimodal return distribution, failing to separate
+    pre-reward from post-reward states, where signal-absence predicts a flat critic everywhere.
+  evidence_quality_note: >
+    HONEST COUNTERWEIGHT, recorded rather than suppressed: V3-EXQ-772's potential-based shaping
+    (F = gamma*Phi(s') - Phi(s)) changes advantage SHAPE, not merely scale, so a pure
+    scale-invariance operator does NOT divide it out -- and 772 still floored. This is direct
+    strain on the narrowest form of the claim. It survives only in the weaker form that the
+    shape change is swamped because per-episode standardisation re-amplifies the co-present
+    novelty noise (NOVELTY_COEF 0.1/sqrt(visit_count), which fires on EVERY step and is the
+    dominant contributor to reward_std in a ~0-forage episode) back to unit variance alongside
+    it. The falsifier above tests that weaker form. Separately: the DreamerV3 ablations that
+    motivate the corrective are reported at SUITE level, not on the Minecraft-diamond task
+    itself, so 'these ingredients are load-bearing for the no-demonstration result' is the
+    paper's ATTRIBUTION (suite ablations plus the fixed-hyperparameter argument), not a
+    measured per-ingredient causal decomposition. Confidence is therefore mechanism-plausibility,
+    not transfer-demonstrated.
+  notes: >
+    SCOPE EXCLUSION -- the structural half is deliberately NOT in this claim. DreamerV3 also
+    trains its actor ENTIRELY on imagined 15-step rollouts with lambda-returns, so gradient-signal
+    DENSITY is set by the world model rather than by the environment's reward density. REE trains
+    on REAL env.step calls only; SD-056's e2 is a contrastive REPRESENTATION, not a rollout source,
+    and there is no seam for an imagined update. That is a STRUCTURAL difference, not a tuning one,
+    and it is carried instead as convergence probe DREAMER-V3-P-008: roll e2 forward open-loop on
+    logged trajectories and measure predicted-vs-actual reward/continuation divergence by horizon
+    step. That probe is complex (probe-gated) -> puzzle (known rules) -- the missing fact is
+    measurable WITHOUT building the update.
+    COORDINATION -- DOES NOT PRE-EMPT THE LIVE DISCRIMINATION. The GOV-FANOUT-1 portfolio
+    (H-bc-prior V3-EXQ-780 vs H-approach-primitive V3-EXQ-781) is pre-registered ALIVE in the
+    competence_floor question of hypothesis_space_registry.v1.json. MECH-459 belongs to NEITHER
+    leg: it is a THIRD route (demonstrator-free convergence via value-pathway stabilisation, with
+    neither an imitation seed nor an innate drive), so it WIDENS the hypothesis space rather than
+    narrowing it. Whether competence_floor should gain a third ALIVE leg is a /governance decision
+    under the GOV-FANOUT-1 growth contract and is deliberately left to that process -- this
+    registration does NOT amend the registry. The substrate_queue entry
+    mech457_competence_bootstrap_explorer stays blocked_pending_discrimination. PROMOTES NOTHING;
+    LICENSES NO BUILD (not the twohot critic, not the percentile normaliser, not an imagination
+    loop). The re-derive brake is not engaged by this claim: it refuses further config/env/credit/
+    capacity RE-QUEUES, and this is a different mechanism class (the normalisation pathway itself)
+    registered as a claim, not queued as an experiment.
+    NOTE ON THE 32.72 BC EXISTENCE PROOF: behavioural cloning is a supervised cross-entropy update
+    that never touches the return pathway at all, so the one method that clears the floor is
+    exactly the one that bypasses the value/advantage machinery. That is CONSISTENT with this
+    claim -- and equally consistent with MECH-460 and MECH-461. BC clearing the floor does NOT
+    discriminate among the three, which is why every falsifier here is on an INTERMEDIATE
+    quantity rather than on final foraging competence.
+  origin: >
+    Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
+    evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3), from a DreamerV3
+    re-mine through the actor-critic STABILISATION lens (distinct from the MECH-438 codebook lens
+    already taken from the same source). Intake:
+    REE_convergence/sources/dreamer-v3/actor_critic_stabilisation.md, source.yaml claims
+    DREAMER-V3-MOD-003/004 + -OBJ-002/003/004, probes -P-007/008. Routed by
+    evidence/planning/failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json (confirmed;
+    non_contributory / competence_implementation_gap). Biology precondition discharged before
+    registration per biology_before_formal_definitions:
+    evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/.
+    See [[project_mech457_competence_floor_coldstart]], [[project_conversion_ceiling_four_roots]].
+
+- id: MECH-460
+  title: "transient_behavioral_prior_bootstrap / bc_seed_then_rl_without_permanent_demonstrator. What a behavioural-cloning prior supplies to a floored converter is PRIMARILY TRACTABLE EXPLORATION / STATE-VISITATION, not merely a competent action distribution: VPT (Baker 2022) reports RL from random initialisation in the same action space obtains essentially no reward and never reliably reaches the first link in the item chain, while BC-initialised RL reaches the diamond pickaxe -- a PRESENCE/ABSENCE result, not a speed-up. Three further functions are separable: the action distribution (the vehicle), VALUE-SIDE GROUNDING (DQfD's large-margin loss, which plain BC does NOT supply and whose ablation costs most of the benefit), and STRATEGIC-DIVERSITY PRESERVATION against collapse (AlphaStar). Because REE already owns deterministic in-substrate demonstrators (LocalViewGreedyPolicy 48-55 and OraclePolicy 57-61, instantiated in experiments/_lib/mech457_fanout.py::run_anchor_cell), NO PERMANENT EXTERNAL DEMONSTRATOR IS REQUIRED -- REE's transience question is not how to stop paying for demonstrations but whether the seed leaves a RESIDUE in the converter after the guide leaves the action path. The only strong transience construct in the literature is JSRL's ROLLOUT HANDOFF (a guide acts for the first h steps, the learner for H-h, with h decreasing to 0 as the learner clears a threshold), NOT a decaying loss weight: none of VPT, AlphaStar or DQfD ever anneals its prior term to zero."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.behavioral_prior_seed_transience
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-056    # e2 world-forward contrastive encoder -- the z_world arm of the representation axis
+  location: docs/architecture/competence_bootstrap_mechanisms.md#4-mech-460----transient-behavioural-prior-bootstrap
+  functional_restatement: >
+    Behavioural cloning (imitation 32.72) is REE's ONLY floor-clearing existence proof. This claim
+    names the mechanism by which a BC seed could be load-bearing WITHOUT a permanent demonstrator,
+    and -- more usefully -- decomposes the prior into four separable functions so that the seed can
+    be ablated function-by-function rather than as a monolith. It also names the DELTA between the
+    literature's mechanism and what V3-EXQ-780 as written instantiates: 780 has the warm-start
+    (warmstart_bc_rep, experiments/_lib/mech457_explorer_classes.py:335, 300 episodes) plus a
+    persistent CE auxiliary to the LIVE demonstrator (bc_aux_coef 0.5), whereas the literature's
+    anti-forgetting result is for KL to a FROZEN SNAPSHOT OF THE AGENT'S OWN POST-BC WEIGHTS
+    (demonstrator departed) -- a different object. 780 also seeds logits only, leaving value_head
+    and the successor-feature critic (reward_w zero-init) COLD, where DQfD's margin-loss ablation
+    says value-side grounding is a separable and separately-load-bearing function.
+  what_would_answer: >
+    Three readouts, in decreasing order of decisiveness. (a) RESIDUE AFTER PRIOR REMOVAL -- the
+    JSRL h=0 endpoint: does foraging competence survive when the prior is fully out of the action
+    path? SUPPORTED if competence persists post-removal above the 780 ctrl; FALSIFIED (as a SEED
+    reading) if it collapses to the 0-1 floor the instant the auxiliary/guide is removed, which
+    would make the prior a permanent crutch rather than a bootstrap. (b) GUIDE-QUALITY GRADIENT --
+    seeding from greedy_oracle (57-61) should dominate local_view_greedy (48-55), and both should
+    dominate random_walk; a FLAT response across guide quality is surprising under this claim and
+    points at the converter rather than the seed. (c) VALUE-SIDE SEED CONTRAST -- policy-only
+    seeding vs policy+value seeding at matched actor warm-start budget, read out as critic
+    calibration on demonstrator-visited states.
+  evidence_quality_note: >
+    LOAD-BEARING CAVEAT: all four mined sources address an EXPLORATION failure (competence
+    unreachable because the relevant states are never visited). REE's signature -- four levers
+    eliminated with readiness met on every leg and a PROVABLY SUFFICIENT observation -- is at
+    least as consistent with a CONVERSION failure (competence reachable but not extractable).
+    If REE's floor is a conversion failure, this entire mechanism family may be addressing a
+    problem REE does not have. The cheap discriminator is a state-visitation readout: does the
+    floored RL arm ever visit the resource-adjacent states the demonstrator visits? Exploration
+    failure predicts no; conversion failure predicts yes-but-uncommitted. SECOND CAVEAT: every
+    prior in these sources is LEARNED FROM DATA, whereas REE's demonstrator is a deterministic
+    FUNCTION -- nothing mined speaks to whether a function-demonstrator behaves the same way, and
+    VPT's inverse-dynamics machinery (the bulk of its novelty) has no REE analogue at all because
+    REE's labels are free. THIRD: the AlphaStar extraction is from the hosted preprint plus
+    secondary write-ups (Nature text paywalled), so its KL-coefficient specifics and any ablation
+    claim are LOWER CONFIDENCE than the VPT / DQfD / JSRL material.
+  notes: >
+    COORDINATION -- INFORMS, DOES NOT DECIDE. This claim maps onto the H-bc-prior leg of the live
+    GOV-FANOUT-1 discrimination (V3-EXQ-780 vs V3-EXQ-781 H-approach-primitive), pre-registered
+    ALIVE in the competence_floor question of hypothesis_space_registry.v1.json. Registering it
+    does NOT advance that leg: the 32.72 imitation result is an existence proof that IMITATION IS
+    SUFFICIENT to clear the floor, and is NOT evidence that the bc-prior route is the CORRECT
+    route -- an innate approach primitive (MECH-461) could clear the same floor by an entirely
+    different mechanism, and 32.72 is silent on that. The two legs are not mutually exclusive.
+    PROMOTES NOTHING; LICENSES NO BUILD. mech457_competence_bootstrap_explorer stays
+    blocked_pending_discrimination; V3-EXQ-780/781 run as queued and unmodified -- the deltas
+    tabulated in the architecture stub are MAPPING, explicitly not change requests to a claimed
+    experiment. OPEN AND UNCHECKED: whether a JSRL h->0 handoff is even expressible against REE's
+    episode structure.
+  origin: >
+    Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
+    evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3). Intake:
+    REE_convergence/sources/vpt-bc-seed/ (NEW source; source.yaml + bc_seed_then_rl.md), mining
+    VPT arXiv:2206.11795, AlphaStar (Vinyals 2019), DQfD arXiv:1704.03732, JSRL arXiv:2204.02372.
+    Routed by evidence/planning/failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json.
+    Biology precondition discharged before registration per biology_before_formal_definitions:
+    evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/.
+    See [[project_mech457_competence_floor_coldstart]], [[feedback_thought_intake_must_register_claims]].
+
+- id: MECH-461
+  title: "innate_action_primitive_basis_plus_reward_independent_engagement_drive. Biological competence bootstrap without a demonstrator rests on TWO components, not one. (i) The action basis is INNATE AND REFINED, never constructed: the two neonatal motoneuron primitives are RETAINED into adulthood and augmented, with matching primitives across rat/cat/macaque/guineafowl (Dominici 2011, 10.1126/science.1210617) -- so 'a learner with no action prior fails' is the biological DEFAULT, not an anomaly; and the innate seed is demonstrator-free but NOT experience-free, since deprived of proprioceptive feedback from its OWN self-generated activity the CPG fails to mature (Zeng 2021). (ii) A REWARD-INDEPENDENT ENGAGEMENT DRIVE is necessary: an identified ZIm circuit converts stimulus presence into investigation independent of learned reward value (Ahmadlou 2021, 10.1126/science.abe9681), and dopamine-deficient mice with INTACT perception, INTACT motor apparatus and INTACT hedonics starve in front of food (Szczypka 2001) -- the closest biological analog of REE's 'readiness met on every leg, foraging at floor'. COROLLARY for REE: an approach primitive is underspecified unless one also names WHAT THE DRIVE'S OUTPUT TRAINS (the Zeng closed loop), because an innate generator alone does not mature."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.innate_approach_primitive_bootstrap
+  polarity: asserts
+  status: candidate
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-18"
+  depends_on:
+    - MECH-229  # VALENCE_WANTING -- the existing reward-conditional drive this claim is architecturally SEPARATE from
+  location: docs/architecture/competence_bootstrap_mechanisms.md#5-mech-461----innate-action-primitive-basis--reward-independent-engagement-drive
+  functional_restatement: >
+    The H-approach-primitive leg is usually stated as 'add an innate non-extinguishing approach
+    drive'. The biology says that is only HALF a mechanism. Dominici establishes an innate motor
+    PRIMITIVE BASIS that development refines rather than constructs -- the alphabet -- and Ahmadlou
+    plus Szczypka establish a reward-independent ENGAGEMENT circuit that converts stimulus presence
+    into investigation -- the impulse to use it. Kesner 2022 places seeking on supramammillary ->
+    septal -> VTA circuitry architecturally distinct from RPE machinery, which is the shape REE
+    would need if its converter is missing a CHANNEL rather than mistuning one. The claim's
+    distinctive content is the CONJUNCTION plus the Zeng closed-loop requirement: a drive whose
+    output trains nothing does not mature the substrate it drives.
+  what_would_answer: >
+    The V3-EXQ-781 pre-registered readout is the direct test on the drive half: a sustained,
+    non-extinguishing, demonstrator-free approach drive (constant-coefficient intrinsic reward on
+    resource proximity) that leaves the actor at the passive-survival floor on BOTH representations
+    -- with mean_approach_reward_recent confirming the drive actually fired, so a null is
+    informative rather than a plumbing bug -- FALSIFIES the drive half. The PRIMITIVE-BASIS half is
+    NOT tested by 781 and is the claim's distinctive, currently-untested content: it would be
+    answered by contrasting a converter given a pre-specified action-primitive basis (a small set
+    of composable multi-step motor primitives) against one that must construct its repertoire from
+    single-step actions, at matched drive. A drive-only arm clearing the floor would show the
+    primitive basis is unnecessary; a primitive-basis-only arm clearing it would show the drive is.
+  evidence_quality_note: >
+    TWO OBJECTIONS SURFACED BY THE PULL, recorded rather than suppressed. (1) NON-EXTINCTION IS
+    UNMEASURED, and the best-specified account points the other way: Kesner 2022 proposes
+    ENVIRONMENT PREDICTION ERROR as seeking's currency, which QUIESCES as the world model improves.
+    No source tests a drive surviving sustained non-reward. This is the sharpest objection in the
+    pull and it lands exactly on the property the H-approach-primitive leg most needs. (2) THE
+    BIOLOGICAL FAILURE MODE IS A CEILING DEFICIT, NOT A FLOOR ONE: untutored finches sing --
+    structured but abnormal (Volman 1995). Demonstrator-deprivation in biology DEGRADES competence;
+    it does not produce REE's near-zero floor. That mismatch travels with any downstream use of the
+    analogy in EITHER direction (it weakens the bc-prior reading of the biology just as much).
+    Also: Szczypka is a knockout in an animal that ALREADY POSSESSES the repertoire -- necessity for
+    EXPRESSION, not for cold-start ACQUISITION; that gap is unbridged. Volman 1995 is not
+    PubMed-indexed and its bibliographic metadata is marked provisional in the pull.
+  notes: >
+    FRAMING CORRECTION worth carrying forward: the 'is the prior outgrown?' worry INVERTS in
+    biology. Mackevicius 2023 (eLife 10.7554/eLife.77262) shows sequences self-organise with NO
+    tutor and tutor content then BINDS ONTO that scaffold -- and the birds that FAILED to learn
+    were those whose UNTUTORED sequences had already crystallised. Biology's risk is PREMATURE
+    CRYSTALLISATION OF SELF-GENERATED STRUCTURE locking out later demonstrator input, not a BC
+    prior becoming a permanent crutch. Relatedly Veit 2023 weakens the imitative reading of the
+    social evidence: a GHOST CONTROL matched a live conspecific, so demonstrations transmit task
+    STRUCTURE, not policy -- if BC's 32.72 works because it transmits structure, a non-imitative
+    structural channel could substitute.
+    COORDINATION -- INFORMS, DOES NOT DECIDE. Maps onto the H-approach-primitive leg of the live
+    GOV-FANOUT-1 discrimination (V3-EXQ-781 vs V3-EXQ-780 H-bc-prior), pre-registered ALIVE in the
+    competence_floor question of hypothesis_space_registry.v1.json. Registered as the EVEN-HANDED
+    counterpart to MECH-460 precisely so the intake does not bias the discrimination toward the leg
+    with the existing existence proof. PROMOTES NOTHING; LICENSES NO BUILD.
+    mech457_competence_bootstrap_explorer stays blocked_pending_discrimination.
+    DISTINCTNESS: not MECH-455 (competence-based IM is a rate-of-improvement bonus over the agent's
+    OWN goals -- a derivative signal that presupposes some achievement); not MECH-458 / SD-025
+    (curiosity is reward-conditional and self-attenuating, the opposite of non-extinguishing); not
+    MECH-314's knowledge-based IM family (reward = improving the world model). This claim's operand
+    is an INNATE, reward-independent, non-derivative engagement impulse plus a pre-specified motor
+    basis -- neither of which any registered claim owns.
+  origin: >
+    Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
+    evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3). Sourced from the
+    MANDATORY biology /lit-pull discharged BEFORE registration per the
+    biology_before_formal_definitions invariant:
+    evidence/literature/targeted_review_competence_bootstrap_without_demonstrator/ (8 sources --
+    Dominici 2011, Zeng 2021, Ahmadlou 2021, Kesner 2022, Szczypka 2001, Mackevicius 2023,
+    Veit 2023, Volman 1995). Routed by
+    evidence/planning/failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json.
+    See [[feedback_biology_before_formal_definitions]], [[project_mech457_competence_floor_coldstart]].

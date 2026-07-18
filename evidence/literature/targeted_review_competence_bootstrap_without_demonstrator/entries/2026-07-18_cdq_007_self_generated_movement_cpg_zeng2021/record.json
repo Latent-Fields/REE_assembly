@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_competence_bootstrap_without_demonstrator",
+  "entry_id": "2026-07-18_cdq_007_self_generated_movement_cpg_zeng2021",
+  "timestamp_utc": "2026-07-18T07:07:52Z",
+  "claim_ids_tested": [
+    "CDQ-007"
+  ],
+  "source": {
+    "title": "An electrically coupled pioneer circuit enables motor development via proprioceptive feedback in Drosophila embryos.",
+    "authors": [
+      "Xiangsunze Zeng",
+      "Yuko Komanome",
+      "Tappei Kawasaki",
+      "Kengo Inada",
+      "Julius Jonaitis",
+      "Stefan R Pulver",
+      "Hokto Kazama",
+      "Akinao Nose"
+    ],
+    "year": 2021,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2021.10.005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/34666002/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Clean causal embryonic experiment with a genetic deprivation manipulation and circuit-level identification. It is mixed rather than supporting because it cuts both ways for CDQ-007: it is a demonstrator-free bootstrap (nothing outside the embryo teaches it), which favours H-approach-primitive; but it also shows the innate circuit is INSUFFICIENT alone and requires self-generated experience to mature, which weakens a naive 'just add an innate drive and competence follows' reading. Invertebrate embryo, so transfer_risk is non-trivial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The innate pioneer circuit does NOT produce a mature CPG on its own -- proprioceptive feedback from self-generated movement is REQUIRED. An innate primitive that is never exercised does not mature into competence.",
+    "The 'teacher' here is the agent's own body via proprioception, which has no obvious REE analog if the substrate lacks a reafference channel; a REE approach-primitive with no self-generated-experience loop would not reproduce this mechanism.",
+    "Drosophila embryonic motor development is several transfer steps from vertebrate goal-directed foraging; the result constrains the general principle, not the specific implementation."
+  ],
+  "tags": [
+    "cdq_007",
+    "h_approach_primitive",
+    "cpg",
+    "self_generated_movement",
+    "proprioception",
+    "bootstrap"
+  ],
+  "mapping": {
+    "source_claim_statement": "Drosophila embryos deprived of proprioceptive feedback fail to develop functional locomotor central pattern generators. A pioneer premotor circuit of two segmental interneuron pairs autonomously generates rhythmic plateau potentials that drive muscle contraction; the resulting proprioceptive feedback is required for the gap-junctional coupling that builds the mature CPG.",
+    "ree_translation": "A competence bootstrap can be entirely demonstrator-free, but it is not free of EXPERIENCE: an innate seed circuit generates its own activity, that activity generates its own training signal, and the mature competence is built from that closed loop. For CDQ-007 this is the mechanistic form the H-approach-primitive leg would need to take -- not 'an innate policy', but 'an innate activity generator whose output supplies the experience that trains the policy'.",
+    "mapping_caveat": "The training signal is proprioceptive reafference in an invertebrate embryo, not reward or prediction error in a foraging agent. The general principle (self-generated activity bootstraps its own supervision) transfers; the specific signal, the gap-junction physiology and the IP3/Ca2+ pacemaking do not. Also a strong caution: it shows the innate seed alone is insufficient.",
+    "source_context": "Calcium imaging and electrophysiology of emerging motor activity in intact and proprioception-deprived Drosophila embryos."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Causal and mechanistically explicit, which is rare for this question. Held back by invertebrate-embryo transfer and by the fact that the signal channel has no clean REE counterpart."
+  }
+}
