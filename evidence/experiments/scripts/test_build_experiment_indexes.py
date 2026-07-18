@@ -473,6 +473,114 @@ def test_load_registry_strips_enum_field_comments():
     ) == "substrate_conditional"
 
 
+# --- HEAD/worktree skew guard (2026-07-18 SD-068 incident) ------------------
+# `git reset --mixed <remote-ref>` leaves files added by the adopted commits in
+# HEAD and the index but NEVER writes them to disk. This script reads the
+# working tree, so it would rebuild with those runs silently absent and drop
+# real evidence from claim_evidence.v1.json / INDEX.md / pending_review.md.
+# The guard must REFUSE TO WRITE, not warn and continue.
+#
+# These tests build a throwaway git repo in a tmpdir. They never touch the real
+# evidence tree (the real-data tests above are read-only by design).
+
+def _skew_fixture(tmp, materialise=True):
+    """Create a tmp git repo shaped like evidence/experiments and commit a run.
+
+    Returns the base_dir (the 'evidence/experiments' equivalent). When
+    materialise is False, the committed files are removed from the working tree
+    afterwards -- reproducing the post-reset skew exactly (tracked in HEAD and
+    the index, absent on disk).
+    """
+    import subprocess
+    from pathlib import Path
+
+    base = Path(tmp) / "evidence" / "experiments"
+    (base / "claim_probe_x" / "runs" / "run_a").mkdir(parents=True)
+    (base / "run_a.json").write_text('{"run_id": "run_a"}\n', encoding="utf-8")
+    pack = base / "claim_probe_x" / "runs" / "run_a" / "manifest.json"
+    pack.write_text('{"run_id": "run_a"}\n', encoding="utf-8")
+
+    def git(*a):
+        subprocess.run(["git", "-C", str(tmp), *a], check=True,
+                       capture_output=True)
+
+    git("init", "-q")
+    git("config", "user.email", "t@example.com")
+    git("config", "user.name", "t")
+    git("add", "-A")
+    git("commit", "-q", "-m", "runs")
+
+    if not materialise:
+        # The skew: present in HEAD + index, absent on disk. `git status` shows
+        # these as " D"; every working-tree reader sees a smaller repo.
+        (base / "run_a.json").unlink()
+        pack.unlink()
+
+    return base
+
+
+def test_is_indexer_read_path_shapes():
+    assert b._is_indexer_read_path("run_a.json") is True
+    assert b._is_indexer_read_path("claim_probe_x/runs/run_a/manifest.json") is True
+    assert b._is_indexer_read_path("claim_probe_x/runs/run_a/metrics.json") is True
+    assert b._is_indexer_read_path("claim_probe_x/runs/run_a/summary.md") is True
+    # Not run evidence: derived artifacts, docs, scripts, profiles.
+    assert b._is_indexer_read_path("INDEX.md") is False
+    assert b._is_indexer_read_path("scripts/build_experiment_indexes.py") is False
+    assert b._is_indexer_read_path("claim_probe_x/experiment.md") is False
+
+
+def test_skew_guard_detects_unmaterialised_files():
+    """The incident shape: tracked in HEAD, absent on disk -> both files flagged."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        base = _skew_fixture(tmp, materialise=False)
+        missing = b._find_unmaterialised_evidence(base)
+        assert missing == ["claim_probe_x/runs/run_a/manifest.json", "run_a.json"], missing
+
+
+def test_skew_guard_clean_tree_is_silent():
+    """A fully materialised tree reports nothing (no false positives)."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        base = _skew_fixture(tmp, materialise=True)
+        assert b._find_unmaterialised_evidence(base) == []
+        b._guard_worktree_materialised(base, allow_missing=False)  # must not exit
+
+
+def test_skew_guard_exits_nonzero_without_writing():
+    """The load-bearing behaviour: REFUSE, do not warn-and-continue."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        base = _skew_fixture(tmp, materialise=False)
+        try:
+            b._guard_worktree_materialised(base, allow_missing=False)
+        except SystemExit as e:
+            assert e.code == b.SKEW_GUARD_EXIT_CODE, e.code
+        else:
+            raise AssertionError("guard did not exit on a skewed tree")
+
+
+def test_skew_guard_opt_out_proceeds():
+    """--allow-missing-runs makes the absence a deliberate, explicit override."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        base = _skew_fixture(tmp, materialise=False)
+        b._guard_worktree_materialised(base, allow_missing=True)  # must return
+
+
+def test_skew_guard_non_git_tree_is_not_applicable():
+    """Outside a git checkout there is no HEAD to skew from, so the guard is
+    inapplicable rather than skipped -- and must not crash."""
+    import tempfile
+    from pathlib import Path
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp) / "evidence" / "experiments"
+        base.mkdir(parents=True)
+        assert b._git_tracked_paths(base) is None
+        assert b._find_unmaterialised_evidence(base) == []
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

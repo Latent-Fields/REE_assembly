@@ -30,6 +30,7 @@ import hashlib
 import json
 import math
 import re
+import subprocess
 import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
@@ -5711,6 +5712,144 @@ def _write_arm_fingerprint_index(base_dir: Path, generated_at: str) -> dict[str,
     return index
 
 
+# ---------------------------------------------------------------------------
+# HEAD/worktree skew guard (2026-07-18, SD-068 / V3-EXQ-778b+778c incident)
+#
+# `git reset --mixed <remote-ref>` -- the DEFAULT reset, and the usual "adopt
+# origin without disturbing my working tree" idiom after a rejected push --
+# moves HEAD and the index forward but deliberately does NOT touch the working
+# tree. Files ADDED by an adopted commit therefore exist in HEAD and the index
+# but are never written to disk. `git status` reports them as " D" (unstaged
+# deletion), which reads like a deletion but is the opposite: they were never
+# materialised.
+#
+# This script reads the WORKING TREE. Without this guard it rebuilds happily
+# with those runs simply absent -- no error, no warning -- and every derived
+# artifact (claim_evidence.v1.json, INDEX.md, pending_review.md, the
+# dashboards) silently drops real experimental evidence for every claim those
+# runs tagged. Committing that regen is a silent evidence-loss event.
+#
+# Confirmed incident: 8 files (2 flat manifests + their runs/<run_id>/ packs)
+# unmaterialised after two resets adopting 0876de9386 and 4d4816bbe3. The
+# rebuild reported 1517 runs instead of 1519 and would have dropped both runs'
+# evidence for INV-047 / MECH-168 / MECH-169 / SD-068.
+#
+# The check lives HERE, inside the script, rather than in a PreToolUse hook or
+# a governance.sh wrapper, deliberately. The existing hook guards are all
+# `[ -f ]`/`[ -x ]`-gated and therefore fail OPEN and silent when their path
+# does not resolve (on 2026-07-18 all 66 worktrees were found in exactly that
+# state). A guard that fails open is worse than none. Its failure mode is
+# REFUSE TO WRITE, never warn-and-continue: a partial or silently-smaller index
+# is worse than no rebuild at all.
+#
+# Background: CLAUDE.md, "HEAD/worktree skew after `git reset <remote-ref>`".
+# ---------------------------------------------------------------------------
+
+SKEW_GUARD_EXIT_CODE = 3
+
+
+def _is_indexer_read_path(rel_path: str) -> bool:
+    """True when a path (relative to evidence/experiments) is one this script reads.
+
+    Two shapes carry run evidence:
+      <run_id>.json                                -- flat manifest
+      <experiment_type>/runs/<run_id>/<any file>   -- per-run pack
+    """
+    parts = rel_path.split("/")
+    if len(parts) == 1:
+        return rel_path.endswith(".json")
+    return "runs" in parts[:-1]
+
+
+def _git_tracked_paths(base_dir: Path) -> list[str] | None:
+    """Paths git tracks under base_dir, relative to base_dir.
+
+    Returns None when base_dir is not inside a git checkout or git is
+    unavailable -- the skew this guards against cannot occur there, so the
+    guard is genuinely not applicable rather than being skipped.
+    """
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(base_dir), "ls-files", "-z", "--", "."],
+            capture_output=True,
+            check=False,
+        )
+    except (OSError, ValueError):
+        return None
+    if proc.returncode != 0:
+        return None
+    decoded = proc.stdout.decode("utf-8", errors="replace")
+    return [p for p in decoded.split("\0") if p]
+
+
+def _find_unmaterialised_evidence(base_dir: Path) -> list[str]:
+    """Evidence files git tracks but which are absent from the working tree."""
+    tracked = _git_tracked_paths(base_dir)
+    if tracked is None:
+        return []
+    return sorted(
+        rel for rel in tracked
+        if _is_indexer_read_path(rel) and not (base_dir / rel).exists()
+    )
+
+
+def _guard_worktree_materialised(base_dir: Path, allow_missing: bool) -> None:
+    """Refuse to rebuild when tracked evidence is missing from the working tree.
+
+    Exits non-zero WITHOUT writing anything unless allow_missing is set.
+    """
+    missing = _find_unmaterialised_evidence(base_dir)
+    if not missing:
+        return
+
+    stream = sys.stderr
+    print("", file=stream)
+    print("=" * 72, file=stream)
+    print(
+        f"[skew-guard] {len(missing)} evidence file(s) are tracked by git but "
+        "ABSENT from the working tree.",
+        file=stream,
+    )
+    print("=" * 72, file=stream)
+    shown = missing[:40]
+    for rel in shown:
+        print(f"  {rel}", file=stream)
+    if len(missing) > len(shown):
+        print(f"  ... and {len(missing) - len(shown)} more", file=stream)
+    print("", file=stream)
+    print(
+        "This is the HEAD/worktree skew signature: a `git reset <remote-ref>` "
+        "moved HEAD\nand the index forward without writing newly-added upstream "
+        "files to disk. The\nfiles were never materialised -- nothing was deleted.",
+        file=stream,
+    )
+    print("", file=stream)
+    print("REMEDY (safe and non-destructive for these paths):", file=stream)
+    print("    git -C <REE_assembly> checkout -- .", file=stream)
+    print("then re-run this script.", file=stream)
+    print("", file=stream)
+
+    if allow_missing:
+        print(
+            "[skew-guard] --allow-missing-runs was passed: PROCEEDING ANYWAY. "
+            "The derived\nartifacts below will be built WITHOUT the evidence "
+            "from the files listed above.",
+            file=stream,
+        )
+        print("", file=stream)
+        return
+
+    print(
+        "REFUSING to write derived artifacts. A silently-smaller index would "
+        "drop real\nevidence for every claim those runs tagged, and committing "
+        "it is an evidence-loss\nevent. Pass --allow-missing-runs only if the "
+        "absence is deliberate.",
+        file=stream,
+    )
+    print("", file=stream)
+    sys.exit(SKEW_GUARD_EXIT_CODE)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build experiment evidence indexes.")
     parser.add_argument(
@@ -5737,9 +5876,26 @@ def main() -> None:
             "without clobbering manually-maintained planning artefacts."
         ),
     )
+    parser.add_argument(
+        "--allow-missing-runs",
+        action="store_true",
+        default=False,
+        help=(
+            "Override the HEAD/worktree skew guard and rebuild even when git-tracked "
+            "evidence files are absent from the working tree. Use ONLY when the "
+            "absence is deliberate -- the derived artifacts will silently omit those "
+            "runs' evidence."
+        ),
+    )
     args = parser.parse_args()
 
     base_dir = args.root.resolve()
+
+    # Refuse to rebuild off a working tree that is missing tracked evidence.
+    # Runs before every read and every write, so a trip leaves all derived
+    # artifacts exactly as they were.
+    _guard_worktree_materialised(base_dir, args.allow_missing_runs)
+
     repo_root = base_dir.parent.parent
     evidence_root = base_dir.parent
     literature_root = evidence_root / "literature"
