@@ -1,8 +1,13 @@
+---
+status: candidate
+status_asof: 2026-07-18
+status_claim: SD-068
+---
+
 # SD-068: sleep.consolidation_pipeline_lesion_harness
 
 **Claim ID:** SD-068
 **Subject:** sleep.consolidation_pipeline_lesion_harness
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-17
 **Depends on:** SD-017 (offline SWS/REM passes), MECH-120 (SWS denoising), MECH-121 (NREM slot-filling, *held*), MECH-123 (REM precision recalibration), MECH-204 (precision-recalibration consumer)
 **Blocks:** the MECH-168 / INV-047 / MECH-169 staged-decline falsifier; a representation-level staged-damage diagnostic (V3-EXQ-778 + power-up V3-EXQ-778a, run 2026-07-17; generative-gain non-vacuity banked offline -- see **Diagnostic results**)

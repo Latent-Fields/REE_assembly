@@ -1,8 +1,13 @@
+---
+status: candidate
+status_asof: 2026-07-18
+status_claim: SD-069
+---
+
 # SD-069: control_plane.phasic_surprise_burst
 
 **Claim ID:** SD-069
 **Subject:** control_plane.phasic_surprise_burst
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-17
 **Depends on:** MECH-313 (stochastic_noise_floor, tonic), ARC-005, MECH-063
 **Blocks:** MECH-063 sub-claim (ii) behavioural validation (tonic-vs-phasic dissociation)
