@@ -4,9 +4,16 @@
 # Manual install:
 #   sed -e "s|{{USER}}|$USER|g" \
 #       -e "s|{{VENV}}|$HOME/.venv/ree|g" \
-#       -e "s|{{WORKSPACE}}|$HOME/Documents/GitHub/REE_Working|g" \
+#       -e "s|{{WORKSPACE}}|$HOME/REE_Working|g" \
 #       ree-explorer.service | sudo tee /etc/systemd/system/ree-explorer.service
 #   sudo systemctl daemon-reload && sudo systemctl enable --now ree-explorer
+#
+# {{WORKSPACE}} MUST be the canonical checkout ($HOME/REE_Working). Do NOT point
+# it at $HOME/Documents/GitHub/REE_Working -- REE_Working/CLAUDE.md marks that
+# path stale (migrated off iCloud). This example said Documents/GitHub until
+# 2026-07-18, and the hub had been serving a 6-week-old serve.py from that clone
+# as a result: nothing fetches it, so serve.py changes landing on master never
+# reached the hub Explorer. See ree-v3/coordinator/OPERATOR_GUIDE.md.
 #
 # Access: http://localhost:8000/explorer (or http://<tailscale-ip>:8000/explorer)
 # Logs:   journalctl -u ree-explorer -f
