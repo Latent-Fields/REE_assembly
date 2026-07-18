@@ -1,0 +1,202 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic",
+  "run_id": "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-18T12:22:00Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-068",
+    "MECH-168",
+    "INV-047",
+    "MECH-169"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "SD-068": "unknown",
+    "MECH-168": "unknown",
+    "INV-047": "unknown",
+    "MECH-169": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "gen_gain_content_free_intact_seed_gloss_unsupported",
+    "hypothesis_id": "H-gen-gain-content-free",
+    "hypothesis_axis": "observation",
+    "hypothesis_question": "consolidation_readout_validity",
+    "declared_null": "if gain scales MONOTONICALLY with content scale (strictly ordered across 0.0 / 0.5 / 1.0) AND the endpoints separate beyond the pre-registered bar, H-gen-gain-content-free is REFUTED and the architecture doc's 'correction needs an intact seed' gloss STANDS.",
+    "scope_guard": "This leg CANNOT overturn the attenuation finding (rem_generative_gain 0.149, attenuating 8/8 seeds) and does not attempt to. Whatever it concludes, the transfer function still attenuates -- per-content-scale gains and per-scale attenuation counts are recorded alongside precisely so that stays visible. Only the interpretive gloss that the correction needs an INTACT SEED is under test.",
+    "preconditions": [
+      {
+        "name": "control_input_corruption_range_supra_floor",
+        "description": "rem_generative_gain is a SLOPE of output relative deviation against input relative seed corruption across the sigma grid, so the readiness check is a RANGE check on that slope's x-axis -- the SAME statistic the gain routes on -- measured on the content_scale=1.0 positive control. A degenerate x-range means the gain is fitted through a point cloud with no spread, so a content-scale contrast between such gains is uninterpretable. Range-gated criterion -> range readiness (NOT a magnitude proxy).",
+        "measured": 1.5645720812331672,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "content_scale=1.0 arm across the full sigma grid (fully-injected positive control)",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_gain_flat_in_content_scale": true,
+      "C2_monotonic_in_content_scale": true,
+      "C3_attenuation_recorded_at_all_scales": true
+    },
+    "criteria": [
+      {
+        "name": "C1_gain_flat_in_content_scale",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_monotonic_in_content_scale",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_attenuation_recorded_at_all_scales",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "separation": {
+      "mean_gain_delta_1_minus_0": -0.009662473766528512,
+      "sd_gain_delta": 0.016544597729829157,
+      "sem_gain_delta": 0.005849398623382878,
+      "separation_bar": 0.05,
+      "bar_rule": "max(0.05 absolute floor, 2.0 x SEM of the per-seed paired delta) -- so a consistent-but-tiny difference cannot pass on consistency alone, nor a large-but-noisy one on magnitude alone",
+      "separated": false,
+      "n_seeds_monotonic": 7,
+      "per_seed_gain_delta": [
+        -0.019392132857682792,
+        -0.002196928996181402,
+        0.0035157966865540513,
+        -0.02349714193806128,
+        0.01585173425931987,
+        -0.013878966969656098,
+        -0.002073320528939687,
+        -0.03562882978758075
+      ]
+    },
+    "scale_summary": {
+      "0.0": {
+        "mean_rem_generative_gain": 0.1589328335455305,
+        "sd_rem_generative_gain": 0.12423973982635997,
+        "sem_rem_generative_gain": 0.043925381262035754,
+        "per_seed_rem_generative_gain": [
+          0.20979866262452163,
+          0.4112506912194843,
+          0.06341494381844262,
+          0.09963868601594081,
+          0.023938431395183722,
+          0.22605349959478457,
+          0.0787535365457736,
+          0.1586142171501127
+        ],
+        "n_seeds_attenuating": 8,
+        "per_seed_input_corruption_range": [
+          2.1473684498165153,
+          2.4457822450048097,
+          2.3081206353895283,
+          1.5645722189753333,
+          1.9461980865135264,
+          1.9093458885157586,
+          1.8638205194808994,
+          2.219043867756969
+        ]
+      },
+      "0.5": {
+        "mean_rem_generative_gain": 0.15203709036239235,
+        "sd_rem_generative_gain": 0.11995455349425617,
+        "sem_rem_generative_gain": 0.0424103391049965,
+        "per_seed_rem_generative_gain": [
+          0.2012239099168554,
+          0.4003498476268583,
+          0.06386779119660321,
+          0.08455964713270404,
+          0.03152478921186942,
+          0.21679886505267512,
+          0.07821290336686115,
+          0.13975896939471225
+        ],
+        "n_seeds_attenuating": 8,
+        "per_seed_input_corruption_range": [
+          2.1473684498165153,
+          2.4457822450048097,
+          2.3081206353895283,
+          1.5645722189753333,
+          1.9461980865135264,
+          1.9093460033525451,
+          1.8638205194808994,
+          2.219043867756969
+        ]
+      },
+      "1.0": {
+        "mean_rem_generative_gain": 0.14927035977900197,
+        "sd_rem_generative_gain": 0.12142623502603353,
+        "sem_rem_generative_gain": 0.04293065710042989,
+        "per_seed_rem_generative_gain": [
+          0.19040652976683883,
+          0.4090537622233029,
+          0.06693074050499667,
+          0.07614154407787953,
+          0.03979016565450359,
+          0.21217453262512848,
+          0.07668021601683392,
+          0.12298538736253195
+        ],
+        "n_seeds_attenuating": 8,
+        "per_seed_input_corruption_range": [
+          2.147368305997097,
+          2.4457822450048097,
+          2.3081206353895283,
+          1.5645720812331672,
+          1.9461980865135264,
+          1.9093458885157586,
+          1.8638205194808994,
+          2.219043867756969
+        ]
+      }
+    },
+    "portfolio": {
+      "gov_rule": "GOV-FANOUT-1",
+      "question": "consolidation_readout_validity",
+      "this_leg": "H-gen-gain-content-free (axis=observation)",
+      "sibling_legs": [
+        "V3-EXQ-778d H-rem-clamp-artifact (axis=measurement)",
+        "V3-EXQ-778e H-rem-genuinely-content-free (axis=representation)"
+      ],
+      "note": "Read the three legs JOINTLY. This leg is on a DIFFERENT readout (the generative rollout) from its two siblings (the precision calibration), so it is independent of them by construction. Resolution via /failure-autopsy Step 9b Mode B against the frozen ledger, not by this self-route."
+    }
+  }
+}
