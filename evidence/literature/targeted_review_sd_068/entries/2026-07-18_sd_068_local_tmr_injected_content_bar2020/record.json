@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_068",
+  "entry_id": "2026-07-18_sd_068_local_tmr_injected_content_bar2020",
+  "timestamp_utc": "2026-07-18T06:03:42Z",
+  "claim_ids_tested": ["SD-068"],
+  "source": {
+    "title": "Local Targeted Memory Reactivation in Human Sleep",
+    "authors": [
+      "Ella Bar",
+      "Amit Marmelshtein",
+      "Anat Arzi",
+      "Ofer Perl",
+      "Ethan Livne",
+      "Eyal Hizmi",
+      "Rony Paz",
+      "Noam Sobel",
+      "Yadin Dudai",
+      "Yuval Nir"
+    ],
+    "year": 2020,
+    "venue": "Current Biology, 30(8), 1435-1446.e5",
+    "doi": "10.1016/j.cub.2020.01.091",
+    "url": "https://doi.org/10.1016/j.cub.2020.01.091"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the strongest methodological precedent in the pull for SD-068's core measurement design. SD-068 sidesteps the failure_autopsy_V3-EXQ-538a encoding-starvation ceiling by scoring output quality against KNOWN INJECTED content rather than emergent encoding, and applies a spatially-scoped perturbation with a scoped readout. Bar et al. do structurally the same thing in humans: they inject known content (word-location pairs learned with a contextual odor), deliver a hemisphere-scoped perturbation during NREM (unilateral nostril odor cueing, exploiting ipsilateral olfactory processing), and read out both behaviour and local sleep oscillations per hemisphere, with the uncued hemisphere serving as a within-subject control. That the effect was local rather than global is exactly the dissociation a per-phase lesion harness needs to be non-vacuous. Confidence is capped at 0.71 because the scoping axis is anatomical (hemisphere) whereas SD-068's is temporal/functional (pipeline phase), which is a real disanalogy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Bar et al. found the local effects only when learning had occurred WITH the contextual odor -- unilateral olfactory stimulation after learning without contextual odor produced no memory or oscillation effect. The analogous harness failure is a per-phase readout that responds to the damage sigma even when no known content was injected; that would indicate the readout is measuring perturbation magnitude rather than content fidelity, and SD-068's non-vacuity argument would fail.",
+    "Regional slow-wave power went DOWN in the cued hemisphere relative to uncued, and correlated negatively with memory for cued words. A harness assuming that more activity in a phase means better output quality would invert this sign.",
+    "The dissociation depended on the readout being scoped to the same locus as the perturbation. If SD-068's per-phase readouts draw on shared or disjoint state (the claim already notes the three phases operate on DISJOINT state), a perturbation-readout scoping mismatch would produce apparent independence that reflects plumbing rather than functional separability."
+  ],
+  "tags": ["sd_068", "targeted_memory_reactivation", "injected_content", "local_perturbation", "nrem", "slow_oscillations", "spindles", "methodology", "mech_121"],
+  "mapping": {
+    "source_claim_statement": "Targeted memory reactivation in human sleep can act locally rather than globally. Exploiting ipsilateral olfactory processing, odor cues delivered to one nostril during NREM sleep selectively improved memory for words learned in the contralateral visual field (cued hemisphere), reduced regional slow-wave power in the cued hemisphere relative to the uncued hemisphere, and improved slow-oscillation/spindle phase-amplitude coupling specifically in the cued hemisphere. No effects appeared when learning had occurred without the contextual odor.",
+    "ree_translation": "SD-068's measurement design rests on two methodological commitments: score per-phase output quality against known injected content (the V3-EXQ-702 injected-content precedent, adopted to escape the V3-EXQ-538a encoding-starvation ceiling), and apply a scoped perturbation whose effect can be read out at the same scope. Bar et al. are an existence proof that this design yields interpretable dissociations in a real consolidating system: known content in, scoped perturbation, scoped readout, unperturbed control locus. Their odor-contingency control (no effect absent contextual odor at encoding) is the direct analog of the null the harness needs -- readouts must track injected content, not perturbation magnitude.",
+    "mapping_caveat": "The scoping axis differs fundamentally. Bar et al. scope ANATOMICALLY (left vs right hemisphere) within a single sleep stage, giving them a genuine within-subject contralateral control. SD-068 scopes TEMPORALLY/FUNCTIONALLY (SWS vs NREM vs REM phase) and has no equivalent simultaneous control locus -- each phase is compared against its own undamaged baseline across runs, not against a matched unperturbed twin in the same run. Second, their perturbation is a cue (adding input) whereas SD-068's is Gaussian noise (degrading state); enhancement and lesion are not symmetric operations and need not produce mirror-image readouts. Third, this is one NREM stage only and says nothing about cross-phase ordering.",
+    "source_context": "Healthy adult humans, afternoon naps with polysomnography, word-location associative learning with contextual odor, unilateral nostril odor cueing during NREM, EEG oscillation analysis plus behavioural memory testing."
+  },
+  "confidence_components": {
+    "source_quality": 0.84,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.38,
+    "notes": "Current Biology, strong multi-lab authorship (Nir/Dudai/Sobel/Paz), elegant exploitation of olfactory ipsilaterality to get a within-subject control, and a well-chosen negative control condition -- source quality is the highest in this pull. Mapping fidelity is good for the injected-content-plus-scoped-readout methodology but limited by the anatomical-vs-temporal scoping disanalogy and by cue-enhancement vs noise-degradation not being symmetric. Transfer risk is the lowest here because the methodological point transfers more robustly than any mechanistic claim would."
+  }
+}

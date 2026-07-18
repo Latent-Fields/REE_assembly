@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_068",
+  "entry_id": "2026-07-18_sd_068_stage_order_sequential_strauss2022",
+  "timestamp_utc": "2026-07-18T06:03:42Z",
+  "claim_ids_tested": ["SD-068"],
+  "source": {
+    "title": "Order matters: sleep spindles contribute to memory consolidation only when followed by rapid-eye-movement sleep",
+    "authors": [
+      "Melanie Strauss",
+      "Lucie Griffon",
+      "Pascal Van Beers",
+      "Maxime Elbaz",
+      "Jason Bouziotis",
+      "Fabien Sauvet",
+      "Mounir Chennaoui",
+      "Damien Leger",
+      "Philippe Peigneux"
+    ],
+    "year": 2022,
+    "venue": "Sleep, 45(4)",
+    "doi": "10.1093/sleep/zsac022",
+    "url": "https://doi.org/10.1093/sleep/zsac022"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the closest thing in the human literature to a natural experiment on the SD-068 premise: that the offline-consolidation pipeline is genuinely ordered, so that decomposing it into per-phase, separately-damageable stages is a faithful abstraction rather than an imposed one. Narcoleptic patients who fall asleep in R before N provide the counterfactual (R-N) that physiological sleep never supplies, and the result is a clean order effect -- spindle-linked consolidation appears in N-R naps and not in R-N naps. That is direct evidence that the phases are not interchangeable and that one phase's contribution is contingent on a later phase, which is exactly the dependency structure SD-068's staging-order readout is built to detect. Confidence is held below 0.8 because the population is pathological (central hypersomnolence, incl. narcolepsy) rather than healthy, the task is a single visual perceptual-learning paradigm, and the paper's 'N' collapses the SWS-denoising and NREM-slot-filling phases that SD-068 separates -- so it validates two-stage ordering, not the three-stage decomposition.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's harness reports a per-phase output-quality degradation for the NREM slot-filling phase that is independent of the state of the downstream REM phase, that is inconsistent with Strauss et al.'s finding that the NREM (spindle) contribution is only realised when a REM phase follows -- and would suggest the harness's phases are more decoupled in the substrate than they are in biology.",
+    "Strauss et al. found a NEGATIVE association between rapid-eye-movements during R sleep and perceptual consolidation. A harness that models REM as a monotonically quality-improving phase would mis-predict this sign and could yield a spuriously clean staging order.",
+    "The observed order effect is carried by spindles specifically, not by NREM duration. A damage model that scales a single Gaussian sigma over phase state without a spindle-analog may not reproduce the biological dependency even if it reproduces an ordering."
+  ],
+  "tags": ["sd_068", "sequential_hypothesis", "sleep_staging_order", "consolidation_pipeline", "spindles", "narcolepsy", "mech_120", "mech_121", "mech_123"],
+  "mapping": {
+    "source_claim_statement": "Sleep spindles are associated with over-nap memory consolidation only when NREM sleep is followed by REM sleep. In 67 naps from 36 patients with central hypersomnolence disorder, naps that ran in the physiological N-to-R order showed a spindle-consolidation association, while anti-physiological R-to-N naps did not. Additionally, rapid-eye-movements within R sleep were negatively associated with perceptual consolidation.",
+    "ree_translation": "SD-068 decomposes offline consolidation into three separately-damageable phases (MECH-120 SWS denoising -> MECH-121 NREM slot-filling -> MECH-123 REM precision recalibration) and asserts that non-vacuity is carried by damage-tolerance STAGING ORDER plus a REM passthrough-vs-generative contrast. Strauss et al. supply the biological warrant for the staging-order half: stage order is causally load-bearing in humans, and an earlier phase's contribution is contingent on a later phase being present. This bears directly on SD-068's smoke-test finding that the observed damage-tolerance order (nrem, rem, sws) inverts REM-vs-NREM relative to the naive reverse-dependency prediction: a phase whose contribution is contingent on a downstream phase should indeed present as the LEAST damage-tolerant, which is where NREM landed. The negative REM-eye-movement effect also converges with the harness's null generative-REM sensitivity -- both say REM's contribution is not a simple monotone quality gain.",
+    "mapping_caveat": "The paper's 'N' is NREM sleep as a whole (spindle-bearing N2/N3), NOT the SWS-denoising vs NREM-slot-filling split that SD-068 instruments as two distinct phases. So this evidence validates a two-phase ordering (NREM-then-REM), and is silent on whether SD-068's three-way decomposition carves the pipeline at real joints. Second, the manipulation is a naturally-occurring stage-order inversion in a pathological population, not a graded diffuse-damage manipulation -- it speaks to ORDER, not to the RMS-scaled Gaussian sigma damage model SD-068 actually applies. Third, transfer from a human visual perceptual-learning task to REE's injected-known-content fidelity readouts is an analogy, not a measurement correspondence.",
+    "source_context": "Human clinical population (36 patients with central hypersomnolence disorder, including narcolepsy), daytime naps stopped after one sleep cycle, visual perceptual-learning task, polysomnography-scored sleep staging."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.42,
+    "notes": "Peer-reviewed in Sleep (the field's primary venue), with a genuinely clever design that gets a counterfactual physiology cannot otherwise provide; n=67 naps is respectable for a patient-population sleep-lab study. Mapping fidelity is the limiting term: the paper validates ordering of two phases where SD-068 instruments three, and tests order-inversion rather than graded damage. Transfer risk moderate -- narcoleptic sleep architecture is atypical by construction, which is precisely what makes the design possible but also what limits generalisation to healthy pipeline dynamics."
+  }
+}

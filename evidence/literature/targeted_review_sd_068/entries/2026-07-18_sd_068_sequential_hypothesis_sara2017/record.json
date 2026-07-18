@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_068",
+  "entry_id": "2026-07-18_sd_068_sequential_hypothesis_sara2017",
+  "timestamp_utc": "2026-07-18T06:03:42Z",
+  "claim_ids_tested": ["SD-068"],
+  "source": {
+    "title": "Sleep to Remember",
+    "authors": ["Susan J. Sara"],
+    "year": 2017,
+    "venue": "The Journal of Neuroscience, 37(3), 457-463",
+    "doi": "10.1523/JNEUROSCI.0297-16.2017",
+    "url": "https://doi.org/10.1523/JNEUROSCI.0297-16.2017"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A well-sourced review in a top primary-neuroscience venue that explicitly revives and argues for the sequential hypothesis -- the position that SWS and REM make distinct, ordered contributions to offline memory processing rather than competing as alternative single-stage accounts. That framing is the conceptual precondition for SD-068's whole design: if consolidation were a single undifferentiated offline process, a per-phase lesion harness with per-phase quality readouts would be instrumenting boxes that do not exist. Confidence is deliberately moderate because this is a narrative review, not new data -- it establishes that the ordered-phases framing is a live and defensible position in the field, and notably that it had been 'largely ignored', which is itself a signal that the field has not settled the question. It cannot adjudicate the specific three-way SWS/NREM/REM split SD-068 instruments.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sara notes the role of sleep in memory processing remains 'controversial and elusive' after a century of investigation. If REE's harness produces a crisp, stable staging order across seeds, that cleanliness is itself suspicious relative to the biological literature's noisiness, and should prompt a check that the ordering is not an artefact of the damage model rather than the pipeline.",
+    "The review's mechanistic emphasis is on noradrenergic (locus coeruleus) modulation across sleep states. V3 has no noradrenergic plane, so any harness ordering that would biologically be NA-mediated cannot be reproduced -- a structural mismatch that could make the harness's staging order unfaithful for reasons invisible to the harness itself.",
+    "If the sequential hypothesis is wrong and SWS/REM contributions are parallel rather than ordered, the harness's staging-order readout would still produce SOME ordering from noise-sensitivity differences alone, which would be vacuous in exactly the way SD-068 claims to avoid."
+  ],
+  "tags": ["sd_068", "sequential_hypothesis", "sws", "rem", "consolidation_pipeline", "theoretical_grounding", "noradrenaline", "mech_120", "mech_123"],
+  "mapping": {
+    "source_claim_statement": "Reviewing a century of work on sleep and memory, Sara argues that the relative contributions of REM sleep and slow-wave sleep to offline memory processing are best understood through the sequential hypothesis -- distinct, ordered contributions from successive sleep states -- a view she describes as until then largely ignored, and which she supports with recent literature. She emphasises noradrenergic/locus coeruleus modulation and replay as mechanisms.",
+    "ree_translation": "SD-068 presupposes that offline consolidation decomposes into successive phases with distinct functions (denoising, slot-filling, precision recalibration) whose ordering carries information. Sara supplies the field-level warrant that this decomposition is a defensible reading of the biology rather than an engineering convenience. Without it, the harness's per-phase output-quality readouts would be measuring artefacts of an imposed partition. The review does not, however, endorse SD-068's particular functional labels for each phase.",
+    "mapping_caveat": "This is a narrative review, so it carries the author's theoretical commitments; Sara is explicitly advocating for a position she says the field has neglected, which is a reason to weight it as framing rather than as settled consensus. It also predates and does not address the SWS-vs-NREM-slot-filling distinction SD-068 draws. Critically, the mechanistic account leans on noradrenergic modulation, for which V3 has no analog -- so the review's causal story is not implementable in the substrate the harness runs on, and the harness's ordering must arise from different machinery than the biology's.",
+    "source_context": "Narrative review of human and animal sleep-and-memory literature spanning roughly 1924-2016, published in J Neurosci. No new empirical data."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality venue and an authoritative author, but review-level evidence with an explicit advocacy stance, and the paper's own framing concedes the area is unresolved. Mapping fidelity is modest: it grounds the ordered-phases premise generally while remaining silent on SD-068's specific three-phase carve. Transfer risk is elevated by the noradrenergic mechanistic emphasis, which V3 cannot instantiate."
+  }
+}

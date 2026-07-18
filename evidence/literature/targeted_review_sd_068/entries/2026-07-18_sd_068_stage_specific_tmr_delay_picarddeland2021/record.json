@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_068",
+  "entry_id": "2026-07-18_sd_068_stage_specific_tmr_delay_picarddeland2021",
+  "timestamp_utc": "2026-07-18T06:03:42Z",
+  "claim_ids_tested": ["SD-068"],
+  "source": {
+    "title": "Targeted memory reactivation has a sleep stage-specific delayed effect on dream content",
+    "authors": ["Claudia Picard-Deland", "Tore Nielsen"],
+    "year": 2021,
+    "venue": "Journal of Sleep Research, 31(1), e13391",
+    "doi": "10.1111/jsr.13391",
+    "url": "https://doi.org/10.1111/jsr.13391"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.46,
+  "confidence_rationale": "The design is well-matched to SD-068's central premise -- the SAME injected cue delivered into DIFFERENT sleep phases produced different downstream signatures (task-related dream reactivation at 1-2 days when cued in REM, 5-6 days when cued in SWS) -- which is phase-dissociation evidence of exactly the kind a per-phase harness needs. But the readout is home dream logs, a subjective and noisy dependent variable, and the authors note their own earlier finding that TMR cueing had NO immediate effect on dream content, so the positive result here rests on a delayed-effect analysis over a 10-day window with multiple comparison opportunities. I mark this MIXED rather than supports: it supports phase-dissociability while simultaneously demonstrating that per-phase effects may only be visible at long latency, which is a genuine problem for a harness that scores output quality immediately after each phase.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Picard-Deland and Nielsen found NO immediate effect of TMR cueing on dream content, and only a delayed effect days later. If per-phase consolidation effects in biology are latent at the time the phase completes, SD-068's design of scoring per-phase output quality immediately at phase exit may systematically under-detect real phase contributions -- producing a damage-tolerance ordering that reflects readout latency rather than damage tolerance.",
+    "The two phases had DIFFERENT latencies (REM 1-2 days, SWS 5-6 days). A harness reading all three phases at a common fixed latency would therefore be sampling each phase at a different point on its own effect curve, systematically biasing the staging order.",
+    "Dream-content reactivation is an indirect proxy for consolidation quality. If REE's per-phase readouts (denoising-SNR, transfer-fidelity, precision-calibration-error) are similarly proxy-distant from the functional quantity of interest, apparent phase dissociations may be dissociations in the proxies rather than in the phases."
+  ],
+  "tags": ["sd_068", "targeted_memory_reactivation", "sleep_stage_specificity", "rem", "sws", "dream_content", "readout_latency", "mech_123"],
+  "mapping": {
+    "source_claim_statement": "Auditory cues associated with a virtual-reality flying task were replayed during wake, REM sleep, SWS, or not at all, in participants who then kept 10-day home sleep/dream logs. Task-related content reappeared in dreams 1-2 days later when TMR was applied during REM sleep, and 5-6 days later when applied during SWS, relative to no-cueing controls. The authors had previously found no immediate effect of the same cueing on dream content.",
+    "ree_translation": "SD-068 asserts that each pipeline phase can be independently perturbed and independently scored, which presupposes the phases are functionally distinct enough that acting on one produces a signature distinguishable from acting on another. Picard-Deland and Nielsen provide that dissociation directly: identical injected content, differing only in which phase received it, produced systematically different downstream signatures. This is the cleanest available demonstration that sleep phases are separately addressable targets for content-specific manipulation -- the premise underneath 'independently diffuse-damageable'. It simultaneously flags a readout-timing hazard for the harness's immediate per-phase scoring.",
+    "mapping_caveat": "The dependent variable is dream content from self-kept home logs -- subjective, unblinded to the participant's own experience, and only loosely coupled to memory-consolidation quality. It is a very different quantity from SD-068's denoising-SNR / transfer-fidelity / precision-calibration-error readouts, and a dissociation in dream reappearance does not straightforwardly imply a dissociation in consolidation output quality. The authors' own prior null on immediate effects means the positive delayed result is the less-constrained of their two analyses. Sample sizes are modest (n=65 nap, n=32 read control) and split further across four cueing conditions.",
+    "source_context": "Healthy human participants, virtual-reality flying task, sleep-laboratory nap or wake-rest session with auditory TMR cueing in REM / SWS / wake / none, followed by 10 days of home sleep and dream logs."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Peer-reviewed in J Sleep Res, a reputable specialist venue, and the cueing manipulation itself is well controlled with a proper no-cue condition. But dream-log dependent variables are intrinsically noisy, the effect is a delayed one following the authors' own immediate-effect null, and condition-wise n is modest -- source quality accordingly moderate. Mapping fidelity is held at 0.50 by the large distance between dream-content reappearance and the harness's quantitative fidelity readouts. Transfer risk is the highest in this pull: this is the entry I would most expect to fail replication, and it is logged for the readout-latency hazard it surfaces as much as for the dissociation it reports."
+  }
+}
