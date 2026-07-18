@@ -13,7 +13,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import yaml
 
 REPO_ROOT = Path(__file__).parent.parent
 CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
@@ -248,8 +247,28 @@ def main():
 
     run_validator()
 
-    with open(CLAIMS_YAML, encoding="utf-8") as f:
-        claims = yaml.safe_load(f)
+    # Share validate_claims' duplicate-key loader. This script is the PRODUCER
+    # of docs/assets/data/claims.json, so a last-wins parse here bakes the
+    # silent key loss into a derived artifact that looks perfectly well-formed.
+    # governance.sh gates on validate_claims.py --strict before reaching this
+    # step, but the header of that script also documents running this one
+    # standalone -- and run_validator() above is check=False without --strict,
+    # so standalone it would print the error and then emit the bad artifact
+    # anyway. Duplicates abort here; every other validator finding keeps its
+    # existing non-blocking posture (the gate authority stays in one place,
+    # validate_claims.py --strict).
+    sys.path.insert(0, str(Path(__file__).parent))
+    from validate_claims import load_claims as _load_claims_checked
+
+    claims, duplicate_issues = _load_claims_checked()
+    if duplicate_issues:
+        print(
+            f"ERROR: claims.yaml has {len(duplicate_issues)} duplicated key(s); "
+            "refusing to build claims.json from a last-wins parse.",
+            file=sys.stderr)
+        for _lvl, msg in duplicate_issues:
+            print(f"  ERROR: {msg}", file=sys.stderr)
+        sys.exit(1)
 
     if not isinstance(claims, list):
         print("ERROR: claims.yaml top level must be a list", file=sys.stderr)

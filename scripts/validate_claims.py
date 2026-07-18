@@ -10,6 +10,13 @@ Currently enforces the invariant-type schema introduced 2026-04-17:
   - emergent_from must be a subset of depends_on
   - grey_zone entries pass regardless of emergent_from content
 
+Duplicate-key gate (ERROR-level, added 2026-07-18):
+  - a mapping key repeated within the same block (at any nesting depth) is an
+    ERROR. PyYAML is last-wins, so every earlier occurrence is silently
+    discarded before any consumer -- including the rest of this validator --
+    can see it. See load_claims() for why this check cannot live in the
+    parsed-dict checks below.
+
 Flag-drift warnings (WARN-level, no exit effect):
   - pending_substrate_reconfirmation: true but all substrates in emergent_from
     are active -> flag is stale, can be cleared.
@@ -95,16 +102,98 @@ def build_substrate_status_map(claims):
     return status_map
 
 
+class DuplicateKeyLoader(yaml.SafeLoader):
+    """SafeLoader that RECORDS duplicated mapping keys instead of dropping them.
+
+    PyYAML resolves a repeated key last-wins: the earlier occurrence's content
+    is discarded during construction, so by the time any consumer sees the
+    parsed dict the defect is already invisible. That is why the duplicate
+    check cannot be a parsed-dict check like every other rule in this file --
+    it has to run inside the loader, on the node tree, where both occurrences
+    still exist.
+
+    Collects rather than raises so ONE run reports EVERY duplicate. The
+    2026-07-18 cleanup (b8492a7180) recovered 26 duplicated keys across 25
+    claims; a raising loader would have surfaced them one commit at a time.
+
+    Findings land on `self.duplicate_keys` as (key, [line, line, ...]),
+    1-indexed, in file order.
+    """
+
+    def __init__(self, stream):
+        super().__init__(stream)
+        self.duplicate_keys = []
+
+    def construct_mapping(self, node, deep=False):
+        lines_by_key = {}
+        for key_node, _value_node in node.value:
+            # Scalar keys only. A non-scalar key is not something this registry
+            # uses, and reading key_node.value directly (rather than
+            # construct_object) avoids constructing the key twice.
+            if not isinstance(key_node, yaml.ScalarNode):
+                continue
+            lines_by_key.setdefault(key_node.value, []).append(
+                key_node.start_mark.line + 1)
+        for key, lines in lines_by_key.items():
+            if len(lines) > 1:
+                self.duplicate_keys.append((key, lines))
+        return super().construct_mapping(node, deep=deep)
+
+
+def _claim_id_at_line(claim_starts, line):
+    """Return the id of the claim whose block contains `line`.
+
+    claim_starts is an ascending list of (line, claim_id) for each `- id:`
+    top-level entry. Returns '<unknown>' for a line above the first claim.
+    """
+    found = "<unknown>"
+    for start_line, cid in claim_starts:
+        if start_line > line:
+            break
+        found = cid
+    return found
+
+
+def _scan_claim_starts(text):
+    starts = []
+    for i, raw in enumerate(text.split("\n"), 1):
+        if raw.startswith("- id:"):
+            starts.append((i, raw[len("- id:"):].strip()))
+    return starts
+
+
 def load_claims():
+    """Parse claims.yaml. Returns (claims, duplicate_key_issues)."""
     if not CLAIMS_YAML.exists():
         print(f"ERROR: {CLAIMS_YAML} not found", file=sys.stderr)
         sys.exit(2)
-    with open(CLAIMS_YAML, encoding="utf-8") as f:
-        claims = yaml.safe_load(f)
+    text = CLAIMS_YAML.read_text(encoding="utf-8")
+
+    loader = DuplicateKeyLoader(text)
+    try:
+        claims = loader.get_single_data()
+        duplicates = loader.duplicate_keys
+    finally:
+        loader.dispose()
+
     if not isinstance(claims, list):
         print("ERROR: claims.yaml top level must be a list", file=sys.stderr)
         sys.exit(2)
-    return claims
+
+    claim_starts = _scan_claim_starts(text)
+    issues = []
+    for key, lines in sorted(duplicates, key=lambda kv: kv[1][0]):
+        cid = _claim_id_at_line(claim_starts, lines[0])
+        kept = lines[-1]
+        dropped = ", ".join(str(n) for n in lines[:-1])
+        issues.append((
+            "ERROR",
+            f"{cid}: duplicate key '{key}' at lines {dropped}, {kept} -- YAML is "
+            f"last-wins, so line {kept} SILENTLY DISCARDS the content at line(s) "
+            f"{dropped}; no consumer (this validator, build_claims_json.py, "
+            f"serve.py, every governance audit) can see it. MERGE the blocks "
+            f"into one key -- do not just delete the earlier one."))
+    return claims, issues
 
 
 def validate_invariant(claim, substrate_status=None):
@@ -177,7 +266,7 @@ def main():
     ap.add_argument("--audit", action="store_true", help="print classification counts only")
     args = ap.parse_args()
 
-    claims = load_claims()
+    claims, duplicate_issues = load_claims()
     invariants = [c for c in claims if c.get("claim_type") == "invariant"]
 
     if args.audit:
@@ -194,7 +283,11 @@ def main():
         return 0
 
     substrate_status = build_substrate_status_map(claims)
-    all_issues = []
+    # Duplicate keys first: every other check below reads the already-parsed
+    # dict, where the earlier occurrence is gone. Reported ahead of the rest
+    # because a duplicated key can also mask or fake a schema issue further
+    # down (the earlier occurrence's value never reaches the enum checks).
+    all_issues = list(duplicate_issues)
     for c in invariants:
         all_issues.extend(validate_invariant(c, substrate_status=substrate_status))
 
