@@ -279,9 +279,11 @@
     var fanout = na.total_fanout_added||0;
     var s = 'The search space collapsed from '+atReg+' enumerated rival explanations to '+
       na.total_surviving+' still alive, while formal closure sat flat. That collapse is the progress the closure line cannot show.';
-    if(hero){ s = 'The '+esc(hero.short_title)+' line ('+hero.reduction_numerator+'/'+hero.initial_frozen_count+
-      ' ruled out) and five other open questions took the space from '+atReg+' to '+na.total_surviving+
-      ' live hypotheses with no movement on the closure map.'; }
+    if(hero){
+      var others = Math.max(0, (na.open_questions||0) - 1);
+      s = 'The '+esc(hero.short_title)+' line ('+hero.reduction_numerator+'/'+hero.initial_frozen_count+
+      ' ruled out) and '+others+' other open question'+(others===1?'':'s')+' took the space from '+atReg+
+      ' to '+na.total_surviving+' live hypotheses with no movement on the closure map.'; }
     if(fanout){
       var hc = (hero&&hero.convergence)||{};
       s += ' <b style="color:var(--built)">Read that with the fan-out caveat:</b> '+fanout+
