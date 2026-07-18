@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_sd068_sws_content_scored_readout_diagnostic",
+  "run_id": "v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-18T13:01:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-068",
+    "MECH-168",
+    "INV-047",
+    "MECH-169"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-068": "supports",
+    "MECH-168": "unknown",
+    "INV-047": "unknown",
+    "MECH-169": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sws_readout_content_contingent_validated",
+    "preconditions": [
+      {
+        "name": "injected_arm_sws_sigma_slope_supra_floor",
+        "description": "The ratio's DENOMINATOR -- the same statistic C1 routes on. Measured on the known-damaged injected arm (the positive control): if the sigma sweep never moved the repaired readout, the ratio is 0/0 and the control cannot discriminate.",
+        "control": "injected arm (content_scale=1.0) across the full sigma grid",
+        "measured": 0.3231758770786943,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ladder_content_slope_spread_supra_floor",
+        "description": "C3(c). Guards the scale-invariance artifact: a cosine readout is flat in sigma without content BY CONSTRUCTION, so the null ratio alone is partly implied by the readout's form. If the sigma-slope does not VARY with content amplitude, the readout is not tracking content and a low null ratio means nothing.",
+        "control": "content_scale ladder on the injected path",
+        "measured": 0.11084844688174605,
+        "threshold": 0.01,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "criteria": [
+      {
+        "name": "C1_sws_content_contingent",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_ratio_interpretable",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_ladder_tracks_content",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "gated_phase": "sws",
+    "context_phases_not_gated": [
+      "nrem",
+      "rem"
+    ],
+    "rem_leg_owner": "V3-EXQ-778d/e/f (GOV-FANOUT-1 portfolio)"
+  }
+}
