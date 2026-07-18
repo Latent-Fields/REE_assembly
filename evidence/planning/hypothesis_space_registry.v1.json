@@ -782,6 +782,107 @@
         "decision_log_ref": null,
         "distance_phrase": "767a/768a PASS (margin fix) -> ARC-057 promoted provisional; the exploitation-amplifier reading is decidable."
       }
+    },
+    {
+      "qid": "control_plane_rank",
+      "title": "Does the control plane carry two independent degrees of freedom, or collapse to one scalar?",
+      "short_title": "control-plane rank",
+      "claims": [
+        "MECH-063",
+        "SD-069"
+      ],
+      "registered_utc": "2026-07-18T06:58:49Z",
+      "fanout_sources": [
+        "failure_autopsy_MECH-063-777-779-cluster_2026-07-18.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-rank2-score-temp",
+          "label": "score-bias and temperature are independent axes",
+          "desc": "MECH-063 sub-claim (i): the MECH-320 tonic_vigor score-bias axis and the MECH-313 noise_floor temperature axis route to distinct E3 softmax parameters and produce non-collinear behavioural effect vectors (rank 2)",
+          "axis": "representation",
+          "pre_registered_utc": "2026-07-17T00:00:00Z",
+          "adjudicating_runs": [
+            "V3-EXQ-777",
+            "V3-EXQ-777a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-777"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "control_axes_collinear_toward_one_scalar",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "777 narrowed nothing. Its self-routed collinearity label is an artifact: mean_sin_angle 0.530 EXCEEDS the 0.500 margin and C1 fell on seed-count (3/5 vs min 4) plus dispersion. The score axis's dependent variable (D_action_mass) was saturated at ceiling on seeds 11/29/37 and at floor on seed 23, so the axis had no headroom to express itself; the P0 authority gate passed only via a mean across seeds that masked two seeds individually below the effect floor. Control therefore NOT cleanly passed. Hypothesis stays alive pending V3-EXQ-777a."
+          }
+        },
+        {
+          "hid": "H-rank2-tonic-phasic",
+          "label": "tonic baseline and phasic transient are independent DOF on one readout",
+          "desc": "MECH-063 sub-claim (ii): the MECH-313 tonic noise_floor moves the sustained baseline entropy while the SD-069 phasic_surprise_burst moves an event-locked transient on the same E3 temperature readout, with cross-legs ~0 (double dissociation)",
+          "axis": "drive",
+          "pre_registered_utc": "2026-07-17T00:00:00Z",
+          "adjudicating_runs": [
+            "V3-EXQ-779",
+            "V3-EXQ-779a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-779"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "779 narrowed nothing and its readiness was unmet (non_degenerate false). The substrate was NOT the problem: SD-069 was correctly wired (signal_source instantaneous_pe) and fired in every PHASIC-ON cell (burst_level_max 1.0, 5-22 event ticks). The failed phasic_fires_real_events precondition (5 vs 10) is a min across cells sourced entirely from seed 23/T1P1, which ran 19 of 900 budgeted steps. Hypothesis stays alive pending V3-EXQ-779a."
+          }
+        },
+        {
+          "hid": "H-collapse-one-scalar",
+          "label": "the control plane collapses to a single scalar",
+          "desc": "the rival reading: apparent tonic/phasic and score/temperature distinctions are reparameterisations of one underlying control scalar, so no genuine second degree of freedom exists",
+          "axis": "representation",
+          "pre_registered_utc": "2026-07-17T00:00:00Z",
+          "adjudicating_runs": [
+            "V3-EXQ-777a",
+            "V3-EXQ-779a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "The rival hypothesis remains untested. 777 appeared to support it but did so via a saturated dependent variable, not via a fair test; that apparent support is withdrawn by this autopsy."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the REE control plane retain >=2 independent control degrees of freedom, or is it effectively one scalar?",
+        "live_gate": "V3-EXQ-777a and V3-EXQ-779a with sample-driven stopping, per-seed authority gating, and a saturation guard on the score axis's dependent variable",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "Two runs spent (777, 779), zero of three hypotheses eliminated. Both were sample-starved before they could discriminate; the space is unnarrowed.",
+        "observation_bottleneck": "Sample starvation: the shared 2x2 telemetry-probe template denominates its budget in episodes while its gates are denominated in selections/event-ticks, and an untrained agent in a hazard-terminating env yields 2-100% of budget depending on seed (40x spread, reproduced across both runs)."
+      }
     }
   ]
 }
