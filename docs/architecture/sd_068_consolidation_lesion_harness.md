@@ -12,13 +12,34 @@ status_claim: SD-068
 **Depends on:** SD-017 (offline SWS/REM passes), MECH-120 (SWS denoising), MECH-121 (NREM slot-filling, *held*), MECH-123 (REM precision recalibration), MECH-204 (precision-recalibration consumer)
 **Blocks:** the MECH-168 / INV-047 / MECH-169 staged-decline falsifier; a representation-level staged-damage diagnostic (V3-EXQ-778 + power-up V3-EXQ-778a, run 2026-07-17; generative-gain non-vacuity banked offline -- see **Diagnostic results**)
 
-> **SCOPE NARROWED 2026-07-18 (V3-EXQ-778c null control).** Two of the three per-phase
-> readouts do not measure content fidelity: `sws` is content-free by construction
-> (`null_slope_ratio` 1.0000, 8/8 seeds) and `rem` is degenerate at both clamp rails.
-> Only the `nrem` leg is confirmed content-contingent. SD-068's non-vacuity contract is
-> carried by that leg plus the REM generative-gain contrast; the staging-order results
-> in **Diagnostic results** are correspondingly retracted as staging evidence. See
-> **Null-content control (V3-EXQ-778c)**.
+> **SCOPE NARROWED 2026-07-18 (V3-EXQ-778c null control), THEN PARTIALLY RE-WIDENED
+> 2026-07-18 (V3-EXQ-778g).** The 778c null control retired the ORIGINAL `sws` readout
+> (`sws_denoising_snr`, content-free by construction, `null_slope_ratio` 1.0000 on 8/8
+> seeds) and found `rem` degenerate at both clamp rails, leaving `nrem` as the only
+> confirmed content-contingent leg. The routed repair then landed and was validated:
+> `_sws_pattern_completion` (ree-v3 `main` `8b18338`) clears the SAME load-bearing C1
+> criterion at the SAME 0.25 ceiling that admitted `nrem` --
+> `null_slope_ratio_sws` mean **0.1495** (sd 0.0218, CI95 [0.1344, 0.1646]),
+> `ceiling_inside_ci95` FALSE, **8/8 seeds** (V3-EXQ-778g, run_id
+> `v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3`, ree-cloud-2,
+> PASS) -- so the `sws` leg is **RE-ADMITTED** to the non-vacuity contract.
+>
+> **Live contract:** SD-068's non-vacuity is carried by **TWO** confirmed
+> content-contingent per-phase readouts -- `nrem` injected-content AND the rebuilt `sws`
+> pattern-completion -- plus the REM passthrough-vs-generative contrast.
+>
+> **Still excluded:** the reverse-dependency **STAGING ORDER** remains UNSUPPORTED, and
+> the staging-order results in **Diagnostic results** stay RETRACTED as staging evidence.
+> 778g gates on `gated_phase` `sws` ALONE (nrem/rem measured as context only); staging is
+> a CROSS-phase ranking and cannot be supported while the `rem` leg has no interpretable
+> readout, and no run has re-measured the order with the repaired instrument. The
+> **NARROW-SUPPORTS FLAG stays raised** on narrower ground: the REM generative-gain
+> pillar's own content-dependence is open (`H-gen-gain-content-free`, owned by the
+> GOV-FANOUT-1 portfolio V3-EXQ-778d/e/f, all still queued as of 2026-07-18). Both 778c
+> and 778g are DIAGNOSTIC: no status, confidence, promotion or demotion change; SD-068
+> remains `candidate` / `implementation_phase v3` and the MECH-121 hold stands.
+> See **Null-content control (V3-EXQ-778c)** and **SWS readout rebuild**. Authoritative
+> live scope: the SD-068 `evidence_quality_note` in `docs/claims/claims.yaml`.
 
 ## Problem
 
@@ -85,8 +106,10 @@ loaded with a known clean signal, then scored against that known signal:
   series (2026-07-18).** Cosine retrieval margin of the post-SHY store against the
   injected prototypes: `margin_i = cos(probe_i, shy(store)_i) - max_{j != i}
   cos(probe_i, shy(store)_j)`. Probed with the UNSCALED prototypes, so the null arm
-  gets a real, arm-identical probe that is simply not planted. Pending validation by
-  V3-EXQ-778g.
+  gets a real, arm-identical probe that is simply not planted. **VALIDATED 2026-07-18
+  by V3-EXQ-778g** (8 seeds, PASS): `null_slope_ratio_sws` mean 0.1495 (sd 0.0218,
+  CI95 [0.1344, 0.1646]), `ceiling_inside_ci95` FALSE, 8/8 seeds, against the same
+  0.25 ceiling that admitted `nrem`. This is the SCORED `sws` series.
 - `nrem_transfer_fidelity` -- inject a known per-parameter target (the "replayed
   trace"), run the interleaved `CrossModuleConsolidator` pass, measure the fraction
   of the injected-content gap closed. *Parameter-space proxy* for
@@ -203,7 +226,10 @@ paired tolerance-diff CIs + sign tests; Kendall's W). Verdict label
   p = 0.0078) -- but its *interpretation* does not. The null control shows the `sws`
   pole of this adjacency is a **content-free** readout (`null_slope_ratio` 1.0000 on
   8/8 seeds), so this compares a content-contingent readout (`nrem`) against a noise
-  statistic (`sws`). It is not evidence that failure is staged.
+  statistic (`sws`). It is not evidence that failure is staged. *The `sws` pole here is
+  the RETIRED `sws_denoising_snr` readout; the 2026-07-18 rebuild + 778g validation does
+  NOT reinstate these numbers, because `tolerance_sigma_sws` flows through the replaced
+  series and the order has not been re-measured. This retraction STANDS.*
   **The tell was already in this table:** `sws` tolerance std ~9e-9 against `nrem`
   0.0014 and `rem` 0.396, and a 95% CI of width 0.003. That tightness was read as
   robustness; it is the signature of a near-deterministic analytic metric. *A per-phase
@@ -221,8 +247,12 @@ paired tolerance-diff CIs + sign tests; Kendall's W). Verdict label
 adjacency is robust; the REM-fails-first adjacency is not resolved at this power.~~
 **SUPERSEDED 2026-07-18.** After the null control, the honest reading is: the
 NREM-before-SWS adjacency is *uninterpretable* as staging (content-free `sws` pole),
-and the REM-fails-first adjacency remains unresolved at this power. **No leg of the
-reverse-dependency staging order is currently supported by a validated instrument.**
+and the REM-fails-first adjacency remains unresolved at this power. **No leg's staging
+POSITION has been established.** *(Wording corrected 2026-07-18 after V3-EXQ-778g: this
+originally read "no leg ... is currently supported by a validated instrument", which is
+now false as written -- two of the three legs, `nrem` and the rebuilt `sws`, have
+validated content-contingent instruments; the third, `rem`, does not. The staging
+conclusion is unchanged.)*
 All three phases do degrade monotonically with `sigma` (load-bearing C1 PASS, corr
 >= 0.96 each) and are non-degenerate at `sigma = 0` (P0 control) -- but monotone
 degradation with `sigma` is exactly what a noise-sensitivity statistic also produces,
@@ -279,6 +309,13 @@ contrast is generative-gain 0.149 << 1.)
 
 ### Null-content control (V3-EXQ-778c, 2026-07-18) -- the instrument-validity audit
 
+> **Reading note (added 2026-07-18).** Everything in this subsection is TRUE OF THE
+> INSTRUMENTS AS THEY STOOD ON 2026-07-18 MORNING, and is retained as history. Its `sws`
+> findings pertain to the **RETIRED `sws_denoising_snr` readout**, which was subsequently
+> replaced and re-validated -- see **SWS readout rebuild** below. V3-EXQ-778c is **NOT
+> superseded**: it is what motivated and justified the repair, and 778g audits a
+> different instrument. Its `rem` finding is still live.
+
 **This is the load-bearing correction to everything above.** The zero-injected-content
 null control (the analog of the odour-contingency null in Bar et al. 2020, the
 methodological precedent this SD follows) ran the identical `sigma` sweep twice per
@@ -296,10 +333,10 @@ about the instrument, **not** a broken run.
 | phase | mean `null_slope_ratio` | sd | 95% CI | seeds confounded | verdict |
 |-------|------------------------|-----|--------|------------------|---------|
 | `nrem` | **0.1445** | 0.00090 | [0.1438, 0.1451] | 0/8 | **content-contingent** -- the one working leg |
-| `sws`  | **1.0000** | 2.7e-08 | [0.99999997, 1.00000001] | 8/8 | **fully confounded -- content-free** |
+| `sws` (RETIRED `sws_denoising_snr`) | **1.0000** | 2.7e-08 | [0.99999997, 1.00000001] | 8/8 | **fully confounded -- content-free** *(instrument since replaced; the rebuilt `_sws_pattern_completion` scores 0.1495 -- see 778g below)* |
 | `rem`  | 1911.6 | 3306.1 | [-379, 4203] | 3/8 | **degenerate / uninterpretable** |
 
-- **`sws` is content-free by construction.** At every `sigma` the injected arm has
+- **`sws` (the RETIRED `sws_denoising_snr`) is content-free by construction.** At every `sigma` the injected arm has
   `signal_power` 5585.7 and the null arm 0.0, while `noise_power` is *identical* in
   both (384.18 / 1536.73 / 6146.91 / 24587.64). Since
   `denoising_snr_db = 10*log10(signal_power / noise_power)`, the sigma-slope depends
@@ -321,14 +358,25 @@ confirmed content-contingent readout plus a generative-gain contrast whose own
 content-dependence is itself an open question (see the OPEN QUESTION box above): do not
 read the narrowing as leaving SD-068 comfortably supported.
 
+> **PARTIALLY RE-WIDENED 2026-07-18 (V3-EXQ-778g).** The exclusion of the `sws` leg rested
+> on one stated ground and one only -- its readout was content-free by construction -- and
+> that ground is now discharged by the rebuilt, validated `_sws_pattern_completion` (see
+> **SWS readout rebuild**). The contract is henceforth carried by **TWO** confirmed
+> content-contingent readouts (`nrem` + rebuilt `sws`) plus the REM contrast. The
+> NARROW-SUPPORTS caution above is **NOT** cleared, only narrowed: the generative-gain
+> pillar's content-dependence is still open (`H-gen-gain-content-free`), and the staging
+> order is still unsupported. Do not read the re-widening as leaving SD-068 comfortably
+> supported either; it restores one readout to the contract, nothing more.
+
 **Routing:** `/implement-substrate` to replace `sws_denoising_snr` with a content-scored
 readout (experiment-layer, `_lib/consolidation_lesion_harness.py`, zero `ree_core`
 change) + a GOV-FANOUT-1 three-axis portfolio on the `rem` leg. Full diagnosis:
 `evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.{md,json}`.
 
-### SWS readout rebuild (2026-07-18, ree-v3 `main` `8b18338`) -- BUILT, NOT YET VALIDATED
+### SWS readout rebuild (2026-07-18, ree-v3 `main` `8b18338`) -- BUILT AND VALIDATED (V3-EXQ-778g)
 
-The routed repair has landed. `denoising_snr_db` is retained as telemetry; the SCORED
+The routed repair has landed and has since been validated at 8 seeds (see **Validation**
+at the end of this subsection). `denoising_snr_db` is retained as telemetry; the SCORED
 sws series is now `_sws_pattern_completion`.
 
 **The design move.** Any readout of the form `f(shy(damaged) - shy(clean))` is
@@ -374,11 +422,33 @@ above it. The slope DECREASES as content strengthens because damage is reference
 content amplitude -- weakly planted content faces proportionally larger damage and is
 destroyed faster. That is content-tracking in the physically correct direction.
 
-**Status: BUILT, NOT VALIDATED.** Three local seeds are not evidence -- the 778c
-autopsy's own lesson is that low-n reads hide unstable verdicts. **V3-EXQ-778g**
-(diagnostic, 8-seed 778a set) re-runs the null control on the repaired readout and
-carries the content-scale ladder as a second criterion. Until it reports, the `sws` leg
-is NOT a validated instrument and the staging order remains unsupported.
+**Validation -- V3-EXQ-778g (2026-07-18, PASS/supports, DIAGNOSTIC).** Three local seeds
+were not evidence -- the 778c autopsy's own lesson is that low-n reads hide unstable
+verdicts -- so the null control was re-run on the repaired readout at the full 8-seed
+778a set, carrying the content-scale ladder as a second criterion. Run
+`v3_exq_sd068_sws_content_scored_readout_diagnostic_20260718T130139Z_v3`, ree-cloud-2:
+
+| criterion | result | verdict |
+|-----------|--------|---------|
+| C1 `null_slope_ratio_sws` vs the 0.25 ceiling | mean **0.1495**, sd 0.0218, CI95 [0.1344, 0.1646], `ceiling_inside_ci95` **FALSE**, **8/8 seeds** | PASS -- content-contingent |
+| C3 content-scale ladder (slope spread vs 0.01 floor) | spread **0.1108** | PASS -- discharges the cosine scale-invariance caveat |
+
+C1 is the SAME criterion at the SAME ceiling that admitted the `nrem` leg -- re-admitting
+`sws` on a weaker test than the one that excluded it would be motivated reasoning. C3
+matters because the replacement is cosine-based and hence scale-invariant, so its null
+arm is flat in sigma partly BY CONSTRUCTION (the caveat declared above); the ladder means
+the result does not rest on the null ratio alone.
+
+**So the `sws` leg IS a validated instrument as of 778g, and is re-admitted to the
+non-vacuity contract.** The staging order nonetheless **remains unsupported**: 778g gates
+on `gated_phase` `sws` ALONE, with `nrem` and `rem` measured and reported as CONTEXT ONLY
+and deliberately not gated (the `rem` leg is degenerate at both clamp rails, so gating all
+three would FAIL regardless of whether the `sws` repair worked). What 778g validates is
+the `sws` INSTRUMENT's content-contingency, not any staging result -- staging is a
+CROSS-phase ranking, and no run has yet re-measured it with the repaired instrument.
+
+V3-EXQ-778c is **not** superseded by this: its finding is about the RETIRED readout and
+is what motivated the repair; 778g validates a DIFFERENT instrument.
 
 **Consequence for prior runs.** V3-EXQ-778 / 778a drivers still RUN (the SNR keys are
 still emitted), but their staging numbers are NOT reproducible across this change,
@@ -397,19 +467,24 @@ seed-variable/underpowered), with the vacuity threat refuted by a strongly atten
 REM generative gain. The null control revises the first half and leaves the second
 standing:
 
-- **Staging order: NOT currently supported by a validated instrument.** The
-  NREM-before-SWS adjacency is uninterpretable (content-free `sws` pole) and the
-  REM-first adjacency was already contested and underpowered. Of the three per-phase
-  readouts the order is built from, one is content-free, one is degenerate, and only
-  `nrem` is confirmed to measure content.
+- **Staging order: NOT currently supported.** The NREM-before-SWS adjacency as measured
+  is uninterpretable (its `sws` pole was the content-free retired readout) and the
+  REM-first adjacency was already contested and underpowered. *Updated 2026-07-18 after
+  V3-EXQ-778g:* two of the three per-phase readouts (`nrem` and the rebuilt `sws`) are
+  now confirmed to measure content, but the `rem` leg remains degenerate and no run has
+  re-measured the order with the repaired instrument -- so no leg's staging POSITION is
+  established. Staging is a cross-phase ranking and cannot be supported while one ranked
+  leg has no interpretable readout.
 - **Non-vacuity (REM generative gain 0.149, 8/8 attenuating): STANDS.** It is a
   different readout (`rem_generative_fidelity`) with its own internal
   clean-vs-corrupt control, and C1 does not bear on it. The narrower "correction needs
   an intact seed" gloss is flagged as an open question.
 
 So the honest combined reading is: **the pipeline has a real error-propagation transfer
-function (REM generative gain), but the evidence that its failure is STAGED is
-currently instrument-limited rather than substantiated.** This remains DIAGNOSTIC --
+function (REM generative gain) and two validated content-contingent per-phase
+instruments (`nrem`, rebuilt `sws`), but the evidence that its failure is STAGED remains
+unsubstantiated -- limited now by the uninterpretable `rem` leg and by the absence of any
+re-measurement with the repaired instrument.** This remains DIAGNOSTIC --
 it promotes and demotes nothing, MECH-121 stays held (NREM leg plumbing-fidelity only),
 and per-claim `evidence_direction` on MECH-168 / INV-047 / MECH-169 is `unknown`
 (they are context tags; the control audits the instrument, not the claims).
