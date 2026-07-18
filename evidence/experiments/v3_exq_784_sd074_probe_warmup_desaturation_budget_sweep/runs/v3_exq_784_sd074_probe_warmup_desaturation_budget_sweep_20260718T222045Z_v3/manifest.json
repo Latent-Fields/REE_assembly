@@ -1,0 +1,74 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep",
+  "run_id": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-18T22:20:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "warmup_desaturates_landscape",
+    "preconditions": [
+      {
+        "name": "desaturation_read_cells_readable_frac",
+        "description": "fraction of (seed x budget) cells whose de-saturation read collected at least MIN_SELECTS_FOR_READ fresh E3 selections -- the same fraction-over-cells statistic the load-bearing yield criterion routes on",
+        "control": "all cells, including the untrained budget-0 control",
+        "measured": 1.0,
+        "threshold": 0.8,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "budget0_control_reproduces_777a_saturation",
+        "description": "the untrained (budget 0) checkpoint must show a MAJORITY of seeds saturated, reproducing V3-EXQ-777a's 9/14 = 0.643 saturated fraction on the same env and the same 14 seeds; if the untrained agent were already unsaturated, the instrument or env would differ from 777a and the whole comparison would be void. Proven reachable at setup by scoring 777a's own recorded per-seed D values with the shipped predicate (see readiness_anchor below).",
+        "control": "budget-0 checkpoint = untrained agent, same env and seeds as 777a",
+        "measured": 0.6429,
+        "threshold": 0.5,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true
+    },
+    "null_meaning": "A FAIL at label warmup_insufficient_at_swept_budgets means the swept budgets (max 25 episodes) did not de-saturate a majority of seeds. It does NOT mean warmup cannot work -- the honest next question is whether a larger budget, or a different training signal, moves the yield. It says NOTHING about MECH-063: no control-axis quantity is measured here."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10",
+  "substrate_hash": "f8daed1ef73862bfb546e3271f528a2ad7b054887c0b2fbf4dc02500aa0d870f"
+}
