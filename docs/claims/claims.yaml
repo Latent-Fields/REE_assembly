@@ -56597,3 +56597,91 @@
     cluster as one type fact rather than three bugs. Full derivation, discrimination gate
     and literature grounding:
     evidence/planning/claim_synthesis_SD-068_2026-07-18.md Section 5.
+
+- id: MECH-463
+  title: "Global-scalar arousal channels are a VARIANCE AMPLIFIER of the already-dominant selection channel, not a source of behavioural differentiation: the three affective routes that modulate commitment globally (D1/D2 dopamine gain, harm-urgency threshold shrinkage, LC-NE/phasic-surprise temperature) apply one scalar uniformly across all K candidates and therefore cannot change an argmax, but DO change whether commitment fires and how sharply -- selecting for whichever channel already carries the most per-candidate score variance. Under F-dominance (MECH-439) this makes affective engagement ENTRENCH F rather than convert diversity, predicting that F's share of committed-selection variance RISES with arousal and FALLS under low urgency."
+  claim_type: mechanism_hypothesis
+  subject: selection.global_arousal_variance_amplification
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-07-18"
+  depends_on:
+    - MECH-439   # F-dominance -- the variance monopoly this claim says arousal amplifies rather than breaks
+    - MECH-359   # candidate-differentiated affect vector -- states the argmax-invariance of a scalar; this is its selection-side consequence
+    - MECH-390   # subtractive sparsification / convergent-weak-channel summation -- the structurally anti-F-dominance prescription
+    - SD-011     # z_harm_a -- the affective stream feeding the urgency threshold shrinkage
+    - MECH-229   # VALENCE_WANTING -- the realised-valence EMA driving the D1/D2 tonic gain
+  location: evidence/planning/conversion_ceiling_prong_map.md
+  functional_restatement: >
+    Affect enters E3 selection at four points with different granularity. ONE is
+    per-candidate and additive: score_bias (e3_selector.py:2189,
+    scores = scores + bias_tensor, shape-checked [K] at :2162). THREE are global
+    scalars: the D1/D2 dopamine gain (e3_selector.py:1559-1562, da = tanh of the
+    realised-valence EMA), the harm-urgency threshold shrinkage
+    (e3_selector.py:2679-2686, effective_threshold * (1.0 - urgency_applied), where
+    urgency_applied derives from z_harm_a.norm(dim=-1).mean() -- a single number), and
+    the softmax temperature (noise_floor.py:192, phasic_surprise_burst.py:261).
+    A uniform scalar cannot reorder candidates. But shrinking the commit threshold
+    makes commitment fire on whichever candidate already has the largest score
+    separation -- i.e. it is channel-agnostic variance amplification. If F already
+    carries ~88-89% of committed-selection variance (MECH-439), arousal does not
+    bias TOWARD F; it selects for the dominant channel, which IS F. The prediction
+    that distinguishes this from MECH-439 alone is CONDITIONAL: F-share should be a
+    monotone increasing function of urgency/arousal decile, and should be materially
+    lower in the bottom decile. MECH-439 as stated predicts a flat high F-share.
+  what_would_answer: >
+    A variance decomposition of committed-selection scores into F vs the other
+    channels, CONDITIONED on arousal (urgency_applied decile, and secondarily on
+    tonic temperature and the D1/D2 da scalar). Supports if F-share rises
+    monotonically with urgency decile and the bottom-vs-top decile gap exceeds the
+    effect-size floor. Refutes if F-share is flat across arousal deciles -- which
+    would mean F-dominance is structural in the score geometry and arousal is
+    causally inert with respect to it, leaving MECH-439 untouched and killing this
+    claim cleanly.
+  evidence_quality_note: >
+    NOT computable from existing runs (instrumentation audit 2026-07-18). Three gaps
+    in the current substrate: (1) urgency_applied escapes only as
+    SelectionResult.urgency (e3_selector.py:3151) and is never written to
+    last_score_diagnostics or persisted; effective_threshold and commit_variance are
+    pure locals (:2671-2707). (2) Per-channel bias is retained only as the SUMMED
+    bias_tensor inside E3; agent.py:6816-6845 does build a per-channel decomp but
+    stores REDUCED SCALARS, so channel-channel and channel-F covariance are lost --
+    marginal variances only, not a covariance-correct decomposition. It is also
+    gated on e3_score_decomp_enabled, default False (e3_selector.py:360). (3) No
+    existing E3 experiment persists per-tick rows; 689d, 571 and 609 all reduce to
+    arm-level means before the manifest. Checked manifests 689d / 643a / 571 --
+    none carry an arousal conditioning variable. So this needs an additive
+    instrumentation change plus one queued run, NOT a re-analysis.
+    MANDATORY INHERITED GATE: the V3-EXQ-643 non-vacuity readiness gate
+    (modulatory_authority_active_frac > 0, cross-candidate range > floor, plus a new
+    assertion that urgency_applied is non-constant across the run). 643 FAILed
+    precondition_unmet purely from float32 catastrophic cancellation (E3 scores
+    ~1e32, modulatory range below float32 ULP); without that gate this probe returns
+    a spurious FLAT F-share for numerical reasons and FALSELY REFUTES.
+  notes: >
+    Registered 2026-07-18 from a conversation-originated hypothesis (user), distinct
+    from MECH-359 in POLARITY: MECH-359 says a scalar is too WEAK to steer (affect
+    fails to convert); this says the scalar is not inert but actively ENTRENCHING
+    (affect amplifies the incumbent). Both rest on the same argmax-invariance
+    observation; they differ in what they predict about the commit gate, which
+    MECH-359 does not address. MECH-390 prescribes the structurally anti-F-dominance
+    form (convergent-weak-channel summation over single-dominant-channel); this claim
+    supplies the mechanism and falsifier MECH-390 currently lacks.
+    ROUTING NOTE: this does NOT re-open the F-dominance selection faces. The
+    conversion-ceiling campaign's re-derive brake is live (further lettered re-tests
+    of the 689/485/445/625 lineages REFUSED per the 734-737 autopsy) and the campaign
+    is routed to MECH-457 (competence floor) and INV-088 (z_world differentiation).
+    This is an INSTRUMENTATION/DECOMPOSITION probe on score geometry, not a
+    behavioural conversion test, so it does not require the agent to be competent and
+    is NOT gated on MECH-457 / INV-088.
+    INTERPRETATION CAVEAT: under an under-differentiated z_world (participation ratio
+    ~1.06 at world_dim=128) the per-candidate channels have little to range over.
+    That objection bites on the FIX, not on the measurement -- but a REFUTES verdict
+    must be read against it rather than as unconditional.
