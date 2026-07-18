@@ -1,0 +1,123 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-18T08:33:58Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_sd068_null_content_control_diagnostic_20260718T072318Z_v3",
+      "queue_id": "V3-EXQ-778c",
+      "supersedes_run_id": "v3_exq_sd068_null_content_control_diagnostic_20260718T065939Z_v3",
+      "supersedes_queue_id": "V3-EXQ-778b",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "primary_claim_id": "SD-068",
+      "context_only_claim_ids": ["MECH-168", "INV-047", "MECH-169"],
+      "experiment_purpose": "diagnostic",
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1_all_phases_content_contingent (LOAD-BEARING) failed on 0/8 seeds; C2 readiness passed; precondition injected_arm_sigma_slope_supra_floor met (0.0665 vs 1e-06); criteria_non_degenerate true on all three.",
+      "self_route_label": "null_control_partial_staging_order_partly_noise_sensitivity",
+      "self_route_is_verdict_not_requeue": true,
+      "recording_debt": false,
+      "recording_note": "Always-core present: recording_schema rec/v1, top-level substrate_hash, machine/machine_class, elapsed_seconds, full config, explicit seeds list, per-cell arm_fingerprint. Measurement finding, not recording finding.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (scoped) -- SD-068's 3-phase non-vacuity contract refuted on 2 of 3 phases; design principle and the nrem instantiation stand",
+        "biological_reference": "clear -- TMR / Bar et al. 2020 (10.1016/j.cub.2020.01.091); lit entry present; null-control design faithful to precedent",
+        "prerequisites": "present -- MECH-120/121/123 phase ops all present and firing; nothing upstream missing",
+        "implementation": "partial -- sws_denoising_snr has the symbol of a denoising-quality readout but not its functional role",
+        "environment": "adequate -- offline injected-content design; no environment pressure required",
+        "measurement": "misleading -- DOMINANT LAYER. denoising_snr_db differentiates its content term away; rem calibration readout saturates at both rails",
+        "integration": "coupled -- arms share substrate, warm-up and RNG streams; injected arm verified bit-identical to pre-778b harness",
+        "scale": "adequate -- n=8 resolves sws and nrem decisively; rem under-powered by degeneracy, not by n"
+      },
+      "per_phase_findings": {
+        "nrem": {"mean_null_slope_ratio": 0.14445542632707722, "sd": 0.0009013888702546878, "ci95": [0.1438307957080869, 0.14508005694606754], "n_seeds_confounded": 0, "verdict_stable": true, "reading": "content_contingent"},
+        "sws": {"mean_null_slope_ratio": 0.9999999900273644, "sd": 2.691473544676207e-08, "ci95": [0.9999999713764043, 1.0000000086783245], "n_seeds_confounded": 8, "verdict_stable": true, "reading": "fully_confounded_content_free", "mechanism": "denoising_snr_db = 10*log10(signal_power/noise_power); noise_power identical across arms at every sigma, signal_power 5585.7 vs 0.0, so the sigma-slope is driven entirely by log(noise_power) and the content term differentiates away"},
+        "rem": {"mean_null_slope_ratio": 1911.6104037557163, "sd": 3306.083577424908, "ci95": [-379.3886306755837, 4202.609438187016], "n_seeds_confounded": 3, "verdict_stable": false, "ceiling_inside_ci95": true, "reading": "degenerate_uninterpretable", "mechanism": "exactly 0.0 on 5/8 seeds (null calibration_error pinned at constant 998.5009992509989, target_clamped 1.0 -> zero slope) or off-scale 1801-9143 on 3/8 (null precision reference collapses onto the 1e-3 positivity floor)"}
+      },
+      "biological_reference": {
+        "closest_mechanism": "targeted memory reactivation (TMR) during sleep -- cueing a consolidating trace with a sensory cue paired at encoding",
+        "dependencies": ["encoding-time content pairing", "scoped perturbation delivery", "scope-matched readout"],
+        "is_formal_import": false,
+        "divergence": "none at the mechanism layer -- the SWS substrate operation (shy_normalise + run_sws_schema_pass) is present and firing; the failure is entirely in the measurement wrapped around it",
+        "lit_status": "present",
+        "lit_entry": "evidence/literature/targeted_review_sd_068/entries/2026-07-18_sd_068_local_tmr_injected_content_bar2020/"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "SD-068": "weakens",
+        "MECH-168": "unknown",
+        "INV-047": "unknown",
+        "MECH-169": "unknown"
+      },
+      "recommended_claim_disposition": "narrow_not_demote",
+      "recommended_evidence_quality_note": "V3-EXQ-778c (diagnostic, n=8, 2026-07-18) ran the pre-registered zero-injected-content null control and FAILED the load-bearing C1 on 0/8 seeds. Per phase: nrem null_slope_ratio 0.1445 (95% CI [0.1438, 0.1451], 0/8 confounded) is cleanly content-contingent; sws is 1.0000 (sd 2.7e-8, 8/8 confounded) -- denoising_snr_db is a pure noise-power statistic whose content term differentiates away, so it has never measured content fidelity; rem is degenerate at both rails (exactly 0.0 on 5/8 from a saturated calibration_error constant, off-scale 1801-9143 on 3/8 from the 1e-3 precision floor) and is UNINTERPRETABLE at this n (ceiling_inside_ci95 true). Readiness precondition met and C2 passed, so this is an informative negative about the instrument, not a broken run. Per the script's own pre-registration (lines 90-92), SD-068's non-vacuity contract is hereby NARROWED rather than withdrawn: it is carried by the nrem injected-content leg and the REM passthrough-vs-generative contrast, and NOT by the sws leg. Routing: /implement-substrate to replace sws_denoising_snr with a content-scored readout (same pattern as rem_terrain_variance -> rem_generative_fidelity, ree-v3 main da873a1). No status or confidence change; diagnostic evidence does not weight governance confidence. See failure_autopsy_V3-EXQ-778c_2026-07-18.",
+      "recommended_annotation_amendments": [
+        {
+          "claim_ids": ["MECH-168", "INV-047"],
+          "amends_commit": "c95b2f4a0f",
+          "amends_session": "focused-kare-62d137",
+          "text": "AMENDED 2026-07-18 by V3-EXQ-778c (SD-068 null-content control, n=8). The \"NREM-before-SWS adjacency ROBUST (8/8, sign-test p = 0.0078, 95% CI [0.422, 0.425])\" half of the 2026-07-17 V3-EXQ-778a staging fold is RETRACTED as evidence of staging: the sws pole of that adjacency is a content-free readout (null_slope_ratio 1.0000 on 8/8 seeds, sd 2.7e-8), so the comparison is between a content-contingent readout (nrem) and a noise statistic (sws). The tightness of that CI is the signature of a near-deterministic analytic metric, not strength of effect -- sws tolerance std ~9e-9 vs nrem 0.0014 and rem 0.396. The REM-fails-first half was already CONTESTED / underpowered and is unchanged. The 2026-07-17 Leg 2 finding (REM generative gain 0.149, 8/8 attenuating) is a different readout and is NOT overturned, though see failure_autopsy_V3-EXQ-778c_2026-07-18 H3 for an open question on its content-dependence. No confidence change: V3-EXQ-778c tags these claims as CONTEXT only and its per-claim evidence_direction is unknown. This amends an annotation, not the claims themselves."
+        },
+        {
+          "claim_ids": ["MECH-169"],
+          "text": "AMENDED 2026-07-18 by V3-EXQ-778c: the SD-068 fold-note's staging-order support is narrowed to the nrem leg. The sws leg is content-free (null_slope_ratio 1.0000, 8/8) and the rem leg is uninterpretable at n=8; only the nrem leg is confirmed content-contingent. The glymphatic half remains out of V3 scope. No confidence change. See failure_autopsy_V3-EXQ-778c_2026-07-18."
+        }
+      ],
+      "recommended_supersession_write": {
+        "run_id": "v3_exq_sd068_null_content_control_diagnostic_20260718T065939Z_v3",
+        "queue_id": "V3-EXQ-778b",
+        "evidence_direction": "superseded",
+        "evidence_direction_note": "Superseded by V3-EXQ-778c (...20260718T072318Z_v3), which re-ran the identical null-content control at the full 8-seed V3-EXQ-778a set. 778b ran at n=2 and left the rem leg unresolved (per-seed null ratios [4348.47, 0.0], confound_verdict_stable false); its sws (1.0000) and nrem (0.1449) legs are reproduced bit-identically in 778c. Same conclusion, strictly dominated evidence -- does not count separately toward SD-068 confidence."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The repair is experiment-layer only (ree-v3/experiments/_lib/consolidation_lesion_harness.py), zero ree_core change -- matching the festive-neumann-b7b7b4 and infallible-panini-0ba871 precedent for this same harness, both of which correctly wrote no substrate_queue entry. Route directly to /implement-substrate."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "After this control, SD-068's non-vacuity rests on a SINGLE confirmed content-contingent leg (nrem) plus the REM generative-gain contrast whose own content-dependence is open (H3). Flagging per the illusory-conflict-resolution rule: do not read the narrowing as leaving SD-068 comfortably supported.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": null,
+        "note": "First autopsy on SD-068 (registered 2026-07-17); recommended category measurement_gap and direction weakens, neither of which counts toward the brake."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "routing": null,
+        "note": "No prior failure_autopsy_* doc targets SD-068. First autopsy on this target."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "scope": "the REM leg only -- the SWS repair is a single unambiguous build and is exempt",
+        "live_hypotheses": [
+          "H1: the rem null degeneracy is an artifact of the step=1.0 full-adoption measurement choice driving calibration_error into its clamp rails",
+          "H2: the rem calibration readout is genuinely content-independent (like sws), and the clamping is incidental",
+          "H3: rem_generative_gain is a content-free property of the rollout transfer function, not evidence that 'correction needs an intact seed'"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "measurement", "sketch": "re-run the rem leg over a step ladder (0.1/0.25/0.5/1.0); read whether the null arm leaves the 998.5 constant and the 1e-3 floor", "declared_null": "if the null arm stays railed at every step, H1 is refuted"},
+          {"hypothesis": "H2", "axis": "representation", "sketch": "score the rem leg against the injected precision target directly rather than via running_variance_after; compare null vs injected slope in common units", "declared_null": "if a de-clamped readout yields null_slope_ratio <= 0.25, H2 is refuted"},
+          {"hypothesis": "H3", "axis": "observation", "sketch": "contrast generative gain at rem_gen_content_scale in {0.0, 0.5, 1.0} across seeds; test whether gain varies with content scale at all", "declared_null": "if gain scales monotonically with content scale, H3 is refuted and the sd_068 doc line-221 gloss stands"}
+        ],
+        "note": "GOV-FANOUT-1: three distinct design axes (measurement / representation / observation), each with a declared null. Motivated by the observation that null-arm rem_generative_gain (~0.182-0.209 on seed 42) is close to the injected arm's (~0.165-0.190) at rem_gen_content_scale 0.0 -- outside the scored C1 criteria, recorded as an open question rather than a verdict."
+      },
+      "learning_extracted": [
+        "The SWS leg of the SD-068 staging order has never measured content fidelity: denoising_snr_db is a pure noise-power statistic.",
+        "A per-phase variance three-to-five orders of magnitude below its siblings (sws std ~9e-9 vs nrem 0.0014, rem 0.396) is an instrument-validity flag, not a strength-of-effect signal. This retro-explains the suspiciously tight CI [0.422, 0.425] read as robustness on 2026-07-17.",
+        "The V3-EXQ-778a Leg 1 headline ('nrem fails before sws -- ROBUST, 8/8, p = 0.0078') is retracted as evidence of staging: it compares a content-contingent readout against a content-free one.",
+        "Leg 2 (REM generative gain 0.149, 8/8 attenuating) is a different readout with its own internal control and is NOT overturned by C1; but the null arm's near-identical gain at content_scale 0.0 opens H3 against the doc's 'correction needs an intact seed' gloss.",
+        "An injected-content harness should ship its zero-content null arm in the SAME cycle as its first scored run. This control cost ~13.5 min of cloud compute and invalidated a headline result banked the previous day.",
+        "The harness's CONFOUND REGISTER design -- report and flag confounded phases, never silently drop them from the staging order -- is what made this finding legible rather than invisible."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_applied": true,
+  "notes": "Step 8 gate answered by the user 2026-07-18: (1) narrow SD-068 per the script's own pre-registration rather than demote; (2) retract the Leg 1 robustness claim, keeping the numbers; (3) emit the GOV-FANOUT-1 rem-leg portfolio. This skill produced the diagnosis only; the governance writes in recommended_* were applied in the same session under a separate explicit user instruction."
+}

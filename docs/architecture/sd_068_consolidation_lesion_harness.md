@@ -12,6 +12,14 @@ status_claim: SD-068
 **Depends on:** SD-017 (offline SWS/REM passes), MECH-120 (SWS denoising), MECH-121 (NREM slot-filling, *held*), MECH-123 (REM precision recalibration), MECH-204 (precision-recalibration consumer)
 **Blocks:** the MECH-168 / INV-047 / MECH-169 staged-decline falsifier; a representation-level staged-damage diagnostic (V3-EXQ-778 + power-up V3-EXQ-778a, run 2026-07-17; generative-gain non-vacuity banked offline -- see **Diagnostic results**)
 
+> **SCOPE NARROWED 2026-07-18 (V3-EXQ-778c null control).** Two of the three per-phase
+> readouts do not measure content fidelity: `sws` is content-free by construction
+> (`null_slope_ratio` 1.0000, 8/8 seeds) and `rem` is degenerate at both clamp rails.
+> Only the `nrem` leg is confirmed content-contingent. SD-068's non-vacuity contract is
+> carried by that leg plus the REM generative-gain contrast; the staging-order results
+> in **Diagnostic results** are correspondingly retracted as staging evidence. See
+> **Null-content control (V3-EXQ-778c)**.
+
 ## Problem
 
 The offline-consolidation pipeline exists in the substrate as three phase
@@ -64,6 +72,14 @@ loaded with a known clean signal, then scored against that known signal:
 - `sws_denoising_snr` -- inject clean prototypes into `e1.context_memory`, corrupt
   by `sigma`, run SHY, measure SNR of the preserved deviation-structure
   (`10*log10(signal_power / noise_power)`; higher = better). Fully-verified APIs.
+  **>> RETIRED AS A CONTENT READOUT 2026-07-18 (V3-EXQ-778c null control).** This
+  statistic is **content-free**: `noise_power` is identical with and without injected
+  content at every `sigma`, so the sigma-slope is driven entirely by `log(noise_power)`
+  and the content term differentiates away. Measured `null_slope_ratio` = 1.0000
+  (sd 2.7e-8) on 8/8 seeds. It has never measured content fidelity and must not be
+  scored as damage tolerance until replaced by a content-scored readout (the same
+  repair as `rem_terrain_variance` -> `rem_generative_fidelity`). Retained as telemetry
+  only. See **Null-content control** below.
 - `nrem_transfer_fidelity` -- inject a known per-parameter target (the "replayed
   trace"), run the interleaved `CrossModuleConsolidator` pass, measure the fraction
   of the injected-content gap closed. *Parameter-space proxy* for
@@ -174,9 +190,18 @@ Spearman rho vs predicted `(rem, nrem, sws)`; the two adjacency predictions as
 paired tolerance-diff CIs + sign tests; Kendall's W). Verdict label
 `staging_seed_variable_underpowered` -- staging match REPORTED, never gated:
 
-- **`nrem` fails before `sws` -- ROBUST.** `sws_tolerance - nrem_tolerance` > 0 on
-  **8/8** seeds (mean +0.424, 95% CI [0.422, 0.425], sign-test p = 0.0078). The
-  upstream half of the reverse-dependency ordering holds cleanly.
+- **`nrem` fails before `sws` -- ~~ROBUST~~ RETRACTED as evidence of staging
+  (2026-07-18, V3-EXQ-778c).** The measurement stands -- `sws_tolerance -
+  nrem_tolerance` > 0 on **8/8** seeds (mean +0.424, 95% CI [0.422, 0.425], sign-test
+  p = 0.0078) -- but its *interpretation* does not. The null control shows the `sws`
+  pole of this adjacency is a **content-free** readout (`null_slope_ratio` 1.0000 on
+  8/8 seeds), so this compares a content-contingent readout (`nrem`) against a noise
+  statistic (`sws`). It is not evidence that failure is staged.
+  **The tell was already in this table:** `sws` tolerance std ~9e-9 against `nrem`
+  0.0014 and `rem` 0.396, and a 95% CI of width 0.003. That tightness was read as
+  robustness; it is the signature of a near-deterministic analytic metric. *A per-phase
+  variance three-to-five orders of magnitude below its siblings is an instrument-validity
+  flag, not a strength-of-effect signal.* See **Null-content control** below.
 - **`rem` fails first -- CONTESTED / seed-variable.** `nrem_tolerance -
   rem_tolerance` mean -0.097, 95% CI [-0.43, +0.23] straddles 0 (4/8 seeds positive,
   sign-test p = 1.0). The REM-first leg is underpowered at n=8; `rem` tolerance is
@@ -185,10 +210,16 @@ paired tolerance-diff CIs + sign tests; Kendall's W). Verdict label
   W = 0.328 (Friedman chi2 = 5.25, df 2). Modal observed order `(rem, nrem, sws)` on
   4/8 seeds.
 
-So the *reverse-dependency staging* is **partially supported**: the NREM-before-SWS
-adjacency is robust; the REM-fails-first adjacency is not resolved at this power. All
-three phases degrade monotonically with `sigma` (load-bearing C1 PASS, corr >= 0.96
-each) and are non-degenerate at `sigma = 0` (P0 control).
+~~So the *reverse-dependency staging* is **partially supported**: the NREM-before-SWS
+adjacency is robust; the REM-fails-first adjacency is not resolved at this power.~~
+**SUPERSEDED 2026-07-18.** After the null control, the honest reading is: the
+NREM-before-SWS adjacency is *uninterpretable* as staging (content-free `sws` pole),
+and the REM-fails-first adjacency remains unresolved at this power. **No leg of the
+reverse-dependency staging order is currently supported by a validated instrument.**
+All three phases do degrade monotonically with `sigma` (load-bearing C1 PASS, corr
+>= 0.96 each) and are non-degenerate at `sigma = 0` (P0 control) -- but monotone
+degradation with `sigma` is exactly what a noise-sensitivity statistic also produces,
+so it does not discriminate.
 
 ### Leg 2 -- REM generative gain (offline banking, current harness, n=8) -- the non-vacuity result
 
@@ -221,23 +252,101 @@ diffusely corrupted seed rather than passing it through (gain 1) or amplifying i
 "the correction needs an intact seed": REM's early vulnerability under diffuse damage
 reflects a real transfer function, not merely its downstream position in the DAG.
 
+> **OPEN QUESTION on the "intact seed" gloss (flagged 2026-07-18, V3-EXQ-778c).** In
+> the null control's manifest the **null arm's** `rem_generative_gain` (seed 42:
+> 0.182 / 0.184 / 0.188 / 0.209 across `sigma`) is close to the injected arm's
+> (0.165 / 0.166 / 0.172 / 0.190) at `rem_gen_content_scale` 0.0. This sits OUTSIDE
+> the scored C1 criteria and is recorded as an open question, **not** a verdict. If it
+> replicates it does not touch the attenuation finding itself -- the transfer function
+> does attenuate -- but it would undercut the specific gloss that the correction
+> *needs an intact seed*, since attenuation would then occur with no seed content at
+> all. Registered as hypothesis `H-gen-gain-content-free` in
+> `hypothesis_space_registry.v1.json`; probe sketched in
+> `failure_autopsy_V3-EXQ-778c_2026-07-18`.
+
 (`rem_passthrough_calibration_slope` -- the raw `calibration_error`-vs-`sigma` slope
 in variance units -- ranges 0.03-599 across seeds; it is scale-variable telemetry
 under the `step=1.0` full-adoption measurement choice, NOT the dimensionless gain, and
 is NOT load-bearing. The by-construction passthrough *gain* is 1.0; the load-bearing
 contrast is generative-gain 0.149 << 1.)
 
+### Null-content control (V3-EXQ-778c, 2026-07-18) -- the instrument-validity audit
+
+**This is the load-bearing correction to everything above.** The zero-injected-content
+null control (the analog of the odour-contingency null in Bar et al. 2020, the
+methodological precedent this SD follows) ran the identical `sigma` sweep twice per
+seed on identical substrate / warm-up / RNG streams, differing only in
+`content_scale` (1.0 vs 0.0), with the delivered perturbation held numerically
+identical across arms via `diffuse_perturb(rms_ref=...)`. 8 seeds (the 778a set).
+Reported per phase as `null_slope_ratio` = |null sigma-slope| / |injected sigma-slope|
+-- ~0.0 means content-contingent, ~1.0 means fully confounded.
+
+`v3_exq_sd068_null_content_control_diagnostic_20260718T072318Z_v3`, ree-worker-1,
+**FAIL / weakens**. Load-bearing C1 failed on **0/8 seeds**. Readiness precondition met
+(injected slope 0.0665 >> 1e-06 floor) and C2 passed, so this is an informative negative
+about the instrument, **not** a broken run.
+
+| phase | mean `null_slope_ratio` | sd | 95% CI | seeds confounded | verdict |
+|-------|------------------------|-----|--------|------------------|---------|
+| `nrem` | **0.1445** | 0.00090 | [0.1438, 0.1451] | 0/8 | **content-contingent** -- the one working leg |
+| `sws`  | **1.0000** | 2.7e-08 | [0.99999997, 1.00000001] | 8/8 | **fully confounded -- content-free** |
+| `rem`  | 1911.6 | 3306.1 | [-379, 4203] | 3/8 | **degenerate / uninterpretable** |
+
+- **`sws` is content-free by construction.** At every `sigma` the injected arm has
+  `signal_power` 5585.7 and the null arm 0.0, while `noise_power` is *identical* in
+  both (384.18 / 1536.73 / 6146.91 / 24587.64). Since
+  `denoising_snr_db = 10*log10(signal_power / noise_power)`, the sigma-slope depends
+  only on `log(noise_power)`; the content term is a constant offset that differentiates
+  away. This is analytic, not statistical -- hence sd 2.7e-8.
+- **`rem` is degenerate at both rails.** Exactly `0.0` on 5/8 seeds (the null arm's
+  `calibration_error` pins at the constant 998.5009992509989 with `target_clamped` 1.0,
+  so the slope is identically zero) and off-scale 1801-9143 on 3/8 (the null precision
+  reference collapses onto the 1e-3 positivity floor, so `1/1e-3` dominates).
+  `ceiling_inside_ci95` is true and `confound_verdict_stable` false. The 5
+  apparently-clean seeds are clean only *by degeneracy*.
+
+**Consequence for SD-068 (claim NARROWED, not withdrawn).** Per this experiment's own
+pre-registration ("a FAIL here is an INFORMATIVE outcome... it scopes SD-068's
+non-vacuity honestly rather than withdrawing the claim"), the non-vacuity contract is
+now carried by the `nrem` injected-content leg and the REM passthrough-vs-generative
+contrast **only** -- not by the `sws` leg. Note this leaves SD-068 resting on a single
+confirmed content-contingent readout plus a generative-gain contrast whose own
+content-dependence is itself an open question (see the OPEN QUESTION box above): do not
+read the narrowing as leaving SD-068 comfortably supported.
+
+**Routing:** `/implement-substrate` to replace `sws_denoising_snr` with a content-scored
+readout (experiment-layer, `_lib/consolidation_lesion_harness.py`, zero `ree_core`
+change) + a GOV-FANOUT-1 three-axis portfolio on the `rem` leg. Full diagnosis:
+`evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.{md,json}`.
+
+(V3-EXQ-778b, `...20260718T065939Z_v3`, is the n=2 predecessor of this control and is
+marked `superseded`: same conclusion, strictly dominated evidence, rem leg unresolved
+at n=2.)
+
 ### Combined diagnostic reading
 
-Staging order under uniform diffuse damage is **partially confirmed** (NREM-before-SWS
-robust; REM-first seed-variable/underpowered), and -- critically -- the piece that
-would make even a confirmed staging *vacuous* is refuted: the REM generative pass is
-**strongly attenuating (gain ~0.15 << 1 on 8/8 seeds)**, so the pipeline's
-staged-decline behaviour rests on a real error-propagation transfer function, not on
-feed-forward topology alone. This is DIAGNOSTIC evidence for the *shape* of the
-MECH-168 / INV-047 staged-decline prediction (and MECH-169's V3-testable staging
-half); it does not promote any claim, and MECH-121 stays held (the NREM leg is
-plumbing-fidelity only).
+**REVISED 2026-07-18 after the null control.** The 2026-07-17 reading was: staging
+order **partially confirmed** (NREM-before-SWS robust; REM-first
+seed-variable/underpowered), with the vacuity threat refuted by a strongly attenuating
+REM generative gain. The null control revises the first half and leaves the second
+standing:
+
+- **Staging order: NOT currently supported by a validated instrument.** The
+  NREM-before-SWS adjacency is uninterpretable (content-free `sws` pole) and the
+  REM-first adjacency was already contested and underpowered. Of the three per-phase
+  readouts the order is built from, one is content-free, one is degenerate, and only
+  `nrem` is confirmed to measure content.
+- **Non-vacuity (REM generative gain 0.149, 8/8 attenuating): STANDS.** It is a
+  different readout (`rem_generative_fidelity`) with its own internal
+  clean-vs-corrupt control, and C1 does not bear on it. The narrower "correction needs
+  an intact seed" gloss is flagged as an open question.
+
+So the honest combined reading is: **the pipeline has a real error-propagation transfer
+function (REM generative gain), but the evidence that its failure is STAGED is
+currently instrument-limited rather than substantiated.** This remains DIAGNOSTIC --
+it promotes and demotes nothing, MECH-121 stays held (NREM leg plumbing-fidelity only),
+and per-claim `evidence_direction` on MECH-168 / INV-047 / MECH-169 is `unknown`
+(they are context tags; the control audits the instrument, not the claims).
 
 ## Architecture Context
 
