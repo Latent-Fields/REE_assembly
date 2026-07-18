@@ -43,6 +43,23 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_DIR = ROOT / "evidence" / "experiments"
 CLAIM_EVIDENCE = EVIDENCE_DIR / "claim_evidence.v1.json"
+
+# claim_evidence.v1.json is ~10 MB. load_pending_entries() and
+# load_indexed_run_ids() each used to json.load() it independently, so a single
+# run parsed it twice. Memoized here (one-shot script, so a plain module-level
+# cache is sufficient -- no mtime keying needed within a process). Callers keep
+# their own .exists() guards: the two have DIFFERENT missing-file behaviour
+# (load_pending_entries exits 1, load_indexed_run_ids returns empty).
+_CLAIM_EVIDENCE_CACHE: dict | None = None
+
+
+def _load_claim_evidence() -> dict:
+    """Parse claim_evidence.v1.json once per process. Caller must check exists()."""
+    global _CLAIM_EVIDENCE_CACHE
+    if _CLAIM_EVIDENCE_CACHE is None:
+        with open(CLAIM_EVIDENCE) as f:
+            _CLAIM_EVIDENCE_CACHE = json.load(f)
+    return _CLAIM_EVIDENCE_CACHE
 REVIEW_TRACKER = EVIDENCE_DIR / "review_tracker.json"
 RUNNER_STATUS = EVIDENCE_DIR / "runner_status.json"          # legacy monolithic
 RUNNER_STATUS_DIR = EVIDENCE_DIR / "runner_status"           # per-machine split
@@ -167,8 +184,7 @@ def load_pending_entries(reviewed: set, dry_run_ids: set) -> list[dict]:
         print("[error] claim_evidence.v1.json not found -- run build_experiment_indexes.py first",
               file=sys.stderr)
         sys.exit(1)
-    with open(CLAIM_EVIDENCE) as f:
-        data = json.load(f)
+    data = _load_claim_evidence()
     by_run: dict[str, dict] = {}
     for e in data.get("entries", []):
         if e.get("source_type") != "experimental":
@@ -337,8 +353,7 @@ def load_indexed_run_ids() -> set:
     """Return run_ids known to claim_evidence (linked entries + unlinked_runs)."""
     if not CLAIM_EVIDENCE.exists():
         return set()
-    with open(CLAIM_EVIDENCE) as f:
-        data = json.load(f)
+    data = _load_claim_evidence()
     ids = {e["run_id"] for e in data.get("entries", []) if "run_id" in e}
     for e in data.get("unlinked_runs", []):
         rid = e.get("run_id")

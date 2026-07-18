@@ -86,6 +86,43 @@ _TL_CLAIM_EVIDENCE  = SERVE_DIR / "evidence" / "experiments" / "claim_evidence.v
 _TL_EVIDENCE_DIR    = SERVE_DIR / "evidence" / "experiments"
 _TL_LITERATURE_DIR  = SERVE_DIR / "evidence" / "literature"
 
+# --- claim_evidence.v1.json shared loader -------------------------------------
+# The file is ~10 MB (486 claims / 4,983 entries). Two request paths used to
+# json.loads() it independently on EVERY GET: _brain_load_claim_evidence()
+# (/api/brain-map, which then reads 5 scalars per claim) and the confidence-series
+# block in _build_timeline_events() (/api/timeline/events). Both want only the
+# `claims` map; neither touches `entries`.
+#
+# Keyed on (mtime_ns, size) rather than a TTL on purpose: a governance rebuild is
+# picked up on the very next request, so this cannot serve stale evidence. That
+# matters here -- the no-cache posture for explorer data is deliberate (CLAUDE.md,
+# "Explorer"), and a time-based cache would reintroduce exactly the staleness the
+# no-cache headers exist to prevent.
+#
+# The returned dict is SHARED and must be treated as read-only by callers. It is
+# not deep-copied -- copying 10 MB per request would defeat the purpose.
+_CLAIM_EVIDENCE_CACHE: dict = {"key": None, "claims": {}}
+
+
+def _load_claim_evidence_claims() -> dict:
+    """Return the `claims` map from claim_evidence.v1.json. READ-ONLY; shared."""
+    try:
+        st = _TL_CLAIM_EVIDENCE.stat()
+    except OSError:
+        _CLAIM_EVIDENCE_CACHE["key"] = None
+        _CLAIM_EVIDENCE_CACHE["claims"] = {}
+        return {}
+    key = (st.st_mtime_ns, st.st_size)
+    if _CLAIM_EVIDENCE_CACHE["key"] != key:
+        try:
+            data = json.loads(_TL_CLAIM_EVIDENCE.read_text(encoding="utf-8"))
+            claims = data.get("claims") or {}
+        except Exception:
+            claims = {}
+        _CLAIM_EVIDENCE_CACHE["claims"] = claims if isinstance(claims, dict) else {}
+        _CLAIM_EVIDENCE_CACHE["key"] = key
+    return _CLAIM_EVIDENCE_CACHE["claims"]
+
 _TL_MILESTONES = [
     {"date": "2026-02-13T00:00:00Z", "label": "Project start / first experiments",                   "kind": "start"},
     {"date": "2026-02-15T18:46:42Z", "label": "First governance batch (10 claims adjudicated)",       "kind": "governance"},
@@ -1809,13 +1846,8 @@ def _brain_load_region_map() -> dict:
 
 
 def _brain_load_claim_evidence() -> dict:
-    if not _TL_CLAIM_EVIDENCE.exists():
-        return {}
-    try:
-        data = json.loads(_TL_CLAIM_EVIDENCE.read_text(encoding="utf-8"))
-        return data.get("claims") or {}
-    except Exception:
-        return {}
+    # Shared mtime-keyed loader; see _load_claim_evidence_claims(). READ-ONLY.
+    return _load_claim_evidence_claims()
 
 
 def _brain_queued_exqs() -> list[dict]:
@@ -5717,8 +5749,8 @@ def _build_timeline_events() -> dict:
     # --- Confidence series ---
     confidence_series = {}
     try:
-        cev = json.loads(_TL_CLAIM_EVIDENCE.read_text())
-        for cid, cdata in (cev.get("claims") or {}).items():
+        # Shared mtime-keyed loader; see _load_claim_evidence_claims(). READ-ONLY.
+        for cid, cdata in _load_claim_evidence_claims().items():
             entries = sorted(
                 [e for e in (cdata.get("recent_entries") or []) if e.get("timestamp_utc")],
                 key=lambda e: str(e["timestamp_utc"]),

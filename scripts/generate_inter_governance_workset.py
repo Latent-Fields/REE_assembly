@@ -402,21 +402,36 @@ def _claim_v3_testable(cid: str,
     return True, ""
 
 
+# claim_evidence.v1.json is ~10 MB. _claims_with_experimental_evidence() and
+# _claim_lit_conf() each used to parse it independently, so a single run read it
+# twice. Both want only the `claims` map. Memoized here (one-shot script, so a
+# plain module-level cache is sufficient -- no mtime keying needed). Returns {}
+# on missing/unparseable/malformed, preserving both callers' prior behaviour.
+_CLAIM_EVIDENCE_CLAIMS_CACHE: dict | None = None
+
+
+def _claim_evidence_claims() -> dict:
+    """Parse claim_evidence.v1.json once per process; return its `claims` map."""
+    global _CLAIM_EVIDENCE_CLAIMS_CACHE
+    if _CLAIM_EVIDENCE_CLAIMS_CACHE is None:
+        path = EVIDENCE / "claim_evidence.v1.json"
+        claims = None
+        if path.exists():
+            try:
+                data = json.loads(path.read_text(encoding="utf-8"))
+                claims = data.get("claims") if isinstance(data, dict) else None
+            except Exception:
+                claims = None
+        _CLAIM_EVIDENCE_CLAIMS_CACHE = claims if isinstance(claims, dict) else {}
+    return _CLAIM_EVIDENCE_CLAIMS_CACHE
+
+
 def _claims_with_experimental_evidence() -> set[str]:
     """Claim IDs that already carry genuine experimental evidence per
     claim_evidence.v1.json (genuine_exp_count > 0). Used to suppress stale
     `status: proposed` proposals whose experiment effectively already ran.
     """
-    path = EVIDENCE / "claim_evidence.v1.json"
-    if not path.exists():
-        return set()
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return set()
-    claims = data.get("claims") if isinstance(data, dict) else None
-    if not isinstance(claims, dict):
-        return set()
+    claims = _claim_evidence_claims()
     out: set[str] = set()
     for cid, summary in claims.items():
         if isinstance(summary, dict) and (summary.get("genuine_exp_count") or 0) > 0:
@@ -794,16 +809,7 @@ def _proposed_experiments(
 def _claim_lit_conf() -> dict[str, float]:
     """claim_id -> literature_confidence from claim_evidence.v1.json (0.0 if
     absent). Feeds the GOV-CONFIRM-1 confirmer lane's 'worth confirming' floor."""
-    path = EVIDENCE / "claim_evidence.v1.json"
-    if not path.exists():
-        return {}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    claims = data.get("claims") if isinstance(data, dict) else None
-    if not isinstance(claims, dict):
-        return {}
+    claims = _claim_evidence_claims()
     out: dict[str, float] = {}
     for cid, summary in claims.items():
         if not isinstance(summary, dict):
