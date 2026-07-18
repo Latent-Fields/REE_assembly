@@ -6260,6 +6260,15 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "The V3-EXQ-781 pre-registered readout is the direct test on the drive half: a sustained, non-extinguishing, demonstrator-free approach drive (constant-coefficient intrinsic reward on resource proximity) that leaves the actor at the passive-survival floor on BOTH representations -- with mean_approach_reward_recent confirming the drive actually fired, so a null is informative rather than a plumbing bug -- FALSIFIES the drive half. The PRIMITIVE-BASIS half is NOT tested by 781 and is the claim's distinctive, currently-untested content: it would be answered by contrasting a converter given a pre-specified action-primitive basis (a small set of composable multi-step motor primitives) against one that must construct its repertoire from single-step actions, at matched drive. A drive-only arm clearing the floor would show the primitive basis is unnecessary; a primitive-basis-only arm clearing it would show the drive is.\n"
   },
+  "MECH-462": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.consolidation_readout_order",
+    "title": "Consolidation-phase damage is content-scorable only where the phase's output is a FIRST-ORDER content-bearing quantity (NREM inter-store transfer; SWS retrieval margin). A phase whose output is a SECOND-ORDER quantity over representations -- REM precision / confidence recalibration -- is content-free BY TYPE, and its damage is readable only through a downstream behavioural discrimination consequence, never through a statistic computed on the precision quantity itself.",
+    "type": "mechanism",
+    "what_would_answer": "Build the meta-d-prime-analogue downstream readout for the REM phase (does the agent's post-REM confidence separate its own correct from incorrect retrievals) and run it on the SAME CELLS as V3-EXQ-778e. SUPPORTED if the downstream readout is content-contingent (null_slope_ratio <= 0.25, ceiling_inside_ci95 false, >=6/8 seeds) WHILE the direct precision readout on those same cells remains above 0.25 -- the same-cells contrast is what makes this a test of the type fact rather than of the build. REFUTED two ways, and both matter: (i) if the downstream readout is ALSO content-free, the phase carries no recoverable damage signal at all and the type story is wrong about recoverability; or (ii) if a DIRECT precision-quantity readout can be made content-contingent, the type-fact is simply false and all three results were construction defect after all.\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7680,7 +7689,7 @@
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "sleep.consolidation_pipeline_lesion_harness",
-    "title": "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout (denoising-SNR / transfer-fidelity / precision-calibration-error) scored against INJECTED known content, so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by damage-tolerance staging order plus a REM passthrough-nudge-vs-generative-pass contrast, not by feed-forward error-compounding (which is topology-baked).",
+    "title": "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout scored against INJECTED known content -- a uniform RMS-scaled Gaussian per-phase diffuse-damage knob plus injected-content scoring, at zero ree_core change -- so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by the validated per-phase content-contingent readouts (SD-071), NOT by damage-tolerance staging order (separated out as SD-073) and not by feed-forward error-compounding (which is topology-baked).",
     "type": "design_decision"
   },
   "SD-069": {
@@ -7698,6 +7707,33 @@
     "subject": "latent.zworld_p0_anticollapse_recipe",
     "title": "z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the SD-005 split-encoder world path on STATIC scene-structure targets derived from world_obs alone (hazard/resource presence + bucketed nearest-Chebyshev distance), with class-balanced CE and a VICReg-style variance/covariance anti-collapse penalty, replacing the SD-009 event-contrastive + SD-018 P0 that was measured to COLLAPSE z_world to participation ratio ~1.06 at world_dim=128. Supplies the trained encoder that SD-031 / E2WorldForward P1 and V3-EXQ-783 both require.",
     "type": "design_decision"
+  },
+  "SD-071": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.first_order_phase_readouts",
+    "title": "First-order consolidation-phase readouts validated: the NREM slot-filling and SWS pattern-completion legs of the SD-068 lesion harness are content-contingent instruments -- injected-content transfer fidelity (nrem) and cosine retrieval margin against injected prototypes probed with the unscaled base (sws) -- each clearing the same load-bearing C1 null-slope ceiling.",
+    "type": "design_decision",
+    "what_would_answer": "Already largely discharged by two pre-registered null-content controls at the SAME load-bearing C1 criterion. nrem: null_slope_ratio 0.1445, CI95 [0.1438, 0.1451], 0/8 seeds confounded (V3-EXQ-778c). sws (the rebuilt _sws_pattern_completion readout): null_slope_ratio 0.1495, sd 0.0218, CI95 [0.1344, 0.1646], ceiling_inside_ci95 FALSE, 8/8 seeds, plus the pre-registered C3 content-scale ladder at slope spread 0.1108 against the 0.01 floor (V3-EXQ-778g). REMAINING CONDITION FOR PROMOTION: one NON-DIAGNOSTIC run tagging this claim. Both supporting runs are experiment_purpose=diagnostic and therefore do not weight governance confidence, so this claim is registered candidate and no confidence is asserted from them. REFUTED if a re-run at n>=8 puts ceiling_inside_ci95 true on either leg, or if the sws leg's content-scale ladder collapses below the 0.01 floor (which would reopen the scale-invariance caveat that C3 was pre-registered to discharge).\n"
+  },
+  "SD-072": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.rem_downstream_damage_readout",
+    "title": "REM downstream discrimination readout: the REM leg's functional-damage readout must be a downstream behavioural discrimination measure (a meta-d-prime analogue over post-REM retrieval confidence), replacing the direct calibration_error readout and the rem_generative_gain contrast, which are retired as damage instruments -- the former content-free after de-clamping, the latter flat in content scale.",
+    "type": "design_decision",
+    "what_would_answer": "The SAME instrument-validity gate that admitted the nrem and sws legs, applied to the replacement: null_slope_ratio_rem_downstream <= 0.25 with ceiling_inside_ci95 false at n=8, PLUS a pre-registered content-scale ladder (as V3-EXQ-778g's C3). SYMMETRY OF CRITERION IS REQUIRED and is load-bearing here, per the 778g re-admission precedent: admitting the REM leg on a weaker test than the one that retired its predecessor would be motivated reasoning. REFUTED if the replacement fails the same C1 ceiling that retired the direct readout -- which would also refute MECH-462's constructive half (that a downstream readout recovers what a direct one cannot).\n"
+  },
+  "SD-073": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "sleep.consolidation_staging_order",
+    "title": "Consolidation staging order as a separable, insult-regime-conditional claim: that under uniform diffuse damage the three offline-consolidation phases fail in reverse dependency order rather than uniformly is a distinct CROSS-phase ranking claim, conditional on the declared insult regime, and establishable only once all three phases carry validated content-contingent instruments.",
+    "type": "design_decision",
+    "what_would_answer": "Re-run run_staged_sweep with all three validated instruments (SD-071's nrem + sws, plus SD-072's REM downstream replacement) at a DECLARED insult regime. SUPPORTED if the damage-tolerance rank order matches the reverse-dependency prediction on >=6/8 seeds WITHIN a declared regime. REFUTED if the order is unstable across seeds, or if it inverts within one regime. EXPLICITLY NOT ANSWERABLE by any run in which a ranked leg lacks an interpretable readout -- this is the structural gate, and it is why the claim depends_on SD-071 and SD-072 rather than merely citing them.\n"
   },
   "SENT-0": {
     "assembly_state": "remaining",

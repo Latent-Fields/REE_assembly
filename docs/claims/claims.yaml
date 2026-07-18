@@ -49129,7 +49129,7 @@
   validation_experiment: V3-EXQ-764 (MECH-303 promote-to-active behavioural falsifier -- HELD pending SD-008 z_world differentiation)
 
 - id: SD-068
-  title: "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout (denoising-SNR / transfer-fidelity / precision-calibration-error) scored against INJECTED known content, so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by damage-tolerance staging order plus a REM passthrough-nudge-vs-generative-pass contrast, not by feed-forward error-compounding (which is topology-baked)."
+  title: "Consolidation-pipeline lesion harness: experiment-layer instrumentation that makes each phase of the MECH-120 (SWS denoising) -> MECH-121 (NREM slot-filling) -> MECH-123 (REM precision recalibration) offline-consolidation pipeline independently diffuse-damageable and gives each a per-phase output-quality readout scored against INJECTED known content -- a uniform RMS-scaled Gaussian per-phase diffuse-damage knob plus injected-content scoring, at zero ree_core change -- so the MECH-168/INV-047/MECH-169 staged-decline-under-uniform-damage falsifier is buildable on demand. Non-vacuity is carried by the validated per-phase content-contingent readouts (SD-071), NOT by damage-tolerance staging order (separated out as SD-073) and not by feed-forward error-compounding (which is topology-baked)."
   claim_type: design_decision
   subject: sleep.consolidation_pipeline_lesion_harness
   polarity: asserts
@@ -49334,6 +49334,43 @@
     is left unchanged: it states the ORIGINAL design-time contract, and this note is
     the live carrier of scope.
 
+    [DECOMPOSED 2026-07-18 -- claim synthesis, four children registered, SD-068 RETAINED
+    AND NARROWED as the umbrella. Not superseded, not demoted, no status or confidence
+    change. This supersedes exactly one span above: the final sentence "The claim title
+    is left unchanged", which is now false -- the title WAS amended by this decomposition
+    (see TITLE AMENDMENT below). Everything else above STANDS.]
+    WHAT SD-068 NOW ASSERTS, narrowed to what it actually established and what actually
+    worked: the HARNESS DESIGN DECISION itself -- a uniform RMS-scaled Gaussian per-phase
+    diffuse-damage knob plus injected-content scoring at the experiment layer, zero
+    ree_core change. Its per-phase instrument assertions and its staging-order non-vacuity
+    carrier have moved to the children.
+    TITLE AMENDMENT. The old title named damage-tolerance STAGING ORDER as a non-vacuity
+    carrier. That specific binding is what held the per-phase instrument results hostage:
+    they could not settle while the staging order was unsupported, and the staging order
+    could not be established while the rem leg had no interpretable readout. The staging
+    order is struck from the title as a carrier and is now SD-073; non-vacuity is carried
+    by the validated per-phase readouts (SD-071).
+    CHILDREN (each depends_on SD-068; the umbrella deliberately does NOT depend_on them,
+    which would be circular):
+      MECH-462 -- readout-type mechanism: first-order phases are content-scorable,
+        second-order (REM precision) is content-free BY TYPE. Unifies the 778c / 778e /
+        778f REM-leg cluster as one type fact rather than three bugs.
+      SD-071 -- the nrem + sws legs as validated content-contingent instruments
+        (0.1445 from 778c; rebuilt sws 0.1495 from 778g).
+      SD-072 -- the build child: REM downstream discrimination readout; retires
+        calibration_error and rem_generative_gain as functional-damage instruments.
+      SD-073 -- the staging order, separated out and insult-regime-conditional.
+    NOTHING ELSE CHANGES. No status, confidence, promotion or demotion change on SD-068,
+    MECH-168, INV-047 or MECH-169 -- all supporting runs are experiment_purpose=diagnostic.
+    The MECH-121 hold (hold_pending_v3_substrate) stays RESPECTED and no child tags it. The
+    rem_generative_gain attenuation finding (0.149, 8/8) still STANDS; only its use as a
+    functional-damage instrument is retired, by SD-072. hypothesis_space_registry.v1.json is
+    NOT touched (GOV-FROZEN-1). Approved at the interactive gate 2026-07-18 (session
+    gracious-bassi-721580); full derivation in
+    evidence/planning/claim_synthesis_SD-068_2026-07-18.md.
+    STILL OWED, independent of this decomposition: the REM cluster autopsy's
+    recommended_evidence_quality_note_SD_068 has NOT yet been folded into this note.
+
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
   claim_type: design_decision
@@ -49475,6 +49512,181 @@
     evidence/planning/sd009_event_contrastive_channel_mismatch_2026-07-18.md, and NO
     SD-009 status, confidence, or evidence weighting was changed by this session.
   validation_experiment: V3-EXQ-783
+
+- id: SD-071
+  title: "First-order consolidation-phase readouts validated: the NREM slot-filling and SWS pattern-completion legs of the SD-068 lesion harness are content-contingent instruments -- injected-content transfer fidelity (nrem) and cosine retrieval margin against injected prototypes probed with the unscaled base (sws) -- each clearing the same load-bearing C1 null-slope ceiling."
+  claim_type: design_decision
+  subject: sleep.first_order_phase_readouts
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-068
+    - MECH-120
+    - MECH-121
+  location: docs/architecture/sd_068_consolidation_lesion_harness.md
+  functional_restatement: >
+    Child B of the 2026-07-18 SD-068 claim-synthesis decomposition. Separates the two
+    per-phase instrument-validity results that SD-068 has actually earned from the
+    cross-phase staging claim it has not (SD-073), so they can settle as their own claim
+    instead of being repeatedly re-scoped inside SD-068's evidence_quality_note. The
+    assertion is narrow and is about the INSTRUMENTS, not about any staging position: the
+    nrem and sws legs each measure content fidelity rather than raw noise sensitivity, at
+    the same 0.25 null_slope_ratio ceiling, so a damage signal read off either leg is
+    interpretable.
+  what_would_answer: >
+    Already largely discharged by two pre-registered null-content controls at the SAME
+    load-bearing C1 criterion. nrem: null_slope_ratio 0.1445, CI95 [0.1438, 0.1451],
+    0/8 seeds confounded (V3-EXQ-778c). sws (the rebuilt _sws_pattern_completion readout):
+    null_slope_ratio 0.1495, sd 0.0218, CI95 [0.1344, 0.1646], ceiling_inside_ci95 FALSE,
+    8/8 seeds, plus the pre-registered C3 content-scale ladder at slope spread 0.1108
+    against the 0.01 floor (V3-EXQ-778g). REMAINING CONDITION FOR PROMOTION: one
+    NON-DIAGNOSTIC run tagging this claim. Both supporting runs are
+    experiment_purpose=diagnostic and therefore do not weight governance confidence, so
+    this claim is registered candidate and no confidence is asserted from them. REFUTED if
+    a re-run at n>=8 puts ceiling_inside_ci95 true on either leg, or if the sws leg's
+    content-scale ladder collapses below the 0.01 floor (which would reopen the
+    scale-invariance caveat that C3 was pre-registered to discharge).
+  evidence_quality_note: >
+    SCOPE -- INSTRUMENT VALIDITY ONLY. This claim asserts that two readouts are
+    content-contingent. It asserts NOTHING about the reverse-dependency staging order
+    (separated out as SD-073), and nothing about the REM leg (whose direct readouts are
+    retired by SD-072 and whose type-fact is MECH-462). The architecture doc's "Diagnostic
+    results" remain RETRACTED as staging evidence.
+    MECH-121 HOLD RESPECTED. MECH-121 appears in depends_on as the substrate the nrem leg
+    instruments, NOT as a claim this evidence promotes; its hold_pending_v3_substrate
+    stands and neither 778c nor 778g tags it.
+    REGISTRATION DEVIATION: the 2026-07-18 synthesis proposal specified
+    epistemic_category "measurement_validated", which is not in the
+    validate_claims.py VALID_EPISTEMIC_CATEGORIES enum. Registered as "standard" instead
+    -- the honest mapping, since the remaining condition is an ordinary non-diagnostic
+    run, NOT a substrate block, and substrate_conditional would wrongly suppress this
+    claim from the promotion queue and the inter-governance workset.
+  origin: >
+    Child B of the SD-068 claim-synthesis decomposition, approved at the interactive gate
+    2026-07-18 (session gracious-bassi-721580). Full derivation, discrimination gate and
+    literature grounding: evidence/planning/claim_synthesis_SD-068_2026-07-18.md Section 5.
+
+- id: SD-072
+  title: "REM downstream discrimination readout: the REM leg's functional-damage readout must be a downstream behavioural discrimination measure (a meta-d-prime analogue over post-REM retrieval confidence), replacing the direct calibration_error readout and the rem_generative_gain contrast, which are retired as damage instruments -- the former content-free after de-clamping, the latter flat in content scale."
+  claim_type: design_decision
+  subject: sleep.rem_downstream_damage_readout
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-068
+    - MECH-462
+    - MECH-123
+  location: docs/architecture/sd_068_consolidation_lesion_harness.md
+  functional_restatement: >
+    Child C of the 2026-07-18 SD-068 claim-synthesis decomposition, and the only child
+    that asks for new implementation -- it is the concrete substrate consequence of the
+    MECH-462 type-fact. If REM precision recalibration is second-order over
+    representations and therefore content-free BY TYPE, then no statistic computed on the
+    precision quantity itself can carry a content-contingent damage signal, and the
+    instrument must move downstream to a behavioural consequence: does the agent's
+    post-REM confidence separate its own correct from incorrect retrievals. Experiment
+    layer (ree-v3/experiments/_lib/consolidation_lesion_harness.py), following the
+    zero-ree_core-change precedent of the sws rebuild.
+  what_would_answer: >
+    The SAME instrument-validity gate that admitted the nrem and sws legs, applied to the
+    replacement: null_slope_ratio_rem_downstream <= 0.25 with ceiling_inside_ci95 false at
+    n=8, PLUS a pre-registered content-scale ladder (as V3-EXQ-778g's C3). SYMMETRY OF
+    CRITERION IS REQUIRED and is load-bearing here, per the 778g re-admission precedent:
+    admitting the REM leg on a weaker test than the one that retired its predecessor would
+    be motivated reasoning. REFUTED if the replacement fails the same C1 ceiling that
+    retired the direct readout -- which would also refute MECH-462's constructive half
+    (that a downstream readout recovers what a direct one cannot).
+  evidence_quality_note: >
+    NOT YET BUILT -- registered as the build child, no supporting run exists. The retirement
+    half of this claim is what is presently evidenced: the direct calibration_error readout
+    was degenerate at BOTH clamp rails at n=8 (778c) and remained content-free after
+    de-clamping (778e), and rem_generative_gain was flat in content scale (778f).
+    The rem_generative_gain ATTENUATION finding (0.149, 8/8 attenuating) STANDS and is not
+    touched by this claim -- what is retired is its use as a functional-DAMAGE instrument,
+    not the attenuation observation itself.
+    REGISTRATION DEVIATION: none on this field -- the proposal's substrate_conditional is a
+    valid enum value and is used as specified.
+  origin: >
+    Child C of the SD-068 claim-synthesis decomposition, approved at the interactive gate
+    2026-07-18 (session gracious-bassi-721580). Full derivation, discrimination gate and
+    literature grounding: evidence/planning/claim_synthesis_SD-068_2026-07-18.md Section 5.
+
+- id: SD-073
+  title: "Consolidation staging order as a separable, insult-regime-conditional claim: that under uniform diffuse damage the three offline-consolidation phases fail in reverse dependency order rather than uniformly is a distinct CROSS-phase ranking claim, conditional on the declared insult regime, and establishable only once all three phases carry validated content-contingent instruments."
+  claim_type: design_decision
+  subject: sleep.consolidation_staging_order
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-068
+    - SD-071
+    - SD-072
+    - MECH-168
+    - INV-047
+    - MECH-169
+  location: docs/architecture/sd_068_consolidation_lesion_harness.md
+  functional_restatement: >
+    Child D of the 2026-07-18 SD-068 claim-synthesis decomposition, and the main structural
+    payoff of that decomposition. The staging order was named in SD-068's TITLE as a
+    non-vacuity carrier, which held the per-phase instrument results hostage: they could not
+    settle while the staging order was unsupported, and the staging order could not be
+    established while any of the three ranked legs lacked an interpretable readout.
+    Separating it converts that deadlock into an ordinary depends_on edge (SD-071 + SD-072
+    above), and makes the existing prose gate -- "staging order is a CROSS-phase ranking and
+    cannot be supported while one of the three ranked legs has no interpretable readout" --
+    STRUCTURAL rather than a paragraph each amendment has to restate.
+    INSULT-REGIME CONDITIONALITY is part of the claim, not a caveat on it: the biological
+    ordering INVERTS with insult duration, so a staging result is meaningless unless the
+    regime (acute single-sweep vs chronic repeated-sweep) is declared.
+  what_would_answer: >
+    Re-run run_staged_sweep with all three validated instruments (SD-071's nrem + sws, plus
+    SD-072's REM downstream replacement) at a DECLARED insult regime. SUPPORTED if the
+    damage-tolerance rank order matches the reverse-dependency prediction on >=6/8 seeds
+    WITHIN a declared regime. REFUTED if the order is unstable across seeds, or if it
+    inverts within one regime. EXPLICITLY NOT ANSWERABLE by any run in which a ranked leg
+    lacks an interpretable readout -- this is the structural gate, and it is why the claim
+    depends_on SD-071 and SD-072 rather than merely citing them.
+  evidence_quality_note: >
+    UNSUPPORTED, and deliberately registered that way. The 2026-07-17 smoke observed a
+    damage-tolerance order (nrem, rem, sws) that PARTIALLY matches the reverse-dependency
+    prediction (SWS correctly most-robust/last) but INVERTS REM-vs-NREM; that observation is
+    RETRACTED as staging evidence, because it was read off instruments two of which have
+    since been retired or rebuilt and one of which (rem) is still absent. No staging
+    POSITION has been established for any leg. Two of three legs now have validated
+    content-contingent instruments (SD-071); the third does not (SD-072, unbuilt).
+    NO STATUS OR CONFIDENCE CHANGE flows to MECH-168 / INV-047 / MECH-169 from this
+    registration -- all supporting runs to date are experiment_purpose=diagnostic and do not
+    weight governance confidence. This claim is the place where their falsifier will be
+    scored once the instruments exist; it does not score it now.
+  origin: >
+    Child D of the SD-068 claim-synthesis decomposition, approved at the interactive gate
+    2026-07-18 (session gracious-bassi-721580). Full derivation, discrimination gate and
+    literature grounding: evidence/planning/claim_synthesis_SD-068_2026-07-18.md Section 5.
+
 - id: MECH-394
   title: "Multidrive arbitration policy: when several drive axes are simultaneously active, behaviour is selected by a soft-competitive orchestration over context, per-axis satiation, inter-drive competition, and developmental phase -- not a fixed priority or single-axis winner."
   claim_type: mechanism_hypothesis
@@ -56178,3 +56390,73 @@
     Veit 2023, Volman 1995). Routed by
     evidence/planning/failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json.
     See [[feedback_biology_before_formal_definitions]], [[project_mech457_competence_floor_coldstart]].
+
+- id: MECH-462
+  title: "Consolidation-phase damage is content-scorable only where the phase's output is a FIRST-ORDER content-bearing quantity (NREM inter-store transfer; SWS retrieval margin). A phase whose output is a SECOND-ORDER quantity over representations -- REM precision / confidence recalibration -- is content-free BY TYPE, and its damage is readable only through a downstream behavioural discrimination consequence, never through a statistic computed on the precision quantity itself."
+  claim_type: mechanism
+  subject: sleep.consolidation_readout_order
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-18
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-07-18"
+  depends_on:
+    - SD-068
+    - MECH-123
+    - MECH-204
+  location: docs/architecture/sd_068_consolidation_lesion_harness.md
+  functional_restatement: >
+    Child A of the 2026-07-18 SD-068 claim-synthesis decomposition, and the common thread
+    the decomposition was built around. Three separate REM-leg results had been read as
+    three separate construction defects; this claim asserts they are ONE TYPE FACT. A
+    readout can score content fidelity only if the quantity it reads carries content.
+    NREM transfer fidelity and SWS retrieval margin are first-order -- they are quantities
+    OVER the injected content, so damage to the phase shows up as degradation in them. REM
+    precision recalibration is second-order -- it is a quantity over the REPRESENTATIONS
+    (a confidence about content, not content), so it is content-free by type and no amount
+    of repair to the direct statistic will make it content-contingent. The damage is real;
+    it is the READOUT LOCATION that is wrong, and the only place it can surface is a
+    downstream behavioural consequence of miscalibrated confidence.
+  what_would_answer: >
+    Build the meta-d-prime-analogue downstream readout for the REM phase (does the agent's
+    post-REM confidence separate its own correct from incorrect retrievals) and run it on
+    the SAME CELLS as V3-EXQ-778e. SUPPORTED if the downstream readout is content-contingent
+    (null_slope_ratio <= 0.25, ceiling_inside_ci95 false, >=6/8 seeds) WHILE the direct
+    precision readout on those same cells remains above 0.25 -- the same-cells contrast is
+    what makes this a test of the type fact rather than of the build. REFUTED two ways, and
+    both matter: (i) if the downstream readout is ALSO content-free, the phase carries no
+    recoverable damage signal at all and the type story is wrong about recoverability; or
+    (ii) if a DIRECT precision-quantity readout can be made content-contingent, the
+    type-fact is simply false and all three results were construction defect after all.
+  evidence_quality_note: >
+    EXPLANATORY SCOPE -- this claim is registered because it unifies three ALREADY-OBSERVED
+    results as one type fact, not because a test of it has been run. The three: V3-EXQ-778c
+    rem both-rail degeneracy (exactly 0.0 on 5/8 seeds, off-scale 1801-9143 on 3/8);
+    V3-EXQ-778e de-clamped content-freeness (the degeneracy was NOT a clamp artefact);
+    V3-EXQ-778f rem_generative_gain content-freeness (flat in content scale). All three are
+    experiment_purpose=diagnostic and none weights governance confidence.
+    UNTESTED AS A TYPE CLAIM. Its discriminating test is SD-072's build; until that runs,
+    the type reading is the best explanation of three nulls, not an established mechanism.
+    Registered candidate accordingly, and it PROMOTES NOTHING.
+    MECH-121 HOLD RESPECTED -- not tagged, not depended on.
+    LIT GROUNDING (commissioned and returned, Section 4 of the synthesis doc): Q1 first-order
+    vs second-order consolidation outputs (Walker & Stickgold 2010; Brodt et al. 2023); Q3
+    metacognitive-sensitivity measurement (Maniscalco & Lau 2012; Mazancieux et al. 2020).
+    Q2 FORMAL-IMPORT FLAG, EXPLICIT: meta-d-prime is imported as a MEASUREMENT FORM for
+    "does confidence track own-accuracy", not as a claim that REE's precision signal is
+    human metacognition; the analogy carries no architectural authority.
+    REGISTRATION DEVIATION: the synthesis proposal specified epistemic_category
+    "measurement_gap", which is not in the validate_claims.py VALID_EPISTEMIC_CATEGORIES
+    enum. Registered as "substrate_conditional" -- the honest mapping, since the
+    discriminating test is gated on SD-072's unbuilt downstream readout.
+  origin: >
+    Child A of the SD-068 claim-synthesis decomposition, approved at the interactive gate
+    2026-07-18 (session gracious-bassi-721580). Explains the 778c / 778e / 778f REM-leg
+    cluster as one type fact rather than three bugs. Full derivation, discrimination gate
+    and literature grounding:
+    evidence/planning/claim_synthesis_SD-068_2026-07-18.md Section 5.
