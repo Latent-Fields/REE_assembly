@@ -46,6 +46,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-19T14:23Z` [autopsy] `failure_autopsy_V3-EXQ-445h_2026-06-19#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/? routing=?
+- `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest unknown
 
 ## `self_attribution:GAP-2`
 
@@ -89,6 +90,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-19T14:23Z` [autopsy] `failure_autopsy_V3-EXQ-445h_2026-06-19#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/? routing=?
+- `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest unknown
 
 ## `self_attribution:GAP-3`
 
@@ -132,6 +134,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-19T14:23Z` [autopsy] `failure_autopsy_V3-EXQ-445h_2026-06-19#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/? routing=?
+- `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest unknown
 
 ## `self_attribution:GAP-4`
 
@@ -175,6 +178,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-19T14:23Z` [autopsy] `failure_autopsy_V3-EXQ-445h_2026-06-19#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/? routing=?
+- `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest unknown
 
 ## `self_attribution:GAP-5`
 
@@ -218,4 +222,5 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-19T14:23Z` [autopsy] `failure_autopsy_V3-EXQ-445h_2026-06-19#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-445h_2026-06-19.json) :: autopsy non_contributory/standard routing=queue-experiment
 - `2026-06-19T20:22Z` [autopsy] `failure_autopsy_V3-EXQ-460g_2026-06-19` -> [`evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-460g_2026-06-19.json) :: autopsy non_contributory/non_contributory routing=claim-synthesis **<- live head**
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/? routing=?
+- `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest unknown
 

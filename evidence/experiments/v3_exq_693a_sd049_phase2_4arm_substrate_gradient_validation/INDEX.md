@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_693a_sd049_phase2_4arm_substrate_gradient_validation
 
-Generated: `2026-07-18T08:47:13.750883Z`
+Generated: `2026-07-18T16:15:14.019159Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

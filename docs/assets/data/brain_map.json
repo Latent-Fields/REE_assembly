@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-18T04:55:53Z",
+  "generated_at": "2026-07-18T16:17:09Z",
   "disclaimer": "Regions denote computational roles inspired by neuroscience naming in REE. Coverage reflects claims, substrate code, and experiment evidence -- not biological completeness or anatomical accuracy. The three planes are orthogonal slices of one co-registered MNI152 template volume, arranged as an orthographic projection sheet: coronal (front, y=-18) above axial (top, z=+6) sharing the left-right axis, sagittal (side, x=0) beside coronal sharing the superior-inferior axis -- so a region lines up across views and can be traced. Each region is placed once in MNI space and projected into every plane it appears in. Region placement follows the founder layout intent (E1=cerebrum, E2=cerebellum, E3=BG commitment) documented in founder_ontology.md and is still being refined.",
   "svg_url": "/docs/architecture/brain_map_sagittal.svg",
   "regions": [
@@ -183,7 +183,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.741
+          "overall_confidence": 0.74
         },
         {
           "id": "ARC-045",
@@ -347,7 +347,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.785
+          "overall_confidence": 0.784
         },
         {
           "id": "MECH-074b",
@@ -383,7 +383,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.815
+          "overall_confidence": 0.814
         },
         {
           "id": "MECH-078",
@@ -548,7 +548,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.795
+          "overall_confidence": 0.794
         },
         {
           "id": "MECH-263",
@@ -733,7 +733,7 @@
           "pass_runs": 2,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.78
+          "overall_confidence": 0.779
         },
         {
           "id": "MECH-266",
@@ -781,7 +781,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.796
+          "overall_confidence": 0.795
         },
         {
           "id": "SD-032b",
@@ -793,7 +793,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.875
+          "overall_confidence": 0.874
         },
         {
           "id": "SD-032c",
@@ -817,7 +817,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.845
+          "overall_confidence": 0.844
         },
         {
           "id": "SD-032e",
@@ -911,7 +911,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.814
+          "overall_confidence": 0.813
         },
         {
           "id": "MECH-075",
@@ -1322,8 +1322,8 @@
         "pass_runs": 4,
         "fail_runs": 3,
         "quadrant_counts": {
-          "plausible_unproven": 17,
-          "unknown": 11,
+          "plausible_unproven": 18,
+          "unknown": 10,
           "confirmed_established": 1
         }
       },
@@ -1333,7 +1333,40 @@
         "MECH-275"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-778d",
+          "title": "SD-068 GOV-FANOUT-1 leg 1/3 H-rem-clamp-artifact: REM unpaired-target null (axis=measurement)",
+          "status": "pending",
+          "claim_ids": [
+            "SD-068"
+          ]
+        },
+        {
+          "queue_id": "V3-EXQ-778e",
+          "title": "SD-068 GOV-FANOUT-1 leg 2/3 H-rem-genuinely-content-free: REM de-clamped readout (axis=representation)",
+          "status": "pending",
+          "claim_ids": [
+            "SD-068"
+          ]
+        },
+        {
+          "queue_id": "V3-EXQ-778f",
+          "title": "SD-068 GOV-FANOUT-1 leg 3/3 H-gen-gain-content-free: REM generative gain vs content scale (axis=observation)",
+          "status": "pending",
+          "claim_ids": [
+            "SD-068"
+          ]
+        },
+        {
+          "queue_id": "V3-EXQ-778g",
+          "title": "SD-068 rebuilt sws content-scored readout validation (null control + content ladder)",
+          "status": "pending",
+          "claim_ids": [
+            "SD-068"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -1420,13 +1453,13 @@
           "id": "MECH-279",
           "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
           "subject": "pag.gabaergic_freeze_gate",
-          "status": "candidate",
+          "status": "provisional",
           "v3_pending": false,
           "genuine_exp_count": 1,
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.866
+          "overall_confidence": 0.865
         },
         {
           "id": "MECH-280",
@@ -1534,13 +1567,13 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.744
+          "overall_confidence": 0.743
         },
         {
           "id": "MECH-086",
           "title": "Dopamine as trajectory selection gain plane operating downstream of landscape, state, and encoding gate.",
           "subject": "dopamine.trajectory_selection_gain_plane",
-          "status": "candidate",
+          "status": "provisional",
           "v3_pending": false,
           "genuine_exp_count": 1,
           "pass_runs": 1,
@@ -1558,7 +1591,7 @@
           "pass_runs": 1,
           "fail_runs": 0,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.706
+          "overall_confidence": 0.705
         },
         {
           "id": "MECH-088",
@@ -1582,7 +1615,7 @@
           "pass_runs": 0,
           "fail_runs": 2,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.519
+          "overall_confidence": 0.518
         },
         {
           "id": "MECH-187",
@@ -1606,7 +1639,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.623
+          "overall_confidence": 0.622
         },
         {
           "id": "MECH-281",
@@ -1744,8 +1777,17 @@
       },
       "v3_pending_count": 0,
       "v3_pending_ids": [],
-      "leading_edge": false,
-      "queued_exqs": [],
+      "leading_edge": true,
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-783",
+          "title": "z_world under-differentiation: separate untrained-encoder (a1) from the world_dim=32 granularity ceiling (a2) via a 2x2 dim x training crossing",
+          "status": "pending",
+          "claim_ids": [
+            "Q-002"
+          ]
+        }
+      ],
       "conflict_refs": [],
       "coverage_tier": "expressed"
     },
@@ -1815,7 +1857,7 @@
           "pass_runs": 8,
           "fail_runs": 9,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.711
+          "overall_confidence": 0.71
         },
         {
           "id": "ARC-052",
@@ -2047,7 +2089,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.661
+          "overall_confidence": 0.66
         }
       ],
       "implementation": "claim_only",
@@ -2246,7 +2288,7 @@
           "pass_runs": 1,
           "fail_runs": 10,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.706
+          "overall_confidence": 0.705
         }
       ],
       "implementation": "claim_only",
@@ -2297,7 +2339,7 @@
           "pass_runs": 0,
           "fail_runs": 1,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.484
+          "overall_confidence": 0.483
         }
       ],
       "implementation": "claim_only",
@@ -2524,7 +2566,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.822
+          "overall_confidence": 0.821
         },
         {
           "id": "SD-016",
@@ -2536,7 +2578,7 @@
           "pass_runs": 1,
           "fail_runs": 5,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.604
+          "overall_confidence": 0.603
         }
       ],
       "implementation": "full",
@@ -3061,7 +3103,16 @@
         "MECH-294"
       ],
       "leading_edge": true,
-      "queued_exqs": [],
+      "queued_exqs": [
+        {
+          "queue_id": "V3-EXQ-779a",
+          "title": "MECH-063 (ii) tonic/phasic dissociation -- sample-driven stopping + sample_starvation_requeue (supersedes 779)",
+          "status": "claimed",
+          "claim_ids": [
+            "MECH-063"
+          ]
+        }
+      ],
       "conflict_refs": [
         "valence_vectors_vs_mu_kappa_overlays"
       ],
@@ -3200,13 +3251,13 @@
           "pass_runs": 1,
           "fail_runs": 2,
           "evidence_quadrant": "confirmed_established",
-          "overall_confidence": 0.726
+          "overall_confidence": 0.725
         },
         {
           "id": "MECH-076",
           "title": "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation).",
           "subject": "residue.hippocampal_map_structural_deformation",
-          "status": "candidate",
+          "status": "provisional",
           "v3_pending": false,
           "genuine_exp_count": 1,
           "pass_runs": 1,
@@ -3352,7 +3403,7 @@
           "pass_runs": 0,
           "fail_runs": 0,
           "evidence_quadrant": "plausible_unproven",
-          "overall_confidence": 0.854
+          "overall_confidence": 0.853
         },
         {
           "id": "ARC-069",

@@ -28,3 +28,7 @@ _(no joined events)_
 
 _(no joined events)_
 
+## `convergence_demand_pipeline:HIGH-CDQ007-COMPETENCE-BOOTSTRAP`
+
+_(no joined events)_
+

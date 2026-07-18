@@ -1,8 +1,13 @@
+---
+status: candidate
+status_asof: 2026-07-18
+status_claim: SD-070
+---
+
 # SD-070: latent.zworld_p0_anticollapse_recipe
 
 **Claim ID:** SD-070
 **Subject:** latent.zworld_p0_anticollapse_recipe
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-18
 **Depends on:** SD-005 (split encoder), SD-018 (resource proximity head)
 **Blocks:** V3-EXQ-783, SD-031 / E2WorldForward P1, and any consumer requiring a trained

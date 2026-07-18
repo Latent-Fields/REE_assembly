@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-18T04:54:20Z
+Generated: 2026-07-18T16:15:30Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -170,7 +170,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 91.3% across 23 non-deferred nodes in 4 plan(s).
+- **PROCESS**: 82.1% across 28 non-deferred nodes in 5 plan(s).
 - **V4**: 30.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -179,9 +179,11 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 |-----|------|------|-------|--------|-----|------------------|--------------|
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-CATEGORY` | Phase 0 -- governance_rule category + 22 SENT/GOV claims registered | done | load-bearing |  | 2026-06-19 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:GATE` | Section 9.0 hard prerequisite -- cross-instance determinism gate (610  | done | high |  | 2026-06-07 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P0b` | Phase 0b -- cache the uncached 3.7 MB claims.yaml yaml.safe_load in se | pending | high |  | 2026-07-18 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-PLAN` | Phase 0 -- plan-of-record created | done | high | depends_on: ethics_perimeter:P0-CATEGORY | 2026-06-19 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P0` | Plan-of-record + register GOV-CONFIRM-1 governance_rule claim | done | high |  | 2026-07-14 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P0` | Phase 0 -- instrument only: arm_fingerprint lib (substrate content-has | done | medium |  | 2026-06-06 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P0` | Phase 0 -- caching only, no DB. Memoize the uncached claim_evidence.v1 | done | medium |  | 2026-07-18 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:MINT` | Baseline pre-minting -- canonical baseline modules + low-priority clou | done | low |  | 2026-06-07 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-1` | Two-levels-of-abstraction distinction (the load-bearing scoping claim) | done | load-bearing | No substrate prerequisite -- this is a DESIGN/SCOPING claim, registrable now as the spine  | 2026-06-13 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-1` | FOUNDATION -- per-candidate multi-channel affect vector substrate (MEC | blocked | load-bearing | V3 NARROW instance is already DONE and is NOT this node: V3-EXQ-643a PASS established the  | 2026-06-10 |
@@ -214,6 +216,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:QUEUE` | Demand queue CDQ-001..005 (Section-4 rows) + governance Step-6b Sense  | done | high | First Action #1 landed 2026-06-17: convergence_demand_queue.v1.json + /governance Step-6b  | 2026-06-17 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-1` | Temporal Coherence Loop substrate (ARC-053/054/055 phase-coherent V(t) | deferred | high | REVERSAL TRIGGER 1: a V3 working-model failure mode the synaptic forms demonstrably cannot | 2026-06-11 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-2` | Oscillatory multiplexing + ephaptic coherence mechanisms (MECH-225/226 | deferred | high | REVERSAL TRIGGER (concrete, from the boundary doc): if the MECH-271 routing audit cannot d | 2026-06-11 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P1` | Phase 1 -- emit a derived gitignored SQLite read-model from build_expe | pending | high |  | 2026-07-18 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P1-V3-BOUNDARY` | Phase 1 -- SENT-0 + GOV-HEALTH-1 V3 bright lines (ree-v3 README + regi | done | high | depends_on: ethics_perimeter:P0-PLAN | 2026-06-19 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P1` | Shadow detector -- derive-only `evidence_confirmer` lane in generate_i | done | high |  | 2026-07-14 |
 | v4 | memory_lifecycle_v4_plan.md | `memory_lifecycle_v4:MEM-2` | Explicit active-separation operation (separate != failed-integration)  | blocked | high | MECH-147 DG pattern separation must land (V4): non-redundant sparse encoding of similar z_ | 2026-06-10 |
@@ -270,6 +273,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-9` | Biology grounding completion (emotional-modulation-of-consolidation wr | closed | medium | L1 emotional modulation of consolidation as the write-weight (McGaugh 2004; Cahill & McGau | 2026-06-13 |
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HANDOFF-REACTIVATE` | Re-activate the REE_convergence -> REE_assembly handoff pipeline (firs | done | medium | DONE 2026-06-19: end-to-end loop validated on the three June rows. All 3 June packets re-v | 2026-06-19 |
 | deferred | deferred_by_commitment_plan.md | `deferred_by_commitment:DEF-3` | Explicit signed competitive multi-field coupling (ARC-084) | deferred | medium | REVERSAL TRIGGER: a V4 multi-field signed-edge layer exists, making the cooperative-only v | 2026-06-11 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P2` | Phase 2 -- cut over the six identified consumers, incl. a /api/claims/ | pending | medium | depends_on: derived_evidence_index:P1 | 2026-07-18 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-8` | Biology grounding completion (Vygotsky private speech, DMN, label-as-c | done | medium | DONE 2026-06-13: textbook analogies replaced with mechanism/neuroscience evidence under ev | 2026-06-13 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-3` | Drive-arbitration biology grounding (multidrive competition / drive hi | closed | medium | Project rule feedback_biology_before_formal_definitions: commission a biology lit-pull BEF | 2026-06-13 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-8` | Biology grounding: guilt-as-reparative-motivation vs shame-as-withdraw | closed | medium | L1 guilt-vs-shame (guilt-as-reparative-motivation vs shame-as-withdrawal/concealment) -- t | 2026-06-12 |
@@ -309,6 +313,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-10` | Slow value-INDEPENDENT decommit-friction / engagement-release modulato | blocked | high | BIOLOGY GROUNDED (AE-9, 2026-06-13): Aston-Jones & Cohen 2005 LC-NE adaptive gain is the v | 2026-06-13 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-4` | Imagination-learning licit/forbidden principle (ARC-level, folded into | open | high | REE owns substrate components implicitly enforcing what learning is licit from imagination | 2026-06-16 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-3` | Commitment / de-commit latch grounding L1 -> L3 | in_progress | high | Neural analog: BG/thalamic commit + maintenance-release. Divergence: beta-gate refractory  | 2026-06-20 |
+| process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HIGH-CDQ007-COMPETENCE-BOOTSTRAP` | Execute CDQ-007 (HIGH) -- DreamerV3 stabilisation lens + VPT/AlphaStar | done | high | DONE 2026-07-18 (session hopeful-mcclintock-9b9948; CDQ-007). Routed by failure_autopsy_ME | 2026-07-18 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-4` | PILLAR -- private speech as external cognitive-control surface (MECH-3 | blocked | high | INV-034 goal-maintenance target (the thing private speech regulates) must be the live arbi | 2026-06-10 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-5` | PILLAR -- developmental compression ladder (MECH-381): externalise-the | blocked | high | INV-060 + MECH-197 play-type progression (sensorimotor->constructive->pretend->rule-based- | 2026-06-10 |
 | v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-4` | Orienting/surveying drive: pre-approach active-sensing control state | blocked | high | V3 LIVE upstream cue chain the orienting mode sits between: SD-057 / MECH-347 cue-triggere | 2026-06-10 |

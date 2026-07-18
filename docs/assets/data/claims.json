@@ -7691,6 +7691,14 @@
     "title": "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim.",
     "type": "design_decision"
   },
+  "SD-070": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "latent.zworld_p0_anticollapse_recipe",
+    "title": "z_world P0 anti-collapse encoder-training recipe: a mini-batched P0 that trains the SD-005 split-encoder world path on STATIC scene-structure targets derived from world_obs alone (hazard/resource presence + bucketed nearest-Chebyshev distance), with class-balanced CE and a VICReg-style variance/covariance anti-collapse penalty, replacing the SD-009 event-contrastive + SD-018 P0 that was measured to COLLAPSE z_world to participation ratio ~1.06 at world_dim=128. Supplies the trained encoder that SD-031 / E2WorldForward P1 and V3-EXQ-783 both require.",
+    "type": "design_decision"
+  },
   "SENT-0": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",

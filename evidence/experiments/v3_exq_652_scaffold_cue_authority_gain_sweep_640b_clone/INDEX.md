@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_652_scaffold_cue_authority_gain_sweep_640b_clone
 
-Generated: `2026-07-18T08:47:13.750883Z`
+Generated: `2026-07-18T16:15:14.019159Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
