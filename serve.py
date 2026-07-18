@@ -5827,6 +5827,14 @@ def _build_timeline_events() -> dict:
 
 class Handler(http.server.SimpleHTTPRequestHandler):
 
+    # BaseHTTPRequestHandler only sets self.path inside parse_request(). A malformed
+    # request line makes parse_request() bail BEFORE that assignment and go straight to
+    # send_error() -> log_error() -> log_message(), so any self.path read on that path
+    # raised AttributeError and killed the connection's handler thread. Port 8000 is
+    # bound on 0.0.0.0 on the hub, so internet scanners tripped this routinely.
+    # A class-level default fixes every reader at once, pre-parse.
+    path = ""
+
     def do_GET(self):
         path = urlparse(self.path).path
         # Ensure explorer.html is present; attempt GitHub pull/clone if missing
@@ -6457,7 +6465,9 @@ h1{{color:#c00}}a{{color:#0070f3}}</style></head>
         self.end_headers()
 
     def log_message(self, fmt, *args):
-        if "/api/" in (self.path or ""):
+        # getattr guard is belt-and-braces alongside the Handler.path class default:
+        # log_message is reachable before parse_request() has set self.path.
+        if "/api/" in (getattr(self, "path", "") or ""):
             super().log_message(fmt, *args)
 
 
