@@ -80,6 +80,13 @@ loaded with a known clean signal, then scored against that known signal:
   scored as damage tolerance until replaced by a content-scored readout (the same
   repair as `rem_terrain_variance` -> `rem_generative_fidelity`). Retained as telemetry
   only. See **Null-content control** below.
+  **>> REBUILT 2026-07-18 (ree-v3 `main` `8b18338`); see "SWS readout rebuild" below.**
+- `_sws_pattern_completion` -- **the content-scored replacement for the scored sws
+  series (2026-07-18).** Cosine retrieval margin of the post-SHY store against the
+  injected prototypes: `margin_i = cos(probe_i, shy(store)_i) - max_{j != i}
+  cos(probe_i, shy(store)_j)`. Probed with the UNSCALED prototypes, so the null arm
+  gets a real, arm-identical probe that is simply not planted. Pending validation by
+  V3-EXQ-778g.
 - `nrem_transfer_fidelity` -- inject a known per-parameter target (the "replayed
   trace"), run the interleaved `CrossModuleConsolidator` pass, measure the fraction
   of the injected-content gap closed. *Parameter-space proxy* for
@@ -318,6 +325,65 @@ read the narrowing as leaving SD-068 comfortably supported.
 readout (experiment-layer, `_lib/consolidation_lesion_harness.py`, zero `ree_core`
 change) + a GOV-FANOUT-1 three-axis portfolio on the `rem` leg. Full diagnosis:
 `evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.{md,json}`.
+
+### SWS readout rebuild (2026-07-18, ree-v3 `main` `8b18338`) -- BUILT, NOT YET VALIDATED
+
+The routed repair has landed. `denoising_snr_db` is retained as telemetry; the SCORED
+sws series is now `_sws_pattern_completion`.
+
+**The design move.** Any readout of the form `f(shy(damaged) - shy(clean))` is
+content-free for an affine `shy` -- that is the whole defect, and it is analytic, not
+statistical. The replacement therefore scores a RELATIONAL IDENTITY rather than a
+residual energy: after damage and denoising, can each injected prototype still be
+IDENTIFIED in the store? The score is a ratio of correct-vs-incorrect cosine similarity
+whose denominators carry `clean`, so the affine cancellation no longer removes the
+content term. This is the same escape `rem_generative_fidelity` made from
+`rem_terrain_variance`: route the readout through an operation the content genuinely
+survives in, and score against the KNOWN injection.
+
+**The load-bearing detail -- probe with the UNSCALED prototypes.** Probing with `clean`
+(`= base * content_scale`) would make the null arm's probe the zero vector and the
+readout 0/0-degenerate. A zero from an undefined similarity is exactly the `rem` leg's
+existing failure mode, where 5/8 "unconfounded" seeds are unconfounded only BY
+DEGENERACY. Probing with `base` instead delivers a real, non-degenerate, arm-identical
+probe that is simply not planted in the null arm -- the direct analog of Bar et al.
+2020's "same odour delivered, no prior pairing".
+
+**Local smoke (seeds 42/7/123) -- NOT evidence at seed scale:**
+
+| seed | injected slope | null slope | `null_slope_ratio_sws` | contingent |
+|------|----------------|------------|------------------------|------------|
+| 42 | 0.3246 | 0.0376 | 0.116 | yes |
+| 7 | 0.3434 | 0.0586 | 0.171 | yes |
+| 123 | 0.3578 | 0.0544 | 0.152 | yes |
+
+`confounded_phases` is now `['rem']` alone. Note the ratios VARY across seeds, unlike
+the retired readout's 1.0000 (sd 2.7e-8) -- per this doc's own instrument-validity
+lesson, seed-to-seed scatter is what a measurement looks like and near-zero variance is
+what an analytic identity looks like.
+
+**Declared caveat on that pass.** The readout is cosine-based and therefore
+SCALE-INVARIANT, and `phase_integrity_at_sigma` reseeds per sigma, so in the null arm
+(store = `0 + sigma*noise`) the sigma factor cancels out of the cosine entirely. The
+null arm is flat in sigma PARTLY BY CONSTRUCTION, which makes the null control a weaker
+independent check for this readout family than the ratio alone suggests. A
+content-scale ladder (`content_scale` in {0.0, 0.25, 0.5, 1.0}) was run as the
+independent check: sigma-slope is exactly 0.0 at zero content and 0.449 / 0.430 / 0.325
+above it. The slope DECREASES as content strengthens because damage is referenced to
+`_rms(base)` (the unscaled prototypes) and so is held at full strength regardless of
+content amplitude -- weakly planted content faces proportionally larger damage and is
+destroyed faster. That is content-tracking in the physically correct direction.
+
+**Status: BUILT, NOT VALIDATED.** Three local seeds are not evidence -- the 778c
+autopsy's own lesson is that low-n reads hide unstable verdicts. **V3-EXQ-778g**
+(diagnostic, 8-seed 778a set) re-runs the null control on the repaired readout and
+carries the content-scale ladder as a second criterion. Until it reports, the `sws` leg
+is NOT a validated instrument and the staging order remains unsupported.
+
+**Consequence for prior runs.** V3-EXQ-778 / 778a drivers still RUN (the SNR keys are
+still emitted), but their staging numbers are NOT reproducible across this change,
+because `tolerance_sigma_sws` flows through the repaired series. That is intentional --
+those numbers were retracted as staging evidence above.
 
 (V3-EXQ-778b, `...20260718T065939Z_v3`, is the n=2 predecessor of this control and is
 marked `superseded`: same conclusion, strictly dominated evidence, rem leg unresolved
