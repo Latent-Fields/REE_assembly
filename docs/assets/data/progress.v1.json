@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-18T09:32:44Z",
+  "generated_at": "2026-07-18T10:15:10Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -135,7 +135,7 @@
       "not_converging": true,
       "convergence": {
         "convergence_class": "refining",
-        "reason": "4 family/families closed (instrumentation, process, representation, world); the latest growth opened fresh territory (constitution). NOTE: 1 earlier growth event(s) partly re-entered an already-eliminated family -- refinement, but not a clean sweep.",
+        "reason": "4 families closed out; the latest growth opened fresh territory. 1 earlier growth event partly re-entered an already-eliminated family, so this is refinement but not a clean sweep",
         "families_closed": [
           "instrumentation",
           "process",
@@ -414,7 +414,7 @@
       "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 1 family/families, 1 fully closed",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
         "families_closed": [
           "world"
         ],
@@ -518,7 +518,7 @@
       "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 1 family/families, 1 fully closed",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
         "families_closed": [
           "process"
         ],
@@ -734,7 +734,7 @@
       "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 1 family/families, 1 fully closed",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
         "families_closed": [
           "process"
         ],
@@ -903,7 +903,7 @@
       "not_converging": false,
       "convergence": {
         "convergence_class": "narrowing",
-        "reason": "no fan-out growth; eliminations in 1 family/families",
+        "reason": "no fan-out growth; eliminations in 1 family",
         "families_closed": [],
         "families_touched": [
           "instrumentation"
@@ -968,8 +968,10 @@
           "desc": "GOV-FANOUT-1 leg. The full-adoption step=1.0 linear interpolation drives calibration_error into its positivity floor / saturation constant, so the null arm cannot express a graded slope regardless of content-contingency",
           "axis": "measurement",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": "Untested. Probe: re-run the rem leg over a step ladder (0.1/0.25/0.5/1.0) and read whether the null arm leaves the 998.5 constant and the 1e-3 floor. Declared null: if the null arm stays railed at every step, this leg is refuted.",
+          "evidence_runs": [
+            "V3-EXQ-778d"
+          ],
+          "basis": "Untested. Probe (AMENDED 2026-07-18T09:56:12Z, pre-queue, before any compute -- see probe_amendments): UNPAIRED-TARGET null. Point the recalibration at an INDEPENDENT positive target of the same magnitude class (ARM_NULL_UNPAIRED), unpaired with the clean target the error is scored against -- the faithful Bar et al. 2020 'same odour, no prior pairing' analog -- and retain the 778c zero-content null (ARM_NULL_ZERO) as a replication anchor. Declared null: if ARM_NULL_UNPAIRED stays railed too -- still clamping, still constant -- this leg is REFUTED and the measurement axis is eliminated from the question. The ORIGINAL step-ladder probe was retired as PROVABLY INERT: the 1e-3 positivity clamp is applied upstream of step and step cancels in the reported slope ratio, so the ladder was exactly step-invariant to 12 significant figures and would have returned this leg's declared null BY CONSTRUCTION. Adjudicating run V3-EXQ-778d (ree-v3 18c4687).",
           "children": [],
           "met_elimination_bar": false
         },

@@ -68,6 +68,11 @@ def _utc_now_iso_z() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _plural(n: int, singular: str, plural: str = None) -> str:
+    """'1 family' / '4 families' -- avoids the 'N family/families' construction."""
+    return f"{n} {singular if n == 1 else (plural or singular + 's')}"
+
+
 def _tally(values) -> dict:
     out: dict = {}
     for v in values:
@@ -281,7 +286,7 @@ def axis_family_convergence(q: dict, families: dict) -> dict:
         # No growth: narrowing if anything has actually been ruled out, else static.
         cls = "narrowing" if touched else "static"
         reason = ("no fan-out growth; "
-                  + (f"eliminations in {len(touched)} family/families"
+                  + (f"eliminations in {_plural(len(touched), 'family', 'families')}"
                      + (f", {len(closed)} fully closed" if closed else "")
                      if touched else "nothing ruled out yet"))
     elif any(e["event_class"] == "circling" for e in events):
@@ -290,11 +295,12 @@ def axis_family_convergence(q: dict, families: dict) -> dict:
     elif events[-1]["event_class"] == "refining" and closed:
         cls = "refining"
         n_partial = sum(1 for e in events if e["event_class"] == "partial_re_entry")
-        reason = (f"{len(closed)} family/families closed ({', '.join(sorted(closed))}); "
-                  f"the latest growth opened fresh territory"
-                  + (f" ({', '.join(sorted(fresh))})" if fresh else "")
-                  + (f". NOTE: {n_partial} earlier growth event(s) partly re-entered an "
-                     "already-eliminated family -- refinement, but not a clean sweep."
+        # The family lists are rendered separately by the consumer; keep the reason
+        # prose free of them so the dashboard does not print each list twice.
+        reason = (f"{_plural(len(closed), 'family', 'families')} closed out; the latest "
+                  "growth opened fresh territory"
+                  + (f". {_plural(n_partial, 'earlier growth event')} partly re-entered an "
+                     "already-eliminated family, so this is refinement but not a clean sweep"
                      if n_partial else ""))
     elif not closed:
         cls = "scattering"
