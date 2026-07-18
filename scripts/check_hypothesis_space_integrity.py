@@ -45,8 +45,32 @@ REPORT = PLANNING_DIR / "hypothesis_space_integrity.md"
 
 RESOLVED_OUT_STATES = {"eliminated", "split"}
 # Buckets that are REPORTED but never counted as flags: sanctioned labelled growth,
-# the quiet unverifiable-provenance state, and cleared git witnesses.
-ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed"}
+# the quiet unverifiable-provenance state, cleared git witnesses, and the
+# fan-out RECURRENCE overlay (an ACTIONABLE routing signal, still never a gate).
+ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
+                    "h_fanout_recurrence"}
+
+# Distinct labelled fan-out portfolios on ONE question before the recurrence
+# overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
+# DIAG_RECURRENCE_N -- same three-strikes epistemics, tunable module constant.
+#
+# Why this exists (GOV-FROZEN-1 escalation clause). Conditions (a)-(c) make an
+# individual growth event legitimate, but legitimacy is per-event and therefore
+# says nothing about RECURRENCE: a question can fan out indefinitely, clearing
+# every check every time, while its denominator outruns its eliminations. That is
+# precisely the alarm-fatigue vector GOV-FROZEN-1 warns about turned on the rule
+# itself -- a recurring advisory with a plausible narrative ("legitimate labelled
+# fan-out") is accepted by default. The sibling rules escalate on a COUNT for the
+# same reason; this closes the asymmetry.
+#
+# NOT redundant with GOV-DIAG-1, which counts pure-diagnostic NO-VERDICT autopsies.
+# Fan-out recurrence is the opposite signature: every run REACHED a verdict and
+# eliminated a leg, so the chain is invisible to the no-verdict counter by
+# construction. A campaign can hold perfect GOV-DIAG-1 hygiene and still never
+# converge. (Confirmed empirically 2026-07-18: GOV-DIAG-1 fires on
+# ree_ai_design_critique_plan:WS-1 + f_dominance_conversion_ceiling, and NOT on
+# the `competence_floor` question that has fanned out twice.)
+FANOUT_RECURRENCE_N = 3
 # An adjudicated basis for an elimination: a weakens, OR a confirmed-cluster
 # non_contributory discrimination that met the bar (design's own Dim-3 worked
 # example treats a sub-floor discrimination against passing reference bands as an
@@ -224,6 +248,11 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
     by_hid = {h.get("hid"): h for h in (q.get("hypotheses") or [])}
     accounted = 0
     ok_events = 0
+    # Keyed on the ARTIFACT, not on recorded_utc: a single backfill pass can record
+    # several historically-distinct portfolios with one timestamp (and conversely a
+    # re-record of one portfolio must not inflate the count). The autopsy that
+    # opened the portfolio is the thing there is one of per fan-out decision.
+    valid_sources = set()
     for ev in events:
         src = ev.get("fanout_source")
         hids = ev.get("added_hids") or []
@@ -290,6 +319,7 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
             continue
         accounted += delta
         ok_events += 1
+        valid_sources.add(src)
         flags["e_labelled_growth"].append(
             f"`{qid}`: +{delta} leg(s) ({', '.join(hids)}) added by labelled fan-out "
             f"from `{src}` -- conditions (a)-(c) satisfied, advisory not a violation."
@@ -316,6 +346,25 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
             "ways -- a campaign enumerating new rivals as it eliminates old ones has "
             "not converged."
         )
+
+    # RECURRENCE overlay (GOV-FROZEN-1 escalation). Every portfolio counted here
+    # was individually legitimate -- that is the point. The signal is the COUNT.
+    n_portfolios = len(valid_sources)
+    if n_portfolios >= FANOUT_RECURRENCE_N:
+        hs = q.get("hypotheses") or []
+        alive = sum(1 for h in hs
+                    if (h.get("resolution") or {}).get("state") == "alive")
+        flags["h_fanout_recurrence"].append(
+            f"`{qid}`: {n_portfolios} distinct labelled fan-out portfolios "
+            f"(>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}, "
+            f"{alive} leg(s) still alive. Each portfolio cleared conditions (a)-(c) "
+            "individually -- the RECURRENCE is the signal. Reading: the question may "
+            "be MIS-POSED rather than under-enumerated. Re-pose the operationalization "
+            "before opening portfolio "
+            f"{n_portfolios + 1}; enumerating another round of rivals on an "
+            "unchanged framing is the denominator-side twin of re-running a braked "
+            "experiment harder. Sources: " + ", ".join(f"`{s}`" for s in sorted(valid_sources))
+        )
     return min(accounted, growth)
 
 
@@ -324,7 +373,8 @@ def audit(registry: dict, timeseries: list) -> dict:
     advisory `e_labelled_growth` bucket (labelled fan-out; NOT a violation)."""
     flags = {"a_unbacked_drop": [], "b_enlargement": [],
              "c_confirmed_no_control": [], "d_bar_violation": [],
-             "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": []}
+             "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
+             "h_fanout_recurrence": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the date the growth was
     # recorded -- lets the time-series check attribute a total_initial rise.
@@ -442,6 +492,7 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     n_advisory = len(flags.get("e_labelled_growth") or [])
     n_unverifiable = len(flags.get("f_unverifiable") or [])
     n_witnessed = len(flags.get("g_witnessed") or [])
+    n_recurrence = len(flags.get("h_fanout_recurrence") or [])
     L = []
     L.append("# Hypothesis-Space Integrity Audit (anti-Goodhart)")
     L.append("")
@@ -461,7 +512,8 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         f"Audited **{n_q}** open question(s) across **{len(timeseries)}** time-series "
         f"snapshot(s). **{total}** flag(s) raised, **{n_advisory}** advisory note(s), "
         f"**{n_witnessed}** git-witnessed pre-registration(s), "
-        f"**{n_unverifiable}** unverifiable."
+        f"**{n_unverifiable}** unverifiable, "
+        f"**{n_recurrence}** fan-out recurrence overlay(s)."
     )
     L.append("")
     sections = [
@@ -513,6 +565,40 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         L.append("_None._")
     else:
         for msg in adv:
+            L.append(f"- {msg}")
+    L.append("")
+
+    rec = flags.get("h_fanout_recurrence") or []
+    L.append(f"## Fan-out recurrence (ACTIONABLE, {len(rec)}) -- N >= {FANOUT_RECURRENCE_N} portfolios on one question")
+    L.append("")
+    L.append(
+        "_GOV-FROZEN-1 escalation clause. Conditions (a)-(c) license an INDIVIDUAL growth "
+        "event, so they say nothing about recurrence: a question can fan out indefinitely, "
+        "clearing every check every time, while its denominator outruns its eliminations. "
+        "Every portfolio counted below was individually legitimate -- **the recurrence is "
+        "the signal**, and the reading is that the question may be MIS-POSED rather than "
+        "under-enumerated._"
+    )
+    L.append("")
+    L.append(
+        "_Complementary to GOV-DIAG-1, not redundant with it: that rule counts "
+        "pure-diagnostic NO-VERDICT chains, whereas fan-out recurrence is the opposite "
+        "signature -- every run reached a verdict and eliminated a leg. A campaign can "
+        "hold perfect GOV-DIAG-1 hygiene and still never converge._"
+    )
+    L.append("")
+    L.append(
+        "**Response is routing, not demotion.** These are questions, not claims; nothing "
+        "is promoted or demoted. Re-pose the operationalization before opening another "
+        "portfolio -- enumerating a further round of rivals on an unchanged framing is the "
+        "denominator-side twin of re-running a braked experiment harder. Warn-only: this "
+        "never gates a cycle."
+    )
+    L.append("")
+    if not rec:
+        L.append("_None._")
+    else:
+        for msg in rec:
             L.append(f"- {msg}")
     L.append("")
 
@@ -647,6 +733,31 @@ def _self_test() -> int:
                              "evidence_direction": "weakens", "met_elimination_bar": True,
                              "control_passed": True, "non_degenerate": True}},
          ]},
+        # RECURRENCE: three individually-VALID portfolios on one question. Every event
+        # clears (a)-(c), so nothing may land in (b) -- but the count must fire the
+        # h_fanout_recurrence overlay. Two of the three share a recorded_utc (a single
+        # backfill pass) to pin that the counter keys on fanout_source, not timestamps.
+        {"qid": "fanout_recurring_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-07-01T00:00:00Z",
+         "fanout_growth_events": [
+             {"recorded_utc": "2026-07-04T00:00:00Z",
+              "fanout_source": "failure_autopsy_rec_a_2026-07-04.json",
+              "added_hids": ["r_a"], "delta": 1},
+             {"recorded_utc": "2026-07-04T00:00:00Z",
+              "fanout_source": "failure_autopsy_rec_b_2026-07-05.json",
+              "added_hids": ["r_b"], "delta": 1},
+             {"recorded_utc": "2026-07-06T00:00:00Z",
+              "fanout_source": "failure_autopsy_rec_c_2026-07-06.json",
+              "added_hids": ["r_c"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "r1", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
+             {"hid": "r2", "pre_registered_utc": "2026-07-01", "resolution": {"state": "alive"}},
+             {"hid": "r_a", "pre_registered_utc": "2026-07-04", "resolution": {"state": "alive"}},
+             {"hid": "r_b", "pre_registered_utc": "2026-07-05", "resolution": {"state": "alive"}},
+             {"hid": "r_c", "pre_registered_utc": "2026-07-06", "resolution": {"state": "alive"}},
+         ]},
         # UNLABELLED growth: no fanout_growth_events covering it -> real (b) flag.
         {"qid": "fanout_bad_q", "initial_frozen_count": 3,
          "initial_frozen_count_at_registration": 2,
@@ -695,6 +806,7 @@ def _self_test() -> int:
         "e_labelled_growth": flags["e_labelled_growth"],
         "f_unverifiable": flags["f_unverifiable"],
         "g_witnessed": flags["g_witnessed"],
+        "h_fanout_recurrence": flags["h_fanout_recurrence"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -721,7 +833,17 @@ def _self_test() -> int:
     # Provenance discriminations -- the point of the git witness.
     joined_f = " ".join(flags["f_unverifiable"])
     joined_g = " ".join(flags["g_witnessed"])
+    # Recurrence discriminations (GOV-FROZEN-1 escalation clause).
+    joined_h = " ".join(flags["h_fanout_recurrence"])
     for name, cond, msg in [
+        ("recurrence_fires", "fanout_recurring_q" in joined_h,
+         f"N>={FANOUT_RECURRENCE_N} valid portfolios fired the recurrence overlay"),
+        ("recurrence_not_a_violation", "fanout_recurring_q" not in joined_b,
+         "recurring question NOT flagged as (b) -- every portfolio was legitimate"),
+        ("recurrence_keys_on_source", "3 distinct labelled fan-out portfolios" in joined_h,
+         "counter keyed on fanout_source, not recorded_utc (2 events shared a timestamp)"),
+        ("recurrence_below_n_quiet", "fanout_ok_q" not in joined_h,
+         f"a question below N={FANOUT_RECURRENCE_N} stays quiet (no mass-surfacing)"),
         ("backdated_caught", "fanout_backdated_q" in joined_b,
          "back-dated late append flagged as (b)"),
         ("witnessed_cleared", "fanout_witnessed_q" not in joined_b and "w_new" in joined_g,
@@ -762,6 +884,16 @@ def main() -> int:
           f"{len(flags['e_labelled_growth'])} note(s)")
     print(f"  pre-registration provenance: {len(flags['g_witnessed'])} git-witnessed, "
           f"{len(flags['f_unverifiable'])} unverifiable")
+    n_rec = len(flags["h_fanout_recurrence"])
+    print(f"  fan-out recurrence (N>={FANOUT_RECURRENCE_N} portfolios, ACTIONABLE): "
+          f"{n_rec}")
+    if n_rec:
+        print("  -- RECURRENCE: the question may be MIS-POSED rather than")
+        print("     under-enumerated. Re-pose the operationalization before")
+        print("     opening another portfolio (routing only; promotes/demotes nothing):")
+        for msg in flags["h_fanout_recurrence"]:
+            qid = msg.split("`")[1] if "`" in msg else msg[:40]
+            print(f"    [recurrence] {qid}")
     return 0
 
 

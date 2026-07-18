@@ -54173,6 +54173,38 @@
     fan-out -- so non-convergence stays visible rather than being laundered into an
     improved ratio, and an autopsy appending a growth event must say so in its routing
     note (fanout_growth_note on the question).
+    ESCALATION CLAUSE -- RECURRENCE AT N>=3 (added 2026-07-18, same day as
+    registration; the gap was found immediately after and is recorded rather than
+    quietly patched). Conditions (a)-(c) license an INDIVIDUAL growth event, so they
+    say nothing about RECURRENCE: a question can fan out indefinitely, clearing every
+    check every time, while its denominator outruns its eliminations. That is the
+    alarm-fatigue vector this very claim warns about, turned on the rule itself -- a
+    recurring advisory carrying a plausible narrative (LEGITIMATE labelled fan-out) is
+    accepted by default, and the original rule had no count-based escalation while both
+    its siblings did (GOV-CEIL-1 CEILING_EXHAUSTION_N=3, GOV-DIAG-1 DIAG_RECURRENCE_N=3).
+    TRIGGER = a single question reaching FANOUT_RECURRENCE_N (=3, module constant) DISTINCT
+    labelled fan-out portfolios. The counter keys on the fanout_source ARTIFACT, not on
+    recorded_utc: one backfill pass can record several historically-distinct portfolios
+    under a single timestamp (and conversely a re-record of one portfolio must not
+    inflate the count) -- the autopsy that opened the portfolio is the thing there is
+    one of per fan-out decision. Only portfolios that already cleared (a)-(c) are
+    counted; the point is that each was individually legitimate and the RECURRENCE is
+    the signal.
+    NOT REDUNDANT WITH GOV-DIAG-1. That rule counts pure-diagnostic NO-VERDICT
+    autopsies (non_contributory / inconclusive). Fan-out recurrence is the OPPOSITE
+    signature: every run reached a verdict and eliminated a leg, so the chain is
+    invisible to the no-verdict counter by construction. A campaign can hold perfect
+    GOV-DIAG-1 hygiene and still never converge, because the denominator regrows faster
+    than it eliminates. Confirmed empirically at registration time: GOV-DIAG-1 fires on
+    ree_ai_design_critique_plan:WS-1 and f_dominance_conversion_ceiling, and NOT on the
+    competence_floor question that had already fanned out twice (7 -> 12 legs).
+    RESPONSE is ROUTING, NOT DEMOTION -- these are questions, not claims, and nothing is
+    promoted or demoted. The reading: the question may be MIS-POSED rather than
+    under-enumerated; re-pose the operationalization before opening another portfolio.
+    Enumerating a further round of rivals on an unchanged framing is the
+    denominator-side twin of re-running a braked experiment harder. NON-FALSIFYING-SAFE:
+    absent fan-out events every count is 0, so an untagged or empty registry can never
+    mass-surface (same posture as GOV-CEIL-1 / GOV-DIAG-1). Warn-only; still never gates.
     PRODUCER / CONSUMER SEPARATION. The registry has a SINGLE producer,
     /failure-autopsy Step 9b, which pre-registers at fan-out time and resolves at
     adjudication time. /governance Step 5c is derive-only over it: it reads the audit
@@ -54191,7 +54223,7 @@
     the registry is a derive-only INPUT that never mutates claims.yaml, closure weights,
     or claim status. Do not cite GOV-FROZEN-1 as though the rule were enforced by its
     own registration.
-  notes: "Registered 2026-07-18 by the /governance 2026-07-18 cycle session's request; deliberately deferred by the session that BUILT the machinery because claims.yaml is governance-owned and high-contention. DOCUMENTATION / CITABILITY ONLY -- registers no new enforcement; the machinery was already fully built and landed. Wiring (all pre-existing): evidence/planning/hypothesis_space_registry.v1.json (the FROZEN append-only ledger, invariants block: elimination_bar, frozen_initial_set, labelled_fanout_growth, human_owns_decided, non_contributory_unchanged), scripts/check_hypothesis_space_integrity.py (advisory audit buckets a/b/c/d plus advisory e_labelled_growth / f_unverifiable / g_witnessed), scripts/build_hypothesis_space.py (derives hypothesis_space.v1.json + hypothesis_space_timeseries.v1.jsonl), scripts/governance.sh Step 3c-bis-6b (warn-only), /failure-autopsy SKILL.md Step 9b Frozen-set invariants 1-7 (SINGLE producer; 3a is the fan-out case), /governance SKILL.md Step 5c (derive-only consumer). Landed as REE_assembly master 9d26f2be5f (fan-out contract + honest-pair dashboard) and bd9674dd44 (git-witnessed pre-registration). N/A: no numeric threshold constant -- the contract is structural, not count-triggered (contrast GOV-CEIL-1 N=3 / GOV-DIAG-1 N=3). PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref GOV-FANOUT-1 (the fan-out routing whose portfolios are the sanctioned growth source), GOV-CEIL-1 / GOV-DIAG-1 (sibling warn-only detection rules), and the work_graph_debt_vocabulary aleatoric(irreducible) token for the unverifiable provenance state (no git history is not a reducible unknown -- it is hedged, not researched)."
+  notes: "Registered 2026-07-18 by the /governance 2026-07-18 cycle session's request; deliberately deferred by the session that BUILT the machinery because claims.yaml is governance-owned and high-contention. DOCUMENTATION / CITABILITY ONLY -- registers no new enforcement; the machinery was already fully built and landed. Wiring (all pre-existing): evidence/planning/hypothesis_space_registry.v1.json (the FROZEN append-only ledger, invariants block: elimination_bar, frozen_initial_set, labelled_fanout_growth, human_owns_decided, non_contributory_unchanged), scripts/check_hypothesis_space_integrity.py (advisory audit buckets a/b/c/d plus advisory e_labelled_growth / f_unverifiable / g_witnessed), scripts/build_hypothesis_space.py (derives hypothesis_space.v1.json + hypothesis_space_timeseries.v1.jsonl), scripts/governance.sh Step 3c-bis-6b (warn-only), /failure-autopsy SKILL.md Step 9b Frozen-set invariants 1-7 (SINGLE producer; 3a is the fan-out case), /governance SKILL.md Step 5c (derive-only consumer). Landed as REE_assembly master 9d26f2be5f (fan-out contract + honest-pair dashboard) and bd9674dd44 (git-witnessed pre-registration). ESCALATION CLAUSE added 2026-07-18 (same day as registration): the structural contract is now paired with a count-based recurrence overlay, FANOUT_RECURRENCE_N=3 distinct fanout_source portfolios on one question, matching GOV-CEIL-1 CEILING_EXHAUSTION_N / GOV-DIAG-1 DIAG_RECURRENCE_N -- the original entry had NO threshold while both siblings did, which left the rule exposed to the exact alarm-fatigue vector it warns about. Wiring: check_hypothesis_space_integrity.py bucket `h_fanout_recurrence` (ADVISORY_BUCKETS member -- ACTIONABLE overlay, never counted as a flag, never gates), its own report section, a stdout routing block, and 4 self-test discriminations (fires at N>=3; NOT a (b) violation since every portfolio was legitimate; keyed on fanout_source not recorded_utc, pinned by two synthetic events sharing a timestamp; quiet below N). Live state at landing: competence_floor sits at 2 portfolios (7 -> 12 legs), so the overlay is armed but correctly silent -- one more portfolio fires it. PROMOTES/DEMOTES NOTHING on registration -- it is the rule, not its first application. Cross-ref GOV-FANOUT-1 (the fan-out routing whose portfolios are the sanctioned growth source), GOV-CEIL-1 / GOV-DIAG-1 (sibling warn-only detection rules), and the work_graph_debt_vocabulary aleatoric(irreducible) token for the unverifiable provenance state (no git history is not a reducible unknown -- it is hedged, not researched)."
 - id: ARC-106
   title: "Biology-grounding as a standing construction constraint: build REE the agent so each functional component maps to an identified neural substrate at the level of FUNCTION (not homology), with biology as the reference of first resort for underdetermined design forks. Grounding must be load-bearing (a named neural primitive whose defining constraint is validated on a REE falsifier), not decorative naming; divergences from biology are legitimate but must be explicit and tracked, never silent."
   claim_type: architectural_commitment
