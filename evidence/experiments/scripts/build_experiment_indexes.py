@@ -36,7 +36,7 @@ from collections import Counter, defaultdict
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 START_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:START -->"
 END_MARKER = "<!-- AUTO-DESIGN-IMPLICATIONS:END -->"
@@ -188,6 +188,11 @@ def _precondition_direction(p: dict) -> str:
     floor manifests keep their meaning with no edit. Authors of bounded-ceiling
     preconditions MUST set direction:"upper" (or comparator:"<=") -- see the
     queue-experiment SKILL.md adjudication-precondition guidance.
+
+    SINGLE-BOUND ONLY. This resolves which side one bound sits on; it cannot
+    describe a two-sided band. For that -- and for comparator STRICTNESS, which
+    this function deliberately discards -- see _precondition_unmet, which is the
+    entry point the adjudicator actually calls.
     """
     if not isinstance(p, dict):
         return "lower"
@@ -206,6 +211,84 @@ def _precondition_direction(p: dict) -> str:
         if d in ("upper", "ceiling", "max", "upper_bound"):
             return "upper"
     return "lower"
+
+
+_INTERVAL_DIRECTIONS = ("interval", "between", "band", "range", "two_sided", "two-sided")
+
+
+def _precondition_unmet(p: dict) -> Optional[bool]:
+    """Recompute one precondition's `met` from its reported bounds.
+
+    Returns True (UNMET), False (met), or None when the entry exposes no
+    numeric bound spec and is therefore not recomputable -- the caller then
+    falls through to the legacy author-trusted `met is False` path.
+
+    Three shapes, in resolution order:
+
+    1. INTERVAL (two-sided) -- `threshold_low` AND `threshold_high` both
+       numeric. Met when measured lies BETWEEN them. Strictness per leg via
+       `comparator_low` (default ">=", i.e. the low bound is inclusive) and
+       `comparator_high` (default "<="). This is the only shape that can
+       express a check like `E_SAT_LOW < S < E_SAT_HIGH` (V3-EXQ-779b
+       baseline_entropy_headroom): before this existed, such a check could
+       only declare ONE of its two legs, and the undeclared leg -- 779b's
+       `E_SAT_LOW = 0.02` floor -- was absent from the manifest entirely, so
+       the indexer's recompute could not reproduce `met` and silently
+       adjudicated on the ceiling leg alone. A `direction` of "interval" /
+       "between" / "band" / "range" declares the shape explicitly; it is
+       accepted but NOT required, because the presence of both bounds is
+       already unambiguous.
+
+    2. SINGLE BOUND -- numeric `measured` + `threshold`, direction resolved by
+       _precondition_direction. Now honours STRICTNESS: a `comparator` of ">"
+       (resp. "<") makes the bound exclusive, so measured == threshold is
+       UNMET. Previously ">" and ">=" were byte-identical in effect because
+       the recompute hardcoded the non-strict comparison; no manifest in the
+       corpus declared a strict comparator at the time this was added (survey
+       2026-07-19: 1553 precondition entries, comparator values {"<=": 4}),
+       so honouring strictness changed no existing adjudication.
+
+    3. NOT RECOMPUTABLE -- returns None.
+
+    Bounds that are inverted (low > high) are treated as not recomputable
+    rather than as always-unmet: an inverted interval is an authoring error,
+    and silently flagging every such run `precondition_unmet` would repeat the
+    2026-06-07 directionality bug's failure mode of turning a schema mistake
+    into a corpus-wide false adjudication.
+    """
+    if not isinstance(p, dict):
+        return None
+    m = p.get("measured")
+    if not _is_number(m):
+        return None
+
+    lo, hi = p.get("threshold_low"), p.get("threshold_high")
+    if _is_number(lo) and _is_number(hi):
+        if lo > hi:
+            return None  # inverted interval -- authoring error, do not adjudicate
+        lo_strict = str(p.get("comparator_low", ">=")).strip() == ">"
+        hi_strict = str(p.get("comparator_high", "<=")).strip() == "<"
+        low_ok = (m > lo) if lo_strict else (m >= lo)
+        high_ok = (m < hi) if hi_strict else (m <= hi)
+        return not (low_ok and high_ok)
+
+    # An entry that DECLARES itself two-sided but ships fewer than both bounds is
+    # malformed, not single-bounded. Falling through would silently read it as a
+    # FLOOR (_precondition_direction does not recognise "interval" and defaults to
+    # "lower"), i.e. adjudicate a band on one leg -- the exact defect the interval
+    # shape exists to remove. Refuse to recompute instead.
+    d = p.get("direction")
+    if isinstance(d, str) and d.strip().lower() in _INTERVAL_DIRECTIONS:
+        return None
+
+    t = p.get("threshold")
+    if not _is_number(t):
+        return None
+    comp = p.get("comparator")
+    comp = comp.strip() if isinstance(comp, str) else ""
+    if _precondition_direction(p) == "upper":
+        return m >= t if comp == "<" else m > t
+    return m <= t if comp == ">" else m < t
 
 
 def _compute_adjudication(interpretation: Any, status: str,
@@ -295,17 +378,11 @@ def _compute_adjudication(interpretation: Any, status: str,
     # are unaffected; without this, an upper-bound "stayed below the explosion
     # ceiling" check (rolled_out_zworld_*_bounded, measured 0.19 vs threshold 1e6)
     # was false-flagged precondition_unmet (V3-EXQ-648a / V3-EXQ-649, 2026-06-07).
+    # Bound resolution (incl. the two-sided INTERVAL shape and comparator
+    # strictness) lives in _precondition_unmet; None == not recomputable, which
+    # falls through to the legacy author-trusted path below.
     for p in preconditions:
-        if not isinstance(p, dict):
-            continue
-        m, t = p.get("measured"), p.get("threshold")
-        if not (_is_number(m) and _is_number(t)):
-            continue
-        if _precondition_direction(p) == "upper":
-            unmet = m > t
-        else:
-            unmet = m < t
-        if unmet:
+        if _precondition_unmet(p) is True:
             return label, "precondition_unmet"
 
     # (3b) Aggregation-vacuity (the V3-EXQ-621a pattern). An overall PASS while a
@@ -333,8 +410,8 @@ def _compute_adjudication(interpretation: Any, status: str,
     for p in preconditions:
         if not isinstance(p, dict):
             continue
-        if _is_number(p.get("measured")) and _is_number(p.get("threshold")):
-            continue
+        if _precondition_unmet(p) is not None:
+            continue  # governed by the (3a) recompute above, which is authoritative
         if p.get("met") is False:
             return label, "precondition_unmet"
     # A PASS that rests on a degenerate criterion clears a gate on nothing.

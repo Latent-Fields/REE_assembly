@@ -137,6 +137,122 @@ def test_non_diagnostic_is_na():
     assert flag == "n/a", flag
 
 
+# --- two-sided INTERVAL preconditions (2026-07-19) -------------------------
+# Motivating shape: V3-EXQ-779b `baseline_entropy_headroom`, whose backing check
+# is `E_SAT_LOW < S < E_SAT_HIGH` (0.02 < S < 0.98). The single-bound
+# direction/comparator vocabulary could declare only ONE leg, so the 0.02 floor
+# was absent from the manifest entirely and the recompute adjudicated on the
+# ceiling alone -- a saturated-to-zero baseline (S = 0.001, the exact condition
+# the check exists to catch) recomputed as MET.
+
+def _band(measured, lo=0.02, hi=0.98, strict=True, met=True):
+    p = {"name": "baseline_entropy_headroom", "kind": "capability",
+         "measured": measured, "threshold_low": lo, "threshold_high": hi,
+         "direction": "interval", "met": met}
+    if strict:
+        p["comparator_low"] = ">"
+        p["comparator_high"] = "<"
+    return p
+
+
+def test_interval_inside_band_is_met():
+    assert b._precondition_unmet(_band(0.53)) is False
+
+
+def test_interval_below_low_leg_is_unmet():
+    """The leg the old vocabulary could not express: a floor violation."""
+    assert b._precondition_unmet(_band(0.001)) is True
+
+
+def test_interval_above_high_leg_is_unmet():
+    assert b._precondition_unmet(_band(0.995)) is True
+
+
+def test_interval_strict_legs_exclude_the_endpoints():
+    """779b's check is STRICT on both legs, so measured == a bound is UNMET."""
+    assert b._precondition_unmet(_band(0.02)) is True
+    assert b._precondition_unmet(_band(0.98)) is True
+
+
+def test_interval_non_strict_legs_include_the_endpoints():
+    """Default (comparators absent) is inclusive on both legs."""
+    assert b._precondition_unmet(_band(0.02, strict=False)) is False
+    assert b._precondition_unmet(_band(0.98, strict=False)) is False
+
+
+def test_interval_drives_adjudication_end_to_end():
+    """A saturated baseline inside a PASS run is caught, not waved through."""
+    _, flag = b._compute_adjudication(_interp([_band(0.001)]), "PASS", "diagnostic")
+    assert flag == "precondition_unmet", flag
+    _, flag = b._compute_adjudication(_interp([_band(0.53)]), "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_interval_needs_no_threshold_key():
+    """An interval entry carries no single `threshold`, and must NOT therefore
+    fall through to the legacy author-trusted `met is False` path."""
+    p = _band(0.001, met=True)
+    assert "threshold" not in p
+    _, flag = b._compute_adjudication(_interp([p]), "PASS", "diagnostic")
+    assert flag == "precondition_unmet", flag
+
+
+def test_inverted_interval_is_not_recomputable():
+    """low > high is an authoring error; refuse to adjudicate rather than flag
+    every such run unmet (the 2026-06-07 directionality bug's failure mode)."""
+    assert b._precondition_unmet(_band(0.5, lo=0.98, hi=0.02)) is None
+
+
+def test_declared_interval_missing_a_bound_is_not_recomputable():
+    """A half-declared band must NOT silently degrade to a FLOOR read --
+    _precondition_direction does not know "interval" and would default to
+    "lower", adjudicating the band on one leg."""
+    p = {"name": "n", "measured": 0.001, "threshold": 0.98, "direction": "interval"}
+    assert b._precondition_unmet(p) is None
+    p2 = {"name": "n", "measured": 0.001, "threshold_high": 0.98, "direction": "band"}
+    assert b._precondition_unmet(p2) is None
+
+
+def test_interval_ignores_a_stray_threshold_key():
+    """Both bounds present wins over a legacy single `threshold`."""
+    p = _band(0.001)
+    p["threshold"] = 0.98  # legacy ceiling-only view
+    assert b._precondition_unmet(p) is True
+
+
+# --- single-bound comparator STRICTNESS (2026-07-19) ------------------------
+# Previously ">" and ">=" were byte-identical in effect: _precondition_direction
+# collapsed both to "lower" and the recompute hardcoded `m < t`. No manifest in
+# the corpus declared a strict comparator when this landed (survey 2026-07-19:
+# 1553 entries, comparator values {"<=": 4}), so this is a pure extension.
+
+def test_strict_floor_excludes_the_endpoint():
+    p = {"name": "n", "measured": 10, "threshold": 10, "comparator": ">"}
+    assert b._precondition_unmet(p) is True
+
+
+def test_non_strict_floor_includes_the_endpoint():
+    p = {"name": "n", "measured": 10, "threshold": 10, "comparator": ">="}
+    assert b._precondition_unmet(p) is False
+    assert b._precondition_unmet({"name": "n", "measured": 10, "threshold": 10}) is False
+
+
+def test_strict_ceiling_excludes_the_endpoint():
+    p = {"name": "n", "measured": 10, "threshold": 10, "comparator": "<"}
+    assert b._precondition_unmet(p) is True
+
+
+def test_non_strict_ceiling_includes_the_endpoint():
+    p = {"name": "n", "measured": 10, "threshold": 10, "comparator": "<="}
+    assert b._precondition_unmet(p) is False
+
+
+def test_non_numeric_entry_is_not_recomputable():
+    assert b._precondition_unmet({"name": "n", "met": False}) is None
+    assert b._precondition_unmet({"name": "n", "measured": "x", "threshold": 1}) is None
+    assert b._precondition_unmet("not a dict") is None
+
+
 # --- flat-manifest authoritative override (2026-06-14 regression) ----------
 # Root cause: _scan_runs scores runs/<run_id>/manifest.json (the "pack" copy),
 # but /failure-autopsy + governance corrections are written to the flat
