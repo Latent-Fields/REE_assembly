@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-19T11:37:06Z",
+  "generated_at": "2026-07-19T15:30:14Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 117,
-      "built_modules": 91,
-      "fraction_built": 0.7778,
+      "built_modules": 92,
+      "fraction_built": 0.7863,
       "state_counts": {
-        "proposed": 26,
-        "implemented": 67,
+        "proposed": 25,
+        "implemented": 68,
         "implemented_pending_validation": 13,
         "validated": 11
       },
-      "build_proof_gap": 80,
-      "build_proof_gap_note": "91 modules built, 80 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 81,
+      "build_proof_gap_note": "92 modules built, 81 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,77 +31,78 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 23,
-      "total_initial": 39,
-      "total_initial_at_registration": 30,
+      "total_surviving": 24,
+      "total_initial": 42,
+      "total_initial_at_registration": 33,
       "total_fanout_added": 9,
-      "total_resolved_out": 16,
-      "reduction_pct_vs_current": 41.0,
-      "net_narrowing_pct": 23.3,
+      "total_resolved_out": 19,
+      "reduction_pct_vs_current": 45.2,
+      "net_narrowing_pct": 27.3,
       "convergence_classes": {
         "narrowing": 5,
         "static": 3,
-        "circling": 1
+        "circling": 1,
+        "indeterminate": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "23 alive against 30 originally enumerated, and against 39 including 9 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 9
+      "honest_pair_note": "24 alive against 33 originally enumerated, and against 42 including 9 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 10
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 4,
-      "open_questions": 9
+      "ready": 5,
+      "open_questions": 10
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 38,
+      "surviving": 41,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-13",
-      "surviving": 36,
+      "surviving": 39,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-15",
-      "surviving": 32,
+      "surviving": 35,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-16",
-      "surviving": 31,
+      "surviving": 34,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-17",
-      "surviving": 28,
+      "surviving": 31,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-18",
-      "surviving": 23,
+      "surviving": 25,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     },
     {
       "date": "2026-07-19",
-      "surviving": 23,
+      "surviving": 24,
       "closure_pct": 77.5,
-      "build_pct": 77.8
+      "build_pct": 78.6
     }
   ],
   "questions": [
     {
       "qid": "competence_floor",
-      "title": "Why is committed competence stuck below the foraging floor?",
-      "short_title": "competence floor",
+      "title": "What governs whether competence, once installed above the foraging floor, is retained -- and why does the imitation pathway install on raw_view but not on z_world?",
+      "short_title": "competence retention + installability",
       "claims": [
         "MECH-457",
         "INV-088"
@@ -149,8 +150,8 @@
         }
       ],
       "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
-      "net_narrowing_ratio": 0.1429,
-      "bits_removed_vs_registration": 0.22,
+      "net_narrowing_ratio": 0.2857,
+      "bits_removed_vs_registration": 0.49,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
@@ -270,17 +271,17 @@
           }
         ]
       },
-      "surviving": 6,
-      "alive": 5,
-      "resolved_out": 10,
+      "surviving": 5,
+      "alive": 4,
+      "resolved_out": 11,
       "confirmed": 1,
-      "reduction_numerator": 10,
-      "reduction_ratio": 0.625,
-      "bits_removed": 1.42,
+      "reduction_numerator": 11,
+      "reduction_ratio": 0.6875,
+      "bits_removed": 1.68,
       "synthesis": {
-        "surviving_label": "competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination",
-        "text": "Floor = success-dependence + capacity-to-convert. FOUR axes now eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772): the learned actor-critic converter cannot extract a competent policy from a provably-sufficient observation, invariant to all config/env/credit/capacity levers. RND (H-optim) remains a necessary-not-sufficient seed. The missing dependency is a competence-directed bootstrap; BC (imitation, 32.72) is the only floor-clearing existence proof. Next = GOV-FANOUT-1 discrimination H-bc-prior vs H-approach-primitive.",
-        "under_test": "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)"
+        "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
+        "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it.",
+        "under_test": "RETENTION portfolio -- 2 of 4 legs now buildable and UNQUEUED (H-retention-critic on ree-v3 8e88ffc; H-retention-auxiliary-decay on ree-v3 9a8dbae, both landed 2026-07-18). H-retention-consolidation and H-consummation-binding remain substrate-blocked (mech457_policy_kl_anchor, mech457_consummatory_act -- both 'proposed'). The superseded H-bc-prior / H-approach-primitive portfolio RAN and RESOLVED on 2026-07-18: V3-EXQ-780 inconclusive (self-route rejected; leg split 2026-07-19T15:14:23Z), V3-EXQ-781 non_contributory (H-approach-primitive eliminated)."
       },
       "hypotheses": [
         {
@@ -428,13 +429,36 @@
           "label": "competence-directed behavioral prior (imitation seed)",
           "desc": "seed the composed actor with a BC-of-policy warm-start / imitation auxiliary distilled from a floor-clearing demonstrator (local_view_greedy or oracle)",
           "axis": "learning-signal",
-          "state": "alive",
+          "state": "split",
           "evidence_runs": [
             "V3-EXQ-780"
           ],
-          "basis": "NOT ELIMINATED -- V3-EXQ-780 ran but does not discriminate this leg, and its self-route bc_prior_not_the_axis is REJECTED on autopsy. The pre-registered null is verbatim 'treat still forages ~0 both reps'; raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's OWN declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583, 0/3 seeds took the BC seed -- manipulation NEVER INSTALLED, arm uninformative. raw_view: post_bc 20.933, 3/3 seeds took -- manipulation installed ABOVE the 13.05 lift-competence target (inside the 32.72 BC-expert band, vs a 48.05 local-view ceiling), then ERODED by RL to 11.667. Readiness met; non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. RE-POSED: 20.933 is the FIRST observation in this campaign of the agent exceeding the lift-competence target, so the leg's open question shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it. V3-EXQ-782 R-(b) supplies the leading mechanism candidate -- a flat, uninformed critic on the shared CTRL path (std(V)/std(G)=0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior. Secondary: the z_world imitation pathway is its own implementation gap (0/3 install). Routed to a retention re-pose under a NEW EXQ number (re-derive brake permits: new question, new null, new measurement, and a positive control no prior leg had). Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.",
-          "children": [],
-          "met_elimination_bar": false
+          "basis": "SPLIT THREE WAYS 2026-07-19T15:14:23Z (competence_floor_reposing_2026-07-19.md section 5c / D5; user-adjudicated at the /failure-autopsy Step 8 gate). This leg's own prior basis already stated the open question 'shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it' -- i.e. it was straddling an ANSWERED question and an OPEN one. It read 'inconclusive' precisely BECAUSE it was posed as one question when the evidence resolves into three, and the split is the operation that corrects that: acquisition-on-raw_view CONFIRMED (20.933, 3/3), retention OPEN and routed to the four legs that own it, installability-on-z_world OPEN and UNOWNED (0.583, 0/3). ALIVE COUNT 5 -> 4, and this is a CORRECTION, NOT NARROWING: the retention half was double-counted (held simultaneously by this leg and by the four H-retention-* legs), and removing the double-count is what the decrement records. No new evidence was gathered and nothing was eliminated -- the elimination bar is met on CHILD 1 ONLY (control_passed, non_degenerate, supports), and children 2 and 3 remain open by construction. This OVERTURNS the 780/781/782 cluster autopsy's deliberate met_elimination_bar:false, and does so on an explicit adjudication rather than silently: that autopsy was right to refuse to bank an unadjudicated leg, and this split banks only the half its own load-bearing covariate had already decided. PRIOR BASIS PRESERVED VERBATIM BELOW.\n\n--- PRIOR BASIS (cluster autopsy, 2026-07-18) ---\nNOT ELIMINATED -- V3-EXQ-780 ran but does not discriminate this leg, and its self-route bc_prior_not_the_axis is REJECTED on autopsy. The pre-registered null is verbatim 'treat still forages ~0 both reps'; raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's OWN declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583, 0/3 seeds took the BC seed -- manipulation NEVER INSTALLED, arm uninformative. raw_view: post_bc 20.933, 3/3 seeds took -- manipulation installed ABOVE the 13.05 lift-competence target (inside the 32.72 BC-expert band, vs a 48.05 local-view ceiling), then ERODED by RL to 11.667. Readiness met; non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. RE-POSED: 20.933 is the FIRST observation in this campaign of the agent exceeding the lift-competence target, so the leg's open question shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it. V3-EXQ-782 R-(b) supplies the leading mechanism candidate -- a flat, uninformed critic on the shared CTRL path (std(V)/std(G)=0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior. Secondary: the z_world imitation pathway is its own implementation gap (0/3 install). Routed to a retention re-pose under a NEW EXQ number (re-derive brake permits: new question, new null, new measurement, and a positive control no prior leg had). Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.",
+          "children": [
+            {
+              "label": "a competence-directed behavioural prior CAN produce supra-lift-target competence -- on raw_view",
+              "state": "confirmed",
+              "basis": "V3-EXQ-780 raw_view: post_bc 20.933, 3/3 seeds took the install -- above the 13.05 lift target, inside the 32.72 BC-expert band, against a 48.05 local_view_greedy ceiling. control_passed and non_degenerate both true. This is the campaign's FIRST supra-lift-target observation and the existence proof that answers the ACQUISITION half affirmatively."
+            },
+            {
+              "label": "but the installed prior is NOT RETAINED under RL refinement",
+              "state": "open_routed",
+              "routed_to": [
+                "H-retention-critic",
+                "H-retention-consolidation",
+                "H-retention-auxiliary-decay",
+                "H-consummation-binding"
+              ],
+              "basis": "raw_view eroded 20.933 post-BC -> 17.993 train-recent -> 11.667 unshaped D3 eval. NOT eliminated and NOT confirmed -- re-routed. This half is already owned by the four-leg retention portfolio, so leaving it inside H-bc-prior DOUBLE-COUNTED it. Leading mechanism candidate: V3-EXQ-782 R-(b)'s flat, uninformed critic (std(V)/std(G) 0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor)."
+            },
+            {
+              "label": "and the imitation pathway does not INSTALL AT ALL on the detached z_world representation",
+              "state": "open_unowned",
+              "routed_to": [],
+              "basis": "V3-EXQ-780 z_world: post_bc 0.583, 0/3 seeds took -- the manipulation never installed, so that arm is uninformative about retention. This is a distinct explanandum (INSTALLABILITY, not retention) and NO REGISTERED LEG OWNS IT. Surfaced here rather than in a new qid because the qid split was adjudicated and deferred (see decision.bifurcation_note). Under diagnosis by session blissful-hugle-5dd043 (claimed 2026-07-18T18:28Z); as at 2026-07-19T15:14:23Z that session has landed NO finding note under evidence/planning/. When its diagnosis lands, this child is the seed for the installability question's first leg."
+            }
+          ],
+          "met_elimination_bar": true
         },
         {
           "hid": "H-approach-primitive",
@@ -456,7 +480,7 @@
           "axis": "algorithm",
           "state": "alive",
           "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_distributional_critic (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-19T15:14:23Z. The blocking build landed 2026-07-18: ree-v3 8e88ffc (mech457_distributional_critic), recorded status 'implemented' in evidence/planning/substrate_queue.json. probe_status cleared substrate_blocked -> buildable_unqueued (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. Queue AS A PAIR with the other unblocked retention leg, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -478,7 +502,7 @@
           "axis": "learning-signal",
           "state": "alive",
           "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_bc_aux_schedule (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-19T15:14:23Z. The blocking build landed 2026-07-18: ree-v3 9a8dbae (mech457_bc_aux_schedule), recorded status 'implemented' in evidence/planning/substrate_queue.json. probe_status cleared substrate_blocked -> buildable_unqueued (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. Queue AS A PAIR with the other unblocked retention leg, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -495,12 +519,12 @@
         }
       ],
       "decision": {
-        "readiness_state": "discriminative_ready",
-        "evidence_decile": 7,
-        "decision_question": "Which competence-directed dependency lets the actor-critic convert a sufficient observation into competent foraging -- a learned behavioral prior (imitation) or an innate non-extinguishing approach primitive?",
-        "distance_phrase": "1 discriminative portfolio -- H-bc-prior vs H-approach-primitive (not yet queued)",
-        "live_gate": "pending -- H-bc-prior vs H-approach-primitive portfolio",
-        "observation_bottleneck": null
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "What sets the decay half-life of an already-installed competent policy under continued RL refinement -- the value estimator, the update constraint, auxiliary persistence, or consummatory binding?",
+        "distance_phrase": "2 buildable retention legs, queued as a pair -- unblocked and not yet queued (was 'not yet queued' for a portfolio that had already run; corrected 2026-07-19T15:14:23Z)",
+        "live_gate": "H-retention-critic + H-retention-auxiliary-decay, queued AS A PAIR under new EXQ numbers. Both substrate-unblocked 2026-07-18; the retention portfolio's own 'queue nothing until at least two legs are buildable' gate is MET, and ree-v3/experiment_queue.json is empty. Pair, not singly: GOV-FANOUT-1 exists because adjudicating a leg in isolation is how a confident-but-wrong elimination enters the frozen ledger, and 781's elimination alone would have rested on no demonstration that competence was reachable at all.",
+        "observation_bottleneck": "Any new leg on this question MUST carry the four measurement_requirement constraints: a competence TRAJECTORY DV (not terminal); an explicit 'manipulation succeeded and then decayed' branch in the interpretation grid; routing on DECLARED COVARIATES; and substrate_not_ready_requeue when an install did not take. V3-EXQ-780 is the standing worked example of what their absence costs -- the catching covariate (post_bc_foraging_competence) was present, declared and load-bearing, yet the grid enumerated only a ~0 null, so a manipulation that succeeded ABOVE target was scored a null. The instrumentation was adequate; the interpretation grid was not."
       }
     },
     {
@@ -1196,9 +1220,111 @@
         "live_gate": null,
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "arousal-variance-amplifier",
+      "title": "Does global scalar arousal amplify selection variance by CONCENTRATING it on the incumbent channel, or by BROADENING it across subordinate channels?",
+      "short_title": "Arousal: concentrate or broaden?",
+      "claims": [
+        "MECH-463"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.3333,
+      "bits_removed_vs_registration": 0.58,
+      "convergence": {
+        "convergence_class": "indeterminate",
+        "reason": "2 axis label(s) not in the declared family map (instrumentation, process) -- extend `axis_families.map` to classify.",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [],
+        "unclassified_axes": [
+          "instrumentation",
+          "process"
+        ],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 1,
+      "resolved_out": 2,
+      "confirmed": 0,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.6667,
+      "bits_removed": 0.58,
+      "synthesis": {
+        "surviving_label": "what DID drive the V3-EXQ-785 profile -- hazard-proximate candidate geometry is the residual candidate but is not itself confirmed; and whether the inertness is channel-agnostic across incumbent identities",
+        "text": "Global scalar arousal is causally INERT on committed-selection variance geometry at the harm_weighted incumbent, on the SD-011 commit-threshold route. V3-EXQ-785's entire profile -- the 14.1x amplification AND the 0.970->0.831 incumbent dilution -- was the endogeneity confound: it measured urgency endogenously, so high-urgency ticks were also near-hazard ticks. Under exogenous assignment across a wider (8.5x vs 1.8x) and better-powered range, both halves are flat. 785 is therefore superseded, not merely mixed. What replaces them is NOT yet established: hazard geometry is the surviving residual candidate but its apparent direct signal here is a between-seed artifact. Two caveats bound this: (1) it is ONE incumbent identity -- the entropy regime was dropped with recorded evidence (CH:mech341 absorbs ~99-115% of cross-candidate variance at every entropy_bias_scale in {0.15,0.30,0.50,1.00}), so channel-agnosticism is UNTESTED; (2) z_world is under-differentiated (participation ratio ~1.06 at world_dim=128, absolute variances ~1.2e-05), leaving live the reading that the substrate cannot EXPRESS the effect rather than that it does not exist -- an objection that bites the fix, not the measurement."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-arousal-concentrates",
+          "label": "Arousal concentrates variance on the incumbent (MECH-463 as registered)",
+          "desc": "Incumbent share of committed-selection score variance rises monotonically with urgency decile, channel-agnostically across incumbent identities.",
+          "axis": "process",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-785a"
+          ],
+          "basis": "Under EXOGENOUS urgency (i.i.d. uniform over a pre-registered grid, confound broken by construction, gate GREEN, non_degenerate true) the incumbent share does NOT rise: 0.9375 -> 0.9411 across an 8.5x urgency range (0.04-0.34), gap +0.0036 against a +0.02 threshold, rho +0.31 vs +0.6. The null is tight, not underpowered: within-level share SD ~0.075-0.082 at ~290 rows/level gives SE ~0.0044, so the gap is under 1 SE, and per-seed gaps straddle zero [-0.0016,+0.0119,+0.0021,+0.0081,-0.0058]. Independently reconfirmed at tick level on the 1757 committed rows in custom_information.per_tick_rows: corr(assigned_urgency, incumbent share) = +0.010. Internal validity held -- the manipulation genuinely moved the gate (effective_threshold 0.3761 -> 0.2570, a 32% reduction) with injection fidelity 5.6e-17 and randomisation corr(assigned_urgency, hazard_prox) = 0.0177, so this is 'no effect', not 'no treatment'. ELIMINATED at the harm_weighted incumbent identity only; MECH-463's CHANNEL-AGNOSTICISM half remains untested (second regime dropped with recorded evidence).",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-arousal-broadens",
+          "label": "Arousal amplifies total variance but broadens it toward subordinate channels",
+          "desc": "Total cross-candidate variance rises with urgency while the incumbent's SHARE falls, because subordinate channels' absolute variance grows faster. Mechanism candidate: the commit threshold is an ADMISSION threshold, so shrinking it admits lower-separation ticks.",
+          "axis": "process",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-785a"
+          ],
+          "basis": "Both halves fail under exogenous urgency. Total cross-candidate variance does not rise: var_total fold 0.970 (i.e. 1.0x) vs 785's endogenous 14.1x, rho -0.086 vs a +0.6 threshold, per-seed log10 deltas straddling zero [+0.0011,-0.0125,-0.0270,+0.0021,-0.0257]; tick-level corr(assigned_urgency, log10 var_total) = -0.005. And the incumbent share does not fall (see H-arousal-concentrates). Its proposed mechanism -- 'the commit threshold is an ADMISSION threshold, so shrinking it admits lower-separation ticks' -- is separately ruled out: C3 measured commit rate flat at ~0.99-1.00 across all six levels (span 0.0099, rho -0.086) despite the 32% threshold movement. The mechanism was also mis-signed at pre-registration: committed = variance < commit_threshold*(1-urgency) is an UPPER bound, so raising urgency makes admission STRICTER, not less selective; and the gated quantity is the z_world running variance (world-model stability), not candidate separation, since use_harm_variance_commit is off.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-endogenous-hazard-geometry",
+          "label": "The profile is hazard geometry, not arousal",
+          "desc": "High-urgency ticks are near-hazard ticks whose candidate geometry differs for reasons unrelated to the arousal scalar; both the variance rise and the share redistribution are artifacts of conditioning on an endogenous variable.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-785a"
+          ],
+          "basis": "STRENGTHENED as the residual explanation but NOT directly confirmed -- state deliberately unchanged. Residual support: with the endogeneity confound broken by construction, BOTH 785 effects vanish, so whatever drove them co-varied with endogenous urgency; hazard proximity is the named candidate. But the direct test does NOT carry. Pooled over all 1757 committed rows the hazard covariate appears to reproduce the 785 profile (corr(hazard_prox_mean, share) = -0.187, corr(hazard_prox_mean, log10 var) = +0.171 -- same signs as 785). WITHIN SEED it vanishes and mostly reverses: per-seed r(hazard, share) = [+0.089,+0.076,+0.041,-0.125,+0.135] and tertile share gaps [+0.011,+0.012,+0.005,-0.014,+0.014], i.e. mostly POSITIVE, opposite in sign to the pooled estimate; per-seed variance folds ~0.93-1.07x. The pooled signal is between-seed heterogeneity (across the 5 seed means, r(mean hazard, mean share) = -0.78 and r(mean hazard, mean var) = +0.77), carried largely by seed 0 (mean share 0.833, mean var 4.47e-05, ~7x the other seeds) -- Simpson's paradox on n=5. Notably seed 0's mean share 0.833 is near-identical to 785's endpoint 0.831. Per the Step 9b mapping table this is the 'does not discriminate' row: resolving_runs and basis recorded, state unchanged, no bit claimed. Confirming it needs a run that MANIPULATES hazard proximity, or a within-seed design with enough seeds to separate the two.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is global scalar arousal an ENTRENCHMENT mechanism (concentrating variance on the dominant channel, as MECH-463 asserts and as the conversion-ceiling argument invokes) or a DIVERSITY lever (broadening the variance base)?",
+        "distance_phrase": "decided for the harm_weighted incumbent on the commit-threshold route; channel-agnosticism still one regime away",
+        "live_gate": null,
+        "observation_bottleneck": "Resolved for this route: V3-EXQ-785a embedded the per-tick record IN the manifest (custom_information.per_tick_rows), fixing the 785 sidecar loss -- a sidecar written next to the manifest on a cloud worker is never transported under Phase 3 (PHASE3_DISABLE_RUNNER_RESULT_PUSH=1). Remaining bottleneck for the channel-agnosticism half: no viable second incumbent identity on the entropy axis."
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-785a",
+      "all_runs": [
+        "V3-EXQ-785a"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "arousal-variance-amplifier",
+      "claims": [
+        "MECH-463"
+      ],
+      "moved": "Under EXOGENOUS urgency (i.i.d. uniform over a pre-registered grid, confound broken by construction, gate GREEN, non_degenerate true) the incumbent share does NOT rise: 0.9375 -> 0.9411 across an 8.5x urgency range (0.04-0.34), gap +0.0036 against a +0.02 threshold, rho +0.31 vs +0.6. The null is tight, not underpowered: within-level share SD ~0.075-0.082 at ~290 rows/level gives SE ~0.0044, so the gap is under 1 SE, and per-seed gaps straddle zero [-0.0016,+0.0119,+0.0021,+0.0081,-0.0058]. Independently reconfirmed at tick level on the 1757 committed rows in custom_information.per_tick_rows: corr(assigned_urgency, incumbent share) = +0.010. Internal validity held -- the manipulation genuinely moved the gate (effective_threshold 0.3761 -> 0.2570, a 32% reduction) with injection fidelity 5.6e-17 and randomisation corr(assigned_urgency, hazard_prox) = 0.0177, so this is 'no effect', not 'no treatment'. ELIMINATED at the harm_weighted incumbent identity only; MECH-463's CHANNEL-AGNOSTICISM half remains untested (second regime dropped with recorded evidence).",
+      "resolved_utc": "2026-07-19T13:34:31Z",
+      "evidence_direction": "weakens"
+    },
     {
       "run": "V3-EXQ-778e",
       "all_runs": [
@@ -1248,6 +1374,21 @@
       ],
       "moved": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687. Provenance updated 2026-07-19: V3-EXQ-778h (anchorfix re-run, supersedes V3-EXQ-778d) reproduces this result on a corrected readiness anchor -- anchor railed 8/8 seeds and the unpaired null de-railed 7/8, confirming the 1e-3 positivity-clamp artifact is real. Scored non_contributory (ledger hygiene, not double-counted weight); see failure_autopsy_V3-EXQ-778h_2026-07-19.json.",
       "resolved_utc": "2026-07-18T12:42:16Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-780",
+      "all_runs": [
+        "V3-EXQ-780"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "SPLIT THREE WAYS 2026-07-19T15:14:23Z (competence_floor_reposing_2026-07-19.md section 5c / D5; user-adjudicated at the /failure-autopsy Step 8 gate). This leg's own prior basis already stated the open question 'shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it' -- i.e. it was straddling an ANSWERED question and an OPEN one. It read 'inconclusive' precisely BECAUSE it was posed as one question when the evidence resolves into three, and the split is the operation that corrects that: acquisition-on-raw_view CONFIRMED (20.933, 3/3), retention OPEN and routed to the four legs that own it, installability-on-z_world OPEN and UNOWNED (0.583, 0/3). ALIVE COUNT 5 -> 4, and this is a CORRECTION, NOT NARROWING: the retention half was double-counted (held simultaneously by this leg and by the four H-retention-* legs), and removing the double-count is what the decrement records. No new evidence was gathered and nothing was eliminated -- the elimination bar is met on CHILD 1 ONLY (control_passed, non_degenerate, supports), and children 2 and 3 remain open by construction. This OVERTURNS the 780/781/782 cluster autopsy's deliberate met_elimination_bar:false, and does so on an explicit adjudication rather than silently: that autopsy was right to refuse to bank an unadjudicated leg, and this split banks only the half its own load-bearing covariate had already decided. PRIOR BASIS PRESERVED VERBATIM BELOW.\n\n--- PRIOR BASIS (cluster autopsy, 2026-07-18) ---\nNOT ELIMINATED -- V3-EXQ-780 ran but does not discriminate this leg, and its self-route bc_prior_not_the_axis is REJECTED on autopsy. The pre-registered null is verbatim 'treat still forages ~0 both reps'; raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's OWN declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583, 0/3 seeds took the BC seed -- manipulation NEVER INSTALLED, arm uninformative. raw_view: post_bc 20.933, 3/3 seeds took -- manipulation installed ABOVE the 13.05 lift-competence target (inside the 32.72 BC-expert band, vs a 48.05 local-view ceiling), then ERODED by RL to 11.667. Readiness met; non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. RE-POSED: 20.933 is the FIRST observation in this campaign of the agent exceeding the lift-competence target, so the leg's open question shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it. V3-EXQ-782 R-(b) supplies the leading mechanism candidate -- a flat, uninformed critic on the shared CTRL path (std(V)/std(G)=0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior. Secondary: the z_world imitation pathway is its own implementation gap (0/3 install). Routed to a retention re-pose under a NEW EXQ number (re-derive brake permits: new question, new null, new measurement, and a positive control no prior leg had). Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.",
+      "resolved_utc": "2026-07-18T12:33:25Z",
       "evidence_direction": "supports"
     },
     {
@@ -1540,36 +1681,6 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)",
-      "all_runs": [
-        "pending -- H-bc-prior / H-approach-primitive portfolio (to be queued)"
-      ],
-      "momentum_class": "implementation_completed",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "Composed build under test: competence-directed bootstrap (behavioral-prior OR approach-primitive) -- which is the open discrimination (substrate landed, proof pending).",
-      "resolved_utc": null,
-      "evidence_direction": "pending"
-    },
-    {
-      "run": "V3-EXQ-780",
-      "all_runs": [
-        "V3-EXQ-780"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "NOT ELIMINATED -- V3-EXQ-780 ran but does not discriminate this leg, and its self-route bc_prior_not_the_axis is REJECTED on autopsy. The pre-registered null is verbatim 'treat still forages ~0 both reps'; raw_view treat forages 11.667 at unshaped D3 eval (17.993 train-recent, 20.933 immediately post-BC), so the null's ANTECEDENT IS FALSIFIED and its consequent must not be applied. The experiment's OWN declared covariate decides this: load_bearing_dv states 'post_bc_foraging_competence separates seed never took from seed erased by RL', and it fires into two branches, NEITHER of which is the self-route. z_world: post_bc 0.583, 0/3 seeds took the BC seed -- manipulation NEVER INSTALLED, arm uninformative. raw_view: post_bc 20.933, 3/3 seeds took -- manipulation installed ABOVE the 13.05 lift-competence target (inside the 32.72 BC-expert band, vs a 48.05 local-view ceiling), then ERODED by RL to 11.667. Readiness met; non_degenerate=True; criteria_non_degenerate all true -- the defect is in the interpretation grid, which enumerated only a ~0 null, not in the instrumentation. RE-POSED: 20.933 is the FIRST observation in this campaign of the agent exceeding the lift-competence target, so the leg's open question shifts from whether a behavioural prior can produce competence (it can) to why the substrate does not RETAIN it. V3-EXQ-782 R-(b) supplies the leading mechanism candidate -- a flat, uninformed critic on the shared CTRL path (std(V)/std(G)=0.041 vs a 0.25 collapse threshold; pre-reward-vs-far separation 0.016 vs a 0.25 floor) yields an unbaselined high-variance advantage, exactly what drifts a policy off an installed prior. Secondary: the z_world imitation pathway is its own implementation gap (0/3 install). Routed to a retention re-pose under a NEW EXQ number (re-derive brake permits: new question, new null, new measurement, and a positive control no prior leg had). Adjudicated in failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.",
-      "resolved_utc": null,
-      "evidence_direction": "inconclusive"
-    },
-    {
       "run": "V3-EXQ-779b",
       "all_runs": [
         "V3-EXQ-779",
@@ -1617,6 +1728,21 @@
       "moved": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "RETENTION portfolio -- 2 of 4 legs now buildable and UNQUEUED (H-retention-critic on ree-v3 8e88ffc; H-retention-auxiliary-decay on ree-v3 9a8dbae, both landed 2026-07-18). H-retention-consolidation and H-consummation-binding remain substrate-blocked (mech457_policy_kl_anchor, mech457_consummatory_act -- both 'proposed'). The superseded H-bc-prior / H-approach-primitive portfolio RAN and RESOLVED on 2026-07-18: V3-EXQ-780 inconclusive (self-route rejected; leg split 2026-07-19T15:14:23Z), V3-EXQ-781 non_contributory (H-approach-primitive eliminated).",
+      "all_runs": [
+        "RETENTION portfolio -- 2 of 4 legs now buildable and UNQUEUED (H-retention-critic on ree-v3 8e88ffc; H-retention-auxiliary-decay on ree-v3 9a8dbae, both landed 2026-07-18). H-retention-consolidation and H-consummation-binding remain substrate-blocked (mech457_policy_kl_anchor, mech457_consummatory_act -- both 'proposed'). The superseded H-bc-prior / H-approach-primitive portfolio RAN and RESOLVED on 2026-07-18: V3-EXQ-780 inconclusive (self-route rejected; leg split 2026-07-19T15:14:23Z), V3-EXQ-781 non_contributory (H-approach-primitive eliminated)."
+      ],
+      "momentum_class": "implementation_completed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "Composed build under test: retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life (substrate landed, proof pending).",
+      "resolved_utc": null,
+      "evidence_direction": "pending"
     }
   ],
   "references": {
