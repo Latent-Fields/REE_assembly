@@ -1,0 +1,242 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_788_mech457_retention_critic",
+  "run_id": "v3_exq_788_mech457_retention_critic_20260719T235543Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-19T23:55:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "retention_critic_retains_competence",
+    "preconditions": [
+      {
+        "name": "retcritic_scalar::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "retcritic_scalar",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view. Below-floor means the substrate/env is not ready, NOT that the critic failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_scalar::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "retcritic_scalar",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_scalar::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "retcritic_scalar",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed of this arm. 780 measured 20.933 here on raw_view with 3/3 seeds taking. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to retain, so the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 17.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_scalar::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "retcritic_scalar",
+        "kind": "measurability",
+        "description": "The retention DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "retcritic_distributional::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "retcritic_distributional",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view. Below-floor means the substrate/env is not ready, NOT that the critic failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_distributional::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "retcritic_distributional",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_distributional::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "retcritic_distributional",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed of this arm. 780 measured 20.933 here on raw_view with 3/3 seeds taking. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to retain, so the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 17.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retcritic_distributional::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "retcritic_distributional",
+        "kind": "measurability",
+        "description": "The retention DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "retcritic_distributional::distributional_value_head_enabled",
+        "precondition": "distributional_value_head_enabled",
+        "arm": "retcritic_distributional",
+        "kind": "manipulation_active",
+        "description": "The treatment arm must actually be running the categorical value head (1 = on). Scoped OUT of the scalar control arm, where a distributional head is not merely absent but is the very thing being controlled against -- asserting it there would make the control's gate structurally un-passable and collapse the two-arm design.",
+        "control": "cfg.use_distributional_critic as constructed for this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria": [
+      {
+        "name": "C_distributional_critic_retains_installed_competence",
+        "load_bearing": true,
+        "description": "The distributional-critic arm holds a strict majority of seeds at retained_fraction >= 0.5 AND beats the scalar arm's mean retained_fraction by >= 0.15.",
+        "passed": true
+      },
+      {
+        "name": "C_scalar_critic_baseline_erodes_installed_competence",
+        "load_bearing": false,
+        "description": "The scalar control arm does NOT hold the installed competence -- the contrast the treatment is read against.",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_distributional_critic_retains_installed_competence": true,
+      "C_scalar_critic_baseline_erodes_installed_competence": true,
+      "boot_arm_vs_anchor_foraging_spread": true,
+      "install_took_on_both_arms": true,
+      "trajectory_has_shape_on_both_arms": true
+    },
+    "anchor_reachability": {
+      "anchor_name": "post_bc_install_took",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "v3_exq_780_mech457_bc_prior_discrimination_20260718T123325Z_v3.json headline.per_representation.raw_view.treat_post_bc_forage_per_seed (mean 20.933333, 3/3 seeds took)",
+      "threshold": 1.0,
+      "margin_cells": 0,
+      "required_score": 1.0,
+      "reachable": true,
+      "n_reference_cells": 3,
+      "n_reference_scored_true": 3,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true,
+        true,
+        true
+      ]
+    },
+    "interpretation_grid": [
+      {
+        "label": "substrate_not_ready_requeue",
+        "outcome": "FAIL",
+        "condition": "an anchor is sub-floor, OR post_bc_foraging_competence fails the 1.0 install floor on a strict majority of seeds in either arm",
+        "reading": "There is no installed prior to retain, so the run is UNINFORMATIVE about retention. NEVER a retention verdict and never substrate_ceiling / substrate_conditional / does_not_support. Requeue."
+      },
+      {
+        "label": "retention_critic_retains_competence",
+        "outcome": "PASS",
+        "condition": "distributional arm retains on a strict majority of seeds AND beats the scalar arm's mean retained_fraction by the declared margin",
+        "reading": "A flat/uninformed value baseline WAS the retention deficit: an informed critic lets the installed policy be refined rather than washed out."
+      },
+      {
+        "label": "retention_critic_succeeded_then_decayed",
+        "outcome": "FAIL",
+        "condition": "distributional arm's trajectory PEAK cleared the lift-competence target on a strict majority of seeds, but its terminal retained_fraction fell below the retention floor",
+        "reading": "The manipulation SUCCEEDED and then DECAYED -- a retention-DYNAMICS finding, not a null. Read the trajectory and the half-life, not the terminal scalar. This is the branch V3-EXQ-780's grid lacked, which is why a manipulation that succeeded above target was scored a null there."
+      },
+      {
+        "label": "retention_eroded_under_both",
+        "outcome": "FAIL",
+        "condition": "neither arm retains and their mean retained_fraction differ by less than the declared margin",
+        "reading": "THE DECLARED NULL. The installed prior erodes identically under both critics -> the critic baseline is NOT the retention mechanism. Removes H-retention-critic from the live set; does NOT weaken MECH-457 (diagnostic). Read jointly with H-retention-auxiliary-decay (V3-EXQ-789)."
+      },
+      {
+        "label": "retention_grid_nondiscriminative",
+        "outcome": "FAIL",
+        "condition": "no arm passed its precondition gate, or the arms/anchors do not separate, or the readouts fall in none of the enumerated branches",
+        "reading": "Not a refutation. Unscored; re-pose the measurement."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.11.0+cpu",
+  "substrate_hash": "953cb8d0afb396690bc30ad04628cfc0bb14c670774e87599ffb7fb34d75ca46"
+}
