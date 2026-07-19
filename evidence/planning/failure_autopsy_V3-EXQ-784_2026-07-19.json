@@ -1,0 +1,270 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-19T04:51:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "admiring-shaw-6af5a6",
+  "session_label": "V3-EXQ-784 SD-074 diagnostic adjudication",
+  "adjudication_kind": "diagnostic_pass_adjudication",
+  "note": "PASS target. Adjudicated because experiment_purpose=diagnostic with claim_ids EMPTY: the self-routed interpretation.label is a hypothesis, not a verdict, and must be adjudicated before it drives a governance action (here: SD-074 IMPLEMENTED -> VALIDATED).",
+  "targets": [
+    {
+      "run_id": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3",
+      "queue_id": "V3-EXQ-784",
+      "claim_ids": [],
+      "substrate_under_test": "SD-074",
+      "routed_by": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18",
+      "outcome": "PASS",
+      "self_route_label": "warmup_desaturates_landscape",
+      "self_route_upheld": true,
+      "failed_criterion": null,
+
+      "vacuity_check": {
+        "is_vacuous": false,
+        "criteria_non_degenerate_present": true,
+        "criteria_non_degenerate": { "C1": true, "C2": true, "C3": true },
+        "load_bearing_criterion": "C1_majority_informative_at_some_budget",
+        "load_bearing_passed": true,
+        "per_budget_yields": [0.35714285714285715, 0.5714285714285714, 0.7142857142857143, 0.7857142857142857],
+        "yield_spread": 0.42857142857142855,
+        "n_distinct_yields": 4,
+        "monotone_non_decreasing": true,
+        "is_621a_aggregation_vacuity_shape": false,
+        "independently_recomputed_from_raw_d_means": true,
+        "author_figures_reproduced_exactly": true
+      },
+
+      "precondition_check": {
+        "all_met": true,
+        "indexer_recompute_agrees_with_author": true,
+        "preconditions": [
+          {
+            "name": "desaturation_read_cells_readable_frac",
+            "measured": 1.0, "threshold": 0.8, "direction": "lower",
+            "author_met": true, "recomputed_met": true, "agree": true
+          },
+          {
+            "name": "budget0_control_reproduces_777a_saturation",
+            "measured": 0.6429, "threshold": 0.5, "direction": "lower",
+            "author_met": true, "recomputed_met": true, "agree": true
+          }
+        ],
+        "both_are_floor_preconditions": true,
+        "readiness_anchor_note": "assert_anchor_reachable proved the control precondition reachable at setup by scoring V3-EXQ-777a's own recorded per_seed[].D_seed_mean (14 cells) through the shipped predicate -> 9/14 = 0.6429. The budget-0 control then reproduced that exactly, so the instrument is anchored rather than assumed."
+      },
+
+      "scope_guard": {
+        "holds": true,
+        "bears_on_mech_063": false,
+        "is_a_777b": false,
+        "tests_mech063_subclaim_i": false,
+        "confirmations": [
+          "claim_ids is empty -- weights no claim's confidence",
+          "no control-axis quantity exists in the manifest; the only per-cell measure is d_action_mass_mean/std (saturation), with no norm_v_score or authority term",
+          "interpretation.null_meaning states outright: 'It says NOTHING about MECH-063: no control-axis quantity is measured here.'",
+          "baseline_comparator deliberately compares against 777a's like-for-like HEADROOM fraction (0.357), explicitly declining 777a's authority-gated INFORMATIVE fraction (0.286) which embedded a norm_v_score effect floor; the recorded note observes using 0.286 'would flatter this run by 0.071'"
+        ],
+        "consistent_with_re_derive_brake": "The brake fired on the 777 lineage with upstream_substrate SD-PROBE-WARMUP and routing implement-substrate. 784 is the VALIDATION of that mandated build -- what the brake routes TO -- not the refused re-test."
+      },
+
+      "recording_provenance": {
+        "always_core_complete": true,
+        "recording_schema": "rec/v1",
+        "substrate_hash": "f8daed1ef73862bfb546e3271f528a2ad7b054887c0b2fbf4dc02500aa0d870f",
+        "machine": "ree-worker-1",
+        "machine_class": "linux-x86_64-py3.10",
+        "elapsed_seconds": 7188.511324526742,
+        "n_seeds": 14,
+        "config_present": true,
+        "recording_gap": false,
+        "instrumentation_provenance_note": "probe_budget block and per-cell n_probe_env_steps / probe_floors_met are ABSENT because the script gained them after this run executed (ree-v3 d46b3094430423b827da4c802e830f172dbc3398, 2026-07-18T23:24Z). NOT a defect and NOT a recording gap in the routing sense: all 56 cells recorded probe_stop_reason='floors_met' and 56/56 were readable, so the probe budget was demonstrably clean and the newer code would have written probe_budget_clean=True. Only the near-miss margin is unrecoverable. No re-run warranted."
+      },
+
+      "durable_basis": {
+        "headline_statistic": "C1 informative-seed yield, max 0.7857 at budget 25",
+        "headline_is_threshold_dependent": true,
+        "threshold_sensitivity": [
+          {"band_hi": 0.99, "band_lo": 0.01, "yields": [0.429, 0.786, 0.857, 1.000], "c1_pass": true,  "monotone": true},
+          {"band_hi": 0.95, "band_lo": 0.05, "yields": [0.357, 0.571, 0.714, 0.786], "c1_pass": true,  "monotone": true, "shipped": true},
+          {"band_hi": 0.90, "band_lo": 0.10, "yields": [0.071, 0.429, 0.429, 0.571], "c1_pass": true,  "monotone": true},
+          {"band_hi": 0.85, "band_lo": 0.15, "yields": [0.071, 0.357, 0.286, 0.500], "c1_pass": false, "monotone": false},
+          {"band_hi": 0.80, "band_lo": 0.20, "yields": [0.071, 0.357, 0.214, 0.357], "c1_pass": false, "monotone": false}
+        ],
+        "recommended_load_bearing_statistic": "paired_within_seed_rescue_asymmetry",
+        "paired_analysis": {
+          "valid_because": "sd074_note records that cells within a seed share ONE incrementally-trained agent (measure_action_mass is non-destructive), so budget 0 vs 25 is paired",
+          "rescued_saturated_to_headroom": 6,
+          "rescued_seeds": [11, 23, 29, 41, 61, 83],
+          "lost_headroom_to_saturated": 0,
+          "retained_headroom": 5,
+          "retained_seeds": [3, 17, 37, 53, 71],
+          "exact_two_sided_sign_test_p": 0.03125,
+          "threshold_independent": true,
+          "rescue_by_band": [
+            {"band_hi": 0.99, "band_lo": 0.01, "rescued": 8, "lost": 0},
+            {"band_hi": 0.95, "band_lo": 0.05, "rescued": 6, "lost": 0},
+            {"band_hi": 0.90, "band_lo": 0.10, "rescued": 7, "lost": 0},
+            {"band_hi": 0.85, "band_lo": 0.15, "rescued": 6, "lost": 0},
+            {"band_hi": 0.80, "band_lo": 0.20, "rescued": 4, "lost": 0}
+          ],
+          "note": "At every band tested, not one seed was ever lost from the readable band. This asymmetry survives exactly the threshold variation that breaks C1."
+        }
+      },
+
+      "caveats": [
+        "Per-seed regime labels are boundary-noisy: 3/14 seeds within 0.02 of the ceiling cut at budget 25 (0.965, 0.957, 0.951); 6/14 within 0.05. Seeds 41 (C->H->C->H), 19 (C->C->H->C), 13 (C->H->H->C) and 3 (H->C->H->H) flicker across budgets. Downstream consumers should use the continuous D, not the thresholded regime.",
+        "Budget 25 does NOT clear the landscape: 3/14 seeds remain ceiling-pinned (5, 13, 19). The sweep does not establish the budget at which it would.",
+        "De-saturation is not a one-way flow: seed 5 goes 0.000 (floor) -> 0.000 -> 0.000 -> 0.965 (ceiling), transiting past the readable band into the opposite saturation mode.",
+        "The criteria did not exploit the pairing the design had already paid for, testing only marginal per-budget fractions."
+      ],
+
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- both halves of SD-074 directly demonstrated (non-degenerate E3 landscape before collection; realised per-seed saturation distribution recorded across 56 cells so yield is auditable rather than inferred)",
+        "biological_reference": "not applicable -- SD-074 is a design_decision (harness-level training-regime enrichment), not a mechanism claim; no biological existence proof is at issue",
+        "prerequisites": "present -- depends_on is empty; composes landed modules (goal_pipeline_tier1.warmup_train, baselines/maturation_curriculum)",
+        "implementation": "complete -- experiments/_lib/probe_warmup.py, harness-level only, nothing under ree_core/ touched, no config default moved; functional role demonstrated not merely symbolic",
+        "environment": "adequate -- 8x8 / 2 hazards / 3 resources, same env as 777a, confirmed by the budget-0 control reproducing 777a exactly",
+        "measurement": "adequate with a caveat -- the continuous D statistic is sound; the thresholded regime label is boundary-noisy",
+        "integration": "coupled -- non-destructive read verified by the checkpoint design working across 4 budgets on one agent",
+        "scale": "partially adequate -- budget 25 leaves 3/14 ceiling-pinned; upper end of the useful budget range not established"
+      },
+
+      "biological_reference": {
+        "closest_mechanism": null,
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "not_applicable",
+        "note": "SD-074 is a substrate/design_decision claim about experimental harness construction, not a translated biological mechanism. The biological-reference triage does not apply."
+      },
+
+      "recommended_epistemic_category": null,
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "VALIDATED 2026-07-19 by V3-EXQ-784 (diagnostic, run_id v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3; 14 seeds x 4 budget checkpoints [0,4,10,25] = 56 cells, 56/56 readable, all cells probe_stop_reason='floors_met'; substrate_hash f8daed1e...). Informative-seed yield rises monotonically 0.357 -> 0.571 -> 0.714 -> 0.786; the untrained budget-0 control reproduces V3-EXQ-777a's saturation exactly (9/14 = 0.643 saturated, 5/14 = 0.357 headroom) against an assert_anchor_reachable guard scored on 777a's own recorded per-seed D values, so the instrument is anchored rather than assumed. THE LOAD-BEARING EVIDENCE IS THE PAIRED WITHIN-SEED ASYMMETRY, NOT THE YIELD FRACTION: cells within a seed share one incrementally-trained agent, and budget 0 -> 25 rescues 6 saturated seeds into the readable band while losing 0 (exact two-sided sign test p=0.031). That asymmetry is threshold-INDEPENDENT (rescued 4-8, lost exactly 0, at every band from 0.80/0.20 to 0.99/0.01), whereas the C1 yield criterion is threshold-dependent and fails under a 0.85/0.15 band. CAVEATS: per-seed regime labels are boundary-noisy (3/14 seeds within 0.02 of the ceiling cut at budget 25; seeds 41/19/13/3 flicker across budgets), so downstream consumers should use the continuous D rather than the thresholded regime; budget 25 does NOT clear the landscape (3/14 still ceiling-pinned) and the sweep does not establish the budget at which it would; and de-saturation is not a one-way flow (seed 5 transits floor -> ceiling, skipping the readable band). SCOPE: 784 tags no claims, computes no control-axis quantity, and bears on MECH-063 NOT AT ALL -- its baseline_comparator deliberately uses 777a's like-for-like headroom fraction (0.357) rather than 777a's authority-gated informative fraction (0.286). Instrumentation provenance: this manifest predates the probe_budget block added in ree-v3 d46b3094; absence is expected and not a defect, since 56/56 cells reported floors_met. Only the near-miss margin is unrecoverable for this run; no re-run warranted.",
+
+      "recommended_governance_action": {
+        "claim_id": "SD-074",
+        "current_status": "candidate",
+        "recommended_status": "validated",
+        "rewrite_notes_field": true,
+        "notes_field_superseded_text": "NOT VALIDATED YET -- status candidate, validation experiment pending. The only de-saturation reading so far is a smoke-level sanity indication at n=1 seed and a toy budget ... that is NOT evidence and must not be cited as such.",
+        "promotes_or_demotes_anything_else": false,
+        "mech_063_untouched": true
+      },
+
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-074",
+        "correction_note": "An earlier draft of this autopsy recorded that SD-074 / SD-PROBE-WARMUP had NO substrate_queue row. That was FALSE -- an artifact of a bad search (the queue lives under the top-level key 'queue'; the search iterated d.get('items', d) and silently matched nothing). SD-074 has a complete row added by session confident-tesla-badc6b with priority 1, the V3-EXQ-777a failure record, and a detailed implemented_note. The withdrawn claim that the build->validate loop closed outside the substrate queue should NOT be carried forward, and no governance decision on brake-routed substrates is owed on that (non-)evidence.",
+        "field_updates": {
+          "status": { "from": "implemented_pending_validation", "to": "implemented_validated" },
+          "validation_exq": { "from": null, "to": "V3-EXQ-784" },
+          "ready": { "from": false, "to": true }
+        },
+        "add_metric_trajectory": {
+          "primary_metric": "informative_seed_yield",
+          "primary_metric_description": "Fraction of seeds whose D_action_mass_mean falls strictly inside the readable band (0.05, 0.95) -- i.e. the E3 action-value distribution has enough dynamic range for a gain/bias regulator acting on it to be observable at all.",
+          "direction": "higher_is_better",
+          "target": "majority of seeds strictly inside (0.05, 0.95); operationally yield > 0.5",
+          "current_blocker": null,
+          "observations": [
+            {
+              "date_utc": "2026-07-18",
+              "experiment_type": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation",
+              "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+              "metric_value": 0.35714285714285715,
+              "substrate_state": "SD-074 NOT built -- untrained agent, no warmup stage",
+              "metric_notes": "Headroom fraction 5/14 = 0.357 (the like-for-like statistic). 777a's own INFORMATIVE fraction was lower still at 4/14 = 0.286 because it additionally required an authority/norm_v_score effect-floor check. 9/14 seeds saturated (7 ceiling, 2 floor); corr(D-saturation-distance, norm_v_score) = 0.884. This is the failure record that motivated the build."
+            },
+            {
+              "date_utc": "2026-07-18",
+              "experiment_type": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep",
+              "run_id": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3",
+              "metric_value": 0.7857142857142857,
+              "substrate_state": "SD-074 BUILT (experiments/_lib/probe_warmup.py); 25 warmup episodes, target_env regime",
+              "metric_notes": "VALIDATION RUN. Monotone dose-response across budgets [0,4,10,25]: 0.357 -> 0.571 -> 0.714 -> 0.786, four distinct values. The budget-0 control reproduces 777a exactly (5/14 headroom, 9/14 saturated) against an assert_anchor_reachable guard scored on 777a's own recorded per-seed D values, so the instrument is anchored. LOAD-BEARING EVIDENCE IS THE PAIRED WITHIN-SEED ASYMMETRY, not this marginal fraction: cells within a seed share one incrementally-trained agent, and budget 0->25 rescues 6 saturated seeds into the readable band while losing 0 (exact two-sided sign test p=0.031), an asymmetry that holds at EVERY band from 0.80/0.20 to 0.99/0.01 whereas the marginal yield criterion fails under a 0.85/0.15 band. CAVEATS: 3/14 seeds remain ceiling-pinned at budget 25, so the sweep does not establish the budget at which the landscape fully clears; per-seed regime labels are boundary-noisy; seed 5 transits floor->ceiling past the readable band."
+            }
+          ],
+          "prediction": "The substrate has cleared its target and is no longer the bottleneck for informative-seed yield. A successor orthogonal-control-axes probe running on a 25-episode warmed agent should see roughly 11/14 readable seeds rather than 4/14, cutting the raw-seed requirement for MECH-063 sub-claim (i) by roughly 2.8x from the ~177 seeds / ~31 h that made 777a's bar unreachable. NOTE this does NOT by itself make that bar reachable: 777a's c1_robust criterion is (mean_sin - pstdev_sin) > MARGIN, a POPULATION dispersion that does not shrink with n and is therefore unreachable at any sample size. That consumer-side repair (re-express against a standard error) is still owed and is explicitly out of SD-074's scope, per the row's own blocked_note."
+        },
+        "not_owed": "No NEW substrate_queue row is warranted by this autopsy. SD-074's row already exists; MECH-463 (V3-EXQ-785) and the MECH-063 sub-claim (ii) / 779b lineage were NOT adjudicated by this session, so proposing substrate rows for them would be fabricating a diagnosis this autopsy did not perform.",
+        "skill_boundary_note": "/failure-autopsy is analysis-and-handoff only and does not normally write substrate_queue.json -- governance applies the recommendation. This amend was applied directly under explicit user instruction."
+      },
+
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_including_this": 0,
+        "refused_requeue": false,
+        "rationale": "Zero prior failure_autopsy_*.json documents tag SD-074, and this adjudication is a PASS/supports reading, not substrate_ceiling or non_contributory. The brake does not apply."
+      },
+
+      "granularity_debt_trigger": {
+        "fires": false,
+        "rationale": "First autopsy on SD-074; no prior failure_autopsy_* doc circles this target.",
+        "routing": null
+      },
+
+      "fanout_recommendation": null,
+
+      "learning_extracted": [
+        "SD-074 works as specified: warmup raises the readable-seed fraction from 0.357 (untrained) to 0.786 at 25 episodes, with a paired rescue of 6 seeds and zero losses.",
+        "The durable statistic is the paired rescue asymmetry, not the yield fraction. The yield criterion is threshold-sensitive (breaks at a 0.85/0.15 band); the rescued>0 / lost=0 asymmetry holds at every band from 0.80 to 0.99. Future SD-074 consumers and any re-validation should assert the paired asymmetry.",
+        "Checkpoint-within-seed designs should test PAIRED. The pairing was built into 784's design (one incrementally-trained agent per seed) but the criteria tested only marginal per-budget fractions, discarding statistical power the design had already paid for. Generalisable to future budget-sweep scripts.",
+        "Thresholded regime labels are a lossy DV when the underlying statistic clusters near the cut (3/14 seeds within 0.02 of the ceiling boundary at b25). Record and prefer the continuous quantity.",
+        "The instrument-anchor pattern is worth propagating: proving a control precondition reachable at setup by scoring the REFERENCE run's own recorded values through the SHIPPED predicate (assert_anchor_reachable) is what makes the control interpretable rather than assumed.",
+        "Declining a flattering comparator is itself a scope guard. baseline_comparator's explicit refusal of 777a's authority-gated 0.286 in favour of the like-for-like 0.357 is what keeps this run clear of MECH-063 -- the pattern to cite for future substrate-validation runs routed by a braked cluster."
+      ],
+
+      "routing": "governance-promotion"
+    }
+  ],
+
+  "cluster_pattern": null,
+
+  "hypothesis_space_ledger": {
+    "step_9b_ran": false,
+    "skipped_cleanly": true,
+    "rationale": "No fanout_recommendation is emitted and no pre-registered leg is adjudicated. The registry's 9 questions contain zero references to SD-074 / warmup / de-saturation. 784 does not resolve any leg of control_plane_rank either: it computes no control-axis quantity by design, so it cannot bear on that question. Nothing to pre-register, nothing to resolve; initial_frozen_count and all surviving counts untouched.",
+    "registry_written": false
+  },
+
+  "process_observations": [
+    {
+      "kind": "withdrawn_observation",
+      "status": "WITHDRAWN -- was false",
+      "detail": "An earlier draft of this autopsy asserted that the re-derive brake's upstream_substrate SD-PROBE-WARMUP had no substrate_queue.json row, and inferred that the build -> validate loop had closed outside the substrate queue. Both are FALSE. SD-074 has a complete row (added_session confident-tesla-badc6b, priority 1, V3-EXQ-777a failure record, full implemented_note, status implemented_pending_validation). The error was mine: the queue lives under the top-level key 'queue', but the search iterated d.get('items', d), which fell through to the dict itself and matched nothing without erroring.",
+      "recommendation": "None. The proposed governance decision on whether brake-routed substrates should be materialised as queue rows is withdrawn -- it rested entirely on the false premise. Do not carry it forward.",
+      "generalisable_lesson": "A structural search over a shared JSON file that returns ZERO hits should be treated as suspect until the container key is confirmed, precisely because a wrong key path fails silently rather than raising. An empty result is evidence about the query at least as often as it is evidence about the data."
+    }
+  ],
+
+  "incidental_repair": {
+    "kind": "staged_evidence_deletion",
+    "detected_utc": "2026-07-19T04:51:30Z",
+    "repo": "REE_assembly",
+    "n_files": 12,
+    "run_packs": [
+      "v3_exq_779b_mech063_tonic_phasic_dissociation_20260718T233554Z_v3",
+      "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3",
+      "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3"
+    ],
+    "git_status_code": "D  (staged deletion)",
+    "intact_in_head": true,
+    "intact_on_origin_master": true,
+    "stash_empty": true,
+    "is_autostash_hazard": false,
+    "run_pack_dirs_never_materialised": true,
+    "reflog_evidence": "reset: moving to c7c0016136",
+    "documented_guard_missed_it": true,
+    "why_guard_missed_it": "CLAUDE.md's detector is `git status --porcelain | grep '^ D'` and its remedy is `git ls-files --deleted -- :/ | xargs -0 git checkout --`. Both read the INDEX. In this variant the paths were removed from the index as well, so the code is 'D ' (staged), not ' D' (unstaged). Both documented commands returned ZERO while 12 evidence files were missing -- a false all-clear. The `git checkout --` remedy would also have failed, since it restores from the index and these paths have no index entry.",
+    "correct_remedy": "git -C <repo> checkout HEAD -- <paths>   (restores index AND worktree from HEAD)",
+    "consequence_if_unnoticed": "The next plain `git commit` in REE_assembly would have landed all 12 deletions, and build_experiment_indexes.py would have rebuilt with three runs silently absent -- including this autopsy's own target. Silent evidence loss reached by a path CLAUDE.md's check does not cover.",
+    "repaired": true,
+    "adjudication_independent_of_repair": "The entire adjudication was performed read-only from HEAD blobs and does not depend on the repair."
+  }
+}

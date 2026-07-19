@@ -5761,8 +5761,8 @@
       "sd_id": "SD-074",
       "title": "Trained-enough agent substrate for read-only control-plane telemetry probes: warmup/checkpoint stage bringing the agent to a non-degenerate E3 action-value landscape BEFORE telemetry collection, with the realised per-seed saturation distribution recorded so informative yield is auditable rather than inferred.",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
-      "ready": false,
+      "status": "implemented_validated",
+      "ready": true,
       "design_doc": "docs/architecture/sd_074_probe_warmup_trained_enough_agent.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -5780,11 +5780,40 @@
       "priority": 1,
       "priority_rationale": "One fresh failure record (V3-EXQ-777a) on a re-derive-brake-fired lineage; blocks the only route to testing MECH-063 sub-claim (i).",
       "added_session": "confident-tesla-badc6b",
-      "last_seen_session": "confident-tesla-badc6b",
+      "last_seen_session": "admiring-shaw-6af5a6",
       "implemented_utc": "2026-07-18T18:53:16Z",
       "implemented_by": "confident-tesla-badc6b (/implement-substrate)",
       "implemented_note": "BUILT 2026-07-18 as ree-v3/experiments/_lib/probe_warmup.py -- harness-level only, NO ree_core change, no existing script imports it, so backward compatibility is total by construction. Composes landed modules rather than writing a fourth training loop: goal_pipeline_tier1.warmup_train (canonical StepHarness-coupled warmup), baselines/maturation_curriculum cache discipline (atomic os.replace, key re-verified on load, agent rebuilt on both paths for RNG parity), sample_driven_rollout (the F1 sample-driven stopping fix) for the de-saturation read. Gate policy (user-confirmed): RECORD, do not abort -- a still-saturated seed is reported with its realised mean and the consumer decides; only assert_any_informative() raises, and only when ZERO seeds de-saturated. Regime (user-confirmed): target_env only, num_episodes the swept parameter; regime='curriculum' raises rather than silently substituting a second env as a confound. THREE HAZARDS FOUND AND DEFENDED: (H1) e3._running_variance is a plain Python float (e3_selector.py:291), NOT a register_buffer, and feeds commit_variance (:2703) upstream of the measured distribution -- measured fresh 0.500 vs warmed 0.0092, a ~54x drift state_dict alone would silently discard; the blob carries the declared non-buffer E3 scalars explicitly and asserts the round trip. (H2) all four 777a arms verified to share an identical 194-key state_dict (TonicVigor/NoiseFloor are zero-parameter non-nn.Module per tonic_vigor.py:225 / noise_floor.py:129), so one warmed checkpoint per seed serves all four arms and they differ ONLY in regulator scalars at the e3.select() call site -- assert_state_dict_shareable() asserts rather than assumes it. (H3) the consumer's generate_trajectories capture is instance-level and NOT in state_dict; if lost after load_state_dict every observe() returns None and the run self-routes to sample_starvation_requeue -- i.e. a lost patch masquerades as a sampling bug, the exact misdiagnosis this lineage already made twice; reapply_candidate_capture() exists so the consumer cannot forget. NON-DESTRUCTIVE MEASUREMENT: no_grad+eval stop gradients but not the plain-Python accumulators (0.001839 -> 0.001855 over a 25-selection read) NOR the registered plasticity/eligibility buffers (e3_selector.py:373-462; two agents identical at load diverged by max|dw|=2.5e-01 after reads of different lengths), so measure_action_mass snapshots and restores both -- verified exact, max|dw|=0.000e+00. Smoke test PASS 2026-07-18 (backward compat, H1 absence-from-state_dict confirmed, H2 cross-arm sharing, cache MISS->HIT round trip, de-saturation read collects real samples). PRELIMINARY sanity signal only (n=1 seed, toy budget, NOT evidence): untrained read D_action_mass_mean 0.9949 (ceiling-saturated, reproducing the autopsy's failure mode) vs 0.51-0.67 (headroom) after 3 warmup episodes.",
-      "validation_exq": null,
+      "validation_exq": "V3-EXQ-784",
+      "validated_utc": "2026-07-19T04:51:30Z",
+      "validated_by_session": "admiring-shaw-6af5a6 (/failure-autopsy)",
+      "validated_note": "VALIDATED 2026-07-19 by V3-EXQ-784 (diagnostic; 14 seeds x 4 budget checkpoints [0,4,10,25] = 56 cells; 56/56 readable, all probe_stop_reason='floors_met'; substrate_hash f8daed1e...; ree-worker-1, 7188s). Adjudicated in evidence/planning/failure_autopsy_V3-EXQ-784_2026-07-19.{md,json} (status confirmed, user gate 2026-07-19). THE TARGET THIS ROW SET IS MET -- 'majority of seeds with D_action_mass_mean strictly inside (0.05,0.95)': informative yield rises monotonically 0.357 -> 0.571 -> 0.714 -> 0.786, versus the 777a failure record's 5/14 = 0.357. The budget-0 control reproduces 777a EXACTLY (5/14 headroom, 9/14 saturated) against an assert_anchor_reachable guard scored on 777a's own recorded per-seed D values, so the instrument is anchored rather than assumed. LOAD-BEARING EVIDENCE IS THE PAIRED WITHIN-SEED ASYMMETRY, NOT THE MARGINAL YIELD: cells within a seed share ONE incrementally-trained agent (measure_action_mass is non-destructive), so budget 0 -> 25 is paired, and it rescues 6 saturated seeds into the readable band while losing 0 (exact two-sided sign test p=0.031). That asymmetry is threshold-INDEPENDENT (rescued 4-8, lost exactly 0, at every band from 0.80/0.20 to 0.99/0.01), whereas the marginal yield criterion is threshold-DEPENDENT and fails under a 0.85/0.15 band -- so consumers should assert the paired asymmetry, not the yield fraction. CAVEATS: 3/14 seeds remain ceiling-pinned at budget 25, so the sweep does NOT establish the budget at which the landscape fully clears; per-seed regime labels are boundary-noisy (3/14 within 0.02 of the ceiling cut at b25; seeds 41/19/13/3 flicker across budgets), so prefer the continuous D over the thresholded regime; and de-saturation is not a one-way flow (seed 5 transits floor -> ceiling, skipping the readable band). SCOPE: 784 tags NO claims, computes no control-axis quantity, and bears on MECH-063 NOT AT ALL -- its baseline_comparator deliberately uses 777a's like-for-like headroom fraction (0.357) rather than 777a's authority-gated informative fraction (0.286). THE blocked_note REPAIR BELOW IS STILL OWED and is out of this SD's scope.",
+      "metric_trajectory": {
+        "primary_metric": "informative_seed_yield",
+        "primary_metric_description": "Fraction of seeds whose D_action_mass_mean falls strictly inside the readable band (0.05, 0.95) -- i.e. the E3 action-value distribution has enough dynamic range for a gain/bias regulator acting on it to be observable at all.",
+        "direction": "higher_is_better",
+        "target": "majority of seeds strictly inside (0.05, 0.95); operationally yield > 0.5",
+        "current_blocker": null,
+        "observations": [
+          {
+            "date_utc": "2026-07-18",
+            "experiment_type": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation",
+            "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+            "metric_value": 0.35714285714285715,
+            "substrate_state": "SD-074 NOT built -- untrained agent, no warmup stage",
+            "metric_notes": "Headroom fraction 5/14 = 0.357 (the like-for-like statistic). 777a's own INFORMATIVE fraction was lower still at 4/14 = 0.286 because it additionally required an authority/norm_v_score effect-floor check. 9/14 seeds saturated (7 ceiling, 2 floor); corr(D-saturation-distance, norm_v_score) = 0.884. This is the failure record that motivated the build."
+          },
+          {
+            "date_utc": "2026-07-18",
+            "experiment_type": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep",
+            "run_id": "v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3",
+            "metric_value": 0.7857142857142857,
+            "substrate_state": "SD-074 BUILT (experiments/_lib/probe_warmup.py); 25 warmup episodes, target_env regime",
+            "metric_notes": "VALIDATION RUN. Monotone dose-response across budgets [0,4,10,25]: 0.357 -> 0.571 -> 0.714 -> 0.786, four distinct values, spread 0.429. Budget-0 control reproduces 777a exactly, anchoring the instrument. Load-bearing evidence is the PAIRED within-seed asymmetry (6 rescued, 0 lost, sign test p=0.031, threshold-independent at every band 0.80/0.20 to 0.99/0.01), NOT this marginal fraction, which fails under a 0.85/0.15 band. 3/14 seeds still ceiling-pinned at b25."
+          }
+        ],
+        "prediction": "The substrate has cleared its target and is no longer the bottleneck for informative-seed yield. A successor orthogonal-control-axes probe running on a 25-episode warmed agent should see roughly 11/14 readable seeds rather than 4/14, cutting the raw-seed requirement for MECH-063 sub-claim (i) by roughly 2.8x from the ~177 seeds / ~31 h that made 777a's bar unreachable. NOTE this does NOT by itself make that bar reachable: 777a's c1_robust criterion is (mean_sin - pstdev_sin) > MARGIN, a POPULATION dispersion that does not shrink with n and is therefore unreachable at any sample size no matter how many seeds this substrate makes readable. That consumer-side repair is still owed -- see blocked_note."
+      },
       "blocked_note": "NOT repaired here (consumer-side, deliberately): V3-EXQ-777a's c1_robust bar is (mean_sin - pstdev_sin) > MARGIN (script:697, pstdev :541). A POPULATION dispersion does not shrink with n, so the bar is unreachable at ANY sample size and conflates seed-to-seed dispersion with measurement noise. The successor experiment's author must re-express it against a standard error. Per the autopsy that repair is NECESSARY BUT NOT SUFFICIENT -- the binding constraint was always the informative-seed YIELD, which is what this SD moves. RE-DERIVE BRAKE (fired, user-confirmed 2026-07-18 'Fire on 777 lineage, exempt 779'): a further lettered iteration of the orthogonal-control-axes probe against an UNTRAINED agent (a hypothetical V3-EXQ-777b) is REFUSED. A redesign testing a DIFFERENT mechanism under a new EXQ number remains permitted. The 779 lineage (MECH-063 sub-claim (ii)) is explicitly EXEMPT and is NOT blocked on this build."
     }
   ],
