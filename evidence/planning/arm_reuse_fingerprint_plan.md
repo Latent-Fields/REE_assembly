@@ -231,6 +231,7 @@ arm_fingerprint = sha256( canonical_json({
     "substrate_hash": <content hash, see below>,
     "config_slice": <OFF-path-relevant config, canonicalised>,
     "seed": <int>,
+    "machine_class": "<system>-<arch>-py<major>.<minor>-torch<version>",
     "regime": "A" | "B",
 }) )
 ```
@@ -246,6 +247,13 @@ arm_fingerprint = sha256( canonical_json({
   params the OFF path reads. Default to the WHOLE config if the author does not
   narrow it (conservative: over-inclusion only causes false misses). A separate
   `config_slice_declared: bool` records whether narrowing was deliberate.
+- **machine_class** -- the class the hash is valid within (Regime A reuses only
+  within one class). `<system>-<arch>-py<major>.<minor>-torch<version>`. The torch
+  component was added 2026-07-19; see §12 for why its absence was a live false-HIT
+  hazard and what the hard cut cost. (This bullet and the `machine_class` line in the
+  block above also correct a long-standing doc bug: `machine_class` has always been in
+  the hash -- `arm_fingerprint.compute_arm_fingerprint` puts it there -- but the §3.2
+  spec omitted it while §3.3 correctly listed it as a refuse condition.)
 - The fingerprint is emitted per cell into `arm_results[i].arm_fingerprint`
   (and a top-level `substrate_hash`), plus `reuse_eligible: bool` and
   `reuse_eligible_reason` (e.g. `"ok"`, `"incomplete_rng_reset"`,
@@ -347,6 +355,16 @@ A reused manifest must be **indistinguishable in rigor** from a freshly-run one:
 ---
 
 ## 7b. Baseline pre-minting (added 2026-06-06, user-directed)
+
+> **MACHINE-CLASS TAG CHANGED 2026-07-19 (§12) — every baseline minted before that date is
+> dead.** `machine_class` now includes the torch version, so the whole pre-cut bank (1212
+> fingerprints) no longer matches and cannot be migrated. Nothing about the minting
+> *procedure* below changes; what changes is that a mint's reuse class is now
+> `<system>-<arch>-py<major>.<minor>-torch<version>`, and a **fleet torch upgrade retires a
+> banked baseline exactly as an OS or python change always did**. When declaring a mint's
+> reuse class (in prose, in a `reuse_machine_class` metadata field, or in a baseline
+> module's header), name the torch build too — several existing scripts still carry the old
+> bare tag and are now wrong (listed at the end of §12).
 
 > **POLICY RECONCILIATION (2026-07-14, user-directed) — the default is now IN-LINE minting, not a separate mint job.** The machinery below is correct, but the *authoring default* it seeded (queue a dedicated baseline-only MINT experiment for every multi-arm run) was retired. The first experiment of a lineage already fingerprints its OFF arm for free (§7b step 1 / Phase-0 emit); the ONLY thing that makes that in-line fingerprint reusable by a later, different-driver sibling is (a) factoring the OFF arm into the canonical `_lib/baselines/<lineage>.py` module and (b) emitting it with `include_driver_script_in_hash=False`. With both, **the first real run IS the mint** — zero extra compute. A separate, dedicated OFF-arm×seeds mint job is therefore redundant by default and is queued **only** in two cases: (1) **bank-before-consumer** — a consumer is already planned and you want the baseline finished on idle cloud workers *before* the consumer's driver runs (the original §7b use-case, still valid); or (2) the **Mac machine-class escape** — the first run is `darwin-arm64`-only, so a cloud-class baseline needs its own cloud job. This does not change any fingerprint semantics, the refuse-gate, or §9 — it only moves the *producer* from "second job" to "the first experiment itself" everywhere except those two cases. Standing instructions updated in `CLAUDE.md` ("The FIRST experiment of a lineage mints its own baseline in-line") and the `/queue-experiment` skill "Saving a baseline for reuse (PRODUCER side)" block. The rest of §7b below is preserved as the historical design record of the (now-exceptional) separate-mint path.
 
@@ -578,6 +596,17 @@ those records into actual compute savings: it lets a new iteration (643b / 610g)
 **skip re-training its OFF baseline arm** by reusing a previously-minted cell --
 under a strict refuse-by-default gate so it can never substitute a non-identical
 baseline.
+
+> **TORCH IS NOW PART OF THE REUSE KEY (2026-07-19, §12).** The consumer path below is
+> unchanged in structure -- `machine_class` was always in the fingerprint and always a
+> refuse condition (§3.3) -- but the tag now carries the torch version, so a torch upgrade
+> produces a visible MISS instead of a silent HIT against a differently-numeric baseline.
+> No change was needed in `arm_reuse.py`: it looks up by fingerprint, and the fingerprint
+> is derived from the tag, so the discrimination is inherited. Consequently **every entry
+> in the pre-cut `arm_fingerprint_index.json` is now unreachable** -- consumers written
+> against those mints will MISS and re-run until the baselines are re-minted under the new
+> class. The index now also surfaces `torch_version` per entry (`None` for pre-cut
+> entries) so a miss can be triaged at the lookup site.
 
 ### 9.0 Hard prerequisite gate (do not build/enable before this passes)
 
@@ -1081,3 +1110,110 @@ the repo tree (as the maturation scratch harness did).
 multi-arm script whose OFF closure is clean enough to declare + guard) is a follow-on. The
 `/queue-experiment` opt-in step (§9.4) documents `include_driver_script_in_hash`; a
 `substrate_scope` opt-in note there is the natural next addition when the first consumer lands.
+
+---
+
+## 12. Torch version in `machine_class` (addendum, 2026-07-19; user-directed)
+
+**The hazard (a live, silent false-HIT channel).** `machine_class()` was
+`"{system}-{arch}-py{major}.{minor}"` -- e.g. `linux-x86_64-py3.10`. Its own docstring
+carried the safety assumption that *"float-rounding determinism is assumed stable within
+a class"*, but the tag captured nothing about the numerics library that actually does the
+float work. Upgrading torch on the cloud fleet leaves python at 3.10, so **the class tag
+stays byte-identical across the upgrade while float behaviour underneath changes.** Every
+one of the 1170 banked `linux-x86_64-py3.10` fingerprints would have remained matchable by
+a post-upgrade consumer, which would then have compared new-torch treatment arms against
+old-torch baselines -- **no cache miss, no warning, no provenance trace.** Under §2's
+governing asymmetry that is the failure mode the entire design exists to prevent: a false
+MISS wastes compute, a false HIT corrupts a conclusion.
+
+This was not hypothetical. At the time of writing the fleet ran py3.10.12 / torch
+2.5.1+cu121 and the Mac ran py3.13 / torch 2.10.0, with a fleet torch upgrade under
+consideration. The ordering was explicit: **land this before any fleet torch upgrade** --
+the whole point is that the upgrade must be visible to the cache.
+
+**Corpus at cut time** (`evidence/experiments/arm_fingerprint_index.json`, 2026-07-19):
+`n_fingerprints=1212` (1170 `linux-x86_64-py3.10` + 42 `darwin-arm64-py3.13`), all
+`reuse_eligible=true`, `n_reused_cells=6`, `n_source_cells=1301`, regime A.
+
+### Decision: HARD CUT in the hash (user-ratified 2026-07-19)
+
+`machine_class()` now returns `<system>-<arch>-py<major>.<minor>-torch<version>`, e.g.
+`linux-x86_64-py3.10-torch2.5.1+cu121`. The torch string is `torch.__version__` verbatim,
+**including the local version segment**, so a CUDA-build swap is also a new class
+(over-inclusion -> false misses only, per §2). A host where torch cannot be imported gets
+the reserved token `torchNA`, which can never collide with a real version, so a torchless
+host takes its own class rather than silently joining a torch-bearing one.
+
+**This invalidates all 1212 pre-cut fingerprints, deliberately.** They stop matching; every
+consumer that would have hit now takes a visible MISS and re-runs. That is the correct
+failure direction.
+
+**Why no migration or re-grandfathering path was offered.** Not a judgement call -- it is
+structurally impossible. The fingerprint hashes `config_slice`, and **`config_slice` is
+persisted nowhere**: not in the index entry (`cell_keys, experiment_type, machine_class,
+manifest_path, outcome, regime, reuse_eligible, run_id, seed, substrate_scope_declared,
+superseded`) and not in the stored per-cell `arm_fingerprint` payload (which keeps only
+`config_slice_declared`). An old fingerprint therefore cannot be recomputed under any new
+tag by any means. Separately, no pre-cut run records a torch version anywhere, so legacy
+entries could only have been assigned one by assumption ("the fleet was on 2.5.1+cu121").
+
+**Why the hash and not a side-band guard.** The considered alternative was to leave the hash
+formula alone, record `torch_version` beside it, and have `arm_reuse.evaluate_reuse` refuse
+on mismatch -- preserving the bank for pre-upgrade consumers. Rejected because
+**`machine_class()` keys three independent caches, not one**:
+`arm_fingerprint.compute_arm_fingerprint` (§9 scalar path),
+`_lib/baselines/maturation_curriculum._prefix_key` (§10 frozen prefix **tensors** on disk --
+the artefact most sensitive to a torch change), and `_lib/probe_warmup._cache_key`. Putting
+torch in the tag protects all three from one change; the side-band guard would have lived
+only in `arm_reuse.py` and left the two tensor/warmup caches unguarded. The hash route also
+makes a false hit impossible *by construction* rather than contingent on a guard nobody
+forgets to call.
+
+**Cost accepted.** Small, because arm-reuse saving is prospective-only: a banked fingerprint
+is worth what it would have paid out later, not what it cost to bank. With `n_reused_cells=6`
+the realized loss is negligible; the forward cost is that the recently-minted reusable
+baselines (`exq742_mech457_bias_head_baseline`, `exq700c_arc108_settling_baseline`, the
+maturation-curriculum legs) go dead and need re-minting when next consumed.
+
+### Also landed: `torch_version` as an observability field
+
+`compute_arm_fingerprint`'s returned payload now carries `torch_version` **separately** from
+`machine_class` (observability only -- `machine_class` is what enters the hash). Two reasons:
+a future miss can be triaged as *"missed because torch moved"* instead of being an
+unexplained miss; and it closes the exact data gap that made THIS cut unmigratable -- a later
+tag change will have the per-run torch identity that the pre-2026-07-19 corpus lacks.
+
+### Implementation notes
+
+- `torch_version_tag()` is **lazy + memoised**. A module-level `import torch` would break
+  `arm_fingerprint.py`'s stdlib-only importability, which `manifest_core.py` documents and
+  depends on ("importable without torch/ree_core"). Resolving on first CALL preserves that.
+  It deliberately does NOT use `sys.modules.get("torch")` -- that would make the tag depend
+  on whether torch happened to be imported yet, i.e. nondeterministic across call sites.
+- **No format-parsing fallout.** The tag is opaque everywhere in the codebase -- nothing
+  splits or pattern-matches it. The `"linux-x86_64-py3.10"` occurrences in
+  `test_validate_recording.py` / `test_phase3_runpack_materialize.py` are fixture literals,
+  not calls, so they remain valid fixtures.
+- **`validate_experiments.py` was deliberately NOT changed.** Its gates are static lints over
+  experiment *scripts* (fingerprint emission, RNG reset, recording keys); torch discrimination
+  is a runtime property of one library function, and a lint there would be noise rather than a
+  guard. The invariant belongs in the contract suite, beside the other determinism-key
+  contracts.
+
+**Tests:** `ree-v3/tests/contracts/test_machine_class_torch.py` (6 tests, green). The
+load-bearing one is `test_tag_discriminates_on_torch_version` -- same OS/arch/python,
+different torch, asserted to produce different classes AND different fingerprints. That is
+the regression guard: if it ever fails, a torch upgrade is silent to the cache again.
+Related suites re-run green (67 passed): `test_arm_reuse.py`, `test_arm_fingerprint_scope.py`,
+`test_substrate_scope_guard.py`, `test_maturation_scope.py`, `test_recording_standard.py`,
+`test_arm_fingerprint_lint.py`.
+
+**Known documentation debt (not fixed here, out of scope).** Several mint scripts and baseline
+modules hardcode the OLD bare tag in prose and in one manifest metadata field --
+`v3_exq_742m_..._mint.py` (`reuse_machine_class: "linux-x86_64-py3.10 (ree-cloud worker)"`),
+`v3_exq_700c_mint_...py`, `_lib/baselines/exq742_mech457_bias_head_baseline.py`,
+`_lib/baselines/exq700_arc108_settling_baseline.py`, `v3_exq_714_...py`. These are now
+factually wrong about their reuse class. None is load-bearing (comments + one human-facing
+metadata string), but they will mislead the next author; edits to experiment scripts route
+through `/queue-experiment` per `CLAUDE.md`.

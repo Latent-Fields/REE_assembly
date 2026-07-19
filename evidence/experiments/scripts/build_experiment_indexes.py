@@ -5784,6 +5784,12 @@ def _write_arm_fingerprint_index(base_dir: Path, generated_at: str) -> dict[str,
                 # Audit: whether the mint narrowed its substrate hash to a declared
                 # dependency scope (plan sec 11). None/absent -> whole-tree (default).
                 "substrate_scope_declared": bool(fp_obj.get("substrate_scope_declared", False)),
+                # Triage: the torch build the cell ran under (plan sec 12, 2026-07-19).
+                # Also inside machine_class (which is what the hash keys on) -- surfaced
+                # separately so a MISS can be read as "torch moved" at the lookup site.
+                # None on every pre-2026-07-19 entry: that corpus recorded no torch at
+                # all, which is exactly why the sec-12 cut could not be migrated.
+                "torch_version": fp_obj.get("torch_version"),
             }
             # Collapse same-fingerprint runs: prefer the newest (all non-superseded
             # here by construction; tie-break on timestamp string).
