@@ -32,6 +32,7 @@ Usage (from REE_assembly/ root):
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -370,6 +371,58 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
     return min(accounted, growth)
 
 
+_DATE_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
+
+# A date with no time carries no intra-day ordering, so it is pinned to the END of
+# its day. That is the only choice that keeps a same-day event in exactly ONE
+# window: it sorts after any snapshot taken earlier that day (so it attributes to
+# the window it actually landed in) and before the next day's snapshot (so it
+# cannot also be claimed by the preceding window).
+_END_OF_DAY = "T23:59:59Z"
+
+
+def _instant(value: str) -> str:
+    """Normalise a registry/timeseries timestamp to a comparable ISO instant.
+
+    Accepts a full `...THH:MM:SSZ` timestamp (used verbatim), a bare `YYYY-MM-DD`,
+    or any string carrying a date (e.g. a source artifact FILENAME, which is the
+    fallback when an event predates the `recorded_utc` field). Returns '' if no
+    date can be read at all.
+    """
+    if not value:
+        return ""
+    m = _DATE_RE.search(value)
+    if not m:
+        return ""
+    date = m.group(1)
+    # Only trust a time component that actually came with this date.
+    rest = value[m.end():]
+    if rest.startswith("T") and len(rest) >= 9:
+        return value[m.start():m.end() + 9].rstrip("Z") + "Z"
+    return date + _END_OF_DAY
+
+
+def _event_instant(ev: dict) -> str:
+    """When a fan-out growth event happened.
+
+    Honours an explicit `recorded_utc` / `event_utc` on the event; falls back to
+    the date embedded in the source artifact's filename only when neither is
+    present. The explicit field matters because a portfolio designed the same day
+    as the previous snapshot but recorded AFTER it is otherwise structurally
+    unattributable -- the false positive this fallback ordering causes.
+    """
+    for key in ("recorded_utc", "event_utc"):
+        got = _instant(ev.get(key) or "")
+        if got:
+            return got
+    return _instant(ev.get("fanout_source") or "")
+
+
+def _snapshot_instant(row: dict) -> str:
+    """Window bound for a time-series row: the real `snapshot_utc` when present."""
+    return _instant(row.get("snapshot_utc") or "") or _instant(row.get("date") or "")
+
+
 def audit(registry: dict, timeseries: list) -> dict:
     """Return {flag_bucket: [messages]} for each of the four checks, plus the
     advisory `e_labelled_growth` bucket (labelled fan-out; NOT a violation)."""
@@ -378,8 +431,10 @@ def audit(registry: dict, timeseries: list) -> dict:
              "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
              "h_fanout_recurrence": []}
     questions = registry.get("questions") or []
-    # Total legs added by VALID labelled fan-out, keyed by the date the growth was
-    # recorded -- lets the time-series check attribute a total_initial rise.
+    # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
+    # was recorded -- lets the time-series check attribute a total_initial rise.
+    # Keyed on a full timestamp rather than a date so that an event landing later
+    # on the same day as the previous snapshot still attributes to its own window.
     labelled_growth_by_date: dict = {}
 
     for q in questions:
@@ -396,12 +451,12 @@ def audit(registry: dict, timeseries: list) -> dict:
         # (b3) labelled fan-out growth of an EXISTING question (conditions a-c).
         _validate_fanout_growth(q, flags)
         for ev in q.get("fanout_growth_events") or []:
-            date = (ev.get("recorded_utc") or "")[:10]
+            date = _event_instant(ev)
             if date:
                 labelled_growth_by_date[date] = (
                     labelled_growth_by_date.get(date, 0) + int(ev.get("delta") or 0))
         # A newly-registered question also legitimately grows total_initial.
-        reg_date = (q.get("registered_utc") or "")[:10]
+        reg_date = _instant(q.get("registered_utc") or "")
         at_reg = q.get("initial_frozen_count_at_registration")
         if reg_date:
             labelled_growth_by_date[reg_date] = (
@@ -468,20 +523,32 @@ def audit(registry: dict, timeseries: list) -> dict:
         # sources landing in this window -- new-question registrations and valid
         # fan-out growth events. Only the UNATTRIBUTED remainder is a violation.
         if d_init > 0:
-            lo, hi = prev.get("date") or "", cur.get("date") or ""
+            # Compare on the snapshots' real `snapshot_utc` instants, not their
+            # coarse `date`. With day granularity a growth event whose source is
+            # dated the SAME DAY as the previous snapshot but which lands AFTER it
+            # is structurally unattributable -- `lo < date` excludes it and the legs
+            # fall through into the real-violation branch below. Confirmed as a
+            # false positive on the 2026-07-18 -> 2026-07-19 window (the
+            # competence_floor retention portfolio, recorded 18T18:37Z, 22 minutes
+            # after the 18T18:15Z snapshot). The bound stays STRICT on the low side
+            # and inclusive on the high side, so each event is still attributable to
+            # exactly one window -- genuinely unlabelled growth has no instant to
+            # match and remains a bucket-(b) violation.
+            lo, hi = _snapshot_instant(prev), _snapshot_instant(cur)
+            lo_label, hi_label = prev.get("date") or lo, cur.get("date") or hi
             attributed = sum(
                 n for date, n in labelled_growth_by_date.items() if lo < date <= hi
             )
             if attributed >= d_init:
                 flags["e_labelled_growth"].append(
-                    f"time series {lo} -> {hi}: total_initial grew by {d_init}, fully "
+                    f"time series {lo_label} -> {hi_label}: total_initial grew by {d_init}, fully "
                     f"attributed to labelled sources landing in this window "
                     f"(new-question registrations + fanout_growth_events, {attributed} "
                     "leg(s)) -- advisory, not a violation."
                 )
             else:
                 flags["b_enlargement"].append(
-                    f"time series {lo} -> {hi}: total_initial grew by {d_init} but only "
+                    f"time series {lo_label} -> {hi_label}: total_initial grew by {d_init} but only "
                     f"{attributed} leg(s) are attributable to a labelled source -- "
                     f"{d_init - attributed} enlarged the frozen denominator unlabelled."
                 )
@@ -865,6 +932,57 @@ def _self_test() -> int:
         else:
             print(f"  FAIL discrimination: {msg}")
             failures.append(name)
+    # Same-day attribution (regression, confirmed false positive 2026-07-19a). An
+    # event recorded LATER ON THE SAME DAY as the previous snapshot must attribute
+    # to the window it landed in. Under date granularity `lo < date` excluded it and
+    # its legs fell through into bucket (b) with a "0 leg(s) attributable" message,
+    # which is the alarm-fatigue vector GOV-FROZEN-1 warns about turned on itself.
+    # The paired window pins the other side: adding an event must NOT make genuinely
+    # unlabelled growth attributable.
+    def _same_day_case(delta: int, d_init: int,
+                       rec: str = "2026-07-18T18:37:29Z") -> list:
+        reg2 = {"questions": [{
+            "qid": "sameday_q", "initial_frozen_count": 1 + delta,
+            "initial_frozen_count_at_registration": 1,
+            "registered_utc": "2026-07-01T00:00:00Z",
+            "fanout_growth_events": [
+                {"recorded_utc": rec,                      # default: 22 min AFTER
+                 "fanout_source": "sameday_portfolio_2026-07-18.md",
+                 "added_hids": [f"sd_{i}" for i in range(delta)], "delta": delta},
+            ],
+            "hypotheses": [{"hid": "sd1", "pre_registered_utc": "2026-07-01",
+                            "resolution": {"state": "alive"}}]
+                          + [{"hid": f"sd_{i}", "pre_registered_utc": "2026-07-18",
+                              "resolution": {"state": "alive"}} for i in range(delta)],
+        }]}
+        ts2 = [
+            {"date": "2026-07-18", "snapshot_utc": "2026-07-18T18:15:48Z",
+             "total_surviving": 1, "total_resolved_out": 0, "total_initial": 1},
+            {"date": "2026-07-19", "snapshot_utc": "2026-07-19T11:37:06Z",
+             "total_surviving": 1 + d_init, "total_resolved_out": 0,
+             "total_initial": 1 + d_init},
+        ]
+        return [m for m in audit(reg2, ts2)["b_enlargement"] if "time series" in m]
+
+    for name, cond, msg in [
+        ("sameday_attributes", not _same_day_case(4, 4),
+         "growth recorded after the same-day prior snapshot attributes to its window"),
+        ("sameday_no_overcorrection", _same_day_case(4, 6),
+         "growth beyond what the labelled events cover is STILL flagged as (b)"),
+        # Pins the BOUNDS half: an event recorded BEFORE the prior snapshot was
+        # already counted in that snapshot's total_initial, so it cannot explain a
+        # later rise. Day-granularity bounds cannot tell the two apart -- which is
+        # why the window compares `snapshot_utc`, not `date`.
+        ("sameday_before_snapshot_not_attributed",
+         _same_day_case(4, 4, rec="2026-07-18T04:49:14Z"),
+         "growth recorded BEFORE the same-day prior snapshot does not attribute"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
     # Fail-open check: a crashed audit must INVALIDATE the report, not leave a stale
     # clean one behind. Governance reads the file, so "silently kept the old report"
     # is indistinguishable from "audited and found nothing" -- the failure mode this
