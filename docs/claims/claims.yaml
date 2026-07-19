@@ -49625,7 +49625,28 @@
     V3-EXQ-779c. A redesign of a DIFFERENT mechanism under a new EXQ number remains
     permitted; any such retest must declare baseline_continuity="carry" plus a convergence
     gate and must consume n_events_converged with an uninformative-cell path rather than
-    feeding a raw MIN.
+    feeding a raw MIN. WARMUP-RESCUE SPIKE 2026-07-19 (diagnostic spike, NOT an experiment
+    and NOT evidence -- 3 seeds, one arm, no fingerprinting; driver
+    ree-v3/experiments/_scratch/sd075_warmup_rescue_spike.py): the smoke's UNTESTED
+    hypothesis that a TRAINED agent keeps producing excesses past tick 30 was TESTED and
+    HOLDS. SD-074 warm_agent over num_episodes {0,10,40} x seeds {11,23,29}, then a
+    1200-env-step read under "carry" + warmup_ticks=-1: n_events_converged is non-zero in
+    all 9 cells, and MIN over the six WARMED cells is 14 (clears MIN_EVENT_TICKS 10) versus
+    MIN 1 over the three untrained cells. The load-bearing detail is the DECOUPLING: on
+    untrained agents the converged count tracks episode COUNT (seeds 11/23, 4x300-step
+    episodes, 3 and 1 events; seed 29, 52 short episodes, 110 events at 2.1/episode -- under
+    "carry" an episode boundary itself reliably clears the trigger, so that 110 is plausibly
+    boundary-locked rather than surprise-locked). Warmed, that dependence breaks: seed 29 at
+    10 episodes ran the SAME 4x300-step shape and still recorded 14. Per-converged-tick event
+    rate 1.0-2.6% untrained-long-episode vs 11.3-25.4% across all warmed cells;
+    n_events_prewarmup falls 17/18/16 -> 5/7/3. No monotone training dose (40 episodes is not
+    better than 10), so read this as "warm at all", not as a dose-response. CONSEQUENCE: a
+    retest declaring "carry" + the gate should ALSO warm via probe_warmup (num_episodes >= 10)
+    and install a fresh PhasicSurpriseBurst post-warmup -- the regulator contributes no
+    state_dict keys, so otherwise a cache-HIT and cache-MISS agent enter the read with
+    different lifetime counters. Also corrects the smoke: n_events_converged = 0 was specific
+    to its 25x7-step shape, not a general property of untrained agents (a longer read recovers
+    1-3 events with no warmup at all). Still does NOT license a V3-EXQ-779c.
   validation_experiment: none queued -- blocked by the MECH-063 re-derive brake (no V3-EXQ-779c); a successor must be a new-number redesign of a different mechanism, not a lettered tonic/phasic iteration
 
 - id: SD-074

@@ -193,10 +193,68 @@ reporting 12 events that the gate says are all warmup-era.** Turn the gate on, r
 `n_events_converged`, and expect that an untrained short-episode cell may honestly have
 nothing to report -- which is a different and much more useful failure than "6 vs 10".
 
-This also means the SD-074 `probe_warmup` path (train the agent before measuring) is
-plausibly complementary rather than redundant here: a trained agent's surprise stream may
-keep producing genuine excesses past tick 30, where this untrained one does not. That is a
-hypothesis, not a finding -- it is untested and must not be cited as evidence.
+### Warmup-rescue spike (2026-07-19) -- the hypothesis above, TESTED
+
+The paragraph that stood here recorded an UNTESTED hypothesis: that the SD-074
+`probe_warmup` path might keep the surprise stream producing genuine excesses past tick 30
+where the untrained agent does not. **It was tested and it holds.** Diagnostic spike, not an
+experiment -- no EXQ, no queue entry; driver `ree-v3/experiments/_scratch/sd075_warmup_rescue_spike.py`.
+
+Method: SD-074 `warm_agent` over `WarmupRecipe.num_episodes` in {0, 10, 40} x seeds
+{11, 23, 29}, then a 1200-env-step read with `baseline_continuity="carry"`,
+`warmup_ticks=-1` (30), `instantaneous_pe`, 779b env and phasic constants. A FRESH
+`PhasicSurpriseBurst` is installed after warmup so the measured lifetime is exactly the read
+rollout -- the regulator contributes no `state_dict` keys, so without this a cache-HIT and a
+cache-MISS agent would enter the read with different lifetime counters and the read would be
+a function of cache state.
+
+| warmup eps | seed | `n_events_converged` | `n_converged_ticks` | event rate | read episodes | mean ep len | `burst_level_max` |
+|---|---|---|---|---|---|---|---|
+| 0 | 11 | **3** | 116 | 2.6% | 4 | 300.0 | 1.00 |
+| 0 | 23 | **1** | 105 | 1.0% | 4 | 300.0 | 1.00 |
+| 0 | 29 | **110** | 435 | 25.3% | 52 | 23.1 | 1.00 |
+| 10 | 11 | **44** | 305 | 14.4% | 13 | 92.3 | 1.00 |
+| 10 | 23 | **65** | 323 | 20.1% | 24 | 50.0 | 1.00 |
+| 10 | 29 | **14** | 124 | 11.3% | 4 | 300.0 | 1.00 |
+| 40 | 11 | **25** | 194 | 12.9% | 11 | 109.1 | 1.00 |
+| 40 | 23 | **87** | 343 | 25.4% | 23 | 52.2 | 1.00 |
+| 40 | 29 | **16** | 131 | 12.2% | 6 | 200.0 | 1.00 |
+
+**Both answers the retest author needs:**
+
+1. `n_events_converged` becomes non-zero for a warmed agent -- in every warmed cell.
+2. **MIN over the six warmed cells is 14, clearing MIN_EVENT_TICKS = 10.** MIN over the three
+   untrained cells is 1. A MIN-across-cells precondition therefore passes on warmed cells and
+   fails on untrained ones, which is exactly the axis 779b was blocked on.
+
+**The load-bearing detail is the decoupling, not the raw counts.** Untrained, the converged
+count tracks episode COUNT: seeds 11/23 ran 4 x 300-step episodes and yielded 3 and 1, while
+seed 29 died in ~23 steps, ran 52 episodes and yielded 110 at 2.1 events per episode. Under
+`"carry"` the baseline survives the boundary, so a fresh episode's first ticks compare new-env
+surprise against a carried baseline and reliably clear the trigger -- i.e. the untrained
+seed-29 count is plausibly BOUNDARY-LOCKED rather than surprise-locked, and should not be read
+as the untrained agent doing well. Warmed, that dependence breaks: seed 29 at `num_episodes=10`
+ran 4 x 300-step episodes -- the same long-episode shape that gave untrained seeds 1 and 3
+events -- and still recorded 14. Per-converged-tick event rate is 1.0-2.6% on untrained
+long-episode cells versus 11.3-25.4% across all six warmed cells.
+
+`n_events_prewarmup` falls with training (17/18/16 untrained -> 5/7/3 at 10 episodes), which is
+the same finding from the other side: a trained agent no longer dumps its whole surprise excess
+into the first 30 ticks.
+
+**Caveats, and they are real.** 3 seeds, one arm, no tonic axis, no fingerprinting -- this is a
+spike sized to answer one yes/no question, not evidence for any claim. `num_episodes=40` is not
+better than 10 (25 vs 44 on seed 11; 16 vs 14 on seed 29), so there is no monotone
+training-dose effect here and 10 episodes suffices for the read; do not read a dose-response
+into these numbers. The untrained cells also show that the smoke's `n_events_converged = 0` was
+specific to its 25 x 7-step shape rather than a general property of untrained agents -- a longer
+read recovers 1-3 events even with no warmup. So the rescue is a genuine training effect on the
+event RATE, not merely a longer read.
+
+**Consequence for the retest.** A retest that declares `"carry"` + the convergence gate should
+also warm its agents via SD-074 `probe_warmup` (`num_episodes >= 10`), and should install a
+fresh regulator post-warmup for the reason given above. Without warmup, a long-episode seed
+will honestly report an uninformative cell.
 
 ## MECH-094
 
