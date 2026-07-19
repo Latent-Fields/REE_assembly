@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_786_mech163_dual_system_recruitment",
+  "run_id": "v3_exq_786_mech163_dual_system_recruitment_20260719T163935Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-19T16:39:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-163"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "familiarity_separation",
+        "description": "FamiliarityTracker familiarity higher on practiced layouts than held-out ones -- the manipulation check that novel/familiar are real conditions",
+        "measured": 0.049365000448256355,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "practiced vs held-out env seeds under an identical env config",
+        "met": false
+      },
+      {
+        "name": "candidate_score_range_non_degenerate",
+        "description": "Cross-candidate RANGE of the full-horizon score (NOT magnitude): the load-bearing criterion routes on an argmin ranking, which is arbitrary noise unless candidates are separable",
+        "measured": 27.488833057726918,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "candidate set on a real E3 tick",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_recruitment_higher_on_novel": false
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10",
+  "substrate_hash": "67c01b2dbd8f536af31b68b05504ddcecd59276968dfab519e457fbc252827a4"
+}
