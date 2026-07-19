@@ -2,7 +2,10 @@
 
 **Date:** 2026-07-19T16:43:44Z
 **Session:** `vibrant-lewin-132fa6`
-**Status:** COMPLETE -- viable second incumbent identity FOUND; probe queued
+**Status:** COMPLETE -- viable second incumbent identity FOUND; probe queued as V3-EXQ-785b
+**Amended:** 2026-07-19T20:31:26Z -- section 6 RETRACTED (the "785a never seeds torch" finding
+was wrong; the unseeded harness was this spike's own scratch script). Sections 1-5 and 7-9
+stand; see section 6 for what this does and does not affect.
 **Predecessor:** `failure_autopsy_V3-EXQ-785_2026-07-19.md` section 9a; V3-EXQ-785a
 (adjudicated 2026-07-19, REE_assembly `e8d4325cbd`)
 
@@ -84,7 +87,14 @@ Method mirrors the entropy scan already recorded in 785a's
 `custom_information.dropped_regime_evidence`: seed 0, 150 ticks, same
 `_build_agent_and_env` / tick loop, same `_component_shares` covariance-correct estimator
 imported directly from the 785a driver. Baseline reproduced the published incumbent share
-(0.9313 / 0.9649 across two runs vs 785a's 0.9368) -- harness validated.
+(0.9313 / 0.9649 across two runs vs 785a's 0.9368) -- close enough to confirm the estimator
+and the tick loop were wired correctly, which is what this scan needed.
+
+**But note what that 0.9313 / 0.9649 spread actually was**: not run-to-run noise in 785a, but
+this scratch harness building agents outside an `arm_cell` and therefore without the RNG
+reset (see the section 6 retraction). Every number in the table below was produced through
+that unseeded harness, so treat the table as **indicative-only** -- a viability screen, not a
+measurement. The regime selection rests on the seeded replication in section 5, not here.
 
 | config | incumbent | share | n_nontrivial | viable |
 |---|---|---|---|---|
@@ -128,17 +138,43 @@ could never claim.
 A2 is retained as a **secondary** regime. It replicates, but seed 1 lands at 0.9836 with a
 negative harm share -- close to the forced boundary -- so it is the weaker of the two.
 
-## 6. Incidental defect found: 785a never seeds torch
+## 6. RETRACTED: the "785a never seeds torch" finding was wrong
 
-`v3_exq_785a_...py` seeds the environment (`CausalGridWorldV2(seed=seed)`, with a docstring
-comment stressing that omitting it makes bit-identity checks meaningless) but **never calls
-`torch.manual_seed`**, so agent weight initialisation varies run to run. Observed directly:
-an identical baseline config produced incumbent share 0.9313 and 0.9649 on two runs of the
-same seed. 785a's aggregate conclusions are not threatened (it pools 5 seeds x 3000 ticks and
-its null is wide of any plausible init effect), but its individual cells are **not
-reproducible** and its `arm_cell` fingerprint cannot be reuse-matched with confidence. The
-queued probe seeds torch explicitly. Flagged rather than fixed -- 785a is adjudicated and
-touching it is out of this spike's scope.
+**This section originally reported a defect in 785a. That report was incorrect and is
+retracted.** It is kept rather than deleted so the claim is not re-derived by the next
+reader of this file.
+
+**What was claimed:** `v3_exq_785a_...py` never calls `torch.manual_seed`, so agent weight
+init varies run to run -- evidenced by an identical baseline config producing incumbent
+share 0.9313 and 0.9649 on two runs of the same seed. Concluded: 785a's individual cells are
+not reproducible and its `arm_cell` fingerprint cannot be reuse-matched with confidence.
+
+**Why it is wrong.** 785a builds its operative agent inside `_collect_cell`, and
+`_collect_cell` is invoked *inside* the `with arm_cell(seed, ...)` block. `arm_cell`'s entry
+calls `reset_all_rng(seed)`, which seeds `random`, numpy, **torch (+cuda)**, and the
+`_harness` module-level fallback RNG (`experiments/_lib/arm_fingerprint.py`). The absence of
+a literal `torch.manual_seed` in the 785a file is therefore not evidence of an unseeded run
+-- the seeding is discharged by the cell wrapper, which is the documented and intended
+mechanism. **785a's cells ARE pure functions of `(substrate, config, seed)` and its
+reuse-eligibility is sound.**
+
+**Where the observed variation actually came from.** The spike's own scratch harness
+(`mech463_incumbent_scan.py`, section 9) constructed agents by calling `build()` directly,
+with no `arm_cell` wrapper and hence no RNG reset. The 0.9313 / 0.9649 pair was measured
+through that harness. The defect was in the throwaway scan script, not in 785a. It was
+corrected mid-spike by adding `torch.manual_seed(seed)` to the scratch `build()` before the
+section 5 replication -- which is why section 5 is a genuine seed sweep and section 4 (run
+before the fix) is not bit-reproducible.
+
+**Consequences for the rest of this document.** Section 4's table was produced through the
+unseeded harness and should be read as indicative-only -- which is all a viability scan needs
+to be, and its qualitative conclusion (which regimes are viable) is confirmed by the seeded
+section 5 replication. Section 5, the replication that actually selects the regimes, was run
+seeded and stands. No other section depends on the retracted claim.
+
+**Consequence for the queued probe.** V3-EXQ-785b keeps an explicit `torch.manual_seed` in
+its builder, but it is documented there as REDUNDANT belt-and-braces for direct callers
+outside a cell, NOT as a fix for a 785a defect.
 
 ## 7. Caveats
 
