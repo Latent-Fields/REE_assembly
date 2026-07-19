@@ -1,6 +1,6 @@
 ---
-status: implemented
-status_asof: 2026-07-18
+status: candidate
+status_asof: 2026-07-19
 status_claim: SD-074
 ---
 

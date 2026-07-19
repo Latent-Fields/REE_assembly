@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "exciting-hertz-379dab",
-  "last_updated_utc": "2026-07-18T20:37:38Z",
+  "last_updated_utc": "2026-07-19T11:34:47Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1153,7 +1153,7 @@
     {
       "added_session": "governance-2026-04-24T08:10",
       "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
-      "current_blocker": "Phase 1b first run V3-EXQ-625b 2026-06-01 (post-stream-on fix; supersedes 625) FAILed \u00a73.4 acceptance on C3 sustained-window axis (1/3 seeds). C1 + C2 PASS. Magnitude floor IS cleared per-tick (pooled p70=0.43 clears BLA 0.4); temporal-structure axis is load-bearing. Plan-doc \u00a710 records disposition; routing to \u00a75.2 (interval shorter / prob higher) or \u00a75.4 (relax sustained-window definition) for the next Phase 1b iteration. Axis-(a) sibling V3-EXQ-620b PASSed measurement (acceptance_pass=true) so consumer-cascade engagement at defaults is confirmed under stream-on. Phase 2 / Phase 3 / Phase 4 reserved until axis-(b) Phase 1b PASSes.",
+      "current_blocker": "Phase 1b first run V3-EXQ-625b 2026-06-01 (post-stream-on fix; supersedes 625) FAILed §3.4 acceptance on C3 sustained-window axis (1/3 seeds). C1 + C2 PASS. Magnitude floor IS cleared per-tick (pooled p70=0.43 clears BLA 0.4); temporal-structure axis is load-bearing. Plan-doc §10 records disposition; routing to §5.2 (interval shorter / prob higher) or §5.4 (relax sustained-window definition) for the next Phase 1b iteration. Axis-(a) sibling V3-EXQ-620b PASSed measurement (acceptance_pass=true) so consumer-cascade engagement at defaults is confirmed under stream-on. Phase 2 / Phase 3 / Phase 4 reserved until axis-(b) Phase 1b PASSes.",
       "depends_on_unresolved": [],
       "design_doc": "docs/architecture/sd_037_broadcast_override_regulator.md",
       "failure_record": [
@@ -1196,10 +1196,10 @@
         {
           "date_utc": "2026-06-01",
           "experiment_type": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat",
-          "metric_notes": "Plan \u00a73.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to \u00a75.2 (shorten interval / lift prob) or \u00a75.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc \u00a710 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
+          "metric_notes": "Plan §3.4 acceptance gate FAIL on C3 axis only. Magnitude floor IS cleared per-tick; temporal-structure axis is the load-bearing one. Routes to §5.2 (shorten interval / lift prob) or §5.4 (relax sustained-window definition: lower z_threshold or shorter min_run_len). NOT MECH-295 axis (this is upstream signal-shape). Plan-doc §10 records the disposition; SD-037 substrate is not at fault, the env curriculum tune is. Pre-625b sibling V3-EXQ-620b PASSed axis-(a) consumer-input distribution measurement (acceptance_pass=true; pooled p70=0.43).",
           "metric_value": "C1 curriculum_firing PASS 3/3 (external_hazard_event_count 10/45/6); C2 z_harm_a_nonzero PASS 3/3 (zero_fraction=0.0); C3 sustained_window FAIL 1/3 (seed 42=0 runs, seed 7=1 run, seed 19=0 runs; threshold z>=0.4 for run_len>=10). Pooled z_harm_a_norm p70=0.43, p80=0.44, p90=0.44; upper tail clears BLA arousal_threshold_on=0.4 but does not sustain. Affective stream confirmed wired (post-625 stream-off fix).",
           "run_id": "v3_exq_625b_sd037_axis_b_phase1b_consumer_input_distributions_sustained_threat_20260601T181233Z_v3",
-          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan \u00a75.2 / \u00a75.4."
+          "substrate_state": "SD-037 substrate intact through axis-(a) (620b PASS post-stream-on fix). Axis-(b) Phase 1b first run identifies env-curriculum tuning as the next step on plan §5.2 / §5.4."
         }
       ],
       "implementation_hint": "IMPLEMENTED 2026-04-25 (BroadcastOverrideRegulator + 3 consumer sites). Substrate-readiness V3-EXQ-483b PASS. MECH-286 sleep onset IMPLEMENTED 2026-05-21 (V3-EXQ-599 queued). MECH-282 LPB interoceptive routing IMPLEMENTED 2026-05-21 (lpb_interoceptive_routing.py + SD-037 split recruitment; V3-EXQ-600 substrate diagnostic queued). Tier-1 behavioural evidence: V3-EXQ-483c queued. 2026-05-30: V3-EXQ-483d FAIL routed to consumer-cascade substrate work (see current_blocker / autopsy artifact). 2026-05-30 consumer-cascade amend session landed all four MECH-281 motor-coupling consumer sites: LateralPFCAnalog (SD-033a) eff_eta scaling, BLAAnalog (SD-035) encoding_gain scaling, CeAAnalog (SD-035) mode_prior + fast_prime scaling, and BetaGate (MECH-090) urgency_interrupt_threshold attenuation. Four new REEConfig gains (override_pfc_eta_gain / override_bla_encoding_gain / override_cea_amplitude_gain / override_beta_interrupt_gain) all default 0.0 = bit-identical OFF; 556/556 contracts + 7/7 preflight PASS with defaults. V3-EXQ-483e queued as 4-arm behavioural validation; reuses SD-036+MECH-279 freeze-engaging substrate (V3-EXQ-475-style config) to engage PAG path + use_salience_coordinator=True flips the dormant SalienceCoordinator slot active.",
@@ -1238,9 +1238,9 @@
         {
           "axis_b_plan_doc": "evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md",
           "date_utc": "2026-06-01",
-          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in \u00a75: harm magnitude lift (\u00a75.1) -> sustained-window lengthening via env_drift_interval/prob (\u00a75.2) -> stochasticity for dACC PE (\u00a75.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (\u00a75.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
+          "scope": "Planning-only landing for SD-037 axis (b) sustained-threat env curriculum per Phase 2 recalibration-block verdict (axis (a) empirically unmeetable on fishtank baseline; V3-EXQ-620 pooled n=2939 all-zero distributions across all 6 consumer-input quantities). Routing decision: LIGHTER (env-kwargs-only on existing CausalGridWorldV2 surface). Rationale: SD-029 scheduled_external_hazard mechanism (scheduled_external_hazard_enabled/_interval/_prob/_adjacent_only) is ALREADY LANDED in ree-v3 (causal_grid_world.py:153-176, 1941-1988, 3669-3700; implemented 2026-04-21 per ree-v3/CLAUDE.md). No new ree-v3 module needed. Phase 1b is a re-run of V3-EXQ-620's measurement protocol with a tuned ENV_FISHTANK_KWARGS overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Per-step quantities, distributions, percentiles, and acceptance gate identical to V3-EXQ-620; ADDED sustained-window summary block (count of >=10-tick runs with z_harm_a > 0.4 per seed; external_hazard_event_count sanity-check per seed). Post-Phase-1b path: axis-(a) Phase 2 p70 recalibration rule re-applies on the new (non-zero) distributions, then Phase 3 verification and Phase 4 V3-EXQ-483f become activatable on the axis-(b) substrate. Failure modes enumerated in §5: harm magnitude lift (§5.1) -> sustained-window lengthening via env_drift_interval/prob (§5.2) -> stochasticity for dACC PE (§5.3) -> escalation to axis (c) new SD-NNN sustained-threat scheduler (§5.4) if env-kwarg surface exhausted. NO code; NO claims.yaml; NO experiment_queue.json edits; NO V3-EXQ-NNN queueing. Phase 1b /queue-experiment session is the next follow-on chip.",
           "session": "implement-substrate-sd037-axis-b-sustained-threat-curriculum-plan-20260601T074925Z",
-          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md \u00a73. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
+          "validation_experiment": "Phase 1b RESERVED. Next session: /queue-experiment referencing evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md §3. On Phase 1b PASS at the substrate-readiness gate (non-zero distributions in >=2/3 seeds + >=1 sustained run per seed), the axis-(a) Phase 2 / Phase 3 / Phase 4 chip sequence re-applies on the new substrate."
         }
       ],
       "implementation_status": "implemented",
@@ -1251,7 +1251,7 @@
       "metric_trajectory": {
         "current_blocker": "Axis (b) sustained-threat env curriculum planning landed 2026-06-01 (evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md). LIGHTER path chosen: env-kwargs-only on existing CausalGridWorldV2 surface (SD-029 scheduled_external_hazard already implemented). Phase 1b diagnostic to be queued via /queue-experiment in a follow-on session; re-runs V3-EXQ-620's protocol on a tuned ENV_FISHTANK_KWARGS overlay. Until Phase 1b lands and PASSes its substrate-readiness gate, Phase 2 recalibration / Phase 3 verification / Phase 4 V3-EXQ-483f remain reserved.",
         "direction": "higher_is_better",
-        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan \u00a73.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
+        "next_step": "/queue-experiment Phase 1b diagnostic: re-run of V3-EXQ-620 measurement protocol on a hazard-engaging env overlay (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2). Acceptance gate per axis-(b) plan §3.4: external_hazard_event_count > 0 in 3/3 seeds AND zero_fraction<1.0 on z_harm_a_norm in >=2/3 seeds AND >=1 sustained (>=10 consecutive ticks with z_harm_a>0.4) run per seed in >=2/3 seeds. On PASS, axis-(a) Phase 2 p70 recalibration rule re-applies. Plan doc: evidence/planning/sd_037_axis_b_sustained_threat_curriculum_plan.md.",
         "observations": [
           {
             "date_utc": "2026-04-25",
@@ -5815,6 +5815,59 @@
         "prediction": "The substrate has cleared its target and is no longer the bottleneck for informative-seed yield. A successor orthogonal-control-axes probe running on a 25-episode warmed agent should see roughly 11/14 readable seeds rather than 4/14, cutting the raw-seed requirement for MECH-063 sub-claim (i) by roughly 2.8x from the ~177 seeds / ~31 h that made 777a's bar unreachable. NOTE this does NOT by itself make that bar reachable: 777a's c1_robust criterion is (mean_sin - pstdev_sin) > MARGIN, a POPULATION dispersion that does not shrink with n and is therefore unreachable at any sample size no matter how many seeds this substrate makes readable. That consumer-side repair is still owed -- see blocked_note."
       },
       "blocked_note": "NOT repaired here (consumer-side, deliberately): V3-EXQ-777a's c1_robust bar is (mean_sin - pstdev_sin) > MARGIN (script:697, pstdev :541). A POPULATION dispersion does not shrink with n, so the bar is unreachable at ANY sample size and conflates seed-to-seed dispersion with measurement noise. The successor experiment's author must re-express it against a standard error. Per the autopsy that repair is NECESSARY BUT NOT SUFFICIENT -- the binding constraint was always the informative-seed YIELD, which is what this SD moves. RE-DERIVE BRAKE (fired, user-confirmed 2026-07-18 'Fire on 777 lineage, exempt 779'): a further lettered iteration of the orthogonal-control-axes probe against an UNTRAINED agent (a hypothetical V3-EXQ-777b) is REFUSED. A redesign testing a DIFFERENT mechanism under a new EXQ number remains permitted. The 779 lineage (MECH-063 sub-claim (ii)) is explicitly EXEMPT and is NOT blocked on this build."
+    },
+    {
+      "sd_id": "SD-PROBE-WARMUP",
+      "title": "Trained-enough agent substrate for read-only control-plane telemetry probes",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-063"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation_20260718T101635Z_v3",
+          "experiment_type": "v3_exq_777a_mech063_orthogonal_control_axes_dissociation",
+          "metric": "informative-seed yield 4 of 14 (28.6%); 9 of 14 seeds with D_action_mass_mean saturated at ceiling (7) or floor (2); corr(D-saturation-distance, norm_v_score) = 0.884",
+          "target": "majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95), i.e. informative yield sufficient to reach ~51 informative seeds at feasible compute"
+        }
+      ],
+      "implementation_hint": "The 2x2 read-only telemetry-probe family measures gain/bias regulators on the E3 softmax while running an UNTRAINED agent, whose action-value distribution is degenerate on ~64% of seeds (D_action_mass pinned at 0 or 1). A regulator that modulates a distribution is unobservable when that distribution has no dynamic range: corr(D-saturation-distance, norm_v_score) = 0.884, capping informative-seed yield at 28.6% and making the load-bearing criterion unreachable at feasible compute. Build a warmup/checkpoint stage that brings the agent to a non-degenerate action-value landscape (target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95)) before telemetry collection begins, and record the realised per-seed saturation distribution so the yield is auditable. This is training-regime substrate enrichment for the probe harness -- the same class as the V3-EXQ-603c precedent -- not a ree_core mechanism change.",
+      "priority": 1,
+      "added_session": "silly-jepsen-926d36",
+      "last_seen_session": "silly-jepsen-926d36",
+      "source_autopsy": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json"
+    },
+    {
+      "sd_id": "sd_phasic_ema_episode_continuity",
+      "title": "Phasic surprise-EMA baseline continuity + convergence-gated event counting",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "SD-069 (IMPLEMENTED -- capability present, this is a baseline-continuity defect on top of it)"
+      ],
+      "unblocks_claims": [
+        "MECH-063"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_779b_mech063_tonic_phasic_dissociation_20260718T233554Z_v3",
+          "experiment_type": "v3_exq_779b_mech063_tonic_phasic_dissociation",
+          "metric": "phasic_fires_real_events (MIN n_event_ticks across PHASIC-ON cells) = 6 on seed 23 / T0P1, unchanged from 779a despite exposure rising 843 -> 2400 env steps; seed 23 mean episode length 6.9 steps vs a ~10-tick EMA time constant",
+          "target": "a working implementation must let a short-episode seed reach MIN_EVENT_TICKS = 10 on a converged baseline, or declare the cell uninformative rather than reporting a near-zero count"
+        }
+      ],
+      "implementation_hint": "PhasicSurpriseBurst.reset() clears the surprise-EMA at every episode boundary, giving a ~10-tick warmup (PHASIC_EMA_DECAY 0.1) against episodes as short as 7 steps, so short-episode seeds structurally under-report n_event_ticks and no step-budget increase can compensate. Build BOTH legs: (a) carry or warm the EMA baseline across episode boundaries so the baseline reflects the agent's surprise distribution rather than the current episode's first tick; (b) gate event-tick counting until the baseline has converged, so a cell reports honestly (or declares itself uninformative) instead of returning a near-zero count that a MIN-across-cells precondition then treats as a real measurement.",
+      "priority": 1,
+      "added_session": "silly-jepsen-926d36",
+      "last_seen_session": "silly-jepsen-926d36",
+      "source_autopsy": "failure_autopsy_V3-EXQ-779b_2026-07-19.json",
+      "blast_radius_note": "affects every consumer of phasic_surprise_burst, not only the MECH-063 probe family; the RolloutBudget audit (ree-v3 6ac2a0d) already flagged _lib/probe_warmup.py WarmupRecipe (probe_max_episodes 40 vs probe_max_env_steps 4000) as the worst live short-episode exposure, consumed by V3-EXQ-784"
     }
   ],
   "schema_version": "substrate_queue/v2"

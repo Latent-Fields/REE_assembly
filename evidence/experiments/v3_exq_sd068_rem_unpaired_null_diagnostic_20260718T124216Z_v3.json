@@ -11,12 +11,12 @@
   ],
   "experiment_purpose": "diagnostic",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
-    "SD-068": "weakens",
-    "MECH-168": "unknown",
-    "INV-047": "unknown",
-    "MECH-169": "unknown"
+    "SD-068": "superseded",
+    "MECH-168": "superseded",
+    "INV-047": "superseded",
+    "MECH-169": "superseded"
   },
   "interpretation": {
     "label": "substrate_not_ready_requeue",
@@ -5121,5 +5121,7 @@
     314,
     1000
   ],
-  "evidence_quality_note": "The SD-068 REM per-phase readout is content-free. Three GOV-FANOUT-1 discrimination legs on distinct design axes converge (V3-EXQ-778d measurement / 778e representation / 778f observation, n=8 seeds each, all positive controls passing): once the zero-content null's clamp degeneracy is removed by an unpaired-target null, the null arm still tracks the injected arm's sigma-slope (content-contingent on 1/8 seeds only; unclamped ratios 0.577-0.995), and an independently de-clamped readout agrees on every non-degenerate seed (0.999 / 0.998 / 0.326, all above the 0.25 ceiling). Separately, rem_generative_gain is flat in content scale (delta -0.0097 against a pre-registered bar of 0.05, with the residual trend inverted in sign), so the interpretive gloss that 'correction needs an intact seed' is RETRACTED from docs/architecture/sd_068_consolidation_lesion_harness.md. The attenuation finding itself (rem_generative_gain 0.149, attenuating 8/8 seeds) is NOT overturned and STANDS -- it is recorded at every content scale (0.1589 / 0.1520 / 0.1493, 8/8 attenuating throughout) precisely so it stays visible. Net effect on SD-068: the staged-failure contract is carried by nrem plus the rebuilt sws (V3-EXQ-778g) only; the REM leg is not a functional-damage instrument and the generative-gain pillar does not evidence content-dependent correction. The staging order remains unsupported. NOTE a specification defect found in the course of this adjudication: V3-EXQ-778d's readiness anchor scored 'railed' on the saturation rail only, against a two-rail degeneracy, capping a bit-perfect replication at 0.625 under a 0.75 gate; the anchor's underlying data reproduced V3-EXQ-778c to identical floats across three runs, so control_passed is asserted here on the corrected both-rails predicate. Fix routed as V3-EXQ-778h (low priority, ledger-hygiene only)."
+  "evidence_quality_note": "The SD-068 REM per-phase readout is content-free. Three GOV-FANOUT-1 discrimination legs on distinct design axes converge (V3-EXQ-778d measurement / 778e representation / 778f observation, n=8 seeds each, all positive controls passing): once the zero-content null's clamp degeneracy is removed by an unpaired-target null, the null arm still tracks the injected arm's sigma-slope (content-contingent on 1/8 seeds only; unclamped ratios 0.577-0.995), and an independently de-clamped readout agrees on every non-degenerate seed (0.999 / 0.998 / 0.326, all above the 0.25 ceiling). Separately, rem_generative_gain is flat in content scale (delta -0.0097 against a pre-registered bar of 0.05, with the residual trend inverted in sign), so the interpretive gloss that 'correction needs an intact seed' is RETRACTED from docs/architecture/sd_068_consolidation_lesion_harness.md. The attenuation finding itself (rem_generative_gain 0.149, attenuating 8/8 seeds) is NOT overturned and STANDS -- it is recorded at every content scale (0.1589 / 0.1520 / 0.1493, 8/8 attenuating throughout) precisely so it stays visible. Net effect on SD-068: the staged-failure contract is carried by nrem plus the rebuilt sws (V3-EXQ-778g) only; the REM leg is not a functional-damage instrument and the generative-gain pillar does not evidence content-dependent correction. The staging order remains unsupported. NOTE a specification defect found in the course of this adjudication: V3-EXQ-778d's readiness anchor scored 'railed' on the saturation rail only, against a two-rail degeneracy, capping a bit-perfect replication at 0.625 under a 0.75 gate; the anchor's underlying data reproduced V3-EXQ-778c to identical floats across three runs, so control_passed is asserted here on the corrected both-rails predicate. Fix routed as V3-EXQ-778h (low priority, ledger-hygiene only).",
+  "evidence_direction_note": "Superseded by V3-EXQ-778h (v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic_20260718T183746Z_v3), which corrects a readiness-anchor specification defect and reproduces the same science. Per failure_autopsy_V3-EXQ-778h_2026-07-19. NOTE: the REM content-free weakens remains carried by V3-EXQ-778e and V3-EXQ-778f, so this supersession does not remove the signal (illusory-conflict check performed).",
+  "superseded_by": "V3-EXQ-778h"
 }

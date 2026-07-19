@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-19T10:55:37Z",
+  "generated_at": "2026-07-19T11:37:06Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 115,
+      "total_modules": 117,
       "built_modules": 91,
-      "fraction_built": 0.7913,
+      "fraction_built": 0.7778,
       "state_counts": {
-        "proposed": 24,
+        "proposed": 26,
         "implemented": 67,
-        "implemented_pending_validation": 14,
-        "validated": 10
+        "implemented_pending_validation": 13,
+        "validated": 11
       },
-      "build_proof_gap": 81,
-      "build_proof_gap_note": "91 modules built, 81 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 80,
+      "build_proof_gap_note": "91 modules built, 80 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -58,43 +58,43 @@
       "date": "2026-07-11",
       "surviving": 38,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-13",
       "surviving": 36,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-15",
       "surviving": 32,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-16",
       "surviving": 31,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-17",
       "surviving": 28,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-18",
       "surviving": 23,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     },
     {
       "date": "2026-07-19",
       "surviving": 23,
       "closure_pct": 77.5,
-      "build_pct": 79.1
+      "build_pct": 77.8
     }
   ],
   "questions": [
@@ -1075,9 +1075,10 @@
           "axis": "measurement",
           "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-778d"
+            "V3-EXQ-778d",
+            "V3-EXQ-778h"
           ],
-          "basis": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687.",
+          "basis": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687. Provenance updated 2026-07-19: V3-EXQ-778h (anchorfix re-run, supersedes V3-EXQ-778d) reproduces this result on a corrected readiness anchor -- anchor railed 8/8 seeds and the unpaired null de-railed 7/8, confirming the 1e-3 positivity-clamp artifact is real. Scored non_contributory (ledger hygiene, not double-counted weight); see failure_autopsy_V3-EXQ-778h_2026-07-19.json.",
           "children": [],
           "met_elimination_bar": true
         },
@@ -1232,9 +1233,10 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-778d",
+      "run": "V3-EXQ-778h",
       "all_runs": [
-        "V3-EXQ-778d"
+        "V3-EXQ-778d",
+        "V3-EXQ-778h"
       ],
       "momentum_class": "confirmed",
       "qid": "consolidation_readout_validity",
@@ -1244,7 +1246,7 @@
         "INV-047",
         "MECH-169"
       ],
-      "moved": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687.",
+      "moved": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687. Provenance updated 2026-07-19: V3-EXQ-778h (anchorfix re-run, supersedes V3-EXQ-778d) reproduces this result on a corrected readiness anchor -- anchor railed 8/8 seeds and the unpaired null de-railed 7/8, confirming the 1e-3 positivity-clamp artifact is real. Scored non_contributory (ledger hygiene, not double-counted weight); see failure_autopsy_V3-EXQ-778h_2026-07-19.json.",
       "resolved_utc": "2026-07-18T12:42:16Z",
       "evidence_direction": "supports"
     },

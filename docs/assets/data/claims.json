@@ -2263,8 +2263,8 @@
   },
   "INV-088": {
     "assembly_state": "remaining",
-    "assembly_status": "queued",
-    "awaiting": "mech457_competence_bootstrap_explorer",
+    "assembly_status": "built",
+    "awaiting": "mech457_bc_aux_schedule",
     "emergent_from": [
       "ARC-001",
       "ARC-003",
@@ -6270,6 +6270,15 @@
     "title": "Consolidation-phase damage is content-scorable only where the phase's output is a FIRST-ORDER content-bearing quantity (NREM inter-store transfer; SWS retrieval margin). A phase whose output is a SECOND-ORDER quantity over representations -- REM precision / confidence recalibration -- is content-free BY TYPE, and its damage is readable only through a downstream behavioural discrimination consequence, never through a statistic computed on the precision quantity itself.",
     "type": "mechanism",
     "what_would_answer": "Build the meta-d-prime-analogue downstream readout for the REM phase (does the agent's post-REM confidence separate its own correct from incorrect retrievals) and run it on the SAME CELLS as V3-EXQ-778e. SUPPORTED if the downstream readout is content-contingent (null_slope_ratio <= 0.25, ceiling_inside_ci95 false, >=6/8 seeds) WHILE the direct precision readout on those same cells remains above 0.25 -- the same-cells contrast is what makes this a test of the type fact rather than of the build. REFUTED two ways, and both matter: (i) if the downstream readout is ALSO content-free, the phase carries no recoverable damage signal at all and the type story is wrong about recoverability; or (ii) if a DIRECT precision-quantity readout can be made content-contingent, the type-fact is simply false and all three results were construction defect after all.\n"
+  },
+  "MECH-463": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.global_arousal_variance_amplification",
+    "title": "Global-scalar arousal channels are a VARIANCE AMPLIFIER of the already-dominant selection channel, not a source of behavioural differentiation: the three affective routes that modulate commitment globally (D1/D2 dopamine gain, harm-urgency threshold shrinkage, LC-NE/phasic-surprise temperature) apply one scalar uniformly across all K candidates and therefore cannot change an argmax, but DO change whether commitment fires and how sharply -- selecting for whichever channel already carries the most per-candidate score variance. Under F-dominance (MECH-439) this makes affective engagement ENTRENCH F rather than convert diversity, predicting that F's share of committed-selection variance RISES with arousal and FALLS under low urgency.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "A variance decomposition of committed-selection scores into F vs the other channels, CONDITIONED on arousal (urgency_applied decile, and secondarily on tonic temperature and the D1/D2 da scalar). Supports if F-share rises monotonically with urgency decile and the bottom-vs-top decile gap exceeds the effect-size floor. Refutes if F-share is flat across arousal deciles -- which would mean F-dominance is structural in the score geometry and arousal is causally inert with respect to it, leaving MECH-439 untouched and killing this claim cleanly.\n"
   },
   "Q-001": {
     "assembly_state": "mature",

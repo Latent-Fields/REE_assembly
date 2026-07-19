@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_743_inv089_harm_evaluator_z_harm_bounded
 
-Generated: `2026-07-18T16:15:14.019159Z`
+Generated: `2026-07-19T11:35:04.367487Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

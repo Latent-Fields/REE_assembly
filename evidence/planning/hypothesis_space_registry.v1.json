@@ -1163,7 +1163,8 @@
           "pre_registered_utc": "2026-07-18T08:41:15Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-778c_2026-07-18.json",
           "adjudicating_runs": [
-            "V3-EXQ-778d"
+            "V3-EXQ-778d",
+            "V3-EXQ-778h"
           ],
           "probe_amendments": [
             {
@@ -1184,7 +1185,8 @@
           "resolution": {
             "state": "confirmed",
             "resolving_runs": [
-              "V3-EXQ-778d"
+              "V3-EXQ-778d",
+              "V3-EXQ-778h"
             ],
             "evidence_direction": "supports",
             "epistemic_category": "measurement_gap",
@@ -1196,7 +1198,7 @@
             "adjudicated_by": "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json",
             "control_rehabilitated": true,
             "control_rehabilitation_note": "control_passed is asserted on the CORRECTED both-rails predicate, NOT the shipped one-rail predicate. The shipped readiness anchor (v3_exq_sd068_rem_unpaired_null_diagnostic.py:288) scores `railed` as NOT(clamp_frac<=0.2 and n_distinct>=3 and n_unclamped>=3), which detects only the SATURATION rail; V3-EXQ-778c's degeneracy was documented at BOTH rails (saturation AND positivity-floor collapse). The three floor-collapsed seeds are therefore scored HEALTHY, capping a bit-perfect replication at 5/8 = 0.625 against a >= 0.75 gate -- the precondition is unmeetable by construction. The anchor's underlying data DID reproduce 778c to identical floats across three independent runs ([4348.4665081785715, 0.0, 9142.771353766831, 0.0, 1801.6453681003277, 0.0, 0.0, 0.0] in both 778d ARM_NULL_ZERO and 778e's legacy anchor, matching 778c's recorded 0.0-on-5/8 / 1801-9143-on-3/8). criteria_non_degenerate.C1 = readiness_ok AND anchor_ok with readiness_ok true on 8/8, so the degeneracy flag traces ENTIRELY to this one mis-specified statistic. Post-hoc rehabilitation, adjudicated at the interactive gate 2026-07-18 and labelled as such. Clean-as-shipped re-run routed as V3-EXQ-778h (low priority, ledger hygiene; NOT a blocker on this resolution).",
-            "basis": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687."
+            "basis": "CONFIRMED on the load-bearing criterion: C1_unpaired_null_derails PASSED, 7/8 seeds, ARM_NULL_UNPAIRED clamp fractions [0.0, 0.0, 0.0, 0.2, 0.0, 0.6, 0.2, 0.2]. The leg's declared null ('if ARM_NULL_UNPAIRED stays railed too, this leg is REFUTED') did NOT trigger -- the unpaired null left the rails. The V3-EXQ-778c both-rails degeneracy WAS an artifact of how the zero-content null was operationalised. Note this is orthogonal to content-freeness: the degeneracy being an artifact and the readout being content-free are BOTH true (see H-rem-genuinely-content-free). Probe was amended pre-queue -- the original step-ladder was proven algebraically inert (step cancels in the reported ratio; verified identical to 12 sig figs over step in {0.1,0.25,0.5,1.0}) and would have returned this leg's declared null BY CONSTRUCTION; the unpaired-target replacement is the faithful Bar et al. 2020 'same odour, no prior pairing' analog. Amendment witnessed at REE_assembly master 2970e2112c / ree-v3 18c4687. Provenance updated 2026-07-19: V3-EXQ-778h (anchorfix re-run, supersedes V3-EXQ-778d) reproduces this result on a corrected readiness anchor -- anchor railed 8/8 seeds and the unpaired null de-railed 7/8, confirming the 1e-3 positivity-clamp artifact is real. Scored non_contributory (ledger hygiene, not double-counted weight); see failure_autopsy_V3-EXQ-778h_2026-07-19.json."
           }
         },
         {

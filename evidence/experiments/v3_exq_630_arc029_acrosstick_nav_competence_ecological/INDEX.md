@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_630_arc029_acrosstick_nav_competence_ecological
 
-Generated: `2026-07-18T16:15:14.019159Z`
+Generated: `2026-07-19T11:35:04.367487Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

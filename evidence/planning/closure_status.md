@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-18T16:15:30Z
+Generated: 2026-07-19T11:18:25Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -58,7 +58,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress |  | medium |  | REFRESHED 2026-06-27 (the stale '603q is QUEUED / AWAITING RUN+REVIEW' framing below is SU | 2026-07-10 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium |  | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-06-25 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | in_progress |  | medium |  | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-06-27 |
-| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate |  | medium |  | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-06-23 |
+| infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate |  | medium |  | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-07-18 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked |  | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:MECH-191` | MECH-191 cross-architecture legibility unblock check (does A's dispositional rea | open |  | low |  | depends_on: global_workspace_jlens:A |  |
 
@@ -170,7 +170,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 82.1% across 28 non-deferred nodes in 5 plan(s).
+- **PROCESS**: 85.7% across 28 non-deferred nodes in 5 plan(s).
 - **V4**: 30.9% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -179,7 +179,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 |-----|------|------|-------|--------|-----|------------------|--------------|
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-CATEGORY` | Phase 0 -- governance_rule category + 22 SENT/GOV claims registered | done | load-bearing |  | 2026-06-19 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:GATE` | Section 9.0 hard prerequisite -- cross-instance determinism gate (610  | done | high |  | 2026-06-07 |
-| process | derived_evidence_index_plan.md | `derived_evidence_index:P0b` | Phase 0b -- cache the uncached 3.7 MB claims.yaml yaml.safe_load in se | pending | high |  | 2026-07-18 |
+| process | derived_evidence_index_plan.md | `derived_evidence_index:P0b` | Phase 0b -- cache the uncached 3.7 MB claims.yaml yaml.safe_load in se | done | high |  | 2026-07-18 |
 | governance | ethics_perimeter_plan.md | `ethics_perimeter:P0-PLAN` | Phase 0 -- plan-of-record created | done | high | depends_on: ethics_perimeter:P0-CATEGORY | 2026-06-19 |
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P0` | Plan-of-record + register GOV-CONFIRM-1 governance_rule claim | done | high |  | 2026-07-14 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P0` | Phase 0 -- instrument only: arm_fingerprint lib (substrate content-has | done | medium |  | 2026-06-06 |

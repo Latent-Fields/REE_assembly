@@ -1,0 +1,108 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-19T11:26:39Z",
+  "scope": "single",
+  "status": "confirmed",
+  "invoked_from": "governance Step 1.5 route A (inline), claim silly-jepsen-926d36",
+  "targets": [
+    {
+      "run_id": "v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic_20260718T183746Z_v3",
+      "queue_id": "V3-EXQ-778h",
+      "supersedes": "V3-EXQ-778d",
+      "supersedes_run_id": "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+      "claim_ids": ["SD-068", "MECH-168", "INV-047", "MECH-169"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "rem_clamp_artifact_confirmed_but_readout_still_content_free",
+      "self_route_verdict": "accepted",
+      "failed_criterion": "discrimination",
+      "criteria_detail": {
+        "C1_unpaired_null_derails": {"role": "load_bearing", "result": "PASS", "seeds": "7/8"},
+        "C2_unpaired_ratio_content_contingent": {"role": "discriminator", "result": "FAIL", "seeds": "1/8", "ceiling": 0.25, "unclamped_ratios": [0.9946357009625552, 0.9014339361414496, 0.8770952900685055, 0.0010989173069902271, 0.576577543244651, 85.18453599581865, 0.5739206576346799, 3.295473796662413]},
+        "C3_anchor_reproduces_778c": {"role": "readiness_anchor", "result": "PASS", "seeds": "8/8", "bar": 0.75}
+      },
+      "recording_provenance": {
+        "always_core_complete": true,
+        "validator": "ree-v3/validate_recording.py -- 0 always-core gaps",
+        "substrate_hash": "41940642ddaba64638b209ba54960a50469a9dd39012e264b489dadfff53593d",
+        "is_recording_gap": false
+      },
+      "analysis_defect_found": {
+        "field": "ceiling_inside_ci95",
+        "manifest_value": true,
+        "finding": "CI95 [-9.078, 32.179] is computed over all 8 seeds, but seed 7777 FAILED C1's de-rail predicate (clamp_frac 0.6 > 0.2 ceiling; 2 unclamped sigmas < 3 minimum) and supplies the entire 85.18 outlier. A subgroup statistic must honour the predicate defining the subgroup.",
+        "corrected_reading": "On the 7 C1-passing seeds, 6/7 remain above the 0.25 ceiling (median ~0.877). The conclusion is TIGHTER than the manifest interval implies, not weaker.",
+        "blocks_adjudication": false
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- claims could not express themselves through this readout; no mechanism-level pressure either way",
+        "biological_reference": "clear -- Bar et al. 2020 unpaired-cue TMR control, faithfully translated",
+        "prerequisites": "present -- the anchor-spec fix verifiably took effect (C3 8/8)",
+        "implementation": "complete -- the null arm is correctly implemented; not a wiring gap",
+        "environment": "adequate -- sigma grid spans railed and unrailed regimes",
+        "measurement": "MISLEADING (dominant layer) -- the REM calibration_error slope responds to corruption magnitude irrespective of content; de-clamping revealed a readout that was already content-free",
+        "integration": "coupled -- arms are arm-identical apart from the manipulated factor",
+        "scale": "adequate for the median reading; CI thin and mis-subgrouped (see analysis_defect_found)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "targeted memory reactivation with an unpaired-cue control (Bar et al. 2020)",
+        "dependencies": ["content-sensitive consolidation readout", "arm-identical unplanted probe"],
+        "is_formal_import": false,
+        "divergence": "none at the design level -- the unpaired-target null is a faithful translation; the failure is that the REM readout channel is not content-sensitive, so a correct control cannot rescue it",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_rationale": "User decision at the Step 8 gate, in preference to weakens. V3-EXQ-778h is a same-question alphabetic-suffix re-run of V3-EXQ-778d whose only change is a readiness-anchor specification fix -- same arms, seeds, sigma grid, RNG streams, thresholds and criteria. Scoring it weakens would double-count one scientific result across a superseded/superseding pair. It carries provenance, not weight.",
+      "illusory_conflict_check": {
+        "performed": true,
+        "risk": "non_contributory on 778h PLUS marking predecessor 778d superseded could silently delete the REM weakens signal",
+        "resolved": true,
+        "detail": "V3-EXQ-778e (rem_declamped_readout_diagnostic) and V3-EXQ-778f (rem_gen_gain_content_scale_diagnostic) independently carry weakens/measurement_gap from failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18 and both remain active, so the REM weakens is preserved by two runs. Additionally SD-068's claim_evidence.v1.json currently shows genuine_exp_count 0 with all 4 entries literature-sourced, so none of these diagnostics presently weights the claim's experimental confidence."
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-778h (diagnostic, run_id v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic_20260718T183746Z_v3) is a same-question anchor-fix re-run of V3-EXQ-778d and PROMOTES AND DEMOTES NOTHING. Scored non_contributory to avoid double-counting one scientific result across a superseded/superseding pair; the REM content-free finding continues to be carried by V3-EXQ-778e and V3-EXQ-778f. Its content: the 1e-3 positivity-clamp artifact is CONFIRMED real (readiness anchor reproduced 778c's railed signature on 8/8 seeds -- 5 saturation, 3 positivity-floor collapse -- and the unpaired-target null de-railed on 7/8), but removing the artifact did NOT reveal content-contingency: the unclamped null_slope_ratio median is ~0.88 against a 0.25 ceiling, with 6 of the 7 de-railed seeds above the ceiling. The REM calibration_error readout responds to corruption MAGNITUDE irrespective of content, so it cannot adjudicate whether REM consolidation preserves content. This constrains the INSTRUMENT, not the mechanism -- no mechanism-level pressure on SD-068 / MECH-168 / MECH-169 / INV-047 either way. The manifest's own ceiling_inside_ci95: true OVERSTATES the uncertainty: that CI95 is computed over all 8 seeds including seed 7777, which failed the C1 de-rail predicate (clamp_frac 0.6 > 0.2, 2 unclamped sigmas < 3) and supplies the entire 85.18 outlier; on the C1-passing subgroup the conclusion is tighter, not weaker.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "counts_per_claim": {"SD-068": 0, "MECH-168": 0, "INV-047": 0, "MECH-169": 0},
+        "refused_requeue": false,
+        "forward_note": "This autopsy records non_contributory, making it the FIRST brake-eligible reading on all four claims. A second such reading fires the brake and forces implement-substrate routing rather than another lettered REM readout iteration."
+      },
+      "additional_governance_writes": [
+        {
+          "action": "mark_superseded",
+          "target_run_id": "v3_exq_sd068_rem_unpaired_null_diagnostic_20260718T124216Z_v3",
+          "target_queue_id": "V3-EXQ-778d",
+          "set_evidence_direction": "superseded",
+          "evidence_direction_note": "Superseded by V3-EXQ-778h (v3_exq_sd068_rem_unpaired_null_anchorfix_diagnostic_20260718T183746Z_v3), which corrects a readiness-anchor specification defect and reproduces the same science. The REM content-free weakens remains carried by V3-EXQ-778e and V3-EXQ-778f.",
+          "then": "rebuild the experiment index"
+        }
+      ],
+      "learning_extracted": [
+        "Removing a measurement artifact can reveal that the underlying readout was already blind. The clamp was real and worth fixing, but it was MASKING a content-free readout rather than causing one -- confirming an artifact is not the same as validating the instrument behind it.",
+        "A subgroup statistic must honour the predicate that defines the subgroup. C2's CI95 included a seed that failed C1's de-rail gate, inflating the interval enough to make the manifest report ceiling_inside_ci95: true and read as underpowered.",
+        "Same-question alphabetic-suffix re-runs need an explicit non-double-counting rule: they should carry provenance, not a second unit of evidential weight. The supersession bookkeeping and the direction choice must be decided together, with the illusory-conflict check run against the pair.",
+        "The SD-068 REM leg now needs a content-sensitive readout, not another null-design iteration -- 778d/e/f plus this anchor-fix re-run have all bottomed out on the same readout channel. The next move is a different measurement axis, not another letter."
+      ],
+      "routing": "governance-adjudication"
+    }
+  ],
+  "hypothesis_space_ledger_edit": {
+    "mode": "B-provenance-update",
+    "question_id": "consolidation_readout_validity",
+    "hid": "H-rem-clamp-artifact",
+    "already_resolved_by": "V3-EXQ-778d",
+    "edit": "append V3-EXQ-778h to adjudicating_runs and resolution.resolving_runs; extend resolution.basis with the anchor-fix provenance",
+    "state_change": false,
+    "denominator_change": false,
+    "bar_change": false,
+    "initial_frozen_count_before": 6,
+    "initial_frozen_count_after": 6,
+    "note": "Provenance pointer update so the ledger cites the valid (non-superseded) run. Not growth -- frozen-set invariants 1-7 untouched by construction."
+  },
+  "cluster_pattern": null
+}

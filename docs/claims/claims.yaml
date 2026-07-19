@@ -3310,6 +3310,26 @@
     No status/confidence change from this landing (substrate only; the sub-claim (ii)
     dissociation experiment is queued 2026-07-17). See
     docs/architecture/sd_069_phasic_surprise_burst.md.
+  granularity_debt_disposition: coherent_campaign
+  granularity_debt_recurrence_note: >
+    ADJUDICATED 2026-07-19 (governance cycle, user-directed) against the GOV-GRAN-1 P1
+    unflagged-recurrence flag: 3 no-verdict hits across 2 distinct signatures
+    (V3-EXQ-777 -> V3-EXQ-779 -> V3-EXQ-779a). VERDICT: coherent substrate-build campaign,
+    NOT granularity debt -- so no /claim-synthesis decomposition is owed. Reasoning: the two
+    signatures are not two bundled mechanisms surfacing separately, they are PROGRESSIVE
+    LOCALIZATION of one instrumentation gap. Signature 1 (the 777 lineage) localized to probe
+    telemetry collected against an UNTRAINED agent whose action-value distribution is degenerate
+    on ~64% of seeds, capping informative-seed yield at 28.6%. Signature 2 (the 779 lineage)
+    localized to a phasic surprise-EMA baseline cleared at every episode boundary, so
+    short-episode seeds structurally under-report event ticks. Each successive letter narrowed
+    the gap rather than circling it, and BOTH now terminate in a NAMED, buildable substrate
+    owner: SD-PROBE-WARMUP and sd_phasic_ema_episode_continuity respectively (both created in
+    substrate_queue.json this cycle, priority 1, node_class `complicated (buildable)`).
+    Sub-claims (i) orthogonal-axes and (ii) tonic/phasic split remain a coherent single claim
+    about one control plane; splitting them would not have produced either build. PROMOTES AND
+    DEMOTES NOTHING; epistemic_category untouched, so this seeds no GOV-CEIL-1 count. Note the
+    separate re-derive-brake position recorded in `notes`: a further same-granularity lettered
+    iteration is REFUSED in favour of these two builds.
   notes: >
     Sub-claims (i) and (ii) both remain experimentally untested as of 2026-07-18. V3-EXQ-777 and
     V3-EXQ-779 were adjudicated non_contributory (measurement_test_design_defect) by
@@ -3332,6 +3352,23 @@
     a further lettered iteration against an UNTRAINED agent is REFUSED. No status or
     confidence change from that landing (substrate only). Sub-claim (ii) / the 779 lineage is
     explicitly EXEMPT and is NOT blocked on SD-074.
+    2026-07-19 UPDATE (sub-claim (ii), the 779 lineage). V3-EXQ-779a: adjudicated
+    non_contributory / measurement_test_design_defect by
+    failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18. The direction is unchanged, but the
+    run is much CLOSER to a result than the bare FAIL suggests -- the load-bearing criterion
+    double_dissociation_C1_and_C2 PASSED. Routes to /queue-experiment for a redesign, not
+    another blind letter. V3-EXQ-779b: adjudicated non_contributory / substrate_ceiling by
+    failure_autopsy_V3-EXQ-779b_2026-07-19, with pending_retest_after_substrate. The 779a
+    episode-cap fix VERIFIABLY took effect (seed 23 / T1P1: 835 -> 2400 env steps, stop_reason
+    episode_cap -> step_cap, episode_cap_can_bind False) and the precondition still did not
+    move -- so the gate is LOAD-BEARING, not spurious, and the exposure fix is not the missing
+    ingredient. Routed to /implement-substrate on the new substrate_queue entry
+    sd_phasic_ema_episode_continuity; 777a likewise carries a create for SD-PROBE-WARMUP.
+    NOTE FOR THE NEXT AUTOPSY: the 777a/779a/779b readings bring MECH-063 to THREE
+    non_contributory adjudications (two of them substrate_ceiling), so the re-derive brake is
+    at or past threshold on this claim -- a further same-granularity lettered iteration should
+    be REFUSED in favour of the two substrate builds above. Sub-claims (i) and (ii) both remain
+    experimentally untested; the claim is untested, not unsupported.
 - id: MECH-064
   title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis
@@ -56357,6 +56394,41 @@
     The run self-routes all three branches plus headline.probe_k_recommended,
     headline.hypothesis_registry_action and headline.exq_781_null_readable (the Finding V3
     corollary), so the routing above is machine-readable off the manifest.
+    ADJUDICATED 2026-07-19 -- V3-EXQ-782 RAN and WEAKENS the surviving WEAK form
+    (failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18, routing
+    governance-weaken-only). The branch that fired is the THIRD outcome the sanctioning
+    adjudication did not enumerate: ALREADY-CONCENTRATED. R-(a) finds forage-contact |adv| mass
+    on the reference composed-bootstrap CTRL path already concentrated BEFORE the per-episode
+    standardiser -- C_pre = 1.92 (z_world) / 1.20 (raw_view) against the 0.5 "tiny" threshold --
+    so the weak form's PREMISE (a tiny forage signal that novelty-noise re-amplification could
+    swamp) FAILS. The standardiser slightly REDUCES concentration (delta -0.343 z_world / -0.141
+    raw) rather than swamping it. Readiness met on all four preconditions (local_view_greedy
+    48.05, greedy_oracle 57.2, 273 forage steps vs a 30 floor, demo return std 0.3027 vs a 0.25
+    floor); non_degenerate True. Per the probe's own pre-declared conditional this queues NO
+    probe K and makes NO hypothesis-registry write (competence_floor counts unchanged).
+    STATUS DECISION (governance 2026-07-19, user-adjudicated): the pre-declaration above says
+    "this claim goes to `weakened`", but `weakened` is NOT a value in the claims.yaml status
+    enum (zero occurrences across 894 claims), and the autopsy's own operative line reads
+    "MECH-459 stays candidate/v3_pending". RESOLVED in favour of the autopsy: status stays
+    candidate / v3_pending and the weakening is recorded HERE rather than as a new enum value.
+    The STRONG form is NOT restated -- it was already refuted by Finding V2 of the sanctioning
+    decision. This licenses NO build: not the twohot critic, not the percentile normaliser.
+    ADJACENT LIVE FINDING, carried but promoting nothing: R-(b) (declared load_bearing:false)
+    finds the shared CTRL critic FLAT AND UNINFORMED -- std(V)/std(G) = 0.041 against a 0.25
+    collapse threshold, pre-reward-vs-far separation ratio 0.016 against a 0.25 floor,
+    value-return correlation 0.434. That is signal-ABSENCE, not collapse-to-the-bimodal-mean.
+    So the two halves of this composite algorithmic-import claim DISSOCIATE: R-(a) exonerates
+    the two-sided normaliser while R-(b) corroborates the distributional-critic half of the same
+    DreamerV3-prescribed corrective. It is the leading mechanism candidate for the V3-EXQ-780
+    raw_view erosion (an installed 20.93-competence behavioural prior decaying to 11.67 under RL
+    is what an unbaselined high-variance advantage predicts), and being a property of the SHARED
+    control path it is common-mode across 780 and 781 -- it cannot explain a treat-vs-ctrl
+    difference, but it is a live candidate root for the campaign-wide failure to RETAIN
+    competence. CONDITIONING PAYOFF REALISED: because the weak form falls, V3-EXQ-781's null is
+    readable at face value (781's approach drive enters `shaped` INSIDE the normaliser and would
+    have been confounded had the weak form held), so 782 CLEARS the elimination bar for the
+    GOV-FANOUT-1 portfolio rather than blocking it -- the outcome the pre-registered conditional
+    was written to detect.
   origin: >
     Registered 2026-07-18 via the CDQ-007 convergence-demand intake (Mine + Register,
     evidence/planning/convergence_demand_pipeline_plan.md Section 5 steps 2-3), from a DreamerV3
@@ -56665,6 +56737,18 @@
     precondition_unmet purely from float32 catastrophic cancellation (E3 scores
     ~1e32, modulatory range below float32 ULP); without that gate this probe returns
     a spurious FLAT F-share for numerical reasons and FALSELY REFUTES.
+    ADJUDICATED 2026-07-19 -- V3-EXQ-785 RAN (arousal variance-amplifier decomposition) and is
+    scored MIXED by failure_autopsy_V3-EXQ-785_2026-07-19, epistemic_category
+    measurement_test_design_defect. The direction was CORRECTED from the auto-derived
+    non_contributory to mixed, and the run's self-route substrate_not_ready_requeue is REJECTED
+    AS A WHOLE-RUN READING: the run has TWO arms and only ONE of them is vacuous, so discarding
+    the run entire would have thrown away a readable result. AMPLIFICATION is CONFIRMED;
+    CONCENTRATION is CONTRADICTED -- which is a genuine split of this claim's two components
+    rather than a null. Because the two arms dissociate, the honest reading is partial support
+    for the entrenchment polarity (affect amplifies the incumbent) with the concentration
+    sub-prediction actively contradicted. Routes to /queue-experiment for a redesign that fixes
+    the vacuous arm; NOT a substrate build and NOT a demotion. Status stays candidate; no
+    confidence change (diagnostic, governance-scoring-excluded).
   notes: >
     Registered 2026-07-18 from a conversation-originated hypothesis (user), distinct
     from MECH-359 in POLARITY: MECH-359 says a scalar is too WEAK to steer (affect
