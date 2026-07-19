@@ -240,7 +240,7 @@ hazard proximity controlled?
 
 ---
 
-## 9. Hypothesis-space ledger -- PENDING, not applied
+## 9. Hypothesis-space ledger -- APPLIED 2026-07-19T15:26:01Z (see 9a)
 
 Step 9b was **deliberately skipped**: the live V3-EXQ-779b autopsy session holds
 `hypothesis_space_registry.v1.json` as an active TASK_CLAIMS resource (claimed 2026-07-19T09:52:16Z).
@@ -252,11 +252,92 @@ three pre-registered hypotheses (`H-arousal-concentrates`, `H-arousal-broadens`,
 `H-endogenous-hazard-geometry`), `initial_frozen_count` 3, **all left `alive`** (no bits claimed:
 `non_degenerate` is false and urgency was endogenous, so the elimination bar is not met).
 
-**`/governance` should apply them at the next walk.**
+**APPLIED** at the V3-EXQ-785a adjudication -- see section 9a below.
+
 
 ---
 
-## 10. Governance hand-off summary
+## 9a. Ledger APPLIED at the V3-EXQ-785a adjudication (2026-07-19T15:26:01Z)
+
+Applied by session `governance-641c45`. The blocker named above had lifted: the V3-EXQ-779b
+autopsy session's claim on `hypothesis_space_registry.v1.json` flipped to `done` at
+2026-07-19T11:52Z, and the registry was clean in the working tree.
+
+V3-EXQ-785a **meets the elimination bar this cycle could not** -- gate GREEN, `non_degenerate`
+true, urgency EXOGENOUS (i.i.d. uniform over a pre-registered grid), 1757 independent committed
+selections across an 8.5x urgency range vs this run's 1.8x endogenous range.
+
+| Hypothesis | Drafted | Applied | Bits |
+|---|---|---|---|
+| `H-arousal-concentrates` | alive | **eliminated** | 1 |
+| `H-arousal-broadens` | alive | **eliminated** | 1 |
+| `H-endogenous-hazard-geometry` | alive | **alive** (amended -- see below) | 0 |
+
+**Reduction this cycle: 2 of 3.** Both arousal hypotheses are contradicted under clean exogenous
+manipulation: `var_total` fold 0.970 (rho -0.086) where this run measured 14.1x, and incumbent
+share 0.9375 -> 0.9411 (gap +0.0036, rho +0.31) where this run measured a 0.970 -> 0.831 fall at
+rho -0.83. The null is tight, not underpowered -- SE ~0.0044 puts the gap under 1 SE, where this
+run's 0.139 fall would have been 30+ SE -- and internal validity held (`effective_threshold`
+0.3761 -> 0.2570, a real 32% reduction, with nothing downstream responding). So **this run's
+entire profile, amplification and dilution alike, was the endogeneity confound.**
+
+### The one amendment to the drafted blocks
+
+`H-endogenous-hazard-geometry` was **not** recorded as confirmed, though the residual logic invites
+it. Its apparent direct support is a **between-seed artifact**. Pooled over all 1757 committed rows
+the hazard covariate looks like it reproduces this run's profile -- `corr(hazard_prox_mean, share)`
+= -0.187 and `corr(hazard_prox_mean, log10 var)` = +0.171, the same signs as the 785 result. But
+within seed the effect vanishes and mostly **reverses**:
+
+| seed | r(hazard, share) | tertile share gap | var fold |
+|---|---|---|---|
+| 0 | +0.089 | +0.011 | 0.93x |
+| 1 | +0.076 | +0.012 | 1.07x |
+| 2 | +0.041 | +0.005 | 1.01x |
+| 3 | -0.125 | -0.014 | 1.02x |
+| 4 | +0.135 | +0.014 | 1.07x |
+
+Across the 5 seed means, `r(mean hazard, mean share)` = -0.78 and `r(mean hazard, mean var)` =
++0.77, carried largely by seed 0 (mean share 0.833, mean var 4.47e-05, ~7x the other seeds). This
+is Simpson's paradox on n=5. Per the Step 9b mapping table that is the *does-not-discriminate* row:
+`resolving_runs` and `basis` recorded, state unchanged, no bit claimed. Confirming it needs a run
+that **manipulates** hazard proximity, or a within-seed design with enough seeds to separate the
+two. (Noted for whoever picks that up: seed 0's mean share of 0.833 is near-identical to this run's
+endpoint of 0.831.)
+
+Leg-level `evidence_direction` is recorded as `weakens` for both eliminated legs, per the registry's
+leg vocabulary (`{weakens, non_contributory}`); the manifest's claim-level `does_not_support` is
+preserved alongside as `manifest_evidence_direction`.
+
+### This run's own direction moved past the recommendation below
+
+Section 10's recommended `mixed` is **superseded**. Because 785a shows the amplification half was
+confound-borne too, this run's manifest moved to `evidence_direction: superseded` with
+`superseded_by: V3-EXQ-785a` (CLAUDE.md supersession policy), which the indexer treats as inactive
+so it no longer weights MECH-463. An independent precision defect compounds it, identified in the
+785a manifest: this run read `e3.last_score_diagnostics` without clearing it, so latched ticks
+re-recorded the previous tick's diagnostics as new rows -- its "3959 committed ticks / ~40 SE"
+reflect ~440 genuine selections (~9.0x pseudo-replication).
+
+**MECH-463 stays `candidate`.** Three caveats bound the result and are recorded in its
+`evidence_quality_note`: channel-agnosticism is untested (single regime -- the entropy regime was
+dropped with recorded evidence that CH:mech341 absorbs ~99-115% of cross-candidate variance at every
+`entropy_bias_scale` tried); z_world is under-differentiated (participation ratio ~1.06), leaving
+live the reading that the substrate cannot *express* the effect; and the scope is the SD-011
+commit-threshold route only, not every arousal route.
+
+### Correction to section 4
+
+Section 4's flagged "candidate reasoning error" is itself **mis-signed**. `committed = variance <
+commit_threshold * (1 - urgency)` is an UPPER bound, so raising urgency makes admission **stricter**,
+not "less selective"; and the gated quantity is the z_world *running variance* (world-model
+stability), not candidate separation, because `use_harm_variance_commit` is off. 785a's C3 measured
+commit rate flat at ~0.99-1.00 across all six levels despite the 32% threshold movement, which rules
+out differential admission as the mechanism regardless of sign.
+
+---
+
+## 10. Governance hand-off summary (as recommended at the 785 gate -- partly superseded, see 9a)
 
 | Item | Recommendation |
 |---|---|

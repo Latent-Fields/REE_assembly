@@ -56838,6 +56838,55 @@
     sub-prediction actively contradicted. Routes to /queue-experiment for a redesign that fixes
     the vacuous arm; NOT a substrate build and NOT a demotion. Status stays candidate; no
     confidence change (diagnostic, governance-scoring-excluded).
+    SUPERSEDED + ADJUDICATED 2026-07-19 (V3-EXQ-785a) -- STATUS UNCHANGED (candidate).
+    V3-EXQ-785a re-ran the decomposition with urgency set EXOGENOUSLY (i.i.d. uniform
+    over a pre-registered grid, so the endogeneity confound is broken by construction
+    rather than adjusted away), across an 8.5x range (0.04-0.34) vs 785's 1.8x
+    endogenous range -- BETTER powered, not worse -- with gate GREEN, non_degenerate
+    true, and 1757 independent committed selections. THE REGISTERED CONCENTRATION
+    PREDICTION IS CONTRADICTED: incumbent share 0.9375 -> 0.9411, gap +0.0036 against
+    a +0.02 threshold, rho +0.31 vs +0.6. And the amplification premise goes with it:
+    var_total fold 0.970 (rho -0.086), where 785 had measured 14.1x. So the ENTIRE 785
+    profile -- amplification AND dilution -- was the endogeneity confound (near-hazard
+    candidate geometry), the rival the 785 autopsy had named as leading. 785's manifest
+    is moved to evidence_direction superseded (superseded_by V3-EXQ-785a) and no longer
+    weights this claim.
+    THE NULL IS TIGHT, NOT UNDERPOWERED: within-level share SD ~0.075-0.082 at ~290
+    rows/level gives SE ~0.0044, so the measured gap sits under 1 SE where 785's 0.139
+    fall would have been 30+ SE. Per-seed gaps straddle zero (share
+    [-0.0016,+0.0119,+0.0021,+0.0081,-0.0058]). Internal validity held: the
+    manipulation genuinely moved the gate (effective_threshold 0.3761 -> 0.2570, a 32%
+    reduction) with injection fidelity 5.6e-17 and randomisation
+    corr(assigned_urgency, hazard_prox) = 0.0177 -- so this is "no effect", not "no
+    treatment". Differential admission is separately ruled out as the mechanism: C3
+    measured commit rate flat at ~0.99-1.00 across all six levels despite the 32%
+    threshold movement.
+    MECHANISM CORRECTION FOR THE RECORD: the 785 autopsy's flagged "candidate reasoning
+    error" was itself mis-signed. committed = variance < commit_threshold*(1-urgency)
+    is an UPPER bound, so raising urgency makes admission STRICTER, not less selective;
+    and the gated quantity is the z_world RUNNING VARIANCE (world-model stability), not
+    candidate separation, because use_harm_variance_commit is off.
+    WHY NO STATUS CHANGE -- THREE CAVEATS BOUND THIS. (1) CHANNEL-AGNOSTICISM IS
+    UNTESTED. 785a runs a SINGLE regime (harm_weighted incumbent). The second regime was
+    dropped with recorded evidence: an entropy_bias_scale scan over
+    {0.15,0.30,0.50,1.00} found CH:mech341 absorbing ~99-115% of cross-candidate
+    variance at every setting, so its share statistic is arithmetically forced. This
+    refutes at ONE incumbent identity only, and channel-agnosticism is half of what this
+    claim asserts. (2) z_world UNDER-DIFFERENTIATION: participation ratio ~1.06 at
+    world_dim=128 with absolute variances ~1.2e-05, leaving live the alternative reading
+    that the substrate cannot EXPRESS the effect rather than that the effect does not
+    exist -- the objection already recorded above, which bites the fix rather than the
+    measurement. (3) SCOPE: this tests arousal as a scalar on the SD-011 commit
+    threshold specifically, not every arousal route (the D1/D2 tonic gain and the
+    softmax-temperature routes are untouched).
+    HYPOTHESIS-SPACE LEDGER: applied at this adjudication under qid
+    arousal-variance-amplifier (hypothesis_space_registry.v1.json), 2 of 3 frozen
+    hypotheses eliminated. H-arousal-concentrates and H-arousal-broadens ELIMINATED;
+    H-endogenous-hazard-geometry deliberately left ALIVE rather than confirmed -- its
+    apparent direct support is a between-seed artifact (pooled
+    corr(hazard_prox_mean, share) = -0.187 reverses to mostly POSITIVE within seed,
+    r = [+0.089,+0.076,+0.041,-0.125,+0.135]; across the 5 seed means r = -0.78,
+    carried largely by seed 0). It survives as the residual explanation only.
   notes: >
     Registered 2026-07-18 from a conversation-originated hypothesis (user), distinct
     from MECH-359 in POLARITY: MECH-359 says a scalar is too WEAK to steer (affect

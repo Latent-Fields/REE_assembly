@@ -11,7 +11,9 @@
     {
       "run_id": "v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3",
       "queue_id": "V3-EXQ-785",
-      "claim_ids": ["MECH-463"],
+      "claim_ids": [
+        "MECH-463"
+      ],
       "experiment_purpose": "evidence",
       "self_route_label": "substrate_not_ready_requeue",
       "manifest_evidence_direction": "non_contributory",
@@ -21,15 +23,19 @@
       "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b",
       "machine_class": "linux-x86_64-py3.10",
       "elapsed_seconds": 459.793166633,
-      "seeds": [0, 1, 2, 3, 4],
-
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
       "why_the_self_route_label_is_wrong": {
         "headline": "The run has TWO arms and only ONE is vacuous. The harm_incumbent arm's non-vacuity gate is GREEN (all 6 preconditions met, 3959 committed ticks, ~396 per decile, incumbent margin 0.882). The whole-run label substrate_not_ready_requeue and non_degenerate=false are driven entirely by a single unmet precondition in the OTHER arm: entropy_incumbent::n_components_with_nontrivial_share, measured 1.0 against threshold 1.5.",
         "consequence": "The flattening suppresses a well-powered result. In the GREEN arm the load-bearing criterion failed at measured_rho -0.8303 against threshold_rho +0.6 -- not a null, but a strong effect in the OPPOSITE direction to the claim's prediction, on ~396 committed ticks per decile with per-decile share SD ~0.05-0.08 (SE ~0.003, so the 0.970 -> 0.831 span is on the order of 40 SE).",
         "inversion": "The ONLY arm whose statistic points the claim's way is the VACUOUS one (entropy_incumbent, measured_rho +0.5879, gap +0.0374 exceeding its 0.02 threshold, a near-miss 'support'), and it is arithmetically forced: its incumbent CH:mech341 holds share 1.0065 while every other component sits at |share| < 0.01 (f -0.0013, harm_weighted -0.0048, residue_weighted -0.0004). A single-component decomposition cannot measure redistribution; the gate correctly called it RED.",
         "net": "Left as-is, the manifest records 'substrate not ready' for a run whose clean arm delivered strong evidence against the claim and whose only claim-favourable number is a degenerate artifact."
       },
-
       "entropy_arm_red_was_foreseeable_at_design_time": {
         "statement": "The entropy regime's P7 failure was arithmetically guaranteed by the design's own pre-registration, and the number that guarantees it is written into the committed config.",
         "config_evidence": "config.regimes[1].expected_incumbent_share = 1.043 (pre-registered from the docstring's 2026-07-18 seed-0 measurement table: entropy_bias_scale=1.0 -> incumbent CH:mech341 share +1.0429, f -0.0089).",
@@ -38,15 +44,62 @@
         "the_scripts_own_principle": "The script's P1 note (lines 68-72) already states the governing principle: the authority gate is applied ONLY to regimes whose incumbent is a modulatory channel, because asserting it in a primary-component regime 'would make that regime structurally un-passable and silently collapse the two-regime design back to one.' P7 is applied WITHOUT that regime-conditioning and does exactly the analogous damage in reverse -- one regime's structural RED vacates the other regime's GREEN result. The design articulated the rule and then did not apply it to P7.",
         "classification": "test-design defect, NOT a substrate gap. No ree_core mechanism is missing, absent or unwired."
       },
-
       "the_clean_arm_result": {
         "arm": "harm_incumbent (entropy_bias_scale 0.0), gate GREEN, incumbent harm_weighted, observed==pre-registered, margin 0.8816",
-        "mean_shares": {"harm_weighted": 0.9368, "f": 0.0552, "residue_weighted": 0.0080},
+        "mean_shares": {
+          "harm_weighted": 0.9368,
+          "f": 0.0552,
+          "residue_weighted": 0.008
+        },
         "decile_series": {
-          "urgency_mean": [0.06965, 0.07442, 0.08141, 0.08892, 0.09422, 0.09967, 0.10448, 0.11275, 0.12121, 0.12541],
-          "incumbent_share_mean": [0.96988, 0.96742, 0.97569, 0.97238, 0.95453, 0.95152, 0.93954, 0.96065, 0.84575, 0.83079],
-          "var_total_mean": [2.8551e-06, 2.4858e-06, 7.1456e-06, 6.7471e-06, 6.8962e-06, 8.6730e-06, 7.9231e-06, 1.2392e-05, 3.5827e-05, 4.0232e-05],
-          "n_per_decile": [390, 402, 388, 396, 396, 396, 395, 404, 396, 396]
+          "urgency_mean": [
+            0.06965,
+            0.07442,
+            0.08141,
+            0.08892,
+            0.09422,
+            0.09967,
+            0.10448,
+            0.11275,
+            0.12121,
+            0.12541
+          ],
+          "incumbent_share_mean": [
+            0.96988,
+            0.96742,
+            0.97569,
+            0.97238,
+            0.95453,
+            0.95152,
+            0.93954,
+            0.96065,
+            0.84575,
+            0.83079
+          ],
+          "var_total_mean": [
+            2.8551e-06,
+            2.4858e-06,
+            7.1456e-06,
+            6.7471e-06,
+            6.8962e-06,
+            8.673e-06,
+            7.9231e-06,
+            1.2392e-05,
+            3.5827e-05,
+            4.0232e-05
+          ],
+          "n_per_decile": [
+            390,
+            402,
+            388,
+            396,
+            396,
+            396,
+            395,
+            404,
+            396,
+            396
+          ]
         },
         "decomposition_decile0_to_decile9": {
           "total_cross_candidate_variance_growth": "14.1x",
@@ -57,21 +110,18 @@
         "not_in_the_pre_registered_grid": "The script enumerates four outcomes: SUPPORTS (rises in both regimes), MIXED/REFINE (rises only in the harm regime), REFUTES (FLAT in both with the gate GREEN), INVALID (gate RED). The observed harm-arm behaviour is none of these: it is a strong MONOTONE DECREASE, which is neither 'rises' nor 'flat'. The grid has no cell for amplification-confirmed / concentration-refuted, so the run had no way to self-route correctly even had the gate been regime-conditioned.",
         "bearing_on_the_registered_consequence": "MECH-463 as registered states that under F-dominance this makes affective engagement ENTRENCH the dominant channel 'rather than convert diversity'. The clean arm points the opposite way: arousal BROADENS the variance base. If that survives an exogenous test, arousal is a candidate DIVERSITY lever rather than an entrenchment mechanism, which bears directly on the conversion-ceiling programme. Note the scope caveat the script itself records: the substrate offers no F-incumbent cross-candidate regime (f is 0.055 here), so this is evidence about the MECHANISM, not directly about F-entrenchment."
       },
-
       "candidate_reasoning_error_in_the_claim": {
         "claim_text": "functional_restatement: 'shrinking the commit threshold makes commitment fire on whichever candidate already has the largest score separation -- i.e. it is channel-agnostic variance amplification'",
         "objection": "A LOWER threshold is LESS selective, not more. effective_threshold * (1.0 - urgency_applied) means rising urgency ADMITS ticks that would otherwise not commit -- i.e. lower-separation ticks. That predicts the committed set at high urgency to be MORE heterogeneous and the dominant channel's share to FALL, which is exactly the observed -0.83.",
         "status": "CANDIDATE, not established. It is consistent with the data and with the code path cited in the claim's own functional_restatement (e3_selector.py:2679-2686), but this run cannot separate it from the endogeneity confound below. Flagged for the claim-layer, not scored as a finding.",
         "why_it_matters": "If correct, the defect is in the claim's derivation rather than in the substrate or the probe, and no amount of re-running fixes it -- the prediction's sign is wrong."
       },
-
       "threats_to_the_finding": {
         "primary_endogeneity": "urgency_applied is ENDOGENOUS -- the script states the regime is a substrate-config contrast and the arms are observational within regime, with urgency an emergent per-tick quantity. High-urgency ticks are therefore also near-hazard ticks (env hazard_harm 0.5), which may carry different candidate geometry for reasons unrelated to arousal. This is the leading alternative explanation for BOTH the 14x variance rise and the share redistribution, and it is the reason this autopsy does not route a governance demotion.",
         "harm_stream_coupling_runs_AGAINST_the_finding": "urgency_applied derives from z_harm_a (norm().mean()) while the incumbent component is harm_weighted, so conditioning variable and incumbent share a source. That coupling would, if anything, push the incumbent's share UP with urgency -- the direction the claim predicts. The observed fall is therefore against the confound's direction, which strengthens rather than weakens it.",
         "z_world_under_differentiation": "The script's own INTERPRETATION CAVEAT: under an under-differentiated z_world (participation ratio ~1.06 at world_dim=128) the per-candidate channels have little to range over. Absolute variances here are tiny (2.9e-06 to 4.0e-05). The caveat bites the generalisation, not the internal comparison across deciles.",
         "single_regime_generalisation": "With the entropy arm vacated, the channel-AGNOSTIC part of the claim is untested -- only one incumbent identity was validly observed. Agnosticism across incumbents remains open."
       },
-
       "four_layer_diagnosis": {
         "claim_alignment": "weakened on the CONCENTRATION premise, strengthened on the AMPLIFICATION premise -- the claim is compound and the two halves separated cleanly under test",
         "biological_reference": "clear -- LC-NE / D1-D2 global gain modulation acting on a selection stage; the failure does NOT match a missing-dependency signature. It matches a mis-derived sign in the translation of 'global gain' into 'concentration of variance on the dominant channel'",
@@ -82,16 +132,18 @@
         "integration": "coupled -- the conditioning variable urgency_applied and the incumbent component harm_weighted share the z_harm_a source by design",
         "scale": "adequate -- 5 seeds x 800 ticks x 2 regimes, 3959 committed ticks in the scored arm, ~396 per decile, all 10 deciles populated against MIN_DECILES_POPULATED 6"
       },
-
       "biological_reference": {
         "closest_mechanism": "LC-NE global gain / adaptive gain theory (Aston-Jones & Cohen) and D1-D2 tonic dopaminergic gain (Grace) acting as scalar modulators on a downstream selection stage; the harm-urgency threshold shrinkage is the amygdala/periaqueductal urgency analogue",
-        "dependencies": ["a scalar arousal/urgency signal", "a downstream commitment threshold the scalar acts on", "a multi-channel candidate score with non-trivial cross-candidate variance in more than one channel"],
+        "dependencies": [
+          "a scalar arousal/urgency signal",
+          "a downstream commitment threshold the scalar acts on",
+          "a multi-channel candidate score with non-trivial cross-candidate variance in more than one channel"
+        ],
         "is_formal_import": false,
         "divergence": "The mechanism class is a biological translation, not a Pearl/Shannon/optimal-control formalism, so the SD-003 failure mode does not apply. The divergence identified here is INTERNAL to the translation: 'a global gain amplifies variance' is biologically well-supported, but the further step 'and therefore concentrates variance on the already-dominant channel' does not follow from threshold shrinkage and is contradicted by the run.",
         "lit_status": "partial -- MECH-463 was registered 2026-07-18 with no targeted_review entry of its own; it inherits warrant from the LC-NE / neuromodulator pull backing MECH-063 and from MECH-229 VALENCE_WANTING",
         "dependency_discovered": "A concentration prediction requires the modulator to act on a SELECTIVITY parameter, not on an ADMISSION threshold. Lowering an admission threshold broadens the committed population and dilutes the dominant channel's share. This is a genuine structural distinction discovered by the FAIL and it applies to all three of the claim's global routes, not just the harm one."
       },
-
       "recording_gap": {
         "present": true,
         "field": "custom_information.per_tick_sink -> v3_exq_785_mech463_arousal_variance_amplifier_decomp_20260718T212815Z_v3_per_tick.jsonl",
@@ -101,23 +153,18 @@
         "routing_consequence": "The successor MUST durably emit the per-tick sink alongside the manifest per the Experimental Recording Standard (evidence/planning/experimental_recording_standard_2026-07-12.md). Declaring a sink path in custom_information without committing the file reproduces the blind spot at full compute cost.",
         "always_core": "COMPLETE -- recording_schema, substrate_hash, machine, machine_class, elapsed_seconds, full config and explicit seeds are all present. The gap is a family-specific readout, not an always-core field."
       },
-
       "recommended_epistemic_category": "measurement_test_design_defect",
       "recommended_evidence_direction": "mixed",
       "recommended_direction_change": true,
       "direction_change_rationale": "Manifest carries non_contributory on the strength of a whole-run gate that one arm passed cleanly. The GREEN arm produced interpretable, well-powered information in BOTH directions on a compound claim (amplification confirmed, concentration contradicted), which is the definition of mixed rather than non_contributory. The entropy arm remains non_contributory on its own terms.",
-
       "recommended_evidence_quality_note": "Adjudicated by failure_autopsy_V3-EXQ-785_2026-07-19. Direction corrected from the auto-derived non_contributory to mixed, and the self-route substrate_not_ready_requeue is REJECTED as a whole-run reading. The run has two arms and only one is vacuous: the harm_incumbent arm's non-vacuity gate is GREEN (all 6 preconditions met, incumbent harm_weighted as pre-registered with margin 0.882, 3959 committed ticks, all 10 deciles populated at ~396 ticks each), while the entropy_incumbent arm is RED on a single precondition (n_components_with_nontrivial_share 1.0 vs 1.5). That RED was arithmetically guaranteed at design time: config.regimes[1].expected_incumbent_share = 1.043, and since shares sum to 1.0 by construction an incumbent above unity forces every other component below the |0.01| floor -- the regime could not pass its own gate. The script had already articulated the governing principle in its P1 note (apply a gate only to regimes whose incumbent makes it meaningful, else the two-regime design silently collapses to one) but did not apply that conditioning to P7, so one arm's structural RED vacated the other arm's valid result. In the GREEN arm the load-bearing criterion failed at measured_rho -0.8303 against threshold +0.6 -- not a null but a strong effect OPPOSITE to the prediction (incumbent share 0.970 -> 0.831 across urgency deciles 0.070 -> 0.125, per-decile SD 0.05-0.08 on n~396, i.e. of order 40 SE). Decomposing it separates the claim's two premises: total cross-candidate variance rises 14.1x with urgency (AMPLIFICATION premise CONFIRMED) while the incumbent's absolute variance rises only 12.1x against the non-incumbent channels' 79.2x (CONCENTRATION premise CONTRADICTED -- arousal amplifies the subordinate channels about 6.5x faster). Note the only claim-favourable statistic in the run belongs to the vacuous arm (entropy rho +0.5879) and is a single-component artifact. A candidate reasoning error is flagged for the claim layer, not scored: the claim derives concentration from commit-threshold shrinkage, but effective_threshold * (1 - urgency_applied) is an ADMISSION threshold, and lowering it admits lower-separation ticks, which predicts dilution rather than concentration. Three threats keep this short of a demotion: urgency_applied is endogenous so high-urgency ticks are also near-hazard ticks (leading alternative explanation); z_world is under-differentiated (participation ratio ~1.06) so absolute variances are tiny; and with the entropy arm vacated the channel-AGNOSTIC half of the claim is untested at a second incumbent identity. The harm-stream coupling between urgency_applied and harm_weighted runs AGAINST the finding (it would raise the share), so it does not explain the fall. Route is a redesigned re-test under a NEW letter that manipulates urgency EXOGENOUSLY with a hazard-proximity control, regime-conditions the P7 gate, replaces the degenerate second regime, adds a monotone-DECREASE cell to the interpretation grid, and durably emits the per-tick sink (declared in custom_information but ABSENT from disk, blocking the commit-rate-per-decile reanalysis that would test the admission-threshold mechanism directly). No substrate build is required: SD-011, SD-056 and the 396a EMA workaround are all live and the instrumentation landed at ree-v3 435322f.",
-
       "recommended_substrate_queue_entry": {
         "action": "none",
         "rationale": "There is no substrate gap. Every mechanism the probe needs is implemented, wired and confirmed live by the six met preconditions in the scored arm (SD-011 harm stream fed via sense(), SD-056 action-contrastive candidates, the 396a running-variance EMA driven by the driver at commit rate 0.964, and the e3_score_decomp instrumentation landed at ree-v3 435322f). The defects are in the test design (whole-run gate application, a second regime pre-registered above unity share, an interpretation grid with no monotone-decrease cell) and in recording (the per-tick sink was declared but not committed). All are fixable inside the experiment harness and route via /queue-experiment."
       },
-
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
       "narrow_supports_note": "This adjudication ADDS the first experimental entry for MECH-463 rather than withdrawing one, so the illusory-conflict-resolution hazard does not arise. MECH-463 was registered 2026-07-18 with status candidate and zero experimental evidence; it now carries one mixed entry that supports its amplification premise and contradicts its concentration premise. No supports are manufactured and none are removed.",
-
       "re_derive_brake": {
         "fired": false,
         "threshold": 2,
@@ -127,12 +174,9 @@
         "route_to": "queue-experiment",
         "rationale": "MECH-463 has ZERO prior failure_autopsy artifacts of any kind (claim registered 2026-07-18; V3-EXQ-785 is its first experimental test), and this autopsy's category is measurement_test_design_defect, not substrate_ceiling. The brake counts neither a prior nor a qualifying current reading. The routed re-test is also not the re-derive shape the brake exists to stop: it changes the design axis from OBSERVATIONAL to EXOGENOUS-MANIPULATION rather than re-posing the same measurement against the same ceiling."
       },
-
       "fanout_recommendation": null,
       "fanout_exempt_reason": "GOV-FANOUT-1 exempt. Two hypotheses are live (H-arousal-dilutes-genuinely vs H-endogenous-hazard-geometry) but they do NOT require a portfolio on separate design axes: a single redesign discriminates both at once, because exogenous manipulation of urgency breaks the endogeneity by construction and the hazard-proximity covariate measures the rival directly in the same run. The bottleneck routes to one unambiguous build, which is the stated exemption.",
-
       "work_graph_classification": "complex (probe-gated) / puzzle (known rules) -- the frame is well-posed and the rival explanation is named; one missing FACT (does the share redistribution survive exogenous urgency with hazard proximity controlled?) decides it. Not complicated (buildable), because the answer is not known in advance; not mystery (known data), because the existing per-decile data provably cannot separate the confound and the per-tick sink that might have helped is absent.",
-
       "granularity_debt_trigger": {
         "fires": false,
         "prior_autopsies_on_bears_on_target": [],
@@ -140,7 +184,6 @@
         "note": "First autopsy on MECH-463, so the recurrence trigger does not fire. Recorded explicitly so the GOV-GRAN-1 standing scan sees a deliberate non-firing rather than an omission. FORWARD FLAG for the next autopsy on this claim: MECH-463 is COMPOUND (an amplification premise and a concentration premise, plus a contingent F-entrenchment consequence), and this run separated the first two cleanly with OPPOSITE signs. If a second autopsy on MECH-463 produces a further structurally distinct signature, the granularity-debt reading should be taken seriously and /claim-synthesis considered -- the compound structure is already visible.",
         "claim_synthesis_considered_now": "The user was offered a /claim-synthesis split at the 2026-07-19 interactive gate and declined in favour of re-queue only, deferring claim-wording work until the exogenous test reports. That is recorded here so the deferral is auditable rather than looking like an oversight."
       },
-
       "learning_extracted": [
         "A non-vacuity gate must be conditioned on the regime it is meaningful for, or one arm's structural RED silently vacates another arm's valid result. This script had already derived that exact principle for P1 (and stated the consequence: the two-regime design collapses back to one) but applied P7 whole-run. When a design earns a regime-conditioning rule for one precondition, audit EVERY precondition against it.",
         "A pre-registered incumbent share above 1.0 is a design-time proof that a >=2-non-trivial-components gate must fail. config.regimes[1].expected_incumbent_share = 1.043 was committed alongside the gate that it made unsatisfiable. Cross-check pre-registered effect sizes against the preconditions before queuing -- this one was a single arithmetic step and would have caught the defect for free.",
@@ -150,9 +193,7 @@
         "A modulator acting on an ADMISSION threshold does not concentrate variance on the dominant channel; it broadens the committed population and dilutes it. Deriving 'fires on whichever candidate has the largest separation' from 'the commit threshold shrinks' inverts the selectivity. Where a claim's prediction depends on the sign of a threshold effect, name the parameter and check its direction in the code before queuing the test.",
         "Declaring a per-tick sink path in custom_information is not recording it. The file named by V3-EXQ-785 is absent from disk, so the one reanalysis that would test the admission-threshold mechanism (commit rate per urgency decile) is unavailable at full compute cost already spent."
       ],
-
       "routing": "queue-experiment",
-
       "requeue_spec": {
         "queue_id_suggested": "V3-EXQ-785a",
         "type": "alphabetic_suffix_same_question",
@@ -170,7 +211,6 @@
         ],
         "expected_adjudication": "The harm-arm direction is already established at high power; the open question is exclusively whether it survives exogenous manipulation with hazard proximity controlled. A confirmed dilution under exogenous urgency would weaken MECH-463's concentration premise on the merits and open arousal as a candidate diversity lever for the conversion-ceiling programme; a disappearance under exogenous control would attribute the whole 785 profile to hazard geometry and leave MECH-463 untested."
       },
-
       "hypothesis_space_ledger_pending": {
         "reason": "Step 9b intentionally NOT applied in this session. The live V3-EXQ-779b autopsy session holds hypothesis_space_registry.v1.json as an active TASK_CLAIMS resource (claimed 2026-07-19T09:52:16Z). User confirmed skip at the 2026-07-19 interactive gate. /governance should apply the blocks below at the next walk.",
         "mode": "A_pre_register_plus_B_resolve",
@@ -178,9 +218,13 @@
           "qid": "arousal-variance-amplifier",
           "title": "Does global scalar arousal amplify selection variance by CONCENTRATING it on the incumbent channel, or by BROADENING it across subordinate channels?",
           "short_title": "Arousal: concentrate or broaden?",
-          "claims": ["MECH-463"],
+          "claims": [
+            "MECH-463"
+          ],
           "registered_utc": "2026-07-19T10:53:44Z",
-          "fanout_sources": ["failure_autopsy_V3-EXQ-785_2026-07-19.json"],
+          "fanout_sources": [
+            "failure_autopsy_V3-EXQ-785_2026-07-19.json"
+          ],
           "is_hero": false,
           "initial_frozen_count": 3,
           "initial_frozen_count_at_registration": 3,
@@ -193,10 +237,15 @@
               "basis": "The claim's registered prediction. Contradicted in the one validly-scored regime (rho -0.8303 vs threshold +0.6) but only under ENDOGENOUS urgency, so the elimination bar is not met.",
               "pre_registered_utc": "2026-07-18T21:28:15Z",
               "pre_registration_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
-              "adjudicating_runs": ["V3-EXQ-785", "V3-EXQ-785a"],
+              "adjudicating_runs": [
+                "V3-EXQ-785",
+                "V3-EXQ-785a"
+              ],
               "resolution": {
                 "state": "alive",
-                "resolving_runs": ["V3-EXQ-785"],
+                "resolving_runs": [
+                  "V3-EXQ-785"
+                ],
                 "evidence_direction": "mixed",
                 "epistemic_category": "measurement_test_design_defect",
                 "self_route_label": "substrate_not_ready_requeue",
@@ -215,7 +264,9 @@
               "basis": "Newly opened by V3-EXQ-785's GREEN arm: total variance 14.1x, incumbent absolute 12.1x, non-incumbent absolute 79.2x. Currently the best-fitting account but confounded with hazard proximity.",
               "pre_registered_utc": "2026-07-19T10:53:44Z",
               "pre_registration_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
-              "adjudicating_runs": ["V3-EXQ-785a"],
+              "adjudicating_runs": [
+                "V3-EXQ-785a"
+              ],
               "resolution": {
                 "state": "alive",
                 "resolving_runs": [],
@@ -235,7 +286,9 @@
               "basis": "Leading rival. Not addressable from V3-EXQ-785 because urgency was endogenous and the per-tick sink (which would carry a proximity covariate) is absent from disk.",
               "pre_registered_utc": "2026-07-19T10:53:44Z",
               "pre_registration_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
-              "adjudicating_runs": ["V3-EXQ-785a"],
+              "adjudicating_runs": [
+                "V3-EXQ-785a"
+              ],
               "resolution": {
                 "state": "alive",
                 "resolving_runs": [],
@@ -257,17 +310,26 @@
             "distance_phrase": "one exogenous-manipulation run away",
             "observation_bottleneck": "urgency_applied is endogenous in the only validly-scored regime, and the per-tick sink that would carry the hazard-proximity covariate was declared but never written to disk."
           },
-          "axis_families_used": ["process", "instrumentation"],
+          "axis_families_used": [
+            "process",
+            "instrumentation"
+          ],
           "growth": false,
           "fanout_growth_note": null
         },
-        "reduction_this_cycle": "0 of 3 eliminated. One run spent; no bits removable because the manifest's non_degenerate flag is false and the conditioning variable was endogenous. The cycle's value is that it OPENED a rival (H-arousal-broadens) with a quantified basis and named the bottleneck, not that it narrowed the set."
-      }
+        "reduction_this_cycle": "0 of 3 eliminated. One run spent; no bits removable because the manifest's non_degenerate flag is false and the conditioning variable was endogenous. The cycle's value is that it OPENED a rival (H-arousal-broadens) with a quantified basis and named the bottleneck, not that it narrowed the set.",
+        "applied": true,
+        "applied_utc": "2026-07-19T15:26:01Z",
+        "applied_by": "session governance-641c45 (V3-EXQ-785a MECH-463 adjudication)",
+        "applied_note": "Applied to hypothesis_space_registry.v1.json at the V3-EXQ-785a adjudication. The blocker named in `reason` (the V3-EXQ-779b autopsy session's active claim on the registry, 2026-07-19T09:52:16Z) had flipped to done at 2026-07-19T11:52Z, and the registry was clean in the working tree. Applied AS DRAFTED for two legs and AMENDED for the third: H-arousal-concentrates and H-arousal-broadens -> eliminated (2 bits, elimination bar met: gate GREEN, non_degenerate true, urgency exogenous); H-endogenous-hazard-geometry left ALIVE rather than confirmed. Reason for the amendment: its apparent direct support is a between-seed artifact. Pooled over 1757 committed rows corr(hazard_prox_mean, share) = -0.187 and corr(hazard_prox_mean, log10 var) = +0.171 (same signs as 785), but per-seed the effect vanishes and mostly reverses (r = [+0.089,+0.076,+0.041,-0.125,+0.135]); across the 5 seed means r = -0.78 / +0.77, carried largely by seed 0. It survives as the residual explanation only.",
+        "bits_claimed": 2
+      },
+      "reduction_this_cycle_actual": "2 of 3 eliminated at the V3-EXQ-785a adjudication (the drafted text below reflects the 785-only cycle, when 0 of 3 were removable). 785a met the bar the 785 cycle could not: gate GREEN, non_degenerate true, urgency exogenous. The third leg (H-endogenous-hazard-geometry) stays alive -- strengthened as the residual account but not directly confirmed.",
+      "superseded_by_run": "V3-EXQ-785a",
+      "recommended_evidence_direction_superseded_note": "The autopsy's recommended_evidence_direction 'mixed' is SUPERSEDED as of 2026-07-19T15:26:01Z. V3-EXQ-785a (exogenous urgency, 8.5x range vs 785's 1.8x, gate GREEN, non_degenerate true) shows BOTH halves of the 785 profile vanish -- var_total fold 0.970 and incumbent share gap +0.0036 -- so the amplification the autopsy had CONFIRMED at 14.1x was confound-borne, not real. 785's manifest moved to evidence_direction 'superseded' with superseded_by 'V3-EXQ-785a' per the CLAUDE.md supersession policy, which the indexer treats as inactive so it no longer weights MECH-463. Note also 785's own ~9.0x pseudo-replication defect, identified in the 785a manifest: it read e3.last_score_diagnostics without clearing it, so latched ticks re-recorded the previous tick's diagnostics as new rows -- its '3959 committed ticks' reflect ~440 genuine selections. That is an independent precision invalidator on top of the endogeneity confound."
     }
   ],
-
   "cluster_pattern": null,
-
   "claim_disposition": {
     "claim_id": "MECH-463",
     "current_status": "candidate",
@@ -277,9 +339,11 @@
     "post_adjudication_evidence_state": "ONE experimental entry, direction mixed (was zero -- MECH-463 was registered 2026-07-18 and V3-EXQ-785 is its first test). Literature warrant is inherited rather than direct: no targeted_review_MECH-463 entry exists.",
     "suggested_claim_note": "First experimental test (V3-EXQ-785, adjudicated by failure_autopsy_V3-EXQ-785_2026-07-19, direction mixed). The claim is compound and its two premises separated with OPPOSITE signs in the one validly-scored regime. AMPLIFICATION is supported: total cross-candidate committed-selection variance rises 14.1x across urgency deciles (0.070 -> 0.125). CONCENTRATION is contradicted: the incumbent's share falls 0.970 -> 0.831 (rho -0.8303 against a pre-registered +0.6) because subordinate channels' absolute variance grows 79.2x against the incumbent's 12.1x -- arousal amplifies, but disproportionately amplifies the SUBORDINATE channels. This inverts the claim's registered consequence (that affective engagement ENTRENCHES the dominant channel rather than converting diversity) and would make arousal a candidate DIVERSITY lever for the conversion-ceiling programme. THREE reservations hold this short of a weaken: urgency_applied was endogenous so high-urgency ticks are also near-hazard ticks (leading rival, unexcluded); z_world is under-differentiated (participation ratio ~1.06) so absolute variances are tiny; and the second regime was vacated, leaving channel-AGNOSTICISM untested at a second incumbent identity. A candidate derivation error is flagged for review: the claim infers concentration from commit-threshold shrinkage, but effective_threshold * (1 - urgency_applied) is an ADMISSION threshold and lowering it admits lower-separation ticks, which predicts dilution -- the observed sign. Gated on V3-EXQ-785a (exogenous urgency + hazard-proximity control). Note also that the run's only claim-favourable statistic (entropy regime rho +0.5879) came from an arithmetically forced single-component decomposition and must not be cited as support.",
     "retain_flags": [],
-    "recommended_new_flags": ["compound_claim_premises_separated", "single_regime_only"]
+    "recommended_new_flags": [
+      "compound_claim_premises_separated",
+      "single_regime_only"
+    ]
   },
-
   "recommended_followups": [
     {
       "type": "alphabetic_suffix_same_question",
