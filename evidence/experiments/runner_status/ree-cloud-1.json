@@ -2,73 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 2069716,
   "runner_started_at": "2026-07-11T23:09:12.195580+00:00",
-  "last_updated": "2026-07-18T11:23:40.507352+00:00",
+  "last_updated": "2026-07-18T22:20:46.270086+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-778d",
-      "backlog_id": "",
-      "claim_id": "SD-068",
-      "title": "SD-068 GOV-FANOUT-1 leg 1/3 H-rem-clamp-artifact: REM unpaired-target null (axis=measurement)",
-      "description": "",
-      "estimated_minutes": 2.1,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-778e",
-      "backlog_id": "",
-      "claim_id": "SD-068",
-      "title": "SD-068 GOV-FANOUT-1 leg 2/3 H-rem-genuinely-content-free: REM de-clamped readout (axis=representation)",
-      "description": "",
-      "estimated_minutes": 5.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-778f",
-      "backlog_id": "",
-      "claim_id": "SD-068",
-      "title": "SD-068 GOV-FANOUT-1 leg 3/3 H-gen-gain-content-free: REM generative gain vs content scale (axis=observation)",
-      "description": "",
-      "estimated_minutes": 3.2,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-779a",
+      "queue_id": "V3-EXQ-779b",
       "backlog_id": "",
       "claim_id": "MECH-063",
-      "title": "MECH-063 (ii) tonic/phasic dissociation -- sample-driven stopping + sample_starvation_requeue (supersedes 779)",
+      "title": "MECH-063 (ii) tonic/phasic dissociation -- step-denominated per-cell cap (supersedes 779a)",
       "description": "",
-      "estimated_minutes": 320.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-780",
-      "backlog_id": "",
-      "claim_id": "MECH-457",
-      "title": "MECH-457 GOV-FANOUT-1 H-bc-prior: competence-directed behavioral-prior (imitation) discrimination",
-      "description": "",
-      "estimated_minutes": 8400.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-781",
-      "backlog_id": "",
-      "claim_id": "MECH-457",
-      "title": "MECH-457 GOV-FANOUT-1 H-approach-primitive: innate non-extinguishing demonstrator-free approach-drive discrimination",
-      "description": "",
-      "estimated_minutes": 8400.0,
-      "status": "claimed",
+      "estimated_minutes": 6400.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3791,6 +3736,20 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 196.4
+    },
+    {
+      "queue_id": "V3-EXQ-784",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-074 probe-warmup de-saturation budget sweep (DIAGNOSTIC; validates the trained-enough-agent substrate, tags NO claims)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-784 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-784.json",
+      "started_at": "2026-07-18T20:20:56.089258+00:00",
+      "completed_at": "2026-07-18T22:20:46.267374+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_784_sd074_probe_warmup_desaturation_budget_sweep_20260718T222045Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 7190.2
     }
   ]
 }
