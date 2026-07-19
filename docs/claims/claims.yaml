@@ -49539,6 +49539,95 @@
     ValueError at construction. No status/confidence change (substrate only).
   validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
 
+- id: SD-075
+  title: "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default."
+  claim_type: design_decision
+  subject: phasic.ema_episode_continuity
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-19
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-19"
+  depends_on: []
+  location: docs/architecture/sd_075_phasic_ema_episode_continuity.md
+  functional_restatement: >
+    An event detector defined as a relative excess over a running baseline is only
+    meaningful once that baseline has converged. PhasicSurpriseBurst.reset() cleared the
+    surprise-EMA cold at every episode boundary, and the first waking tick of an episode
+    cannot fire an event because it seeds the baseline. With surprise_ema_decay 0.1 the
+    baseline has a ~10-tick time constant, so a seed whose episodes are shorter than that
+    never runs against a converged baseline and n_event_ticks becomes a function of episode
+    LENGTH rather than of surprise. Measured by V3-EXQ-779b: seed 23 ran ~6.9-step episodes
+    against seeds 29/37 at 300 steps, a 43x spread; raising seed 23's budget from 835 to
+    2400 env steps delivered those steps as 345 episodes of ~7 rather than longer episodes,
+    and the phasic_fires_real_events precondition did not move (6 vs threshold 10). The MIN
+    merely migrated to another short-episode cell despite ~2.85x exposure. No step-budget
+    increase can reach this; the binding axis is episode length. Capability is RULED OUT as
+    the explanation -- burst_level_max is 1.00 in every PHASIC-ON cell including both
+    seed-23 cells. SD-075 supplies (a) a baseline that can be carried across episodes and
+    (b) a convergence gate on the ACCOUNTING, so a starved cell is distinguishable from a
+    genuinely low-surprise one.
+  implementation_note: >
+    IMPLEMENTED 2026-07-19 in ree-v3/ree_core/regulators/phasic_surprise_burst.py, surfaced
+    as REEConfig.phasic_burst_baseline_continuity ("reset" default | "carry") and
+    REEConfig.phasic_burst_warmup_ticks (0 default = OFF, -1 = DERIVE as
+    ceil(3 / surprise_ema_decay) = 3 EMA time constants, positive = verbatim; below -1
+    raises so a typo cannot silently mean OFF). Both no-op by default, so every existing
+    consumer of phasic_surprise_burst is bit-identical. Under "carry", reset() preserves
+    _surprise_ema and _ema_initialized while still clearing the envelope, the cached
+    temperature delta, and the per-episode diagnostics, so no in-flight burst leaks across
+    a boundary. Lifetime tick/episode counters survive reset() in both modes. The
+    convergence gate is ACCOUNTING ONLY and deliberately does NOT suppress the burst
+    (user-confirmed 2026-07-19): during warmup the regulator still fires and still perturbs
+    the softmax temperature, and only the counts split into n_events_prewarmup /
+    n_events_converged. Suppression was rejected because it would change agent BEHAVIOUR in
+    the first ticks of a lifetime, layering a second mechanism change on the continuity fix
+    and confounding the MECH-063 (ii) retest with it. get_state() gains a config echo
+    (baseline_continuity, warmup_ticks, warmup_ticks_derived) and lifetime accounting
+    (lifetime_ticks, lifetime_episodes, baseline_converged, n_converged_ticks,
+    n_prewarmup_ticks, n_events_converged, n_events_prewarmup); consumers should read
+    n_events_converged over n_converged_ticks, not the per-episode n_events. A partial-decay
+    "warm" mode is deliberately not built (a second knob with no question needing it).
+    22 contracts in tests/contracts/test_sd075_phasic_ema_episode_continuity.py (D1-D9);
+    SD-069's own 8 contracts and tests/test_flag_inertness.py pass unchanged; full ree-v3
+    suite 1772 passed. Routed by
+    evidence/planning/failure_autopsy_V3-EXQ-779b_2026-07-19.json targets[0], priority 1.
+    LIVE-AGENT SMOKE 2026-07-19 (25 episodes x 7 steps on seed 23, the 779b shape,
+    instantaneous_pe, untrained): "reset"/gate-off reproduces the failed precondition
+    EXACTLY at 6 events; "carry"/gate-off lifts the same exposure to 12, clearing
+    MIN_EVENT_TICKS 10. With the gate on, n_events_converged is 0 in BOTH continuity modes
+    because every event on an untrained agent's PE stream lands inside the first 30 ticks
+    and the stream then settles. The two legs therefore DISAGREE about this cell -- leg (a)
+    alone reads "12, passes", leg (a)+(b) reads "0 converged, UNINFORMATIVE" -- and the
+    build deliberately does not choose between them, because the autopsy target sentence
+    admits both and choosing is a retest-design decision rather than a substrate default.
+  notes: >
+    NOT VALIDATED YET -- status candidate, validation experiment pending. The contracts
+    demonstrate the MECHANISM on synthetic surprise streams (D3: identical exposure,
+    "reset" recovers 0 events where "carry" recovers many on an early-spike short-episode
+    shape; D3b: tripling the budget as more short episodes leaves the per-episode yield
+    unchanged, which is 779b in miniature). That is a unit-level demonstration, NOT
+    experimental evidence, and must not be cited as such. Blast-radius items from the
+    routing brief, both resolved as no-action: the probe_warmup.py WarmupRecipe
+    probe_max_episodes 40 vs probe_max_env_steps 4000 exposure was ALREADY fixed by the
+    RolloutBudget audit (ree-v3 6ac2a0d, probe_max_episodes 0 = DERIVE); and the warmup
+    cache-key question does not arise because SD-075 changes no WarmupRecipe field -- though
+    note independently that _warmup_key() hashes compute_substrate_hash(scope=None), the
+    whole substrate, so ANY ree_core edit busts every cached warmup, which is deliberate
+    there and benign. RETEST CONSTRAINT: MECH-063 sub-claim (ii) is
+    pending_retest_after_substrate against this build, but the re-derive brake fired both
+    halves on that claim (3rd MECH-063 autopsy) and explicitly refuses another lettered
+    iteration of the tonic/phasic probe against the current regulator. Do NOT queue a
+    V3-EXQ-779c. A redesign of a DIFFERENT mechanism under a new EXQ number remains
+    permitted; any such retest must declare baseline_continuity="carry" plus a convergence
+    gate and must consume n_events_converged with an uninformative-cell path rather than
+    feeding a raw MIN.
+  validation_experiment: none queued -- blocked by the MECH-063 re-derive brake (no V3-EXQ-779c); a successor must be a new-number redesign of a different mechanism, not a lettered tonic/phasic iteration
+
 - id: SD-074
   title: "Trained-enough agent substrate for read-only control-plane telemetry probes: a warmup/checkpoint stage that brings the agent to a non-degenerate E3 action-value landscape BEFORE telemetry collection begins, and records the realised per-seed saturation distribution so informative-seed yield is auditable rather than inferred. Harness-level training-regime enrichment (experiments/_lib), NOT a ree_core mechanism change."
   claim_type: design_decision
