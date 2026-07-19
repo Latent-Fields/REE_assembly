@@ -1458,35 +1458,37 @@
           "pre_registered_utc": "2026-07-19T10:53:44Z",
           "pre_registration_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
           "adjudicating_runs": [
-            "V3-EXQ-785a"
+            "V3-EXQ-785a",
+            "V3-EXQ-787"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-785a"
+              "V3-EXQ-787"
             ],
-            "evidence_direction": "inconclusive",
+            "evidence_direction": "weakens",
             "epistemic_category": "standard",
-            "self_route_label": "arousal_causally_inert_on_selection_variance",
+            "self_route_label": "hazard_geometry_inert_on_selection_variance",
             "control_passed": true,
             "non_degenerate": true,
-            "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "STRENGTHENED as the residual explanation but NOT directly confirmed -- state deliberately unchanged. Residual support: with the endogeneity confound broken by construction, BOTH 785 effects vanish, so whatever drove them co-varied with endogenous urgency; hazard proximity is the named candidate. But the direct test does NOT carry. Pooled over all 1757 committed rows the hazard covariate appears to reproduce the 785 profile (corr(hazard_prox_mean, share) = -0.187, corr(hazard_prox_mean, log10 var) = +0.171 -- same signs as 785). WITHIN SEED it vanishes and mostly reverses: per-seed r(hazard, share) = [+0.089,+0.076,+0.041,-0.125,+0.135] and tertile share gaps [+0.011,+0.012,+0.005,-0.014,+0.014], i.e. mostly POSITIVE, opposite in sign to the pooled estimate; per-seed variance folds ~0.93-1.07x. The pooled signal is between-seed heterogeneity (across the 5 seed means, r(mean hazard, mean share) = -0.78 and r(mean hazard, mean var) = +0.77), carried largely by seed 0 (mean share 0.833, mean var 4.47e-05, ~7x the other seeds) -- Simpson's paradox on n=5. Notably seed 0's mean share 0.833 is near-identical to 785's endpoint 0.831. Per the Step 9b mapping table this is the 'does not discriminate' row: resolving_runs and basis recorded, state unchanged, no bit claimed. Confirming it needs a run that MANIPULATES hazard proximity, or a within-seed design with enough seeds to separate the two."
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-19T22:33:52Z",
+            "basis": "ELIMINATED under EXOGENOUS manipulation of hazard proximity with a within-seed load-bearing statistic at S=24. The manipulation was delivered: corr(assigned level, realized hazard_prox_center) = 0.988, realized centers matching the pre-registered grid to 6 decimals across a 3x proximity range (0.222 -> 0.667), pin_miss_frac 0.006 mean / 0.067 max -- so this is 'no effect', not 'no treatment'. Neither half of the 785 profile moves. C1 amplification: mean within-seed slope on log10 var_total -0.000944 (sd 0.005087, t=-0.909, df=23, t_crit 2.069, n.s.), 0.33% of the 785 reference slope 0.28725 and below the 0.0287 absolute floor. C2 redistribution: mean slope on incumbent share +0.000131 (sd 0.002446, t=0.262, n.s.), 0.38% of the 785 reference -0.03475 and below the 0.0035 floor; the sign is POSITIVE where the hypothesis predicts negative. All three arms gate GREEN, criteria_non_degenerate true on all three, incumbent harm_weighted at margin 0.906 with 2 non-trivial components (the >=2 gate 785 structurally failed). The null is NOT attributable to an inexpressive channel: the A3 expressivity positive control PASSED, moving the SAME statistic (log10 var_total) by a mean per-seed span of 1.347 decades with per-seed monotone fraction 1.0 (rho=1.0 on all 8 seeds) -- a larger excursion than the 785 reference effect it was invoked to explain (log10_var_fold 1.149). The channel could have shown the effect and did not. The 785a under-differentiation caveat is also materially weakened: z_world participation ratio measures 4.30-4.38 here, against the ~1.06 the 785a adjudication assumed. The decoys confirm the 785a reading was a small-n artifact and route nothing. D1 pooled tick-level correlations collapse to r=+0.004 (share) and -0.012 (log10 var) on 5592 rows, against 785a's -0.187 / +0.171. D3 between_fraction is 0.490 (share) and 0.711 (log10 var), not the near-1.0 Simpson signature. D4 replicates=false: only seed 0 lands within 0.02 of 785a's seed-0 mean share of 0.833 (0.8268 here -- the same RNG seed, so trivially the same trajectory), and at S=24 it is the low tail of a smooth distribution (mean 0.954, sd 0.055, z=-2.33), not a distinguished anomaly. 785a's seed-0 leverage was Simpson's paradox on n=5, as that adjudication suspected. Independently, the hypothesis's own PREMISE fails at the first stage: in the urgency-free arm corr(assigned proximity, realized urgency) = +0.164, below the 0.2 threshold, so premise_holds=false. 'High-urgency ticks are near-hazard ticks' is false in this substrate -- whatever endogenous urgency tracked in 785, it was not proximity. SCOPE: the harm_weighted incumbent identity only, and the SD-011 commit-threshold route only (use_harm_variance_commit OFF, so the gated quantity is the z_world running variance, not candidate separation). Channel-agnosticism is NOT covered here -- that is V3-EXQ-785b, a separate workstream.",
+            "manifest_evidence_direction": "does_not_support"
           }
         }
       ],
       "synthesis": {
-        "surviving_label": "what DID drive the V3-EXQ-785 profile -- hazard-proximate candidate geometry is the residual candidate but is not itself confirmed; and whether the inertness is channel-agnostic across incumbent identities",
-        "text": "Global scalar arousal is causally INERT on committed-selection variance geometry at the harm_weighted incumbent, on the SD-011 commit-threshold route. V3-EXQ-785's entire profile -- the 14.1x amplification AND the 0.970->0.831 incumbent dilution -- was the endogeneity confound: it measured urgency endogenously, so high-urgency ticks were also near-hazard ticks. Under exogenous assignment across a wider (8.5x vs 1.8x) and better-powered range, both halves are flat. 785 is therefore superseded, not merely mixed. What replaces them is NOT yet established: hazard geometry is the surviving residual candidate but its apparent direct signal here is a between-seed artifact. Two caveats bound this: (1) it is ONE incumbent identity -- the entropy regime was dropped with recorded evidence (CH:mech341 absorbs ~99-115% of cross-candidate variance at every entropy_bias_scale in {0.15,0.30,0.50,1.00}), so channel-agnosticism is UNTESTED; (2) z_world is under-differentiated (participation ratio ~1.06 at world_dim=128, absolute variances ~1.2e-05), leaving live the reading that the substrate cannot EXPRESS the effect rather than that it does not exist -- an objection that bites the fix, not the measurement."
+        "surviving_label": "none -- all 3 registered hypotheses eliminated; what endogenous urgency was tracking in V3-EXQ-785 is open with no pre-registered candidate remaining, and channel-agnosticism across incumbent identities is a separate workstream (V3-EXQ-785b)",
+        "text": "Global scalar arousal is causally INERT on committed-selection variance geometry at the harm_weighted incumbent on the SD-011 commit-threshold route, AND the leading rival explanation -- that the V3-EXQ-785 profile was hazard geometry conditioned on an endogenous variable -- is now refuted on its own terms. V3-EXQ-785a broke the endogeneity confound and flattened both halves of the 785 profile; V3-EXQ-787 then manipulated hazard proximity exogenously at S=24 with a within-seed load-bearing statistic and found geometry inert (0.33% and 0.38% of the 785 reference), while an expressivity positive control moved the identical statistic by 1.347 decades -- more than the effect being sought. So the null is a property of the mechanism, not of the measurement channel. 787 also falsifies the hypothesis's premise at the first stage: exogenous proximity barely moves realized urgency (r=+0.164), so high-urgency ticks are not near-hazard ticks in this substrate. All three registered hypotheses are eliminated: 3 of 3. What remains genuinely OPEN is what endogenous urgency was actually tracking in 785 -- the question's original rival set is exhausted without a positive account, which is an honest unknown rather than a resolved mechanism. Two scope bounds still hold: (1) ONE incumbent identity -- channel-agnosticism is the separate V3-EXQ-785b workstream; (2) the commit-threshold route only. The 785a under-differentiation caveat is materially weakened but not void: participation ratio 4.30-4.38 here vs the ~1.06 that caveat assumed."
       },
       "decision": {
         "decision_question": "Is global scalar arousal an ENTRENCHMENT mechanism (concentrating variance on the dominant channel, as MECH-463 asserts and as the conversion-ceiling argument invokes) or a DIVERSITY lever (broadening the variance base)?",
         "live_gate": null,
         "decidable": true,
         "decision_log_ref": null,
-        "distance_phrase": "decided for the harm_weighted incumbent on the commit-threshold route; channel-agnosticism still one regime away",
-        "observation_bottleneck": "Resolved for this route: V3-EXQ-785a embedded the per-tick record IN the manifest (custom_information.per_tick_rows), fixing the 785 sidecar loss -- a sidecar written next to the manifest on a cloud worker is never transported under Phase 3 (PHASE3_DISABLE_RUNNER_RESULT_PUSH=1). Remaining bottleneck for the channel-agnosticism half: no viable second incumbent identity on the entropy axis."
+        "distance_phrase": "decided for the harm_weighted incumbent on the commit-threshold route; rival set exhausted 3/3; channel-agnosticism still one regime away (V3-EXQ-785b)",
+        "observation_bottleneck": "Resolved for this route: V3-EXQ-787 manipulated hazard proximity exogenously (fidelity 0.988) with a within-seed statistic at S=24 and a passing expressivity positive control, which is exactly the design the 785a adjudication named as required. Remaining bottleneck for the channel-agnosticism half: no viable second incumbent identity on the entropy axis."
       },
       "axis_families_used": [
         "process",
@@ -1494,7 +1496,7 @@
       ],
       "growth": false,
       "fanout_growth_note": null,
-      "answer_direction": "Neither -- arousal is inert on selection variance geometry at this incumbent identity; the 785 profile was endogeneity."
+      "answer_direction": "Neither -- arousal is inert on selection variance geometry at this incumbent identity, and the hazard-geometry rival is refuted too: the 785 profile has no surviving pre-registered explanation."
     }
   ]
 }

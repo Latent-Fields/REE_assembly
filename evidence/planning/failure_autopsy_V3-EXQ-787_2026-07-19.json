@@ -1,0 +1,170 @@
+{
+  "schema": "failure_autopsy.v1",
+  "autopsy_id": "V3-EXQ-787_2026-07-19",
+  "written_utc": "2026-07-19T22:44:00Z",
+  "written_by_session": "clever-elion-56ba52",
+  "companion_md": "evidence/planning/failure_autopsy_V3-EXQ-787_2026-07-19.md",
+  "status": "applied",
+  "scope": "single",
+  "targets": [
+    {
+      "queue_id": "V3-EXQ-787",
+      "run_id": "v3_exq_787_mech463_hazard_geometry_exogenous_proximity_20260719T223352Z_v3",
+      "claim_ids": ["MECH-463"],
+      "outcome": "FAIL",
+      "manifest_evidence_direction": "does_not_support",
+      "self_route_label": "hazard_geometry_inert_on_selection_variance",
+      "self_route_cell": "flat_with_expressive_channel",
+      "self_route_verified": true,
+      "self_route_verification_note": "Routing is a hypothesis, so it was verified rather than adopted. Checked in the pre-declared order: A3 arbiter green first, then the within-seed load-bearing statistic, then D3/D4 decoys, then participation ratio, then manipulation fidelity. All agree with the emitted route.",
+      "recommended_evidence_direction": "weakens",
+      "recommended_epistemic_category": "standard",
+      "failed_criterion": "both load-bearing discrimination criteria (C1 amplification, C2 redistribution); the C3 absolute/positive control PASSED",
+      "non_degenerate": true,
+      "substrate_hash": "f64a92fcfae87ffecb0fcb1ed17238dd3fbf98bda5a420f1cc91225c418e578c",
+      "machine_class": "linux-x86_64-py3.10-torch2.11.0+cpu",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "n/a -- instrumentation-axis artifact hypothesis, not a mechanism import",
+        "dependency_prerequisites": "present",
+        "implementation_completeness": "complete",
+        "environment_adequacy": "adequate",
+        "measurement_adequacy": "adequate and positively demonstrated (A3 moves the identical statistic 1.347 decades vs the 1.149 sought)",
+        "integration_adequacy": "coupled but weakly (r=0.164 proximity->urgency, which is itself the premise finding)",
+        "scale_capacity": "adequate (S=24 within-seed; z_world PR 4.30-4.38 vs the ~1.06 assumed by the prior caveat)"
+      }
+    }
+  ],
+  "key_statistics": {
+    "load_bearing": {
+      "arm": "hazard_exog_urgency_clamped",
+      "statistic": "mean of per-seed within-seed OLS slopes on assigned proximity level, one-sample t across 24 seeds",
+      "C1_amplification": {
+        "mean_slope": -0.000944, "sd": 0.005087, "t": -0.9091, "df": 23, "t_crit": 2.069,
+        "significant": false, "abs_floor": 0.0287, "clears_floor": false,
+        "reference_slope_785": 0.28725, "fraction_of_785_reference": 0.0033, "verdict": "flat"
+      },
+      "C2_redistribution": {
+        "mean_slope": 0.000131, "sd": 0.002446, "t": 0.2623, "df": 23, "t_crit": 2.069,
+        "significant": false, "abs_floor": 0.0035, "clears_floor": false,
+        "reference_slope_785": -0.03475, "fraction_of_785_reference": 0.0038, "verdict": "flat",
+        "sign_note": "positive where the hypothesis predicts negative"
+      }
+    },
+    "a3_expressivity_positive_control": {
+      "passed": true, "a3_expressive": true,
+      "mean_per_seed_log10_var_span": 1.347016, "min_per_seed_span": 1.051498,
+      "per_seed_monotone_fraction": 1.0, "n_seeds_with_profile": 8,
+      "reference_785_log10_var_fold": 1.149,
+      "note": "control excursion EXCEEDS the effect being sought -- forecloses the substrate_ceiling reading"
+    },
+    "manipulation_fidelity": {
+      "corr_assigned_level_vs_realized_center": 0.988096,
+      "realized_center_by_level": [0.222222, 0.285714, 0.4, 0.499999, 0.666666],
+      "expected_center_by_level": [0.222222, 0.285714, 0.4, 0.5, 0.666667],
+      "pin_miss_frac_mean": 0.005958, "pin_miss_frac_max": 0.067,
+      "read": "no effect, not no treatment"
+    },
+    "mediation_premise": {
+      "arm": "hazard_exog_urgency_free",
+      "corr_assigned_proximity_vs_realized_urgency": 0.163868,
+      "threshold": 0.2, "premise_holds": false,
+      "read": "the hypothesis's own premise fails at the first stage, independently of the geometry result"
+    },
+    "decoys_NOT_LOAD_BEARING_recorded_only": {
+      "D1_pooled_tick_level": {
+        "clamped": {"n_rows": 5592, "r_share": 0.003536, "r_log10_var": -0.011642},
+        "free": {"n_rows": 5594, "r_share": 0.018184, "r_log10_var": -0.006878},
+        "reference_785a_pooled": {"share": -0.187, "log10_var": 0.171},
+        "routing_note": "routes NOTHING. Recorded because it is the statistic that made hazard look confirmed in 785a. Never cite as support."
+      },
+      "D3_covariance_decomposition_between_fraction": {
+        "clamped": {"share": 0.49004, "log10_var": 0.711111},
+        "free": {"share": 0.168158, "log10_var": 0.779254},
+        "read": "not the near-1.0 785a Simpson signature"
+      },
+      "D4_seed0_anomaly": {
+        "replicates": false, "flag_tolerance": 0.02, "seeds_near_785a_seed0_share": [0],
+        "seed0_mean_share_here": 0.826848, "reference_785a_seed0": 0.833,
+        "across_24_seeds": {"mean": 0.9541, "sd": 0.0546, "seed0_z": -2.33, "n_le_0.87": 2},
+        "read": "one-seed artifact confirmed; the only near-match is the same RNG seed. 785a's leverage was Simpson's paradox on n=5."
+      }
+    },
+    "participation_ratio": {
+      "measured": {"hazard_exog_urgency_clamped": 4.3135, "hazard_exog_urgency_free": 4.2962, "expressivity_positive_control": 4.3805},
+      "reference_785a_caveat": 1.06,
+      "read": "under-differentiation objection materially weakened"
+    },
+    "gates": {
+      "all_green": true,
+      "criteria_non_degenerate": {"C1": true, "C2": true, "C3": true},
+      "measured_incumbent": "harm_weighted", "incumbent_margin": 0.905555,
+      "n_components_with_nontrivial_share": 2,
+      "note": "clears the >=2-component gate that V3-EXQ-785 structurally failed"
+    }
+  },
+  "ledger_application": {
+    "registry": "evidence/planning/hypothesis_space_registry.v1.json",
+    "mode": "B (resolve)",
+    "qid": "arousal-variance-amplifier",
+    "resolved_legs": [
+      {
+        "hid": "H-endogenous-hazard-geometry",
+        "from_state": "alive",
+        "to_state": "eliminated",
+        "resolving_runs": ["V3-EXQ-787"],
+        "evidence_direction": "weakens",
+        "manifest_evidence_direction": "does_not_support",
+        "epistemic_category": "standard",
+        "control_passed": true,
+        "non_degenerate": true,
+        "met_elimination_bar": true,
+        "resolved_utc": "2026-07-19T22:33:52Z"
+      }
+    ],
+    "denominator_change": 0,
+    "fanout_growth_events_added": 0,
+    "question_state_after": {
+      "alive": 0, "resolved_out": 3, "confirmed": 0,
+      "initial_frozen_count": 3, "initial_frozen_count_at_registration": 3,
+      "reduction_ratio": 1.0, "bits_removed": 1.58, "momentum_class": "ruled_out"
+    },
+    "invariants_checked": {
+      "inv1_initial_frozen_count_eq_len": true,
+      "inv2_pre_registered_le_resolved": true,
+      "inv4_elimination_bar_complete": true
+    },
+    "integrity_audit": {"a": 0, "b": 0, "c": 0, "d": 0, "flags_on_this_question": 0}
+  },
+  "open_after_this": {
+    "state": "rival set exhausted without a positive account",
+    "debt_class": "complex (probe-gated) -> mystery (known data)",
+    "text": "All three registered explanations of the V3-EXQ-785 profile are eliminated and nothing pre-registered replaces them. What endogenous urgency was tracking in 785 has no surviving candidate. The per-tick sink is now embedded in-manifest (785a's fix), so the data to reframe against exists; what is missing is a reframing, not a further measurement. Opening a fresh portfolio of rivals on the unchanged framing is the move the GOV-FROZEN-1 recurrence clause warns against.",
+    "fanout_recommendation": null,
+    "fanout_recommendation_note": "Deliberately none. A 3/3-eliminated question with no positive account is a re-posing problem, not an enumeration problem. Registering a new portfolio here would be the denominator-side twin of re-running a braked experiment harder."
+  },
+  "scope_constraints": [
+    "harm_weighted incumbent identity ONLY",
+    "SD-011 commit-threshold route ONLY (use_harm_variance_commit OFF -- gated quantity is the z_world running variance, not candidate separation)",
+    "CHANNEL-AGNOSTICISM IS OUT OF SCOPE -- that half is V3-EXQ-785b (v3_exq_785b_mech463_channel_agnosticism_decomp, landed 2026-07-19T21:24Z, FAIL/does_not_support), a separate concurrent workstream awaiting its own adjudication. Do not read V3-EXQ-787 as covering a second incumbent identity.",
+    "MECH-463 stays candidate -- this run adjudicates a rival hypothesis about 785's profile, not the claim's registered prediction"
+  ],
+  "recording_debt": [
+    {
+      "where": "per_arm_gate.green[].preconditions[]",
+      "issue": "every entry carries met=true with observed=null; the gate evaluated against thresholds correctly but observed values were not serialised into that block",
+      "severity": "minor -- values recoverable from arm_analyses[].fidelity for this run",
+      "class": "recording-debt (not measurement-debt)",
+      "ref": "evidence/planning/experimental_recording_standard_2026-07-12.md"
+    }
+  ],
+  "preexisting_issues_not_caused_here": [
+    {
+      "where": "hypothesis_space_registry.v1.json axis_families.map",
+      "issue": "axis labels 'instrumentation' and 'process' are absent from the human-owned family map, forcing convergence_class=indeterminate for this question",
+      "note": "both are canonical family names in the Step 9b taxonomy, so these look like missing identity rows rather than a taxonomy dispute; map is human-owned so left unedited. Moot for this question (zero fan-out growth).",
+      "owner": "human"
+    }
+  ],
+  "review_tracker_note": "Per feedback_failure_autopsy_does_not_mark_reviewed: this skill does NOT write review_tracker.json. Marking V3-EXQ-787 reviewed is left to the /governance Step 5 walk."
+}
