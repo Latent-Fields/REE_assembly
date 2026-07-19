@@ -46,7 +46,14 @@ The failure is **upstream of behaviour**: the imitation head never learned to pr
            params_with_nonzero_grad=6/8  logits_requires_grad=True
 ```
 
-Gradient flows and reaches the actor trunk. The encoder's exclusion from the optimizer is **deliberate** (`cotrain_encoder=False`, the 765 retest showed co-training is destructive on `z_world`), not a mis-wiring. The BC loss is correct.
+Gradient flows and reaches the actor trunk. **The BC loss is correct** — that is what this subsection rules out, and it still stands.
+
+**Two phases, two distinct exclusion mechanisms — do not conflate them** (corrected 2026-07-19 by the fanout audit; see the addendum):
+
+- **AC/BC phase.** Here the encoder's exclusion is governed by `cotrain_encoder=False`, and that flag is a **deliberate** choice (the 765 retest showed co-training is destructive on `z_world`), not a mis-wiring.
+- **P0 warmup phase.** Here the exclusion is **unconditional and structural**, and it sits *behind* the flag: no optimizer constructed inside `_train_all_on_agent` covers any `latent_stack` parameter at all. Flipping `cotrain_encoder=True` does **not** train the encoder in this phase — measured at `cotrain=True` on the x742 actor-critic P0 warmup, the encoder is equally frozen (0/61 `latent_stack`, 0/4 `world_encoder`, max|delta| = 0.000e+00).
+
+The original wording of this subsection named only the flag, which invited the inference that flipping it would train the encoder. It would not. The structural exclusion is the prior barrier; the `detach()` in §1d is second in line.
 
 ### 1d. The actual fault — the encoder is never trained (INDEPENDENTLY VERIFIED)
 
@@ -128,13 +135,31 @@ recommended_substrate_queue_entry:
   kind: substrate_defect
   severity: high
   blast_radius: >
-    Every z_world arm in the MECH-457 competence_floor campaign (742-782) and any
-    future experiment building a z_world rep via warmup_zworld / _train_all_on_agent.
+    WIDENED 2026-07-19 by the fanout audit (ree-v3 9f72532c45) -- the exposure is NOT
+    confined to the MECH-457 campaign. It covers every _train_all_on_agent caller, i.e.
+    ALL SIX known callers: the MECH-457 competence_floor campaign z_world arms (742-782)
+    via warmup_zworld; v3_exq_728_trained_allon_capability_point.py, which defines its OWN
+    _train_all_on_agent copy (:481); v3_exq_734 (own copy); v3_exq_737 (warmup_all_on);
+    and any future experiment building a z_world rep by either route. Note especially that
+    728's NAME and its P0 comment ("world-model (encoder/e2) warmup") both assert a trained
+    encoder the code never produces -- any 728-derived capability point should be re-read in
+    that light.
   evidence:
+    - "ROOT CAUSE (structural, prior to the detach): no optimizer inside _train_all_on_agent
+       covers ANY latent_stack parameter. e2.parameters() (18), lateral_pfc
+       .bias_head_parameters() (4), ofc.devaluation_bias_head_parameters() (4) all have ZERO
+       overlap with the 61 latent_stack tensors, so a gradient arriving at the encoder would
+       not be applied. Pinned by tests/contracts/test_zworld_encoder_guard.py C3/C4"
     - "weight-delta on the V3-EXQ-780 path: latent_stack 0/61 tensors changed;
        split_encoder.world_encoder.{0,2}.{weight,bias} max|delta| = 0.0 (bit-identical)"
-    - "mechanism: the P0 loop buffers latent.z_world.detach(); gradient terminates
-       before latent_stack.split_encoder.world_encoder"
+    - "p1_episodes is NOT a discriminator: P1 trains the lPFC bias head and the OFC
+       devaluation head, both DOWNSTREAM of the encoder. 0/61 latent_stack and 0/4
+       world_encoder changed, max|delta| = 0.000e+00, on ALL of x734 ree_trained_allon
+       (p1>0), x728's own copy (p1>0), x737 warmup_all_on (p1>0), x742 actor-critic P0 at
+       cotrain=True AND cotrain=False (p1=0), exq742 bias_head_baseline (p1>0), and the
+       mech457 warmup_zworld control (p1=0)"
+    - "mechanism (SECOND in line, not the root): the P0 loop buffers latent.z_world.detach();
+       gradient terminates before latent_stack.split_encoder.world_encoder"
     - "decodability: converged MLP on frozen z_world reaches 0.415 demonstrator-action
        accuracy vs 0.959 on the raw 5x5 view, against a 0.253 majority-class floor"
     - "docstring/behaviour mismatch: make_zworld_agent + ZWorldRep document a
@@ -169,10 +194,64 @@ recommended_substrate_queue_entry:
 ## 5. Learning extracted
 
 1. **The z_world arm of V3-EXQ-780 tested nothing.** Its representation was a frozen random projection. Record it as uninformative, not as a null.
-2. **A docstring asserting a training regime is not evidence the regime ran.** Three separate modules described a "prediction-trained encoder" that receives zero gradient. A weight-delta assertion at rep-construction time would have caught this at 742, ten legs ago.
+2. **A docstring asserting a training regime is not evidence the regime ran — and the cheap general check is optimizer-group coverage, not a weight delta.** Three separate modules described a "prediction-trained encoder" that receives zero gradient. A weight-delta assertion at rep-construction time would have caught this at 742, ten legs ago — but it needs a warmup to actually run first. **Sharpened 2026-07-19 by the fanout audit:** the strictly cheaper and more general form is to intersect the module's parameters with the union of every optimizer's parameter groups. It runs in milliseconds, requires no training episodes at all, and is decisive: a module in no optimizer's parameter group *cannot* train, whatever any docstring, flag, or episode count says. That is precisely what `tests/contracts/test_zworld_encoder_guard.py` C3/C4 pin, and it would have caught this fault without running a single warmup episode. **Standing check for any experiment whose premise requires a learned component: assert the component is inside some optimizer's parameter group.** Keep the weight-delta as the runtime backstop — it also catches the case where the group exists but the gradient is severed (the `detach()` here) — but lead with the group check.
 3. **Supervised decodability of a competent demonstrator is a sharp, cheap representation probe.** It cost ~2 minutes of CPU and separated capacity from plumbing from interface where 13 behavioural legs could not. Consider it a standing readiness check for any arm whose manipulation depends on a learned representation.
 4. **A scalar-magnitude supervision target cannot teach a directional decision.** `max(resource_field_view)` decodes actions at chance. This is independent of, and survives, the untrained-encoder fault.
 5. **Verify a cross-link before asserting it.** The INV-088 connection was plausible, was explicitly checked, and does not hold in the direction proposed — the corpus disclaims it and the dependency runs the other way.
+
+---
+
+## 6. Addendum — 2026-07-19 fanout audit (ree-v3 `9f72532c45`)
+
+**Added 2026-07-19T21:27Z by session `compassionate-ramanujan-fc9859`. This section records three corrections to the diagnosis above; the history above is left as written, with only the §1c and §4 edits it calls for applied in place (each marked).** Source: the fanout audit in session `recursing-fermat-14135c`, ree-v3 commit `9f72532c45` ("guard: lift untrained-z_world-encoder detection into `_lib`; audit shows all 6 `_train_all_on_agent` callers exposed"). Method and numbers live in the module docstring of `ree-v3/experiments/_lib/zworld_encoder_guard.py` and are pinned by `ree-v3/tests/contracts/test_zworld_encoder_guard.py` C3/C4.
+
+**This addendum still promotes and demotes nothing.** MECH-457 stays `candidate` / `v3_pending`. The §4 entry remains a RECOMMENDED entry for governance to apply; as of 2026-07-19T20:40Z it had **not** been applied to `substrate_queue.json`.
+
+### 6a. There is a PRIOR barrier: the encoder is in no optimizer's parameter group
+
+§1d attributes the fault to the P0 loop buffering `latent.z_world.detach()`. That is true but **second in line**. Verified structurally, on the D3_hazard_free rung, all-ON agent: **no optimizer constructed inside `_train_all_on_agent` covers any `latent_stack` parameter.**
+
+| optimizer parameter group | params | overlap with the 61 `latent_stack` tensors |
+|---|---|---|
+| `e2.parameters()` | 18 | **0** |
+| `lateral_pfc.bias_head_parameters()` | 4 | **0** |
+| `ofc.devaluation_bias_head_parameters()` | 4 | **0** |
+
+The encoder is therefore not in any optimizer's parameter group, so **even a gradient that did arrive there would not be applied**. The `detach()` severs a path that leads nowhere in the first place.
+
+This makes one sentence in the original §1c misleading, and **§1c has been rewritten in place accordingly**. The sentence — that the encoder's exclusion is deliberate via `cotrain_encoder=False` — is *scoped to the AC/BC phase and is not false there*: the flag genuinely is a deliberate choice backed by the 765 retest. But as written it implied the flag was *the* exclusion mechanism, so a reader would conclude the encoder trains if the flag is flipped. **It does not.** The audit measured the x742 actor-critic P0 warmup at `cotrain=True` as equally frozen: **0/61 `latent_stack`, 0/4 `world_encoder`, max|delta| = 0.000e+00**. The P0-phase exclusion is unconditional and structural, and sits behind the flag. The sentence was rewritten rather than deleted because its original point — that the BC loss itself is correctly plumbed — still stands.
+
+### 6b. `p1_episodes` is NOT a discriminator
+
+P1 trains two heads that are **downstream** of the encoder (the lateral-PFC bias head and the OFC devaluation head), so more P1 episodes cannot rescue it. Measured **0/61 `latent_stack` and 0/4 `world_encoder` changed, max|delta| = 0.000e+00**, on every one of:
+
+| caller | `p1_episodes` |
+|---|---|
+| x734 `ree_trained_allon` | > 0 |
+| x728's own `_train_all_on_agent` copy | > 0 |
+| x737 `warmup_all_on` | > 0 |
+| x742 actor-critic P0, `cotrain=True` | 0 |
+| x742 actor-critic P0, `cotrain=False` | 0 |
+| exq742 `bias_head_baseline` | > 0 |
+| mech457 `warmup_zworld` control | 0 |
+
+Conditions: D3_hazard_free rung, seed 42, `p0 = p1 = 3`, `steps = 20`, using **this note's own weight-delta method** (`fan._latent_stack_snapshot` / `latent_stack_weight_delta`), so the audit's findings agree with the diagnosis above by construction rather than by a second, independently-drifting measurement.
+
+### 6c. The blast radius reaches beyond the MECH-457 campaign
+
+§4's `blast_radius` originally scoped the defect to the MECH-457 `competence_floor` campaign (742–782) plus future `warmup_zworld` / `_train_all_on_agent` consumers. **The audit found all six `_train_all_on_agent` callers exposed, and §4 has been widened in place.** The additions that matter:
+
+- **`v3_exq_728_trained_allon_capability_point.py` defines its OWN `_train_all_on_agent` copy (`:481`) and is equally affected.** Both its *name* and its P0 comment ("world-model (encoder/e2) warmup") assert a trained encoder the code never produces. **Any 728-derived capability point should be re-read in that light** — a "trained all-on capability point" whose world encoder is a frozen random projection is not measuring the capability its name claims.
+- **`v3_exq_734`** (its own copy) and **`v3_exq_737`** likewise.
+
+### 6d. Guard status — detection landed, driver adoption has NOT
+
+Checked against `ree-v3` `origin/main` at 2026-07-19T21:26Z:
+
+- **Landed.** `ece06da` first added the detection for V3-EXQ-780; `9f72532c45` lifted it into `experiments/_lib/zworld_encoder_guard.py` as a shared module, re-exported from `experiments/_lib/mech457_fanout.py:447` so existing MECH-457 consumers keep working, with C1–C9 contracts.
+- **NOT landed.** The guard is **not yet called by any driver script** — `mech457_fanout.py` is its only importer on `origin/main`. The chip "Guard z_world encoder in the 4 MECH-457 driver scripts" was still outstanding at the time of writing. Anyone reading this note should verify current adoption rather than assume it from this line.
+
+The guard is **detection only, by design**. It does not attempt to make the encoder train: that fix has the two parts §4 already sets out (gradient path; and a supervision target that is not action-uninformative), the naive "just enable prescribed P0" is refuted in-corpus by SD-070, and the real fix is downstream of the V3-EXQ-783 adjudication and belongs to governance.
 
 ---
 
