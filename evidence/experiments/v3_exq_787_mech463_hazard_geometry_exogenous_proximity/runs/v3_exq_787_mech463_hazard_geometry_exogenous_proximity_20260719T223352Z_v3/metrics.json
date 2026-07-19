@@ -1,0 +1,17 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "primary_arm": "hazard_exog_urgency_clamped",
+    "primary_arm_gate_green": true,
+    "expressivity_control_expressive": true,
+    "C1_mean_slope_log10_var": -0.000944,
+    "C2_mean_slope_incumbent_share": 0.000131,
+    "C1_fraction_of_785_reference": 0.0033,
+    "C2_fraction_of_785_reference": 0.0038,
+    "mediation_premise": {
+      "corr_assigned_proximity_vs_realized_urgency": 0.163868,
+      "premise_holds": false,
+      "note": "H's own premise is that high-urgency ticks are near-hazard ticks. A near-zero or negative correlation here falsifies that premise at the first stage, independently of what the geometry does. It is also the second null-vs-inexpressive tell: a live input path plus a flat geometry localises the failure to the geometry stage."
+    }
+  }
+}

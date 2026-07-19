@@ -1,0 +1,413 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_787_mech463_hazard_geometry_exogenous_proximity",
+  "run_id": "v3_exq_787_mech463_hazard_geometry_exogenous_proximity_20260719T223352Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-19T22:33:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-463"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "hazard_geometry_inert_on_selection_variance",
+    "cell": "flat_with_expressive_channel",
+    "ledger_effect": "H-endogenous-hazard-geometry ELIMINATED at the harm_weighted incumbent on the SD-011 commit-threshold route: exogenous proximity moves neither half of the profile, and the expressivity control confirms the channel could have shown it",
+    "preconditions": [
+      {
+        "name": "hazard_exog_urgency_clamped::manipulation_fidelity",
+        "precondition": "manipulation_fidelity",
+        "arm": "hazard_exog_urgency_clamped",
+        "kind": "readiness",
+        "description": "|corr(assigned proximity level, realized hazard_prox_center)| -- the first stage. Near 1 by construction because the hazard is re-pinned every env step.",
+        "control": "exogenous re-pin at a pre-registered distance grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.988096,
+        "threshold": 0.9,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_clamped::pin_miss_frac",
+        "precondition": "pin_miss_frac",
+        "arm": "hazard_exog_urgency_clamped",
+        "kind": "readiness",
+        "description": "fraction of re-pins that could not realise the exact assigned distance (agent near a corner) -- a CEILING",
+        "control": "interior-cell enumeration at each re-pin",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.005958333333333334,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_clamped::seeds_with_usable_slope",
+        "precondition": "seeds_with_usable_slope",
+        "arm": "hazard_exog_urgency_clamped",
+        "kind": "readiness",
+        "description": "seeds contributing a within-seed slope; the load-bearing t-test is across these",
+        "control": "MIN_LEVELS_POPULATED levels each with >= MIN_ROWS_PER_SEED_LEVEL rows",
+        "direction": "lower",
+        "applies": true,
+        "measured": 24.0,
+        "threshold": 19.5,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_clamped::incumbent_identity_as_preregistered",
+        "precondition": "incumbent_identity_as_preregistered",
+        "arm": "hazard_exog_urgency_clamped",
+        "kind": "readiness",
+        "description": "the measured incumbent is harm_weighted with a margin over the runner-up",
+        "control": "pre-registered from 785a's surviving regime",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.905554635193133,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_clamped::cross_candidate_score_variance",
+        "precondition": "cross_candidate_score_variance",
+        "arm": "hazard_exog_urgency_clamped",
+        "kind": "readiness",
+        "description": "mean cross-candidate total score variance is non-zero",
+        "control": "a degenerate candidate set makes every share statistic meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0899652137194206e-05,
+        "threshold": 1e-18,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_free::manipulation_fidelity",
+        "precondition": "manipulation_fidelity",
+        "arm": "hazard_exog_urgency_free",
+        "kind": "readiness",
+        "description": "|corr(assigned proximity level, realized hazard_prox_center)| -- the first stage. Near 1 by construction because the hazard is re-pinned every env step.",
+        "control": "exogenous re-pin at a pre-registered distance grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.98799,
+        "threshold": 0.9,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_free::pin_miss_frac",
+        "precondition": "pin_miss_frac",
+        "arm": "hazard_exog_urgency_free",
+        "kind": "readiness",
+        "description": "fraction of re-pins that could not realise the exact assigned distance (agent near a corner) -- a CEILING",
+        "control": "interior-cell enumeration at each re-pin",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.006125000000000001,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_free::seeds_with_usable_slope",
+        "precondition": "seeds_with_usable_slope",
+        "arm": "hazard_exog_urgency_free",
+        "kind": "readiness",
+        "description": "seeds contributing a within-seed slope; the load-bearing t-test is across these",
+        "control": "MIN_LEVELS_POPULATED levels each with >= MIN_ROWS_PER_SEED_LEVEL rows",
+        "direction": "lower",
+        "applies": true,
+        "measured": 24.0,
+        "threshold": 19.5,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_free::incumbent_identity_as_preregistered",
+        "precondition": "incumbent_identity_as_preregistered",
+        "arm": "hazard_exog_urgency_free",
+        "kind": "readiness",
+        "description": "the measured incumbent is harm_weighted with a margin over the runner-up",
+        "control": "pre-registered from 785a's surviving regime",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9054827601001072,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "hazard_exog_urgency_free::cross_candidate_score_variance",
+        "precondition": "cross_candidate_score_variance",
+        "arm": "hazard_exog_urgency_free",
+        "kind": "readiness",
+        "description": "mean cross-candidate total score variance is non-zero",
+        "control": "a degenerate candidate set makes every share statistic meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0895250055352162e-05,
+        "threshold": 1e-18,
+        "met": true
+      },
+      {
+        "name": "expressivity_positive_control::pin_miss_frac",
+        "precondition": "pin_miss_frac",
+        "arm": "expressivity_positive_control",
+        "kind": "readiness",
+        "description": "fraction of re-pins that could not realise the exact assigned distance (agent near a corner) -- a CEILING",
+        "control": "interior-cell enumeration at each re-pin",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "expressivity_positive_control::a3_seeds_with_profile",
+        "precondition": "a3_seeds_with_profile",
+        "arm": "expressivity_positive_control",
+        "kind": "readiness",
+        "description": "seeds contributing an ao_std_floor profile in the expressivity arm",
+        "control": "at least two ao levels populated per seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 5.5,
+        "met": true
+      },
+      {
+        "name": "expressivity_positive_control::expressivity_control_log10_var_span",
+        "precondition": "expressivity_control_log10_var_span",
+        "arm": "expressivity_positive_control",
+        "kind": "readiness",
+        "description": "P0 READINESS-ASSERT. Movement in log10 var_total produced by the ao_std_floor positive control. This asserts the SAME statistic the load-bearing C1 criterion routes on -- movement in log10 var_total -- not a magnitude proxy for it, so a below-floor reading means 'the cross-candidate variance channel cannot express an effect', never 'hazard geometry falsified'.",
+        "control": "widening support_preserving_ao_std_floor over {0.2,0.6,1.2} makes candidates differ more, a known-positive mover of cross-candidate variance",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.347016,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "expressivity_positive_control::incumbent_identity_as_preregistered",
+        "precondition": "incumbent_identity_as_preregistered",
+        "arm": "expressivity_positive_control",
+        "kind": "readiness",
+        "description": "the measured incumbent is harm_weighted with a margin over the runner-up",
+        "control": "pre-registered from 785a's surviving regime",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9132526449275362,
+        "threshold": 0.3,
+        "met": true
+      },
+      {
+        "name": "expressivity_positive_control::cross_candidate_score_variance",
+        "precondition": "cross_candidate_score_variance",
+        "arm": "expressivity_positive_control",
+        "kind": "readiness",
+        "description": "mean cross-candidate total score variance is non-zero",
+        "control": "a degenerate candidate set makes every share statistic meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.044548328181521e-05,
+        "threshold": 1e-18,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "C1_amplification_within_seed_slope": true,
+      "C2_redistribution_within_seed_slope": true,
+      "C3_expressivity_positive_control": true
+    },
+    "hypothesis_target": {
+      "registry_question": "arousal-variance-amplifier",
+      "hypothesis": "H-endogenous-hazard-geometry",
+      "registry_path": "REE_assembly/evidence/planning/hypothesis_space_registry.v1.json",
+      "resolve_via": "/failure-autopsy Step 9b -- the registry's SINGLE producer"
+    },
+    "load_bearing_statistic": "mean of per-seed WITHIN-SEED OLS slopes on the assigned proximity level index, tested with a one-sample t-test across seeds against a pre-registered critical value, with an SD-of-effect plus absolute floor. The pooled tick-level correlation is a DECOY and routes nothing: it is the statistic that made hazard proximity look confirmed in 785a.",
+    "null_vs_inexpressive_discriminator": {
+      "caveat": "z_world is under-differentiated (participation ratio ~1.06 at world_dim=128, absolute variances ~1.2e-05), so a null invites the objection that the substrate cannot EXPRESS the effect -- which bites the fix, not the measurement.",
+      "arbiter": "A3 expressivity positive control. Expressive -> a flat A1 is a GENUINE null and the leg is eliminated. Not expressive -> measurement_channel_inexpressive, nothing concluded, leg stays alive.",
+      "second_tell": "if A2 shows proximity strongly moves realized urgency (input path live) while geometry stays flat, the failure localises to the geometry stage rather than to the manipulation.",
+      "a3_expressive": true,
+      "measured_participation_ratios": {
+        "hazard_exog_urgency_clamped": 4.3135,
+        "hazard_exog_urgency_free": 4.2962,
+        "expressivity_positive_control": 4.3805
+      },
+      "participation_ratio_note": "The ~1.06 figure in the 785a adjudication is the reference for the inexpressive objection. This run measures PR over z_world sampled across ticks within each cell; the 2026-07-19 dry run returned ~5.0, materially higher. If the full run reproduces that, the under-differentiation objection is WEAKER than the 785a caveat assumed, and a null here is correspondingly harder to attribute to the substrate being unable to express the effect. Reported, not asserted: the two figures may be computed over different populations, so this is a flag for adjudication rather than a correction."
+    },
+    "scope": {
+      "route": "SD-011 commit-threshold route only",
+      "gated_quantity": "z_world RUNNING VARIANCE (world-model stability), not candidate separation -- use_harm_variance_commit is OFF",
+      "channel_agnosticism": "OUT OF SCOPE",
+      "dropped_regime_evidence": {
+        "dropped": "entropy_incumbent (entropy_bias_scale sweep)",
+        "reason": "no viable second cross-candidate regime exists on the entropy axis -- CH:mech341 absorbs ~99-115% of cross-candidate variance at every entropy_bias_scale scanned in the 785a design pass {0.15,0.30,0.50,1.00}, so its share statistic is arithmetically forced and cannot measure redistribution",
+        "consequence": "MECH-463's CHANNEL-AGNOSTICISM half is UNTESTED by this run. A result here covers the harm_weighted incumbent identity only."
+      }
+    },
+    "design_note": "Hazard proximity is MANIPULATED, not observed: the single hazard is re-pinned to the assigned Manhattan distance from the agent's current cell at every env step, with the bearing re-drawn each time. The hazard therefore tracks the agent, which is ecologically odd and is exactly what exogenous manipulation of proximity means -- the price of breaking the endogeneity, the same price 785a paid on the urgency axis.",
+    "reference_profile_785": {
+      "var_total_fold": 14.1,
+      "log10_var_fold": 1.149,
+      "incumbent_share_gap": -0.139,
+      "note": "the endogenous-urgency profile this hypothesis says was hazard geometry all along; observed within-seed effects are reported as a fraction of it"
+    },
+    "structural_gate_audit": [
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "manipulation_fidelity",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "pin_miss_frac",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "seeds_with_usable_slope",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "a3_seeds_with_profile",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "expressivity_control_log10_var_span",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "incumbent_identity_as_preregistered",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "cross_candidate_score_variance",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_clamped",
+        "precondition": "n_components_with_nontrivial_share",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "manipulation_fidelity",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "pin_miss_frac",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "seeds_with_usable_slope",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "a3_seeds_with_profile",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "expressivity_control_log10_var_span",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "incumbent_identity_as_preregistered",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "cross_candidate_score_variance",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "hazard_exog_urgency_free",
+        "precondition": "n_components_with_nontrivial_share",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "manipulation_fidelity",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "pin_miss_frac",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "seeds_with_usable_slope",
+        "status": "scoped_out"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "a3_seeds_with_profile",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "expressivity_control_log10_var_span",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "incumbent_identity_as_preregistered",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "cross_candidate_score_variance",
+        "status": "satisfiable"
+      },
+      {
+        "arm": "expressivity_positive_control",
+        "precondition": "n_components_with_nontrivial_share",
+        "status": "scoped_out"
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.11.0+cpu",
+  "substrate_hash": "f64a92fcfae87ffecb0fcb1ed17238dd3fbf98bda5a420f1cc91225c418e578c"
+}
