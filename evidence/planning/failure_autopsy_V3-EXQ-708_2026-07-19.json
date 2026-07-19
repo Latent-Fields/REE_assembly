@@ -1,0 +1,163 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-19T20:48:49Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "elastic-benz-a7366d",
+  "is_re_adjudication": true,
+  "re_adjudicates": "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+  "re_adjudication_note": "Re-adjudication of a LANDED result. No re-run, no re-queue, no manifest/claim/index edit. Supersedes ONLY the V3-EXQ-708 target of the 2026-06-29 cluster autopsy; that document's V3-EXQ-700d target is untouched. Commissioned by the 2026-07-19 corpus audit (session upbeat-gauss-918164), which identified 708 as the single case in the ~52-script affected set where the stale-E3-diagnostics defect reaches a reported DV rather than a tick count.",
+  "targets": [
+    {
+      "run_id": "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier_20260628T220908Z_v3",
+      "queue_id": "V3-EXQ-708",
+      "claim_ids": ["MECH-440"],
+      "machine": "ree-cloud-3",
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "Two readiness PRECONDITIONS failed, both reading the pre-commit class entropy DV: temperature_control_raises_precommit_entropy (measured 0.0, threshold 2.0) and weight_noise_raises_precommit_entropy (measured 0.0, threshold 2.0). Both are SEED COUNTS (n divergent seeds whose paired lift clears +0.05), not the arm-mean deltas of -0.037 / -0.074 cited in the commissioning brief.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-440 was never validly tested; the DV that would have tested it is contaminated. Neither weakened nor strengthened.",
+        "biological_reference": "partial -- NoisyNet-style parameter-space exploration is a formal/ML import; the biological analogue (tonic DA/NE-modulated selection variability in BG action selection) is real but not lit-grounded for MECH-440. Not load-bearing: the run failed at measurement, before biology could be probed.",
+        "prerequisites": "present -- all five non-DV preconditions passed; noise injection was genuine (noise_bias_range 0.2216, supra-floor).",
+        "implementation": "complete -- the noisy selection head worked. The DRIVER INSTRUMENTATION is defective, not the substrate.",
+        "environment": "adequate -- not implicated.",
+        "measurement": "misleading -- DOMINANT LAYER. Mass-weighted mixture over arm-dependent, arousal-correlated hold durations, read per env step with no clear.",
+        "integration": "isolated -- not implicated.",
+        "scale": "unknown -- cannot be assessed through a contaminated DV."
+      },
+      "defect": {
+        "name": "stale-E3-diagnostics pseudo-replication",
+        "driver_read_sites": {
+          "last_score_diagnostics": 780,
+          "last_precommit_probs": 809,
+          "select_action": 776,
+          "non_guard": "line 812 ppv.numel() == len(candidates) -- NOT a freshness guard; candidate count is constant across ticks so a stale vector passes"
+        },
+        "clear_present": false,
+        "substrate_sites": {
+          "diagnostics_set_only_in_select": "ree_core/predictors/e3_selector.py:2687 (last_precommit_probs)",
+          "early_return": "ree_core/agent.py:5429 returns held/stepped action when ticks['e3_tick'] is False",
+          "select_call": "ree_core/agent.py:7011",
+          "cadence_default": "ree_core/utils/config.py:2017 (e3_steps_per_tick=10)",
+          "cadence_variable": "ree_core/heartbeat/clock.py:52-70 -- MECH-093 arousal modulation between beta_rate_min_steps=5 and beta_rate_max_steps=20; MECH-091 phase reset can end a cycle early"
+        },
+        "empirical_confirmation": "n_precommit_ticks == n_p2_ticks EXACTLY on all 24 arm-seeds -- the precommit vector was re-recorded on every env step.",
+        "why_directional_not_merely_inflated_n": "Uniform replication cancels under normalization (mass scales by a constant; entropy unchanged). Exposure here is ARM-DEPENDENT: A0_OFF and ARM_TEMP are tick-identical on every seed, while ARM_NOISE_SINGLE diverges by +1.7% / +57.5% / +32.1% on divergent seeds 44/45/46. The cadence is additionally arousal-correlated, so the weight is not independent of agent state.",
+        "corroborating_sign_check": "The noisy head is applied at e3_selector.py:2582, UPSTREAM of last_precommit_probs at :2687, so noise should FLATTEN the accumulated class marginal. The recorded -0.317 (seed 44) and -0.209 (seed 46) nat DEPRESSIONS are mechanistically backwards -- positive evidence the contamination is LARGE, not small."
+      },
+      "margin_analysis": {
+        "divergent_pool": [44, 45, 46],
+        "divergent_pool_basis": "intersection of gapa_divergence over A0_OFF + ARM_TEMP + ARM_NOISE_SINGLE; matches reported n_divergent_seeds=3. Seed 47 EXCLUDED (non-divergent on ARM_NOISE_SINGLE) -- it is not available to the gate despite its +0.0393 lift.",
+        "gate_rule": "MIN_SEEDS_FOR_PASS=2 of the divergent pool must clear a +0.05 paired lift (driver lines 1151-1170)",
+        "arm_noise_single_lifts": {"44": -0.317265, "45": 0.046734, "46": -0.209161},
+        "arm_temp_lifts": {"44": 0.012714, "45": -0.074910, "46": -0.069727},
+        "verdict": "The route is NOT demonstrably an artifact. Flipping the gate needs TWO seeds to clear; seed 45 is 0.003 nats short (inside artifact range) but seeds 44 and 46 are 0.26 and 0.37 nats short, which no de-duplication correction can supply."
+      },
+      "recoverability": {
+        "recoverable": false,
+        "custom_information_present": false,
+        "per_tick_sink_present": false,
+        "run_pack_metrics_json_size_chars": 46,
+        "what_survives": "per-arm-seed scalar aggregates only (precommit_class_entropy_nats, n_precommit_ticks, committed_class_counts, ...)",
+        "structural_reason": "Phase 3 cloud workers POST only manifest_bytes, so even a DECLARED per-tick sink is not transported. Twice-confirmed (V3-EXQ-785 declared a sink and it was still never transported; 708 ran on ree-cloud-3).",
+        "consequence": "The entropy CANNOT be recomputed over de-duplicated / fresh-selection rows. A corrected re-run under a new letter is required to answer 708's question."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_supersedes": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "RE-ADJUDICATED 2026-07-19 (failure_autopsy_V3-EXQ-708_2026-07-19), superseding the 708 target of failure_autopsy_700d-708-single-arena-ceiling_2026-06-29. This run's pre-commit class entropy DV is INVALID. The driver read agent.e3.last_precommit_probs (line 809) and last_score_diagnostics (line 780) once per ENV STEP with no clear and no freshness guard; the numel()==len(candidates) check at line 812 is not a freshness guard because the candidate count is constant. E3 select() runs only on an E3 tick (agent.py:5429 returns the held action before the e3.select() call at agent.py:7011), at a cadence that VARIES 5-20 steps under MECH-093 arousal modulation (clock.py:52-70, default 10 at config.py:2017). Confirmed empirically: n_precommit_ticks == n_p2_ticks exactly on all 24 arm-seeds. The DV is therefore a mass-weighted mixture in which each probability vector is replicated by its hold duration. This is DIRECTIONAL, not merely an inflated n, because exposure is ARM-DEPENDENT: A0_OFF and ARM_TEMP are tick-identical on every seed while ARM_NOISE_SINGLE diverges by +1.7% / +57.5% / +32.1% on divergent seeds 44/45/46. Corroborating sign check: the noisy head is applied at e3_selector.py:2582, upstream of last_precommit_probs at :2687, so noise should FLATTEN the class marginal; the recorded -0.317 and -0.209 nat DEPRESSIONS on seeds 44 and 46 are mechanistically backwards and indicate the contamination is large. WHAT STANDS: the substrate_not_ready_requeue ROUTE survives -- flipping weight_noise_raises_precommit_entropy needs 2 of {44,45,46} to clear +0.05, and although seed 45 is only 0.003 nats short, seeds 44 and 46 are 0.26 and 0.37 nats short, which no de-duplication can supply. WHAT DOES NOT STAND: the finding that 'noise was injected supra-floor and raised pre-commit entropy by 0.0', which is a statement about the contaminated quantity and cannot be sustained in either direction. Epistemic category CORRECTED substrate_ceiling -> measurement_test_design_defect. NOT RECOVERABLE: no custom_information, no per_tick_sink, metrics.json is 46 chars, only per-arm-seed scalars survive; Phase 3 cloud workers POST only manifest_bytes so a declared sink would not have been transported either (this run: ree-cloud-3). Routes to queue-experiment for a corrected V3-EXQ-708a using the clear-before-select pattern of v3_exq_785a. See also: this withdrawal leaves the 700d-708 cluster's two-mechanism convergence claim single-legged (700d is unaffected).",
+      "recommended_claim_edits": {
+        "claim_id": "MECH-440",
+        "clear_epistemic_category": true,
+        "clear_epistemic_category_rationale": "MECH-440 currently carries epistemic_category: substrate_ceiling whose SOLE basis is this run's withdrawn DV. With that basis withdrawn the claim is UNTESTED, not ceiling-limited.",
+        "replacement_evidence_quality_note": "V3-EXQ-708 (MECH-440 NoisyNet propagation falsifier) was RE-ADJUDICATED 2026-07-19 (failure_autopsy_V3-EXQ-708_2026-07-19). Its pre-commit class entropy DV is invalid: the driver read e3.last_precommit_probs once per env step with no clear, and E3 select() runs on a 5-20-step arousal-modulated cadence, so each probability vector was replicated by its hold duration. The weighting is arm-dependent (matched-seed exposure differs by up to +58% between the OFF and NOISE arms), so the between-arm delta is distorted, not merely imprecise. The previously recorded finding -- that supra-floor weight noise raised pre-commit entropy by 0.0 and therefore 'washes out at the F-dominated single-arena argmax' -- is a claim about the contaminated quantity and is WITHDRAWN. The run's substrate_not_ready_requeue route survives on margin arithmetic, but MECH-440 was never validly tested. Noise injection itself was genuine (bias range 0.2216, supra-floor), and all five non-DV preconditions passed, so the defect is in driver instrumentation, not in the substrate. epistemic_category substrate_ceiling CLEARED -- MECH-440 is untested, not ceiling-limited. The correction is not recoverable from the recorded emission (no per-row sink; Phase 3 cloud workers transport only manifest_bytes). Pending a corrected re-run V3-EXQ-708a using the clear-before-select pattern of v3_exq_785a. MECH-440 remains candidate / v3_pending.",
+        "note": "RECOMMENDATION ONLY. This skill never edits claims.yaml; /governance applies it interactively."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The defect is in driver instrumentation, not substrate. No substrate build is owed by this finding. The prior autopsy's v4_loop_segregation routing was already answered by V3-EXQ-707b (weakens the single-arena-artefact sub-hypothesis, valid null, non_degenerate true)."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_instrumentation_fix": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "ILLUSORY-CONFLICT CHECK (mandatory pairing). The 2026-06-29 cluster claimed 'two structurally-different mechanisms (same-layer-null construction, noise injection) converge on one ceiling'. Withdrawing 708's DV removes ONE OF THE TWO LEGS. The ceiling reading is not refuted -- it retains 700d plus the 700b/700c/704b-706b lineage, and V3-EXQ-707b independently returned a valid non_degenerate null concluding the conversion ceiling is intrinsic to MECH-439 F-dominance rather than a single-arena artefact. But the CONVERGENCE claim specifically is now single-legged and must not be restated in its two-mechanism form.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "NOT FIRED. Recommended category is measurement_test_design_defect, not substrate_ceiling/non_contributory-as-ceiling, so the counting rule is not met. The prior 708 autopsy stamped fired:false (1st for MECH-440); this re-adjudication WITHDRAWS that reading rather than adding a second, so the MECH-440 ceiling count moves to 0, not 2. A corrected re-run is NOT the behaviour the brake exists to prevent: the brake stops a claim being re-tested at the same granularity against the same ceiling letter after letter, whereas 708a is INSTRUMENT REPAIR of a run that never validly measured its DV. This is the V3-EXQ-785 -> 785a shape, which the corpus already sanctions (785a's corrected instrument returned a clean, well-powered null)."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": ["failure_autopsy_700d-708-single-arena-ceiling_2026-06-29"],
+        "routing": null,
+        "note": "NOT FIRED, stamped honestly. A prior autopsy on this target exists, which is normally the recurrence signal. It does not fire here because this document is a RE-ADJUDICATION OF THE SAME RUN, not a second experiment circling MECH-440 with a different failure signature. There is one experiment and one dataset. Recording it as recurrence would inflate the granularity-debt signal with a bookkeeping artifact and mislead the GOV-GRAN-1 standing scan."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "708 is the ONE case in the ~52-script affected set where the stale-E3 defect reaches a reported DV, and the reason is structural: 705 and 709 gate on COUNTS with exact-zero seeds (which duplication cannot manufacture), whereas 708 gates on a CONTINUOUS MASS-WEIGHTED ENTROPY, which has no such invariance. The audit's targeting was correct.",
+        "Uniform replication is harmless; ARM-DEPENDENT replication is not. The distortion is real here only because exposure differs by arm (up to +58% on a matched seed). This is the general test to apply to the rest of the affected corpus -- an inflated n alone is NOT sufficient for contamination.",
+        "A mechanistically-backwards effect SIGN is a contamination detector. Noise injected upstream of the readout producing a 0.3-nat entropy DEPRESSION is the tell that condemned this DV, independent of any margin arithmetic.",
+        "A defective instrument can leave the ROUTE correct while destroying the CONTENT. 708 landed on a defensible route for an indefensible reason; adjudicating only the route would have preserved a false learning and a false claim-layer note.",
+        "Declared per-tick sinks do not survive Phase 3 cloud transport (workers POST only manifest_bytes). Twice-confirmed (785, 708). Any experiment relying on row-level re-analysis must record what it needs in the manifest itself."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "recommended_only_not_queued": true,
+        "queue_state_verified_at_autopsy": "ree-v3/experiment_queue.json depth 0; no 708/705/709 entry in flight; no active TASK_CLAIMS entry covers a 708 re-queue",
+        "suggested_queue_id": "V3-EXQ-708a",
+        "suffix_rationale": "same scientific question, corrected instrumentation -> alphabetic suffix (not a new EXQ number)",
+        "requirements": [
+          "Set agent.e3.last_score_diagnostics = None AND agent.e3.last_precommit_probs = None immediately before every agent.select_action(...); record a row ONLY if repopulated. Reference: ree-v3/experiments/v3_exq_785a_mech463_arousal_exogenous_urgency_decomp.py lines 525-543.",
+          "Emit n_fresh_select, n_latched and fresh_select_yield as telemetry so the replication factor is visible in the manifest rather than inferred.",
+          "Exposure-match the arms, or record the per-arm-seed imbalance explicitly -- the +58% OFF-vs-NOISE tick divergence IS the mechanism of the distortion.",
+          "Record per-seed fresh-selection counts in the manifest itself; do NOT rely on a declared per_tick_sink (not transported on cloud workers).",
+          "Set supersedes: 'V3-EXQ-708' on the queue entry and supersedes on the run manifest.",
+          "Stamp the recording core via experiments/_lib/manifest_core.stamp_recording_core(...) per experimental_recording_standard_2026-07-12.md Sec 3b/3c."
+        ],
+        "venue_note": "The prior autopsy's recommended next step ('the ARC-110-gated ARM_NOISE_LOOPSEG arm, not a single-arena 708 letter') has since been ANSWERED: V3-EXQ-707b returned evidence_direction=weakens on the single-arena-artefact sub-hypothesis with a valid non_degenerate null, concluding the conversion ceiling is intrinsic to MECH-439 F-dominance. 708a should be designed against that current reading, not as a bet that loop segregation relieves the ceiling."
+      }
+    }
+  ],
+  "secondary_findings": {
+    "note": "Assessed as lower-priority candidates from the same 2026-07-19 corpus audit. In BOTH the defect is confirmed present exactly as described (unconditional per-env-step reads, no clear anywhere, gated only on coarse phase flags). In BOTH the specific failing gate is THRESHOLD-INVARIANT to the contamination. Neither verdict moves; neither prior autopsy's conclusion is undermined; NEITHER NEEDS RE-ADJUDICATION.",
+    "invariance_argument": "Duplication can only repeat an already-observed genuine value. It cannot manufacture a non-zero from an all-zero genuine record, nor suppress a genuine non-zero into an exact zero. So a recorded EXACT ZERO implies every genuine selection in that window was zero, and the classification is invariant in both directions. This is precisely the property 708's continuous mass-weighted entropy lacks.",
+    "V3-EXQ-705": {
+      "claim_ids": ["MECH-314"],
+      "status": "already superseded by V3-EXQ-705b; prior autopsies exist for both",
+      "driver_read_line": 574,
+      "clear_present": false,
+      "failing_quantity_kind": "duration-weighted mean over replicated rows (f_eligibility_excluded_count_mean) -- the audit's suspicion was correct",
+      "gate": "seed count legC_seeds_non_degenerate=1, needs 2",
+      "invariance": "Two of three seeds record excluded_count EXACTLY 0.0 and envelope_size EXACTLY 32.0 across their entire windows -- all-admit in the genuine record. No correction magnitude flips the gate.",
+      "prior_conclusion_survives": true,
+      "prior_conclusion": "'a correctly-caught invalid precondition... NOT a MECH-314 weakening' -- survives.",
+      "note_705b": "705b's failing criterion is committed_class_entropy, computed from actions actually emitted, and does not touch last_score_diagnostics at all -- untouched by the defect."
+    },
+    "V3-EXQ-709": {
+      "claim_ids": ["MECH-439", "ARC-108", "ARC-110"],
+      "driver_read_line": 801,
+      "clear_present": false,
+      "failing_quantity_kind": "pure inflated tick COUNT, scored through a >0 boolean then a seed count",
+      "gate": "limbic_loop_can_win measured 1.0, threshold 2.0",
+      "empirical_confirmation": "clg_active_ticks == n_p2_ticks exactly on every seed",
+      "invariance": "Among the four GAP-A-divergent seeds, THREE record exactly 0 and one records 1795. Deflating an inflated count cannot make a zero positive, and cannot zero out a positive (at least one genuine occurrence must have originated the duplicated value). The audit's concern that it was 'one seed short of clearing' does not hold: the shortfall is in hard-zero seeds, not marginal ones.",
+      "prior_conclusion_survives": true,
+      "prior_conclusion": "substrate_ceiling / implement-substrate routing and re-derive-brake firing (MECH-439 8th, ARC-108 6th) are unaffected."
+    }
+  },
+  "hypothesis_space_ledger_pending": {
+    "registry_write_skipped": true,
+    "skip_rationale": "Session elastic-newton-d18328 held an active TASK_CLAIMS entry on evidence/planning/hypothesis_space_registry.v1.json at autopsy time, and a large uncommitted derived-artifact regen was present in the REE_assembly working tree. A whole-file read-modify-write would have risked adopting another session's uncommitted edits under this session's commit (CLAUDE.md read-modify-write contamination).",
+    "opens_fanout": false,
+    "eliminates_leg": false,
+    "intended_action": "WITHDRAWAL, not resolution. This re-adjudication removes the evidentiary basis of an existing resolution rather than resolving anything new. Any registry leg whose resolution.resolving_runs includes V3-EXQ-708 AND whose basis rests on the pre-commit class entropy readout should REVERT from its resolved state to state: 'alive', retaining resolving_runs and recording basis: 'resolution withdrawn 2026-07-19 -- the adjudicating run V3-EXQ-708 measured its pre-commit entropy DV on a stale-E3 mass-weighted mixture; see failure_autopsy_V3-EXQ-708_2026-07-19'. met_elimination_bar and non_degenerate must be set false on any such leg.",
+    "invariant_notes": "A revert of this kind LOWERS the surviving-eliminated count without lowering initial_frozen_count, so it does not touch invariants 1/3/3a/6 (no denominator movement, no fan-out growth). It will show as an increase in surviving hypotheses in the Dimension 3 rollup -- that is correct and should not be read as regression: it is a withdrawn elimination being honestly un-counted.",
+    "applies_to": "the claim holder (elastic-newton-d18328) or the next /governance walk"
+  },
+  "cluster_pattern": null
+}
