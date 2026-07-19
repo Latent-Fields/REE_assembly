@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-19T20:35:00Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-787",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-645",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:16:25.683820+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-598c",
-      "result": "PASS",
-      "completed_at": "2026-06-07T13:56:12.172729+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-603k",
-      "result": "PASS",
-      "completed_at": "2026-06-09T18:14:20.455688+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-662",
-      "result": "PASS",
-      "completed_at": "2026-06-10T10:47:31.360050+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-664",
-      "result": "PASS",
-      "completed_at": "2026-06-10T11:28:09.632703+00:00"
-    }
+  "last_tick_utc": "2026-07-19T21:07:24Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-699a",
+  "current_exq_started_utc": "2026-07-19T21:05:38.058699+00:00",
+  "current_title": "P-comp: MECH-448 demotion x MECH-449 Go/No-Go composition at committed-class entropy (2x2 diagnostic; 699 re-run for adjudicable preconditions)",
+  "current_claim_id": "MECH-448",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / neither_lever_topk_eligible_modulatory_baseline",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 0,
+    "episodes_total": 350,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 106,
+  "seconds_remaining": 36000,
+  "recent_lines": [
+    "Arm ARM_OFF (neither_lever_topk_eligible_modulatory_baseline) demotion_on=False gng_on=False (P0=200 ep e2-train, P1=90 ep bias-train, P2=60 ep measure, steps_per_episode=200, dry_run=False)",
+    "Seed 42 Condition neither_lever_topk_eligible_modulatory_baseline"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 743,
-  "runner_version": "r4051 ba09660 2026-07-19 (running r4046 69342b5)",
+  "runner_version": "r4056 f6daeec 2026-07-19 (running r4051 ba09660)",
   "gpu": {
     "available": false
   },
