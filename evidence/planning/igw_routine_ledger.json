@@ -1865,6 +1865,29 @@
       "reaped_at": "2026-07-14T18:17:23Z",
       "outcome": "ERROR",
       "outcome_evidence": "claude exited without writing a session"
+    },
+    {
+      "igw_id": "IGW-20260719-189",
+      "stable_hash": "67665d464150",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "MECH-063"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: SD-PROBE-WARMUP",
+      "worktree": ".claude/worktrees/igw-189-substrate-ready-sd-probe-warmup",
+      "branch": "claude/igw-189-substrate-ready-sd-probe-warmup",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260719-189 --yolo",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-189-substrate-ready-sd-probe-warmup && claude --dangerously-skip-permissions \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-189-substrate-ready-sd-probe-warmup-20260719T122208Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-07-19T12:07:45Z",
+      "staged_at": "2026-07-19T12:07:45Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
