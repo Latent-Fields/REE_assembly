@@ -1,0 +1,145 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp",
+  "run_id": "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-19T13:34:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-463"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arousal_causally_inert_on_selection_variance",
+    "preconditions": [
+      {
+        "name": "harm_incumbent::incumbent_cross_candidate_range",
+        "kind": "readiness",
+        "description": "mean cross-candidate RANGE of the incumbent component 'harm_weighted' -- the SAME statistic the decomposition routes on, never a mean-abs proxy (643 GAP)",
+        "control": "SD-056 action-contrastive candidates",
+        "direction": "lower",
+        "measured": 0.013721588689801067,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::n_components_with_nontrivial_share",
+        "kind": "readiness",
+        "description": "components holding |share| > 0.01; a decomposition where only one component is non-trivial is arithmetically forced, not measured. Evaluated PER REGIME so a structurally single-component regime cannot vacate another regime's valid result (the V3-EXQ-785 whole-run application)",
+        "control": "multi-component primary score",
+        "direction": "lower",
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::urgency_levels_populated",
+        "kind": "readiness",
+        "description": "assigned urgency levels with enough committed rows to score; the exogenous analogue of 785's 'urgency non-constant' -- no spread means no contrast",
+        "control": "i.i.d. uniform assignment over the pre-registered grid",
+        "direction": "lower",
+        "measured": 6.0,
+        "threshold": 4.5,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::cross_candidate_score_variance",
+        "kind": "readiness",
+        "description": "mean total cross-candidate score variance (a share of ~0 is undefined)",
+        "control": "SD-056 action-contrastive candidates + rollout clamp",
+        "direction": "lower",
+        "measured": 1.3145095480305947e-05,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::fresh_committed_tick_count",
+        "kind": "readiness",
+        "description": "committed rows from FRESH E3 selections only. 785 read last_score_diagnostics without clearing it, so commitment-latched ticks re-recorded the previous tick's diagnostics as new rows (~9.0x pseudo-replication, measured). Every row here is one genuine independent selection",
+        "control": "diagnostics cleared before every select_action",
+        "direction": "lower",
+        "measured": 1757.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::incumbent_identity_as_preregistered",
+        "kind": "readiness",
+        "description": "margin of pre-registered incumbent 'harm_weighted' over the runner-up; guards against scoring 'the incumbent's share moves' for the wrong incumbent (observed top: 'harm_weighted')",
+        "control": "785 harm arm, 5 seeds: harm_weighted 0.9368 / f 0.0552 / residue 0.0080",
+        "direction": "lower",
+        "measured": 0.8854754467842915,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::exogenous_assignment_fidelity",
+        "kind": "readiness",
+        "description": "max |realized_urgency - assigned_urgency| over all fresh selections. The manipulation IS the experiment: a miss here means urgency was not actually set",
+        "control": "probe 2026-07-19, 600 ticks: max err 2.8e-17 (float roundoff)",
+        "direction": "upper",
+        "measured": 5.551115123125783e-17,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "harm_incumbent::randomisation_orthogonal_to_hazard_proximity",
+        "kind": "readiness",
+        "description": "|corr(assigned_urgency, hazard_prox_max)| over fresh selections. Near-zero is what makes near-hazard geometry an implausible explanation BY CONSTRUCTION rather than by adjustment (785's endogenous urgency was confounded by design)",
+        "control": "probe 2026-07-19: corr -0.038",
+        "direction": "upper",
+        "measured": 0.017670556795135066,
+        "threshold": 0.25,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_amplification_var_total_rises_with_exogenous_urgency": true,
+      "C2_concentration_incumbent_share_rises_with_exogenous_urgency": true,
+      "C3_admission_commit_rate_varies_with_exogenous_urgency": true
+    },
+    "design_note": "EXOGENOUS urgency: urgency_applied is SET, not observed, by solving e3.config.urgency_weight = target / ||z_harm_a|| against e3_selector.py:2704-2711. Assignment is i.i.d. uniform over a pre-registered grid, independent of state, so the 785 endogeneity confound (high urgency == near hazard) is broken BY CONSTRUCTION rather than adjusted away. Fidelity and the realised randomisation correlation are both gate preconditions (P8/P9).",
+    "grid_note": "Six cells. AMPLIFICATION (C1) and CONCENTRATION (C2) are scored SEPARATELY -- 785's compound criterion returned FAIL for a claim whose amplification half was confirmed at 14.1x. 'falls' is a first-class SIGNED cell distinct from 'flat': 785's strong monotone decrease had no valid self-route in a rises/flat-only grid and was buried.",
+    "channel_agnosticism_untested_note": "MECH-463's CHANNEL-AGNOSTICISM half is UNTESTED by this run. The second regime was dropped, not replaced: an entropy_bias_scale scan over {0.15,0.30,0.50,1.00} found CH:mech341 absorbing ~99-115% of cross-candidate variance at every setting, so its share statistic is arithmetically forced. This run tests the mechanism at ONE incumbent identity (harm_weighted). No result here licenses any claim about channel-agnosticism.",
+    "mechanism_sign_note": "The autopsy flagged (as candidate) that the commit threshold is an ADMISSION threshold whose lowering is 'LESS selective ... predicts dilution'. Reading the gate, that sign is BACKWARDS: committed = variance < commit_threshold*(1-urgency) is an UPPER BOUND, so raising urgency LOWERS the bound and makes admission STRICTER. Measured (600 ticks, exogenous): commit rate 1.000 at u=0.04 -> 0.889 at u=0.34. Further, the gated quantity is the z_world RUNNING VARIANCE (world-model stability), not cross-candidate separation, because use_harm_variance_commit is off -- so any induced share change is a selection-on-stability effect. C3 measures this directly.",
+    "pseudo_replication_note": "785 read e3.last_score_diagnostics without clearing it. E3 select() runs only when the commitment latch is open (agent.py:4968), so latched ticks re-recorded the previous tick's diagnostics as new rows: 600 rows from 67 genuine selections, ~9.0x. 785's '3959 committed ticks / ~40 SE' reflects ~440 independent selections, so its true SE is ~3x larger and the span is ~15 SE. Its DIRECTION survives; only its precision is overstated. Fixed here by clearing the diagnostics before every select_action.",
+    "rival_measured_note": "hazard_field_view (the LEARNER'S OWN 5x5 local observable, not a privileged global oracle distance -- the 732a confound) is recorded per tick and the share profile is reported within hazard-proximity tertiles. Randomisation makes proximity orthogonal to assigned urgency in expectation; P9 checks it held in sample; the tertile profile shows whether the effect survives WITHIN proximity bands.",
+    "caveat_z_world_under_differentiation": "Under an under-differentiated z_world (participation ratio ~1.06 at world_dim=128) the per-candidate channels have little to range over. That objection bites the FIX, not the measurement -- but a does_not_support verdict must be read against it, not as unconditional.",
+    "scope_note": "NOT gated on MECH-457 or INV-088 (decomposition probe on score geometry, not a behavioural conversion test). Does NOT re-open the 689/485/445/625 selection-face lineages. MECH-439 deliberately NOT tagged (11 substrate_ceiling autopsies); nothing here bears on it. A confirmed dilution under exogenous urgency would weaken MECH-463's concentration premise on the merits and open arousal as a candidate DIVERSITY lever for the conversion-ceiling programme."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10",
+  "substrate_hash": "849de508bf4f4e44e6b612271f48fd590385957843481e7c6bf63706a85e538b"
+}
