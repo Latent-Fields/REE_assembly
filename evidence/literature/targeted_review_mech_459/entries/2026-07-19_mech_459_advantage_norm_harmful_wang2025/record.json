@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_459",
+  "entry_id": "2026-07-19_mech_459_advantage_norm_harmful_wang2025",
+  "timestamp_utc": "2026-07-19T06:03:39Z",
+  "claim_ids_tested": ["MECH-459"],
+  "source": {
+    "title": "Improving Value Estimation Critically Enhances Vanilla Policy Gradient",
+    "authors": ["Tao Wang", "Ruipeng Zhang", "Sicun Gao"],
+    "year": 2025,
+    "venue": "arXiv:2505.19247 (preprint)",
+    "doi": "10.48550/arXiv.2505.19247",
+    "url": "https://arxiv.org/abs/2505.19247"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the closest thing found to INDEPENDENT support for MECH-459's specific mechanism, and its independence is what gives it value: unlike DreamerV3 it was not the source the claim was authored from, and it targets the exact operator MECH-459 indicts -- per-batch advantage standardisation -- rather than return normalisation one level up. It reports that normalised advantage is harmful DESPITE its near-ubiquity in advantage actor-critic methods, and names two mechanisms, both of which map onto REE: division by a small standard deviation causing gradient spikes when advantages are small early in training, and per-mini-batch variance in the estimation of the normalisation parameters. The first is MECH-459's noise re-amplification form almost verbatim. Confidence is capped at 0.62 by source status and by a residual extraction limitation: this is an unreviewed preprint, and the fetched text confirmed the qualitative claims and mechanisms but did not yield verbatim effect sizes or the benchmark table, so the MAGNITUDE of the reported harm is not independently verified here. The direction is well supported; the size is not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Dividing advantages by a per-batch standard deviation produces disproportionately large gradient updates when that standard deviation is small, which is precisely the early-training and low-reward-variance regime.",
+    "Normalisation parameters estimated per mini-batch are themselves noisy estimates, so the normaliser injects estimator variance into the policy gradient in addition to whatever it removes.",
+    "A widely-adopted default operator can be harmful without being noticed, because it is inherited as boilerplate rather than ablated."
+  ],
+  "tags": ["mech-459", "advantage_normalisation", "policy_gradient", "value_estimation", "gradient_spikes", "actor_critic"],
+  "mapping": {
+    "source_claim_statement": "Advantage normalisation -- dividing advantages by their standard deviation -- is harmful in vanilla policy gradient methods despite near-ubiquitous adoption, because a small standard deviation yields disproportionately large gradient updates and because per-mini-batch estimation of normalisation parameters is itself variable. Improving value-function estimation, rather than post-hoc advantage normalisation, is the effective remedy.",
+    "ree_translation": "MECH-459's weak form holds that REE's per-episode (adv - mean)/(std + 1e-8) re-inflates a near-zero advantage vector -- one containing only critic error plus exploration jitter in a zero-forage episode -- into a full-magnitude unit-variance noise gradient. Wang et al. report that same operator producing that same pathology in the same low-variance regime, in a model-free actor-critic setting structurally much closer to REE's raw-view loop than DreamerV3's imagination rollouts. Their proposed remedy (fix the critic) also converges on MECH-459's third prescription, the distributional critic replacing the scalar MSE head.",
+    "mapping_caveat": "Four caveats, one of them sharp. (1) STATUS: unreviewed preprint; treat as a directional signal, not a settled result. (2) GRANULARITY: their normaliser is per-MINI-BATCH, REE's is per-EPISODE. The 'small std' pathology transfers, but the 'estimator variance across mini-batches' mechanism does not map cleanly onto a per-episode statistic and should not be claimed for REE. (3) EFFECT SIZE UNVERIFIED: the extraction confirmed mechanisms but not the benchmark magnitudes, so nothing here licenses a quantitative prediction about how far REE's foraging floor would move. (4) DIVERGENT REMEDY: their fix is better value estimation, not a floored one-sided denominator -- so they support MECH-459's DIAGNOSIS while pointing at a different treatment than probe K installs. That divergence is informative rather than fatal, but it means a probe-K null would not refute this paper.",
+    "source_context": "Model-free deep RL; vanilla policy gradient and advantage actor-critic variants on standard continuous-control benchmarks; simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.55,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Source quality held down by unreviewed preprint status and by effect sizes not being independently verified in extraction. Mapping fidelity is the highest in this pull -- it indicts the exact operator (per-batch advantage standardisation) in the exact regime (small std) that MECH-459 names, in a model-free setting. Transfer risk moderate: granularity differs (mini-batch vs episode) and the proposed remedy diverges from probe K's. Aggregate weighted toward source_quality here because the claim under test is empirical, per the calibration rule."
+  }
+}

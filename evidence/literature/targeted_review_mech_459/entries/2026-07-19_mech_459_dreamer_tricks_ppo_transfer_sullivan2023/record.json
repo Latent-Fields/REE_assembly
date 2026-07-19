@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_459",
+  "entry_id": "2026-07-19_mech_459_dreamer_tricks_ppo_transfer_sullivan2023",
+  "timestamp_utc": "2026-07-19T06:03:39Z",
+  "claim_ids_tested": ["MECH-459"],
+  "source": {
+    "title": "Reward Scale Robustness for Proximal Policy Optimization via DreamerV3 Tricks",
+    "authors": ["Ryan Sullivan", "Akarsh Kumar", "Shengyi Huang", "John P. Dickerson", "Joseph Suarez"],
+    "year": 2023,
+    "venue": "NeurIPS 2023 (Advances in Neural Information Processing Systems 36); arXiv:2310.17805",
+    "doi": "10.48550/arXiv.2310.17805",
+    "url": "https://arxiv.org/abs/2310.17805"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.71,
+  "confidence_rationale": "This is the deliberate counterweight in the pull and the most decision-relevant entry for calibrating what a probe-K result will mean. It is the only paper found that directly tests whether DreamerV3's normalisation machinery TRANSFERS to a different algorithm, which is exactly the inferential step MECH-459 makes when it imports Hafner's prescription into REE's model-free raw-view actor-critic. The finding is explicitly negative on the general question -- the tricks 'do not transfer as general improvements to PPO' across more than 10,000 compute-hours of experiments -- while positive on a narrower one: PPO with the tricks performs comparably to PPO WITH reward clipping and significantly outperforms PPO WITHOUT reward clipping. Peer-reviewed at a top venue with a large compute budget, so source quality is high and the null is well-powered rather than an underpowered miss. Confidence 0.71 reflects solid quality and clear relevance, discounted because the paper tests DreamerV3's normaliser as a BUNDLE on dense-reward Atari, so it cannot isolate the specific sparse-reward, near-zero-return regime in which MECH-459 locates REE's pathology.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Normalisation machinery that is load-bearing in one algorithm can fail to produce any general improvement when transplanted into another, even at very large compute budgets.",
+    "The measured benefit of DreamerV3-style normalisation in PPO was substitutive rather than additive -- it recovered what reward clipping already provided rather than adding gains on top of it.",
+    "Evaluating a bundle of tricks jointly cannot attribute effect to any single component, so a bundle-level null does not license a component-level null."
+  ],
+  "tags": ["mech-459", "return_normalisation", "ppo", "reward_scale", "transfer_failure", "negative_result", "counterweight"],
+  "mapping": {
+    "source_claim_statement": "DreamerV3's tricks (symlog, percentile return normalisation, twohot distributional critic) do not transfer as general improvements to PPO. Across >10,000 compute-hours, PPO with these tricks performs comparably to PPO with reward clipping, and significantly outperforms PPO without reward clipping.",
+    "ree_translation": "MECH-459 imports Hafner's prescription across an algorithm boundary, from DreamerV3's imagination-based actor-critic into REE's model-free raw-view actor-critic. Sullivan et al. performed the equivalent import into PPO and got a general null. This directly weakens the prior that installing a floored one-sided percentile normaliser in place of REE's (adv - mean)/(std + 1e-8) will move the foraging floor, and correspondingly it raises the prior that probe K returns a null. The narrower positive result is the more useful part for REE: the tricks mattered specifically where an unbounded reward scale would otherwise have destabilised training -- i.e. the benefit was about magnitude robustness, which is precisely the axis MECH-459 argues REE's stacked normalisers have already destroyed.",
+    "mapping_caveat": "Three boundaries. (1) REGIME MISMATCH, and it cuts BOTH ways: their evaluation is dominated by dense-reward Atari, whereas MECH-459's pathology is specific to sparse/zero-forage episodes where the advantage vector is near-zero -- so this null does not directly test REE's regime, and a probe-K positive would not contradict it. (2) BUNDLE CONFOUND: symlog, percentile normalisation and the twohot critic were evaluated together, so no component-level attribution is possible; a bundle-level null cannot be read as evidence against the percentile normaliser specifically. (3) DIRECTION OF THE REE TEST IS OPPOSITE: they ADDED tricks to a working baseline, whereas probe K REMOVES a suspected-harmful operator from a floored baseline. Adding a corrective to a healthy system and removing a pathology from a broken one are not the same experiment, and a null on the former is weak evidence about the latter.",
+    "source_context": "Model-free deep RL; PPO on Atari (Arcade Learning Environment) plus additional benchmarks; >10,000 GPU-hours; simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: peer-reviewed at NeurIPS, unusually large compute budget, and a published negative result (which carries extra credibility given publication bias against nulls). Mapping fidelity moderate -- right inferential question (does the DreamerV3 normaliser transfer across algorithms?) but wrong reward regime and bundled components. Transfer risk is the highest in this pull because the dense-reward Atari setting is where MECH-459 would itself predict no effect, so the null may be regime-explained rather than mechanism-refuting."
+  }
+}

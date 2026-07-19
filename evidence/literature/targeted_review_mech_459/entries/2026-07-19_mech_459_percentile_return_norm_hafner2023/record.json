@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_459",
+  "entry_id": "2026-07-19_mech_459_percentile_return_norm_hafner2023",
+  "timestamp_utc": "2026-07-19T06:03:39Z",
+  "claim_ids_tested": ["MECH-459"],
+  "source": {
+    "title": "Mastering Diverse Domains through World Models (DreamerV3)",
+    "authors": ["Danijar Hafner", "Jurgis Pasukonis", "Jimmy Ba", "Timothy Lillicrap"],
+    "year": 2023,
+    "venue": "arXiv:2301.04104 (peer-reviewed version: Nature, 2025, 'Mastering diverse control tasks through world models', doi:10.1038/s41586-025-08744-2)",
+    "doi": "10.48550/arXiv.2301.04104",
+    "url": "https://arxiv.org/abs/2301.04104"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "This is the source MECH-459 explicitly cites, and the three prescriptions the claim attributes to it are confirmed verbatim: the one-sided denominator max(1, Per95 - Per5) that scales large returns down and never scales small returns up; the explicit rejection of running-statistics normalisation as injecting non-stationarity; and discrete/twohot regression for the critic motivated by bimodal return distributions under sparse reward. High source quality (flagship model-based RL result, now peer-reviewed in Nature, very broad domain sweep). Confidence is held below 0.85 for a mapping reason, not a quality one: DreamerV3's normaliser sits on RETURNS inside an imagination-based actor-critic over a learned world model, whereas MECH-459's target is a per-episode ADVANTAGE standardiser in a model-free raw-view actor-critic. The design rationale transfers cleanly; the quantitative claim that removing it moves REE's foraging floor does not follow from this paper and is exactly what the sanctioned knock-out probe must decide. Confirmatory-citation risk is real here (the claim was authored from this paper), so this entry should not be treated as independent corroboration.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A two-sided normaliser whose denominator has no floor divides out magnitude information by construction, so any experimental axis that acts purely through reward or advantage MAGNITUDE cannot move the resulting policy gradient -- eliminations along such axes are confounded rather than informative.",
+    "Under a bimodal sparse-return distribution a scalar MSE critic converges toward the mean of the two modes, a value never actually observed, producing systematically miscalibrated advantages.",
+    "Normalising targets by running statistics makes the optimisation non-stationary because the target moves whenever the normaliser moves."
+  ],
+  "tags": ["mech-459", "return_normalisation", "advantage_standardisation", "sparse_reward", "distributional_critic", "symlog", "actor_critic"],
+  "mapping": {
+    "source_claim_statement": "Robust cross-domain RL requires (a) symlog compression of prediction targets instead of running-statistics normalisation, which 'introduces non-stationarity into the optimization'; (b) a one-sided return normaliser dividing by max(1, Per(R,95) - Per(R,5)), so that 'scaling returns down without scaling up small returns ... accelerates exploration under sparse rewards without sacrificing final performance'; and (c) discrete (twohot) regression for the critic, which accelerates learning 'especially in environments with sparse rewards, likely because of their bimodal reward and return distributions'.",
+    "ree_translation": "MECH-459 asserts that REE's MECH-457 converter stacks a Welford running reward std with a per-episode advantage standardisation ((adv - mean)/(std + 1e-8)), forming a scale-invariance operator that makes the policy gradient depend only on the SHAPE of the advantage vector. DreamerV3 supplies both the named failure mode (unfloored division amplifies near-zero returns) and the prescribed corrective (a floored, one-sided percentile denominator plus a distributional critic), which is what the sanctioned probe K knock-out at experiments/_lib/mech457_fanout.py::train_rawview_ac_rl would install.",
+    "mapping_caveat": "Three distinct transfer risks. (1) LEVEL: DreamerV3 normalises RETURNS feeding an imagination-rollout critic; MECH-459 targets a per-episode ADVANTAGE standardiser in a model-free raw-view loop -- the argument for a denominator floor is structurally the same but the empirical results are not measured on the same quantity. (2) REGIME: DreamerV3's evidence is aggregate performance across 150+ tasks with a fixed hyperparameter set; it never isolates the normaliser as the single cause of a competence floor, so it cannot tell us the EFFECT SIZE of a knock-out in REE. (3) PROVENANCE: MECH-459 was authored from this paper, so agreement is expected by construction and carries no independent confirmatory weight -- the claim's own what_would_answer correctly makes the knock-out, not this citation, the adjudicating evidence.",
+    "source_context": "Deep model-based reinforcement learning; 150+ tasks spanning Atari, ProcGen, DMLab, Minecraft, continuous control; single fixed hyperparameter configuration across all domains; simulation only, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "Source quality very high (flagship result, broad sweep, now peer-reviewed in Nature 2025). Mapping fidelity moderate: the design rationale is directly on point but the normalised quantity differs (returns vs per-episode advantages) and no experiment here isolates the normaliser as a competence-floor cause. Transfer risk moderate rather than low chiefly because of confirmatory-citation circularity -- the claim was derived from this paper. Aggregate deliberately weighted toward mapping_fidelity, per the architectural-claim rule."
+  }
+}

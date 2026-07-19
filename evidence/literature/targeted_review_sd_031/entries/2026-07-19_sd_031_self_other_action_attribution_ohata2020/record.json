@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_031",
+  "entry_id": "2026-07-19_sd_031_self_other_action_attribution_ohata2020",
+  "timestamp_utc": "2026-07-19T06:03:39Z",
+  "claim_ids_tested": ["SD-031"],
+  "source": {
+    "title": "Sense of Agency Beyond Sensorimotor Process: Decoding Self-Other Action Attribution in the Human Brain",
+    "authors": ["Ryu Ohata", "Tomohisa Asai", "Hiroshi Kadota", "Hiroaki Shigemasu", "Kenji Ogawa", "Hiroshi Imamizu"],
+    "year": 2020,
+    "venue": "Cerebral Cortex 30(7):4076-4091",
+    "doi": "10.1093/cercor/bhaa028",
+    "url": "https://doi.org/10.1093/cercor/bhaa028"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The strongest available support for SD-031's core architectural bet: that self-versus-other attribution of EXTERNAL consequences is carried by a signal that is separable from the sensorimotor stream that produced the action. Using MVPA on a paradigm where self-agency evolves gradually with sensorimotor experience, the authors decode self-other attribution from sensorimotor, posterior parietal, anterior insular and higher visual cortices, and -- critically for SD-031 -- show a DISSOCIATION of preference: right supramarginal gyrus (inferior parietal lobe) is most sensitive to self-other attribution, while bilateral precentral gyri and left IPL dominantly reflect sensorimotor information. That preference dissociation is the load-bearing finding, because it is the biological analogue of SD-031's decision to give z_world its own comparator rather than reading attribution off the motor/self stream. Peer-reviewed, methodologically strong (MVPA with an explicit preference analysis rather than a single contrast). Confidence held to 0.72 by modality distance -- BOLD decodability establishes that the information is PRESENT in a region, not that the brain computes it as an explicit subtractive residual of a forward-model prediction, which is the specific functional form SD-031 asserts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Self-other attribution information is distributed across several regions rather than localised to one comparator, so a single-site or single-stream readout will under-detect it.",
+    "Regions carrying attribution information and regions carrying sensorimotor information overlap substantially; only a preference analysis separates them, so a design without such a contrast will confound the two.",
+    "Decodability of attribution from a region does not establish that the region computes attribution as an explicit prediction-minus-observation residual."
+  ],
+  "tags": ["sd-031", "self_other_attribution", "supramarginal_gyrus", "inferior_parietal_lobe", "mvpa", "sense_of_agency", "comparator"],
+  "mapping": {
+    "source_claim_statement": "Self-other action attribution during movement is decodable from sensorimotor, posterior parietal, anterior insular and higher visual cortices. Among these, right supramarginal gyrus (a portion of inferior parietal lobe) is the most sensitive to self-other attribution, whereas bilateral precentral gyri and left IPL dominantly reflect sensorimotor information -- indicating multiple regions with distinct informational preferences rather than a single agency centre.",
+    "ree_translation": "SD-031 posits a comparator on the z_world (causal-footprint) reafferent stream -- residual_world = z_world_observed - E2_world(z_world_{t-1}, a_actual) -- explicitly SEPARATE from the harm comparator (SD-029) and the self comparator (SD-030). Ohata et al. supply the biological warrant for that separation: attribution of external consequences to self versus other is carried preferentially by a parietal site distinct from the sites carrying sensorimotor information. This supports the architectural decision that z_world attribution deserves its own comparator rather than being read off the motor stream, and it names right SMG / IPL as the analogue of the site SD-031's functional_restatement already invokes (parietal outcome-prediction circuits).",
+    "mapping_caveat": "Three limits, the middle one substantive. (1) MODALITY: MVPA decodability is an information-presence claim about BOLD patterns, not evidence that the computation takes the subtractive residual form SD-031 specifies; many codes are decodable that are not computed as prediction-minus-observation. (2) STREAM SCOPE: the external consequence here is the visually-observed motion of an object under partial participant control -- a fairly thin slice of what REE's z_world is meant to capture (non-harm, non-self world-state consequences generally, e.g. 'the door opened because of me'). The paradigm therefore tests a visuomotor special case, not the general causal-footprint stream. (3) AGENT-SELF vs SELF-OTHER: their contrast is self versus ANOTHER AGENT, whereas SD-031's validation contrast is agent-caused versus EXTERNALLY-caused (which in REE includes non-agentive world dynamics). These are related but not identical partitions, and the mapping should not silently equate them.",
+    "source_context": "Human fMRI (healthy adults); visuomotor control-detection paradigm in which self-agency evolves gradually with sensorimotor experience; multivoxel pattern analysis with region-wise preference comparison."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high: peer-reviewed in Cerebral Cortex, MVPA with an explicit preference analysis rather than a single subtraction contrast. Mapping fidelity good on the architectural point (separable attribution signal, parietal locus) but limited by the visuomotor-only external consequence and by the self-vs-other rather than self-vs-external partition. Transfer risk moderate: human data, so no species transfer, but a substantial functional-form gap between BOLD decodability and an explicit comparator residual. Weighted toward mapping_fidelity per the architectural-claim rule, SD-031 being claim_level: architectural."
+  }
+}
