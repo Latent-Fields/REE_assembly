@@ -956,7 +956,8 @@
       "registered_utc": "2026-07-18T06:58:49Z",
       "fanout_sources": [
         "failure_autopsy_MECH-063-777-779-cluster_2026-07-18.json",
-        "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json"
+        "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json",
+        "failure_autopsy_V3-EXQ-779b_2026-07-19.json"
       ],
       "is_hero": false,
       "initial_frozen_count": 3,
@@ -997,22 +998,24 @@
           "pre_registered_utc": "2026-07-17T00:00:00Z",
           "adjudicating_runs": [
             "V3-EXQ-779",
-            "V3-EXQ-779a"
+            "V3-EXQ-779a",
+            "V3-EXQ-779b"
           ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [
               "V3-EXQ-779",
-              "V3-EXQ-779a"
+              "V3-EXQ-779a",
+              "V3-EXQ-779b"
             ],
             "evidence_direction": "non_contributory",
-            "epistemic_category": "measurement_test_design_defect",
+            "epistemic_category": "substrate_ceiling",
             "self_route_label": "sample_starvation_requeue",
             "control_passed": false,
             "non_degenerate": false,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "779a came CLOSE to resolving this leg: the load-bearing double_dissociation_C1_and_C2 criterion PASSED (criteria_non_degenerate true, robust true, diss_seed_count 4 = min_seeds 4; mean_dS_tonic +0.265 sd 0.072, mean_dR_phasic -0.048 sd 0.037). It was withheld only because phasic_fires_real_events measured 6 vs threshold 10, a MIN across cells sourced entirely from seed 23 / T1P1. Capability is RULED OUT: burst_level_max is 1.00 in every PHASIC-ON cell including both seed-23 cells, and seed 23's firing rate (7.2-11.9 ticks per 1000 env steps) sits inside the range other seeds span (seed 29: 8.8-9.6). Seed 23 got 835 of 2400 env steps because it dies in ~7 steps per episode and the 120-EPISODE cap bound first -- the only cell with stop_reason episode_cap against 15 step_cap cells. The withholding is CORRECT: seed 23 is one of the four dissociating seeds and carries the largest phasic effect (-0.108) on 6 event ticks; excluding it leaves 3 < min_seeds 4. non_degenerate false, so the elimination bar is not met and the leg stays ALIVE -- but it is one exposure fix (V3-EXQ-779b) from adjudication."
+            "basis": "779b was a one-parameter exposure fix for 779a and the fix VERIFIABLY took effect (seed 23 / T1P1: 835 -> 2400 env steps, stop_reason episode_cap -> step_cap, episode_cap_can_bind False in all 20 cells) yet phasic_fires_real_events still measured 6 vs threshold 10 -- the MIN having MIGRATED from T1P1/seed23 (6 -> 13, as predicted) to T0P1/seed23 (10 -> 6 despite ~2.85x exposure). The starvation hypothesis is REFUTED. Root cause: PhasicSurpriseBurst resets its surprise-EMA COLD at every episode boundary with a ~10-tick time constant (PHASIC_EMA_DECAY 0.1) while seed 23 runs ~6.9-step episodes, so its baseline never converges and added steps arrive as 345 more cold restarts rather than longer episodes -- exposure was added on an axis orthogonal to the binding constraint. SD-069 capability remains ruled out (burst_level_max 1.00 in every PHASIC-ON cell). Crucially the withholding is CORRECT, not spurious: diss_seed_count 4 sits at exactly MIN_SEEDS 4 and leave-one-out collapses the verdict for 4 of 5 seeds INCLUDING seed 23, so the load-bearing criterion DEPENDS on the very cell the gate flags. Spearman rho(ticks, |dR_phasic|) = -0.90 (n=5) is equally well read as the gate being construct-invalid OR as small-sample effect-size inflation on seed 23 (-0.110 on ~9.5 ticks), and n=5 cannot discriminate -- arguing from the effect size presupposes the effect is real. Separately robust:true used the mean-minus-population-SD idiom retired by MECH-063 autopsy follow-up #4; under the corrected SEM bar the PHASIC leg (which is this sub-claim) fails at k=2 (+0.0179 vs margin 0.02) while the tonic leg passes. non_degenerate false and nothing discriminated, so the elimination bar is NOT met and the leg stays ALIVE. Re-derive brake FIRED (3rd MECH-063 autopsy; the 779a exemption predicate is falsified on both halves); V3-EXQ-779c REFUSED, routed to substrate sd_phasic_ema_episode_continuity."
           }
         },
         {
