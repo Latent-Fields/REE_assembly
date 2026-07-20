@@ -37039,6 +37039,29 @@
   subject: policy.curiosity.uncertainty_driven_frontopolar_analog
   polarity: asserts
   status: candidate_substrate_landed
+  ceiling_decision: deferred
+  ceiling_routing_note: >
+    2026-07-20 substrate-ceiling-lifted triage: FALSE POSITIVE, parked.
+    check_substrate_ceiling_audit.py surfaced this claim as ceiling-may-have-lifted because
+    modulatory-bias-selection-authority is implemented and lists it in unblocks_claims. That is
+    NOT the binding substrate: it was ALREADY ACTIVE during V3-EXQ-604c (authority gate operative,
+    readiness gate r3 primary_scores_bounded_fraction 1.0) -- i.e. the substrate the audit calls
+    the lift was in place when the vacuous result was produced, so a retest against it reproduces
+    that result exactly. The binding ceiling is the Phase-1 BROADCAST-SCALAR implementation
+    (ree_core/policy/structured_curiosity.py:420 -- scalar * torch.ones(K)): a uniform additive
+    constant cannot move an argmax nor a softmax sample, while the C2 DV is a pure function of the
+    argmax, so the observed delta of exactly 0.0 is an ARITHMETIC IDENTITY fixed before the run,
+    independent of whether MECH-314b is true. RE-DERIVE BRAKE FIRED (3rd substrate_ceiling
+    adjudication; failure_autopsy_V3-EXQ-604c_2026-07-20 sec 7b): a further same-claim ablation is
+    REFUSED -- its result is knowable in advance without running it, and a DV swap alone is not an
+    escape. UN-PARK TRIGGER: per-candidate uncertainty (the Phase-2 treatment MECH-314a already
+    received via MECH-314a-Phase-2-impl), tracked as the 604c amend on the ARC-065 substrate_queue
+    entry. This is the same false-positive class as the 2026-07-01 ceiling_retest_binding_substrate
+    fix applied to parent MECH-314, which was never propagated to the children; a binding-substrate
+    field is not used here because no claim id yet names the per-candidate curiosity refinement, and
+    any available token (e.g. MECH-314b itself) also matches the implemented non-binding entry.
+    status and pending_retest_after_substrate deliberately UNCHANGED -- the retest is still owed,
+    just not yet runnable.
   live_status:
     reading: candidate_substrate_landed
     as_of: 2026-07-20
@@ -37155,6 +37178,22 @@
   subject: policy.curiosity.learning_progress_intrinsic_motivation_analog
   polarity: asserts
   status: candidate_substrate_landed
+  ceiling_decision: deferred
+  ceiling_routing_note: >
+    2026-07-20 substrate-ceiling-lifted triage: FALSE POSITIVE, parked. Identical mechanism and
+    disposition to MECH-314b (see that claim's ceiling_routing_note). The audit surfaced this claim
+    because modulatory-bias-selection-authority is implemented and lists it in unblocks_claims, but
+    that substrate was already active during V3-EXQ-604c and is not the binding ceiling. The binding
+    ceiling is the Phase-1 BROADCAST-SCALAR implementation
+    (ree_core/policy/structured_curiosity.py:438 -- scalar * torch.ones(K)); the observed C2 delta of
+    exactly 0.0 is an ARITHMETIC IDENTITY, not a measurement. RE-DERIVE BRAKE FIRED (3rd;
+    failure_autopsy_V3-EXQ-604c_2026-07-20 sec 7b): a further same-claim ablation is REFUSED.
+    UN-PARK TRIGGER: per-candidate learning-progress estimation (Phase-2), tracked as the 604c amend
+    on the ARC-065 substrate_queue entry. Weigh cost against Pull 1 SYNTHESIS R3, which flagged
+    MECH-314c as the LEAST biologically anchored of the three sub-flavours (no clean cellular or
+    regional analog) and explicitly potentially-discardable-if-314a-plus-314b-suffice per Q-044 --
+    registration kept the option open without committing REE to it as load-bearing. status and
+    pending_retest_after_substrate deliberately UNCHANGED.
   live_status:
     reading: candidate_substrate_landed
     as_of: 2026-07-20
@@ -37381,6 +37420,24 @@
   subject: policy.curiosity.subflavour_independence
   polarity: open
   status: open
+  ceiling_decision: deferred
+  ceiling_routing_note: >
+    2026-07-20 substrate-ceiling-lifted triage: FALSE POSITIVE, parked. Q-044 asks which curiosity
+    sub-flavours are behaviourally load-bearing at the selection level. It is the DISCRIMINATIVE
+    question of the MECH-314 family and would, in principle, subsume separate MECH-314b / MECH-314c
+    retests into one design -- but it is NOT currently answerable. Two of its three legs are
+    structurally incapable of discriminating: MECH-314b and MECH-314c are Phase-1 broadcast scalars
+    (see their ceiling_routing_notes), argmax-invariant by construction, so any discrimination
+    attempt returns "novelty only" as an arithmetic consequence of the Phase-1 implementation rather
+    than a measurement. The surviving leg is not independent either: ARM_NOVELTY_OFF collapses
+    exactly onto ARM_OFF (novelty being the only per-candidate sub-flavour), so V3-EXQ-604c's C2
+    novelty delta 0.402505 is NUMERICALLY IDENTICAL to load-bearing C1 -- one finding, not two.
+    RE-DERIVE BRAKE FIRED (3rd; failure_autopsy_V3-EXQ-604c_2026-07-20 sec 7b). UN-PARK TRIGGER: the
+    discriminative design becomes viable the moment uncertainty and learning-progress are
+    per-candidate (Phase-2), tracked as the 604c amend on the ARC-065 substrate_queue entry -- not
+    before. Note arc_062_rule_apprehension:GAP-H recorded this leg SATISFIED in governance_2026_06_08
+    on the strength of the original 604c PASS; the 2026-07-20 re-adjudication RE-OPENED it.
+    status and pending_retest_after_substrate deliberately UNCHANGED.
   live_status:
     reading: open
     as_of: 2026-07-20
