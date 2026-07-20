@@ -26,7 +26,8 @@
         "divergence": "n/a",
         "lit_status": "present (targeted_review_arc_065_behavioral_diversity_generation/SYNTHESIS.md, 9 entries, lit_conf 0.78-0.82)"
       },
-      "recommended_epistemic_category": null,
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_provenance": "Backfilled 2026-07-20 (session interesting-mirzakhani-2e3599) from this autopsy's companion .md reasoning; the field was absent/null, hiding the target from both the re-derive brake R3 rule and GOV-CEIL-1's ceiling audit, which key on it. No adjudication changed -- only the verdict the .md already reached was recorded.",
       "recommended_evidence_direction": "supports",
       "recommended_evidence_direction_per_claim": {"ARC-065": "supports"},
       "recommended_evidence_quality_note": "2026-05-31 cluster autopsy (failure_autopsy_MECH-341-cluster_2026-05-31): V3-EXQ-615 re-run 09:31Z PASS (ARM_2 ALL_ON 4.33 unique classes / 1.111 nats vs ARM_0 BASE_OFF and ARM_1 MATCHED_NOISE both collapsing to single-class 0.0 nats) provides clean architectural-necessity discrimination of ARC-065's distributed-pathway commitment against the matched-noise-only alternative. MECH-313 noise_floor alone does not reproduce ALL_ON diversity. Corroborated across the 614-lineage ALL_ON arms (614a 0.684 nats, 614b 0.800 nats on SD-056-amended substrate). evidence_direction=supports; clear pending_retest_after_substrate flag. Promotion eligibility from candidate -> provisional should be considered at next governance walk. Note: V3-EXQ-615 carries TWO manifests under the same queue_id (08:22Z FAIL with 1/3 seeds, 09:31Z PASS with 3/3 seeds; canonical reading is 09:31Z PASS; the dual-manifest record is a CLAUDE.md EXQ versioning policy deviation to flag separately).",
@@ -62,7 +63,8 @@
         "divergence": "n/a -- algorithmic regulator",
         "lit_status": "absent for MECH-341 / Q-054 specifically (acceptable; algorithmic regulators)"
       },
-      "recommended_epistemic_category": null,
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_provenance": "Backfilled 2026-07-20 (session interesting-mirzakhani-2e3599) from this autopsy's companion .md reasoning; the field was absent/null, hiding the target from both the re-derive brake R3 rule and GOV-CEIL-1's ceiling audit, which key on it. No adjudication changed -- only the verdict the .md already reached was recorded.",
       "recommended_evidence_direction": "weakens",
       "recommended_evidence_direction_per_claim": {"Q-054": "mixed", "MECH-341": "non_contributory"},
       "recommended_evidence_quality_note": "2026-05-31 cluster autopsy (failure_autopsy_MECH-341-cluster_2026-05-31): V3-EXQ-616 sweep across e3_diversity_entropy_bias_scale in {1.0, 2.0, 4.0, 8.0} on B_only isolation produces bit-identical per-seed results at every scale (frac_pre_ge2=0.0, n_unique=1, entropy=0.0 universally; per-seed lock-in classes 0/2/4 identical across all four scales; same n_p1_ticks 11806/11423/358 per seed across all four scales). load_bearing_floor_scale=None. For Q-054: the answer-state question 'what is the minimum trajectory-class diversity floor for ARC-062 / what entropy_bias_scale floor is load-bearing?' has a definitive negative answer; the scale-lever question framing is the wrong question. The structural bound is at the proposer layer (SP-CEM presence/absence), not the score layer; no value of entropy_bias_scale can rescue a single-class candidate pool. evidence_direction=mixed at the scale-axis level; Q-054 can be closed with verdict 'the load-bearing floor is at the proposer layer, not the score layer.' For MECH-341: the cluster establishes the correct claim characterisation as a SCORE-LAYER PRESERVER of upstream-supplied candidate-pool diversity, not an in-isolation diversity generator. In-isolation testing through the entropy_bias_scale lever is structurally not reachable. evidence_direction=non_contributory (clarification, not falsification); clear pending_retest_after_substrate flag. Claim text stays intact; promotion eligibility is gated on in-stack evidence (614a + 614b ALL_ON), not in-isolation R2.c clearance.",
@@ -100,7 +102,8 @@
         "divergence": "n/a",
         "lit_status": "absent for MECH-341 (algorithmic regulator)"
       },
-      "recommended_epistemic_category": null,
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_provenance": "Backfilled 2026-07-20 (session interesting-mirzakhani-2e3599) from this autopsy's companion .md reasoning; the field was absent/null, hiding the target from both the re-derive brake R3 rule and GOV-CEIL-1's ceiling audit, which key on it. No adjudication changed -- only the verdict the .md already reached was recorded.",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_direction_per_claim": {"MECH-341": "non_contributory", "ARC-065": "non_contributory"},
       "recommended_evidence_quality_note": "See single-target autopsy failure_autopsy_V3-EXQ-614b_2026-05-31 and the cluster autopsy section 10 MECH-341 note. Within-cluster reading: 614b corroborates the structural ARM_0 degeneracy (frac_pre_ge2=0.0 identical to 614a and 616 ARM_0-3) and adds the SD-056-amend substrate-coupling observation (ARM_1 ablate_B 0.526 -> 0.713 nats; ARM_2 ALL_ON 0.684 -> 0.800 nats; MECH-341 marginal contribution shrunk 0.158 -> 0.087 nats). Within-cluster reading reinforces the single-target autopsy's per-claim direction recommendations. Process flag carries over: C2 necessity_delta_threshold=0.1 was calibrated pre-SD-056-amend and must be revisited before any V3-EXQ-614c successor (autopsy does not pin a value).",

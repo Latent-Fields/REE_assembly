@@ -27,7 +27,8 @@
         "divergence": "Not a formal-definition import. No biology divergence is implicated; the gap is purely an eval-harness omission (no goal seeding) that starves the SET predicate's goal-active input.",
         "lit_status": "present"
       },
-      "recommended_epistemic_category": null,
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_epistemic_category_provenance": "Backfilled 2026-07-20 (session interesting-mirzakhani-2e3599) from this autopsy's companion .md reasoning; the field was absent/null, hiding the target from both the re-derive brake R3 rule and GOV-CEIL-1's ceiling audit, which key on it. No adjudication changed -- only the verdict the .md already reached was recorded.",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-460m (2026-06-23, failure-autopsy): non_contributory, claim-free readiness diagnostic. DISTINCT root from 460k: the F-independent closure-commit-entry SET writer (agent.py:6519-6532, 84c1e7c) now EXISTS, so the 460k structural-unreachability wedge is resolved in code. The FAIL is a harness gap -- the readiness eval-arm loop (cloned from 460l) never calls agent.update_z_goal, so goal_state.is_active() is False every tick and the SET precondition closure_rule_directed_commit_formed measures 0 despite rule_state_norm_peak 0.31-7.59 >> the 0.01 floor (only the goal-active half is missing). z_goal seeding demonstrably works on the same trained agent (foraging_contact_guard PASSED in run_p2). This is the V3-EXQ-642 precondition-unmet-because-eval-did-not-drive-the-input pattern -> RE-QUEUE with goal seeding in the eval loop, NOT substrate enrichment. PROMOTES NOTHING; re-derive brake NOT fired.",
       "recommended_substrate_queue_entry": {
@@ -82,7 +83,8 @@
         "divergence": "No biology divergence implicated; the gap is the eval-harness goal-seeding omission.",
         "lit_status": "present"
       },
-      "recommended_epistemic_category": null,
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_epistemic_category_provenance": "Backfilled 2026-07-20 (session interesting-mirzakhani-2e3599) from this autopsy's companion .md reasoning; the field was absent/null, hiding the target from both the re-derive brake R3 rule and GOV-CEIL-1's ceiling audit, which key on it. No adjudication changed -- only the verdict the .md already reached was recorded.",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-460n (2026-06-23, failure-autopsy): non_contributory, claim-free trajectory-readiness diagnostic; SIBLING of 460m (same eval-arm loop, same starved precondition). The bool (84c1e7c) + C-STEP trajectory (96ee30c) latches both exist; the FAIL is the harness gap -- the eval loop never calls agent.update_z_goal, so goal_state.is_active() is False every tick and closure_rule_directed_commit_formed measures 0 (rule_state_norm_peak 0.29-0.50 >> 0.01 floor; only the goal-active half is missing). Both gate-a occupancy and gate-b C-STEP are downstream of the starved precondition. RE-QUEUE with goal seeding in the eval loop. PROMOTES NOTHING; re-derive brake NOT fired.",
       "recommended_substrate_queue_entry": {

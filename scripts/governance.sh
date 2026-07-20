@@ -208,6 +208,22 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 # with --strict for a blocking CI gate.
 "$PYTHON" scripts/check_granularity_debt_recurrence.py || true
 
+# GOV-CAT-1 -- the DATA-QUALITY sibling of the three recurrence scans above.
+# Those three ask what a set of verdicts MEANS; this one asks whether the verdict
+# was RECORDED at all. Both the re-derive brake rule R3 and GOV-CEIL-1's ceiling
+# overlay key on targets[].recommended_epistemic_category and silently SKIP a
+# target where it is absent or null -- so an autopsy that genuinely reached a
+# ceiling reading but never stamped the field is uncounted by the very machinery
+# built to act on it, with nothing anywhere reporting the omission. Confirmed
+# 2026-07-20: 27/336 confirmed targets (12 claim-tagged) across 11 files had no
+# category, the two most recent 3 and 1 days old -- ongoing, not historical.
+# Backfilling from each companion .md moved seven claims' ceiling counts; none
+# crossed N=3, but that was luck. The settled convention is that the ARTIFACTS
+# are the source of truth and the fix direction is the artifact -- do NOT widen
+# R3 or GOV-CEIL-1 to tolerate a missing field. Read-only; --strict for a
+# blocking CI gate.
+"$PYTHON" scripts/check_epistemic_category_completeness.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
