@@ -161,11 +161,17 @@ Continuing the 07-19 D-series. Route through a `/failure-autopsy` session.
 
 ---
 
-## 7. Defect found while reading — NOT actioned here
+## 7. RETRACTED — a stale-read false alarm raised by this record
 
-`REE_assembly` commit **`8727483520`** has the message *"correct MECH-457 note: retract the false 'open routing decision' on the KL-anchor leg"*, but its diff touches **only `docs/assets/data/claims.json`** (2 insertions). **The `docs/claims/claims.yaml` edit it describes did not land** — the note still carries "LIVE DECISION SURFACED, NOT TAKEN ... an open routing decision for the user", which the commit message itself asserts is false (`H-retention-consolidation` is alive, built at `399b17caed`, queued as V3-EXQ-792).
+**An earlier draft of this section reported that `REE_assembly` `8727483520` had dropped its `claims.yaml` edit and that the false "open routing decision" text was still live. That was WRONG, and it is retracted here rather than deleted.**
 
-This has the signature of the dropped-path hazard documented in `CLAUDE.md`. **Not corrected here** — it is another session's authored wording on a governance file, and this record's mandate promotes/demotes nothing. Surfaced for the user to route.
+The correction had **already landed**, in `4a05ff2c0c` at 2026-07-20T17:28:05+01:00 — **four minutes before this record's own commit `c5bd4441ce` (17:32:02), and `4a05ff2c0c` was that commit's base.** The claim was false at the moment it was published, using content this session already had.
+
+**Cause: a stale read, not a stale repo.** `docs/claims/claims.yaml` was read once at ~16:30, when HEAD *was* `8727483520` and the observation *was* accurate. It was never re-read before being written up an hour later, during which another session landed the fix. Re-reading a high-contention governance file immediately before asserting its content is the same discipline `CLAUDE.md` already mandates before *editing* one; this record shows the rule binds **reporting** as well as writing, because a false report of a governance defect costs another session's time to disprove.
+
+**The diagnosis was also wrong about the mechanism, and the true one is worth recording.** This was attributed to the pathspec / dropped-path hazard. It was not. Per `4a05ff2c0c`'s own message, `8727483520` ran its edit in an `&&` chain behind a `git pull` that **failed**, so the edit never executed and the commit captured an unchanged `claims.yaml` while carrying a message describing the intended change. That is a distinct hazard from the ones documented in `CLAUDE.md`: not a commit that drops a declared path, but **a commit whose message overstates its content because an earlier link in an `&&` chain failed silently**. The `ree_commit.py` intent-record machinery does not catch it — there was no intent to declare, because the edit never happened. `git show --stat` does catch it, which is the standing backstop.
+
+**What actually stands, verified in HEAD:** the note carries a complete `CORRECTION 2026-07-20` block; `H-retention-consolidation` is ALIVE, built at `ree-v3` `399b17caed`, queued as V3-EXQ-792 (pending); only `H-retention-auxiliary-decay` is eliminated. The block's generalised principle — *"A leg is eliminated by ITS OWN adjudicated result, never by a sibling's"* — is consistent with, and independently supports, §5 of this record.
 
 ---
 
