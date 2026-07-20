@@ -1891,8 +1891,8 @@
       "launched_at": "2026-07-20T18:39:19Z",
       "completed_at": "2026-07-20T18:45:11Z",
       "completion_summary": "No build owed: SD-PROBE-WARMUP was a stale duplicate of SD-074 (already implemented_validated -- probe_warmup.py on ree-v3 origin/main, validated by V3-EXQ-784). Marked terminal (duplicate_superseded_by_SD-074_...) so the workset stops re-spawning it; REE_assembly e3357f0199.",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "CORRECTED 2026-07-20T18:46Z from auto-classified NO_OP. The AUTO classifier scored this NO_OP on 'no worktree commits, no duplicate marker' -- both false: it looks for commits on the WORKTREE branch, but this session's landing went to REE_assembly master (e3357f0199, pushed) and umbrella master (49f1a62b6c), which is the correct place per the Session Land Protocol (a worktree branch carries umbrella files only). DUPLICATE is the accurate outcome: the assigned SD (SD-PROBE-WARMUP) was a stale field-for-field duplicate of SD-074, both reaped from failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18 by two different sessions; SD-074 was already implemented_validated (probe_warmup.py verified present on ree-v3 origin/main; validated by V3-EXQ-784). A duplicate marker WAS landed: substrate_queue.json SD-PROBE-WARMUP now carries duplicate_of='SD-074' and status 'duplicate_superseded_by_SD-074_implemented_validated_v3_exq_784'. Re-running `complete --outcome DUPLICATE` is refused once an entry is completed, hence this direct field correction."
     },
     {
       "igw_id": "IGW-20260720-208",
