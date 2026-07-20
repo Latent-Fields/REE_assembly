@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "vibrant-chatelet-e113d0",
-  "last_updated_utc": "2026-07-20T16:14:39Z",
+  "last_seen_session": "magical-leavitt-0e752b",
+  "last_updated_utc": "2026-07-20T18:18:46Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -2646,14 +2646,14 @@
       "implementation_hint": "V3-EXQ-774 fires the sleep_substrate_plan.md Phase 7 resume trigger ('downstream MECH-204 consumer FAILing attributable to F1-alone-insufficient'). Build the spec'd Phase 7 Option B arm: broadcast-read serotonin._persistent_zero_point (F1 cumulative reference, lit choice (a)) at select_action(), additive E3-score bias scaled by rem_precision_broadcast_gain, run alongside F1. ALSO add a waking confidence-inflation source (recency/salience/reward-driven precision inflation) so removing recalibration can expose absolute overconfidence, and pair with a non-converging / perpetually-novel test-bed so recalibration headroom persists across seeds. Lit-pull dependency already satisfied (targeted_review_rem_precision_recalibration_timing, 2026-05-09). Reconcile the current V4-deferral of Phase 7 against this fresh trigger.",
       "implementation_note": "GAP-1 precision recalibration consumer (Option A F1). Config: REEConfig.use_rem_precision_recalibration (default False); rem_precision_recalibration_step default 0.25 post-541c. Contracts test_mech204_precision_recalibration.py 13/13. IGW-20260521-022 substrate-ready reconciled.",
       "implementation_status": "implemented",
-      "implemented_session": "implement-substrate-mech204-gap1-2026-05-08",
-      "implemented_utc": "2026-05-08T00:00:00Z",
-      "last_seen_session": "governance-86e36f",
+      "implemented_session": "magical-leavitt-0e752b",
+      "implemented_utc": "2026-07-20T18:18:46Z",
+      "last_seen_session": "magical-leavitt-0e752b",
       "priority": 2,
-      "ready": true,
+      "ready": false,
       "ready_blocked_by": null,
       "sd_id": "MECH-204",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "title": "MECH-204 Phase 7 / Option B resume: accuracy-anchored (broadcast) REM precision recalibration + waking confidence-inflation source",
       "unblocks_claims": [
         "Q-041",
@@ -2665,8 +2665,9 @@
         "SD-049",
         "MECH-173"
       ],
-      "validation_experiment": "V3-EXQ-541c",
-      "node_class": "complicated (buildable)"
+      "validation_experiment": "pending -- MECH-204 Phase 7 + SD-076 behavioural retest (774 successor)",
+      "node_class": "complicated (buildable)",
+      "implementation_note_update": "Phase 7 / Option B BUILT 2026-07-20 (ree-v3): E3TrajectorySelector.broadcast_precision_pull + read site at the top of REEAgent.select_action; REEConfig.use_rem_precision_broadcast / rem_precision_broadcast_gain, no-op default, also on the from_dims factory path. Ungated from V4 deferral by the confirmed failure_autopsy_V3-EXQ-774_2026-07-17 (substrate_ceiling, 'F1 alone insufficient'). WRITE-SITE CORRECTED score -> precision: a broadcast scalar added uniformly to E3 scores is invariant under argmax AND softmax, and every downstream consumer is relative, so the spec'd site was provably selection-inert (the inert_arm_knob lint shape). The lit-pull adjudicated what to READ (choice (a), _persistent_zero_point -- honoured unchanged), never where to WRITE. Precision space is non-inert (rv feeds an ABSOLUTE commit threshold and 1/(rv+1e-6)) and is where 774's own DV lives. See sleep_substrate_plan.md decision log 2026-07-20. PAIRED WITH SD-076 (waking confidence-inflation source, registered separately): without a drift source the MECH-173 DV is a tautology and Phase 7 alone would retest to an identical null. Smoke 6/6 PASS. TRIGGER-SCOPE CAVEAT: 774 scored MECH-173, which is not in the trigger's named claim list (Q-041/Q-042/SD-029/MECH-111/MECH-256); proceeding on the reading that the list is illustrative. NOT VALIDATED -- behavioural retest pending."
     },
     {
       "added_session": "governance-cycle-friday-pm-2026-05-08",
@@ -5841,9 +5842,9 @@
       "sd_id": "SD-PROBE-WARMUP",
       "title": "Trained-enough agent substrate for read-only control-plane telemetry probes",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "duplicate_superseded_by_SD-074_implemented_validated_v3_exq_784",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "docs/architecture/sd_074_probe_warmup_trained_enough_agent.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-063"
@@ -5859,8 +5860,10 @@
       "implementation_hint": "The 2x2 read-only telemetry-probe family measures gain/bias regulators on the E3 softmax while running an UNTRAINED agent, whose action-value distribution is degenerate on ~64% of seeds (D_action_mass pinned at 0 or 1). A regulator that modulates a distribution is unobservable when that distribution has no dynamic range: corr(D-saturation-distance, norm_v_score) = 0.884, capping informative-seed yield at 28.6% and making the load-bearing criterion unreachable at feasible compute. Build a warmup/checkpoint stage that brings the agent to a non-degenerate action-value landscape (target: majority of seeds with D_action_mass_mean strictly inside (0.05, 0.95)) before telemetry collection begins, and record the realised per-seed saturation distribution so the yield is auditable. This is training-regime substrate enrichment for the probe harness -- the same class as the V3-EXQ-603c precedent -- not a ree_core mechanism change.",
       "priority": 1,
       "added_session": "silly-jepsen-926d36",
-      "last_seen_session": "silly-jepsen-926d36",
-      "source_autopsy": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json"
+      "last_seen_session": "igw-189-substrate-ready-sd-probe-warmup",
+      "source_autopsy": "failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18.json",
+      "duplicate_of": "SD-074",
+      "duplicate_note": "NO BUILD OWED -- stale duplicate of SD-074, resolved 2026-07-20 by IGW-20260719-189 (/implement-substrate). Both rows were reaped from the SAME autopsy (failure_autopsy_MECH-063-777a-779a-cluster_2026-07-18) by two different sessions: confident-tesla-badc6b minted it as SD-074 and BUILT it 2026-07-18T18:53:16Z; the 2026-07-19a governance cycle (silly-jepsen-926d36, REE_assembly 2c87d9a580) independently re-reaped the same row under this placeholder sd_id. The rows are field-for-field duplicates: identical failure_record (V3-EXQ-777a, yield 4/14), node_class, priority, ready, depends_on_unresolved and unblocks_claims=[MECH-063]; this title is a prefix of SD-074's and the implementation_hint differs only by SD-074's added '~51 informative seeds => ~177 raw seeds, ~31 h' compute clause. VERIFIED LANDED (not inferred): ree-v3/experiments/_lib/probe_warmup.py present on origin/main (with autopsy-followup commits 2e3fb6b/67f50c5/a23f189), design doc present on origin/master, and SD-074 validated 2026-07-19 by V3-EXQ-784 (56/56 cells readable; informative yield 0.357 -> 0.786; load-bearing paired within-seed asymmetry 6 rescued / 0 lost, sign test p=0.031). WHY THE STATUS STRING AND NOT ready=false: generate_inter_governance_workset.py:_substrate_resolved treats `ready` as the AUTHORITY and status as a hint -- ready=true + a NON-terminal status ('pending_implementation') is exactly what made this the only pending_implementation row in the queue and what re-spawned it as an IGW substrate item. _status_terminal resolves it via the 'superseded'/'validated' tokens while excluding any status containing 'pending'. ready STAYS true because the substrate genuinely IS ready; ready=false would falsely read as blocked and would ALSO suppress the row, but for the wrong reason. OUT OF SCOPE (still owed, unchanged): SD-074's blocked_note consumer-side repair of V3-EXQ-777a's c1_robust bar (mean_sin - pstdev_sin) > MARGIN -- a population dispersion unreachable at any n -- plus the fired re-derive brake on the 777 lineage. Track those on SD-074, not here."
     },
     {
       "sd_id": "sd_phasic_ema_episode_continuity",
@@ -5946,9 +5949,9 @@
       "sd_id": "sd_zworld_warmup_optimizer_group",
       "title": "Adopt the SD-070 world-encoder training path in the x734/737 driver family: the P0/P1 warmup currently has no optimizer group covering latent_stack, so z_world is a frozen random projection",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
-      "design_doc": null,
+      "status": "implemented",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-457",
@@ -5983,6 +5986,21 @@
       ],
       "depends_on_resolved": [
         "V3-EXQ-783 adjudication (confirmed 2026-07-18): SD-070 established as the working training route; the dimensionality route via SD-005 / higher-dim z_world is REFUTED"
+      ],
+      "implemented_utc": "2026-07-20T18:23:14Z",
+      "implemented_by_session": "silly-jepsen-926d36",
+      "implementation_note": "IMPLEMENTED 2026-07-20 as an ADOPTION of the already-shipped SD-070 trainer, not a new recipe. New shared module ree-v3/experiments/_lib/zworld_p0_warmup.py (run_zworld_p0) wraps ZWorldP0Trainer in the integration V3-EXQ-783 validated, and is wired into BOTH _train_all_on_agent definition sites -- x734:332 (shared by 737/742/mech457_fanout/exq742 baseline) and x728:522 (own copy) -- behind `zworld_p0_episodes`, default 0 = bit-identical prior behaviour. Drivers 728/734/737/742, mech457_fanout.warmup_zworld, the exq742 bias_head_baseline and its 742m mint all opt in at 60 episodes (SD-070's validated operating point). PART (b) OF THE HINT WAS ALREADY DONE: zworld_encoder_guard.py had been adopted by 728/734/737/742 + inert_arm_knob + mech457_fanout by 2026-07-20, so only the gradient-path half remained. VERIFIED on both sites at 3 P0a episodes: OFF reproduces the recorded defect exactly (latent_stack 0/61, world_encoder 0/4, max_delta 0.0, guard REFUSES); ON trains world_encoder 4/4 (7/61 latent_stack = 4 encoder + world_precision_logit + 2 prox-head; z_self UNTOUCHED per SD-070 contract C5), max_delta 6.03e-03, guard PASSES. Driver dry-runs: 734 guard green on all 4 rungs (was red on all 4); 737 readiness_met False -> True; 728 arm_green=True seeds_failed=0 (was 3 of 3 failed), outcome FAIL -> PASS; 742 and the 742m mint clean, mint/consumer fingerprints aligned. TWO NON-OBVIOUS CORRECTNESS POINTS. (1) RNG neutrality is load-bearing, not hygiene: ZWorldP0Trainer builds its auxiliary heads with nn.Linear, which draws from the GLOBAL torch RNG, so unguarded, merely enabling P0a would shift every subsequent draw and confound 'encoder now trained' with 'RNG stream moved'. run_zworld_p0 snapshots/restores the global torch + numpy streams and rolls out on a DEDICATED env instance. (2) Arm fingerprints now declare zworld_p0_episodes (x734 + x728 config slices and exq742_mech457_bias_head_baseline.off_path_config_slice) -- without it a pre-fix banked arm would falsely cache-HIT a post-fix consumer, silently comparing a trained-encoder treatment against an untrained control. CONSEQUENCE: the 2026-07-15 V3-EXQ-742-m mint no longer matches the 742 consumer and is re-minted by V3-EXQ-742m-b. ORDERING: P0a runs AHEAD of the e2 warmup because e2 regresses on z_world; training the encoder afterwards would leave e2 fitted to the random projection.",
+      "validation_experiments": [
+        "V3-EXQ-742m-b",
+        "V3-EXQ-728a",
+        "V3-EXQ-737b",
+        "V3-EXQ-734b",
+        "V3-EXQ-742b"
+      ],
+      "implementation_caveats": [
+        "V3-EXQ-734a (claimed ree-cloud-4 2026-07-20T15:54Z) and V3-EXQ-742a (claimed ree-cloud-1 2026-07-20T05:35Z) were BOTH claimed BEFORE this landed, so they complete on pre-fix code and their ree_trained_allon / AC arms are guard-red by construction. Do NOT read either as a post-fix result; 742a in particular carries MECH-457 evidence measured on a frozen random projection and should be flagged at governance, not scored.",
+        "claims.yaml was deliberately NOT touched this session: the stale staged claim igw-auto-igw-189-substrate-ready-sd-probe-warmup-20260719T122208Z holds it (and ree-v3/ree_core/). The MECH-457 / INV-088 / Q-002 unblock flags this SD gates are therefore still OWED -- see the session's WORKSPACE_STATE entry.",
+        "The V3-EXQ-728 pre-fix run remains an un-adjudicated terminal FAIL with a live self-route (substrate_not_ready_requeue) and still needs /failure-autopsy in its own right; this landing supplies the substrate it was waiting on but does not adjudicate it."
       ]
     }
   ],
