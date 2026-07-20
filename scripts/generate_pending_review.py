@@ -165,6 +165,14 @@ def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
             # flagged self-route is visible before governance acts on it.
             "adjudication": e.get("adjudication", "n/a"),
             "interpretation_label": e.get("interpretation_label", ""),
+            # Recorded (NON-GATING) preconditions (2026-07-20): unmet entries from
+            # interpretation.recorded_preconditions[] -- guard findings the run's
+            # author deliberately did NOT gate on (an arm-symmetric prior, or a
+            # readout-side question with an unaffected control). Surfaced under
+            # their own non-blocking heading, kept strictly OUT of `flagged` below
+            # so they never read as action-required.
+            "recorded_preconditions_unmet": e.get("recorded_preconditions_unmet", []),
+            "preconditions_scope_note": e.get("preconditions_scope_note", ""),
         }
     claim = e.get("claim_id") or default_claim
     if claim not in by_run[run_id]["claims"]:
@@ -572,6 +580,14 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     # does not act on the label before it is adjudicated.
     flagged = [r for r in runs
                if r.get("adjudication") in BLOCKING_ADJUDICATIONS]
+    # Recorded (NON-GATING) preconditions -- a SEPARATE, non-blocking list. These
+    # runs are NOT flagged: their author put the finding in
+    # recorded_preconditions[] precisely because it does not invalidate the run's
+    # premise. Surfacing it here gives the key a consumer (it was previously
+    # write-only) without making it read as action-required. A run can appear in
+    # both lists independently; membership here confers no blocking status and does
+    # not affect the counts of PASS/FAIL or `flagged`.
+    recorded = [r for r in runs if r.get("recorded_preconditions_unmet")]
 
     total_pending = (len(runs) + len(runner_undiscussed) + len(unclaimed)
                      + len(error_manifests))
@@ -587,7 +603,9 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f" {len(runner_undiscussed)} runner-only (ERROR/UNKNOWN/smoke),"
         f" {len(unclaimed)} unclaimed manifest(s),"
         f" {len(error_manifests)} ERROR manifest(s)"
-        f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication",
+        f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication"
+        + (f"; {len(recorded)} run(s) with recorded (non-gating) preconditions"
+           if recorded else ""),
         "",
     ]
 
@@ -636,6 +654,46 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                 lines.append(
                     f"| `{r['run_id']}` | {r['status']} | {label} | "
                     f"**{r['adjudication']}** |"
+                )
+            lines.append("")
+
+        if recorded:
+            lines += ["## Recorded (non-gating) preconditions", ""]
+            lines += [
+                "**No action is required on account of this section.** These runs "
+                "declare a readiness finding in `interpretation.recorded_preconditions[]` "
+                "that did NOT hold -- but the author deliberately did not gate the run on "
+                "it, because the run's premise survives the finding (e.g. a shared "
+                "symmetric prior that biases every arm identically, or a readout-side "
+                "question with an unaffected control). The entries are kept out of the "
+                "adjudicating `interpretation.preconditions[]` on purpose: that list is "
+                "read flat and arm-blind, so an entry there would return a whole-run "
+                "`precondition_unmet` and bury a valid result. Each run's own "
+                "`preconditions_scope_note` states the reasoning. Read this as an audit "
+                "trail when interpreting the run -- it is NOT an adjudication flag, does "
+                "not block a governance action, and does not exclude the run from "
+                "scoring. See evidence/planning/"
+                "zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md.",
+                "",
+                "| Run ID | Status | Recorded precondition(s) not met | Scope note |",
+                "|--------|--------|----------------------------------|------------|",
+            ]
+            for r in recorded:
+                findings = r.get("recorded_preconditions_unmet") or []
+                names = sorted({str(f.get("name", "?")) for f in findings
+                                if isinstance(f, dict)})
+                arms = sorted({str(f.get("arm")) for f in findings
+                               if isinstance(f, dict) and f.get("arm")})
+                detail = ", ".join(names) or "—"
+                if arms:
+                    shown = ", ".join(arms[:4]) + ("..." if len(arms) > 4 else "")
+                    detail += f" ({len(findings)} entr{'y' if len(findings) == 1 else 'ies'}"
+                    detail += f"; arms: {shown})"
+                note = (r.get("preconditions_scope_note") or "").replace("|", "/")
+                if len(note) > 200:
+                    note = note[:197] + "..."
+                lines.append(
+                    f"| `{r['run_id']}` | {r['status']} | {detail} | {note or '—'} |"
                 )
             lines.append("")
 
@@ -717,6 +775,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "- Unclaimed manifests (PASS/FAIL, no claim tags): add the manifest stem (filename minus `.json`) to `discussed_experiment_dirs`",
         "- ERROR manifests (crash-before-manifest / runner ERROR record): run `/diagnose-errors`, re-queue under a NEW letter, then add the manifest stem to `discussed_experiment_dirs`",
         "- Diagnostic self-route flagged (`precondition_unmet` / `vacuous_pass`): adjudicate via `/failure-autopsy` before the label drives a governance action; clearing the run for review does not clear the adjudication flag (the manifest's `interpretation` is the source of truth -- a re-queued successor supersedes it).",
+        "- Recorded (non-gating) preconditions: nothing to clear. The run is reviewed and closed by the normal PASS/FAIL route above; the recorded finding is an audit trail to read alongside the result, not a flag to adjudicate.",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",
         "```bash",

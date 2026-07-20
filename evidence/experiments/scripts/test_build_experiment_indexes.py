@@ -697,6 +697,109 @@ def test_skew_guard_non_git_tree_is_not_applicable():
         assert b._find_unmaterialised_evidence(base) == []
 
 
+# --- recorded (NON-GATING) preconditions ----------------------------------
+#
+# `interpretation.recorded_preconditions[]` exists so a driver can record a real
+# guard finding that does NOT invalidate its premise, WITHOUT the flat arm-blind
+# preconditions[] path vacating the whole run (the V3-EXQ-785 defect). The tests
+# below pin exactly that: the key is surfaced, and it is inert against
+# adjudication. If a future change makes an unmet recorded_precondition block a
+# run, these fail -- that is the point.
+#
+# Motivating drivers: v3_exq_737_ree_latent_policy_head_competence_probe.py and
+# v3_exq_742_mech457_actor_critic_onoff.py (ree-v3 f2e8e2fcf8), both RECORD policy.
+# See evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md.
+
+def _zworld_recorded(measured=0.0, arm="ac_cotrain", met=False):
+    """A guard entry as experiments/_lib/zworld_encoder_guard.zworld_precondition()
+    shapes it: a STRICT floor at 0.0 -- bit-identity is the failure signature, so
+    measured == threshold == 0.0 is UNMET."""
+    return {"name": "zworld_world_encoder_trained", "kind": "readiness",
+            "measured": measured, "threshold": 0.0, "direction": "lower",
+            "comparator": ">", "met": met, "arm": arm,
+            "description": "P0 warmup moved a world_encoder tensor"}
+
+
+def test_unmet_recorded_precondition_does_not_change_adjudication():
+    """THE load-bearing invariant. An unmet recorded entry must NOT vacate the run."""
+    interp = {"label": "x", "preconditions": [_floor(5.0, 1.0)],
+              "recorded_preconditions": [_zworld_recorded()]}
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "verified", flag
+
+
+def test_recorded_precondition_alone_does_not_make_a_run_adjudicable():
+    """recorded_preconditions[] is not a substitute for the adjudicating list: a
+    manifest declaring ONLY recorded entries is still `unverified` (surfaced, not
+    blocked), never `precondition_unmet`."""
+    interp = {"label": "x", "recorded_preconditions": [_zworld_recorded()]}
+    _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+    assert flag == "unverified", flag
+    assert flag not in b.BLOCKING_ADJUDICATIONS
+
+
+def test_recorded_precondition_never_appears_in_blocking_set():
+    """Belt-and-braces: whatever the recorded entries say, the flag stays clear as
+    long as the ADJUDICATING preconditions hold."""
+    for measured in (0.0, -1.0, 1e-30):
+        interp = {"label": "x", "preconditions": [_floor(5.0, 1.0)],
+                  "recorded_preconditions": [_zworld_recorded(measured=measured)]}
+        _, flag = b._compute_adjudication(interp, "PASS", "diagnostic")
+        blocked, _reason = b.adjudication_blocks_governance_action(flag)
+        assert not blocked, (measured, flag)
+
+
+def test_an_unmet_gating_precondition_still_fires_alongside_a_recorded_one():
+    """The non-gating list must not SUPPRESS the real gate either -- the exemption
+    is scoped to recorded_preconditions[], not extended to preconditions[]."""
+    interp = {"label": "x", "preconditions": [_floor(0.1, 1.0)],
+              "recorded_preconditions": [_zworld_recorded()]}
+    _, flag = b._compute_adjudication(interp, "FAIL", "diagnostic")
+    assert flag == "precondition_unmet", flag
+
+
+def test_recorded_findings_surface_unmet_entries():
+    interp = {"label": "x",
+              "recorded_preconditions": [_zworld_recorded(arm="ac_cotrain"),
+                                         _zworld_recorded(arm="ac_frozen")]}
+    found = b._recorded_precondition_findings(interp)
+    assert len(found) == 2, found
+    assert {f["arm"] for f in found} == {"ac_cotrain", "ac_frozen"}
+    assert all(f["name"] == "zworld_world_encoder_trained" for f in found)
+
+
+def test_recorded_findings_omit_met_entries():
+    """A guard that PASSED is not a finding -- only unmet entries surface."""
+    interp = {"label": "x",
+              "recorded_preconditions": [_zworld_recorded(measured=0.004, met=True)]}
+    assert b._recorded_precondition_findings(interp) == []
+
+
+def test_recorded_findings_recompute_rather_than_trust_met():
+    """Same recompute-is-authoritative rule as the adjudicating path: an author who
+    writes met:True over a below-floor measurement is still surfaced."""
+    interp = {"label": "x",
+              "recorded_preconditions": [_zworld_recorded(measured=0.0, met=True)]}
+    found = b._recorded_precondition_findings(interp)
+    assert len(found) == 1, found
+
+
+def test_recorded_findings_fall_back_to_met_when_not_recomputable():
+    interp = {"label": "x",
+              "recorded_preconditions": [{"name": "no_numbers", "met": False}]}
+    assert [f["name"] for f in b._recorded_precondition_findings(interp)] == ["no_numbers"]
+
+
+def test_recorded_findings_absent_key_is_empty():
+    """Legacy manifests (the entire pre-2026-07-20 corpus) declare no
+    recorded_preconditions -- output must be byte-identical, i.e. no findings."""
+    assert b._recorded_precondition_findings({"label": "x"}) == []
+    assert b._recorded_precondition_findings({}) == []
+    assert b._recorded_precondition_findings(None) == []
+    assert b._recorded_precondition_findings({"recorded_preconditions": "junk"}) == []
+    assert b._recorded_precondition_findings({"recorded_preconditions": [None, 3]}) == []
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

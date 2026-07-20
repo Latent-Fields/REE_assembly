@@ -97,6 +97,12 @@ class RunRecord:
     # proposal_diagnostic_adjudication_gate_2026-06-06.md.
     interpretation_label: str = ""
     adjudication: str = "n/a"
+    # Recorded (NON-GATING) preconditions: unmet entries from
+    # interpretation.recorded_preconditions[], surfaced for governance visibility
+    # only. NEVER feeds `adjudication`, scoring_excluded, confidence or conflict --
+    # see _recorded_precondition_findings for why the split exists.
+    recorded_preconditions_unmet: list[dict] = field(default_factory=list)
+    preconditions_scope_note: str = ""
     adapter_contract_status: str = "n/a"
     adapter_contract_errors: list[str] = field(default_factory=list)
     evidence_level: str = "C"
@@ -476,6 +482,63 @@ def adjudication_blocks_governance_action(adjudication: str) -> tuple[bool, str]
                       "or mint a task; adjudicate via /failure-autopsy")
     # verified / unverified / n/a / unknown -> not blocked (absence is not blocking).
     return False, ""
+
+
+# --- Recorded (NON-GATING) preconditions ----------------------------------
+#
+# `interpretation.recorded_preconditions[]` is the auditable-but-non-adjudicating
+# sibling of `interpretation.preconditions[]`. Same entry shape (the ree-v3
+# experiments/_lib/zworld_encoder_guard.zworld_precondition() shaper emits into
+# either list), but it is READ HERE ONLY FOR SURFACING and is deliberately NOT
+# consulted by _compute_adjudication().
+#
+# WHY THE SPLIT EXISTS -- do NOT "simplify" this by folding these entries into the
+# flat preconditions[] list. _compute_adjudication reads preconditions[] FLAT and
+# ARM-BLIND and returns a whole-run `precondition_unmet` on the FIRST unmet entry.
+# A guard finding that is real but does NOT invalidate the run's premise (an
+# arm-symmetric prior; a readout-side question with an unaffected control) would
+# then vacate a valid result -- the V3-EXQ-785 vacating defect. So a driver whose
+# premise survives the finding records it here instead, and states why in
+# `interpretation.preconditions_scope_note`.
+#
+# THE INVARIANT THIS FUNCTION MUST PRESERVE: an unmet recorded_precondition is
+# INFORMATIONAL ONLY. It must never (a) change the adjudication flag, (b) exclude
+# the run from confidence/conflict scoring, or (c) alter evidence_direction. It is
+# surfaced in the derived artifacts and in pending_review.md under a separate
+# non-blocking heading so a non-gating finding is visible to governance rather than
+# sitting unread in the manifest. Pinned by
+# test_build_experiment_indexes.py::test_recorded_precondition_* .
+#
+# See evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md.
+def _recorded_precondition_findings(interpretation: Any) -> list[dict]:
+    """Unmet entries from `interpretation.recorded_preconditions[]`, for surfacing.
+
+    `met` is resolved the same way the adjudicating path resolves it -- numeric
+    recompute via _precondition_unmet when measured+threshold are present (so a
+    recorded entry and a gating entry agree on the same statistic), falling back to
+    the author-supplied `met` when it is not recomputable. Returns [] for any
+    manifest that declares no recorded_preconditions, so legacy output is
+    byte-identical.
+    """
+    interp = interpretation if isinstance(interpretation, dict) else {}
+    recorded = interp.get("recorded_preconditions")
+    if not isinstance(recorded, list):
+        return []
+    findings: list[dict] = []
+    for p in recorded:
+        if not isinstance(p, dict):
+            continue
+        unmet = _precondition_unmet(p)
+        if unmet is None:  # not recomputable -> fall back to the author's own verdict
+            unmet = p.get("met") is False
+        if not unmet:
+            continue
+        finding = {"name": str(p.get("name", "") or "(unnamed)")}
+        for key in ("arm", "context", "measured", "threshold", "description"):
+            if p.get(key) not in (None, ""):
+                finding[key] = p[key]
+        findings.append(finding)
+    return findings
 
 
 @dataclass
@@ -977,6 +1040,15 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         experiment_purpose = str(manifest.get("experiment_purpose", "evidence")).strip() or "evidence"
         interpretation_label, adjudication = _compute_adjudication(
             manifest.get("interpretation"), status, experiment_purpose)
+        # Non-gating sibling of the adjudicating preconditions[]. Computed from the
+        # same manifest but kept strictly OUT of `adjudication` above -- surfacing
+        # only. See _recorded_precondition_findings.
+        recorded_preconditions_unmet = _recorded_precondition_findings(
+            manifest.get("interpretation"))
+        _interp_for_note = manifest.get("interpretation")
+        preconditions_scope_note = str(
+            (_interp_for_note.get("preconditions_scope_note", "")
+             if isinstance(_interp_for_note, dict) else "") or "").strip()
         evidence_level = _normalize_evidence_level(manifest.get("evidence_level"))
         # Substrate-staleness gate: honor manually-set manifest fields that mark
         # this run as mechanistically stale after a downstream substrate change.
@@ -1041,6 +1113,8 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 experiment_purpose=experiment_purpose,
                 interpretation_label=interpretation_label,
                 adjudication=adjudication,
+                recorded_preconditions_unmet=recorded_preconditions_unmet,
+                preconditions_scope_note=preconditions_scope_note,
                 architecture_epoch=architecture_epoch,
                 adapter_signals_path=adapter_signals_path,
                 evidence_level=evidence_level,
@@ -2125,6 +2199,13 @@ def _write_claim_evidence_matrix(
                 "interpretation_label": run.interpretation_label,
                 "adjudication": run.adjudication,
             }
+            # Non-gating guard findings: informational, emitted only when present so
+            # legacy entries stay byte-identical. Does NOT affect adjudication or
+            # scoring -- see _recorded_precondition_findings.
+            if run.recorded_preconditions_unmet:
+                unlinked_entry["recorded_preconditions_unmet"] = run.recorded_preconditions_unmet
+                if run.preconditions_scope_note:
+                    unlinked_entry["preconditions_scope_note"] = run.preconditions_scope_note
             # Recording-standard always-core: surfaced for queryability only.
             if run.substrate_hash:
                 unlinked_entry["substrate_hash"] = run.substrate_hash
@@ -2176,6 +2257,15 @@ def _write_claim_evidence_matrix(
             if run.experiment_purpose in ("diagnostic", "baseline"):
                 entry["interpretation_label"] = run.interpretation_label
                 entry["adjudication"] = run.adjudication
+                # Non-gating guard findings: informational only. Emitted alongside
+                # the adjudication flag but NEVER folded into it, into
+                # scoring_excluded, or into confidence/conflict -- an unmet recorded
+                # precondition must not vacate the run (the V3-EXQ-785 defect this
+                # key exists to avoid). See _recorded_precondition_findings.
+                if run.recorded_preconditions_unmet:
+                    entry["recorded_preconditions_unmet"] = run.recorded_preconditions_unmet
+                    if run.preconditions_scope_note:
+                        entry["preconditions_scope_note"] = run.preconditions_scope_note
             if run.architecture_epoch:
                 entry["architecture_epoch"] = run.architecture_epoch
             # Recording-standard always-core: surfaced for queryability only (does
