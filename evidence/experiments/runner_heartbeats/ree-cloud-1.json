@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-20T10:34:44Z",
+  "last_tick_utc": "2026-07-20T10:44:50Z",
   "state": "running",
   "current_exq": "V3-EXQ-742a",
   "current_exq_started_utc": "2026-07-20T05:35:41.074610+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / D0_baseline_724",
     "runs_done": 1,
     "runs_total": 48,
-    "episodes_done": 50,
+    "episodes_done": 100,
     "episodes_total": 1000,
-    "overall_pct": 2.2
+    "overall_pct": 2.3
   },
-  "seconds_elapsed": 17943,
-  "seconds_remaining": 531794,
+  "seconds_elapsed": 18549,
+  "seconds_remaining": 531228,
   "recent_lines": [
     "MECH-457 actor-critic ON/OFF validation (8 arms x 2 rungs x 3 seeds; P0=200, P1_reinforce=90, AC=1000, eval=20, steps=200)",
     "Seed 42 Condition D0_baseline_724:actor_critic_frozen_plain",
@@ -34,7 +34,8 @@
     "[train] actor_critic_frozen_plain rung=D0_baseline_724 seed=42 phase=P1 ep 1000/1000",
     "verdict: FAIL (rung=D0_baseline_724 arm=actor_critic_frozen_plain seed=42 forage/ep=0.4)",
     "Seed 43 Condition D0_baseline_724:actor_critic_frozen_plain",
-    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 50/200"
+    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 50/200",
+    "[train] ree_allon rung=D0_baseline_724 seed=43 phase=P0 ep 100/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
