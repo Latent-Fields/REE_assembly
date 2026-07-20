@@ -129,9 +129,24 @@ stands on its own terms irrespective of this run.
 **Recommended `epistemic_category`: `measurement_test_design_defect`.
 Recommended `evidence_direction`: `non_contributory`.**
 
-The interpretable signal that keeps this from being merely non-contributory: **the achievable
-familiarity separation under this env configuration is ~0.049**, which is a reusable design
-constraint. Any successor must either raise that number or lower its floor with justification.
+The interpretable signal that keeps this from being merely non-contributory: **the familiarity
+separation measured under this env configuration is ~0.049**, which is a reusable design
+constraint -- but see the bandwidth caveat below before treating it as an achievable ceiling.
+
+> **BANDWIDTH CAVEAT (annotated 2026-07-20, during V3-EXQ-786a authoring).** 0.049365 was measured
+> at `familiarity_bandwidth = 1.0`, the default -- the one parameter the original `under_config`
+> omitted, and the one that actually determined the value.
+> `FamiliarityTracker.query` (`ree-v3/ree_core/hippocampal/curiosity.py:72-100`) is a **clamped sum**
+> over anchors, so at bw=1.0 it pins at 1.0 in **both** conditions: the readout has no dynamic
+> range, and 0.049365 is residual noise near a **saturated** ceiling, **not an instrument ceiling**.
+> Raw familiar-vs-novel separation by query bandwidth, same substrate:
+> bw 0.05 -> +0.019, 0.10 -> +0.103, **0.20 -> +0.171**, 0.30 -> +0.065, 0.50 -> **-0.053
+> (inverted)**, 1.00 -> +0.000. At bw=0.20 with a full training budget the achievable separation is
+> **~0.19, roughly 4x the recorded 0.049365**; V3-EXQ-786a measures at bw=0.20.
+> A successor must not design against 0.049365 as the number to beat, and must not conclude the
+> manipulation sits near an instrument ceiling -- it does not. The verdict, epistemic category,
+> evidence direction, routing and `recommended_substrate_queue_entry` (`action: none`) are all
+> **unchanged**; this is a factual annotation to one field.
 
 ---
 
@@ -154,6 +169,11 @@ constraint. Any successor must either raise that number or lower its floor with 
    as the V3-EXQ-785 autopsy found for its own gate.
 5. **Report the achievable value, not just the pass/fail.** `familiarity_separation = 0.049365`
    is the number a successor design needs; a bare "precondition unmet" would have discarded it.
+   **And report the readout setting it was measured at** -- see the bandwidth caveat in section 5.
+   Reporting the value without `familiarity_bandwidth = 1.0` alongside it turned a saturated-
+   instrument artifact into an apparent achievable ceiling, which is the very failure this lesson
+   was written to prevent. A measured constraint is only reusable with the instrument config that
+   produced it.
 
 ---
 
@@ -204,6 +224,13 @@ The question is unchanged, so this is a lettered iteration, not a new number. Re
 > MECH-163. Separately: per the run's own scope_note, this tests leg (1) only -- legs (2) and (3)
 > remain blocked by ARC-007 STRICT and by the unbuilt ARC-071, so even a PASS would not confirm
 > the full dual-system claim.
+>
+> ANNOTATED 2026-07-20 (V3-EXQ-786a authoring; verdict/category/direction/routing UNCHANGED):
+> the 0.049365 above was measured at `familiarity_bandwidth = 1.0`, where the clamped-sum
+> `FamiliarityTracker.query` readout is SATURATED in both conditions -- it is residual noise near a
+> saturated ceiling, NOT an instrument ceiling. At bw=0.20 the achievable separation is ~0.19
+> (~4x), which is what V3-EXQ-786a measures. The "present and discriminating" finding is
+> strengthened, not weakened, by this; only the reusable NUMBER was bandwidth-conditional.
 
 ---
 

@@ -47,8 +47,9 @@
    "narrow_supports_flag": false,
    "measured_design_constraint": {
     "achievable_familiarity_separation": 0.049365,
-    "under_config": "10x10 grid, num_hazards 3, num_resources 5, env_drift_interval 5, drift_prob 0.1, practice_episodes_per_layout 20, novel/familiar differ by generator seed only",
-    "note": "Reusable: a successor must either raise this number or justify a lower floor."
+    "under_config": "10x10 grid, num_hazards 3, num_resources 5, env_drift_interval 5, drift_prob 0.1, practice_episodes_per_layout 20, novel/familiar differ by generator seed only, familiarity_bandwidth 1.0",
+    "note": "Reusable, BUT BANDWIDTH-CONDITIONAL -- read the caveat before designing against this number.",
+    "bandwidth_caveat": "ANNOTATED 2026-07-20 (during V3-EXQ-786a authoring; verdict, category, direction, routing and recommended_substrate_queue_entry all UNCHANGED). 0.049365 was measured at familiarity_bandwidth = 1.0, the default. FamiliarityTracker.query (ree-v3/ree_core/hippocampal/curiosity.py:72-100) is a CLAMPED SUM over anchors, and at bw=1.0 it pins at 1.0 in BOTH the familiar and the novel condition -- the readout has no dynamic range there, so 0.049365 is residual noise near a saturated ceiling, NOT an achievable instrument ceiling. Measured on the same substrate, raw familiar-vs-novel separation by query bandwidth: bw 0.05 -> +0.019, 0.10 -> +0.103, 0.20 -> +0.171, 0.30 -> +0.065, 0.50 -> -0.053 (INVERTED), 1.00 -> +0.000. At bw=0.20 with a full training budget the achievable separation is ~0.19, roughly 4x the recorded value; V3-EXQ-786a measures at bw=0.20. A successor must therefore NOT treat 0.049365 as the number to beat, and must not conclude the manipulation is near an instrument ceiling -- it is not. Bandwidth is the parameter that determines this value and was the one parameter omitted from under_config as originally written."
    },
    "re_derive_brake": {
     "fired": false,

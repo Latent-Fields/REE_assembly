@@ -13952,6 +13952,15 @@
     the phenomenon. Whether 0.05 is the right floor -- and whether separation is the right
     statistic for "these are distinct conditions" -- should be re-posed rather than
     inherited.
+    BANDWIDTH CAVEAT (annotated 2026-07-20 during V3-EXQ-786a authoring; adjudication,
+    direction, category and routing above all UNCHANGED): the 0.049365 cited here was
+    measured at familiarity_bandwidth = 1.0, where FamiliarityTracker.query's clamped-sum
+    readout is SATURATED in BOTH conditions -- so it is residual noise near a saturated
+    ceiling, NOT an achievable instrument ceiling, and must not be treated as the number a
+    successor has to beat. At bw=0.20 the achievable separation is ~0.19 (~4x), which is
+    what V3-EXQ-786a measures. This STRENGTHENS the "present and discriminating" finding
+    and the rejection of the substrate self-route; only the reusable NUMBER was
+    bandwidth-conditional.
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
