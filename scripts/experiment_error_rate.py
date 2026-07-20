@@ -167,6 +167,7 @@ ASCII-only output (CLAUDE.md rule: no em-dashes/arrows in printed text).
 
 import argparse
 import json
+import os
 import pathlib
 import shlex
 import subprocess
@@ -295,6 +296,32 @@ def scan_per_machine_errors(cutoff):
     return errs, last, n_files
 
 
+def has_manifests_on_disk(queue_id):
+    """True if any evidence artifact exists for this queue_id.
+
+    The secondary test that separates the two populations a NULL
+    `removal_reason` can mean (suggested by session cranky-pascal-46cd9a):
+
+      * manifests present -> BOOKKEEPING GAP. The run produced evidence, so it
+        cannot have crashed before writing a manifest; only the results row is
+        missing. V3-EXQ-673 is the worked case (6 manifests, 0 results rows).
+      * no manifests      -> CRASH CANDIDATE. Nothing was produced.
+        V3-EXQ-699a is the worked case (0 manifests).
+
+    Matching is on the `v3_exq_<id>_` prefix with the trailing underscore as a
+    boundary, so `v3_exq_673_` does NOT match the distinct EXQ `v3_exq_673a_`.
+    """
+    evidence_dir = (pathlib.Path(__file__).resolve().parent.parent
+                    / "evidence" / "experiments")
+    if not evidence_dir.is_dir():
+        return None  # cannot tell -- caller treats as unclassified
+    prefix = queue_id.lower().replace("-", "_") + "_"
+    try:
+        return any(name.startswith(prefix) for name in os.listdir(evidence_dir))
+    except OSError:
+        return None
+
+
 def resolve_cutoff(days):
     """Turn --days into an ISO date string using the hub's clock."""
     if days is None:
@@ -361,9 +388,29 @@ def main():
     cancelled = [p for p in phantoms
                  if (p.get("removal_reason") or "").strip()
                  and (p["removal_reason"] or "").strip().upper() not in RUNNER_OUTCOMES]
-    unexplained = [p for p in phantoms if p not in cancelled]
+    residual = [p for p in phantoms if p not in cancelled]
+    # Secondary split of the residual: evidence on disk means it ran and
+    # produced output, so it is a bookkeeping gap, not a crash-before-manifest.
+    # GUARD (do not remove): manifest-presence alone is UNSOUND, because a
+    # queue_id can carry manifests from an EARLIER run while a LATER run under
+    # the same id crashed -- the same-EXQ silent-rerun anti-pattern, which is
+    # real in this corpus (V3-EXQ-673 alone has 6 runs). Without this guard the
+    # split misfiled 517c, 610a and 621 -- three of the five CONFIRMED crashes
+    # -- as bookkeeping gaps and under-stated the upper bound. A queue_id with a
+    # confirmed ERROR in the per-machine split is never a gap, whatever is on
+    # disk. Uses the ALL-TIME confirmed set, not the windowed one: the crash may
+    # predate the window while the phantom row falls inside it.
+    _all_errs, _, _ = scan_per_machine_errors("")
+    confirmed_error_qids = {e["queue_id"] for e in _all_errs if e.get("queue_id")}
+    for p in residual:
+        p["has_manifests"] = has_manifests_on_disk(p["queue_id"])
+        p["confirmed_error"] = p["queue_id"] in confirmed_error_qids
+    gaps = [p for p in residual
+            if p.get("has_manifests") is True and not p["confirmed_error"]]
+    unexplained = [p for p in residual if p not in gaps]
     n_phantom = len(unexplained)
     n_cancelled = len(cancelled)
+    n_gaps = len(gaps)
     rs_errs, rs_last, rs_files = scan_per_machine_errors(cutoff)
     # Upper bound treats every phantom as a crash; the truth is between the two.
     upper = ((n_error + n_phantom) / (classified + n_phantom) * 100.0
@@ -382,6 +429,8 @@ def main():
             "phantom_completions": n_phantom,
             "error_rate_upper_bound_pct": upper,
             "phantom_detail": unexplained,
+            "bookkeeping_gaps": n_gaps,
+            "bookkeeping_gap_detail": gaps,
             "operator_cancellations": n_cancelled,
             "operator_cancellation_detail": cancelled,
             "removal_reason_available": has_reason,
@@ -428,18 +477,24 @@ def main():
         print("    so deliberate cancellations are still counted below and the")
         print("    upper bound is INFLATED. It self-corrects once the migration")
         print("    lands (ree-v3 coordinator/db.py mark_queue_removed).")
-    print("  phantom completions (completed, no results row): %d" % n_phantom)
+    if n_gaps:
+        print("  bookkeeping gaps (evidence on disk, only the results row\n"
+              "    missing -- ran fine, did NOT crash): %d -- EXCLUDED" % n_gaps)
+        for p in gaps[:5]:
+            print("      %-16s %s" % (p["queue_id"], p["updated_at"]))
+    print("  unexplained phantoms (no evidence on disk): %d" % n_phantom)
     if n_phantom:
-        print("    Crash-like but UNCLASSIFIED. Heterogeneous: genuine crashes,")
+        print("    No evidence on disk, so not separable further here. Contains")
+        print("    genuine crashes, plus any cancellation or gap the two tests")
+        print("    above could not catch:")
         if has_reason:
-            # removal_reason is live, so anything still here is either a
-            # pre-migration row (reason NULL) or a real bookkeeping gap.
-            print("    bookkeeping gaps (see 673), and PRE-MIGRATION rows whose")
-            print("    removal_reason was never recorded. Cancellations tagged")
-            print("    after the migration are excluded above, not counted here.")
+            print("      - PRE-MIGRATION cancellations (removal_reason never")
+            print("        recorded, so nothing to subtract on)")
         else:
-            print("    bookkeeping gaps (see 673), and -- until removal_reason is")
-            print("    live -- deliberate cancellations too.")
+            print("      - ALL cancellations (removal_reason not live on this hub)")
+        print("      - a crash whose queue_id also carries an earlier run's")
+        print("        manifests is kept HERE, not filed as a gap (same-EXQ")
+        print("        rerun guard; it misfiled 517c/610a/621 without it)")
         print("    Not folded into the ERROR numerator. Treating every one as a")
         print("    crash gives an upper bound of %.1f%%; true rate in [%.1f%%, %.1f%%]."
               % (upper, err_rate if err_rate is not None else 0.0, upper))
