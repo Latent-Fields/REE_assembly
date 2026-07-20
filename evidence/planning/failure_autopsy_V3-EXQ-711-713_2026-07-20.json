@@ -1,0 +1,234 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:09:33Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "adjudication_kind": "partial_withdrawal",
+  "origin": "hold_weighted_e3_readout_corpus_sweep_2026-07-20.md sec 4c",
+  "supersedes_in_part": [
+    "failure_autopsy_V3-EXQ-711_2026-07-04",
+    "failure_autopsy_V3-EXQ-713_2026-07-05"
+  ],
+  "no_manifest_edited": true,
+  "targets": [
+    {
+      "run_id": "v3_exq_711_ascending_spiral_gain_validation_20260704T021720Z_v3",
+      "queue_id": "V3-EXQ-711",
+      "claim_ids": ["MECH-439", "ARC-108", "ARC-110"],
+      "self_route_label": "ascending_spiral_gain_lets_limbic_win_but_does_not_convert_ceiling_intrinsic_weakens_arc108_arc110",
+      "failed_criterion": "discrimination",
+      "partial_withdrawal": {
+        "is_partial": true,
+        "survives": {
+          "assertion": "ascending spiral gain LETS LIMBIC WIN",
+          "basis": "limbic_loop_can_win is a per-seed strict clg_limbic_ge_motor_ticks > 0 (:1098), measured 3.0 vs threshold 3.0 at LIMBIC_WIN_PASS_FRACTION=0.75; learned_cross_loop_weights_moved_off_init 4897.79931641 vs 1e-06; frac_pre_ge2 exactly 1.0 on every seed both arms",
+          "triage_class": "SAFE_threshold_invariant"
+        },
+        "withdrawn": {
+          "assertion": "does NOT convert the ceiling / ceiling-intrinsic / weakens ARC-108, ARC-110",
+          "basis": "C1_learned_strict_above_static is a +0.05 nat margin on committed_class_entropy_nats, a hold-weighted distribution-shape statistic",
+          "triage_class": "DISQUALIFYING_distribution_shape"
+        }
+      },
+      "defect_mechanism": {
+        "select_action_site": "experiments/v3_exq_711_ascending_spiral_gain_validation.py:836",
+        "committed_class_site": ":893",
+        "accumulation_site": ":910-914 (is_p2 block, per env step)",
+        "substrate_site": "ree_core/agent.py:5430 returns HELD action on not ticks['e3_tick'] before e3.select()",
+        "form": 2,
+        "invisible_to_form_1_lint": true,
+        "verified_in_source": true
+      },
+      "c1_evidence": {
+        "margin_nats": 0.05,
+        "c1_n_seeds_clearing": 1,
+        "c1_n_divergent": 3,
+        "divergent_seeds": [42, 44, 46],
+        "per_seed": [
+          {"seed": 42, "off": 0.880290, "on": 1.033241, "delta": 0.152951, "clears_by": 0.102951, "exposure_pct": -6.0},
+          {"seed": 44, "off": 1.091586, "on": 1.042311, "delta": -0.049275, "shortfall": 0.099275, "exposure_pct": -31.5},
+          {"seed": 46, "off": 1.203696, "on": 0.993895, "delta": -0.209801, "shortfall": 0.259801, "exposure_pct": -7.1}
+        ],
+        "max_divergent_exposure_asymmetry_pct": -31.5,
+        "sweep_figure_correction": "sweep sec 4c quotes +65% exposure spread; that is seed 45, gapa_divergence=False on BOTH arms and therefore outside the C1 evaluation set. Divergent max is -31.5% (seed 44). Verdict unchanged.",
+        "inside_699_flip_band": true,
+        "calibration_663_applies": false,
+        "calibration_663_exclusion_reason": "arms differ in hold duration (failure_autopsy_V3-EXQ-699_2026-07-20.md sec 4d); DV is an entropy, not a continuous magnitude"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (was: weakened) -- the conversion question was never validly measured",
+        "biological_reference": "partial -- ascending-spiral limbic->motor gain (Haber 2000) is a faithful anatomical translation; the readout, not the mechanism, is the defect",
+        "prerequisites": "present -- all readiness gates met and SAFE",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading -- DOMINANT LAYER: hold-weighted distribution-shape DV against a +0.05 nat margin under 31.5% arm-exposure asymmetry",
+        "integration": "coupled",
+        "scale": "unknown -- untestable while the readout is contaminated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "ascending spiral striato-nigro-striatal limbic->associative->motor gain (Haber 2000)",
+        "dependencies": ["cross-loop plasticity", "gain normalization / target-parity control"],
+        "is_formal_import": false,
+        "divergence": "none identified at the mechanism level; the defect is instrumentation",
+        "lit_status": "present"
+      },
+      "debt_class": "measurement-debt (NOT recording-debt: the readout was computed wrong, not computed-and-discarded)",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_changed": false,
+      "evidence_direction_change_note": "UNCHANGED. Already governance-overridden to non_contributory on all three claims 2026-07-04; claim_evidence.v1.json entries 4770-4772 carry scoring_excluded='non_contributory', scored=null, weight=null. Zero live scoring weight before or after.",
+      "recommended_evidence_quality_note": "[PARTIAL RE-ADJUDICATION 2026-07-20 per confirmed failure_autopsy_V3-EXQ-711-713_2026-07-20 (user-adjudicated), following the hold-weighted-E3-readout corpus sweep (form 2). The conjoined interpretation label splits along the triage seam. SURVIVES: 'ascending spiral gain LETS LIMBIC WIN' -- limbic_loop_can_win is a per-seed strict clg_limbic_ge_motor_ticks > 0 (:1098), 3.0 vs 3.0 at LIMBIC_WIN_PASS_FRACTION 0.75, threshold-invariant; weights moved 4897.8 vs 1e-06; frac_pre_ge2 exactly 1.0. The 2026-07-04 saturated-runaway finding also survives (SAFE weight-space statistics). WITHDRAWN: the 'does not convert the ceiling / ceiling-intrinsic' half. C1_learned_strict_above_static is a +0.05 nat margin on committed_class_entropy_nats, accumulated per env step from int(action[0].argmax()) on the select_action return (:836/:893/:910-914); agent.py:5430 returns the HELD action on not ticks['e3_tick'], so the DV is hold-weighted -- a distribution-shape statistic, DISQUALIFYING. Only seed 42 clears (+0.1030); shortfalls 0.0993 (s44), 0.2598 (s46). Max divergent-seed arm exposure asymmetry -31.5% (s44); the sweep's '+65%' is s45, non-divergent and outside the C1 set. The 663 calibration (<1%, sign-varying) does NOT apply -- the arms differ in hold duration (699 autopsy sec 4d). evidence_direction UNCHANGED (non_contributory all three, already scoring_excluded); pending_retest_after_substrate UNCHANGED; re-derive brake UNCHANGED. PROMOTES NOTHING, DEMOTES NOTHING.]",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "unchanged_from_prior_autopsy": true,
+        "threshold": 2,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling",
+        "note": "Brake count and direction UNDISTURBED by this re-adjudication -- it rests on substrate_ceiling/non_contributory, which this document strengthens with a second independent reason."
+      },
+      "learning_extracted": [
+        "A conjoined interpretation label can split cleanly along the contamination seam; adjudicating it as a unit would have been wrong in BOTH directions",
+        "The 711 saturated-runaway finding rests on SAFE weight-space statistics and is unaffected by the readout defect",
+        "A divergence-gated experiment's exposure-asymmetry statistics must be computed over the DIVERGENT subset -- the sweep's +65% came from a non-divergent seed outside the C1 evaluation set"
+      ],
+      "routing": "governance-adjudication"
+    },
+    {
+      "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+      "queue_id": "V3-EXQ-713",
+      "claim_ids": ["MECH-439", "ARC-108", "ARC-110"],
+      "self_route_label": "bounded_parity_win_but_does_not_convert_ceiling_intrinsic_weakens_arc108_arc110",
+      "failed_criterion": "discrimination",
+      "partial_withdrawal": {
+        "is_partial": true,
+        "survives": {
+          "assertion": "BOUNDED PARITY WIN -- the bounded target-parity controller delivers a fair, non-saturated limbic parity win on 4/4 divergent seeds; the 711 monopoly was genuinely repaired",
+          "basis": "limbic_loop_parity_win is clg_limbic_parity_band_ticks > 0 and not saturated (:1155), measured 4.0 vs threshold 3.0; no_saturation_blowup measured EXACTLY 0.0 vs threshold 0.0 -- the strongest form of threshold invariance; weights moved 0.16938061 vs 1e-06; frac_pre_ge2 exactly 1.0",
+          "triage_class": "SAFE_threshold_invariant",
+          "prior_learning_preserved": "711 'missing controller' gap CLOSED"
+        },
+        "withdrawn": {
+          "assertion": "does NOT convert the ceiling / ceiling-intrinsic / weakens ARC-108, ARC-110 -- AND the derived verdict that the cross-loop-arbitration-reweighting conversion route is EXHAUSTED",
+          "basis": "C1_learned_strict_above_static is a +0.05 nat margin on the hold-weighted committed_class_entropy_nats; ZERO seeds clear; the quoted ON 0.870129 vs OFF 0.877113 gap is 0.0070 nats, ~5% of the 699 flip band",
+          "triage_class": "DISQUALIFYING_distribution_shape",
+          "corrected_reading": "the arbitration-reweighting route was never VALIDLY TESTED for conversion at fair parity -- not that it was tested and exhausted"
+        }
+      },
+      "defect_mechanism": {
+        "select_action_site": "experiments/v3_exq_713_bounded_parity_controller_validation.py:869",
+        "committed_class_site": ":938",
+        "accumulation_site": ":955-959 (is_p2 block, per env step)",
+        "substrate_site": "ree_core/agent.py:5430",
+        "form": 2,
+        "invisible_to_form_1_lint": true,
+        "verified_in_source": true
+      },
+      "c1_evidence": {
+        "margin_nats": 0.05,
+        "c1_n_seeds_clearing": 0,
+        "c1_n_divergent": 4,
+        "divergent_seeds": [42, 44, 46, 47],
+        "per_seed": [
+          {"seed": 42, "off": 0.880290, "on": 0.915550, "delta": 0.035260, "shortfall": 0.014740, "exposure_pct": 10.4},
+          {"seed": 44, "off": 1.091586, "on": 1.090475, "delta": -0.001111, "shortfall": 0.051111, "exposure_pct": -1.4, "note": "raw delta indistinguishable from zero"},
+          {"seed": 47, "off": 0.553877, "on": 0.535169, "delta": -0.018708, "shortfall": 0.068708, "exposure_pct": 3.9},
+          {"seed": 46, "off": 1.203696, "on": 1.128848, "delta": -0.074848, "shortfall": 0.124848, "exposure_pct": -23.3}
+        ],
+        "max_divergent_exposure_asymmetry_pct": -23.3,
+        "divergent_exposure_range_pp": 33.7,
+        "sweep_figure_correction": "sweep sec 4c quotes +30%; measured divergent max is -23.3% (seed 46), range +10.4% to -23.3%. Verdict unchanged.",
+        "is_most_fragile_c1_in_lineage": true,
+        "inside_699_flip_band": true,
+        "calibration_663_applies": false,
+        "calibration_663_exclusion_reason": "arms differ in hold duration (699 autopsy sec 4d); DV is an entropy"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (was: weakened) -- the conversion question was never validly measured",
+        "biological_reference": "partial -- bounded target-parity control over ascending-spiral gain; the readout, not the mechanism, is the defect",
+        "prerequisites": "present -- all readiness gates met and SAFE, including an exact-0.0 saturation reading",
+        "implementation": "complete -- the bounded controller works as designed",
+        "environment": "adequate (single-arena caveat separately recorded)",
+        "measurement": "misleading -- DOMINANT LAYER: hold-weighted distribution-shape DV; ZERO seeds clear a +0.05 nat margin, seed 44 raw delta -0.0011",
+        "integration": "coupled",
+        "scale": "unknown -- untestable while the readout is contaminated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "bounded target-parity control over ascending striato-nigro-striatal spiral gain (Haber 2000)",
+        "dependencies": ["cross-loop plasticity", "gain normalization law", "saturation guard"],
+        "is_formal_import": false,
+        "divergence": "none identified at the mechanism level; the defect is instrumentation",
+        "lit_status": "present"
+      },
+      "debt_class": "measurement-debt (NOT recording-debt)",
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "evidence_direction_changed": false,
+      "evidence_direction_change_note": "UNCHANGED. Already governance-overridden to non_contributory on all three claims 2026-07-05; claim_evidence.v1.json entries 4789-4791 carry scoring_excluded='non_contributory'. Zero live scoring weight before or after.",
+      "recommended_evidence_quality_note": "[PARTIAL RE-ADJUDICATION 2026-07-20 per confirmed failure_autopsy_V3-EXQ-711-713_2026-07-20 (user-adjudicated), following the hold-weighted-E3-readout corpus sweep (form 2). SURVIVES: the 'BOUNDED PARITY WIN' half -- limbic_loop_parity_win is clg_limbic_parity_band_ticks > 0 and not saturated (:1155), 4.0 vs 3.0; no_saturation_blowup measured EXACTLY 0.0 vs threshold 0.0, the strongest form of threshold invariance; weights moved 0.1694 vs 1e-06; frac_pre_ge2 exactly 1.0. The 2026-07-05 learning '711 missing-controller gap CLOSED -- fair non-saturated limbic parity win on 4/4 divergent seeds' STANDS. WITHDRAWN: the 'does not convert the ceiling / ceiling-intrinsic' half, AND with it the verdict that the cross-loop-arbitration-reweighting conversion route is EXHAUSTED. C1_learned_strict_above_static is a +0.05 nat margin on the hold-weighted committed_class_entropy_nats (:869/:938/:955-959; agent.py:5430) -- DISQUALIFYING. ZERO seeds clear; shortfalls 0.0147 (s42), 0.0511 (s44), 0.0687 (s47), 0.1248 (s46); seed 44's raw delta is -0.0011, indistinguishable from zero; the quoted ON 0.870129 vs OFF 0.877113 gap is 0.0070 nats, ~5% of the 699 flip band. This is the most fragile C1 in its lineage. Max divergent-seed exposure asymmetry -23.3% (s46), range 33.7 pp; the 663 calibration does NOT apply (arms differ in hold duration, 699 autopsy sec 4d). CORRECTED READING: the arbitration-reweighting route was never VALIDLY TESTED for conversion at fair parity -- not that it was tested and exhausted. RETAINED UNCHANGED: evidence_direction non_contributory all three (already scoring_excluded), pending_retest_after_substrate, the re-derive brake (MECH-439 11th / ARC-108 8th / ARC-110 3rd -- all directions unchanged), the REFUSAL of a same-question 713x re-letter (re-opening the route requires a CORRECTED-DV instrument, not another letter on the same broken readout), and the implement-substrate routing to f_dominance_conversion_ceiling (not built; parked behind MECH-457 + INV-088). COMPOUNDING FINDING: the July redirect FROM this route TO the MECH-448 selection face is unsupported at both ends -- 689d's C_PRIMARY is compromised by the same defect (sweep sec 4b), plus an independent bit-identical matched-noise control. PROMOTES NOTHING, DEMOTES NOTHING.]",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "v4_loop_segregation",
+        "title": "Soften the arbitration-reweighting terminal-negative record",
+        "implementation_hint": "The 713 autopsy amended this entry with a 'terminal negative for the arbitration-reweighting conversion route (weak 709 / runaway 711 / fair-bounded 713 all fail)' framing. That rests on a disqualified hold-weighted C1 and must be softened to 'never validly tested for conversion at fair parity'. The 713x refusal and the implement-substrate routing to f_dominance_conversion_ceiling are UNCHANGED -- re-opening the route requires a corrected-DV instrument, not a re-letter.",
+        "unblocks_claims": ["MECH-439", "ARC-108", "ARC-110"],
+        "depends_on_unresolved": ["f_dominance_conversion_ceiling (not built; parked behind MECH-457 + INV-088)"],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_713_bounded_parity_controller_validation_20260704T223603Z_v3",
+          "experiment_type": "v3_exq_713_bounded_parity_controller_validation",
+          "metric": "C1_learned_strict_above_static on committed_class_entropy_nats -- 0/4 divergent seeds clear a +0.05 nat margin, but the DV is hold-weighted (form 2) and therefore does not measure conversion",
+          "target": "a corrected-DV instrument (accumulate on E3 ticks only, or read a fresh-selection latch) must show a strict +0.05 nat lift on a majority of divergent seeds"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": true,
+        "unchanged_from_prior_autopsy": true,
+        "threshold": 2,
+        "refused_requeue": true,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "f_dominance_conversion_ceiling",
+        "note": "RETAINED per Step 8 adjudication. A same-question 713x re-letter remains REFUSED even though the exhaustion verdict is withdrawn: re-opening the route requires a CORRECTED-DV instrument, not another letter circling the same ceiling on the same broken readout. Brake count and all directions UNDISTURBED."
+      },
+      "learning_extracted": [
+        "The 713 fair-parity achievement survives fully; only the conversion reading is withdrawn",
+        "An already-non_contributory run can still carry live load through the PLANNING layer -- the 713 note was steering route selection, a brake, and a redirect despite zero scoring weight. Governance-override neutralises claim weight but NOT a written verdict; re-adjudication must inspect override notes, not just evidence_direction",
+        "713's exact-0.0 saturation reading is the cleanest threshold-invariance instance in the corpus",
+        "'EXHAUSTED' was withdrawn but 'REFUSED' retained -- withdrawing a negative verdict does not license a re-letter when the instrument, not the design, was the defect"
+      ],
+      "routing": "governance-adjudication"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "conjoined interpretation labels splitting along the hold-weighted-readout triage seam: a SAFE arbitration-mechanics assertion joined to a DISQUALIFYING conversion assertion",
+    "is_independent_bugs": false,
+    "structural_property": "One instrument defect -- hold-weighted committed-class entropy -- is the load-bearing DV on BOTH sides of a route-selection decision. The July 2026 chain redirected the conversion route FROM arbitration-reweighting (709/711/713, whose terminal leg's C1 is withdrawn here) TO the MECH-448 selection/eligibility face (689d, whose C_PRIMARY the same sweep finds compromised at sec 4b, plus an independent bit-identical matched-noise control). Both the abandonment and the destination were decided on two readings of the same broken ruler, so the DECISION BETWEEN THEM is unevidenced even where each side's other criteria are sound.",
+    "readings": ["instrument_contamination", "route_selection_unevidenced"],
+    "compounding_finding_routed_to": "failure_autopsy of V3-EXQ-689d (hold_weighted_e3_readout_corpus_sweep_2026-07-20.md routing item 2)"
+  },
+  "illusory_conflict_check": {
+    "required": true,
+    "reason": "withdrawing the 'no conversion' half removes evidence bearing on ARC-108/ARC-110 in one direction without supplying it in the other",
+    "result": "no_illusory_conflict_resolution",
+    "basis": [
+      "Nothing is removed from the scoring layer: all six claim_evidence.v1.json entries (4770-4772, 4789-4791) were already scoring_excluded='non_contributory' with scored=null and weight=null, so no conflict ratio, confidence, or promotion state can change",
+      "No 'supports' is left narrower: this withdrawal removes a weakens-flavoured reading, not a supports. ARC-108/ARC-110 gain nothing here",
+      "The genuine hazard is the inverse and is flagged as the cluster finding: the PLANNING layer, not the claim layer, looked falsely settled -- a route recorded as exhausted and a redirect recorded as sound, both on the same broken instrument",
+      "Both runs remain pending_retest_after_substrate: true on all three claims, unchanged"
+    ],
+    "claim_confidence_arithmetically_unchanged": ["MECH-439", "ARC-108", "ARC-110"]
+  },
+  "sibling_no_action": {
+    "queue_id": "V3-EXQ-709",
+    "reason": "PASS-SAFE. Its route rests on a strict >0 count with hard-zero seeds and was already adjudicated invariant in BOTH directions by the 708 autopsy sec 11. The C1 conversion DV underneath is disqualified but never became the finding. Note 709 carries BOTH defect forms."
+  },
+  "hypothesis_space_ledger": {
+    "written": false,
+    "reason": "No question in hypothesis_space_registry.v1.json covers MECH-439/ARC-108/ARC-110 or the 709->711->713 lineage; this autopsy emits no fanout_recommendation (partial withdrawal with the refusal retained, not a discrimination portfolio) and adjudicates no pre-registered leg. Step 9b skips cleanly; initial_frozen_count and all total_initial series unaffected."
+  }
+}
