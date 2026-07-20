@@ -53486,6 +53486,71 @@
     noise comparison was soft -- but ARM_ON clears the proposer ceiling directly, so the PASS stands.
     Single genuine experiment (strong, well-controlled); a second independent confirmation would
     further harden the result.
+
+    RE-ADJUDICATED 2026-07-20 (failure_autopsy_V3-EXQ-699_2026-07-20), following the
+    stale-E3-diagnostics corpus audit and the V3-EXQ-708 precedent. WHAT STANDS: the PASS. The
+    single load-bearing criterion is C_READY (levers engaged and substrate exercisable), and all
+    seven readiness preconditions survive the defect on threshold-invariance grounds -- the
+    C1e/C1f non-vacuity floors are literally 0.0 (measured 14.81 excluded-count and 0.69
+    suppressed-per-tick), and a strictly-positive test cannot be manufactured from an all-zero
+    record; the active-frac and frac_pre_ge2 gates read EXACTLY 1.0, which given the per-select
+    reassignment of last_score_diagnostics (e3_selector.py:2452, demotion key pre-seeded False
+    at :2511; go_nogo keys set at :1292 from a gate invoked at :2878, i.e. after the
+    reassignment) requires the gates to have fired on every E3 tick. Both levers demonstrably
+    did real work. WHAT DOES NOT STAND: the levers_compound composition finding, which is
+    WITHDRAWN. The primary DV committed_class_entropy_nats is accumulated at driver line 882/899
+    from int(action[0].argmax()) on the action RETURNED by agent.select_action, once per ENV
+    STEP; on a non-E3 tick agent.py:5430 returns the HELD action before e3.select() is reached.
+    The DV is therefore hold-duration-weighted OCCUPANCY entropy, whereas the driver's own
+    construct (lines 88-97, 'the levers move WHICH CLASS is committed') and both claims act at
+    SELECTION. This is NOT the exposure validate_experiments lints (that is the separate
+    last_score_diagnostics read at line 929) and was unflagged. The weighting is arm-dependent
+    and, critically, ALIGNED WITH THE HYPOTHESIS: ARM_OFF is the reference for every delta, and
+    an unarmed agent perseverating longer has its occupancy entropy systematically depressed,
+    inflating every d_* including d_both. The verdict is flippable on a plausible correction,
+    unlike 708's: seed 42 is already neutral, and killing either remaining compound seed yields
+    NEUTRAL. Because a common shift in e_off leaves the max-rule slack invariant, the binding
+    constraint is the absolute floor d_both >= 0.05, requiring e_off to be under-estimated by
+    only 0.1147 nats (seed 44) or 0.1343 nats (seed 43) against 0.1889 and 0.1820 nats of
+    available headroom to the 3-class and 2-class entropy ceilings; e_both on seed 43 is already
+    at its effective two-class ceiling and can only fall. The corrected sign is therefore
+    UNKNOWN -- this is a withdrawal, not a reversal, and levers_compound must not be restated in
+    either direction. Two further defects recorded: selected_class_entropy_nats equals
+    committed_class_entropy_nats to 6dp on all 12 arm-seeds (the line-913
+    _last_selected_trajectory readout carries zero independent information, so the design's
+    internal cross-check is vacuous), and pre_e3_classes at line 856 is likewise a per-selection
+    quantity read per env step because candidate regeneration is itself e3_tick-gated
+    (agent.py:4812). NOT RECOVERABLE: no custom_information, no per-tick sink, metrics.json is
+    53 chars, ran on ree-cloud-1 (Phase 3 transports manifest_bytes only -- thrice-confirmed
+    with 785 and 708); the replication factor cannot even be estimated from the record, since
+    n_p2_ticks counts env steps and varies with episode termination. Neither MECH-448 nor
+    MECH-449 loses support: both rest on their own validation gates (689d and 689g
+    respectively), this run is experiment_purpose=diagnostic, promotes nothing, and its
+    evidence_direction was already non_contributory on both claims -- so no epistemic_category
+    is cleared and no confidence moves. Routes to queue-experiment for a corrected V3-EXQ-699b
+    using the clear-before-select pattern of v3_exq_785a. SEE ALSO: the in-flight V3-EXQ-699a is
+    a FAITHFUL re-run of this driver and will reproduce every defect above.
+
+    FORWARD POINTER: the corrected re-run is queued as V3-EXQ-699b (ree-v3 2d3a249e01 on
+    origin/main, experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py, live in the
+    coordinator DB). Its result -- not V3-EXQ-699's -- is the first valid measurement of this
+    composition. Until it lands, "the levers compound" and "the levers are safe to co-arm" must
+    not be restated in EITHER direction: the corrected sign is UNKNOWN, and V3-EXQ-699's own
+    CANCEL branch was never ruled out by an uncontaminated measurement either.
+
+    RECONCILIATION NOTE (2026-07-20, same day): the sentence above -- that MECH-448 loses
+    nothing because it rests on V3-EXQ-689d -- was written before
+    failure_autopsy_V3-EXQ-689d_2026-07-20 (REE_assembly 2e6cc2569b) landed. That autopsy
+    WITHDRAWS the V3-EXQ-689d conversion finding itself (genuine_exp_count 1 -> 0; C_PRIMARY has
+    ZERO validly-controlled seeds, on three independent grounds -- hold-weighted DV, a vacuous
+    ARM_MATCHED_NOISE control bit-identical to ARM_PROPOSER_CTRL, and intra-run substrate
+    divergence in which the two finding-carrying ARM_ON seeds were not substrate-matched to
+    their controls). The V3-EXQ-699 re-adjudication's reassurance about this claim's evidential
+    base therefore does NOT survive contact with the V3-EXQ-689d re-adjudication, and must not
+    be read as confirming that MECH-448's conversion evidence is intact. The 689d withdrawal's
+    own claim-level writes (status and epistemic_category movement) are deliberately NOT applied
+    here -- that is a separate and larger adjudication owed in its own session. What this entry
+    records is only the V3-EXQ-699 note application, plus the bound above.
   depends_on:
     - MECH-439   # the F-variance monopoly; this is the "F's share must be rebalanced, shortlist insufficient" branch MECH-439's own text flags
     - MECH-447   # the rival it is discriminated against by 689a (lever-sufficiency vs residual-ceiling)
@@ -53566,6 +53631,57 @@
     candidate this cycle -- single supporting run + ledger components 2/4/5 still
     open. assembly_status built; awaiting ARC-107 retained (opponency leg of the
     umbrella).
+
+    RE-ADJUDICATED 2026-07-20 (failure_autopsy_V3-EXQ-699_2026-07-20), following the
+    stale-E3-diagnostics corpus audit and the V3-EXQ-708 precedent. WHAT STANDS: the PASS. The
+    single load-bearing criterion is C_READY (levers engaged and substrate exercisable), and all
+    seven readiness preconditions survive the defect on threshold-invariance grounds -- the
+    C1e/C1f non-vacuity floors are literally 0.0 (measured 14.81 excluded-count and 0.69
+    suppressed-per-tick), and a strictly-positive test cannot be manufactured from an all-zero
+    record; the active-frac and frac_pre_ge2 gates read EXACTLY 1.0, which given the per-select
+    reassignment of last_score_diagnostics (e3_selector.py:2452, demotion key pre-seeded False
+    at :2511; go_nogo keys set at :1292 from a gate invoked at :2878, i.e. after the
+    reassignment) requires the gates to have fired on every E3 tick. Both levers demonstrably
+    did real work. WHAT DOES NOT STAND: the levers_compound composition finding, which is
+    WITHDRAWN. The primary DV committed_class_entropy_nats is accumulated at driver line 882/899
+    from int(action[0].argmax()) on the action RETURNED by agent.select_action, once per ENV
+    STEP; on a non-E3 tick agent.py:5430 returns the HELD action before e3.select() is reached.
+    The DV is therefore hold-duration-weighted OCCUPANCY entropy, whereas the driver's own
+    construct (lines 88-97, 'the levers move WHICH CLASS is committed') and both claims act at
+    SELECTION. This is NOT the exposure validate_experiments lints (that is the separate
+    last_score_diagnostics read at line 929) and was unflagged. The weighting is arm-dependent
+    and, critically, ALIGNED WITH THE HYPOTHESIS: ARM_OFF is the reference for every delta, and
+    an unarmed agent perseverating longer has its occupancy entropy systematically depressed,
+    inflating every d_* including d_both. The verdict is flippable on a plausible correction,
+    unlike 708's: seed 42 is already neutral, and killing either remaining compound seed yields
+    NEUTRAL. Because a common shift in e_off leaves the max-rule slack invariant, the binding
+    constraint is the absolute floor d_both >= 0.05, requiring e_off to be under-estimated by
+    only 0.1147 nats (seed 44) or 0.1343 nats (seed 43) against 0.1889 and 0.1820 nats of
+    available headroom to the 3-class and 2-class entropy ceilings; e_both on seed 43 is already
+    at its effective two-class ceiling and can only fall. The corrected sign is therefore
+    UNKNOWN -- this is a withdrawal, not a reversal, and levers_compound must not be restated in
+    either direction. Two further defects recorded: selected_class_entropy_nats equals
+    committed_class_entropy_nats to 6dp on all 12 arm-seeds (the line-913
+    _last_selected_trajectory readout carries zero independent information, so the design's
+    internal cross-check is vacuous), and pre_e3_classes at line 856 is likewise a per-selection
+    quantity read per env step because candidate regeneration is itself e3_tick-gated
+    (agent.py:4812). NOT RECOVERABLE: no custom_information, no per-tick sink, metrics.json is
+    53 chars, ran on ree-cloud-1 (Phase 3 transports manifest_bytes only -- thrice-confirmed
+    with 785 and 708); the replication factor cannot even be estimated from the record, since
+    n_p2_ticks counts env steps and varies with episode termination. Neither MECH-448 nor
+    MECH-449 loses support: both rest on their own validation gates (689d and 689g
+    respectively), this run is experiment_purpose=diagnostic, promotes nothing, and its
+    evidence_direction was already non_contributory on both claims -- so no epistemic_category
+    is cleared and no confidence moves. Routes to queue-experiment for a corrected V3-EXQ-699b
+    using the clear-before-select pattern of v3_exq_785a. SEE ALSO: the in-flight V3-EXQ-699a is
+    a FAITHFUL re-run of this driver and will reproduce every defect above.
+
+    FORWARD POINTER: the corrected re-run is queued as V3-EXQ-699b (ree-v3 2d3a249e01 on
+    origin/main, experiments/v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select.py, live in the
+    coordinator DB). Its result -- not V3-EXQ-699's -- is the first valid measurement of this
+    composition. Until it lands, "the levers compound" and "the levers are safe to co-arm" must
+    not be restated in EITHER direction: the corrected sign is UNKNOWN, and V3-EXQ-699's own
+    CANCEL branch was never ruled out by an uncontaminated measurement either.
   depends_on:
     - ARC-107    # the BG-constitution umbrella this is the core eligibility-governance leg of (the unbuilt substrate it is conditional on)
     - MECH-439   # the F-dominance ceiling it is proposed to resolve
