@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-19T22:44:13Z",
+  "generated_at": "2026-07-20T06:52:31Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 118,
-      "built_modules": 93,
-      "fraction_built": 0.7881,
+      "built_modules": 94,
+      "fraction_built": 0.7966,
       "state_counts": {
-        "proposed": 25,
-        "implemented": 69,
+        "proposed": 24,
+        "implemented": 70,
         "implemented_pending_validation": 13,
         "validated": 11
       },
-      "build_proof_gap": 82,
-      "build_proof_gap_note": "93 modules built, 82 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 83,
+      "build_proof_gap_note": "94 modules built, 83 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,71 +31,77 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 23,
-      "total_initial": 42,
-      "total_initial_at_registration": 33,
+      "total_surviving": 26,
+      "total_initial": 45,
+      "total_initial_at_registration": 36,
       "total_fanout_added": 9,
       "total_resolved_out": 20,
-      "reduction_pct_vs_current": 47.6,
-      "net_narrowing_pct": 30.3,
+      "reduction_pct_vs_current": 44.4,
+      "net_narrowing_pct": 27.8,
       "convergence_classes": {
         "narrowing": 5,
-        "static": 3,
+        "static": 4,
         "circling": 1,
         "indeterminate": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "23 alive against 33 originally enumerated, and against 42 including 9 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 10
+      "honest_pair_note": "26 alive against 36 originally enumerated, and against 45 including 9 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 11
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 5,
-      "open_questions": 10
+      "open_questions": 11
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 41,
+      "surviving": 44,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-13",
-      "surviving": 39,
+      "surviving": 42,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-15",
-      "surviving": 35,
+      "surviving": 38,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-16",
-      "surviving": 34,
+      "surviving": 37,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-17",
-      "surviving": 31,
+      "surviving": 34,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-18",
-      "surviving": 25,
+      "surviving": 28,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
     },
     {
       "date": "2026-07-19",
-      "surviving": 23,
+      "surviving": 25,
       "closure_pct": 77.5,
-      "build_pct": 78.8
+      "build_pct": 79.7
+    },
+    {
+      "date": "2026-07-20",
+      "surviving": 26,
+      "closure_pct": 77.5,
+      "build_pct": 79.7
     }
   ],
   "questions": [
@@ -1308,6 +1314,97 @@
         "live_gate": null,
         "observation_bottleneck": "Resolved for this route: V3-EXQ-787 manipulated hazard proximity exogenously (fidelity 0.988) with a within-seed statistic at S=24 and a passing expressivity positive control, which is exactly the design the 785a adjudication named as required. Remaining bottleneck for the channel-agnosticism half: no viable second incumbent identity on the entropy axis."
       }
+    },
+    {
+      "qid": "curiosity_subflavour_authority",
+      "title": "Which structured-curiosity sub-flavours (novelty / uncertainty / learning-progress) carry behavioural authority at the E3 selection gate?",
+      "short_title": "curiosity sub-flavour selection authority",
+      "claims": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c",
+        "Q-044"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 1,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": {
+        "surviving_label": "whether uncertainty and learning-progress have any selection-level authority -- currently unobservable, not unresolved",
+        "text": "One of three legs is CONFIRMED (novelty, per-candidate). The other two are not open questions in the ordinary sense: as Phase-1 broadcast scalars they are argmax-invariant BY CONSTRUCTION, so no selection-level DV can discriminate them and no number of seeds or letters can help. This is an OBSERVATION BOTTLENECK, not evidential equipoise. The re-derive brake fired (3rd substrate_ceiling adjudication for MECH-314b/314c/Q-044) and a further same-claim ablation is refused; the two legs become adjudicable only after the substrate gives uncertainty and LP the per-candidate treatment MECH-314a already received (recommended_substrate_queue_entry amend on ARC-065)."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-novelty-per-candidate",
+          "label": "novelty (MECH-314a) carries selection authority",
+          "desc": "the per-candidate novelty bonus, sourced from e2_world_forward candidate rollouts, produces cross-candidate score variation large enough to move the E3 argmin",
+          "axis": "selection",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-604c"
+          ],
+          "basis": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-uncertainty-broadcast",
+          "label": "uncertainty (MECH-314b) carries selection authority",
+          "desc": "the frontopolar-analog uncertainty bonus (Daw 2006) shifts which candidate E3 commits to",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-604c"
+          ],
+          "basis": "V3-EXQ-604c could NOT discriminate this leg. MECH-314b (uncertainty) is a Phase-1 BROADCAST SCALAR (ree_core/policy/structured_curiosity.py:40-41,101) -- one constant added uniformly across all K candidates -- while the C2 DV (selected_action_class_entropy) is a pure function of the argmax sequence. A uniform additive constant cannot change an argmax or a softmax sample, so the observed c2 delta of EXACTLY 0.0 is an ARITHMETIC IDENTITY fixed before the run, independent of this hypothesis's truth. Confirmed by the manifest unaided: curiosity_bias_range_mean is identical to full precision across ALL_ON/UNCERTAINTY_OFF/LP_OFF (0.01529031 -- a broadcast constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean differs. Stays ALIVE: an uninformative run narrows nothing. non_degenerate=False records that this leg's criterion was structurally degenerate even though the run's own criteria_non_degenerate flag (scoped to C0/C1/C2-overall) read true.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-lp-broadcast",
+          "label": "learning-progress (MECH-314c) carries selection authority",
+          "desc": "the compression-progress / LP bonus (Schmidhuber 1991; Oudeyer) shifts which candidate E3 commits to",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-604c"
+          ],
+          "basis": "V3-EXQ-604c could NOT discriminate this leg. MECH-314c (learning-progress) is a Phase-1 BROADCAST SCALAR (ree_core/policy/structured_curiosity.py:40-41,101) -- one constant added uniformly across all K candidates -- while the C2 DV (selected_action_class_entropy) is a pure function of the argmax sequence. A uniform additive constant cannot change an argmax or a softmax sample, so the observed c2 delta of EXACTLY 0.0 is an ARITHMETIC IDENTITY fixed before the run, independent of this hypothesis's truth. Confirmed by the manifest unaided: curiosity_bias_range_mean is identical to full precision across ALL_ON/UNCERTAINTY_OFF/LP_OFF (0.01529031 -- a broadcast constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean differs. Stays ALIVE: an uninformative run narrows nothing. non_degenerate=False records that this leg's criterion was structurally degenerate even though the run's own criteria_non_degenerate flag (scoped to C0/C1/C2-overall) read true.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Should MECH-314b and MECH-314c be retained as selection-level curiosity mechanisms, narrowed to a non-selection role, or retired?",
+        "distance_phrase": "1 of 3 legs confirmed; 2 legs blocked on a single named substrate build -- not probe-gated, buildable",
+        "live_gate": "Per-candidate uncertainty and learning-progress reads over the e2_world_forward candidate rollouts (ARC-065 amend). Until those land, no experiment can move this question.",
+        "observation_bottleneck": "MECH-314b/314c are Phase-1 broadcast scalars (one constant across all K candidates). A uniform additive constant is invariant under both argmax and softmax, so EVERY selection-level readout returns an exact structural zero regardless of the claims' truth. Any future leg on this question must either (a) test against a DV the manipulation can actually move, or (b) wait for the per-candidate implementation. Note the trap this run walked into: the 604c readiness gate r2 used curiosity_bias_range, which is precisely the statistic in which a broadcast constant CANCELS -- so the gate certified readiness for the novelty channel alone while appearing to certify the whole experiment."
+      }
     }
   ],
   "momentum": [
@@ -1693,6 +1790,24 @@
       "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive.",
       "resolved_utc": "2026-07-11T00:00:00Z",
       "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-604c",
+      "all_runs": [
+        "V3-EXQ-604c"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "curiosity_subflavour_authority",
+      "claims": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c",
+        "Q-044"
+      ],
+      "moved": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732).",
+      "resolved_utc": "2026-06-07T19:30:29Z",
+      "evidence_direction": "supports"
     },
     {
       "run": "V3-EXQ-779b",

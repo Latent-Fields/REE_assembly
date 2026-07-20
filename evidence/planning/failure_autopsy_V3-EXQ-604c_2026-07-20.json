@@ -1,0 +1,154 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:44:11Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "interesting-wu-b46711",
+  "commissioned_by": "evidence/planning/intra_run_substrate_divergence_sweep_2026-07-20.md sec 5b",
+  "defect_class": "D3 (intra-run substrate divergence)",
+  "targets": [
+    {
+      "run_id": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
+      "queue_id": "V3-EXQ-604c",
+      "claim_ids": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "Q-044"],
+      "manifest_outcome": "PASS",
+      "manifest_evidence_direction": "supports",
+      "failed_criterion": "n/a (PASS; adjudicated for a post-hoc confound and a structural-vacuity finding)",
+      "self_route_label": "curiosity_authority_supports_mech314",
+      "defects": [
+        {
+          "id": "D3",
+          "name": "intra_run_substrate_divergence",
+          "detected": true,
+          "substrates": {
+            "f80bc236": ["ARM_OFF/42", "ARM_OFF/43", "ARM_OFF/44", "ARM_ALL_ON/42"],
+            "0bedd600": ["ARM_ALL_ON/43", "ARM_ALL_ON/44", "ARM_NOVELTY_OFF/42", "ARM_NOVELTY_OFF/43", "ARM_NOVELTY_OFF/44", "ARM_UNCERTAINTY_OFF/42", "ARM_UNCERTAINTY_OFF/43", "ARM_UNCERTAINTY_OFF/44", "ARM_LP_OFF/42", "ARM_LP_OFF/43", "ARM_LP_OFF/44"]
+          },
+          "substrate_n_files": [90, 91],
+          "sufficient_alone_to_withdraw": false,
+          "verdict": "exonerated",
+          "exoneration_basis_empirical": "Five cross-boundary matched cell-pairs bit-identical on 24-26 of 29 recorded fields, differing ONLY in curiosity-bias bookkeeping the arms' own treatments define. All trajectory-determined quantities identical across the boundary, including the discrete selected_class_counts and candidate_first_action_counts histograms. Load-bearing C1 additionally has a fully substrate-matched seed (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236, delta 0.732, the largest of three, vs margin 0.03).",
+          "exoneration_basis_mechanistic": "CORROBORATING ONLY, not load-bearing. The sole +1-file commit in the window (ree-v3 6bba8cf, 2026-06-07T16:23:23Z) adds ree_core/pfc/infralimbic_avoidance_gate.py with every agent.py hunk behind `use_instrumental_avoidance` (config default False), which 604c never sets. NOT hash-confirmable: the executing tree was dirty (+1 untracked .py under the globs; clean-tree recount 89/90 vs manifest 90/91) and no recomputed hash matches either recorded value.",
+          "contrast_with_689d": "689d had no matched cross-boundary cells, so the same signature was sufficient there. The difference is cell availability, not signature."
+        },
+        {
+          "id": "V-BROADCAST",
+          "name": "structural_vacuity_argmax_invariant_manipulation",
+          "detected": true,
+          "independent_of_D3": true,
+          "surfaced_by_this_autopsy": true,
+          "summary": "MECH-314b (uncertainty) and MECH-314c (LP) are Phase-1 BROADCAST SCALARS (ree_core/policy/structured_curiosity.py:40-41,101) -- one constant added uniformly across all K candidates -- while C2's DV (selected_action_class_entropy) is a pure function of the argmax sequence. A uniform additive constant cannot change an argmax (nor a softmax sample), so their c2 deltas of EXACTLY 0.0 are an arithmetic identity fixed before the run, independent of the claims' truth.",
+          "manifest_self_confirmation": "curiosity_bias_range_mean identical to full precision across ALL_ON/UNCERTAINTY_OFF/LP_OFF (0.01529031; a broadcast constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean differs (0.240986/0.235738/0.240916; it does not cancel). curiosity_subflavours_fired_mean changes correctly (2.866/1.866/2.000 at seed 42), proving the ablations ARE plumbed and the channels DO fire.",
+          "c1_c2_non_independence": "ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so c1_parent_delta_on_vs_off and the C2 novelty leg are BOTH 0.402505 -- the same comparison. The run yields one finding, not two independent supports.",
+          "readiness_gate_scope_narrowing": "The 604c readiness gate r2 (curiosity_bias_range) is unknowingly a NOVELTY-ONLY gate -- the exact statistic in which broadcast terms vanish. The 604b->604c magnitude-to-range repair remains correct but certifies readiness for MECH-314a alone."
+        }
+      ],
+      "four_layer_diagnosis": {
+        "claim_alignment": "SPLIT. MECH-314/314a: intact -- the claim expressed itself (C1 large, consistent in sign across 3/3 seeds, substrate-matched on seed 42). MECH-314b/314c/Q-044: unclear -- the claim could not express itself under ANY outcome.",
+        "biological_reference": "partial -- frontopolar / rostrolateral PFC exploration bonus (Daw 2006, Wilson 2014); striatal novelty (Wittmann 2008) for 314a; Schmidhuber 1991 / Oudeyer compression-progress for 314c (Pull 1 already flagged 314c as least anchored). Not a formal-definition import; no load-bearing biology divergence.",
+        "prerequisites": "present -- ARC-065 GAP-A action-conditional candidate diversity validated (V3-EXQ-649) BEFORE this run, which is the exact gap that voided predecessor 604b.",
+        "implementation": "SPLIT. 314a complete (per-candidate novelty on e2_world_forward; authority gate active, frac 1.0). 314b/314c STUB -- symbol-of-mechanism, not functional role: a broadcast scalar has the shape of a curiosity bonus with zero selection authority.",
+        "environment": "adequate -- CausalGridWorldV2 reef/bipartite; candidate spread 0.276 well clear of the 0.05 floor.",
+        "measurement": "SPLIT. Adequate for 314a (range-based gate is the correct statistic for a per-candidate bias). MISLEADING for 314b/314c -- an argmax-derived DV against an argmax-invariant manipulation, reporting a structural zero as an empirical null.",
+        "integration": "SPLIT. 314a coupled (GAP-A channel + authority gate operative). 314b/314c isolated -- channels fire but reach no consumer that can act on them.",
+        "scale": "adequate -- 3 seeds, 60 P0 + 20 P1 episodes. For 314b/314c more seeds cannot help: the zero is exact."
+      },
+      "biological_reference": {
+        "closest_mechanism": "frontopolar / rostrolateral PFC exploration bonus (structured curiosity); ventral-striatal novelty response for 314a",
+        "dependencies": ["a differentiable per-candidate option representation (action-conditional world prediction)", "selection authority at the commitment gate"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing. The 314b/314c gap is an implementation-fidelity gap (broadcast vs per-candidate), not a biology divergence -- biologically the uncertainty bonus is option-specific, and the Phase-1 broadcast form is a known simplification the substrate docstring already flags.",
+        "lit_status": "partial"
+      },
+      "recording_provenance": {
+        "per_cell_arm_fingerprint": "present on all 15 cells -- what made this adjudication possible",
+        "always_core_absent": ["substrate_hash (top-level)", "machine_class", "elapsed_seconds", "seeds (present inside config)"],
+        "note": "The per-run always-core substrate_hash would have HIDDEN this defect (_hoist_multi_arm_substrate_hash fills it from the first arm). Recording debt noted; it blocks nothing here."
+      },
+      "secondary_checks_cleared": [
+        "Small-sample entropy bias does NOT drive C1: at seed 42 ARM_ALL_ON has 10x more ticks than ARM_OFF (2394 vs 240) yet LOWER entropy -- opposite the bias direction; at seed 43 both arms have exactly 4000 ticks. Only seed 44 is directionally confounded (129 vs 179), 1 of 3.",
+        "Not in the hold-weighted E3 readout corpus sweep -- single defect, no intersection.",
+        "claim_ids tagging accurate, not inherited-without-re-evaluation."
+      ],
+      "per_claim_recommendation": {
+        "MECH-314": {"recommended_evidence_direction": "supports", "change": "STANDS", "recommended_epistemic_category": "standard"},
+        "MECH-314a": {"recommended_evidence_direction": "supports", "change": "STANDS", "recommended_epistemic_category": "standard"},
+        "MECH-314b": {"recommended_evidence_direction": "non_contributory", "change": "mixed -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true},
+        "MECH-314c": {"recommended_evidence_direction": "non_contributory", "change": "mixed -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true},
+        "Q-044": {"recommended_evidence_direction": "non_contributory", "change": "supports -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true}
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_note": "Run-level direction is MIXED because the run splits: supports for MECH-314/314a (valid, substrate-matched), non_contributory for MECH-314b/314c/Q-044 (structurally vacuous). See per_claim_recommendation for the governance-applicable directions.",
+      "recommended_evidence_quality_note": "[2026-07-20 autopsy V3-EXQ-604c, D3 intra-run substrate divergence]: divergence DETECTED and WITHDRAWN. 604c's cells span two substrates (f80bc236 90 files / 0bedd600 91 files, a file added mid-run at ~16:23Z), reproducing the V3-EXQ-689d signature (whole control arm one build, treatment arm split 1/2). It is NOT a confound here: five cross-boundary matched cell-pairs (ARM_OFF/ARM_NOVELTY_OFF x3 seeds; ARM_ALL_ON/ARM_UNCERTAINTY_OFF and ARM_ALL_ON/ARM_LP_OFF at seed 42) are bit-identical on 24-26 of 29 recorded fields, differing ONLY in curiosity-bias bookkeeping the arms' own treatments define. Every trajectory-determined quantity -- discrete selected_class_counts / candidate_first_action_counts, entropy, pairwise dist, raw-score range, contrastive loss, tick counts -- is identical across the boundary. Load-bearing C1 additionally has a FULLY SUBSTRATE-MATCHED seed (ARM_OFF 42 and ARM_ALL_ON 42 both on f80bc236, delta 0.732, the largest of the three, vs margin 0.03), so C1 stands on a substrate-homogeneous subset alone. Corroborating (not load-bearing): the only +1-file commit in the window (ree-v3 6bba8cf) adds ree_core/pfc/infralimbic_avoidance_gate.py fully behind use_instrumental_avoidance=False, which 604c never sets; hash attribution was NOT reproducible because the executing tree was dirty (+1 untracked .py). supports STANDS for MECH-314/314a. Note C1 and the C2-novelty leg are the SAME comparison (ARM_NOVELTY_OFF collapses exactly onto ARM_OFF, novelty being the only per-candidate sub-flavour), so they are one finding, not two independent supports. SEPARATELY: C2 is STRUCTURALLY VACUOUS for MECH-314b/314c -- see their own note.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "ARC-065",
+        "sd_id_suggested": "ARC-065",
+        "title": "Behavioral-diversity-generation architectural slot (GAP-A) -- extend Phase-2 per-candidate treatment to the uncertainty (MECH-314b) and learning-progress (MECH-314c) sub-flavours",
+        "implementation_hint": "MECH-314a was moved from a Phase-1 broadcast scalar to a genuine per-candidate signal (novelty_source / e2_world_forward), and V3-EXQ-604c shows that is the ONLY sub-flavour with selection-level authority. 314b and 314c remain broadcast scalars (structured_curiosity.py:40-41,101): a constant added uniformly across all K candidates cannot change an argmax or a softmax sample, so they are behaviourally inert at selection BY CONSTRUCTION and untestable by any selection-level DV. Give uncertainty and learning-progress the same per-candidate treatment (a per-candidate uncertainty read and a per-candidate LP read over the e2_world_forward candidate rollouts) so the cross-candidate curiosity_bias_range carries their contribution rather than cancelling it. Until then MECH-314b/314c/Q-044 cannot be adjudicated at the selection level and a further ablation is refused.",
+        "unblocks_claims": ["MECH-314b", "MECH-314c", "Q-044"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
+          "experiment_type": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready",
+          "metric": "c2_sub_flavour_deltas_vs_all_on: ARM_UNCERTAINTY_OFF = 0.0, ARM_LP_OFF = 0.0 (exact). Both ablation arms are trajectory-identical to ARM_ALL_ON on every recorded quantity; curiosity_bias_range_mean identical to full precision (0.01529031) because a broadcast constant cancels in a range.",
+          "target": "A per-candidate uncertainty/LP implementation must produce a NON-ZERO contribution to curiosity_bias_range_mean when its arm is ablated, i.e. curiosity_bias_range must differ between ARM_ALL_ON and ARM_UNCERTAINTY_OFF / ARM_LP_OFF -- the precondition for any selection-level DV to be able to discriminate at all."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-314's parent support is now single-pathway: it rests entirely on the novelty channel, since 314b/314c are shown behaviourally inert. C1 and the C2-novelty leg are numerically the same comparison, so this run must not be counted as two independent supports.",
+      "re_derive_brake": {
+        "fired": true,
+        "threshold": 2,
+        "applies_to_claims": ["MECH-314b", "MECH-314c", "Q-044"],
+        "count_including_this": 3,
+        "counting_convention": "R1-R3 (distinct run_ids; latest adjudication supersedes; only recommended_epistemic_category == substrate_ceiling counts)",
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07"
+        ],
+        "supersedes_autopsy": null,
+        "refused_requeue": true,
+        "refusal_rationale": "Another lettered same-claim ablation would return 0.0 DETERMINISTICALLY -- not probably, but as an arithmetic consequence of adding a constant to every candidate score. The re-test's result is knowable in advance without running it, making this the strongest possible instance of the loop the brake exists to stop. A DV swap alone is also not a viable escape: a uniform additive bonus is inert under argmax AND softmax, so no selection-level readout can rescue the Phase-1 implementation. A redesign testing a DIFFERENT mechanism (new EXQ number, different claim_ids) remains permitted.",
+        "route_to": "implement-substrate",
+        "upstream_substrate": "ARC-065",
+        "does_not_apply_to": ["MECH-314", "MECH-314a"]
+      },
+      "fanout_recommendation": null,
+      "fanout_exempt_reason": "GOV-FANOUT-1 exempt -- the bottleneck routes to a single unambiguous build (make uncertainty/LP per-candidate), not to a discrimination among rival live hypotheses.",
+      "granularity_debt_trigger": {
+        "fires": true,
+        "prior_autopsies_on_target": [
+          "failure_autopsy_V3-EXQ-603a-b-c-604-605_2026-05-29",
+          "failure_autopsy_604a-624a-630_2026-06-03",
+          "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07"
+        ],
+        "routing": "NOT claim-synthesis",
+        "deliberate_non_route_rationale": "The four autopsies are a CONVERGING instrument-repair chain on one question, not structurally different failures indicating a coarse claim: candidate-uniform z_world -> GAP-A shared channel -> magnitude-vs-range same-statistic confound -> C1 clean. The chain TERMINATED IN A PASS. MECH-314's decomposition into 314a/b/c is working as designed -- it returned a sharp, actionable answer (one child load-bearing, two structurally untestable). Recorded so the standing GOV-GRAN-1 scan sees a deliberate non-route rather than a dropped handoff."
+      },
+      "learning_extracted": [
+        "D3 is adjudicable per-run when matched cross-boundary cells exist: find two cells on opposite sides of the boundary whose INTENDED difference is separable from the substrate difference, and compare all recorded fields. Bit-identity on trajectory-determined quantities exonerates the boundary regardless of what changed. Recommended as the first triage step for every remaining directional D3 hit (V3-EXQ-782, V3-EXQ-778a) before assuming a confound is fatal -- the sweep's severity ranking is a prior, not a verdict.",
+        "A dirty tree defeats hash-based attribution but not empirical exoneration. Recomputing compute_substrate_hash at candidate commits is worth doing, but when substrate_n_files disagrees with the clean tree by a constant offset, attribution must be reported as corroborating only.",
+        "A broadcast scalar cannot be tested with an argmax-derived DV. This is a GENERAL vacuity pattern distinct from both known E3 pseudo-replication forms and from the vacuous_pass flag: the criterion is not degenerate, the arms are correctly plumbed, and the run legitimately PASSes -- yet two of its legs were arithmetic identities. Statically detectable: a manipulation invariant under the DV's own symmetry (here additive-constant invariance of an argmax) tested against that DV. Candidate for a lint in the /queue-experiment design-audit step.",
+        "The manifest's own readouts diagnosed the architecture: curiosity_bias_range equal to full precision while curiosity_bias_max_abs differs IS the broadcast-scalar signature. Recording both a range and a magnitude of the same quantity was decisive; the pair should be kept.",
+        "A repaired readiness gate certifies only the channel it measures. The 604b->604c magnitude-to-range repair was correct and is not withdrawn, but it silently narrowed the gate's scope to the per-candidate channel. When a gate is re-pointed at a new statistic, re-check which arms it still certifies."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger": {
+    "mode": "pre-register + resolve in one edit",
+    "question_registered": "curiosity_subflavour_authority",
+    "initial_frozen_count": 3,
+    "resolved": ["H-novelty-per-candidate (confirmed)"],
+    "left_alive": ["H-uncertainty-broadcast", "H-lp-broadcast"],
+    "observation_bottleneck": "Phase-1 broadcast-scalar implementation of MECH-314b/314c: argmax-invariant, so no selection-level DV can discriminate them.",
+    "fanout_growth_events": [],
+    "axis_families_edit_needed": false
+  },
+  "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json untouched; /governance applies these recommendations. The one dashboard-plane write is the frozen pre-registration ledger, a derive-only input that never mutates claim status."
+}

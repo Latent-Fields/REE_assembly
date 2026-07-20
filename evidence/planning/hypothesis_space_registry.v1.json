@@ -1497,6 +1497,113 @@
       "growth": false,
       "fanout_growth_note": null,
       "answer_direction": "Neither -- arousal is inert on selection variance geometry at this incumbent identity, and the hazard-geometry rival is refuted too: the 785 profile has no surviving pre-registered explanation."
+    },
+    {
+      "qid": "curiosity_subflavour_authority",
+      "title": "Which structured-curiosity sub-flavours (novelty / uncertainty / learning-progress) carry behavioural authority at the E3 selection gate?",
+      "short_title": "curiosity sub-flavour selection authority",
+      "claims": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c",
+        "Q-044"
+      ],
+      "registered_utc": "2026-07-20T06:44:11Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-604c_2026-07-20.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-novelty-per-candidate",
+          "label": "novelty (MECH-314a) carries selection authority",
+          "desc": "the per-candidate novelty bonus, sourced from e2_world_forward candidate rollouts, produces cross-candidate score variation large enough to move the E3 argmin",
+          "axis": "selection",
+          "pre_registered_utc": "2026-06-07T19:30:29Z",
+          "adjudicating_runs": [
+            "V3-EXQ-604c"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-604c"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "curiosity_authority_supports_mech314",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-06-07T19:30:29Z",
+            "basis": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732)."
+          }
+        },
+        {
+          "hid": "H-uncertainty-broadcast",
+          "label": "uncertainty (MECH-314b) carries selection authority",
+          "desc": "the frontopolar-analog uncertainty bonus (Daw 2006) shifts which candidate E3 commits to",
+          "axis": "selection",
+          "pre_registered_utc": "2026-06-07T19:30:29Z",
+          "adjudicating_runs": [
+            "V3-EXQ-604c"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-604c"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_ceiling",
+            "self_route_label": "curiosity_authority_supports_mech314",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-604c could NOT discriminate this leg. MECH-314b (uncertainty) is a Phase-1 BROADCAST SCALAR (ree_core/policy/structured_curiosity.py:40-41,101) -- one constant added uniformly across all K candidates -- while the C2 DV (selected_action_class_entropy) is a pure function of the argmax sequence. A uniform additive constant cannot change an argmax or a softmax sample, so the observed c2 delta of EXACTLY 0.0 is an ARITHMETIC IDENTITY fixed before the run, independent of this hypothesis's truth. Confirmed by the manifest unaided: curiosity_bias_range_mean is identical to full precision across ALL_ON/UNCERTAINTY_OFF/LP_OFF (0.01529031 -- a broadcast constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean differs. Stays ALIVE: an uninformative run narrows nothing. non_degenerate=False records that this leg's criterion was structurally degenerate even though the run's own criteria_non_degenerate flag (scoped to C0/C1/C2-overall) read true."
+          }
+        },
+        {
+          "hid": "H-lp-broadcast",
+          "label": "learning-progress (MECH-314c) carries selection authority",
+          "desc": "the compression-progress / LP bonus (Schmidhuber 1991; Oudeyer) shifts which candidate E3 commits to",
+          "axis": "selection",
+          "pre_registered_utc": "2026-06-07T19:30:29Z",
+          "adjudicating_runs": [
+            "V3-EXQ-604c"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-604c"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "substrate_ceiling",
+            "self_route_label": "curiosity_authority_supports_mech314",
+            "control_passed": true,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "V3-EXQ-604c could NOT discriminate this leg. MECH-314c (learning-progress) is a Phase-1 BROADCAST SCALAR (ree_core/policy/structured_curiosity.py:40-41,101) -- one constant added uniformly across all K candidates -- while the C2 DV (selected_action_class_entropy) is a pure function of the argmax sequence. A uniform additive constant cannot change an argmax or a softmax sample, so the observed c2 delta of EXACTLY 0.0 is an ARITHMETIC IDENTITY fixed before the run, independent of this hypothesis's truth. Confirmed by the manifest unaided: curiosity_bias_range_mean is identical to full precision across ALL_ON/UNCERTAINTY_OFF/LP_OFF (0.01529031 -- a broadcast constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean differs. Stays ALIVE: an uninformative run narrows nothing. non_degenerate=False records that this leg's criterion was structurally degenerate even though the run's own criteria_non_degenerate flag (scoped to C0/C1/C2-overall) read true."
+          }
+        }
+      ],
+      "synthesis": {
+        "surviving_label": "whether uncertainty and learning-progress have any selection-level authority -- currently unobservable, not unresolved",
+        "text": "One of three legs is CONFIRMED (novelty, per-candidate). The other two are not open questions in the ordinary sense: as Phase-1 broadcast scalars they are argmax-invariant BY CONSTRUCTION, so no selection-level DV can discriminate them and no number of seeds or letters can help. This is an OBSERVATION BOTTLENECK, not evidential equipoise. The re-derive brake fired (3rd substrate_ceiling adjudication for MECH-314b/314c/Q-044) and a further same-claim ablation is refused; the two legs become adjudicable only after the substrate gives uncertainty and LP the per-candidate treatment MECH-314a already received (recommended_substrate_queue_entry amend on ARC-065)."
+      },
+      "decision": {
+        "decision_question": "Should MECH-314b and MECH-314c be retained as selection-level curiosity mechanisms, narrowed to a non-selection role, or retired?",
+        "live_gate": "Per-candidate uncertainty and learning-progress reads over the e2_world_forward candidate rollouts (ARC-065 amend). Until those land, no experiment can move this question.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "1 of 3 legs confirmed; 2 legs blocked on a single named substrate build -- not probe-gated, buildable",
+        "observation_bottleneck": "MECH-314b/314c are Phase-1 broadcast scalars (one constant across all K candidates). A uniform additive constant is invariant under both argmax and softmax, so EVERY selection-level readout returns an exact structural zero regardless of the claims' truth. Any future leg on this question must either (a) test against a DV the manipulation can actually move, or (b) wait for the per-candidate implementation. Note the trap this run walked into: the 604c readiness gate r2 used curiosity_bias_range, which is precisely the statistic in which a broadcast constant CANCELS -- so the gate certified readiness for the novelty channel alone while appearing to certify the whole experiment."
+      },
+      "provenance_note": "Registered 2026-07-20 by failure_autopsy_V3-EXQ-604c_2026-07-20 (pre-register + resolve in one edit -- the common single-cycle case; no prior registry question covered MECH-314/Q-044). pre_registered_utc is set to the resolving run's own completion stamp 2026-06-07T19:30:29Z, satisfying pre_registered_utc <= resolved_utc; the experiment was designed and queued before it ran."
     }
   ]
 }
