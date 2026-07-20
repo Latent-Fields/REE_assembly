@@ -94,7 +94,20 @@ Corroboration (circumstantial, reported second): the two runs' numbers are near-
 | planning_depth | 1.333 | 1.417 |
 | survival_horizon | 70.48 | 66.22 |
 
-**A compounding recording gap.** `validate_recording.py` reports the 07-09 manifest missing **six always-core fields** — `recording_schema`, `substrate_hash`, `machine_class`, `elapsed_seconds`, `config`, `seeds`. That absent `substrate_hash` is precisely why the substrate identity had to be recovered by driver-commit archaeology rather than a one-command hash comparison.
+**A compounding recording gap.** `validate_recording.py` reports the 07-09 manifest missing **six always-core fields** — `recording_schema`, *top-level* `substrate_hash`, `machine_class`, `elapsed_seconds`, `config`, `seeds`. Its per-arm `arm_fingerprint` blocks *do* carry hashes, so "unrecoverable" would overstate it: what the missing always-core removed is the cheap first-pass check. A whole-glob hash could never have answered the actual question — whether the optimizer defect was present — so driver-commit archaeology was required either way.
+
+### 3a. Second, independent ground for supersession (added on re-read, 2026-07-20)
+
+Those per-arm hashes are **not consistent within the run**. Two distinct values across the nine arms:
+
+| substrate_hash | arms |
+|---|---|
+| `efc51d920ab8…` | all three `random_walk` + `ree_trained_allon` seed 42 |
+| `0ba1115de45a…` | `ree_trained_allon` seeds 43, 44 + all three `greedy_oracle` |
+
+So **the floor and ceiling anchors were measured against a different substrate than part of the treatment arm**, and every `normalized_position` in that run is a cross-substrate comparison. This is the cardinality > 1 signature that `substrate_stable_across_run` / `arm_reuse.source_run_substrate_unstable()` (ree-v3 `a23f189`, landed 2026-07-20) exists to catch — the run is now refusable as a reuse source.
+
+Read with the caveat that entry states in its own scope note: a moved whole-glob hash counts a changed **recorded value**, not a demonstrated loss of experimental control, because `_SUBSTRATE_GLOBS` is uniformly wider than what any run imports. So this is **corroborating, not independently dispositive**. But it is a second defect on the same capability point and it points the same way — which is why it strengthens the supersession rather than complicating it.
 
 **Consequence — the finding governance can act on.** `ree_ai_design_critique_plan.md` marks **WS-3 DONE (2026-07-09)**, citing "calibration V3-EXQ-727 + TRAINED all-ON point V3-EXQ-728" and claiming the "reported alongside every all-ON run" clause closed. That clause is **not** closed. The yardstick itself (`experiments/_lib/capability_eval.py`) is built and unaffected, and the 727 calibration survives; only the trained point is void.
 
@@ -140,7 +153,9 @@ Had both been countable the token would stand at 3, i.e. at the trigger. GOV-DIA
 
 - **The guard's first real dividend is a retrospective one.** Its value was argued prospectively (737a), but the larger payoff here was licensing a re-read of an already-reviewed PASS — one that had cleared review, closed a plan work-stream, and would never have re-surfaced. A detector firing on a new run should trigger an audit of every prior run on the same code path, not just adjudication of the run it fired on.
 - **Code archaeology beats metric similarity for retrospective invalidation, and the order of reporting matters.** Near-identical numbers are suggestive; "zero changed `torch.optim` lines and `latent_stack` appears zero times in the older revision" is dispositive.
-- **A missing `substrate_hash` converts a cheap check into an expensive one.** Six absent always-core fields turned a one-command hash comparison into an archaeology session.
+- **A missing always-core `substrate_hash` removes the cheap *first-pass* check — it was never going to be the dispositive one.** Say that precisely rather than "unrecoverable": the per-arm fingerprints carried hashes, and a whole-glob hash still could not have answered whether the optimizer defect was present. The Recording Standard's value here is triage speed, not sufficiency.
+- **Re-reading a manifest for one question surfaced a second, unrelated defect.** Checking hash *availability* exposed intra-run substrate divergence nobody had looked for — because the run was a PASS and already reviewed. A reviewed PASS is exactly where nobody re-reads.
+- **An instrument landing today can retroactively flag a run from eleven days ago, and nothing sweeps for that.** `substrate_stable_across_run` was built as a forward-looking reuse gate; applied backwards by hand it caught the 07-09 run immediately. New detectors deserve one deliberate backward sweep over the corpus they can now see.
 - **"Substrate not ready" and "test design defective" emit the same self-route label** and must be separated by whether the *instrument* stayed sound. 786 was rejected on this label days earlier; the discriminators here were the arm-scoped guard, the independently-passing env precondition, and a defect locatable in code across two drivers.
 - **A plan work-stream marked DONE on the strength of a run inherits that run's validity, and nothing re-checks it.** WS-3 went DONE citing V3-EXQ-728; when the run was invalidated 11 days later, nothing propagated.
 - **An unstamped `bears_on` silently zeroes a governance counter** — and a first strike written as a `.md` rather than a `failure_autopsy_*.json` is outside the corpus entirely.
