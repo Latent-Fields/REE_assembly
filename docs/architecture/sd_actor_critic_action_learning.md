@@ -37,18 +37,51 @@ REE's foraging wall to a **missing first-class action-learning system** *and* to
   mechanism count → localized to the **un-varied action-learning invariant**.
 - **V3-EXQ-734** (env difficulty, non_contributory): REE all-ON recovers at **no**
   rung; PPO control recovers at D2 → difficulty is not the lever.
+  ⚠️ **The first clause is VOID** — the `ree_trained_allon` arm ran on an untrained
+  `z_world` (see the defect caveat below). The second clause (`vanilla_ppo` recovers
+  at D2) is defect-free and stands.
 - **V3-EXQ-735** (reward-balance, non_contributory): no approach-weighting arm
   supra-floor → reward-balance is not the lever.
 - **V3-EXQ-736** (curriculum, precondition_unmet/vacuous): the agent cannot forage
   even the easy env → reinforces the floor.
-- **V3-EXQ-737** (representation, **LOAD-BEARING FAIL**): a real trainable PPO actor +
-  value baseline over REE's **frozen** `z_world` scored **0.217 res/ep @D3** —
-  *below random (0.267)* and *below the same actor on raw pixels* (`ppo_raw_obs =
-  0.567`), both under the **1.0** competence floor. The frozen prediction latent is a
-  strictly *worse* action substrate than raw observation.
+- **V3-EXQ-737** (representation, ~~**LOAD-BEARING FAIL**~~ → **NOT ESTABLISHED**): a
+  real trainable PPO actor + value baseline over REE's **frozen** `z_world` scored
+  **0.217 res/ep @D3** — *below random (0.267)* and *below the same actor on raw
+  pixels* (`ppo_raw_obs = 0.567`), both under the **1.0** competence floor. ~~The
+  frozen prediction latent is a strictly *worse* action substrate than raw
+  observation.~~
+  ⚠️ **This bullet's conclusion is RETRACTED** — the `ppo_ree_latent` and
+  `ree_bias_head` arms rode a `z_world` that was never prediction-trained, so the
+  comparison was raw observation vs a **frozen random projection**, not vs a learned
+  latent (see the defect caveat below). The `ppo_raw_obs` numbers themselves are
+  defect-free and stand, as does the reading that the D3 bottleneck is policy
+  learning.
 - **V3-EXQ-738** (PASS anchor): a greedy 5×5 local-view forager scores **6.05 @D0,
   48.05 @D3** → the env is trivially forageable from the agent's local view; the wall
-  is action-**learning**, not observability.
+  is action-**learning**, not observability. *(Defect-free — no P0 warmup; unaffected
+  by the caveat below.)*
+
+> ### ⚠️ 2026-07-20 defect caveat (V3-EXQ-780 / 737a / 728)
+>
+> The `ree_trained_allon`, `ree_bias_head` and `ppo_ree_latent` arms cited in this
+> section ran on a `z_world` that was **never prediction-trained**: the P0/P1 warmup in
+> the `x734` `_train_all_on_agent` driver family builds three optimizer groups (e2,
+> lateral-PFC bias head, OFC devaluation head) and **none covers any `latent_stack`
+> parameter** (measured 0 of 4 world-encoder and 0 of 61 `latent_stack` tensors
+> changed, bit-identical, on two independent drivers). Those arms therefore compared
+> raw observation against a **frozen random projection**, not against a learned REE
+> latent, and the claim that *"the frozen prediction latent is a strictly worse action
+> substrate than raw observation"* is **NOT established**.
+>
+> The `ppo_raw_obs`, `vanilla_ppo`, `greedy_oracle`, `random_walk` and **V3-EXQ-738**
+> anchors are structurally unaffected and **stand** — including the reading that the D3
+> bottleneck is **policy learning** (carried by the defect-free `ppo_raw_obs` control).
+> Retest owed: **V3-EXQ-734b / 737b** (SD-070 adoption validation,
+> `zworld_p0_episodes=60`).
+>
+> Diagnosis: [`zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md`](../../evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md) §6c.
+> Blast-radius audit: [`zworld_evidence_blast_radius_2026-07-20.md`](../../evidence/planning/zworld_evidence_blast_radius_2026-07-20.md) §4.
+> Fix (landed, DEFAULT OFF `zworld_p0_episodes=0`): `ree-v3/experiments/_lib/zworld_p0_warmup.py`.
 
 **MECH-457 names the missing system.** Biological action learning is a dedicated
 learning system, not a bias term on a prediction model: dorsal striatum acts as an
@@ -65,7 +98,10 @@ parameterized actor trained on a reward-prediction-error teaching signal with a
 value-baseline critic, architecturally distinct from the thin `bias_head` REINFORCE
 over the SD-056 prediction-trained encoder. Per V3-EXQ-737, the actor must **NOT** ride
 a frozen `z_world`; the action-learning loss **must co-shape / augment the
-representation** (or add an action-adequate stream). The validation experiment **must**
+representation** (or add an action-adequate stream). *(This directive's stated
+evidential basis is the V3-EXQ-737 bullet retracted by the caveat above — it is
+retained as the prudent design default, not as an established finding, and the
+frozen-vs-co-trained ablation below is what would settle it.)* The validation experiment **must**
 carry a **frozen-vs-co-trained-encoder ablation arm** to settle the action-adequacy
 sub-question empirically.
 
