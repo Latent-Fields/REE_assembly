@@ -1,0 +1,2099 @@
+{
+  "experiment_type": "v3_exq_673_mech171_vicious_cycle_sleep_disruption",
+  "run_id": "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "MECH-171"
+  ],
+  "claim_ids_tested": [
+    "MECH-171"
+  ],
+  "experiment_purpose": "evidence",
+  "evidence_class": "ablation_multi",
+  "outcome": "FAIL",
+  "timestamp_utc": "20260612T010234Z",
+  "evidence_direction": "non_contributory",
+  "acceptance_checks": {
+    "C1_slot_diversity_a_gt_b_2of3_seeds": false,
+    "C1_wins": 0,
+    "C2_slot_diversity_b_lt_c_2of3_seeds": false,
+    "C2_wins": 0,
+    "C3_harm_a_lt_b_2of3_seeds": true,
+    "C3_wins": 3,
+    "C4_harm_b_gt_c_2of3_seeds": false,
+    "C4_wins": 0,
+    "C5_loss_a_lt_b_2of3_seeds": true,
+    "C5_wins": 3,
+    "baseline_degradation_pass": false,
+    "vicious_cycle_pass": false
+  },
+  "per_seed_comparisons": [
+    {
+      "seed": 42,
+      "arm_a_slot_diversity": 0.8678829669952393,
+      "arm_b_slot_diversity": 0.8678829669952393,
+      "arm_c_slot_diversity": 0.8678829669952393,
+      "c1_slot_a_gt_b": false,
+      "c2_slot_b_lt_c": false,
+      "arm_a_eval_harm": 0.06460066178039198,
+      "arm_b_eval_harm": 0.06460066178039198,
+      "arm_c_eval_harm": 0.06460066178039198,
+      "c3_harm_a_lt_b": true,
+      "c4_harm_b_gt_c": false,
+      "arm_a_late_pred_loss": 0.0,
+      "arm_b_late_pred_loss": 0.0,
+      "arm_c_late_pred_loss": 0.0,
+      "c5_loss_a_lt_b": true
+    },
+    {
+      "seed": 49,
+      "arm_a_slot_diversity": 0.9120604991912842,
+      "arm_b_slot_diversity": 0.9120604991912842,
+      "arm_c_slot_diversity": 0.9120604991912842,
+      "c1_slot_a_gt_b": false,
+      "c2_slot_b_lt_c": false,
+      "arm_a_eval_harm": 0.07405976001907859,
+      "arm_b_eval_harm": 0.07405976001907859,
+      "arm_c_eval_harm": 0.07405976001907859,
+      "c3_harm_a_lt_b": true,
+      "c4_harm_b_gt_c": false,
+      "arm_a_late_pred_loss": 0.0,
+      "arm_b_late_pred_loss": 0.0,
+      "arm_c_late_pred_loss": 0.0,
+      "c5_loss_a_lt_b": true
+    },
+    {
+      "seed": 56,
+      "arm_a_slot_diversity": 0.8912013173103333,
+      "arm_b_slot_diversity": 0.8912013173103333,
+      "arm_c_slot_diversity": 0.8912013173103333,
+      "c1_slot_a_gt_b": false,
+      "c2_slot_b_lt_c": false,
+      "arm_a_eval_harm": 0.06872998109670707,
+      "arm_b_eval_harm": 0.06872998109670707,
+      "arm_c_eval_harm": 0.06872998109670707,
+      "c3_harm_a_lt_b": true,
+      "c4_harm_b_gt_c": false,
+      "arm_a_late_pred_loss": 0.0,
+      "arm_b_late_pred_loss": 0.0,
+      "arm_c_late_pred_loss": 0.0,
+      "c5_loss_a_lt_b": true
+    }
+  ],
+  "all_results": {
+    "ARM_A_HEALTHY": [
+      {
+        "arm": "ARM_A_HEALTHY",
+        "seed": 42,
+        "slot_diversity": 0.8678829669952393,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06460066178039198,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07106063609186543
+      },
+      {
+        "arm": "ARM_A_HEALTHY",
+        "seed": 49,
+        "slot_diversity": 0.9120604991912842,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.07405976001907859,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07048023455622374
+      },
+      {
+        "arm": "ARM_A_HEALTHY",
+        "seed": 56,
+        "slot_diversity": 0.8912013173103333,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06872998109670707,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.06913400950566312
+      }
+    ],
+    "ARM_B_EARLY": [
+      {
+        "arm": "ARM_B_EARLY",
+        "seed": 42,
+        "slot_diversity": 0.8678829669952393,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06460066178039198,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07106063609186543
+      },
+      {
+        "arm": "ARM_B_EARLY",
+        "seed": 49,
+        "slot_diversity": 0.9120604991912842,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.07405976001907859,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07048023455622374
+      },
+      {
+        "arm": "ARM_B_EARLY",
+        "seed": 56,
+        "slot_diversity": 0.8912013173103333,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06872998109670707,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.06913400950566312
+      }
+    ],
+    "ARM_C_LATE": [
+      {
+        "arm": "ARM_C_LATE",
+        "seed": 42,
+        "slot_diversity": 0.8678829669952393,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06460066178039198,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07106063609186543
+      },
+      {
+        "arm": "ARM_C_LATE",
+        "seed": 49,
+        "slot_diversity": 0.9120604991912842,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.07405976001907859,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.07048023455622374
+      },
+      {
+        "arm": "ARM_C_LATE",
+        "seed": 56,
+        "slot_diversity": 0.8912013173103333,
+        "late_pred_loss": 0.0,
+        "eval_harm_rate": 0.06872998109670707,
+        "sleep_quality_metrics": [
+          {
+            "episode": 10,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 20,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 30,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 40,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 50,
+            "phase": "P0",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 60,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 70,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 80,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 90,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 100,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 110,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 120,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 130,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 140,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 150,
+            "phase": "P1",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 160,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 170,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 180,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 190,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 200,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 210,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 220,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 230,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 240,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 250,
+            "phase": "P2",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 260,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 270,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 280,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 290,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          },
+          {
+            "episode": 300,
+            "phase": "P3",
+            "sws_writes": 0.0,
+            "rem_rollouts": 0.0,
+            "slot_diversity": 0.0
+          }
+        ],
+        "mean_harm_rate_training": 0.06913400950566312
+      }
+    ]
+  },
+  "params": {
+    "p0_episodes": 50,
+    "p1_episodes": 100,
+    "p2_episodes": 100,
+    "p3_episodes": 50,
+    "eval_episodes": 30,
+    "steps_per_episode": 150,
+    "sleep_interval": 10,
+    "context_switch_every": 5,
+    "seeds": [
+      42,
+      49,
+      56
+    ],
+    "late_window": 30,
+    "healthy_sws_steps": 8,
+    "healthy_rem_steps": 6,
+    "disrupted_sws_steps": 3,
+    "disrupted_rem_steps": 2,
+    "dry_run": false
+  },
+  "evidence_direction_per_claim": {
+    "MECH-171": "non_contributory"
+  },
+  "evidence_direction_note": "Recovered 2026-07-20 from ree-cloud-3/ree-cloud-2 untracked working trees during a git-wedge repair; these three runs existed on no other machine and on no branch. evidence_direction was does_not_support as emitted; the EXISTING failure_autopsy_batch9_2026-06-12 disposition for V3-EXQ-673 has been PROPAGATED here (does_not_support -> non_contributory), exactly as it was propagated to the three committed sibling runs on 2026-06-14T16:07:16Z. Load-bearing reason is claim-level, not run-level: MECH-171 is out_of_domain (clinical multi-year Alzheimer's vicious cycle is not instantiable in a 300-episode grid-world), so these runs are non-discriminative by domain and are NOT counter-evidence. IMPORTANT DIFFERENCE FROM THE SIBLINGS: the siblings were ALSO arm-degenerate (ARM_A==ARM_B==ARM_C on every metric, late_pred_loss==0.0). These three are NOT -- their arms differ -- so the degeneracy limb of the batch9 disposition does NOT apply and degeneracy_reason/non_degenerate are deliberately NOT set. Only the out_of_domain limb is propagated. These are runs 4-6 of the same forbidden same-EXQ silent-rerun batch batch9 flagged as a process_defect (it recorded 3 duplicate manifests; there were in fact 6). Direction set by PROPAGATION of an existing disposition, not by a new adjudication -- /governance should confirm.",
+  "governance_applied_utc": "2026-07-20T10:11:36Z",
+  "recovered_from": "ree-cloud-2 untracked working tree (git-wedge repair 2026-07-20)",
+  "supersedes": null
+}
