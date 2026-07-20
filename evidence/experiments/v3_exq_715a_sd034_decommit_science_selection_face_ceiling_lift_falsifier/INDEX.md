@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_715a_sd034_decommit_science_selection_face_ceiling_lift_falsifier
 
-Generated: `2026-07-19T11:35:04.367487Z`
+Generated: `2026-07-20T15:57:07.901787Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -6,37 +6,46 @@ Source plan: `evidence/planning/hippocampal_planning_v4_plan.md`
 
 ## `hippocampal_planning_v4:HPL-1`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-2`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-3`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-4`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-5`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-6`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-7`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-8`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 
 ## `hippocampal_planning_v4:HPL-9`
 
-- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied) **<- live head**
+- `2026-04-03T22:00Z` [decision] `decision:MECH-163@2026-04-03T22:00:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L134`](../../../../evidence/decisions/decision_log.v1.jsonl#L134) :: decision hold_pending_v3_substrate (applied)
+- `2026-07-20T15:30Z` [autopsy] `failure_autopsy_V3-EXQ-786_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-786_2026-07-20.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
 

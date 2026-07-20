@@ -1,52 +1,44 @@
 {
-  "generated_at": "2026-07-18T04:54:30Z",
+  "generated_at": "2026-07-20T15:57:39Z",
   "counts": {
-    "total": 889,
-    "reading_drift": 5,
+    "total": 901,
+    "reading_drift": 4,
     "unstamped": 0,
     "needs_review": 0,
-    "never_reviewed": 871,
-    "provenance_drift": 22
+    "never_reviewed": 880,
+    "provenance_drift": 24
   },
   "reading_drift": [
     {
-      "claim": "MECH-095",
-      "stored_reading": "candidate/substrate_ceiling/v5-reassigned",
-      "derived_reading": "candidate/substrate_ceiling",
+      "claim": "MECH-314b",
+      "stored_reading": "candidate_substrate_landed",
+      "derived_reading": "candidate_substrate_landed/substrate_ceiling",
       "diffs": [
-        "reading: stored='candidate/substrate_ceiling/v5-reassigned' derived='candidate/substrate_ceiling'"
+        "reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_ceiling'"
       ]
     },
     {
-      "claim": "MECH-180",
-      "stored_reading": "candidate/v3_pending",
-      "derived_reading": "candidate/v3_pending/substrate_ceiling",
+      "claim": "MECH-314c",
+      "stored_reading": "candidate_substrate_landed",
+      "derived_reading": "candidate_substrate_landed/substrate_ceiling",
       "diffs": [
-        "reading: stored='candidate/v3_pending' derived='candidate/v3_pending/substrate_ceiling'"
+        "reading: stored='candidate_substrate_landed' derived='candidate_substrate_landed/substrate_ceiling'"
       ]
     },
     {
-      "claim": "INV-064",
-      "stored_reading": "candidate/pending_substrate_reconfirmation",
+      "claim": "Q-044",
+      "stored_reading": "open",
+      "derived_reading": "open/substrate_ceiling",
+      "diffs": [
+        "reading: stored='open' derived='open/substrate_ceiling'"
+      ]
+    },
+    {
+      "claim": "MECH-448",
+      "stored_reading": "provisional",
       "derived_reading": "candidate",
       "diffs": [
-        "reading: stored='candidate/pending_substrate_reconfirmation' derived='candidate'"
-      ]
-    },
-    {
-      "claim": "INV-088",
-      "stored_reading": "candidate/pending_substrate_reconfirmation",
-      "derived_reading": "candidate",
-      "diffs": [
-        "reading: stored='candidate/pending_substrate_reconfirmation' derived='candidate'"
-      ]
-    },
-    {
-      "claim": "MECH-456",
-      "stored_reading": "provisional/substrate_conditional_satisfied (independent-seed replicated)",
-      "derived_reading": "provisional/substrate_conditional",
-      "diffs": [
-        "reading: stored='provisional/substrate_conditional_satisfied (independent-seed replicated)' derived='provisional/substrate_conditional'"
+        "reading: stored='provisional' derived='candidate'"
       ]
     }
   ],
@@ -650,10 +642,7 @@
     "MECH-313",
     "MECH-314",
     "MECH-314a",
-    "MECH-314b",
-    "MECH-314c",
     "Q-043",
-    "Q-044",
     "Q-045",
     "ARC-064",
     "MECH-316",
@@ -803,6 +792,12 @@
     "SD-067",
     "SD-068",
     "SD-069",
+    "SD-075",
+    "SD-074",
+    "SD-070",
+    "SD-071",
+    "SD-072",
+    "SD-073",
     "MECH-394",
     "MECH-395",
     "Q-071",
@@ -909,6 +904,7 @@
     "GOV-FANOUT-1",
     "GOV-REUSE-1",
     "GOV-CONFIRM-1",
+    "GOV-FROZEN-1",
     "ARC-106",
     "ARC-107",
     "ARC-108",
@@ -923,118 +919,133 @@
     "Q-080",
     "MECH-455",
     "MECH-457",
-    "MECH-458"
+    "MECH-458",
+    "MECH-459",
+    "MECH-460",
+    "MECH-461",
+    "MECH-462",
+    "MECH-463"
   ],
   "provenance_drift": [
     {
-      "claim": "MECH-046",
-      "stored_from": "v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3",
-      "derived_from": "decision:MECH-046@2026-07-15T13:44:33.349339Z"
+      "claim": "MECH-094",
+      "stored_from": "failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d",
+      "derived_from": "failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d"
     },
     {
-      "claim": "MECH-076",
-      "stored_from": null,
-      "derived_from": "v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3"
+      "claim": "MECH-140",
+      "stored_from": "failure_autopsy_V3-EXQ-710_2026-07-03",
+      "derived_from": "failure_autopsy_V3-EXQ-710_2026-07-20"
     },
     {
-      "claim": "MECH-086",
-      "stored_from": null,
-      "derived_from": "v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3"
-    },
-    {
-      "claim": "MECH-095",
-      "stored_from": "V3-EXQ-741",
-      "derived_from": "failure_autopsy_V3-EXQ-741_2026-07-12"
+      "claim": "MECH-163",
+      "stored_from": "decision:MECH-163@2026-04-03T22:00:00Z",
+      "derived_from": "failure_autopsy_V3-EXQ-786_2026-07-20"
     },
     {
       "claim": "INV-047",
-      "stored_from": null,
-      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+      "stored_from": "failure_autopsy_V3-EXQ-778h_2026-07-19",
+      "derived_from": "failure_autopsy_V3-EXQ-778a_2026-07-20"
     },
     {
       "claim": "MECH-168",
-      "stored_from": null,
-      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+      "stored_from": "failure_autopsy_V3-EXQ-778h_2026-07-19",
+      "derived_from": "failure_autopsy_V3-EXQ-778a_2026-07-20"
     },
     {
       "claim": "MECH-169",
-      "stored_from": null,
-      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
-    },
-    {
-      "claim": "MECH-173",
-      "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-774_2026-07-17"
-    },
-    {
-      "claim": "INV-064",
-      "stored_from": "failure_autopsy_V3-EXQ-740_2026-07-11",
-      "derived_from": "failure_autopsy_V3-EXQ-740a_2026-07-12"
-    },
-    {
-      "claim": "INV-088",
-      "stored_from": "v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3",
-      "derived_from": "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754"
-    },
-    {
-      "claim": "INV-089",
-      "stored_from": "v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3",
-      "derived_from": "failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16"
-    },
-    {
-      "claim": "INV-090",
-      "stored_from": null,
-      "derived_from": "failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16"
+      "stored_from": "failure_autopsy_V3-EXQ-778h_2026-07-19",
+      "derived_from": "failure_autopsy_V3-EXQ-778a_2026-07-20"
     },
     {
       "claim": "SD-025",
-      "stored_from": null,
+      "stored_from": "failure_autopsy_V3-EXQ-767a_2026-07-17",
       "derived_from": "failure_autopsy_V3-EXQ-767a_2026-07-17"
     },
     {
-      "claim": "MECH-232",
-      "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-766a_2026-07-16"
+      "claim": "MECH-314",
+      "stored_from": "failure_autopsy_V3-EXQ-732_2026-07-10",
+      "derived_from": "failure_autopsy_V3-EXQ-604c_2026-07-20"
     },
     {
-      "claim": "ARC-057",
-      "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-768a_2026-07-17"
+      "claim": "MECH-314a",
+      "stored_from": "failure_autopsy_batch9_2026-06-12#V3-EXQ-590b",
+      "derived_from": "failure_autopsy_V3-EXQ-604c_2026-07-20"
     },
     {
-      "claim": "MECH-456",
-      "stored_from": "V3-EXQ-733c",
-      "derived_from": "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13#V3-EXQ-745"
+      "claim": "MECH-314b",
+      "stored_from": "failure_autopsy_V3-EXQ-604c_2026-07-20",
+      "derived_from": "failure_autopsy_V3-EXQ-604c_2026-07-20"
     },
     {
-      "claim": "MECH-279",
-      "stored_from": null,
-      "derived_from": "v3_exq_776_mech279_pag_freeze_gate_functional_signature_20260717T153724Z_v3"
+      "claim": "MECH-314c",
+      "stored_from": "failure_autopsy_V3-EXQ-604c_2026-07-20",
+      "derived_from": "failure_autopsy_V3-EXQ-604c_2026-07-20"
     },
     {
-      "claim": "MECH-302",
-      "stored_from": "V3-EXQ-517d",
-      "derived_from": "failure_autopsy_V3-EXQ-517b_2026-05-30"
+      "claim": "Q-044",
+      "stored_from": "failure_autopsy_V3-EXQ-604c_2026-07-20",
+      "derived_from": "failure_autopsy_V3-EXQ-604c_2026-07-20"
+    },
+    {
+      "claim": "Q-054",
+      "stored_from": "failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616",
+      "derived_from": "failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616"
+    },
+    {
+      "claim": "SD-059",
+      "stored_from": "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o",
+      "derived_from": "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o"
+    },
+    {
+      "claim": "MECH-358",
+      "stored_from": "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o",
+      "derived_from": "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o"
     },
     {
       "claim": "SD-068",
-      "stored_from": null,
-      "derived_from": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3"
+      "stored_from": "failure_autopsy_V3-EXQ-778h_2026-07-19",
+      "derived_from": "failure_autopsy_V3-EXQ-778a_2026-07-20"
     },
     {
-      "claim": "MECH-423",
-      "stored_from": "v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3",
-      "derived_from": "failure_autopsy_V3-EXQ-680d_2026-06-15"
+      "claim": "MECH-439",
+      "stored_from": "failure_autopsy_V3-EXQ-732_2026-07-10",
+      "derived_from": "failure_autopsy_V3-EXQ-711-713_2026-07-20#V3-EXQ-713"
+    },
+    {
+      "claim": "MECH-448",
+      "stored_from": "failure_autopsy_V3-EXQ-699_2026-07-20",
+      "derived_from": "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+    },
+    {
+      "claim": "ARC-108",
+      "stored_from": "failure_autopsy_V3-EXQ-732_2026-07-10",
+      "derived_from": "failure_autopsy_V3-EXQ-711-713_2026-07-20#V3-EXQ-713"
+    },
+    {
+      "claim": "MECH-450",
+      "stored_from": "failure_autopsy_V3-EXQ-710_2026-07-03",
+      "derived_from": "failure_autopsy_V3-EXQ-710_2026-07-20"
+    },
+    {
+      "claim": "ARC-110",
+      "stored_from": "failure_autopsy_V3-EXQ-713_2026-07-05#V3-EXQ-713",
+      "derived_from": "failure_autopsy_V3-EXQ-711-713_2026-07-20#V3-EXQ-713"
     },
     {
       "claim": "MECH-457",
-      "stored_from": "v3_exq_747_748_749_mech457_fanout (GOV-FANOUT-1 discrimination portfolio, diagnostic)",
-      "derived_from": "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18#V3-EXQ-772"
+      "stored_from": "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-781",
+      "derived_from": "failure_autopsy_mech457-retention-portfolio_2026-07-20"
     },
     {
-      "claim": "MECH-458",
-      "stored_from": "V3-EXQ-767a + V3-EXQ-768a (both cloud PASS, non-degenerate) + re-analysis probe scratchpad/probe1_sd025_force_decomposition.py",
-      "derived_from": null
+      "claim": "MECH-459",
+      "stored_from": "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-782",
+      "derived_from": "failure_autopsy_V3-EXQ-782_2026-07-20"
+    },
+    {
+      "claim": "MECH-463",
+      "stored_from": "failure_autopsy_V3-EXQ-785_2026-07-19",
+      "derived_from": "failure_autopsy_mech463-exogenous-inertness_2026-07-20#V3-EXQ-785b"
     }
   ],
   "provenance_available": true

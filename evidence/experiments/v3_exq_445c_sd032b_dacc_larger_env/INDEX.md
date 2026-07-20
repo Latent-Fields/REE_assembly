@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_445c_sd032b_dacc_larger_env
 
-Generated: `2026-07-19T11:35:04.367487Z`
+Generated: `2026-07-20T15:57:07.901787Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

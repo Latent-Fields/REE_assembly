@@ -1711,13 +1711,13 @@
       "timestamp_utc": "2026-06-20T18:57:41.815630Z"
     },
     "MECH-448": {
-      "actor": "governance-cycle-20260621T0639Z",
-      "decision_needed": "Promotion review: V3 evidence arrived (V3-EXQ-689d PASS)",
+      "actor": "failure-autopsy-hopeful-bell-492021",
+      "decision_needed": "Demotion review: provisional -> candidate (sole promoting experiment withdrawn)",
       "decision_status": "applied",
-      "rationale": "governance 2026-06-21: V3-EXQ-689d PASS (rank-preserving F->eligibility demotion falsifier, ARC-107 lead lever) -- all 4 load-bearing criteria pass; exp_conf 0.775, quadrant confirmed_established, 0 conflict. implementation_phase:v3 hold auto-released on first V3 run. First experimental confirmation of the ARC-107 BG-selector constitution. User-approved promotion.",
-      "recommendation": "promote_to_provisional",
-      "selected_option": "Promote candidate->provisional, lift V3-pending gate",
-      "timestamp_utc": "2026-06-21T06:48:58.174814Z"
+      "rationale": "The 2026-06-21 promotion (59c8a1879a) rested solely on the V3-EXQ-689d PASS. failure_autopsy_V3-EXQ-689d_2026-07-20 (2e6cc2569b) WITHDRAWS that conversion finding: C_PRIMARY is invalid on D1 (hold-weighted DV -- selected_class_counts accumulated per env step while agent.py:5430 returns the HELD action, DISQUALIFYING for a distribution-shape statistic) and D2 (vacuous control -- ARM_MATCHED_NOISE bit-identical to ARM_PROPOSER_CTRL on all 3 seeds, temperature inert on the deterministic-argmin proposer path, so the pre-registered matched_noise_verified_lifting:false guard fired without blocking the PASS). D3 (intra-run substrate divergence) was REFUTED and withdrawn the same day by failure_autopsy_V3-EXQ-689d-D3 (8618f2c4bd) -- all 12 cells executed one substrate; the withdrawal stands on D1+D2 alone. SURVIVES: C_READINESS, C_RANK_PRESERVING, C_SAFETY -- substrate built, active, non-degenerate, rank-preserving, safe; only the CONVERSION finding lacks an uncontaminated basis. V3-EXQ-689h survives but is purpose:diagnostic, single-pathway (synthetic banks, no env loop). Zero weakens, zero FAIL -- no conflict unmasked. Decoupled: strong-lit (lit_conf 0.849, 5 entries) / zero uncontaminated embodied exp. epistemic_category left at standard (measurement_test_design_defect is an evidence-level value, not in the claim-level enum; the defect is measurement, not substrate ceiling). Re-promotion should wait on the corrected re-run V3-EXQ-689i.",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "demote provisional -> candidate; epistemic_category left at standard",
+      "timestamp_utc": "2026-07-20T08:49:24.346932Z"
     },
     "MECH-449": {
       "actor": "governance-cycle-20260622T0519Z (user-approved)",
@@ -2296,7 +2296,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-19T11:35:04.367487Z",
+  "generated_at_utc": "2026-07-20T15:57:07.901787Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

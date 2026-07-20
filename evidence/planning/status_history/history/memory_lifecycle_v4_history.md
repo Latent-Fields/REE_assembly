@@ -53,7 +53,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-2`
@@ -105,7 +105,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-3`
@@ -157,7 +157,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-4`
@@ -209,7 +209,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-5`
@@ -261,7 +261,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-6`
@@ -313,7 +313,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-7`
@@ -365,7 +365,7 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
 ## `memory_lifecycle_v4:MEM-8`
@@ -417,6 +417,6 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-06-23T22:40Z` [decision] `decision:MECH-273@2026-06-23T22:40:42.979337Z` -> [`evidence/decisions/decision_log.v1.jsonl#L331`](../../../../evidence/decisions/decision_log.v1.jsonl#L331) :: decision clear_v3_pending_gate (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-272@2026-06-23T23:35:50.687606Z` -> [`evidence/decisions/decision_log.v1.jsonl#L333`](../../../../evidence/decisions/decision_log.v1.jsonl#L333) :: decision promote_to_provisional (applied)
 - `2026-06-23T23:35Z` [decision] `decision:MECH-273@2026-06-23T23:35:50.729543Z` -> [`evidence/decisions/decision_log.v1.jsonl#L334`](../../../../evidence/decisions/decision_log.v1.jsonl#L334) :: decision promote_to_provisional (applied)
-- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/? routing=drop-tag
+- `2026-06-24T22:08Z` [autopsy] `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` -> [`evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-466d_2026-06-24.json) :: autopsy non_contributory/non_contributory routing=drop-tag
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate **<- live head**
 
