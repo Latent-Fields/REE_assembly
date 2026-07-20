@@ -224,6 +224,42 @@ The repair is *recording them*, per
 [`experimental_recording_standard_2026-07-12.md`](experimental_recording_standard_2026-07-12.md)
 sections 3b/3c.
 
+### 4a. Intra-run substrate divergence -- checked, NEGATIVE
+
+[`failure_autopsy_V3-EXQ-689d_2026-07-20`](failure_autopsy_V3-EXQ-689d_2026-07-20.md) (landed
+2026-07-20T06:04Z, session `youthful-moser-3b6f74`) discovered a **new defect class** on a sibling run
+of this same sweep: the substrate changed *mid-run*, so two seeds of one arm executed different code
+from their controls. That session recommended a cheap retroactive corpus scan over
+`arm_results[].arm_fingerprint`. Applied here:
+
+707b carries **two distinct `substrate_hash` values** across its 24 cells:
+
+| hash | cells |
+|---|---|
+| `cc5d47fd...` | all 6 **A0_SINGLE_ARENA** seeds |
+| `76ae9294...` | all 18 treatment cells (A1_LOOPS, ARM_NOISE, ARM_DROP_LIMBIC) |
+
+The driver iterates **arm-major** (`:1331` `for arm in ARMS:` then `for s in seeds:`), so an
+arm-aligned boundary is *exactly* the shape a mid-run edit would produce -- the 689d signature, masked
+by coinciding with an arm boundary. It is nonetheless **benign here**, on two independent grounds:
+
+1. **The boundary is fully accounted for by a deliberate flag.** `driver_script_in_substrate_hash` is
+   `false` on A0 and `true` on all treatment arms, and `substrate_n_files` is **109 vs 110**. The
+   difference is exactly one file, exactly matching the one flag that differs, and both arms share an
+   identical `driver_script_hash` (`2451f32f...`). The +1 file *is* the driver script. A0 is the
+   reuse-eligible arm and is fingerprinted with `include_driver_script_in_hash=False` per the standing
+   mint convention (REE_Working CLAUDE.md, "Saving a baseline for reuse"), which is why the driver is
+   excluded from its hash and included in the others'. Deliberate, documented, structural.
+2. **The treatment block is hash-identical.** All 18 treatment cells -- three arms x six seeds, run
+   sequentially after A0 -- share one hash. A code edit landing during the run would have split the
+   treatment arms among themselves. It did not. The substrate was stable across the entire treatment
+   block, and the only boundary is the one ground 1 explains.
+
+**Verdict: no intra-run substrate divergence.** The C1 A1-vs-A0 comparison is substrate-matched. This
+is a *negative* result on the 689d defect class and does not bear on the withdrawal -- recorded because
+it is the obvious question a reader raises about a two-hash manifest, and because the arm-major loop
+order means the answer is not self-evident from the hash split alone.
+
 ---
 
 ## 5. Four-layer diagnosis

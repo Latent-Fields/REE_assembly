@@ -98,6 +98,22 @@
         "note": "result.seeds exists; the top-level field does not. No substrate_hash means the executed substrate cannot be confirmed, so the retained readiness verdict is provenance-unpinned and no arm reuse is possible. Same gap 708 had. Repair is RECORDING these per experimental_recording_standard_2026-07-12.md sections 3b/3c, not a blind re-run.",
         "standard_ref": "REE_assembly/evidence/planning/experimental_recording_standard_2026-07-12.md"
       },
+      "intra_run_substrate_divergence_check": {
+        "performed": true,
+        "defect_class_source": "failure_autopsy_V3-EXQ-689d_2026-07-20 (session youthful-moser-3b6f74, landed 2026-07-20T06:04Z), which discovered the class on a sibling run of this sweep and recommended a retroactive corpus scan over arm_results[].arm_fingerprint",
+        "result": "NEGATIVE -- no intra-run divergence",
+        "distinct_substrate_hashes": 2,
+        "split": {
+          "cc5d47fde4d7c21935bea70af9401165723ea97270ca8dfbc6b81dec90ebc87a": "all 6 A0_SINGLE_ARENA seeds",
+          "76ae92948f1ce52d1971e73677a26a1d5de2e74a2e99a6f9cbbdb3aa00cadada": "all 18 treatment cells (A1_LOOPS, ARM_NOISE, ARM_DROP_LIMBIC)"
+        },
+        "why_the_split_needed_investigating": "the driver iterates ARM-MAJOR (:1331 'for arm in ARMS:' then 'for s in seeds:'), so an arm-aligned hash boundary is exactly the shape a mid-run code edit would produce -- the 689d signature, masked by coinciding with an arm boundary",
+        "benign_grounds": [
+          "the boundary is fully accounted for by a deliberate flag: driver_script_in_substrate_hash is false on A0 and true on all treatment arms, and substrate_n_files is 109 vs 110 -- a difference of exactly one file matching exactly the one flag that differs, with an identical driver_script_hash (2451f32f...) on both. The +1 file IS the driver script. A0 is the reuse-eligible arm, fingerprinted with include_driver_script_in_hash=False per the standing mint convention.",
+          "the treatment block is hash-identical: all 18 treatment cells (3 arms x 6 seeds, run sequentially after A0) share one hash. A code edit landing during the run would have split the treatment arms among themselves. It did not."
+        ],
+        "consequence": "the C1 A1-vs-A0 comparison is substrate-matched. Does not bear on the withdrawal; recorded because it is the obvious question a two-hash manifest raises and the arm-major loop order means the answer is not self-evident from the split alone."
+      },
       "four_layer_diagnosis": {
         "claim_alignment": "unclear -- not tested; ARC-110's single-arena-artefact hypothesis was never validly measured, so it is neither weakened nor supported",
         "biological_reference": "clear (unchanged) -- Alexander/DeLong/Strick parallel segregated cortico-BG-thalamic loops, real and load-bearing; an instrument defect cannot bear on biology",
