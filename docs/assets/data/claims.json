@@ -6280,6 +6280,24 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "A variance decomposition of committed-selection scores into F vs the other channels, CONDITIONED on arousal (urgency_applied decile, and secondarily on tonic temperature and the D1/D2 da scalar). Supports if F-share rises monotonically with urgency decile and the bottom-vs-top decile gap exceeds the effect-size floor. Refutes if F-share is flat across arousal deciles -- which would mean F-dominance is structural in the score geometry and arousal is causally inert with respect to it, leaving MECH-439 untouched and killing this claim cleanly.\n"
   },
+  "MECH-464": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.d1_d2_opponent_gain_is_order_changing",
+    "title": "D1/D2 opponent dopamine gain is ORDER-CHANGING, not a uniform scalar: because it gains the promote and suppress populations asymmetrically about zero, a non-zero da can reorder any candidate pair whose loop accumulators straddle zero -- so this route is capable of the behavioural differentiation MECH-463 asserts no global-scalar route can produce.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "Sweep da EXOGENOUSLY (as V3-EXQ-785a swept urgency) with d1_da_gain / d2_da_gain at their configured values, recording per-candidate loop accumulators and the committed argmin per tick. SUPPORTS if the committed-candidate identity changes with da at a rate exceeding the da == 0 baseline, and if the reordering rate scales with the fraction of candidate pairs whose accumulators straddle zero. REFUTES if the committed identity is invariant to da across the sweep, which would mean the straddle fraction is ~0 in practice and the asymmetry, though real in code, is behaviourally inert. MANDATORY NON-VACUITY GATE: report the straddle fraction. If it is ~0 the run is vacuous and MUST be scored precondition_unmet, not as a null -- without this gate the probe returns a spurious \"inert\" for a purely structural reason.\n"
+  },
+  "MECH-465": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "selection.commit_gate_arousal_effect_requires_boundary_regime",
+    "title": "Arousal's effect on WHETHER commitment fires is expressible only near the commit-gate boundary: in every run to date the gated quantity sits 25-48x below the threshold and commit rate is pinned at 0.99-1.00, so MECH-463's commit-gate prediction is UNTESTED rather than falsified.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "STAGE 1, SCOPING SPIKE (this is why the claim is substrate_conditional and probe-gated, NOT queued): establish whether a boundary regime -- commit_variance within ~2x of effective_threshold -- is reachable BY CONFIGURATION (e.g. lowering commit_threshold), or whether it requires raising z_world variance. STAGE 2a, IF REACHABLE BY CONFIG: re-run the V3-EXQ-785a exogenous-urgency design in that regime with COMMIT RATE as the load-bearing DV. SUPPORTS if commit rate varies monotonically with urgency and the span exceeds a pre-registered effect floor. REFUTES if commit rate stays flat WITH DEMONSTRATED HEADROOM. MANDATORY PRECONDITION on any stage-2a run: median gate margin < 2x AND commit rate away from both 0 and 1. Without it the run reproduces the 785a ceiling effect and must be scored precondition_unmet. STAGE 2b, IF NOT REACHABLE BY CONFIG: the claim is substrate-gated and routes to /implement-substrate, not to /queue-experiment.\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",

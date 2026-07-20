@@ -57544,3 +57544,195 @@
     ~1.06 at world_dim=128) the per-candidate channels have little to range over.
     That objection bites on the FIX, not on the measurement -- but a REFUTES verdict
     must be read against it rather than as unconditional.
+    NARROWED + BLANKET PREMISE WITHDRAWN 2026-07-20 (/claim-synthesis,
+    evidence/planning/claim_synthesis_MECH-463_2026-07-20.md, user-approved per-child).
+    (1) SCOPE NARROWED. This claim is narrowed to what was actually tested and falsified:
+    THE HARM-URGENCY THRESHOLD ROUTE'S EFFECT ON COMMITTED-SELECTION VARIANCE GEOMETRY.
+    On that narrowed scope the falsification is clean and replicated (three incumbent
+    identities, expressivity positive control passed, hazard-geometry rival independently
+    eliminated by V3-EXQ-787) and is READY FOR A /governance STATUS DECISION.
+    (2) THE BLANKET THREE-ROUTE PREMISE IS WITHDRAWN. The registered functional_restatement
+    asserts of all three named global scalars that each "applies one scalar uniformly
+    across all K candidates and therefore cannot change an argmax". That is FALSE for two
+    of the three, and all four runs (785/785a/785b/787) manipulated only the third:
+    each injected on e3.config.urgency_weight and nothing else.
+      - D1/D2 dopamine gain: FALSE IN CODE. _d1_d2_split (e3_selector.py:1553-1570) gains
+        relu(-accum) and relu(+accum) ASYMMETRICALLY about zero, so a non-zero da reorders
+        any candidate pair whose accumulators straddle zero; the ARC-109 docstring states
+        "the dissociation is earned only once da != 0". Now carried by MECH-464.
+      - Softmax temperature: CONTRADICTED BY EXISTING EVIDENCE under another claim.
+        MECH-087 maps dopamine selection-gain to the E3 softmax temperature and V3-EXQ-674
+        measured dopamine-temperature modulating decisiveness at 0.93. Cross-reference
+        only; no new claim registered, to avoid duplicating MECH-087.
+    Both routes are additionally OUTSIDE THIS CLAIM'S FALSIFIER'S CAUSAL PATH, so the null
+    could never have generalised to them empirically: D1/D2 acts on the loop accumulator
+    AFTER channel composition (re-gains the aggregate, not an additive component in the
+    decomposition), and temperature divides the composed score INSIDE the softmax, strictly
+    downstream of the per-candidate component vectors the shares are computed from
+    (verified in code by mech463_channel_agnosticism_scoping_spike_2026-07-19.md and
+    re-verified 2026-07-20). The generalisation was therefore analytic, resting entirely on
+    the argmax-invariance premise now withdrawn.
+    (3) THE COMMIT-GATE HALF IS UNTESTED, NOT FALSIFIED. "DO change whether commitment
+    fires and how sharply" was measured only as V3-EXQ-785a criterion C3
+    (load_bearing: false) in a saturated regime -- gated variance 25-48x below
+    effective_threshold at every urgency level, commit rate pinned 0.9901-1.0000. Now
+    carried by MECH-465 (substrate_conditional, probe-gated).
+    (4) THE ROUTED PREMISE-DECOMPOSITION WAS REFUSED. The cluster autopsy routed here on
+    the argument that this claim is coarse because it fuses amplification with
+    concentration. That failed the /claim-synthesis Step-3 gate: under exogenous
+    manipulation BOTH premises fail with green preconditions and a passing expressivity
+    control, so 785a/785b are a REPLICATED SINGLE falsification rather than two distinct
+    signatures circling, and V3-EXQ-787's own four-layer diagnosis records
+    claim_alignment: "intact" (it eliminated a rival, it did not fail this claim).
+    Splitting a jointly-falsified pair would yield two falsified children. The genuine
+    granularity debt was on the ROUTE and REGIME axes instead, per (2) and (3).
+    (5) NO FURTHER LETTERED AROUSAL DECOMPOSITION ON THE 785 AXIS. Both autopsies' refusal
+    stands and is endorsed. The residual unexplained 14.1x ENDOGENOUS profile is a
+    mystery (known data) node, not a claim: V3-EXQ-787 showed endogenous urgency does not
+    even track hazard proximity (corr = 0.164 against a 0.2 premise threshold), so what it
+    tracks is unknown. Recommended as a NEW QID in hypothesis_space_registry.v1.json
+    ("what does endogenous urgency co-vary with?") rather than a claim, since no
+    pre-registered candidate remains to freeze. NOT written by the synthesis session --
+    session commit-push-ordering-fae508 held an active TASK_CLAIMS claim on that registry
+    file at the time; left as a recommendation for whoever holds it.
+- id: MECH-464
+  title: "D1/D2 opponent dopamine gain is ORDER-CHANGING, not a uniform scalar: because it gains the promote and suppress populations asymmetrically about zero, a non-zero da can reorder any candidate pair whose loop accumulators straddle zero -- so this route is capable of the behavioural differentiation MECH-463 asserts no global-scalar route can produce."
+  claim_type: mechanism_hypothesis
+  subject: selection.d1_d2_opponent_gain_is_order_changing
+  polarity: asserts
+  status: candidate
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-07-20"
+  depends_on:
+    - ARC-109
+    - MECH-463
+    - SD-011
+  location: evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
+  source:
+    - evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
+  functional_restatement: >
+    MECH-463 groups three "global scalar" arousal routes and asserts of all three that
+    each applies one scalar uniformly across all K candidates and therefore cannot
+    change an argmax. That characterisation is FALSE IN CODE for the D1/D2 route.
+    `_d1_d2_split` (ree-v3/ree_core/predictors/e3_selector.py:1553-1570, applied at
+    :1728-1729) does not scale the accumulator uniformly. It splits it into two opponent
+    populations about zero and gains them ASYMMETRICALLY:
+    go = relu(-accum); nogo = relu(+accum);
+    d1_gain = 1.0 + d1_da_gain*da; d2_gain = max(0.0, 1.0 - d2_da_gain*da);
+    net = d2_gain*nogo - d1_gain*go.
+    This is a piecewise transform, asymmetric about zero, so it can reorder any candidate
+    pair whose accumulators straddle zero. The ARC-109 docstring states the design intent
+    outright: at da == 0 the net is "bit-identical to the additive scalar; the
+    dissociation is earned only once da != 0". The route therefore differs mechanistically
+    from the harm-urgency threshold route (SD-011) that V3-EXQ-785/785a/785b/787 actually
+    manipulated -- all four injected on e3.config.urgency_weight and nothing else.
+  what_would_answer: >
+    Sweep da EXOGENOUSLY (as V3-EXQ-785a swept urgency) with d1_da_gain / d2_da_gain at
+    their configured values, recording per-candidate loop accumulators and the committed
+    argmin per tick. SUPPORTS if the committed-candidate identity changes with da at a
+    rate exceeding the da == 0 baseline, and if the reordering rate scales with the
+    fraction of candidate pairs whose accumulators straddle zero. REFUTES if the committed
+    identity is invariant to da across the sweep, which would mean the straddle fraction
+    is ~0 in practice and the asymmetry, though real in code, is behaviourally inert.
+    MANDATORY NON-VACUITY GATE: report the straddle fraction. If it is ~0 the run is
+    vacuous and MUST be scored precondition_unmet, not as a null -- without this gate the
+    probe returns a spurious "inert" for a purely structural reason.
+  evidence_quality_note: >
+    Registered 2026-07-20 by /claim-synthesis on MECH-463
+    (evidence/planning/claim_synthesis_MECH-463_2026-07-20.md), after the 2026-07-20
+    exogenous-inertness cluster. NOT yet tested -- no run has ever manipulated this route.
+    The mechanism is verified in source rather than inferred, and the instrument
+    (per-candidate accumulators) is the same one V3-EXQ-785a/785b already persist, so the
+    falsifier needs no substrate change. Lit grounding PRESENT, no /lit-pull owed:
+    evidence/literature/targeted_review_striatal_gain_control_bounding carries
+    kohnomi2016 (DA graded lateral inhibition) and chen2020 (D2 autoreceptor homeostat).
+  notes: >
+    This claim CONTRADICTS MECH-463's premise for the D1/D2 route specifically; it does
+    not disturb MECH-463's falsification on the harm-urgency threshold route, which stands
+    (replicated at three incumbent identities with a passing expressivity positive control
+    and the hazard-geometry rival independently eliminated by V3-EXQ-787). Registered
+    rather than folded into MECH-463's note because it is a testable mechanism assertion
+    with its own falsifier, not merely an erratum. SCOPE: the third route MECH-463 names,
+    softmax temperature, is deliberately NOT claimed here -- MECH-087 already maps
+    dopamine selection-gain to the E3 softmax temperature and V3-EXQ-674 already evidenced
+    it (dopamine-temperature modulates decisiveness 0.93), so a separate claim would
+    duplicate registered work. That route is carried as a cross-reference in the synthesis
+    doc instead.
+- id: MECH-465
+  title: "Arousal's effect on WHETHER commitment fires is expressible only near the commit-gate boundary: in every run to date the gated quantity sits 25-48x below the threshold and commit rate is pinned at 0.99-1.00, so MECH-463's commit-gate prediction is UNTESTED rather than falsified."
+  claim_type: mechanism_hypothesis
+  subject: selection.commit_gate_arousal_effect_requires_boundary_regime
+  polarity: asserts
+  status: candidate
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-07-20"
+  depends_on:
+    - SD-011
+    - MECH-463
+    - MECH-359
+  location: evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
+  source:
+    - evidence/planning/claim_synthesis_MECH-463_2026-07-20.md
+  functional_restatement: >
+    MECH-463 asserts arousal "cannot change an argmax, but DO change whether commitment
+    fires and how sharply". The variance-geometry half is falsified. The commit-gate half
+    was measured only as V3-EXQ-785a criterion C3, explicitly marked load_bearing: false,
+    and in a regime with no headroom. The gate is committed = variance < effective_threshold.
+    Per the 785a manifest, by urgency level: commit_variance_mean 0.00785 / 0.00983 /
+    0.01193 / 0.00646 / 0.00710 / 0.01037 against effective_threshold_mean 0.3761 / 0.3467
+    / 0.3294 / 0.3052 / 0.2800 / 0.2570 -- the gated quantity sits 25-48x BELOW its own
+    bound at every level, and commit rate is pinned at 0.9901-1.0000 (span 0.0099). The
+    32% threshold reduction (0.3761 -> 0.2570) that correctly demonstrates the manipulation
+    LANDED is, for this DV, moving a ceiling never within an order of magnitude of binding.
+    A flat commit rate under those conditions is a ceiling effect, not a null.
+  what_would_answer: >
+    STAGE 1, SCOPING SPIKE (this is why the claim is substrate_conditional and
+    probe-gated, NOT queued): establish whether a boundary regime -- commit_variance
+    within ~2x of effective_threshold -- is reachable BY CONFIGURATION (e.g. lowering
+    commit_threshold), or whether it requires raising z_world variance.
+    STAGE 2a, IF REACHABLE BY CONFIG: re-run the V3-EXQ-785a exogenous-urgency design in
+    that regime with COMMIT RATE as the load-bearing DV. SUPPORTS if commit rate varies
+    monotonically with urgency and the span exceeds a pre-registered effect floor.
+    REFUTES if commit rate stays flat WITH DEMONSTRATED HEADROOM.
+    MANDATORY PRECONDITION on any stage-2a run: median gate margin < 2x AND commit rate
+    away from both 0 and 1. Without it the run reproduces the 785a ceiling effect and must
+    be scored precondition_unmet.
+    STAGE 2b, IF NOT REACHABLE BY CONFIG: the claim is substrate-gated and routes to
+    /implement-substrate, not to /queue-experiment.
+  evidence_quality_note: >
+    Registered 2026-07-20 by /claim-synthesis on MECH-463
+    (evidence/planning/claim_synthesis_MECH-463_2026-07-20.md).
+    EPICYCLE RISK, STATED PLAINLY: adding a headroom precondition to a falsified claim is
+    exactly the move that manufactures epicycles and should be resisted on reflex. The
+    defence is that this is NOT a precondition invented to rescue MECH-463 -- "changes
+    whether commitment fires" is in MECH-463's REGISTERED TEXT, was assigned its own
+    criterion C3, and C3 was marked non-load-bearing precisely because its author saw the
+    admission mechanism was mis-signed. The unmeasured half is original, not retrofitted.
+    THIS DOES NOT DISTURB THE VARIANCE-GEOMETRY NULLS, which are computed on committed
+    ticks with green preconditions and a passing expressivity control and which STAND.
+    Different DV (commit rate, not variance geometry), different regime (gate near
+    boundary, not saturated), different precondition (headroom, which no prior run
+    reports). The 785-axis variance-geometry framing stays CLOSED -- this is not a further
+    lettered arousal decomposition and must not be run as one.
+    Lit grounding PRESENT, no /lit-pull owed: evidence/literature/targeted_review_connectome_mech_463
+    carries jepma2010 (the reboxetine/citalopram/placebo null -- the closest human causal
+    test of a global NE scalar moved in isolation) whose synthesis independently names
+    THIS measurement as the MECH-463/MECH-359 discriminator: "does raising the scalar
+    change whether and how sharply commitment fires, holding the winner fixed?" -- plus
+    astonjones2005 (adaptive gain theory).
+  notes: >
+    Z_WORLD CAUTION, RESPECTED RATHER THAN LEANED ON: the stage-1 spike may find the
+    boundary regime needs higher z_world variance, which would collide with V3-EXQ-737's
+    finding that z_world is never prediction-trained in the x734/737 driver family (0 of 61
+    latent_stack tensors move; substrate_queue entry sd_zworld_warmup_optimizer_group
+    pending). This claim does NOT treat "z_world cannot express it" as an established
+    substrate ceiling -- it treats reachability as the open question the spike exists to
+    answer, which is the correct posture while that substrate entry is unlanded.
+    LIVE TENSION TO NOTE: both 2026-07-20 autopsies set
+    recommended_substrate_queue_entry.action = none. That verdict is correct for the
+    VARIANCE-GEOMETRY framing (every precondition green on every scored arm) and may not
+    hold for this one, which is why stage 1 is a spike rather than a queued experiment.
