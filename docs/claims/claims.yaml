@@ -36804,6 +36804,18 @@
     MECH-314 ceiling autopsy, re-derive brake FIRED). Ceiling is upstream/architectural, NOT a
     falsification; mapped to the brake-EXEMPT double-gated (demotion+MECH-449 Go/No-Go) re-test
     (substrate already built) -> V4 ARC-110 loop-segregation only if that also fails.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-604c is WITHDRAWN --
+    specifically EXONERATED at rung (c), DV inertness, by failure_autopsy_V3-EXQ-604c_2026-07-20
+    (REE_assembly 75726ecb4c) with `sufficient_alone_to_withdraw: false`. All 15 cells executed one
+    substrate (f80bc236); the second hash is a disk-state recording artefact, and five seed-matched
+    cross-boundary cell-pairs were bit-identical on all trajectory-determined quantities. The
+    MECH-314 `supports` reading STANDS unchanged.
+
+    DO NOT CONFLATE: the same autopsy UPHELD a separate and larger STRUCTURAL VACUITY defect, which
+    is unrelated to D3 and bears on MECH-314b, MECH-314c and Q-044 only. MECH-314 and MECH-314a are
+    not implicated by it.
   notes: >
     MECH-314 is the parent claim; MECH-314a/b/c are registered immediately
     after as sibling sub-claims. The parent's depends_on does not list the
@@ -36905,6 +36917,14 @@
     routed to /claim-synthesis as granularity debt: 'novelty buys exploration'
     under-names authority-moves-argmin != signal-is-adaptive. No confidence change
     this cycle.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-604c is WITHDRAWN --
+    EXONERATED at rung (c), DV inertness, by failure_autopsy_V3-EXQ-604c_2026-07-20 (REE_assembly
+    75726ecb4c) with `sufficient_alone_to_withdraw: false`. All 15 cells executed one substrate
+    (f80bc236); the divergent hash is a disk-state recording artefact. The MECH-314a reading STANDS
+    unchanged and no confidence is re-weighted. As for MECH-314: the separate structural-vacuity
+    defect that autopsy upheld bears on MECH-314b / MECH-314c / Q-044 only, not on this claim.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314b
@@ -49012,6 +49032,15 @@
     E2WorldForward agency residual (the head must not absorb the agent-caused
     component of next-state variance -- that residual is what makes E2 an agency
     detector). Caveat carried on the SD-031 dependency.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-716a is WITHDRAWN.
+    REFUTED at rung (b), process topology: the run is single-process, so its import graph is frozen
+    at first use and all cells executed one substrate. Unlike the other four runs in this hit set,
+    716a has NO dedicated failure_autopsy artefact -- the refutation is recorded in the corpus pass
+    of evidence/planning/intra_run_substrate_divergence_sweep_2026-07-20.md (sec 3a ladder, sec 7
+    item 2). The `supports` reading STANDS unchanged and no confidence is re-weighted. Recorded so
+    the flag does not resurface as unexplained doubt in a later sweep.
   implementation_note: >
     Substrate IMPLEMENTED 2026-07-05 (/implement-substrate, session
     implement-sd063-20260705T1724Z), disabled-by-default. Module
@@ -49645,6 +49674,14 @@
     (MECH-462, SD-071, SD-072, SD-073) are unaltered by this fold.
     hypothesis_space_registry.v1.json is NOT touched (GOV-FROZEN-1). Full diagnosis:
     evidence/planning/failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18.json.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-778a is WITHDRAWN.
+    REFUTED at rung (b), process topology, by failure_autopsy_V3-EXQ-778a_2026-07-20 (REE_assembly
+    77cd4cc013): the run is single-process and freezes its import graph at first use, so every cell
+    executed one substrate regardless of what changed on disk mid-run. The `supports` reading
+    STANDS unchanged and no confidence is re-weighted. Recorded so the flag does not resurface as
+    unexplained doubt in a later sweep.
 
 - id: SD-069
   title: "Phasic surprise-burst regulator: a toggleable, event-triggered LC-NE phasic control lever (PhasicSurpriseBurst) that fires a transient softmax-temperature burst on a prediction-error surprise spike and decays it over a few ticks, routed into the E3 select() softmax at agent.select_action() as the PHASIC complement to MECH-313 stochastic_noise_floor (tonic) on the SAME temperature channel -- the substrate that makes MECH-063 sub-claim (ii) (each control axis carries independent tonic baseline AND phasic event-burst degrees of freedom) behaviourally testable without synthetic signals. Reuses the MECH-104 volatility-surprise lit basis (Aston-Jones & Cohen 2005 phasic mode) but routes to the SELECTION softmax, NOT the ARC-016 commit/de-commit gate that carries the MECH-104 volatility_interrupt claim."
@@ -53763,6 +53800,20 @@
     exp. (d) The corrected re-run V3-EXQ-689i is being queued separately (session
     modest-varahamihira-708d95); its result is the first valid measurement of the conversion
     finding, and re-promotion should wait on it.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-689d is WITHDRAWN.
+    REFUTED at rung (b), process topology, by failure_autopsy_V3-EXQ-689d-D3_2026-07-20, which
+    SUPERSEDES failure_autopsy_V3-EXQ-689d_2026-07-20 for defect D3 ONLY -- per R1-R3 shape (c) both
+    the direction and the epistemic category are retained, so the re-adjudication supersedes rather
+    than adds and MECH-448's evidence count stays 0.
+
+    SCOPE, read carefully: this withdraws D3 alone. 689d's overall withdrawal of C_PRIMARY STANDS
+    on D1 + D2, which are untouched -- D2 was independently re-verified (26 of 27 fields
+    bit-identical between ARM_PROPOSER_CTRL and ARM_MATCHED_NOISE, identical tick counts on all
+    three seeds). Cite D1 + D2 for that withdrawal, never D3. The consequent claim-level write
+    (status provisional -> candidate, epistemic_category standard) landed separately at REE_assembly
+    dc09b0d578 and is not re-applied here; this addendum is note hygiene only.
   depends_on:
     - MECH-439   # the F-variance monopoly; this is the "F's share must be rebalanced, shortlist insufficient" branch MECH-439's own text flags
     - MECH-447   # the rival it is discriminated against by 689a (lever-sufficiency vs residual-ceiling)
@@ -56758,6 +56809,15 @@
     paper's ATTRIBUTION (suite ablations plus the fixed-hyperparameter argument), not a
     measured per-ingredient causal decomposition. Confidence is therefore mechanism-plausibility,
     not transfer-demonstrated.
+
+    [2026-07-20 governance / intra-run substrate-divergence sweep sec 7 item 4] The intra-run
+    substrate-divergence hit (defect class D3) recorded against V3-EXQ-782 is WITHDRAWN.
+    REFUTED at rung (a), glob scope, by failure_autopsy_V3-EXQ-782_2026-07-20 (REE_assembly
+    2c6826d3e3): the closure-restricted fingerprint is identical in all four bands, and the three
+    files that changed mid-run are on no import path reachable from the driver. The divergent
+    whole-glob hash is a disk-state recording artefact, not a change in executed code. The
+    `weakens` reading STANDS unchanged and no confidence is re-weighted. Recorded so the flag
+    does not resurface as unexplained doubt in a later sweep.
   notes: >
     SCOPE EXCLUSION -- the structural half is deliberately NOT in this claim. DreamerV3 also
     trains its actor ENTIRELY on imagined 15-step rollouts with lambda-returns, so gradient-signal
