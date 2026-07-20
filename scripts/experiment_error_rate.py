@@ -40,29 +40,65 @@ WHAT IT MEASURES (three buckets, reported separately -- do not silently merge)
   NOT folded into the ERROR numerator, because we cannot tell a crash from a
   bookkeeping gap without reading the worker's journalctl.
 
-  DO NOT assume a phantom is a silent code crash. One was traced end-to-end on
-  2026-07-20 (V3-EXQ-699a) and the mechanism was NOT crash-before-manifest:
+  ROOT CAUSE (confirmed 2026-07-20 by session cranky-pascal-46cd9a):
+  `ree-v3/coordinator/db.py mark_queue_removed()` sets status='completed' for
+  EVERY exit from the queue and originally accepted a `reason` argument that it
+  silently DISCARDED. There is no cancelled/removed/errored status, so an
+  operator cancellation, a runner ERROR and a scientific FAIL all wrote an
+  identical row. ('completed' was never even in the column's declared enum
+  comment, `pending|claimed|failed`.)
 
-      21:05:38Z  cloud-3 claims and starts it (est 600 min)
-      08:45:50Z  a user session opens on cloud-3 (operator ssh; no OOM in journal)
-      08:46:25Z  [runner] INFRA-CRASH: exit=-15 (likely SIGTERM); leaving in
-                 queue, releasing claim, no completion written. actual_secs=42047
-      08:49:28Z  ree-runner service Stopped + Started (operator restart)
-      08:50:17Z  DB row flips to status='completed'
-      09:40:27Z  V3-EXQ-699b queued as the supersedor
+  So "phantom completion" is a MISNOMER. `status='completed' LEFT JOIN results
+  -> no row` does not isolate crashes; it isolates everything that left the
+  queue without posting a result -- DELIBERATE CANCELLATIONS INCLUDED.
 
-  So the runner behaved CORRECTLY and said so loudly -- it classified the
-  SIGTERM as transient infra, kept the item in queue, and deliberately wrote no
-  completion. The phantom was created by the SUBSEQUENT completed-flip plus
-  supersession by 699b, not by a silent crash. The 654e synthetic-ERROR path
-  correctly did not fire, because this was never a code crash.
+  Worked example, V3-EXQ-699a, traced end-to-end. Note the ordering: the
+  cancellation came FIRST and caused the SIGTERM, not the other way round.
 
-  Consequence for reading the output: the printed upper bound treats every
-  phantom as a crash, so it is a genuine UPPER bound and is expected to be
-  pessimistic. An operator-killed-then-superseded run inflates it without any
-  code being at fault. Before citing the upper bound as an error rate, spot-check
-  a phantom's journalctl for `INFRA-CRASH` and its queue_id for a lettered
-  supersedor -- both together mean "deliberately retired", not "crashed silently".
+      07-19 21:05:38Z  cloud-3 claims and starts it (est 600 min)
+      07-20 08:44:49Z  POST /queue/remove from hub 10.8.0.1 -> 401
+            08:45:21Z  POST /queue/remove -> 200   <-- PHANTOM CREATED HERE
+            08:46:04Z  POST /queue/remove -> 200
+            08:46:25Z  [runner] INFRA-CRASH: exit=-15 (SIGTERM); leaving in
+                       queue, releasing claim, no completion written (42047s)
+            08:48:28Z  force_stop cmd -> cloud-3 drains
+            08:50:17Z  reconcile tick re-upserts from the stale queue file;
+                       preserve_claim=True copies the existing status and only
+                       refreshes updated_at
+            09:40:27Z  V3-EXQ-699b queued as the supersedor
+
+  A /failure-autopsy session deliberately cancelled the 11.7h in-flight run to
+  replace it with an instrument repair. Intended workflow, correctly executed;
+  the only defect is that it is RECORDED identically to a real completion.
+
+  **`updated_at` is a RED HERRING** -- it is the last reconcile tick, not the
+  flip. An earlier revision of this file cited 08:50:17Z as the flip time and
+  inferred an operator ssh session as the trigger; both were wrong. Corroboration
+  that this generalises: several phantoms have a last claim attempt AFTER their
+  updated_at (495a by 24h, 700c-m by 25h, 624 by 11h) -- workers still trying to
+  claim items already marked completed, the signature of removal-then-file-lag.
+
+  WHY 654e's synthetic-ERROR path has never fired -- three upstream escape
+  hatches, all reached by `continue`:
+    1. the infra-crash interceptor (experiment_runner.py:3473, {137,-9,-11,-15,
+       143} no-sentinel) continues BEFORE the ERROR branch, so the synthetic
+       writer at :3548 is structurally unreachable from it. This is CORRECT --
+       the interceptor requeues properly and is NOT a phantom source.
+    2. the ERROR-with-missing-manifest guard (:3522) -- leaves in queue, continue.
+    3. POST /queue/remove bypasses the runner entirely. 699a's route.
+  Fleet-wide since 654e: 2 INFRA-CRASH, 0 synthetic manifests, 0 ERROR-missing.
+
+  WHY `results` has zero ERROR rows all-time: pre-654e,
+  `_report_result_and_align` was gated on a non-empty manifest path, so a crash
+  with no manifest skipped it while `report_queue_remove(queue_id,"ERROR")`
+  still fired. That is exactly the bug 654e fixed; the 5 historical confirmed
+  ERRORs (517c, 610a, 612b, 621, 669) simply predate it.
+
+  CONSEQUENCE FOR THE UPPER BOUND: it is inflated, because it counts deliberate
+  cancellations as possible errors. Once `removal_reason` is live (see below)
+  this script subtracts them automatically. Until then, spot-check a phantom for
+  a `/queue/remove` in the coordinator log and a lettered supersedor -- together
+  they mean "deliberately retired", not "crashed silently".
 
 * CORROBORATING -- per-machine `evidence/experiments/runner_status/<machine>.json`.
   NOTE the distinction that motivated this whole tool: the MONOLITHIC
@@ -146,14 +182,25 @@ out["n_results"] = rows("SELECT COUNT(*) FROM results %s" % where_r, args_r)[0][
 out["span"] = rows(
     "SELECT MIN(received_at), MAX(received_at) FROM results %s" % where_r, args_r)[0]
 
-# Crash-before-manifest signature: a completed experiment with no results row.
+# A completed experiment with no results row. NOT necessarily a crash -- see the
+# module docstring: mark_queue_removed() collapses cancellation/ERROR/FAIL into
+# status='completed'. `removal_reason` (added by session cranky-pascal-46cd9a in
+# ree-v3 coordinator/db.py) disambiguates them. It is read ONLY IF PRESENT, so
+# this probe keeps working against a hub whose migration has not run yet, and
+# starts subtracting cancellations automatically the moment it has.
+cols = [r[1] for r in rows("PRAGMA table_info(experiments)")]
+has_reason = "removal_reason" in cols
+out["has_removal_reason"] = has_reason
+reason_sel = "e.removal_reason" if has_reason else "NULL"
+
 phantom = rows(
-    "SELECT e.queue_id, e.claimed_by_machine, e.updated_at "
+    "SELECT e.queue_id, e.claimed_by_machine, e.updated_at, %s "
     "FROM experiments e LEFT JOIN results r ON r.queue_id = e.queue_id "
     "WHERE e.status = 'completed' AND r.run_id IS NULL %s "
-    "ORDER BY e.updated_at DESC" % where_e, args_e)
+    "ORDER BY e.updated_at DESC" % (reason_sel, where_e), args_e)
 out["phantoms"] = [
-    {"queue_id": q, "machine": m, "updated_at": u} for (q, m, u) in phantom]
+    {"queue_id": q, "machine": m, "updated_at": u, "removal_reason": rr}
+    for (q, m, u, rr) in phantom]
 
 # A results row with an outcome but no manifest bytes would be a second
 # crash-before-manifest signature. Reported so a future regression is visible.
@@ -276,7 +323,17 @@ def main():
     err_rate = (n_error / classified * 100.0) if classified else None
 
     phantoms = data["phantoms"]
-    n_phantom = len(phantoms)
+    has_reason = data.get("has_removal_reason", False)
+    # A reason the runner itself reports (PASS/FAIL/ERROR) is a real outcome; any
+    # other non-empty reason is an operator cancellation via POST /queue/remove.
+    # Only the latter is subtracted -- an ERROR removal is still a crash.
+    RUNNER_OUTCOMES = {"PASS", "FAIL", "ERROR"}
+    cancelled = [p for p in phantoms
+                 if (p.get("removal_reason") or "").strip()
+                 and (p["removal_reason"] or "").strip().upper() not in RUNNER_OUTCOMES]
+    unexplained = [p for p in phantoms if p not in cancelled]
+    n_phantom = len(unexplained)
+    n_cancelled = len(cancelled)
     rs_errs, rs_last, rs_files = scan_per_machine_errors(cutoff)
     # Upper bound treats every phantom as a crash; the truth is between the two.
     upper = ((n_error + n_phantom) / (classified + n_phantom) * 100.0
@@ -294,7 +351,10 @@ def main():
             "error_rate_pct": err_rate,
             "phantom_completions": n_phantom,
             "error_rate_upper_bound_pct": upper,
-            "phantom_detail": phantoms,
+            "phantom_detail": unexplained,
+            "operator_cancellations": n_cancelled,
+            "operator_cancellation_detail": cancelled,
+            "removal_reason_available": has_reason,
             "runner_status_errors_in_window": len(rs_errs),
             "runner_status_error_detail": rs_errs,
             "fleet_last_error_recorded": rs_last,
@@ -327,13 +387,25 @@ def main():
     else:
         print("  ERROR rate: %.1f%%  (%d / %d)" % (err_rate, n_error, classified))
     print()
+    if has_reason:
+        print("  operator cancellations (deliberate /queue/remove): %d -- EXCLUDED"
+              % n_cancelled)
+        for p in cancelled[:5]:
+            print("      %-16s %s" % (p["queue_id"], p.get("removal_reason")))
+    else:
+        print("  operator cancellations: NOT SEPARABLE on this hub --")
+        print("    the `removal_reason` column is not present in coordinator.db,")
+        print("    so deliberate cancellations are still counted below and the")
+        print("    upper bound is INFLATED. It self-corrects once the migration")
+        print("    lands (ree-v3 coordinator/db.py mark_queue_removed).")
     print("  phantom completions (completed, no results row): %d" % n_phantom)
     if n_phantom:
-        print("    These are crash-like but UNCLASSIFIED. Not folded into the")
-        print("    ERROR numerator above. Treating every one as a crash gives an")
-        print("    upper bound of %.1f%%; the true rate is in [%.1f%%, %.1f%%]."
+        print("    Crash-like but UNCLASSIFIED -- and, until removal_reason is")
+        print("    live, this bucket also contains deliberate cancellations.")
+        print("    Not folded into the ERROR numerator. Treating every one as a")
+        print("    crash gives an upper bound of %.1f%%; true rate in [%.1f%%, %.1f%%]."
               % (upper, err_rate if err_rate is not None else 0.0, upper))
-        for p in phantoms[:10]:
+        for p in unexplained[:10]:
             print("      %-16s %-18s %s"
                   % (p["queue_id"], p["machine"] or "(unrecorded)",
                      p["updated_at"]))
