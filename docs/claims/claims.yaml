@@ -52756,7 +52756,6 @@
       from: "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29#V3-EXQ-708"
       as_of: 2026-06-29
       verdict: non_contributory/substrate_ceiling
-  epistemic_category: substrate_ceiling
   implementation_phase: v3
   version_relevance: v3
   v3_pending: true
@@ -52764,17 +52763,22 @@
   ceiling_routing_note: "BUILD APPROVED 2026-06-27 (user decision; packet CPKT-TONIC-EXPLORATION-NOISE-20260618 'hybridize' rec.; decision_due 2026-07-02 met early). The `ceiling_decision: deferred` park marker is REMOVED -- this claim is now routed to /implement-substrate (NoisyNet learned per-parameter factorised-Gaussian weight noise at the E3 selection head, no-op default sigma_init=0 / flag OFF = bit-identical), NOT parked. Biology-before-formal gate PASSED at adjudication: Aston-Jones&Cohen 2005 (supports 0.78) + Tervo et al 2014 (supports 0.82, CAUSAL LC-NE->ACC gating of stochastic choice under uncertainty) ground the state-conditioned + self-annealing shape; MECH-313's state-independent framing is biologically under-specified. KNOWN BUILD RISK (recorded, not a blocker): the SAME-DAY confirmed cluster autopsy failure_autopsy_704b-706b-conversion-ceiling_2026-06-27 re-rooted the committed-action-class conversion ceiling to the SINGLE-ARENA collapse (-> ARC-110 v4_loop_segregation), corroborated by two independent mechanisms (MECH-451 finer-channel + MECH-314 curiosity, both re-derive-braked). That is the packet's own pre-registered could_be_wrong_if #4 (F-dominance/arena subsumes the injection-locus fix). THEREFORE the MECH-440 falsifier MUST (i) run on the 569i top-k shortlist + MECH-448 use_f_eligibility_demotion conversion substrate, and (ii) disambiguate the injection-SITE axis (weight noise vs temperature) from the single-arena/ARC-110 axis -- if it reproduces the single-arena ceiling (thrash-not-carve), route to ARC-110, NOT a deeper noise build. Coordinate with -- do not duplicate -- the empirical 687-successor. PROMOTES NOTHING: stays candidate/substrate_ceiling/v3_pending until the substrate lands + the falsifier returns contributory."
   pending_retest_after_substrate: true
   implementation_note: "SUBSTRATE IMPLEMENTED 2026-06-27 (/implement-substrate; decision-of-record evidence/decisions/cpkt_tonic_exploration_noise_build_decision_2026-06-27.md). Module ree-v3/ree_core/policy/noisy_selection_head.py (NoisySelectionHead): factorised-Gaussian weight noise built per-candidate from each candidate's first-action vector, injected into _modulatory_accum (+ the ARC-110 segregated `final`) BEFORE the committed within-eligible argmin so it PROPAGATES (the V3-EXQ-687 non-propagation fix). mu frozen at 0 (pure noise injector); self-anneals via a LOCAL confidence EMA on (1 - F-gap_norm). Config E3Config.use_noisy_selection_head (default False = bit-identical OFF) + noisy_selection_sigma_init (default 0.0 = exactly-zero output = bit-identical even ON). Smoke-tested: sigma=0 bit-identical; sigma>0 flips the committed argmin across resamples (propagation confirmed); finiteness/EMA guards block any nan injection. ARC-106 divergences logged: per-parameter sigma below the systems-level tonic/phasic gate; sigma annealed by LOCAL EMA not RL gradient (REE does not backprop selection). Falsifier QUEUED on the 569i top-k + MECH-448 demotion stack (loop-seg OFF vs ON disambiguation). PROMOTES NOTHING: stays candidate/substrate_ceiling/v3_pending until the falsifier returns contributory."
-  evidence_quality_note: >
-    V3-EXQ-708 (MECH-440 NoisyNet propagation falsifier) FAIL/non_contributory / substrate_not_ready_requeue
-    (cluster autopsy failure_autopsy_700d-708-single-arena-ceiling_2026-06-29). The selection-head weight
-    noise WAS injected supra-floor (noise_bias_range 0.22) but BOTH the temperature control and the weight
-    noise raised pre-commit class entropy by 0.0 -- the injection washes out at the F-dominated argmax. This
-    is 708's own pre-registered could_be_wrong_if #4 (the single-arena collapse subsumes the injection
-    locus), the same single-arena F-dominance ceiling that bounds the 700-lineage. MECH-440 UNWEAKENED (the
-    falsifier's non-vacuity gate correctly self-routed rather than producing a false weakens). Re-derive
-    brake NOT fired (1st MECH-440 substrate_ceiling/non_contributory autopsy). Route = the already-built
-    v4_loop_segregation (ARC-110) substrate (708's pre-registered ARM_NOISE_LOOPSEG escalation), validating
-    via V3-EXQ-707b; a single-arena 708 re-test is not informative. pending_retest_after_substrate.
+  evidence_quality_note: >-
+    V3-EXQ-708 (MECH-440 NoisyNet propagation falsifier) was RE-ADJUDICATED 2026-07-19
+    (failure_autopsy_V3-EXQ-708_2026-07-19). Its pre-commit class entropy DV is invalid: the driver read
+    e3.last_precommit_probs once per env step with no clear, and E3 select() runs on a 5-20-step
+    arousal-modulated cadence, so each probability vector was replicated by its hold duration. The weighting
+    is arm-dependent (matched-seed exposure differs by up to +58% between the OFF and NOISE arms), so the
+    between-arm delta is distorted, not merely imprecise. The previously recorded finding -- that
+    supra-floor weight noise raised pre-commit entropy by 0.0 and therefore 'washes out at the F-dominated
+    single-arena argmax' -- is a claim about the contaminated quantity and is WITHDRAWN. The run's
+    substrate_not_ready_requeue route survives on margin arithmetic, but MECH-440 was never validly tested.
+    Noise injection itself was genuine (bias range 0.2216, supra-floor), and all five non-DV preconditions
+    passed, so the defect is in driver instrumentation, not in the substrate. epistemic_category
+    substrate_ceiling CLEARED -- MECH-440 is untested, not ceiling-limited. The correction is not
+    recoverable from the recorded emission (no per-row sink; Phase 3 cloud workers transport only
+    manifest_bytes). Pending a corrected re-run V3-EXQ-708a using the clear-before-select pattern of
+    v3_exq_785a. MECH-440 remains candidate / v3_pending.
   depends_on:
     - MECH-313   # parent: stochastic_noise_floor (LC-NE tonic analog), currently a STATE-INDEPENDENT floor; this refines it
     - MECH-260   # dACC anti-recency (the other tonic-noise leg in the GAP-C / Q-045 cluster)
