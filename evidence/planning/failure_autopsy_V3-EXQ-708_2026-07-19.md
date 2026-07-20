@@ -394,3 +394,25 @@ for the claim holder or the next `/governance` walk to apply. In summary: this r
 opens no fan-out and eliminates no leg. It **withdraws** the evidentiary basis of an existing
 resolution, so any registry leg resolved by 708's pre-commit entropy readout should revert from a
 resolved state to `alive`, with `resolving_runs` retained and a basis noting the withdrawal.
+
+### 13a. CONDITION CHECKED 2026-07-20T05:15Z -- NO REGISTRY WRITE IS OWED
+
+The conditional above was checked and **its condition is empty**. `hypothesis_space_registry.v1.json`
+contains **no occurrence of "708" and no occurrence of "MECH-440"** anywhere in the document, and
+none of its 10 questions (`competence_floor`, `conversion_ceiling_root`, `da_density_approach`,
+`inv088_diversity_readout`, `ceiling_vs_driver`, `curiosity_diversity_vs_amplifier`,
+`control_plane_rank`, `consolidation_readout_validity`, `zworld_underdifferentiation_cause`,
+`arousal-variance-amplifier`) is adjudicated by V3-EXQ-708. **Matching legs: 0.**
+
+Re-verified after the overnight registry activity of 2026-07-19/20 -- including REE_assembly
+`b9babbe180`, the V3-EXQ-787 autopsy that eliminated
+`arousal-variance-amplifier::H-endogenous-hazard-geometry`. The registry moved and still cites
+neither 708 nor MECH-440.
+
+**Do not go hunting for a leg to revert -- there is none.** Skip Step 9b for this autopsy entirely.
+Section 13's conditional is correctly stated but **vacuous**; it becomes live only if some future
+leg comes to cite V3-EXQ-708 as a resolving run, which would require a new adjudication rather than
+this one. Recorded here so a later `/governance` walk does not re-derive the check.
+
+(Separately: the claim that motivated the skip, `elastic-newton-d18328`, has since closed, so the
+registry is no longer contended. That is moot given there is nothing to write.)

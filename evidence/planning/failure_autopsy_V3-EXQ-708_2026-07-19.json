@@ -157,7 +157,15 @@
     "eliminates_leg": false,
     "intended_action": "WITHDRAWAL, not resolution. This re-adjudication removes the evidentiary basis of an existing resolution rather than resolving anything new. Any registry leg whose resolution.resolving_runs includes V3-EXQ-708 AND whose basis rests on the pre-commit class entropy readout should REVERT from its resolved state to state: 'alive', retaining resolving_runs and recording basis: 'resolution withdrawn 2026-07-19 -- the adjudicating run V3-EXQ-708 measured its pre-commit entropy DV on a stale-E3 mass-weighted mixture; see failure_autopsy_V3-EXQ-708_2026-07-19'. met_elimination_bar and non_degenerate must be set false on any such leg.",
     "invariant_notes": "A revert of this kind LOWERS the surviving-eliminated count without lowering initial_frozen_count, so it does not touch invariants 1/3/3a/6 (no denominator movement, no fan-out growth). It will show as an increase in surviving hypotheses in the Dimension 3 rollup -- that is correct and should not be read as regression: it is a withdrawn elimination being honestly un-counted.",
-    "applies_to": "the claim holder (elastic-newton-d18328) or the next /governance walk"
+    "applies_to": "the claim holder (elastic-newton-d18328) or the next /governance walk",
+    "condition_checked": {
+      "checked_utc": "2026-07-20T05:15:19Z",
+      "matching_legs": 0,
+      "no_registry_write_owed": true,
+      "basis": "hypothesis_space_registry.v1.json contains NO occurrence of '708' and NO occurrence of 'MECH-440' anywhere in the document, and none of its 10 questions (competence_floor, conversion_ceiling_root, da_density_approach, inv088_diversity_readout, ceiling_vs_driver, curiosity_diversity_vs_amplifier, control_plane_rank, consolidation_readout_validity, zworld_underdifferentiation_cause, arousal-variance-amplifier) is adjudicated by V3-EXQ-708. The intended_action above is therefore VACUOUS -- correctly stated as a conditional, but its condition is empty.",
+      "recheck_note": "Re-verified after the overnight registry activity of 2026-07-19/20 (including REE_assembly b9babbe180, the V3-EXQ-787 autopsy that eliminated arousal-variance-amplifier::H-endogenous-hazard-geometry); the registry moved and still cites neither 708 nor MECH-440.",
+      "instruction": "Do NOT go hunting for a leg to revert -- there is none. Skip Step 9b for this autopsy entirely. This block becomes live only if some future leg comes to cite V3-EXQ-708 as a resolving run, which would require a NEW adjudication rather than this one."
+    }
   },
   "cluster_pattern": null
 }
