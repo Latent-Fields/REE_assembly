@@ -56713,13 +56713,28 @@
     HYPOTHESIS-SPACE LEDGER: H-retention-auxiliary-decay ELIMINATED under qid
     competence_floor. Further auxiliary-schedule iteration is refuted -- the 788 critic
     result supersedes that lever.
-    LIVE DECISION SURFACED, NOT TAKEN (2026-07-20 governance): the
-    mech457_policy_kl_anchor substrate landed the same morning (ree-v3 399b17caed) to make
-    the retention portfolio three-of-three buildable. Since 788 decides retention, whether
-    the KL-anchor leg still warrants a run as a RETENTION probe -- as against standing on
-    its own as a distinct trust-region mechanism -- is an open routing decision for the
-    user. Governance does not queue experiments; this is recorded so the decision is not
-    lost, and no leg is queued or cancelled here.
+    CORRECTION 2026-07-20 (same cycle, user-flagged): an earlier draft of this note
+    recorded an "open routing decision" about whether the mech457_policy_kl_anchor leg
+    still warranted a run. THERE IS NO SUCH DECISION -- the note was wrong on two counts
+    and is retracted here rather than silently edited.
+    (1) SCOPE ERROR. The autopsy's supersession is narrow and says only that the 788 critic
+    result "supersedes the AUXILIARY LEVER, so a further schedule iteration would optimise a
+    lever shown to be the wrong one" -- i.e. it refuses a re-run of 789's schedule axis. It
+    makes no claim about the KL-anchor leg. The frozen ledger agrees: of the four retention
+    legs, ONLY H-retention-auxiliary-decay is eliminated; H-retention-critic,
+    H-retention-consolidation and H-consummation-binding all remain ALIVE.
+    (2) STATE ERROR. The leg is neither unbuilt nor unqueued. The substrate landed at
+    ree-v3 399b17caed and the leg is queued as V3-EXQ-792 (status pending, script
+    experiments/v3_exq_792_mech457_retention_consolidation.py, testing
+    H-retention-consolidation as the third and final GOV-FANOUT-1 retention leg alongside
+    V3-EXQ-788). Nothing was awaiting a decision.
+    THE PRINCIPLE, WHICH GENERALISES BEYOND THIS LEG: cancelling a portfolio leg because a
+    SIBLING leg returned positive is exactly the move GOV-FANOUT-1 exists to prevent. A
+    distributional critic that retains competence does not establish that a trust-region
+    anchor does not; the legs are independent in locus by design, which is why the portfolio
+    was diverse in the first place. Nor is "retention probe" opposed to "trust-region
+    mechanism" -- V3-EXQ-792 is a retention leg that operates VIA a trust-region anchor.
+    A leg is eliminated by ITS OWN adjudicated result, never by a sibling's.
     THE H1 DISCRIMINATOR RAN, AND ITS READING IS TWO-PART (V3-EXQ-737, confirmed
     failure_autopsy_V3-EXQ-737a_2026-07-20; claim_ids empty, diagnostic, brake_exempt, so
     it carries NO evidence weight on this claim and does not move its confidence).
