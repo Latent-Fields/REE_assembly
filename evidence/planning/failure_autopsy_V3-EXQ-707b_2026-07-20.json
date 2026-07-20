@@ -1,0 +1,259 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:07:48Z",
+  "session_id": "festive-grothendieck-fe529d",
+  "scope": "single",
+  "status": "confirmed",
+  "is_re_adjudication": true,
+  "supersedes_autopsy": "failure_autopsy_V3-EXQ-707b_2026-06-29",
+  "origin": "hold_weighted_e3_readout_corpus_sweep_2026-07-20.md sec 4a (REE_assembly 4ceb7d22f9)",
+  "manifest_edited": false,
+  "registry_modified": false,
+  "targets": [
+    {
+      "run_id": "v3_exq_707b_arc110_loop_segregation_c2_release_20260629T144004Z_v3",
+      "queue_id": "V3-EXQ-707b",
+      "claim_ids": ["ARC-110"],
+      "self_route_label": "valid_null_loops_vary_but_no_conversion_ceiling_intrinsic_weakens_arc110",
+      "prior_evidence_direction": "weakens",
+      "failed_criterion": "discrimination",
+      "defect": {
+        "form": 2,
+        "name": "hold_weighted_e3_readout",
+        "dv": "committed_class_entropy_nats",
+        "accumulation_site": "ree-v3/experiments/v3_exq_707b_arc110_loop_segregation_c2_release.py:1023-1035",
+        "mechanism_site": "ree-v3/ree_core/agent.py:5429",
+        "description": "committed_class_counts accumulated on every P2 env step gated only by is_p2, with no ticks['e3_tick'] guard; agent.py:5429 returns the held/trajectory-stepped action before e3.select() is reached, so the class histogram is weighted by hold duration.",
+        "cadence": "default 10 (utils/config.py:2017), MECH-093-modulated 5-20 (heartbeat/clock.py:52-70)",
+        "form1_visible": false,
+        "form1_blind_reason": "no diagnostics latch is touched, so e3_diagnostics_staleness_lint is structurally blind",
+        "triage_class": "DISQUALIFYING",
+        "triage_reason": "entropy over a class histogram is a distribution-shape statistic; replication reweights the distribution itself"
+      },
+      "arm_exposure_spread_n_p2_ticks": {
+        "metric": "A1_LOOPS vs A0_SINGLE_ARENA percent difference",
+        "by_seed": {"42": 49.8, "43": -1.1, "44": 7.0, "45": 97.6, "46": 6.6, "47": -23.8},
+        "max_abs": 97.6,
+        "divergent_seeds_only": {"42": 49.8, "44": 7.0, "46": 6.6}
+      },
+      "calibration_663_applies": false,
+      "calibration_663_exclusion_grounds": [
+        "different statistic class -- entropy over a histogram, not a continuous magnitude",
+        "different arm symmetry -- arms differ in hold duration, the quantity doing the weighting, so it does not cancel",
+        "different magnitude -- spread is 1-2 orders of magnitude above the 663 artifact scale"
+      ],
+      "decisive_argument": {
+        "name": "the A1-vs-null contrast has no resolving power",
+        "detail": "The pre-registered DECISIVE-weakens branch requires a valid null AND A1 failing to lift above A0/null. Per divergent seed, A1 minus ARM_NOISE is sign-INCONSISTENT: -0.1173 (s42), -0.0678 (s44), +0.1687 (s46), magnitudes 0.068-0.169 nats, all within or adjacent to the 0.115-0.134 nat band demonstrated reachable by hold-weighting alone (autopsy 699). The pooled mean contrast is +0.0153 nats, 8x below that floor, and its sign is an artefact of averaging seeds whose individual signs disagree. The instrument cannot distinguish A1>null from A1~null from A1<null; the branch taken was unreachable regardless of bias direction.",
+        "why_stronger_than_shortfall_comparison": "does not require assuming the contamination is large enough to close a specific gap -- only that it exceeds the gap being resolved, which is measured and not in dispute"
+      },
+      "per_seed_c1": {
+        "criterion": "C1_A1_loops_strict_above_A0_and_in_layer_null",
+        "shortfall_formula": "max(A0, ARM_NOISE) + 0.05 - A1",
+        "divergent_seeds": {
+          "42": {"a0": 1.141017, "a1": 0.923800, "arm_noise": 1.041100, "a1_minus_null": -0.117300, "shortfall": 0.267200},
+          "44": {"a0": 1.009700, "a1": 0.998800, "arm_noise": 1.066600, "a1_minus_null": -0.067800, "shortfall": 0.117800},
+          "46": {"a0": 1.126100, "a1": 0.960200, "arm_noise": 0.791500, "a1_minus_null": 0.168700, "shortfall": 0.215900}
+        },
+        "nearest_shortfall_inside_demonstrated_band": true,
+        "demonstrated_reachable_band_nats": [0.115, 0.134],
+        "c1_a1_n_seeds": 0,
+        "c1_n_divergent": 3
+      },
+      "c2": {
+        "criterion": "C2_limbic_load_bearing_a1_above_drop",
+        "arm_drop_limbic_mean": 0.932844,
+        "a1_mean": 0.838471,
+        "gap": 0.094373,
+        "inside_demonstrated_band": true,
+        "verdict": "indefensible on its own"
+      },
+      "recoverable_by_reanalysis": false,
+      "recoverability_note": "no per-tick sink, no n_fresh_select/n_latched telemetry, no per-tick class stream -- only per-(arm, seed) scalars. The replication factor is unobservable from the recorded emission (699 sec 4e). A corrected re-run is required.",
+      "readiness_battery": {
+        "verdict": "STANDS, with two corrections",
+        "gates": [
+          {"name": "in_layer_null_live", "measured": 3.0, "threshold": 2.0, "class": "SAFE", "verdict": "SURVIVES", "basis": "strict >0 test on loop_noise_active_ticks; 1700/18072/1813/6241/3374/4325 on ARM_NOISE vs hard ZERO on A0 and A1. Replication cannot manufacture a positive from an all-zero record. RETAINED POSITIVE RESULT: the same-layer null the single arena could not construct was genuinely built and is genuinely live."},
+          {"name": "frac_pre_ge2", "measured": 1.0, "threshold": null, "class": "SAFE", "verdict": "SURVIVES", "basis": "exactly 1.0 on all 24 arm-seed cells -- saturated, nowhere to move"},
+          {"name": "named_channel_routing_live", "measured": 1.414214, "threshold": 0.001, "class": "SAFE", "verdict": "SURVIVES, framing CORRECTED", "basis": "carried entirely by the vigour channel at exactly sqrt(2) on EVERY arm and EVERY seed -- zero variance across all 24 cells -- vs {} / 0.0 when routing is off. A structural constant of project_channel_range (e3_selector.py:124, range computed at :1701), not a measured substrate property. Cuts IN FAVOUR of survival (a constant cannot be reweighted) but it is a BINARY liveness indicator (0 vs sqrt(2)), not a graded magnitude. The 2026-06-29 '1.414 >> 0.001' framing reads as a 1414x margin on a measured quantity and overstates its evidential content: it certifies routing is on and non-degenerate (and does cleanly resolve the 707 vacuous DROP==A1 byte-identity); it does NOT evidence substantial limbic per-candidate competition."},
+          {"name": "loops_carry_live_cross_loop_variance", "measured": 0.372106, "threshold": 0.05, "class": "AT_RISK", "verdict": "probably survives, NOT certified", "basis": "a fraction over hold-weighted ticks; 7.4x margin is large but the statistic is not threshold-invariant"},
+          {"name": "learning_engaged_delta_t_nonflat", "measured": 0.00287, "threshold": 0.0001, "class": "AT_RISK", "verdict": "probably survives, NOT certified", "basis": "28.7x margin"},
+          {"name": "enough_divergent_seeds", "measured": 3.0, "threshold": 3.0, "class": "AT_RISK_ZERO_MARGIN", "verdict": "NOT SAFE", "basis": "cleared at EXACTLY threshold, zero headroom. Input is consumed_summary_pairwise_dist_mean, a continuous mean-of-magnitudes accumulated per env step from CACHED candidates (agent.py:4812, same defect family / MECH-057a). Seed 47's A0 arm misses the 0.05 floor by 0.00064 (1.3%) on the seed with the design's second-worst exposure asymmetry (-23.8%). One seed crossing flips n_divergent 3->4 and changes both C1 and C2 denominators. Independently corroborated: V3-EXQ-708a's queue note flags the identical 3.0/3.0 zero-headroom condition in 708 and adds a guard -- a LINEAGE-WIDE fragility, not a 707b quirk."}
+        ],
+        "per_seed_divergence_margins": {
+          "floor": 0.05,
+          "note": "consumed_summary_pairwise_dist_mean per (seed, arm); divergent requires all three C1 arms above floor",
+          "42": {"a0": 0.07976, "a1": 0.13021, "arm_noise": 0.07542, "divergent": true},
+          "43": {"a0": 0.02710, "a1": 0.06173, "arm_noise": 0.08149, "divergent": false},
+          "44": {"a0": 0.12805, "a1": 0.18622, "arm_noise": 0.08168, "divergent": true},
+          "45": {"a0": 0.04414, "a1": 0.02339, "arm_noise": 0.03453, "divergent": false},
+          "46": {"a0": 0.10031, "a1": 0.10685, "arm_noise": 0.08200, "divergent": true},
+          "47": {"a0": 0.04936, "a1": 0.10158, "arm_noise": 0.07145, "divergent": false, "near_miss": "A0 misses floor by 0.00064 (1.3%)"}
+        }
+      },
+      "recording_gap": {
+        "is_recording_debt": true,
+        "validator": "ree-v3/validate_recording.py",
+        "missing_always_core": ["recording_schema", "substrate_hash", "machine_class", "elapsed_seconds", "config", "seeds"],
+        "note": "result.seeds exists; the top-level field does not. No substrate_hash means the executed substrate cannot be confirmed, so the retained readiness verdict is provenance-unpinned and no arm reuse is possible. Same gap 708 had. Repair is RECORDING these per experimental_recording_standard_2026-07-12.md sections 3b/3c, not a blind re-run.",
+        "standard_ref": "REE_assembly/evidence/planning/experimental_recording_standard_2026-07-12.md"
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- not tested; ARC-110's single-arena-artefact hypothesis was never validly measured, so it is neither weakened nor supported",
+        "biological_reference": "clear (unchanged) -- Alexander/DeLong/Strick parallel segregated cortico-BG-thalamic loops, real and load-bearing; an instrument defect cannot bear on biology",
+        "prerequisites": "unknown -- the DA-gated-arbitration inference was derived from the contaminated contrast and does not survive as an empirical finding",
+        "implementation": "partial, and demonstrated live -- loop structure built; in_layer_null_live and routing-live retained. Static arithmetic cross-loop arbitration is a DESIGN FACT, not a finding of this run",
+        "environment": "adequate -- unchanged; same GAP-A reef-bipartite substrate as the matched 704b arms",
+        "measurement": "DEFECTIVE (dominant) -- hold-weighted entropy DV; null contrast 8x below the demonstrated contamination floor; admission gate at zero margin",
+        "integration": "unknown -- rested entirely on the withdrawn C1/C2",
+        "scale": "adequate -- not the binding constraint"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Alexander / DeLong / Strick (1986) parallel segregated cortico-basal ganglia-thalamic loops (motor / associative-dorsolateral-prefrontal / limbic-orbitofrontal-cingulate)",
+        "dependencies": ["dopamine-gated striatal plasticity (D1/D2 pathways learning the arbitration)", "ARC-107 dopamine-into-gating", "MECH-448", "MECH-449"],
+        "is_formal_import": false,
+        "divergence": "none newly established by this run. The 2026-06-29 reading that the FAIL matched a missing-dependency signature (segregated loops WITHOUT DA-gated arbitration) was derived from the contaminated contrast and is withdrawn as an empirical finding. It remains a live and well-motivated biological hypothesis independently predicted by the BG-assembly map, but 707b is not evidence for it.",
+        "lit_status": "present"
+      },
+      "withdrawal_scope": {
+        "finding_withdrawn": true,
+        "derived_narrowing_withdrawn": true,
+        "readiness_withdrawn": false,
+        "user_confirmed": true,
+        "narrowing_text_withdrawn": "loop segregation is necessary-but-not-sufficient; alone, with static arithmetic cross-loop arbitration, it does not lift the F-dominance ceiling; the conversion route requires coupling with learned/dopamine-gated cross-loop arbitration (MECH-448/449/ARC-107)",
+        "rationale": "the narrowing's empirical premise was precisely A1_LOOPS ~ A0_SINGLE_ARENA -- the contaminated contrast. A derived narrowing falls with the finding that derived it. ARC-110 returns to UNTESTED on this question -- not narrowed, not weakened."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "WITHDRAWN 2026-07-20 (failure_autopsy_V3-EXQ-707b_2026-07-20, user-confirmed; supersedes the 2026-06-29 autopsy and the note it produced). V3-EXQ-707b's weakens on the single-arena-artefact sub-hypothesis is withdrawn as a measurement/test-design defect, and the narrowing derived from it (necessary-but-not-sufficient; requires learned/DA-gated cross-loop arbitration) is withdrawn with it. DEFECT: the load-bearing C1/C2 DV committed_class_entropy_nats is accumulated per ENV STEP from int(action[0].argmax()) (driver :1023-1035) with no e3_tick guard, while agent.py:5429 returns the HELD action before e3.select() -- so the class histogram is weighted by hold duration (defect form 2; e3_diagnostics_staleness_lint is structurally blind to it). DISQUALIFYING on both counts: an entropy over a class histogram is a distribution-shape statistic, and arm exposure differs by up to +97.6% (A1 vs A0: +49.8% s42, +7.0% s44, +6.6% s46 on the divergent seeds), so it does not cancel. The 663 calibration (<1%, sign-varying) explicitly does not apply (autopsy 699 sec 4d: different statistic class, different arm symmetry, 1-2 orders of magnitude). DECISIVE: the A1-vs-null contrast that the pre-registered DECISIVE branch depends on is sign-inconsistent across all three divergent seeds (-0.1173 s42, -0.0678 s44, +0.1687 s46), every magnitude within/adjacent to the 0.115-0.134 nat band 699 demonstrated hold-weighting alone can move; the pooled +0.0153 nat contrast is 8x below that floor. The instrument cannot distinguish A1>null from A1~null from A1<null, so the branch taken was unreachable regardless of bias direction. C1 shortfalls 0.1178/0.2159/0.2672; C2 gap 0.0943 (inside the band). NOT recoverable by reanalysis (no per-tick sink, no fresh-select telemetry). READINESS BATTERY STANDS: in_layer_null_live (strict >0 tick count, 1700-18072 on ARM_NOISE vs hard zero on A0/A1 -- threshold-invariant; the same-layer null the single arena could NOT construct was genuinely built and is genuinely live, a RETAINED positive result) and frac_pre_ge2 (exactly 1.0, all 24 cells, saturated). named_channel_routing_live also survives but the 1.414 >> 0.001 framing is CORRECTED: it is carried by vigour at exactly sqrt(2) on every arm and seed (zero variance across 24 cells) vs 0.0 when off -- a structural constant of project_channel_range, hence a BINARY liveness indicator, not a graded magnitude. It certifies routing is on and non-degenerate (and does cleanly resolve the 707 vacuous DROP==A1); it does NOT evidence substantial limbic per-candidate competition. CAUTION: enough_divergent_seeds cleared at EXACTLY threshold (3.0/3.0) with seed 47 missing the 0.05 floor by 0.00064 (1.3%) on a statistic drawn from the contaminated cache path (agent.py:4812) -- zero headroom; the identical condition is flagged in 708. Substrate build itself SUCCEEDED (positive datum, unchanged). ARC-110 returns to untested on the single-arena-artefact question -- neither weakened nor narrowed. Stays candidate / substrate_conditional / PROMOTES NOTHING; awaiting -> corrected re-run V3-EXQ-707c. RECORDING GAP: 6 always-core fields absent (recording_schema, substrate_hash, machine_class, elapsed_seconds, config, seeds) -- no substrate_hash, so provenance is unpinned and no arm reuse is possible. PROPAGATION: the V3-EXQ-708 re-adjudication (sec 5a) recruited 707b to repair the leg its own withdrawal broke, and (sec 10) redirected 708a's design away from the loop-segregation bet -- both unsupported. V3-EXQ-708a is IN FLIGHT (claimed ree-cloud-2 2026-07-20T05:23:08Z) having DROPPED ARM_NOISE_LOOPSEG (4 arms -> 3) on this now-withdrawn authority; it is correctly allowed to complete (its MECH-440 question and repaired instrument are unaffected), but the route-to-ARC-110 branch is UNMEASURED, not settled, and 708a must not be read as bearing on ARC-110 in either direction. ILLUSORY-CONFLICT CHECK: 708 sec 5a's named fallback (700d + the 700b/700c/704b-706b lineage) is itself largely disqualified by the same corpus sweep -- 700d and 704b turn entirely on a disqualified statistic, 700b must not be cited in either direction, 700c/704 are SAFE but are readiness requeues rather than ceiling findings, 706b unadjudicated. The MECH-439 intrinsic-ceiling reading therefore has NO uncontaminated positive leg; it is NOT refuted, but must not be cited as established pending 707c.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "routing is queue-experiment, not implement-substrate. The substrate is built and was demonstrated live (in_layer_null_live and named_channel_routing_live both retained). This is instrument repair of a run that never validly measured its DV -- the V3-EXQ-785 -> 785a and 708 -> 708a shape."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "illusory_conflict_check": {
+        "performed": true,
+        "mandatory_pairing_satisfied": true,
+        "finding": "Withdrawing 707b does NOT leave a single-legged convergence argument -- it leaves NO uncontaminated positive leg for the MECH-439 intrinsic-ceiling reading.",
+        "fallback_named_by_708_sec_5a": "700d plus the 700b / 700c / 704b-706b lineage",
+        "fallback_assessment": [
+          {"run": "700d", "sweep_verdict": "removed its script's only SAFE blocker via retune -- re-running uncorrected would turn ENTIRELY on a disqualified statistic", "usable": false},
+          {"run": "704b", "sweep_verdict": "same retune finding as 700d", "usable": false},
+          {"run": "700b", "sweep_verdict": "both load-bearing conversion criteria read PASS behind a disqualified readiness gate -- must not be cited in either direction", "usable": false},
+          {"run": "700c", "sweep_verdict": "verified SAFE, but a readiness requeue (magnitude-matching gate violated 10x)", "usable": false, "reason": "a readiness requeue establishes the arm was not ready; it does not positively establish a ceiling"},
+          {"run": "704", "sweep_verdict": "verified SAFE, but a readiness requeue (violated 44x)", "usable": false, "reason": "same as 700c"},
+          {"run": "706b", "sweep_verdict": "not adjudicated in the sweep", "usable": null},
+          {"run": "708", "sweep_verdict": "withdrawn by its own re-adjudication", "usable": false},
+          {"run": "707b", "sweep_verdict": "withdrawn here", "usable": false}
+        ],
+        "conclusion": "The MECH-439 intrinsic-ceiling reading is NOT REFUTED -- no corrected run has tested it either way -- but it is currently unsupported by any uncontaminated run and must not be cited as established until one exists.",
+        "user_confirmed_framing": "record as currently unsupported"
+      },
+      "propagation": [
+        {
+          "id": "P1",
+          "target": "failure_autopsy_V3-EXQ-708_2026-07-19 sec 5a",
+          "kind": "repair_leg_unsupported",
+          "status": "UNSUPPORTED",
+          "detail": "708 sec 5a withdrew its own DV, removing one of the two legs of the cluster's convergence argument, then repaired the remainder by recruiting 707b verbatim as 'a non_degenerate: true valid null concluding the conversion ceiling is intrinsic to MECH-439 F-dominance, not a single-arena artefact'. That repair now rests on a withdrawn instrument and fails.",
+          "action": "governance annotates 708 sec 5a"
+        },
+        {
+          "id": "P2",
+          "target": "V3-EXQ-708a",
+          "kind": "design_redirection_live",
+          "status": "IN_FLIGHT",
+          "queue_status": "claimed",
+          "machine": "ree-cloud-2",
+          "claimed_at": "2026-07-20T05:23:08Z",
+          "estimated_minutes": 900,
+          "detail": "708a DROPPED ARM_NOISE_LOOPSEG (708 ran 4 arms, 708a runs 3) explicitly because 707b 'concluded the conversion ceiling is intrinsic to MECH-439 F-dominance, so the route-to-ARC-110 outcome branch is settled and is deliberately not offered'. The same justification appears in the script docstring and mirrors 708 sec 10's venue note.",
+          "disposition": "LET IT RUN (user-confirmed)",
+          "disposition_rationale": "708a tests MECH-440, not ARC-110, on a repaired instrument (fresh-select-only DV, n_fresh_select/n_latched telemetry, per-arm-seed exposure recording, fresh_selects_sufficient guard, stamp_recording_core). None of that is touched by this withdrawal, so 708a's MECH-440 verdict will be SOUND. Aborting a ~15h in-flight run that will return a valid answer would destroy real work for no epistemic gain.",
+          "required_record_changes": [
+            "708a's result must NOT be read as bearing on ARC-110 or the loop-segregation route in either direction -- it is silent on that question by construction",
+            "the ARC-110 loop-segregation question is recovered by the corrected 707c, NOT by re-running 708a and NOT by restoring the arm to 708a",
+            "governance annotates the 708a queue note / manifest on landing so the 'settled' clause does not propagate further"
+          ]
+        },
+        {
+          "id": "P3",
+          "target": "claim_synthesis_MECH-439_2026-06-29",
+          "kind": "contingent_trigger_fired_on_withdrawn_premise",
+          "status": "NO_ACTION_REQUIRED",
+          "detail": "The pre-registered contingent /claim-synthesis DID fire on 707b's authority (generated 2026-06-29T19:35:04Z, 23 minutes after the 707b autopsy). Its verdict was 'REFUSE new-child decomposition -- the cluster is ALREADY METABOLIZED', so nothing phantom entered the registry and no child claim needs unwinding. Its closing recommendation (apply the deferred 2026-06-20 narrow-and-retain) did cite 707b as the supplying evidence, but MECH-439 was subsequently moved by a different mechanism -- the 2026-07-09 GOV-CEIL-1 ceiling-exhaustion demotion -- which supersedes that framing."
+        },
+        {
+          "id": "P4",
+          "target": "MECH-439 GOV-CEIL-1 ceiling-exhaustion demotion (2026-07-09)",
+          "kind": "scope_flag",
+          "status": "FLAGGED_NOT_ADJUDICATED",
+          "detail": "The demotion rests on 10 confirmed substrate_ceiling hits (689a/700/700a/700b/700c/700d/709/710/711/713). At least 700b, 700d, 710, 711 and 713 appear in the corpus sweep's contaminated or partially-withdrawn set. 707b is NOT in that list, so this autopsy does not change the count and does not re-open the demotion.",
+          "action": "re-total the demotion's evidential base once the sweep's already-routed 710 / 711 / 713 autopsies land. Out of scope for a 707b re-adjudication."
+        }
+      ],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "NOT FIRED, following the V3-EXQ-708 precedent exactly. The recommended category is measurement_test_design_defect, not substrate_ceiling / non_contributory-as-ceiling, so the counting rule is not met. The 2026-06-29 autopsy stamped fired:false with direction weakens (1st for ARC-110); this re-adjudication WITHDRAWS that reading rather than adding a second, so the ARC-110 ceiling count moves to 0, not 2. A corrected re-run is not the behaviour the brake exists to prevent: the brake stops a claim being re-tested at the same granularity against the same ceiling letter after letter, whereas 707c is INSTRUMENT REPAIR of a run that never validly measured its DV. This is the V3-EXQ-785 -> 785a shape, which the corpus already sanctions."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsy_on_target_exists": true,
+        "prior_autopsy": "failure_autopsy_V3-EXQ-707b_2026-06-29",
+        "routing": null,
+        "note": "A prior autopsy on this target exists, which is the literal trigger condition, so the check was run. It does NOT fire: the trigger looks for a SECOND FAILURE SIGNATURE circling the same claim -- evidence the claim is several claims. This is a re-adjudication of the SAME RUN on instrument grounds, not a second independent failure. Recording it as granularity debt would be a false positive. Stamped honestly so check_granularity_debt_recurrence.py (GOV-GRAN-1) can see the reasoning."
+      },
+      "fanout_recommendation": null,
+      "fanout_exempt_reason": "the bottleneck routes to one unambiguous build -- a corrected re-run (707c) of an already-designed experiment. No discrimination between rival hypotheses is open, so the GOV-FANOUT-1 portfolio exemption applies.",
+      "hypothesis_space_ledger": {
+        "step_9b_ran": false,
+        "skip_reason": "Neither condition holds. No fanout_recommendation is emitted (single-build exemption), and 707b has NO pre-registered leg in hypothesis_space_registry.v1.json -- no question carries ARC-110, and no entry references 707b or the single-arena-artefact hypothesis (verified against all 10 registered questions). There is nothing to resolve and nothing to un-eliminate.",
+        "registry_modified": false
+      },
+      "learning_extracted": [
+        "A hold-weighted entropy DV can destroy a finding while leaving the readiness battery intact -- the 699 precedent, now confirmed a second time on a structurally different design. Adjudicate the two separately, always.",
+        "Resolving power beats margin arithmetic as a withdrawal argument. The decisive fact was not 'the shortfall is inside the contamination band' (true for only 1 of 3 seeds) but 'the null contrast is sign-inconsistent and 8x below the contamination floor'. The former needs an assumption about magnitude; the latter does not, and holds whichever way the bias runs.",
+        "A gate with zero variance across an entire design is a structural constant, not a measurement. vigour = sqrt(2) on all 24 cells survives contamination for exactly that reason -- but its margin language must not be read as evidential content. Zero variance is a prompt to check the generating expression, not a strong result.",
+        "Check the admission gate's HEADROOM, not just whether it passed. enough_divergent_seeds at 3.0/3.0 with a 1.3% miss on a fourth seed is a design with no slack, on a statistic from the contaminated cache path. The same zero-headroom condition independently appears in 708 -- a lineage-wide fragility.",
+        "A withdrawal's illusory-conflict check must be run against the CURRENT corpus state, not the state at the time of the reading being repaired. 708 sec 5a's fallback lineage was written before the corpus sweep existed; re-checking it converts 'single-legged' into 'no uncontaminated leg'. A repair that names a fallback is only as good as that fallback's own adjudication status at the time of the check.",
+        "A withdrawn verdict can already be embedded in an in-flight experiment's DESIGN, not just in prose. 708a dropped an arm on 707b's authority and is running now. Propagation audits must check the live queue and claimed items, not only the document corpus -- and the proportionate remedy is usually to annotate the record, not abort a run whose own question is unaffected.",
+        "A derived narrowing falls with the finding that derived it. The DA-gated-arbitration hypothesis survives as biology, but 707b is not evidence for it."
+      ],
+      "routing": "queue-experiment",
+      "routing_node_class": "complicated (buildable)",
+      "recommended_requeue": {
+        "queue_id_suggested": "V3-EXQ-707c",
+        "queued_by_this_skill": false,
+        "same_question": true,
+        "suffix_rule": "alphabetic -- same scientific question, instrument repair",
+        "supersedes": "V3-EXQ-707b",
+        "required_properties": [
+          "Fresh-select-only DV: accumulate committed_class_counts only on a genuine E3 tick -- gate on ticks['e3_tick'], or clear-and-check the latch immediately before every select_action and record only if repopulated (pattern: experiments/v3_exq_785a_mech463_arousal_exogenous_urgency_decomp.py:525-543)",
+          "Emit n_fresh_select / n_latched / fresh_select_yield per arm-seed so the replication factor is visible rather than inferred",
+          "Record per-arm-seed n_p2_ticks and exposure_imbalance_vs_A0 -- reported, never gating. The +98% spread is the mechanism of the distortion and must be on the record",
+          "fresh_selects_sufficient readiness guard (>= 30 genuine fresh selects per arm-seed) so an honest-but-underpowered DV self-routes substrate_not_ready_requeue, NEVER a false weakens (708a's pattern)",
+          "NEW -- divergence-headroom guard: enough_divergent_seeds cleared at exactly 3.0/3.0 with seed 47 missing by 1.3%. Require headroom (>= 4 divergent seeds), or report the per-seed margin and self-route requeue at zero headroom",
+          "NEW -- instrument the limbic-routing gate as a GRADED quantity. The current statistic is pinned at sqrt(2) and carries only liveness; add a magnitude readout so the C2 non-degeneracy claim rests on measured per-candidate competition, not a structural constant",
+          "supersedes: 'V3-EXQ-707b' on both the queue entry and the manifest",
+          "stamp_recording_core(...) closing all six always-core gaps, hoisting arm_results to the manifest top level so the multi-arm substrate_hash hoist fires"
+        ]
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "recommended_governance_writes": [
+    {"target": "ARC-110 manifest record", "write": "evidence_direction: weakens -> non_contributory; epistemic_category -> measurement_test_design_defect"},
+    {"target": "ARC-110 claim", "write": "replace evidence_quality_note with the recommended text; awaiting -> corrected re-run V3-EXQ-707c; status/confidence otherwise unchanged (candidate / substrate_conditional / PROMOTES NOTHING)"},
+    {"target": "ARC-110 narrowing", "write": "withdraw the 2026-06-29 necessary-but-not-sufficient narrowing"},
+    {"target": "failure_autopsy_V3-EXQ-708_2026-07-19", "write": "annotate sec 5a + sec 10: the 707b repair leg and the 708a venue note are unsupported; the ceiling reading has no uncontaminated leg"},
+    {"target": "V3-EXQ-708a", "write": "on landing, annotate queue note / manifest: the ARC-110 branch is unmeasured, not settled; 708a is silent on ARC-110 by construction"},
+    {"target": "MECH-439", "write": "NO WRITE from this autopsy. 707b is not in the GOV-CEIL-1 10-hit set. Flag only: re-total the demotion's base once the sweep's 710/711/713 autopsies land"},
+    {"target": "review_tracker.json", "write": "NO WRITE -- /failure-autopsy does not mark reviewed; that is governance Step 5's call"}
+  ]
+}
