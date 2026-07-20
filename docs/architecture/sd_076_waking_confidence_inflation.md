@@ -1,8 +1,13 @@
+---
+status: candidate
+status_asof: 2026-07-20
+status_claim: SD-076
+---
+
 # SD-076: precision.waking_confidence_inflation
 
 **Claim ID:** SD-076
 **Subject:** precision.waking_confidence_inflation
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-20
 **Implemented:** 2026-07-20
 **Depends on:** ARC-016 (dynamic precision / running_variance)

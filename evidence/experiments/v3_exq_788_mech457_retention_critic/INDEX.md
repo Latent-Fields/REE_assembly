@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_788_mech457_retention_critic
 
-Generated: `2026-07-20T15:57:07.901787Z`
+Generated: `2026-07-20T20:24:30.696912Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

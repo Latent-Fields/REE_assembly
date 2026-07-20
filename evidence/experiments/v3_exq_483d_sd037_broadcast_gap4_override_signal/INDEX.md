@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_483d_sd037_broadcast_gap4_override_signal
 
-Generated: `2026-07-20T15:57:07.901787Z`
+Generated: `2026-07-20T20:24:30.696912Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

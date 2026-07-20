@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_sd068_rem_gen_gain_content_scale_diagnostic
 
-Generated: `2026-07-20T15:57:07.901787Z`
+Generated: `2026-07-20T20:24:30.696912Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

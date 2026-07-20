@@ -6309,7 +6309,7 @@
   },
   "Q-002": {
     "assembly_state": "mature",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "sd_zworld_warmup_optimizer_group",
     "epistemic_stance": "asked",
     "status": "active",
@@ -7782,6 +7782,14 @@
     "status": "candidate",
     "subject": "phasic.ema_episode_continuity",
     "title": "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default.",
+    "type": "design_decision"
+  },
+  "SD-076": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "precision.waking_confidence_inflation",
+    "title": "Waking confidence inflation as an asymmetric precision EMA: good news about one's own accuracy is incorporated fast and bad news slowly, so the running-variance estimate settles below the true error mean. Supplies the daytime precision-drift source that MECH-204's corrective function presupposes but which V3 did not have. ree_core E3 selector change, bit-identical by default.",
     "type": "design_decision"
   },
   "SENT-0": {

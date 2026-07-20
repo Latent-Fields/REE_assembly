@@ -11,5 +11,10 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3` at `2026-07-20T15:54:14Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
