@@ -430,8 +430,16 @@ def main():
         print("    lands (ree-v3 coordinator/db.py mark_queue_removed).")
     print("  phantom completions (completed, no results row): %d" % n_phantom)
     if n_phantom:
-        print("    Crash-like but UNCLASSIFIED -- and, until removal_reason is")
-        print("    live, this bucket also contains deliberate cancellations.")
+        print("    Crash-like but UNCLASSIFIED. Heterogeneous: genuine crashes,")
+        if has_reason:
+            # removal_reason is live, so anything still here is either a
+            # pre-migration row (reason NULL) or a real bookkeeping gap.
+            print("    bookkeeping gaps (see 673), and PRE-MIGRATION rows whose")
+            print("    removal_reason was never recorded. Cancellations tagged")
+            print("    after the migration are excluded above, not counted here.")
+        else:
+            print("    bookkeeping gaps (see 673), and -- until removal_reason is")
+            print("    live -- deliberate cancellations too.")
         print("    Not folded into the ERROR numerator. Treating every one as a")
         print("    crash gives an upper bound of %.1f%%; true rate in [%.1f%%, %.1f%%]."
               % (upper, err_rate if err_rate is not None else 0.0, upper))
