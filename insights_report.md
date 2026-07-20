@@ -44,10 +44,27 @@ So MECH-314's July failure volume is substantially a **measurement-instrument de
 substrate starvation this report inferred from the raw FAIL count. In work-graph terms the node
 is `complex (probe-gated)` with the probe already run, not `complicated (buildable)`.
 
-**3. What still stands.** The experiment-health numbers, the data-source caveat (the ERROR-rate
-blind spot), the substrate ready/blocked counts, the literature finding (zero open items), the
-queue-composition finding (7 of 10 are re-letter re-runs), and recommendation 4. Recommendation 3
-is discharged — the zworld encoder guard was verified sound (9/9 contracts).
+**3. The ERROR rate is now measured, and the 10.4% figure is obsolete — in the good direction.**
+Recommendation 4 was executed the same morning (REE_assembly `8faf1388ad`). A new
+`scripts/experiment_error_rate.py` reads the hub coordinator DB read-only and reports three
+buckets separately, failing loud (exit 2) when the hub is unreachable rather than degrading to a
+false zero.
+
+> **Measured: 0 recorded ERROR across 179 classified runs over 30 days, plus 4 phantom
+> completions — a true rate bounded in [0.0%, 2.2%]. Last ERROR recorded fleet-wide
+> 2026-06-11.** Corroborated by four independent sources (DB, per-machine `runner_status/`
+> split, synthetic manifests, fleet `journalctl`), so the near-zero is real, not an artifact.
+
+The historical **10.4%** stands as an accurate Feb–Jun figure and is now clearly a *former*
+state, not a current one. This report's line that "the historical 10.4% is the last measurement
+the programme will have" is false as of 2026-07-20T08:59Z. Crash rate has collapsed by roughly an
+order of magnitude.
+
+**4. What still stands.** The PASS-rate numbers, the data-source caveat *as a method warning*
+(the manifest scan is still structurally ERROR-blind — that is exactly why the new script reads
+the DB), the substrate ready/blocked counts, the literature finding (zero open items), and the
+queue-composition finding (7 of 10 are re-letter re-runs). Recommendation 3 is discharged — the
+zworld encoder guard was verified sound (9/9 contracts).
 
 **Method note for the next run of this skill:** claim-level FAIL counts are a *starting point*,
 not a finding. Before calling any claim stalled, check `TASK_CLAIMS.json` (including `done`
@@ -271,7 +288,8 @@ Friction markers in the same window: `BLOCKED` 82, `STALE` 76, `REFUSED` 23, `SW
    unblocks both MECH-457 and the `f_dominance_conversion_ceiling` (26 failure records) —
    resolving it may retire several of these re-runs outright.
 
-4. **Retire or repair `runner_status.json`.** It has been stale for 41 days and this skill
-   depends on it for the only ERROR-rate signal available (manifests structurally cannot
-   report ERROR). Either point the ERROR path at the coordinator DB, or the historical
-   10.4% error rate is the last measurement the project will have.
+4. ~~**Retire or repair `runner_status.json`.**~~ **DONE 2026-07-20T08:59Z** — REE_assembly
+   `8faf1388ad` added `scripts/experiment_error_rate.py` (coordinator DB, read-only, three
+   buckets, fails loud on an unreachable hub) and updated the `/insights` skill in both
+   `.claude/` and `.agents/`. Measured true ERROR rate now bounded in **[0.0%, 2.2%]** against
+   the 10.4% historical. See Corrections §3.
