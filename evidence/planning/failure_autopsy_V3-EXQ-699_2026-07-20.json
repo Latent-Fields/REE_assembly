@@ -1,0 +1,188 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T05:14:51Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "interesting-leakey-683b5d",
+  "is_re_adjudication": true,
+  "re_adjudicates": "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3 (no prior autopsy; this is the first adjudication of the run beyond its own self-route)",
+  "re_adjudication_note": "Re-adjudication of a LANDED PASS. No re-run, no re-queue, no manifest/claim/index edit. Commissioned as a follow-on to failure_autopsy_V3-EXQ-708_2026-07-19 (REE_assembly e0ebcbcecc), which established that stale-E3-diagnostics replication is ARM-DEPENDENT and therefore directional rather than merely an inflated n. The commissioning chip SUPERSEDED an earlier chip whose invariance argument was wrong; this document finds the superseding chip also partly wrong, in the opposite direction -- see chip_corrections.",
+  "chip_corrections": [
+    "The commissioning chip inherited 708's 'stale latch' framing. 699 is NOT a stale-latch case: last_score_diagnostics is wholesale REASSIGNED at ree_core/predictors/e3_selector.py:2452 with f_eligibility_demotion_active pre-seeded False (:2511), and _go_nogo_eligibility_gate (:1145) is invoked at :2878, i.e. AFTER that reassignment, so its keys are absent (-> False via diag.get) on any E3 tick where the gate does not fire. Diagnostic VALUES are fresh per E3 select(). The defect is pure per-env-step RE-READ (hold-duration replication), not staleness. This distinction matters because it is what makes the exactly-1.0 active_frac readings informative rather than vacuous.",
+    "The chip read f_eligibility_demotion_active_frac == go_nogo_active_frac == 1.0 as 'the same n_diag == n_ticks saturation signature 708 cites'. Given the per-select reassignment above, exactly 1.0 is the OPPOSITE of a latch artifact: it requires the gate to have fired on EVERY E3 tick in the window. The C1e/C1f active-frac gates are therefore sound.",
+    "The chip's central claim -- that the primary DV path 'is NOT what validate_experiments flags ... so it is an additional, unflagged exposure' -- is CORRECT and is the load-bearing finding of this document. The chip was right about where to look and wrong about the mechanism at the readiness gates.",
+    "The chip asserts a corrected re-run needs a NEW EXQ NUMBER 'since clearing the latch changes the statistics and makes it a different experiment'. This document DISAGREES and recommends an alphabetic suffix (V3-EXQ-699b). CLAUDE.md's EXQ versioning rule is explicit that 'bug fix = the scientific question is unchanged but the implementation was wrong (broken instrumentation, ...)' takes a letter, and 'when in doubt: new letter'. The 708 precedent used 708a for exactly this class of instrument repair. The chip's 'changes the statistics' reasoning was authored to justify keeping the 699a re-run FAITHFUL, not to govern the naming of a corrected successor."
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_699_pcomp_demotion_x_gonogo_composition_20260623T053755Z_v3",
+      "queue_id": "V3-EXQ-699",
+      "claim_ids": ["MECH-448", "MECH-449"],
+      "machine": "ree-cloud-1",
+      "experiment_purpose": "diagnostic",
+      "outcome_as_shipped": "PASS",
+      "self_route_label": "levers_compound",
+      "failed_criterion": "none_as_shipped",
+      "failed_criterion_detail": "The run PASSED. The single load-bearing criterion is C_READY_levers_engaged_and_substrate_exercisable (interpretation.criteria, one entry, load_bearing true, passed true). The composition verdict levers_compound is the run's FINDING, carried in interpretation_label / composition_verdict, and is NOT itself a load-bearing pass criterion. This separation is what allows the PASS to stand while the finding is withdrawn.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact but untouched -- MECH-448 and MECH-449 are each independently supported by their own validation gates (689d, 689g). V3-EXQ-699 is a diagnostic that promotes nothing and is tagged non_contributory on both claims. Withdrawing its composition finding neither weakens nor strengthens either claim.",
+        "biological_reference": "clear -- BG opponency: rank-preserving F->eligibility demotion (MECH-448) and an active No-Go constitution (MECH-449) are direct translations of striatal direct/indirect-pathway opponency, lit-grounded via the 689 lineage. Not load-bearing here: the run failed at measurement, not at biology.",
+        "prerequisites": "present -- all seven readiness preconditions passed, and the ones that matter (C1e/C1f) pass on threshold-invariant grounds (see margin_analysis.c1_invariance).",
+        "implementation": "complete -- both levers demonstrably fired and did real work (excluded_count mean 14.81; suppressed-per-tick 0.69 to 12.41). The DRIVER INSTRUMENTATION is defective, not the substrate.",
+        "environment": "adequate -- not implicated.",
+        "measurement": "misleading -- DOMINANT LAYER. The primary DV is a hold-duration-weighted occupancy entropy standing in for a per-commitment class entropy, with an arm-dependent and hypothesis-aligned weighting.",
+        "integration": "isolated -- not implicated.",
+        "scale": "unknown -- cannot be assessed through a contaminated DV."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Basal-ganglia direct/indirect pathway opponency at action selection (rank-preserving eligibility demotion + active No-Go veto).",
+        "dependencies": ["differentiated candidate rule field (CRF)", "trained lateral-PFC bias head", "MECH-260 recency-share vector via dACC"],
+        "is_formal_import": false,
+        "divergence": "None load-bearing. The mechanism is a biological translation, validated at the selection face by V3-EXQ-689d and 689g.",
+        "lit_status": "present"
+      },
+      "defect": {
+        "name": "per-env-step re-read of per-selection quantities (hold-duration pseudo-replication)",
+        "distinct_from_708": "708's last_precommit_probs is genuinely never refreshed within select(); 699's last_score_diagnostics IS reassigned wholesale at e3_selector.py:2452 on every select() call. Both drivers nonetheless READ once per ENV STEP, so both replicate a per-selection quantity by its hold duration. The defect CLASS is shared; the staleness mechanism is not.",
+        "driver_read_sites": {
+          "committed_class_PRIMARY_DV": "experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition.py:882 -- int(action[0].argmax()) on the action RETURNED by agent.select_action, accumulated into committed_class_counts at :899 on every P2 env step",
+          "last_score_diagnostics": "line 929 -- the only site validate_experiments lints",
+          "_last_selected_trajectory": "line 913 -- feeds selected_class_counts and the within-class-rep-entropy negative control; a THIRD exposure named in neither chip"
+        },
+        "clear_present": false,
+        "substrate_sites": {
+          "early_return": "ree_core/agent.py:5430 -- `if not ticks['e3_tick'] and self._last_action is not None` returns the HELD action before e3.select() is reached",
+          "candidates_also_held": "ree_core/agent.py:4812 -- candidate regeneration is itself gated on e3_tick, so pre_e3_classes at driver :856 is likewise a per-selection quantity read per env step",
+          "diag_reassigned": "ree_core/predictors/e3_selector.py:2452 (defaults incl f_eligibility_demotion_active False at :2511)",
+          "go_nogo_set_after_reassign": "ree_core/predictors/e3_selector.py:1292, in _go_nogo_eligibility_gate (:1145), called from select() at :2878",
+          "cadence_default": "ree_core/utils/config.py:2017 (e3_steps_per_tick=10)",
+          "cadence_variable": "ree_core/heartbeat/clock.py:52-70 -- MECH-093 arousal modulation between 5 and 20 steps; MECH-091 phase reset can end a cycle early"
+        },
+        "empirical_confirmation": "selected_class_entropy_nats == committed_class_entropy_nats EXACTLY on all 12 arm-seeds, to 6dp. The line-913 latch (a per-selection quantity) and the line-882 executed action (a per-step quantity) collapse to the identical statistic, which is what per-env-step replication of a held selection produces. It also means the run's secondary class readout carries ZERO independent information.",
+        "why_the_primary_DV_is_the_exposure": "committed_class is not a diagnostic latch at all -- it is the argmax of the action actually executed, so as a measure of behavioural OCCUPANCY it is genuine. The defect is construct mismatch: the driver's own framing (lines 88-97) is that 'the levers move WHICH CLASS is committed (the committed-class axis)', a per-COMMITMENT construct, and MECH-448/449 both act at SELECTION. Reading the class once per env step weights each commitment by its hold duration, so the DV silently becomes selection-diversity convolved with perseveration-duration. Neither lever claims to act on hold duration."
+      },
+      "margin_analysis": {
+        "c1_invariance": {
+          "verdict": "C1 HOLDS. The readiness gates are threshold-invariant to the replication, so the PASS stands.",
+          "c1e_c1f_floors_are_zero": "excluded_count_floor = 0.0 and nogo_suppressed_floor = 0.0 (result.decision_rule_thresholds). A strictly-greater-than-zero test is invariant to replication in BOTH directions: duplication cannot manufacture a positive from an all-zero genuine record, nor suppress a genuine positive to exact zero. This is precisely 708's own secondary-findings invariance argument. Measured 14.814623 and 0.694637 against 0.0.",
+          "active_frac_gates_saturate": "demotion_active_frac_floor = 0.8 and nogo_active_frac_floor = 0.8; measured EXACTLY 1.0 on every armed arm-seed. Because the diag dict is reassigned per select() with the demotion key pre-seeded False and the go_nogo keys absent-unless-fired, a hold-weighted frac of exactly 1.0 requires the gate to have fired on EVERY E3 tick in the window. Invariant.",
+          "c1a_saturates": "frac_pre_ge2 measured exactly 1.0 against a 0.3 floor -- same saturation argument.",
+          "note_on_the_699a_queue_note": "The 699a queue entry justifies C1 survival with 'the load-bearing readiness gates are RATIOS and MEANS ..., which are invariant under uniform replication'. That premise is false (708 established replication is arm-dependent, not uniform) and the conclusion is right for the two different reasons above. The note must not be reused as authority."
+        },
+        "composition_verdict": {
+          "verdict": "DOES NOT SURVIVE. Unlike 708, a plausible correction flips it.",
+          "gate_rule": "COMPOUND requires d_both >= max(d_dem, d_gng) + COMPOSITION_MARGIN(0.05) AND d_both >= COMPOSITION_LIFT_MARGIN(0.05), on >= COMPOSITION_MIN_SEEDS(2) of 3 seeds. Shipped: n_seeds_compound 2, n_seeds_cancel 0, n_seeds_neutral 1 -> levers_compound.",
+          "per_seed": {
+            "42": {"d_dem": 0.018009, "d_gng": 0.141474, "d_both": 0.086774, "verdict": "neutral", "max_rule_slack": -0.104700, "lift_floor_slack": 0.036774},
+            "43": {"d_dem": -0.305688, "d_gng": -0.511174, "d_both": 0.184290, "verdict": "compound", "max_rule_slack": 0.439978, "lift_floor_slack": 0.134290},
+            "44": {"d_dem": 0.006477, "d_gng": -0.283900, "d_both": 0.164708, "verdict": "compound", "max_rule_slack": 0.108231, "lift_floor_slack": 0.114708}
+          },
+          "flip_requirement": "Seed 42 is already neutral, so killing EITHER remaining compound seed drops n_seeds_compound to 1 < 2 and the verdict becomes NEUTRAL (not CANCEL).",
+          "which_rule_binds_under_the_predicted_correction": "The max-rule slack is INVARIANT to a common shift in e_off, because d_both, d_dem and d_gng all shift by the same amount when e_off moves. So an e_off-only correction binds exclusively on the ABSOLUTE lift floor d_both >= 0.05. Required correction: e_off under-estimated by > 0.114708 nats (seed 44) or > 0.134290 nats (seed 43); equivalently e_both over-estimated by the same amounts.",
+          "headroom_makes_that_correction_reachable": "e_off(43) = 0.511174 against an effective 2-class ceiling ln2 = 0.693147 -> 0.181973 nats of headroom, against a 0.134290 requirement. e_off(44) = 0.909687 against a 3-class ceiling ln3 = 1.098612 -> 0.188925 nats of headroom, against a 0.114708 requirement. Both required corrections sit INSIDE the available headroom. Additionally e_both(43) = 0.695464 is already at its effective two-class ceiling (counts 5821/5365 plus two singletons), so under de-weighting it can only FALL -- which pushes the same direction.",
+          "contrast_with_708": "708's route survived because its two failing seeds were 0.26 and 0.37 nats short, 'which no de-duplication correction can supply'. Here the requirement is 0.11 to 0.13 nats against 0.18 to 0.19 nats of headroom. The arithmetic runs the other way."
+        },
+        "directionality": {
+          "verdict": "The contamination is ALIGNED WITH THE HYPOTHESIS, which is why the finding cannot be salvaged as 'imprecise but directionally right'.",
+          "argument": "ARM_OFF is the reference arm for every delta. If the unarmed agent perseverates more -- the expected consequence of removing two selection-perturbing levers, and the same MECH-093 arousal coupling 708 invokes -- then OFF's holds are systematically longer, its occupancy entropy is systematically depressed relative to its per-commitment entropy, and EVERY d_* is inflated, d_both included. The measured bias therefore points the same way as the hypothesis under test and cannot be separated from it by any analysis of the recorded aggregates.",
+          "corroborating_but_not_decisive": "ARM_OFF carries the lowest committed-class entropy in 2 of 3 seeds and the fewest unique committed classes in seed 43 (2, vs 4 on ARM_BOTH). This is consistent with the perseveration mechanism, but it is equally consistent with the levers genuinely increasing diversity -- which IS the confound, stated precisely.",
+          "what_cannot_be_established": "The replication factor itself is NOT observable from the manifest. n_p2_ticks (seed 44: 525 / 1737 / 461 / 707, a 3.8x span) counts ENV STEPS and is driven by episode termination, not directly by E3 cadence. So the arm-dependent EXPOSURE the chip cites is real as a step-count fact but does NOT by itself demonstrate an arm-dependent replication factor. The honest statement is that the weighting is unobservable and the contamination unbounded, not that a specific distortion has been measured."
+        }
+      },
+      "recoverability": {
+        "recoverable": false,
+        "custom_information_present": false,
+        "per_tick_sink_present": false,
+        "run_pack_metrics_json_size_chars": 53,
+        "n_fresh_e3_selections_recorded": null,
+        "what_survives": "per-arm-seed scalar aggregates only (committed_class_entropy_nats, committed_class_counts, n_p2_ticks, the active-frac and mean diagnostics).",
+        "structural_reason": "Ran on ree-cloud-1 under Phase 3; cloud workers POST only manifest_bytes, so even a DECLARED per-tick sink is not transported. Thrice-confirmed now (785, 708, 699).",
+        "consequence": "The entropy cannot be recomputed over fresh-selection rows, and the replication factor cannot even be estimated. A corrected re-run is required to answer 699's question."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_supersedes": null,
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_unchanged": true,
+      "recommended_evidence_quality_note": "RE-ADJUDICATED 2026-07-20 (failure_autopsy_V3-EXQ-699_2026-07-20), following the stale-E3-diagnostics corpus audit and the V3-EXQ-708 precedent. WHAT STANDS: the PASS. The single load-bearing criterion is C_READY (levers engaged and substrate exercisable), and all seven readiness preconditions survive the defect on threshold-invariance grounds -- the C1e/C1f non-vacuity floors are literally 0.0 (measured 14.81 excluded-count and 0.69 suppressed-per-tick), and a strictly-positive test cannot be manufactured from an all-zero record; the active-frac and frac_pre_ge2 gates read EXACTLY 1.0, which given the per-select reassignment of last_score_diagnostics (e3_selector.py:2452, demotion key pre-seeded False at :2511; go_nogo keys set at :1292 from a gate invoked at :2878, i.e. after the reassignment) requires the gates to have fired on every E3 tick. Both levers demonstrably did real work. WHAT DOES NOT STAND: the levers_compound composition finding, which is WITHDRAWN. The primary DV committed_class_entropy_nats is accumulated at driver line 882/899 from int(action[0].argmax()) on the action RETURNED by agent.select_action, once per ENV STEP; on a non-E3 tick agent.py:5430 returns the HELD action before e3.select() is reached. The DV is therefore hold-duration-weighted OCCUPANCY entropy, whereas the driver's own construct (lines 88-97, 'the levers move WHICH CLASS is committed') and both claims act at SELECTION. This is NOT the exposure validate_experiments lints (that is the separate last_score_diagnostics read at line 929) and was unflagged. The weighting is arm-dependent and, critically, ALIGNED WITH THE HYPOTHESIS: ARM_OFF is the reference for every delta, and an unarmed agent perseverating longer has its occupancy entropy systematically depressed, inflating every d_* including d_both. The verdict is flippable on a plausible correction, unlike 708's: seed 42 is already neutral, and killing either remaining compound seed yields NEUTRAL. Because a common shift in e_off leaves the max-rule slack invariant, the binding constraint is the absolute floor d_both >= 0.05, requiring e_off to be under-estimated by only 0.1147 nats (seed 44) or 0.1343 nats (seed 43) against 0.1889 and 0.1820 nats of available headroom to the 3-class and 2-class entropy ceilings; e_both on seed 43 is already at its effective two-class ceiling and can only fall. The corrected sign is therefore UNKNOWN -- this is a withdrawal, not a reversal, and levers_compound must not be restated in either direction. Two further defects recorded: selected_class_entropy_nats equals committed_class_entropy_nats to 6dp on all 12 arm-seeds (the line-913 _last_selected_trajectory readout carries zero independent information, so the design's internal cross-check is vacuous), and pre_e3_classes at line 856 is likewise a per-selection quantity read per env step because candidate regeneration is itself e3_tick-gated (agent.py:4812). NOT RECOVERABLE: no custom_information, no per-tick sink, metrics.json is 53 chars, ran on ree-cloud-1 (Phase 3 transports manifest_bytes only -- thrice-confirmed with 785 and 708); the replication factor cannot even be estimated from the record, since n_p2_ticks counts env steps and varies with episode termination. Neither MECH-448 nor MECH-449 loses support: both rest on their own validation gates (689d and 689g respectively), this run is experiment_purpose=diagnostic, promotes nothing, and its evidence_direction was already non_contributory on both claims -- so no epistemic_category is cleared and no confidence moves. Routes to queue-experiment for a corrected V3-EXQ-699b using the clear-before-select pattern of v3_exq_785a. SEE ALSO: the in-flight V3-EXQ-699a is a FAITHFUL re-run of this driver and will reproduce every defect above.",
+      "recommended_claim_edits": {
+        "claims": ["MECH-448", "MECH-449"],
+        "clear_epistemic_category": false,
+        "clear_epistemic_category_rationale": "NOT APPLICABLE, and this is the sharpest contrast with the 708 case. MECH-440 carried epistemic_category substrate_ceiling whose SOLE basis was 708's withdrawn DV, so that category had to be cleared. Here both claims carry epistemic_category standard, status provisional, on the strength of V3-EXQ-689d (MECH-448) and V3-EXQ-689g (MECH-449) -- neither evidence_quality_note cites V3-EXQ-699 at all. Withdrawing this finding removes nothing either claim was standing on.",
+        "confidence_movement": "none",
+        "action": "append the recommended_evidence_quality_note text to both claims' evidence_quality_note; change nothing else",
+        "note": "RECOMMENDATION ONLY. This skill never edits claims.yaml; /governance applies it interactively."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "The defect is in driver instrumentation, not substrate. Both levers are built and independently validated (689d, 689g). No substrate build is owed by this finding."
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_instrumentation_fix": true,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "ILLUSORY-CONFLICT CHECK (mandatory pairing). Withdrawing levers_compound removes the only V3 evidence that MECH-448 demotion and MECH-449 Go/No-Go are SAFE TO CO-ARM. Each lever's solo validation survives untouched (689d, 689g), so neither claim is narrowed. But any downstream plan that co-arms both in a full stack on the strength of 699 is now UNSUPPORTED -- and note the composition question is genuinely open in both directions, because the shipped design's own CANCEL branch (the destructive Factor-A x Factor-B 689a signature) was never ruled out by an uncontaminated measurement either. Do not restate 'the levers compound' or 'the levers are safe to co-arm' pending V3-EXQ-699b.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "NOT FIRED. Verified by the Step 7 count: MECH-448 and MECH-449 each have 0 prior failure_autopsy_*.json targets with recommended_epistemic_category substrate_ceiling or recommended_evidence_direction non_contributory. The recommended category here is measurement_test_design_defect, so even counting this document the rule is not met. A corrected re-run is INSTRUMENT REPAIR of a run that never validly measured its primary DV -- the 785 -> 785a and 708 -> 708a shape the corpus already sanctions -- not a re-test of the same claim against the same ceiling."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": [],
+        "routing": null,
+        "note": "NOT FIRED. No prior failure_autopsy document targets V3-EXQ-699, MECH-448 or MECH-449. This is the first autopsy on this target, so the second-autopsy recurrence signal does not apply."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The 708 defect class has a SECOND form that the validate_experiments lint does not see. The lint keys on last_score_diagnostics; 699's load-bearing exposure is the committed action itself, read per env step at driver line 882. Any driver that accumulates a per-step statistic from the RETURN VALUE of select_action inherits hold-duration weighting without touching a diagnostics latch at all. The affected-corpus sweep should be re-run against this signature, not only the latch read.",
+        "Freshness and replication are INDEPENDENT defects, and conflating them mis-adjudicates in both directions. 699's diagnostics are fresh per select() (reassigned at e3_selector.py:2452) yet still replicated per env step; 708's were neither. Because 699's are fresh, an exactly-1.0 active_frac is strong evidence the gate fired every tick -- whereas under 708's genuine latch the same 1.0 would be vacuous. The commissioning chip read 699's 1.0 as the 708 signature and drew the wrong inference from a correct observation.",
+        "Construct mismatch, not staleness, is the general hazard: occupancy-weighted != per-decision. A DV can be a perfectly genuine measurement of one thing (behavioural occupancy) and an invalid measurement of the thing the claim is about (selection diversity). Ask what the MECHANISM acts on -- MECH-448/449 act at selection -- and require the readout's sampling unit to match it.",
+        "Contamination ALIGNED with the hypothesis is categorically worse than contamination that is merely large. 708 was condemned by a mechanistically-backwards SIGN, which is a detector. 699's bias points the SAME way as the effect under test (the unarmed reference arm perseverates, depressing its occupancy entropy, inflating every delta), so there is no sign-check available and the finding cannot be rescued as 'imprecise but directionally right'. Withdrawal, not correction, is the only honest move.",
+        "An inflated n is NOT sufficient for contamination and an arm-dependent STEP COUNT is not proof of an arm-dependent REPLICATION FACTOR. 699's n_p2_ticks spans 3.8x within seed 44, but that is episode-termination variance in env steps; the E3 selection count was never recorded, so the replication factor is unobservable. The chip over-claimed here. Record n_fresh_select / n_latched as telemetry so this is a measured quantity rather than an argued one.",
+        "When two supposedly independent readouts agree to the last decimal on every cell, that is a defect signature, not a validation. selected_class_entropy_nats == committed_class_entropy_nats on all 12 arm-seeds revealed that the secondary readout carried no information -- an internal cross-check that looked like corroboration and was actually the same number twice.",
+        "A defective instrument can leave the PASS correct while destroying the FINDING, and the two must be adjudicated separately. 699's load-bearing criterion is readiness-only, so the PASS is genuinely untouched; the composition verdict it is remembered for is not. Adjudicating at the level of 'the run' would have thrown away a sound readiness result or preserved an unsound composition claim.",
+        "Threshold-invariance is the reusable test for whether a gate survives this defect class, and a floor of literally 0.0 is the strongest form of it. 708 established it for exact zeros; 699 extends it to strictly-positive tests and to saturated fractions at exactly 1.0. Gates stated as 'greater than 0' or that saturate are safe; continuous margins against a non-trivial floor are not."
+      ],
+      "routing": "queue-experiment",
+      "routing_detail": {
+        "recommended_only_not_queued": true,
+        "queue_state_verified_at_autopsy": "ree-v3/experiment_queue.json depth 8; V3-EXQ-699a present with status=claimed by ree-cloud-3 at 2026-07-19T21:05:38Z. NOT modified by this session -- see in_flight_complication.",
+        "suggested_queue_id": "V3-EXQ-699b",
+        "suffix_rationale": "Same scientific question (does MECH-448 demotion compose with MECH-449 Go/No-Go at the committed-class axis), corrected instrumentation -> alphabetic suffix per CLAUDE.md EXQ versioning ('bug fix = the scientific question is unchanged but the implementation was wrong (broken instrumentation)'; 'when in doubt: new letter'). This DISSENTS from the commissioning chip's new-EXQ-number instruction; see chip_corrections. Matches the 708 -> 708a precedent for the same class of repair.",
+        "requirements": [
+          "Record the committed class ONLY on a fresh E3 selection. Set agent.e3.last_score_diagnostics = None AND agent.e3._last_selected_trajectory = None immediately before every agent.select_action(...), and accumulate committed_class_counts only when they repopulate. Reference: ree-v3/experiments/v3_exq_785a_mech463_arousal_exogenous_urgency_decomp.py lines 525-543.",
+          "Emit n_fresh_select, n_latched and fresh_select_yield per arm-seed so the replication factor is a MEASURED quantity in the manifest, not an inferred one. This is the single field whose absence made 699 unrecoverable.",
+          "Emit BOTH readouts and keep them distinct: per-commitment class entropy (the construct MECH-448/449 act on, and the DV the verdict should read) AND hold-weighted occupancy entropy (what 699 actually measured). Reporting both makes the size and direction of this defect measurable across the corpus for the first time, and directly tests the perseveration mechanism in margin_analysis.directionality.",
+          "Record per-arm-seed mean and distribution of HOLD DURATION. If OFF's holds are systematically longer, that confirms the alignment argument and retro-explains 699; if not, it bounds the distortion.",
+          "Drop or re-purpose selected_class_entropy_nats -- as instrumented it is identical to the primary DV on every cell and adds nothing.",
+          "Keep the C1 readiness battery unchanged; it is sound and its survival is the one part of 699 worth reproducing exactly.",
+          "Set supersedes: 'V3-EXQ-699' on the queue entry and supersedes on the run manifest. If 699a completes first, supersede that too.",
+          "Stamp the recording core via experiments/_lib/manifest_core.stamp_recording_core(...) per experimental_recording_standard_2026-07-12.md Sec 3b/3c."
+        ]
+      },
+      "in_flight_complication": {
+        "queue_id": "V3-EXQ-699a",
+        "status_at_autopsy": "claimed",
+        "claimed_by": "ree-cloud-3 at 2026-07-19T21:05:38Z",
+        "estimated_minutes": 600,
+        "priority": 5,
+        "script": "experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition.py (UNCHANGED from 699 -- a faithful re-run by design)",
+        "action_taken": "NONE. This session did not release, dequeue, hold or otherwise modify the claimed item. Recommendation only.",
+        "why_not_touched": "Per the commissioning brief and CLAUDE.md ('Phase-3 queue lever depends on op type' -- holds/removals go through the coordinator, not the git file), releasing or dequeuing a claimed item requires the user's explicit go-ahead, which was not obtained in this session.",
+        "assessment": "699a will reproduce every defect in this document exactly, because it is the same driver. Its stated purpose remains valid on its own terms -- repairing the precondition-DECLARATION bug (ree-v3 0bfbb42) that made the sound 699 PASS adjudicate precondition_unmet -- but note what that buys: it cleanly re-emits the C1 readiness gates, which THIS document finds already survive the defect on threshold-invariance grounds, while re-emitting a primary DV that does not survive. The repair is therefore to the reporting of the part that was never in danger.",
+        "recommendation": "DEQUEUE via the coordinator and replace with V3-EXQ-699b per routing_detail, folding the 0bfbb42 declaration fix into it (699b inherits the corrected _min_arm_count aggregator automatically, since the fix is prospective and already on main). This saves ~600 minutes of cloud compute and avoids landing a second manifest carrying a withdrawn finding. If the user prefers to let it finish, its manifest MUST carry this document's evidence_quality_note verbatim -- otherwise a cleanly-adjudicable levers_compound lands on the record and reads as CONFIRMATION of the very finding withdrawn here, which is the worst available outcome.",
+        "queue_note_correction_required": "The V3-EXQ-699a queue entry's KNOWN CAVEAT paragraph asserts 'the load-bearing readiness gates are RATIOS and MEANS ..., which are invariant under uniform replication, so the PASS is not threatened'. The premise is falsified (708 established replication is arm-dependent) even though the conclusion happens to hold for other reasons. That paragraph must not be cited as authority in any successor entry."
+      }
+    }
+  ],
+  "hypothesis_space_ledger_pending": {
+    "registry_write_skipped": true,
+    "skip_rationale": "Step 9b does not apply. This autopsy emits no fanout_recommendation (the routing is a single unambiguous instrument repair, not a discrimination between rival hypotheses), and a scan of hypothesis_space_registry.v1.json finds no question or leg referencing V3-EXQ-699, MECH-448 or MECH-449 -- so there is no pre-registered hypothesis to resolve and no denominator to move. Skipped cleanly per the skill's 'if neither holds, there is nothing to register' rule.",
+    "opens_fanout": false,
+    "eliminates_leg": false
+  },
+  "cluster_pattern": null
+}
