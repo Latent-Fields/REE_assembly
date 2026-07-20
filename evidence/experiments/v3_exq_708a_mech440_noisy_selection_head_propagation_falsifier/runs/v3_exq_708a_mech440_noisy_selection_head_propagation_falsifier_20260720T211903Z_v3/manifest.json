@@ -1,0 +1,142 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_708a_mech440_noisy_selection_head_propagation_falsifier",
+  "run_id": "v3_exq_708a_mech440_noisy_selection_head_propagation_falsifier_20260720T211903Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-20T21:19:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-440": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0_OFF + ARM_TEMP + ARM_NOISE_SINGLE) >= MIN_DIVERGENT_SEEDS. Too few => substrate_not_ready_requeue.",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "temperature_control_raises_precommit_entropy",
+        "kind": "readiness",
+        "description": "ARM_TEMP (the 687 temperature control) raises PRE-COMMIT sampling-class entropy strict-above A0_OFF by margin on a strict-majority of divergent seeds. A temperature control that does NOT lift pre-commit is not a valid matched-pre-commit-variance control => substrate_not_ready_requeue. measured = n seeds ARM_TEMP lifts pre-commit.",
+        "control": "ARM_TEMP precommit_class_entropy vs A0_OFF, divergent seeds, paired",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "weight_noise_raises_precommit_entropy",
+        "kind": "readiness",
+        "description": "ARM_NOISE_SINGLE raises PRE-COMMIT sampling-class entropy strict-above A0_OFF by margin on a strict-majority of divergent seeds -- the weight noise genuinely injects pre-commit variance (so the matched comparison with ARM_TEMP is fair). Below floor => substrate_not_ready_requeue. measured = n seeds ARM_NOISE_SINGLE lifts pre-commit.",
+        "control": "ARM_NOISE_SINGLE precommit_class_entropy vs A0_OFF, divergent seeds, paired",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "noise_bias_range_supra_floor_vs_raw",
+        "kind": "readiness",
+        "description": "ARM_NOISE_SINGLE per-candidate noise bias range > floor AND a non-trivial fraction of the raw-score range (so the noise CAN flip the within-eligible argmin). A noise too small to ever compete is a vacuous test => requeue. measured = min noise_bias_range_mean across ARM_NOISE_SINGLE seeds.",
+        "control": "ARM_NOISE_SINGLE noisy_selection_bias_range / e3_raw_score_range",
+        "measured": 0.22109529,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "dacc_suppression_live",
+        "kind": "readiness",
+        "description": "dACC perseveration No-Go axis is LIVE (dacc_max_suppression > 0) on a majority of seeds across the dACC-bearing arms. A flat dACC means the Go/No-Go constitution is inert => the SOTA stack is not actually engaged.",
+        "control": "agent._dacc_last_bundle['suppression'] max over P2",
+        "measured": 1.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "fresh_selects_sufficient",
+        "kind": "readiness",
+        "description": "EVERY arm-seed recorded at least MIN_FRESH_SELECTS genuinely fresh E3 selections in P2. 708a accumulates the pre-commit DV ONLY on verified-fresh ticks (agent.e3.last_score_diagnostics / .last_precommit_probs cleared to None before every select_action and required to repopulate), so the honest denominator is ~1/e3_steps_per_tick of V3-EXQ-708's, whose per-env-step read gave n_precommit_ticks == n_p2_ticks on all 24 arm-seeds. An honest-but-underpowered DV must route substrate_not_ready_requeue, NEVER a weakens. measured = the WORST cell (min across arm-seeds), matching the all(...) quantifier this met expression uses, so the indexer's recompute agrees.",
+        "control": "worst arm-seed n_fresh_select over P2; offending cell arm=A0_OFF seed=44",
+        "offending_cell": "A0_OFF:seed44",
+        "measured": 862.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable",
+        "kind": "readiness",
+        "description": "on ARM_NOISE_SINGLE the finer w_chan_finer entries MOVED + the signed-RPE delta_t carries cross-tick variance, on a majority of seeds. Below floor => substrate_not_ready_requeue.",
+        "control": "ARM_NOISE_SINGLE fcg_w_chan_finer_range_max + fcg_delta_t_std",
+        "measured": 0.00127071,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_noise_single_committed_strict_above_temp",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": false,
+      "enough_divergent_seeds": true,
+      "temp_lifts_precommit": false,
+      "noise_lifts_precommit": false,
+      "noise_bias_supra_floor": true,
+      "dacc_live": true,
+      "learning_engaged": true,
+      "fresh_selects_sufficient": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "970948cec24c7854a0f3f96a4306d4efe4e42a10ed0d286bd56cf0a6b2968938"
+}
