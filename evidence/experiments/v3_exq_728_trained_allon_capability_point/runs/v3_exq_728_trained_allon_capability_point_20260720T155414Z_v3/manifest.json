@@ -1,0 +1,154 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_728_trained_allon_capability_point",
+  "run_id": "v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-20T15:54:14Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "baseline",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "oracle_clears_competence_floor",
+        "kind": "readiness",
+        "description": "The greedy nearest-resource ORACLE (ceiling anchor, no agent) must clear COMPETENCE_RESOURCE_FLOOR resources/episode, proving the floor is ACHIEVABLE in this exact env so the yardstick's scale is calibratable. Below-floor => the floor is not achievable here (env too sparse/lethal) => substrate_not_ready_requeue, NEVER a capability verdict.",
+        "control": "greedy nearest-resource oracle forager, same ENV_KWARGS/seed, no agent",
+        "measured": 6.333333,
+        "threshold": 1.0,
+        "met": true,
+        "applies_to_arms": [
+          "random_walk",
+          "ree_trained_allon",
+          "greedy_oracle"
+        ]
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ree_trained_allon",
+        "context": "V3-EXQ-728a ree_trained_allon",
+        "applies_to_arms": [
+          "ree_trained_allon"
+        ],
+        "scoped_out_arms": {
+          "random_walk": "arm runs no P0 warmup and its premise does not involve z_world",
+          "greedy_oracle": "arm runs no P0 warmup and its premise does not involve z_world"
+        },
+        "policy": "strict",
+        "n_seeds_checked": 3,
+        "n_seeds_failed": 3,
+        "guard_messages": [
+          "z_world UNTRAINED-ENCODER GUARD TRIPPED [V3-EXQ-728a ree_trained_allon]: the P0 warmup changed 0 of 4 split_encoder.world_encoder tensors across 200 episode(s) -- max|delta| = 0.000e+00 (bit-identical). latent_stack: 0/61 tensors changed. Frozen: split_encoder.world_encoder.0.bias, split_encoder.world_encoder.0.weight, split_encoder.world_encoder.2.bias, split_encoder.world_encoder.2.weight. This arm's z_world is a FROZEN RANDOM PROJECTION at initialisation, NOT a prediction-trained encoder, so any result it produces is uninterpretable as evidence about z_world. Known cause: no optimizer in _train_all_on_agent covers a latent_stack parameter (P0 trains e2; P1 trains the lPFC bias + OFC devaluation heads), and the P0 loop buffers latent.z_world.detach(), so no gradient reaches the world encoder. See REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md. If a frozen random projection is the DELIBERATE condition under test, pass require_trained_encoder=False so the choice is explicit and auditable in the manifest."
+        ]
+      }
+    ],
+    "criteria": [
+      {
+        "name": "yardstick_discriminates_ceiling_above_floor",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor": true,
+      "oracle_foraging_above_random": true,
+      "trained_allon_capability_point_measurable": false,
+      "trained_allon_normalized_position_interpretable": false
+    },
+    "criteria_non_degenerate_owning_arm": {
+      "oracle_clears_floor": "greedy_oracle",
+      "oracle_foraging_above_random": "greedy_oracle+random_walk",
+      "trained_allon_capability_point_measurable": "ree_trained_allon",
+      "trained_allon_normalized_position_interpretable": "ree_trained_allon"
+    },
+    "per_arm_gate": {
+      "green_arms": [
+        "random_walk",
+        "greedy_oracle"
+      ],
+      "red_arms": [
+        "ree_trained_allon"
+      ],
+      "failed_preconditions_by_arm": {
+        "random_walk": [],
+        "ree_trained_allon": [
+          "zworld_world_encoder_trained"
+        ],
+        "greedy_oracle": []
+      },
+      "scoped_out": {
+        "random_walk": {
+          "zworld_world_encoder_trained": "arm runs no P0 warmup and its premise does not involve z_world"
+        },
+        "greedy_oracle": {
+          "zworld_world_encoder_trained": "arm runs no P0 warmup and its premise does not involve z_world"
+        }
+      },
+      "policy": "STRICT for ree_trained_allon: the script is named 'trained_allon' and its P0 phase is documented as a world-model warmup, so a frozen random projection voids that arm's premise and the ARM is refused. The RUN is never refused -- the two anchor arms are scored independently."
+    },
+    "non_degenerate": true,
+    "degeneracy_reason": null,
+    "reported_context_not_a_verdict": {
+      "trained_allon_majority_supra_floor": false,
+      "trained_allon_normalized_position": {
+        "foraging_competence": -0.024725,
+        "survival_horizon": 5.631218,
+        "goal_reach_rate": -0.08,
+        "planning_depth": -0.221428
+      },
+      "trained_allon_capability_valid": false,
+      "note": "trained-all-ON supra-floor status + normalized positions are REPORTED CONTEXT on an excluded-from-scoring baseline; they are NOT a governance verdict on all-ON competence. REFUSED: the z_world untrained-encoder guard tripped on this arm, so these trained-all-ON numbers were produced on a FROZEN RANDOM PROJECTION and are NOT valid as a trained-all-ON capability point. The random_walk and greedy_oracle anchors are unaffected and remain scored."
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "77b72ca15cdbf936ed6da372fef29d3e04796fa1f58c10eed452e3960f5bce00"
+}
