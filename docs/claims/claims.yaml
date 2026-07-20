@@ -720,9 +720,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: "failure_autopsy_zworld-integration-cluster_2026-06-06#V3-EXQ-215"
-      as_of: 2026-06-06
-      verdict: weakens/substrate_ceiling
+      from: failure_autopsy_V3-EXQ-783_2026-07-18
+      as_of: 2026-07-18
+      verdict: diagnostic_no_direction/instrument_validated_cause_discriminated
   what_would_answer: |
     Sweep R(x,t) spatial resolution (RBF-center count, e.g. 4 / 8 / 32 / 64) on a
     substrate whose z_world latent has demonstrable spatial organisation, and read
@@ -2590,13 +2590,9 @@
     as_of: 2026-07-15
     needs_review: false
     evidence:
-      from: v3_exq_762_mech046_cea_mode_prior_context_conditioning_20260714T204708Z_v3
+      from: "decision:MECH-046@2026-07-15T13:44:33.349339Z"
       as_of: 2026-07-15
-      verdict: supports/PASS
-    prior_evidence:
-      from: v3_exq_473_sd035_cea_mode_prior_20260421T195533Z_v3
-      as_of: 2026-04-21
-      verdict: supports/PASS
+      verdict: record_supporting_evidence/applied
   last_reviewed: 2026-02-15
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-473 substrate-readiness PASS (supports)
@@ -3285,9 +3281,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: "decision:MECH-063@2026-02-15T20:51:27.090007Z"
-      as_of: 2026-02-15
-      verdict: promote_to_provisional/applied
+      from: failure_autopsy_V3-EXQ-779b_2026-07-19
+      as_of: 2026-07-19
+      verdict: non_contributory/substrate_ceiling
   depends_on:
     - ARC-005
     - MECH-039
@@ -5548,6 +5544,10 @@
     reading: provisional
     as_of: 2026-07-18
     needs_review: false
+    evidence:
+      from: "decision:MECH-076@2026-07-18T06:40:45.258446Z"
+      as_of: 2026-07-18
+      verdict: promote_to_provisional/applied
   evidence_quality_note: >
     2026-07-18 governance: candidate -> provisional. V3-EXQ-773 (residue basin-geometry
     dose-response; run_id v3_exq_773_mech076_residue_basin_geometry_doseresponse_20260717T160046Z_v3)
@@ -5958,6 +5958,10 @@
     reading: provisional
     as_of: 2026-07-18
     needs_review: false
+    evidence:
+      from: "decision:MECH-086@2026-07-18T06:40:45.166296Z"
+      as_of: 2026-07-18
+      verdict: promote_to_provisional/applied
   evidence_quality_note: >
     2026-07-18 governance: candidate -> provisional. V3-EXQ-775 (dopamine selection-gain plane
     dose-response; run_id v3_exq_775_mech086_selection_gain_dose_response_20260717T152037Z_v3)
@@ -6760,10 +6764,6 @@
       from: "decision:MECH-092@2026-07-15T13:44:33.301255Z"
       as_of: 2026-07-15
       verdict: promote_to_provisional/applied
-    prior_evidence:
-      from: "decision:MECH-092@2026-03-29T21:16:41.333183Z"
-      as_of: 2026-03-29
-      verdict: hold_candidate_resolve_conflict/applied
   implementation_phase: v3
   evidence_quality_note: |
     Held (2026-03-28): specific blocker is SD-006 (async multi-rate loop execution).
@@ -6991,13 +6991,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/substrate_ceiling/v5-reassigned
-    as_of: 2026-07-12
+    reading: candidate/substrate_ceiling
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: V3-EXQ-741
+      from: failure_autopsy_V3-EXQ-741_2026-07-12
       as_of: 2026-07-12
-      verdict: non_contributory/substrate_ceiling (1st valid ceiling hit; v3->v5, ceiling bound to multi_agent_ecology_v5:MAE-3)
+      verdict: non_contributory/substrate_ceiling
   last_reviewed: 2026-07-12
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
@@ -14573,6 +14573,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-778h_2026-07-19
+      as_of: 2026-07-19
+      verdict: non_contributory/measurement_gap
   evidence_quality_note: |
     [SD-068 staged-damage diagnostic, 2026-07-17] DIAGNOSTIC, no status change.
     The staged-decline SHAPE this prediction asserts is instrumented by the SD-068
@@ -14656,6 +14660,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-778h_2026-07-19
+      as_of: 2026-07-19
+      verdict: non_contributory/measurement_gap
   evidence_quality_note: |
     [SD-068 staged-damage diagnostic, 2026-07-17] DIAGNOSTIC (non-scoring;
     promotes/demotes nothing; MECH-121 remains held, its NREM leg is
@@ -14768,6 +14776,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-778h_2026-07-19
+      as_of: 2026-07-19
+      verdict: non_contributory/measurement_gap
   depends_on:
     - INV-046
     - INV-047
@@ -15102,9 +15114,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-18
+    reading: candidate/substrate_ceiling
+    as_of: 2026-07-20
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-774_2026-07-17
+      as_of: 2026-07-17
+      verdict: inconclusive/substrate_ceiling
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true  # substrate_queue MECH-204 amend (Phase 7 / Option B accuracy-anchored broadcast recalibration + waking confidence-inflation source); see failure_autopsy_V3-EXQ-774_2026-07-17
   evidence_quality_note: >
@@ -16145,8 +16161,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-11
+    reading: candidate/v3_pending/substrate_ceiling
+    as_of: 2026-07-20
     needs_review: false
     evidence:
       from: failure_autopsy_V3-EXQ-718a_2026-07-08
@@ -18476,13 +18492,13 @@
   pending_substrate_reconfirmation: true
   status: candidate
   live_status:
-    reading: candidate/pending_substrate_reconfirmation
-    as_of: 2026-07-12
+    reading: candidate
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-740_2026-07-11
+      from: failure_autopsy_V3-EXQ-740a_2026-07-12
       as_of: 2026-07-12
-      verdict: non_contributory/measurement_degeneracy (V3-EXQ-740; 740a successor deferred to its own autopsy)
+      verdict: non_contributory/measurement_degeneracy
   subject: development.maturational_sequence
   description: >
     The developmental sequence in which sensory-perceptual systems (E1) mature before
@@ -18569,13 +18585,13 @@
   pending_substrate_reconfirmation: true
   status: candidate
   live_status:
-    reading: candidate/pending_substrate_reconfirmation
-    as_of: 2026-07-13
+    reading: candidate
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: v3_exq_744a_inv088_world_goal_evaluator_dv_coupling_20260712T144028Z_v3
-      as_of: 2026-07-13
-      verdict: weakens (8-seed re-estimate; mean_delta_r2=0.130 fails the 0.15 floor + 2xSD gate with preconditions met, C2 monotone rho=0.69; real-but-weak high-variance coupling -- first WEIGHTED entry for INV-088; stays candidate)
+      from: "failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754"
+      as_of: 2026-07-15
+      verdict: non_contributory/competence_implementation_gap
   evidence_quality_note: >
     V3-EXQ-744 (DV-coupling half of the world/goal leg) adjudicated 2026-07-12 as
     INCONCLUSIVE / underpowered -- NOT weighted against INV-088. All preconditions met
@@ -18710,9 +18726,9 @@
     as_of: 2026-07-16
     needs_review: false
     evidence:
-      from: v3_exq_743_inv089_harm_evaluator_z_harm_bounded_20260712T124006Z_v3
+      from: failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16
       as_of: 2026-07-16
-      verdict: provisional on 743's single-pathway positive control (harm decodable-in-principle from z_harm; decodability rises with HarmEncoder maturation). NARROWED 2026-07-16 to the CEILING reading -- the 746a/746b/746c bound tests are all DRIVER (monotone-coupling) tests that weigh on INV-090, not the ceiling. On the narrowed ceiling INV-089 there is NO active weakens -- 746c's self-routed weakens was ADJUDICATED non_contributory (measurement_regime_mismatch, failure_autopsy_746c-756_2026-07-16) and the ceiling-form envelope test is analytically vacuous under 746 instrumentation (failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16). pending_retest on a distinct non-flat harm-evaluation target (blocked on the committed-action/conversion ceiling).
+      verdict: non_contributory/measurement_reframe
   evidence_quality_note: >
     Promoted candidate->provisional 2026-07-12 on V3-EXQ-743 (PASS/supports). The
     load-bearing positive control passed: realized harm is decodable-in-principle from
@@ -18868,6 +18884,10 @@
     reading: candidate/substrate_conditional
     as_of: 2026-07-16
     needs_review: false
+    evidence:
+      from: failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16
+      as_of: 2026-07-16
+      verdict: non_contributory/substrate_conditional
   epistemic_category: substrate_conditional
   subject: development.maturational_sequence
   description: >
@@ -20078,6 +20098,10 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-767a_2026-07-17
+      as_of: 2026-07-17
+      verdict: supports/?
   evidence_quality_note: >
     2026-07-16 governance (cycle 2026-07-16d; failure_autopsy_767-768-cluster): V3-EXQ-767
     (curiosity-drive CEM selection-bias diagnostic) PASSed self-routed 'supports' but was
@@ -22250,6 +22274,10 @@
     reading: provisional
     as_of: 2026-07-16
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-766a_2026-07-16
+      as_of: 2026-07-16
+      verdict: supports/verified
   registered: "2026-04-14"
   depends_on:
     - ARC-007
@@ -22345,6 +22373,10 @@
     reading: provisional
     as_of: 2026-07-17
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-768a_2026-07-17
+      as_of: 2026-07-17
+      verdict: supports/verified
   evidence_quality_note: >
     2026-07-17: candidate -> provisional. SD-024 x SD-025 interaction diagnostic V3-EXQ-768a
     (cloud, ree-cloud-4, linux-x86_64-py3.10) PASS/supports, adjudication=verified
@@ -23939,6 +23971,10 @@
     reading: candidate/v3_pending
     as_of: 2026-07-11
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-783_2026-07-18
+      as_of: 2026-07-18
+      verdict: diagnostic_no_direction/instrument_validated_cause_discriminated
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -28023,13 +28059,13 @@
   polarity: asserts
   status: provisional
   live_status:
-    reading: provisional/substrate_conditional_satisfied (independent-seed replicated)
-    as_of: 2026-07-12
+    reading: provisional/substrate_conditional
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: V3-EXQ-733c
-      as_of: 2026-07-12
-      verdict: supports (PASS; confirmatory independent-seed [101-106] replication of the 733b functional-rebinding PASS -- consolidates provisional, no status change)
+      from: "failure_autopsy_morning-digest-742-744a-745-746-746a_2026-07-13#V3-EXQ-745"
+      as_of: 2026-07-13
+      verdict: non_contributory/substrate_ceiling
   epistemic_category: substrate_conditional
   implementation_phase: v3
   v3_pending: false
@@ -28353,10 +28389,6 @@
   subject: hippocampus.state_gated_routing
   polarity: asserts
   status: provisional
-  status_note: >
-    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
-    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries, supports-only;
-    v3_pending gate cleared by V3-EXQ-702)
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -28365,6 +28397,10 @@
       from: "decision:MECH-272@2026-06-23T23:35:50.687606Z"
       as_of: 2026-06-23
       verdict: promote_to_provisional/applied
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
+    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries, supports-only;
+    v3_pending gate cleared by V3-EXQ-702)
   implementation_phase: v3
   v3_pending: false
   v3_pending_cleared_note: "2026-06-23 governance: v3_pending gate cleared on the strength of V3-EXQ-702 (sleep_substrate:GAP-3b) -- discriminative ARM_ON-vs-OFF use_sleep_aggregation_cluster run, 3/3 seeds supports with genuine ARM_OFF zero. The V3 substrate the gate was waiting for now exists and produced scoreable evidence; impl_phase stays v3 (v3_run_ct>=1 so no re-hold). Promotion not applied -- evidence now counts toward the candidate->provisional gate."
@@ -28433,10 +28469,6 @@
   subject: self_model.sleep_dependent_aggregation
   polarity: asserts
   status: provisional
-  status_note: >
-    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
-    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries; 1 mixed lit entry
-    but conflict_ratio 0; v3_pending gate cleared by V3-EXQ-702)
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -28445,6 +28477,10 @@
       from: "decision:MECH-273@2026-06-23T23:35:50.729543Z"
       as_of: 2026-06-23
       verdict: promote_to_provisional/applied
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: gov 2026-06-23T23:28Z: promote
+    candidate->provisional (exp_conf 0.824, conflict_ratio 0, 2 exp entries; 1 mixed lit entry
+    but conflict_ratio 0; v3_pending gate cleared by V3-EXQ-702)
   implementation_phase: v3
   v3_pending: false
   v3_pending_cleared_note: "2026-06-23 governance: v3_pending gate cleared on the strength of V3-EXQ-702 (sleep_substrate:GAP-3b) -- 3/3 seeds supports for the self-model replay-derived E2_harm_s param-delta (MECH-273 criterion) with genuine ARM_OFF zero movement. impl_phase stays v3 (v3_run_ct>=1, no re-hold). Promotion not applied -- evidence now counts toward the candidate->provisional gate."
@@ -29053,6 +29089,10 @@
     reading: provisional
     as_of: 2026-07-18
     needs_review: false
+    evidence:
+      from: "decision:MECH-279@2026-07-18T06:40:45.213047Z"
+      as_of: 2026-07-18
+      verdict: promote_to_provisional/applied
   implementation_phase: v3
   v3_pending: false  # cleared 2026-04-22: V3-EXQ-475 confirms PAG freeze gate firing (1000 active steps per seed in 3/3 seeds)
   claim_level: mechanistic
@@ -32934,9 +32974,9 @@
     as_of: 2026-07-12
     needs_review: false
     evidence:
-      from: V3-EXQ-517d
-      as_of: 2026-07-12
-      verdict: supports (promote_to_provisional/applied; 2 clean discriminative PASSes 517c+517d, exp_conf 0.824, conflict_ratio 0)
+      from: failure_autopsy_V3-EXQ-517b_2026-05-30
+      as_of: 2026-05-30
+      verdict: non_contributory/substrate_ceiling
   implementation_phase: v3
   v3_pending: false
   claim_level: mechanistic
@@ -33089,10 +33129,6 @@
       from: "decision:MECH-303@2026-07-15T13:44:33.249223Z"
       as_of: 2026-07-15
       verdict: promote_to_provisional/applied
-    prior_evidence:
-      from: "decision:MECH-303@2026-05-07T04:14:02Z"
-      as_of: 2026-05-07
-      verdict: hold_pending_v3_substrate/applied
   implementation_phase: v3
   v3_pending: false
   claim_level: mechanistic
@@ -33238,10 +33274,6 @@
       from: "decision:MECH-304@2026-07-15T13:44:33.206848Z"
       as_of: 2026-07-15
       verdict: promote_to_active/applied
-    prior_evidence:
-      from: "decision:MECH-304@2026-07-14T20:39:20.788928Z"
-      as_of: 2026-07-14
-      verdict: promote_to_provisional/applied
   implementation_phase: v3
   v3_pending: false
   claim_level: mechanistic
@@ -36406,9 +36438,6 @@
   subject: policy.stochastic_noise_floor_lc_ne_tonic_analog
   polarity: asserts
   status: candidate
-  status_note: >
-    [enum-comment migrated to field 2026-07-18] status: GOV-CEIL-1 demotion 2026-07-09: floored
-    from candidate_substrate_landed
   live_status:
     reading: candidate/v3_pending
     as_of: 2026-07-11
@@ -36417,6 +36446,9 @@
       from: failure_autopsy_V3-EXQ-687_2026-06-18
       as_of: 2026-06-18
       verdict: non_contributory/substrate_ceiling
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: GOV-CEIL-1 demotion 2026-07-09: floored
+    from candidate_substrate_landed
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_redesign: true
@@ -36793,13 +36825,6 @@
   subject: policy.curiosity.novelty_bonus_striatal_analog
   polarity: asserts
   status: provisional
-  status_note: >
-    [enum-comment migrated to field 2026-07-18] status: /governance 2026-06-14:
-    candidate_substrate_landed -> provisional (user-directed). exp_conf 0.759 (> 0.62
-    candidate->provisional gate) after the flat-authoritative indexer correction (074ab9401e)
-    cleared the stale pack weakens; v3_pending already lifted 2026-06-08 (V3-EXQ-604c PASS).
-    Single genuine exp entry (1 support) -- promoted on a thin-but-clean record; a confirmatory
-    run would harden it.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -36808,6 +36833,13 @@
       from: "failure_autopsy_batch9_2026-06-12#V3-EXQ-590b"
       as_of: 2026-06-12
       verdict: non_contributory (sub-hypothesis recorded for synthesis; no demotion)/standard (parent unchanged); failure routed as granularity debt
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: /governance 2026-06-14:
+    candidate_substrate_landed -> provisional (user-directed). exp_conf 0.759 (> 0.62
+    candidate->provisional gate) after the flat-authoritative indexer correction (074ab9401e)
+    cleared the stale pack weakens; v3_pending already lifted 2026-06-08 (V3-EXQ-604c PASS).
+    Single genuine exp entry (1 support) -- promoted on a thin-but-clean record; a confirmatory
+    run would harden it.
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -44580,11 +44612,6 @@
   subject: ethics_engine_3.scoring_trajectory_class_diversity_preservation
   polarity: asserts
   status: provisional
-  status_note: >
-    [enum-comment migrated to field 2026-07-18] status: 2026-06-14 governance RATIFICATION
-    (user-directed): V3-EXQ-660 binary within-class-representative preserver accepted as
-    sufficient V3 evidence (exp_conf 0.871 > 0.62 gate); v3_pending released. See dated note
-    below.
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -44593,6 +44620,11 @@
       from: failure_autopsy_V3-EXQ-655_2026-06-13
       as_of: 2026-06-13
       verdict: non_contributory/substrate_ceiling
+  status_note: >
+    [enum-comment migrated to field 2026-07-18] status: 2026-06-14 governance RATIFICATION
+    (user-directed): V3-EXQ-660 binary within-class-representative preserver accepted as
+    sufficient V3 evidence (exp_conf 0.871 > 0.62 gate); v3_pending released. See dated note
+    below.
   implementation_phase: v3
   v3_pending: false   # 2026-06-14: cleared by governance ratification of the binary within-class preserver (660 base PASS). Promotion was held ONLY by this gate (06-11c note); released per user decision.
   pending_retest_after_substrate: false   # 2026-06-14: cleared on ratification. The committed-action CONVERSION of the preserved diversity (the 614e/660 byte-identical committed-class entropy) is NOT a MECH-341 retest -- it is the shared E3 selection-authority ceiling, tracked DOWNSTREAM on behavioral_diversity_isolation:GAP-A (modulatory-bias-selection-authority; 569f/569g diagnose-first). MECH-341's own assertion (scoring-layer diversity PRESERVATION) is established; do NOT re-block this claim on the conversion work.
@@ -49189,6 +49221,10 @@
     reading: candidate
     as_of: 2026-07-17
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-778h_2026-07-19
+      as_of: 2026-07-19
+      verdict: non_contributory/measurement_gap
   implementation_phase: v3
   claim_level: architectural
   registered_utc: "2026-07-17"
@@ -49865,8 +49901,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-18
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-20
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v3
@@ -49918,8 +49954,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-18
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-20
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v3
@@ -51879,6 +51915,14 @@
   subject: integration.cross_model_super_additivity
   polarity: asserts
   status: provisional
+  live_status:
+    reading: provisional
+    as_of: 2026-07-16
+    needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-680d_2026-06-15
+      as_of: 2026-06-15
+      verdict: non_contributory/standard
   granularity_debt_disposition: coherent_campaign  # GOV-GRAN-1 human-adjudicated 2026-07-16 (NOT granularity debt); see granularity_debt_recurrence_note
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 discrimination (2026-07-16, session gifted-kilby-8e2491). Audit flagged
@@ -51905,14 +51949,6 @@
     Brake line for the lineage: if 680e (corrected gate, stable substrate) still returns a genuine
     finite net-negative cosine on a majority of seeds, route to /implement-substrate (shared-latent
     objective reconciliation) or narrow the claim -- NOT another 680f re-queue.
-  live_status:
-    reading: provisional
-    as_of: 2026-07-16
-    needs_review: false
-    evidence:
-      from: v3_exq_680e_mech423_superadditivity_ablation_20260716T155711Z_v3
-      as_of: 2026-07-16
-      verdict: supports/standard
   implementation_phase: v3
   epistemic_category: standard
   version_relevance: v3
@@ -53424,9 +53460,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3
-      as_of: 2026-06-24
-      verdict: supports/PASS
+      from: failure_autopsy_V3-EXQ-699_2026-07-20
+      as_of: 2026-07-20
+      verdict: non_contributory/measurement_test_design_defect
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3
@@ -53498,9 +53534,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_689h_pcomp_demotion_x_gonogo_composition_20260624T052921Z_v3
-      as_of: 2026-06-24
-      verdict: supports/PASS
+      from: failure_autopsy_V3-EXQ-699_2026-07-20
+      as_of: 2026-07-20
+      verdict: non_contributory/measurement_test_design_defect
   epistemic_category: standard
   # Assembly-state companion fields (MOVE-4 claims-layer follow-on). Worked
   # example of the explicit-override path: the Go/No-Go component is built but the
@@ -56104,6 +56140,14 @@
   subject: f_dominance_conversion_ceiling.actor_critic_action_learning_substrate
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-14
+    needs_review: false
+    evidence:
+      from: "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-781"
+      as_of: 2026-07-18
+      verdict: non_contributory/standard
   granularity_debt_disposition: coherent_campaign  # GOV-GRAN-1 human-adjudicated 2026-07-16 (NOT granularity debt); see granularity_debt_recurrence_note
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 discrimination (2026-07-16, session gifted-kilby-8e2491). Audit flagged
@@ -56137,14 +56181,6 @@
     post-build retest under a NEW EXQ number; it still REFUSES any fresh single-axis probe. STILL
     PROMOTES/DEMOTES NOTHING (candidate/v3_pending); 0 substrate_ceiling verdicts (GOV-CEIL-1
     unaffected).
-  live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-14
-    needs_review: false
-    evidence:
-      from: v3_exq_747_748_749_mech457_fanout (GOV-FANOUT-1 discrimination portfolio, diagnostic)
-      as_of: 2026-07-14
-      verdict: weakens sufficiency / strengthens dependency -- 2x3 (representation x teacher) fanout REFUTES H-rep and reward-density; only BC (imitation) clears the floor on both inputs (z_world+BC 32.72 > raw+BC 20.93). Discriminated cause = RL exploration/credit-assignment bootstrap, not representation and not reward density. One live discrimination remains on the algorithm axis (H-optim leg V3-EXQ-751, in flight). Stays candidate/v3_pending.
   implementation_phase: v3
   pending_retest_after_substrate: true  # substrate_queue mech457_competence_bootstrap_explorer: original build (022a284) failed the 765 retest (capacity gap); CAPACITY-SIDE AMEND built 2026-07-16 (hidden 256 + 5x budget + warm-start/credit-reliability + z_world detached) but V3-EXQ-769 (supersedes 765) RAN + REGRESSED (raw ON 6.48->0.12) -- capacity axis FALSIFIED (failure_autopsy_V3-EXQ-769_2026-07-17); reconfirmation re-routed to GOV-FANOUT-1 portfolio V3-EXQ-770/771/772 (drive-schedule / reward-coupling / credit-horizon)
   evidence_quality_note: |
@@ -56233,10 +56269,6 @@
     reading: candidate/v3_pending
     as_of: 2026-07-17
     needs_review: false
-    evidence:
-      from: "V3-EXQ-767a + V3-EXQ-768a (both cloud PASS, non-degenerate) + re-analysis probe scratchpad/probe1_sd025_force_decomposition.py"
-      as_of: 2026-07-17
-      verdict: "DESCRIPTIVE polarity (exploitation-dominant, diversity=0 at selection, curiosity-alone-on-flat=0) SUPPORTED by 767a+768a re-analysis (diagnostic); the FIX corollary (rarity-seeking generation drive) is v3_pending -- build blocked-on-upstream INV-088 z_world differentiation, untested"
   implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
@@ -56331,6 +56363,14 @@
   subject: f_dominance_conversion_ceiling.return_pathway_stabilisation
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-20
+    needs_review: false
+    evidence:
+      from: "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-782"
+      as_of: 2026-07-18
+      verdict: weakens/standard
   implementation_phase: v3
   v3_pending: true
   generation: v3
@@ -56562,6 +56602,10 @@
   subject: f_dominance_conversion_ceiling.behavioral_prior_seed_transience
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-20
+    needs_review: false
   implementation_phase: v3
   v3_pending: true
   generation: v3
@@ -56638,6 +56682,10 @@
   subject: f_dominance_conversion_ceiling.innate_approach_primitive_bootstrap
   polarity: asserts
   status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-20
+    needs_review: false
   implementation_phase: v3
   v3_pending: true
   generation: v3
@@ -56721,8 +56769,8 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-18
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-20
     needs_review: false
   epistemic_category: substrate_conditional
   implementation_phase: v3
@@ -56794,6 +56842,10 @@
     reading: candidate
     as_of: 2026-07-18
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-785_2026-07-19
+      as_of: 2026-07-19
+      verdict: mixed/measurement_test_design_defect
   epistemic_category: standard
   implementation_phase: v3
   claim_level: mechanistic
