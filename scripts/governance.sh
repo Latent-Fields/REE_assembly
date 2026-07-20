@@ -224,6 +224,29 @@ echo "--- Step 3g: Granularity-debt recurrence audit (GOV-GRAN-1, warn-only) ---
 # blocking CI gate.
 "$PYTHON" scripts/check_epistemic_category_completeness.py || true
 
+echo "--- Step 3h: Unapplied confirmed-autopsy recommendations (GOV-APPLY-1, warn-only) ---"
+# The FIFTH sibling, and the one that closes the already-reviewed blind spot. The
+# other four ask what a set of verdicts MEANS (3e/3f/3g) or whether the verdict was
+# RECORDED (GOV-CAT-1); this asks whether it was ever APPLIED.
+#
+# THE GAP: /governance discovers autopsy recommendations by walking pending_review.md
+# and looking up a confirmed failure_autopsy_*.json per surfaced run_id (SKILL.md Step
+# 2 item 5). A run already in review_tracker.json:reviewed_run_ids is ABSENT from
+# pending_review.md, so that lookup never runs. The cycle assumes adjudication precedes
+# review -- false for every RE-adjudication, and a corpus sweep re-opens reviewed runs
+# BY CONSTRUCTION. Confirmed 2026-07-20: failure_autopsy_V3-EXQ-604c's demotion of
+# MECH-314b/314c/Q-044 was confirmed, landed, and invisible; it survived THREE routing
+# attempts before being caught by hand. An unapplied demotion does not stay neutral --
+# it decays into a positive claim (IGW-20260720-020 went on asserting the withdrawn
+# reading). Diagnosis: intra_run_substrate_divergence_sweep_2026-07-20.md sec 10.
+#
+# Keys on per_claim_recommendation[].change (machine-readable "a change is owed") and
+# reports its own coverage, rather than inferring change-owed from a category compare
+# -- that alternative was measured at 338 mismatches, overwhelmingly NOT defects (an
+# affirming autopsy legitimately recommends a category the claim layer never mirrors).
+# Read-only; promotes/demotes nothing. --strict for a blocking CI gate.
+"$PYTHON" scripts/check_unapplied_autopsy_recommendations.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
