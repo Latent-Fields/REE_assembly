@@ -36915,12 +36915,14 @@
   status: candidate_substrate_landed
   live_status:
     reading: candidate_substrate_landed
-    as_of: 2026-07-11
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07#V3-EXQ-604b"
-      as_of: 2026-06-07
+      from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+      as_of: 2026-07-20
       verdict: non_contributory/substrate_ceiling
+  last_reviewed: 2026-07-20
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -36945,7 +36947,7 @@
     Falsifiable per MECH-314 functional_restatement: 314b-OFF
     agents show reduced uncertainty-resolution rollouts at
     familiar-but-uncertain states.
-  pending_retest_after_substrate: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
+  pending_retest_after_substrate: true # /governance 2026-07-20: REINSTATED -- the 2026-06-08 lift cited the V3-EXQ-604c PASS, which failure_autopsy_V3-EXQ-604c_2026-07-20 shows was structurally vacuous for this claim (broadcast scalar vs argmax-derived DV). Gated on the ARC-065 GAP-A Phase-2 per-candidate build.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3. Lit anchors:
       - Daw et al. 2006 (Nature) -- frontopolar exploration bonus
@@ -36976,6 +36978,49 @@
     full implementation note.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-604a re-tagged non_contributory: C0 PASS (SD-056 contrastive substrate fixed the 604 monomodal collapse, pairwise_dist 0.039>0.03) but curiosity_bias_abs_mean=0.0 in every arm incl ARM_ALL_ON and selected_entropy identical across all 5 arms -- the modulatory curiosity bias has zero authority at E3.select. NOT a falsification (the test could not let the claim express itself). substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- blocked by substrate_queue CREATE 'modulatory-bias-selection-authority'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a).
+
+    [2026-07-20 governance / autopsy failure_autopsy_V3-EXQ-604c_2026-07-20] evidence_direction
+    mixed -> non_contributory; epistemic_category substrate_ceiling. STRUCTURAL
+    VACUITY sub-type -- a DIFFERENT mechanism from the 2026-06-03 selection-authority
+    reading above, which this supersedes as the live reading. That one held the
+    curiosity bias had zero AUTHORITY at E3.select (it reached the consumer but the
+    consumer could not act on it). This one is upstream of authority and holds
+    independently of it: Phase-1 uncertainty (314b) and learning-progress (314c) are
+    GLOBAL SCALARS BROADCAST across all K candidates
+    (ree-v3/ree_core/policy/structured_curiosity.py:40-41,101), and a uniform additive
+    constant cannot change an argmax or a softmax sample. V3-EXQ-604c's C2 DV
+    (selected_action_class_entropy) is a pure function of the argmax sequence, so
+    delta == 0.0 was an ARITHMETIC IDENTITY fixed before the run -- true independently
+    of whether these claims are true. The 604c PASS therefore cannot bear on them in
+    either direction, and the 2026-06-08 lift of v3_pending /
+    pending_retest_after_substrate (which cited that PASS) rested on a vacuous result;
+    pending_retest_after_substrate is reinstated.
+
+    NOT the intra-run substrate divergence. That defect (D3) was independently
+    EXONERATED for 604c at the module-import-binding rung -- all 15 cells executed one
+    substrate (f80bc236); the second hash is a disk-state recording artefact. Five
+    seed-matched cross-boundary cell-pairs were bit-identical on all
+    trajectory-determined quantities.
+
+    Manifest self-confirmation (the ablations ARE plumbed; the channels DO fire --
+    this is not a wiring fault): curiosity_bias_range_mean is identical to full
+    precision across ALL_ON / UNCERTAINTY_OFF / LP_OFF (0.01529031 -- a broadcast
+    constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean
+    differs (0.240986 / 0.235738 / 0.240916 -- it does not cancel), and
+    curiosity_subflavours_fired_mean moves correctly (2.866 / 1.866 / 2.000 at seed 42).
+
+    MECH-314 and MECH-314a `supports` STAND (per-candidate novelty on e2_world_forward,
+    authority gate active). Caveat recorded for future readers: 604c's C1 and its C2
+    novelty leg are the SAME comparison, not two independent ones --
+    ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so
+    both read 0.402505. The run yields one finding, not two.
+
+    Re-derive brake FIRES (3 vs threshold 2): a further same-claim ablation is REFUSED.
+    Build route only -- make both terms per-candidate (`amend` on ARC-065, GAP-A Phase-2
+    per-candidate extension), landed REE_assembly 2241c39cdc. Note the 604c readiness
+    gate r2 (curiosity_bias_range) is unknowingly a NOVELTY-ONLY gate -- the exact
+    statistic in which broadcast terms vanish -- so it certifies readiness for
+    MECH-314a alone.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: MECH-314c
@@ -36986,12 +37031,14 @@
   status: candidate_substrate_landed
   live_status:
     reading: candidate_substrate_landed
-    as_of: 2026-07-11
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07#V3-EXQ-604b"
-      as_of: 2026-06-07
+      from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+      as_of: 2026-07-20
       verdict: non_contributory/substrate_ceiling
+  last_reviewed: 2026-07-20
+  epistemic_category: substrate_ceiling
   implementation_phase: v3
   v3_pending: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
   claim_level: mechanistic
@@ -37019,7 +37066,7 @@
     rate varies with policy should show reduced learning-curve
     curvature compared to 314c-ON agents holding 314a + 314b
     constant.
-  pending_retest_after_substrate: false # /governance 2026-06-08: lifted after V3-EXQ-604c PASS on validated GAP-A substrate (GAP-A ready_validated; supersedes 604b)
+  pending_retest_after_substrate: true # /governance 2026-07-20: REINSTATED -- the 2026-06-08 lift cited the V3-EXQ-604c PASS, which failure_autopsy_V3-EXQ-604c_2026-07-20 shows was structurally vacuous for this claim (broadcast scalar vs argmax-derived DV). Gated on the ARC-065 GAP-A Phase-2 per-candidate build.
   evidence_quality_note: >
     Registered 2026-05-10 from Pull 1 SYNTHESIS R3 + Pull 4 R4.
     Pull 1 explicitly flagged 314c as least biologically-anchored;
@@ -37062,6 +37109,49 @@
     full implementation note.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-604a re-tagged non_contributory: C0 PASS (SD-056 contrastive substrate fixed the 604 monomodal collapse, pairwise_dist 0.039>0.03) but curiosity_bias_abs_mean=0.0 in every arm incl ARM_ALL_ON and selected_entropy identical across all 5 arms -- the modulatory curiosity bias has zero authority at E3.select. NOT a falsification (the test could not let the claim express itself). substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- blocked by substrate_queue CREATE 'modulatory-bias-selection-authority'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a).
+
+    [2026-07-20 governance / autopsy failure_autopsy_V3-EXQ-604c_2026-07-20] evidence_direction
+    mixed -> non_contributory; epistemic_category substrate_ceiling. STRUCTURAL
+    VACUITY sub-type -- a DIFFERENT mechanism from the 2026-06-03 selection-authority
+    reading above, which this supersedes as the live reading. That one held the
+    curiosity bias had zero AUTHORITY at E3.select (it reached the consumer but the
+    consumer could not act on it). This one is upstream of authority and holds
+    independently of it: Phase-1 uncertainty (314b) and learning-progress (314c) are
+    GLOBAL SCALARS BROADCAST across all K candidates
+    (ree-v3/ree_core/policy/structured_curiosity.py:40-41,101), and a uniform additive
+    constant cannot change an argmax or a softmax sample. V3-EXQ-604c's C2 DV
+    (selected_action_class_entropy) is a pure function of the argmax sequence, so
+    delta == 0.0 was an ARITHMETIC IDENTITY fixed before the run -- true independently
+    of whether these claims are true. The 604c PASS therefore cannot bear on them in
+    either direction, and the 2026-06-08 lift of v3_pending /
+    pending_retest_after_substrate (which cited that PASS) rested on a vacuous result;
+    pending_retest_after_substrate is reinstated.
+
+    NOT the intra-run substrate divergence. That defect (D3) was independently
+    EXONERATED for 604c at the module-import-binding rung -- all 15 cells executed one
+    substrate (f80bc236); the second hash is a disk-state recording artefact. Five
+    seed-matched cross-boundary cell-pairs were bit-identical on all
+    trajectory-determined quantities.
+
+    Manifest self-confirmation (the ablations ARE plumbed; the channels DO fire --
+    this is not a wiring fault): curiosity_bias_range_mean is identical to full
+    precision across ALL_ON / UNCERTAINTY_OFF / LP_OFF (0.01529031 -- a broadcast
+    constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean
+    differs (0.240986 / 0.235738 / 0.240916 -- it does not cancel), and
+    curiosity_subflavours_fired_mean moves correctly (2.866 / 1.866 / 2.000 at seed 42).
+
+    MECH-314 and MECH-314a `supports` STAND (per-candidate novelty on e2_world_forward,
+    authority gate active). Caveat recorded for future readers: 604c's C1 and its C2
+    novelty leg are the SAME comparison, not two independent ones --
+    ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so
+    both read 0.402505. The run yields one finding, not two.
+
+    Re-derive brake FIRES (3 vs threshold 2): a further same-claim ablation is REFUSED.
+    Build route only -- make both terms per-candidate (`amend` on ARC-065, GAP-A Phase-2
+    per-candidate extension), landed REE_assembly 2241c39cdc. Note the 604c readiness
+    gate r2 (curiosity_bias_range) is unknowingly a NOVELTY-ONLY gate -- the exact
+    statistic in which broadcast terms vanish -- so it certifies readiness for
+    MECH-314a alone.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: Q-043
@@ -37167,12 +37257,14 @@
   status: open
   live_status:
     reading: open
-    as_of: 2026-07-11
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07#V3-EXQ-604b"
-      as_of: 2026-06-07
+      from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+      as_of: 2026-07-20
       verdict: non_contributory/substrate_ceiling
+  last_reviewed: 2026-07-20
+  epistemic_category: substrate_ceiling
   what_would_answer: |
     A three-arm ablation (MECH-314a striatal-novelty OFF, MECH-314b
     frontopolar-uncertainty OFF, MECH-314c learning-progress OFF) on a substrate
@@ -37303,6 +37395,49 @@
     [2026-05-29 autopsy V3-EXQ-604 + V3-EXQ-605 cluster]: untestable on V3 default substrate due to candidate-uniform z_world (no per-candidate variance from E2 forward-model output). MECH-314a per-candidate novelty bonus collapses to uniform across degenerate candidates -> ARM_1 (novelty-off) == ARM_0 (all-on) bit-identical per seed. MECH-314b/c are broadcast-by-design (Phase 1 honest-scoping caveat already on file). Two-substrate-prereq stack: SD-056 e2_action_conditional_divergence_contrastive (proximal; landed 2026-05-29 ree-v3 main 041a974; V3-EXQ-613 PASS; V3-EXQ-569a falsifier queued) AND SD-XXX-scaffolded-sd054-onboarding (deep; parent 490g-cohort autopsy commit 12f0dda773). Both must close before Q-044 retest is meaningful; SD-056 first via V3-EXQ-569a.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_604a-624a-630_2026-06-03] V3-EXQ-604a re-tagged non_contributory: C0 PASS (SD-056 contrastive substrate fixed the 604 monomodal collapse, pairwise_dist 0.039>0.03) but curiosity_bias_abs_mean=0.0 in every arm incl ARM_ALL_ON and selected_entropy identical across all 5 arms -- the modulatory curiosity bias has zero authority at E3.select. NOT a falsification (the test could not let the claim express itself). substrate_ceiling (selection-authority sub-type); pending_retest_after_substrate -- blocked by substrate_queue CREATE 'modulatory-bias-selection-authority'. Convergent with 624a (MECH-320) and the z_goal salience gap (603e/626a).
+
+    [2026-07-20 governance / autopsy failure_autopsy_V3-EXQ-604c_2026-07-20] evidence_direction
+    mixed -> non_contributory; epistemic_category substrate_ceiling. STRUCTURAL
+    VACUITY sub-type -- a DIFFERENT mechanism from the 2026-06-03 selection-authority
+    reading above, which this supersedes as the live reading. That one held the
+    curiosity bias had zero AUTHORITY at E3.select (it reached the consumer but the
+    consumer could not act on it). This one is upstream of authority and holds
+    independently of it: Phase-1 uncertainty (314b) and learning-progress (314c) are
+    GLOBAL SCALARS BROADCAST across all K candidates
+    (ree-v3/ree_core/policy/structured_curiosity.py:40-41,101), and a uniform additive
+    constant cannot change an argmax or a softmax sample. V3-EXQ-604c's C2 DV
+    (selected_action_class_entropy) is a pure function of the argmax sequence, so
+    delta == 0.0 was an ARITHMETIC IDENTITY fixed before the run -- true independently
+    of whether these claims are true. The 604c PASS therefore cannot bear on them in
+    either direction, and the 2026-06-08 lift of v3_pending /
+    pending_retest_after_substrate (which cited that PASS) rested on a vacuous result;
+    pending_retest_after_substrate is reinstated.
+
+    NOT the intra-run substrate divergence. That defect (D3) was independently
+    EXONERATED for 604c at the module-import-binding rung -- all 15 cells executed one
+    substrate (f80bc236); the second hash is a disk-state recording artefact. Five
+    seed-matched cross-boundary cell-pairs were bit-identical on all
+    trajectory-determined quantities.
+
+    Manifest self-confirmation (the ablations ARE plumbed; the channels DO fire --
+    this is not a wiring fault): curiosity_bias_range_mean is identical to full
+    precision across ALL_ON / UNCERTAINTY_OFF / LP_OFF (0.01529031 -- a broadcast
+    constant cancels in a max-minus-min range) while curiosity_bias_max_abs_mean
+    differs (0.240986 / 0.235738 / 0.240916 -- it does not cancel), and
+    curiosity_subflavours_fired_mean moves correctly (2.866 / 1.866 / 2.000 at seed 42).
+
+    MECH-314 and MECH-314a `supports` STAND (per-candidate novelty on e2_world_forward,
+    authority gate active). Caveat recorded for future readers: 604c's C1 and its C2
+    novelty leg are the SAME comparison, not two independent ones --
+    ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so
+    both read 0.402505. The run yields one finding, not two.
+
+    Re-derive brake FIRES (3 vs threshold 2): a further same-claim ablation is REFUSED.
+    Build route only -- make both terms per-candidate (`amend` on ARC-065, GAP-A Phase-2
+    per-candidate extension), landed REE_assembly 2241c39cdc. Note the 604c readiness
+    gate r2 (curiosity_bias_range) is unknowingly a NOVELTY-ONLY gate -- the exact
+    statistic in which broadcast terms vanish -- so it certifies readiness for
+    MECH-314a alone.
   location: docs/architecture/rule_apprehension_layer.md
 
 - id: Q-045
