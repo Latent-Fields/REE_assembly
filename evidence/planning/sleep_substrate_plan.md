@@ -468,9 +468,24 @@ Deliverables:
 
 This phase has no validation EXQ of its own; it is a process improvement.
 
-### Phase 7: Phase 1b (deferred to V4 unless future behavioural evidence reverses)
+### Phase 7: Phase 1b (RESUMED + BUILT 2026-07-20; was V4-deferred)
 
-**Status (2026-05-09): deferred to V4 or later.** V3-EXQ-541c PASSed all
+**Status (2026-07-20): TRIGGER FIRED, SUBSTRATE BUILT, validation pending.**
+The 2026-05-09 V4 deferral below is SUPERSEDED. V3-EXQ-774 FAILed 2026-07-17
+and the confirmed `failure_autopsy_V3-EXQ-774_2026-07-17` adjudicated
+`substrate_ceiling` with the required "F1 alone insufficient" attribution.
+Phase 7 / Option B was built the same day in ree-v3
+(`E3TrajectorySelector.broadcast_precision_pull`, read site at the top of
+`REEAgent.select_action`, `REEConfig.use_rem_precision_broadcast` /
+`rem_precision_broadcast_gain`, no-op default), **with the write-site
+corrected from E3 score to precision space** -- see the 2026-07-20 decision-log
+entry for why the spec'd score site is provably selection-inert for a
+broadcast. Built alongside SD-076 (waking confidence-inflation source), which
+Phase 7 needs in order to be testable at all. The 2026-05-09 text below is
+retained verbatim for reconstruction; its read-site adjudication (choice (a),
+`_persistent_zero_point`) is UNCHANGED and was honoured by the build.
+
+**Status (2026-05-09, SUPERSEDED): deferred to V4 or later.** V3-EXQ-541c PASSed all
 four criteria (overall_pass=True), confirming F1+step-tuning is the
 operative MECH-204 architecture per the REM-precision lit-pull SYNTHESIS
 dispatch case #1. Phase 7 / Option B (broadcast read-site at action
@@ -561,7 +576,7 @@ work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. | V3-EXQ-541c | 2026-05-09 |
+| GAP-1 | 1 | done | (none) | F1 substrate landed 2026-05-09 (cross-cycle persistent zero-point EMA reference; 13/13 MECH-204 contracts + 241/241 preflight+contracts PASS). REM-precision lit-pull (5 entries; MECH-204 lit_conf 0.864): F1 dominant pattern; F2 permanently discarded (zero biological referent); F3 dual-arm preserved as conditional fallback. V3-EXQ-541a confirmed F1 mechanism. V3-EXQ-541b step-size sweep showed monotone dose-response but no arm cleared 5% C4 at 4 cycles. **V3-EXQ-541c (16 cycles, 4x exposure) PASSED all four criteria 2026-05-09: cycle-count dose-response is sub-linear but firmly NOT a plateau (~2.9x divergence growth per 4x cycle increase). ARM_4 step=0.5 cleared 5% C4 threshold at 9.03% in 3/3 seeds; ARM_3 step=0.25 came in at 4.51% just under. Tracking_quality monotonically improved 0.842 -> 0.921; zero overshoot. F1+step-tuning IS the operative architecture for V3 per lit-pull SYNTHESIS dispatch case #1.** Default `rem_precision_recalibration_step` bumped 0.1 -> 0.25 (high end of biologically defensible band per Q-042 Option A; strongest defensible default backed by 541c evidence). MECH-204 V3 closure complete. Phase 7 / Option B deferred to V4 unless future behavioural evidence reverses the dispatch. **RESUME TRIGGER FIRED 2026-07-20: the deferral is REVERSED and Phase 7 / Option B is BUILT.** V3-EXQ-774 (MECH-173 REM-suppression probe on the built MECH-204 consumer, ran 2026-07-17) FAILed, and the confirmed `failure_autopsy_V3-EXQ-774_2026-07-17` adjudicated it `substrate_ceiling` with the attribution the trigger requires: "F1 alone insufficient" -- precision saturates DURING waking before the per-cycle WRITEBACK lever gains headroom (effect present on 1/3 seeds only; per-seed deltas 0.0007 / 0.0021 / 0.624). Note the script's OWN self-route did NOT fire (it gates `substrate_ceiling` on cross-arm spread < 0.05 and the measured spread was 0.21); the autopsy overrode it because a convergence-gated ceiling makes the spread SEED-DEPENDENT rather than collapsing it, so the spread test is the wrong instrument. Built 2026-07-20 (ree-v3): `E3TrajectorySelector.broadcast_precision_pull` + `REEAgent.select_action` read site, `REEConfig.use_rem_precision_broadcast` / `rem_precision_broadcast_gain`, no-op default. **WRITE-SITE CORRECTED score -> precision (see decision log 2026-07-20).** Paired with SD-076 (waking confidence-inflation source) -- Phase 7 alone cannot lift the ceiling because without a drift source the DV is a tautology. **Caveat on trigger scope:** the trigger names its downstream claims as "Q-041, Q-042, SD-029, MECH-111, MECH-256 per GAP-1 unblocks_claims" and 774 scored MECH-173, which is not in that list; proceeding on the reading that the list is illustrative of the class rather than exhaustive. Recorded as a judgment call, not a settled one. | V3-EXQ-541c; V3-EXQ-774 (trigger) | 2026-07-20 |
 | GAP-2 | 2 | upstream-blocked | **Gate updated 2026-05-30 (resume_condition rewrite; no status change).** ARC-065 SP-CEM substrate live from V3-EXQ-567 PASS 2026-05-15 is NOT sufficient on its own: V3-EXQ-543l ran 2026-05-26 with it live and still collapsed (failure_autopsy_V3-EXQ-543l_2026-05-27 confirmed substrate_ceiling); V3-EXQ-598b retest on the GAP-C/D substrate also FAILed C3 trainable_not_monomodal. New gate: rule-creator / discriminator substrate landing under arc_062_rule_apprehension:GAP-B (status=blocked, routing to /implement-substrate) AND a contributory PASS retest of GAP-B's MECH-309/ARC-062 falsifier on that new substrate. Then re-queue 418m + 436b. Sleep retest cohort (418m + 436b + 500a + 503a) stays deferred per 2026-05-29 governance. See decision log 2026-05-30 entry. **Prior text (stale, retained for reconstruction):** ARC-065 (behavioral-diversity-generation pathway) substrate not landed -- V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 (bit-identical sleep-vs-waking metrics; agent in monomodal collapse). 500a + 503a are surviving Tier-1 successors in pending review and are NOT diversity-dependent the same way. Resume after V3-EXQ-543b/c PASS under ARC-065 substrate, then re-queue 418m + 436b. See decision log 2026-05-10 entry + arc_062_rule_apprehension_plan.md for cross-cluster reflection. Original entry: | **V3-EXQ-265a PASSED all 4 criteria (2026-05-09T20:12Z, 22 min on Mac).** C1 sws_writes>0 in 3/3 WITH_SLEEP seeds (mean=8.0); C2 with_sleep slot diversity 0.257 > 0.10; C3 rem_rollouts>0 in 3/3 seeds; C4 (signed |diff|>0.05 between WITH/WITHOUT_SLEEP, either direction) PASSED in 2/3 seeds. Notable cross-seed heterogeneity: seed 42 sleep ADDED diversity (0.266 vs 0.175); seed 49 saturated near-tie (0.365 vs 0.358); seed 56 sleep COLLAPSED diversity (~0 vs 0.194). The C4 signed-difference acceptance shape is validated for use in successor experiments. EXQ-265 manifest flipped to evidence_direction=superseded with note explaining the SD-016 attention-uniformity confound that drove the C4 reversal in the original. Reviewed in review_tracker.json 2026-05-09T20:14Z. Phase 2 substrate template confirmed working end-to-end. Remaining Tier 1 EXQs (V3-EXQ-418c, 436a, 500a, 503a) STILL OUTSTANDING -- queue in fresh session(s) using the 5-flag template + supersedes pattern recorded in the 2026-05-09T19:49Z decision log; the C4 signed-difference shape (|diff| > 0.05) carried over directly. The seed-56 collapse pattern is worth flagging in 436a's design (3 conditions x 5 seeds) so per-condition aggregation handles bimodal cross-seed distributions cleanly. | V3-EXQ-265a (PASS); pending V3-EXQ-418c, 436a, 500a, 503a | 2026-05-09 |
 | GAP-3 | 3, 4 | done | (none) | Unified `use_sleep_aggregation_cluster` master flag landed 2026-05-16. Root cause: eight independent default-False flags (use_sleep_loop, sws_enabled, rem_enabled, use_mech285_sampler, use_mech272_routing, use_mech272_routing_consumer, use_mech275_aggregator, use_mech273_self_model) -- cluster silent unless an experiment set all eight by hand. Fix: REEConfig.use_sleep_aggregation_cluster field + enable_sleep_aggregation_cluster() method, resolved in __post_init__ (direct) and at end of from_dims (factory path), mirroring use_mech307_conjunction / enable_goal_stream. OR-only; MECH-204 + anchor-set/e2_harm_s prereqs deliberately NOT bundled. Bit-identical OFF: contracts 410 + preflight 9 PASS; new test_sleep_aggregation_cluster_gap3.py 7/7. V3-EXQ-581 dry-run 6/6 PASS (C1-C5 all four Phase B-E components fire end-to-end under one flag; C6 ARM_CLUSTER == ARM_EXPLICIT proves pure ergonomics, zero behavioural divergence). **The 2026-05-16 GAP-4 entry below claimed "GAP-3 PASS (V3-EXQ-565 2026-05-15)" -- that was a GAP-8/GAP-3 conflation (V3-EXQ-565 is GAP-8's owner-EXQ). GAP-3's own deliverable was not done until 2026-05-16; GAP-4 was completed ahead of its dependency, now satisfied.** | V3-EXQ-581 | 2026-05-16 |
 | GAP-4 | 4 | done | (none) | _harm_replay_buffer populated in REEAgent.sense() (waking only: hypothesis_tag=False, z_harm not None, _last_action not None); capped 1000 entries; snapshotted at SLEEP_ENTRY in SleepLoopManager._run_cycle(); passed to offline_gradient_pass as harm_replay_buffer kwarg. Real tuples sampled via random.choices; synthetic zeros/round-robin one-hot fallback preserved when buffer None or empty. 4 new E11-E14 Phase E contract tests added; 14/14 PASS. | code change (no EXQ) | 2026-05-16 |
@@ -641,6 +656,95 @@ made in the same session as this plan registration.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-07-20 - Phase 7 RESUMED from V4 deferral; write-site corrected score -> precision
+
+Two decisions, recorded together because the second is only reachable via the
+first.
+
+**(1) The Phase 7 / Option B V4 deferral (2026-05-09) is REVERSED.**
+
+The trigger condition as written: "a downstream behavioural claim that depends
+on MECH-204 ... FAILing in a way that forensic analysis attributes to 'F1 alone
+insufficient' rather than to other substrate gaps."
+
+V3-EXQ-774 (MECH-173 REM-suppression probe on the built MECH-204 consumer, ran
+2026-07-17) FAILed, and `failure_autopsy_V3-EXQ-774_2026-07-17` (status
+`confirmed`) adjudicated `substrate_ceiling` with exactly that attribution:
+precision saturates DURING waking before the per-cycle WRITEBACK lever gains
+headroom, so the effect is present on only 1/3 seeds (per-seed deltas
+0.0007 / 0.0021 / 0.624).
+
+**Note the script's own self-route did NOT fire, and the autopsy overrode it.**
+774 gates its `substrate_ceiling` branch on cross-arm spread < NONDEGEN_FLOOR
+(0.05); measured spread was 0.21, so the branch stayed shut. The autopsy's §5
+finding is that a *convergence-gated* ceiling does not collapse the spread --
+it makes the spread SEED-DEPENDENT, one headroom seed carrying all the signal
+-- so the spread test is the wrong instrument for this failure shape. This is
+worth remembering as a general pattern: a degeneracy test built for "the effect
+vanished" will not catch "the effect survives on one seed only."
+
+**Trigger-scope caveat, recorded as unsettled.** The trigger names its
+downstream claims as "(Q-041, Q-042, SD-029, MECH-111, MECH-256 per GAP-1
+unblocks_claims)" and 774 scored **MECH-173**, which is not in that list.
+MECH-173 is genuinely a MECH-204 consumer, so this build proceeds on the
+reading that the parenthetical is illustrative of the class rather than
+exhaustive. That is a judgment call, not a settled adjudication; if a later
+governance pass disagrees, the substrate is no-op by default and costs nothing
+standing.
+
+**(2) The Phase 7 write-site is corrected from E3 score to PRECISION space.**
+
+The 2026-05-09 spec says: "Apply broadcast as additive bias on E3 score, scaled
+by tunable `rem_precision_broadcast_gain`." **That site is provably
+selection-inert for a broadcast, and was not built.**
+
+A *broadcast* is one scalar for all K candidates. `e3_selector` applies
+`score_bias` as `scores = scores + bias_tensor` -- a uniform shift, which is
+invariant under argmax AND under softmax. Every downstream consumer checked is
+relative: `raw_scores.max() - raw_scores[i]`, `raw_score_range`, `topk`, the
+shortlist `cutoff` / `envelope` -- and several of those read `raw_scores`,
+which `score_bias` never touches. So the spec'd site would register a nonzero
+modulatory channel in telemetry while changing no behaviour: precisely the
+shape the `inert_arm_knob` lint (ree-v3 `c040d28`, 2026-07-20) exists to catch.
+
+The read-site lit-pull (2026-05-09,
+`evidence/literature/targeted_review_rem_precision_recalibration_timing/`)
+adjudicated **what to read** -- choice (a), `_persistent_zero_point` -- and
+that verdict is UNCHANGED and honoured. It never adjudicated **where to
+write**; the score site appears to be an unexamined carry-over from the
+Option-B framing rather than a derived choice.
+
+Precision space is the non-inert site, and is independently the right one:
+`_running_variance` feeds an ABSOLUTE commit threshold
+(`running_variance < commit_threshold`, ARC-016) and
+`current_precision = 1/(rv + 1e-6)`, and it is where V3-EXQ-774's own DV
+(`overconfidence_index`, computed from `mean_running_variance`) already lives.
+Written as `E3TrajectorySelector.broadcast_precision_pull(target, gain)`,
+called at the TOP of `REEAgent.select_action` so the anchored rv is what that
+tick's commit gate and precision consumers see.
+
+**(3) Phase 7 was built PAIRED with SD-076, and should not be run without it.**
+
+The autopsy's build target is two things, and the second is easy to drop:
+"an accuracy-anchored recalibration arm ... **plus** a waking confidence-
+inflation source so removing recalibration can expose absolute overconfidence."
+
+The reason it is not optional: `update_running_variance` maintained rv as a
+symmetric EMA of true prediction error, so rv ~= true error by construction and
+`overconfidence_index` is pinned near zero no matter what is ablated (774
+measured -0.000148 and -0.000918 on the suppressed arms). MECH-204's corrective
+function presupposes a daytime drift source the substrate did not have. Shipping
+Phase 7 alone would have produced an identical null on retest, and the null
+would have looked like a Phase-7 refutation rather than a tautology. SD-076
+(`docs/architecture/sd_076_waking_confidence_inflation.md`) supplies the drift
+as an asymmetric EMA, registered as its own claim because it is the SOURCE
+while MECH-204 is the CORRECTION and the two must be independently ablatable.
+
+Smoke evidence that the diagnosis was right: at asymmetry 0.6 on a true error
+mean of 0.05, `overconfidence_index` moves from **-0.164** (OFF,
+UNDERconfident) to **+0.273** (ON). The OFF value reproduces the sign and rough
+magnitude of 774's measured `ARM_FULL_SLEEP = -0.2097`.
 
 ### 2026-05-30 - GAP-2 resume_condition rewrite (stale 543l gate cleared; new gate = rule-creator substrate)
 

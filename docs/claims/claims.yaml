@@ -49805,6 +49805,71 @@
     ValueError at construction. No status/confidence change (substrate only).
   validation_experiment: V3-EXQ-779 (MECH-063 sub-claim ii tonic-vs-phasic behavioural dissociation, 777-harness pattern, phasic_burst_signal_source=instantaneous_pe on PHASIC-ON arms; queued 2026-07-17)
 
+- id: SD-076
+  title: "Waking confidence inflation as an asymmetric precision EMA: good news about one's own accuracy is incorporated fast and bad news slowly, so the running-variance estimate settles below the true error mean. Supplies the daytime precision-drift source that MECH-204's corrective function presupposes but which V3 did not have. ree_core E3 selector change, bit-identical by default."
+  claim_type: design_decision
+  subject: precision.waking_confidence_inflation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-20
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-20"
+  depends_on: [ARC-016]
+  location: docs/architecture/sd_076_waking_confidence_inflation.md
+  functional_restatement: >
+    E3TrajectorySelector.update_running_variance maintained _running_variance (rv) as a
+    SYMMETRIC EMA of observed squared prediction error, making rv a faithful tracker of
+    true error -- rv ~= true error BY CONSTRUCTION. This renders an entire class of claim
+    unmeasurable rather than merely unsupported. MECH-173's DV, overconfidence_index =
+    (true_error_ref - mean_rv) / true_error_ref, is pinned near zero regardless of what is
+    ablated: V3-EXQ-774 measured -0.000148 (ARM_REM_SUPPRESSED) and -0.000918
+    (ARM_RECALIB_OFF), with the load-bearing criterion suppressed_arm_absolutely_
+    overconfident recording false. The deeper point is that MECH-204's entire corrective
+    function presupposes a daytime drift source the substrate lacked: "sleep recalibrates
+    waking precision drift" is only testable if waking precision can drift, so a null on
+    any MECH-204 consumer was a TAUTOLOGY rather than evidence. SD-076 supplies the drift.
+    Under the master flag, error improvements are incorporated at alpha * (1 + asymmetry)
+    and worsenings at alpha * (1 - asymmetry), so rv settles BELOW the true error mean --
+    a systematic, directional, and correctable under-estimate of one's own error, which is
+    the operational definition of overconfidence. Registered as its own claim rather than
+    as part of MECH-204 because it is the SOURCE of drift while MECH-204 is the
+    CORRECTION; the two must be independently ablatable.
+  implementation_note: >
+    IMPLEMENTED 2026-07-20 in ree-v3/ree_core/predictors/e3_selector.py
+    (update_running_variance), surfaced as E3Config.use_waking_confidence_inflation
+    (default False), E3Config.waking_confidence_inflation_asymmetry (default 0.0, clamped
+    to [0, 0.999]) and E3Config.waking_confidence_rv_floor (default 0.01). BIT-IDENTICAL
+    OFF BY CONSTRUCTION, NOT BY ARITHMETIC: the OFF branch evaluates the original
+    symmetric expression unchanged rather than re-deriving it at asymmetry 0, and the
+    smoke pins this by explicit float equality over an 80-step trace rather than an
+    approximate comparison. THE FLOOR IS LOAD-BEARING, NOT HYGIENE: rv feeds an ABSOLUTE
+    commit threshold (running_variance < commit_threshold, ARC-016) and current_precision
+    = 1/(rv + 1e-6), so unbounded downward drift would both pin the agent permanently
+    committed and explode precision; the floor applies only on the inflation path. SD-069
+    is unaffected because last_instantaneous_pe is captured BEFORE this smoothing. Built
+    in the same pass as the MECH-204 Phase 7 / Option B broadcast anchor (the correction
+    half of the same loop), routed by the confirmed
+    evidence/planning/failure_autopsy_V3-EXQ-774_2026-07-17. Smoke 6/6 PASS: at
+    asymmetry=0.6 on an alternating error sequence with true mean 0.05, the
+    overconfidence_index moves from -0.164 (OFF, UNDERconfident) to +0.273 (ON,
+    genuinely overconfident); the OFF value reproduces the sign and rough magnitude of
+    774's measured ARM_FULL_SLEEP = -0.2097, which is direct evidence that the autopsy
+    diagnosis was correct.
+  notes: >
+    NOT VALIDATED YET -- status candidate, behavioural validation pending as the MECH-204
+    Phase 7 retest. Biological grounding is optimism / positive-outcome bias in waking
+    belief updating, the drift the sleep-recalibration literature behind MECH-204
+    (Hobson-Hong-Friston 2014; Walker & Stickgold 2006) presupposes. This is a FUNCTIONAL
+    translation, not a mechanism claim about a specific neuromodulator; a valence-gated
+    learning-rate account is V4 scope. Sign convention: SD-076 pushes rv DOWN, MECH-204
+    recalibration pulls rv TOWARD the cumulative zero-point reference, so on a
+    well-calibrated agent they approximately cancel and the experimental signal lives in
+    the arms where one is ablated.
+
 - id: SD-075
   title: "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default."
   claim_type: design_decision
