@@ -94,11 +94,41 @@ WHAT IT MEASURES (three buckets, reported separately -- do not silently merge)
   still fired. That is exactly the bug 654e fixed; the 5 historical confirmed
   ERRORs (517c, 610a, 612b, 621, 669) simply predate it.
 
+  THE BUCKET IS HETEROGENEOUS -- do not collapse it to one story. Three
+  distinct populations have been confirmed in it:
+    * operator cancellation  -- V3-EXQ-699a (POST /queue/remove, superseded)
+    * genuine crash          -- 517c, 610a, 612b, 621, 669 (confirmed ERROR in
+                                the per-machine split; all predate 654e)
+    * pure bookkeeping gap   -- V3-EXQ-673: all 6 run manifests exist and are on
+                                origin, yet it has NO results row. Nothing
+                                crashed and nothing was cancelled; only the
+                                results row is missing. This is the counter-
+                                example that proves the bucket is not uniformly
+                                cancellations, and the reason the phantom count
+                                must never be reported as an error count.
+                                (673's 3 stranded manifests were recovered from
+                                ree-cloud-2 and committed 2026-07-20 in
+                                1a4ad27d9e -- it was already the contrast case
+                                before that, with 3 of 6 manifests present.)
+
   CONSEQUENCE FOR THE UPPER BOUND: it is inflated, because it counts deliberate
-  cancellations as possible errors. Once `removal_reason` is live (see below)
-  this script subtracts them automatically. Until then, spot-check a phantom for
-  a `/queue/remove` in the coordinator log and a lettered supersedor -- together
-  they mean "deliberately retired", not "crashed silently".
+  cancellations AND bookkeeping gaps as possible errors. Once `removal_reason`
+  is live (see below) this script subtracts the cancellations automatically;
+  bookkeeping gaps stay in, so even then it remains an upper bound. Until then,
+  spot-check a phantom for a `/queue/remove` in the coordinator log and a
+  lettered supersedor -- together they mean "deliberately retired", not
+  "crashed silently".
+
+  REASON VOCABULARY IS CLOSED at {PASS, FAIL, ERROR} -- verified exhaustively by
+  session cranky-pascal-46cd9a, not assumed. experiment_runner.py has exactly
+  four report_queue_remove call sites: :3462 "FAIL", :3763 "ERROR", :3832
+  "FAIL", and :3961 result["result"], which can only ever be "PASS" (UNKNOWN is
+  intercepted at :3843 -- released, left in queue, `continue` -- the pre-
+  2026-05-08 V3-EXQ-433f/537/538 silent-drop fix; FAIL and ERROR are consumed at
+  their own earlier branches). coordinator_client.report_queue_remove is the
+  sole wrapper, so any OTHER reason value is necessarily operator-issued. That
+  is what makes the classification below exhaustive rather than merely cautious:
+  do NOT widen the set without re-verifying those four call sites.
 
 * CORROBORATING -- per-machine `evidence/experiments/runner_status/<machine>.json`.
   NOTE the distinction that motivated this whole tool: the MONOLITHIC
