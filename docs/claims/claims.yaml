@@ -13808,12 +13808,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: "decision:MECH-163@2026-04-03T22:00:00Z"
-      as_of: 2026-04-03
-      verdict: hold_pending_v3_substrate/applied
+      from: failure_autopsy_V3-EXQ-786_2026-07-20
+      as_of: 2026-07-20
+      verdict: non_contributory/measurement_test_design_defect
   implementation_phase: v3
   depends_on:
     - ARC-007
@@ -13925,6 +13925,33 @@
     Gate is approximately 2 substrate sessions away assuming nothing slips: SD-039
     population + V3-EXQ-494 in one session, MECH-292 + MECH-293 in a second, then the
     V3 full-completion gate experiment (V3-EXQ-495 or higher).
+
+    ADJUDICATED 2026-07-20 (V3-EXQ-786, confirmed failure_autopsy_V3-EXQ-786_2026-07-20)
+    -- NON-CONTRIBUTORY / measurement_test_design_defect. STATUS UNCHANGED (candidate);
+    this run adds NO evidence in either direction and must not be read as weakening the
+    dual-system distinction. The manipulation check failed: novel and familiar were
+    never established as distinct conditions, so the load-bearing C1
+    (recruitment_higher_on_novel) is stamped criteria_non_degenerate false and there was
+    no live contrast for it to measure.
+    THE RUN'S OWN SELF-ROUTE IS REJECTED. The manifest self-routed
+    substrate_not_ready_requeue and the indexer flagged it precondition_unmet; the
+    autopsy rejects that reading on measurement. FamiliarityTracker IS present and IS
+    discriminating -- it returned a separation of 0.049365 against a 0.05 floor, short by
+    1.3%. That is a test-design defect, not substrate immaturity, and the distinction is
+    load-bearing: trusting the self-route would have minted a substrate_queue entry for a
+    substrate that is not broken. recommended_substrate_queue_entry.action = none.
+    SCOPE OF THAT REJECTION: ARC-071 (unbuilt) and ARC-007 (STRICT value-flat) DO block
+    MECH-163 legs 2 and 3 and remain live blockers tracked above -- but neither caused
+    this FAIL, and this run exercised neither. The autopsy's finding is confined to leg 1's
+    manipulation check.
+    SUCCESSOR: V3-EXQ-786a (re-run with a repaired familiarity manipulation clearing the
+    floor with margin). Surfaced by the 2026-07-20 governance cycle as owed work; NOT
+    queued here -- experiment authoring goes through /queue-experiment.
+    OPEN DESIGN QUESTION worth resolving before 786a is written: a 1.3% miss on a
+    hand-chosen 0.05 separation floor means the verdict turned on the threshold, not on
+    the phenomenon. Whether 0.05 is the right floor -- and whether separation is the right
+    statistic for "these are distinct conditions" -- should be re-posed rather than
+    inherited.
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
@@ -14969,6 +14996,28 @@
     therapeutic targeting. Once the schema scaffold has destabilised
     (middle-stage), sleep restoration alone cannot rebuild it -- the slots
     that would be filled by recovered REM-analog function no longer exist.
+  governance_2026_07_20: >
+    PROPAGATION CONFIRMED (2026-07-20 governance walk). Three further V3-EXQ-673 runs
+    (20260611T224744Z, 20260612T010234Z, 20260612T033246Z) were RECOVERED on 2026-07-20
+    from the ree-cloud-3 / ree-cloud-2 untracked working trees during a git-wedge repair;
+    they existed on no other machine and on no branch. They are runs 4-6 of the same
+    forbidden same-EXQ silent-rerun batch that failure_autopsy_batch9_2026-06-12 flagged
+    as a process_defect -- that autopsy recorded 3 duplicate manifests when there were in
+    fact 6.
+    Their evidence_direction was set by PROPAGATION of the existing confirmed batch9
+    disposition (does_not_support -> non_contributory), exactly as it was propagated to
+    the three committed siblings on 2026-06-14T16:07:16Z. Governance was asked by the
+    manifests to confirm that propagation and DOES SO: it changes no claim status, adds no
+    counter-evidence, and rests on a limb that is claim-level rather than run-level --
+    MECH-171 is out_of_domain, because a clinical multi-year Alzheimer's vicious cycle is
+    not instantiable in a 300-episode grid-world, so these runs are non-discriminative by
+    domain.
+    ONE LIMB DELIBERATELY DOES NOT PROPAGATE. The three committed siblings were ALSO
+    arm-degenerate (ARM_A == ARM_B == ARM_C on every metric, late_pred_loss == 0.0). These
+    three are NOT -- their arms genuinely differ -- so degeneracy_reason / non_degenerate
+    are correctly left unset on them and only the out_of_domain limb carries over. The
+    distinction is preserved rather than flattened because a future re-reading of this
+    batch should not inherit a degeneracy finding that does not hold of these runs.
 
 - id: MECH-172
   title: "Preservation of habit and procedural memory in early Alzheimer's disease, while episodic and contextual memory fail, is architecturally predicted by the separation of the model-free habit system (MECH-163 D1/D2, SNc) from the contextual attribution system (E3 hippocampal, requiring offline consolidation phases): the habit system does not require offline consolidation to function, so its relative preservation under early consolidation pipeline failure is not incidental but follows from the architectural separation."
@@ -56532,12 +56581,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-14
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-781"
-      as_of: 2026-07-18
-      verdict: non_contributory/standard
+      from: "failure_autopsy_mech457-retention-portfolio_2026-07-20#V3-EXQ-789"
+      as_of: 2026-07-20
+      verdict: weakens/standard
   granularity_debt_disposition: coherent_campaign  # GOV-GRAN-1 human-adjudicated 2026-07-16 (NOT granularity debt); see granularity_debt_recurrence_note
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 discrimination (2026-07-16, session gifted-kilby-8e2491). Audit flagged
@@ -56647,6 +56696,70 @@
     policy (H2) -- which would WEAKEN this claim. V3-EXQ-738 (2026-07-10) already
     refuted the strong-H2 read: the 1.0 floor IS reachable from the agent's 5x5 local
     view, leaving H1 as the surviving hypothesis pending 737.
+
+    RETENTION SUB-QUESTION DECIDED 2026-07-20 (V3-EXQ-788 PASS + V3-EXQ-789 FAIL read
+    jointly; confirmed failure_autopsy_mech457-retention-portfolio_2026-07-20). STATUS
+    UNCHANGED (candidate, v3_pending) -- the V3-pending gate holds regardless of this
+    result. THE VALUE ESTIMATOR SETS RETENTION; THE IMITATION AUXILIARY DOES NOT.
+    V3-EXQ-788 (clean PASS, no adjudication flag): a distributional critic RETAINS 1.839
+    of installed competence. V3-EXQ-789 (FAIL, direction weakens): the auxiliary's
+    persistence schedule (constant 0.5 / annealed 0.5->0.0 / off) succeeded then decayed,
+    with use_distributional_critic held False on all arms as an anti-alias control.
+    Readiness was clean on 789 -- post-BC install took on 3/3 seeds, worst 17.75 against a
+    1.0 floor; local-view greedy 48.05; oracle 57.2; non_degenerate true. The two legs
+    share the reference build and are genuinely independent in locus, so they corroborate
+    rather than merely partition. recommended_substrate_queue_entry.action = none on both:
+    the axis is closed BY EVIDENCE, not by a substrate gap.
+    HYPOTHESIS-SPACE LEDGER: H-retention-auxiliary-decay ELIMINATED under qid
+    competence_floor. Further auxiliary-schedule iteration is refuted -- the 788 critic
+    result supersedes that lever.
+    LIVE DECISION SURFACED, NOT TAKEN (2026-07-20 governance): the
+    mech457_policy_kl_anchor substrate landed the same morning (ree-v3 399b17caed) to make
+    the retention portfolio three-of-three buildable. Since 788 decides retention, whether
+    the KL-anchor leg still warrants a run as a RETENTION probe -- as against standing on
+    its own as a distinct trust-region mechanism -- is an open routing decision for the
+    user. Governance does not queue experiments; this is recorded so the decision is not
+    lost, and no leg is queued or cancelled here.
+    THE H1 DISCRIMINATOR RAN, AND ITS READING IS TWO-PART (V3-EXQ-737, confirmed
+    failure_autopsy_V3-EXQ-737a_2026-07-20; claim_ids empty, diagnostic, brake_exempt, so
+    it carries NO evidence weight on this claim and does not move its confidence).
+    (1) The D3 bottleneck is POLICY LEARNING, not representation: ppo_raw_obs -- the
+    control arm, structurally unaffected by the encoder defect -- reaches only 0.567
+    against the 1.0 floor on an environment where local-view greedy achieves 48.05 from
+    the SAME view and the oracle reaches 57.2. That is the direction this claim predicts.
+    (2) BUT THE RUN IS NOT A CLEAN H1 CONFIRMATION, because it also found a substrate
+    defect: in the x734/737 driver family z_world is never prediction-trained -- the P0/P1
+    warmup has no optimizer group covering latent_stack (0 of 61 tensors), so z_world is a
+    frozen random projection. The REE-latent arms therefore did not test what they were
+    built to test. Retest owed after sd_zworld_warmup_optimizer_group lands
+    (pending_retest_after_substrate true on the autopsy target). Do NOT record H1 as
+    confirmed on the strength of 737 alone.
+
+    GOV-FROZEN-1 FAN-OUT RECURRENCE, AND THE AXIS-FAMILY READING (2026-07-20 governance;
+    ROUTING ONLY -- promotes nothing, demotes nothing, gates nothing). This claim's
+    question, qid competence_floor, has now reached N=3 distinct labelled fan-out
+    portfolios (failure_autopsy_V3-EXQ-769_2026-07-17,
+    failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18,
+    mech457_retention_portfolio_2026-07-18), denominator 7 -> 16, with 3 legs still alive.
+    Every portfolio individually cleared GOV-FROZEN-1 conditions (a)-(c) -- the RECURRENCE
+    is the signal, and the reading is that the question may be MIS-POSED rather than
+    under-enumerated.
+    THE AXIS-FAMILY DISCRIMINATOR AGREES, AND THAT IS THE PART TO ACT ON.
+    hypothesis_space.v1.json reports convergence_class CIRCLING for this question --
+    "a growth event added ONLY legs re-entering already-eliminated families" -- with
+    families_closed [instrumentation, representation, world] and, decisively,
+    families_fresh EMPTY. Sixteen legs have produced no fresh territory. Per GOV-FROZEN-1
+    the response is to RE-POSE the operationalization, not to open portfolio 4:
+    enumerating another round of rivals on an unchanged framing is the denominator-side
+    twin of re-running a braked experiment harder. Report the narrowing ratio BOTH ways
+    (surviving/original AND surviving/current-including-fan-out), never the flattering one.
+    RE-POSE MUST START BY RE-EXAMINING THE CLOSED FAMILIES, NOT BY ADDING LEGS. The
+    "representation" and "world" families are recorded CLOSED, but V3-EXQ-737 (above) found
+    that in the x734/737 driver family z_world was never prediction-trained -- a frozen
+    random projection. If the representation arm was structurally broken at the time those
+    families were closed, then part of what the discriminator reads as circling may be a
+    family closed on a DEFECT rather than on evidence. Check that before treating the
+    closure list as settled; the resolution is owed to sd_zworld_warmup_optimizer_group.
   location: evidence/literature/targeted_review_actor_critic_action_learning/
 
 - id: MECH-458
@@ -57239,12 +57352,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-18
+    as_of: 2026-07-20
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-785_2026-07-19
-      as_of: 2026-07-19
-      verdict: mixed/measurement_test_design_defect
+      from: failure_autopsy_mech463-exogenous-inertness_2026-07-20
+      as_of: 2026-07-20
+      verdict: does_not_support/standard
   epistemic_category: standard
   implementation_phase: v3
   claim_level: mechanistic
@@ -57363,6 +57476,39 @@
     corr(hazard_prox_mean, share) = -0.187 reverses to mostly POSITIVE within seed,
     r = [+0.089,+0.076,+0.041,-0.125,+0.135]; across the 5 seed means r = -0.78,
     carried largely by seed 0). It survives as the residual explanation only.
+    CLUSTER ADJUDICATION 2026-07-20 (V3-EXQ-785a + V3-EXQ-785b, confirmed
+    failure_autopsy_mech463-exogenous-inertness_2026-07-20; read with V3-EXQ-787,
+    failure_autopsy_V3-EXQ-787_2026-07-19) -- STATUS UNCHANGED (candidate), direction
+    does_not_support on all three. THE CHANNEL-AGNOSTICISM CAVEAT (1) ABOVE IS NOW
+    DISCHARGED AND IT FAILS. 785b ran the residue_weighted AND f incumbents under
+    exogenous urgency: var_total fold 1.078, share rho -0.143 against a pre-registered
+    +0.6, with 8/8 preconditions green on BOTH arms (per_arm_gate.all_green), 1757
+    committed ticks, 6 populated urgency levels, exogenous assignment fidelity 5.6e-17,
+    randomisation orthogonal to hazard proximity at 0.066 against a 0.25 ceiling, and
+    non_degenerate true on all three. So the inertness is NOT an artifact of the single
+    harm_weighted incumbent identity -- it holds channel-agnostically, which is the half
+    of this claim the 785a adjudication had explicitly left untested.
+    V3-EXQ-787 independently closes the residual: the hazard-geometry rival left ALIVE
+    by the 785a ledger entry is itself flat -- within-seed slope -0.000944 (sd 0.005087,
+    se 0.001038, t = -0.909, df 23, t_crit 2.069, not significant) across 24 seeds,
+    failing a 0.0287 absolute effect floor, with the robustness gap agreeing in sign.
+    WHY THIS IS A FRAMING PROBLEM AND NOT A SUBSTRATE ONE: both autopsies set
+    recommended_substrate_queue_entry.action = none, on the explicit ground that every
+    precondition is green on every scored arm. Nothing is blocked on substrate; the
+    residual is the claim's operationalization. ROUTED TO /claim-synthesis (2026-07-20
+    governance) -- NOT to /queue-experiment and NOT to /implement-substrate. Running a
+    further arousal decomposition on this framing would be re-running a decided null.
+    CAVEAT (2) IS NOW LOAD-BEARING IN A NEW WAY -- READ BEFORE ANY RE-POSE.
+    V3-EXQ-737 (confirmed failure_autopsy_V3-EXQ-737a_2026-07-20) found that in the
+    x734/737 driver family z_world is NEVER PREDICTION-TRAINED: the P0/P1 warmup has no
+    optimizer group covering latent_stack (0 of 61 tensors), so z_world is a frozen
+    random projection. The under-differentiation recorded in caveat (2) above
+    (participation ratio ~1.06 at world_dim=128) was therefore attributed to a
+    representational LIMIT when at least part of it may be an untrained-encoder
+    IMPLEMENTATION GAP. This does not rescue the claim -- the exogenous nulls are
+    measured on committed-selection score geometry and their preconditions are green --
+    but a re-posed operationalization must not treat "z_world cannot express it" as an
+    established substrate ceiling until sd_zworld_warmup_optimizer_group lands.
   notes: >
     Registered 2026-07-18 from a conversation-originated hypothesis (user), distinct
     from MECH-359 in POLARITY: MECH-359 says a scalar is too WEAK to steer (affect

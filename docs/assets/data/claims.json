@@ -5016,7 +5016,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-314b": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "ARC-065",
     "epistemic_stance": "believed",
@@ -5026,7 +5026,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-314c": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "ARC-065",
     "epistemic_stance": "believed",
@@ -6047,7 +6047,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-440": {
-    "assembly_state": "enriching",
+    "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "v4_loop_segregation",
     "epistemic_stance": "believed",
@@ -6126,11 +6126,11 @@
     "what_would_answer": "PRE-REGISTERED FALSIFIER = V3-EXQ-689a (2x2 conflict-graded shortlist x commit-T). SUPPORTS if committed_action_class_entropy is strict-above BOTH collapsed-proposer AND matched-noise/gap-blind controls on >=2/3 seeds AND the lift is gap-CONCENTRATED (regress committed entropy on per-tick top-F gap -> positive slope) WITHOUT F's E3 variance share dropping. WEAKENED if the lift is uniform (gap-blind controls match -> the load-bearing factor is not conflict grading; route to MECH-448/449) or absent at readiness. NON-DEGENERACY (else substrate_not_ready_requeue): the eligible set is genuinely diverse (candidate-pool pairwise_dist supra-floor) and k AND T actually vary across ticks -- a vacuous top-k over a class-uniform pool self-routes substrate_not_ready_requeue, never a verdict.\n"
   },
   "MECH-448": {
-    "assembly_state": "mature",
+    "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "f_dominance_conversion_ceiling",
     "epistemic_stance": "shown",
-    "status": "provisional",
+    "status": "candidate",
     "subject": "selection.rank_preserving_f_to_eligibility_demotion",
     "title": "Residual conversion ceiling requiring rank-preserving F->eligibility demotion: near-tie levers (conflict-graded shortlist / commit-T, MECH-447) CAP committed-action-class entropy BELOW the proposer ceiling because they act only at near-ties while F still decides every non-tie; only REMOVING F from the final committed argmin -- demoting it to a graded ELIGIBILITY envelope (rank-preserving renormalisation against the competing field; divisive-normalisation analog) so a modulatory/diversity channel arbitrates within the F-eligible set -- lifts committed diversity to the proposer ceiling without disinhibiting harmful classes.",
     "type": "mechanism_hypothesis",
@@ -6669,9 +6669,9 @@
     "what_would_answer": "A parametric (w_313, w_314) weight sweep on the SD-054 reef substrate with\nARC-062 gated-policy enabled, measuring behavioural diversity\n(action-distribution entropy at probe states; reef-vs-forage occupancy CoV)\nand task reward JOINTLY, then locating the Pareto frontier. ANSWER\n\"calibration resolved\" if a Pareto frontier exists with a consistent (w_313\nnoise-floor, w_314 structured-curiosity) regime across seeds where both\ndiversity and reward are simultaneously high -- the mixing ratio that avoids\nMECH-313 swamping the rule-discriminative signal and MECH-314 overcommitting\nto information-gain at task-reward cost. ANSWER \"no calibration zone --\narchitectural defect\" if no Pareto frontier exists, indicating the two\nmechanisms do not compose additively in the policy gradient as designed. HARD\nPRECONDITION (the decisive blocker, confirmed twice): the swept knobs must\nhave AUTHORITY over E3 selection. V3-EXQ-605 found the curiosity dimension\nfully degenerate (curiosity_scale 1x/5x/10x byte-identical per-cell entropy)\nand V3-EXQ-667 found 4/5 seeds byte-identical across full 8x joint scaling\n(healthy-seed h_pos range 0.017 < 0.05 floor) -- the knobs have ZERO authority\nat E3.select on the current substrate, so any sweep is vacuous and self-routes\nsubstrate_not_ready_requeue. The sweep becomes meaningful only after\nmodulatory-bias-selection-authority (V3-EXQ-663/643a) and ARC-065 GAP-A (the\nbehavioral_diversity_isolation conversion ceiling, V3-EXQ-649/569i) clear so\nthat w_313/w_314 actually move committed behaviour. Also re-confirm the\nPhase-1 separate-module placement holds at queue time -- if MECH-314 has\nmigrated into GatedPolicy as a per-head bonus, the meaning of \"relative\nweight\" changes and the sweep design must be revised.\n"
   },
   "Q-044": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "enriching",
     "assembly_status": "built",
-    "awaiting": "modulatory-bias-selection-authority",
+    "awaiting": "ARC-065",
     "epistemic_stance": "asked",
     "status": "open",
     "subject": "policy.curiosity.subflavour_independence",
@@ -7697,6 +7697,8 @@
   },
   "SD-068": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "arm-fingerprint-executed-substrate-identity",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "sleep.consolidation_pipeline_lesion_harness",
@@ -7752,6 +7754,14 @@
     "status": "candidate",
     "subject": "probe.trained_enough_agent_warmup",
     "title": "Trained-enough agent substrate for read-only control-plane telemetry probes: a warmup/checkpoint stage that brings the agent to a non-degenerate E3 action-value landscape BEFORE telemetry collection begins, and records the realised per-seed saturation distribution so informative-seed yield is auditable rather than inferred. Harness-level training-regime enrichment (experiments/_lib), NOT a ree_core mechanism change.",
+    "type": "design_decision"
+  },
+  "SD-075": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "phasic.ema_episode_continuity",
+    "title": "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default.",
     "type": "design_decision"
   },
   "SENT-0": {

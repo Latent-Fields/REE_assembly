@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -45,13 +44,12 @@ closure_plan:
       status: partial
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -92,13 +90,12 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -130,13 +127,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -152,13 +148,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -173,13 +168,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -192,13 +186,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -211,13 +204,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -230,13 +222,12 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -250,13 +241,12 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -266,7 +256,8 @@ closure_plan:
       substrate_queue_entry: f_dominance_conversion_ceiling
       governance_2026_07_07: "V3-EXQ-714 (confirmed failure_autopsy_V3-EXQ-714_2026-07-07; governance-apply) reconfirms this node's f_dominance_conversion_ceiling blocker: the FULLSTACK selection+valuation composite aborted at C1 readiness (GAP-A divergence 0.004 + OFC range 0.0007 starved at FULL P0=200; C2 unscored), non_contributory for ARC-062/MECH-309; re-derive brake FIRED (20th ARC-062/19th MECH-309); fullstack re-queue REFUSED. The MECH-445 commit-intent face (717 narrow reliability weakens 2/9; 715a de-commit-release lift RULED OUT) routes to the same de-commit-release face amend. No node-status change -- acknowledgement only."
       reconcile_2026_07_09: "OWNER-STATE + COMPETENCE-WALL REFRAME ABSORBED (closure-drift stale-since reconcile; plan-frontmatter only, NO claims.yaml/queue change). OWNER-STATE: the de-commit-face owners this node's owner_exq still describes as QUEUED ('PROMOTES NOTHING until 715a/717 run') have RUN TERMINAL -- V3-EXQ-715a (M1) + V3-EXQ-717 (M2) both landed FAIL (confirmed failure_autopsy_MECH-445-cluster-715a-717_2026-07-07): the moderate-F selection-face lift is RULED OUT as the de-commit-release lever (715a moderate_f_delta -63, arming 1/3), MECH-445 F-independent commit-intent existence is proven but sub-2/3-reliable (717 narrow weakens 2/9 in-regime; existence STANDS, MECH-445 status UNCHANGED); both route to /implement-substrate on the f_dominance_conversion_ceiling DE-COMMIT-RELEASE face (7th substrate-ceiling reading, brake FIRED, same-claim de-commit re-queue REFUSED). COMPETENCE-WALL: failure_autopsy_V3-EXQ-719a_2026-07-08 (confirmed, governance-applied REE_assembly master 07acd6ad29; reclassified ARC-062/MECH-309) reframes the whole conversion ceiling this node roots -- the first direct competence measurement shows the integrated all-ON agent is not behaviourally competent enough to produce meaningful committed behaviour to measure (forages 0.065/0.0/0.455 resources/ep, below the 1.0 floor on 0/3 seeds; diffuse state-blind commitment, NOT literal monomodal collapse). The 654h/485i/625e/460h/460i retest wall + the 714 readiness abort + the 715a/717 de-commit arming gap are ONE root: a behavioural-COMPETENCE / training-regime ceiling, NOT another selection/de-commit lever (MECH-448/449 built + selection-face lifted on GAP-A). Live path = the brake-EXEMPT V3-EXQ-724 competence-localization diagnostic (running), then /implement-substrate on the localized gap. Re-derive brake FIRED (21st ARC-062 / 20th MECH-309); same-claim behavioural/de-commit re-tests (722, 719b, further de-commit letters) REFUSED. No node-status change -- MECH-439/MECH-309/ARC-062/MECH-445/446 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate, UNWEAKENED; acknowledgement of the 2026-07-07 (715a/717) + 2026-07-08 (719a) evidence only."
-      last_updated: 2026-07-09
+      last_updated: 2026-07-20
+      governance_2026_07_20: "Closure-drift stale-since-review ACKNOWLEDGE (governance cycle 2026-07-20T15:57Z). Flagged because confirmed failure_autopsy_V3-EXQ-710_2026-07-20 AND failure_autopsy_V3-EXQ-711-713_2026-07-20 both reclassified MECH-439 (in this node's unblocks set) after last_updated -- these are RE-ADJUDICATIONS of the 710 and 713 runs whose earlier autopsies (2026-07-03 / 2026-07-05) this node already absorbed in governance_2026_07_05. Does NOT change this root-tracking parent: MECH-439 stays candidate/substrate_ceiling/pending_retest_after_substrate, owner_exq stays V3-EXQ-689g, and the node still CLOSES only on the first downstream channel converting on the SELECTION/eligibility face. GOV-APPLY-1 note: MECH-140/MECH-450 still cite failure_autopsy_V3-EXQ-710_2026-07-03 and ARC-110 still cites failure_autopsy_V3-EXQ-713_2026-07-05, all three superseded by these 2026-07-20 re-adjudications -- WARN-level (under R1-R3 shape (c) a supersession may legitimately retain the reading), left for a re-read rather than mechanically re-pointed. Status stays in-progress; last_updated bumped 2026-07-09 -> 2026-07-20."
       governance_2026_07_06d: "DE-COMMIT-SCIENCE FALSIFIER REPOINTED 715 -> 715a (Move M1) -- plan reconciliation, session beautiful-wing-d0fefa; PROMOTES NOTHING, queues nothing. V3-EXQ-715 (the levers-OFF joint de-commit-science falsifier this node adopted in governance_2026_07_06) RAN + self-routed substrate_not_ready_requeue at 1/3 arming (confirmed failure_autopsy_V3-EXQ-715_2026-07-06): the F-independent commit-entry substrate HELD (MECH-445 narrowly strengthened -- seed-44 398 commit-intents/7 F-commits), but the failure MIGRATED to (a) regime-scoped arming (arms only on the weak-natural-commit seed) and (b) within-seed temporal disjointness (SD-034 closure fires do NOT co-locate with the latch-armed occupancy the MECH-446 window reads -> window vacuous on all 3 ON-arm seeds); the selection-face ceiling-lift was verified OFF and the 3-seed/2-of-3 gate cannot certify a regime-scoped claim when ~1/3 seeds is in-regime. Move M1 of claim_synthesis_MECH-445-446_2026-07-06.md ('turn on the ceiling-lift already paid for') is now QUEUED + coordinator-ingested as V3-EXQ-715a (ree-v3 main 2590a8d, /queue/active PRESENT; supersedes V3-EXQ-715): the SAME joint de-commit falsifier RE-RUN with the already-built+validated+promoted selection-face lift ON (MECH-448 use_f_eligibility_demotion + MECH-449 use_go_nogo_constitution), 2x2 grid, testing whether the moderate-F regime the lift creates makes weak-natural-commit the norm across seeds -- so MECH-445 arms on >=2/3 AND MECH-446 gets a closure-driven occupancy to de-commit from -- potentially unblocking BOTH children with ZERO new build. Brake-safe: a NEW substrate configuration (lift ON), NOT a same-selector re-derive. This node's PRIMARY owner_exq stays V3-EXQ-689g (the selection-face root tracker); 715a (M1) is the joint de-commit-science / MECH-446 de-commit-magnitude face owner (supersedes 715; tracked at conversion_ceiling_campaign:P2-rootC, repointed 715 -> 715a in the same pass); 717 (M2) remains the decoupled MECH-445 commit-intent existence face. NO claims.yaml change: MECH-445/446 stay candidate/v3_pending/pending_retest_after_substrate until 715a runs + is reviewed + /governance applies its direction. Status stays in-progress; last_updated stays 2026-07-06."
       governance_2026_07_06b: "FULL-STACK CONVERTER UNDER TEST -- V3-EXQ-714 QUEUED (plan reconciliation, session blissful-darwin-1d7d9b; PROMOTES NOTHING, queues nothing). The conversion_ceiling_campaign:FULLSTACK arm (this node's cross_plan_link, whose PASS closes GAP-I per the campaign's stated acceptance) is now QUEUED + coordinator-ingested as V3-EXQ-714 (ree-v3 main 3959dae; coordinator /queue/active PRESENT, claimed; claim_ids [MECH-309, ARC-062]). 714 is the co-armed FULL-STACK SELECTION+VALUATION conversion falsifier -- the campaign's assembly-vs-closure 'real test' that the confirmed failure_autopsy_V3-EXQ-713_2026-07-05 routes to now the arbitration-reweighting route is EXHAUSTED: it composes the 654j selection stack (MECH-448 rank-preserving demotion + adaptive-floor + MECH-449 active Go/No-Go + dACC + CRF + SD-056) with the P3 OFC devaluation VALUATION face (485m; use_ofc_analog + use_ofc_devaluation_head + ofc_train_devaluation_head, the trained devaluation valuation composed into committed selection via a per-candidate viability No-Go injected into the MECH-449 gate, matched both arms), sweeps ONLY use_candidate_rule_field, DV committed_class_entropy (C2). A 714 PASS (C2 committed-class entropy lift) closes this node (the assembled selection+valuation substrate converts off GAP-A); a FAIL routes to leave-one-out ablation across the included faces. This node's PRIMARY owner_exq stays V3-EXQ-689g (the selection-face root tracker); 714 is the full-stack converter under test (tracked at conversion_ceiling_campaign:FULLSTACK), 715 the separable de-commit face (conversion_ceiling_campaign:P2-rootC). NO claims.yaml change: MECH-309/ARC-062 stay candidate/v3_pending; MECH-439 stays candidate/substrate_ceiling/pending_retest_after_substrate; 714 PROMOTES NOTHING until it runs + is reviewed + /governance applies its direction. Status stays in-progress; last_updated stays 2026-07-06."
       governance_2026_07_06c: "MECH-445 COMMIT-INTENT EXISTENCE FACE DECOUPLED -- V3-EXQ-717 QUEUED (inter-governance-brief reconcile, session cool-morse-0de4e2; PROMOTES NOTHING, queues nothing). Following the confirmed failure_autopsy_V3-EXQ-715_2026-07-06 (715 self-routed substrate_not_ready_requeue) and the /claim-synthesis STOP verdict + M1-M6 forward-moves menu for the MECH-445/446 granularity-debt cluster (claim_synthesis_MECH-445-446_2026-07-06.md), move M2 is now QUEUED as V3-EXQ-717 (ree-v3 main 848fd3b + coordinator /queue/active PRESENT; claim_ids=[MECH-445]). 717 DECOUPLES the MECH-445 refractory-independent commit-INTENT existence claim from MECH-446: 12 seeds, classify each seed weak/strong-natural-commit from its ARM_ENTRY_OFF committed fraction, score the refractory-independent commit-intent counter (sd034_n_closure_commit_intent) ONLY on the weak (in-regime) subset (PASS if >0 on >=2/3 of THOSE), and DROPS the MECH-446 co-occurrence/within-arm-window gate ENTIRELY. It is a TEST-POWER redesign on the already-VALIDATED F-independent use_closure_commit_entry substrate (460o/p PASS 2026-06-24) -- NO new substrate owed, re-derive brake RELEASED (MECH-446 magnitude face dropped, NOT a same-selector re-derive). So MECH-445's commit-intent EXISTENCE is now testable INDEPENDENTLY of the MECH-446 substrate build. 717 does NOT supersede V3-EXQ-715: 715 remains the MECH-446 co-occurrence / de-commit-MAGNITUDE record, still routed to /implement-substrate on the f_dominance_conversion_ceiling substrate. owner_exq reconciled: 689g stays PRIMARY (selection-face) root tracker; 715 owns the MECH-446 de-commit-magnitude face; 717 added as the MECH-445 commit-intent existence-face owner. NO claims.yaml change: MECH-445 (and MECH-446) stay candidate/v3_pending/pending_retest_after_substrate until 717 runs + is reviewed + /governance applies its direction. Status stays in-progress (717 has NOT run); last_updated stays 2026-07-06."
@@ -291,13 +282,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
@@ -316,13 +306,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
+        as_of: "2026-07-20"
+        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
+        verdict: "mixed/substrate_ceiling"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["ARC-065", "ARC-062", "ARC-064", "MECH-260", "MECH-269", "MECH-269b", "MECH-313", "MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "MECH-320", "MECH-341", "MECH-439", "SD-003", "SD-017", "SD-029", "SD-054", "Q-043", "Q-044", "Q-045", "Q-054", "Q-055", "INV-074", "INV-076"]
