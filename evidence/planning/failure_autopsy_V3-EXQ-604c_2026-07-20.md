@@ -8,6 +8,12 @@
 (REE_assembly `3427fe852a`); defect class D3 first confirmed on
 [`failure_autopsy_V3-EXQ-689d_2026-07-20`](failure_autopsy_V3-EXQ-689d_2026-07-20.md) sec 4.
 
+> **AMENDED 2026-07-20T07:25Z (sec 2c) — verdict unchanged, warrant strengthened.** All 15 cells
+> **executed one substrate** (`f80bc236`): the driver imports `ree_core` at module scope in a single
+> process, so the mid-run edit could not reach execution and `0bedd600` never ran. 604c is therefore a
+> **recording artefact** of the same `executed_substrate_identity` class as V3-EXQ-778a, not an
+> execution confound. Read sec 2c before citing sec 2a/2b.
+
 > **One line.** The D3 divergence is **real but demonstrably DV-inert** — five cross-boundary matched
 > cell-pairs are bit-identical on every trajectory quantity, and C1's strongest seed is fully
 > substrate-matched — so it is **withdrawn** and MECH-314 / MECH-314a keep `supports`. But the
@@ -107,9 +113,57 @@ different ablations, across up to three seeds, on 20+ independent continuous *an
 quantities, to full recorded precision. It is not a credible confound, and the independent
 mechanistic check rules it out separately.
 
-**Verdict: D3 detected, exonerated. `sufficient_alone_to_withdraw: false`.** Contrast 689d, where the
-same signature *was* sufficient — the difference is not the signature but the availability of matched
-cross-boundary cells, which 689d lacked.
+### 2c. AMENDMENT 2026-07-20T07:25Z — the executed substrate was UNIFORM; `0bedd600` never ran
+
+*Added after the original adjudication landed (`75726ecb4c`), applying the module-import-binding rung
+established independently by [`failure_autopsy_V3-EXQ-778a_2026-07-20`](failure_autopsy_V3-EXQ-778a_2026-07-20.md).
+**The verdict is unchanged — exonerated — but the reasoning below is stronger and more general than
+2a/2b, and supersedes them as the primary warrant.***
+
+604c is a **single process** whose substrate modules were bound in `sys.modules` **before any cell
+ran**. Verified on the driver:
+
+| check | evidence |
+|---|---|
+| all substrate imports at module scope | `experiments/v3_exq_604c_...py:145-152` — `experiments._lib.arm_fingerprint`, `ree_core.agent`, `ree_core.environment.causal_grid_world`, `ree_core.utils.config`, all before the loop |
+| one process, one loop | `:959-960` `for arm in ARMS: for seed in seeds:` — arm-major, seed-minor |
+| no dynamic reimport | no `importlib` / `reload(` / `__import__` / `subprocess` / `multiprocessing` in the driver, `ree_core/agent.py`, `structured_curiosity.py`, `e3_selector.py`, `arm_fingerprint.py`, `_harness.py` |
+| fingerprint re-reads DISK per cell | `:965` `compute_arm_fingerprint(...)` is called **inside** the cell loop; `compute_substrate_hash` globs and `read_bytes()` the working tree at call time |
+
+The observed hash sequence is **exactly one monotone transition in loop order**, each of the 15 cells
+present exactly once (`ARM_OFF` 42/43/44, `ARM_ALL_ON` 42 | `ARM_ALL_ON` 43/44, then the three OFF arms).
+That is the single-process signature: a restart would have re-run earlier cells on the new substrate.
+
+**Therefore the mid-run edit could not reach execution for ANY cell.** `ree_core.agent` — and with it
+the newly added `ree_core/pfc/infralimbic_avoidance_gate.py` and the amended `REEConfig` — was bound at
+process start, i.e. at the `f80bc236` state. All 15 cells executed `f80bc236`. **`0bedd600` is a
+disk-state reading that never executed**, produced because the fingerprint re-reads the working tree
+per cell while execution uses the process-start binding.
+
+Three consequences:
+
+1. **The flag-gating argument in 2b is now redundant, not load-bearing.** It does not matter that
+   `use_instrumental_avoidance` defaults False — the gate's code was never loaded, and the config field
+   did not exist on the process's `REEConfig` class. The dirty-tree obstacle that blocked hash
+   attribution is likewise moot: *whatever* changed on disk at ~16:23Z could not execute.
+2. **The bit-identity in 2a is a confirmed PREDICTION of this argument, not an independent
+   coincidence.** If all cells ran one build, cross-boundary matched pairs *must* be identical on
+   trajectory quantities. 2a therefore stands as strong corroboration — and remains the right
+   *first* triage step when the driver's import structure is unknown or a restart is suspected —
+   but it is no longer the primary warrant.
+3. **604c belongs to the same defect class as 778a: `executed_substrate_identity` — a RECORDING
+   artefact, not an execution confound.** It is a second corpus instance for the
+   `arm_fingerprint` / `manifest_core` / `arm_reuse` fix in flight under session
+   `relaxed-pike-81943c`, and it differs from 778a in one useful way: 778a's `substrate_n_files` was
+   **constant** (129) whereas 604c's **moves 90 -> 91**, so a file addition on disk is *not* evidence
+   that the addition executed. A triage ladder keyed on `n_files` movement would mis-rank 604c as the
+   more severe of the two; both are the same artefact.
+
+**Verdict: D3 detected, exonerated — `sufficient_alone_to_withdraw: false`, now over-determined.**
+Primary warrant: the change could not reach execution (2c). Corroborating: cross-boundary bit-identity
+(2a). Redundant: flag-gating (2b). Contrast 689d, where the same signature *was* judged sufficient —
+that adjudication is under re-examination by session `musing-einstein-c80816`, and the import-binding
+rung should be applied to it before its D3 is treated as settled.
 
 ## 3. The defect that does matter — C2 is structurally vacuous for 314b/314c
 
@@ -207,12 +261,22 @@ Phase-1 broadcast implementation). `standard` for MECH-314/314a — no ceiling, 
 
 ## 6. Learning extracted
 
-1. **D3 is adjudicable per-run when matched cross-boundary cells exist.** 604c supplies the general
-   test the 689d autopsy could not run: find any two cells on opposite sides of the boundary whose
-   *intended* difference is separable from the substrate difference, and compare all recorded fields.
-   Bit-identity on trajectory-determined quantities exonerates the boundary regardless of what
-   changed. **Recommended as the first triage step for every remaining directional D3 hit** (782,
-   778a) before assuming a confound is fatal — the sweep's severity ranking is a *prior*, not a verdict.
+1. **D3 triage has two rungs, and the cheaper one is also the stronger — take it FIRST.**
+   *(Re-ranked in the 2026-07-20T07:25Z amendment; the original text had these the other way round.)*
+   **Rung 1 — executed-substrate identity (static, no data needed):** if the driver imports its
+   substrate at module scope and runs one process with no dynamic reimport, `sys.modules` binds the
+   code at process start and **no mid-run edit can reach execution** — the divergence is a *recording*
+   artefact of `compute_substrate_hash` re-reading the working tree per cell. Establishes the
+   executed identity outright. Rung independently established by the 778a autopsy; applies to 604c.
+   **Rung 2 — matched cross-boundary cells (empirical):** find two cells on opposite sides whose
+   *intended* difference is separable from the substrate difference and compare all recorded fields;
+   bit-identity on trajectory quantities exonerates the boundary regardless of what changed. Use it
+   when the import structure is unknown, a restart is suspected, or rung 1 is inconclusive — and as
+   corroboration when rung 1 clears, since rung 1 *predicts* the identity rung 2 measures.
+   Either way, the sweep's severity ranking is a *prior*, not a verdict.
+1b. **`substrate_n_files` movement does NOT rank severity.** 778a (constant 129) and 604c (90 -> 91)
+   are the same artefact class despite opposite `n_files` behaviour: a file appearing on disk is not
+   evidence it executed. Any triage ladder keyed on `n_files` will mis-rank them.
 2. **A dirty tree defeats hash-based attribution but not empirical exoneration.** Recomputing
    `compute_substrate_hash` at candidate commits is worth doing, but when `substrate_n_files` disagrees
    with the clean tree by a constant, attribution must be reported as corroborating only.

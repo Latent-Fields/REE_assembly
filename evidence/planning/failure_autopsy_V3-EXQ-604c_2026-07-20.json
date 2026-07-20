@@ -10,7 +10,13 @@
     {
       "run_id": "v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready_20260607T193029Z_v3",
       "queue_id": "V3-EXQ-604c",
-      "claim_ids": ["MECH-314", "MECH-314a", "MECH-314b", "MECH-314c", "Q-044"],
+      "claim_ids": [
+        "MECH-314",
+        "MECH-314a",
+        "MECH-314b",
+        "MECH-314c",
+        "Q-044"
+      ],
       "manifest_outcome": "PASS",
       "manifest_evidence_direction": "supports",
       "failed_criterion": "n/a (PASS; adjudicated for a post-hoc confound and a structural-vacuity finding)",
@@ -21,15 +27,57 @@
           "name": "intra_run_substrate_divergence",
           "detected": true,
           "substrates": {
-            "f80bc236": ["ARM_OFF/42", "ARM_OFF/43", "ARM_OFF/44", "ARM_ALL_ON/42"],
-            "0bedd600": ["ARM_ALL_ON/43", "ARM_ALL_ON/44", "ARM_NOVELTY_OFF/42", "ARM_NOVELTY_OFF/43", "ARM_NOVELTY_OFF/44", "ARM_UNCERTAINTY_OFF/42", "ARM_UNCERTAINTY_OFF/43", "ARM_UNCERTAINTY_OFF/44", "ARM_LP_OFF/42", "ARM_LP_OFF/43", "ARM_LP_OFF/44"]
+            "f80bc236": [
+              "ARM_OFF/42",
+              "ARM_OFF/43",
+              "ARM_OFF/44",
+              "ARM_ALL_ON/42"
+            ],
+            "0bedd600": [
+              "ARM_ALL_ON/43",
+              "ARM_ALL_ON/44",
+              "ARM_NOVELTY_OFF/42",
+              "ARM_NOVELTY_OFF/43",
+              "ARM_NOVELTY_OFF/44",
+              "ARM_UNCERTAINTY_OFF/42",
+              "ARM_UNCERTAINTY_OFF/43",
+              "ARM_UNCERTAINTY_OFF/44",
+              "ARM_LP_OFF/42",
+              "ARM_LP_OFF/43",
+              "ARM_LP_OFF/44"
+            ]
           },
-          "substrate_n_files": [90, 91],
+          "substrate_n_files": [
+            90,
+            91
+          ],
           "sufficient_alone_to_withdraw": false,
-          "verdict": "exonerated",
+          "verdict": "exonerated (over-determined)",
           "exoneration_basis_empirical": "Five cross-boundary matched cell-pairs bit-identical on 24-26 of 29 recorded fields, differing ONLY in curiosity-bias bookkeeping the arms' own treatments define. All trajectory-determined quantities identical across the boundary, including the discrete selected_class_counts and candidate_first_action_counts histograms. Load-bearing C1 additionally has a fully substrate-matched seed (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236, delta 0.732, the largest of three, vs margin 0.03).",
           "exoneration_basis_mechanistic": "CORROBORATING ONLY, not load-bearing. The sole +1-file commit in the window (ree-v3 6bba8cf, 2026-06-07T16:23:23Z) adds ree_core/pfc/infralimbic_avoidance_gate.py with every agent.py hunk behind `use_instrumental_avoidance` (config default False), which 604c never sets. NOT hash-confirmable: the executing tree was dirty (+1 untracked .py under the globs; clean-tree recount 89/90 vs manifest 90/91) and no recomputed hash matches either recorded value.",
-          "contrast_with_689d": "689d had no matched cross-boundary cells, so the same signature was sufficient there. The difference is cell availability, not signature."
+          "contrast_with_689d": "689d had no matched cross-boundary cells, so the same signature was sufficient there. The difference is cell availability, not signature.",
+          "defect_class_refined": "executed_substrate_identity -- recording artefact, NOT an execution confound (same class as V3-EXQ-778a)",
+          "executed_substrate_identity": {
+            "amended_utc": "2026-07-20T07:25:44Z",
+            "rung": "module-import-binding (primary warrant; supersedes the empirical and flag-gating arguments)",
+            "rung_source": "failure_autopsy_V3-EXQ-778a_2026-07-20 (independently established)",
+            "executed_substrate": "f80bc236 -- ALL 15 cells",
+            "never_executed": "0bedd600 -- a disk-state reading only",
+            "evidence": {
+              "imports_at_module_scope": "experiments/v3_exq_604c_q044_mech314_subflavour_ablation_gapa_ready.py:145-152 (experiments._lib.arm_fingerprint, ree_core.agent, ree_core.environment.causal_grid_world, ree_core.utils.config) -- all before the cell loop",
+              "single_process_single_loop": ":959-960 `for arm in ARMS: for seed in seeds:` (arm-major, seed-minor)",
+              "no_dynamic_reimport": "no importlib / reload( / __import__ / subprocess / multiprocessing in the driver, ree_core/agent.py, ree_core/policy/structured_curiosity.py, ree_core/predictors/e3_selector.py, experiments/_lib/arm_fingerprint.py, experiments/_harness.py",
+              "fingerprint_reads_disk_per_cell": ":965 compute_arm_fingerprint(...) called INSIDE the cell loop; compute_substrate_hash globs and read_bytes() the working tree at call time",
+              "single_process_signature": "exactly ONE monotone hash transition in loop order, each of the 15 cells present exactly once -- a restart would have re-run earlier cells on the new substrate"
+            },
+            "consequences": [
+              "The flag-gating argument (use_instrumental_avoidance=False) is REDUNDANT, not load-bearing: the gate's code was never loaded and the config field did not exist on the process's REEConfig class. The dirty-tree obstacle to hash attribution is likewise moot -- whatever changed on disk could not execute.",
+              "The cross-boundary bit-identity is a CONFIRMED PREDICTION of this argument, not an independent coincidence. It remains the right FIRST triage step when import structure is unknown or a restart is suspected, but is no longer the primary warrant.",
+              "604c is a second corpus instance for the arm_fingerprint / manifest_core / arm_reuse executed-substrate identity fix in flight under session relaxed-pike-81943c.",
+              "substrate_n_files movement does NOT rank severity: 778a (constant 129) and 604c (90->91) are the same artefact class. A triage ladder keyed on n_files would mis-rank them."
+            ],
+            "onward": "The import-binding rung should be applied to V3-EXQ-689d before its D3 (recorded sufficient_alone_to_withdraw: true) is treated as settled -- re-examination in flight under session musing-einstein-c80816."
+          }
         },
         {
           "id": "V-BROADCAST",
@@ -55,14 +103,22 @@
       },
       "biological_reference": {
         "closest_mechanism": "frontopolar / rostrolateral PFC exploration bonus (structured curiosity); ventral-striatal novelty response for 314a",
-        "dependencies": ["a differentiable per-candidate option representation (action-conditional world prediction)", "selection authority at the commitment gate"],
+        "dependencies": [
+          "a differentiable per-candidate option representation (action-conditional world prediction)",
+          "selection authority at the commitment gate"
+        ],
         "is_formal_import": false,
         "divergence": "none load-bearing. The 314b/314c gap is an implementation-fidelity gap (broadcast vs per-candidate), not a biology divergence -- biologically the uncertainty bonus is option-specific, and the Phase-1 broadcast form is a known simplification the substrate docstring already flags.",
         "lit_status": "partial"
       },
       "recording_provenance": {
         "per_cell_arm_fingerprint": "present on all 15 cells -- what made this adjudication possible",
-        "always_core_absent": ["substrate_hash (top-level)", "machine_class", "elapsed_seconds", "seeds (present inside config)"],
+        "always_core_absent": [
+          "substrate_hash (top-level)",
+          "machine_class",
+          "elapsed_seconds",
+          "seeds (present inside config)"
+        ],
         "note": "The per-run always-core substrate_hash would have HIDDEN this defect (_hoist_multi_arm_substrate_hash fills it from the first arm). Recording debt noted; it blocks nothing here."
       },
       "secondary_checks_cleared": [
@@ -71,11 +127,34 @@
         "claim_ids tagging accurate, not inherited-without-re-evaluation."
       ],
       "per_claim_recommendation": {
-        "MECH-314": {"recommended_evidence_direction": "supports", "change": "STANDS", "recommended_epistemic_category": "standard"},
-        "MECH-314a": {"recommended_evidence_direction": "supports", "change": "STANDS", "recommended_epistemic_category": "standard"},
-        "MECH-314b": {"recommended_evidence_direction": "non_contributory", "change": "mixed -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true},
-        "MECH-314c": {"recommended_evidence_direction": "non_contributory", "change": "mixed -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true},
-        "Q-044": {"recommended_evidence_direction": "non_contributory", "change": "supports -> non_contributory", "recommended_epistemic_category": "substrate_ceiling", "pending_retest_after_substrate": true}
+        "MECH-314": {
+          "recommended_evidence_direction": "supports",
+          "change": "STANDS",
+          "recommended_epistemic_category": "standard"
+        },
+        "MECH-314a": {
+          "recommended_evidence_direction": "supports",
+          "change": "STANDS",
+          "recommended_epistemic_category": "standard"
+        },
+        "MECH-314b": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "mixed -> non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "pending_retest_after_substrate": true
+        },
+        "MECH-314c": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "mixed -> non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "pending_retest_after_substrate": true
+        },
+        "Q-044": {
+          "recommended_evidence_direction": "non_contributory",
+          "change": "supports -> non_contributory",
+          "recommended_epistemic_category": "substrate_ceiling",
+          "pending_retest_after_substrate": true
+        }
       },
       "recommended_epistemic_category": "substrate_ceiling",
       "recommended_evidence_direction": "mixed",
@@ -87,7 +166,11 @@
         "sd_id_suggested": "ARC-065",
         "title": "Behavioral-diversity-generation architectural slot (GAP-A) -- extend Phase-2 per-candidate treatment to the uncertainty (MECH-314b) and learning-progress (MECH-314c) sub-flavours",
         "implementation_hint": "MECH-314a was moved from a Phase-1 broadcast scalar to a genuine per-candidate signal (novelty_source / e2_world_forward), and V3-EXQ-604c shows that is the ONLY sub-flavour with selection-level authority. 314b and 314c remain broadcast scalars (structured_curiosity.py:40-41,101): a constant added uniformly across all K candidates cannot change an argmax or a softmax sample, so they are behaviourally inert at selection BY CONSTRUCTION and untestable by any selection-level DV. Give uncertainty and learning-progress the same per-candidate treatment (a per-candidate uncertainty read and a per-candidate LP read over the e2_world_forward candidate rollouts) so the cross-candidate curiosity_bias_range carries their contribution rather than cancelling it. Until then MECH-314b/314c/Q-044 cannot be adjudicated at the selection level and a further ablation is refused.",
-        "unblocks_claims": ["MECH-314b", "MECH-314c", "Q-044"],
+        "unblocks_claims": [
+          "MECH-314b",
+          "MECH-314c",
+          "Q-044"
+        ],
         "depends_on_unresolved": [],
         "priority_suggested": 1,
         "failure_record_entry": {
@@ -103,7 +186,11 @@
       "re_derive_brake": {
         "fired": true,
         "threshold": 2,
-        "applies_to_claims": ["MECH-314b", "MECH-314c", "Q-044"],
+        "applies_to_claims": [
+          "MECH-314b",
+          "MECH-314c",
+          "Q-044"
+        ],
         "count_including_this": 3,
         "counting_convention": "R1-R3 (distinct run_ids; latest adjudication supersedes; only recommended_epistemic_category == substrate_ceiling counts)",
         "prior_substrate_ceiling_autopsies": [
@@ -115,7 +202,10 @@
         "refusal_rationale": "Another lettered same-claim ablation would return 0.0 DETERMINISTICALLY -- not probably, but as an arithmetic consequence of adding a constant to every candidate score. The re-test's result is knowable in advance without running it, making this the strongest possible instance of the loop the brake exists to stop. A DV swap alone is also not a viable escape: a uniform additive bonus is inert under argmax AND softmax, so no selection-level readout can rescue the Phase-1 implementation. A redesign testing a DIFFERENT mechanism (new EXQ number, different claim_ids) remains permitted.",
         "route_to": "implement-substrate",
         "upstream_substrate": "ARC-065",
-        "does_not_apply_to": ["MECH-314", "MECH-314a"]
+        "does_not_apply_to": [
+          "MECH-314",
+          "MECH-314a"
+        ]
       },
       "fanout_recommendation": null,
       "fanout_exempt_reason": "GOV-FANOUT-1 exempt -- the bottleneck routes to a single unambiguous build (make uncertainty/LP per-candidate), not to a discrimination among rival live hypotheses.",
@@ -130,7 +220,8 @@
         "deliberate_non_route_rationale": "The four autopsies are a CONVERGING instrument-repair chain on one question, not structurally different failures indicating a coarse claim: candidate-uniform z_world -> GAP-A shared channel -> magnitude-vs-range same-statistic confound -> C1 clean. The chain TERMINATED IN A PASS. MECH-314's decomposition into 314a/b/c is working as designed -- it returned a sharp, actionable answer (one child load-bearing, two structurally untestable). Recorded so the standing GOV-GRAN-1 scan sees a deliberate non-route rather than a dropped handoff."
       },
       "learning_extracted": [
-        "D3 is adjudicable per-run when matched cross-boundary cells exist: find two cells on opposite sides of the boundary whose INTENDED difference is separable from the substrate difference, and compare all recorded fields. Bit-identity on trajectory-determined quantities exonerates the boundary regardless of what changed. Recommended as the first triage step for every remaining directional D3 hit (V3-EXQ-782, V3-EXQ-778a) before assuming a confound is fatal -- the sweep's severity ranking is a prior, not a verdict.",
+        "D3 triage has TWO rungs and the cheaper one is also the stronger -- take it FIRST. RUNG 1 executed-substrate identity (static): if the driver imports its substrate at module scope and runs one process with no dynamic reimport, sys.modules binds the code at process start and NO mid-run edit can reach execution -- the divergence is a RECORDING artefact of compute_substrate_hash re-reading the working tree per cell. RUNG 2 matched cross-boundary cells (empirical): compare all recorded fields of two cells straddling the boundary whose intended difference is separable; bit-identity on trajectory quantities exonerates regardless of what changed -- use when import structure is unknown, a restart is suspected, or rung 1 is inconclusive, and as corroboration otherwise (rung 1 PREDICTS the identity rung 2 measures). The sweep's severity ranking is a prior, not a verdict. Re-ranked in the 2026-07-20T07:25Z amendment; originally stated in the opposite order.",
+        "substrate_n_files movement does NOT rank D3 severity: V3-EXQ-778a (constant 129) and V3-EXQ-604c (90->91) are the same executed_substrate_identity artefact class despite opposite n_files behaviour. A file appearing on disk is not evidence it executed; any triage ladder keyed on n_files will mis-rank them.",
         "A dirty tree defeats hash-based attribution but not empirical exoneration. Recomputing compute_substrate_hash at candidate commits is worth doing, but when substrate_n_files disagrees with the clean tree by a constant offset, attribution must be reported as corroborating only.",
         "A broadcast scalar cannot be tested with an argmax-derived DV. This is a GENERAL vacuity pattern distinct from both known E3 pseudo-replication forms and from the vacuous_pass flag: the criterion is not degenerate, the arms are correctly plumbed, and the run legitimately PASSes -- yet two of its legs were arithmetic identities. Statically detectable: a manipulation invariant under the DV's own symmetry (here additive-constant invariance of an argmax) tested against that DV. Candidate for a lint in the /queue-experiment design-audit step.",
         "The manifest's own readouts diagnosed the architecture: curiosity_bias_range equal to full precision while curiosity_bias_max_abs differs IS the broadcast-scalar signature. Recording both a range and a magnitude of the same quantity was decisive; the pair should be kept.",
@@ -144,11 +235,18 @@
     "mode": "pre-register + resolve in one edit",
     "question_registered": "curiosity_subflavour_authority",
     "initial_frozen_count": 3,
-    "resolved": ["H-novelty-per-candidate (confirmed)"],
-    "left_alive": ["H-uncertainty-broadcast", "H-lp-broadcast"],
+    "resolved": [
+      "H-novelty-per-candidate (confirmed)"
+    ],
+    "left_alive": [
+      "H-uncertainty-broadcast",
+      "H-lp-broadcast"
+    ],
     "observation_bottleneck": "Phase-1 broadcast-scalar implementation of MECH-314b/314c: argmax-invariant, so no selection-level DV can discriminate them.",
     "fanout_growth_events": [],
     "axis_families_edit_needed": false
   },
-  "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json untouched; /governance applies these recommendations. The one dashboard-plane write is the frozen pre-registration ledger, a derive-only input that never mutates claim status."
+  "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json untouched; /governance applies these recommendations. The one dashboard-plane write is the frozen pre-registration ledger, a derive-only input that never mutates claim status.",
+  "amended_utc": "2026-07-20T07:25:44Z",
+  "amendment_note": "Sec 2c added after the original landed (REE_assembly 75726ecb4c), applying the module-import-binding rung independently established by failure_autopsy_V3-EXQ-778a_2026-07-20. VERDICT UNCHANGED (D3 exonerated); the warrant is strengthened and generalised. All 15 cells executed ONE substrate (f80bc236); 0bedd600 never executed. 604c is a RECORDING artefact of the executed_substrate_identity class, not an execution confound. No claim-layer recommendation changed."
 }
