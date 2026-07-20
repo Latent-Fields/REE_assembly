@@ -475,8 +475,7 @@
           "null_declared": "Anchoring does not preserve competence -> retention is NOT a drift-protection problem.",
           "measurement_requirement": "MANDATORY: records the post-installation competence TRAJECTORY, not terminal competence -- terminal-only measurement is precisely what kept this deficit invisible for ten legs. MANDATORY: the interpretation grid must enumerate a 'manipulation succeeded and then decayed' branch and route on DECLARED COVARIATES, not only on the terminal criterion (V3-EXQ-780's grid enumerated only a ~0 null, so a successful manipulation was scored as a null while the covariate that catches it, post_bc_foraging_competence, was present and declared but never consumed). MANDATORY: an install that did not take is uninformative about retention and must self-route substrate_not_ready_requeue, never a retention verdict.",
           "motivating_evidence": "V3-EXQ-780 raw_view: 20.933 post-BC eroded to 11.667 under unconstrained RL refinement, 3/3 seeds took the install.",
-          "probe_status": "substrate_blocked",
-          "blocked_by_substrate": "mech457_policy_kl_anchor",
+          "probe_status": "buildable_unqueued",
           "resolution": {
             "state": "alive",
             "resolving_runs": [],
@@ -487,8 +486,10 @@
             "non_degenerate": false,
             "met_elimination_bar": false,
             "resolved_utc": null,
-            "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_policy_kl_anchor (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness."
-          }
+            "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-20T09:16:54Z. The blocking build landed 2026-07-20: ree-v3 399b17caed (mech457_policy_kl_anchor -- trust-region KL anchor to a FROZEN INSTALLED-POLICY snapshot), recorded status 'implemented' in evidence/planning/substrate_queue.json (implemented_utc 2026-07-20T05:24:43Z). probe_status cleared substrate_blocked -> buildable_unqueued, mirroring the sibling legs H-retention-critic and H-retention-auxiliary-decay cleared 2026-07-19 (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. All three retention legs are now unblocked; queue this leg WITH the other two rather than singly, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness."
+          },
+          "substrate_unblocked_utc": "2026-07-20T09:16:54Z",
+          "substrate_unblocked_by": "ree-v3 399b17caed (mech457_policy_kl_anchor); substrate_queue node 'mech457_policy_kl_anchor' status: implemented"
         },
         {
           "hid": "H-retention-auxiliary-decay",

@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-20T06:52:31Z",
+  "generated_at": "2026-07-20T09:17:51Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 118,
-      "built_modules": 94,
-      "fraction_built": 0.7966,
+      "total_modules": 119,
+      "built_modules": 95,
+      "fraction_built": 0.7983,
       "state_counts": {
         "proposed": 24,
-        "implemented": 70,
+        "implemented": 71,
         "implemented_pending_validation": 13,
         "validated": 11
       },
-      "build_proof_gap": 83,
-      "build_proof_gap_note": "94 modules built, 83 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 84,
+      "build_proof_gap_note": "95 modules built, 84 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -59,49 +59,49 @@
       "date": "2026-07-11",
       "surviving": 44,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-13",
       "surviving": 42,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-15",
       "surviving": 38,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-16",
       "surviving": 37,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-17",
       "surviving": 34,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-18",
       "surviving": 28,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-19",
       "surviving": 25,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     },
     {
       "date": "2026-07-20",
       "surviving": 26,
       "closure_pct": 77.5,
-      "build_pct": 79.7
+      "build_pct": 79.8
     }
   ],
   "questions": [
@@ -497,7 +497,7 @@
           "axis": "policy",
           "state": "alive",
           "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_policy_kl_anchor (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-20T09:16:54Z. The blocking build landed 2026-07-20: ree-v3 399b17caed (mech457_policy_kl_anchor -- trust-region KL anchor to a FROZEN INSTALLED-POLICY snapshot), recorded status 'implemented' in evidence/planning/substrate_queue.json (implemented_utc 2026-07-20T05:24:43Z). probe_status cleared substrate_blocked -> buildable_unqueued, mirroring the sibling legs H-retention-critic and H-retention-auxiliary-decay cleared 2026-07-19 (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. All three retention legs are now unblocked; queue this leg WITH the other two rather than singly, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
           "children": [],
           "met_elimination_bar": false
         },
