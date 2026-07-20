@@ -1088,3 +1088,5 @@ One line per hourly tick. ASCII only.
 2026-07-20T18:33:04Z no eligible item (skipped 237): IGW-20260720-001:skill /governance not allowed; IGW-20260720-002:skill /governance not allowed; IGW-20260720-004:skill /governance not allowed
 2026-07-20T18:39:19Z LAUNCH (manual interactive) IGW-20260719-189 worktree=igw-189-substrate-ready-sd-probe-warmup
 2026-07-20T18:45:11Z auto-defer IGW-20260719-189 hash=67665d464150 for 48h (complete)
+2026-07-20T18:45:12Z complete IGW-20260719-189 launched_manual->completed outcome=NO_OP: No build owed: SD-PROBE-WARMUP was a stale duplicate of SD-074 (already implemen
+2026-07-20T19:33:25Z no eligible item (skipped 236): IGW-20260720-001:skill /governance not allowed; IGW-20260720-002:skill /governance not allowed; IGW-20260720-004:skill /governance not allowed
