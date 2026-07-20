@@ -1,0 +1,107 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T15:30:07Z",
+ "scope": "single",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260720T124318Z_v3",
+   "queue_id": "V3-EXQ-737a",
+   "claim_ids": [],
+   "experiment_purpose": "diagnostic",
+   "brake_exempt": true,
+   "self_route_label": "policy_learning_insufficient_or_deeper",
+   "self_route_verdict": "upheld and sharpened -- the ppo_raw_obs control (unaffected by the encoder defect) fails at 0.567 against a 48.05 local-view greedy anchor, localizing the bottleneck to policy learning; the ppo_ree_latent arm is confounded and settles nothing about REE's learned representation",
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a (claim_ids empty)",
+    "biological_reference": "n/a -- implementation fault, not a translation question",
+    "prerequisites": "missing",
+    "implementation": "partial/defective",
+    "environment": "adequate",
+    "measurement": "under-instrumented",
+    "integration": "partially coupled",
+    "scale": "likely insufficient"
+   },
+   "biological_reference": {
+    "closest_mechanism": null,
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "n/a -- the finding is an implementation defect (no optimizer group covering latent_stack), not a biological translation question.",
+    "lit_status": "n/a"
+   },
+   "recommended_epistemic_category": "competence_implementation_gap",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, V3-EXQ-737a): NON-CONTRIBUTORY as claim evidence (claim_ids empty, diagnostic, brake_exempt) but it carries two findings. (1) The bottleneck at D3 is POLICY LEARNING, not representation: ppo_raw_obs -- the control arm, unaffected by the encoder defect -- reaches 0.567 against a 1.0 floor on an environment where local-view greedy achieves 48.05 from the same view (V3-EXQ-738 anchor) and the oracle reaches 57.2. (2) SUBSTRATE DEFECT: the untrained-world-encoder guard measured 0 of 4 world-encoder and 0 of 61 latent_stack tensors changed after 200 P0 episodes -- the P0/P1 warmup has no optimizer group covering latent_stack, so ppo_ree_latent ran PPO on a FROZEN RANDOM PROJECTION and its 0.217 says nothing about REE's learned representation. Second confirmed strike after V3-EXQ-780; zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md found all six _train_all_on_agent callers exposed (incl. v3_exq_728 and v3_exq_734, each with its own copy). The fix was deferred pending the V3-EXQ-783 adjudication, which is now confirmed and establishes SD-070 as the working route (world-path weight-delta 7 vs the x734 configuration's 0/61, PR retention 0.658), so the build is unblocked.",
+   "recommended_substrate_queue_entry": {
+    "action": "create",
+    "target_sd_id": null,
+    "sd_id_suggested": "sd_zworld_warmup_optimizer_group",
+    "title": "Adopt the SD-070 world-encoder training path in the x734/737 driver family: the P0/P1 warmup currently has no optimizer group covering latent_stack, so z_world is a frozen random projection",
+    "implementation_hint": "The P0/P1 warmup in the _train_all_on_agent driver family trains no part of latent_stack: V3-EXQ-737a's guard measured 0 of 4 world_encoder tensors and 0 of 61 latent_stack tensors changed after 200 P0 episodes. Every experiment on this path that assumes a prediction-trained z_world silently measures a random projection instead, with no error and no warning. The fix is NOT 'enable prescribed P0' -- that is refuted in-corpus by SD-070 (it collapses PR to ~1.06). Per the now-confirmed V3-EXQ-783 adjudication the fix has two parts and SD-070 supplies both: (a) a gradient path reaching latent_stack, and (b) a supervision target that is not action-uninformative. Target: world-path weight-delta > 0 with PR retention ~0.658 and P0/P1 phase separation preserved, matching SD-070's measured behaviour. Scope: all six _train_all_on_agent callers per zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md section 6c, including v3_exq_728_trained_allon_capability_point.py (own copy at :481) and v3_exq_734. Also adopt experiments/_lib/zworld_encoder_guard.py in each driver -- section 6d records that the guard landed as a shared module but had not been called by any driver as of 2026-07-19T21:26Z, which is why this defect ran undetected across a campaign.",
+    "unblocks_claims": [
+     "MECH-457",
+     "INV-088",
+     "Q-002"
+    ],
+    "depends_on_unresolved": [],
+    "depends_on_resolved": [
+     "V3-EXQ-783 adjudication (confirmed 2026-07-18): SD-070 established as the working training route; the dimensionality route via SD-005 / higher-dim z_world is REFUTED"
+    ],
+    "priority_suggested": 1,
+    "failure_record_entry": {
+     "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260720T124318Z_v3",
+     "experiment_type": "v3_exq_737_ree_latent_policy_head_competence_probe",
+     "metric": "latent_stack tensors changed after P0 warmup: 0 of 61 (world_encoder: 0 of 4) at p0_episodes=200; ppo_ree_latent D3 foraging 0.217 on the resulting frozen random projection",
+     "target": "world-path weight-delta > 0 with PR retention ~0.658 and P0/P1 phase separation preserved (SD-070's measured behaviour per V3-EXQ-783)"
+    },
+    "prior_failure_records": [
+     {
+      "run_id": "V3-EXQ-780",
+      "note": "first strike; diagnosed in zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md, which found all six _train_all_on_agent callers exposed"
+     }
+    ]
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "sd_zworld_warmup_optimizer_group",
+    "note": "Not applicable: the manifest declares brake_exempt true with a recorded reason (competence localization probe; claim_ids empty; not a conversion/de-commit falsifier)."
+   },
+   "learning_extracted": [
+    "A detection guard is worth nothing until a driver calls it. The guard landed 2026-07-19 as a shared module with no driver adopting it; 737a is the run that adopted it, and that adoption is the only reason a 7.1-hour run is interpretable rather than quietly wrong. Landing a guard and adopting it are separate work items.",
+    "Record a confound rather than gating on it when it affects a subset of arms: putting the guard under recorded_preconditions kept the unaffected ppo_raw_obs control readable, where a flat gating entry would have returned whole-run precondition_unmet and buried it.",
+    "A failing CONTROL arm can be more informative than the treatment arm: ppo_ree_latent was confounded and says nothing, while ppo_raw_obs failing at 0.567 against a 48.05 greedy anchor on the same view is what localizes the bottleneck to policy learning.",
+    "A phase named for training an encoder is not evidence it trains one -- 'P0 world-model warmup' ran 200 episodes and moved zero tensors. Weight-delta instrumentation on a training phase is cheap and should be default, not a diagnostic added after a campaign goes wrong.",
+    "A resolved upstream adjudication should be re-checked before repeating 'blocked': the 780 doc's deferral to V3-EXQ-783 was correct when written and stale by the time 737a ran. Deferrals need a re-check trigger or they outlive their cause."
+   ],
+   "routing": "implement-substrate",
+   "routing_secondary": "queue-experiment",
+   "routing_detail": {
+    "successor": "V3-EXQ-737b",
+    "gated_on": "the encoder fix landing",
+    "kind": "same-question alphabetic suffix",
+    "required_changes": [
+     "Re-run on the SD-070 training path so ppo_ree_latent measures a LEARNED representation; assert non-zero world-path weight delta as a GATING precondition on that arm",
+     "Add a policy-learning positive control (a trained policy known to clear the floor at D3) so representation-quality and policy-learning-capacity can be separated -- without it a null on the REE latent stays aliased with 'PPO cannot learn this at this budget'"
+    ]
+   }
+  }
+ ],
+ "cluster_pattern": null,
+ "granularity_debt_trigger": {
+  "fires": false,
+  "routing": null,
+  "basis": "claim_ids is empty; this is a localization probe, not an autopsy circling a claim."
+ },
+ "hypothesis_space_ledger_applied": {
+  "question": null,
+  "mode": "skipped",
+  "basis": "V3-EXQ-737a is a localization probe, not the adjudicator of any pre-registered leg. competence_floor::H-rep was already eliminated by V3-EXQ-747/749, and this run's confounded latent arm is not evidence about it either way -- resolving anything from it would misattribute a frozen-random-projection measurement to a representation hypothesis."
+ }
+}

@@ -1,0 +1,118 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T15:30:07Z",
+ "scope": "single",
+ "status": "confirmed",
+ "joint_read_with": {
+  "run_id": "v3_exq_788_mech457_retention_critic_20260719T235543Z_v3",
+  "queue_id": "V3-EXQ-788",
+  "outcome": "PASS",
+  "note": "Clean PASS with no adjudication flag -- read here for the joint discrimination but NOT adjudicated by this skill; it clears at the /governance walk."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_789_mech457_retention_auxiliary_decay_20260720T112103Z_v3",
+   "queue_id": "V3-EXQ-789",
+   "claim_ids": [
+    "MECH-457"
+   ],
+   "experiment_purpose": "diagnostic",
+   "self_route_label": "retention_auxiliary_succeeded_then_decayed",
+   "self_route_verdict": "upheld -- readiness is clean (install took 3/3), so this is a real null on the auxiliary axis rather than an unready substrate",
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "clear",
+    "prerequisites": "present",
+    "implementation": "complete",
+    "environment": "adequate",
+    "measurement": "adequate for the primary DV, under-instrumented for the secondary",
+    "integration": "coupled",
+    "scale": "adequate"
+   },
+   "biological_reference": {
+    "closest_mechanism": "corticostriatal skill consolidation: an acquired policy maintained by a value estimator rather than by continued demonstration",
+    "dependencies": [
+     "a value estimator carrying informative signal on the installed policy's state distribution"
+    ],
+    "is_formal_import": false,
+    "divergence": "None. The failure matches the missing-dependency signature exactly -- acquisition by demonstration succeeds, then extinguishes as the ongoing objective competes it away, at every auxiliary weight.",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "weakens",
+   "positive_negative_result": true,
+   "positive_negative_note": "The elimination of the auxiliary axis is EVIDENCE FOR the value-estimator dependency that V3-EXQ-788 independently confirms. The two legs corroborate rather than merely partition.",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, V3-EXQ-789 read jointly with V3-EXQ-788): the MECH-457 retention sub-question is decided -- the VALUE ESTIMATOR sets retention, the imitation auxiliary does not. 789 tested the auxiliary's persistence schedule (constant 0.5 / annealed 0.5->0.0 / off) with use_distributional_critic held False on all arms as an anti-alias control. Readiness was clean (post-BC install took on 3/3 seeds, worst 17.75 against a 1.0 floor; local-view greedy 48.05; oracle 57.2; non_degenerate true), so this is a real null: retained fraction 0.191 / 0.408 / 0.046 against a 0.5 floor with 0/3 seeds retained on EVERY arm, and 0 arms failing to decay. V3-EXQ-788 independently shows a distributional critic retains 1.839 of installed competence (exceeding it) against 0.525 scalar, margin 1.314 against a required 0.15. Together these eliminate H-retention-auxiliary-decay and confirm H-retention-critic. Both runs are DIAGNOSTIC and weight no claim. The schedule sub-question is NOT resolved and is not re-queued: half-life is quantised at the 250-episode probe interval while the observed cross-arm spread is 166.7 episodes, so the directionally correct ordering constant >= annealed >= off sits below one measurement quantum. Note also that half-life and retained_fraction rank the arms differently.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "rationale": "Nothing is blocked: the substrate delivered the BC install on 3/3 seeds and a 12-reading competence trajectory. The auxiliary axis is closed by evidence, not by a substrate gap."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "measurement_limit_recorded": {
+    "dv": "competence half-life",
+    "probe_interval_episodes": 250,
+    "observed_cross_arm_spread_episodes": 166.666667,
+    "pre_registered_margin_episodes": 450,
+    "verdict": "unresolvable at this resolution -- the effect is smaller than one measurement quantum; the ordering is directionally consistent but is neither support nor refutation",
+    "reopen_requires": "retention_probe_every cut to ~50 and a declared choice of DV",
+    "dv_disagreement": "half-life orders constant > annealed > off, while retained_fraction orders annealed 0.408 > constant 0.191 > off 0.046; with 0/3 retained on every arm neither ordering changes the primary verdict"
+   },
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": true,
+    "route_to": null,
+    "upstream_substrate": null,
+    "note": "Brake does not fire (0 substrate_ceiling hits for MECH-457; this autopsy recommends standard). This autopsy independently REFUSES a same-axis re-queue: the 788 critic result supersedes the auxiliary lever, so a further schedule iteration would optimise a lever shown to be the wrong one."
+   },
+   "learning_extracted": [
+    "Retention is set by the value estimator, not by the teaching signal's persistence: a distributional critic retains 1.839 of installed competence while every auxiliary schedule retains under 0.5.",
+    "A distributional critic does more than preserve -- a retained fraction above 1.0 means competence continued rising under RL refinement after the BC install, exceeding what the leg's PASS criterion required.",
+    "Queuing a fan-out pair AS A PAIR is what made this decidable in one cycle: 788 and 789 share the reference build and 789 holds use_distributional_critic off as an anti-alias control, so the two manipulations do not confound each other.",
+    "A DV read off a trajectory cannot resolve an effect smaller than its probe interval. Set the probe interval from the smallest effect the criterion must detect, not from compute convenience.",
+    "When two DVs of the same construct disagree in ordering, record it: half-life and retained_fraction rank these arms differently, and a successor must declare which it powers for.",
+    "A branched None is worth the design cost: recording undefined_no_install and did_not_decay as distinct statuses rather than coercing them is what lets this run assert 'short half-life' instead of 'no measurement' -- both counts being 0 is itself part of the verdict."
+   ],
+   "routing": "none -- axis closed by evidence; no successor experiment and no substrate build",
+   "follow_on_pipeline_owned": [
+    "competence_floor::H-retention-consolidation (alive; substrate mech457_policy_kl_anchor already implemented)",
+    "competence_floor::H-consummation-binding (alive)"
+   ]
+  }
+ ],
+ "cluster_pattern": null,
+ "granularity_debt_trigger": {
+  "fires": false,
+  "routing": null,
+  "basis": "Prior MECH-457 autopsies exist, but this pass is a converging fan-out portfolio resolving pre-registered legs in opposite directions with a large margin -- the opposite of a coarse claim circling. No granularity signal."
+ },
+ "hypothesis_space_ledger_applied": {
+  "question": "competence_floor",
+  "mode": "B (resolve only)",
+  "denominator_change": "none",
+  "resolved": [
+   {
+    "hid": "H-retention-auxiliary-decay",
+    "state": "eliminated",
+    "resolving_runs": [
+     "V3-EXQ-789"
+    ],
+    "evidence_direction": "weakens",
+    "epistemic_category": "standard",
+    "control_passed": true,
+    "non_degenerate": true,
+    "met_elimination_bar": true,
+    "resolved_utc": "2026-07-20T11:21:03Z"
+   }
+  ],
+  "left_untouched": [
+   {
+    "hid": "H-retention-critic",
+    "reason": "V3-EXQ-788 is a clean PASS with no adjudication flag; it clears at the /governance walk, and its resolution is governance's to apply."
+   }
+  ]
+ }
+}

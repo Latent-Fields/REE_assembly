@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-20T09:17:51Z",
+  "generated_at": "2026-07-20T15:39:12Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,21 +31,20 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 26,
-      "total_initial": 45,
+      "total_surviving": 25,
+      "total_initial": 46,
       "total_initial_at_registration": 36,
-      "total_fanout_added": 9,
-      "total_resolved_out": 20,
-      "reduction_pct_vs_current": 44.4,
-      "net_narrowing_pct": 27.8,
+      "total_fanout_added": 10,
+      "total_resolved_out": 22,
+      "reduction_pct_vs_current": 47.8,
+      "net_narrowing_pct": 30.6,
       "convergence_classes": {
         "narrowing": 5,
         "static": 4,
-        "circling": 1,
-        "indeterminate": 1
+        "circling": 2
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "26 alive against 36 originally enumerated, and against 45 including 9 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "25 alive against 36 originally enumerated, and against 46 including 10 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 11
     },
     "decide": {
@@ -57,37 +56,37 @@
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 44,
+      "surviving": 45,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
     {
       "date": "2026-07-13",
-      "surviving": 42,
+      "surviving": 43,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
     {
       "date": "2026-07-15",
-      "surviving": 38,
+      "surviving": 39,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
     {
       "date": "2026-07-16",
-      "surviving": 37,
+      "surviving": 38,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
     {
       "date": "2026-07-17",
-      "surviving": 34,
+      "surviving": 35,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
     {
       "date": "2026-07-18",
-      "surviving": 28,
+      "surviving": 29,
       "closure_pct": 77.5,
       "build_pct": 79.8
     },
@@ -99,7 +98,7 @@
     },
     {
       "date": "2026-07-20",
-      "surviving": 26,
+      "surviving": 25,
       "closure_pct": 77.5,
       "build_pct": 79.8
     }
@@ -156,8 +155,8 @@
         }
       ],
       "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
-      "net_narrowing_ratio": 0.2857,
-      "bits_removed_vs_registration": 0.49,
+      "net_narrowing_ratio": 0.4286,
+      "bits_removed_vs_registration": 0.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
@@ -277,13 +276,13 @@
           }
         ]
       },
-      "surviving": 5,
-      "alive": 4,
-      "resolved_out": 11,
+      "surviving": 4,
+      "alive": 3,
+      "resolved_out": 12,
       "confirmed": 1,
-      "reduction_numerator": 11,
-      "reduction_ratio": 0.6875,
-      "bits_removed": 1.68,
+      "reduction_numerator": 12,
+      "reduction_ratio": 0.75,
+      "bits_removed": 2.0,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it.",
@@ -506,11 +505,13 @@
           "label": "the imitation auxiliary is out-competed by the RL objective over training",
           "desc": "BC-install, then sweep bc_aux_coef persistence (constant vs annealed vs off) and measure the competence HALF-LIFE -- a trajectory statistic by construction. Tests whether the prior is not HELD rather than not PROTECTED. Reference build: NON-REGRESSED 128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32 (NOT the 769-falsified 256/5x). Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy ceiling 48.05, greedy_oracle 57.2, random_walk 0.933.",
           "axis": "learning-signal",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-19T15:14:23Z. The blocking build landed 2026-07-18: ree-v3 9a8dbae (mech457_bc_aux_schedule), recorded status 'implemented' in evidence/planning/substrate_queue.json. probe_status cleared substrate_blocked -> buildable_unqueued (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. Queue AS A PAIR with the other unblocked retention leg, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-789"
+          ],
+          "basis": "ELIMINATED. No schedule of the imitation auxiliary rescues retention: retained_fraction 0.191 (constant 0.5) / 0.408 (annealed 0.5->0.0) / 0.046 (off) against a 0.5 floor, with 0/3 seeds retained on EVERY arm and 0 arms failing to decay. Not an unready substrate -- the load-bearing readiness gate passed (post-BC install took on 3/3 seeds, worst 17.75 against a 1.0 floor; local-view greedy 48.05; greedy oracle 57.2; 12 trajectory readings on the worst cell; non_degenerate true). Schedule verification passed (annealed arm's realised bc_aux_coef moved, drop 0.5) so it did not alias onto the constant arm, and use_distributional_critic was held False on all arms as an anti-alias control against V3-EXQ-788's locus. The half-life ordering constant 416.7 >= annealed 333.3 >= off 250.0 is directionally correct but UNRESOLVABLE: half-life is quantised at the 250-episode probe interval while the cross-arm spread is 166.7 episodes, below one quantum. Read jointly with V3-EXQ-788 (H-retention-critic), where a distributional critic retains 1.839 of installed competence against 0.525 scalar -- the value estimator, not the auxiliary, is what sets retention.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-consummation-binding",
@@ -1235,35 +1236,71 @@
         "MECH-463"
       ],
       "is_hero": false,
-      "initial_frozen_count": 3,
+      "initial_frozen_count": 4,
       "initial_frozen_count_at_registration": 3,
-      "fanout_added": 0,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
+      "fanout_added": 1,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-07-20T15:30:07Z",
+          "pre_registered_utc": "2026-07-19T15:33:16Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
+          "added_hids": [
+            "H-arousal-channel-agnostic"
+          ],
+          "delta": 1,
+          "note": "GOV-FANOUT-1 growth: the V3-EXQ-785 autopsy commissioned the channel-agnosticism leg as an explicitly separate workstream and its artifact was committed (e8d4325cbd, 2026-07-19T15:33:16Z) BEFORE V3-EXQ-785b resolved it (2026-07-19T21:24:12Z), so invariant 3a(a) is satisfied by git witness, not by stamp alone."
+        }
+      ],
+      "fanout_growth_note": "Growth event 1 adds a leg in the SAME axis family (selection -> process) as the two already-eliminated arousal legs, so the convergence shape is CIRCLING, not refining: the campaign kept re-entering the arousal/selection family until it was exhausted. Recorded honestly -- this is precisely why the 2026-07-20 cluster autopsy routes MECH-463 to /claim-synthesis rather than to another probe on that family. Do not read the 4/4 narrowing ratio as healthy breadth.",
       "net_narrowing_ratio": 0.6667,
       "bits_removed_vs_registration": 1.58,
       "convergence": {
-        "convergence_class": "indeterminate",
-        "reason": "2 axis label(s) not in the declared family map (instrumentation, process) -- extend `axis_families.map` to classify.",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [],
-        "unclassified_axes": [
+        "convergence_class": "circling",
+        "reason": "a growth event added ONLY legs re-entering already-eliminated families",
+        "families_closed": [
           "instrumentation",
           "process"
         ],
-        "growth_events": []
+        "families_touched": [
+          "instrumentation",
+          "process"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": [
+          {
+            "recorded_utc": "2026-07-20T15:30:07Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-785_2026-07-19.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-arousal-channel-agnostic",
+                "family": "process"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-arousal-channel-agnostic",
+                "family": "process"
+              }
+            ],
+            "families_already_dead": [
+              "instrumentation",
+              "process"
+            ]
+          }
+        ]
       },
       "surviving": 1,
       "alive": 0,
-      "resolved_out": 3,
+      "resolved_out": 4,
       "confirmed": 0,
-      "reduction_numerator": 3,
+      "reduction_numerator": 4,
       "reduction_ratio": 1.0,
-      "bits_removed": 1.58,
+      "bits_removed": 2.0,
       "synthesis": {
-        "surviving_label": "none -- all 3 registered hypotheses eliminated; what endogenous urgency was tracking in V3-EXQ-785 is open with no pre-registered candidate remaining, and channel-agnosticism across incumbent identities is a separate workstream (V3-EXQ-785b)",
-        "text": "Global scalar arousal is causally INERT on committed-selection variance geometry at the harm_weighted incumbent on the SD-011 commit-threshold route, AND the leading rival explanation -- that the V3-EXQ-785 profile was hazard geometry conditioned on an endogenous variable -- is now refuted on its own terms. V3-EXQ-785a broke the endogeneity confound and flattened both halves of the 785 profile; V3-EXQ-787 then manipulated hazard proximity exogenously at S=24 with a within-seed load-bearing statistic and found geometry inert (0.33% and 0.38% of the 785 reference), while an expressivity positive control moved the identical statistic by 1.347 decades -- more than the effect being sought. So the null is a property of the mechanism, not of the measurement channel. 787 also falsifies the hypothesis's premise at the first stage: exogenous proximity barely moves realized urgency (r=+0.164), so high-urgency ticks are not near-hazard ticks in this substrate. All three registered hypotheses are eliminated: 3 of 3. What remains genuinely OPEN is what endogenous urgency was actually tracking in 785 -- the question's original rival set is exhausted without a positive account, which is an honest unknown rather than a resolved mechanism. Two scope bounds still hold: (1) ONE incumbent identity -- channel-agnosticism is the separate V3-EXQ-785b workstream; (2) the commit-threshold route only. The 785a under-differentiation caveat is materially weakened but not void: participation ratio 4.30-4.38 here vs the ~1.06 that caveat assumed."
+        "surviving_label": "none -- 4/4 registered hypotheses eliminated. Arousal is causally inert on committed-selection variance geometry, channel-agnostically (785a harm_weighted, 785b residue_weighted + f), and the leading rival (hazard geometry) is separately eliminated with a passing expressivity control (787). What endogenous urgency was tracking in V3-EXQ-785 is OPEN with no pre-registered candidate remaining.",
+        "text": "Global scalar arousal is causally INERT on committed-selection variance geometry on the SD-011 commit-threshold route, at every incumbent identity tested (harm_weighted, residue_weighted, f), and the leading rival explanation -- that the V3-EXQ-785 profile was hazard geometry rather than arousal -- is eliminated under exogenous manipulation with a passing expressivity positive control. The endogenous 14.1x amplification measured in V3-EXQ-785 is real and unexplained. Because the frozen rival set is exhausted while the phenomenon persists, this is a mystery (known data) node: the frame is wrong, and further probes on the arousal/selection axis will not settle it. Routed to /claim-synthesis -- MECH-463 fuses an amplification premise with a concentration premise that V3-EXQ-785 showed dissociate (total up 14.1x while incumbent share fell, rho -0.83)."
       },
       "hypotheses": [
         {
@@ -1304,15 +1341,28 @@
           "basis": "ELIMINATED under EXOGENOUS manipulation of hazard proximity with a within-seed load-bearing statistic at S=24. The manipulation was delivered: corr(assigned level, realized hazard_prox_center) = 0.988, realized centers matching the pre-registered grid to 6 decimals across a 3x proximity range (0.222 -> 0.667), pin_miss_frac 0.006 mean / 0.067 max -- so this is 'no effect', not 'no treatment'. Neither half of the 785 profile moves. C1 amplification: mean within-seed slope on log10 var_total -0.000944 (sd 0.005087, t=-0.909, df=23, t_crit 2.069, n.s.), 0.33% of the 785 reference slope 0.28725 and below the 0.0287 absolute floor. C2 redistribution: mean slope on incumbent share +0.000131 (sd 0.002446, t=0.262, n.s.), 0.38% of the 785 reference -0.03475 and below the 0.0035 floor; the sign is POSITIVE where the hypothesis predicts negative. All three arms gate GREEN, criteria_non_degenerate true on all three, incumbent harm_weighted at margin 0.906 with 2 non-trivial components (the >=2 gate 785 structurally failed). The null is NOT attributable to an inexpressive channel: the A3 expressivity positive control PASSED, moving the SAME statistic (log10 var_total) by a mean per-seed span of 1.347 decades with per-seed monotone fraction 1.0 (rho=1.0 on all 8 seeds) -- a larger excursion than the 785 reference effect it was invoked to explain (log10_var_fold 1.149). The channel could have shown the effect and did not. The 785a under-differentiation caveat is also materially weakened: z_world participation ratio measures 4.30-4.38 here, against the ~1.06 the 785a adjudication assumed. The decoys confirm the 785a reading was a small-n artifact and route nothing. D1 pooled tick-level correlations collapse to r=+0.004 (share) and -0.012 (log10 var) on 5592 rows, against 785a's -0.187 / +0.171. D3 between_fraction is 0.490 (share) and 0.711 (log10 var), not the near-1.0 Simpson signature. D4 replicates=false: only seed 0 lands within 0.02 of 785a's seed-0 mean share of 0.833 (0.8268 here -- the same RNG seed, so trivially the same trajectory), and at S=24 it is the low tail of a smooth distribution (mean 0.954, sd 0.055, z=-2.33), not a distinguished anomaly. 785a's seed-0 leverage was Simpson's paradox on n=5, as that adjudication suspected. Independently, the hypothesis's own PREMISE fails at the first stage: in the urgency-free arm corr(assigned proximity, realized urgency) = +0.164, below the 0.2 threshold, so premise_holds=false. 'High-urgency ticks are near-hazard ticks' is false in this substrate -- whatever endogenous urgency tracked in 785, it was not proximity. SCOPE: the harm_weighted incumbent identity only, and the SD-011 commit-threshold route only (use_harm_variance_commit OFF, so the gated quantity is the z_world running variance, not candidate separation). Channel-agnosticism is NOT covered here -- that is V3-EXQ-785b, a separate workstream.",
           "children": [],
           "met_elimination_bar": true
+        },
+        {
+          "hid": "H-arousal-channel-agnostic",
+          "label": "Arousal's variance effect is channel-agnostic: the amplification/concentration profile appears at ANY incumbent identity, not only harm_weighted",
+          "desc": "MECH-463 asserts the mechanism is a property of global scalar arousal, so it must not be specific to the harm_weighted incumbent. Tests the profile at a second and third incumbent identity (residue_weighted, f) under exogenous urgency.",
+          "axis": "selection",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-785b"
+          ],
+          "basis": "ELIMINATED at two further incumbent identities. Under exogenous urgency at residue_weighted (and f), var_total fold 1.078 with rho +0.486 against a pre-registered +0.6, and incumbent share rho -0.143 -- neither half of the 785 profile appears. The run is not underpowered or vacuous: per_arm_gate.all_green with 8/8 preconditions met on BOTH arms, 3 non-trivial components per arm, 1757 committed ticks over 6 populated urgency levels, exogenous assignment fidelity 5.55e-17, incumbent identity as pre-registered at 0.582/0.794 against a 0.1 floor, non_degenerate true on all three criteria. Independently immune to the hazard-geometry rival: randomisation_orthogonal_to_hazard_proximity 0.066 against a 0.25 ceiling. So arousal's causal inertness on committed-selection variance geometry is channel-agnostic, closing the half the 785 autopsy recorded as open.",
+          "children": [],
+          "met_elimination_bar": true
         }
       ],
       "decision": {
         "readiness_state": "decidable_now",
         "evidence_decile": 9,
         "decision_question": "Is global scalar arousal an ENTRENCHMENT mechanism (concentrating variance on the dominant channel, as MECH-463 asserts and as the conversion-ceiling argument invokes) or a DIVERSITY lever (broadening the variance base)?",
-        "distance_phrase": "decided for the harm_weighted incumbent on the commit-threshold route; rival set exhausted 3/3; channel-agnosticism still one regime away (V3-EXQ-785b)",
+        "distance_phrase": "decided for the harm_weighted incumbent on the commit-threshold route AND channel-agnostically (residue_weighted, f); rival set exhausted 4/4; the endogenous 14.1x profile is unexplained with no pre-registered candidate remaining",
         "live_gate": null,
-        "observation_bottleneck": "Resolved for this route: V3-EXQ-787 manipulated hazard proximity exogenously (fidelity 0.988) with a within-seed statistic at S=24 and a passing expressivity positive control, which is exactly the design the 785a adjudication named as required. Remaining bottleneck for the channel-agnosticism half: no viable second incumbent identity on the entropy axis."
+        "observation_bottleneck": "Resolved for this question. V3-EXQ-785b closed the channel-agnosticism half at two further incumbent identities with 8/8 preconditions green on both arms, which the prior entry recorded as blocked on 'no viable second incumbent identity on the entropy axis'. No observation bottleneck remains; the residual is a framing problem routed to /claim-synthesis."
       }
     },
     {
@@ -1409,6 +1459,21 @@
   ],
   "momentum": [
     {
+      "run": "V3-EXQ-789",
+      "all_runs": [
+        "V3-EXQ-789"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "ELIMINATED. No schedule of the imitation auxiliary rescues retention: retained_fraction 0.191 (constant 0.5) / 0.408 (annealed 0.5->0.0) / 0.046 (off) against a 0.5 floor, with 0/3 seeds retained on EVERY arm and 0 arms failing to decay. Not an unready substrate -- the load-bearing readiness gate passed (post-BC install took on 3/3 seeds, worst 17.75 against a 1.0 floor; local-view greedy 48.05; greedy oracle 57.2; 12 trajectory readings on the worst cell; non_degenerate true). Schedule verification passed (annealed arm's realised bc_aux_coef moved, drop 0.5) so it did not alias onto the constant arm, and use_distributional_critic was held False on all arms as an anti-alias control against V3-EXQ-788's locus. The half-life ordering constant 416.7 >= annealed 333.3 >= off 250.0 is directionally correct but UNRESOLVABLE: half-life is quantised at the 250-episode probe interval while the cross-arm spread is 166.7 episodes, below one quantum. Read jointly with V3-EXQ-788 (H-retention-critic), where a distributional critic retains 1.839 of installed competence against 0.525 scalar -- the value estimator, not the auxiliary, is what sets retention.",
+      "resolved_utc": "2026-07-20T11:21:03Z",
+      "evidence_direction": "weakens"
+    },
+    {
       "run": "V3-EXQ-787",
       "all_runs": [
         "V3-EXQ-787"
@@ -1420,6 +1485,20 @@
       ],
       "moved": "ELIMINATED under EXOGENOUS manipulation of hazard proximity with a within-seed load-bearing statistic at S=24. The manipulation was delivered: corr(assigned level, realized hazard_prox_center) = 0.988, realized centers matching the pre-registered grid to 6 decimals across a 3x proximity range (0.222 -> 0.667), pin_miss_frac 0.006 mean / 0.067 max -- so this is 'no effect', not 'no treatment'. Neither half of the 785 profile moves. C1 amplification: mean within-seed slope on log10 var_total -0.000944 (sd 0.005087, t=-0.909, df=23, t_crit 2.069, n.s.), 0.33% of the 785 reference slope 0.28725 and below the 0.0287 absolute floor. C2 redistribution: mean slope on incumbent share +0.000131 (sd 0.002446, t=0.262, n.s.), 0.38% of the 785 reference -0.03475 and below the 0.0035 floor; the sign is POSITIVE where the hypothesis predicts negative. All three arms gate GREEN, criteria_non_degenerate true on all three, incumbent harm_weighted at margin 0.906 with 2 non-trivial components (the >=2 gate 785 structurally failed). The null is NOT attributable to an inexpressive channel: the A3 expressivity positive control PASSED, moving the SAME statistic (log10 var_total) by a mean per-seed span of 1.347 decades with per-seed monotone fraction 1.0 (rho=1.0 on all 8 seeds) -- a larger excursion than the 785 reference effect it was invoked to explain (log10_var_fold 1.149). The channel could have shown the effect and did not. The 785a under-differentiation caveat is also materially weakened: z_world participation ratio measures 4.30-4.38 here, against the ~1.06 the 785a adjudication assumed. The decoys confirm the 785a reading was a small-n artifact and route nothing. D1 pooled tick-level correlations collapse to r=+0.004 (share) and -0.012 (log10 var) on 5592 rows, against 785a's -0.187 / +0.171. D3 between_fraction is 0.490 (share) and 0.711 (log10 var), not the near-1.0 Simpson signature. D4 replicates=false: only seed 0 lands within 0.02 of 785a's seed-0 mean share of 0.833 (0.8268 here -- the same RNG seed, so trivially the same trajectory), and at S=24 it is the low tail of a smooth distribution (mean 0.954, sd 0.055, z=-2.33), not a distinguished anomaly. 785a's seed-0 leverage was Simpson's paradox on n=5, as that adjudication suspected. Independently, the hypothesis's own PREMISE fails at the first stage: in the urgency-free arm corr(assigned proximity, realized urgency) = +0.164, below the 0.2 threshold, so premise_holds=false. 'High-urgency ticks are near-hazard ticks' is false in this substrate -- whatever endogenous urgency tracked in 785, it was not proximity. SCOPE: the harm_weighted incumbent identity only, and the SD-011 commit-threshold route only (use_harm_variance_commit OFF, so the gated quantity is the z_world running variance, not candidate separation). Channel-agnosticism is NOT covered here -- that is V3-EXQ-785b, a separate workstream.",
       "resolved_utc": "2026-07-19T22:33:52Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-785b",
+      "all_runs": [
+        "V3-EXQ-785b"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "arousal-variance-amplifier",
+      "claims": [
+        "MECH-463"
+      ],
+      "moved": "ELIMINATED at two further incumbent identities. Under exogenous urgency at residue_weighted (and f), var_total fold 1.078 with rho +0.486 against a pre-registered +0.6, and incumbent share rho -0.143 -- neither half of the 785 profile appears. The run is not underpowered or vacuous: per_arm_gate.all_green with 8/8 preconditions met on BOTH arms, 3 non-trivial components per arm, 1757 committed ticks over 6 populated urgency levels, exogenous assignment fidelity 5.55e-17, incumbent identity as pre-registered at 0.582/0.794 against a 0.1 floor, non_degenerate true on all three criteria. Independently immune to the hazard-geometry rival: randomisation_orthogonal_to_hazard_proximity 0.066 against a 0.25 ceiling. So arousal's causal inertness on committed-selection variance geometry is channel-agnostic, closing the half the 785 autopsy recorded as open.",
+      "resolved_utc": "2026-07-19T21:24:12Z",
       "evidence_direction": "weakens"
     },
     {

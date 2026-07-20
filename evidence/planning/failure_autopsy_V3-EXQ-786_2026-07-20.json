@@ -1,0 +1,94 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T15:30:07Z",
+ "scope": "single",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_786_mech163_dual_system_recruitment_20260719T163935Z_v3",
+   "queue_id": "V3-EXQ-786",
+   "claim_ids": [
+    "MECH-163"
+   ],
+   "self_route_label": "substrate_not_ready_requeue",
+   "self_route_verdict": "rejected -- mislabels a test-design defect as substrate immaturity (the V3-EXQ-642 pattern)",
+   "adjudication_flag": "precondition_unmet",
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "unclear",
+    "biological_reference": "clear",
+    "prerequisites": "partial",
+    "implementation": "complete",
+    "environment": "too sparse",
+    "measurement": "under-instrumented",
+    "integration": "isolated",
+    "scale": "likely insufficient"
+   },
+   "biological_reference": {
+    "closest_mechanism": "dual-process control: goal-directed/model-based recruitment under novelty vs habitual/model-free control under familiarity; dorsomedial-to-dorsolateral striatal transfer with training",
+    "dependencies": [
+     "ARC-071 planned->habit transfer (unbuilt)",
+     "ARC-007",
+     "SD-012",
+     "MECH-112"
+    ],
+    "is_formal_import": false,
+    "divergence": "None demonstrated. The biology predicts the recruitment contrast scales with genuine novelty -- exactly the quantity the manipulation check says was insufficient -- so the run does not discriminate a working mechanism under a weak contrast from no mechanism.",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, V3-EXQ-786): NON-CONTRIBUTORY -- the manipulation check failed, so novel and familiar were never established as distinct conditions and the load-bearing C1 is stamped criteria_non_degenerate false. The manifest self-routed substrate_not_ready_requeue; the autopsy rejects that label. FamiliarityTracker is present and discriminating, returning a separation of 0.049365 against a 0.05 floor (short by 1.3%) -- a test-design defect, not substrate immaturity. Two design-time causes, both in the committed config: env_drift_interval 5 / drift_prob 0.1 erodes familiarity throughout the 20 practice episodes, and 'novel' layouts differ from 'familiar' only by generator seed on a 10x10 grid. The design was also underpowered against its own margin -- clearing mean - SEM > 0.05 at the observed SEM of 0.0117 needs a mean of 0.062, ~4.7x the observed 0.0133, with sample_size_improvable true at n=5. Routed to /queue-experiment as V3-EXQ-786a (same question) with a strengthened manipulation and a powered margin. This run must NOT weigh against MECH-163. Separately, per the run's own scope_note this tests leg (1) only -- legs (2) and (3) remain blocked by ARC-007 STRICT and by the unbuilt ARC-071, so even a PASS would not confirm the full dual-system claim.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "rationale": "FamiliarityTracker is present and discriminating; there is no substrate gap in this run's causal path. ARC-071 (unbuilt) and ARC-007 (STRICT value-flat) do block MECH-163 legs 2 and 3, but neither caused this FAIL and both are already tracked."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "measured_design_constraint": {
+    "achievable_familiarity_separation": 0.049365,
+    "under_config": "10x10 grid, num_hazards 3, num_resources 5, env_drift_interval 5, drift_prob 0.1, practice_episodes_per_layout 20, novel/familiar differ by generator seed only",
+    "note": "Reusable: a successor must either raise this number or justify a lower floor."
+   },
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": null,
+    "upstream_substrate": null,
+    "note": "First autopsy on MECH-163: 0 prior targets, 0 substrate_ceiling hits."
+   },
+   "learning_extracted": [
+    "A manipulation check that fails by ~1% is a design finding, not a substrate finding. The self-route took the expensive branch (/implement-substrate) for what is a re-queue.",
+    "Environmental drift applied during a familiarisation phase works against that phase's purpose: env_drift_interval 5 / drift_prob 0.1 decays familiarity across the same 20 episodes meant to build it. Check whether an always-on env process opposes a phase's objective before setting its budget.",
+    "Sampling 'novel' layouts from the same generator as 'familiar' ones caps the contrast by construction; on a small grid with fixed object counts a different seed is not a different layout in any sense the familiarity metric registers.",
+    "Pre-register the margin against a power calculation, not an intuition. Required mean = margin + SEM is one arithmetic step at design time and would have shown 0.05 was unreachable -- the same class of design-time-provable gate defect the V3-EXQ-785 autopsy found.",
+    "Report the achievable value alongside the pass/fail: familiarity_separation 0.049365 is the number a successor design needs, and a bare 'precondition unmet' would have discarded it."
+   ],
+   "routing": "queue-experiment",
+   "routing_detail": {
+    "successor": "V3-EXQ-786a",
+    "kind": "same-question alphabetic suffix",
+    "required_changes": [
+     "Suppress or lengthen env drift during the practice phase so familiarity can accumulate; and/or raise practice_episodes_per_layout above 20",
+     "Vary layout-generating parameters (grid size, hazard/resource counts, landmarks) between familiar and held-out layouts rather than the seed alone",
+     "Raise n above 5 or re-derive divergence_margin from a measured effect size, recording the power calculation in the queue entry",
+     "Keep the manipulation check as a GATING precondition -- it worked as intended, catching an uninterpretable run before it could weigh against a claim"
+    ]
+   }
+  }
+ ],
+ "cluster_pattern": null,
+ "granularity_debt_trigger": {
+  "fires": false,
+  "routing": null,
+  "prior_autopsies": [],
+  "basis": "First autopsy on MECH-163."
+ },
+ "hypothesis_space_ledger_applied": {
+  "question": null,
+  "mode": "skipped",
+  "basis": "MECH-163 has no question in hypothesis_space_registry.v1.json and this run discriminates nothing (manipulation check failed), so there is no leg to pre-register or resolve. Registering one now would add a denominator entry with no adjudicating evidence."
+ }
+}

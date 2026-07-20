@@ -1,0 +1,144 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T15:30:07Z",
+ "scope": "cluster",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_785a_mech463_arousal_exogenous_urgency_decomp_20260719T133431Z_v3",
+   "queue_id": "V3-EXQ-785a",
+   "claim_ids": [
+    "MECH-463"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "partial",
+    "prerequisites": "present",
+    "implementation": "complete",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "coupled",
+    "scale": "adequate"
+   },
+   "biological_reference": {
+    "closest_mechanism": "locus-coeruleus noradrenergic gain modulation (Aston-Jones/Cohen adaptive gain)",
+    "dependencies": [
+     "SD-011 commit-threshold route",
+     "SD-056 action-contrastive candidates"
+    ],
+    "is_formal_import": true,
+    "divergence": "The concentration premise is a control-theoretic reading of gain. In this substrate the modulator acts on an ADMISSION threshold, which broadens the committed population and dilutes the incumbent -- the opposite sign to concentration.",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "does_not_support",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, cluster V3-EXQ-785a/785b): under EXOGENOUS urgency at the harm_weighted incumbent the V3-EXQ-785 profile is inert -- var_total fold 0.970 (vs 785's endogenous 14.1x), var rho -0.086 and share rho +0.31 against a pre-registered +0.6, gap +0.0036 against +0.02, 6/6 preconditions met, non_degenerate true. The null is tight rather than underpowered. Eliminates both H-arousal-concentrates and H-arousal-broadens.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "rationale": "Every precondition is green on both scored arms; nothing is blocked on substrate. The bottleneck is the claim's framing, routed to /claim-synthesis."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": null,
+    "upstream_substrate": null,
+    "note": "0 substrate_ceiling hits for MECH-463 under the R1-R3 convention. These are standard nulls with passing controls, not ceilings."
+   },
+   "learning_extracted": [
+    "A share-based criterion and its denominator can move in opposite directions: 785's total rose 14.1x while the incumbent share fell. Always record and read the denominator of a share criterion.",
+    "Exogenous manipulation of a driver that co-varies endogenously is the discriminating design, and here it inverted the verdict a strong endogenous covariation had suggested.",
+    "A modulator acting on an ADMISSION threshold dilutes rather than concentrates. Where a claim's prediction depends on the sign of a threshold effect, check the parameter's direction in the code before queuing."
+   ],
+   "routing": "claim-synthesis"
+  },
+  {
+   "run_id": "v3_exq_785b_mech463_channel_agnosticism_decomp_20260719T212412Z_v3",
+   "queue_id": "V3-EXQ-785b",
+   "claim_ids": [
+    "MECH-463"
+   ],
+   "failed_criterion": "discrimination",
+   "four_layer_diagnosis": {
+    "claim_alignment": "weakened",
+    "biological_reference": "partial",
+    "prerequisites": "present",
+    "implementation": "complete",
+    "environment": "adequate",
+    "measurement": "adequate",
+    "integration": "coupled",
+    "scale": "adequate"
+   },
+   "biological_reference": {
+    "closest_mechanism": "locus-coeruleus noradrenergic gain modulation, channel-agnostic form",
+    "dependencies": [
+     "SD-011 commit-threshold route",
+     "SD-056 action-contrastive candidates"
+    ],
+    "is_formal_import": true,
+    "divergence": "Same admission-threshold sign inversion as 785a, now shown to hold at two further incumbent identities.",
+    "lit_status": "present"
+   },
+   "recommended_epistemic_category": "standard",
+   "recommended_evidence_direction": "does_not_support",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, cluster V3-EXQ-785a/785b): the channel-AGNOSTIC half of MECH-463 is now tested and fails. At the residue_weighted AND f incumbents under exogenous urgency, var_total fold 1.078 and share rho -0.143 against +0.6; 8/8 preconditions met on BOTH arms (per_arm_gate.all_green), 1757 committed ticks, 6 populated urgency levels, exogenous assignment fidelity 5.6e-17, randomisation orthogonal to hazard proximity at 0.066 against a 0.25 ceiling, non_degenerate true on all three criteria. Arousal's causal inertness on committed-selection variance geometry is channel-agnostic, closing the half the V3-EXQ-785 autopsy recorded as open.",
+   "recommended_substrate_queue_entry": {
+    "action": "none",
+    "rationale": "8/8 preconditions green on both arms. No substrate gap; the residual is a claim-framing problem."
+   },
+   "pending_retest_after_substrate": false,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": true,
+    "route_to": "claim-synthesis",
+    "upstream_substrate": null,
+    "note": "Brake does not fire (0 ceiling hits), but this autopsy independently REFUSES a further exogenous letter on the arousal/selection axis: three manipulations at three incumbent identities have returned flat with passing expressivity and fidelity controls. Another letter would be circling. A redesign asking a DIFFERENT question (what endogenous urgency was tracking) under a new EXQ number is not refused."
+   },
+   "learning_extracted": [
+    "An expressivity positive control is what converts a null into a verdict: 787's control (log10 var span 1.35, per-seed monotone fraction 1.0) is why 'flat' reads as flat_with_expressive_channel rather than as an uninterpretable non-result.",
+    "A frozen rival set can be exhausted while the phenomenon stays real. All registered hypotheses are eliminated and 785's endogenous 14.1x still needs an explanation -- a mystery (known data) node, where more runs on the same axis will not settle it.",
+    "Randomising the manipulation orthogonally to a known rival driver (hazard proximity, corr 0.066) buys independent immunity to that confound within the same run, rather than deferring it to a separate elimination experiment."
+   ],
+   "routing": "claim-synthesis"
+  }
+ ],
+ "cluster_pattern": {
+  "shape": "Exogenous manipulation of every registered driver leaves both halves of the V3-EXQ-785 selection-variance profile flat, at three incumbent identities (harm_weighted, residue_weighted, f) and on two distinct drivers (urgency, hazard proximity), with passing expressivity and fidelity controls throughout.",
+  "is_independent_bugs": false,
+  "structural_property": "The endogenous urgency-variance covariation measured in V3-EXQ-785 is not causal in either direction MECH-463 proposes. Something co-varies with endogenous urgency and drives the variance profile; arousal itself does not, and hazard geometry does not. The claim names the wrong causal agent, and fuses two premises (amplification, concentration) that V3-EXQ-785 demonstrated dissociate.",
+  "readings": [
+   "claim_granularity_debt"
+  ],
+  "readings_refuted": {
+   "test_design_ceiling": "refuted by 787's passing expressivity positive control and by 785's own 14.1x on the identical statistic",
+   "substrate_enrichment": "refuted by 8/8 preconditions green on both 785b arms"
+  }
+ },
+ "granularity_debt_trigger": {
+  "fires": true,
+  "routing": "claim-synthesis",
+  "prior_autopsies": [
+   "failure_autopsy_V3-EXQ-785_2026-07-19.json",
+   "failure_autopsy_V3-EXQ-787_2026-07-19.json"
+  ],
+  "basis": "Third autopsy circling MECH-463, each with a different failure signature (measurement_test_design_defect; standard null on hazard geometry; standard null on arousal channel-agnostically). Judged a genuine granularity signal: the claim fuses amplification with concentration, 785 showed the two dissociate, and the surviving question has no pre-registered candidate left."
+ },
+ "hypothesis_space_ledger_applied": {
+  "question": "arousal-variance-amplifier",
+  "mode": "A+B (labelled fanout growth, invariant 3a)",
+  "added_hids": [
+   "H-arousal-channel-agnostic"
+  ],
+  "initial_frozen_count": "3 -> 4",
+  "initial_frozen_count_at_registration": 3,
+  "git_witness": "failure_autopsy_V3-EXQ-785_2026-07-19.json committed e8d4325cbd 2026-07-19T15:33:16Z; V3-EXQ-785b resolved 2026-07-19T21:24:12Z",
+  "convergence_reading": "circling -- the added leg re-enters the process family that already held two eliminated arousal legs. Recorded honestly; it is the reason routing is /claim-synthesis rather than another probe on that family."
+ }
+}
