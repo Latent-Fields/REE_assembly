@@ -1,6 +1,59 @@
 # Project Insights — 2026-07-20
 
 Generated: 2026-07-20T06:31:52Z
+Corrected: 2026-07-20T07:58Z — see **Corrections** below before acting on any recommendation.
+
+---
+
+## Corrections (applied 2026-07-20T07:58Z)
+
+Verification against the live queue, `TASK_CLAIMS.json` and recent autopsies found **four of this
+report's conclusions wrong**. They are corrected here rather than silently rewritten.
+
+**1. The "stalled chains" finding was wrong on three of four counts.** The report applied the
+skill's own continuity caveat ("a successor under a NEW number is still a successor") to the
+*historical* chains and then failed to apply it to the current ones. Checking only for a
+same-base successor in the queue is exactly the error that caveat exists to prevent.
+
+| Claim | Report said | Actually |
+|---|---|---|
+| MECH-463 | dead, no successor | **Live campaign.** V3-EXQ-785 autopsied and superseded; successor **V3-EXQ-787** queued under a new number, itself autopsied, `H-endogenous-hazard-geometry` ELIMINATED; lit-pull 2026-07-20 raised `lit_conf` 0 -> 0.747. 8 task claims. |
+| INV-088 | dead, no successor | **Owned.** Substrate-plane owner recorded plus a live SD-070/783 clearing path; `mech457_retention_trajectory_probe` written up AND implemented (ree-v3 `7e4f6e932b`). 7 task claims. |
+| INV-089 | decision owed | **Decision already recorded.** Four autopsies, including a dedicated `failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16`. The chain 743 -> 746 -> 746a/b/c was adjudicated, not dropped. |
+
+Only the *shape* of the original observation survives: these chains have no same-base successor.
+That is not evidence of abandonment, and should not have been reported as such.
+
+**2. Recommendation 1 is superseded.** `failure_autopsy_V3-EXQ-604c_2026-07-20` (status
+`confirmed`) landed at ~06:37Z, six minutes after this report generated, and resolves MECH-314:
+
+- **MECH-314 (parent) and MECH-314a: `supports` STANDS. No substrate work is owed.** The run
+  succeeded; the D3 divergence flag was withdrawn.
+- **MECH-314b / MECH-314c: `non_contributory`.** Uncertainty and learning-progress are global
+  scalars broadcast across the K candidates, so a delta of 0.0 is an arithmetic identity, not a
+  measurement. They are behaviourally inert at selection *by construction* and untestable by any
+  selection-level DV.
+- The named remedy is an **`amend` on ARC-065** (give 314b/314c the per-candidate treatment
+  MECH-314a already has) — **not** `modulatory-bias-selection-authority`, which this report
+  nominated. That amend is confirmed and **not yet applied** to `substrate_queue.json`.
+- The **re-derive brake FIRES** (ceiling-hits 3/3/3 against a threshold of 2). A further
+  same-claim ablation is **REFUSED** — it would return 0.0 deterministically. A DV swap alone is
+  not a viable escape either.
+
+So MECH-314's July failure volume is substantially a **measurement-instrument defect**, not the
+substrate starvation this report inferred from the raw FAIL count. In work-graph terms the node
+is `complex (probe-gated)` with the probe already run, not `complicated (buildable)`.
+
+**3. What still stands.** The experiment-health numbers, the data-source caveat (the ERROR-rate
+blind spot), the substrate ready/blocked counts, the literature finding (zero open items), the
+queue-composition finding (7 of 10 are re-letter re-runs), and recommendation 4. Recommendation 3
+is discharged — the zworld encoder guard was verified sound (9/9 contracts).
+
+**Method note for the next run of this skill:** claim-level FAIL counts are a *starting point*,
+not a finding. Before calling any claim stalled, check `TASK_CLAIMS.json` (including `done`
+entries with completion notes), recent autopsies, and successors under new EXQ numbers. A high
+FAIL count against a claim whose parent reads `supports` usually means a vacuous criterion, not a
+missing substrate.
 
 ---
 
@@ -190,20 +243,25 @@ Friction markers in the same window: `BLOCKED` 82, `STALE` 76, `REFUSED` 23, `SW
 
 ## Recommendations
 
-1. **Resolve `modulatory-bias-selection-authority` — it is the single highest-leverage
-   node on the board.** It is `ready: true`, priority 1, carries **15 failure records**, and
-   unblocks **18 claims** including MECH-314. MECH-314 took 8 FAILs in July and has **zero
-   queued successors** — the chain is not stalled for lack of ideas. First step is to settle
-   the field disagreement noted above (`status: implemented` vs null `implementation_status`):
-   if it is genuinely unbuilt, build it; if it is built, its 15 failure records are
-   misattributed and MECH-314's ceiling is somewhere else.
+1. ~~**Resolve `modulatory-bias-selection-authority`.**~~ **SUPERSEDED — see Corrections §2.**
+   The MECH-314 justification does not hold: the parent claim and MECH-314a read `supports`
+   and owe no substrate work, while 314b/314c are `non_contributory` through a structurally
+   vacuous criterion. The correct, confirmed action is an **`amend` on ARC-065**, not this
+   node. `modulatory-bias-selection-authority` may still merit attention on its own 15
+   failure records and 18 unblocked claims, but that case now has to be made independently
+   rather than inherited from MECH-314's FAIL count.
 
-2. **Decide explicitly what happens to the three dead chains: INV-089 (EXQ-746, 4/4 FAIL),
-   MECH-463 (EXQ-785, 3/3 FAIL), and INV-088 (4 FAILs).** None has a successor queued and
-   none has a `ready` substrate entry attributed to it except `mech457_consummatory_act`
-   (INV-088). Per the skill's continuity caveat, check each for a successor under a *new*
-   EXQ number and for `evidence_direction_per_claim` exclusions before concluding they are
-   abandoned — but if they genuinely are, that should be a recorded decision, not attrition.
+   **Replacement action:** apply the confirmed `recommended_substrate_queue_entry` from
+   `failure_autopsy_V3-EXQ-604c_2026-07-20.json` (action `amend`, target `ARC-065`, priority 1,
+   unblocks MECH-314b/314c/Q-044) to `evidence/planning/substrate_queue.json`. Verified not yet
+   applied: ARC-065's `failure_record` entries are all dated 2026-06-07.
+
+2. ~~**Decide what happens to the three dead chains.**~~ **WITHDRAWN — see Corrections §1.**
+   MECH-463 is a live campaign with a queued successor under a new number, INV-088 has a
+   substrate-plane owner and a live clearing path, and INV-089 was adjudicated across four
+   autopsies including a well-posedness review. No decision is owed on any of them. The
+   underlying observation — no *same-base* successor — was real but is not evidence of
+   abandonment.
 
 3. **The queue is 70% re-runs, and four are one correction — batch or root-cause it.**
    742a, 737a, 728a and 734a are all "re-run under the zworld encoder guard": one substrate
