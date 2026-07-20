@@ -53454,7 +53454,7 @@
   claim_type: mechanism_hypothesis
   subject: selection.rank_preserving_f_to_eligibility_demotion
   polarity: asserts
-  status: provisional
+  status: candidate
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -53541,16 +53541,93 @@
     RECONCILIATION NOTE (2026-07-20, same day): the sentence above -- that MECH-448 loses
     nothing because it rests on V3-EXQ-689d -- was written before
     failure_autopsy_V3-EXQ-689d_2026-07-20 (REE_assembly 2e6cc2569b) landed. That autopsy
-    WITHDRAWS the V3-EXQ-689d conversion finding itself (genuine_exp_count 1 -> 0; C_PRIMARY has
-    ZERO validly-controlled seeds, on three independent grounds -- hold-weighted DV, a vacuous
-    ARM_MATCHED_NOISE control bit-identical to ARM_PROPOSER_CTRL, and intra-run substrate
-    divergence in which the two finding-carrying ARM_ON seeds were not substrate-matched to
-    their controls). The V3-EXQ-699 re-adjudication's reassurance about this claim's evidential
+    WITHDRAWS the V3-EXQ-689d conversion finding itself (C_PRIMARY is invalid on two surviving
+    independent grounds -- a hold-weighted DV, and a vacuous ARM_MATCHED_NOISE control
+    bit-identical to ARM_PROPOSER_CTRL). A third ground asserted by that autopsy, intra-run
+    substrate divergence, was REFUTED and WITHDRAWN the same day -- see the D3 CORRECTION below. The V3-EXQ-699 re-adjudication's reassurance about this claim's evidential
     base therefore does NOT survive contact with the V3-EXQ-689d re-adjudication, and must not
-    be read as confirming that MECH-448's conversion evidence is intact. The 689d withdrawal's
-    own claim-level writes (status and epistemic_category movement) are deliberately NOT applied
-    here -- that is a separate and larger adjudication owed in its own session. What this entry
-    records is only the V3-EXQ-699 note application, plus the bound above.
+    be read as confirming that MECH-448's conversion evidence is intact. The 689d withdrawal's own claim-level
+    writes were deferred by this entry; they are APPLIED below (2026-07-20, session
+    hopeful-bell-492021) and this paragraph is superseded to that extent.
+
+    689D WITHDRAWAL APPLIED 2026-07-20 (session hopeful-bell-492021), per
+    failure_autopsy_V3-EXQ-689d_2026-07-20 (REE_assembly 2e6cc2569b). status provisional ->
+    candidate. The 2026-06-21 promotion (59c8a1879a) rested on the V3-EXQ-689d PASS, which is now
+    withdrawn; leaving the claim at provisional would present it as an experimentally-confirmed
+    claim whose sole genuine experimental support no longer stands. The autopsy's prescribed note
+    follows VERBATIM, then a correction recording what has since changed.
+
+    AUTOPSY NOTE (verbatim, as landed 2026-07-20): 2026-07-20 (failure_autopsy_V3-EXQ-689d): the
+    V3-EXQ-689d conversion finding is WITHDRAWN; status reverted provisional -> candidate. The
+    2026-06-21 PASS that promoted this claim rested on C_PRIMARY (committed-action-class entropy
+    strict-above both collapsed controls), which is invalid on three independent grounds. (1)
+    HOLD-WEIGHTED DV: selected_class_counts is accumulated per env step from the select_action
+    return value (script :598, and :535 for the pool), but agent.py:5430 returns the HELD action on
+    not ticks['e3_tick'], so the histogram is weighted by hold duration -- a distribution-shape
+    statistic is DISQUALIFYING under the hold_weighted_e3_readout_corpus_sweep_2026-07-20 triage,
+    and the 663 <1% calibration does not apply (entropy DV; arm exposure differs up to 7-fold within
+    seed 42). Effective N on the surviving seeds is ~24-51 genuine selections, against a
+    weaker-survivor margin of 0.187 nats. (2) VACUOUS CONTROL: ARM_MATCHED_NOISE is bit-identical to
+    ARM_PROPOSER_CTRL on every metric on all three seeds -- temperature is inert on the
+    deterministic-argmin proposer path -- so the 'not noise-as-diversity' half of C_PRIMARY never
+    tested anything; the pre-registered guard matched_noise_verified_lifting: false fired without
+    blocking the PASS. (3) INTRA-RUN SUBSTRATE DIVERGENCE (new): ARM_ON seeds 43 and 44 ran on
+    substrate_hash fc6d17ce... while every control and ARM_ON seed 42 ran on 19b4073c... The two
+    seeds carrying the finding are exactly the two whose treatment arm was not substrate-matched to
+    its controls; the one properly-controlled seed (42) FAILS C_PRIMARY (1.1849 < 1.2760). C_PRIMARY
+    therefore has ZERO validly-controlled seeds. What SURVIVES: C_READINESS (0.0 floor, strict >,
+    3/3), C_RANK_PRESERVING (exactly 1.0, saturated) and C_SAFETY (realized per-env-step harm from
+    env.step -- correct sampling unit). The MECH-448 substrate is built, active, non-degenerate,
+    rank-preserving and safe; it is the CONVERSION finding that has no uncontaminated basis.
+    Evidence base after withdrawal: genuine_exp_count 1 -> 0. V3-EXQ-689h (PASS/supports) survives
+    -- verified structurally immune (synthetic candidate banks, no env loop) -- but is purpose:
+    diagnostic, tests demotion_x_gonogo_additive rather than the standalone conversion assertion,
+    shares the synthetic-bank pathway with 689g, and carries its own anchor-reachability flag. No
+    weakens is unmasked (zero weakens, zero FAIL runs), but the remaining support is narrow and
+    single-pathway: nothing survives from the embodied env-loop pathway. Reported decoupled:
+    strong-lit (lit_conf 0.849, 5 entries) / zero-genuine-exp. Retest pending the corrected re-run.
+
+    D3 CORRECTION (2026-07-20, same day, session musing-einstein-c80816): ground (3) of the verbatim
+    note above -- INTRA-RUN SUBSTRATE DIVERGENCE -- is REFUTED AND WITHDRAWN by
+    failure_autopsy_V3-EXQ-689d-D3_2026-07-20 (REE_assembly 8618f2c4bd), which supersedes the D3
+    defect only. The observed 10/2 substrate_hash split is real and reproduces exactly, but the
+    inference from it carried an unstated and unverified premise -- that the mid-run edit reached
+    EXECUTION. It did not: the driver binds REEAgent at :128 and REEConfig at :130, 937 lines before
+    the arm loop opens at :1065, in a single process with no multiprocessing, fork, Popen, importlib
+    or reload, so CPython's sys.modules cache means all 12 cells executed the 19b4073c substrate.
+    sufficient_alone_to_withdraw becomes false. Consequently the phrases 'ZERO validly-controlled
+    seeds' and 'genuine_exp_count 1 -> 0' in the verbatim note are NOT to be cited: cite D1
+    (hold-weighted DV, DISQUALIFYING) and D2 (vacuous matched-noise control) only. D2 was
+    independently re-verified there -- 26 of 27 fields bit-identical between ARM_PROPOSER_CTRL and
+    ARM_MATCHED_NOISE on all three seeds, differing only in the inert temperature knob, with
+    identical n_p1_ticks (387/3616/224). The WITHDRAWAL OF C_PRIMARY STANDS UNCHANGED on D1 + D2,
+    and so does this status movement; only the 'zero validly-controlled seeds' FORMULATION is lost.
+    The corpus sweep (intra_run_substrate_divergence_sweep_2026-07-20.md sec 5f, 7) records the same
+    conclusion; its governance item 2 'MECH-448: no change' is scoped to D3 specifically -- the D3
+    hit against this claim is withdrawn, not the D1+D2 withdrawal.
+
+    SCOPE OF THIS APPLICATION. (a) epistemic_category is LEFT AT standard. The autopsy's
+    recommended_epistemic_category 'measurement_test_design_defect' is an EVIDENCE-level value (it
+    appears in run manifests and in the derived live_status verdict); it is not in the claim-level
+    enum enforced by scripts/validate_claims.py {standard, substrate_coherence, answer_state,
+    substrate_ceiling, substrate_conditional, derivational, out_of_domain, governance_rule}, and
+    standard remains correct here -- the defect is in the measurement, not a substrate ceiling. (b)
+    The 689d RUN MANIFEST (evidence/experiments/v3_exq_689d_..._v3.json) still reads PASS / supports
+    and was NOT edited by this pass. Until it is re-adjudicated to non_contributory the derived
+    indexes keep counting this run as genuine experimental support, so the 'genuine_exp_count 1 ->
+    0' effect is NOT yet realised in claim_evidence.v1.json. (c) WHAT SURVIVES, and must not be
+    overstated as lost: C_READINESS, C_RANK_PRESERVING and C_SAFETY all stand -- the MECH-448
+    substrate is built, active, non-degenerate, rank-preserving and safe. It is the CONVERSION
+    finding alone that has no uncontaminated basis. V3-EXQ-689h (PASS/supports) also survives and is
+    structurally immune (synthetic candidate banks, no env loop), but is purpose: diagnostic, tests
+    demotion_x_gonogo_additive rather than the standalone conversion assertion, shares the
+    synthetic-bank pathway with 689g, and carries its own anchor-reachability flag. No weakens is
+    unmasked (zero weakens, zero FAIL runs). Remaining support is therefore narrow and
+    single-pathway: nothing survives from the embodied env-loop pathway. Reported decoupled per the
+    lit/exp decoupling rule: strong-lit (lit_conf 0.849, 5 entries) / zero uncontaminated embodied
+    exp. (d) The corrected re-run V3-EXQ-689i is being queued separately (session
+    modest-varahamihira-708d95); its result is the first valid measurement of the conversion
+    finding, and re-promotion should wait on it.
   depends_on:
     - MECH-439   # the F-variance monopoly; this is the "F's share must be rebalanced, shortlist insufficient" branch MECH-439's own text flags
     - MECH-447   # the rival it is discriminated against by 689a (lever-sufficiency vs residual-ceiling)
