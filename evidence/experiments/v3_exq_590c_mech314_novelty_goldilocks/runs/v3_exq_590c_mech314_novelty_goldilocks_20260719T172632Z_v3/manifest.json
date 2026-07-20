@@ -1,0 +1,118 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_590c_mech314_novelty_goldilocks",
+  "run_id": "v3_exq_590c_mech314_novelty_goldilocks_20260719T172632Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-19T17:26:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314",
+    "DEV-NEED-003"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-314": "non_contributory",
+    "DEV-NEED-003": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / ARC-065 GAP-A precondition. An under-trained / collapsed e2 starves the per-candidate novelty channel.",
+        "control": "highest curiosity_novelty_weight arm, cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.047246,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE) clears the floor -- the MECH-314 channel carries a real per-candidate pattern the top-k argmin can arbitrate on (the 643a 'scaling zero is still zero' guard).",
+        "control": "highest curiosity_novelty_weight arm, curiosity_candidate_source=e2_world_forward",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.0,
+        "seeds_above_floor": 0,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "committed_class_entropy_range_across_weight_arms_supra_floor",
+        "kind": "readiness",
+        "description": "SAME-statistic gate (V3-EXQ-643 lesson; conversion-ceiling guard): the RANGE across the swept curiosity_novelty_weight arms of the healthy-seed-mean committed_class_entropy -- the EXACT statistic the Goldilocks decision routes on -- clears a floor. If committed diversity is flat across every weight, the MECH-314 channel does not reach committed action under MECH-439 F-dominance (the 569i conversion is ENV-CONDITIONAL; V3-EXQ-625e) -> substrate_not_ready_requeue, NOT a MECH-314 / DEV-NEED-003 weakens.",
+        "control": "RANGE of per-arm mean committed_class_entropy across weights {0,0.05,0.25,1.0}",
+        "measured": 0.353838,
+        "threshold": 0.05,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.056792,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_control",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_control": true
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "conversion ceiling persists / e2 collapsed -- re-queue as 590d on a GAP-A-readier substrate; do NOT weaken MECH-314 / DEV-NEED-003",
+      "mech314_committed_diversity_goldilocks_identified": "PASS (supports MECH-314 + DEV-NEED-003); adopt best curiosity_novelty_weight",
+      "mech314_no_committed_diversity_benefit": "FAIL (does_not_support); /failure-autopsy the conversion reading"
+    }
+  }
+}

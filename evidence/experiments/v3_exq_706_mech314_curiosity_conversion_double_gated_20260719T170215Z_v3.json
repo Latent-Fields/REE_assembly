@@ -1,0 +1,512 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_706_mech314_curiosity_conversion_double_gated_20260719T170215Z_v3",
+  "queue_id": "V3-EXQ-706",
+  "experiment_type": "v3_exq_706_mech314_curiosity_conversion_double_gated",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260719T170215Z",
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-314"
+  ],
+  "supersedes": "v3_exq_705b_mech314_curiosity_conversion_demotion_adaptive_floor",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "V3-EXQ-706 SUPERSEDES V3-EXQ-705b (brake-EXEMPT DOUBLE-GATED redesign, routed by the confirmed failure_autopsy_V3-EXQ-705b_2026-06-25). NEW number (major redesign: adds the second composed eligibility gate -- the BUILT MECH-449/ARC-107 Go/No-Go constitution -- plus an active staleness/perseveration No-Go injection so the gate genuinely fires; the re-derive brake (6th MECH-314 ceiling autopsy) REFUSED a 705c demotion-ONLY same-substrate letter, and the double-gated condition is the different-substrate forward path the autopsy named as brake-EXEMPT). 705b was the FIRST FAIR demotion test (adaptive floor excluded 14.45 vs 705 all-admit 0.0; 590c saturation-arm confound fixed; GAP-A pool divergent ~0.107) and committed-class entropy STILL did not lift over demotion-ON F-only + matched-noise -> conversion_ceiling_persists_despite_demotion. The autopsy diagnosis: rank-preserving demotion alone cannot express the active No-Go the conversion requires (the 485k->MECH-449 OFC-devaluation shape). 706 composes BOTH gates: use_f_eligibility_demotion=True AND use_go_nogo_constitution=True on every arm, with an active staleness No-Go suppressing recently-committed action classes from the eligible set (689h showed demotion x Go/No-Go compose ADDITIVELY). SUBSTRATE-READINESS FINDING (caught at code review): a flag-flip alone is VACUOUS -- with use_dacc=False and no signal injection the Go/No-Go gate suppresses nothing (bit-identical to demotion-only 705b), so 706 injects the active staleness axis AND adds readiness leg E (go_nogo_n_soft_applied>0 on >=2/3 seeds) so an inert gate self-routes substrate_not_ready_requeue, NEVER a false reading. The Go/No-Go is an ELIGIBILITY gate, not a modulatory bias channel -- MECH-314 curiosity remains the SOLE modulatory channel arbitrating the within-eligible argmin. The same staleness RULE runs on ALL arms; ARM_FONLY absorbs the gate-alone diversity baseline so the PASS criterion (ARM_CURIOSITY lift over the DOUBLE-GATED F-only control by >= margin on >= 2/3 seeds AND strict-above matched-noise) isolates curiosity-specific conversion. A readiness-MET no-lift is the PRE-REGISTERED TERMINAL off-ramp: BOTH selection-face eligibility gates are composed, so the binding constraint is not at the eligibility-construction face -> escalate to V4 ARC-110 loop-segregation (existing v4_loop_segregation substrate_queue entry); NO more V3 letters on this lineage. claim_ids=[MECH-314]; non_contributory off-ramp is NOT a MECH-314 weakens (the ceiling is architectural). PROMOTES NOTHING.",
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "gapA_e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / GAP-A pool precondition. A collapsed pool starves the per-candidate channel.",
+        "control": "ARM_CURIOSITY (w=0.25), cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.080661,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor_at_non_saturation_arm",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE -- the SAME range statistic the within-envelope argmin consumes) clears the floor at the NON-saturation weight (w=0.25). 590c confounded-precondition fix.",
+        "control": "ARM_CURIOSITY (w=0.25, non-saturation), curiosity_bias_range_mean",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.02711902,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "f_eligibility_demotion_non_degeneracy",
+        "kind": "readiness",
+        "description": "MECH-448 demotion is ACTIVE on >= floor of ARM_CURIOSITY P1 ticks AND the envelope ACTUALLY excludes on the divergent pool (mean f_eligibility_excluded_count > floor). excluded_count==0 = all-admit (flat-F) = vacuous self-route (705->705b hardening).",
+        "control": "ARM_CURIOSITY, f_eligibility_demotion_active_frac + excluded_count",
+        "measured": 1,
+        "threshold": 2,
+        "comparator": ">=",
+        "direction": "lower",
+        "excluded_count_mean_across_seeds": 19.071429,
+        "excluded_count_floor": 0.0,
+        "demotion_active_frac_mean_across_seeds": 1.0,
+        "demotion_active_frac_floor": 0.8,
+        "met": false
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.108049,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "go_nogo_gate_non_degeneracy",
+        "kind": "readiness",
+        "description": "MECH-449 Go/No-Go gate genuinely fires: the active staleness No-Go suppresses >= 1 candidate on average (go_nogo_n_soft_applied _mean > floor) at ARM_CURIOSITY on >= MIN_SEEDS seeds. An inert gate (no suppression) makes the double-gated arm identical to demotion-only 705b -> vacuous; self-route substrate_not_ready_requeue, NOT a ceiling.",
+        "control": "ARM_CURIOSITY, go_nogo_n_soft_applied_mean",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 2.25,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_double_gated_f_only_and_noise",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_double_gated_f_only_and_noise": false
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "GAP-A pool not divergent / curiosity range below floor at the non-saturation arm / demotion all-admit / Go-No-Go gate inert (no suppression) -- re-queue; do NOT weaken MECH-314",
+      "mech314_curiosity_converts_under_double_gating": "PASS (supports MECH-314); the demotion + active Go/No-Go double gate lifts the conversion ceiling for the curiosity channel",
+      "conversion_ceiling_persists_despite_double_gating": "PRE-REGISTERED TERMINAL off-ramp: readiness MET (both gates genuinely active) but no lift over the double-gated F-only + matched-noise controls -> the binding constraint is not at the selection-face eligibility-construction; escalate to V4 ARC-110 loop-segregation, NO more V3 letters. non_contributory; NOT a falsification of MECH-314"
+    }
+  },
+  "non_degenerate": false,
+  "degeneracy_reason": "readiness below floor (GAP-A pool / curiosity per-candidate range / demotion excluded_count / Go-No-Go gate inert) -- the committed_class_entropy lift criterion could not fire; scoring-excluded",
+  "dry_run": true,
+  "config": {
+    "seeds": [
+      42
+    ],
+    "p0_warmup_episodes": 2,
+    "p1_measurement_episodes": 2,
+    "steps_per_episode": 30,
+    "measure_after_tick": 2,
+    "arms": [
+      {
+        "arm_id": "ARM_CURIOSITY",
+        "label": "mech314_curiosity_double_gated_treatment",
+        "curiosity_novelty_weight": 0.25,
+        "temperature": 1.0,
+        "is_control": false
+      },
+      {
+        "arm_id": "ARM_FONLY",
+        "label": "double_gated_f_only_control_curiosity_zero",
+        "curiosity_novelty_weight": 0.0,
+        "temperature": 1.0,
+        "is_control": true
+      },
+      {
+        "arm_id": "ARM_NOISE",
+        "label": "matched_noise_flat_hot_temperature_curiosity_zero",
+        "curiosity_novelty_weight": 0.0,
+        "temperature": 2.5,
+        "is_control": true
+      }
+    ],
+    "curiosity_weight_on": 0.25,
+    "matched_noise_temperature": 2.5,
+    "use_f_eligibility_demotion": true,
+    "use_f_eligibility_adaptive_floor": true,
+    "f_eligibility_adaptive_mean_factor": 1.0,
+    "f_eligibility_envelope_floor": 0.3,
+    "f_eligibility_dn_sigma": 0.0,
+    "use_go_nogo_constitution": true,
+    "staleness_nogo_level": 0.9,
+    "recency_window": 1,
+    "modulatory_authority_gain": 1.0,
+    "modulatory_shortlist_k": 3,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.0,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10,
+      "reef_enabled": true,
+      "n_reef_patches": 3,
+      "reef_patch_radius": 2,
+      "reef_bipartite_layout": true,
+      "reef_bipartite_axis": "horizontal",
+      "reef_bipartite_agent_band_radius": 1
+    },
+    "sd056_weight": 0.05,
+    "curiosity_bias_scale": 0.5,
+    "visitation_buffer_len": 256,
+    "thresholds": {
+      "cand_dist_floor": 0.02,
+      "bias_range_floor": 0.0001,
+      "excluded_count_floor": 0.0,
+      "demotion_active_frac_floor": 0.8,
+      "gng_soft_applied_floor": 0.0,
+      "magnitude_ceil": 1000000.0,
+      "entropy_lift_margin": 0.05,
+      "entropy_floor": 0.3,
+      "min_seeds_for_pass": 2
+    }
+  },
+  "acceptance_criteria": {
+    "readiness_substrate_ready": false,
+    "mech314_committed_diversity_lift": false,
+    "overall_pass": false
+  },
+  "summary": {
+    "readiness": {
+      "legA_cand_dist_floor": 0.02,
+      "on_cand_world_pairwise_dist_mean": 0.080661,
+      "legA_seeds_above_floor": 1,
+      "legA_ok": false,
+      "legB_bias_range_floor": 0.0001,
+      "on_curiosity_bias_range_mean": 0.02711902,
+      "legB_seeds_above_floor": 1,
+      "legB_ok": false,
+      "legB_note": "CONFOUNDED-PRECONDITION FIX (from 705b): curiosity_bias_range read at the NON-saturation arm ARM_CURIOSITY (w=0.25), the SAME range statistic the within-envelope argmin consumes.",
+      "legC_demotion_active_frac_floor": 0.8,
+      "legC_excluded_count_floor": 0.0,
+      "on_demotion_active_frac_mean": 1.0,
+      "on_excluded_count_mean": 19.071429,
+      "on_envelope_size_mean": 12.928571,
+      "legC_seeds_non_degenerate": 1,
+      "legC_ok": false,
+      "legD_magnitude_ceil": 1000000.0,
+      "max_pairwise_dist_observed": 0.108049,
+      "legD_ok": true,
+      "legE_gng_soft_applied_floor": 0.0,
+      "on_go_nogo_n_soft_applied_mean": 2.25,
+      "on_go_nogo_active_frac_mean": 1.0,
+      "on_go_nogo_envelope_size_mean": 12.928571,
+      "legE_seeds_non_degenerate": 1,
+      "legE_ok": false,
+      "legE_note": "MECH-449 Go/No-Go gate non-degeneracy: the active staleness No-Go genuinely suppresses (go_nogo_n_soft_applied_mean > floor). An inert gate (== demotion-only 705b) self-routes substrate_not_ready_requeue, NEVER a false ceiling -- the 705->705b all-admit trap analog for the second gate.",
+      "min_seeds_required": 2,
+      "readiness_ok": false
+    },
+    "c_primary": {
+      "entropy_lift_margin": 0.05,
+      "on_minus_fonly_lift_seeds": 1,
+      "on_above_noise_seeds": 1,
+      "on_committed_class_entropy_mean": 1.438341,
+      "entropy_floor": 0.3,
+      "primary_floor_ok": true,
+      "c_primary_pass": false,
+      "note": "GATE: ARM_CURIOSITY committed_class_entropy lifts over the DOUBLE-GATED F-only control (ARM_FONLY) by >= margin per seed AND is strictly above the matched-noise control (ARM_NOISE) per seed, on >= MIN_SEEDS seeds, AND clears an absolute floor. Fail = conversion_ceiling_persists_despite_double_gating (non_contributory; PRE-REGISTERED TERMINAL -> V4 ARC-110 loop-segregation), NOT a MECH-314 weakens."
+    },
+    "per_arm_committed_class_entropy_mean": {
+      "ARM_CURIOSITY": 1.438341,
+      "ARM_FONLY": 1.291417,
+      "ARM_NOISE": 1.291417
+    },
+    "curiosity_bias_range_per_arm_mean": {
+      "ARM_CURIOSITY": 0.02711902,
+      "ARM_FONLY": 0.0,
+      "ARM_NOISE": 0.0
+    },
+    "go_nogo_soft_applied_per_arm_mean": {
+      "ARM_CURIOSITY": 2.25,
+      "ARM_FONLY": 3.428571,
+      "ARM_NOISE": 3.428571
+    },
+    "harm_per_tick_per_arm_mean": {
+      "ARM_CURIOSITY": 0.063184,
+      "ARM_FONLY": 0.045719,
+      "ARM_NOISE": 0.045719
+    },
+    "rank_preserving_frac_on_mean": 0.392857,
+    "label": "substrate_not_ready_requeue",
+    "evidence_direction": "non_contributory",
+    "overall_pass": false,
+    "preconditions": [
+      {
+        "name": "gapA_e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / GAP-A pool precondition. A collapsed pool starves the per-candidate channel.",
+        "control": "ARM_CURIOSITY (w=0.25), cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.080661,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor_at_non_saturation_arm",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE -- the SAME range statistic the within-envelope argmin consumes) clears the floor at the NON-saturation weight (w=0.25). 590c confounded-precondition fix.",
+        "control": "ARM_CURIOSITY (w=0.25, non-saturation), curiosity_bias_range_mean",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.02711902,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "f_eligibility_demotion_non_degeneracy",
+        "kind": "readiness",
+        "description": "MECH-448 demotion is ACTIVE on >= floor of ARM_CURIOSITY P1 ticks AND the envelope ACTUALLY excludes on the divergent pool (mean f_eligibility_excluded_count > floor). excluded_count==0 = all-admit (flat-F) = vacuous self-route (705->705b hardening).",
+        "control": "ARM_CURIOSITY, f_eligibility_demotion_active_frac + excluded_count",
+        "measured": 1,
+        "threshold": 2,
+        "comparator": ">=",
+        "direction": "lower",
+        "excluded_count_mean_across_seeds": 19.071429,
+        "excluded_count_floor": 0.0,
+        "demotion_active_frac_mean_across_seeds": 1.0,
+        "demotion_active_frac_floor": 0.8,
+        "met": false
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.108049,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "go_nogo_gate_non_degeneracy",
+        "kind": "readiness",
+        "description": "MECH-449 Go/No-Go gate genuinely fires: the active staleness No-Go suppresses >= 1 candidate on average (go_nogo_n_soft_applied _mean > floor) at ARM_CURIOSITY on >= MIN_SEEDS seeds. An inert gate (no suppression) makes the double-gated arm identical to demotion-only 705b -> vacuous; self-route substrate_not_ready_requeue, NOT a ceiling.",
+        "control": "ARM_CURIOSITY, go_nogo_n_soft_applied_mean",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 2.25,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_double_gated_f_only_and_noise",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_double_gated_f_only_and_noise": false
+    }
+  },
+  "arm_results": [
+    {
+      "arm_id": "ARM_CURIOSITY",
+      "label": "mech314_curiosity_double_gated_treatment",
+      "curiosity_novelty_weight": 0.25,
+      "temperature": 1.0,
+      "is_control": false,
+      "seed": 42,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_contrastive_steps": 60,
+      "error_note": null,
+      "committed_class_entropy": 1.438341,
+      "n_committed_classes": 5,
+      "committed_class_counts": {
+        "0": 20,
+        "1": 8,
+        "2": 6,
+        "3": 18,
+        "4": 4
+      },
+      "curiosity_bias_range_mean": 0.02711902,
+      "cand_world_pairwise_dist_mean": 0.080661,
+      "cand_world_pairwise_dist_max": 0.108049,
+      "f_eligibility_demotion_active_ticks": 56,
+      "f_eligibility_demotion_active_frac": 1.0,
+      "f_eligibility_envelope_size_mean": 12.928571,
+      "f_eligibility_excluded_count_mean": 19.071429,
+      "f_eligibility_winner_neq_f_argmin_ticks": 50,
+      "f_eligibility_rank_preserving_frac": 0.392857,
+      "go_nogo_active_ticks": 56,
+      "go_nogo_active_frac": 1.0,
+      "go_nogo_n_soft_applied_mean": 2.25,
+      "go_nogo_n_safety_nogo_mean": 0.0,
+      "go_nogo_envelope_size_mean": 12.928571,
+      "harm_per_p1_tick_mean": 0.063184,
+      "harm_p1_ticks": 56,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "1fb24cc00d3c11763535396f633368cc85a3651736177194ac414b8cd1fbc7f2",
+        "substrate_hash": "b2bc044708ce6b9eeeee6153e33ca8cdcf1cde992d252985741883a637d48211",
+        "substrate_n_files": 140,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "ce60ba1e92d57e5546ca210b76f71a9f59cb9b1e45252d6977c4133ff096eef4"
+      }
+    },
+    {
+      "arm_id": "ARM_FONLY",
+      "label": "double_gated_f_only_control_curiosity_zero",
+      "curiosity_novelty_weight": 0.0,
+      "temperature": 1.0,
+      "is_control": true,
+      "seed": 42,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_contrastive_steps": 60,
+      "error_note": null,
+      "committed_class_entropy": 1.291417,
+      "n_committed_classes": 4,
+      "committed_class_counts": {
+        "0": 20,
+        "1": 8,
+        "2": 20,
+        "3": 8
+      },
+      "curiosity_bias_range_mean": 0.0,
+      "cand_world_pairwise_dist_mean": 0.062423,
+      "cand_world_pairwise_dist_max": 0.076981,
+      "f_eligibility_demotion_active_ticks": 56,
+      "f_eligibility_demotion_active_frac": 1.0,
+      "f_eligibility_envelope_size_mean": 10.964286,
+      "f_eligibility_excluded_count_mean": 21.035714,
+      "f_eligibility_winner_neq_f_argmin_ticks": 56,
+      "f_eligibility_rank_preserving_frac": 0.428571,
+      "go_nogo_active_ticks": 56,
+      "go_nogo_active_frac": 1.0,
+      "go_nogo_n_soft_applied_mean": 3.428571,
+      "go_nogo_n_safety_nogo_mean": 0.0,
+      "go_nogo_envelope_size_mean": 10.964286,
+      "harm_per_p1_tick_mean": 0.045719,
+      "harm_p1_ticks": 56,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "467e31d72fb22de34e1d1ff4d4560542efbe60714921b8e3877be9f22600009a",
+        "substrate_hash": "0e7cff2a40eb989ad807529ab760fe1db01075f8955d0afdb93b23dc7759aa69",
+        "substrate_n_files": 140,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "8d0e2712b708d6c1669a0d11709d9c116dfb68d21cd79e5b03c8cbb3d41729fc"
+      }
+    },
+    {
+      "arm_id": "ARM_NOISE",
+      "label": "matched_noise_flat_hot_temperature_curiosity_zero",
+      "curiosity_novelty_weight": 0.0,
+      "temperature": 2.5,
+      "is_control": true,
+      "seed": 42,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_contrastive_steps": 60,
+      "error_note": null,
+      "committed_class_entropy": 1.291417,
+      "n_committed_classes": 4,
+      "committed_class_counts": {
+        "0": 20,
+        "1": 8,
+        "2": 20,
+        "3": 8
+      },
+      "curiosity_bias_range_mean": 0.0,
+      "cand_world_pairwise_dist_mean": 0.062423,
+      "cand_world_pairwise_dist_max": 0.076981,
+      "f_eligibility_demotion_active_ticks": 56,
+      "f_eligibility_demotion_active_frac": 1.0,
+      "f_eligibility_envelope_size_mean": 10.964286,
+      "f_eligibility_excluded_count_mean": 21.035714,
+      "f_eligibility_winner_neq_f_argmin_ticks": 56,
+      "f_eligibility_rank_preserving_frac": 0.428571,
+      "go_nogo_active_ticks": 56,
+      "go_nogo_active_frac": 1.0,
+      "go_nogo_n_soft_applied_mean": 3.428571,
+      "go_nogo_n_safety_nogo_mean": 0.0,
+      "go_nogo_envelope_size_mean": 10.964286,
+      "harm_per_p1_tick_mean": 0.045719,
+      "harm_p1_ticks": 56,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f0535ce8fc91706b9bfc94eb2c82299c5bedd9dff0113c8868a96e62255e9a47",
+        "substrate_hash": "446f064e7b36f3c17691695393c16595de2407d730d771d23492c3ef128a3c6e",
+        "substrate_n_files": 140,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "8d0e2712b708d6c1669a0d11709d9c116dfb68d21cd79e5b03c8cbb3d41729fc"
+      }
+    }
+  ],
+  "recording_schema": "rec/v1",
+  "substrate_hash": "b2bc044708ce6b9eeeee6153e33ca8cdcf1cde992d252985741883a637d48211",
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13",
+  "seeds": [
+    42,
+    43,
+    44
+  ]
+}

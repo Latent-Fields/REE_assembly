@@ -1,0 +1,121 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_705b_mech314_curiosity_conversion_demotion_adaptive_floor",
+  "run_id": "v3_exq_705b_mech314_curiosity_conversion_demotion_adaptive_floor_20260719T170150Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-19T17:01:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-314"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "gapA_e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / GAP-A pool precondition. A collapsed pool starves the per-candidate channel.",
+        "control": "ARM_CURIOSITY (w=0.25), cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.079782,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor_at_non_saturation_arm",
+        "kind": "readiness",
+        "description": "ARM_CURIOSITY per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE -- the SAME range statistic the within-envelope argmin consumes) clears the floor at the NON-saturation weight (w=0.25). FIXES the 590c confound that read the clamp-saturation arm (w=1.0, range ~0 by design).",
+        "control": "ARM_CURIOSITY (w=0.25, non-saturation), curiosity_bias_range_mean",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.02561173,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "f_eligibility_demotion_non_degeneracy",
+        "kind": "readiness",
+        "description": "MECH-448 demotion is ACTIVE on >= floor of ARM_CURIOSITY P1 ticks AND the envelope ACTUALLY excludes on the divergent pool (mean f_eligibility_excluded_count > floor). excluded_count==0 = all-admit (flat-F) = vacuous self-route.",
+        "control": "ARM_CURIOSITY, f_eligibility_demotion_active_frac + excluded_count",
+        "measured": 1,
+        "threshold": 2,
+        "comparator": ">=",
+        "direction": "lower",
+        "excluded_count_mean_across_seeds": 18.464286,
+        "excluded_count_floor": 0.0,
+        "demotion_active_frac_mean_across_seeds": 1.0,
+        "demotion_active_frac_floor": 0.8,
+        "met": false
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.097202,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_f_only_and_noise",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_f_only_and_noise": false
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "GAP-A pool not divergent / curiosity range below floor at the non-saturation arm / demotion all-admit -- re-queue; do NOT weaken MECH-314",
+      "mech314_curiosity_converts_under_demotion": "PASS (supports MECH-314); the demotion lifts the conversion ceiling for the curiosity channel",
+      "conversion_ceiling_persists_despite_demotion": "BRAKE-LOCK off-ramp (705b is the trigger): legC MET (demotion genuinely excludes, excluded_count>0 on >=2/3 seeds) but no lift over the demotion-ON F-only + matched-noise controls -> the 705b autopsy fires the re-derive brake (6th) + routes to MECH-449 Go/No-Go (double-gated) / V4. non_contributory; NOT a falsification of MECH-314"
+    }
+  },
+  "machine": "DLAPTOP-4.local",
+  "machine_class": "darwin-arm64-py3.13",
+  "substrate_hash": "a9fbe197eecb6c0953ca1a54e0dee32b79337bb0ef7c60e29a63c63582fdb595"
+}

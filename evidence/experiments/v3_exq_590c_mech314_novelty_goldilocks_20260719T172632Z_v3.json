@@ -1,0 +1,438 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_590c_mech314_novelty_goldilocks_20260719T172632Z_v3",
+  "queue_id": "V3-EXQ-590c",
+  "experiment_type": "v3_exq_590c_mech314_novelty_goldilocks",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260719T172632Z",
+  "outcome": "FAIL",
+  "result": "FAIL",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-314",
+    "DEV-NEED-003"
+  ],
+  "supersedes": "v3_exq_590b_mech314a_novelty_goldilocks_20260611T211806Z_v3",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-314": "non_contributory",
+    "DEV-NEED-003": "non_contributory"
+  },
+  "evidence_direction_note": "MECH-314 per-candidate novelty Goldilocks under the 569i top-k shortlist conversion path on the 648a-validated substrate (curiosity_candidate_source='e2_world_forward' + SD-056 online + rollout clamp + SP-CEM + V_s) with MECH-314 curiosity as the SOLE modulatory channel. The GAP-A / modulatory-bias-selection-authority stack is CONSTANT across arms (use_modulatory_selection_authority=True, modulatory_authority_gain=1.0, use_modulatory_shortlist_then_modulate=True, top-k k=3). The swept knob is curiosity_novelty_weight -- under the top-k shortlist the committed action is the within-top-3 argmin of the curiosity-fed _modulatory_accum, so the pre-clamp novelty weight is load-bearing (NOT washed out by the authority rescale, unlike the 590a/590b additive path). DV = committed-action-class entropy. PASS (supports MECH-314 + DEV-NEED-003) = a Goldilocks weight lifts committed_class_entropy over the w=0 control by >= margin on >=2/3 seeds. The MANDATORY non-vacuity gate: if committed-selection diversity does NOT survive MECH-439 F-dominance (committed_class_entropy flat across weights, OR the curiosity bias range / e2 divergence below floor -- the SAME statistic the Goldilocks routes on), the run self-routes substrate_not_ready_requeue (non_contributory), NOT a weakens. claim_ids re-evaluated from scratch (MECH-314 parent novelty channel + DEV-NEED-003; NOT 590b's MECH-314a). supersedes V3-EXQ-590b (FAIL/non_contributory 2026-06-11).",
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / ARC-065 GAP-A precondition. An under-trained / collapsed e2 starves the per-candidate novelty channel.",
+        "control": "highest curiosity_novelty_weight arm, cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.047246,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE) clears the floor -- the MECH-314 channel carries a real per-candidate pattern the top-k argmin can arbitrate on (the 643a 'scaling zero is still zero' guard).",
+        "control": "highest curiosity_novelty_weight arm, curiosity_candidate_source=e2_world_forward",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.0,
+        "seeds_above_floor": 0,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "committed_class_entropy_range_across_weight_arms_supra_floor",
+        "kind": "readiness",
+        "description": "SAME-statistic gate (V3-EXQ-643 lesson; conversion-ceiling guard): the RANGE across the swept curiosity_novelty_weight arms of the healthy-seed-mean committed_class_entropy -- the EXACT statistic the Goldilocks decision routes on -- clears a floor. If committed diversity is flat across every weight, the MECH-314 channel does not reach committed action under MECH-439 F-dominance (the 569i conversion is ENV-CONDITIONAL; V3-EXQ-625e) -> substrate_not_ready_requeue, NOT a MECH-314 / DEV-NEED-003 weakens.",
+        "control": "RANGE of per-arm mean committed_class_entropy across weights {0,0.05,0.25,1.0}",
+        "measured": 0.353838,
+        "threshold": 0.05,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.056792,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_control",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_control": true
+    },
+    "routing": {
+      "substrate_not_ready_requeue": "conversion ceiling persists / e2 collapsed -- re-queue as 590d on a GAP-A-readier substrate; do NOT weaken MECH-314 / DEV-NEED-003",
+      "mech314_committed_diversity_goldilocks_identified": "PASS (supports MECH-314 + DEV-NEED-003); adopt best curiosity_novelty_weight",
+      "mech314_no_committed_diversity_benefit": "FAIL (does_not_support); /failure-autopsy the conversion reading"
+    }
+  },
+  "dry_run": true,
+  "config": {
+    "seeds": [
+      42
+    ],
+    "p0_warmup_episodes": 2,
+    "p1_measurement_episodes": 2,
+    "steps_per_episode": 30,
+    "measure_after_tick": 2,
+    "swept_knob": "curiosity_novelty_weight",
+    "curiosity_novelty_weights": [
+      0.0,
+      0.05,
+      0.25,
+      1.0
+    ],
+    "modulatory_authority_gain_fixed": 1.0,
+    "modulatory_shortlist_mode": "top_k",
+    "modulatory_shortlist_k": 3,
+    "env_kwargs": {
+      "size": 12,
+      "num_hazards": 0,
+      "num_resources": 5,
+      "hazard_harm": 0.0,
+      "env_drift_interval": 5,
+      "env_drift_prob": 0.1,
+      "proximity_harm_scale": 0.0,
+      "proximity_benefit_scale": 0.05,
+      "proximity_approach_threshold": 0.2,
+      "hazard_field_decay": 0.5,
+      "resource_respawn_on_consume": true,
+      "toroidal": false,
+      "harm_history_len": 10
+    },
+    "sd056_weight": 0.05,
+    "curiosity_bias_scale": 0.5,
+    "visitation_buffer_len": 256,
+    "thresholds": {
+      "cand_dist_floor": 0.02,
+      "bias_range_floor": 0.0001,
+      "entropy_range_floor": 0.05,
+      "magnitude_ceil": 1000000.0,
+      "entropy_lift_margin": 0.05,
+      "min_seeds_for_pass": 2
+    }
+  },
+  "acceptance_criteria": {
+    "readiness_substrate_ready": false,
+    "mech314_committed_diversity_lift_over_control": false,
+    "overall_pass": false
+  },
+  "summary": {
+    "readiness": {
+      "legA_cand_dist_floor": 0.02,
+      "highest_weight_arm": "ARM_W100",
+      "highest_weight_cand_dist_mean": 0.047246,
+      "legA_seeds_above_floor": 1,
+      "legB_bias_range_floor": 0.0001,
+      "highest_weight_bias_range_mean": 0.0,
+      "legB_seeds_above_floor": 0,
+      "legC_entropy_range_floor": 0.05,
+      "committed_class_entropy_range_across_arms": 0.353838,
+      "legC_entropy_range_ok": true,
+      "legD_magnitude_ceil": 1000000.0,
+      "max_pairwise_dist_observed": 0.056792,
+      "legD_magnitude_ok": true,
+      "min_seeds_required": 2,
+      "readiness_ok": false
+    },
+    "goldilocks": {
+      "control_arm": "ARM_W000",
+      "control_committed_class_entropy": 0.59827,
+      "best_arm": "ARM_W005",
+      "best_weight": 0.05,
+      "best_arm_committed_class_entropy": 0.952108,
+      "best_arm_seeds_lift_over_control": 1,
+      "entropy_lift_margin": 0.05,
+      "goldilocks_lift_ok": false,
+      "nonmonotone_inverted_u": true,
+      "per_arm_committed_class_entropy_mean": {
+        "ARM_W000": 0.59827,
+        "ARM_W005": 0.952108,
+        "ARM_W025": 0.952108,
+        "ARM_W100": 0.59827
+      },
+      "per_nonzero_arm_lift": {
+        "ARM_W005": {
+          "curiosity_novelty_weight": 0.05,
+          "committed_class_entropy": 0.952108,
+          "seeds_lift_over_control": 1
+        },
+        "ARM_W025": {
+          "curiosity_novelty_weight": 0.25,
+          "committed_class_entropy": 0.952108,
+          "seeds_lift_over_control": 1
+        },
+        "ARM_W100": {
+          "curiosity_novelty_weight": 1.0,
+          "committed_class_entropy": 0.59827,
+          "seeds_lift_over_control": 0
+        }
+      }
+    },
+    "h_pos_per_arm_mean": {
+      "ARM_W000": 1.934339,
+      "ARM_W005": 1.285759,
+      "ARM_W025": 1.285759,
+      "ARM_W100": 1.934339
+    },
+    "curiosity_bias_range_per_arm_mean": {
+      "ARM_W000": 0.0,
+      "ARM_W005": 0.0037387,
+      "ARM_W025": 0.0186935,
+      "ARM_W100": 0.0
+    },
+    "label": "substrate_not_ready_requeue",
+    "overall_pass": false,
+    "preconditions": [
+      {
+        "name": "e2_world_forward_action_divergence_non_vacuity",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the e2.world_forward(z0,a_i) candidate predictions stay action-divergent (cand_world_pairwise_dist > floor) -- the curiosity_candidate_source='e2_world_forward' / ARC-065 GAP-A precondition. An under-trained / collapsed e2 starves the per-candidate novelty channel.",
+        "control": "highest curiosity_novelty_weight arm, cand_world_pairwise_dist_mean",
+        "measured": 0.02,
+        "threshold": 0.02,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.047246,
+        "seeds_above_floor": 1,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "curiosity_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "At the highest-weight arm the per-candidate curiosity_bias_range (pre-clamp cross-candidate RANGE) clears the floor -- the MECH-314 channel carries a real per-candidate pattern the top-k argmin can arbitrate on (the 643a 'scaling zero is still zero' guard).",
+        "control": "highest curiosity_novelty_weight arm, curiosity_candidate_source=e2_world_forward",
+        "measured": 0.0001,
+        "threshold": 0.0001,
+        "comparator": ">",
+        "direction": "lower",
+        "mean_across_seeds": 0.0,
+        "seeds_above_floor": 0,
+        "min_seeds_required": 2,
+        "met": false
+      },
+      {
+        "name": "committed_class_entropy_range_across_weight_arms_supra_floor",
+        "kind": "readiness",
+        "description": "SAME-statistic gate (V3-EXQ-643 lesson; conversion-ceiling guard): the RANGE across the swept curiosity_novelty_weight arms of the healthy-seed-mean committed_class_entropy -- the EXACT statistic the Goldilocks decision routes on -- clears a floor. If committed diversity is flat across every weight, the MECH-314 channel does not reach committed action under MECH-439 F-dominance (the 569i conversion is ENV-CONDITIONAL; V3-EXQ-625e) -> substrate_not_ready_requeue, NOT a MECH-314 / DEV-NEED-003 weakens.",
+        "control": "RANGE of per-arm mean committed_class_entropy across weights {0,0.05,0.25,1.0}",
+        "measured": 0.353838,
+        "threshold": 0.05,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "rolled_out_zworld_magnitude_bounded",
+        "kind": "readiness",
+        "description": "Rolled-out z_world spread stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout clamp ON).",
+        "control": "max cand_world_pairwise_dist across all arms",
+        "measured": 0.056792,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "mech314_committed_diversity_lift_over_control",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech314_committed_diversity_lift_over_control": true
+    }
+  },
+  "arm_results": [
+    {
+      "arm_id": "ARM_W000",
+      "curiosity_novelty_weight": 0.0,
+      "is_control": true,
+      "seed": 42,
+      "n_p0_ticks": 60,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_p1_episodes": 2,
+      "n_contrastive_steps": 60,
+      "n_h_pos_fallback_episodes": 0,
+      "error_note": null,
+      "committed_class_entropy": 0.59827,
+      "n_committed_classes": 2,
+      "h_pos_mean": 1.934339,
+      "ep_h_pos_last5": [
+        1.9373,
+        1.9314
+      ],
+      "curiosity_bias_range_mean": 0.0,
+      "cand_world_pairwise_dist_mean": 0.047246,
+      "cand_world_pairwise_dist_max": 0.056792,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a6bcce08e3ef7e0eaaa318588f9829da11f12512b35da4fb864fe0cc9595942b",
+        "substrate_hash": "7427ba035185104758de5826813ce03465f2123a969f9acfa59128b68b1b73e8",
+        "substrate_n_files": 141,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1597f965bc6dc1e43615d77e6937e5e2c83cccdf3c6ae0261b59eb9abe559c38"
+      }
+    },
+    {
+      "arm_id": "ARM_W005",
+      "curiosity_novelty_weight": 0.05,
+      "is_control": false,
+      "seed": 42,
+      "n_p0_ticks": 60,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_p1_episodes": 2,
+      "n_contrastive_steps": 60,
+      "n_h_pos_fallback_episodes": 0,
+      "error_note": null,
+      "committed_class_entropy": 0.952108,
+      "n_committed_classes": 3,
+      "h_pos_mean": 1.285759,
+      "ep_h_pos_last5": [
+        1.8527,
+        0.7188
+      ],
+      "curiosity_bias_range_mean": 0.0037387,
+      "cand_world_pairwise_dist_mean": 0.046375,
+      "cand_world_pairwise_dist_max": 0.055067,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "ce0e86605dadda3a5a3cbbd6918d4061685339afe7814c1f551beb2bd381e74f",
+        "substrate_hash": "7427ba035185104758de5826813ce03465f2123a969f9acfa59128b68b1b73e8",
+        "substrate_n_files": 141,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1597f965bc6dc1e43615d77e6937e5e2c83cccdf3c6ae0261b59eb9abe559c38"
+      }
+    },
+    {
+      "arm_id": "ARM_W025",
+      "curiosity_novelty_weight": 0.25,
+      "is_control": false,
+      "seed": 42,
+      "n_p0_ticks": 60,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_p1_episodes": 2,
+      "n_contrastive_steps": 60,
+      "n_h_pos_fallback_episodes": 0,
+      "error_note": null,
+      "committed_class_entropy": 0.952108,
+      "n_committed_classes": 3,
+      "h_pos_mean": 1.285759,
+      "ep_h_pos_last5": [
+        1.8527,
+        0.7188
+      ],
+      "curiosity_bias_range_mean": 0.0186935,
+      "cand_world_pairwise_dist_mean": 0.046375,
+      "cand_world_pairwise_dist_max": 0.055067,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cc55b773b359c9b190e3a34fb5b18ed2761717678e08d94274e69839d3db4417",
+        "substrate_hash": "7427ba035185104758de5826813ce03465f2123a969f9acfa59128b68b1b73e8",
+        "substrate_n_files": 141,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1597f965bc6dc1e43615d77e6937e5e2c83cccdf3c6ae0261b59eb9abe559c38"
+      }
+    },
+    {
+      "arm_id": "ARM_W100",
+      "curiosity_novelty_weight": 1.0,
+      "is_control": false,
+      "seed": 42,
+      "n_p0_ticks": 60,
+      "n_p1_ticks": 60,
+      "n_p1_ticks_past_window": 56,
+      "n_p1_episodes": 2,
+      "n_contrastive_steps": 60,
+      "n_h_pos_fallback_episodes": 0,
+      "error_note": null,
+      "committed_class_entropy": 0.59827,
+      "n_committed_classes": 2,
+      "h_pos_mean": 1.934339,
+      "ep_h_pos_last5": [
+        1.9373,
+        1.9314
+      ],
+      "curiosity_bias_range_mean": 0.0,
+      "cand_world_pairwise_dist_mean": 0.047246,
+      "cand_world_pairwise_dist_max": 0.056792,
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "67c201314c171eaf7abc4c348237c091bda9e75409362cefae7977a83649f6b2",
+        "substrate_hash": "7427ba035185104758de5826813ce03465f2123a969f9acfa59128b68b1b73e8",
+        "substrate_n_files": 141,
+        "machine_class": "darwin-arm64-py3.13",
+        "regime": "A",
+        "seed": 42,
+        "config_slice_declared": false,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "online_e2_training_stateful_per_cell"
+        ],
+        "driver_script_in_substrate_hash": true,
+        "driver_script_hash": "1597f965bc6dc1e43615d77e6937e5e2c83cccdf3c6ae0261b59eb9abe559c38"
+      }
+    }
+  ]
+}
