@@ -1,0 +1,217 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:04:10Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "youthful-moser-3b6f74",
+  "commissioned_by": [
+    "hold_weighted_e3_readout_corpus_sweep_2026-07-20.md sec 5 item 2",
+    "failure_autopsy_V3-EXQ-699_2026-07-20.md sec 11.1"
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+      "queue_id": "V3-EXQ-689d",
+      "claim_ids": ["MECH-448"],
+      "landed_outcome": "PASS",
+      "landed_evidence_direction": "supports",
+      "self_route_label": "demotion_converts_committed_diversity",
+      "failed_criterion": "discrimination",
+      "defects": [
+        {
+          "id": "D1",
+          "name": "hold_weighted_dv",
+          "confirmed": true,
+          "sites": [
+            "experiments/v3_exq_689d_mech448_f_eligibility_demotion_falsifier.py:598 (selected_class_counts per env step from select_action return)",
+            "experiments/v3_exq_689d_mech448_f_eligibility_demotion_falsifier.py:535 (pool_class_counts from cached candidate list)",
+            "ree_core/agent.py:5430 (returns HELD action on not ticks['e3_tick'] before e3.select())",
+            "ree_core/agent.py:4812 (generate_trajectories returns CACHED candidates on same condition)"
+          ],
+          "dv": "selected_action_class_entropy",
+          "triage_class": "DISQUALIFYING",
+          "triage_reason": "distribution-shape statistic; replication reweights the distribution the statistic measures",
+          "calibration_663_applies": false,
+          "calibration_663_exclusion": "entropy DV (not a continuous magnitude) AND arm exposure asymmetric up to 7.0x within seed 42 -- both exclusions in autopsy 699 sec 4d bind",
+          "arm_exposure_n_p1_ticks": {
+            "seed_42": {"ARM_PROPOSER_CTRL": 387, "ARM_MATCHED_NOISE": 387, "ARM_OFF": 2715, "ARM_ON": 510, "max_spread": "7.0x"},
+            "seed_43": {"ARM_PROPOSER_CTRL": 3616, "ARM_MATCHED_NOISE": 3616, "ARM_OFF": 3629, "ARM_ON": 3574, "max_spread": "1.02x"},
+            "seed_44": {"ARM_PROPOSER_CTRL": 224, "ARM_MATCHED_NOISE": 224, "ARM_OFF": 156, "ARM_ON": 238, "max_spread": "1.53x"}
+          },
+          "effective_n_note": "at cadence ~10, ARM_ON seed 44's 238 env steps are ~24 genuine selections; seed 42's 510 are ~51 -- against a 0.187 nat surviving margin",
+          "lint": "e3_hold_weighted_readout_lint fires naming lines 535, 598",
+          "survives_dv_repair": false
+        },
+        {
+          "id": "D2",
+          "name": "vacuous_matched_noise_control",
+          "confirmed": true,
+          "finding": "ARM_PROPOSER_CTRL and ARM_MATCHED_NOISE are bit-identical on EVERY recorded metric on all 3 seeds -- selected_class_counts, selected_action_class_entropy, proposer_pool_class_entropy AND n_p1_ticks (387/3616/224 exactly). Identical tick counts mean identical trajectories: they are the same arm.",
+          "root_cause": "MATCHED_ENTROPY_TEMPERATURE = 2.5 (script :226) is declared per-arm, folded into arm_fingerprint, and passed at :546 -- but is inert because candidate_summary_source='proposer' resolves by deterministic argmin with no sampling step for temperature to widen. The control is unmeetable by construction in the regime it was instantiated in.",
+          "preregistered_guard": {
+            "matched_noise_verified_lifting": false,
+            "matched_noise_lift_seeds_over_proposer": 0,
+            "gating": false,
+            "note": "guard fired correctly and was described accurately in the manifest note; the run PASSED anyway because 'strict above BOTH X and Y' degrades silently to 'strict above X' when X == Y"
+          },
+          "consequence": "the 'NOT noise-as-diversity' half of C_PRIMARY -- one of its two load-bearing halves -- never tested anything",
+          "signature": "699 sec 11.6 -- two nominally independent readouts agreeing exactly is a defect tell, not a validation",
+          "survives_dv_repair": true
+        },
+        {
+          "id": "D3",
+          "name": "intra_run_substrate_divergence",
+          "confirmed": true,
+          "novel": true,
+          "not_caught_by": ["hold_weighted_e3_readout_corpus_sweep_2026-07-20", "failure_autopsy_V3-EXQ-699_2026-07-20", "e3_hold_weighted_readout_lint", "e3_diagnostics_staleness_lint"],
+          "finding": "The substrate changed MID-RUN. 10 of 12 cells ran on substrate_hash 19b4073c41b9020256007c8378379164d854c0ac58def61b17c5afd6995afb05; ARM_ON seeds 43 and 44 ran on fc6d17ce5fa323c4a5ac74673c01f7a5734f4eb07fd62e2eb2878bce6f8c400a. Arms execute in declaration order, so ree_core was edited on DLAPTOP-4.local between ARM_ON seed 42 and ARM_ON seed 43, while the run was in flight on 2026-06-21.",
+          "cell_substrate_hashes": {
+            "19b4073c": [["ARM_PROPOSER_CTRL", 42], ["ARM_PROPOSER_CTRL", 43], ["ARM_PROPOSER_CTRL", 44], ["ARM_MATCHED_NOISE", 42], ["ARM_MATCHED_NOISE", 43], ["ARM_MATCHED_NOISE", 44], ["ARM_OFF", 42], ["ARM_OFF", 43], ["ARM_OFF", 44], ["ARM_ON", 42]],
+            "fc6d17ce": [["ARM_ON", 43], ["ARM_ON", 44]]
+          },
+          "why_decisive": "The split maps onto the finding exactly. The ONLY seed whose treatment arm shares a substrate with its own controls (42) is the seed that FAILS C_PRIMARY (1.1849 < 1.2760). BOTH surviving seeds (43, 44) compare a treatment arm on fc6d17ce against controls on 19b4073c -- the demotion toggle is confounded with a substrate change of unknown content. C_PRIMARY therefore has ZERO validly-controlled surviving seeds.",
+          "sufficient_alone_to_withdraw": true,
+          "survives_dv_repair": true,
+          "detectability_note": "visible ONLY because arm_fingerprint carries a per-cell substrate_hash. The always-core per-run substrate_hash (which this manifest is in fact MISSING) would have recorded one hash and hidden this entirely."
+        }
+      ],
+      "c_primary_per_seed": {
+        "seed_42": {"ARM_ON": 1.1849, "ARM_PROPOSER_CTRL": 1.2760, "ARM_MATCHED_NOISE": 1.2760, "verdict": "FAIL", "margin": -0.0911, "substrate_matched_to_controls": true},
+        "seed_43": {"ARM_ON": 0.6930, "ARM_PROPOSER_CTRL": 0.0047, "ARM_MATCHED_NOISE": 0.0047, "verdict": "pass", "margin": 0.6883, "substrate_matched_to_controls": false},
+        "seed_44": {"ARM_ON": 0.9374, "ARM_PROPOSER_CTRL": 0.7505, "ARM_MATCHED_NOISE": 0.7505, "verdict": "pass", "margin": 0.1869, "substrate_matched_to_controls": false},
+        "min_seeds_for_pass": 2,
+        "seeds_passing": 2,
+        "validly_controlled_seeds_passing": 0
+      },
+      "surviving_criteria": [
+        {"name": "C_READINESS", "why": "EXCLUDED_COUNT_FLOOR = 0.0 strict >; threshold-invariant -- replication cannot manufacture a positive from an all-zero record", "result": "3/3 seeds; demotion_active_frac 1.0; excluded_count_mean 0.152443"},
+        {"name": "C_RANK_PRESERVING", "why": "measured exactly 1.0 -- a saturated fraction has nowhere to move under reweighting", "result": "frac 1.0 on 3/3 seeds"},
+        {"name": "C_SAFETY", "why": "reads realized per-env-step harm from env.step; the env step IS the correct sampling unit for a realized-harm rate, so hold-weighting is the intended denominator here, not a defect", "result": "ON 0.04935 <= OFF 0.054502"}
+      ],
+      "surviving_reading": "The MECH-448 substrate is built, active, non-degenerate, rank-preserving and safe. What has no uncontaminated basis is the CONVERSION finding -- the part that moved MECH-448 toward supports.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- untested; the instrument failed before the claim was put at risk. NOT weakened.",
+        "biological_reference": "clear -- Carandini & Heeger 2012 canonical divisive normalisation; Louie/Khaw/Glimcher 2013 value DN; Mink center-surround. targeted_review_connectome_mech_439 present (5 lit entries, lit_conf 0.849). No biology divergence implicated.",
+        "prerequisites": "present -- MECH-439 / MECH-447 / ARC-107 / Q-078 available; readiness passed 3/3",
+        "implementation": "complete -- envelope active on 1.0 of P1 ticks, excludes on a divergent pool, preserves rank exactly",
+        "environment": "adequate -- GAP-A foraging substrate produced a divergent pool (cand_world_pairwise_dist 0.154 vs 0.03 floor)",
+        "measurement": "MISLEADING -- hold-weighted shape statistic; a control bit-identical to its baseline; ~24-51 effective selections on the surviving seeds",
+        "integration": "BROKEN -- substrate changed mid-run; treatment and control cells ran different builds",
+        "scale": "likely insufficient -- effective N ~24-51 genuine selections against a 0.187 nat margin"
+      },
+      "biological_reference": {
+        "closest_mechanism": "canonical divisive normalisation (Carandini & Heeger 2012); value divisive normalisation (Louie/Khaw/Glimcher 2013); Mink center-surround basal-ganglia selection",
+        "dependencies": ["MECH-439", "MECH-447", "ARC-107", "Q-078"],
+        "is_formal_import": false,
+        "divergence": "none implicated -- the failure is instrumental, not a translation gap",
+        "lit_status": "present"
+      },
+      "recording_audit": {
+        "standard": "experimental_recording_standard_2026-07-12.md sec 3b",
+        "present": ["machine", "config", "seeds"],
+        "missing": ["recording_schema", "substrate_hash (top-level; per-arm only via arm_fingerprint)", "machine_class (top-level; per-arm present)", "elapsed_seconds"],
+        "class": "recording-debt",
+        "interaction_with_D3": "the standard's per-RUN substrate_hash would NOT have surfaced the mid-run split; per-CELL stamping is what made D3 knowable. Provenance granularity should follow the unit of comparison, not the unit of execution."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_status_change": {
+        "claim_id": "MECH-448",
+        "from": "provisional",
+        "to": "candidate",
+        "rationale": "the V3-EXQ-689d PASS is what promoted candidate -> provisional and is the only genuine_exp entry; withdrawing it removes the promotion's basis (genuine_exp_count 1 -> 0)",
+        "user_ratified": true
+      },
+      "recommended_evidence_quality_note": "2026-07-20 (failure_autopsy_V3-EXQ-689d): the V3-EXQ-689d conversion finding is WITHDRAWN; status reverted provisional -> candidate. The 2026-06-21 PASS that promoted this claim rested on C_PRIMARY (committed-action-class entropy strict-above both collapsed controls), which is invalid on three independent grounds. (1) HOLD-WEIGHTED DV: selected_class_counts is accumulated per env step from the select_action return value (script :598, and :535 for the pool), but agent.py:5430 returns the HELD action on not ticks['e3_tick'], so the histogram is weighted by hold duration -- a distribution-shape statistic is DISQUALIFYING under the hold_weighted_e3_readout_corpus_sweep_2026-07-20 triage, and the 663 <1% calibration does not apply (entropy DV; arm exposure differs up to 7-fold within seed 42). Effective N on the surviving seeds is ~24-51 genuine selections, against a weaker-survivor margin of 0.187 nats. (2) VACUOUS CONTROL: ARM_MATCHED_NOISE is bit-identical to ARM_PROPOSER_CTRL on every metric on all three seeds -- temperature is inert on the deterministic-argmin proposer path -- so the 'not noise-as-diversity' half of C_PRIMARY never tested anything; the pre-registered guard matched_noise_verified_lifting: false fired without blocking the PASS. (3) INTRA-RUN SUBSTRATE DIVERGENCE (new): ARM_ON seeds 43 and 44 ran on substrate_hash fc6d17ce... while every control and ARM_ON seed 42 ran on 19b4073c... The two seeds carrying the finding are exactly the two whose treatment arm was not substrate-matched to its controls; the one properly-controlled seed (42) FAILS C_PRIMARY (1.1849 < 1.2760). C_PRIMARY therefore has ZERO validly-controlled seeds. What SURVIVES: C_READINESS (0.0 floor, strict >, 3/3), C_RANK_PRESERVING (exactly 1.0, saturated) and C_SAFETY (realized per-env-step harm from env.step -- correct sampling unit). The MECH-448 substrate is built, active, non-degenerate, rank-preserving and safe; it is the CONVERSION finding that has no uncontaminated basis. Evidence base after withdrawal: genuine_exp_count 1 -> 0. V3-EXQ-689h (PASS/supports) survives -- verified structurally immune (synthetic candidate banks, no env loop) -- but is purpose: diagnostic, tests demotion_x_gonogo_additive rather than the standalone conversion assertion, shares the synthetic-bank pathway with 689g, and carries its own anchor-reachability flag. No weakens is unmasked (zero weakens, zero FAIL runs), but the remaining support is narrow and single-pathway: nothing survives from the embodied env-loop pathway. Reported decoupled: strong-lit (lit_conf 0.849, 5 entries) / zero-genuine-exp. Retest pending the corrected re-run.",
+      "illusory_conflict_check": {
+        "performed": true,
+        "runs_tagging_claim": [
+          {"queue_id": "V3-EXQ-689d", "outcome": "PASS", "direction": "supports", "purpose": "evidence", "disposition": "WITHDRAWN here"},
+          {"queue_id": "V3-EXQ-689h", "outcome": "PASS", "direction": "supports", "purpose": "diagnostic", "disposition": "SURVIVES -- verified structurally immune"},
+          {"queue_id": "V3-EXQ-699", "outcome": "PASS", "direction": "non_contributory", "purpose": "diagnostic", "disposition": "already withdrawn by failure_autopsy_V3-EXQ-699_2026-07-20"}
+        ],
+        "immunity_verification_689h": "v3_exq_689h_pcomp_demotion_x_gonogo_composition.py has ZERO occurrences of agent.select_action, env.step or clock.advance. Drives the selector directly on synthetic candidate banks (N_BANKS = 80 decision contexts per seed-arm), one fresh committed argmin per bank, no cadence and no env loop -- the same structural immunity that protects 689g. The hold-weighted lint does NOT fire on it.",
+        "conflict_unmasked": false,
+        "conflict_unmasked_basis": "MECH-448 has ZERO weakens and ZERO FAIL runs across its entire evidence base (6 entries: 1 exp + 5 lit, all supports). Withdrawing 689d removes a support without revealing any suppressed opposing evidence.",
+        "remaining_support_is_narrow": true,
+        "narrowness_findings": [
+          "genuine_exp_count drops 1 -> 0: 689h is purpose: diagnostic and was never counted as genuine experimental evidence, so experimental_confidence 0.712 becomes underdetermined rather than merely lower",
+          "689h tests a different proposition -- demotion_x_gonogo_additive, demotion as one factor in a 2x2 composition with Go/No-Go, not the standalone conversion assertion MECH-448 makes",
+          "SINGLE PATHWAY: 689h shares the synthetic-bank selector-level pathway with 689g. After withdrawal nothing survives from the embodied env-loop pathway -- and MECH-448's distinguishing assertion is that demotion lifts committed diversity IN AN AGENT",
+          "689h carries its own flags (anchor-reachability on seven readiness anchors; precondition-directionality) and is not a clean substitute"
+        ],
+        "lit_exp_decoupled": {"lit_conf": 0.849, "lit_entries": 5, "genuine_exp_after_withdrawal": 0, "reported_blended": false}
+      },
+      "downstream_claims_check": {
+        "MECH-449": {
+          "damaged": false,
+          "basis": "MECH-449's evidence is V3-EXQ-689g, independently verified structurally immune by the corpus sweep sec 4b; criteria threshold-invariant (safety_violations == 0). 689g does not rest on 689d.",
+          "couplings_noted": [
+            "MECH-449 depends_on includes MECH-448 -- architectural (both ARC-107 legs), NOT evidential",
+            "MECH-449's evidence_quality_note cites 'the MECH-448 689d promotion precedent' as rationale for its own candidate -> provisional promotion. This is NOTE HYGIENE, not an evidential dependency -- 689g independently cleared MECH-449's named validation gate (3/3 seeds convert, 0 safety violations)."
+          ],
+          "recommended_action": "governance should rewrite the '689d promotion precedent' clause in MECH-449's evidence_quality_note so no reader infers that MECH-449's standing rests on a withdrawn finding. NO status change."
+        },
+        "ARC-107": {"damaged": false, "basis": "share is intact per corpus sweep sec 4b"}
+      },
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-699_2026-07-20"],
+        "literal_count_meets_threshold": true,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "user_ratified": true,
+        "note": "NOT FIRED, on the same grounds failure_autopsy_V3-EXQ-699_2026-07-20 recorded and ratified by the user at the Step 8 gate. By literal count this is the 2nd non_contributory autopsy tagging MECH-448, meeting RE_DERIVE_BRAKE_THRESHOLD = 2. But the recommended category is measurement_test_design_defect, NOT substrate_ceiling; the substrate is demonstrably built (readiness / rank-preservation / safety all survive on threshold invariance); and the corrected re-run asks a genuinely different question -- 'does the effect exist when measured correctly' -- rather than re-posing the same question against the same ceiling. This is the sanctioned 785 -> 785a / 708 -> 708a instrument-repair shape. The brake exists to stop lettered iterations circling a ceiling; refusing instrument repair on a claim whose substrate is already proven built would invert its purpose."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_autopsies_on_target": ["failure_autopsy_V3-EXQ-699_2026-07-20"],
+        "rationale": "This is the second autopsy touching MECH-448, but 699 and 689d are two targets of ONE measurement-defect discovery (the same hold-weighted-E3-readout corpus sweep), not two structurally different failure signatures circling a coarse claim. Recorded explicitly so check_granularity_debt_recurrence.py can see the reasoning rather than a bare absence."
+      },
+      "fanout_recommendation": null,
+      "recommended_substrate_queue_entry": {"action": "none", "rationale": "the substrate is built and validated -- readiness, rank-preservation and safety all survive. This is instrument repair, not a substrate gap."},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "learning_extracted": [
+        "A pre-registered guard that does not GATE is not a guard. matched_noise_verified_lifting fired correctly, was recorded honestly and described accurately -- and the run passed. A criterion of the form 'strict above BOTH X and Y' degrades SILENTLY to 'strict above X' when X == Y; nothing in the pass logic notices the conjunction collapsed. Conjunctive criteria over multiple controls need an explicit control-distinctness assertion.",
+        "A control must be reachable in the regime it is instantiated in. MATCHED_ENTROPY_TEMPERATURE is inert under a deterministic-argmin proposer path. This is the assert_anchor_reachable failure mode (SD-068 cluster autopsy Learning 1) in a new location: a NEGATIVE CONTROL unmeetable by construction, rather than a readiness anchor unreachable by construction.",
+        "NEW DEFECT CLASS -- intra-run substrate divergence. A run whose cells do not share one substrate_hash is not a controlled experiment, and nothing in the current pipeline checks this. Invisible to a per-run substrate_hash (which the standard currently specifies), invisible to both E3 lints, and survives any DV repair. Detectable cheaply and retroactively from the arm_fingerprint blocks already on every multi-arm manifest.",
+        "Per-cell recording caught what per-run recording would have hidden. The arm-reuse fingerprint machinery was built for cache-matching, not provenance auditing -- but its per-cell substrate_hash is the only reason D3 is knowable. Provenance granularity should follow the UNIT OF COMPARISON, not the unit of execution.",
+        "Effective N, not row count, is the sample size for a shape statistic. 238 env steps at cadence 10 is ~24 genuine selections. Manifests should emit n_fresh_select / n_latched so the true denominator is auditable without reconstructing the cadence.",
+        "A defective instrument can leave the readiness correct while destroying the finding -- the 699 precedent, reconfirmed. Adjudicate criteria separately; do not let one verdict cover a run."
+      ],
+      "routing": "queue-experiment",
+      "requeue_spec": {
+        "kind": "same-question instrument repair, alphabetic suffix",
+        "suggested_id": "V3-EXQ-689i (or next free letter)",
+        "precedent": "785 -> 785a / 708 -> 708a",
+        "must_fix_all_three": "fixing only the DV leaves D2 and D3 intact and would reproduce a differently-broken PASS",
+        "requirements": [
+          "Gate the DV on a fresh selection: accumulate selected_class_counts only on ticks['e3_tick'] (or clear-before-select and record only on repopulation). Emit n_fresh_select, n_latched, fresh_select_yield. Reference: experiments/v3_exq_785a_mech463_arousal_exogenous_urgency_decomp.py. Apply identically to pool_class_counts at :535.",
+          "Repair or replace the matched-noise control and make its distinctness GATING: instantiate it on a path where temperature is live (a sampling selection step), or replace it with a demonstrably distinct control. Add a hard assertion that no two control arms produce identical class-count vectors, and make matched_noise_verified_lifting BLOCK the PASS rather than inform it.",
+          "Assert substrate invariance across cells: stamp substrate_hash per cell (already available via arm_fingerprint) and FAIL the run if the set of hashes across all cells has cardinality > 1. Additionally freeze the working tree for the run's duration, or run on a cloud worker at a pinned commit rather than on the Mac against a live checkout.",
+          "Power the entropy DV to its effective N: raise p1_measurement_episodes and/or seeds so each cell yields a stable class histogram over genuine selections; declare the target n_fresh_select up front. The raw exposure asymmetry (7x on seed 42) must also be addressed or explicitly modelled -- equal env steps do not imply equal selections.",
+          "Stamp the always-core via experiments/_lib/manifest_core.stamp_recording_core(...): recording_schema, top-level substrate_hash, machine_class, elapsed_seconds."
+        ]
+      },
+      "secondary_routing_recommendation": {
+        "name": "corpus scan for intra-run substrate divergence",
+        "status": "recommended, NOT run in this session (scope discipline)",
+        "rationale": "D3 is a new defect class with unknown corpus-wide exposure, independent of hold-weighting and surviving any DV repair",
+        "method": "for every manifest carrying arm_results[].arm_fingerprint, collect the set of substrate_hash values and report every run with cardinality > 1; each hit is a run whose arms are not mutually controlled",
+        "cost": "cheap and retroactive -- reads data already present on every multi-arm manifest"
+      },
+      "no_lit_pull_owed": "biology is present and supporting (targeted_review_connectome_mech_439, 5 entries, lit_conf 0.849); no biology divergence implicated -- the failure is instrumental, not a translation gap",
+      "no_claim_synthesis_owed": "see granularity_debt_trigger -- 699 and 689d are two targets of one measurement-defect discovery, not two structurally different signatures circling a coarse claim"
+    }
+  ],
+  "hypothesis_space_ledger": {
+    "written": false,
+    "rationale": "No registered question tags MECH-448, MECH-449 or ARC-107 (registry qids: competence_floor, conversion_ceiling_root, da_density_approach, inv088_diversity_readout, ceiling_vs_driver, curiosity_diversity_vs_amplifier, control_plane_rank, consolidation_readout_validity, zworld_underdifferentiation_cause, arousal-variance-amplifier). This autopsy emits no fanout_recommendation, and its non-discriminating non_contributory verdict narrows no hypothesis -- per the Step 9b mapping table such a leg stays alive. Nothing to pre-register or resolve.",
+    "adjacency_noted": "conversion_ceiling_root leg H-f-dominance ('F-dominance selection-conversion') is thematically related -- MECH-448 is the F-demotion lever -- but is registered against MECH-457 / ARC-065 with V3-EXQ-737 as its adjudicating run, and is untouched by this withdrawal."
+  },
+  "cluster_pattern": null,
+  "scope_note": "Analysis and handoff only. No manifest, claims.yaml, review_tracker.json or substrate_queue.json was edited. The landed 689d manifest is untouched, per the corpus sweep's standing rule that completed runs are re-adjudicated via /failure-autopsy, never rewritten."
+}
