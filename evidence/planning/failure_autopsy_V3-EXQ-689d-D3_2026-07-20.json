@@ -1,0 +1,119 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T07:46:13Z",
+ "scope": "single",
+ "status": "proposed",
+ "session_id": "musing-einstein-c80816",
+ "commissioned_by": "intra_run_substrate_divergence_sweep_2026-07-20.md sec 3a (triage ladder), added after failure_autopsy_V3-EXQ-782/604c/778a_2026-07-20 refuted 3 of 3 SEVERE D3 routings",
+ "readjudication": {
+  "supersedes_autopsy": "failure_autopsy_V3-EXQ-689d_2026-07-20",
+  "scope": "targets[0].defects[2] (D3) ONLY -- D1 and D2 re-verified, not re-opened",
+  "shape": "c",
+  "shape_note": "Direction and epistemic_category both RETAINED; only one of three supporting grounds withdrawn. Per R1-R3 shape (c) this supersedes its predecessor and the brake count is UNCHANGED."
+ },
+ "targets": [
+  {
+   "run_id": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier_20260621T063408Z_v3",
+   "queue_id": "V3-EXQ-689d",
+   "claim_ids": ["MECH-448"],
+   "landed_outcome": "PASS",
+   "landed_evidence_direction": "supports",
+   "defects": [
+    {
+     "id": "D3",
+     "name": "intra_run_substrate_divergence",
+     "prior_status": "confirmed, sufficient_alone_to_withdraw: true",
+     "confirmed": false,
+     "verdict": "REFUTED -- WITHDRAWN",
+     "refuted_by_rung": "b (process topology)",
+     "sufficient_alone_to_withdraw": false,
+     "unstated_premise_identified": "that the mid-run ree_core edit reached execution; the original artifact characterised the change only as 'of unknown content' and never tested this",
+     "rung_a_glob_scope": {
+      "clears": false,
+      "note": "changed files ARE on the executed import path -- this is not a glob-scope artefact",
+      "bands": [
+       {"substrate_hash_prefix": "19b4073c", "commit": "f53c28123eff", "committer_date": "2026-06-20T19:48:43Z", "n_files": 104},
+       {"substrate_hash_prefix": "fc6d17ce", "commit": "c15f84ee494f", "committer_date": "2026-06-21T06:31:42Z", "n_files": 104}
+      ],
+      "both_hashes_reconstruct_byte_exact": true,
+      "changed_globbed_files": ["ree_core/agent.py", "ree_core/utils/config.py"],
+      "diffstat": "2 files changed, 128 insertions(+), 0 deletions(-)",
+      "closure_globbed_files": 95
+     },
+     "rung_b_process_topology": {
+      "clears": true,
+      "single_process": true,
+      "single_process_evidence": "no multiprocessing / Popen( / os.fork( / ProcessPoolExecutor / joblib in driver; all 4 arms x 3 seeds iterate inside one run_experiment() call (arm loop opens at :1065)",
+      "module_scope_binding": {
+       "ree_core/agent.py": "driver :128  from ree_core.agent import REEAgent",
+       "ree_core/utils/config.py": "driver :130  from ree_core.utils.config import REEConfig"
+      },
+      "binding_precedes_loop_by_lines": 937,
+      "dynamic_import_in_driver_or_agent": false,
+      "per_cell_elapsed_seconds_recorded": false,
+      "elapsed_check_available": false,
+      "elapsed_check_note": "689d omits the always-core elapsed_seconds, so 778a's elapsed/arm-count check cannot run; the structural single-process argument replaces it and does not depend on timing",
+      "restart_excluded": "a restart re-executes from the start and would stamp all 12 cells with the new substrate; observed pattern is 10/2 with exactly one monotone transition",
+      "residual_channel": "arm-conditional lazy import",
+      "residual_channel_present": false,
+      "residual_channel_note": "both changed files are module-scope; corpus-wide scan of all 30 examinable divergent-run drivers found ZERO function-scope imports of ree_core or experiments"
+     },
+     "rung_c_dv_inertness": {
+      "applicable": false,
+      "reason": "boundary falls WITHIN ARM_ON between seeds, so no cell-pair shares both seed and arm across it; available cross-boundary pairs differ by arm BY DESIGN and their non-identity is uninformative about substrate"
+     },
+     "conclusion": "all 12 cells executed the f53c28123eff (19b4073c) substrate; the disk changed, the executing bytecode did not"
+    },
+    {
+     "id": "D1",
+     "name": "hold_weighted_dv",
+     "status": "STANDS -- not re-opened",
+     "triage_class": "DISQUALIFYING",
+     "survives_dv_repair": false,
+     "independent_of_D3": true
+    },
+    {
+     "id": "D2",
+     "name": "vacuous_matched_noise_control",
+     "status": "STANDS -- independently RE-VERIFIED here",
+     "survives_dv_repair": true,
+     "independent_of_D3": true,
+     "reverification": {
+      "method": "field-by-field comparison of ARM_PROPOSER_CTRL vs ARM_MATCHED_NOISE on all three seeds",
+      "common_fields": 27,
+      "differing_fields": ["temperature"],
+      "n_p1_ticks": {"42": [387, 387], "43": [3616, 3616], "44": [224, 224]},
+      "finding": "26 of 27 fields bit-identical including tick counts -- identical trajectories; they are the same arm, so the 'NOT noise-as-diversity' half of C_PRIMARY never tested anything"
+     }
+    }
+   ],
+   "surviving_reading": "The withdrawal of C_PRIMARY STANDS on D1 and D2. What is lost with D3 is only the 'zero validly-controlled surviving seeds' formulation. Citations of 689d should reference D1+D2, not D3.",
+   "recommended_epistemic_category": "measurement_test_design_defect",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_status_change": "none -- reading unchanged",
+   "re_derive_brake": {
+    "fired": false,
+    "claim_counts_under_R1_R3": {"MECH-448": 0},
+    "changed_by_this_readjudication": false,
+    "supersedes_autopsy": "failure_autopsy_V3-EXQ-689d_2026-07-20",
+    "note": "shape (c): direction + category retained, only supporting reasoning withdrawn -> supersedes, never adds (R2). R3 not engaged: category was never substrate_ceiling."
+   },
+   "granularity_debt_trigger": {"fires": false},
+   "recommended_substrate_queue_entry": {"action": "none"},
+   "pending_retest_after_substrate": false,
+   "requeue_spec_note": "unaffected; the corrected re-run must still fix the DV and defect 2. Requirement 3 (substrate homogeneity) is moot for 689d specifically but harmless to retain as general hygiene.",
+   "learning_extracted": [
+    "A substrate_hash change is not evidence that the EXECUTED code changed -- the premise must be tested, not assumed.",
+    "Single process + module-scope binding + no dynamic import freezes the import graph at first use; because a divergence boundary by construction falls after the first cell, the change cannot reach execution.",
+    "The generalisable defect from 689d is D2, not D3: an inert arm knob makes a declared-distinct control bit-identical to its sibling, and a conjunctive criterion then degrades silently."
+   ],
+   "routing": "governance-affirm (no claim change; D3 withdrawn from the record)",
+   "recommended_new_lint": {
+    "name": "inert_arm_knob",
+    "shape": "for any multi-arm manifest, compare every declared-distinct arm pair; WARN if bit-identical on all recorded per-cell fields except the knob naming their difference",
+    "rationale": "would have caught 689d D2 at write time; manifest-local, no substrate dependency, higher yield than the D3 divergence check"
+   }
+  }
+ ],
+ "scope_note": "Analysis and hand-off only. No manifest was edited -- completed runs are re-adjudicated via autopsy, never rewritten. claims.yaml, review_tracker.json and substrate_queue.json are untouched; /governance applies the recommendations."
+}
