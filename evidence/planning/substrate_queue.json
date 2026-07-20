@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "magical-leavitt-0e752b",
-  "last_updated_utc": "2026-07-20T18:18:46Z",
+  "last_updated_utc": "2026-07-20T18:49:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5949,7 +5949,7 @@
       "sd_id": "sd_zworld_warmup_optimizer_group",
       "title": "Adopt the SD-070 world-encoder training path in the x734/737 driver family: the P0/P1 warmup currently has no optimizer group covering latent_stack, so z_world is a frozen random projection",
       "node_class": "complicated (buildable)",
-      "status": "implemented",
+      "status": "implemented_not_landed",
       "ready": false,
       "design_doc": "docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md",
       "depends_on_unresolved": [],
@@ -6001,7 +6001,9 @@
         "V3-EXQ-734a (claimed ree-cloud-4 2026-07-20T15:54Z) and V3-EXQ-742a (claimed ree-cloud-1 2026-07-20T05:35Z) were BOTH claimed BEFORE this landed, so they complete on pre-fix code and their ree_trained_allon / AC arms are guard-red by construction. Do NOT read either as a post-fix result; 742a in particular carries MECH-457 evidence measured on a frozen random projection and should be flagged at governance, not scored.",
         "claims.yaml was deliberately NOT touched this session: the stale staged claim igw-auto-igw-189-substrate-ready-sd-probe-warmup-20260719T122208Z holds it (and ree-v3/ree_core/). The MECH-457 / INV-088 / Q-002 unblock flags this SD gates are therefore still OWED -- see the session's WORKSPACE_STATE entry.",
         "The V3-EXQ-728 pre-fix run remains an un-adjudicated terminal FAIL with a live self-route (substrate_not_ready_requeue) and still needs /failure-autopsy in its own right; this landing supplies the substrate it was waiting on but does not adjudicate it."
-      ]
+      ],
+      "landing_status": "NOT LANDED AS OF 2026-07-20T18:49Z. The implementation is COMPLETE AND VERIFIED in the session worktree but is NOT on ree-v3 origin/main, and neither are the five validation queue entries listed in validation_experiments. Do NOT read this row as a built substrate and do NOT queue work that depends on it until this field says LANDED. BLOCKER: ree-v3's pre-commit contract gate runs the full suite against the WORKING TREE, and a concurrent session's half-finished SD-024 benefit-terrain work (ree_core/agent.py + causal_grid_world.py + e3_selector.py + utils/config.py, plus an untracked tests/contracts/test_sd024_benefit_terrain_live_producer.py) fails 5 of its own new contracts. Suite result: 1985 passed, 5 failed, ALL of them that session's. The blocking flag `benefit_terrain_live_producer` appears 0 times in ree-v3 HEAD and twice in the working tree, which is what proves the failures cannot involve this session's changes -- which touch experiments/ only and no ree_core file at all. RESOLUTION OWED: either that session lands or reverts its ree_core work, or this session's commit goes in with --no-verify (safe here because ree_commit.py builds from a private index over declared paths only, so the foreign files cannot enter the commit). That decision was put to the user and is UNANSWERED.",
+      "provenance_note": "THIS ROW'S implemented_* FIELDS REACHED TRUNK BY A SWEEP, NOT BY THEIR AUTHOR'S COMMIT. Session silly-jepsen-926d36 wrote them to the working tree at 2026-07-20T18:23Z; commit e3357f0199 (session IGW-20260719-189, 'SD-PROBE-WARMUP: mark stale duplicate of SD-074 terminal') did a whole-file read-modify-write of substrate_queue.json, adopted those uncommitted fields, and pushed them under its own message -- the read-modify-write contamination documented in CLAUDE.md. Nothing was lost and the swept content is complete and self-consistent, so per remedy (a) it was NOT reverted. This note exists because remedy (a) requires the sweep be surfaced with the specific keys and the owning session named, and because remedy (a2) applies: the swept row's ASSERTION PARTNER (the ree-v3 implementation + queue entries) is still uncommitted, so the row alone overstates trunk. Swept keys: status, ready, design_doc, implemented_utc, implemented_by_session, implementation_note, validation_experiments, implementation_caveats."
     }
   ],
   "schema_version": "substrate_queue/v2"
