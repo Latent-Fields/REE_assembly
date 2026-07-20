@@ -136,10 +136,38 @@ def load_dry_run_run_ids() -> set:
 
 
 def _manifest_pass_fail(d: dict) -> str | None:
-    """Resolve PASS/FAIL from V3 manifests (result, verdict, outcome, or metrics)."""
-    result = d.get("result") or d.get("verdict") or d.get("outcome")
-    if result in ("PASS", "FAIL"):
-        return result
+    """Resolve PASS/FAIL from V3 manifests (result, verdict, outcome, or metrics).
+
+    Each of result/verdict/outcome may be a bare string OR a dict carrying the
+    verdict under an inner "outcome"/"result"/"verdict" key. The dict shape MUST
+    be unwrapped rather than skipped: a truthy dict short-circuits an `or` chain,
+    so `d["result"] or d["outcome"]` never reaches a valid top-level string
+    outcome when `result` is dict-shaped, the dict fails the ("PASS","FAIL")
+    membership test, and the manifest resolves to None. load_unclaimed_manifests
+    then drops it entirely -- the same silent-drop class fixed for UNKNOWN
+    manifests. Confirmed 2026-07-20 on
+    v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3 (dict `result`
+    + top-level `outcome: "FAIL"` + claim_ids: []), which was invisible to
+    pending_review.md while the indexer path carried the other 64 dict-`result`
+    manifests via their claim tags.
+    """
+    # First-present-wins, matching the original `or` chain: a manifest whose
+    # `result` is a non-PASS/FAIL string ("ERROR") still resolves to None here
+    # and is left to load_error_manifests, rather than falling through to a
+    # sibling field. Only the dict shape is newly unwrapped.
+    for field in ("result", "verdict", "outcome"):
+        value = d.get(field)
+        if not value:
+            continue
+        if isinstance(value, dict):
+            value = next(
+                (value[k] for k in ("outcome", "result", "verdict")
+                 if isinstance(value.get(k), str)),
+                None,
+            )
+        if value in ("PASS", "FAIL"):
+            return value
+        break
     metrics = d.get("metrics")
     if isinstance(metrics, dict):
         overall_pass = metrics.get("overall_pass")
