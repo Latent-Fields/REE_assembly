@@ -1,0 +1,212 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_737_ree_latent_policy_head_competence_probe",
+  "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260720T124318Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-20T12:43:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "policy_learning_insufficient_or_deeper",
+    "label_qualifier": "zworld_arm_ran_on_frozen_random_projection",
+    "zworld_arm_reading": "READ THE ppo_ree_latent ARM AS 'PPO ON A FROZEN RANDOM PROJECTION', NOT AS 'PPO ON A LEARNED REE REPRESENTATION'. The untrained-world-encoder guard measured 0 changed split_encoder.world_encoder tensors in every checked cell, so z_world was never prediction-trained: the P0/P1 warmup has no optimizer group covering latent_stack. Any result on this arm speaks to what a frozen random projection of the observation supports, not to what REE's learned world representation supports. The ppo_raw_obs control is unaffected and remains the discriminating comparison.",
+    "preconditions_scope_note": "The zworld_world_encoder_trained guard entries are carried under 'recorded_preconditions' (and diagnostics.zworld_encoder_guard), NOT under the adjudicating flat 'preconditions' list. For this probe the guard is RECORDED, not GATING: the question is readout-side, a frozen random projection re-labels the z_world arm rather than voiding the run, and the ppo_raw_obs control is unaffected. The REE_assembly indexer returns whole-run precondition_unmet on the first unmet flat entry, so an unmet guard entry there would bury an interpretable run -- the opposite of the intent. The recorded entries still carry honest measured/threshold/met so any recompute agrees with the guard's own verdict.",
+    "recorded_preconditions": [
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D0_baseline_724 seed=42"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D0_baseline_724 seed=43"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D0_baseline_724 seed=44"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D3_hazard_free seed=42"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D3_hazard_free seed=43"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": false,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 0,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 0,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ppo_ree_latent",
+        "context": "V3-EXQ-737a rung=D3_hazard_free seed=44"
+      }
+    ],
+    "preconditions": [
+      {
+        "name": "d0_oracle_clears_floor",
+        "description": "D0 (724 baseline) env must be floor-achievable with global info.",
+        "control": "greedy_oracle on D0 vs the 1.0 floor",
+        "measured": 6.333333,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "d3_oracle_clears_floor",
+        "description": "Hazard-free D3 env must be floor-achievable with global info.",
+        "control": "greedy_oracle on D3 vs the 1.0 floor",
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "bias_head_reproduces_incompetence_at_d0",
+        "description": "The warmed all-ON bias-head agent must forage BELOW the floor at D0 (reproduce the 724/719a deficit) for the H1 premise to hold; if it already clears the floor the deficit is not present and no H1 read is licensed.",
+        "control": "ree_bias_head D0 mean resources/ep vs floor (strict majority of seeds)",
+        "measured": 0.116667,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "ppo_ree_latent_beats_random_floor_at_d3": false,
+      "random_floor_below_competence_floor_at_d3": true,
+      "bias_head_below_oracle_at_d3": true
+    },
+    "criteria": [
+      {
+        "name": "C_ppo_ree_latent_clears_floor_at_D3",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3d99e3c3b772b1e831fed2303ced019abc8bccc24d51e8fb6aac6433c7385630"
+}
