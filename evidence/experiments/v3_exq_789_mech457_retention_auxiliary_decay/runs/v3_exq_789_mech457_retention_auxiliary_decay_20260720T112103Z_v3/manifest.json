@@ -1,0 +1,316 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_789_mech457_retention_auxiliary_decay",
+  "run_id": "v3_exq_789_mech457_retention_auxiliary_decay_20260720T112103Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-20T11:21:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "retention_auxiliary_succeeded_then_decayed",
+    "preconditions": [
+      {
+        "name": "retaux_constant::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "retaux_constant",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view. Below-floor means the substrate/env is not ready, NOT that the auxiliary schedule failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_constant::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "retaux_constant",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_constant::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "retaux_constant",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed of this arm. 780 measured 20.933 here on raw_view with 3/3 seeds taking. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to decay, the half-life is UNDEFINED rather than short, and the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 17.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_constant::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "retaux_constant",
+        "kind": "measurability",
+        "description": "The retention DV is a HALF-LIFE read off a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape, cannot locate a half-life, and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "retaux_annealed",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view. Below-floor means the substrate/env is not ready, NOT that the auxiliary schedule failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "retaux_annealed",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "retaux_annealed",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed of this arm. 780 measured 20.933 here on raw_view with 3/3 seeds taking. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to decay, the half-life is UNDEFINED rather than short, and the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 17.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "retaux_annealed",
+        "kind": "measurability",
+        "description": "The retention DV is a HALF-LIFE read off a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape, cannot locate a half-life, and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::bc_aux_schedule_moved",
+        "precondition": "bc_aux_schedule_moved",
+        "arm": "retaux_annealed",
+        "kind": "manipulation_active",
+        "description": "THE SCHEDULE-VERIFICATION PRECONDITION. The annealed arm's REALISED auxiliary weight must actually have moved: bc_aux_coef_first - bc_aux_coef_last, read off train_a2c's returned values on this arm's worst cell. The substrate warns that the schedule drives the auxiliary's GUARD as well as its weight, so an annealed arm whose schedule silently stayed flat is INDISTINGUISHABLE from the constant arm and would be adjudicated as a null it never tested. Caught here numerically instead.",
+        "control": "realised bc_aux_coef_first minus bc_aux_coef_last on the annealed arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "retaux_annealed::bc_aux_schedule_starts_active",
+        "precondition": "bc_aux_schedule_starts_active",
+        "arm": "retaux_annealed",
+        "kind": "manipulation_active",
+        "description": "The annealed arm's REALISED auxiliary must START active: bc_aux_coef_first on this arm's worst cell. An annealed arm that collapsed to zero from the outset is INDISTINGUISHABLE from the off arm, which is the mirror image of the flat-schedule failure above -- the two together pin the annealed arm strictly between its neighbours rather than letting it alias onto either.",
+        "control": "realised bc_aux_coef_first on the annealed arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.25,
+        "met": true
+      },
+      {
+        "name": "retaux_off::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "retaux_off",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view. Below-floor means the substrate/env is not ready, NOT that the auxiliary schedule failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_off::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "retaux_off",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_off::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "retaux_off",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed of this arm. 780 measured 20.933 here on raw_view with 3/3 seeds taking. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to decay, the half-life is UNDEFINED rather than short, and the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 17.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "retaux_off::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "retaux_off",
+        "kind": "measurability",
+        "description": "The retention DV is a HALF-LIFE read off a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape, cannot locate a half-life, and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria": [
+      {
+        "name": "C_persistence_extends_competence_half_life",
+        "load_bearing": true,
+        "description": "Auxiliary PERSISTENCE buys retention TIME: the effective competence half-life is ordered constant >= annealed >= off, the annealed arm's realised schedule is verified to have moved, and the constant arm beats the off arm by >= 0.15 of the RL budget (450.0 episodes here).",
+        "passed": false
+      },
+      {
+        "name": "C_annealed_persistence_is_intermediate",
+        "load_bearing": false,
+        "description": "The annealed arm's effective half-life sits between the constant and off arms -- the dose-response leg of the ordering, read only when its realised schedule is verified.",
+        "passed": true
+      },
+      {
+        "name": "C_no_auxiliary_baseline_decays_fastest",
+        "load_bearing": false,
+        "description": "The no-auxiliary arm does NOT hold the installed competence -- the contrast the persistence arms are read against.",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_persistence_extends_competence_half_life": true,
+      "C_annealed_persistence_is_intermediate": true,
+      "C_no_auxiliary_baseline_decays_fastest": true,
+      "boot_arm_vs_anchor_foraging_spread": true,
+      "install_took_on_all_arms": true,
+      "annealed_schedule_verified_moved": true,
+      "half_life_defined_on_all_arms": true,
+      "trajectory_has_shape_on_all_arms": true
+    },
+    "anchor_reachability": {
+      "anchor_name": "post_bc_install_took",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "v3_exq_780_mech457_bc_prior_discrimination_20260718T123325Z_v3.json headline.per_representation.raw_view.treat_post_bc_forage_per_seed (mean 20.933333, 3/3 seeds took)",
+      "threshold": 1.0,
+      "margin_cells": 0,
+      "required_score": 1.0,
+      "reachable": true,
+      "n_reference_cells": 3,
+      "n_reference_scored_true": 3,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true,
+        true,
+        true
+      ]
+    },
+    "interpretation_grid": [
+      {
+        "label": "substrate_not_ready_requeue",
+        "outcome": "FAIL",
+        "condition": "an anchor is sub-floor, OR post_bc_foraging_competence fails the 1.0 install floor on a strict majority of seeds in any arm",
+        "reading": "There is no installed prior to decay, so the half-life is UNDEFINED rather than short and the run is UNINFORMATIVE about retention. NEVER a retention verdict and never substrate_ceiling / substrate_conditional / does_not_support / *_nondiscriminative / *_unmeetable. Requeue."
+      },
+      {
+        "label": "half_life_extended_by_persistence",
+        "outcome": "PASS",
+        "condition": "half-life defined on all three arms, the annealed arm's realised schedule verified to have moved and to have started active, effective half-life ordered constant >= annealed >= off, and constant beats off by the declared margin",
+        "reading": "THE HYPOTHESIS. The imitation auxiliary IS being out-competed by the RL objective: how long the installed prior survives is set by how long the auxiliary persists. The prior is not HELD, rather than not PROTECTED."
+      },
+      {
+        "label": "retention_auxiliary_succeeded_then_decayed",
+        "outcome": "FAIL",
+        "condition": "the most-persistent (constant) arm's trajectory PEAK cleared the lift-competence target on a strict majority of seeds, but its terminal retained_fraction fell below the retention floor",
+        "reading": "The manipulation SUCCEEDED and then DECAYED -- a retention-DYNAMICS finding, not a null. Read the trajectory and the half-life, not the terminal scalar. This is the branch V3-EXQ-780's grid lacked, which is why a manipulation that succeeded above target was scored a null there and self-routed bc_prior_not_the_axis (rejected on autopsy)."
+      },
+      {
+        "label": "half_life_invariant_to_schedule",
+        "outcome": "FAIL",
+        "condition": "half-life defined on all three arms and their effective half-lives spread by less than the declared margin",
+        "reading": "THE DECLARED NULL. Half-life is invariant to the auxiliary schedule -> the prior is NOT being out-competed by the RL objective. Removes H-retention-auxiliary-decay from the live set; does NOT weaken MECH-457 (diagnostic). Read jointly with H-retention-critic (V3-EXQ-788)."
+      },
+      {
+        "label": "retention_auxiliary_grid_nondiscriminative",
+        "outcome": "FAIL",
+        "condition": "no arm passed its precondition gate, OR a half-life is undefined where it must be defined, OR the arms do not separate, OR the readouts fall in none of the enumerated branches",
+        "reading": "Not a refutation. Unscored; re-pose the measurement."
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c71e9af54a11d2d4d76c7d0ef9b0c346e8262cddc90e5c21d981b415ce2fd922"
+}
