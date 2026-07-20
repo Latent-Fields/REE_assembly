@@ -125,7 +125,30 @@ two-class ceiling (5821/5365 + two singletons), so under de-weighting it can onl
 the same direction. Contrast 708, whose seeds were 0.26 and 0.37 nats short, *"which no
 de-duplication correction can supply."*
 
-### 4d. What cannot be established
+### 4d. Why the "<1%, sign-varying" 663 measurement does NOT cover this run
+
+Session `mech-279-evidence-confirm-8f3087` (2026-07-20T06:25Z, ree-v3 `5433e3ab1c`) **measured** this
+defect's cost on the `v3_exq_663_modulatory_channel_routing` driver by matched replay: **+0.01% /
++0.64% / −0.87%** on `route_range_mean` — sub-1% and sign-varying, so 662/663's point estimates and
+PASS **stand**. That is a real, welcome result. It must not be generalised to 699:
+
+1. **Different statistic class.** 663's DV is a continuous *magnitude* (`route_range`) read at the
+   selection site. Replicating a value leaves a mean of that value essentially unchanged. 699's DV is
+   an **entropy over a class histogram** — replication reweights the *distribution itself*, which is
+   exactly the operation entropy is sensitive to.
+2. **Different arm symmetry.** 663's replication is near-uniform across its arms, so it cancels in
+   the contrast. 699's arms differ in **hold duration** — the very quantity doing the weighting
+   (§4b) — so it does not cancel and is aligned with the effect.
+3. **Different magnitude relative to the margin.** 663's artifact is 1–2 orders of magnitude *below*
+   the +12–25% cross-class gaps under test. 699's flip requires only 0.115–0.134 nats against
+   entropies of 0.51–1.10 nats — **roughly 12–26%**, i.e. 1–2 orders of magnitude *above* the 663
+   artifact scale.
+
+663 measured the artifact **where it cancels**; 699 sits where it does not. The 663 replay is
+nonetheless the right instrument — requirement 3 in §9 asks 699b to run the same matched-denominator
+comparison, which would settle this by measurement rather than argument.
+
+### 4e. What cannot be established
 
 The **replication factor is not observable from the manifest.** `n_p2_ticks` (seed 44:
 525/1737/461/707, a 3.8× span) counts **env steps** and is driven by episode termination, not
