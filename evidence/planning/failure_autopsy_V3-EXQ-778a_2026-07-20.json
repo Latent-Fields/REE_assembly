@@ -1,0 +1,198 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:43:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "funny-kilby-e4dd87",
+  "referred_by": {
+    "document": "intra_run_substrate_divergence_sweep_2026-07-20.md",
+    "section": "5c",
+    "assessed_severity": "SEVERE",
+    "defect_class": "D3",
+    "d3_origin": "failure_autopsy_V3-EXQ-689d_2026-07-20.json targets[0].defects[2]"
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3",
+      "queue_id": "V3-EXQ-778a",
+      "supersedes": "V3-EXQ-778",
+      "claim_ids": ["SD-068", "MECH-168", "MECH-169", "INV-047"],
+      "directionally_exposed_claim_ids": ["SD-068"],
+      "directional_scope_correction": "The referral describes a live directional verdict across four claims. evidence_direction_per_claim carries supports on SD-068 ONLY; MECH-168, MECH-169 and INV-047 are all 'unknown'. Directional exposure is one claim, not four.",
+      "outcome": "PASS",
+      "self_route_label": "staging_seed_variable_underpowered",
+      "failed_criterion": "none -- load-bearing C1_monotone_degradation_all_phases PASSed on 8/8 seeds; staging verdict is REPORTED, never gated",
+      "defect_adjudicated": {
+        "id": "D3",
+        "name": "intra_run_substrate_divergence",
+        "confirmed": false,
+        "verdict": "REFUTED as an execution confound",
+        "observed_split": {
+          "e9a22a91": [42, 7],
+          "c8d6d0e2": [123, 2024, 99, 7777, 314, 1000]
+        },
+        "constant_within_run": {
+          "substrate_n_files": 129,
+          "machine_class": "linux-x86_64-py3.10",
+          "driver_script_hash": "edc944ae",
+          "driver_script_in_substrate_hash": true,
+          "scope": null,
+          "reuse_eligible": true
+        },
+        "hash_reconstruction": {
+          "method": "detached git worktree at each candidate commit; hashed with that commit's own experiments/_lib/arm_fingerprint.compute_substrate_hash, driver folded in (driver_script_in_substrate_hash: true)",
+          "e9a22a91": {"commit": "6614a2e", "n_files": 129, "match": "byte-exact"},
+          "c8d6d0e2": {"commit": "da873a1", "n_files": 129, "match": "byte-exact"},
+          "ancestry": "6614a2e is an ancestor of da873a1",
+          "runtime_driver_blob": "edc944ae == the driver as committed in 6614a2e (2026-07-17T16:25:48Z), 2.4 min before the run started"
+        },
+        "delta": {
+          "commit": "da873a1",
+          "committed_utc": "2026-07-17T16:29:34Z",
+          "subject": "SD-068: replace REM terrain-variance proxy with rollout-seed generative-fidelity readout",
+          "files_changed": ["experiments/_lib/consolidation_lesion_harness.py"],
+          "n_files_changed": 1,
+          "landed_seconds_into_run": 85,
+          "note": "lands exactly at the observed seed-7 -> seed-123 boundary (~52s/seed, 418s total)"
+        },
+        "why_it_did_not_reach_execution": {
+          "import_site": "ree-v3/experiments/v3_exq_sd068_consolidation_staging_power_diagnostic.py:72 -- module scope, before the seed loop",
+          "mechanism": "CPython caches modules in sys.modules at first import; the seed loop calls H.run_staged_sweep against the object bound at process start",
+          "verified_on_runtime_source": "6614a2e",
+          "no_dynamic_reimport": "no importlib / reload( / __import__ in driver or harness",
+          "deferred_import_checked": "harness:560 imports ree_core.sleep.cross_module_consolidation -- in ree_core, which da873a1 did not touch, and sys.modules-cached after seed 42",
+          "no_runtime_file_reads": true,
+          "single_process_evidence": "one contiguous monotone 2->6 transition, each seed present exactly once, one coherent 418s window; a restart would have re-run seed 42 on the new substrate",
+          "conclusion": "all 8 seeds executed the 6614a2e (e9a22a91) harness; the hoisted top-level substrate_hash e9a22a91 is the CORRECT identity for all 8 cells",
+          "residual_uncertainty": "establishes only that the CHANGED FILE could not reach execution; does not exclude an unrecorded non-.py runtime input -- but substrate_n_files is constant at 129, globs are *.py only, and the harness performs no file reads"
+        },
+        "partition_test": {
+          "question": "does the observed staging-order variability partition along the substrate boundary?",
+          "answer": "NO -- and this holds independently of the import-binding argument",
+          "independent_of_execution_argument": true,
+          "partitions": {
+            "A_e9a22a91": {
+              "n": 2, "seeds": [42, 7],
+              "matches_predicted_order": "1/2 = 50%",
+              "distinct_observed_orders": 2,
+              "per_seed_rho": [1.0, -0.5],
+              "rem_tolerance": {"min": 0.8458, "max": 1.3505, "mean": 1.0981, "sd": 0.3569},
+              "nrem_tolerance_sd": 0.0023,
+              "sws_tolerance_sd": 0.0
+            },
+            "B_c8d6d0e2": {
+              "n": 6, "seeds": [123, 2024, 99, 7777, 314, 1000],
+              "matches_predicted_order": "3/6 = 50%",
+              "distinct_observed_orders": 3,
+              "per_seed_rho": [0.5, 1.0, 1.0, 1.0, -0.5, -0.5],
+              "rem_tolerance": {"min": 0.4331, "max": 1.4997, "mean": 0.9764, "sd": 0.4348},
+              "nrem_tolerance_sd": 0.0013,
+              "sws_tolerance_sd": 0.0
+            },
+            "pooled": {
+              "n": 8,
+              "matches_predicted_order": "4/8 = 50%",
+              "rem_tolerance_sd": 0.3955,
+              "nrem_tolerance_sd": 0.0014
+            }
+          },
+          "findings": [
+            "match rate is IDENTICAL across partitions (50% each) and equal to the pooled rate -- the 4/8 headline is not produced by the split",
+            "A's REM tolerance range [0.846, 1.350] lies ENTIRELY INSIDE B's [0.433, 1.500]; B contributes both the run minimum and maximum",
+            "B's REM sd (0.435) EXCEEDS the pooled sd (0.396) -- the homogeneous 6-seed partition alone reproduces the full reported spread",
+            "both observed orders present in A are also present in B, and B carries a third (nrem,rem,sws) that A does not",
+            "NREM and SWS are near-degenerate in variance in BOTH partitions -- no phase shows a partition-aligned shift"
+          ],
+          "reading": "staging_seed_variable_underpowered is STRENGTHENED, not undermined: six seeds on a single substrate produce three distinct staging orders and the entire REM tolerance range. Seed-to-seed variability is genuinely seed variability."
+        }
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- SD-068 tested under conditions where it could express itself; C1 PASS 8/8; staging reported not gated",
+        "biological_reference": "clear (not at issue) -- the autopsy turns on instrumentation, not biology",
+        "prerequisites": "present -- P0 positive control intact_readouts_nondegenerate met (0.4999999 vs 1e-09)",
+        "implementation": "complete for the run; DEFECTIVE in the fingerprint instrument -- the experiment executed one coherent substrate, but arm_fingerprint mislabelled 6 of 8 cells",
+        "environment": "adequate -- sigma grid 0/0.25/0.5/1.0/2.0, warm_steps 40",
+        "measurement": "adequate -- per-phase tolerance distribution + Spearman/sign/Kendall's W as designed",
+        "integration": "coupled",
+        "scale": "adequate for the gated claim; underpowered for the reported staging verdict (n=8, sign test p=0.727) -- which is exactly what the run reports and does not gate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "sleep-stage consolidation staging / reverse-dependency order of consolidation phases",
+        "dependencies": ["SWS content replay", "NREM spindle plumbing", "REM generative rollout"],
+        "is_formal_import": false,
+        "divergence": "not at issue -- the referred defect is an experimental-control question, not a biology-translation question",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "instrument_repair_validated",
+      "recommended_evidence_direction": "supports",
+      "evidence_direction_unchanged": true,
+      "recommended_evidence_quality_note": "Referred to /failure-autopsy by the 2026-07-20 intra-run substrate divergence corpus sweep (sec 5c, defect class D3) as SEVERE: cells carry two arm_fingerprint.substrate_hash values (e9a22a91 seeds 42/7; c8d6d0e2 the other six), and the finding (staging_seed_variable_underpowered) is a claim about between-seed variance. Adjudicated 2026-07-20 (failure_autopsy_V3-EXQ-778a_2026-07-20): D3 REFUTED for this run; direction unchanged. Both hashes were reconstructed byte-exact from git -- e9a22a91 = ree-v3 6614a2e, c8d6d0e2 = da873a1 -- and da873a1 changed exactly one file, experiments/_lib/consolidation_lesion_harness.py, which the driver binds at module scope (line 72) before the seed loop. With no importlib/reload in the execution path, all 8 seeds executed the e9a22a91 harness; only the disk moved. Independently, the variability does not partition along the boundary: both partitions match the predicted order at 50% (1/2 and 3/6), the 2-seed partition's REM tolerance range [0.846, 1.350] lies entirely inside the 6-seed partition's [0.433, 1.500], and the 6-seed homogeneous partition's REM sd (0.435) exceeds the pooled sd (0.396) -- i.e. the full reported spread is reproduced within one substrate. The finding is strengthened, not weakened. Note directional exposure is SD-068 only; MECH-168/MECH-169/INV-047 are tagged 'unknown' in evidence_direction_per_claim. Separately, the run exposed a false-HIT channel in the arm-reuse fingerprint (6 cells stamped with code they did not execute) -- routed to /implement-substrate; those cells must not be served as reuse hits under c8d6d0e2.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "arm-fingerprint-executed-substrate-identity",
+        "title": "arm_fingerprint must record the EXECUTED substrate, not the on-disk substrate",
+        "implementation_hint": "arm_cell computes substrate_hash by hashing source files from disk at cell entry, but the cell executes in-memory bytecode frozen at process start (sys.modules). When the checkout moves mid-run, the manifest records the DISK state: on V3-EXQ-778a, 6 of 8 cells are stamped c8d6d0e2 while executing e9a22a91, all with reuse_eligible: true. This is a false-HIT channel -- the one failure mode arm_fingerprint.py:20-27's governing asymmetry says must never occur (over-inclusion is supposed to buy false MISSES only). Fix: resolve substrate identity ONCE at process start and reuse it for every cell, and/or derive it from the loaded modules (sys.modules[...].__file__ content as imported) rather than a fresh disk read. Cheap adjunct: re-hash at process exit and stamp a substrate_stable_across_run boolean so a mid-run checkout move is recorded as the instrument event it is, rather than as per-cell substrate identity.",
+        "unblocks_claims": ["SD-068"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_sd068_consolidation_staging_power_diagnostic_20260717T163507Z_v3",
+          "experiment_type": "v3_exq_sd068_consolidation_staging_power_diagnostic",
+          "metric": "6 of 8 cells stamped substrate_hash c8d6d0e2 while provably executing e9a22a91; all 8 carry reuse_eligible: true",
+          "target": "recorded per-cell substrate identity == executed substrate identity for 100% of cells, or the run is stamped substrate_stable_across_run: false"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "counts_under_R1_R3": {"SD-068": 0, "MECH-168": 0, "MECH-169": 0, "INV-047": 0},
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": true,
+        "routing": "recorded-not-routed",
+        "prior_autopsies_on_target": [
+          "failure_autopsy_SD-068-rem-fanout-cluster_2026-07-18",
+          "failure_autopsy_V3-EXQ-778c_2026-07-18",
+          "failure_autopsy_V3-EXQ-778g_2026-07-18",
+          "failure_autopsy_V3-EXQ-778h_2026-07-19"
+        ],
+        "rationale": "Not routed to /claim-synthesis. The four priors adjudicate SD-068 readout content-fidelity (all measurement_gap / instrument_repair_validated) -- a coherent single instrument-validation line against one substrate, not structurally different failure signatures circling a coarse claim. This autopsy adjudicates an experimental-control defect and is a fifth instance of the same instrument-validation theme: evidence of a well-scoped claim under active instrument repair, not of granularity debt."
+      },
+      "hypothesis_space_ledger": {
+        "step_9b_applied": false,
+        "reason": "No fanout_recommendation emitted and no pre-registered leg resolved. The registry's SD-068 question 'consolidation_readout_validity' (6 hypotheses, all resolved by 778c-778h) asks whether the per-phase readouts measure content fidelity or raw noise sensitivity -- a different question from 778a's staging order; 778a appears in none of its adjudicating_runs. Nothing to pre-register or resolve."
+      },
+      "learning_extracted": [
+        "A per-cell substrate hash records the DISK, not the EXECUTED code. For a single-process run with module-scope imports, a mid-run checkout move produces cells labelled with bytecode they never ran -- an instrument event, not necessarily an experimental one.",
+        "This is a false-HIT channel in the arm-reuse fingerprint -- the one failure mode the design's governing asymmetry says must never occur. It is not covered by over-inclusion, which buys false MISSES only.",
+        "D3 severity must be gated on PROCESS TOPOLOGY before the sweep's sec-4 comparison test is applied: single-process/module-scope (does not reach execution), subprocess-or-restart per cell (does), lazy import first touched after the change (partially).",
+        "A between-seed-variance finding under a heterogeneous seed pool is TESTABLE, not merely suspect: partition the seeds by substrate and compare match rate, order diversity, and per-phase spread. Here the homogeneous six-seed partition reproduced the full spread, converting a SEVERE structural flag into a strengthened finding. Cheap, and should precede any downgrade.",
+        "Check evidence_direction_per_claim, not just the top-level evidence_direction, when scoping directional exposure. 778a's exposure is one claim (SD-068), not the four it is tagged with.",
+        "Reconstructing a substrate hash from git is tractable and decisive -- detached worktrees plus the commit's own compute_substrate_hash reproduced both hashes byte-exact, converting 'the code changed, we don't know how' into a named commit and a one-file diff. Worth doing on any D3 hit whose verdict is load-bearing."
+      ],
+      "routing": "governance-ratification-no-write",
+      "secondary_routing_recommendation": [
+        {
+          "route": "implement-substrate",
+          "what": "arm-fingerprint-executed-substrate-identity (see recommended_substrate_queue_entry)"
+        },
+        {
+          "route": "doc-correction",
+          "what": "intra_run_substrate_divergence_sweep_2026-07-20.md: add a process-topology gate AHEAD of the sec-4 severity table; correct sec 5c's SEVERE verdict to REFUTED and its 'four claims' scope to SD-068 only."
+        },
+        {
+          "route": "follow-on-chip",
+          "what": "Topology re-check of failure_autopsy_V3-EXQ-689d_2026-07-20 defects[2] (D3) and the other 40 corpus hits. 689d NOT re-adjudicated here; its D1 (hold_weighted_dv, DISQUALIFYING) and D2 (vacuous_matched_noise_control) stand independently of D3, so its conclusion is not obviously at risk -- but the premise that a mid-run edit reached execution is unverified there too."
+        }
+      ]
+    }
+  ],
+  "cluster_pattern": null
+}
