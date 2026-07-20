@@ -1,0 +1,115 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_795_sd024_benefit_terrain_live_path_efficacy",
+  "run_id": "v3_exq_795_sd024_benefit_terrain_live_path_efficacy_20260720T235007Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-20T23:50:07Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-024",
+    "SD-025"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "SD-024": "supports",
+    "SD-025": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "live_path_efficacious",
+    "preconditions": [
+      {
+        "name": "curiosity_bonus_cross_candidate_range_live",
+        "kind": "readiness",
+        "description": "positive control: dense-vs-sparse benefit field scored over candidates that genuinely differ yields a non-zero CROSS-CANDIDATE RANGE -- the SAME statistic L4a routes on (V3-EXQ-643 correction). Certifies the CURIOSITY channel only.",
+        "control": "hand-built dense cluster (20 DA centers) vs single sparse center",
+        "measured": 13.825669169425964,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "offending_cell": "seed=23",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "L1a": true,
+      "L2a": true,
+      "L3a": true,
+      "L4a": true
+    },
+    "criteria": [
+      {
+        "name": "L1a_benefit_centers_on",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "L1b_benefit_events_on",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "L1c_benefit_centers_off_zero",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "L2a_density_on",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "L2b_density_off_zero",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "L3a_live_bonus_on",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "L3b_live_bonus_off_zero",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "L4a_cross_candidate_range_on",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+}
