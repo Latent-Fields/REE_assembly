@@ -1907,7 +1907,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-208-proposal-for-mech-177 && claude --resume 031f6a62-5b12-405d-8df4-83239bffebc9",
       "task_claim_session_id": "igw-auto-igw-208-proposal-for-mech-177-20260720T052110Z",
       "assigned_at": "2026-07-20T05:20:12Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-20T05:30:47Z",
+      "completion_summary": "gated EVB-0119 (MECH-177) out_of_domain, no experiment queued: mirror V3-EXQ-673 already FAIL/non_contributory 3/3 and batch9 autopsy routed MECH-171/172 out_of_domain; root fix owed = tag MECH-177 out_of_domain in claims.yaml (held by active igw-189 claim)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0254 -> gated (triage landed)"
     }
   ],
   "dispositions": [
@@ -2485,6 +2489,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-15T17:05:49Z",
       "re_eligible_after": "2026-07-17T17:05:49Z"
+    },
+    {
+      "stable_hash": "175df51e714b",
+      "igw_id_at_disposition": "IGW-20260720-208",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-177"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-177",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-20T05:30:47Z",
+      "re_eligible_after": "2026-07-22T05:30:47Z"
     }
   ]
 }
