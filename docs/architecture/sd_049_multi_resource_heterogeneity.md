@@ -917,3 +917,86 @@ Same promotion target; the five non-vacuity preconditions self-route
 `substrate_not_ready_requeue` (never a false `weakens`); a preconditions-met FAIL
 with overshoot still flipping routes another bounded retune (514u), NOT a
 falsification. `claim_ids=[MECH-436]`; machine any.
+
+## Density-preserving spawn (per-type density held constant across arms) -- IMPLEMENTED 2026-07-20
+
+**Motivating failure.** `failure_autopsy_V3-EXQ-693a_2026-06-21` (confirmed):
+ARM_2 (3type+novelty) `behav_contact_rate` **0.0099-0.0188** against a
+`CONSUMPTION_FLOOR` of `0.02`, plus hazard-stage survival failing on 2/3 seeds ->
+0 contributing runs -> non-vacuity `R1`/`R2`/`R3` all unmet. 693a already carried
+the full 603n curriculum AND the 514t WL-harness port, so the shortfall was not a
+harness defect.
+
+**Root cause (code trace).** The SD-049 spawn branch in `reset()` drew a FIXED
+budget and then SPLIT it across the active types:
+
+```python
+n_to_spawn = min(self.num_resources, len(forage_pool))   # fixed TOTAL
+# ... then each spawned cell draws a type by weighted choice
+```
+
+So an n-type arm has ~n-fold lower density *per type* than a 1-type arm. Measured
+at the canonical `num_resources=5`:
+
+| n_resource_types | per-type spawn counts | note |
+|---|---|---|
+| 1 | `[5]` | |
+| 2 | `[3, 2]` | |
+| 3 | `[2, 1, 2]` | ARM_2 -- one type gets a single cell |
+| 5 | `[2, 0, 1, 0, 2]` | ARM_3 -- **two types spawn zero cells** |
+
+This is the ~2-3x band the observed contact shortfall sits in.
+
+**Why this is more than a threshold shortfall -- it is a design confound.** The
+4-arm substrate gradient varies per-type density *as well as* heterogeneity, so
+`C_GR`'s ARM_2-ARM_0 lift is not attributable to identity alone. This also offers
+a parsimonious reading of the pre-registered 693a watch item (`C_GR` margin
+near-zero, and *negative* in ARM_3): ARM_3 is the arm with the most types and
+therefore the sparsest per type, and on the table above it is the arm where two
+types never spawn at all. A density-driven artifact of that shape would be easy
+to misread as a genuine conversion-side falsification of SD-049 Phase 2.
+
+**The lever.** `CausalGridWorldV2.sd049_preserve_per_type_density` (default
+`False`, bit-identical). When `True`, `num_resources` is read as a
+PER-ACTIVE-TYPE count:
+
+```python
+desired = self.num_resources * len(active_types)   # density-preserving
+n_to_spawn = min(desired, len(forage_pool))
+```
+
+Scaling is on `len(active_types)`, **not** `n_resource_types`, so a type still
+behind a `resource_introduction_schedule` gate does not inflate the budget --
+per-type density stays constant as the curriculum introduces types, which is the
+property the Stage-0/0b onboarding sequence needs.
+
+**Truncation is surfaced, not silent.** `forage_pool` capacity can cap the scaled
+budget, and a silent cap would reproduce exactly the confound this lever removes
+-- invisibly. `obs_dict["sd049_density_budget_truncated"]` is `True` whenever the
+pool bound the budget; `obs_dict["sd049_preserve_per_type_density"]` reports the
+flag. Any experiment relying on constant per-type density MUST gate on the former
+(treat a truncated run as substrate-not-ready, never as a weakens). The flag is
+cleared per episode so the no-active-types edge case cannot leave a stale read.
+
+**Bit-identical OFF.** The budget expression and the RNG draw sequence are
+unchanged on the default path. Activation smoke 2026-07-20, all PASS: default
+holds total 5 at 1/2/3/5 types; flag on gives totals 5/10/15/25 with per-type mean
+exactly 5.00; truncation fires on a size-8 grid at `desired=200`; both diagnostics
+present in `obs_dict` on ON and OFF paths.
+
+**Scope.** This is the ENV half of the 693a autopsy's recommended amend. The
+curriculum-calibration half (`scaffolded_sd054_onboarding` Stage-H / hazard-stage
+survival, 2/3 seeds failing) lives under `ree-v3/experiments/` and therefore
+belongs to `/queue-experiment`; it was chipped as a separate session 2026-07-20.
+The two are kept separable deliberately, so a retest can attribute hazard-stage
+survival failure to resource starvation or rule it out.
+
+**No claims.yaml status flips.** SD-049 / SD-015 / MECH-229 / MECH-230 / MECH-436
+are untouched; the 693a per-claim `non_contributory` tags stand until a retest
+scores on the corrected substrate.
+
+**Validation experiment: NOT YET QUEUED.** The natural owner is a `V3-EXQ-693b`
+re-issue of 693a with `sd049_preserve_per_type_density=True`, retaining 693a's
+three non-vacuity self-route guards and the `C_GR` watch item. Acceptance follows
+the autopsy's `target` verbatim: ARM_2 `behav_contact_rate > 0.02` and
+hazard-stage survival on >= 2/3 seeds.
