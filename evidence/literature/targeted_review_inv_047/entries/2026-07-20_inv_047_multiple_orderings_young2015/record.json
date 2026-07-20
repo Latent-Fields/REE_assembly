@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_047",
+  "entry_id": "2026-07-20_inv_047_multiple_orderings_young2015",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "INV-047"
+  ],
+  "source": {
+    "title": "Multiple Orderings of Events in Disease Progression.",
+    "authors": [
+      "Alexandra L Young",
+      "Neil P Oxtoby",
+      "Jonathan Huang",
+      "Razvan V Marinescu",
+      "Pankaj Daga",
+      "David M Cash",
+      "Nick C Fox",
+      "Sebastien Ourselin",
+      "Jonathan M Schott",
+      "Daniel C Alexander"
+    ],
+    "year": 2015,
+    "venue": "Information Processing in Medical Imaging (IPMI)",
+    "doi": "10.1007/978-3-319-19992-4_56"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "Directly attacks the assumption INV-047 depends on -- that there is ONE staged sequence characterising the disease. Relaxing the single-sequence assumption with a generalised Mallows model shows substantially more cross-subject variation than the classic model estimates, and a Dirichlet process mixture detects three population subgroups following DIFFERENT event sequences. Confidence held at 0.58 because this is a methods paper on imaging events rather than cognitive stages, so it undermines the claim's form rather than its specific content.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A Dirichlet process mixture recovers THREE distinct subgroups with different event sequences in sporadic AD. INV-047 asserts 'the specific staged cognitive decline profile' in the singular; if the population is a mixture of orderings, no single canonical profile is the thing to be explained.",
+    "The classic single-sequence event-based model UNDERSTATES cross-subject variation in ordering. Any prior staging result INV-047 leans on that was produced by the classic model therefore carries an unmodelled false confidence in its ordering.",
+    "Heterogeneity of this kind is an alternative explanation for apparent staging: a population mixture of differently-ordered subgroups can produce an averaged profile that looks staged without any subject following the average sequence."
+  ],
+  "tags": [
+    "inv-047",
+    "alzheimers",
+    "event_based_model",
+    "heterogeneity",
+    "disease_progression",
+    "subtyping",
+    "mallows_model",
+    "dirichlet_process"
+  ],
+  "mapping": {
+    "source_claim_statement": "Relaxing the event-based model's single-sequence assumption -- via a generalised Mallows model and a Dirichlet process mixture of such models -- reveals greater cross-subject variation in event ordering than previously estimated, and identifies three subgroups of the ADNI population following distinct sequences.",
+    "ree_translation": "INV-047 treats the staged decline profile as a single explanandum with a determinate order to be matched against a phase-dependency ordering. This work indicates the explanandum may not be singular: sporadic AD appears to comprise subpopulations with different orderings. If so, a claim predicting ONE order is either underspecified or is a claim about a subgroup, and REE would need to say which.",
+    "mapping_caveat": "The events modelled here are imaging/biomarker abnormalities in brain regions, NOT the cognitive stages INV-047 enumerates. Heterogeneity in regional atrophy ordering does not automatically imply heterogeneity in cognitive-stage ordering -- the cognitive phenotype could be more canalised than its neural substrate. This entry therefore weakens INV-047's single-sequence FORM by analogy and does not directly measure the cognitive orderings the claim is about. It is also a conference methods paper, with correspondingly lighter clinical validation.",
+    "source_context": "Alzheimer's Disease Neuroimaging Initiative (ADNI) multi-modal biomarker data; cross-sectional; Gibbs sampling inference over generalised Mallows and Dirichlet process mixture models."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Sound methodological work from the group that built the event-based model, published at IPMI (peer-reviewed conference, lighter than a journal). Scored as a moderate weakener: it challenges the singular-sequence framing INV-047 requires, but by analogy from imaging events rather than by direct measurement of cognitive stage orderings."
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_047",
+  "entry_id": "2026-07-20_inv_047_cognitive_decline_sequence_firth2020",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "INV-047"
+  ],
+  "source": {
+    "title": "Sequences of cognitive decline in typical Alzheimer's disease and posterior cortical atrophy estimated using a novel event-based model of disease progression.",
+    "authors": [
+      "Nicholas C Firth",
+      "Silvia Primativo",
+      "Emilie Brotherhood",
+      "Alexandra L Young",
+      "Keir X X Yong",
+      "Sebastian J Crutch",
+      "Daniel C Alexander",
+      "Neil P Oxtoby"
+    ],
+    "year": 2020,
+    "venue": "Alzheimer's & Dementia",
+    "doi": "10.1002/alz.12083"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly instruments the object INV-047 asserts -- the fine-grained ORDER in which cognitive deficits appear -- using a data-driven event-based model that requires no a priori clinical staging. Strongly supports the claim's structural half (decline is staged and syndrome-specific, not uniform: PCA is vision-first, typical AD is memory-first). Weakens the claim's specific ordering, because the recovered typical-AD sequence begins with memory, not with the precision/confidence stage INV-047 places first. Confidence reflects a well-matched measurement returning a partially discordant answer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The recovered sequence for typical AD is MEMORY-first. INV-047 places precision/confidence loss before episodic memory failure. On the one dataset that models the ordering directly, the claim's first two stages appear in the opposite order.",
+    "The neuropsychological battery covers memory, vision, arithmetic and general cognition -- it contains no metacognitive or confidence measure at all. The absence of a confidence-first stage in the recovered sequence is therefore uninformative about whether one exists: the model cannot order an event it never measured.",
+    "Two syndromes with the same underlying proteinopathy yield different cognitive orderings (PCA vision-first vs tAD memory-first), which shows the ordering is set by lesion topography rather than by any single canonical dependency sequence -- a challenge to INV-047's derivation of the order from a phase-dependency structure."
+  ],
+  "tags": [
+    "inv-047",
+    "alzheimers",
+    "event_based_model",
+    "disease_progression",
+    "cognitive_decline_sequence",
+    "posterior_cortical_atrophy",
+    "staging"
+  ],
+  "mapping": {
+    "source_claim_statement": "An event-based model adapted for highly non-Gaussian cognitive test data recovers fine-grained sequences of cognitive decline that differ between posterior cortical atrophy (vision first) and typical Alzheimer's disease (memory first).",
+    "ree_translation": "INV-047 asserts a specific staged ordering of cognitive failure. This is the methodological instrument that can adjudicate such orderings from data, and it confirms the claim's underlying premise: decline follows a recoverable, phenotype-specific sequence rather than uniform degradation. Its recovered ordering for typical AD constrains INV-047's stage list -- episodic memory appears at the front, where INV-047 places precision/confidence.",
+    "mapping_caveat": "The discordance must NOT be read as refutation. The battery (memory, vision, arithmetic, general cognition) contains no metacognitive or confidence instrument, so a confidence-first stage could not have been recovered even if it were present -- this is a measurement gap, not a negative finding. Additionally the model orders test-score abnormality events, which are downstream composites, not the underlying functional channels INV-047 is about; and 'contextual identity loss' / 'global disorientation' have no corresponding events in this battery either.",
+    "source_context": "Clinically-diagnosed PCA and typical AD patients at the UCL Dementia Research Centre; cross-sectional neuropsychological battery; event-based model with nonparametric mixture modelling to handle ceiling/floor effects."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "High-quality methods paper in a top dementia journal, and unusually well matched to the claim's form (it models orderings, which is what INV-047 asserts). Mapping fidelity discounted because the battery cannot see three of INV-047's four stages, so the comparison is only partial and the apparent conflict is weaker than it looks."
+  }
+}

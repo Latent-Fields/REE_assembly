@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_463",
+  "entry_id": "2026-07-20_mech_463_pupil_exploration_jepma2011",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "MECH-463"
+  ],
+  "source": {
+    "title": "Pupil diameter predicts changes in the exploration-exploitation trade-off: evidence for the adaptive gain theory.",
+    "authors": [
+      "Marieke Jepma",
+      "Sander Nieuwenhuis"
+    ],
+    "year": 2011,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn.2010.21548"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Well-executed human pupillometry showing that baseline pupil diameter -- an indirect index of the global arousal scalar -- predicts exploratory vs exploitative choice both within and between individuals. Cuts against MECH-463's strong reading (a scalar that tracks realised behavioural differentiation) while being fully compatible with its weak reading (the scalar changes sampling sharpness, not score ordering). Held at 0.5 because the design is correlational and pupil is a doubly-indirect proxy for the quantity MECH-463 names.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Baseline arousal predicted WHICH choice class was made (exploratory vs exploitative), not merely how sharply it was made. Taken at face value that is behavioural differentiation attributable to a global scalar, which is what MECH-463 says a uniform scalar cannot deliver -- unless the differentiation is entirely in the sampling draw rather than the score ordering.",
+    "The same correlation is produced by the reverse causal arrangement: a control state that changes both the choice and the arousal level, with the scalar as consequence rather than cause. Correlational pupillometry cannot exclude this, so the entry cannot be treated as a causal counterexample.",
+    "Directly contradicts the causal null of the same group's reboxetine study (Jepma et al. 2010) in apparent direction; the correlational and causal literatures on this exact question do not agree, which is itself a reason to distrust either as a governance input."
+  ],
+  "tags": [
+    "mech-463",
+    "pupillometry",
+    "locus_coeruleus",
+    "adaptive_gain",
+    "exploration_exploitation",
+    "arousal",
+    "correlational"
+  ],
+  "mapping": {
+    "source_claim_statement": "Exploratory choices were preceded by larger baseline pupil diameter than exploitative choices; individual baseline pupil diameter predicted individual tendency to explore; and pupil changes around exploit-to-explore transitions tracked changes in task utility.",
+    "ree_translation": "Baseline pupil diameter indexes the tonic arousal scalar -- REE's closest analogue being the softmax temperature and the tonic component of the D1/D2 gain. The finding maps onto MECH-463's prediction that the scalar governs commitment sharpness: a flatter distribution at high arousal yields more off-argmax draws, which an observer classifies as 'exploratory'. Under that reading the score ordering was never violated and MECH-463 survives.",
+    "mapping_caveat": "The benign reading above is an interpretation this paper does not test and cannot distinguish from the threatening one. Two independent gaps: pupil is an indirect proxy for LC activity (itself contested), and LC activity is an indirect proxy for the gain parameter -- so the chain from measurement to MECH-463's scalar is two inferential steps long. The design is also correlational, so the arrow could run from control state to arousal rather than the reverse. Do not treat this as evidence that arousal CAUSES the choice-class change.",
+    "source_context": "Healthy human adults performing a gambling task with a gradually changing payoff structure; choices classified as exploratory/exploitative by a reinforcement-learning model fit."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Execution is solid but the inferential chain (pupil -> LC -> gain -> REE temperature) is long, and the design cannot establish direction of causation. Mapping fidelity dominates the discount. Deliberately scored below the reboxetine null despite being a positive result, because a causal null with verified drug action is stronger evidence about mechanism than a correlation."
+  }
+}

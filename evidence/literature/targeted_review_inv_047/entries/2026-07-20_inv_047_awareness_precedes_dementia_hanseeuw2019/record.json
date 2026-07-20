@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_inv_047",
+  "entry_id": "2026-07-20_inv_047_awareness_precedes_dementia_hanseeuw2019",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "INV-047"
+  ],
+  "source": {
+    "title": "Evolution of anosognosia in Alzheimer's disease and its relationship to amyloid.",
+    "authors": [
+      "Bernard J Hanseeuw",
+      "Matthew R Scott",
+      "Sietske A M Sikkes",
+      "Michael Properzi",
+      "Jennifer R Gatchel",
+      "Eric Salmon",
+      "Gad A Marshall",
+      "Patrizia Vannini"
+    ],
+    "year": 2020,
+    "venue": "Annals of Neurology",
+    "doi": "10.1002/ana.25649"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Large (N=1070) longitudinal cohort with amyloid PET and ~4.3 visits per participant -- strong empirical footing for the ORDERING half of INV-047: metacognitive/confidence change is measurable years before the episodic-memory diagnosis it precedes (anosognosia reached ~3.2 years before dementia onset; heightened awareness up to 1.6 years before MCI). Simultaneously weakens the 'not explained by amyloid' half, since amyloid burden is the variable that predicts the awareness trajectory. Net mixed; confidence reflects the strength of the measurement rather than agreement with the claim as a whole.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Amyloid burden PREDICTED the rate of awareness decline, and did so across the whole spectrum including cognitively normal participants. INV-047's contrast case is that diffuse amyloid should predict uniform degradation rather than a staged profile -- but here a diffuse pathology marker predicts a specifically-timed, staged change. The dichotomy INV-047 rests on (staged profile vs amyloid) is therefore not clean.",
+    "The earliest observed awareness change is HYPERnosognosia -- heightened, not diminished, awareness of memory change before MCI. INV-047 asserts early 'precision/confidence LOSS'. The direction of the earliest metacognitive deviation is opposite to the one the claim states, even though its timing (before episodic failure) matches.",
+    "Awareness is operationalised as a self-versus-informant discrepancy score, which conflates metacognitive precision with reporting bias, insight, and informant accuracy. A discrepancy measure cannot isolate the precision term INV-047 needs."
+  ],
+  "tags": [
+    "inv-047",
+    "alzheimers",
+    "anosognosia",
+    "metacognition",
+    "awareness",
+    "amyloid",
+    "staged_decline",
+    "longitudinal"
+  ],
+  "mapping": {
+    "source_claim_statement": "Amyloid burden predicts a progressive decline in self-awareness of memory deficits; awareness is transiently heightened before MCI diagnosis, then declines, reaching anosognosia approximately 3.2 years before dementia diagnosis.",
+    "ree_translation": "INV-047 asserts a staged decline whose FIRST stage is precision/confidence loss, preceding episodic memory failure. This paper supplies the strongest available timing evidence for that ordering: a metacognitive signal deviates measurably and progressively years before the memory-defined clinical transitions. In REE terms, the confidence/precision channel degrades on a distinct and earlier trajectory from the episodic-recall channel -- consistent with a staged transfer function over the consolidation pipeline rather than uniform damage.",
+    "mapping_caveat": "Two boundaries, both material. (1) The paper's 'awareness' is a self-minus-informant discrepancy on an everyday-cognition scale -- a clinical insight measure, NOT the precision-weighting parameter INV-047 imports from predictive processing. Treating them as the same quantity is the central transfer risk and is not licensed by the source. (2) The earliest deviation is heightened awareness (hypernosognosia), not loss; only the later trajectory is loss. INV-047's first stage as literally worded is therefore matched in timing but not in sign.",
+    "source_context": "Human clinical cohort (N=1070) spanning cognitively normal, MCI and dementia; [18F]florbetapir amyloid PET at baseline; longitudinal Everyday Cognition self/partner report, mean 4.3 visits."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high (large longitudinal cohort, biomarker-anchored, Annals of Neurology). The discount is mapping and transfer: an insight discrepancy score is a coarse stand-in for precision, and INV-047 is explicitly conditional on REE modelling human cognition -- a conditional this paper cannot discharge. Scored above 0.6 because the timing evidence is genuinely the best available for the claim's ordering, and below 0.75 because half the claim is weakened by the same result."
+  }
+}

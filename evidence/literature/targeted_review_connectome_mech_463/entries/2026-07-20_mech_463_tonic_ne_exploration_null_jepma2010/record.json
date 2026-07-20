@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_463",
+  "entry_id": "2026-07-20_mech_463_tonic_ne_exploration_null_jepma2010",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "MECH-463",
+    "MECH-359"
+  ],
+  "source": {
+    "title": "The role of the noradrenergic system in the exploration-exploitation trade-off: a psychopharmacological study.",
+    "authors": [
+      "Marieke Jepma",
+      "Erik T te Beek",
+      "Eric-Jan Wagenmakers",
+      "Joop M A van Gerven",
+      "Sander Nieuwenhuis"
+    ],
+    "year": 2010,
+    "venue": "Frontiers in Human Neuroscience",
+    "doi": "10.3389/fnhum.2010.00170"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "A double-blind placebo-controlled causal manipulation (N=52) that raised tonic NE pharmacologically and found NO change in task disengagement or exploratory behaviour, despite confirmed drug action on central and autonomic markers. This is the cleanest available causal test of 'does a global scalar, moved on its own, change behavioural strategy?' and the answer was no -- which is what MECH-463 predicts of a channel that cannot re-rank candidates. Held below 0.7 because it is a null result with the usual power caveats, and because absence of a strategy shift is consistent with several mechanisms besides argmax invariance.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Raising the global scalar in isolation produced no behavioural differentiation at all -- not a weaker version of the predicted effect, but no effect -- while the drug demonstrably reached the CNS. A scalar channel can therefore be pharmacologically live and behaviourally inert simultaneously, which is the failure mode MECH-463 predicts and MECH-359 also predicts.",
+    "The authors note the manipulation may not test exploration that exceeds the current task context; a scalar could still act on task-set switching while being inert within a task. MECH-463's argmax-invariance argument is scoped to within-decision candidate sets and inherits exactly this boundary.",
+    "This null cannot discriminate MECH-463 (scalar entrenches the incumbent) from MECH-359 (scalar is too weak to steer) -- both predict the observed absence of differentiation. The discriminating measurement is the commit gate, which this paradigm does not instrument."
+  ],
+  "tags": [
+    "mech-463",
+    "mech-359",
+    "noradrenergic",
+    "reboxetine",
+    "exploration_exploitation",
+    "global_scalar",
+    "null_result",
+    "psychopharmacology"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reboxetine (a selective NE reuptake inhibitor, 4mg) raised tonic noradrenergic tone but produced no difference in task (dis)engagement or exploratory behaviour relative to citalopram or placebo, contrary to adaptive gain theory's prediction.",
+    "ree_translation": "This is the closest available human causal analogue of moving ONE of REE's global arousal scalars while leaving the per-candidate score_bias channel (e3_selector.py:2189) untouched. MECH-463 predicts exactly this: a uniform scalar cannot change which candidate wins, so isolated manipulation of it should not produce behavioural differentiation. The observed null is the predicted signature.",
+    "mapping_caveat": "This is a NULL, and nulls under-determine mechanism. Failing to find a strategy shift is consistent with argmax invariance (MECH-463), with the scalar being too weak to steer (MECH-359), and with the drug simply not moving the relevant tonic parameter far enough -- the paper cannot separate these, and neither can this entry. Crucially it therefore does NOT adjudicate between MECH-463 and MECH-359, which is the distinction that actually needs settling; it only constrains both against the AGT-style alternative. Additionally, reboxetine raises NE tone systemically rather than implementing a clean temperature change, so the identification with a softmax temperature is loose.",
+    "source_context": "Healthy human volunteers, double-blind parallel-groups design (N=52), diminishing-utility task and non-stationary-payoff gambling task."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Design quality is high for a psychopharmacological study (double-blind, placebo-controlled, two active comparators, verified drug action). The confidence is capped by null-result inference rather than by execution: the result is consistent with MECH-463 but does not uniquely imply it."
+  }
+}

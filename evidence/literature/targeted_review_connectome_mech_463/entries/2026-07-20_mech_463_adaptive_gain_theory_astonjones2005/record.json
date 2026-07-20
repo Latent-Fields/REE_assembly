@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_463",
+  "entry_id": "2026-07-20_mech_463_adaptive_gain_theory_astonjones2005",
+  "timestamp_utc": "2026-07-20T06:03:37Z",
+  "claim_ids_tested": [
+    "MECH-463"
+  ],
+  "source": {
+    "title": "An integrative theory of locus coeruleus-norepinephrine function: adaptive gain and optimal performance.",
+    "authors": [
+      "Gary Aston-Jones",
+      "Jonathan D Cohen"
+    ],
+    "year": 2005,
+    "venue": "Annual Review of Neuroscience",
+    "doi": "10.1146/annurev.neuro.28.061604.135709"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Canonical, heavily replicated theoretical synthesis (high source quality) whose central construct -- a single scalar gain term that cannot by itself specify WHICH option is chosen, only how sharply the choice is drawn -- is structurally the same object MECH-463 names. Discounted for mapping: AGT's gain is the slope of a sigmoid on unit activation, not a softmax temperature over K candidate scores, and AGT asserts the scalar DOES produce a behavioural regime change (exploration), which is in tension with the argmax-invariance half of MECH-463.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Adaptive gain theory attributes a genuine behavioural mode switch (exploit -> explore) to a scalar with no per-candidate structure, which -- if true as stated -- would mean a global scalar CAN change realised behaviour and not merely its sharpness. MECH-463 must therefore locate the differentiation in the sampling step, not in the score geometry, or it is under-specified.",
+    "The theory is silent on the covariance between the scalar channel and the per-candidate channel, which is exactly the quantity MECH-463's variance decomposition needs; AGT cannot arbitrate F-share vs arousal on its own."
+  ],
+  "tags": [
+    "mech-463",
+    "locus_coeruleus",
+    "adaptive_gain",
+    "global_scalar",
+    "exploration_exploitation",
+    "arousal"
+  ],
+  "mapping": {
+    "source_claim_statement": "LC-NE operates in phasic and tonic modes; the resulting change in neural gain regulates the balance between exploitation of the current task and exploration of alternatives, with frontal (ACC/OFC) utility signals driving the mode.",
+    "ree_translation": "AGT's gain is REE's global-scalar arousal family (the D1/D2 tanh gain at e3_selector.py:1559-1562, the harm-urgency threshold shrinkage at :2679-2686, and the softmax temperature in noise_floor.py / phasic_surprise_burst.py). Its structure matches MECH-463's premise: one number applied uniformly with no per-candidate index, therefore order-preserving over the K scores. AGT's empirical content maps onto MECH-463's second half -- that the scalar changes WHETHER commitment fires and how sharply -- rather than onto any claim that it re-ranks candidates.",
+    "mapping_caveat": "Two boundaries. (1) Sigmoid-slope gain on unit activation is NOT the same operator as a softmax temperature over a candidate score vector; the argmax-invariance argument is exact for the latter and only approximate for the former, so AGT cannot be cited as proof of argmax invariance. (2) AGT's exploration mode is a change in realised choice, which under stochastic sampling is compatible with argmax invariance but is easily misread as contradicting it -- the distinction between the score ordering and the sampled action is doing all the work and is not made in the source.",
+    "source_context": "Monkey LC single-unit recordings plus connectionist modelling, synthesised as a review; no human causal data in the source."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-463 is an architectural claim about where in the selection pipeline a scalar can and cannot act. Source quality is near-ceiling; the discount is entirely the sigmoid-gain vs softmax-temperature operator mismatch."
+  }
+}
