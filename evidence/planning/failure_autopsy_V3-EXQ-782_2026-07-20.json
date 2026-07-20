@@ -1,0 +1,144 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-20T06:44:10Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "stoic-wescoff-cac81f",
+  "trigger": {
+    "source": "REE_assembly/evidence/planning/intra_run_substrate_divergence_sweep_2026-07-20.md",
+    "section": "5a",
+    "defect_class": "D3",
+    "sweep_severity_call": "SEVERE -- highest structural severity in the corpus",
+    "class_origin": "REE_assembly/evidence/planning/failure_autopsy_V3-EXQ-689d_2026-07-20.json#targets[0].defects[2]"
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_782_mech459_advantage_composition_probe_20260718T111818Z_v3",
+      "queue_id": "V3-EXQ-782",
+      "claim_ids": ["MECH-459"],
+      "self_route_label": "forage_mass_already_concentrated__critic_flat_uninformed",
+      "failed_criterion": "absolute",
+      "manipulation_effectiveness": "n/a -- instrumentation probe, no manipulation and no treatment arm by design (decision_MECH-459_registry_and_brake_2026-07-18.md Decision 2b)",
+      "readjudication_of": "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.json",
+      "readjudication_shape": "c -- direction and category RETAINED; this document adds the D3 adjudication only and does not re-derive the prior scientific reading",
+
+      "d3_adjudication": {
+        "verdict": "false_positive",
+        "defect_present": false,
+        "basis": "The fingerprint globs are wider than the run's executed code. The closure-restricted fingerprint is byte-identical across all four substrate bands, and no changed file is on the run's import path (static or dynamic).",
+        "closure_restricted_fingerprint": "3b33ab7f515e21aca40eae800273fd61698c3fd53f1c55e2bbd6c76f3daa6c41",
+        "closure_restricted_fingerprint_constant": true,
+        "import_closure_files": 110,
+        "import_closure_globbed_files": 103,
+        "closure_file_set_identical_across_bands": true,
+        "every_closure_file_single_blob_oid": true,
+        "all_hashes_reconstruct_from_clean_committed_trees": true,
+        "dirty_tree_implicated": false,
+        "dynamic_import_escape_found": false,
+        "substrate_bands": [
+          {"substrate_hash": "098473b9", "substrate_n_files": 131, "representative_commit": "375476e35c88", "band_first_commit": "16fd4eff7d19", "band_last_commit": "375476e35c88", "cells": ["local_view_greedy 42/43/44", "greedy_oracle 42/43/44", "random_walk 42/43/44", "probeR_ctrl_zworld 42"]},
+          {"substrate_hash": "765ce9d2", "substrate_n_files": 132, "representative_commit": "ff7b8ca9775e", "band_first_commit": "8b467007c22f", "band_last_commit": "ff7b8ca9775e", "cells": ["probeR_ctrl_zworld 43"]},
+          {"substrate_hash": "a652aa3d", "substrate_n_files": 133, "representative_commit": "4607c4133940", "band_first_commit": "f418400f4583", "band_last_commit": "4607c4133940", "cells": ["probeR_ctrl_zworld 44", "probeR_ctrl_raw 42", "probeR_ctrl_raw 43"]},
+          {"substrate_hash": "7f856703", "substrate_n_files": 133, "representative_commit": "18e8336067d0", "band_first_commit": "8b183383dfc9", "band_last_commit": "18e8336067d0", "cells": ["probeR_ctrl_raw 44"]}
+        ],
+        "changed_files": [
+          {"path": "ree_core/latent/zworld_p0.py", "change": "added", "commit": "f418400f4583", "on_import_path": false, "referenced_by": ["experiments/v3_exq_783_zworld_granularity_training_crossing.py:177", "tests/contracts/test_sd070_zworld_p0.py:17"], "package_side_channel_ruled_out": "ree_core/latent/__init__.py is the empty blob e69de29bb2 in all four trees"},
+          {"path": "experiments/_lib/baselines/exq783_zworld_granularity.py", "change": "added then modified", "commit": "8b467007c22f, f418400f4583", "on_import_path": false, "referenced_by": ["experiments/v3_exq_783_zworld_granularity_training_crossing.py:174"]},
+          {"path": "experiments/_lib/consolidation_lesion_harness.py", "change": "modified twice", "commit": "18c4687da310, 8b183383dfc9", "on_import_path": false, "referenced_by": ["seven v3_exq_sd068_* drivers", "three SD-068 contract tests"]}
+        ],
+        "mechanism_modules_unchanged": [
+          {"path": "experiments/_lib/mech457_explorer_classes.py", "blob_oid": "c2bf26f8a030", "note": "carries the normaliser under test at :688 / :697"},
+          {"path": "experiments/_lib/mech457_bootstrap_explorer.py", "blob_oid": "5fc49688123b"},
+          {"path": "experiments/_lib/mech459_probe_r.py", "blob_oid": "641cc3c730e4"}
+        ],
+        "independent_second_line": {
+          "argument": "The load-bearing R-(a) criterion routes on a WITHIN-CELL quantity (C_pre >= 0.5, driver :337) OR-ed across representations (driver :575), not on a cross-representation contrast. Every probe cell clears on its own build.",
+          "sweep_framing_corrected": "The sweep describes the headline as a z_world vs raw_view contrast that is wholly cross-substrate. The criterion is not built that way: both representations return the same verdict independently and are reported side by side, not differenced.",
+          "per_cell": [
+            {"substrate_hash": "098473b9", "cell": "probeR_ctrl_zworld s42", "c_pre": 1.641374, "margin_vs_0_5": 3.28, "verdict": "forage_mass_already_concentrated"},
+            {"substrate_hash": "765ce9d2", "cell": "probeR_ctrl_zworld s43", "c_pre": 1.653854, "margin_vs_0_5": 3.31, "verdict": "forage_mass_already_concentrated"},
+            {"substrate_hash": "a652aa3d", "cell": "probeR_ctrl_zworld s44", "c_pre": 2.458480, "margin_vs_0_5": 4.92, "verdict": "forage_mass_already_concentrated"},
+            {"substrate_hash": "a652aa3d", "cell": "probeR_ctrl_raw s42", "c_pre": 1.317109, "margin_vs_0_5": 2.63, "verdict": "forage_mass_already_concentrated"},
+            {"substrate_hash": "a652aa3d", "cell": "probeR_ctrl_raw s43", "c_pre": 1.257119, "margin_vs_0_5": 2.51, "verdict": "forage_mass_already_concentrated"},
+            {"substrate_hash": "7f856703", "cell": "probeR_ctrl_raw s44", "c_pre": 1.035190, "margin_vs_0_5": 2.07, "verdict": "forage_mass_already_concentrated"}
+          ],
+          "conclusion": "Even under the sweep's own (incorrect) assumption that the builds differed, a substrate-homogeneous per-cell read returns the identical verdict on every partition."
+        },
+        "residual_observation_not_routed": "The R-(b) precondition demo_state_return_spread_supra_floor is a min-over-cells = 0.302689 sourced from raw_view seed 44 -- the singleton cell on 7f856703 -- clearing its 0.25 floor by only 1.21x against return_std 31.95 / 42.15 on raw seeds 42/43. The C->D change is consolidation_lesion_harness.py, definitively off-path, so this is not substrate-caused; raw seed 44 also differs behaviourally (n_forage_steps 4928, step fraction 0.161). It gates only R-(b), declared load_bearing:false. Recorded, not routed."
+      },
+
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (weak form only) -- UNCHANGED from the prior autopsy. The weak form's PREMISE fails, not its consequent: C_pre = 1.92 (z_world) / 1.20 (raw_view) against the 0.5 'tiny' threshold, so forage-contact steps already carry disproportionate |adv| mass BEFORE the per-episode standardiser. The STRONG form is not restated -- refuted by Finding V2 of the sanctioning decision.",
+        "biological_reference": "partial -- formal/algorithmic import (DreamerV3 Hafner 2023 Appendix E), not a biological translation. Critic half has a dopaminergic-RPE analogue; normaliser half does not.",
+        "prerequisites": "present -- all four readiness preconditions met (local_view_greedy 48.05, greedy_oracle 57.2 vs the 1.0 floor; 273 forage-contact steps vs 30; demo return std 0.302689 vs 0.25).",
+        "implementation": "complete -- instrumentation mirror module; live 780/781 scripts and mech457_* _lib modules byte-unchanged, now independently verified at blob-OID granularity across all four trees.",
+        "environment": "adequate -- same CausalGridWorld D3 configuration as the portfolio it instruments.",
+        "measurement": "adequate and decisive on R-(a) -- measured exactly the intermediate quantity no manifest records, so correctly run rather than reanalysed (GOV-REUSE-1).",
+        "integration": "coupled -- the CTRL arms are behaviourally equivalent to the portfolio's.",
+        "scale": "adequate -- 3 seeds x 2 representations on the reference 128-wide/3x/detached build.",
+        "experimental_control_d3": "intact -- defect REFUTED. Four substrate_hash values, one executed closure."
+      },
+
+      "biological_reference": {
+        "closest_mechanism": "Dorsal-striatal actor-critic with a dopaminergic RPE teaching signal; the critic as a value baseline that must differentiate states by proximity to reward.",
+        "dependencies": ["a value baseline that tracks return", "a non-degenerate advantage signal at reward-contact states"],
+        "is_formal_import": true,
+        "divergence": "Unchanged from the prior autopsy: R-(a) exonerates the normaliser half of the DreamerV3 import; R-(b) independently corroborates the CRITIC half of that same import's prescribed corrective. The two halves of MECH-459 separate cleanly and must not be adjudicated as one unit.",
+        "lit_status": "present -- Hafner 2023 DreamerV3 Appendix E cited on the claim; no /lit-pull commission owed."
+      },
+
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "D3 RE-ADJUDICATION 2026-07-20 (failure_autopsy_V3-EXQ-782_2026-07-20): the intra-run substrate-divergence hit recorded against this run by intra_run_substrate_divergence_sweep_2026-07-20.md sec 5a is a FALSE POSITIVE and is WITHDRAWN. The run's four arm_fingerprint.substrate_hash values all reconstruct from clean committed trees, but the fingerprint globs (ree_core/**, experiments/_lib/**) are wider than this run's executed code: the fingerprint recomputed over the driver's 103-file globbed import closure is BYTE-IDENTICAL (3b33ab7f515e21ac...) at every band, every closure file shares one blob OID across all four trees, and the three files that did move (ree_core/latent/zworld_p0.py, _lib/baselines/exq783_zworld_granularity.py, _lib/consolidation_lesion_harness.py) are imported by no module on this run's path, statically or dynamically. mech457_explorer_classes.py -- which carries the normaliser under test at :688/:697 -- is a single blob OID throughout. Independently, the load-bearing R-(a) criterion routes on a WITHIN-CELL quantity (C_pre >= 0.5, driver :337) OR-ed across representations, not on a cross-representation contrast, and every one of the 6 probe cells clears the threshold on its own build at >=2.07x margin (min: raw seed 44, C_pre 1.035). Experimental control is INTACT; evidence_direction: weakens and epistemic_category: standard stand unchanged. NOTE: this addendum appends to the existing evidence_quality_note, which stands in full.",
+
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "rationale": "Unchanged from the prior autopsy: probe R is a diagnostic on intermediate quantities and the sanctioning decision explicitly licenses no build. The D3 adjudication adds no substrate need for this run."
+      },
+
+      "manifest_edit": "none -- completed runs are re-adjudicated via autopsy, never rewritten",
+      "requeue": "none -- a confirmatory run would reproduce a result already shown substrate-invariant on four partitions and executed against byte-identical code",
+      "hypothesis_registry_write": "none -- 782 appears in hypothesis_space_registry.v1.json only as a competence_floor fanout_sources entry and as motivating_evidence for H-retention-critic (hypotheses[12], state alive). The verdict is unchanged so no field moves; the R-(b) evidence motivating that leg is now substrate-verified, strengthening it without altering content or state.",
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_under_r1_r3": 0,
+        "supersedes_autopsy": "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18",
+        "supersession_shape": "c -- direction and category retained; one superseding adjudication of the same run, not a second hit. Count stays 0.",
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+
+      "learning_extracted": [
+        "A substrate_hash change is not evidence that the executed code changed. The arm_fingerprint globs (arm_fingerprint.py:65-70) are deliberately over-inclusive, an asymmetry documented at :14-17 as 'over-inclusion -> false misses only'. That is correct for its DESIGNED purpose (arm-reuse cache validity, where a false miss is free) and WRONG when the field is repurposed as a divergence detector, where over-inclusion converts directly into false positives. The defect is in the reuse, not the field.",
+        "The D3 triage test needs a fourth question, asked BEFORE the sweep's sec-4 'where does the split fall' test: does the split reflect a change on the EXECUTED path at all? Recoverable cheaply by recomputing the fingerprint over the driver's import closure. On 782 that single question answers the whole autopsy.",
+        "The five benign channels the sweep ruled out (globs, scoped, machine_class, driver_script_in_substrate_hash, __pycache__) are all WITHIN-RUN variation. The channel that explains 782 is a BETWEEN-RUN property of the instrument -- the glob's scope relative to the closure -- which no within-run constancy check can see.",
+        "Parallel development in globbed directories is the generating mechanism: all three moved files belong to other sessions' work (SD-070, EXQ-783, SD-068). On a heavy-development day this fires against every long run on the fleet regardless of what that run touches -- predicting that the sweep's '2026-07-18 alone produced 6 divergent runs' clustering is largely an artefact of development volume, not experimental fragility.",
+        "The prior 2026-07-18 cluster autopsy's substrate-equivalence reasoning was correct and is now independently verified at blob-OID granularity."
+      ],
+
+      "routing": "governance-affirm"
+    }
+  ],
+
+  "secondary_routing_recommendation": {
+    "confirmed_at_step_8_gate": true,
+    "route": "re-scan the 41 genuine sweep hits with a closure-restricted recomputation BEFORE the instrument fix",
+    "node_class": "complex (probe-gated) / puzzle (known rules)",
+    "why_first": "V3-EXQ-604c and V3-EXQ-778a are queued for autopsy (sweep sec 7 items 2 and 3) on the same premise that just failed on 782. Establishing the true base rate is pure analysis over existing artefacts -- no compute, no fleet -- and re-prioritises those two before autopsy effort is spent on them.",
+    "method_sketch": [
+      "For each of the 41 genuine hits, resolve the driver from experiment_type, build its transitive static import closure PER TREE, intersect with arm_fingerprint._SUBSTRATE_GLOBS, recompute the byte protocol per band, and report whether the closure-restricted hash is constant.",
+      "Partition into true D3 (closure-restricted hash varies -- real loss of control) vs glob-scope false positive (constant). Re-rank the SEVERE routings on the true set only.",
+      "Handle the dirty-tree case explicitly: a hit whose hashes do not all reconstruct from committed trees (782's did) is unverifiable, not clean."
+    ],
+    "instrument_fix_note": "The durable fix should be CLOSURE-RESTRICTED, not the whole-glob check proposed in sweep sec 8(a). Emitting substrate_divergent: true keyed on the current whole-tree hash would have fired on 782 and on every run co-resident with unrelated parallel development -- institutionalising this false positive as a standing warning. Sweep sec 8(b) (per-cell stamping; 'provenance granularity must follow the unit of COMPARISON') is CORRECT and unaffected: it is the SCOPE of the hashed set, not its granularity, that failed here. The two recommendations are orthogonal and both survive.",
+    "scope_limit": "This autopsy adjudicates V3-EXQ-782 only. The other 41 hits are NOT adjudicated here; 782's glob-scope artefact is a reason to check them, not a demonstration that they are clean. A modification to an on-path file would be a genuine D3."
+  },
+
+  "cluster_pattern": null
+}
