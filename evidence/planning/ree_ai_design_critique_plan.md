@@ -57,6 +57,34 @@ closure_plan:
           the 737/738/739 diverse parallel portfolio whose P-B leg refuted H2.
           Hit-scoped: a NEW diagnostic chain on WS-1 or on
           f_dominance_conversion_ceiling still re-accumulates and re-fires at N.
+      fanout_recurrence_metabolized:
+        qid: competence_floor
+        claims: [MECH-457, INV-088]
+        n_portfolios: 3
+        records:
+          - evidence/planning/competence_floor_reposing_2026-07-19.md
+          - evidence/planning/competence_floor_reposing_2026-07-20.md
+        note: >
+          GOV-FANOUT-1 recurrence on qid competence_floor (N=3 portfolios,
+          denominator 7 -> 16, convergence_class CIRCLING, families_fresh EMPTY).
+          Metabolized by RE-POSING twice; PORTFOLIO 4 REFUSED both times, as was
+          a same-question letter re-queue. 2026-07-19: the explanandum moved from
+          ACQUISITION to RETENTION -- a terminal-only DV cannot distinguish a
+          failed manipulation from a successful one that decayed, so it
+          manufactures nulls at a constant rate and those nulls drove the rival
+          enumeration the overlay counts. 2026-07-20: V3-EXQ-737a/728 found the
+          P0/P1 warmup has NO optimizer group covering latent_stack (0 of 61
+          tensors), so z_world is a FROZEN RANDOM PROJECTION and every z_world arm
+          across all 16 legs was evidentially void -- the same null-manufacturing
+          pathology on the ARM axis rather than the DV axis. CLOSED FAMILIES NOT
+          RE-OPENED: world and instrumentation are carried by defect-free raw_view
+          arms; the defect STRENGTHENS H-rep's elimination a fortiori (a random
+          projection reached 32.72 under BC). The installability half is WITHDRAWN
+          as a hypothesis and re-posed as a build -- complex (probe-gated) ->
+          complicated (buildable), owed to substrate_queue
+          sd_zworld_warmup_optimizer_group (priority 1, ready). Fresh axis exposed,
+          never asked in 16 legs: does prediction-training z_world beat a random
+          projection of the same dimensionality? PROMOTES/DEMOTES NOTHING.
     - id: WS-2
       tier: 1
       title: "Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)"
