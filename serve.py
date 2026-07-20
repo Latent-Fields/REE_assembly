@@ -6573,6 +6573,11 @@ def main():
     def _auto_pull():
         """Background thread: pull REE_assembly and ree-v3 every 5 minutes."""
         repos = [SERVE_DIR, SERVE_DIR.parent / "ree-v3"]
+        # repo name -> monotonic timestamp of the first consecutive skipped pull.
+        # Cleared on any successful pull. Lets the log report how long the
+        # explorer has been serving stale evidence, which a per-cycle message
+        # cannot: an 8-hour stall and a one-cycle blip looked identical before.
+        stuck_since = {}
         while True:
             time.sleep(300)
             ensure_mobile_tmux_session()  # recreate the phone session if it died
@@ -6584,35 +6589,75 @@ def main():
                     capture_output=True, text=True, timeout=30,
                 )
                 if result.returncode == 0:
+                    stuck_since.pop(repo.name, None)
                     if "Already up to date" not in result.stdout:
                         print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
                     continue
-                # --ff-only failed. The common cause is local un-pushed commits
-                # (e.g. igw-ledger automation commits on this Mac) that leave the
-                # branch diverged from origin, so it can't fast-forward. Auto-heal
-                # by rebasing the local commits onto origin -- but ONLY when the
-                # working tree is clean. Never autostash: an autostash cycle here
-                # can transiently revert another session's uncommitted evidence/
-                # or claims edits (see CLAUDE.md High-Contention Files).
+                # --ff-only failed. TWO distinct causes, which need different
+                # remedies and used to print the same (often wrong) message:
+                #
+                #   A. NOT diverged (0 ahead), but a dirty working-tree file
+                #      overlaps an incoming change, so the merge would clobber
+                #      it. Retrying can NEVER clear this -- the dirty tree also
+                #      skips the rebase below. It clears only when a session
+                #      commits those paths. This is the common case here: the
+                #      evidence/ derived artifacts are rewritten on origin by
+                #      the phase3 writers AND held dirty by governance sessions.
+                #   B. Genuinely diverged -- local un-pushed commits (e.g.
+                #      igw-ledger automation on this Mac). Auto-heal by rebasing
+                #      onto origin, but ONLY when the tree is clean. Never
+                #      autostash: an autostash cycle here can transiently revert
+                #      another session's uncommitted evidence/ or claims edits
+                #      (see CLAUDE.md High-Contention Files).
+                #
+                # A dirty tree alone never blocks a fast-forward -- only a dirty
+                # tree whose paths COLLIDE with the incoming diff does.
+                branch = subprocess.run(
+                    ["git", "-C", str(repo), "symbolic-ref", "--short", "HEAD"],
+                    capture_output=True, text=True, timeout=30,
+                ).stdout.strip() or "HEAD"
+                counts = subprocess.run(
+                    ["git", "-C", str(repo), "rev-list", "--left-right", "--count",
+                     f"origin/{branch}...HEAD"],
+                    capture_output=True, text=True, timeout=30,
+                ).stdout.split()
+                behind, ahead = (counts + ["?", "?"])[:2]
                 dirty = subprocess.run(
                     ["git", "-C", str(repo), "status", "--porcelain"],
                     capture_output=True, text=True, timeout=30,
                 ).stdout.strip()
+
+                first = stuck_since.setdefault(repo.name, time.monotonic())
+                mins = int((time.monotonic() - first) / 60)
+                stale = f"; stale {mins}m" if mins >= 10 else ""
+
                 if dirty:
-                    print(f"[serve] git pull {repo.name}: diverged + local changes present; "
-                          f"skipping (will retry next cycle)", flush=True)
+                    # git's own stderr names the exact blocking paths -- the one
+                    # piece of information that makes this actionable. It was
+                    # captured and discarded before.
+                    blockers = [ln.strip() for ln in result.stderr.splitlines()
+                                if ln.startswith("\t")]
+                    detail = (f" blocked by: {', '.join(blockers[:6])}"
+                              + (f" (+{len(blockers) - 6} more)" if len(blockers) > 6 else "")
+                              ) if blockers else ""
+                    kind = ("diverged + local changes"
+                            if ahead not in ("0", "?")
+                            else f"behind {behind}, NOT diverged -- uncommitted paths block ff")
+                    print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
+                          flush=True)
                     continue
                 rebase = subprocess.run(
                     ["git", "-C", str(repo), "pull", "--rebase"],
                     capture_output=True, text=True, timeout=60,
                 )
                 if rebase.returncode == 0:
+                    stuck_since.pop(repo.name, None)
                     print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
                 else:
                     subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
                                    capture_output=True, text=True, timeout=30)
-                    print(f"[serve] git pull {repo.name}: diverged, rebase conflict -- "
-                          f"manual merge needed", flush=True)
+                    print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
+                          f"rebase conflict -- manual merge needed{stale}", flush=True)
 
     threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
     print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)

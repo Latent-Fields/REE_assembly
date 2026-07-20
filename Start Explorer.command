@@ -10,6 +10,15 @@
 CANONICAL_ASSEMBLY="/Users/dgolden/REE_Working/REE_assembly"
 PORT=8000
 
+# Silence the libmalloc teardown warning that every spawned python subprocess
+# prints ("MallocStackLogging: can't turn off malloc stack logging because it
+# was not enabled"). It fires when MallocStackLogging is present-but-falsy in
+# the environment -- inherited from whatever exported it upstream (Xcode /
+# Instruments), never set by this tree. Unsetting is the fix; setting it to 0
+# is what TRIGGERS the message. Purely cosmetic: it only declutters the log.
+unset MallocStackLogging
+unset MallocStackLoggingNoCompact
+
 # Where serve.py listens. Default 0.0.0.0 = all interfaces (unchanged behaviour).
 # For WireGuard + localhost only (recommended once the iPhone peer is set up --
 # see docs/mobile_access.md), run the launcher with:
