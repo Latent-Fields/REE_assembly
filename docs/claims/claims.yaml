@@ -20145,6 +20145,34 @@
     NOTE for governance: substrate_queue.json SD-024 depends_on_unresolved should drop
     SD-004 (implemented) and MECH-232 (the claim SD-024 tests). Unblocks SD-025
     (curiosity_drive) downstream. See docs/architecture/sd_024_da_modulated_rbf_density.md.
+    LIVE-PATH PRODUCER WIRED 2026-07-20 -- the 2026-07-16 landing built the mechanism
+    and its READ but no WRITER. ResidueField.accumulate_benefit, the sole write path
+    into benefit_rbf_field, had NO CALLER anywhere in ree_core/ (its only write sites,
+    field.py:673 and :682, are inside that method; it was invoked only from experiments/
+    and tests/contracts/). Measured on a real warmup_train loop (darwin-arm64,
+    curiosity_weight=0.5) with benefit_terrain_enabled AND use_da_modulated_rbf_density
+    both True: active_mask.sum()==0, num_benefit_events==0.0; compute_local_density
+    early-returns zeros on an empty mask (field.py:273) so compute_representational_density
+    returned exactly 0.0; so HippocampalModule._curiosity_bonus returned 0.0 on all 14432
+    live calls regardless of curiosity_weight, and the use_curiosity_familiarity
+    True/False ablation was BIT-IDENTICAL. The 13 contracts could not catch this because
+    every one calls accumulate_benefit itself before asserting -- a test that populates
+    the terrain cannot detect that nothing else does. Fix: REEAgent.update_z_goal now
+    calls accumulate_benefit(z_world, benefit_magnitude=benefit_exposure,
+    dopamine_signal=benefit_exposure*drive_level), gated on new ResidueConfig flags
+    benefit_terrain_live_producer (default False) and benefit_live_producer_threshold
+    (0.1). Separate flag deliberately, NOT benefit_terrain_enabled: V3-EXQ-767/767a set
+    that flag and self-populate via direct accumulate_benefit calls, so reuse would
+    double-populate them on re-run. Also landed: HippocampalConfig.familiarity_bandwidth
+    1.0 -> 0.20 (V3-EXQ-786a sweep peak; 1.0 measured at exactly +0.000, the degenerate
+    clamped-sum case). 7 new contracts in
+    ree-v3/tests/contracts/test_sd024_benefit_terrain_live_producer.py assert through the
+    real REEAgent API against a real CausalGridWorldV2 episode loop and never call
+    accumulate_benefit directly. Full suite 2065 passed. NO evidence direction changed and
+    no manifest retro-edited; V3-EXQ-767/767a remain valid IN-VITRO validations of the
+    drive mechanism -- they simply do not establish LIVE-PATH efficacy, and governance
+    owns any re-reading of what they support. ree-v3 commits: substrate swept into
+    8ac193d by a concurrent session, contracts 7f16f25ceb.
 
 - id: SD-025
   title: "Curiosity drive: information-seeking bias in hippocampal trajectory scoring that favors regions of higher representational density in the RBF map."
@@ -20185,6 +20213,26 @@
     validation. Scope: DRIVE MECHANISM only -- NOT the env-constrained ARC-057 approach-emergence
     claim (interaction is V3-EXQ-768a, which promoted ARC-057 candidate->provisional 2026-07-17).
     Supersedes 767's inconclusive note. SD-025 stays candidate.
+
+    2026-07-20 SUBSTRATE (not governance -- no status or confidence change): the SD-024
+    benefit-terrain PRODUCER was missing from the live agent loop until this date, so the
+    SD-025 curiosity bonus was EXACTLY ZERO in every live agent run. accumulate_benefit
+    had no caller in ree_core/, benefit_rbf_field stayed empty, compute_local_density
+    early-returned zeros on the empty active mask, and _curiosity_bonus therefore computed
+    novelty = density * (1 - familiarity) = 0 -- measured 0.0 on all 14432 live calls,
+    regardless of curiosity_weight; the use_curiosity_familiarity ablation was
+    BIT-IDENTICAL. This does NOT touch V3-EXQ-767/767a: those populate the terrain
+    themselves via direct accumulate_benefit calls (767a lines 236, 238, 305), which is
+    why they measured density gaps of 75-80 and PASSED. They remain valid IN-VITRO
+    validations of the drive mechanism. What they do not establish -- and what nothing
+    yet establishes -- is LIVE-PATH efficacy: whether the drive does anything when the
+    terrain is built by the agent's own reward contacts rather than by the driver script.
+    Governance owns any re-reading of what 767/767a support; this note only records the
+    substrate fact. Also relevant to future reads: familiarity_bandwidth default moved
+    1.0 -> 0.20, because the FamiliarityTracker clamped-sum readout saturates at 1.0 and
+    would have become load-bearing the moment density stopped being identically zero.
+    See SD-024 implementation_note and sd_024_da_modulated_rbf_density.md "Live-Path
+    Producer (2026-07-20)".
   registered: "2026-04-14"
   depends_on:
     - SD-024

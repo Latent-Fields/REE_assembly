@@ -15,7 +15,76 @@ status_claim: SD-024
 > Depends on: SD-004, SD-014, ARC-007
 > Status: **IMPLEMENTED** 2026-07-16 (built as the DIAGNOSTIC instrument that
 > resolves MECH-232; validation V3-EXQ-766 queued). Design was doc-only 2026-04-14
-> -> 2026-07-15.
+> -> 2026-07-15. **Live-path producer wired 2026-07-20** -- see the section
+> immediately below BEFORE reading the 2026-07-16 status as complete.
+
+## Live-Path Producer (2026-07-20) -- the 2026-07-16 landing had no writer
+
+The 2026-07-16 implementation below is accurate about what it built, and it built
+the mechanism correctly. What it did not build was a **caller**.
+
+`ResidueField.accumulate_benefit` -- the sole write path into
+`benefit_rbf_field`, and the method this whole SD modulates -- had **no caller
+anywhere in `ree_core/`**. Its only two write sites (`field.py:673`, `:682`) are
+inside that one method; it was invoked only from `experiments/` scripts and
+`tests/contracts/`. `agent.py` called `update_valence`, `accumulate`,
+`accumulate_safety` and `evaluate_safety`, never `accumulate_benefit`.
+
+Measured on a real warmup_train loop (darwin-arm64, `curiosity_weight=0.5`) with
+BOTH `benefit_terrain_enabled` and `use_da_modulated_rbf_density` True:
+
+- `benefit_rbf_field.active_mask.sum() == 0`, `num_benefit_events == 0.0`;
+- `compute_local_density` early-returns zeros on an empty active mask
+  (`field.py:273`), so `compute_representational_density` returned exactly `0.0`;
+- so `HippocampalModule._curiosity_bonus` computed
+  `novelty = density * (1 - familiarity) = 0` and returned `0.0` on all 14432
+  live calls, regardless of `curiosity_weight`;
+- the `use_curiosity_familiarity` True/False ablation was **bit-identical**,
+  confirming familiarity was not the binding constraint;
+- hand-populating the terrain with 20 direct `accumulate_benefit` calls made both
+  density and the bonus non-zero, isolating the missing producer.
+
+**The SD-025 curiosity drive therefore contributed exactly zero to CEM trajectory
+scoring in every live agent run between 2026-07-16 and 2026-07-20.**
+
+**Why the 13 contracts did not catch it.** Every one of them calls
+`rf.accumulate_benefit(...)` itself and then asserts on the resulting field. That
+is a valid in-vitro validation of the allocation mechanism and it is exactly why a
+missing *producer* was invisible: a test that populates the terrain itself cannot
+detect that nothing else does. The new contracts
+(`tests/contracts/test_sd024_benefit_terrain_live_producer.py`, 7 tests, C1-C6)
+assert through the real `REEAgent` API against a real `CausalGridWorldV2` episode
+loop and never call `accumulate_benefit` directly.
+
+**The fix.** `REEAgent.update_z_goal` -- the canonical reward-contact hook, which
+already carries both ingredients this SD names for the phasic DA signal -- now
+calls `accumulate_benefit(z_world, benefit_magnitude=benefit_exposure,
+dopamine_signal=benefit_exposure * drive_level)`, gated on
+`ResidueConfig.benefit_terrain_live_producer` (default `False`) and a
+consummatory threshold `benefit_live_producer_threshold` (default `0.1`).
+
+Three things about that fix are load-bearing and should not be "simplified":
+
+1. **A separate flag, not `benefit_terrain_enabled`.** V3-EXQ-767/767a set
+   `benefit_terrain_enabled=True` and populate the terrain themselves via direct
+   `rf.accumulate_benefit()` calls (767a lines 236, 238, 305). Reusing that flag
+   would silently double-populate those designs on re-run. 767/767a stand as valid
+   in-vitro validations of the drive mechanism; they simply never established
+   live-path efficacy, and governance owns any re-reading of what they support.
+2. **The block precedes `update_z_goal`'s `goal_state is None` guard.** The
+   default config has `goal_state = None`. Placed after the guard, the producer
+   never runs -- a second instance of the same no-producer defect, for every
+   config that runs the curiosity drive without goal seeding. This was caught
+   empirically: the block was first written after the guard and contracts
+   C2/C4/C5 failed at 0 active centers.
+3. **`dopamine_signal` uses base `drive_level`**, not `pacc.effective_drive` nor
+   the SD-037 override-amplified value. Those are goal-*seeding* gains; the SD-012
+   phasic reward signal this SD consumes is `benefit_magnitude * drive_level`.
+
+**Scope.** No completed run's manifest or evidence direction was altered by this
+landing. V3-EXQ-767/767a are NOT invalidated. MECH-314a
+(`ree_core/policy/structured_curiosity.py`) is a separate novelty path and is
+unaffected.
 
 ## Implementation Status (2026-07-16)
 
