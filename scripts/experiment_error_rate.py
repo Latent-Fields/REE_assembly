@@ -35,11 +35,34 @@ WHAT IT MEASURES (three buckets, reported separately -- do not silently merge)
   This is the AUTHORITATIVE ERROR count.
 
 * PHANTOM completions -- `experiments.status='completed'` with NO `results` row.
-  This is the crash-before-manifest signature that escaped the fix above: the
-  DB row was flipped to completed without any manifest or results row. These are
-  crash-like but UNCLASSIFIED; they are reported as their own bucket and are NOT
-  folded into the ERROR numerator, because we cannot tell a crash from a
+  The DB row was flipped to completed without any manifest or results row. These
+  are crash-like but UNCLASSIFIED; they are reported as their own bucket and are
+  NOT folded into the ERROR numerator, because we cannot tell a crash from a
   bookkeeping gap without reading the worker's journalctl.
+
+  DO NOT assume a phantom is a silent code crash. One was traced end-to-end on
+  2026-07-20 (V3-EXQ-699a) and the mechanism was NOT crash-before-manifest:
+
+      21:05:38Z  cloud-3 claims and starts it (est 600 min)
+      08:45:50Z  a user session opens on cloud-3 (operator ssh; no OOM in journal)
+      08:46:25Z  [runner] INFRA-CRASH: exit=-15 (likely SIGTERM); leaving in
+                 queue, releasing claim, no completion written. actual_secs=42047
+      08:49:28Z  ree-runner service Stopped + Started (operator restart)
+      08:50:17Z  DB row flips to status='completed'
+      09:40:27Z  V3-EXQ-699b queued as the supersedor
+
+  So the runner behaved CORRECTLY and said so loudly -- it classified the
+  SIGTERM as transient infra, kept the item in queue, and deliberately wrote no
+  completion. The phantom was created by the SUBSEQUENT completed-flip plus
+  supersession by 699b, not by a silent crash. The 654e synthetic-ERROR path
+  correctly did not fire, because this was never a code crash.
+
+  Consequence for reading the output: the printed upper bound treats every
+  phantom as a crash, so it is a genuine UPPER bound and is expected to be
+  pessimistic. An operator-killed-then-superseded run inflates it without any
+  code being at fault. Before citing the upper bound as an error rate, spot-check
+  a phantom's journalctl for `INFRA-CRASH` and its queue_id for a lettered
+  supersedor -- both together mean "deliberately retired", not "crashed silently".
 
 * CORROBORATING -- per-machine `evidence/experiments/runner_status/<machine>.json`.
   NOTE the distinction that motivated this whole tool: the MONOLITHIC
