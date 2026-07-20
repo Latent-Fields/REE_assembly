@@ -1071,3 +1071,6 @@ One line per hourly tick. ASCII only.
 2026-07-20T04:19:45Z skip IGW-20260720-209: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-20T05:20:12Z SPAWN IGW-20260720-208 skill=/queue-experiment prio=40 uuid=031f6a62-5b12-405d-8df4-83239bffebc9 pid=69694 worktree=igw-208-proposal-for-mech-177
 2026-07-20T05:30:47Z auto-defer IGW-20260720-208 hash=175df51e714b for 48h (complete)
+2026-07-20T05:30:49Z complete IGW-20260720-208 spawned->completed outcome=USEFUL_LANDED: gated EVB-0119 (MECH-177) out_of_domain, no experiment queued: mirror V3-EXQ-673
+2026-07-20T06:22:39Z reconcile-release hash=175df51e714b (IGW-20260720-208 -> completed)
+2026-07-20T06:22:33Z no eligible item (skipped 237): IGW-20260720-001:skill /governance not allowed; IGW-20260720-002:skill /governance not allowed; IGW-20260720-004:skill /governance not allowed
