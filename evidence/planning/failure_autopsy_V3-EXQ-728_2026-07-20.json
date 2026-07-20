@@ -1,0 +1,130 @@
+{
+ "schema_version": "failure_autopsy/v1",
+ "generated_utc": "2026-07-20T16:30:40Z",
+ "scope": "single",
+ "status": "confirmed",
+ "targets": [
+  {
+   "run_id": "v3_exq_728_trained_allon_capability_point_20260720T155414Z_v3",
+   "queue_id": "V3-EXQ-728",
+   "claim_ids": [],
+   "bears_on": [
+    "ree_ai_design_critique_plan:WS-3",
+    "zworld_untrained_encoder_defect"
+   ],
+   "experiment_purpose": "baseline",
+   "self_route_label": "substrate_not_ready_requeue",
+   "self_route_verdict": "UPHELD, with a scope sharpening. The label is correct in direction -- the substrate genuinely is not ready -- but 'requeue' is only well-formed AFTER sd_zworld_warmup_optimizer_group lands, so the routing is implement-substrate FIRST and a 728a same-question re-run second. Contrast with V3-EXQ-786 the same week, where the identical self-route was REJECTED as a test-design defect (the V3-EXQ-642 pattern): there the instrument was defective; here the instrument is demonstrably sound (guard arm-scoped, both anchor arms green and scored, oracle clears the floor 6.333 vs 1.0 so no sparse-env confound, non_degenerate true, recording complete including substrate_hash) and the defect is LOCATED IN CODE -- three optimizer groups in _train_all_on_agent (e2, lateral-PFC bias head, OFC devaluation head), none covering any latent_stack parameter, plus latent.z_world.detach() in the P0 buffer -- reproduced across two independent drivers and three seeds, with a confirmed fix route (SD-070 per the V3-EXQ-783 adjudication) already sitting as a ready priority-1 substrate_queue entry.",
+   "failed_criterion": "absolute",
+   "four_layer_diagnosis": {
+    "claim_alignment": "n/a (claim_ids empty; experiment_purpose=baseline, non_contributory, PROMOTES/DEMOTES NOTHING)",
+    "biological_reference": "n/a -- implementation fault, not a translation question",
+    "prerequisites": "missing -- a gradient path reaching latent_stack, plus a supervision target that is not action-uninformative (SD-070 supplies both)",
+    "implementation": "partial/defective -- the phase named 'world-model (encoder/e2) warmup' trains no part of the world encoder",
+    "environment": "adequate -- greedy oracle 6.333 resources/ep against a 1.0 floor, 6.3x clear",
+    "measurement": "adequate for the run itself; the guard is what made a 3.2-hour run interpretable rather than quietly wrong",
+    "integration": "partially coupled",
+    "scale": "not the binding constraint -- P0 ran 4212-35280 ticks and moved zero tensors, so episode count provably cannot alter the outcome"
+   },
+   "biological_reference": {
+    "closest_mechanism": null,
+    "dependencies": [],
+    "is_formal_import": false,
+    "divergence": "n/a -- the finding is an implementation defect (no optimizer group covering latent_stack), not a biological translation question.",
+    "lit_status": "n/a"
+   },
+   "recommended_epistemic_category": "competence_implementation_gap",
+   "recommended_evidence_direction": "non_contributory",
+   "recommended_evidence_quality_note": "2026-07-20 (failure autopsy, V3-EXQ-728): NON-CONTRIBUTORY as claim evidence (claim_ids empty, experiment_purpose=baseline, PROMOTES/DEMOTES NOTHING) and the trained-all-ON arm is REFUSED, but the run carries two findings. (1) SECOND INDEPENDENT STRIKE on the z_world untrained-encoder defect, on a DIFFERENT driver from V3-EXQ-737a: the guard measured 0 of 4 split_encoder.world_encoder and 0 of 61 latent_stack tensors changed at p0_episodes=200, bit-identical (max|delta| 0.000e+00), failing 3 of 3 seeds with guard_checked=true. Because v3_exq_728_trained_allon_capability_point.py defines its OWN _train_all_on_agent copy (:481), this confirms the defect is PER-COPY, not confined to the shared _lib path -- as zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md section 6c predicted for all six callers. Env readiness was otherwise clean (greedy oracle 6.333 resources/ep against a 1.0 floor; yardstick_discriminates true), so this is the encoder defect in isolation, not a sparse-or-lethal-env confound; the random_walk and greedy_oracle anchors are unaffected and remain scored. (2) EVIDENCE-STALENESS: the defect invalidates the 2026-07-09 728 capability point (v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3, PASS, reviewed, self-routed trained_allon_capability_point_landed) RETROSPECTIVELY, and this is established by code archaeology rather than inference -- git diff c83221c..HEAD on the driver shows ZERO changed torch.optim lines, the same three optimizer groups (e2, lateral-PFC bias head, OFC devaluation head), zero occurrences of latent_stack in the c83221c revision, and the same latent.z_world.detach() at the P0 buffer; the only intervening commits (0f153a4, 47ed14a) were the pack_writer manifest-writing migration. That run's ree_trained_allon arm therefore also executed on a frozen random projection, corroborated by near-identical numbers across the two runs (foraging 0.167 vs 0.117, goal_reach 0.117 vs 0.10, planning_depth 1.33 vs 1.42). Its 'trained_allon_capability_point_landed' label is now known false. The self-route substrate_not_ready_requeue is UPHELD (see the autopsy for the contrast with V3-EXQ-786, where the same label was rejected as a test-design defect).",
+   "recommended_manifest_writes": [
+    {
+     "target_run_id": "v3_exq_728_trained_allon_capability_point_20260709T224533Z_v3",
+     "set_evidence_direction": "superseded",
+     "evidence_direction_note_append": "2026-07-20 (failure autopsy, V3-EXQ-728): SUPERSEDED. This capability point was measured on a FROZEN RANDOM PROJECTION, not a prediction-trained z_world. Established by code archaeology, not inference: the run executed against driver commit c83221c, whose _train_all_on_agent carries the same three optimizer groups as HEAD (e2, lateral-PFC bias head, OFC devaluation head), none covering any latent_stack parameter -- 'latent_stack' appears zero times in that revision -- with the same latent.z_world.detach() at the P0 buffer; git diff c83221c..HEAD on the driver shows zero changed torch.optim lines, the only intervening commits being the pack_writer manifest-writing migration. The guarded 2026-07-20 re-run measured 0 of 4 world_encoder and 0 of 61 latent_stack tensors changed on that identical training path, 3 of 3 seeds. Near-identical metrics across the two runs corroborate (foraging 0.167 vs 0.117, goal_reach 0.117 vs 0.10, planning_depth 1.33 vs 1.42). The interpretation_label 'trained_allon_capability_point_landed' is therefore FALSE: no trained all-ON capability point was landed. Superseded by the post-fix re-run gated on sd_zworld_warmup_optimizer_group. Nothing in claims.yaml moves (claim_ids empty, non_contributory, baseline). NOTE a compounding recording gap: this manifest is missing 6 always-core fields (recording_schema, substrate_hash, machine_class, elapsed_seconds, config, seeds) per ree-v3/validate_recording.py, which is why its substrate identity had to be recovered by driver-code archaeology rather than a substrate_hash comparison.",
+     "rationale": "The run is PASS and already in review_tracker.reviewed_run_ids, so nothing else will re-surface it. Without this write a later session reads it as the trained all-ON capability point."
+    }
+   ],
+   "recommended_plan_writes": [
+    {
+     "path": "REE_assembly/evidence/planning/ree_ai_design_critique_plan.md",
+     "node": "WS-3",
+     "current_status": "DONE (2026-07-09)",
+     "recommended_status": "NOT DONE -- reopened",
+     "rationale": "WS-3's DONE status rests explicitly on 'calibration V3-EXQ-727 + TRAINED all-ON point V3-EXQ-728' and on closing the 'reported alongside every all-ON run' clause. The trained all-ON point was never valid (see recommended_manifest_writes), so the clause is not closed. The yardstick itself (experiments/_lib/capability_eval.py) IS built and is unaffected -- only the trained point is void. Reopen WS-3 gated on sd_zworld_warmup_optimizer_group, noting that the 727 calibration and the two anchor arms survive."
+    }
+   ],
+   "recommended_substrate_queue_entry": {
+    "action": "amend",
+    "target_sd_id": "sd_zworld_warmup_optimizer_group",
+    "amendment": "The existing second failure_record entry for this run already carries the correct metric and target; replace ONLY its trailing note clause 'ADJUDICATION STILL OWED: this run is an un-adjudicated terminal FAIL with a live self-route (substrate_not_ready_requeue, claim_ids=[]) and has NOT been marked reviewed; it needs /failure-autopsy before it drives anything beyond this failure_record.' with: 'ADJUDICATED 2026-07-20 by failure_autopsy_V3-EXQ-728_2026-07-20.json (confirmed): self-route substrate_not_ready_requeue UPHELD, epistemic_category competence_implementation_gap, routing implement-substrate then a 728a same-question re-run. The autopsy additionally establishes by code archaeology that the defect invalidates the 2026-07-09 728 capability point retrospectively and that ree_ai_design_critique_plan.md WS-3 DONE is stale.' Do NOT append a third failure_record for this run -- it is already recorded. Everything else in the entry (title, implementation_hint, priority 1, ready true, unblocks_claims, depends_on_resolved) is correct as written and needs no change.",
+    "sd_id_suggested": null,
+    "title": null,
+    "implementation_hint": null,
+    "unblocks_claims": [
+     "MECH-457",
+     "INV-088",
+     "Q-002"
+    ],
+    "depends_on_unresolved": [],
+    "priority_suggested": 1,
+    "failure_record_entry": null,
+    "note": "action=amend rather than create: the entry exists (added by session angry-gauss-b9d787, source_autopsy failure_autopsy_V3-EXQ-737a_2026-07-20.json) and already carries this run. Reconciling per governance Step 6a-iv amend semantics rather than double-writing."
+   },
+   "pending_retest_after_substrate": true,
+   "narrow_supports_flag": false,
+   "re_derive_brake": {
+    "fired": false,
+    "threshold": 2,
+    "prior_substrate_ceiling_autopsies": [],
+    "refused_requeue": false,
+    "route_to": "implement-substrate",
+    "upstream_substrate": "sd_zworld_warmup_optimizer_group",
+    "note": "Cannot fire and correctly does not: the brake is claim-keyed and this target carries claim_ids: []. Independently, R3 excludes it -- the recommended category is competence_implementation_gap, not substrate_ceiling, because the defect is a missing optimizer group with a known fix rather than a substrate at its limit. Counting it as a ceiling hit would invert the brake's purpose (a broken instrument-of-training is not evidence of a ceiling). This is exactly the claim_ids=[] blind spot GOV-DIAG-1 exists to cover -- see gov_diag_1_note."
+   },
+   "gov_diag_1_note": {
+    "eligible": true,
+    "basis": "claim_ids: [] AND recommended_evidence_direction non_contributory AND status confirmed -- a GOV-DIAG-1 (a) diagnostic recurrence hit.",
+    "tokens": [
+     "ree_ai_design_critique_plan:WS-3",
+     "zworld_untrained_encoder_defect"
+    ],
+    "count_after_this_autopsy": 1,
+    "threshold": 3,
+    "fires": false,
+    "corpus_gap_flagged": "Two prior strikes on this same defect are INVISIBLE to the GOV-DIAG-1 counter and the token would stand at 3 if both were countable. (1) failure_autopsy_V3-EXQ-737a_2026-07-20.json is a confirmed, claim_ids-empty, non_contributory target -- fully GOV-DIAG-1-eligible -- but carries NO bears_on field, so it contributes to no token. RECOMMEND governance backfill bears_on: ['zworld_untrained_encoder_defect'] on that target, which would move the token to 2. (2) The first strike, V3-EXQ-780, was written up as zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md -- a diagnosis .md, not a failure_autopsy_*.json -- so it is structurally outside the corpus the counter reads and cannot be counted at all without re-homing it. Recording both here so the shortfall is auditable rather than silent."
+   },
+   "learning_extracted": [
+    "The guard's first real dividend is a RETROSPECTIVE one. Its detection value was argued prospectively (737a), but its larger payoff here was licensing a re-read of an already-reviewed PASS: the 07-09 capability point had cleared review, closed a plan work-stream, and would never have re-surfaced. A detector that fires on a new run should trigger an audit of every prior run on the same code path, not just adjudication of the run it fired on.",
+    "Code archaeology beats metric similarity for retrospective invalidation, and the two should be reported in that order. The near-identical numbers across the 07-09 and 07-20 runs are suggestive but circumstantial; 'git diff c83221c..HEAD shows zero changed torch.optim lines and latent_stack appears zero times in the older revision' is dispositive. Where a manifest lacks substrate_hash, driver-commit archaeology is the fallback that still yields a hard answer.",
+    "A missing substrate_hash converts a cheap check into an expensive one. The 07-09 manifest is missing 6 always-core fields, so its substrate identity was unrecoverable by hash and had to be reconstructed from git. The Experimental Recording Standard's always-core is what makes retrospective invalidation a one-command comparison instead of an archaeology session.",
+    "'Substrate not ready' and 'test design defective' produce the SAME self-route label and must be separated by whether the instrument stayed sound. V3-EXQ-786 was rejected on this label a week earlier; the discriminator here was that the guard was arm-scoped (anchors stayed green and scored), the env precondition passed independently at 6.3x the floor, and the defect was locatable in code across two independent drivers. A self-route label is a hypothesis about cause; the adjudication is what tests it.",
+    "A plan work-stream marked DONE on the strength of a specific run inherits that run's validity, and nothing re-checks it. WS-3 went DONE on 2026-07-09 citing V3-EXQ-728; when the run was invalidated 11 days later nothing propagated. Plan status rows citing a run_id should be treated as derived artifacts of that run's standing.",
+    "An unstamped bears_on silently zeroes a governance counter. 737a is fully GOV-DIAG-1-eligible and contributes nothing because the field is absent -- and the first strike is outside the corpus shape entirely, being a .md rather than a failure_autopsy_*.json. The rule is non-falsifying-safe by design, so the shortfall is invisible unless written down."
+   ],
+   "routing": "implement-substrate",
+   "routing_secondary": "queue-experiment",
+   "routing_detail": {
+    "successor": "V3-EXQ-728a",
+    "gated_on": "sd_zworld_warmup_optimizer_group landing (SD-070 world-encoder training path adopted in v3_exq_728_trained_allon_capability_point.py's own _train_all_on_agent copy at :481)",
+    "kind": "same-question alphabetic suffix",
+    "required_changes": [
+     "Re-run on the SD-070 training path so ree_trained_allon measures a LEARNED z_world; keep the zworld_encoder_guard adopted and promote it from a recorded precondition to a GATING one on that arm now that a green path exists",
+     "Assert non-zero world-path weight delta with PR retention ~0.658 and P0/P1 phase separation preserved, matching SD-070's measured behaviour per V3-EXQ-783",
+     "Retain the arm-scoped policy: the random_walk and greedy_oracle anchors run no P0 warmup and must stay scored independently, as they were here"
+    ],
+    "refusal_note": "No refusal applies. The re-derive brake did not fire, and a 728a re-run is not a same-question letter circling a ceiling -- it is the retest the substrate build unblocks. It must NOT be queued before the build lands, or it reproduces this exact result."
+   }
+  }
+ ],
+ "cluster_pattern": null,
+ "granularity_debt_trigger": {
+  "fires": false,
+  "routing": null,
+  "basis": "claim_ids is empty -- this is a capability-point baseline refused by a substrate guard, not an autopsy circling a claim. No prior failure_autopsy_* doc targets this run's claim layer because it has none."
+ },
+ "hypothesis_space_ledger_applied": {
+  "question": null,
+  "mode": "skipped",
+  "basis": "No fanout_recommendation is emitted -- per GOV-FANOUT-1 this bottleneck is EXEMPT because it routes to one unambiguous build (sd_zworld_warmup_optimizer_group, node_class 'complicated (buildable)', ready true, priority 1), not to a discrimination among live hypotheses. The run also adjudicates no pre-registered leg: its trained arm ran on a frozen random projection, so resolving any competence_floor hypothesis from it would misattribute an untrained-encoder measurement to a representation claim -- the same reasoning failure_autopsy_V3-EXQ-737a_2026-07-20.json used to skip."
+ }
+}
