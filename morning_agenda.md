@@ -33,8 +33,13 @@ V3-EXQ-768a (ARC-057, DA x curiosity interaction margin), 775 (MECH-086 selectio
   `ready_sd_validation_candidates` is **empty**, with 32 excluded as `validation_already_ran` — so if the
   queue does drain, refill needs a fresh `/queue-experiment` design, not a re-queue.
 - **Owed successors** (passed all three Step 7c checks — not queued, no manifest, not completed):
-  - **V3-EXQ-631** — MECH-342 maintenance-release ecological follow-on. `commitment_closure_plan` lists it
-    as "queued (next-wave session)" but it never was. It is the row that clears MECH-342's `v3_pending`.
+  - ~~**V3-EXQ-631**~~ — **NOT an owed successor; retired 2026-07-21 as a phantom duplicate ID.** It was
+    minted 2026-06-02 by a parallel session for the same experiment another session queued the same day as
+    **V3-EXQ-629**. 629 and 629b both RAN and both FAILed `non_contributory`. The MECH-342 ecological
+    retest that clears `v3_pending` is genuinely unqueued, but it is **gated**, not owed: it waits on the
+    `scaffolded_sd054_onboarding` nav-competence leg clearing >=2/3 seeds in the ecological harness (629b's
+    failure was upstream foraging incompetence, not a MECH-342 defect). No new EXQ id minted. See
+    `evidence/planning/commitment_closure_plan.md` `governance_2026_07_21`.
   - **V3-EXQ-667a** — infant_substrate GAP-14 (c-1) exploration-strength-collapse successor to 667;
     the plan explicitly says "667a not yet queued". EXQ-ISEF-005 stays blocked until it runs.
   - **V3-EXQ-475a** — goal_pipeline GAP-4 Tier-1 StepHarness retest. **Ambiguous**: it *was* queued
