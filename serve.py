@@ -53,6 +53,16 @@ import time
 from pathlib import Path
 from urllib.parse import urlparse
 
+# Make EVERY subprocess.run(timeout=) in this module SIGTERM its child before
+# SIGKILLing it. serve.py runs `git pull` / `status` / `add` / `commit` against
+# REE_assembly and ree-v3 unattended; the stdlib's SIGKILL-on-timeout bypasses
+# git's cleanup handler and orphans `.git/index.lock`, which then blocks
+# ree_commit.py's shared-index refresh and arms a staged revert for the next
+# session. See graceful_timeout.py's module docstring for the measurement.
+# Module-local rebinding: the stdlib module is not mutated.
+import graceful_timeout
+subprocess = graceful_timeout.wrap(subprocess)
+
 try:
     import yaml as _yaml
     _YAML_OK = True
@@ -1110,6 +1120,21 @@ def _commit_and_push_assignments(message: str) -> dict:
         if push.returncode != 0:
             return {"status": "error", "message": f"git push: {push.stderr.strip()[:200]}", "sha": sha}
         return {"status": "ok", "message": "committed and pushed", "sha": sha}
+    except subprocess.TimeoutExpired as exc:
+        # MUST stay ahead of the bare `except Exception` below. A timeout here
+        # is not just "the commit did not happen": until graceful_timeout was
+        # wired in above, the SIGKILL left an orphan `.git/index.lock` in
+        # REE_assembly, and this handler reported it as an ordinary error dict
+        # that nobody reads -- a silent producer of the workspace's recurring
+        # stale-lock incidents. The lock is fixed at the signal level now; this
+        # branch exists so the TIMEOUT ITSELF is never again invisible.
+        cmd = " ".join(exc.cmd) if isinstance(exc.cmd, (list, tuple)) else str(exc.cmd)
+        print(f"[serve] TIMEOUT in _commit_and_push_assignments: repo=REE_assembly "
+              f"cmd={cmd!r} after {exc.timeout}s -- SIGTERM sent first, so no "
+              f"orphan .git/index.lock is expected; check if one appears.",
+              flush=True)
+        return {"status": "error",
+                "message": f"timeout after {exc.timeout}s: {cmd}", "sha": None}
     except Exception as exc:
         return {"status": "error", "message": f"exception: {exc}", "sha": None}
 
@@ -6578,86 +6603,125 @@ def main():
         # explorer has been serving stale evidence, which a per-cycle message
         # cannot: an 8-hour stall and a one-cycle blip looked identical before.
         stuck_since = {}
+
+        def _pull_repo(repo):
+            """One repo's pull cycle. A bare `return` means: on to the next repo.
+
+            Extracted from the loop body so the caller can fault-isolate each
+            repo individually -- see the try/except in the while loop below.
+            """
+            if not (repo / ".git").is_dir():
+                return
+            result = subprocess.run(
+                ["git", "-C", str(repo), "pull", "--ff-only"],
+                capture_output=True, text=True, timeout=30,
+            )
+            if result.returncode == 0:
+                stuck_since.pop(repo.name, None)
+                if "Already up to date" not in result.stdout:
+                    print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
+                return
+            # --ff-only failed. TWO distinct causes, which need different
+            # remedies and used to print the same (often wrong) message:
+            #
+            #   A. NOT diverged (0 ahead), but a dirty working-tree file
+            #      overlaps an incoming change, so the merge would clobber
+            #      it. Retrying can NEVER clear this -- the dirty tree also
+            #      skips the rebase below. It clears only when a session
+            #      commits those paths. This is the common case here: the
+            #      evidence/ derived artifacts are rewritten on origin by
+            #      the phase3 writers AND held dirty by governance sessions.
+            #   B. Genuinely diverged -- local un-pushed commits (e.g.
+            #      igw-ledger automation on this Mac). Auto-heal by rebasing
+            #      onto origin, but ONLY when the tree is clean. Never
+            #      autostash: an autostash cycle here can transiently revert
+            #      another session's uncommitted evidence/ or claims edits
+            #      (see CLAUDE.md High-Contention Files).
+            #
+            # A dirty tree alone never blocks a fast-forward -- only a dirty
+            # tree whose paths COLLIDE with the incoming diff does.
+            branch = subprocess.run(
+                ["git", "-C", str(repo), "symbolic-ref", "--short", "HEAD"],
+                capture_output=True, text=True, timeout=30,
+            ).stdout.strip() or "HEAD"
+            counts = subprocess.run(
+                ["git", "-C", str(repo), "rev-list", "--left-right", "--count",
+                 f"origin/{branch}...HEAD"],
+                capture_output=True, text=True, timeout=30,
+            ).stdout.split()
+            behind, ahead = (counts + ["?", "?"])[:2]
+            dirty = subprocess.run(
+                ["git", "-C", str(repo), "status", "--porcelain"],
+                capture_output=True, text=True, timeout=30,
+            ).stdout.strip()
+
+            first = stuck_since.setdefault(repo.name, time.monotonic())
+            mins = int((time.monotonic() - first) / 60)
+            stale = f"; stale {mins}m" if mins >= 10 else ""
+
+            if dirty:
+                # git's own stderr names the exact blocking paths -- the one
+                # piece of information that makes this actionable. It was
+                # captured and discarded before.
+                blockers = [ln.strip() for ln in result.stderr.splitlines()
+                            if ln.startswith("\t")]
+                detail = (f" blocked by: {', '.join(blockers[:6])}"
+                          + (f" (+{len(blockers) - 6} more)" if len(blockers) > 6 else "")
+                          ) if blockers else ""
+                kind = ("diverged + local changes"
+                        if ahead not in ("0", "?")
+                        else f"behind {behind}, NOT diverged -- uncommitted paths block ff")
+                print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
+                      flush=True)
+                return
+            rebase = subprocess.run(
+                ["git", "-C", str(repo), "pull", "--rebase"],
+                capture_output=True, text=True, timeout=60,
+            )
+            if rebase.returncode == 0:
+                stuck_since.pop(repo.name, None)
+                print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
+            else:
+                subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
+                               capture_output=True, text=True, timeout=30)
+                print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
+                      f"rebase conflict -- manual merge needed{stale}", flush=True)
+
+        # EVERY cycle is fault-isolated, per repo. This loop previously had NO
+        # exception handling at all, so a single TimeoutExpired from any of the
+        # git calls above -- unattended, every 5 minutes, against the two repos
+        # that actually accumulate stale locks -- killed this thread
+        # PERMANENTLY, after which the explorer served stale evidence forever
+        # with nothing printed anywhere. One bad cycle must cost one cycle.
         while True:
             time.sleep(300)
-            ensure_mobile_tmux_session()  # recreate the phone session if it died
+            try:
+                ensure_mobile_tmux_session()  # recreate the phone session if it died
+            except Exception as exc:
+                print(f"[serve] auto-pull: ensure_mobile_tmux_session failed: "
+                      f"{type(exc).__name__}: {exc} -- continuing.", flush=True)
             for repo in repos:
-                if not (repo / ".git").is_dir():
-                    continue
-                result = subprocess.run(
-                    ["git", "-C", str(repo), "pull", "--ff-only"],
-                    capture_output=True, text=True, timeout=30,
-                )
-                if result.returncode == 0:
-                    stuck_since.pop(repo.name, None)
-                    if "Already up to date" not in result.stdout:
-                        print(f"[serve] git pull {repo.name}: {result.stdout.strip()}", flush=True)
-                    continue
-                # --ff-only failed. TWO distinct causes, which need different
-                # remedies and used to print the same (often wrong) message:
-                #
-                #   A. NOT diverged (0 ahead), but a dirty working-tree file
-                #      overlaps an incoming change, so the merge would clobber
-                #      it. Retrying can NEVER clear this -- the dirty tree also
-                #      skips the rebase below. It clears only when a session
-                #      commits those paths. This is the common case here: the
-                #      evidence/ derived artifacts are rewritten on origin by
-                #      the phase3 writers AND held dirty by governance sessions.
-                #   B. Genuinely diverged -- local un-pushed commits (e.g.
-                #      igw-ledger automation on this Mac). Auto-heal by rebasing
-                #      onto origin, but ONLY when the tree is clean. Never
-                #      autostash: an autostash cycle here can transiently revert
-                #      another session's uncommitted evidence/ or claims edits
-                #      (see CLAUDE.md High-Contention Files).
-                #
-                # A dirty tree alone never blocks a fast-forward -- only a dirty
-                # tree whose paths COLLIDE with the incoming diff does.
-                branch = subprocess.run(
-                    ["git", "-C", str(repo), "symbolic-ref", "--short", "HEAD"],
-                    capture_output=True, text=True, timeout=30,
-                ).stdout.strip() or "HEAD"
-                counts = subprocess.run(
-                    ["git", "-C", str(repo), "rev-list", "--left-right", "--count",
-                     f"origin/{branch}...HEAD"],
-                    capture_output=True, text=True, timeout=30,
-                ).stdout.split()
-                behind, ahead = (counts + ["?", "?"])[:2]
-                dirty = subprocess.run(
-                    ["git", "-C", str(repo), "status", "--porcelain"],
-                    capture_output=True, text=True, timeout=30,
-                ).stdout.strip()
-
-                first = stuck_since.setdefault(repo.name, time.monotonic())
-                mins = int((time.monotonic() - first) / 60)
-                stale = f"; stale {mins}m" if mins >= 10 else ""
-
-                if dirty:
-                    # git's own stderr names the exact blocking paths -- the one
-                    # piece of information that makes this actionable. It was
-                    # captured and discarded before.
-                    blockers = [ln.strip() for ln in result.stderr.splitlines()
-                                if ln.startswith("\t")]
-                    detail = (f" blocked by: {', '.join(blockers[:6])}"
-                              + (f" (+{len(blockers) - 6} more)" if len(blockers) > 6 else "")
-                              ) if blockers else ""
-                    kind = ("diverged + local changes"
-                            if ahead not in ("0", "?")
-                            else f"behind {behind}, NOT diverged -- uncommitted paths block ff")
-                    print(f"[serve] git pull {repo.name}: {kind}; skipping{stale}.{detail}",
-                          flush=True)
-                    continue
-                rebase = subprocess.run(
-                    ["git", "-C", str(repo), "pull", "--rebase"],
-                    capture_output=True, text=True, timeout=60,
-                )
-                if rebase.returncode == 0:
-                    stuck_since.pop(repo.name, None)
-                    print(f"[serve] git pull {repo.name}: rebased local commits onto origin", flush=True)
-                else:
-                    subprocess.run(["git", "-C", str(repo), "rebase", "--abort"],
-                                   capture_output=True, text=True, timeout=30)
-                    print(f"[serve] git pull {repo.name}: diverged ({ahead} ahead/{behind} behind), "
-                          f"rebase conflict -- manual merge needed{stale}", flush=True)
+                try:
+                    _pull_repo(repo)
+                except subprocess.TimeoutExpired as exc:
+                    # Kept AHEAD of the generic handler because this is the one
+                    # failure that used to damage the repo rather than just the
+                    # thread: before graceful_timeout was wired in above, the
+                    # stdlib SIGKILLed the git child and orphaned
+                    # .git/index.lock. Name the repo and the command -- a silent
+                    # producer is what made this take three sessions to narrow.
+                    cmd = (" ".join(exc.cmd) if isinstance(exc.cmd, (list, tuple))
+                           else str(exc.cmd))
+                    print(f"[serve] auto-pull TIMEOUT: repo={repo.name} cmd={cmd!r} "
+                          f"after {exc.timeout}s -- SIGTERM was sent first, so git "
+                          f"should have unlinked .git/index.lock itself; thread "
+                          f"CONTINUES to the next cycle.", flush=True)
+                except Exception as exc:
+                    import traceback
+                    print(f"[serve] auto-pull ERROR: repo={repo.name} "
+                          f"{type(exc).__name__}: {exc} -- thread CONTINUES to the "
+                          f"next cycle.", flush=True)
+                    traceback.print_exc()
 
     threading.Thread(target=_auto_pull, daemon=True, name="auto-pull").start()
     print("[serve] Auto-pull: every 5 min (REE_assembly + ree-v3)", flush=True)
