@@ -6,6 +6,7 @@
 **Session:** `confident-pare-9273f1` (orphaned-thought intake pass, 2026-07-21)
 **Source:** an external review of the Latent-Fields repositories. Treated as **external process feedback on the Assembly**, not as evidence about REE the agent.
 **Status:** structured intake written; candidate claims **NOT yet registered** (concurrent sessions held the `docs/claims/claims.yaml` claim at intake time). Registration deferred.
+**Amended 2026-07-22:** candidate 4 (what event counts as V3 closure) **ANSWERED by the user**, verbatim, and the answer is a fourth option none of the three offered — a property of the artefact rather than a procedural event. Candidates 1-3 are unblocked; one residual sub-question ("independent" = autonomous or off-scaffold) still gates candidate 1's audit scope. See candidate 4.
 **Promotes/demotes:** nothing.
 
 ## Authorship note
@@ -88,14 +89,39 @@ Note this interlocks with **INV-077** at the presentation layer: human/agent pro
 
 3. **Legibility by subtraction: the closure package is produced by curating and compressing existing material, not by rewriting the research history.** *Candidate, `governance_rule` / method commitment.* Separate the primary reader path (current work) from supporting research and from operational archaeology; retain audit history but remove it from the reader path; mark human vs agent provenance in the public account. *Audit-shaped PASS/FAIL:* PASS = a reader path exists whose length from entry point to a reproducible result is bounded by a pre-registered number of hops, with archaeology reachable but off that path. FAIL = the package is produced as new prose narrating the whole history. *Decidability precondition:* requires an agreed entry point and an agreed "reproducible result" target; without both, hop-count is unmeasurable and the rule reports `definition_not_ready`. *Cross-ref:* INV-077 (provenance, presentation-layer instance), SD-062, `docs/public_explorer_policy.md`, `docs/START_HERE_HOW_REE_DEVELOPS.md`.
 
-4. **Open question: what event counts as V3 closure for the purpose of these gates?** *Candidate, `open_question` (Q-*).* Strict green board, governance acceptance, or an additional reproducibility check — the three are not equivalent and candidate 1 is undecidable until one is chosen. *What would answer it:* a decision, not an experiment. Note the strict green-board date has already passed (target 2026-07-19; the closure dashboard reads 77.5% at 2026-07-21 with 23 nodes remaining and 9 blocked), so "green board" is currently a *future* event and the question is live rather than academic. *Decidability precondition:* none — this question exists precisely because the precondition for the others is missing. *Cross-ref:* candidate 1, `docs/closure_dashboard.md`, `docs/roadmap.md`.
+4. **~~Open question~~ ANSWERED 2026-07-22 by the user: what event counts as V3 closure for the purpose of these gates?**
+
+   **The decision, verbatim:**
+
+   > v3 closure is the first point that an independent agent runs well. running well means interpretable, as we hoped, not significantly impaired.
+
+   *Register as a `design_decision` / `governance_rule` definitional anchor, not as an open question.* This supersedes the three options originally offered here — strict green board, governance acceptance, additional reproducibility check — **none of which the user chose**, and the reason matters: all three are *procedural* (a claims-status condition, a process decision, a check being run), whereas the chosen criterion is a **property of the artefact**. That is the better anchor for exactly the reason the 2026-06-24 intake gives independently: what candidate 1 needs to freeze is a *manipulable causal object*, and "an agent that runs and is interpretable" is precisely the thing you can lesion, ablate and compare against later.
+
+   **Operationalisation — two conditions, deliberately asymmetric:**
+
+   - **(a) Interpretable, *as we hoped*** — the positive criterion, and "as we hoped" is load-bearing. This is not post-hoc interpretability; it is interpretability **against prior architectural intent**. The internal states must be legible *and mean what the claims said they would mean*. In effect: **the claims registry is a true description of the running artefact.**
+   - **(b) Not significantly impaired** — a **floor, not a performance target**. Explicitly not "performs well", not "beats a baseline". This is an anti-Goodhart choice and should be preserved as one: making closure a benchmark would distort the research toward benchmark-chasing, which is the same distortion this thought warns about for premature external legibility (see N2). Do not "strengthen" (b) into a performance criterion at registration.
+
+   **Decidability preconditions (what still needs pinning before candidate 1 can be audited):**
+
+   - **(i) The scope of "independent" is ambiguous and consequential.** Two readings: (A) the agent runs autonomously in its environment; (B) the agent runs *without the developmental scaffold* — i.e. post-curriculum, off `scaffolded_sd054_onboarding`. (B) is a materially higher bar and would make closure depend on the curriculum having discharged its work. **Flagged to the user, not resolved here.** Until resolved, candidate 1 reports `definition_not_ready` on this sub-point only.
+   - **(ii) "Not significantly impaired" needs a referent.** Impaired relative to *what*? There is no reference agent, and (b) is a floor rather than a comparison, so the honest operationalisation is a **named list of impairment signatures that must be absent**, not a scalar. The standing candidate is already on the record: the **monostrategy / F-dominance conversion ceiling** (MECH-439 and the four conversion-ceiling roots) is a behavioural impairment by any reading, and an agent still inside it does not clear (b).
+   - **(iii) (a) is currently FALSIFIED on at least one channel, and this intake supplies the counterexample.** See the sibling z_harm_a intake: `z_harm_a` is saturated, near-rangeless and **mis-signed against safety**, so "suffering" cannot be read off it — a non-interpretable internal state by definition. Worse for (a) specifically, SD-020 reads `stable` while its mechanism sits behind a default-off flag, so the registry is *not* a true description of the running artefact on that channel. **Criterion (a) therefore already has teeth and already fails somewhere** — which is the strongest possible argument that it is the right criterion.
+
+   **Consequence for candidate 1 that follows only from this definition, and is new:** closure is now a **moment that can pass unnoticed**. A green board is a computed status you can watch; governance acceptance is a decision you take. "The first point an independent agent runs well" is neither — an agent could begin clearing (a) and (b) and nobody notice for weeks, by which time V4 work may already have moved the substrate. **The freeze gate therefore needs a detector, not merely a policy.** That materially strengthens N1 and should be registered as part of candidate 1 rather than as a separate item.
+
+   *Cross-ref:* candidate 1, `docs/closure_dashboard.md`, `docs/roadmap.md`, MECH-439 and the conversion-ceiling cluster, SD-020 and the sibling `thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md`, and the 2026-06-24 intake's candidate 5.
 
 5. **(Deferred, not a claim) Which V3 result serves as the flagship demonstration.** Do not register. It is a selection to be made from the evidence index at package-build time, not a proposition to be held. Recorded here so it is not lost.
 
 ## Routing
 
-- **Candidate 4 first — it is a decision, not a discovery**, and candidates 1-3 are undecidable without it. `complicated (buildable)`: put the three options (strict green board / governance acceptance / reproducibility check) to the user with their consequences and record the choice. This is the whole critical path.
-- **Then candidates 1-3** as governance text. `complicated (buildable)` throughout — no probe, no unknown; the work is specification.
+- **~~Candidate 4 first~~ — ANSWERED 2026-07-22 (see candidate 4). Candidates 1-3 are unblocked** on the main definitional question and can be registered as governance text. `complicated (buildable)` throughout — no probe, no unknown; the work is specification.
+- **Two residual sub-questions survive the answer**, and only one of them gates anything:
+  - **"Independent" = autonomous, or = off-scaffold?** `puzzle (known rules)` — the missing item is a *fact about the user's intent*, obtainable by asking, not by investigation. It gates candidate 1's audit scope and nothing else. **Ask before registering candidate 1.**
+  - **Operationalising "not significantly impaired"** as a named list of impairment signatures that must be absent. `complicated (buildable)` — the list is assembled from the existing conversion-ceiling / closure-plan record (MECH-439 and the four roots are the standing entry), not discovered.
+- **Operationalising "interpretable, as we hoped"** is the harder half and is `complex (probe-gated)` — it reduces to *is the claims registry a true description of the running artefact*, per-channel. The probe already exists in chipped form: the **default-off drift audit** (SD-020 pattern) is the registry-vs-substrate check for the configuration axis, and the z_harm_a decode spike is the same check for the representation axis. Neither was commissioned for this purpose; both serve it. Do not build a new instrument before those report.
+- **A closure DETECTOR, not just a closure policy** — follows from the definition being a property of the artefact rather than a procedural event (candidate 4, "Consequence"). `complicated (buildable)`, and it belongs inside candidate 1 rather than as a separate node.
 - **The flagship selection (5)** is `puzzle (known rules)`: the missing item is a *fact* recoverable from the evidence index — the highest-confidence PASS with a complete, re-runnable run pack — not a reframe and not a probe. Retrieve it when the package is built, not before.
 - **"Will external readers actually enter, and will the compression land?"** is `aleatoric (irreducible)`. Do not research it, do not build a metric for it in advance; hedge by keeping the package small enough that a wrong guess is cheap to revise.
 - **Repository consolidation** is out of scope (see NOT proposed) and should be surfaced separately if the user wants it, not smuggled in under candidate 3.
@@ -103,7 +129,8 @@ Note this interlocks with **INV-077** at the presentation layer: human/agent pro
 
 ## Next steps
 
-1. Put candidate 4 to the user as a decision. **Not done in this session** (intake-only pass).
-2. Register candidates 1-3 as `governance_rule` once 4 is settled. **Deferred from this session** — `claims.yaml` was held by concurrent sessions at intake time.
+1. ~~Put candidate 4 to the user as a decision.~~ **DONE — answered 2026-07-22, recorded verbatim in candidate 4.** Register the definition itself as the anchor claim; it is the load-bearing item and everything else here depends on it.
+2. **Ask the one residual question before registering candidate 1:** does "independent agent" mean autonomous-in-environment, or off-scaffold (post-curriculum)? The second is a materially higher bar.
+3. Register candidates 1-3 as `governance_rule`. **Deferred from this session** — `claims.yaml` was held by concurrent sessions at intake time. No longer blocked on a definition.
 3. Mark the raw thought `Status: processed` only once registration lands. It currently remains `unprocessed`, correctly.
 4. Register candidate 1 jointly with the 2026-06-24 reference-cognifold candidate rather than as two separate gates.
