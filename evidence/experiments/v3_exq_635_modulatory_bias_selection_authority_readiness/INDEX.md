@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_635_modulatory_bias_selection_authority_readiness
 
-Generated: `2026-07-20T20:24:30.696912Z`
+Generated: `2026-07-21T04:17:33.497800Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

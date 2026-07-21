@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_649_arc065_gapa_shared_candidate_summary_source
 
-Generated: `2026-07-20T20:24:30.696912Z`
+Generated: `2026-07-21T04:17:33.497800Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

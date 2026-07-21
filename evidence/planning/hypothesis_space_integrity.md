@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-20T20:14:11Z
+Generated: 2026-07-21T04:17:53Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **11** open question(s) across **4** time-series snapshot(s). **0** flag(s) raised, **9** advisory note(s), **7** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
+Audited **11** open question(s) across **5** time-series snapshot(s). **0** flag(s) raised, **9** advisory note(s), **7** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
 
 ## (a) Un-backed surviving-count drop (0)
 

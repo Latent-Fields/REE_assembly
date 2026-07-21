@@ -48,6 +48,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/substrate_ceiling routing=?
 - `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest diagnostic_no_direction
 - `2026-07-18T18:06Z` [autopsy] `failure_autopsy_V3-EXQ-783_2026-07-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json) :: autopsy diagnostic_no_direction/instrument_validated_cause_discriminated routing=governance-adjudication **<- live head**
+- `2026-07-20T20:22Z` [decision] `decision:SD-031@2026-07-20T20:22:21.624177Z` -> [`evidence/decisions/decision_log.v1.jsonl#L376`](../../../../evidence/decisions/decision_log.v1.jsonl#L376) :: decision hold_pending_v3_substrate (applied)
 
 ## `self_attribution:GAP-2`
 
@@ -93,6 +94,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/substrate_ceiling routing=?
 - `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest diagnostic_no_direction
 - `2026-07-18T18:06Z` [autopsy] `failure_autopsy_V3-EXQ-783_2026-07-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json) :: autopsy diagnostic_no_direction/instrument_validated_cause_discriminated routing=governance-adjudication **<- live head**
+- `2026-07-20T20:22Z` [decision] `decision:SD-031@2026-07-20T20:22:21.624177Z` -> [`evidence/decisions/decision_log.v1.jsonl#L376`](../../../../evidence/decisions/decision_log.v1.jsonl#L376) :: decision hold_pending_v3_substrate (applied)
 
 ## `self_attribution:GAP-3`
 
@@ -138,6 +140,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/substrate_ceiling routing=?
 - `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest diagnostic_no_direction
 - `2026-07-18T18:06Z` [autopsy] `failure_autopsy_V3-EXQ-783_2026-07-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json) :: autopsy diagnostic_no_direction/instrument_validated_cause_discriminated routing=governance-adjudication **<- live head**
+- `2026-07-20T20:22Z` [decision] `decision:SD-031@2026-07-20T20:22:21.624177Z` -> [`evidence/decisions/decision_log.v1.jsonl#L376`](../../../../evidence/decisions/decision_log.v1.jsonl#L376) :: decision hold_pending_v3_substrate (applied)
 
 ## `self_attribution:GAP-4`
 
@@ -183,6 +186,7 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/substrate_ceiling routing=?
 - `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest diagnostic_no_direction
 - `2026-07-18T18:06Z` [autopsy] `failure_autopsy_V3-EXQ-783_2026-07-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json) :: autopsy diagnostic_no_direction/instrument_validated_cause_discriminated routing=governance-adjudication **<- live head**
+- `2026-07-20T20:22Z` [decision] `decision:SD-031@2026-07-20T20:22:21.624177Z` -> [`evidence/decisions/decision_log.v1.jsonl#L376`](../../../../evidence/decisions/decision_log.v1.jsonl#L376) :: decision hold_pending_v3_substrate (applied)
 
 ## `self_attribution:GAP-5`
 
@@ -228,4 +232,5 @@ Source plan: `evidence/planning/self_attribution_plan.md`
 - `2026-06-20T08:44Z` [autopsy] `failure_autopsy_f-dominance-conversion-cluster_2026-06-20#V3-EXQ-445h` -> [`evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`](../../../../evidence/planning/failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json) :: autopsy non_contributory/substrate_ceiling routing=?
 - `2026-07-18T11:23Z` [manifest] `v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3` -> [`evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json`](../../../../evidence/experiments/v3_exq_783_zworld_granularity_training_crossing_20260718T112340Z_v3.json) :: PASS manifest diagnostic_no_direction
 - `2026-07-18T18:06Z` [autopsy] `failure_autopsy_V3-EXQ-783_2026-07-18` -> [`evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-783_2026-07-18.json) :: autopsy diagnostic_no_direction/instrument_validated_cause_discriminated routing=governance-adjudication **<- live head**
+- `2026-07-20T20:22Z` [decision] `decision:SD-031@2026-07-20T20:22:21.624177Z` -> [`evidence/decisions/decision_log.v1.jsonl#L376`](../../../../evidence/decisions/decision_log.v1.jsonl#L376) :: decision hold_pending_v3_substrate (applied)
 

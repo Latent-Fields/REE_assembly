@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_741_mech095_agency_comparator_testbed_sd047
 
-Generated: `2026-07-20T20:24:30.696912Z`
+Generated: `2026-07-21T04:17:33.497800Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
