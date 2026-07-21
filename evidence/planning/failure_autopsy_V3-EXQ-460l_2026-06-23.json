@@ -8,7 +8,13 @@
     {
       "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
       "queue_id": "V3-EXQ-460l",
-      "claim_ids": ["MECH-090", "MECH-342", "MECH-445", "MECH-446", "ARC-108"],
+      "claim_ids": [
+        "MECH-090",
+        "MECH-342",
+        "MECH-445",
+        "MECH-446",
+        "ARC-108"
+      ],
       "failed_criterion": "negative_control",
       "failed_criterion_detail": "Readiness/non-vacuity gate 3 (closure_exclusive_eval_armed_hold) failed FIRST: ncl_hold_closure_armed_total=0 AND ncl_hold_reassert_total=0 on every arm/seed -- the closure-coupled latch-hold never armed under the closure_exclusive_decommit_eval mode in a real eval run. Gates 4 (l0_monolithic: L0 mean_per_commit_hold ~1.1-1.3 vs floor 5.0) and 5 (rho_proximity: rho_peak_max=0, rho_n_releases_total=0) also unmet. The load-bearing D1/D2/D3 discriminators never scored (no armed hold to exercise). Gate 6 (delta_t negative variance) PASSED -- the JOB-1 signed-RPE delta_t machinery the habenula reuses IS live (L2 n_neg_delta_ticks 834-1117, delta_t_min -0.42), but the habenula never fired (n_habenula_aborts=0) for lack of an armed hold.",
       "four_layer_diagnosis": {
@@ -23,7 +29,11 @@
       },
       "biological_reference": {
         "closest_mechanism": "Lateral habenula (LHb) negative-RPE-driven de-commit / RMTg-gated dopaminergic suppression, acting on a BG-maintained commitment hold (the rho_t proximity-scaled maintenance ramp as a DA-ramp analog that peaks-then-declines).",
-        "dependencies": ["F-independent commit-entry / sustained-occupancy formation (the hold the de-commit acts on)", "closure-coupled commit that arms independently of the F-driven e3._committed_trajectory", "signed-RPE delta_t = R_t - V-hat_t (CONFIRMED live)"],
+        "dependencies": [
+          "F-independent commit-entry / sustained-occupancy formation (the hold the de-commit acts on)",
+          "closure-coupled commit that arms independently of the F-driven e3._committed_trajectory",
+          "signed-RPE delta_t = R_t - V-hat_t (CONFIRMED live)"
+        ],
         "is_formal_import": false,
         "divergence": "Not a formal-definition import; the divergence is a translation gap -- the closure-coupled hold-arming is structurally entangled with the F-driven natural commit, so it cannot dissociate natural-commit occupancy from closure-de-commit as the design requires.",
         "lit_status": "present"
@@ -44,8 +54,16 @@
         "sd_id_suggested": null,
         "title": "F-dominance conversion ceiling -- commit/release-duration (root C) face: closure-coupled-hold arming",
         "implementation_hint": "Decouple closure-coupled hold-arming (_closure_commit_active / the natural-commit latch-hold) from the F-driven e3._committed_trajectory so a closure-coupled commit can arm and sustain a hold INDEPENDENTLY of the F-dominated natural commit. Without this, natural-commit occupancy is not dissociable from closure-de-commit and neither the rung-6 duration lever (460k) nor the JOB-2 rho-ramp/habenula DRIVER pair (460l) has any sustained hold to act on. 460l confirms the un-arming is structural, not a re-run artifact.",
-        "unblocks_claims": ["MECH-445", "MECH-446", "MECH-090", "MECH-342", "ARC-108"],
-        "depends_on_unresolved": ["f_dominance_conversion_ceiling selection-face (MECH-439 F-dominance at commit-entry -- the upstream binding constraint)"],
+        "unblocks_claims": [
+          "MECH-445",
+          "MECH-446",
+          "MECH-090",
+          "MECH-342",
+          "ARC-108"
+        ],
+        "depends_on_unresolved": [
+          "f_dominance_conversion_ceiling selection-face (MECH-439 F-dominance at commit-entry -- the upstream binding constraint)"
+        ],
         "priority_suggested": 1,
         "failure_record_entry": {
           "run_id": "v3_exq_460l_job2_control_plane_ramp_habenula_falsifier_20260622T221756Z_v3",
@@ -77,13 +95,24 @@
         "Narrow positive: the JOB-1 signed-RPE delta_t = R_t - V-hat_t (reused by the habenula) is LIVE and produces genuine negative-RPE variance in a real eval (n_neg_delta_ticks 834-1117, delta_t_min -0.42). The habenula's INPUT works; only the hold it would act on is absent.",
         "The fix is substrate, not another test: make the closure-coupled commit arm a sustained hold independently of the F-driven e3._committed_trajectory (implement-substrate amend f_dominance_conversion_ceiling). Refuse a 460m re-queue (5th lineage iteration)."
       ],
-      "routing": "implement-substrate"
+      "routing": "implement-substrate",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-090": "substrate_ceiling",
+        "MECH-342": "standard",
+        "MECH-445": "substrate_ceiling",
+        "MECH-446": "substrate_ceiling",
+        "ARC-108": "substrate_ceiling"
+      },
+      "recommended_epistemic_category_per_claim_note": "Added 2026-07-21. This target's own .md (line 43) states: 'MECH-090 (BetaGate commit-entry conjunction), MECH-342 (maintenance-time release coupling): precondition/peripheral here (the latch and its release); NOT EXERCISED.' A claim the run did not exercise cannot supply evidence of a substrate ceiling FOR THAT CLAIM, so attributing the blanket substrate_ceiling category to MECH-342 false-fired the MOVE-3 re-derive brake against all future MECH-342 work -- the same inversion the brake's instrument-defect carve-out exists to prevent. The brake's own refusal_note scopes it to 'a V3-EXQ-460m same-claim re-queue' on the MECH-445/446 commitment-maintenance substrate (upstream f_dominance_conversion_ceiling), not to MECH-342. Corroborating: MECH-342's mechanism demonstrably FIRED correctly when it WAS exercised ecologically (629b seed 43: decommit_transitions=34, mech342_fires=1, beta occupancy 1.0->0.217 in the degraded window vs 1.0 in the OFF arm) -- not the signature of a claim at a substrate ceiling. SCOPE: only MECH-342 is re-attributed. MECH-090 is described by the same .md sentence and is likely the same misattribution, but its ceiling count is 7 (6 without this target) so it is not decision-relevant, and re-attributing it was left to governance rather than done in passing. Nothing else about this artifact's adjudication changes: recommended_evidence_direction_per_claim['MECH-342'] remains non_contributory, which is and always was correct."
     }
   ],
   "cluster_pattern": {
     "shape": "Six readiness gates self-route substrate_not_ready_requeue; the closure-coupled hold never arms / never sustains, so every discrimination criterion is unscorable -- the substrate-ceiling fingerprint, now across the whole 460h..460l lineage.",
     "is_independent_bugs": false,
     "structural_property": "The commitment-maintenance substrate (natural-commit latch-hold + closure-exclusive de-commit eval) does not produce a sustained, F-independent commitment hold on the foraging substrate; the closure-coupled commit that should arm it is structurally entangled with the F-driven natural commit. Neither a duration lever (460k) nor a dopaminergic DRIVER pair (460l) can act on a hold that does not form. The de-commit / commit-duration FACE is downstream of, and gated by, the same F-dominance (MECH-439) that monopolises commit-ENTRY selection.",
-    "readings": ["substrate_enrichment_closure_coupled_hold_arming", "upstream_binding_constraint_is_commit_entry_F_dominance_not_maintenance_release"]
+    "readings": [
+      "substrate_enrichment_closure_coupled_hold_arming",
+      "upstream_binding_constraint_is_commit_entry_F_dominance_not_maintenance_release"
+    ]
   }
 }
