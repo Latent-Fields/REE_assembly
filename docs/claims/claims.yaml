@@ -458,6 +458,33 @@
     - INV-009
     - INV-014
     - ARC-004
+  epistemic_category: standard
+  what_would_answer: |
+    The falsifiable content is NOT "a control plane exists" (that is a design fact --
+    we built one). It is that the control plane ROUTES: has causal authority over
+    precision and mode that is DISSOCIABLE FROM CONTENT. If precision and mode are
+    readouts of what the agent happens to be processing, the plane is epiphenomenal
+    and all 88 dependents inherit a false premise.
+    Testable in V3 as a DOUBLE DISSOCIATION over the implemented channel set
+    (5-HT rigidity, phasic-surprise-burst gain, SalienceCoordinator mode prior,
+    pcc_stability mu): a 2x2 of {channels varied, content fixed} x {content varied,
+    channels fixed}, measuring (i) the E3 precision readout and (ii) mode-occupancy
+    distribution.
+    ANSWER "routes" (PASS) if channel intervention shifts precision and mode occupancy
+    monotonically with channel setting, AND the channel effect on mode occupancy
+    exceeds the content effect by >= 0.8 SD of the cross-seed DELTA and by an absolute
+    floor of >= 0.15 occupancy-fraction, AND identical channel settings reproduce the
+    same regime across differing content.
+    ANSWER "readout, not router" (FAIL) if mode occupancy and precision are predicted
+    as well or better from content features than from channel settings. ARC-005 then
+    demotes and its dependents need re-derivation from whatever does the routing.
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): in the
+    baseline arm at least two modes must be occupied >= 5% of steps, and the precision
+    readout must carry non-zero cross-seed variance (not floor-pinned). A single-mode-
+    collapsed agent makes both arms trivially identical and the comparison vacuous.
+    SCOPE: tests routing authority over the CURRENTLY-IMPLEMENTED channels. A PASS
+    does not vindicate every channel posited in MECH-002/MECH-004; it establishes the
+    plane is causal rather than decorative.
   location: docs/architecture/control_plane.md#arc-005
   source:
     - docs/processed/legacy_tree/docs/architecture/control_plane.md
@@ -2667,6 +2694,60 @@
   source:
     - docs/thoughts/2026-02-11_opioid_receptors.md
     - docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md
+  implementation_note: |
+    2026-07-21 -- the mu half of the opponent pair now reaches the mode PRIOR.
+    NO status, confidence or evidence change: this is a substrate landing, and
+    MECH-048 remains exp=0 / lit=4 with re-derive brake count 0.
+
+    THE GAP (verified by live execution of the modules on a constructed
+    REEAgent, not by grep; session practical-volhard-2c1876, 2026-07-21T17:11Z).
+    MECH-048 asserts overlays modulating BOTH (a) mode-prior sharpness/entropy
+    AND (b) switching pressure. On the SalienceCoordinator mode plane the
+    kappa-analogue was fully wired but the mu-analogue was only HALF wired:
+    affinity_weights['aic_salience'] = {'internal_planning': 1.0}, so kappa
+    reached the mode logits, while affinity_weights['pcc_stability'] was EMPTY
+    and mu entered only the effective_threshold multiplier. Consequence:
+    H(operating_mode) was EXACTLY invariant under mu -- 0.167605 at
+    pcc_stability 0.0, 1.0 AND 3.0, identical to 6 dp. Leg (a) was therefore
+    untestable BY CONSTRUCTION on every substrate and every seed; any
+    experiment measuring mode entropy against mu would have reported an
+    arithmetic zero rather than a measurement (the DV-symmetry vacuity class,
+    failure_autopsy_V3-EXQ-604c_2026-07-20 section 3). This is why the
+    2026-07-21T13:39Z audit HELD V3-EXQ-683 rather than repairing it.
+
+    THE BUILD. mu (pcc_stability, SD-032d) is coupled into the mode-prior
+    softmax temperature in the literal form specified by this claim's own
+    source, 2026-02-11_some_control_plane_maths_hypotheses.md:63 --
+    tau = softmax_temperature * exp(alpha_kappa*kappa - alpha_mu*mu), with
+    kappa = aic_salience (SD-032c). High mu -> lower temperature -> sharper
+    prior -> lower entropy. The threshold half (ibid.:104,
+    theta = theta_0 + rho_mu*mu - rho_kappa*kappa) is the pre-existing
+    stability_scaling multiplier and is unchanged, so mu now reaches both legs.
+    The rival mechanism -- a non-empty affinity_weights['pcc_stability'] --
+    was rejected on claim text, not preference: a per-mode logit bias makes mu
+    a mode PREFERENCE, and control_plane.md#mech-048 states the overlays "are
+    not scalar reward signals; they act as stability and entropy modulators".
+    Config REEConfig.salience_use_stability_temperature, default False and
+    bit-identical when off; alpha_kappa defaults 0.0 so the master switch
+    isolates the mu leg. Spec: sd_032_cingulate_integration_substrate.md
+    SD-032d "Amendment (2026-07-21)". Contracts:
+    ree-v3/tests/contracts/test_mech048_stability_temperature.py.
+
+    WHAT THIS DOES NOT DO -- read before designing the first experiment.
+    (1) With mu injected DIRECTLY, "entropy falls as mu rises" is an arithmetic
+    identity of the coupling. The contract tests assert it as substrate wiring;
+    it is NOT evidence for this claim. A genuine experiment must drive mu from
+    upstream environmental state (safety / coherence / task success, through
+    PCCAnalog) and read a downstream behavioural DV -- otherwise it reproduces
+    the exact vacuity the build exists to remove.
+    (2) Leg (b) remains empirically unmeasurable for an independent reason:
+    the contested modes are never occupied. V3-EXQ-464b / 464c / 467d / 464d
+    ALL FAIL with fraction_in_external_task = 0.0 at every seed WITH
+    use_external_task_drive=True, across a 20x hysteresis sweep; mean_dwell is
+    an episode-length artefact and n_switches == n_episodes (episode-boundary
+    settles only). 467d self-routed substrate_not_ready_requeue /
+    external_task_mode_not_occupied. That is a separate /implement-substrate
+    build and was deliberately NOT bundled here.
 - id: MECH-049
   title: "Temporal phase compartmentalisation preserves ethical constraint independence."
   claim_type: mechanism_hypothesis
@@ -17182,6 +17263,16 @@
   confidence: 0.0
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true   # goal_pipeline:GAP-2 context-diversity (gov 2026-06-13)
+  substrate_note_2026_07_21: >
+    SD-077 (centered super-ordinal cue key, IMPLEMENTED 2026-07-21) lifts the
+    context-diversity blocker that made V3-EXQ-669b's R3 readiness gate unmeetable
+    (anchor_count saturated at 1 because the raw-z_world cue cosine measured the
+    common-mode offset, not the context). anchor_count and the p01 complexity statistic
+    now both have real cross-arm range, so a fresh lettered iteration (V3-EXQ-669c) can
+    score C1/C3. Status, confidence, epistemic_category and pending_retest_after_substrate
+    are DELIBERATELY unchanged here: lifting the substrate ceiling makes the claim
+    measurable, it does not supply evidence. Governance should re-read this claim only
+    after 669c returns.
   ceiling_decision: deferred
   ceiling_routing_note: "2026-06-19 substrate-ceiling-lifted triage (verdict b deliberate-defer): INF-ENV-003 transient-benefit-patch SALIENCE is orthogonal to MECH-189's real blocker, which is goal_pipeline:GAP-2 z_world context-diversity -- the super-ordinal anchor store saturates to <=1 via merge_similarity collapse on near-identical nursery contexts (failure_autopsy_V3-EXQ-669a/669b). No context-diversity substrate is built or in flight. Do not re-queue the 669 line until a context-diversity substrate lands."
   governance_note_2026_06_13: >
@@ -42411,6 +42502,16 @@
   confidence: 0.0
   epistemic_category: substrate_ceiling
   pending_retest_after_substrate: true
+  substrate_note_2026_07_21: >
+    SD-077 (centered super-ordinal cue key, IMPLEMENTED 2026-07-21) lifts the
+    context-diversity blocker that made V3-EXQ-669b's R3 readiness gate unmeetable
+    (anchor_count saturated at 1 because the raw-z_world cue cosine measured the
+    common-mode offset, not the context). anchor_count and the p01 complexity statistic
+    now both have real cross-arm range, so a fresh lettered iteration (V3-EXQ-669c) can
+    score C1/C3. Status, confidence, epistemic_category and pending_retest_after_substrate
+    are DELIBERATELY unchanged here: lifting the substrate ceiling makes the claim
+    measurable, it does not supply evidence. Governance should re-read this claim only
+    after 669c returns.
   governance_note_2026_06_13: >
     PM cycle (gov 2026-06-13T20:04Z): V3-EXQ-669a superseded (degenerate by construction:
     anchor/write/p01=0 in all arms incl the c4 sanity control) and its nursery-harness retest
@@ -49974,6 +50075,55 @@
     recalibration pulls rv TOWARD the cumulative zero-point reference, so on a
     well-calibrated agent they approximately cancel and the experimental signal lives in
     the arms where one is ablated.
+
+- id: SD-077
+  title: "Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189 SuperOrdinalGoalMemory keys anchors on raw z_world cosine, which under SD-008 z_world under-differentiation measures the shared common-mode offset rather than the context, so every nursery contact reinforces one slot and anchor_count saturates at 1. Subtract a slow EMA common-mode baseline before every cue cosine. ree_core goal.py change, bit-identical by default."
+  claim_type: design_decision
+  subject: goal.common_mode_invariant_super_ordinal_cue_key
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-21
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-21"
+  depends_on: [SD-008, SD-066]
+  location: docs/architecture/sd_077_centered_super_ordinal_cue_key.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-21 (ree-v3 ree_core/goal.py SuperOrdinalGoalMemory).
+    Config GoalConfig.super_ordinal_cue_centering (default False = bit-identical OFF;
+    no baseline tensor is allocated and no baseline arithmetic runs) and
+    super_ordinal_cue_baseline_alpha (default 0.02, matching SD-066). Data flow:
+    z_world -> observe() EMA baseline -> centered residual -> _best_match cosine ->
+    contextual_complexity / retrieve. Keys are stored RAW and centered at comparison
+    time, so a drifting baseline moves query and stored keys together. MECH-094:
+    simulation_mode contexts never advance the baseline. No agent.py wiring change; no
+    trainable parameters, so phased training does not apply. Contracts:
+    ree-v3/tests/contracts/test_sd_077_centered_super_ordinal_cue_key.py (C1 default-off
+    bit-identity, C2 centering separates, C3 no threshold setting substitutes, C4 lazy
+    seed + MECH-094, C5 raw-key self-match under baseline drift, C6 persistence).
+  functional_restatement: >
+    V3-EXQ-669b self-routed on its pre-registered readiness gate R3 (max anchor_count
+    >= 2): anchor_count = 1 in every arm and seed, so the load-bearing C1 (anchor_count
+    delta) and C3 (complexity delta) criteria had zero cross-arm range. Measured
+    2026-07-21 on the actual 669b Stage-0 forced-feed nursery (155 contexts, seed 101):
+    raw world_obs pairwise cosine min 0.216 / mean 0.608 with 90.7 percent of pairs below
+    0.8, but z_world pairwise cosine min 0.9641 / mean 0.9898 with ZERO pairs below 0.8,
+    and ||mean(z_world)|| / mean||z_world|| = 0.9949. The nursery is richly diverse and
+    the untrained encoder buries that diversity under a common-mode offset. Threshold
+    tuning cannot substitute, and this is provable rather than merely observed:
+    contextual_complexity = 1 - best_cosine and best_cosine >= 0.9641 everywhere, so
+    complexity <= 0.036 under ANY threshold setting, strictly below 669b's pre-registered
+    COMPLEXITY_MARGIN of 0.05 (measured mean over 160 fired writes: 0.0077). The failed
+    run's own docstring proposed a LOWER merge_similarity, which is the wrong sign -- it
+    moves more contexts into the REINFORCE branch and worsens saturation. Centering the
+    cue key restores the range: residual pairwise cosine spans -0.760 to 1.000 (97.7
+    percent of pairs below 0.8), giving 26 anchors and mean complexity 0.076 at
+    n_slots=64 with 669b's own thresholds. This is the SD-066 fix applied to a second
+    consumer of the same broken z_world geometry; the encoder-level repair remains the
+    open SD-008 / SD-070 problem.
 
 - id: SD-075
   title: "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default."
