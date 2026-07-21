@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-07-17T18:35:32Z",
+  "last_updated_utc": "2026-07-21T17:35:23Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -619,6 +619,19 @@
       ],
       "stale_evidence_disposition": "KEEP all -- additive no-op-default flag; changes no mechanism any dependent claim currently measures. SD-069 has no prior experiment evidence (registered 2026-07-17; V3-EXQ-779 is its first validation run). MECH-063 sub-claim (i) evidence (V3-EXQ-777) is on the orthogonal-axes leg, untouched. Default source reads the identical scalar as before the flag.",
       "candidate_stale": []
+    },
+    {
+      "substrate": "SD-077",
+      "landed_utc": "2026-07-21T17:35:23Z",
+      "description": "goal.common_mode_invariant_super_ordinal_cue_key. GoalConfig.super_ordinal_cue_centering (default False = bit-identical OFF; no baseline tensor allocated, no baseline arithmetic) + super_ordinal_cue_baseline_alpha (0.02). SuperOrdinalGoalMemory maintains a slow EMA common-mode baseline of presented z_world contexts and takes every cue cosine on the centered residual (z_world - baseline); keys stored RAW and centered at comparison time. Fixes the MECH-189 anchor bank saturating at 1 anchor under SD-008 z_world under-differentiation (measured on the V3-EXQ-669b nursery: z_world pairwise cosine min 0.9641, ||mean||/mean||.|| = 0.9949, so the raw cue cosine measured the shared offset not the context). The SD-066 pattern applied to a second consumer. MECH-094: simulation_mode contexts never advance the baseline. No trainable parameters.",
+      "mechanism_changing": false,
+      "mechanism_changing_note": "ADDITIVE AND OFF BY DEFAULT. Every prior run executed with super_ordinal_cue_centering absent, which resolves to False, so no recorded evidence was produced under the centered key and none of it is mechanistically stale. The only claims whose measurement changes are MECH-189 / MECH-329, whose sole prior experimental runs (669a, 669b) are already non_contributory / substrate_ceiling and already carry pending_retest_after_substrate: true -- so there is nothing to de-weight. Step 8.5 audit outcome: KEEP for all candidate entries; no MARK, no REVALIDATE.",
+      "dependent_claims": [
+        "MECH-189",
+        "MECH-329"
+      ],
+      "candidate_stale": [],
+      "validation_experiment": "V3-EXQ-669c"
     }
   ]
 }
