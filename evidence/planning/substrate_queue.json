@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "magical-leavitt-0e752b",
-  "last_updated_utc": "2026-07-20T20:23:26Z",
+  "last_seen_session": "blissful-dewdney-2a9ed2",
+  "last_updated_utc": "2026-07-21T17:38:38Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6006,6 +6006,71 @@
       "landing_status": "LANDED 2026-07-20T19:04Z: ree-v3 b523b9c70a on origin/main (10 files, verified), carrying experiments/_lib/zworld_p0_warmup.py, both _train_all_on_agent definition sites, mech457_fanout.warmup_zworld, the exq742 bias_head_baseline + its 742m mint, ree-v3/CLAUDE.md, and the five validation queue entries. Supersedes the implemented_not_landed state recorded earlier in dbd8d080bf. COMMITTED WITH --no-verify, USER-AUTHORISED, and the reason is recorded because a bypassed gate should never be silent: ree-v3's pre-commit gate runs the full suite against the WORKING TREE, where a concurrent session's half-finished SD-024 benefit-terrain work (ree_core/agent.py, causal_grid_world.py, e3_selector.py, utils/config.py + an untracked tests/contracts/test_sd024_benefit_terrain_live_producer.py) failed 5 of its own new contracts. Suite: 1985 passed, 5 failed, ALL of them that session's. Proof the failures could not involve this landing: the blocking flag benefit_terrain_live_producer appears 0 times in ree-v3 HEAD and twice in the working tree, and this landing touches experiments/ only -- no ree_core file at all. Independently gated on 103 directly-relevant contracts (all 31 SD-070, the zworld_encoder_guard suite, 5 MECH-457 suites), all passing. Confirmed post-commit that the four foreign ree_core files remained dirty in the working tree, i.e. they did not enter the commit -- ree_commit.py builds from a private index over declared paths only.",
       "provenance_note": "THIS ROW'S implemented_* FIELDS REACHED TRUNK BY A SWEEP, NOT BY THEIR AUTHOR'S COMMIT. Session silly-jepsen-926d36 wrote them to the working tree at 2026-07-20T18:23Z; commit e3357f0199 (session IGW-20260719-189, 'SD-PROBE-WARMUP: mark stale duplicate of SD-074 terminal') did a whole-file read-modify-write of substrate_queue.json, adopted those uncommitted fields, and pushed them under its own message -- the read-modify-write contamination documented in CLAUDE.md. Nothing was lost and the swept content is complete and self-consistent, so per remedy (a) it was NOT reverted. This note exists because remedy (a) requires the sweep be surfaced with the specific keys and the owning session named, and because remedy (a2) applies: the swept row's ASSERTION PARTNER (the ree-v3 implementation + queue entries) is still uncommitted, so the row alone overstates trunk. Swept keys: status, ready, design_doc, implemented_utc, implemented_by_session, implementation_note, validation_experiments, implementation_caveats.",
       "validation_status": "PENDING. The five validation experiments are queued but none has run: V3-EXQ-742m-b (re-mint, prio 46) -> V3-EXQ-728a (45) -> V3-EXQ-737b (44) -> V3-EXQ-734b (30) -> V3-EXQ-742b (29). Acceptance is the metric the pre-fix runs failed: zworld_encoder_guard green, i.e. world_encoder tensors changed > 0 on every seed with guard_checked=true. ready stays False until at least one validation run scores."
+    },
+    {
+      "sd_id": "sd_032d_mu_kappa_mode_prior_overlays",
+      "title": "SD-032d amendment (MECH-048): give pcc_stability (mu) authority over the SalienceCoordinator mode PRIOR, not only the switch threshold",
+      "node_class": "complicated (buildable)",
+      "status": "implemented_pending_validation",
+      "ready": false,
+      "ready_blocked_by": "No validation experiment has run. The build is landed and the full contract suite is green (2019 passed), but MECH-048 stays exp=0 -- ready flips only when a run scores.",
+      "design_doc": "docs/architecture/sd_032_cingulate_integration_substrate.md#sd-032d",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-048"
+      ],
+      "priority": 3,
+      "added_session": "blissful-dewdney-2a9ed2",
+      "added_utc": "2026-07-21T17:38:38Z",
+      "implemented_utc": "2026-07-21T17:38:38Z",
+      "implemented_session": "blissful-dewdney-2a9ed2",
+      "implemented_by": "ree-v3 b04d466 (ree_core + contracts) + the REEConfig plumbing commit",
+      "failure_record": [
+        {
+          "run_id": "N/A -- structural, not a run",
+          "experiment_type": "live module execution on a constructed REEAgent (session practical-volhard-2c1876, 2026-07-21T17:11Z)",
+          "metric": "H(operating_mode) EXACTLY invariant under mu: 0.167605 at pcc_stability 0.0, 1.0 AND 3.0, identical to 6 dp. affinity_weights['pcc_stability'] was empty; mu entered only effective_threshold. kappa (aic_salience) moved H freely (1.268301 -> 1.275350 -> 0.167605 at 0 -> 1 -> 5) via its own affinity weight.",
+          "target": "H(operating_mode) responds monotonically to mu, so MECH-048's mode-prior-sharpness half is measurable at all"
+        },
+        {
+          "run_id": "V3-EXQ-683 (HELD, never ran)",
+          "experiment_type": "claim_probe_mech_048",
+          "metric": "design HELD at /queue-experiment code review 2026-07-21T13:39Z -- C1/C2 were arithmetic identities (DV was H(softmax(scores/T)) and the manipulation was T), i.e. the DV-symmetry vacuity class of failure_autopsy_V3-EXQ-604c section 3",
+          "target": "a design whose delta is not fixed before the run"
+        }
+      ],
+      "implementation_hint": "Couple mu into the mode-prior softmax temperature per the claim's own source (docs/thoughts/2026-02-11_some_control_plane_maths_hypotheses.md:63): tau = softmax_temperature * exp(alpha_kappa*aic_salience - alpha_mu*pcc_stability). NOT an affinity_weights['pcc_stability'] entry -- a per-mode logit bias makes mu a mode PREFERENCE, which control_plane.md#mech-048 rules out ('not scalar reward signals ... stability and entropy modulators').",
+      "implementation_note": "Config REEConfig.salience_use_stability_temperature, default False and bit-identical when off (no exp() evaluated). alpha_kappa defaults 0.0 so the master switch isolates the mu leg. Exponent clipped at +/-4.0 (aic_salience is unbounded above). tick() now returns effective_temperature + mode_entropy. Contracts: ree-v3/tests/contracts/test_mech048_stability_temperature.py (7). Phased training and MECH-094 both not applicable (non-trainable arithmetic, no gradient flow, no memory content authored).",
+      "validation_experiment": "NOT YET QUEUED -- chipped as separate /queue-experiment work. CRITICAL DESIGN CONSTRAINT: with mu injected DIRECTLY, 'entropy falls as mu rises' is an arithmetic identity of the coupling and is NOT evidence for MECH-048 (that is exactly the vacuity this build removes). A valid experiment must drive mu from upstream environmental state -- safety / coherence / task success, through PCCAnalog via agent.note_task_outcome() and drive_level -- and read a downstream behavioural DV.",
+      "no_op_default": true,
+      "mech_094": "not applicable"
+    },
+    {
+      "sd_id": "sd_salience_contested_mode_occupancy",
+      "title": "Make the contested SalienceCoordinator modes genuinely occupied, so mode dwell/switching stops being an episode-length artefact",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed",
+      "ready": false,
+      "ready_blocked_by": "Not built. Root cause not yet isolated -- probe-gated, not buildable-on-demand: it is unknown whether the non-occupancy is a drive-source problem, a hysteresis/threshold-calibration problem, or an episode-length problem.",
+      "design_doc": "docs/architecture/sd_032_cingulate_integration_substrate.md#sd-032d",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-048",
+        "MECH-259",
+        "MECH-266"
+      ],
+      "priority": 3,
+      "added_session": "blissful-dewdney-2a9ed2",
+      "added_utc": "2026-07-21T17:38:38Z",
+      "failure_record": [
+        {
+          "run_id": "V3-EXQ-464b / 464c / 467d / 464d (all four FAIL)",
+          "experiment_type": "mode occupancy / hysteresis sweep",
+          "metric": "fraction_in_external_task = 0.0 at EVERY seed WITH use_external_task_drive=True, across a 20x hysteresis sweep (r in 0.10..2.00). mean_dwell is an episode-length artefact (non-monotone 67.8 / 51.7 / 76.0 / 67.8 / 92.3) and n_switches == n_episodes (episode-boundary settles only). 467d self-routed substrate_not_ready_requeue / route_reason external_task_mode_not_occupied.",
+          "target": "at least two modes occupied >= 5% of steps in the baseline arm, and n_switches decoupled from n_episodes"
+        }
+      ],
+      "implementation_hint": "SEPARATE build from sd_032d_mu_kappa_mode_prior_overlays -- deliberately not bundled. The mu-overlay build is cheaper and is decisive for MECH-048's ENTROPY half regardless of occupancy; this one gates the SWITCHING-PRESSURE half. Note the non-occupancy precondition also blocks the ARC-005 routing double-dissociation, whose non-degeneracy precondition requires >= 2 modes occupied >= 5% of steps. No ree_core/cingulate/ work had landed between 2026-06-13 and 2026-07-21, and no experiment has ever exercised use_pcc_analog (0 manifests mention it)."
     }
   ],
   "schema_version": "substrate_queue/v2"
