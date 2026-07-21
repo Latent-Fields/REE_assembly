@@ -1100,3 +1100,10 @@ One line per hourly tick. ASCII only.
 2026-07-21T06:22:22Z complete IGW-20260721-205 spawned->completed outcome=DUPLICATE: no experiment queued: EVB-0453 (SD-024) already executed by V3-EXQ-795 (PASS 202
 2026-07-21T07:14:29Z reconcile-release hash=d5c112e117ce (IGW-20260721-205 -> completed)
 2026-07-21T07:14:20Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T08:14:40Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T09:15:01Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T12:07:00Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T13:07:22Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T14:07:46Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T15:08:07Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-21T16:08:24Z skip IGW-20260721-205: no fresh runner heartbeat (experiment-lane item would just sit in queue)
