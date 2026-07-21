@@ -1,0 +1,126 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_overconfidence_score": {
+      "ARM_OFF_OFF": -0.19212288776540318,
+      "ARM_BCAST_ONLY": -0.5075490430816051,
+      "ARM_INFL_LO": -1.004111904519277,
+      "ARM_BOTH_LO": -1.0041194698049491,
+      "ARM_INFL_HI": -1.004111904519277,
+      "ARM_BOTH_HI": -1.004111904519277
+    },
+    "arm_calibration_ratio": {
+      "ARM_OFF_OFF": 1.2447899171689185,
+      "ARM_BCAST_ONLY": 1.7998582261266993,
+      "ARM_INFL_LO": 2.7564936387545953,
+      "ARM_BOTH_LO": 2.756514046726147,
+      "ARM_INFL_HI": 2.7564936387545953,
+      "ARM_BOTH_HI": 2.7564936387545953
+    },
+    "arm_true_error_ref": {
+      "ARM_OFF_OFF": 0.0036834691370586765,
+      "ARM_BCAST_ONLY": 0.0036859911430416094,
+      "ARM_INFL_LO": 0.0036995331068548566,
+      "ARM_BOTH_LO": 0.0036995331068548566,
+      "ARM_INFL_HI": 0.0036995331068548566,
+      "ARM_BOTH_HI": 0.0036995331068548566
+    },
+    "arm_rv_final": {
+      "ARM_OFF_OFF": 0.0054196216927127755,
+      "ARM_BCAST_ONLY": 0.009832158433699561,
+      "ARM_INFL_LO": 0.01,
+      "ARM_BOTH_LO": 0.01,
+      "ARM_INFL_HI": 0.01,
+      "ARM_BOTH_HI": 0.01
+    },
+    "deltas": {
+      "d_broadcast_under_drift_at_operative": {
+        "per_seed": [],
+        "mean": 0.0,
+        "sd": 0.0,
+        "significant": false
+      },
+      "d_broadcast_no_drift": {
+        "per_seed": [
+          -0.4319349456743107,
+          -0.49589673634508247,
+          -0.01844678392921252
+        ],
+        "mean": -0.3154261553162019,
+        "sd": 0.21161338637321825,
+        "significant": true
+      }
+    },
+    "per_level": {
+      "LO": {
+        "asymmetry": 0.6,
+        "infl_arm": "ARM_INFL_LO",
+        "both_arm": "ARM_BOTH_LO",
+        "n_seeds_overconfident": 0,
+        "clears_c1": false,
+        "infl_score": -1.004111904519277,
+        "both_score": -1.0041194698049491,
+        "d_inflation": {
+          "per_seed": [
+            -1.1160430236629248,
+            -0.48154134886583366,
+            -0.838382677732863
+          ],
+          "mean": -0.8119890167538738,
+          "sd": 0.259705683206951,
+          "significant": true
+        },
+        "d_broadcast_under_drift": {
+          "per_seed": [
+            0.0,
+            -2.2695857015975207e-05,
+            0.0
+          ],
+          "mean": -7.565285671991735e-06,
+          "sd": 1.0698929600557567e-05,
+          "significant": false
+        }
+      },
+      "HI": {
+        "asymmetry": 0.8,
+        "infl_arm": "ARM_INFL_HI",
+        "both_arm": "ARM_BOTH_HI",
+        "n_seeds_overconfident": 0,
+        "clears_c1": false,
+        "infl_score": -1.004111904519277,
+        "both_score": -1.004111904519277,
+        "d_inflation": {
+          "per_seed": [
+            -1.1160430236629248,
+            -0.48154134886583366,
+            -0.838382677732863
+          ],
+          "mean": -0.8119890167538738,
+          "sd": 0.259705683206951,
+          "significant": true
+        },
+        "d_broadcast_under_drift": {
+          "per_seed": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mean": 0.0,
+          "sd": 0.0,
+          "significant": false
+        }
+      }
+    },
+    "operative_level": null,
+    "operative_asymmetry": null,
+    "n_seeds_overconfident": {
+      "ARM_OFF_OFF": 0,
+      "ARM_BCAST_ONLY": 0,
+      "ARM_INFL_LO": 0,
+      "ARM_BOTH_LO": 0,
+      "ARM_INFL_HI": 0,
+      "ARM_BOTH_HI": 0
+    },
+    "readiness_ok": true
+  }
+}

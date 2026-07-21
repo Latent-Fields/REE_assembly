@@ -1,0 +1,184 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2",
+  "run_id": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2_20260721T113848Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-21T13:23:11Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-204",
+    "SD-076"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "SD-076": "does_not_support",
+    "MECH-204": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "drift_source_insufficient_dv_still_tautological",
+    "preconditions": [
+      {
+        "name": "ARM_OFF_OFF::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_OFF_OFF",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49162181311818137,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_OFF_OFF::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_OFF_OFF",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.008734636207032286,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.48151870654709994,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01372666469704766,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::zero_point_populated",
+        "precondition": "zero_point_populated",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "fraction of this arm's cells whose serotonin._persistent_zero_point is populated at eval start. The broadcast returns its no-target sentinel (0.0) and does nothing when it is None.",
+        "control": "a REM entry must have occurred during training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::broadcast_moves_rv",
+        "precondition": "broadcast_moves_rv",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "mean over seeds of |rv_final(this arm) - rv_final(matched broadcast-OFF arm)|. SAME STATISTIC the DV routes on (rv level), measured against a matched positive control differing only in the broadcast flag -- not a magnitude proxy (the V3-EXQ-643 defect).",
+        "control": "matched broadcast-OFF arm at the same inflation level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.004412536740986787,
+        "threshold": 0.0001,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_inflation_creates_absolute_overconfidence",
+        "load_bearing": true,
+        "passed": false,
+        "operative_asymmetry": null,
+        "operative_level": null,
+        "n_seeds_overconfident": 0,
+        "min_required": 2,
+        "per_level_n_seeds": {
+          "LO": 0,
+          "HI": 0
+        }
+      },
+      {
+        "name": "C2_broadcast_corrects_under_drift",
+        "load_bearing": true,
+        "passed": false,
+        "mean_delta": 0.0,
+        "sd": 0.0,
+        "evaluated_at_level": null
+      },
+      {
+        "name": "C3_interaction_correction_larger_under_drift",
+        "load_bearing": false,
+        "passed": false,
+        "delta_drift": 0.0,
+        "delta_nodrift": -0.3154261553162019
+      },
+      {
+        "name": "C4_off_off_reproduces_774_ceiling",
+        "load_bearing": false,
+        "passed": true,
+        "off_off_score": -0.19212288776540318
+      },
+      {
+        "name": "C5_asymmetry_dose_response_monotone",
+        "load_bearing": false,
+        "passed": false,
+        "lo_score": -1.004111904519277,
+        "hi_score": -1.004111904519277
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_inflation_creates_absolute_overconfidence": false,
+      "C5_asymmetry_dose_response_monotone": false,
+      "C2_broadcast_corrects_under_drift": false,
+      "C3_interaction_correction_larger_under_drift": false,
+      "C4_off_off_reproduces_774_ceiling": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+}
