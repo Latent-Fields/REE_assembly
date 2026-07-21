@@ -1,5 +1,10 @@
 # Thought Intake: Sentience / Welfare Risk Governance for REE
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-0 (current-scope boundary statement), SENT-1 (indicator matrix), SENT-2 (welfare budget), SENT-3 (combination gate), SENT-4 (welfare-preserving experimental design), SENT-5 (denial-of-sentience audit), SENT-6 (external review gate). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-18
 **Type:** thought intake / governance proposal
 **Scope:** REE-v3 through V6

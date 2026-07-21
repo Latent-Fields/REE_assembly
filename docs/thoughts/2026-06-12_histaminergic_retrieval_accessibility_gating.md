@@ -1,5 +1,10 @@
 # Histaminergic gating of moment-to-moment memory accessibility (2026-06-12)
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: Q-076, MECH-425 (histaminergic retrieval-accessibility gating). This file is cited in those claims' `sources`.)
+
+
 **Status: INTAKE DONE 2026-06-12.** Literature explored; `/thought-digestion` registration
 complete. Registered: **MECH-425** (two-layer retrieval-time accessibility gating -- Line A
 gain + Line B suppression), **Q-076** (the gain x suppression interaction), and a cross-ref

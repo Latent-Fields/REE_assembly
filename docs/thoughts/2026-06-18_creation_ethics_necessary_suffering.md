@@ -1,5 +1,10 @@
 # Thought Intake: Creation Ethics, Necessary Vulnerability, and the Moral Cost of Compassion
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-7 (creation ethics / procreative analogy), SENT-8 (minimal necessary suffering principle), SENT-9 (care obligation after creation). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-18
 **Type:** thought intake / associated governance proposal
 **Associated with:** `docs/thoughts/2026-06-18_sentience_welfare_risk_register.md`

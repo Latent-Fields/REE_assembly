@@ -1,5 +1,10 @@
 # Thought Intake: AI Welfare, Consciousness, and Moral-Patienthood Framework Crosswalk
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-15 (AI welfare / consciousness framework crosswalk). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / artificial welfare / consciousness indicators / moral-patienthood crosswalk
 **Associated with:**

@@ -1,5 +1,10 @@
 # Thought Intake: Ethical Assembly Routing and Co-Instantiation Risk
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-13 (ethical assembly routing -- 'assembly order is an ethical variable'). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / assembly governance / co-instantiation risk map
 **Associated with:**

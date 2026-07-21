@@ -1,22 +1,34 @@
 # Thought Sweep Report
 
-Generated: `2026-06-09T20:53:52.898842Z`
+Generated: `2026-07-21T17:54:07.914860Z`
 
 | metric | count |
 |---|---|
-| total thought files | 127 |
-| processed | 125 |
-| unprocessed | 2 |
-| processed missing `Processed in` links | 0 |
+| total thought files | 166 |
+| processed | 153 |
+| unprocessed | 13 |
+| processed missing `Processed in` links | 2 |
 
 ## Unprocessed Queue
 
-- `2026-06-07` `2026-06-07_meta_agent_challenge_evaluation_channel_integrity.md` (status=`unprocessed`)
-- `2026-06-08` `2026-06-08_play_private_speech_externalised_dmn.md` (status=`unprocessed`)
+- `2026-06-10` `2026-06-10_z_harm_a_saturation_decoupling.md` (status=`unprocessed`)
+- `2026-06-21` `2026-06-21_v3_closure_as_external_legibility_boundary.md` (status=`unprocessed`)
+- `2026-06-23` `2026-06-23_cross_system_resonance_and_inference_calibration.md` (status=`unprocessed`)
+- `2026-06-23` `2026-06-23_introspection_as_architectural_evidence_for_ree.md` (status=`unprocessed`)
+- `2026-06-23` `2026-06-23_language_as_cooperation_interface.md` (status=`unprocessed`)
+- `2026-06-23` `2026-06-23_language_as_cooperation_interface_to_nonverbal_cognition.md` (status=`unprocessed`)
+- `2026-06-24` `2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md` (status=`unprocessed`)
+- `2026-07-12` `2026-07-12_goal_relevance_salience_and_distractor_suppression.md` (status=`unprocessed`)
+- `2026-07-12` `2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md` (status=`unprocessed`)
+- `2026-07-14` `2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md` (status=`unprocessed`)
+- `2026-07-19` `2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md` (status=`unprocessed`)
+- `2026-07-19` `2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md` (status=`unprocessed`)
+- `2026-07-19` `2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
-- _none_
+- `2026-06-25_continuity_branching_and_substrate_migration.md`
+- `2026-07-09_residue_as_care_marker_and_mood_regulation.md`
 
 ## Processed Snapshot
 
@@ -140,8 +152,36 @@ Generated: `2026-06-09T20:53:52.898842Z`
 - `2026-06-06_sleep_timing_multiday_memory_eligibility_window.md` (1 link(s) in `Processed in`)
 - `2026-06-06_spintronic_memristive_cognifold_substrate.md` (5 link(s) in `Processed in`)
 - `2026-06-07-language-affect-adaptor-slm-emotion-recognition.md` (2 link(s) in `Processed in`)
+- `2026-06-07_meta_agent_challenge_evaluation_channel_integrity.md` (2 link(s) in `Processed in`)
 - `2026-06-07_sight_specific_perceptual_manifolds.md` (4 link(s) in `Processed in`)
 - `2026-06-08_Trainable_Releif_and_Safety.md` (5 link(s) in `Processed in`)
 - `2026-06-08_emotion_as_anti_collapse_architecture.md` (2 link(s) in `Processed in`)
+- `2026-06-08_play_private_speech_externalised_dmn.md` (8 link(s) in `Processed in`)
+- `2026-06-12_cognifold_cross_pollination_and_language_stream.md` (1 link(s) in `Processed in`)
+- `2026-06-12_histaminergic_retrieval_accessibility_gating.md` (1 link(s) in `Processed in`)
+- `2026-06-18_creation_ethics_necessary_suffering.md` (1 link(s) in `Processed in`)
+- `2026-06-18_future_meaning_retroactive_justification.md` (1 link(s) in `Processed in`)
+- `2026-06-18_pre_meaning_suffering_valley.md` (1 link(s) in `Processed in`)
+- `2026-06-18_sentience_welfare_risk_register.md` (1 link(s) in `Processed in`)
+- `2026-06-19_ai_welfare_consciousness_framework_crosswalk.md` (1 link(s) in `Processed in`)
+- `2026-06-19_ethical_assembly_routing_map.md` (1 link(s) in `Processed in`)
+- `2026-06-19_ethics_process_translation.md` (1 link(s) in `Processed in`)
+- `2026-06-19_external_framework_crosswalk_for_ree_ethics.md` (1 link(s) in `Processed in`)
+- `2026-06-19_research_health_data_frameworks_for_ree.md` (1 link(s) in `Processed in`)
+- `2026-06-19_responsible_release_private_higher_versions.md` (1 link(s) in `Processed in`)
+- `2026-06-19_security_misuse_frameworks_for_ree.md` (1 link(s) in `Processed in`)
+- `2026-06-20_brain_native_hybrid_inference_objects.md` (1 link(s) in `Processed in`)
+- `2026-06-20_claims_index_as_structured_uncertainty_graph.md` (1 link(s) in `Processed in`)
+- `2026-06-20_dlif_claims_index_pilot_result.md` (2 link(s) in `Processed in`)
+- `2026-06-20_dlif_next_action_claims_index_pilot_plan.md` (1 link(s) in `Processed in`)
+- `2026-06-20_dynamic_latent_information_field_critical_review_and_learning.md` (1 link(s) in `Processed in`)
+- `2026-06-20_dynamic_latent_information_field_minimal_formal_specification.md` (1 link(s) in `Processed in`)
+- `2026-06-20_dynamic_latent_scale_inference_field_capture.md` (1 link(s) in `Processed in`)
+- `2026-06-20_dynamic_latent_scale_inference_field_research_map.md` (1 link(s) in `Processed in`)
+- `2026-06-20_latent_information_fields_graphs_as_projections.md` (1 link(s) in `Processed in`)
+- `2026-06-20_structured_uncertainty_layer_for_ree_agent_design.md` (1 link(s) in `Processed in`)
+- `2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md` (1 link(s) in `Processed in`)
+- `2026-06-25_continuity_branching_and_substrate_migration.md` (0 link(s) in `Processed in`)
+- `2026-07-09_residue_as_care_marker_and_mood_regulation.md` (0 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

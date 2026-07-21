@@ -1,6 +1,10 @@
 # Interpreting V3-EXQ-700 failure: loop decomposition, granularity, and residual missing pieces
 
-Status: processed 2026-06-23 (/thought-digestion)
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: MECH-451, MECH-452, MECH-453 (V3-EXQ-700 failure interpretation / loop decomposition). This file is cited in those claims' `sources`.)
+
+
 
 ## Digestion record (2026-06-23)
 

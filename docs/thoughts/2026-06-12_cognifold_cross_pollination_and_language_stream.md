@@ -1,5 +1,10 @@
 # Cognifold cross-pollination and the language predictive stream (2026-06-12)
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: MECH-423, MECH-424 (cognifold cross-pollination / cross-model super-additivity + language stream). This file is cited in those claims' `sources`.)
+
+
 Source thought (Daniel, 2026-06-12), preserved verbatim:
 
 > I was considering cognition and how certain parts of AI work. The world model

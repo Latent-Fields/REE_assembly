@@ -1,5 +1,10 @@
 # Thought Intake: Responsible Release, Private Higher Versions, and the Ethics Perimeter
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-14 (responsible release / private higher-version governance), SENT-16 (continuity / identity / reset / deletion ethics), GOV-JUST-1 (justice / power / false exclusion). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / release governance / ethics perimeter
 **Associated with:**

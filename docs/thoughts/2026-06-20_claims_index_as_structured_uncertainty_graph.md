@@ -1,5 +1,10 @@
 # Claims Index as a Structured Uncertainty Graph
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (SD-062 `claims-index as a typed multi-axis structured-uncertainty graph` -- the surviving constructive outcome of the DLIF line, applied to the claims registry rather than to REE cognition. This file is cited in that claim's `sources`.)
+
+
 **Date:** 2026-06-20  
 **Status:** thought_intake  
 **Scope:** REE_assembly claims index, evidence graph, experiment prioritisation, and implementation dispatch  

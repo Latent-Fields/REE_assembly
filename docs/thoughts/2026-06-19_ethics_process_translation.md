@@ -1,5 +1,10 @@
 # Thought Intake: Translating Ethics Thoughts into REE Processes
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: GOV-PROC-1 (ethics-as-process: ethics-perimeter intakes translated into claim-governed governance claims). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / process design / governance integration
 **Associated with:**

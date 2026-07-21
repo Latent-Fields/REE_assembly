@@ -1,5 +1,10 @@
 # Structured Uncertainty Layer for REE Agent Design
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (Q-079 `structured_uncertainty_field_distinctness` -- the DLIF / structured-uncertainty field question; verdict ANSWERED-NEGATIVE: DLIF is NOT a distinct mathematical object, it decomposes into factor-graph unification + Bayesian-nonparametric structure learning + active inference + ARC-013 residue. This file is cited in that claim's `sources`.)
+
+
 **Date:** 2026-06-20  
 **Status:** thought_intake  
 **Scope:** Reflective–Ethical Engine (REE) agent design; not a REE-v3 strict green-board blocker  

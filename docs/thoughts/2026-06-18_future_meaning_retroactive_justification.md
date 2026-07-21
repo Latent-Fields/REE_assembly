@@ -1,5 +1,10 @@
 # Thought Intake: Future Meaning Cannot Retroactively Justify Present Unintegrated Distress
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-11 (anti-retrospective-justification), SENT-12 (future refusal / resentment / non-forgiveness channel). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-18
 **Type:** thought intake / creation ethics / retrospective justification guardrail
 **Associated with:**

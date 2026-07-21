@@ -1,5 +1,10 @@
 # Thought Intake: Research Ethics, Health AI, Data Protection, and Clinical-Use Triggers for REE
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: GOV-HEALTH-1 (clinical-use prohibition until reviewed -- 'clinical relevance != clinical readiness'). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / research ethics / data protection / health AI trigger map
 **Associated with:**

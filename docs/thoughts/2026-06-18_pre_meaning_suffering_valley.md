@@ -1,5 +1,10 @@
 # Thought Intake: The Pre-Meaning Suffering Valley
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: SENT-10 (pre-meaning suffering valley -- 'no valley without a bridge'). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-18
 **Type:** thought intake / developmental welfare governance
 **Associated with:**

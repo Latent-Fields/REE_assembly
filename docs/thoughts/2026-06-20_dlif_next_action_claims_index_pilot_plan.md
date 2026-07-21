@@ -1,5 +1,10 @@
 # DLIF Next Action: Claims-Index Pilot Plan
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (plan doc for the claims-index pilot whose RESULT is `2026-06-20_dlif_claims_index_pilot_result.md`; that result is cited in SD-062 and Q-079 `sources`. Discharged via its own result, not cited directly.)
+
+
 **Date:** 2026-06-20  
 **Status:** next_action_plan / pilot_seed  
 **Scope:** Dynamic Latent Information Field (DLIF), REE_assembly claims index, thought-intake governance  

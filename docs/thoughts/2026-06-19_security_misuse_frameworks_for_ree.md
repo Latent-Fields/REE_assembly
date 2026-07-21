@@ -1,5 +1,10 @@
 # Thought Intake: Security, Misuse, Agentic Risk, and Capability-Boundary Frameworks for REE
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: GOV-SEC-1 (security and misuse release gate). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / security / misuse / agentic containment / release-risk trigger map
 **Associated with:**

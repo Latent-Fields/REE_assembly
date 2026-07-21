@@ -1,5 +1,11 @@
 # Claims-Index DLIF Pilot — Manual Pass Result
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (SD-062 `claims-index as a typed multi-axis structured-uncertainty graph` -- the surviving constructive outcome of the DLIF line, applied to the claims registry rather than to REE cognition. This file is cited in that claim's `sources`.)
+- `docs/claims/claims.yaml` (Q-079 `structured_uncertainty_field_distinctness` -- the DLIF / structured-uncertainty field question; verdict ANSWERED-NEGATIVE: DLIF is NOT a distinct mathematical object, it decomposes into factor-graph unification + Bayesian-nonparametric structure learning + active inference + ARC-013 residue. This file is cited in that claim's `sources`.)
+
+
 **Date:** 2026-06-20
 **Status:** pilot_result / analysis (doc-only; no claims.yaml or evidence edits)
 **Scope:** executes the manual Claims-Index DLIF pass prescribed in

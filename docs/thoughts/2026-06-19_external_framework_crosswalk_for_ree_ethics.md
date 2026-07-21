@@ -1,5 +1,10 @@
 # Thought Intake: External Framework Crosswalk for REE Ethics
 
+Status: processed
+Processed in:
+- `docs/claims/claims.yaml` (thought-intake REAP: GOV-EXT-1 (external framework crosswalk -- internal REE ethics must remain externally legible). This file is cited in those claims' `sources`.)
+
+
 **Date:** 2026-06-19
 **Type:** thought intake / external ethics and legal framework crosswalk
 **Associated with:**
