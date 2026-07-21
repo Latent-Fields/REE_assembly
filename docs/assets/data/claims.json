@@ -21,7 +21,8 @@
     "status": "active",
     "subject": "E3.trajectory_commitment",
     "title": "E3 selects and commits trajectories.",
-    "type": "architectural_commitment"
+    "type": "architectural_commitment",
+    "what_would_answer": "ARC-003 is CONJUNCTIVE -- \"E3 SELECTS\" and \"E3 COMMITS\" are separate assertions\nwith OPPOSITE readiness. Digested 2026-07-21 by splitting on testability.\n\nLEG A -- SELECTION (testable now, COMMITMENT-FREE).\nANSWER \"E3 selects\" if the E3 score gradient over the candidate set is non-flat\nand predicts the taken candidate above chance, AND lesioning the E3 contribution\nto the score collapses selection toward the candidate-generation prior.\nANSWER \"E3 is a pass-through, not a selector\" (FAIL) if candidate choice is\nstatistically indistinguishable from the proposer's prior. MECH-060/061/062 and\nthe tri-loop gating claims would then lose their premise.\nNON-DEGENERACY: the candidate pool must be DIVERGENT (cand_world_pairwise_dist\nabove floor -- the GAP-A guard). Scoring a pool of near-identical candidates\ntests nothing and would manufacture either verdict. Measured at the scoring\nlevel; requires NO sustained execution.\n\nLEG B -- COMMITMENT (BLOCKED; not queueable as of 2026-07-21).\nANSWER \"E3 commits\" if a selected trajectory persists across >= N steps under a\nperturbation that would flip an uncommitted selector, with a measurable\nrelease/switch cost (hysteresis).\nThis leg requires SUSTAINED MULTI-STEP ACTION COMMITMENT, and the basal-ganglia /\naction-commitment layer is under active construction (ARC-107 BG-selector\nconstitution; MECH-448 demotion lever provisional; MECH-449 substrate_conditional;\ncommit/release-duration falsifiers 460j/485i/654h pending). A behavioural FAIL run\nnow would RE-DERIVE THE F-DOMINANCE CONVERSION CEILING (\"a navigable landscape\ndoes not convert to committed action because the selector drowns it\"), NOT\nadjudicate ARC-003 -- a confound, not a verdict.\nRELEASE CONDITION: ARC-107 BG-selector constitution landed AND the\ncommit/release-duration levers (460j / 485i / 654h) returned.\n"
   },
   "ARC-004": {
     "assembly_state": "mature",
@@ -37,7 +38,8 @@
     "status": "active",
     "subject": "control_plane.precision_routing",
     "title": "Control plane routes precision and modes.",
-    "type": "architectural_commitment"
+    "type": "architectural_commitment",
+    "what_would_answer": "The falsifiable content is NOT \"a control plane exists\" (that is a design fact --\nwe built one). It is that the control plane ROUTES: has causal authority over\nprecision and mode that is DISSOCIABLE FROM CONTENT. If precision and mode are\nreadouts of what the agent happens to be processing, the plane is epiphenomenal\nand all 88 dependents inherit a false premise.\nTestable in V3 as a DOUBLE DISSOCIATION over the implemented channel set\n(5-HT rigidity, phasic-surprise-burst gain, SalienceCoordinator mode prior,\npcc_stability mu): a 2x2 of {channels varied, content fixed} x {content varied,\nchannels fixed}, measuring (i) the E3 precision readout and (ii) mode-occupancy\ndistribution.\nANSWER \"routes\" (PASS) if channel intervention shifts precision and mode occupancy\nmonotonically with channel setting, AND the channel effect on mode occupancy\nexceeds the content effect by >= 0.8 SD of the cross-seed DELTA and by an absolute\nfloor of >= 0.15 occupancy-fraction, AND identical channel settings reproduce the\nsame regime across differing content.\nANSWER \"readout, not router\" (FAIL) if mode occupancy and precision are predicted\nas well or better from content features than from channel settings. ARC-005 then\ndemotes and its dependents need re-derivation from whatever does the routing.\nNON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): in the\nbaseline arm at least two modes must be occupied >= 5% of steps, and the precision\nreadout must carry non-zero cross-seed variance (not floor-pinned). A single-mode-\ncollapsed agent makes both arms trivially identical and the comparison vacuous.\nSCOPE: tests routing authority over the CURRENTLY-IMPLEMENTED channels. A PASS\ndoes not vindicate every channel posited in MECH-002/MECH-004; it establishes the\nplane is causal rather than decorative.\n"
   },
   "ARC-006": {
     "assembly_state": "mature",
@@ -55,7 +57,8 @@
     "status": "active",
     "subject": "hippocampus.path_memory",
     "title": "Hippocampal systems store and replay paths through residue-field terrain.",
-    "type": "architectural_commitment"
+    "type": "architectural_commitment",
+    "what_would_answer": "ARC-007 is CONJUNCTIVE and only one leg has ever been tested.\nLEG 1 -- \"hippocampal systems store and replay paths\" -- is already carried\nbehaviourally by EXQ-114 (harm_rate 0.006 intact vs 0.765 ablated, 99.2%\nreduction, 2/2 seeds). That is what the exp_conf 0.55 rests on.\nLEG 2 -- \"THROUGH RESIDUE-FIELD TERRAIN\" -- is untested. Nothing in the evidence\ntrail distinguishes paths through a residue field from paths through an ordinary\nspatial/latent map that residue merely co-varies with. Leg 2 is the whole\nREE-specific content: without it ARC-007 reduces to \"a hippocampus helps\nnavigation\" -- true, generic, and not load-bearing for the 76 dependents that\nassume residue-shaped terrain.\nAnswered by a RESIDUE-SCRAMBLE DISSOCIATION with the hippocampal path machinery\nleft fully intact: A0 intact / A1 hippocampus-ablated (the EXQ-114 reference arm,\nestablishing the base effect is live) / A2 residue field PERMUTED (residue values\nshuffled across cells -- preserves the field's marginal distribution and the\nspatial map, destroys the residue<->location correspondence) / A3 residue field\nfrozen at initialisation. Primary DV BEHAVIOURAL (harm_rate, path efficiency).\nNOT hippo_quality_gap -- that probe is sign-inverted (EXQ-397/397c reclassified\nnon_contributory 2026-04-22) and must not be a verdict source until redesigned.\nANSWER \"leg 2 holds\" (PASS) if A2 and A3 degrade toward A1, recovering >= 50% of\nthe A0->A1 harm gap, with an effect >= 0.8 SD of the cross-seed delta. The stored\npaths depend on residue structure specifically.\nANSWER \"terrain claim false, leg 1 survives\" (FAIL) if A2/A3 are statistically\nindistinguishable from intact A0. Path memory works, but not through residue\nterrain. ARC-007 must then be SPLIT: the path-memory leg promotes on EXQ-114, the\nresidue-terrain leg demotes, and dependents assuming residue-shaped terrain\n(MECH-073 value-shaped geometry, the replay cluster) need re-derivation.\nNON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict):\n(a) the residue field must carry live non-flat structure in A0 -- non-zero\ncross-cell variance, not uniform-pinned; permuting a flat field is a no-op and\nwould manufacture a false FAIL; (b) the A0->A1 harm gap must reproduce EXQ-114's\nmagnitude, else there is no base effect to attribute; (c) the permutation must\nverifiably change the field state, not merely be requested.\nThis also makes the 4-PASS/4-FAIL evidence split legible: a FAIL here EXPLAINS the\ndivergence rather than adding to it -- the passes tested leg 1, leg 2 was never\nunder test.\n"
   },
   "ARC-008": {
     "assembly_state": "mature",
@@ -2692,6 +2695,8 @@
   },
   "MECH-048": {
     "assembly_state": "mature",
+    "assembly_status": "built",
+    "awaiting": "sd_032d_mu_kappa_mode_prior_overlays",
     "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "control_plane.mu_kappa_stability_overlays",
@@ -4487,6 +4492,8 @@
   },
   "MECH-259": {
     "assembly_state": "mature",
+    "assembly_status": "queued",
+    "awaiting": "sd_salience_contested_mode_occupancy",
     "epistemic_stance": "believed",
     "status": "stable",
     "subject": "cingulate.switch_threshold",
@@ -7790,6 +7797,14 @@
     "status": "candidate",
     "subject": "precision.waking_confidence_inflation",
     "title": "Waking confidence inflation as an asymmetric precision EMA: good news about one's own accuracy is incorporated fast and bad news slowly, so the running-variance estimate settles below the true error mean. Supplies the daytime precision-drift source that MECH-204's corrective function presupposes but which V3 did not have. ree_core E3 selector change, bit-identical by default.",
+    "type": "design_decision"
+  },
+  "SD-077": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.common_mode_invariant_super_ordinal_cue_key",
+    "title": "Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189 SuperOrdinalGoalMemory keys anchors on raw z_world cosine, which under SD-008 z_world under-differentiation measures the shared common-mode offset rather than the context, so every nursery contact reinforces one slot and anchor_count saturates at 1. Subtract a slow EMA common-mode baseline before every cue cosine. ree_core goal.py change, bit-identical by default.",
     "type": "design_decision"
   },
   "SENT-0": {

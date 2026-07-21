@@ -408,6 +408,36 @@
     - ARC-002
     - ARC-004
     - ARC-005
+  epistemic_category: standard
+  what_would_answer: |
+    ARC-003 is CONJUNCTIVE -- "E3 SELECTS" and "E3 COMMITS" are separate assertions
+    with OPPOSITE readiness. Digested 2026-07-21 by splitting on testability.
+
+    LEG A -- SELECTION (testable now, COMMITMENT-FREE).
+    ANSWER "E3 selects" if the E3 score gradient over the candidate set is non-flat
+    and predicts the taken candidate above chance, AND lesioning the E3 contribution
+    to the score collapses selection toward the candidate-generation prior.
+    ANSWER "E3 is a pass-through, not a selector" (FAIL) if candidate choice is
+    statistically indistinguishable from the proposer's prior. MECH-060/061/062 and
+    the tri-loop gating claims would then lose their premise.
+    NON-DEGENERACY: the candidate pool must be DIVERGENT (cand_world_pairwise_dist
+    above floor -- the GAP-A guard). Scoring a pool of near-identical candidates
+    tests nothing and would manufacture either verdict. Measured at the scoring
+    level; requires NO sustained execution.
+
+    LEG B -- COMMITMENT (BLOCKED; not queueable as of 2026-07-21).
+    ANSWER "E3 commits" if a selected trajectory persists across >= N steps under a
+    perturbation that would flip an uncommitted selector, with a measurable
+    release/switch cost (hysteresis).
+    This leg requires SUSTAINED MULTI-STEP ACTION COMMITMENT, and the basal-ganglia /
+    action-commitment layer is under active construction (ARC-107 BG-selector
+    constitution; MECH-448 demotion lever provisional; MECH-449 substrate_conditional;
+    commit/release-duration falsifiers 460j/485i/654h pending). A behavioural FAIL run
+    now would RE-DERIVE THE F-DOMINANCE CONVERSION CEILING ("a navigable landscape
+    does not convert to committed action because the selector drowns it"), NOT
+    adjudicate ARC-003 -- a confound, not a verdict.
+    RELEASE CONDITION: ARC-107 BG-selector constitution landed AND the
+    commit/release-duration levers (460j / 485i / 654h) returned.
   location: docs/architecture/e3.md#arc-003
   source:
     - docs/processed/legacy_tree/docs/architecture/e3.md
@@ -554,6 +584,43 @@
     - ARC-004
     - ARC-003
     - ARC-018
+  epistemic_category: standard
+  what_would_answer: |
+    ARC-007 is CONJUNCTIVE and only one leg has ever been tested.
+    LEG 1 -- "hippocampal systems store and replay paths" -- is already carried
+    behaviourally by EXQ-114 (harm_rate 0.006 intact vs 0.765 ablated, 99.2%
+    reduction, 2/2 seeds). That is what the exp_conf 0.55 rests on.
+    LEG 2 -- "THROUGH RESIDUE-FIELD TERRAIN" -- is untested. Nothing in the evidence
+    trail distinguishes paths through a residue field from paths through an ordinary
+    spatial/latent map that residue merely co-varies with. Leg 2 is the whole
+    REE-specific content: without it ARC-007 reduces to "a hippocampus helps
+    navigation" -- true, generic, and not load-bearing for the 76 dependents that
+    assume residue-shaped terrain.
+    Answered by a RESIDUE-SCRAMBLE DISSOCIATION with the hippocampal path machinery
+    left fully intact: A0 intact / A1 hippocampus-ablated (the EXQ-114 reference arm,
+    establishing the base effect is live) / A2 residue field PERMUTED (residue values
+    shuffled across cells -- preserves the field's marginal distribution and the
+    spatial map, destroys the residue<->location correspondence) / A3 residue field
+    frozen at initialisation. Primary DV BEHAVIOURAL (harm_rate, path efficiency).
+    NOT hippo_quality_gap -- that probe is sign-inverted (EXQ-397/397c reclassified
+    non_contributory 2026-04-22) and must not be a verdict source until redesigned.
+    ANSWER "leg 2 holds" (PASS) if A2 and A3 degrade toward A1, recovering >= 50% of
+    the A0->A1 harm gap, with an effect >= 0.8 SD of the cross-seed delta. The stored
+    paths depend on residue structure specifically.
+    ANSWER "terrain claim false, leg 1 survives" (FAIL) if A2/A3 are statistically
+    indistinguishable from intact A0. Path memory works, but not through residue
+    terrain. ARC-007 must then be SPLIT: the path-memory leg promotes on EXQ-114, the
+    residue-terrain leg demotes, and dependents assuming residue-shaped terrain
+    (MECH-073 value-shaped geometry, the replay cluster) need re-derivation.
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict):
+    (a) the residue field must carry live non-flat structure in A0 -- non-zero
+    cross-cell variance, not uniform-pinned; permuting a flat field is a no-op and
+    would manufacture a false FAIL; (b) the A0->A1 harm gap must reproduce EXQ-114's
+    magnitude, else there is no base effect to attribute; (c) the permutation must
+    verifiably change the field state, not merely be requested.
+    This also makes the 4-PASS/4-FAIL evidence split legible: a FAIL here EXPLAINS the
+    divergence rather than adding to it -- the passes tested leg 1, leg 2 was never
+    under test.
   location: docs/architecture/hippocampal_systems.md#arc-007
   source:
     - docs/processed/legacy_tree/docs/architecture/hippocampal_braid.md
