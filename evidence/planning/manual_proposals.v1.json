@@ -1520,6 +1520,40 @@
     "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a verdict): (a) the finer channels must carry live, DISSOCIABLE cross-channel learned-weight variance [finer w_chan entries that move identically are the compressed blend re-labelled]; (b) the candidate pool must be divergent [GAP-A guard: cand_world_pairwise_dist > floor]; (c) the signed delta_t teaching signal must be non-flat and the finer w_chan entries must actually move; check_degeneracy non_degenerate=false on any failing."
    ],
    "notes": "Source: V3-EXQ-700 failure-interpretation thought intake (docs/thoughts/2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md, 'channel compression' / 'finer exposed channels' section), digested 2026-06-23 (/thought-digestion). The intermediate architecture between ARC-108's one_global_weight_vector and ARC-110's full loop-specific_weight_vectors. GATED ON V3-EXQ-700's outcome (moot if 700 converts) AND on the finer-channel e3_selector slice being built first (/implement-substrate). Hand to /queue-experiment; Step-2.5 substrate-readiness must verify the finer-channel exposure is wired in e3_selector before queuing (else blocked_substrate). MECH-451 stays candidate / substrate_conditional / v3 -> promote/demote suppressed; PROMOTES NOTHING until it scores."
+  },
+  {
+   "proposal_id": "EXP-0392",
+   "claim_id": "ARC-005",
+   "related_claims": [
+    "ARC-005",
+    "ARC-016",
+    "ARC-004",
+    "INV-008",
+    "INV-009",
+    "INV-014",
+    "MECH-019",
+    "MECH-039",
+    "MECH-002",
+    "MECH-004",
+    "MECH-063",
+    "Q-017"
+   ],
+   "proposal_type": "experimental",
+   "target_repo": "ree-v3",
+   "priority": "medium",
+   "status": "proposed",
+   "registered_utc": "2026-07-21",
+   "dispatch_mode": "multi_arm_ablation",
+   "estimated_minutes": 420,
+   "machine_affinity": "any",
+   "objective": "Test ARC-005's falsifiable content -- not that a control plane EXISTS (a design fact) but that it ROUTES: that its channels have causal authority over precision and mode DISSOCIABLE FROM CONTENT. ARC-005 carries 88 reverse dependencies on exp_conf 0.0 (zero experimental entries; lit_conf 0.783 only). If precision and mode are readouts of what the agent happens to be processing rather than settings the plane imposes, the plane is epiphenomenal and the whole E1/E2/E3 + neuromodulator dependency spine inherits a false premise.",
+   "design": "DOUBLE DISSOCIATION 2x2 over the implemented channel set (serotonin rigidity, regulators/phasic_surprise_burst gain, cingulate/salience_coordinator mode prior, pcc_analog pcc_stability mu). Factor 1 = channel settings {baseline, perturbed}; Factor 2 = task content {content-set A, content-set B} on a fixed arena. Arms: A0_BASE (baseline channels, content A) / A1_CHAN (perturbed channels, content A) / A2_CONTENT (baseline channels, content B) / A3_BOTH (perturbed channels, content B). Primary DVs: (i) E3 precision readout, (ii) mode-occupancy distribution over the control-plane regimes. The comparison of interest is the CHANNEL main effect vs the CONTENT main effect on mode occupancy, on matched seeds. Author via /queue-experiment; Step-2.5 substrate-readiness must confirm all four channels are externally settable from the experiment driver and that a mode-occupancy readout is emitted per step (else blocked_substrate). Emit the A0_BASE arm fingerprint with include_driver_script_in_hash=False so the baseline is cross-driver reusable.",
+   "acceptance_checks": [
+    "PASS / supports ARC-005 (the plane ROUTES): channel intervention shifts precision and mode occupancy monotonically with channel setting, AND the channel main effect on mode occupancy exceeds the content main effect by >= 0.8 SD of the cross-seed DELTA and by an absolute floor of >= 0.15 occupancy-fraction, AND identical channel settings reproduce the same regime across content A and content B, on >= 2/3 seeds.",
+    "FAIL / weakens ARC-005 (readout, not router): mode occupancy and precision are predicted as well or better from content features than from channel settings (content main effect >= channel main effect). ARC-005 demotes; the 88 dependents require re-derivation from whatever actually routes. This is a decision-flipping negative, not a null.",
+    "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): (a) in A0_BASE at least two modes occupied >= 5% of steps -- a single-mode-collapsed agent makes all arms trivially identical; (b) the precision readout must carry non-zero cross-seed variance, not floor-pinned; (c) the channel perturbation must actually move the channel state (verify the settings took effect, not just that they were passed). check_degeneracy non_degenerate=false on any failing."
+   ],
+   "notes": "Minted by /thought-digestion 2026-07-21 while digesting the load-bearing ARC spine. ARC-005 was the highest-fan-in claim in the registry (88 reverse deps) with a completely absent falsification condition and zero experimental evidence -- carried entirely on literature and on being architecturally load-bearing. SCOPE: tests routing authority over the CURRENTLY-IMPLEMENTED channels only; a PASS does not vindicate every channel posited in MECH-002/MECH-004, it establishes the plane is causal rather than decorative. Relates to Q-017 (minimal orthogonal control-axis subset) and MECH-063 (orthogonal tonic/phasic axes) -- a FAIL here would make both moot. Digestion proposes; it does not promote. ARC-005 stays believed until an experiment scores."
   }
  ]
 }
