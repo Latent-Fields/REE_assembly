@@ -1589,6 +1589,71 @@
     "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): (a) the residue field must carry live non-flat structure in A0 -- non-zero cross-cell variance, not uniform-pinned; permuting a flat field is a no-op and would manufacture a false FAIL; (b) the A0->A1 harm gap must reproduce EXQ-114's magnitude, else there is no base effect to attribute; (c) the permutation must verifiably change the field state, not merely be requested. check_degeneracy non_degenerate=false on any failing."
    ],
    "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (2nd-highest fan-in in the registry, 76 reverse deps). The digestion finding is the conjunctive split: every prior ARC-007 experiment tested leg 1 (does path memory help) and none tested leg 2 (is the terrain residue-shaped). V2 path_memory_ablation FAILed on a 26-element obs-slice proxy the evidence_quality_note itself calls too crude; EXQ-114 PASSed leg 1 in V3. Consider a /governance claim-split of ARC-007 into its two legs -- carrying them as one conjunctive claim at exp_conf 0.55 hides that one leg is near-shown and the other unexamined. Digestion proposes; it does not promote. ARC-007 stays believed until this scores."
+  },
+  {
+   "proposal_id": "EXP-0394",
+   "claim_id": "ARC-003",
+   "related_claims": [
+    "ARC-003",
+    "ARC-005",
+    "ARC-002",
+    "ARC-001",
+    "INV-012",
+    "MECH-060",
+    "MECH-061",
+    "MECH-062",
+    "Q-015",
+    "Q-016"
+   ],
+   "proposal_type": "experimental",
+   "target_repo": "ree-v3",
+   "priority": "medium",
+   "status": "proposed",
+   "registered_utc": "2026-07-21",
+   "dispatch_mode": "multi_arm_ablation",
+   "estimated_minutes": 300,
+   "machine_affinity": "any",
+   "objective": "Test LEG A of ARC-003 -- 'E3 SELECTS' -- commitment-free. ARC-003 carries 45 reverse dependencies on exp_conf 0.0 (zero experiments ever run; lit_conf 0.783 from 3 supports only). The claim is conjunctive and its two legs have opposite readiness: the SELECTION leg is measurable at the candidate-scoring level with no sustained execution, while the COMMITMENT leg is blocked on the BG/action-commitment layer (see the sibling blocked entry EXP-0395). This proposal is the runnable half.",
+   "design": "Score-level ablation, NO sustained-execution DV. Arms: A0_INTACT (full E3 scoring over the candidate set) / A1_E3_LESIONED (E3 contribution to the candidate score removed, candidate generation untouched) / ARM_NOISE (matched-noise temperature control, verified-lifting). Primary DVs: (i) flatness of the E3 score gradient across the candidate pool, (ii) above-chance prediction of the taken candidate from the E3 score, (iii) divergence between the selected-candidate distribution and the proposer's generation prior (KL). Everything is read at selection time -- the agent never needs to hold or execute a multi-step plan, which is what keeps this runnable while the BG layer is in flight. Author via /queue-experiment; emit the A0_INTACT fingerprint with include_driver_script_in_hash=False.",
+   "acceptance_checks": [
+    "PASS / supports ARC-003 leg A: the E3 score gradient is non-flat, predicts the taken candidate above chance, and A1_E3_LESIONED collapses the selected-candidate distribution toward the generation prior (KL drop >= 0.8 SD of the cross-seed delta), on >= 2/3 seeds.",
+    "FAIL / weakens ARC-003 leg A: candidate choice under A0_INTACT is statistically indistinguishable from the proposer's prior -- E3 is a pass-through, not a selector. MECH-060/061/062 and the tri-loop gating claims lose their premise. Decision-flipping negative.",
+    "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): the candidate pool must be DIVERGENT -- cand_world_pairwise_dist above floor (the GAP-A guard). A pool of near-identical candidates makes the score gradient trivially flat and would manufacture a false FAIL. Also verify the E3 lesion actually removed the contribution rather than merely being requested."
+   ],
+   "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (45 reverse deps, zero experimental evidence). Deliberately COMMITMENT-FREE per the standing rule from IGW-20260620-194: do not queue a behavioural DV requiring sustained multi-step action commitment while the BG/commitment layer is under construction, because a FAIL re-derives the F-dominance conversion ceiling rather than adjudicating the claim. The commitment leg is registered separately as EXP-0395 (blocked_substrate). Digestion proposes; it does not promote."
+  },
+  {
+   "proposal_id": "EXP-0395",
+   "claim_id": "ARC-003",
+   "related_claims": [
+    "ARC-003",
+    "ARC-008",
+    "ARC-107",
+    "MECH-448",
+    "MECH-449",
+    "MECH-057a",
+    "MECH-057b"
+   ],
+   "proposal_type": "experimental",
+   "target_repo": "ree-v3",
+   "priority": "low",
+   "status": "blocked_substrate",
+   "registered_utc": "2026-07-21",
+   "dispatch_mode": "multi_arm_ablation",
+   "estimated_minutes": 600,
+   "machine_affinity": "any",
+   "gated_at_utc": "2026-07-21",
+   "gated_by_session": "malloc-stack-logging-explorer-a0e312",
+   "gating_reason": "The DV requires SUSTAINED MULTI-STEP ACTION COMMITMENT, and the basal-ganglia / action-commitment layer is under active construction (ARC-107 BG-selector constitution; MECH-448 demotion lever provisional; MECH-449 substrate_conditional; commit/release-duration falsifiers 460j/485i/654h pending). Running it now would produce a confounded FAIL that re-derives the F-dominance conversion ceiling ('a navigable landscape does not convert to committed action because the selector drowns it'), NOT a verdict on ARC-003. Standing rule from the IGW-20260620-194 incident.",
+   "release_condition": "ARC-107 BG-selector constitution LANDED in ree-v3 AND the commit/release-duration levers (V3-EXQ-460j / 485i / 654h) RETURNED with a non-degenerate commitment signal. Re-check substrate readiness of the action-commitment layer -- not merely of E3 -- before unblocking.",
+   "objective": "Test LEG B of ARC-003 -- 'E3 COMMITS' -- that a selected trajectory becomes a persisting state with hysteresis rather than being freely re-selected each step. BLOCKED: see gating_reason. The selection leg is separately runnable as EXP-0394.",
+   "design": "When unblocked: perturbation-persistence design. Arms: A0_INTACT / A1_COMMITMENT_DISABLED (selection re-run freely each step, no latch) / A2_PERTURBED (a mid-trajectory perturbation calibrated to flip an uncommitted selector). DVs: trajectory persistence across >= N steps under A2, and the measured release/switch cost (hysteresis width). Design to be re-derived at unblock time against whatever the BG selector constitution actually lands -- do NOT author from this sketch without re-checking.",
+   "acceptance_checks": [
+    "PASS / supports ARC-003 leg B: the selected trajectory persists >= N steps under the A2 perturbation that flips A1_COMMITMENT_DISABLED, with a measurable non-zero release/switch cost.",
+    "FAIL / weakens ARC-003 leg B: A0_INTACT flips as readily as A1_COMMITMENT_DISABLED -- selection without commitment. ARC-008 (commitment eligibility via tau/rho/phi) and MECH-057a/b would need re-derivation.",
+    "NON-DEGENERACY / READINESS GATE (mandatory before this leaves blocked_substrate): the action-commitment layer must sustain multi-step commitment at all in the baseline arm. If baseline commitment duration is at the floor, the run measures the conversion ceiling, not ARC-003 -- substrate_not_ready, NOT a verdict."
+   ],
+   "notes": "Minted BLOCKED by /thought-digestion 2026-07-21 alongside EXP-0394. Registered rather than silently omitted so the commitment leg of ARC-003 is visible as known-untested-and-why, instead of appearing digested by its selection leg alone. Per session-land Phase-3 rule 3 this is blocked-on-upstream and must NOT be chipped -- the release_condition carries the revisit trigger."
   }
  ]
 }
