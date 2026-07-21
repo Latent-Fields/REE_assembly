@@ -1993,6 +1993,55 @@
     - ARC-005
     - MECH-059
     - ARC-021
+  epistemic_category: standard
+  what_would_answer: |
+    ARC-016 is UNLIKE the other load-bearing ARC claims: its core circuit is ALREADY
+    VALIDATED and it does not need a new discovery experiment. Digested 2026-07-21.
+    VALIDATED: E3-derived variance -> relative commit threshold -> BetaGate ->
+    action_selection, by EXQ-018b (PASS 5/5; commit_threshold = 2 x
+    training_baseline_variance; stable env commit_rate 0.90 / precision 718, perturbed
+    0.50 / 426 -- a 40% precision drop producing a proportional 40-point commit-rate
+    drop) and EXQ-060 (PASS 4/5; committed_step_count 5980,
+    hold_rate_during_committed 0.936).
+    ARC-016 would be OVERTURNED by the commit threshold ceasing to track E3-derived
+    variance -- commit_rate failing to move with a manipulated precision level while
+    the BetaGate remains wired. That would mean modes are NOT control-plane regimes
+    over shared predictive machinery but independent modules.
+
+    THE 15 FAILs DO NOT REFUTE THE CIRCUIT -- each is already diagnosed (see
+    heterogeneity_note): the V2 precision_regime_probe imposed precision externally
+    rather than deriving it from E3 and had no end-to-end commitment wiring; V3
+    EXQ-018's absolute threshold 0.40 was 100x the operating variance range (fixed by
+    going relative); EXQ-396a x3 and EXQ-396b are non_contributory on a train/eval
+    variance gap (train ~0.000032-0.000064 vs eval ~0.001, so the threshold never
+    engages in eval); EXQ-454 is non_contributory because the V_s monostrategy lock
+    dominates threshold-adaptation behaviour; V3-EXQ-642's autopsy records a
+    measurement / test-design gap, explicitly NOT a substrate_ceiling.
+    NOTE FOR GOVERNANCE (flag, not a digestion action): exp_conf 0.53 is therefore an
+    AGGREGATION ARTEFACT -- a claim whose FAILs are almost all already stamped
+    non_contributory still scores as if half-refuted. Re-scoring needs a governance eye
+    rather than a digestion edit, because stripping non-contributory FAILs can expose
+    that the REMAINING supports are thinner than the headline number suggested.
+
+    THE ONE GENUINELY OPEN ITEM is calibration, not mechanism -- named by this claim's
+    own notes as "pending recalibration with eval-derived threshold". ANSWERED by
+    re-running the EXQ-396 design with an EVAL-DERIVED (or online-adapted) baseline
+    variance in place of 2 x training_baseline_variance.
+    ANSWER "calibration artefact; validation stands" (PASS) if with an eval-derived
+    threshold the commitment threshold engages during eval and commit_rate tracks
+    manipulated precision monotonically.
+    ANSWER "genuine evidence against the circuit" (FAIL) if even a correctly-calibrated
+    eval-time threshold leaves commit_rate not tracking precision. That would be the
+    FIRST real evidence against ARC-016, and the 15 prior FAILs would need re-reading
+    as right for the wrong reasons.
+    NON-DEGENERACY PRECONDITION (this is exactly what killed EXQ-396a/b -- trap it):
+    the commit threshold must ACTUALLY ENGAGE in eval -- commit_rate strictly between
+    floor and ceiling, not pinned at 0.0 or 1.0, and eval-time variance within the
+    threshold's dynamic range. A threshold that never fires makes all arms identical ->
+    substrate_not_ready, NOT a verdict.
+    SCOPE GUARD: the run must be STRUCTURAL ONLY. Do NOT attach a behavioural harm DV --
+    that re-imports the V_s monostrategy-lock confound that voided EXQ-454, and the
+    behavioural consequence layer is ARC-029, not ARC-016 (split 2026-03-22).
   location: docs/architecture/modes_of_cognition.md#arc-016
   source:
     - docs/thoughts/2026-02-08_modes_of_cognition_control_plane_regimes.md
@@ -2080,6 +2129,49 @@
     - ARC-002
     - ARC-001
     - ARC-021
+  epistemic_category: standard
+  what_would_answer: |
+    ARC-018 is CONJUNCTIVE, and its PASS/FAIL split is NOT noise -- the evidence
+    separates cleanly by leg. Digested 2026-07-21.
+    LEG A "post-commitment viability mapping": EXQ-042 PASS (terrain_prior learns E3
+    preferences, hippo_quality_gap 0.393, terrain_loss -> 0), EXQ-053 PASS (terrain-
+    guided navigation 50x less harm than random, 5/5 criteria), EXQ-120 PASS
+    (discriminative pair). Three consistent PASSes.
+    LEG B "explicit rollouts": EXQ-172 FAIL (harm_advantage_mean -0.190), EXQ-196 FAIL
+    (harm_advantage_mean 0.0 across all 3 seeds). Two FAILs.
+    Every PASS is leg A; every FAIL is leg B. Carrying this as one conjunction at
+    exp_conf 0.547 averages a well-supported leg with an unsupported one and hides
+    both facts.
+    BUT LEG B IS UNTESTED, NOT REFUTED -- both FAILs are confounded, differently:
+    EXQ-172 ran at e2_world_r2 = 0.203 and the note itself concludes "rollout planning
+    counterproductive at current fidelity ... ARC-018 may be E2-quality-gated" -- a
+    negative advantage from a poor forward model indicts E2, not the rollout
+    architecture. EXQ-196 ran at good fidelity (e2_world_r2 0.766, residue populated)
+    and returned EXACTLY 0.0 on all three seeds -- an exact-zero-everywhere result is a
+    DEGENERACY SIGNATURE (the rollout output never reached the DV), which is why
+    governance classified it non_contributory and deferred the verdict.
+
+    LEG A would be OVERTURNED by: terrain-guided navigation losing its advantage over
+    random when the terrain prior is ablated WHILE hippo_quality_gap and terrain_loss
+    remain healthy -- i.e. the map is learned but inert.
+
+    LEG B is ANSWERED by a ROLLOUT-DEPTH ABLATION AT VERIFIED E2 FIDELITY: arms at
+    rollout depth 0 (no rollout) / shallow / full, run only after E2 fidelity clears a
+    measured floor. Primary DV harm_advantage_mean.
+    ANSWER "rollouts confer planning advantage" (PASS) if harm_advantage_mean scales
+    monotonically with rollout depth, effect >= 0.8 SD of the cross-seed delta, on
+    >= 2/3 seeds. ARC-018 then holds conjunctively.
+    ANSWER "rollout leg demotes" (FAIL) if there is no advantage at ANY depth despite
+    verified-live rollouts and adequate E2. ARC-018 reduces to its mapping leg, and
+    MECH-092 plus the replay-consolidation dependents need re-derivation.
+    NON-DEGENERACY PRECONDITIONS (each drawn from a specific prior failure; any breach
+    -> substrate_not_ready, NOT a verdict):
+    (a) e2_world_r2 >= 0.6 measured IN-RUN -- below this the EXQ-172 confound recurs;
+    (b) rollout-derived scores must carry non-zero cross-candidate variance -- the
+    rollout must actually discriminate between candidates;
+    (c) harm_advantage_mean EXACTLY 0.0 across all seeds is the EXQ-196 signature of an
+    unwired DV -- trap it explicitly and self-route substrate_not_ready. NEVER record
+    that pattern as a FAIL.
   location: docs/architecture/hippocampal_systems.md#arc-018
   source:
     - docs/thoughts/2026-02-09_starting_with_sensory_streams.md
@@ -16117,6 +16209,16 @@
     demonstration is ever un-parked, the entry point is a NEW graded-MEL environment/test-bed (continual-shift /
     non-converging world), NOT another same-environment novelty re-grade. pending_retest_after_substrate stays
     true as the standing retest intent.
+    UN-PARKED 2026-07-21 (user decision, session stoic-blackwell-756d3a). The named
+    entry point -- a graded-MEL / non-converging-world environment test-bed -- is now
+    BUILT as substrate SD-MEL-PRODUCER (ree-v3; docs/architecture/sd_mel_producer.md),
+    status implemented_pending_validation, validation V3-EXQ-798 (diagnostic,
+    claim_ids=[]). PROMOTES NOTHING and does not clear the retest: the producer is
+    unvalidated until 796 scores, and the ecological end-to-end demonstration is a
+    separate still-gated run. The consumer half stays BANKED as SD-MEL-CONSUMER's
+    terminal validated result. Both the build's validation and the eventual ecological
+    run must keep the 718a lesson: DV-monotone-in-measured-MEL is near-tautological on
+    a functional consumer, so the producer must be validated with the consumer ABSENT.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer now exists: ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated
@@ -16390,6 +16492,24 @@
     governance-c4a10d) -- the reason previously lived only in an inline comment on the
     ceiling_decision enum, which the Step 6a-v audit cannot read and which is the
     documented enum-field parser hazard. PROMOTES/DEMOTES NOTHING.
+    UN-PARKED 2026-07-21 by explicit user decision (session stoic-blackwell-756d3a),
+    and the named environment test-bed was BUILT the same session: substrate
+    SD-MEL-PRODUCER (ree-v3 CausalGridWorld; docs/architecture/sd_mel_producer.md),
+    status implemented_pending_validation, ready=False until V3-EXQ-798 scores.
+    Root cause of the producer gap, now recorded: env_drift_interval fires
+    _drift_hazards(), which only MOVES hazards -- the optimal prediction of a random
+    walk is its mean, so the world-forward model learns it fast and PE floors at the
+    irreducible noise level. Drift added sampling NOISE, not learning LOAD, which is
+    why 677's C1 read 8.8e-07 and 718a's ecological MEL sat at noise level. The knob
+    instead re-permutes the action -> displacement map, which E2.world_forward takes
+    as an INPUT, so learned structure is invalidated and must be re-learned.
+    THIS DOES NOT PROMOTE MECH-180 AND IS NOT MECH-180 EVIDENCE: the test-bed itself
+    is unvalidated until V3-EXQ-798 scores (diagnostic, claim_ids=[]), and the
+    ecological end-to-end run remains a SEPARATE, still-gated experiment. v3_pending
+    STAYS; pending_retest_after_substrate STAYS. The re-derive brake (3 MECH-180 /
+    5 INV-050 counted autopsies) was released for the BUILD only, on the Step 2.5b(1)
+    substrate-built condition -- it still REFUSES a 673/718-family same-question
+    re-queue.
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 unflagged_recurrence discrimination (2026-07-16, session
     gifted-kilby-8e2491). Audit flagged 3 no-verdict claim-keyed autopsy hits with 3

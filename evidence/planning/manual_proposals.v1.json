@@ -1654,6 +1654,72 @@
     "NON-DEGENERACY / READINESS GATE (mandatory before this leaves blocked_substrate): the action-commitment layer must sustain multi-step commitment at all in the baseline arm. If baseline commitment duration is at the floor, the run measures the conversion ceiling, not ARC-003 -- substrate_not_ready, NOT a verdict."
    ],
    "notes": "Minted BLOCKED by /thought-digestion 2026-07-21 alongside EXP-0394. Registered rather than silently omitted so the commitment leg of ARC-003 is visible as known-untested-and-why, instead of appearing digested by its selection leg alone. Per session-land Phase-3 rule 3 this is blocked-on-upstream and must NOT be chipped -- the release_condition carries the revisit trigger."
+  },
+  {
+   "proposal_id": "EXP-0396",
+   "claim_id": "ARC-018",
+   "related_claims": [
+    "ARC-018",
+    "ARC-007",
+    "ARC-002",
+    "MECH-092",
+    "MECH-269",
+    "MECH-271",
+    "MECH-284",
+    "MECH-287",
+    "SD-004",
+    "SD-061",
+    "Q-056"
+   ],
+   "proposal_type": "experimental",
+   "target_repo": "ree-v3",
+   "priority": "medium",
+   "status": "proposed",
+   "registered_utc": "2026-07-21",
+   "dispatch_mode": "multi_arm_ablation",
+   "estimated_minutes": 540,
+   "machine_affinity": "any",
+   "objective": "Test the OPEN leg of ARC-018 -- 'explicit rollouts' -- with the two confounds that spoiled both prior attempts explicitly trapped. ARC-018's PASS/FAIL split is not noise: every PASS (EXQ-042, EXQ-053, EXQ-120) tested the post-commitment VIABILITY MAPPING leg, and every FAIL (EXQ-172, EXQ-196) tested the ROLLOUT leg. Carrying the conjunction at exp_conf 0.547 averages a well-supported leg with an unsupported one and hides both facts. Critically the rollout leg is UNTESTED, NOT REFUTED: EXQ-172 ran at e2_world_r2 = 0.203 (its own note concludes ARC-018 'may be E2-quality-gated' -- a negative advantage from a poor forward model indicts E2, not the architecture), and EXQ-196 returned harm_advantage_mean EXACTLY 0.0 on all 3 seeds at good fidelity (e2_world_r2 0.766), an exact-zero-everywhere degeneracy signature meaning the rollout output never reached the DV -- which is why governance classified it non_contributory and deferred the verdict.",
+   "design": "ROLLOUT-DEPTH ABLATION AT VERIFIED E2 FIDELITY. Arms: A0_DEPTH0 (no rollout) / A1_SHALLOW (reduced rollout horizon) / A2_FULL (full rollout horizon) / ARM_NOISE (matched-noise control). E2 fidelity is a GATE, not an assumption: the run measures e2_world_r2 in-run and self-routes substrate_not_ready below the floor rather than producing a verdict. Substrate: ree_core/hippocampal/module.py terrain_prior (z_world, e1_prior, residue_val) -> action_object_mean. PRIMARY DV harm_advantage_mean, monotonicity across depth being the signal of interest. Author via /queue-experiment; emit the A0_DEPTH0 arm fingerprint with include_driver_script_in_hash=False for cross-driver reuse.",
+   "acceptance_checks": [
+    "PASS / supports ARC-018 rollout leg: harm_advantage_mean scales MONOTONICALLY with rollout depth (A0 < A1 < A2), effect >= 0.8 SD of the cross-seed delta and strict-above ARM_NOISE, on >= 2/3 seeds. ARC-018 holds conjunctively.",
+    "FAIL / weakens ARC-018 rollout leg: no advantage at ANY depth despite verified-live rollouts and adequate E2. ARC-018 reduces to its mapping leg (which stands on EXQ-042/053/120); MECH-092 and the replay-consolidation dependents need re-derivation. Decision-flipping negative.",
+    "NON-DEGENERACY (each drawn from a specific prior failure; any breach -> substrate_not_ready_requeue, NOT a verdict): (a) e2_world_r2 >= 0.6 measured IN-RUN -- below this the EXQ-172 confound recurs and the result indicts E2 rather than the rollout architecture; (b) rollout-derived scores must carry non-zero cross-candidate variance -- the rollout must actually discriminate; (c) harm_advantage_mean EXACTLY 0.0 across all seeds is the EXQ-196 unwired-DV signature -- trap it explicitly and self-route substrate_not_ready, NEVER record that pattern as a FAIL."
+   ],
+   "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (41 reverse deps). ARC-018 was already reframed once (original 2026-02-09 framing wrongly located viability mapping in E1 prediction error; V2 EXQ-021 FAILed twice and killed it; corrected 2026-03-15 to hippocampal geometry indexed by E2 action-object coordinates), so the claim has a track record of failing for framing reasons rather than substrate reasons -- hence the unusually explicit catch-nets here. Consider a /governance re-scoring: EXQ-172 (E2-confounded) and EXQ-196 (already non_contributory) arguably should not weight ARC-018's exp_conf as refutations of the rollout leg. Digestion proposes; it does not promote."
+  },
+  {
+   "proposal_id": "EXP-0397",
+   "claim_id": "ARC-016",
+   "related_claims": [
+    "ARC-016",
+    "ARC-029",
+    "ARC-005",
+    "MECH-025",
+    "MECH-039",
+    "MECH-059",
+    "SD-019",
+    "SD-020",
+    "SD-021",
+    "Q-041",
+    "Q-042"
+   ],
+   "proposal_type": "experimental",
+   "target_repo": "ree-v3",
+   "priority": "medium",
+   "status": "proposed",
+   "registered_utc": "2026-07-21",
+   "dispatch_mode": "multi_arm_ablation",
+   "estimated_minutes": 300,
+   "machine_affinity": "any",
+   "objective": "Close the ONE genuinely open item on ARC-016 -- named by the claim's own notes as 'pending recalibration with eval-derived threshold'. ARC-016's core circuit (E3-derived variance -> relative commit threshold -> BetaGate -> action_selection) is ALREADY VALIDATED by EXQ-018b (5/5) and EXQ-060 (4/5); this is not a discovery experiment. The EXQ-396 series (396a x3, 396b) died on a train/eval variance gap -- train variance ~0.000032-0.000064 vs eval variance ~0.001, roughly 15-30x -- so a threshold set at 2 x training_baseline_variance never engages during eval. All four runs were reclassified non_contributory and nobody has since re-run them with the threshold derived from eval-time variance.",
+   "design": "Re-run of the EXQ-396 design with the baseline variance source as the ONLY manipulated factor. Arms: A0_TRAIN_BASELINE (2 x training_baseline_variance -- reproduces the 396 configuration as the negative reference) / A1_EVAL_DERIVED (threshold derived from eval-time baseline variance) / A2_ONLINE_ADAPTED (online-adapted baseline tracking the running variance). Across a manipulated precision level (stable vs perturbed env, as in EXQ-018b). PRIMARY DV: commit_rate tracking of manipulated precision, and whether the threshold engages at all during eval. STRUCTURAL ONLY -- no behavioural harm DV (see acceptance check 3). Cheap: no sustained multi-step commitment required, so it dodges the BG/action-commitment block. Author via /queue-experiment; emit the A1_EVAL_DERIVED arm fingerprint with include_driver_script_in_hash=False.",
+   "acceptance_checks": [
+    "PASS / the 396-series result was a calibration artefact and ARC-016's validation stands unqualified: under A1_EVAL_DERIVED (and/or A2_ONLINE_ADAPTED) the commitment threshold ENGAGES during eval and commit_rate tracks manipulated precision monotonically, reproducing the EXQ-018b direction (higher precision -> higher commit_rate), while A0_TRAIN_BASELINE reproduces the 396 non-engagement.",
+    "FAIL / first genuine evidence against the circuit: even with a correctly-calibrated eval-time threshold that demonstrably engages, commit_rate does not track precision. The 15 prior FAILs would then need re-reading as right for the wrong reasons, and ARC-016 demotes from provisional. Decision-flipping negative.",
+    "NON-DEGENERACY + SCOPE (else substrate_not_ready_requeue, NOT a verdict): (a) THE THRESHOLD MUST ACTUALLY ENGAGE -- commit_rate strictly between floor and ceiling, not pinned at 0.0 or 1.0, and eval-time variance within the threshold's dynamic range; a threshold that never fires makes all arms identical and is exactly what voided EXQ-396a/b. (b) SCOPE GUARD: structural only -- do NOT attach a behavioural harm DV, which re-imports the V_s monostrategy-lock confound that voided EXQ-454; the behavioural consequence layer is ARC-029, split off 2026-03-22."
+   ],
+   "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (35 reverse deps, 23 genuine experiments -- the most-tested claim in the spine). GOVERNANCE FLAG, not acted on here: ARC-016's exp_conf 0.53 is an AGGREGATION ARTEFACT -- 15 FAILs of which nearly all are already stamped non_contributory or substrate-version-stale (see the claim's heterogeneity_note) still score it as half-refuted. Re-scoring needs a governance eye rather than a digestion edit, because stripping non-contributory FAILs can expose that the remaining supports are thinner than the headline number suggested. Digestion proposes; it does not promote."
   }
  ]
 }
