@@ -1097,3 +1097,4 @@ One line per hourly tick. ASCII only.
 2026-07-21T05:06:09Z skip IGW-20260721-204: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-21T06:07:13Z SPAWN IGW-20260721-205 skill=/queue-experiment prio=40 uuid=d3afa475-03dc-44f3-85ef-3cda0f2ff3ba pid=13891 worktree=igw-205-proposal-for-sd-024
 2026-07-21T06:22:16Z auto-defer IGW-20260721-205 hash=d5c112e117ce for 48h (complete)
+2026-07-21T06:22:22Z complete IGW-20260721-205 spawned->completed outcome=DUPLICATE: no experiment queued: EVB-0453 (SD-024) already executed by V3-EXQ-795 (PASS 202
