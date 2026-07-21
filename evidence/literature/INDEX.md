@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-21T04:17:33.497800Z`
+Generated: `2026-07-21T06:07:16.170511Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -360,6 +360,7 @@ Generated: `2026-07-21T04:17:33.497800Z`
 | `targeted_review_sd_021` | [`2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024`](targeted_review_sd_021/entries/2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024/record.json) | 5 | [`summary`](targeted_review_sd_021/entries/2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024/summary.md) |
 | `targeted_review_sd_022` | [`2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/record.json) | 2 | [`summary`](targeted_review_sd_022/entries/2026-04-17_sd_022_ptsd_chronic_pain_comorbidity_kind2019/summary.md) |
 | `targeted_review_sd_023` | [`2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020`](targeted_review_sd_023/entries/2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020/record.json) | 4 | [`summary`](targeted_review_sd_023/entries/2026-04-17_sd_023_surface_texture_boundaries_place_cells_wang2020/summary.md) |
+| `targeted_review_sd_024` | [`2026-07-21_sd_024_vta_ca1_reward_proximity_krishnan2022`](targeted_review_sd_024/entries/2026-07-21_sd_024_vta_ca1_reward_proximity_krishnan2022/record.json) | 5 | [`summary`](targeted_review_sd_024/entries/2026-07-21_sd_024_vta_ca1_reward_proximity_krishnan2022/summary.md) |
 | `targeted_review_sd_025` | [`2026-07-17_sd_025_information_seeking_curiosity_gottlieb2013`](targeted_review_sd_025/entries/2026-07-17_sd_025_information_seeking_curiosity_gottlieb2013/record.json) | 2 | [`summary`](targeted_review_sd_025/entries/2026-07-17_sd_025_information_seeking_curiosity_gottlieb2013/summary.md) |
 | `targeted_review_sd_029` | [`2026-05-17_sd_029_pain_precision_signal_seymour2019`](targeted_review_sd_029/entries/2026-05-17_sd_029_pain_precision_signal_seymour2019/record.json) | 6 | [`summary`](targeted_review_sd_029/entries/2026-05-17_sd_029_pain_precision_signal_seymour2019/summary.md) |
 | `targeted_review_sd_031` | [`2026-07-19_sd_031_self_other_action_attribution_ohata2020`](targeted_review_sd_031/entries/2026-07-19_sd_031_self_other_action_attribution_ohata2020/record.json) | 3 | [`summary`](targeted_review_sd_031/entries/2026-07-19_sd_031_self_other_action_attribution_ohata2020/summary.md) |

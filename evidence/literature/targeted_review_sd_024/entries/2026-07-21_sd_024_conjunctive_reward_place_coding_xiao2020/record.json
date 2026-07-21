@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_024",
+  "entry_id": "2026-07-21_sd_024_conjunctive_reward_place_coding_xiao2020",
+  "timestamp_utc": "2026-07-21T06:03:09Z",
+  "claim_ids_tested": [
+    "SD-024"
+  ],
+  "source": {
+    "title": "Conjunctive reward-place coding properties of dorsal distal CA1 hippocampus cells.",
+    "authors": [
+      "Zhuocheng Xiao",
+      "Kevin Lin",
+      "Jean-Marc Fellous"
+    ],
+    "year": 2020,
+    "venue": "Biological Cybernetics",
+    "doi": "10.1007/s00422-020-00830-0"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "Speaks to the architectural question underneath SD-024 -- whether reward information enters the spatial map at all, and in what form -- and answers yes, but as a continuum from pure place cells through hybrid cells to dedicated reward cells, with reward cells responding to reward DELIVERY rather than expectation. Moderate confidence: it is a reanalysis of existing recordings in a modest venue, and the coding scheme it finds is a third option that neither SD-024 nor its main competitor predicts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Reward cells responded mostly to reward DELIVERY rather than to its expectation, which cuts against SD-024's scaling of the allocation signal by drive_level (an expectation-side quantity) and sits in tension with Krishnan et al. 2022's expectation-dependent ramping signal. The literature is not internally settled on whether the allocating signal is expectation-driven or delivery-driven.",
+    "A subpopulation transitioned between place-cell and reward-cell properties within a single 5-task session, so the mapping between 'unit' and 'what it represents' is not stable on the timescale REE's FIFO center lifecycle assumes.",
+    "Some cells were typical place cells wholly insensitive to reward location -- reward influence is heterogeneous across the population, not a uniform field-wide modulation."
+  ],
+  "tags": [
+    "sd-024",
+    "place_cells",
+    "reward_cells",
+    "conjunctive_coding",
+    "ca1"
+  ],
+  "mapping": {
+    "source_claim_statement": "Reanalysis of CA1 recordings across five consecutive tasks with manipulated reward locations and spatial context reveals a continuum of coding properties: typical place cells insensitive to reward, dedicated reward cells firing at correct rewarded feeders regardless of context, and hybrid cells responding to both. Some cells transition between these regimes within a session. The authors argue spatial and value representations are not independent.",
+    "ree_translation": "Supports the general architectural move SD-024 makes -- putting reward-conditioned structure inside the hippocampal representation rather than only downstream -- and thereby softens Duvelle et al. 2019's value-free-map conclusion. But it locates that structure in a DEDICATED SUBPOPULATION with distinct tuning, not in locally denser sampling of the same spatial code. That is a third architecture, and REE currently implements neither it nor a clean version of the gain alternative.",
+    "mapping_caveat": "Reanalysis of a previously published dataset (Gauthier & Tank recordings), not a fresh experiment, and dorsal DISTAL CA1 specifically -- a subregion with known distinctive reward and object sensitivity, so the finding may not generalise to CA1 as a whole, let alone to a generic hippocampal residue field. The cell-type continuum has no counterpart in REE's RBF field, where all centers are homogeneous, so the translation is loose by construction.",
+    "source_context": "Rats (Brown Norway), five consecutive tasks manipulating reward location and spatial context; reanalysis of dorsal distal CA1 tetrode recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Reanalysis rather than primary experiment, modest venue, single subregion -- source quality capped at 0.6. Mapping fidelity is the weak term: a heterogeneous cell-type continuum does not map cleanly onto a homogeneous RBF field. Included because it is the clearest statement that the delivery-vs-expectation question is open, which bears directly on SD-024's dopamine_signal formula."
+  }
+}

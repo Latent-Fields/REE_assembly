@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_024",
+  "entry_id": "2026-07-21_sd_024_vta_ca1_reward_proximity_krishnan2022",
+  "timestamp_utc": "2026-07-21T06:03:09Z",
+  "claim_ids_tested": [
+    "SD-024"
+  ],
+  "source": {
+    "title": "Reward expectation extinction restructures and degrades CA1 spatial maps through loss of a dopaminergic reward proximity signal.",
+    "authors": [
+      "Seetha Krishnan",
+      "Chad Heer",
+      "Chery Cherian",
+      "Mark E J Sheffield"
+    ],
+    "year": 2022,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-022-34465-5"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "The strongest available causal test of the exact dependency SD-024 asserts: a VTA dopaminergic signal in CA1 is what sustains reward-location over-representation, and optogenetically removing it collapses the over-representation. High source quality (Nat Commun, 2-photon calcium imaging plus circuit-specific inhibition, converging manipulations). Confidence is held below 0.9 because the paper measures over-representation as place-field COUNT/reliability in a real CA1 population, whereas SD-024 asserts a specific implementational route (extra RBF centers allocated per DA-scaled reward event) that the paper neither confirms nor excludes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When reward expectation is extinguished, over-representation of reward locations vanishes while the animal remains engaged with the environment -- so an implementation that keeps expanded density after reward removal (SD-024's 'craving' failure mode) is biologically off-pattern, not merely suboptimal.",
+    "Loss of the dopaminergic reward-proximity signal increases place-field remapping throughout the whole environment and reduces trial-to-trial reliability -- i.e. removing DA does not simply flatten the map locally, it destabilises it globally. An REE ablation that shows only a local density change may be under-modelling the mechanism."
+  ],
+  "tags": [
+    "sd-024",
+    "dopamine",
+    "hippocampus",
+    "place_cells",
+    "reward_overrepresentation",
+    "vta"
+  ],
+  "mapping": {
+    "source_claim_statement": "VTA dopaminergic axons in CA1 carry a ramping reward-proximity signal that depends on reward expectation; this signal maintains place-cell over-representation of reward locations and the reliability of the surrounding map. Inhibiting VTA dopaminergic neurons largely replicates the effect of extinguishing reward expectation.",
+    "ree_translation": "SD-024's core premise -- that a phasic dopaminergic signal at reward encounters is the causal driver of increased representational density at reward locations, rather than that density being a passive consequence of environmental structure or of visit frequency -- is directly supported. It also supports the SD-012 scaling choice (dopamine_signal = benefit_magnitude * drive_level): the biological signal is expectation-dependent, not merely delivery-triggered.",
+    "mapping_caveat": "The paper's dependent variable is the distribution and reliability of place FIELDS in a recorded CA1 population. SD-024's mechanism is allocation of extra RBF centers in a fixed-capacity FIFO field, and its discriminator (compute_local_density) is deliberately weight-independent. A dopaminergic gain change on existing units would produce the paper's result without producing SD-024's; the paper therefore licenses the dependency, not the implementation. Additionally: mouse, virtual-reality linear track, head-fixed -- a far more impoverished setting than the free navigation SD-024's z_world neighbourhood is meant to abstract.",
+    "source_context": "Mice, head-fixed virtual-reality linear track; 2-photon calcium imaging of CA1 place cells and of VTA dopaminergic axons in CA1; optogenetic inhibition of VTA dopaminergic neurons."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high (causal circuit manipulation with a converging behavioural manipulation). Mapping fidelity moderate: right causal arrow, wrong grain -- field statistics vs center allocation. Transfer risk moderate: rodent VR to an artificial agent's latent field, but the claim being transferred is a dependency structure rather than a parameter value."
+  }
+}

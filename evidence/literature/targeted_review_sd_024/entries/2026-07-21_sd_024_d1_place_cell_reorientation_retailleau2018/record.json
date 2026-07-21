@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_024",
+  "entry_id": "2026-07-21_sd_024_d1_place_cell_reorientation_retailleau2018",
+  "timestamp_utc": "2026-07-21T06:03:09Z",
+  "claim_ids_tested": [
+    "SD-024"
+  ],
+  "source": {
+    "title": "Spatial Rule Learning and Corresponding CA1 Place Cell Reorientation Depend on Local Dopamine Release.",
+    "authors": [
+      "Aude Retailleau",
+      "Genela Morris"
+    ],
+    "year": 2018,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2018.01.081"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "This is the paper SD-024's own notes cite as its biological grounding, and it does carry that weight: local D1-receptor blockade in CA1 prevents reward-driven place-cell reorientation and produces perseveration. It earns a solid but not high confidence because it establishes that DA gates reward-relevant REMAPPING, which is a weaker and different statement than DA producing local representational EXPANSION -- the claim's actual mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Blocking D1 receptors locally in CA1 prevented place-cell reorientation to the rule-relevant spatial dimension and produced perseveration -- the animal kept using the old reference frame. This is precisely SD-024's declared 'perseveration' failure mode, but note it arises here from DA BLOCKADE, whereas SD-024 predicts perseveration from DA locked HIGH. The claim's failure-mode taxonomy may have the sign inverted, or may be describing a different perseveration.",
+    "Learning impairment and representational failure were inseparable in this design: the animals that failed to remap also failed to learn, so the experiment cannot say whether the map change causes the behaviour or vice versa."
+  ],
+  "tags": [
+    "sd-024",
+    "dopamine",
+    "d1_receptor",
+    "hippocampus",
+    "place_cells",
+    "remapping",
+    "perseveration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Successful extra-dimensional set-shift learning is accompanied by CA1 place-cell reorientation to the rule-relevant spatial dimension; local infusion of the D1-receptor antagonist SCH23390 prevents this remapping and impairs learning, causing perseveration. Dopaminergic innervation is argued to supply reward information to hippocampus and to stabilise goal-related representations.",
+    "ree_translation": "Supports SD-024's premise that dopamine is the channel by which reward information reaches the hippocampal map, and that without it the map does not reorganise around what currently matters. Maps onto the MECH-094 gate motivation as well: what DA delivers here is information about actual reward-relevant experience, so a replayed/simulated event should not be allowed to drive the same reorganisation.",
+    "mapping_caveat": "The measured effect is REORIENTATION of an existing map to a different cue set -- a reference-frame change -- not an increase in field density at a reward location. SD-024 asserts density expansion. These are dissociable: a map can reorient wholesale without any local over-representation, and vice versa. Treating this paper as evidence for density expansion specifically would over-read it; it evidences DA-gated reward-driven map plasticity, which is the claim's necessary but not sufficient premise. Also: pharmacological infusion is a tonic-blockade manipulation, so it speaks to D1 tone rather than to the phasic, event-locked DA pulse SD-024 models.",
+    "source_context": "Male Long-Evans rats, extra-dimensional set-shift spatial task; CA1 tetrode recording throughout training; local intra-hippocampal SCH23390 infusion at rule shift."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Good electrophysiology with a causal pharmacological manipulation, though tonic rather than phasic. Mapping fidelity is the limiting term: reorientation is not expansion. Kept at 0.75 rather than lower because the claim's own architecture doc leans on this paper and the governance record should show what it does and does not license."
+  }
+}

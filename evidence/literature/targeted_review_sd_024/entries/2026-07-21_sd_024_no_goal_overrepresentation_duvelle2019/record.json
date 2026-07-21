@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_024",
+  "entry_id": "2026-07-21_sd_024_no_goal_overrepresentation_duvelle2019",
+  "timestamp_utc": "2026-07-21T06:03:09Z",
+  "claim_ids_tested": [
+    "SD-024"
+  ],
+  "source": {
+    "title": "Insensitivity of Place Cells to the Value of Spatial Goals in a Two-Choice Flexible Navigation Task.",
+    "authors": [
+      "Eleonore Duvelle",
+      "Roddy M Grieves",
+      "Vincent Hok",
+      "Bruno Poucet",
+      "Angelo Arleo",
+      "Kate J Jeffery",
+      "Etienne Save"
+    ],
+    "year": 2019,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1578-18.2018"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "A well-controlled direct test of the strong form of SD-024 that comes out negative: no general over-representation of goals by place fields in CA1 or CA3, and no modulation of place-cell activity by goal VALUE, in animals whose behaviour demonstrably tracked that value. Confidence is high enough to matter for governance but not higher, because the design dissociates goal location from reward consumption -- which is arguably a manipulation that removes the very DA-delivery event SD-024 says does the allocating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Rats reliably preferred the higher-value goal, yet place-cell firing was not modulated by goal value -- behavioural value sensitivity dissociated cleanly from map-level value coding. If REE's benefit terrain shows density scaling with benefit_magnitude, that is a point of divergence from this dataset, not a point of convergence.",
+    "No general over-representation of goals was found by place fields in either CA1 or CA3, contradicting the phenomenon SD-024 takes as its starting point. Goal-related activity appeared instead as OUT-OF-FIELD ramping during the waiting period -- a rate/timing code at the goal rather than a reallocation of spatial resource toward it.",
+    "The authors' interpretation is that the dorsal hippocampal map is value-FREE and links to value represented elsewhere. Taken at face value this contradicts SD-024's architectural premise that the hippocampal residue field is where reward-scaled representational expansion should live."
+  ],
+  "tags": [
+    "sd-024",
+    "place_cells",
+    "goal_value",
+    "over_representation",
+    "negative_result",
+    "ca1",
+    "ca3"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a continuous place-navigation task where spatial goal is dissociated from reward consumption, rats prefer higher-value goals behaviourally, but CA1 and CA3 place fields show no general over-representation of goals and no modulation by goal value. The authors conclude place cells provide a spontaneously constructed value-free spatial representation.",
+    "ree_translation": "This is the principal counter-evidence to SD-024 and should be recorded as such. It challenges two things at once: that reward locations get extra representational resource at all, and that the amount of that resource should scale with benefit_magnitude. If SD-024's ablation shows density scaling with reward magnitude, REE is asserting something this dataset failed to find in the biological system it is modelled on -- which does not make REE wrong, but does move the burden of proof onto the experimental arm.",
+    "mapping_caveat": "The task deliberately separates the spatial goal from the place where reward is consumed, so the animal does not receive reward AT the goal. If dopaminergic allocation is triggered by reward DELIVERY (as Xiao et al. 2020 report for reward cells), then this design may have moved the DA event away from the goal rather than shown that no DA-driven allocation exists. The negative result is therefore strong against 'goal value is coded in the map' and weaker against 'reward encounters drive local expansion' -- which is the form SD-024 actually asserts. Reading it as a flat refutation would over-state it.",
+    "source_context": "Male Long-Evans rats; continuous two-choice place-navigation task with unmarked goal locations and differing reward amounts; CA1 and CA3 tetrode recordings."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "High source quality -- J Neurosci, careful controls, an explicit replication of the out-of-field goal finding, and both CA1 and CA3 sampled. Mapping fidelity held at 0.6 by the goal/consumption dissociation, which is a real confound for reading this against SD-024's specific mechanism. Recorded as weakens rather than mixed because the paper's own conclusion is squarely against the claim's premise."
+  }
+}

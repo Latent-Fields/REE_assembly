@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_657_mech294_multi_content_theta_packet_readiness
 
-Generated: `2026-07-21T04:17:33.497800Z`
+Generated: `2026-07-21T06:07:16.170511Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

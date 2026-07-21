@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-07-21T04:17:33.497800Z`
+Generated: `2026-07-21T06:07:16.170511Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -92,6 +92,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `SD-018` | directional, source_disagreement, mixed_evidence | 1 | 1 | 1 | `2026-04-21_sd_018_nac_dopamine_approach_costa2025` | 3 |
 | `SD-021` | directional, source_disagreement | 9 | 3 | 0.5 | `2026-05-17_sd_021_pag_rvm_descending_modulation_depreter2024` | 12 |
 | `SD-023` | directional, source_disagreement | 4 | 1 | 0.4 | `v3_exq_332_mech216_predictive_wanting_20260414T234204Z_v3` | 5 |
+| `SD-024` | directional, mixed_evidence | 2 | 1 | 0.667 | `2026-07-21_sd_024_vta_ca1_reward_proximity_krishnan2022` | 5 |
 | `SD-029` | directional, source_disagreement, mixed_evidence | 10 | 3 | 0.462 | `2026-06-05_blocked_agency_comparator_sense_of_agency_carruthers2012` | 17 |
 | `SD-031` | directional, mixed_evidence | 1 | 1 | 1 | `2026-07-19_sd_031_self_other_action_attribution_ohata2020` | 3 |
 | `SD-032c` | directional, source_disagreement | 3 | 1 | 0.5 | `2026-04-25_sd_032c_salience_network_switch_menon2010` | 4 |
@@ -756,7 +757,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-094
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.719, lit_conf=0.836, overall_confidence_legacy=0.789
+- Evidence breakdown: supports=24, weakens=1, conflict_ratio=0.08, exp_conf=0.718, lit_conf=0.836, overall_confidence_legacy=0.789
 - Recent entries:
   - `2026-05-28T17:17:26Z` `literature` `targeted_review_e2_forward_model_action_divergence` direction=`supports` confidence=0.71
   - `2026-06-03T07:20:42Z` `experimental` `v3_exq_633_mech094_simulation_real_writegate_discriminative` direction=`supports` confidence=0.75
@@ -776,7 +777,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-095
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.581, lit_conf=0.824, overall_confidence_legacy=0.703
+- Evidence breakdown: supports=20, weakens=6, conflict_ratio=0.462, exp_conf=0.58, lit_conf=0.824, overall_confidence_legacy=0.702
 - Recent entries:
   - `2026-05-03T04:20:44Z` `literature` `targeted_review_connectome_mech_095` direction=`mixed` confidence=0.72
   - `2026-05-04T21:33:40.761364Z` `experimental` `v3_exq_510_sd047_mech095_live_env_comparator_gap` direction=`mixed` confidence=0.5
@@ -969,7 +970,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-128
 - Conflict types: directional, source_disagreement, mixed_evidence
-- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.217, lit_conf=0.806, overall_confidence_legacy=0.511
+- Evidence breakdown: supports=5, weakens=2, conflict_ratio=0.571, exp_conf=0.217, lit_conf=0.805, overall_confidence_legacy=0.511
 - Recent entries:
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.72
   - `2026-04-04T09:00:00Z` `literature` `targeted_review_connectome_mech_128` direction=`supports` confidence=0.6
@@ -1756,6 +1757,26 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - `This paper does not address whether the gradient texture itself (as opposed to a discrete CS) is sufficient to drive predictive coding in a non-dopaminergic world-model system like E1.` (1)
   - `The backward shift in Yaghoubi et al. 2026 depends on the agent repeatedly visiting the same trajectory. In CausalGridWorldV2, if the agent does not develop consistent routes near Landmark B, the temporal displacement of the predictive signal may not emerge.` (1)
   - `The study observes predictive coding for reward itself -- the place fields shift backward relative to a fixed reward location. Landmark B in SD-023 is predictive of resource proximity, not a reward signal per se. If the agent does not assign motivational value to resources (z_goal not firing), the hippocampal-analogous predictive remapping may not occur.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### SD-024
+- Conflict types: directional, mixed_evidence
+- Evidence breakdown: supports=2, weakens=1, conflict_ratio=0.667, exp_conf=0, lit_conf=0.707, overall_confidence_legacy=0.707
+- Recent entries:
+  - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`mixed` confidence=0.58
+  - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`supports` confidence=0.75
+  - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`weakens` confidence=0.7
+  - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`mixed` confidence=0.55
+  - `2026-07-21T06:03:09Z` `literature` `targeted_review_sd_024` direction=`supports` confidence=0.82
+- Recurring failure signatures:
+  - `Reward cells responded mostly to reward DELIVERY rather than to its expectation, which cuts against SD-024's scaling of the allocation signal by drive_level (an expectation-side quantity) and sits in tension with Krishnan et al. 2022's expectation-dependent ramping signal. The literature is not internally settled on whether the allocating signal is expectation-driven or delivery-driven.` (1)
+  - `A subpopulation transitioned between place-cell and reward-cell properties within a single 5-task session, so the mapping between 'unit' and 'what it represents' is not stable on the timescale REE's FIFO center lifecycle assumes.` (1)
+  - `Some cells were typical place cells wholly insensitive to reward location -- reward influence is heterogeneous across the population, not a uniform field-wide modulation.` (1)
+  - `Blocking D1 receptors locally in CA1 prevented place-cell reorientation to the rule-relevant spatial dimension and produced perseveration -- the animal kept using the old reference frame. This is precisely SD-024's declared 'perseveration' failure mode, but note it arises here from DA BLOCKADE, whereas SD-024 predicts perseveration from DA locked HIGH. The claim's failure-mode taxonomy may have the sign inverted, or may be describing a different perseveration.` (1)
+  - `Learning impairment and representational failure were inseparable in this design: the animals that failed to remap also failed to learn, so the experiment cannot say whether the map change causes the behaviour or vice versa.` (1)
 - Suggested resolution actions:
   - Run one targeted adjudication experiment with narrower stop criteria.
   - Add one replication run with seed sweep to reduce variance ambiguity.
