@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "blissful-dewdney-2a9ed2",
-  "last_updated_utc": "2026-07-21T17:38:38Z",
+  "last_seen_session": "stoic-blackwell-756d3a",
+  "last_updated_utc": "2026-07-21T18:14:32Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6049,9 +6049,9 @@
       "sd_id": "sd_salience_contested_mode_occupancy",
       "title": "Make the contested SalienceCoordinator modes genuinely occupied, so mode dwell/switching stops being an episode-length artefact",
       "node_class": "complex (probe-gated)",
-      "status": "proposed",
+      "status": "probe_queued",
       "ready": false,
-      "ready_blocked_by": "Not built. Root cause not yet isolated -- probe-gated, not buildable-on-demand: it is unknown whether the non-occupancy is a drive-source problem, a hysteresis/threshold-calibration problem, or an episode-length problem.",
+      "ready_blocked_by": "Not built, deliberately. The discriminating spike V3-EXQ-797 is QUEUED (ree-v3 48efecefb4, pushed + POSTed to the coordinator) by session practical-volhard-2c1876. No build until it reads out.",
       "design_doc": "docs/architecture/sd_032_cingulate_integration_substrate.md#sd-032d",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -6070,7 +6070,40 @@
           "target": "at least two modes occupied >= 5% of steps in the baseline arm, and n_switches decoupled from n_episodes"
         }
       ],
-      "implementation_hint": "SEPARATE build from sd_032d_mu_kappa_mode_prior_overlays -- deliberately not bundled. The mu-overlay build is cheaper and is decisive for MECH-048's ENTROPY half regardless of occupancy; this one gates the SWITCHING-PRESSURE half. Note the non-occupancy precondition also blocks the ARC-005 routing double-dissociation, whose non-degeneracy precondition requires >= 2 modes occupied >= 5% of steps. No ree_core/cingulate/ work had landed between 2026-06-13 and 2026-07-21, and no experiment has ever exercised use_pcc_analog (0 manifests mention it)."
+      "implementation_hint": "SEPARATE build from sd_032d_mu_kappa_mode_prior_overlays -- deliberately not bundled. The mu-overlay build is cheaper and is decisive for MECH-048's ENTROPY half regardless of occupancy; this one gates the SWITCHING-PRESSURE half. Note the non-occupancy precondition also blocks the ARC-005 routing double-dissociation, whose non-degeneracy precondition requires >= 2 modes occupied >= 5% of steps. No ree_core/cingulate/ work had landed between 2026-06-13 and 2026-07-21, and no experiment has ever exercised use_pcc_analog (0 manifests mention it).",
+      "probe_queue_id": "V3-EXQ-797",
+      "scoping_note_2026_07_21": "SCOPED 2026-07-21T18:10Z by practical-volhard-2c1876, AFTER this row was added -- read this BEFORE acting on implementation_hint above, two of whose three candidate causes are now FALSIFIED. (a) nav-competence / Stage-H ceiling: FALSIFIED by V3-EXQ-467d's OWN manifest -- contact guard passed 3/3 seeds (contact_non_vacuity_met=true, guard_fraction=1.0, p2_contact_rate 0.330/0.167, z_goal_norm_at_contact_peak 0.505/0.438 vs a 0.4 gate). The agent WAS foraging. (b) coordinator threshold/logit arithmetic: FALSIFIED by direct execution of SalienceCoordinator under 467d's exact registration -- external_task WINS the argmax and fires the MECH-266 trigger once external_task_drive >= ~0.567. The coordinator is fine. RESIDUAL is the engagement INJECTION path (agent.py:5744-5771): engagement = clip(commit_w*[beta_gate.is_elevated] + prox_w*goal_proximity, 0, 1), and goal_proximity = 1/(1+MSE_SUM(.)) (goal.py:832) sums over all world dims so it tops out ~0.71 at realistic norms, making engagement effectively BINARY on the beta latch -- which elevates on sustained multi-step action commitment, i.e. on the BG/commitment layer still under construction. That is why this stays complex (probe-gated) rather than complicated (buildable). TWO INDEPENDENT SUBSTRATE FACTS: (i) select_action returns at agent.py:5458 BEFORE the salience block at :5744, so the SalienceCoordinator ticks only on E3 ticks -- ~1 env step in 10 (e3_steps_per_tick=10); any per-env-step read of coord._input_signals pseudo-replicates ~10x. This also means 467d's mean_dwell was counted in ENV steps while the mode can only change on an E3 tick, so its dwell units were not decision units (recorded, not adjudicated). (ii) a post-hoc beta_gate.is_elevated read returns True spuriously because the engagement block runs BEFORE this same call's elevate() sites (:7273, :7467).",
+      "last_seen_session": "blissful-dewdney-2a9ed2"
+    },
+    {
+      "sd_id": "SD-MEL-PRODUCER",
+      "title": "Graded-MEL non-converging-world environment test-bed -- action-map re-permutation (MECH-180 link (i) novelty -> waking MEL)",
+      "status": "implemented_pending_validation",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_mel_producer.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-180",
+        "INV-050"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3",
+          "experiment_type": "v3_exq_677_mech180_novelty_sleep_upregulation_probe",
+          "metric": "C1 manipulation check: high- vs low-novelty mean E1 prediction error differed by 8.8e-07 against a 0.01 threshold. env_drift_interval 3 vs 999 + context switching produced NO measurable novelty gradient; sleep counts identical across arms (SWS 80.0/80.0, REM 60.0/60.0); goal_success 0.0 in BOTH arms.",
+          "target": "An environment whose manipulation produces a measurable, graded prediction-error difference between novelty levels."
+        },
+        {
+          "run_id": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation_20260707T203329Z_v3",
+          "experiment_type": "v3_exq_718a_sdmelconsumer_measured_mel_cadence_validation",
+          "metric": "Ecological measured MEL ~1e-5 -- noise-level and SCRAMBLED vs novelty level; conv_rel_drop ~0.98. Ecological HIGH DV 72/74 BELOW the OFF baseline 90 on seeds 42/456.",
+          "target": "A graded-MEL test-bed sustaining a graded ABOVE-REFERENCE waking MEL gradient, monotone in MEASURED MEL on >= 2/3 seeds. NOT achievable by re-grading novelty on the converged CausalGridWorldV2."
+        }
+      ],
+      "implementation_hint": "LANDED 2026-07-21 (ree-v3, CausalGridWorld). Root cause of the producer gap: env_drift_interval fires _drift_hazards(), which only MOVES hazards -- the optimal prediction of a random walk is its mean, so the world-forward model learns it fast and PE floors at the irreducible noise level. Drift adds sampling NOISE, not learning LOAD. The knob instead periodically re-permutes the action -> displacement map, so E2.world_forward(z_world, a) (which takes the action as an INPUT) becomes systematically wrong until re-learned: learnable between shifts, invalidated at each shift, graded by shift RATE. Config: world_rule_shift_enabled / _interval / _depth / _scope (all no-op defaults; disabled env is bit-identical at the same seed). CRITICAL DESIGN CONSTRAINT: grading observation NOISE would also produce a monotone MEL ladder, but by construction on any substrate -- the DV-symmetry artifact class. Elevated PE only counts as learning load if it is REDUCIBLE, so info emits steps_since_world_rule_shift and the validation carries a matched-PE noise negative control. ready=False until V3-EXQ-798 scores. A 796 PASS licenses the SEPARATE, still-gated ecological end-to-end MECH-180 run; it is NOT itself MECH-180 evidence.",
+      "validation_experiment": "V3-EXQ-798",
+      "landed_utc": "2026-07-21",
+      "note": "User UN-PARKED the 2026-07-08 re-park on 2026-07-21 (the ecological producer demonstration was off the V3 critical path). Producer-only scope: agent competence under load (V3-EXQ-677 goal_success 0.0 in both arms) is deliberately NOT addressed here and remains open."
     }
   ],
   "schema_version": "substrate_queue/v2"
