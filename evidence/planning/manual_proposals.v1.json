@@ -1100,11 +1100,11 @@
         "MECH-287 broadcast invalidation trigger wired (pending; online arm implementation landed with attribution_weight integration but trigger emission module is separate)"
       ],
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "claims_tested": [
         "MECH-285"
       ],
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
@@ -1728,6 +1728,118 @@
         "NON-DEGENERACY + SCOPE (else substrate_not_ready_requeue, NOT a verdict): (a) THE THRESHOLD MUST ACTUALLY ENGAGE -- commit_rate strictly between floor and ceiling, not pinned at 0.0 or 1.0, and eval-time variance within the threshold's dynamic range; a threshold that never fires makes all arms identical and is exactly what voided EXQ-396a/b. (b) SCOPE GUARD: structural only -- do NOT attach a behavioural harm DV, which re-imports the V_s monostrategy-lock confound that voided EXQ-454; the behavioural consequence layer is ARC-029, split off 2026-03-22."
       ],
       "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (35 reverse deps, 23 genuine experiments -- the most-tested claim in the spine). GOVERNANCE FLAG, not acted on here: ARC-016's exp_conf 0.53 is an AGGREGATION ARTEFACT -- 15 FAILs of which nearly all are already stamped non_contributory or substrate-version-stale (see the claim's heterogeneity_note) still score it as half-refuted. Re-scoring needs a governance eye rather than a digestion edit, because stripping non-contributory FAILs can expose that the remaining supports are thinner than the headline number suggested. Digestion proposes; it does not promote."
+    },
+    {
+      "proposal_id": "EXP-0398",
+      "claim_id": "MECH-467",
+      "related_claims": [
+        "MECH-467",
+        "MECH-262",
+        "SD-033a",
+        "MECH-261",
+        "MECH-254",
+        "INV-092"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "registered_utc": "2026-07-22",
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 240,
+      "machine_affinity": "any",
+      "objective": "Test whether distractor resistance has three DISSOCIABLE failure modes, and close the coverage gap that REE's distractor evidence is rule-corruption ONLY. V3-EXQ-484 (salience-coordinator gating protects rule state from replay drift) and MECH-262 (rule-selective distractor-resistant persistence) both instrument rule corruption. Sensory capture and BEHAVIOURAL CAPTURE are untested. Behavioural capture is the load-bearing leg because it is the failure that rule-state protection CANNOT CATCH BY CONSTRUCTION -- an intact rule that fails to steer action is invisible to a rule-drift metric. This is a diagnostic over existing substrate, NOT a new attention module.",
+      "design": "Distractor battery instrumented for all three legs SEPARATELY on a build with rule state live. Distractor classes: physically salient irrelevant cues / same-type object distractors / false affordances / misleading reward-proximal cues / competing orienting targets / repeated interruption cues. TIMING ARMS: pre-commitment and during-replay-or-planning ONLY. *** EXCLUDE the during-commitment arm *** -- it depends on stable multi-step commitment, which the substrate cannot currently sustain; including it would produce an uninterpretable arm. Three DVs recorded independently per condition: (a) sensory-capture rate = distractor present in the active representation; (b) rule-state drift; (c) wrong-target selection rate WITH RULE VERIFIED INTACT (condition on (b) at floor before scoring (c) -- this conditioning is the whole design). Author via /queue-experiment; emit the no-distractor baseline arm fingerprint with include_driver_script_in_hash=False.",
+      "acceptance_checks": [
+        "PASS / dissociability established and MECH-467 supported: at least one condition where rule drift is AT FLOOR while wrong-target selection is ELEVATED. That is behavioural capture with the rule intact, and it is invisible to every existing rule-drift metric -- it would make legs 1 and 3 a real coverage gap needing an owner.",
+        "FAIL / the three legs co-vary and are not dissociable: wrong-target selection tracks rule drift across every condition, so rule-corruption instrumentation already suffices as a proxy and no new owner is needed. Decision-relevant negative -- it would retire the coverage-gap reading and leave MECH-262 owning the whole battery.",
+        "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): (a) THE DISTRACTOR MUST BE REGISTERED BY THE SYSTEM -- non-zero sensory-capture rate in at least one arm. A distractor the agent never encodes tests nothing. (b) An ALL-FLOOR battery (no leg moves in any arm) self-routes substrate_not_ready. (c) Rule state must be non-degenerate: if the rule-creator emits monomodal rule state, leg (c)'s 'rule verified intact' conditioning is vacuous -- check against the ARC-062 GAP-B monostrategy-collapse status before running."
+      ],
+      "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md (candidate 1). STANDING CONTAINMENT RULE, still in force from the 2026-06-04 attention analysis and NOT relaxed by this proposal: REE-v3 attention is distributed precision-selection control, not a missing module -- do NOT add a generic attention module and do NOT expand the V3 green-board closure path. A new attention substrate is justified only if THIS experiment exposes a specific failure (which is exactly what Q-082 is gated on). The intake also asks that the battery be scoped against existing telemetry before queuing; treat that as a precondition on the /queue-experiment pass. Ethical counterpart INV-092 is NOT tested here -- it needs a suppression-strength knob that does not yet exist."
+    },
+    {
+      "proposal_id": "EXP-0399",
+      "claim_id": "MECH-471",
+      "related_claims": [
+        "MECH-471",
+        "MECH-392",
+        "INV-080",
+        "MECH-401",
+        "MECH-083",
+        "MECH-261",
+        "ARC-092",
+        "INV-093"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "registered_utc": "2026-07-22",
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 240,
+      "machine_affinity": "any",
+      "objective": "Establish whether behavioural-competence updates need the bounded / provenanced / rollback-capable discipline that the memory-consolidation path already has (MECH-392 provenance+contradiction-flag+rollback, INV-080 raw-episode preservation, MECH-401 gated-write authority). The asymmetry is the point: consolidation has the discipline, policy/affordance/action-object learning has NO rollback, NO provenance record, and NO gate against a single successful rollout propagating widely. The question this answers is the intake's own: does a LOCAL competence update degrade UNRELATED competences?",
+      "design": "Local-update interference test. Phase 1: train the agent to above-floor performance on a SET of separable competences, verifying each independently. Phase 2: apply a TARGETED competence improvement to exactly one of them, across a perturbation-strength range (the strength sweep is what turns a single point into a dose-response). Phase 3: re-measure performance on the UNRELATED previously-acquired competences. PRIMARY DV: change in unrelated-competence performance as a function of targeted-update strength. Author via /queue-experiment; emit the phase-1-trained pre-update arm fingerprint with include_driver_script_in_hash=False -- it is a reusable baseline for the whole cluster-E line.",
+      "acceptance_checks": [
+        "FAIL-DIRECTION-IS-THE-MOTIVATING-RESULT / the discipline IS needed: unrelated competence degrades measurably as targeted-update strength rises, beyond a margin scaled on the SD of the DELTA plus an absolute floor. NOTE THE POLARITY -- this outcome SUPPORTS MECH-471 and motivates building bounded/provenanced/rollback machinery for the competence path.",
+        "PASS-AS-NOT-NEEDED / MECH-471 weakened: unrelated competence is preserved across the full perturbation range, so competence learning is already sufficiently local and the consolidation-path discipline does not need generalising. Decision-relevant negative that would park the whole bounded-competence-revision line.",
+        "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE 'UNRELATED' COMPETENCES MUST BE DEMONSTRABLY ACQUIRED IN THE BASELINE -- above-floor performance WITH live cross-seed variance, verified in phase 1 before phase 2 runs. Testing interference against competences the agent never had is vacuous and is the single most likely way this experiment returns a meaningless PASS. Also required: the targeted update must actually MOVE the targeted competence, or nothing was perturbed."
+      ],
+      "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 1), which names this the cheapest real probe in the cluster and the right first move. complicated (buildable) on existing substrate. A 'skill' in REE is NOT a document -- it is distributed across action objects, learned affordances, predictive models, hippocampal trajectories, goal-conditioned policies, rule-state persistence, control settings and residue-shaped tendencies; design the competences accordingly and do NOT import any text-space SkillOpt construct. NOT on the V3 critical path. The ethical constraint INV-093 (no trading harm sensitivity for competence) is a SEPARATE joint-measurement question and is not answered here."
+    },
+    {
+      "proposal_id": "EXP-0400",
+      "claim_id": "MECH-472",
+      "related_claims": [
+        "MECH-472",
+        "MECH-471",
+        "ARC-092"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "registered_utc": "2026-07-22",
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 180,
+      "machine_affinity": "any",
+      "objective": "Test whether held-out context distinguishes genuine skill acquisition from task memorisation, so that competence updates can be promoted to durable only on evidence from contexts that did not generate them. Supplies the promotion gate that MECH-471's bounded-update discipline would need in order to decide WHEN an update has earned durability.",
+      "design": "Paired in-context vs held-out-context evaluation of the SAME learned competence. Train a competence in a generating context set; evaluate on (a) the generating contexts and (b) a held-out context set matched on task structure but differing in surface configuration. PRIMARY DV: the in-context minus held-out performance GAP. Sweep training exposure so the gap can be traced as a function of overtraining -- a memorisation reading predicts the gap WIDENS with exposure while in-context performance saturates. Author via /queue-experiment; reuse the EXP-0399 phase-1-trained baseline arm fingerprint if the competence set matches.",
+      "acceptance_checks": [
+        "PASS / held-out context is a usable acquisition-vs-memorisation discriminator: the gap is near zero for competences trained to generalise and grows measurably under overtraining, beyond a margin scaled on the SD of the DELTA plus an absolute floor.",
+        "FAIL / the gap does not discriminate: in-context and held-out performance move together across the whole exposure sweep, so the gap carries no information about memorisation and cannot serve as a promotion gate. Decision-relevant -- MECH-472 would not be usable as the durability criterion for MECH-471.",
+        "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE HELD-OUT CONTEXTS MUST BE GENUINELY REACHABLE BY THE TRAINED POLICY -- non-zero baseline completion in the held-out set. If they are not, the measured gap is a FLOOR ARTEFACT, not evidence of memorisation. This is the guard most likely to be skipped and the most likely source of a false positive. Also required: in-context performance must be above floor, or there is no acquisition to test for."
+      ],
+      "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 2). *** DO NOT CONFLATE WITH GOV-HELDOUT-1 *** -- that is the ASSEMBLY-side held-out validation of workflow and rule changes, from the sibling intake of the same SkillOpt source. This is REE-internal and concerns the agent's own competence promotion. Per GOV-ANALOGY-1 the resemblance is an analogy and NEVER evidence; a result here does not transfer there. Lower priority than EXP-0399, which is the cluster's first move."
+    },
+    {
+      "proposal_id": "EXP-0401",
+      "claim_id": "MECH-474",
+      "related_claims": [
+        "MECH-474",
+        "MECH-312b",
+        "MECH-312c",
+        "MECH-261",
+        "MECH-163",
+        "MECH-179",
+        "ARC-092"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "low",
+      "status": "proposed",
+      "registered_utc": "2026-07-22",
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 300,
+      "machine_affinity": "any",
+      "objective": "Test the NARROW form of learning-mechanism meta-selection: does the control plane benefit from selecting among the learning regimes REE actually has -- online practice, exploration, counterfactual simulation, offline consolidation -- rather than applying one rule universally, with the selection state- and mode-dependent? Partial precedent exists but does not cover this: MECH-312b/c arbitrate habit vs goal-directed CONTROL, MECH-261 gates WHICH SUBSTRATE MAY WRITE by mode, MECH-179 routes error TYPE to sleep PHASE. Arbitration over the LEARNING MECHANISM ITSELF is unregistered and untested.",
+      "design": "Fixed-regime arms (one per regime: online practice / exploration / counterfactual simulation / offline consolidation) versus a SELECTING arm, on a task mix deliberately constructed so different sub-tasks reward different regimes. STEP 0, MANDATORY AND RUN FIRST: the fixed-arm baseline must establish that AT LEAST TWO regimes win on DIFFERENT sub-tasks. If one regime dominates everywhere, there is nothing to select between and the experiment is vacuous -- stop there and report substrate_not_ready rather than running the selecting arm. PRIMARY DV: per-sub-task and aggregate performance, selector vs EACH fixed regime. *** SCOPE: NARROW FORM ONLY *** -- the regime menu is exactly the four REE has. Do NOT add imitation or language-mediated scaffolding; both are substrate-blocked (unbuilt) and the broad form is deliberately not registered as testable. Author via /queue-experiment; emit each fixed-regime arm fingerprint with include_driver_script_in_hash=False.",
+      "acceptance_checks": [
+        "PASS / MECH-474 supported: the selecting arm beats EVERY fixed regime, not merely their mean, by a margin scaled on the SD of the DELTA plus an absolute floor. The every-regime bar is the load-bearing one -- beating the MEAN is satisfied by a selector that always picks the single best fixed regime, which demonstrates no selection at all.",
+        "FAIL / one universal rule suffices: the selecting arm fails to beat the best fixed regime, so regime meta-selection buys nothing on a mix that demonstrably dissociates the regimes. Decision-relevant negative.",
+        "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE TASK MIX MUST ACTUALLY DISSOCIATE THE REGIMES -- at least two regimes winning on different sub-tasks in the FIXED-ARM baseline, verified at step 0 before the selecting arm runs. Additionally the selector must be observed to actually SWITCH regime (non-degenerate selection distribution); a selector pinned to one regime is a fixed arm wearing a different label."
+      ],
+      "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 4, narrow form). The BROAD form (menu extended with imitation + language-mediated scaffolding) is substrate-blocked and is noted in MECH-474's claim notes but NOT registered as testable -- do not silently widen the menu when authoring the driver. Sequence after EXP-0399, which is the cluster's cheapest and first probe. NOT on the V3 critical path."
     }
   ]
 }
