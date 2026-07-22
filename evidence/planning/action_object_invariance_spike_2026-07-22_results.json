@@ -1,0 +1,336 @@
+[
+  {
+    "arm": "untrained",
+    "warmup_episodes": 0,
+    "n_states": 120,
+    "action_dim": 5,
+    "action_object_dim": 16,
+    "M0_action_object_head_param_delta_l2": 0.0,
+    "zworld_control": {
+      "zworld_total_var_across_states": 0.003082581330090761,
+      "zworld_mean_per_dim_std": 0.00959603302180767,
+      "zworld_mean_norm": 0.42188018560409546
+    },
+    "ao": {
+      "M1": {
+        "between_state_var": 6.272818427532911e-05,
+        "within_state_action_var": 0.014189785346388817,
+        "action_var_fraction": 0.9955987930297852,
+        "mean_per_dim_action_std": 0.027916492894291878,
+        "grand_mean_norm": 0.31438159942626953,
+        "mean_action_deviation_norm": 0.1148499920964241,
+        "action_signal_to_offset_ratio": 0.3653203248977661
+      },
+      "M2": {
+        "linear_probe_test_acc": 1.0,
+        "chance": 0.2
+      },
+      "M3": {
+        "n_pairs": 1200,
+        "n_same_consequence_pairs": 61,
+        "n_diff_consequence_pairs": 1139,
+        "spearman_d_emb_vs_d_consequence": 0.15958645804615143,
+        "mean_d_emb_same_consequence": 0.1918134093284607,
+        "mean_d_emb_diff_consequence": 0.1828426867723465,
+        "separation_ratio_diff_over_same": 0.9532320363444833,
+        "cohens_d_diff_minus_same": -0.20711191522659525
+      },
+      "M5": {
+        "r2_explained_by_action_alone": 0.9944364266713067,
+        "pairdist_across_state_cv_mean": 0.008921502158045769,
+        "pairdist_across_state_cv_max": 0.013909664936363697
+      },
+      "M6": {
+        "per_pair": {
+          "0-1": {
+            "spearman": 0.009660393082852976,
+            "d_emb_cv": 0.013909665867686272
+          },
+          "0-2": {
+            "spearman": 0.3890895201055629,
+            "d_emb_cv": 0.008089168928563595
+          },
+          "0-3": {
+            "spearman": 0.12279324953121745,
+            "d_emb_cv": 0.012124164029955864
+          },
+          "0-4": {
+            "spearman": 0.044343357177581776,
+            "d_emb_cv": 0.012910745106637478
+          },
+          "1-2": {
+            "spearman": 0.16167094937148413,
+            "d_emb_cv": 0.005355229601264
+          },
+          "1-3": {
+            "spearman": -0.28406833807903326,
+            "d_emb_cv": 0.008729620836675167
+          },
+          "1-4": {
+            "spearman": 0.3377040072227238,
+            "d_emb_cv": 0.007865016348659992
+          },
+          "2-3": {
+            "spearman": 0.016028890895201056,
+            "d_emb_cv": 0.0070491209626197815
+          },
+          "2-4": {
+            "spearman": -0.17249809014514897,
+            "d_emb_cv": 0.006044164765626192
+          },
+          "3-4": {
+            "spearman": 0.2287589415931662,
+            "d_emb_cv": 0.007138126064091921
+          }
+        },
+        "mean_within_pair_spearman": 0.08534828807556082,
+        "max_abs_within_pair_spearman": 0.3890895201055629,
+        "mean_d_emb_cv_within_pair": 0.008921502251178026
+      }
+    },
+    "world_forward_reference": {
+      "M1": {
+        "between_state_var": 0.00310854846611619,
+        "within_state_action_var": 0.011896858923137188,
+        "action_var_fraction": 0.7928380966186523,
+        "mean_per_dim_action_std": 0.01768334209918976,
+        "grand_mean_norm": 0.5749861598014832,
+        "mean_action_deviation_norm": 0.10762260109186172,
+        "action_signal_to_offset_ratio": 0.1871742457151413
+      },
+      "M2": {
+        "linear_probe_test_acc": 1.0,
+        "chance": 0.2
+      },
+      "M3": {
+        "n_pairs": 1200,
+        "n_same_consequence_pairs": 61,
+        "n_diff_consequence_pairs": 1139,
+        "spearman_d_emb_vs_d_consequence": -0.0186622699043541,
+        "mean_d_emb_same_consequence": 0.19974030554294586,
+        "mean_d_emb_diff_consequence": 0.163770392537117,
+        "separation_ratio_diff_over_same": 0.8199166016690856,
+        "cohens_d_diff_minus_same": -0.7469190247754393
+      },
+      "M5": {
+        "r2_explained_by_action_alone": 0.7913004817709409,
+        "pairdist_across_state_cv_mean": 0.009878366254270077,
+        "pairdist_across_state_cv_max": 0.01947893388569355
+      },
+      "M6": {
+        "per_pair": {
+          "0-1": {
+            "spearman": 0.08546426835196888,
+            "d_emb_cv": 0.012962416745722294
+          },
+          "0-2": {
+            "spearman": 0.4820751441072297,
+            "d_emb_cv": 0.012041335925459862
+          },
+          "0-3": {
+            "spearman": -0.34943398847142165,
+            "d_emb_cv": 0.007139202207326889
+          },
+          "0-4": {
+            "spearman": -0.3472741162580735,
+            "d_emb_cv": 0.006699337158352137
+          },
+          "1-2": {
+            "spearman": -0.1406347663032155,
+            "d_emb_cv": 0.012216649018228054
+          },
+          "1-3": {
+            "spearman": -0.34415584415584416,
+            "d_emb_cv": 0.008395546115934849
+          },
+          "1-4": {
+            "spearman": -0.19528439474963538,
+            "d_emb_cv": 0.007341819349676371
+          },
+          "2-3": {
+            "spearman": 0.18026251823043266,
+            "d_emb_cv": 0.006365224253386259
+          },
+          "2-4": {
+            "spearman": 0.3471838322105702,
+            "d_emb_cv": 0.006143198814243078
+          },
+          "3-4": {
+            "spearman": -0.06620598652684215,
+            "d_emb_cv": 0.0194789357483387
+          }
+        },
+        "mean_within_pair_spearman": -0.034800333356483096,
+        "max_abs_within_pair_spearman": 0.4820751441072297,
+        "mean_d_emb_cv_within_pair": 0.00987836653366685
+      }
+    }
+  },
+  {
+    "arm": "warmed_40ep",
+    "warmup_episodes": 40,
+    "n_states": 120,
+    "action_dim": 5,
+    "action_object_dim": 16,
+    "M0_action_object_head_param_delta_l2": 0.0,
+    "zworld_control": {
+      "zworld_total_var_across_states": 0.0030337576754391193,
+      "zworld_mean_per_dim_std": 0.009546620771288872,
+      "zworld_mean_norm": 0.42211857438087463
+    },
+    "ao": {
+      "M1": {
+        "between_state_var": 5.947222234681249e-05,
+        "within_state_action_var": 0.014215720817446709,
+        "action_var_fraction": 0.9958338737487793,
+        "mean_per_dim_action_std": 0.02794545888900757,
+        "grand_mean_norm": 0.3144609034061432,
+        "mean_action_deviation_norm": 0.11500119417905807,
+        "action_signal_to_offset_ratio": 0.3657090365886688
+      },
+      "M2": {
+        "linear_probe_test_acc": 1.0,
+        "chance": 0.2
+      },
+      "M3": {
+        "n_pairs": 1200,
+        "n_same_consequence_pairs": 50,
+        "n_diff_consequence_pairs": 1150,
+        "spearman_d_emb_vs_d_consequence": 0.26418691262980043,
+        "mean_d_emb_same_consequence": 0.1634543240070343,
+        "mean_d_emb_diff_consequence": 0.1843469738960266,
+        "separation_ratio_diff_over_same": 1.1278194995202035,
+        "cohens_d_diff_minus_same": 0.48240594322393476
+      },
+      "M5": {
+        "r2_explained_by_action_alone": 0.9946988163597673,
+        "pairdist_across_state_cv_mean": 0.00948975421488285,
+        "pairdist_across_state_cv_max": 0.014888164587318897
+      },
+      "M6": {
+        "per_pair": {
+          "0-1": {
+            "spearman": -0.4666504618376276,
+            "d_emb_cv": 0.012842207215726376
+          },
+          "0-2": {
+            "spearman": -0.004180845892075838,
+            "d_emb_cv": 0.008362846449017525
+          },
+          "0-3": {
+            "spearman": 0.14164178067921385,
+            "d_emb_cv": 0.014888163655996323
+          },
+          "0-4": {
+            "spearman": 0.3457740120841725,
+            "d_emb_cv": 0.013177458196878433
+          },
+          "1-2": {
+            "spearman": 0.00017362316827557468,
+            "d_emb_cv": 0.005829876754432917
+          },
+          "1-3": {
+            "spearman": -0.13116883116883116,
+            "d_emb_cv": 0.009465607814490795
+          },
+          "1-4": {
+            "spearman": -0.3288006111535523,
+            "d_emb_cv": 0.009405720978975296
+          },
+          "2-3": {
+            "spearman": 0.006687964441975137,
+            "d_emb_cv": 0.007438411936163902
+          },
+          "2-4": {
+            "spearman": -0.08617959580526426,
+            "d_emb_cv": 0.0055747264996171
+          },
+          "3-4": {
+            "spearman": 0.3935064935064935,
+            "d_emb_cv": 0.007912524044513702
+          }
+        },
+        "mean_within_pair_spearman": -0.012919647197722057,
+        "max_abs_within_pair_spearman": 0.4666504618376276,
+        "mean_d_emb_cv_within_pair": 0.009489754354581237
+      }
+    },
+    "world_forward_reference": {
+      "M1": {
+        "between_state_var": 0.002993459813296795,
+        "within_state_action_var": 0.003817861434072256,
+        "action_var_fraction": 0.5605170130729675,
+        "mean_per_dim_action_std": 0.009759076870977879,
+        "grand_mean_norm": 0.42362773418426514,
+        "mean_action_deviation_norm": 0.05733641982078552,
+        "action_signal_to_offset_ratio": 0.13534623384475708
+      },
+      "M2": {
+        "linear_probe_test_acc": 1.0,
+        "chance": 0.2
+      },
+      "M3": {
+        "n_pairs": 1200,
+        "n_same_consequence_pairs": 50,
+        "n_diff_consequence_pairs": 1150,
+        "spearman_d_emb_vs_d_consequence": 0.1560374278037693,
+        "mean_d_emb_same_consequence": 0.0862143263220787,
+        "mean_d_emb_diff_consequence": 0.09139787405729294,
+        "separation_ratio_diff_over_same": 1.0601239719237565,
+        "cohens_d_diff_minus_same": 0.14776895060265224
+      },
+      "M5": {
+        "r2_explained_by_action_alone": 0.5577160291441956,
+        "pairdist_across_state_cv_mean": 0.01884765736758709,
+        "pairdist_across_state_cv_max": 0.03356630727648735
+      },
+      "M6": {
+        "per_pair": {
+          "0-1": {
+            "spearman": -0.06092784221126467,
+            "d_emb_cv": 0.020889054983854294
+          },
+          "0-2": {
+            "spearman": 0.18812417528995068,
+            "d_emb_cv": 0.021164843812584877
+          },
+          "0-3": {
+            "spearman": -0.17293562052920342,
+            "d_emb_cv": 0.026355981826782227
+          },
+          "0-4": {
+            "spearman": -0.2421765400375026,
+            "d_emb_cv": 0.02603418380022049
+          },
+          "1-2": {
+            "spearman": -0.23542607125494827,
+            "d_emb_cv": 0.015012006275355816
+          },
+          "1-3": {
+            "spearman": -0.26306687964441977,
+            "d_emb_cv": 0.008048834279179573
+          },
+          "1-4": {
+            "spearman": -0.31884158622126535,
+            "d_emb_cv": 0.01030394621193409
+          },
+          "2-3": {
+            "spearman": -0.29937495659420793,
+            "d_emb_cv": 0.01316729374229908
+          },
+          "2-4": {
+            "spearman": -0.37789429821515386,
+            "d_emb_cv": 0.013934114947915077
+          },
+          "3-4": {
+            "spearman": 0.30670185429543717,
+            "d_emb_cv": 0.03356631472706795
+          }
+        },
+        "mean_within_pair_spearman": -0.14758177651225782,
+        "max_abs_within_pair_spearman": 0.37789429821515386,
+        "mean_d_emb_cv_within_pair": 0.01884765746071935
+      }
+    }
+  }
+]
