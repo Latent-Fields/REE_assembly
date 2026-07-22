@@ -58443,7 +58443,9 @@
     telemetry. The discriminating comparison is emergent shared structure (Outcome A)
     versus structure trivially implied by the configured rates and wired gates
     (Outcome B) -- B is the null that most experiments of this shape would fail to
-    exclude, so the rate-matched shuffle control is not optional. The raw thought's
+    exclude, so the constrained-realisation surrogate control specified in the
+    non-degeneracy guard below is not optional, and neither is the
+    structure-destroying arm that accompanies it. The raw thought's
     outcome taxonomy is the verdict grid: A shared organisation / B wired-gates-only /
     C unrelated / D too-much-sharing-collapses / E event-relative beats clock-relative.
     PRECONDITION, and the reason no experiment is proposed here: open question 6 of the
@@ -58471,8 +58473,46 @@
     - MECH-091
   notes: >
     NON-DEGENERACY GUARD: the cross-stream statistic must show live variance across
-    arms/seeds AND must be computed against a rate-matched shuffle control. A result
-    that merely recovers the configured update periods is Outcome B, not a PASS.
+    arms/seeds AND must be computed against a surrogate null built as a CONSTRAINED
+    REALISATION -- one that preserves, per stream, (a) the tick times / configured
+    update period, (b) the marginal distribution of the stream's values, and (c) the
+    WITHIN-STREAM temporal autocorrelation, destroying only the relation BETWEEN
+    streams. The natural construction is a block permutation applied within each
+    stream's own tick grid. A bare "rate-matched shuffle" is NOT sufficient and was
+    the under-specification this guard originally carried: a shuffle that preserves
+    the update period but breaks within-stream serial correlation can be beaten by a
+    cross-stream statistic purely because each stream is individually smooth in time
+    -- significance achieved by destroying something that was never under test, i.e.
+    a FALSE Outcome A. Lancaster et al. 2018 (Physics Reports 748:1-60), the standard
+    surrogate-construction reference, states the requirement directly: a test of
+    temporal structure needs surrogates maintaining the same autocorrelation function
+    as the data. Corollary filter on the STATISTIC: any candidate statistic that is a
+    function of the configured update rates is ruled out a priori, before any run.
+    VALIDATE THE NULL BEFORE USING IT: the surrogate ensemble must be shown to kill a
+    deliberately-artefactual statistic (one computed purely from the update periods)
+    while sparing a deliberately-injected real one, and that demonstration must be
+    made BEFORE the surrogate adjudicates anything. Surrogate ensembles are cheap in
+    simulation, so there is no cost argument for skipping this. Note the unequal-rate
+    gap: the reference treats a common regular grid, while REE's streams tick at 1, 3
+    and 10 steps, so this surrogate must be DESIGNED for REE rather than looked up --
+    the step where an error is easiest to make and hardest to notice.
+    STRUCTURE-DESTROYING ARM (required alongside the surrogate, not a substitute for
+    it): the run needs an arm that leaves the streams, the configured rates and the
+    environmental input statistics intact while removing the event / commitment
+    LANDMARK structure -- the analogue of the scrambled-story control in Chang,
+    Nastase & Hasson 2022 (PNAS), whose lag gradient vanished under scrambling and
+    thereby excluded the intrinsic-rate explanation. The surrogate destroys
+    cross-stream alignment in the ANALYSIS; this arm destroys the landmark structure
+    in the SYSTEM. A cross-stream statistic that survives it was measuring the clock,
+    which is the sharpest available discriminator between Outcome A and Outcome B.
+    A result that merely recovers the configured update periods is Outcome B, not a PASS.
+    CEILING ON WHAT THE SURROGATE CAN DELIVER: clearing a well-built null is NECESSARY
+    for Outcome A and nowhere near sufficient. Wired coordination is real coordination
+    and will correctly clear any surrogate test; only the ablation series separates A
+    from B. Cross-stream LAG in particular is closer to an Outcome B detector than an
+    Outcome A one here -- a lag between streams ticking at 1/3/10 steps is guaranteed
+    by the scheduler -- so lag should be reported as a control quantity that must be
+    present and must not explain the result, not as evidence for the claim.
     WHY THIS MATTERS BEYOND BOOKKEEPING: if the answer is Outcome C (unrelated), REE has
     an INTEGRATION GAP that its multi-rate substrate decision (SD-006) was assumed to
     have addressed. That is a live risk to SD-006's stated purpose and is currently
