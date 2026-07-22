@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 1727,
   "runner_started_at": "2026-07-20T05:23:08.673866+00:00",
-  "last_updated": "2026-07-21T07:16:10.656205+00:00",
+  "last_updated": "2026-07-22T11:57:04.606860+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -29,17 +29,6 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-786a",
-      "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 dual-system recruitment (leg 1) -- strengthened manipulation, AUC gate, powered margin",
-      "description": "",
-      "estimated_minutes": 128.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-790",
       "backlog_id": "",
       "claim_id": "",
@@ -57,17 +46,6 @@
       "title": "Channel-routing route_range cross-class magnitude replication (darwin-arm64)",
       "description": "",
       "estimated_minutes": 213.3,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-793",
-      "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 ARM_2 foraging-competence 2x2 calibration (curriculum x density)",
-      "description": "",
-      "estimated_minutes": 544.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -3084,6 +3062,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_742m_mech457_bias_head_baseline_mint_20260721T071610Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 26760.4
+    },
+    {
+      "queue_id": "V3-EXQ-786a",
+      "backlog_id": "",
+      "claim_id": "MECH-163",
+      "title": "MECH-163 dual-system recruitment (leg 1) -- strengthened manipulation, AUC gate, powered margin",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-786a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-786a.json",
+      "started_at": "2026-07-21T07:16:12.306526+00:00",
+      "completed_at": "2026-07-21T11:38:10.453706+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_786a_mech163_dual_system_recruitment_20260721T113809Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 15718.1
+    },
+    {
+      "queue_id": "V3-EXQ-793",
+      "backlog_id": "",
+      "claim_id": "SD-049",
+      "title": "SD-049 ARM_2 foraging-competence 2x2 calibration (curriculum x density)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS arm=A11 seed=44 d1_contact=True d2_survival=True | [v3_exq_793_sd049_arm2_competence_calibration] C_BASE_FAILS=True C_CURR=True C_DENS=True C_JOINT=True -> both_levers_sufficient_alone | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-793 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-793.json",
+      "started_at": "2026-07-21T11:38:12.151354+00:00",
+      "completed_at": "2026-07-22T11:57:04.605687+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 87532.5
     }
   ]
 }
