@@ -1,0 +1,48 @@
+{
+  "claim_ids_tested": [
+    "Q-082"
+  ],
+  "source": {
+    "title": "Incomplete suppression of distractor-related activity in the frontal eye field results in curved saccades",
+    "authors": [
+      "Robert M. McPeek"
+    ],
+    "year": 2006,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00564.2006"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Causal microstimulation plus recording, in primate, showing suppression is a graded competitive process WITHIN the selection map whose residue leaks into behaviour -- which cuts against the 'separate suppression module' reading of Q-082 while confirming suppression is genuinely pre-behavioural. Mixed because it supports the pre-selection timing but weakens the separable-substrate framing.",
+  "failure_signatures": [
+    "Suppression is INCOMPLETE and time-varying at the moment of commitment, and the residual distractor activity biases the executed action continuously rather than being cleanly gated out -- a binary pre-selection filter does not reproduce curved trajectories.",
+    "Distractor-coding activity and target-coding activity live in the SAME map; suppression is expressed as relative activity within the selection substrate, so an architecture that adds a separate suppression module may double-count a function the priority competition already performs.",
+    "Selection can be committed BEFORE competition resolves -- the bottleneck does not wait, which means a top-k boundary can emit a contaminated selection rather than failing visibly."
+  ],
+  "tags": [
+    "q-082",
+    "pre_selection_suppression",
+    "frontal_eye_field",
+    "target_selection",
+    "priority_map",
+    "saccade_curvature"
+  ],
+  "mapping": {
+    "source_claim_statement": "Saccades curving toward a distractor are accompanied by increased perisaccadic activity in frontal eye field neurons coding the distractor location and saccades curving away by decreased activity, while target-coding activity is unchanged; subthreshold microstimulation mimicking the recorded distractor activity causally induced curvature toward the stimulated location, indicating curvature results from incomplete suppression of distractor-related activity during target selection.",
+    "ree_translation": "REE reads this as the counterweight to Mysore & Knudsen within the same question. Suppression here is not a separate gate upstream of a selection map -- it is the graded competitive dynamics OF the map, and its incompleteness at commitment time leaks directly into the executed action. On this reading, precision-weighted cue routing plus the MECH-254 top-k bottleneck may already instantiate the relevant function, and the correct REE question becomes whether the bottleneck can commit before competition resolves rather than whether a suppression module is missing.",
+    "mapping_caveat": "The behavioural readout is saccade trajectory curvature, a continuous motor variable with no REE analogue -- REE's committed actions are discrete, so the specific 'incomplete suppression leaks into the trajectory' signature cannot manifest. The analogous REE signature would be contamination of a committed discrete selection, which this paper does not measure and which may have different dynamics. Also FEF is cortical oculomotor, one node in a larger selection network including SC.",
+    "source_context": "Macaque (Macaca mulatta), frontal eye field single-unit recording during visual search with distractors, plus subthreshold microstimulation causal manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high for its era and design -- the microstimulation arm converts a correlation into a causal claim, which is what makes it usable. Mapping fidelity limited by the continuous-trajectory readout having no discrete-action counterpart in REE."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_082",
+  "entry_id": "2026-07-22_q_082_incomplete_suppression_curved_saccades_mcpeek2006",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

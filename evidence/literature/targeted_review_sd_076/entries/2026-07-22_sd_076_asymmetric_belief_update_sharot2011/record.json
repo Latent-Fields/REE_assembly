@@ -1,0 +1,48 @@
+{
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "source": {
+    "title": "How unrealistic optimism is maintained in the face of reality",
+    "authors": [
+      "Tali Sharot",
+      "Christoph W. Korn",
+      "Raymond J. Dolan"
+    ],
+    "year": 2011,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2949"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, high-venue, neurally-grounded demonstration of exactly the asymmetry SD-076 posits (desirable errors incorporated, undesirable errors under-coded). Confidence held below 0.8 because the domain is self-referential beliefs about future life events, not a running estimate of one's own predictive accuracy, and because the paradigm's statistical basis was subsequently contested (see the Ni 2023 and Garrett 2018 entries in this directory).",
+  "failure_signatures": [
+    "The asymmetry is carried by a FAILURE TO CODE undesirable errors, not by a symmetric rate difference -- if REE implements SD-076 as a pure two-rate EMA it reproduces the outcome but not the mechanism, and will not show the selective error-tracking dropout this paper measures.",
+    "Optimistic individuals showed reduced error tracking in right inferior prefrontal gyrus specifically for negative updates -- a between-subject trait axis SD-076's single global asymmetry parameter cannot express."
+  ],
+  "tags": [
+    "sd-076",
+    "optimism_bias",
+    "belief_updating",
+    "precision",
+    "asymmetric_learning_rate"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants updated beliefs about the likelihood of future life events more in response to better-than-expected information than to worse-than-expected information, and this selectivity was mediated by a relative failure to neurally code estimation errors calling for a pessimistic update.",
+    "ree_translation": "REE reads this as the biological warrant for SD-076's asymmetric precision EMA: the E3 selector's running-variance estimate should incorporate evidence of good self-accuracy faster than evidence of bad self-accuracy, so rv drifts below the true error mean across a waking episode -- supplying the daytime precision drift that MECH-204's sleep recalibration presupposes.",
+    "mapping_caveat": "The paper measures updating of beliefs ABOUT THE WORLD (probability of future life events), not updating of a SELF-ACCURACY / precision estimate. SD-076 is a claim about the second-order quantity. The transfer assumes the same valence asymmetry applies when the thing being estimated is one's own predictive error, which this paper does not test. It is also a human self-report paradigm with no analogue of REE's per-step prediction error.",
+    "source_context": "Healthy adult humans, fMRI, self-referential probability estimation for ~80 adverse life events with feedback on population base rates."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high (Nature Neuroscience, neural + behavioural convergence) but discounted slightly by the post-2016 replication dispute. Mapping fidelity is the binding constraint: first-order world beliefs vs second-order precision. Transfer risk moderate-high -- human episodic self-belief to an agent's running variance estimate is a long jump."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-07-22_sd_076_asymmetric_belief_update_sharot2011",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

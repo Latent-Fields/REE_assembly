@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "source": {
+    "title": "Confidence drives a neural confirmation bias",
+    "authors": [
+      "Max Rollwage",
+      "Alisa Loosen",
+      "Tobias U. Hauser",
+      "Rani Moran",
+      "Raymond J. Dolan",
+      "Stephen M. Fleming"
+    ],
+    "year": 2020,
+    "venue": "Nature Communications",
+    "doi": "10.1038/s41467-020-16278-6"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Highest mapping fidelity of any entry in this directory: the asymmetry is driven BY a confidence/precision variable and acts ON subsequent evidence integration, which is structurally the self-reinforcing precision loop SD-076 encodes. MEG plus computational modelling, strong venue. Held below 0.85 because it is a within-trial post-decisional effect on perceptual evidence, not a slow across-episode drift in a variance estimate.",
+  "failure_signatures": [
+    "Disconfirmatory evidence processing was ABOLISHED rather than merely attenuated at high confidence -- a linear two-rate EMA cannot produce a hard gate, so SD-076's functional form may understate the effect at the high-precision end where runaway inflation is most dangerous.",
+    "The effect is driven by confidence in a JUST-MADE choice; if REE's rv update is not conditioned on the agent's own commitment, the analogous gating has no trigger and SD-076 reduces to an unmotivated constant asymmetry."
+  ],
+  "tags": [
+    "sd-076",
+    "confidence",
+    "precision",
+    "confirmation_bias",
+    "metacognition",
+    "evidence_integration"
+  ],
+  "mapping": {
+    "source_claim_statement": "Holding high confidence in a decision modulates post-decisional neural processing so that integration of confirmatory evidence is amplified while integration of disconfirmatory evidence is abolished, producing a selective neural gating for choice-consistent information.",
+    "ree_translation": "REE reads this as evidence that the asymmetry SD-076 posits is not a fixed constant but is GATED BY the very precision estimate it inflates -- high confidence suppresses the disconfirming evidence that would correct it. That closes SD-076 into a positive-feedback loop, which is the strongest available argument that waking precision drift is self-amplifying and therefore requires a periodic external corrective of the kind MECH-204 supplies.",
+    "mapping_caveat": "This is a WITHIN-TRIAL post-decisional effect on perceptual evidence accumulation over hundreds of milliseconds, whereas SD-076 is an ACROSS-EPISODE drift in a running variance estimate. The timescales differ by orders of magnitude and the paper offers no evidence that the within-trial gating accumulates into a slow bias. Treating the two as the same mechanism at different rates is an assumption REE is making, not a finding.",
+    "source_context": "Healthy adult humans, MEG, two-stage perceptual discrimination task with post-decisional evidence and confidence report."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity weighted heavily here because SD-076 is a design_decision about a precision variable and this is the one retrieved paper where the manipulated and measured quantity IS confidence/precision rather than world-belief. Transfer risk is the timescale gap, not the species or modality."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-07-22_sd_076_confidence_gates_evidence_rollwage2020",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

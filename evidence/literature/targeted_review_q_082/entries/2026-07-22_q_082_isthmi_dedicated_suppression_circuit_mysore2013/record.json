@@ -1,0 +1,50 @@
+{
+  "claim_ids_tested": [
+    "Q-082"
+  ],
+  "source": {
+    "title": "A shared inhibitory circuit for both exogenous and endogenous control of stimulus selection",
+    "authors": [
+      "Shreesh P. Mysore",
+      "Eric I. Knudsen"
+    ],
+    "year": 2013,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.3352"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "The strongest available evidence that biology implements a DEDICATED, anatomically separable pre-selection suppression substrate rather than folding suppression into the priority map -- causal inactivation, single-unit recording, and both exogenous and endogenous routes through one circuit. Discounted for the avian midbrain preparation and for the gap between a spatial space-map and REE's non-spatial cue routing.",
+  "failure_signatures": [
+    "Inactivating Imc ABOLISHED competitive selection entirely -- selection did not degrade gracefully to a facilitation-only mode, so a priority map without a dedicated inhibitory partner may not select at all under competition rather than selecting worse.",
+    "The same circuit carried BOTH exogenous and endogenous suppression; an architecture that implements bottom-up salience competition and top-down goal biasing through separate mechanisms diverges from this organisation.",
+    "Suppression was global across the entire tectal space map from a spatially precise input -- a local or pairwise inhibition scheme does not reproduce this."
+  ],
+  "tags": [
+    "q-082",
+    "pre_selection_suppression",
+    "superior_colliculus",
+    "optic_tectum",
+    "priority_map",
+    "isthmi",
+    "attention"
+  ],
+  "mapping": {
+    "source_claim_statement": "Focal reversible inactivation of the nucleus isthmi pars magnocellularis, a single inhibitory circuit in the barn owl midbrain tegmentum, abolished both stimulus-driven and internally driven competitive interactions in the optic tectum; Imc neurons transform spatially precise multisensory and endogenous input into inhibitory output suppressing competing representations across the entire tectal space map.",
+    "ree_translation": "REE reads this as the affirmative case for Q-082: biology does implement an explicit, anatomically distinct pre-selection suppression substrate, positioned before the competing representations acquire behavioural control, and shared between bottom-up and top-down routes. If REE's mechanisms are predominantly post-entry -- write gating, persistence, conflict handling, mode hysteresis -- this is the specific thing REE lacks.",
+    "mapping_caveat": "Barn owl midbrain, a retinotopic SPATIAL space map with an explicit spatial competition problem. REE's precision-weighted cue routing is not spatial and its MECH-254 top-k boundary bottleneck is a capacity limit rather than a space map, so 'suppression across the space map' has no direct structural counterpart. The inference that REE needs an analogous substrate presumes the top-k bottleneck fails to do this work -- which is exactly the MECH-467 leg 3 gate Q-082 is registered behind, and is NOT settled by this paper.",
+    "source_context": "Barn owl (Tyto alba), midbrain optic tectum and nucleus isthmi, single-unit recording with focal reversible pharmacological inactivation, multisensory and endogenous stimulus competition."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Source quality very high -- causal inactivation with single-unit readout in Nature Neuroscience is close to the ceiling for this kind of claim. Transfer risk is the binding constraint: avian midbrain spatial space map to a non-spatial artificial cue-routing architecture is a long transfer, and the homologous mammalian circuit (parabigeminal nucleus) is less well characterised functionally."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_082",
+  "entry_id": "2026-07-22_q_082_isthmi_dedicated_suppression_circuit_mysore2013",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

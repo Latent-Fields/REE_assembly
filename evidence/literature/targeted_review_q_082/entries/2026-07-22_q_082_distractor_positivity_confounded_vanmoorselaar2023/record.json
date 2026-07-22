@@ -1,0 +1,49 @@
+{
+  "claim_ids_tested": [
+    "Q-082"
+  ],
+  "source": {
+    "title": "Electrophysiological Indices of Distractor Processing in Visual Search Are Shaped by Target Expectations",
+    "authors": [
+      "Dirk van Moorselaar",
+      "Changrun Huang",
+      "Jan Theeuwes"
+    ],
+    "year": 2023,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_01986"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "weakens",
+  "confidence": 0.64,
+  "confidence_rationale": "Undercuts the measurement validity of the distractor positivity, the principal neural marker cited as evidence for a dedicated proactive suppression process, by showing it is attenuated when target features vary even though target selection itself is unaffected. Modest confidence: a single-study measurement critique in a contested literature, not a demonstration that suppression is absent.",
+  "failure_signatures": [
+    "The distractor positivity was reliably attenuated when target features varied randomly across trials while the N2pc target-selection marker and manual response times were unaffected -- so the marker tracks something other than suppression alone.",
+    "Because the PD partly reflects target-feature upweighting, published evidence citing PD amplitude as an index of a dedicated suppression substrate is confounded with selection-history-driven target facilitation, and cannot be used to argue that REE lacks a mechanism its priority competition already supplies."
+  ],
+  "tags": [
+    "q-082",
+    "pre_selection_suppression",
+    "distractor_positivity",
+    "selection_history",
+    "visual_search",
+    "measurement_validity"
+  ],
+  "mapping": {
+    "source_claim_statement": "When the search target varied randomly across trials rather than being fixed, the distractor positivity component was reliably attenuated while the N2pc index of target selection and manual response times were unchanged, demonstrating that the PD cannot be attributed unequivocally to distractor suppression because it also reflects upweighting of target features.",
+    "ree_translation": "REE reads this as a measurement-validity constraint on the affirmative case for Q-082. Much of the human evidence that a dedicated proactive suppression process exists rests on the PD component; if PD amplitude conflates suppression with target upweighting driven by selection history, then that evidence under-determines whether a separate suppression substrate exists at all -- and the parsimonious reading, that precision-weighted routing plus a capacity bottleneck produces both signatures, survives.",
+    "mapping_caveat": "This is a critique of a human ERP marker's interpretation. REE has no PD analogue and no ERP components, so the finding transfers only as a reason to discount OTHER literature, not as direct evidence about REE's architecture. It also does not show that suppression is absent -- only that the standard index is impure. Selection history effects are themselves a mechanism REE may or may not have, which this entry does not address.",
+    "source_context": "Healthy adult humans, EEG event-related potentials (N2pc and distractor positivity) in visual search with fixed versus randomly varying target features."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Source quality solid but single-study, in a literature where the same groups actively dispute each other's markers. Mapping fidelity moderate because the entry functions as a discount on other evidence rather than as direct evidence about REE."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_082",
+  "entry_id": "2026-07-22_q_082_distractor_positivity_confounded_vanmoorselaar2023",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

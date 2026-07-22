@@ -1,0 +1,49 @@
+{
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "source": {
+    "title": "The shadowing effect of initial expectation on learning asymmetry",
+    "authors": [
+      "Yinmei Ni",
+      "Jingwei Sun",
+      "Jian Li"
+    ],
+    "year": 2023,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1010751"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.7,
+  "confidence_rationale": "Directly attacks the measurability of the parameter SD-076 posits, with model recovery analyses rather than assertion. Rated weakens rather than mixed because its consequence for REE is a concrete methodological hazard in SD-076's own validation design. Held at 0.7 because it concerns first-order reinforcement learning rates, and SD-076's quantity is a second-order variance estimate whose initialisation REE actually controls.",
+  "failure_signatures": [
+    "Learning-rate asymmetry and initial value expectation are partially non-identifiable: fitting an asymmetry parameter without simultaneously fitting the initial expectation recovers the WRONG SIGN of asymmetry.",
+    "The direction of positive-vs-negative learning asymmetry in elementary reinforcement learning remains contested across studies -- so SD-076 cannot cite 'the RL literature' as settled support for a downward drift.",
+    "An ablation arm that changes the rv initialisation while intending to change only the asymmetry would produce a confounded MECH-204 Phase 7 result that looks like a precision-drift effect."
+  ],
+  "tags": [
+    "sd-076",
+    "learning_asymmetry",
+    "reinforcement_learning",
+    "parameter_identifiability",
+    "methodological_caveat"
+  ],
+  "mapping": {
+    "source_claim_statement": "Estimates of asymmetric learning rates for positive versus negative prediction errors are confounded by the learner's default value expectation held before entering the environment; models fitting both an asymmetry and an initial expectation consistently outperform asymmetry-only models, and the apparent direction of asymmetry can reverse depending on that initialisation.",
+    "ree_translation": "REE reads this as a direct constraint on how SD-076 may be validated. Because SD-076 is implemented as an EMA, it necessarily has an initialisation for the running-variance estimate, and this paper shows that initialisation and asymmetry trade off against each other in exactly the way that makes a measured drift ambiguous. The MECH-204 Phase 7 retest must hold the rv initialisation fixed and identical across arms, or report it as a fitted nuisance parameter, or its measured drift is uninterpretable.",
+    "mapping_caveat": "The confound is demonstrated for first-order reward learning rates estimated by fitting human choice data, where the initial expectation is an unobserved subject variable. In REE the rv initialisation is a known, controlled quantity set in code, so the identifiability problem is far weaker -- REE can simply hold it fixed. The paper's force here is as a design warning, not as evidence that SD-076's posited asymmetry is absent.",
+    "source_context": "Healthy adult humans, two reinforcement-learning experiments with stable and varying reinforcement probabilities across gain, loss, and mixed environments; computational model comparison with parameter recovery simulations."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Source quality good -- model recovery and simulation analyses are the right way to make an identifiability argument. Mapping fidelity moderate: the confound is real for REE's validation design but much weaker than for human fitting, because REE controls the initialisation directly."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-07-22_sd_076_initial_expectation_shadowing_ni2023",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

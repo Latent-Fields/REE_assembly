@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "Q-082"
+  ],
+  "source": {
+    "title": "Electrophysiological evidence for target facilitation without distractor suppression in two-stimulus search displays",
+    "authors": [
+      "Norman Forschack",
+      "Christopher Gundlach",
+      "Steven Hillyard",
+      "Matthias M. Muller"
+    ],
+    "year": 2022,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhab450"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "weakens",
+  "confidence": 0.69,
+  "confidence_rationale": "Directly tests and fails to find the central prediction of the signal suppression hypothesis using two independent converging measures with an appropriate task-irrelevant filler baseline. Weakens the premise that a proactive PRE-selection suppression signal is required, which is the premise Q-082 interrogates. Held below 0.75 because it is a null result in a deliberately minimal two-item display, where competition may be too weak to require suppression.",
+  "failure_signatures": [
+    "No early proactive suppression of highly salient distractors was detectable below the task-irrelevant filler baseline -- the pattern was initial capture by ALL colour-change items followed by later focusing on the target, i.e. facilitation, not suppression.",
+    "A null result in a two-item display may not generalise to higher set sizes where competition is stronger; an architecture that reads this as 'no suppression substrate needed' may fail as the number of competing candidates grows -- directly relevant to whether MECH-254's top-k bottleneck scales."
+  ],
+  "tags": [
+    "q-082",
+    "pre_selection_suppression",
+    "signal_suppression_hypothesis",
+    "visual_search",
+    "ssvep",
+    "alpha",
+    "null_result"
+  ],
+  "mapping": {
+    "source_claim_statement": "Using steady-state visual evoked potentials and lateralised alpha as concurrent indices of attentional allocation, with task-irrelevant filler stimuli as the critical baseline, the study found no evidence that salient distractors are proactively suppressed below the filler level; instead all colour-change stimuli initially captured attention and the target was subsequently focused upon.",
+    "ree_translation": "REE reads this as evidence for the second horn of Q-082. If the human data do not require a proactive pre-selection suppression signal even for highly salient distractors, and the observed pattern is competition followed by target upweighting, then REE's existing precision-weighted cue routing plus the top-k boundary bottleneck may already be the right shape, and no explicit suppression substrate is owed.",
+    "mapping_caveat": "This is a NULL result, and the display had only two items -- competition may simply be too weak at set size two to recruit suppression that appears at larger set sizes. Absence of a detectable SSVEP/alpha suppression signature is also not absence of suppression, since both measures are coarse relative to single-unit competition. The finding constrains the strength of the affirmative case for Q-082; it does not settle the question negatively, and Q-082 remains gated on MECH-467 leg 3 regardless.",
+    "source_context": "Healthy adult humans, EEG (steady-state visual evoked potentials and endogenous alpha), two-item visual search displays with colour-singleton distractors and task-irrelevant filler stimuli embedded in a flickering stream."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality good -- two converging electrophysiological measures and, crucially, the filler baseline that lets suppression BELOW baseline be distinguished from mere relative de-prioritisation. Discounted as a null result in a minimal display."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_082",
+  "entry_id": "2026-07-22_q_082_target_facilitation_without_suppression_forschack2022",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}

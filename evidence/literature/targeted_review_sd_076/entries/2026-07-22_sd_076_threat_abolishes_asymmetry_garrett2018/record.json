@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "source": {
+    "title": "Updating Beliefs under Perceived Threat",
+    "authors": [
+      "Neil Garrett",
+      "Ana Maria Gonzalez-Garzon",
+      "Lucy Foulkes",
+      "Liat Levita",
+      "Tali Sharot"
+    ],
+    "year": 2018,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0716-18.2018"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Replicates the baseline asymmetry (supporting SD-076's existence) while showing it is state-dependent and vanishes under threat (weakening SD-076's implementation as a fixed global constant). Randomised laboratory manipulation plus an on-duty firefighter field sample is unusually strong converging design. Held at 0.68 by the same first-order/second-order mapping gap that limits the Sharot 2011 entry.",
+  "failure_signatures": [
+    "The asymmetry EVAPORATES under perceived threat, tracked by galvanic skin response and self-reported anxiety -- a constant asymmetry parameter predicts drift in threatening contexts where humans show none.",
+    "If REE ever couples arousal or a threat signal to E3, an SD-076 with a fixed asymmetry will diverge from the biology precisely in the high-stakes regime where precision miscalibration is most costly."
+  ],
+  "tags": [
+    "sd-076",
+    "optimism_bias",
+    "threat",
+    "arousal",
+    "state_dependence",
+    "belief_updating"
+  ],
+  "mapping": {
+    "source_claim_statement": "The asymmetry favouring integration of desirable over undesirable information disappears in the presence of perceived environmental threat, and the improvement in incorporating bad news tracks physiological arousal indexed by galvanic skin response and self-reported anxiety; shown both under laboratory threat manipulation and in firefighters on active duty.",
+    "ree_translation": "REE reads this as bounding SD-076's scope rather than contradicting it. The baseline asymmetry replicates, which supports the claim's existence, but the asymmetry is a context-modulated policy rather than a fixed constant of the learner. For V3 this is consistent with SD-076 as specified, because V3 has no threat or arousal signal to modulate it; it becomes a live discrepancy the moment REE acquires one.",
+    "mapping_caveat": "Threat here is a human affective-physiological state with no current V3 analogue, so the modulation cannot be tested in the present substrate and the paper's central finding is untestable against REE as it stands. Filed as mixed because the same study both replicates the baseline effect SD-076 needs and removes its universality; reading it as pure support would be selective.",
+    "source_context": "Healthy adult humans in a controlled threat-manipulation laboratory experiment, plus a field sample of firefighters on active duty; belief-updating task with galvanic skin response and anxiety self-report."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high -- randomised laboratory arm plus an ecologically valid field arm is a strong converging design. Transfer risk elevated because the modulating variable, perceived threat, has no V3 counterpart at all, making the finding's main claim currently untestable in REE."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-07-22_sd_076_threat_abolishes_asymmetry_garrett2018",
+  "timestamp_utc": "2026-07-22T06:05:31Z",
+  "summary_path": "summary.md"
+}
