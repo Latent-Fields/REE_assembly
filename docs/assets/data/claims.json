@@ -942,6 +942,30 @@
     "type": "architectural_commitment",
     "what_would_answer": "SUBSTRATE-CONDITIONAL. SUPPORTED if a context variable (z_world / loop / mode) changes the EFFECTIVE connection weights -- not merely a multiplicative gain on fixed weights -- such that two contexts produce behaviour reproducible by NO single fixed weight set under context-varying gain (the discriminator vs ARC-044: a gain model can rescale a fixed policy but cannot REORDER it; a weight model can). Concretely on the ARC-108 instance: the learned w_chan must take DIFFERENT learned values in different z_world contexts and produce a context-dependent REORDERING of committed channels, not just a rescaling, on >=2/3 seeds. WEAKENED if every observed context effect is reproducible by context-conditioned gain on a fixed weight set (then the GAIN form ARC-044 suffices and this claim is over-specification). NON-DEGENERACY: per-context weights must carry live cross-context variance (a w_chan identical across contexts is the gain model in disguise).\n"
   },
+  "ARC-112": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.federation_heterarchy_framing",
+    "title": "REE is a FEDERATION / heterarchy of asynchronous, partially independent cognitive streams coordinated by shared organisational constraints -- neither a monolith nor a collection of independent modules. Successful integration preserves functionally necessary differences among streams rather than making their dynamics identical.",
+    "type": "architectural_commitment"
+  },
+  "ARC-113": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "reasoning.rule_pipeline_stage_noncollapsibility",
+    "title": "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module.",
+    "type": "architectural_commitment"
+  },
+  "ARC-114": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "reasoning.language_as_interface_not_substrate",
+    "title": "Language is an INTERFACE to reasoning, not its substrate: reasoning-like behaviour emerging from language alone (LLMs) does not establish language as the native substrate of reasoning. Language functions as compression, communication, coordination, long-horizon scaffolding, working-memory support and explanation -- and may COMPENSATE for weaknesses in other reasoning systems.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1014,6 +1038,14 @@
     "title": "Similarity-gated care collapse (REFLEXIVE / self-directed failure mode): because REE grounds ethics in modelling others as 'sufficiently like me' (Axiom 5, INV-001, MECH-164 self-like gradient weighting), anything the similarity model classifies as NOT-sufficiently-like-me falls OUTSIDE the care gradient by construction -- structurally the computational shape of out-group exclusion / dehumanization. A design that locates ethics in similarity inherits similarity's failure mode.",
     "type": "external_failure_mode"
   },
+  "GOV-ANALOGY-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.ree_assembly_analogy_discipline",
+    "title": "REE:Assembly analogies must be LABELLED as analogies. REE (the cognitive architecture) and REE Assembly (the scientific-development and governance machinery) have strong structural parallels; any analogy between them must be marked as an analogy and must NEVER be used as evidence that REE operates the way Assembly does, or vice versa.",
+    "type": "governance_rule"
+  },
   "GOV-CEIL-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1070,6 +1102,14 @@
     "title": "Clinical-use prohibition until reviewed -- 'clinical relevance != clinical readiness': REE must not be used or represented as a clinical, therapeutic, diagnostic, risk-prediction, or patient-facing tool without a separate clinical-safety pathway; human data triggers DPIA/Belmont/Helsinki/CIOMS/WHO/MDR governance.",
     "type": "governance_rule"
   },
+  "GOV-HELDOUT-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.assembly.heldout_validation_of_rule_changes",
+    "title": "Held-out validation for Assembly workflow and rule changes: a change to a workflow, skill, or standing rule should be validated against cases that did NOT generate it. Every layer of Assembly practice currently edits the artefact from the session that motivated the edit -- a workflow change judged by the cycle that produced it, a CLAUDE.md rule written by the session that hit the incident, an intake template revised by the intake that strained it. There is no held-out review anywhere in the loop.",
+    "type": "governance_rule"
+  },
   "GOV-JUST-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1078,12 +1118,28 @@
     "title": "Justice / power / false exclusion: guard against excluding unfamiliar, disabled, non-linguistic, animal-like, artificial, or culturally unfamiliar minds from moral caution; and explicitly ask who bears risk, who benefits, and whose model of mind is being treated as the default.",
     "type": "governance_rule"
   },
+  "GOV-META-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.assembly.meta_optimisation_subordination_guard",
+    "title": "Meta-optimisation remains SUBORDINATE to provenance, epistemic honesty, and explicit human authority: an Assembly self-improvement loop must not shift governance authority, erase authorship distinctions or uncertainty, or increase artefact volume at the expense of quality.",
+    "type": "governance_rule"
+  },
   "GOV-PROC-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "governance.process.ethics_as_process",
     "title": "Ethics-as-process: translate the ethics-perimeter intakes into REE's claim-governed loop as governance claims, roadmap metadata, experiment preflights, review-status updates, and release gates -- progressively binding (V3 tag-and-continue -> V4 welfare/continuity -> V5 social/refusal/external-review -> V6 security/release/legal).",
+    "type": "governance_rule"
+  },
+  "GOV-REJECT-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.assembly.rejected_edit_memory",
+    "title": "Rejected-edit memory with reconsideration conditions: rejected proposals -- workflow changes, claim registrations, experiment proposals -- are retained with the proposed edit, why it was proposed, why it was rejected, the evidence considered, and THE CONDITIONS UNDER WHICH RECONSIDERATION IS APPROPRIATE. The last field is what makes it more than an archive.",
     "type": "governance_rule"
   },
   "GOV-REUSE-1": {
@@ -1100,6 +1156,14 @@
     "status": "candidate",
     "subject": "governance.security.misuse_gate",
     "title": "Security and misuse release gate -- 'do not release a capability that can act faster than its containment can understand': before any language/tool/social/deceptive/public-facing capability is released, complete an OWASP-GenAI / MITRE-ATLAS / NIST-RMF security and misuse review.",
+    "type": "governance_rule"
+  },
+  "GOV-STRAT-1": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.assembly.artefact_layer_authority_stratification",
+    "title": "Assembly artefact-layer authority stratification: Assembly artefacts form an update-rate hierarchy -- prompts and local workflow hints (fast) -> thought-intake structure (moderate) -> claims and mechanism status (evidence-gated) -> architecture commitments (slow) -> organisational principles (very slow) -> axioms (exceptional). An edit at a fast layer must not SILENTLY change a slower layer's commitment.",
     "type": "governance_rule"
   },
   "IMPL-001": {
@@ -2314,6 +2378,40 @@
     "title": "harm_evaluator_quality_grows_with_z_harm_differentiation",
     "type": "invariant",
     "what_would_answer": "A monotone-coupling contrast in a BINDING regime: with a harm target whose z_harm differentiation starts genuinely LOW (onset-0 differentiation well below the harm-eval- saturating level) and rises with HarmEncoder maturation, show harm_eval_z_harm held-out quality rises monotonically with, and rank-couples to (couple_rho >= 0.80), that differentiation across onset. The precondition gate MUST verify a binding regime -- a minimum onset-0-to-mature differentiation gap AND onset-0 below saturation -- the gate the 746 lineage's PC_iv_moved (delta>0 and rho>0 only) never enforced. FALSIFIED if quality is flat/non-monotone across a validly-moving, binding differentiation gradient. NOT expressible in the current substrate: no collected harm target has a binding maturation gradient (dens = small-sample artifact, realized-harm Y = flat, prox = already-high ~0.82 at onset 0), so a NEW maturation curriculum that starts harm-target z_harm differentiation low (binding-then-released) is owed before this can validly run.\n"
+  },
+  "INV-091": {
+    "assembly_state": "gated_v3",
+    "emergent_from": [
+      "ARC-025",
+      "MECH-063",
+      "MECH-069",
+      "SD-011",
+      "MECH-035"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "status": "candidate",
+    "subject": "architecture.integration_nonequivalence_band",
+    "title": "Integration and protected non-equivalence are JOINTLY necessary: cross-stream similarity has a viable band. Too little shared organisation is fragmentation; too much is representational collapse. An adequate architecture must satisfy both constraints at once, with a measurable quantity in between -- not merely satisfy each on a separate axis.",
+    "type": "invariant"
+  },
+  "INV-092": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "ethics.suppression_interruptibility_permeability",
+    "title": "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost.",
+    "type": "invariant"
+  },
+  "INV-093": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "ethics.skill_optimisation_harm_sensitivity_floor",
+    "title": "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT.",
+    "type": "invariant"
   },
   "MECH-001": {
     "assembly_state": "remaining",
@@ -6307,6 +6405,78 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "STAGE 1, SCOPING SPIKE (this is why the claim is substrate_conditional and probe-gated, NOT queued): establish whether a boundary regime -- commit_variance within ~2x of effective_threshold -- is reachable BY CONFIGURATION (e.g. lowering commit_threshold), or whether it requires raising z_world variance. STAGE 2a, IF REACHABLE BY CONFIG: re-run the V3-EXQ-785a exogenous-urgency design in that regime with COMMIT RATE as the load-bearing DV. SUPPORTS if commit rate varies monotonically with urgency and the span exceeds a pre-registered effect floor. REFUTES if commit rate stays flat WITH DEMONSTRATED HEADROOM. MANDATORY PRECONDITION on any stage-2a run: median gate margin < 2x AND commit rate away from both 0 and 1. Without it the run reproduces the 785a ceiling effect and must be scored precondition_unmet. STAGE 2b, IF NOT REACHABLE BY CONFIG: the claim is substrate-gated and routes to /implement-substrate, not to /queue-experiment.\n"
   },
+  "MECH-466": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.event_relative_temporal_grammar",
+    "title": "Event-relative coordination exceeds clock-relative coordination: cross-stream alignment measured around event boundaries, commitment onset, interruption, completion and offline transitions is stronger than alignment by wall-clock timestep. If so, the boundary stream is the coordination substrate for the whole federation, not merely a detector with a consumer.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-467": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "attention.distractor_failure_mode_dissociation",
+    "title": "Distractor resistance has THREE dissociable failure modes -- sensory capture (distractor enters/dominates the active representation), rule corruption (distractor overwrites or destabilises the active goal/rule/task context), and behavioural capture (rule survives intact but the distractor still controls action selection). REE's distractor evidence covers rule corruption ONLY; a system can pass rule-corruption tests while failing behavioural capture.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-468": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampus.anchor_topology_functional_information",
+    "title": "Hippocampal anchor TOPOLOGY carries functional information not present in local anchor payloads. REE's typed relations (spatial, temporal, action-transition, event, goal, valence, social, schema, staleness, scale) are each realised as a payload field, a gate, or a scoring term -- a property of an anchor or proposal -- and none is exposed as an EDGE TYPE over the anchor set. Nothing tests whether the topology carries information beyond local anchor features.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-469": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampus.relation_type_noncollapsibility",
+    "title": "Relation types are NOT collapsible to one adjacency structure: collapsing all edge types into a single adjacency, or removing event / goal-motivational edges, or removing action-transition directionality, degrades functional-label recovery. The same non-collapsibility argument as MECH-069 (error incommensurability), one level down.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-470": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampus.topological_ghost_goal_reactivation_ranking",
+    "title": "Topological position improves ghost-goal reactivation ranking: MECH-292/293 rank inactive anchors by preserved-goal-payload match; adding a topological term (relational distance to the current anchor along typed paths) improves reactivation precision. An anchor's functional role -- gateway, bottleneck, recurrent trap, interruption point, repair opportunity -- may be inferable from its POSITION even when its local payload is incomplete.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-471": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "learning.competence_update_bounded_provenance_rollback",
+    "title": "Behavioural-competence updates require the same BOUNDED / PROVENANCED / ROLLBACK-CAPABLE discipline already registered for consolidation. MECH-392, INV-080 and MECH-401 give the memory-consolidation path bounded, attributable, provenance-carrying, rollback-capable, over-rewrite-gated editing; NOTHING EQUIVALENT is registered for behavioural competence -- policy / affordance / action-object learning has no rollback, no provenance record, and no gate against a single successful rollout propagating widely.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-472": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "learning.heldout_context_acquisition_vs_memorisation",
+    "title": "HELD-OUT CONTEXT distinguishes skill acquisition from task memorisation: a competence update should be promoted to durable only on evidence from contexts that did not generate it.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-473": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "learning.rejected_adaptation_memory",
+    "title": "REJECTED-ADAPTATION MEMORY improves later recovery and transfer: retaining failed behavioural revisions together with their failure conditions improves adaptation when conditions later change. A failed adaptation should remain available as evidence about what was tried, why it failed, and under what conditions it might later become useful.",
+    "type": "mechanism_hypothesis"
+  },
+  "MECH-474": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "learning.regime_meta_selection_narrow",
+    "title": "LEARNING-MECHANISM META-SELECTION (narrow form): the control plane selects among the learning regimes REE actually has -- online practice, exploration, counterfactual simulation, offline consolidation -- rather than applying one learning rule universally, and this selection is state- and mode-dependent.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7018,6 +7188,42 @@
     "title": "Should EFFORT / energy expenditure COUPLE to REE's harm / residue / allostatic stream (over-exertion -> depletion -> a harm-adjacent state, treated with harm's irreversibility-aware special status), with energy-conservation weighted as an evolutionarily-PRIMARY drive (a least-effort prior) -- or does the existing VALUE-SUBTRACTION (dACC EVC effort_cost, MECH-320/ARC-068 opportunity-cost-of-time) + pACC allostatic load already suffice WITHOUT a harm-coupling? I.e. is wasted/excessive effort a 'harm' in REE, or only a foregone value?",
     "type": "open_question",
     "what_would_answer": "NARROWED 2026-07-09 (/claim-synthesis) into three orthogonal, independently-testable sub-questions -- Q-080.a harm-coupling, Q-080.b least-effort prior, Q-080.c MECH-454 energy-grounding -- enumerated with their discriminating tests, version scopes, and lit anchors under status_note. The overall discriminating frame is unchanged: DISCRIMINATING TEST (or derivation). Build an env that DISSOCIATES effort from benefit: a LOW-effort and a HIGH-effort path to the SAME benefit, with a measurable per-action energy/effort cost, plus a chronic-exertion regime (sustained high effort that could deplete). ANSWERED 'effort SHOULD be harm-coupled / energy-conservation primary' if routing effort into the harm/allostatic stream (effort -> depletion -> a harm-adjacent cost with harm's irreversibility-aware handling) produces behaviour the VALUE-SUBTRACTION baseline does NOT: (a) a least-effort PRIOR (prefers the low-effort path when benefit is indifferent, by default), (b) protective DISENGAGEMENT under chronic over-exertion (fatigue/allostatic withdrawal before depletion), and (c) irreversibility- aware caution (avoids over-exerting into a depletion it cannot cheaply reverse). ANSWERED 'existing machinery suffices, close' if the dACC EVC value-subtraction + pACC allostatic load ALREADY reproduce (a)/(b)/(c) and the harm-coupling adds nothing measurable (then effort is a foregone value, not a harm -- do NOT mint a mechanism). NON-DEGENERACY (else the question is untestable): the env must offer a genuine low-vs-high-effort dissociation to the SAME benefit AND a chronic-exertion regime, with the effort/energy cost measurable and varying -- if the two paths cost the same energy, or depletion never accrues, neither pole can be distinguished.\n"
+  },
+  "Q-081": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "architecture.cross_stream_shared_organisation",
+    "title": "Does REE's configured multi-rate execution produce SHARED cross-stream organisation, or only configured rate separation? SD-006 guarantees that E1/E2/E3 run at characteristic rates; nothing asserts or tests that the heterogeneous streams (E1/E2/E3, harm, goal, salience, hippocampal, control) thereby occupy recurrent system-level configurations or exhibit homologous transition motifs. Configured rate separation does not entail shared organisation.",
+    "type": "open_question",
+    "what_would_answer": "Recurrent-state / transition-matrix / cross-stream-lag analysis over EXISTING telemetry. The discriminating comparison is emergent shared structure (Outcome A) versus structure trivially implied by the configured rates and wired gates (Outcome B) -- B is the null that most experiments of this shape would fail to exclude, so the rate-matched shuffle control is not optional. The raw thought's outcome taxonomy is the verdict grid: A shared organisation / B wired-gates-only / C unrelated / D too-much-sharing-collapses / E event-relative beats clock-relative. PRECONDITION, and the reason no experiment is proposed here: open question 6 of the raw thought -- do REE's current logs contain sufficient telemetry to test this? -- must be answered first by a retrospective telemetry AUDIT, not a probe. The audit checklist is the instrumentation list: E1 hidden state, E2 PE, E3 candidate scores + commitment state, z_self, z_world, z_harm_s, z_harm_a, z_goal, operating_mode, beta, boundary broadcasts, hippocampal proposals, residue updates, offline phase markers. That spike is complicated (buildable). Only after it confirms the signals exist does anything become queueable.\n"
+  },
+  "Q-082": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "attention.pre_selection_suppression_substrate",
+    "title": "Does REE require an EXPLICIT pre-selection suppression substrate, or do existing precision-weighted cue routing plus the MECH-254 top-k boundary bottleneck already suffice? REE's distractor mechanisms are predominantly POST-ENTRY (write gating, persistence, conflict handling, mode hysteresis); the brainstem/superior-colliculus evidence points at suppression of competing orienting or target-selection signals BEFORE they acquire behavioural control.",
+    "type": "open_question",
+    "what_would_answer": "PROBE-GATED, and the probe is MECH-467 leg 3 (behavioural capture). ONLY a behavioural-capture failure that SURVIVES ablation of the existing mechanisms (precision-weighted cue routing ARC-005/MECH-251, the MECH-254 top-k bottleneck, mode-conditioned write gating MECH-261) would justify a pre-selection substrate. Absent that, the default answer is \"existing mechanisms sufficient\". The load-bearing literature question, which determines whether this is even a DISTINCT architectural level or a re-description of MECH-254's bottleneck: in the brainstem / superior-colliculus competition results, AT WHAT STAGE does suppression occur -- sensory representation, orienting command, target competition, or motor output? Route to /lit-pull.\n"
+  },
+  "Q-083": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "reasoning.rule_apprehension_domain_generality",
+    "title": "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked.",
+    "type": "open_question",
+    "what_would_answer": "CROSS-DOMAIN TRANSFER: a rule apprehended in one domain should (if domain-general) or should not (if domain-specific) accelerate apprehension in another under MATCHED STRUCTURE. The matched-structure requirement is what makes this a test of the apprehender rather than of surface similarity. NON-DEGENERACY PRECONDITION: single-domain apprehension must FIRST be demonstrated above floor in BOTH domains SEPARATELY. Transfer between two domains in neither of which the agent can apprehend a rule is uninterpretable. SUBSTRATE-BLOCKED: V3 has only one real domain, so the transfer test has no second domain to run in. Answering this requires a genuinely multi-domain substrate.\n"
+  },
+  "Q-084": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "hippocampus.higher_order_relational_structure",
+    "title": "Is HIGHER-ORDER relational structure (metapaths, hyperedges, simplicial relations) required? Some functions may be properties of typed MULTISTEP PATHS rather than of nodes or pairwise edges -- e.g. current state -> available action -> transition region -> predicted hazard -> repair opportunity -> goal completion; or inactive anchor -> shared event -> similar goal state -> successful historical trajectory -> candidate reactivation. Nothing in the registry represents anything above a pairwise relation.",
+    "type": "open_question",
+    "what_would_answer": "PROBE-GATED on MECH-468 projection F (heterogeneous typed topology) versus a METAPATH-AWARE readout. If F already captures what a metapath-aware readout captures, no higher-order structure is required; if the metapath readout beats F on the same held-out functional labels, pairwise typed edges are insufficient. That comparison is only meaningful once MECH-468 has established that typed topology carries functional information at all -- a metapath advantage over a topology that itself adds nothing is uninterpretable.\n"
   },
   "RA-001": {
     "assembly_state": "remaining",
