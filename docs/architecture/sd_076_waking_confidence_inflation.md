@@ -81,6 +81,70 @@ threshold (`running_variance < commit_threshold`, ARC-016) and
 the agent permanently "committed" and explode precision. The floor applies
 only on the inflation path.
 
+### Headroom repair (2026-07-22)
+
+**The floor is load-bearing, but an ABSOLUTE floor is the wrong kind of
+quantity, and 0.01 is the wrong value for this substrate.** V3-EXQ-794 measured
+the un-inflated operating point at `rv = 0.005420` (`ARM_OFF_OFF`) and
+`arm_true_error_ref` at ~0.0037, so the floor sat **1.8x above the operating
+point and 2.7x above true error**. `max(0.01, rv)` therefore clamped on the
+first tick inflation bit and never released: `rv_final` finished at **exactly
+0.010000** on all four inflation arms, and `overconfidence_score` was
+**bit-identical to 15 significant figures** (`-1.004111904519277`) at asymmetry
+0.6 *and* 0.8.
+
+Two doses producing one value is a **saturation signature, not a null**. Neither
+SD-076 nor MECH-204 was tested: SD-076's lever hit the clamp, and MECH-204's
+Phase-7 correction had no drift to correct
+(`d_broadcast_under_drift_at_operative.per_seed` is empty). The recorded
+`does_not_support` for SD-076 was withdrawn and revised to `non_contributory` by
+`failure_autopsy_V3-EXQ-794_2026-07-22`.
+
+**Why the validation smoke above passed 6/6 anyway** — the property worth
+carrying forward. It used a synthetic error sequence with true mean **0.05**,
+~13x the substrate's real error scale, where 0.01 *is* a floor with headroom. An
+absolute constant validated at one scale silently became a clamp at another.
+That is why the repair is a **relative** bound rather than a smaller absolute
+one, and why the new contracts run at the *measured* 794 scale.
+
+**The sign is not the bug.** The autopsy listed a wrong-sign inflation as
+candidate cause (b). It is ruled out: inflation drove rv *down* correctly, into
+a floor that happens to sit *above* the OFF arm, so the run's
+`inflation_lowers_rv` precondition saw rv rise.
+
+| Param | Type | Default | Purpose |
+|-------|------|---------|---------|
+| `waking_confidence_rv_floor_relative_frac` | float | `0.0` | `0.0` keeps the absolute floor. `>0` makes the bound that fraction of `_wci_symmetric_rv_ref` |
+| `waking_confidence_rv_floor_mode` | str | `"hard"` | `"hard"` = the original clip; `"soft"` = softplus approach |
+| `waking_confidence_rv_floor_softness` | float | `0.25` | knee width as a fraction of the effective floor; inert while `"hard"` |
+
+`_wci_symmetric_rv_ref` is a symmetric EMA of the same squared error at the same
+alpha, advanced only on the inflation path — i.e. **the counterfactual
+un-inflated rv**, "what rv would have been without inflation". The bound then
+reads: *inflation may not push rv below `frac` x the un-inflated counterfactual*.
+This guarantees headroom at any substrate error scale — the property the absolute
+floor lacked — and caps `overconfidence_score` at `1 - frac`, a bound relative to
+reality, which is also the biologically correct shape: confidence inflation is
+bounded by the organism's own error experience, not by a constant.
+
+**Why soft, beyond the biology.** The softplus is **strictly monotonic**
+(`d/d rv_new = sigmoid(.) > 0` everywhere), so two distinct doses can never map
+to one value. A residual saturation can then only *shrink* a dose separation,
+never collapse it to an exact tie — a mis-set floor degrades to a small LO/HI gap
+the `dose_saturation` lint can see, instead of the bit-identical arms that made
+794 unadjudicable without an autopsy.
+
+Smoke at the measured 794 scale (true error 0.0037), 14/14 PASS: the **old**
+config reproduces the defect exactly (`LO == HI == 0.01`); the repaired config
+gives `rv_final` 0.0025377 (LO) vs 0.0021031 (HI) — dose-ordered, separated, and
+both genuinely overconfident (+0.314 / +0.432). Contracts:
+`ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py` (17), which pin the
+**defect** as well as the repair, so a future "simplification" back to an
+absolute hard floor fails there rather than in a run.
+
+Behavioural validation: **V3-EXQ-794a**, a same-question re-run of the identical
+2x2 (the design was sound; only the drift source needed repair).
+
 ## Architecture Context
 
 SD-076 is the *source* of precision drift; MECH-204 (F1 per-cycle WRITEBACK

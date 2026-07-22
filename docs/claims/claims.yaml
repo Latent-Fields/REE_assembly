@@ -50416,6 +50416,45 @@
     genuinely overconfident); the OFF value reproduces the sign and rough magnitude of
     774's measured ARM_FULL_SLEEP = -0.2097, which is direct evidence that the autopsy
     diagnosis was correct.
+    HEADROOM REPAIR 2026-07-22 (ree-v3 452f99e367, routed by the confirmed
+    evidence/planning/failure_autopsy_V3-EXQ-794_2026-07-22, sd_id
+    sd_waking_confidence_inflation_headroom). THE ABSOLUTE FLOOR ABOVE IS THE WRONG KIND
+    OF QUANTITY AND 0.01 IS THE WRONG VALUE FOR THIS SUBSTRATE. V3-EXQ-794 measured the
+    un-inflated operating point at rv = 0.005420 (ARM_OFF_OFF) and arm_true_error_ref at
+    ~0.0037, so the floor sat 1.8x ABOVE the operating point and 2.7x above true error:
+    max(0.01, rv) clamped on the first tick inflation bit and never released, pinning
+    rv_final at EXACTLY 0.010000 on all four inflation arms with overconfidence_score
+    bit-identical to 15 significant figures (-1.004111904519277) at asymmetry 0.6 AND
+    0.8. WHY THE 2026-07-20 SMOKE PASSED 6/6 ANYWAY: it used true error mean 0.05, ~13x
+    the substrate's real error scale, where 0.01 IS a floor with headroom -- an absolute
+    constant validated at one scale silently became a clamp at another, which is why the
+    repair is a RELATIVE bound and not a smaller absolute one. A soft clip ALONE would
+    also not have sufficed: n_seeds_overconfident needs rv < 0.0037, unreachable under
+    any bound anchored at 0.01. THE SIGN IS NOT THE BUG (the autopsy's candidate cause
+    (b) is ruled out): inflation drove rv DOWN correctly, into a floor sitting ABOVE the
+    OFF arm, so the run's inflation_lowers_rv precondition saw rv rise. Adds
+    E3Config.waking_confidence_rv_floor_relative_frac (default 0.0 = absolute floor,
+    bit-identical; >0 makes the bound that FRACTION of the new
+    E3TrajectorySelector._wci_symmetric_rv_ref, a symmetric EMA of the same error at the
+    same alpha advanced only on the inflation path -- i.e. the COUNTERFACTUAL un-inflated
+    rv -- so the bound scales with the substrate's own error scale and caps
+    overconfidence at 1 - frac, a bound relative to reality rather than a constant),
+    E3Config.waking_confidence_rv_floor_mode ("hard" default = the original clip |
+    "soft" = softplus) and E3Config.waking_confidence_rv_floor_softness (0.25, knee width
+    as a fraction of the effective floor; inert while "hard"). The softplus is STRICTLY
+    MONOTONIC, so a residual saturation can only SHRINK a dose separation, never collapse
+    it to an exact tie -- a mis-set floor then degrades to a small LO/HI gap the new
+    dose_saturation lint can see instead of the bit-identical arms that made 794
+    unadjudicable without an autopsy. Both new knobs are no-op at default, so the ON path
+    is bit-identical until they are set. Smoke at the MEASURED 794 scale (true error
+    0.0037) 14/14 PASS: the OLD config reproduces the defect exactly (LO == HI == 0.01),
+    the repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and
+    both genuinely overconfident (+0.314 / +0.432). Pinned by 17 contracts in
+    ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py, which encode the DEFECT as
+    well as the repair so a future simplification back to an absolute hard floor fails
+    there rather than in a run; full tests/contracts 2128 passed 0 failed. Behavioural
+    validation: V3-EXQ-794a, a same-question re-run of the identical 2x2 (the design was
+    sound; only the drift source needed repair).
   notes: >
     NOT VALIDATED YET -- status candidate, behavioural validation pending as the MECH-204
     Phase 7 retest. Biological grounding is optimism / positive-outcome bias in waking
