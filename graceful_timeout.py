@@ -78,7 +78,10 @@ so no other importer is affected.
 
 Behaviour is otherwise identical to `subprocess.run`, including still
 raising `TimeoutExpired` -- callers that already handle a timeout keep
-handling it. The only change is that the child is asked to exit first.
+handling it. The only changes are that the child is asked to exit first,
+and that the post-SIGKILL drain of its pipes is BOUNDED, so `timeout=`
+stays a real wall-clock ceiling even when a surviving grandchild still
+holds them open. See `DEFAULT_REAP_SECONDS`.
 
 `run_soft_timeout()` (below) is the opt-in variant for callers that want a
 timeout to be a FAILED RESULT rather than an exception. See its docstring.
@@ -89,7 +92,7 @@ import types
 
 __all__ = [
     "run", "run_soft_timeout", "wrap", "DEFAULT_GRACE_SECONDS",
-    "TIMEOUT_RETURNCODE",
+    "DEFAULT_REAP_SECONDS", "TIMEOUT_RETURNCODE",
 ]
 
 # Return code carried by the synthetic CompletedProcess `run_soft_timeout`
@@ -106,15 +109,53 @@ TIMEOUT_RETURNCODE = 124
 # much.
 DEFAULT_GRACE_SECONDS = 5.0
 
+# How long to keep draining the child's pipes AFTER the SIGKILL before
+# giving up on the streams entirely.
+#
+# WHY THIS BOUND EXISTS. A killed child does not necessarily close the pipes
+# the caller is reading: every process the child spawned INHERITED the same
+# write ends, so the read side sees EOF only when the LAST descendant exits.
+# Draining without a bound therefore makes the caller's `timeout=` unenforceable.
+#
+# Measured 2026-07-21 (macOS): `git add` on a file whose clean filter is
+# `sleep 120`. git takes SIGTERM, unlinks its lockfile and exits promptly --
+# but the filter process survives holding git's stderr, verified with `lsof`
+# (the filter's fd 2 is the SAME pipe as git's fd 2; only fd 1 is re-plumbed
+# to git). A `run(..., timeout=30)` returned after ~120s: the grandchild's
+# lifetime, not the caller's timeout. The callers here are unattended loops
+# (serve.py's 5-minute `_auto_pull` thread, the hourly igw tick), where a
+# multi-minute stall is a real stall.
+#
+# NOT stdlib-identical, in either direction. On POSIX, CPython's `run()` does
+# NOT re-drain after the kill -- it does `process.wait()` and lifts the partial
+# output off the `TimeoutExpired` that `_communicate` already populated
+# (verified against 3.13's source; the bare `communicate()` is the _mswindows
+# branch only, where the reads live on child threads that must be joined). So
+# the unbounded drain this replaces was a deviation THIS module introduced when
+# it grew the SIGTERM escalation, not inherited behaviour. Bounding it restores
+# the stdlib's wall-clock guarantee while keeping the one thing the re-drain
+# buys: output the child emitted between the SIGTERM and its death.
+#
+# Two seconds is generous for the ordinary case, where the killed child was
+# the only pipe holder and the read hits EOF immediately.
+DEFAULT_REAP_SECONDS = 2.0
+
 
 def run(*popenargs, input=None, capture_output=False, timeout=None, check=False,
-        grace=DEFAULT_GRACE_SECONDS, **kwargs):
+        grace=DEFAULT_GRACE_SECONDS, reap=DEFAULT_REAP_SECONDS, **kwargs):
     """Drop-in `subprocess.run` that SIGTERMs (not SIGKILLs) on timeout.
 
     On timeout: send SIGTERM, wait up to `grace` seconds for the child to
     exit on its own, and only then SIGKILL. `TimeoutExpired` is raised
     either way, carrying whatever output was captured, so callers see the
     same exception they see today.
+
+    The post-SIGKILL drain is bounded by `reap` seconds, so
+    `timeout + grace + reap` is a genuine wall-clock ceiling
+    even when a surviving GRANDCHILD still holds the inherited pipes. See
+    `DEFAULT_REAP_SECONDS`. Giving up on the STREAMS is not giving up on the
+    PROCESS: it has already been SIGKILLed by that point, and `Popen.__exit__`
+    reaps it on the way out.
 
     With `timeout=None` this delegates straight to `subprocess.run` -- there
     is no timeout path to fix, and delegating keeps the no-timeout case
@@ -146,10 +187,20 @@ def run(*popenargs, input=None, capture_output=False, timeout=None, check=False,
             try:
                 stdout, stderr = process.communicate(timeout=grace)
             except _subprocess.TimeoutExpired:
-                # Ignored SIGTERM (or wedged). Fall back to the stdlib's
-                # behaviour rather than hang the caller forever.
+                # Ignored SIGTERM (or wedged) -- or exited while a descendant
+                # kept the pipes open, which is indistinguishable from here.
                 process.kill()
-                stdout, stderr = process.communicate()
+                try:
+                    stdout, stderr = process.communicate(timeout=reap)
+                except _subprocess.TimeoutExpired as reap_exc:
+                    # The pipes outlived the child: a grandchild still holds
+                    # the inherited write ends, so the read will not see EOF
+                    # until IT exits. Give up on the STREAMS -- not on the
+                    # process, which is already SIGKILLed and gets reaped by
+                    # `Popen.__exit__` below -- and report whatever partial
+                    # output was drained before we stopped waiting, which is
+                    # exactly what the stdlib's POSIX path reports.
+                    stdout, stderr = reap_exc.output, reap_exc.stderr
             raise _subprocess.TimeoutExpired(
                 process.args, timeout, output=stdout, stderr=stderr)
         except BaseException:
