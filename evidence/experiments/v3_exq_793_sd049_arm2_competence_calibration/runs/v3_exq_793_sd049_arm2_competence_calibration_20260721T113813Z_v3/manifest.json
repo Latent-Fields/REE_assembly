@@ -1,0 +1,109 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_793_sd049_arm2_competence_calibration",
+  "run_id": "v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-21T11:38:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-049"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "both_levers_sufficient_alone",
+    "preconditions": [
+      {
+        "name": "density_preserving_spawn_kwarg_available",
+        "description": "env-side sd049_preserve_per_type_density kwarg present on CausalGridWorldV2.__init__",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "constructor-signature introspection in setup",
+        "met": true
+      },
+      {
+        "name": "baseline_arm_reproduces_693a_ceiling",
+        "description": "A00 (693a curriculum, density OFF) must NOT clear the D3 gate -- an upper-bound check that the ceiling under investigation actually reproduced, so the three contrasts are deltas against the real failure. measured = A00 mean behav_contact_rate.",
+        "measured": 0.020215276440585253,
+        "threshold": 0.02,
+        "direction": "upper",
+        "control": "A00 is a faithful re-run of the 693a ARM_2 cell, whose observed contact rate was 0.0099-0.0188 across 3 seeds",
+        "met": true
+      },
+      {
+        "name": "density_manipulation_effective_on_on_arms",
+        "description": "the SD-049 density-preserving spawn must not have been truncated by the forage pool on the density-ON arms, else per-type density was never restored and A01/A11 are re-confounded by the very effect under test. measured = WORST (max) per-cell truncated-step fraction across all density-ON cells, so a single truncated cell cannot be averaged away.",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "direction": "upper",
+        "comparator": "<=",
+        "control": "density-ON cells on a forage pool large enough for num_resources x n_active_types; env emits sd049_density_budget_truncated when it is not",
+        "offending_cell": "A01/seed42",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_BASE_FAILS": true,
+      "C_CURR": true,
+      "C_DENS": true,
+      "C_JOINT": true
+    },
+    "criteria": [
+      {
+        "name": "C_BASE_FAILS",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_CURR",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_DENS",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C_JOINT",
+        "load_bearing": true,
+        "passed": true
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "402e3f5a23a3a8e1d3050e63eba204a36357403f179ed96e7fb870f8d28554d1"
+}
