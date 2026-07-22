@@ -1,0 +1,102 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_797_mech266_external_task_engagement_instrumentation",
+  "run_id": "v3_exq_797_mech266_external_task_engagement_instrumentation_20260722T213650Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-22T21:36:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-266",
+    "SD-032a"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-266": "non_contributory",
+    "SD-032a": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "commitment_layer_starved",
+    "readiness_route": "route_upstream_bg_commitment",
+    "route_reason": "the injection-time commit term fired on < BETA_FLOOR of genuine coordinator ticks (reconstructed from engagement, not a post-hoc latch read); the latch is the only engagement term that can clear the flip point, so external_task occupancy is gated on the BG / action-commitment layer",
+    "hypothesis_not_verdict": "A diagnostic self-route is a hypothesis. H1 (nav-competence) and H2 (coordinator argmax frozen) were falsified BEFORE this run -- H1 by 467d's own 3/3 contact guard, H2 by direct execution of the coordinator. This spike discriminates within the remaining injection-path space.",
+    "preconditions": [
+      {
+        "name": "forager_contact_rate_supra_floor",
+        "kind": "readiness",
+        "description": "per-seed P2 contact_rate above floor -- the positive control that makes an engagement measurement interpretable",
+        "control": "467d contact guard verbatim; P2 foraging stage on the trained agent",
+        "measured": 0.100495,
+        "offending_cell": 42,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "forager_z_goal_norm_at_contact_supra_floor",
+        "kind": "readiness",
+        "description": "per-seed z_goal norm at contact peak above floor -- the agent holds a goal representation, so goal_proximity is meaningful",
+        "control": "467d contact guard verbatim; P2 contact events on the trained agent",
+        "measured": 0.413797,
+        "offending_cell": 43,
+        "threshold": 0.4,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "genuine_e3_tick_sample_floor",
+        "kind": "readiness",
+        "description": "per-seed count of GENUINE coordinator ticks (e3_tick-gated; latched non-E3 steps excluded) -- the true denominator of every engagement fraction routed on below",
+        "control": "instrumented frozen-policy eval on the trained agent",
+        "measured": 66.0,
+        "offending_cell": 44,
+        "threshold": 100.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "D_commit_fired_frac": true,
+      "D_engagement_ge_flip_frac": true,
+      "D_fraction_in_external_task": true,
+      "D_cf_wins_at_engagement_1_frac": true
+    },
+    "secondary_observation": "467d counted mean_dwell in ENV steps while coord.current_mode can only change on an E3 tick (~1 step in 10), so its dwell units were not decision units. Recorded, not adjudicated here."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "243c5b7a62e921aafa7c8c2901e73873128c78389b329ab13d8f53e26acf8979"
+}
