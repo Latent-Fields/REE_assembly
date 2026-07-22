@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "source": {
+    "title": "Surrogate data for hypothesis testing of physical systems",
+    "authors": [
+      "Gemma Lancaster",
+      "Dmytro Iatsenko",
+      "Aleksandra Pidde",
+      "Valentina Ticcinelli",
+      "Aneta Stefanovska"
+    ],
+    "year": 2018,
+    "venue": "Physics Reports 748:1-60",
+    "doi": "10.1016/j.physrep.2018.06.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Directly answers the live methodological question the telemetry audit exposed -- how to build the rate-matched null that separates Q-081's Outcome A from Outcome B. It is the canonical reference for surrogate construction, is substrate-neutral (a review of statistical methodology for time series, not a claim about brains or agents), and specifically covers surrogates for testing COUPLING between systems, which is the cross-stream case. Highest source_quality x lowest transfer_risk combination in this pull. Held below 0.8 only because it does not treat the unequal-sampling-rate case REE has, so the rate-matched surrogate still has to be designed rather than looked up.",
+  "failure_signatures": [
+    "The whole method stands or falls on the discriminating statistic being sensitive to the tested property and INSENSITIVE to everything the surrogates preserve. Choose a statistic that responds to update rate and the test is void regardless of how good the surrogates are.",
+    "Fourier-transform surrogates preserve the power spectrum and hence the autocorrelation -- so a structure that is fully explained by each stream's own autocorrelation will survive into the surrogates and correctly fail to reach significance. A test that lacks this property is testing a weaker null than it claims.",
+    "Constrained-realisation surrogates must replicate ALL characteristics of the original except the property under test. A surrogate that also destroys something incidental produces significance for the wrong reason -- a false positive that looks exactly like a real finding."
+  ],
+  "tags": [
+    "q_081",
+    "surrogate_data",
+    "null_model",
+    "rate_matched_shuffle",
+    "measurement_choice",
+    "methodology",
+    "search_6"
+  ],
+  "mapping": {
+    "source_claim_statement": "Surrogate testing compares a discriminating statistic computed on the data against its distribution over an ensemble of constructed signals that match the data in every respect except the property being tested. Constrained realisations are computed directly from the data so as to replicate all its characteristics except that property -- notably preserving the autocorrelation function via Fourier-based methods (IAAFT and relatives). Surrogate families exist for uncorrelated and correlated noise, for nonlinearity, and for coupling and synchronisation between systems.",
+    "ree_translation": "Q-081's non-degeneracy guard requires that the cross-stream statistic be computed against a rate-matched shuffle control, on the grounds that a result which merely recovers the configured update periods is Outcome B, not a PASS. This review is the methodology for building that control, and it sharpens the requirement in a way the claim text does not yet capture. The constrained-realisation principle says the surrogate must preserve EVERYTHING except cross-stream organisation -- which for REE means preserving each stream's update period, its marginal distribution, AND its own autocorrelation, while destroying only the relation BETWEEN streams. A shuffle that preserves only the update period is too weak: a statistic could reach significance against it purely because each stream is individually smooth in time. The review's coupling and synchronisation surrogates are the relevant family, since the cross-stream case is a coupling-detection problem. It also states the constraint that governs statistic choice: the discriminating statistic must be sensitive to the property tested and insensitive to what the surrogates preserve -- which rules out any REE statistic that is a function of the update rates.",
+    "mapping_caveat": "This is statistical methodology, so there is no species or domain transfer and no GOV-ANALOGY-1 exposure -- but two things do NOT come for free. The review treats signals sampled on a common regular grid; REE's streams are sampled at 1, 3 and 10 steps, and unequal sampling is not covered. The rate-matched surrogate therefore has to be DESIGNED for REE (probably as block-permutation within each stream's own tick grid, preserving tick times and within-stream temporal structure while breaking cross-stream alignment) and validated by showing it kills a known-artefactual statistic while sparing a known-real one. Second, surrogate testing establishes that a statistic exceeds a null. It does not establish that the statistic measures shared ORGANISATION rather than direct wiring -- Outcome B's wired-gates reading survives any surrogate test, and only the ablation series addresses it.",
+    "source_context": "Methodological review of time-series surrogate techniques, with numerically simulated and experimental (largely cardiovascular/physiological) demonstrations; MATLAB toolbox provided."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.2,
+    "notes": "Physics Reports, 60 pages, the standard reference for surrogate construction, with comparative performance evaluation across surrogate types for nonlinearity, synchronisation and coupling detection. transfer_risk 0.20 because statistical methodology is substrate-neutral by construction. mapping_fidelity 0.72 rather than higher solely because the unequal-sampling-rate case -- REE's defining feature here -- is not treated, leaving the final design step to us."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_surrogate_data_null_construction_lancaster2018",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

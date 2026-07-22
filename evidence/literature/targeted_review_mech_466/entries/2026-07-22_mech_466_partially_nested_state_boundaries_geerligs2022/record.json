@@ -1,0 +1,54 @@
+{
+  "claim_ids_tested": [
+    "MECH-466",
+    "INV-091"
+  ],
+  "source": {
+    "title": "A partially nested cortical hierarchy of neural states underlies event segmentation in the human brain",
+    "authors": [
+      "Linda Geerligs",
+      "Dora Gozukara",
+      "Djamari Oetringer",
+      "Karen L. Campbell",
+      "Marcel van Gerven",
+      "Umut Guclu"
+    ],
+    "year": 2022,
+    "venue": "eLife 11:e77430",
+    "doi": "10.7554/eLife.77430"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "The best available external test of MECH-466's premise -- that event boundaries function as shared temporal landmarks across processes running at different characteristic timescales -- and it reports the PARTIAL sharing that MECH-466 and INV-091 jointly predict rather than the total sharing that would be uninteresting or the absence that would refute. 85% of searchlight pairs share boundaries above chance while nesting is explicitly imperfect, which is the band shape INV-091 asserts. Held at 0.58 because the transfer is brain-to-REE (GOV-ANALOGY-1), because it never compares event-locked against clock-locked alignment -- MECH-466's actual falsifier -- and because the boundaries are detected by the analyst's algorithm rather than broadcast by the system, which is the reverse of REE's situation.",
+  "failure_signatures": [
+    "Nesting was imperfect: relative boundary overlap between regions fell short of its theoretical maximum of 1.0. Regions at different timescales genuinely disagree about where boundaries are -- so a REE analysis that requires all streams to agree on a boundary set would fail on a system behaving exactly like this one.",
+    "State durations spanned 4.5 s in sensory cortex to 27.2 s in prefrontal cortex -- roughly a factor of six, comparable to REE's 1:10 E1:E3 ratio. Boundary sharing therefore has to be assessed across unequal timescales, and a fixed tolerance window would bias toward the fast streams.",
+    "The authors state it is 'not yet clear what a distinct neural state might represent' in transmodal regions -- the states are statistically robust but semantically opaque, so recurrence of states is not by itself evidence that anything functional is being shared."
+  ],
+  "tags": [
+    "mech_466",
+    "inv_091",
+    "event_segmentation",
+    "nested_timescales",
+    "boundary_sharing",
+    "search_3"
+  ],
+  "mapping": {
+    "source_claim_statement": "Applying a greedy state-boundary search to fMRI from 265 participants watching an 8-minute film, neural state boundaries are organised in a temporal cortical hierarchy -- short states (~4.5 s) in primary sensory regions, long states (~27.2 s) in lateral and medial prefrontal cortex. Boundaries are shared far above chance (85% of searchlight pairs), within and between functional networks, and overlap with perceived event boundaries across all levels of the hierarchy -- but the hierarchy is only PARTIALLY nested: relative boundary overlap falls short of its theoretical maximum.",
+    "ree_translation": "MECH-466 proposes that event boundaries, commitment onset, interruption, completion and offline transitions are REE's effective shared temporal grammar -- that streams are more strongly coordinated when aligned on these landmarks than on wall-clock timestep. This paper is the closest external test of the premise underneath that, and the result is the interesting middle one: boundaries ARE substantially shared across processes running at very different characteristic timescales (a ~6x spread, comparable to REE's 1:10 E1:E3 ratio), while remaining imperfectly nested, with genuine cross-region disagreement about boundary placement. That combination is what MECH-466 and INV-091 jointly predict: shared enough to coordinate, differentiated enough not to have collapsed. It also supplies two design decisions for REE's prospective run -- boundary sharing must be quantified pairwise against a chance-overlap baseline computed from the boundary COUNTS (fast streams have more boundaries and so overlap more by accident), and 'do the streams share boundaries' must be asked as a graded question, not a binary one.",
+    "mapping_caveat": "GOV-ANALOGY-1: analogy, not evidence -- that human cortex shares state boundaries across its timescale hierarchy says nothing about whether REE's streams do. Three specific breaks. (1) The direction of causation is reversed: here boundaries are DETECTED by the analyst's algorithm from the neural signal, whereas REE's segmenter BROADCASTS boundaries to consumers. Shared boundaries in REE could therefore be a direct consequence of the broadcast wiring -- Q-081's Outcome B -- which is a hazard this study does not face and cannot advise on. (2) All regions here are driven by one shared external stimulus (the film), so above-chance boundary overlap has a common-input explanation always available; REE's analogue would be shared environmental input, and the surrogate must control for it. (3) The study never compares event-locked against clock-locked alignment, which IS MECH-466's falsifier -- so it supports the premise while leaving the claim itself untested.",
+    "source_context": "fMRI, 265 healthy human participants, 8-minute naturalistic film, searchlight analysis across cortex."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "eLife with published peer reviews, n=265, strong internal validation (r=0.85 between independent participant groups for regional state durations), chance-overlap baselines computed rather than assumed. mapping_fidelity 0.60: the phenomenon maps onto MECH-466's premise but the boundaries are analyst-detected rather than system-broadcast, which is a real structural difference. transfer_risk 0.50 -- naturalistic fMRI to an artificial agent, with the common-stimulus confound having no clean REE counterpart."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_466",
+  "entry_id": "2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

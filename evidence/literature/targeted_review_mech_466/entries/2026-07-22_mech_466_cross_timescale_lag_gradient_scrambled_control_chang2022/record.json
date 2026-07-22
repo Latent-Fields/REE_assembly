@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "MECH-466",
+    "Q-081"
+  ],
+  "source": {
+    "title": "Information flow across the cortical timescale hierarchy during narrative construction",
+    "authors": [
+      "Claire H. C. Chang",
+      "Samuel A. Nastase",
+      "Uri Hasson"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the National Academy of Sciences 119(51):e2209307119",
+    "doi": "10.1073/pnas.2209307119"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.61,
+  "confidence_rationale": "Included primarily as a CONTROL-DESIGN template rather than for its neuroscience: it is the cleanest worked example in this pull of discriminating genuine cross-timescale organisation from structure trivially implied by the components' own rates. The lag gradient across networks appeared consistently across eight distinct stories and was ABSENT both at rest and under a scrambled-story stimulus -- a control that preserves low-level input statistics and destroys only the nested event structure. That is structurally the discriminator Q-081's Outcome A vs B needs and the alignment statistic MECH-466 needs. Held at 0.61 by GOV-ANALOGY-1, by the haemodynamic confound on any lag measure in fMRI, and because cross-stream lag is a weaker notion of shared organisation than homologous transition motifs.",
+  "failure_signatures": [
+    "The lag gradient was absent for scrambled stories and at rest. A cross-stream statistic that survives destruction of the system's event structure was measuring the input or the wiring, not the organisation -- so REE's run must include the analogous structure-destroying arm, not only a shuffle surrogate.",
+    "Inter-subject cross-correlation isolates stimulus-driven coupling by correlating ACROSS subjects, removing within-subject noise-driven correlation. REE has no across-subject axis; the nearest analogue is across-seed, and using it changes what is being estimated (shared across seeds is not the same as shared within a run).",
+    "Lags were on the scale of several seconds in a haemodynamically filtered signal; regional HRF differences alone can produce apparent lags. Any lag-based cross-stream statistic needs a control for rate-induced apparent lag -- in REE, the fact that E3 updates every 10 steps guarantees an apparent lag relative to E1 with no shared organisation whatever."
+  ],
+  "tags": [
+    "mech_466",
+    "q_081",
+    "cross_stream_lag",
+    "timescale_hierarchy",
+    "scrambled_control",
+    "null_design",
+    "search_3"
+  ],
+  "mapping": {
+    "source_claim_statement": "During spoken-narrative comprehension, fMRI inter-subject cross-correlation reveals a fixed temporal sequence of response lags -- on the scale of seconds -- running from early auditory areas to language areas to the attention network and finally the default mode network. The gradient is consistent across eight distinct stories and absent both during rest and for a scrambled-story stimulus, supporting the interpretation that narrative construction itself gives rise to the inter-network lags; a simple computational model reproduces the gradient from gradual information accumulation within the boundaries of nested linguistic events.",
+    "ree_translation": "Two things transfer, and the control design is the more valuable of them. First, cross-stream lag structure -- named in Q-081's falsifier as one of the three candidate analyses -- is shown here to be measurable and to carry real information about hierarchical organisation. Second and more importantly, the paper demonstrates the discriminator REE needs. A lag gradient could trivially reflect each network's own intrinsic timescale; what shows it does not is that the gradient DISAPPEARS under a scrambled stimulus which preserves the low-level input statistics and destroys only the nested event structure. Translated: REE's prospective run should include a structure-destroying arm alongside the rate-matched surrogate -- an arm that keeps the streams, the rates and the environmental input statistics intact while removing the event/commitment landmark structure. A cross-stream statistic that survives that arm was measuring the clock. The model's mechanism -- accumulation within the boundaries of NESTED events producing the cross-scale lag pattern -- is also the mechanism MECH-466 proposes for REE.",
+    "mapping_caveat": "GOV-ANALOGY-1: analogy, not evidence. Three technical breaks. (1) Inter-subject cross-correlation has no REE analogue -- it isolates stimulus-driven coupling by correlating across brains, and REE's nearest equivalent (across seeds) estimates a different quantity, namely what is shared across initialisations rather than what is coordinated within a run. (2) fMRI lags are measured through a haemodynamic filter with regionally varying response functions, so apparent lag is partly instrumental; REE has the analogous but WORSE problem that its configured periods (1/3/10) guarantee apparent lag between streams with no shared organisation at all -- which is the strongest reason to treat a bare lag statistic as an Outcome B detector rather than an Outcome A one. (3) Cross-stream lag is a weaker notion than the homologous transition motifs Q-081 asks about: a fixed lag can arise from a pure feed-forward chain, which is closer to wired coordination than to shared organisation.",
+    "source_context": "fMRI during spoken narrative comprehension; eight stories, plus rest and scrambled-story control conditions; human adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.5,
+    "notes": "PNAS, Hasson lab, replicated across eight stories with two negative-control conditions (rest, scrambled) and a generative model reproducing the effect -- an unusually complete control structure for naturalistic fMRI, which is exactly why it is worth having as a design template. mapping_fidelity 0.58: the control LOGIC transfers cleanly, the ISC measurement does not. transfer_risk 0.50 -- human narrative comprehension to an artificial agent, with the caveat that lag structure is a weaker notion of shared organisation than the claims actually assert."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_466",
+  "entry_id": "2026-07-22_mech_466_cross_timescale_lag_gradient_scrambled_control_chang2022",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

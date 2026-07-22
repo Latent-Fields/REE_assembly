@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "source": {
+    "title": "Brain network dynamics are hierarchically organized in time",
+    "authors": [
+      "Diego Vidaurre",
+      "Stephen M. Smith",
+      "Mark W. Woolrich"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences 114(48):12827-12832",
+    "doi": "10.1073/pnas.1705120114"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.63,
+  "confidence_rationale": "The closest available METHOD template for what Q-081's prospective run must compute: infer a discrete state sequence over multivariate signals, build the state-to-state transition matrix, and test whether its structure is non-random and hierarchically organised. Also an existence proof that the analysis has power to find real structure (states are heritable and predict cognitive traits). Held at 0.63 because the substrate mapping is loose -- brain regions are not REE streams -- and because the paper's own null is 'transitions are non-random', which is precisely the null REE cannot use, since a configured multi-rate clock makes non-random transitions inevitable.",
+  "failure_signatures": [
+    "The paper's discriminating test is that transitions are non-random. For REE that test is vacuous: E1/E2/E3 at periods 1/3/10 produce non-random transition structure by construction. Adopting this null unmodified would return a guaranteed PASS that means nothing -- Outcome B recorded as Outcome A.",
+    "HMM state inference is sensitive to the chosen number of states K; an inappropriate K can manufacture or destroy apparent hierarchical structure, and the method does not select K for you.",
+    "The strongest evidence that the states are real is external validation (heritability, subject-consistency, correlation with cognitive traits), not any property of the state sequence itself. A REE analogue therefore needs an external anchor -- e.g. the statistic must move under ablation -- and cannot be validated from within the trace."
+  ],
+  "tags": [
+    "q_081",
+    "hidden_markov_model",
+    "transition_matrix",
+    "metastates",
+    "recurrent_states",
+    "measurement_choice",
+    "search_2"
+  ],
+  "mapping": {
+    "source_claim_statement": "Applying a hidden Markov model to whole-brain resting fMRI from 820 HCP subjects, transitions between recurring large-scale network states are non-random -- certain states preferentially follow others -- and this sequencing is itself hierarchically organised into two 'metastates' (one sensorimotor, one higher-order cognitive) that the brain tends to cycle within. Time spent in each state and metastate is a consistent, heritable, subject-specific measure that relates to cognitive traits.",
+    "ree_translation": "This is the method template Q-081's falsifier names -- 'recurrent-state / transition-matrix / cross-stream-lag analysis' -- executed end to end on real data at scale. Three things port. (i) The pipeline: per-timepoint multivariate signal -> discrete state inference -> transition probability matrix -> test for structure in that matrix. This is exactly what a REE per-step recorder would feed. (ii) The metastate finding shows the analysis can detect organisation at a level ABOVE the individual states -- structure in how state-transitions themselves group -- which is the right level for 'homologous transition motifs across streams'. (iii) The validation strategy: the states are credible because occupancy is subject-consistent, heritable and predicts behaviour, i.e. they were anchored to something outside the trace. REE's analogue of that anchor is an ablation series, not a within-trace property.",
+    "mapping_caveat": "GOV-ANALOGY-1: analogy only. And the sharpest caveat in this pull -- the paper's discriminating test is exactly the one REE must NOT reuse. 'Transitions are non-random' is a meaningful finding for resting fMRI, where no experimenter set the transition rates. In REE the update periods are configured (1/3/10), so non-random transition structure is entailed by the scheduler before any learning happens. Importing this null unmodified converts Q-081's Outcome B into a false Outcome A. The rate-matched surrogate is what has to replace it. Secondary caveats: fMRI regions are homogeneous measurements of one substrate, whereas REE's streams have different dimensionalities and semantics; and the HMM here operates on one modality at one sampling rate, so it does not address the multi-rate alignment problem at all.",
+    "source_context": "Resting-state fMRI, 820 healthy adults (Human Connectome Project), whole-brain network states."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.45,
+    "notes": "PNAS, n=820, HCP data, from the OHBA group that develops the HMM tooling; heritability and trait-prediction results give it external anchoring most dynamic-FC work lacks. mapping_fidelity 0.66 -- the method maps well, the substrate loosely. transfer_risk 0.45 concentrated almost entirely in the null-model mismatch, which is identified and correctable rather than latent."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_hmm_metastates_transition_hierarchy_vidaurre2017",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

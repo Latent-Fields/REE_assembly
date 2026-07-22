@@ -1,0 +1,53 @@
+{
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "source": {
+    "title": "Beyond Geometry: Comparing the Temporal Structure of Computation in Neural Circuits with Dynamical Similarity Analysis",
+    "authors": [
+      "Mitchell Ostrow",
+      "Adam Eisen",
+      "Leo Kozachkov",
+      "Ila Fiete"
+    ],
+    "year": 2023,
+    "venue": "Advances in Neural Information Processing Systems 36 (NeurIPS 2023); arXiv:2306.10168",
+    "doi": "10.48550/arXiv.2306.10168",
+    "url": "https://arxiv.org/abs/2306.10168"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The single most directly usable item in this pull for Q-081's measurement problem, and the only one whose substrate is the same kind of object as REE (artificial recurrent networks, not brains). It gives an operational definition of 'homologous dynamics across heterogeneous state spaces' -- the literal subject of search 6 -- and demonstrates that dynamical similarity is detectable where geometric similarity measures (CKA, plain Procrustes) fail. Highest confidence here because transfer_risk is genuinely low: it compares latent trajectories of artificial networks, which is what REE streams are. Held below 0.8 because it is a conference method paper, is contested by later work on whether orthogonal alignment is sufficient for topological conjugacy, and -- decisively -- supplies NO null model, which is the thing Q-081 most needs.",
+  "failure_signatures": [
+    "DSA compares dynamics via finite-dimensional Koopman/DMD approximations aligned by an orthogonal transformation. Later work (Beyond DSA, arXiv:2607.04493) questions whether orthogonal alignment is necessary and sufficient for topological comparison -- so a DSA similarity score is not by itself a conjugacy certificate.",
+    "The method supplies a similarity SCORE with no accompanying null distribution. A DSA score between two REE streams is uninterpretable on its own; it needs a surrogate distribution built for it, which the paper does not provide.",
+    "Delay embedding and DMD rank are free parameters. Two streams sampled at different rates (E1 every step vs E3 every ten) will have different effective embedding requirements, and a naive shared choice could manufacture or destroy apparent similarity."
+  ],
+  "tags": [
+    "q_081",
+    "koopman",
+    "dynamical_similarity",
+    "manifold_alignment",
+    "conjugacy",
+    "measurement_choice",
+    "search_6"
+  ],
+  "mapping": {
+    "source_claim_statement": "Two recurrent networks performing the same computation with equivalent dynamics need not share latent-state geometry, so geometric similarity measures can miss computational equivalence. DSA instead builds a high-dimensional linear (Koopman/DMD, optionally delay-embedded) approximation of each system and compares them via an extension of Procrustes analysis that accounts for how vector fields transform under orthogonal change of basis -- distinguishing conjugate from non-conjugate RNNs and identifying different learning rules unsupervised, where CKA and standard Procrustes fall short.",
+    "ree_translation": "Search 6 asks whether systems with different representations can exhibit homologous dynamics, and names conjugacy, manifold alignment and Koopman methods as the candidate formal threads. DSA is the operationalisation of that question, and it is built for exactly REE's situation: streams of different dimensionality (z_self 32, z_harm_a 16, z_beta 64) whose latent bases are not comparable, so that any geometric similarity between them would be meaningless. The claim that makes this load-bearing for Q-081 is the paper's negative one -- equivalent dynamics need not produce equivalent geometry. That means a REE analysis comparing streams by correlation, CKA, or any geometric alignment could report ZERO shared structure while homologous transition motifs were present, i.e. could read Outcome A as Outcome C. The prospective run's cross-stream statistic should therefore be dynamics-level, not geometry-level.",
+    "mapping_caveat": "Two limits. First, DSA gives a similarity score and no null -- which is precisely the gap Q-081 is most exposed at. The rate-matched surrogate has to be built separately (see the Lancaster et al. 2018 entry) and a DSA score reported against that distribution, never bare. Second, DSA was validated comparing WHOLE SYSTEMS trained on the same task, not sub-streams within one running system that are causally coupled to each other. REE's streams are not independent systems being compared; E2 consumes E1's output. Shared dynamics between them may reflect direct wiring rather than shared organisation -- Outcome B again -- and DSA cannot distinguish those. Third, the unequal sampling rates (1 vs 3 vs 10) are unaddressed by the paper and are a real methodological problem: whatever choice is made about resampling or embedding will itself be a modelling decision that needs its own control.",
+    "source_context": "Artificial recurrent neural networks, deep-RL agents, and rat neural recordings; method paper with four validation case studies."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.2,
+    "notes": "NeurIPS 2023 (peer-reviewed conference, competitive venue), MIT group (Fiete), with public code. source_quality 0.75 rather than higher: a conference method paper with case-study validation, already partly contested by 2026 follow-up work on whether orthogonal alignment suffices for conjugacy. mapping_fidelity 0.80 -- the highest here, because the object being compared (latent trajectories of artificial recurrent systems) IS a REE stream. transfer_risk 0.20: no species, modality or clinical transfer is involved at all."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_dynamical_similarity_analysis_koopman_ostrow2023",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

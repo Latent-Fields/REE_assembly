@@ -1,0 +1,52 @@
+{
+  "claim_ids_tested": [
+    "Q-081",
+    "INV-091",
+    "ARC-112"
+  ],
+  "source": {
+    "title": "The metastable brain",
+    "authors": [
+      "Emmanuelle Tognoli",
+      "J. A. Scott Kelso"
+    ],
+    "year": 2014,
+    "venue": "Neuron 81(1):35-48",
+    "doi": "10.1016/j.neuron.2013.12.022"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.52,
+  "confidence_rationale": "Foundational statement of the exact architectural proposition ARC-112 and INV-091 make -- that a system can be integrated without being synchronised, via coexisting coupling and independence tendencies, with no privileged central controller. Held at 0.52 because it is a conceptual review whose mechanism is broken symmetry in coupled oscillators: the FRAMING transfers, the mechanism does not, and the review predates and is largely superseded on the measurement question by Hancock et al. 2024. Included for the concept, not the method.",
+  "failure_signatures": [
+    "Metastability in this framework arises from symmetry breaking -- the coupling term must be weaker than the components' intrinsic frequency differences. A system whose components are coupled hard enough will lock; one coupled too weakly will be independent. Neither is integration.",
+    "The framework's currency is relative phase between oscillators. A system with no oscillatory components has no relative phase, hence no dwells and no escapes in this sense -- the concept does not port to a non-oscillatory substrate without redefinition."
+  ],
+  "tags": [
+    "q_081",
+    "inv_091",
+    "arc_112",
+    "metastability",
+    "coordination_dynamics",
+    "federation",
+    "integration_segregation",
+    "search_2"
+  ],
+  "mapping": {
+    "source_claim_statement": "Coordination Dynamics proposes metastability as the regime in which tendencies for brain regions to express autonomy and specialisation (segregation, modularity) coexist with tendencies to couple globally (integration), so that neural ensembles are transiently bound and released without either permanent synchrony or independence.",
+    "ree_translation": "This is the external formulation closest to ARC-112's federation/heterarchy framing and to the anti-collapse qualification the raw thought insists on -- that successful integration must preserve functionally necessary differences rather than making dynamics identical. It supplies the vocabulary INV-091 needs: dwell (a period where integrative tendency dominates) and escape (release back to autonomy), with the healthy regime being neither extreme. For REE this predicts that a cross-stream similarity statistic should sit strictly between the fully-locked and the fully-independent limits, and -- crucially for INV-091 -- that BOTH limits are failures, which is what makes the relation to function non-monotonic rather than 'more coordination is better'.",
+    "mapping_caveat": "GOV-ANALOGY-1: analogy only. The mechanism here is specific and does not transfer -- metastability in this account is broken symmetry in coupled oscillators, where the coupling strength is too weak to overcome intrinsic frequency differences, and it is measured in relative phase. REE's streams have no intrinsic frequency in that sense and no relative phase; their rate separation is imposed by a scheduler rather than emerging from a coupling/detuning competition. That difference is not a detail -- it is arguably the whole of Q-081: this literature describes a system where the rate structure EMERGED, and asks whether REE, where it was CONFIGURED, gets anything comparable. The paper cannot answer that; it can only say what the answer would look like.",
+    "source_context": "Review; illustrative human EEG and behavioural coordination recordings, multi-scale theory."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Neuron review by the originators of the coordination-dynamics account; high standing, heavily cited, and the reference point the 2024 NRN review is built on. mapping_fidelity 0.55: the architectural proposition maps cleanly onto ARC-112/INV-091, the oscillatory mechanism not at all. transfer_risk 0.55 -- the highest in this pull -- because the concept's operational definition is inseparable from relative phase, so any REE analogue is a redefinition rather than an application."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_metastable_brain_coordination_dynamics_tognoli2014",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}

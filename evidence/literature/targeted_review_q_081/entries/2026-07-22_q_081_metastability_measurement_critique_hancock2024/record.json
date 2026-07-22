@@ -1,0 +1,61 @@
+{
+  "claim_ids_tested": [
+    "Q-081",
+    "INV-091"
+  ],
+  "source": {
+    "title": "Metastability demystified - the foundational past, the pragmatic present and the promising future",
+    "authors": [
+      "Fran Hancock",
+      "Fernando E. Rosas",
+      "Andrea I. Luppi",
+      "Mengsen Zhang",
+      "Pedro A. M. Mediano",
+      "Joana Cabral",
+      "Gustavo Deco",
+      "Morten L. Kringelbach",
+      "Michael Breakspear",
+      "J. A. Scott Kelso",
+      "Federico E. Turkheimer"
+    ],
+    "year": 2024,
+    "venue": "Nature Reviews Neuroscience 26(2):82-100",
+    "doi": "10.1038/s41583-024-00883-1"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Highest-quality available source on the exact measurement question Q-081 faces, and the single most useful literature item for constraining the prospective recording run. Scored MIXED and held below 0.7 deliberately: it SUPPORTS the integration/segregation band that INV-091 asserts (the review's explicit 'sweet spot'), but it WEAKENS the implicit assumption that a cross-stream statistic can settle Outcome A vs Outcome B at all -- its Box 2 states that observed state-switching is a necessary but NOT sufficient condition, that the standard signatures 'do not disambiguate metastable or multi-stable dynamics', and that metastability is a property of a dynamical system 'and not of data'. mapping_fidelity is mid-range because every signature discussed is defined over oscillatory phase (Kuramoto order parameter, Hilbert phase, time-varying FC), which REE's streams do not have.",
+  "failure_signatures": [
+    "A cross-stream statistic that merely shows REE's streams switching between distinct, long-dwelling configurations does NOT establish shared organisation -- the review states this is 'a necessary but not sufficient condition', shared by both metastable and multi-stable systems.",
+    "A high variance in a global coordination index 'could reflect either metastable or multi-stable dynamics, or it could even reflect mere random fluctuations within the system' -- so a raw variance-of-coordination readout cannot by itself exclude Outcome B.",
+    "No normative values exist for any metastability signature; the field's standard practice is to contrast conditions against a reference. A single-arm absolute REE number would be uninterpretable.",
+    "The signatures are heuristics adopted BECAUSE full attractor-landscape reconstruction is infeasible at realistic data volumes -- so choosing one is accepting a known-incomplete test, not deferring a rigorous one."
+  ],
+  "tags": [
+    "q_081",
+    "inv_091",
+    "metastability",
+    "coordination_dynamics",
+    "measurement_choice",
+    "integration_segregation",
+    "search_2"
+  ],
+  "mapping": {
+    "source_claim_statement": "Metastability -- the coexistence of tendencies toward integration and segregation, realised as saddle-like structure in the attractor landscape -- has been proposed as the signature of healthy balance in brain function; but the neuroscience literature applies it heuristically and sometimes inaccurately, and the practical signatures (std-KOP, std-SPECT, std-IGNITE, mean-VAR) are necessary but not sufficient markers that do not disambiguate metastable from multi-stable dynamics.",
+    "ree_translation": "This is the closest external formalisation of the question Q-081 asks -- and it arrives mainly as a methodological constraint rather than as support. For the prospective per-step recording run the telemetry audit mandates, it says: (i) do not treat 'the streams occupy recurrent distinct configurations' as a PASS for shared organisation -- that is the necessary-not-sufficient trap, and in REE it is precisely what a configured multi-rate clock would produce anyway (Outcome B); (ii) report the cross-stream statistic as a CONTRAST (ON vs ablated, real vs rate-matched surrogate), never as an absolute, because the field has no normative values either; (iii) INV-091's 'viable band' has an independent external articulation as the review's 'sweet spot', with both raised and lowered metastability signatures reported in different clinical conditions -- which is the shape INV-091 predicts, arrived at without reference to REE.",
+    "mapping_caveat": "GOV-ANALOGY-1 applies with full force: nothing here is evidence ABOUT REE. Two further hard limits. (1) Every signature reviewed is built on oscillatory phase -- Kuramoto order parameter over Hilbert-transformed regional signals, spectral radius of time-varying functional connectivity. REE's streams are not oscillators and have no phase; the signatures are therefore NOT portable, only the reasoning about what a signature can and cannot establish is. The raw thought is explicit that oscillatory mechanisms must not be imported, and this entry must not be read as smuggling them in as measurements. (2) The review's subject is a physical system observed through noisy measurement; REE is a system whose update rule is fully known and configured. That asymmetry cuts AGAINST REE: where neuroscience cannot inspect the generating rates, REE's rates are literally in the config file, so the Outcome B null is far more available -- and far more obligatory -- for REE than for any study reviewed here.",
+    "source_context": "Review of human and animal neuroimaging (fMRI, EEG, MEG) and computational whole-brain modelling; no primary data."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Nature Reviews Neuroscience, eleven authors spanning the coordination-dynamics (Kelso), whole-brain-modelling (Deco, Kringelbach, Breakspear) and information-theoretic (Rosas, Mediano) camps -- i.e. it is a consensus critique, not one school's position paper, which is what makes its negative findings load-bearing. mapping_fidelity capped at 0.62 by the phase-dependence of every concrete signature. transfer_risk 0.45 rather than higher because the transferred content is a set of INFERENTIAL constraints (necessary-vs-sufficient, contrast-not-absolute), which travel better across substrates than any measurement would."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_metastability_measurement_critique_hancock2024",
+  "timestamp_utc": "2026-07-22T03:52:04Z",
+  "summary_path": "summary.md"
+}
