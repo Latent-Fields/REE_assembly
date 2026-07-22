@@ -1,0 +1,192 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair",
+  "run_id": "v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair_20260722T162850Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-22T16:28:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-448": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "cells_share_one_substrate_hash",
+        "kind": "readiness",
+        "description": "The set of per-cell arm_fingerprint.substrate_hash values across ALL cells has cardinality exactly 1 -- every arm and seed ran on the SAME substrate build, so the ON-vs-control contrast is a controlled comparison. The 689d defect-3 gate.",
+        "control": "arm_fingerprint.substrate_hash stamped per (arm, seed) cell",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "control_arms_produce_distinct_class_histograms",
+        "kind": "readiness",
+        "description": "No two control arms produce an identical committed-class count vector on the same seed. Guards the silent degradation of the conjunctive C_PRIMARY criterion ('strict above BOTH') to a single bar when two controls coincide. The 689d defect-2 gate.",
+        "control": "pairwise comparison of selected_class_counts across ARM_PROPOSER_CTRL / ARM_MATCHED_NOISE / ARM_OFF, per seed",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "fresh_e3_selection_sufficiency_all_cells",
+        "kind": "readiness",
+        "description": "Every cell banked at least MIN_FRESH_SELECT_PER_CELL GENUINE E3 selections, measured by the substrate-inert sentinel key. Effective N, not env-step count, is the sample size for a class-histogram entropy. The 689d defect-1 / power gate.",
+        "control": "sentinel-key freshness marker on agent.e3.last_score_diagnostics, which e3_selector.select() reassigns wholesale at :2452",
+        "measured": 200,
+        "threshold": 200,
+        "direction": "lower",
+        "comparator": ">=",
+        "observed_mean_fresh_select_yield": 0.378631,
+        "observed_mean_replication_factor": 4.435609,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verifiably_lifts",
+        "kind": "readiness",
+        "description": "The noise negative control raises committed-class entropy over the collapsed proposer baseline on >= MIN_SEEDS_FOR_PASS seeds, so 'ARM_ON beats it' is a REAL bar. Instantiated on Factor B's gap-scaled stochastic commit, where the sampling step is live on the committed path. GATING here; informational in 689d, where it fired false and the run passed anyway.",
+        "control": "ARM_MATCHED_NOISE (use_gap_scaled_commit_temperature=True) vs ARM_PROPOSER_CTRL, same seed",
+        "measured": 1,
+        "threshold": 3,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      },
+      {
+        "name": "on_modulatory_channel_route_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_ON IN-ARM RAW cross-candidate RANGE of the modulatory bias routed into the E3 selection authority (modulatory_channel_route_range), read on GENUINE selections. SAME range statistic the route-range substrate gates on. Below floor => routing not wired / e2 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_ON: candidate_summary_source=e2_world_forward, route-range routing + shortlist-then-modulate + f_eligibility demotion ON",
+        "measured": 0.392237,
+        "threshold": 0.01,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "on_e2_world_forward_prediction_spread_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_ON e2.world_forward(z0, a_i) per-candidate prediction spread (cand_world_pairwise_dist) clears the floor -- SD-056 trained the action-conditional divergence the eligible set needs. RANGE statistic, read on genuine selections. Below floor => SD-056 under-trained => substrate_not_ready_requeue.",
+        "control": "ARM_ON: agent.e2.cand_world_pairwise_dist on SP-CEM candidates",
+        "measured": 0.122702,
+        "threshold": 0.03,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "on_f_eligibility_envelope_excludes_on_divergent_pool",
+        "kind": "readiness",
+        "description": "ARM_ON f_eligibility demotion is active on >= DEMOTION_ACTIVE_FRAC_FLOOR of GENUINE selections AND the envelope ACTUALLY EXCLUDES (mean f_eligibility_excluded_count > floor) on the divergent e2_world_forward pool. An all-admit envelope (excluded_count==0, a flat-F pool) is vacuous => substrate_not_ready_requeue. Threshold UNCHANGED from 689d (0.0, strict >) -- adjudicated threshold-invariant.",
+        "control": "ARM_ON: use_f_eligibility_demotion=True over the divergent pool; f_eligibility_excluded_count read on genuine selections",
+        "measured": 0.037621,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_SUBSTRATE_INVARIANT_cells_share_one_build",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_CONTROL_DISTINCT_no_identical_control_histograms",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_FRESH_SUFFICIENT_effective_n_meets_target",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_READINESS_e2_divergent_envelope_excludes",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_NOISE_LIFTS_matched_noise_verifiably_lifting",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_RANK_PRESERVING_eligible_set_is_F_rank_prefix",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_PRIMARY_on_selected_entropy_strict_above_both_collapsed_controls",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_SAFETY_on_harm_not_above_off",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_SUBSTRATE_INVARIANT": true,
+      "C_CONTROL_DISTINCT": true,
+      "C_FRESH_SUFFICIENT": true,
+      "C_READINESS": true,
+      "C_NOISE_LIFTS": true,
+      "C_RANK_PRESERVING": true,
+      "C_PRIMARY": true,
+      "C_SAFETY": true
+    },
+    "routing": {
+      "demotion_converts_committed_diversity": "PASS -> MECH-448 toward supports on a REPAIRED instrument; restores the embodied env-loop pathway (genuine_exp_count 0 -> 1); ARC-107 gains its first validly-measured lever",
+      "intra_run_substrate_divergence_invalid": "cells did not share one substrate build -- the arms are not mutually controlled; the run is INVALID independent of every other criterion; re-run at a pinned commit on a cloud worker; NOT a weakens",
+      "control_arms_not_distinct_invalid": "two control arms produced identical committed-class histograms, so the conjunctive C_PRIMARY criterion degenerates to a single bar (the 689d defect-2 signature); repair the control before any verdict is read; NOT a weakens",
+      "substrate_not_ready_requeue": "insufficient GENUINE E3 selections per cell, OR routing/SD-056 under-trained, OR the pool is not divergent (all-admit envelope, excluded_count==0); re-queue; do NOT weaken MECH-448",
+      "matched_noise_control_unmeetable": "the noise negative control did not verifiably lift committed entropy over the collapsed proposer baseline, so 'ARM_ON beats it' is not a real bar -- the 689d defect-2 failure mode, now GATING; repair the control; NOT a weakens",
+      "rank_alteration_not_prefix_diagnose": "the eligible set is NOT an F-rank prefix (the envelope altered the F-rank) -> implementation/design fault -> /diagnose-errors; NOT a weakens",
+      "conversion_ceiling_persists_despite_demotion": "OFF-RAMP -> the MECH-449 Go/No-Go eligibility constitution (double-gated) / the V4 directions; NOT a falsification of MECH-448",
+      "demotion_disinhibits_harmful_classes": "WEAKENED -- the committed-entropy lift came from globally flattening F / admitting harmful classes (C_SAFETY fail), the design-note weaken condition"
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3c7dfea1b222ecdf54558c087f226f9e79680c871124f11c4299850ad454425d"
+}
