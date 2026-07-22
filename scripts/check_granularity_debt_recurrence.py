@@ -20,10 +20,11 @@ space by what the recurrence MEANS:
     breaking differently because it bundles >1 mechanism.
 
 WHY THIS AUDIT EXISTS. The `/failure-autopsy` skill already tells its author to
-grep the planning dir at write-time and, on the second-or-later autopsy circling
-a claim, fire a `granularity_debt_trigger` + route to `/claim-synthesis`. That is
+read the claim's cluster at write-time (`granularity_debt_cluster.py`) and, on the
+second-or-later autopsy circling a claim, fire a `granularity_debt_trigger` +
+route to `/claim-synthesis`. That is
 a REACTIVE, human-run check: it depends on (a) the second failure being autopsied
-at all and (b) the author running the grep and (c) the `/claim-synthesis` handoff
+at all and (b) the author running the reader and (c) the `/claim-synthesis` handoff
 actually being executed. The non-degeneracy net (`scoring_excluded="degenerate"`)
 catches the INVERSE granularity problem (an over-specified / degenerate criterion)
 with STANDING CODE that runs on every index build and cannot be forgotten. This
@@ -59,7 +60,20 @@ WHAT IS COUNTED. A "granularity-debt hit" is one confirmed (`status: confirmed`)
         test-design-debt fork lives.
 
 Hits are keyed on `claim_id`; each hit is a distinct (artifact stem, run_id) so
-re-listing a claim across an artifact's targets does not inflate the count.
+re-listing a claim across an artifact's targets does not inflate the count. Note
+this counts autopsy TARGETS whose own `claim_ids` name the claim -- never files in
+the claim's topical neighbourhood, the neighbourhood-grep reading that over-fired
+the reactive skill trigger until 2026-07-22 (see `granularity_debt_cluster.py`).
+
+SELF-CHECK ON THE COUNT (added 2026-07-22). Every surfaced record carries the
+`claim_alignment` distribution of its hits, bucketed from each target's own
+`four_layer_diagnosis.claim_alignment`. A cluster in which NO target reads
+`weakened` is measurement or implementation debt, not granularity debt, however
+many autopsies exist -- so a P0/P1 whose distribution shows no `weakened` is
+flagged as such inline. The count alone is a weak signal; the distribution is
+what decided all three claims examined in the 2026-07-22 `/claim-synthesis` pass
+(MECH-204 even had a target reading `strengthened`). This is REPORTED, not
+enforced: the audit stays warn-only and the discrimination stays human.
 
 METABOLIZED EXCLUSIONS (a claim is NOT surfaced when ANY fires -- mirrors the
 `/claim-synthesis` Step-1 disjunction, using only the PRECISE markers to avoid
@@ -128,6 +142,15 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_AUTOPSY_DIR = REPO_ROOT / "evidence" / "planning"
+
+# Shared with the reactive at-write-time reader so the two never drift on how a
+# free-text `claim_alignment` is bucketed. Path insertion keeps this working when
+# the module is imported from outside scripts/ (governance / morning-digest).
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from granularity_debt_cluster import (  # noqa: E402
+    _AMBIGUOUS_BUCKETS as _AMBIGUOUS_ALIGNMENT,
+    bucket_alignment,
+)
 DEFAULT_CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
 
 # GOV-GRAN-1 (granularity-debt recurrence rule). N distinct confirmed no-verdict
@@ -218,6 +241,47 @@ def _trigger_claims(tgt: dict) -> set[str]:
     })
     named = set(_CLAIM_ID_RE.findall(blob))
     return {c for c in claim_ids if c in named}
+
+
+def _alignment_bucket(tgt: dict) -> str:
+    """Bucket this target's own `four_layer_diagnosis.claim_alignment`.
+
+    THE COUNT ALONE IS A WEAK SIGNAL. A cluster in which NO target reads
+    `weakened` is measurement or implementation debt, not granularity debt,
+    however many autopsies exist -- that classification, not the raw count, is
+    what decided all three claims examined in the 2026-07-22 `/claim-synthesis`
+    pass (MECH-204 even had a target reading `strengthened`). Reporting the
+    distribution beside the count makes the audit self-checking rather than
+    purely count-driven. Shares its bucketing with
+    `scripts/granularity_debt_cluster.py` (the reactive at-write-time reader).
+    """
+    fld = tgt.get("four_layer_diagnosis")
+    return bucket_alignment(fld.get("claim_alignment") if isinstance(fld, dict) else None)
+
+
+def _fmt_alignment(dist: dict[str, int]) -> str:
+    return ", ".join(f"{k}={v}" for k, v in
+                     sorted(dist.items(), key=lambda kv: (-kv[1], kv[0]))) or "none"
+
+
+def _alignment_note(rec: dict) -> str:
+    """Inline reading of a record's claim_alignment distribution.
+
+    Asserts the "not granularity debt" clear ONLY when every hit is bucketed to a
+    known reading. `other`/`unstamped` hits mean the reading is unknown, not
+    known-not-weakened (the free-text tail can bury a weakened reading in prose),
+    so those are sent back to the human rather than silently cleared -- failing in
+    the safe direction, the same posture as the rest of this audit.
+    """
+    if rec.get("any_weakened"):
+        return ""
+    n_amb = sum(v for k, v in (rec.get("alignment") or {}).items()
+                if k in _AMBIGUOUS_ALIGNMENT)
+    if n_amb:
+        return (f"  <- no `weakened`, but {n_amb} free-text/unstamped alignment(s):"
+                " read them before concluding")
+    return ("  <- NO target reads `weakened`: measurement/implementation"
+            " debt, not granularity debt")
 
 
 def _signature(tgt: dict) -> str:
@@ -341,7 +405,11 @@ def count_recurrence_hits(autopsy_dir: Path,
                 rec = per_claim.setdefault(cid, {
                     "hits": set(), "own_hits": set(), "signatures": set(),
                     "explicit_trigger": False, "trigger_artifacts": set(),
+                    "alignment": {},
                 })
+                if (fp.stem, run_key) not in rec["hits"]:
+                    bucket = _alignment_bucket(tgt)
+                    rec["alignment"][bucket] = rec["alignment"].get(bucket, 0) + 1
                 rec["hits"].add((fp.stem, run_key))
                 if not absorbed:
                     rec["own_hits"].add((fp.stem, run_key))
@@ -357,6 +425,9 @@ def count_recurrence_hits(autopsy_dir: Path,
             "n_signatures": len(rec["signatures"]),
             "explicit_trigger": rec["explicit_trigger"],
             "trigger_artifacts": sorted(rec["trigger_artifacts"]),
+            "alignment": dict(sorted(rec["alignment"].items(),
+                                     key=lambda kv: (-kv[1], kv[0]))),
+            "any_weakened": rec["alignment"].get("weakened", 0) > 0,
         }
         for cid, rec in per_claim.items()
     }
@@ -404,6 +475,8 @@ def audit(recurrence_hits: dict[str, dict], claim_meta: dict[str, dict],
             "artifacts": [stem for (stem, _run) in rec["hits"]],
             "explicit_trigger": rec["explicit_trigger"],
             "trigger_artifacts": rec["trigger_artifacts"],
+            "alignment": rec["alignment"],
+            "any_weakened": rec["any_weakened"],
         }
         if reason:
             excluded.append({**record, "excluded_reason": reason})
@@ -467,6 +540,8 @@ def main() -> int:
                       f"{r['n_signatures']} distinct signature(s); "
                       f"trigger in {', '.join(r['trigger_artifacts'])}")
                 print(f"        chain: {' -> '.join(r['chain'])}")
+                print(f"        claim_alignment: {_fmt_alignment(r['alignment'])}"
+                      + _alignment_note(r))
         if p1:
             print("  -- P1 UNFLAGGED RECURRENCE: claim circled by structurally-different")
             print("     no-verdict failures no author flagged. Discriminate coarse-claim")
@@ -475,6 +550,8 @@ def main() -> int:
                 print(f"    [P1] {r['claim_id']} -- {r['n_hits']} hits, "
                       f"{r['n_signatures']} distinct signature(s)")
                 print(f"        chain: {' -> '.join(r['chain'])}")
+                print(f"        claim_alignment: {_fmt_alignment(r['alignment'])}"
+                      + _alignment_note(r))
         if not p0 and not p1:
             print("  -- no actionable granularity-debt recurrence (healthy: the reactive"
                   " autopsy trigger caught everything, or nothing is circling).")

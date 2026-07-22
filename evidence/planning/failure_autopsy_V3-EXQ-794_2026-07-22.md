@@ -195,12 +195,20 @@ Explicitly **not** `puzzle`: no spike is needed to learn what to build.
 across 5 autopsy targets; SD-076 = **0** (no prior targets). **Does not fire** for
 either, and this autopsy adds no ceiling reading to either.
 
-**Granularity-debt recurrence trigger: FIRES for MECH-204.** Five prior autopsy targets
-across four files (541, 596-602, 606, 774) with differing signatures —
-`inconclusive_timescale`, then a `substrate_ceiling` on the symmetric EMA, now an
-implementation clamp on the paired drift source. Surfaced as a `/claim-synthesis`
-recommendation on MECH-204 independent of this autopsy's own routing. **Does not fire
-for SD-076** (first autopsy).
+**Granularity-debt recurrence trigger: DOES NOT FIRE for MECH-204.** *(Corrected
+2026-07-22 — the original block read "FIRES ... five prior autopsy targets across four
+files (541, 596-602, 606, 774)". Two of those files do not tag MECH-204 at all: 606's
+targets read `['MECH-318']` and 774's read `['MECH-173']`. They were counted from the
+claim's topical neighbourhood rather than from `targets[].claim_ids` — the trigger
+defect fixed the same day; see `scripts/granularity_debt_cluster.py`.)*
+
+Verified with `python3 scripts/granularity_debt_cluster.py MECH-204`: **5 targets across
+3 files** (541 x2 + 1 superseded, 596-602 x2, this run) — and, decisively, **no target
+reads `weakened`**: the distribution is `intact=2, strengthened=2, untested=1` (the
+excluded superseded target read `unclear`). That is measurement and implementation debt,
+not granularity debt,
+regardless of the count. No `/claim-synthesis` recommendation is surfaced. **Does not
+fire for SD-076** either (first autopsy).
 
 **Primary routing: `/implement-substrate`.**
 

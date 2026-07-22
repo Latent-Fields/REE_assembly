@@ -171,14 +171,21 @@ rival readings, and one readout separates them.
 **Re-derive brake:** MECH-440 = **0** confirmed `substrate_ceiling` hits under R1–R3
 (1 confirmed autopsy target). **Does not fire.**
 
-**Granularity-debt recurrence trigger: FIRES.** MECH-440 now carries prior autopsies in
-`failure_autopsy_700d-708-single-arena-ceiling_2026-06-29`,
-`failure_autopsy_V3-EXQ-708_2026-07-19`, `failure_autopsy_V3-EXQ-709_2026-07-03`,
-`failure_autopsy_V3-EXQ-710_2026-07-03`, `failure_autopsy_V3-EXQ-707b_2026-07-20`,
-`failure_autopsy_V3-EXQ-699_2026-07-20` — six files, and the failure signature differs
-each time (single-arena ceiling / pseudo-replicated DV / now an unmovable pre-commit
-distribution). Surfaced as a **`/claim-synthesis`** recommendation on MECH-440
-independent of this autopsy's own routing.
+**Granularity-debt recurrence trigger: DOES NOT FIRE.** *(Corrected 2026-07-22 — the
+original block read "FIRES ... six files" and listed 709, 710, 707b and 699 among them.
+None of those four tag MECH-440: their targets read `['MECH-439','ARC-108','ARC-110']`,
+`['MECH-140','MECH-450','MECH-439']`, `['ARC-110']` and `['MECH-448','MECH-449']`
+respectively. They were counted from the claim's topical neighbourhood rather than from
+`targets[].claim_ids` — the trigger defect fixed the same day; see
+`scripts/granularity_debt_cluster.py`.)*
+
+Verified with `python3 scripts/granularity_debt_cluster.py MECH-440`: **3 targets across
+3 files** — `failure_autopsy_700d-708-single-arena-ceiling_2026-06-29`,
+`failure_autopsy_V3-EXQ-708_2026-07-19`, and this one. And decisively, **no target reads
+`weakened`**: the distribution is `intact=1, unclear=1, untested=1`. Three
+non-contributory readings on a claim that was never validly tested is measurement debt,
+not granularity debt — the readout has to change before the claim's granularity is even
+in question. No `/claim-synthesis` recommendation is surfaced.
 
 **Routing: `/queue-experiment` — same-question re-run, alphabetic suffix (708b).**
 The scientific question is unchanged; the readout is what must change. Required
