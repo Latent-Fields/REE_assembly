@@ -23,7 +23,7 @@
     "ARC-007"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,5 +43,6 @@
     "20260308T114644_path_memory_ablation_v2",
     "20260316T061908_path_memory_ablation_v2"
   ],
-  "supersedes_note": "Both V2 path_memory_ablation runs (2026-03-08 FAIL and 2026-03-16 PASS) operated on a substrate without HippocampalModule (SD-004). This V3 run uses full SD-004/SD-005/SD-006 implementation and is the authoritative evidence for ARC-007."
+  "supersedes_note": "Both V2 path_memory_ablation runs (2026-03-08 FAIL and 2026-03-16 PASS) operated on a substrate without HippocampalModule (SD-004). This V3 run uses full SD-004/SD-005/SD-006 implementation and is the authoritative evidence for ARC-007.",
+  "evidence_direction_note": "INVALIDATED 2026-07-22 by the action-object round-trip selection defect (ree-v3/CLAUDE.md, 'Action-object round trip is NOT an action source'): the driver selected each step as argmax(agent.hippocampal.action_object_decoder(traj.get_action_object_sequence()[:, 0, :])), which is arithmetically a CONSTANT on this substrate (E2's action_object head is an untrained frozen re-encoding; its outputs sit ~28x inside the decoder's input domain and move the logits by std 0.007-0.017 against per-class-mean gaps up to 0.33, so argmax pins to one class). The treatment arm's action stream is therefore INVARIANT under every manipulation of the candidate set or its scores -- an arithmetically forced no-op, not a policy. The published '99.2% harm reduction' is reproducible with a ZERO AGENT: the constant action stream walks into a wall, the episode never terminates, and the per-step harm-rate denominator inflates ~14x (20000 steps vs 1420 in the ablated arm). This was ARC-007's sole remaining behavioural support. Replacement: V3-EXQ-114a. [prior evidence_direction was 'supports' with no note]"
 }

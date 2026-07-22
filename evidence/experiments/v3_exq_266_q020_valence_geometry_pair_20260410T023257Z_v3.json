@@ -40,7 +40,7 @@
   },
   "criteria_passed": 1,
   "criteria_total": 4,
-  "evidence_direction": "does_not_support",
+  "evidence_direction": "superseded",
   "params": {
     "grid_size": 6,
     "num_hazards": 4,
@@ -131,5 +131,6 @@
         "residue_field_harm_events": 354
       }
     ]
-  }
+  },
+  "evidence_direction_note": "INVALIDATED 2026-07-22 by the action-object round-trip selection defect (ree-v3/CLAUDE.md, 'Action-object round trip is NOT an action source'): the driver selected each step as argmax(agent.hippocampal.action_object_decoder(traj.get_action_object_sequence()[:, 0, :])), which is arithmetically a CONSTANT on this substrate (E2's action_object head is an untrained frozen re-encoding; its outputs sit ~28x inside the decoder's input domain and move the logits by std 0.007-0.017 against per-class-mean gaps up to 0.33, so argmax pins to one class). The treatment arm's action stream is therefore INVARIANT under every manipulation of the candidate set or its scores -- an arithmetically forced no-op, not a policy. Recorded for the record only: this run already carried a non-scoring evidence_direction, so the re-mark changes no confidence number. Replacement: V3-EXQ-266b. [prior evidence_direction was 'does_not_support' with no note]"
 }

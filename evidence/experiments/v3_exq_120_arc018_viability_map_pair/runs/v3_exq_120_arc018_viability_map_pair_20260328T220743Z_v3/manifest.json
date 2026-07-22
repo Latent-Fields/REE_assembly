@@ -23,7 +23,7 @@
     "ARC-018"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "INVALIDATED 2026-07-22 by the action-object round-trip selection defect (ree-v3/CLAUDE.md, 'Action-object round trip is NOT an action source'): the driver selected each step as argmax(agent.hippocampal.action_object_decoder(traj.get_action_object_sequence()[:, 0, :])), which is arithmetically a CONSTANT on this substrate (E2's action_object head is an untrained frozen re-encoding; its outputs sit ~28x inside the decoder's input domain and move the logits by std 0.007-0.017 against per-class-mean gaps up to 0.33, so argmax pins to one class). The treatment arm's action stream is therefore INVARIANT under every manipulation of the candidate set or its scores -- an arithmetically forced no-op, not a policy. The MAP_NAV arm's apparent advantage over the ablated arm is therefore not attributable to viability-map navigation. ARC-018 retains independent support from V3-EXQ-042 / V3-EXQ-053. Replacement: V3-EXQ-120a. [prior evidence_direction was 'supports' with no note]"
 }

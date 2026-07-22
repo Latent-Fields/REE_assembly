@@ -19,7 +19,7 @@
   "claim_ids": [
     "ARC-007"
   ],
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "experiment_type": "v3_exq_114_arc007_path_memory_probe",
   "run_timestamp": "20260328T204815Z",
   "claim": "ARC-007",
@@ -41,5 +41,6 @@
     "MAP_ABLATED"
   ],
   "dispatch_mode": "discriminative_pair",
-  "backlog_id": "EVB-0007"
+  "backlog_id": "EVB-0007",
+  "evidence_direction_note": "INVALIDATED 2026-07-22 by the action-object round-trip selection defect (ree-v3/CLAUDE.md, 'Action-object round trip is NOT an action source'): the driver selected each step as argmax(agent.hippocampal.action_object_decoder(traj.get_action_object_sequence()[:, 0, :])), which is arithmetically a CONSTANT on this substrate (E2's action_object head is an untrained frozen re-encoding; its outputs sit ~28x inside the decoder's input domain and move the logits by std 0.007-0.017 against per-class-mean gaps up to 0.33, so argmax pins to one class). The treatment arm's action stream is therefore INVARIANT under every manipulation of the candidate set or its scores -- an arithmetically forced no-op, not a policy. The published '99.2% harm reduction' is reproducible with a ZERO AGENT: the constant action stream walks into a wall, the episode never terminates, and the per-step harm-rate denominator inflates ~14x (20000 steps vs 1420 in the ablated arm). This was ARC-007's sole remaining behavioural support. Replacement: V3-EXQ-114a. [prior evidence_direction was 'supports' with no note]"
 }
