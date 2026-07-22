@@ -244,7 +244,16 @@ before any training objective is written.
 
 ## 5. Artifacts
 
-- Probe: `ao_invariance_spike.py` (session scratchpad; not landed in `experiments/` —
-  this is a spike, and `experiments/` is reserved for the `/queue-experiment` path)
-- Raw arrays + results JSON alongside it (`raw_untrained.npz`, `raw_warmed_40ep.npz`,
-  `ao_invariance_spike_results.json`)
+- Probe: `action_object_invariance_spike_2026-07-22_probe.py` (alongside this report).
+  Deliberately NOT in `ree-v3/experiments/` — this is a spike, and `experiments/` is
+  reserved for the `/queue-experiment` path. Run it from
+  `/Users/dgolden/REE_Working/ree-v3/experiments` with `/opt/local/bin/python3`.
+- Results: `action_object_invariance_spike_2026-07-22_results.json` (every number in Sec 3.1).
+- **The falsifier in Sec 4.2 should reuse this probe directly.** Its `m5_state_dependence`
+  and `m6_within_pair_consequence_corr` ARE the primary substrate-side DVs, and
+  `m1_variance_decomposition` supplies the `world_forward` calibration reference — so the
+  ARM_1 gate needs no new instrumentation: point it at the trained head and re-read M5/M6.
+  `m3_consequence_structure` is retained only as the documented trap (Sec 3.2); do not
+  read it without M6 alongside.
+- Raw arrays (`raw_untrained.npz`, `raw_warmed_40ep.npz`) were session-local and are not
+  preserved; the probe regenerates them deterministically at seed 42.
