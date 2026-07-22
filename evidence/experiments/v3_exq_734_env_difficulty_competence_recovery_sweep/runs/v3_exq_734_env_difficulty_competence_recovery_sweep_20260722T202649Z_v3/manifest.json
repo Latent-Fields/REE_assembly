@@ -1,0 +1,388 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_734_env_difficulty_competence_recovery_sweep",
+  "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260722T202649Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-22T20:26:49Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ree_substrate_ceiling",
+    "ree_recovery_rungs": [],
+    "ppo_recovery_rungs": [
+      "D2_proximity_layout_derisked"
+    ],
+    "hardest_ree_recovery_rung": null,
+    "preconditions": [
+      {
+        "name": "oracle_clears_floor_all_rungs",
+        "kind": "readiness",
+        "description": "The greedy nearest-resource ORACLE must clear COMPETENCE_RESOURCE_FLOOR resources/episode at EACH difficulty rung, proving the floor is ACHIEVABLE in that env. Same statistic as the load-bearing recovery criterion (mean resources/episode). Below-floor at a rung => that cell is not ready; below-floor at D0 => substrate_not_ready_requeue, NEVER a ceiling verdict.",
+        "control": "greedy nearest-resource oracle forager per rung, same env/seed, no agent",
+        "measured": 6.0375,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "baseline_reproduces_incompetence_at_D0",
+        "kind": "readiness",
+        "description": "The all-ON stack trained on the D0 (=724) env must forage BELOW the floor on a strict majority of seeds -- i.e. the 724/728 incompetence must reproduce -- for the sweep premise to hold. If it already clears the floor at D0 the premise is not reproduced => substrate_not_ready_requeue.",
+        "control": "ree_trained_allon D0 mean resources/ep vs floor (strict majority of seeds)",
+        "measured": 0.175,
+        "threshold": 1.0,
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "hazard_free_rung_achievable",
+        "kind": "readiness",
+        "description": "The maximally de-risked D3 (hazard-free) env must be oracle-achievable (oracle clears the floor) so that 'neither learner recovers even hazard-free' can license the deepest learner/observability branch rather than an env-too-hard artifact.",
+        "control": "greedy oracle on D3 hazard-free env vs floor",
+        "measured": 56.8625,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "sufficient_eval_episodes_all_cells",
+        "kind": "readiness",
+        "description": "Every completed cell must log >= MIN_EVAL_EPISODES eval episodes so foraging_competence is estimable. Below => substrate_not_ready_requeue.",
+        "control": "min completed eval episodes across all cells",
+        "measured": 20.0,
+        "threshold": 5.0,
+        "met": true
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.10307562351226807,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 7,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ree_trained_allon",
+        "context": "V3-EXQ-734a ree_trained_allon rung=D0_baseline_724"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.09053002297878265,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 7,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ree_trained_allon",
+        "context": "V3-EXQ-734a ree_trained_allon rung=D1_food_decoupled"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.3013228476047516,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 7,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ree_trained_allon",
+        "context": "V3-EXQ-734a ree_trained_allon rung=D2_proximity_layout_derisked"
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.3242112994194031,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 7,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "arm": "ree_trained_allon",
+        "context": "V3-EXQ-734a ree_trained_allon rung=D3_hazard_free"
+      }
+    ],
+    "preconditions_scope_note": "The zworld_world_encoder_trained precondition applies ONLY to the ree_trained_allon arm; vanilla_ppo / greedy_oracle / random_walk are scoped out (arm runs no all-ON P0 warmup and its premise does not involve z_world). Guard entries for rungs (none) are EXCLUDED from this flat list because their ree_trained_allon arm is RED and the indexer reads this list arm-blind and whole-run; those entries are carried under interpretation.per_arm_gate.failed_preconditions_by_arm instead, so a refused arm cannot vacate the arms and rungs that remain valid and scored.",
+    "per_arm_gate": {
+      "gate_by_rung_arm": {
+        "D0_baseline_724:random_walk": {
+          "rung_id": "D0_baseline_724",
+          "arm_id": "random_walk",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D0_baseline_724:ree_trained_allon": {
+          "rung_id": "D0_baseline_724",
+          "arm_id": "ree_trained_allon",
+          "green": true,
+          "guard_applies": true,
+          "n_cells": 4,
+          "n_guard_checked": 4,
+          "n_refused": 0,
+          "refused_seeds": [],
+          "failed_preconditions": [],
+          "guard_message": null
+        },
+        "D0_baseline_724:vanilla_ppo": {
+          "rung_id": "D0_baseline_724",
+          "arm_id": "vanilla_ppo",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D0_baseline_724:greedy_oracle": {
+          "rung_id": "D0_baseline_724",
+          "arm_id": "greedy_oracle",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D1_food_decoupled:random_walk": {
+          "rung_id": "D1_food_decoupled",
+          "arm_id": "random_walk",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D1_food_decoupled:ree_trained_allon": {
+          "rung_id": "D1_food_decoupled",
+          "arm_id": "ree_trained_allon",
+          "green": true,
+          "guard_applies": true,
+          "n_cells": 4,
+          "n_guard_checked": 4,
+          "n_refused": 0,
+          "refused_seeds": [],
+          "failed_preconditions": [],
+          "guard_message": null
+        },
+        "D1_food_decoupled:vanilla_ppo": {
+          "rung_id": "D1_food_decoupled",
+          "arm_id": "vanilla_ppo",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D1_food_decoupled:greedy_oracle": {
+          "rung_id": "D1_food_decoupled",
+          "arm_id": "greedy_oracle",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D2_proximity_layout_derisked:random_walk": {
+          "rung_id": "D2_proximity_layout_derisked",
+          "arm_id": "random_walk",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D2_proximity_layout_derisked:ree_trained_allon": {
+          "rung_id": "D2_proximity_layout_derisked",
+          "arm_id": "ree_trained_allon",
+          "green": true,
+          "guard_applies": true,
+          "n_cells": 4,
+          "n_guard_checked": 4,
+          "n_refused": 0,
+          "refused_seeds": [],
+          "failed_preconditions": [],
+          "guard_message": null
+        },
+        "D2_proximity_layout_derisked:vanilla_ppo": {
+          "rung_id": "D2_proximity_layout_derisked",
+          "arm_id": "vanilla_ppo",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D2_proximity_layout_derisked:greedy_oracle": {
+          "rung_id": "D2_proximity_layout_derisked",
+          "arm_id": "greedy_oracle",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D3_hazard_free:random_walk": {
+          "rung_id": "D3_hazard_free",
+          "arm_id": "random_walk",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D3_hazard_free:ree_trained_allon": {
+          "rung_id": "D3_hazard_free",
+          "arm_id": "ree_trained_allon",
+          "green": true,
+          "guard_applies": true,
+          "n_cells": 4,
+          "n_guard_checked": 4,
+          "n_refused": 0,
+          "refused_seeds": [],
+          "failed_preconditions": [],
+          "guard_message": null
+        },
+        "D3_hazard_free:vanilla_ppo": {
+          "rung_id": "D3_hazard_free",
+          "arm_id": "vanilla_ppo",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        },
+        "D3_hazard_free:greedy_oracle": {
+          "rung_id": "D3_hazard_free",
+          "arm_id": "greedy_oracle",
+          "green": true,
+          "guard_applies": false,
+          "scope_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+          "failed_preconditions": []
+        }
+      },
+      "failed_preconditions_by_arm": {},
+      "guarded_arm": "ree_trained_allon",
+      "scope_out_reason": "arm runs no all-ON P0 warmup and its premise does not involve z_world",
+      "green_cells": [
+        "D0_baseline_724:random_walk",
+        "D0_baseline_724:ree_trained_allon",
+        "D0_baseline_724:vanilla_ppo",
+        "D0_baseline_724:greedy_oracle",
+        "D1_food_decoupled:random_walk",
+        "D1_food_decoupled:ree_trained_allon",
+        "D1_food_decoupled:vanilla_ppo",
+        "D1_food_decoupled:greedy_oracle",
+        "D2_proximity_layout_derisked:random_walk",
+        "D2_proximity_layout_derisked:ree_trained_allon",
+        "D2_proximity_layout_derisked:vanilla_ppo",
+        "D2_proximity_layout_derisked:greedy_oracle",
+        "D3_hazard_free:random_walk",
+        "D3_hazard_free:ree_trained_allon",
+        "D3_hazard_free:vanilla_ppo",
+        "D3_hazard_free:greedy_oracle"
+      ],
+      "red_cells": [],
+      "still_scored_cells": [
+        "D0_baseline_724:random_walk",
+        "D0_baseline_724:ree_trained_allon",
+        "D0_baseline_724:vanilla_ppo",
+        "D0_baseline_724:greedy_oracle",
+        "D1_food_decoupled:random_walk",
+        "D1_food_decoupled:ree_trained_allon",
+        "D1_food_decoupled:vanilla_ppo",
+        "D1_food_decoupled:greedy_oracle",
+        "D2_proximity_layout_derisked:random_walk",
+        "D2_proximity_layout_derisked:ree_trained_allon",
+        "D2_proximity_layout_derisked:vanilla_ppo",
+        "D2_proximity_layout_derisked:greedy_oracle",
+        "D3_hazard_free:random_walk",
+        "D3_hazard_free:ree_trained_allon",
+        "D3_hazard_free:vanilla_ppo",
+        "D3_hazard_free:greedy_oracle"
+      ],
+      "refused_cells": [],
+      "ree_guard_green_rungs": [
+        "D0_baseline_724",
+        "D1_food_decoupled",
+        "D2_proximity_layout_derisked",
+        "D3_hazard_free"
+      ],
+      "ree_guard_red_rungs": [],
+      "any_ree_guard_red": false
+    },
+    "non_degenerate": true,
+    "degeneracy_reason": null,
+    "criteria": [
+      {
+        "name": "ree_allon_recovers_above_floor_at_some_difficulty",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "oracle_clears_floor_all_rungs": true,
+      "baseline_reproduces_incompetence_at_D0": true,
+      "hazard_free_rung_achievable": true,
+      "sufficient_eval_episodes": true,
+      "ppo_control_informative": true,
+      "zworld_world_encoder_trained_ree_trained_allon": true,
+      "any_arm_green": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2e8ec679aab3448141c65a075eab0c684a3972649792a64547e5a85b0eb4eb5c"
+}
