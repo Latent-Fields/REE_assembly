@@ -1,0 +1,76 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-22T03:48:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_792_mech457_retention_consolidation_20260720T234440Z_v3",
+      "queue_id": "V3-EXQ-792",
+      "claim_ids": [
+        "MECH-457"
+      ],
+      "failed_criterion": "discrimination",
+      "self_route_label": "retention_grid_nondiscriminative",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- fair test; the manipulation isolates the update constraint and nothing else",
+        "biological_reference": "partial -- consolidation is well-evidenced but a GLOBAL KL anchor diverges from trace-selective biology",
+        "prerequisites": "present -- BC install took on every arm (worst cell 17.75 vs a 1.0 floor); both achievability anchors clear",
+        "implementation": "complete -- SD-MECH457-POLICY-KL-ANCHOR binds at coef 0.30 (realised KL 0.278)",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- DOMINANT LAYER: the control's mean_policy_kl_to_anchor_recent is a hard-coded 0.0 sentinel, not a measured drift, so the cross-coefficient dose-response is the ONLY proof the anchor bound",
+        "integration": "coupled",
+        "scale": "likely insufficient -- n=3 seeds x 3 coefficients"
+      },
+      "biological_reference": {
+        "closest_mechanism": "synaptic consolidation / synaptic tagging and capture; systems consolidation",
+        "dependencies": [
+          "sleep-dependent replay",
+          "a consolidation signal distinct from the reward signal",
+          "SELECTIVE (trace-specific) rather than global protection"
+        ],
+        "is_formal_import": true,
+        "divergence": "The KL trust region is a formal object; biological consolidation is trace-selective and its selectivity is itself learned, which a single global coefficient cannot express. Load-bearing for the NEXT design generation, not causal for this run's non-discrimination.",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-457": "measurement_test_design_defect"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-457": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-07-22 (V3-EXQ-792, diagnostic, claim_ids=[MECH-457], direction unknown -- weights nothing; failure_autopsy_V3-EXQ-792_2026-07-22). The H-retention-consolidation leg is NOT refuted and stays alive. Its load-bearing criterion PASSED: retcons_kl0p30 retained 0.778 of installed competence vs the unconstrained arm's 0.525 (margin +0.252 against a 0.15 bar) while keeping plasticity (realised KL 0.278; peak above 1.05x the install), scored consolidates:true, frozen:false. A consolidation pathway for an acquired policy is therefore CONSTRUCTIBLE -- a positive result inside a FAIL, and it must not be lost. The overall FAIL rests on a load_bearing:false dose-response leg: realised KL is non-monotone in the coefficient (0.868 / 1.143 / 0.278) because the 0.10 arm's anchor did not bind, and at n=3 with the control's KL hard-coded to a 0.0 sentinel that single cell vacates the grid. Under-powered with a structurally weak control, NOT a substrate ceiling. Re-run as 792a with a MEASURED control drift and >= 6 seeds. MECH-457 stays candidate / v3_pending.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "MECH-457 = 0 confirmed substrate_ceiling hits across 19 autopsy targets under R1-R3. Does not fire; this autopsy adds no ceiling reading."
+      },
+      "learning_extracted": [
+        "POSITIVE RESULT INSIDE A FAIL: a consolidation pathway for an acquired policy is constructible. retcons_kl0p30 retains 0.778 vs the unconstrained arm's 0.525 while remaining plastic. 'There is no protection pathway' is not what MECH-457 is.",
+        "The control arm's mean_policy_kl_to_anchor_recent is a 0.0 SENTINEL, not a measurement. That is why the dose-response had to carry the whole burden of proving the anchor bound, and why one anomalous cell could vacate a passing load-bearing criterion. Fix the control before adding seeds.",
+        "A load_bearing:false criterion vacated a load-bearing PASS. Design rule: if a non-load-bearing leg can flip the overall label, it is load-bearing in fact -- either promote it or stop letting it gate.",
+        "Recording debt: none. Per-arm realised KL, retained fraction, plasticity flags and the reference band were all recorded."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": true,
+    "target": "MECH-457",
+    "n_prior_autopsy_targets": 19,
+    "basis": "Raised in full in failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22; recorded here so the standing GOV-GRAN-1 scan sees it on this artifact too.",
+    "routing": "claim-synthesis"
+  }
+}

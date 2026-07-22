@@ -1,0 +1,215 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-22T03:48:30Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260721T084355Z_v3",
+      "queue_id": "V3-EXQ-734",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (no claim tags)",
+        "biological_reference": "clear",
+        "prerequisites": "present (oracle+local-view clear every rung)",
+        "implementation": "stub -- zworld guard RED on all 4 rungs x 4 seeds: 0/61 latent_stack and 0/4 world_encoder tensors moved, world_encoder_max_abs_delta 0.0. sd_zworld_warmup_optimizer_group adoption (ree-v3 b523b9c, 2026-07-20T20:00:11+01:00) did not reach this driver copy although the run started 2026-07-21T08:43.",
+        "environment": "adequate",
+        "measurement": "adequate for detection",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "risk-sensitive foraging / patch-leaving (marginal value theorem)",
+        "dependencies": [
+          "consumption term competitive with the survival term at the training horizon",
+          "a prediction-trained world representation"
+        ],
+        "is_formal_import": false,
+        "divergence": "none at issue -- this target is invalid on implementation grounds",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-734 is UNINFORMATIVE and its self-route substrate_not_ready_requeue is UPHELD. The z_world encoder guard is RED on all four difficulty rungs and all four seeds: 0 of 61 latent_stack tensors and 0 of 4 world_encoder tensors moved after 200 P0 episodes, world_encoder_max_abs_delta 0.0. The ree_trained_allon arm therefore ran on a frozen random projection at every rung. The SD-070 adoption commit (ree-v3 b523b9c, 2026-07-20T20:00:11+01:00) landed before this run started (2026-07-21T08:43:55Z) but did not reach this driver copy -- a third per-copy strike after V3-EXQ-737a and V3-EXQ-728, confirming substrate_queue entry sd_zworld_warmup_optimizer_group is correctly still implemented_pending_validation. NO conclusion about the competence root, the REE representation, or any claim may be drawn from this run. Re-run as 734a on the SD-070 path with the guard GREEN-GATING rather than detection-only.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "sd_zworld_warmup_optimizer_group",
+        "failure_record_entry": {
+          "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260721T084355Z_v3",
+          "experiment_type": "v3_exq_734_env_difficulty_competence_recovery_sweep",
+          "metric": "THIRD per-copy strike, and the first AFTER the SD-070 adoption landed: 0 of 61 latent_stack and 0 of 4 world_encoder tensors changed at p0_episodes=200, on ALL 4 difficulty rungs x 4 seeds (world_encoder_max_abs_delta 0.0). Run started 2026-07-21T08:43:55Z; adoption commit b523b9c landed 2026-07-20T20:00:11+01:00.",
+          "target": "world-path weight-delta > 0 on every rung x seed, with the guard GREEN-GATING (refuse the cell) rather than detection-only"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "sd_zworld_warmup_optimizer_group"
+      },
+      "learning_extracted": [
+        "The SD-070 encoder-warmup adoption is per-copy and incomplete: it reached 728b and 737b but not 734 or 742a. The duplicated _train_all_on_agent copies are the root and must be collapsed onto one path.",
+        "Detection-only guards let an invalid run complete and consume ~17 hours of cloud compute. On a defect this confirmed the guard should GATE."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_737_ree_latent_policy_head_competence_probe_20260721T193827Z_v3",
+      "queue_id": "V3-EXQ-737b",
+      "claim_ids": [],
+      "failed_criterion": "absolute",
+      "self_route_label": "policy_learning_insufficient_or_deeper",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (no claim tags); bears on conversion_ceiling_root H-policy-learning",
+        "biological_reference": "clear -- the observed policy is what a risk-sensitive forager does under high perceived predation risk",
+        "prerequisites": "present",
+        "implementation": "complete -- guard GREEN (4/4 world_encoder tensors moved, max_abs_delta 0.103); a real trainable PPO actor on a genuinely prediction-trained z_world",
+        "environment": "wrong pressures -- DOMINANT LAYER",
+        "measurement": "under-instrumented: no per-term return decomposition anywhere in this driver family",
+        "integration": "coupled",
+        "scale": "adequate -- BC installs 20.933 on the same policy class and observation interface, so capacity is ruled out"
+      },
+      "biological_reference": {
+        "closest_mechanism": "risk-sensitive foraging / patch-leaving under predation risk (marginal value theorem; Charnov)",
+        "dependencies": [
+          "a consumption term competitive with the survival term at the training horizon",
+          "an episode structure in which foraging is not dominated by not-dying"
+        ],
+        "is_formal_import": false,
+        "divergence": "The mechanism is working on a mis-set parameter, not mis-translated: long survival with near-zero intake is exactly what a real forager does under high perceived risk.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-737b is a VALID test (z_world guard GREEN: 4/4 world_encoder tensors moved, max_abs_delta 0.103) and its null does NOT discriminate the policy-learning axis. ppo_ree_latent scored 0.233 D3 foraging competence and the matched ppo_raw_obs control 0.567, both below the 1.0 floor AND below the run's own random-walk anchor of 0.933, while a local-view greedy reading the same 5x5 field scored 48.05 and the oracle 57.2. The manifest's own criteria_non_degenerate.ppo_ree_latent_beats_random_floor_at_d3 is false. A trained learner scoring below random walk has not been shown to lack capacity; it has been shown to be optimising something else. V3-EXQ-734's survival column quantifies it: vanilla PPO survives 175.0 steps vs the greedy oracle's 20.4 while foraging 17x less, so the return is dominated by episode survival and survival is maximised by not foraging. V3-EXQ-792/780 corroborate from the other side: a BC-installed raw_view policy reaches 20.933 and decays to 11.667 under unconstrained RL but holds at 0.778-0.871 under a KL anchor. NOT substrate_ceiling and NOT an observability ceiling -- 738/780/792 have already shown the observation interface carries the information.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "A learner scoring below its own declared random-policy anchor falsifies any ceiling reading by construction. Adopt as a standing manifest-local lint.",
+        "The forage-vs-survive inversion is quantified: vanilla PPO survives 8.5x longer than the greedy oracle while foraging 17x less.",
+        "No run in the _train_all_on_agent family records a per-term return decomposition, so 'which term is the learner maximising' is unanswerable from any existing manifest. Measurement gap, not recording gap."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_742_mech457_actor_critic_onoff_20260721T161424Z_v3",
+      "queue_id": "V3-EXQ-742a",
+      "claim_ids": [
+        "MECH-457"
+      ],
+      "failed_criterion": "discrimination",
+      "self_route_label": "deeper_than_action_learning",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-457 not tested under conditions where it could express itself",
+        "biological_reference": "clear",
+        "prerequisites": "present (oracle + local-view clear both rungs; bias-head reproduces the D0 deficit)",
+        "implementation": "partial -- encoder_moved_in_p0 false on EVERY arm; only the two cotrain arms moved it during the actor-critic phase (max_abs_delta_ac 0.166, 6/6 cells). The frozen arms ran on a random projection.",
+        "environment": "wrong pressures -- DOMINANT LAYER",
+        "measurement": "under-instrumented: no per-term return decomposition",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "risk-sensitive foraging / patch-leaving under predation risk",
+        "dependencies": [
+          "a consumption term competitive with the survival term at the training horizon"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- the mechanism behaves correctly on a mis-set objective",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-457": "measurement_test_design_defect"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-457": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-07-22 (V3-EXQ-742a actor-critic ON/OFF, evidence, claim_ids=[MECH-457]; failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22). The recorded `weakens` is WITHDRAWN and revised to `non_contributory`. All four actor-critic arms scored 0.200-0.267 D3 foraging competence -- below the run's own declared random-walk anchor of 0.933 -- while the greedy oracle scored 57.2 and a local-view greedy reading the same 5x5 field scored 48.05. A learner below its own random floor has not been shown to lack a mechanism; it has been shown to be optimising something else. V3-EXQ-734's survival column quantifies it: vanilla PPO survives 175.0 steps vs the greedy oracle's 20.4 while foraging 17x less, so the return is dominated by episode survival and survival is maximised by not foraging. V3-EXQ-792/780 corroborate from the other side -- a BC-installed raw_view policy reaches 20.933 and decays to 11.667 under unconstrained RL but holds at 0.778-0.871 under a KL anchor, so the policy class demonstrably CAN represent competent foraging and RL refinement destroys it. The MECH-457 contrast was therefore not tested under conditions where it could express itself. Additionally the frozen-encoder arms ran on an untrained z_world (encoder_moved_in_p0 false on every arm; the sd_zworld_warmup_optimizer_group adoption did not reach this driver copy). MECH-457 stays candidate / v3_pending; pending_retest_after_substrate set. NOT a substrate_ceiling reading.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "sd_zworld_warmup_optimizer_group",
+        "failure_record_entry": {
+          "run_id": "v3_exq_742_mech457_actor_critic_onoff_20260721T161424Z_v3",
+          "experiment_type": "v3_exq_742_mech457_actor_critic_onoff",
+          "metric": "FOURTH per-copy strike: encoder_moved_in_p0 false on ALL FOUR actor-critic arms (max_world_encoder_abs_delta_p0 0.0, 6 cells each); only the cotrain arms moved the encoder during the actor-critic phase (max_abs_delta_ac 0.166). Run started 2026-07-21T16:14:24Z, after adoption commit b523b9c.",
+          "target": "world-path weight-delta > 0 in P0 on every arm, so the frozen-vs-cotrain contrast is a contrast between two TRAINED-encoder conditions rather than random-projection vs trained"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": "sd_zworld_warmup_optimizer_group",
+        "note": "MECH-457 carries 0 confirmed substrate_ceiling hits across 19 autopsy targets under the R1-R3 convention. This autopsy adds none. The brake does not fire."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-objective-misspecification: the return is dominated by episode survival, so the optimal policy under the given reward is NOT to forage; every learner correctly un-learns the scored behaviour",
+          "H-policy-learning (INCUMBENT, stays alive): the policy-learning stage genuinely cannot convert representation into competent action"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-objective-misspecification",
+            "axis": "reward",
+            "sketch": "Return-decomposition diagnostic: hold the learner fixed, record per-term return attribution (survival / harm / consumption / proximity) alongside foraging_competence, and sweep the consumption:survival weighting. Declared null: the consumption term already dominates at the training horizon and re-weighting does not move D3 competence."
+          },
+          {
+            "hypothesis": "H-policy-learning",
+            "axis": "policy",
+            "sketch": "Re-run 737b's PPO-on-latent arm under a re-weighted objective in which the consumption term provably dominates. Declared null: with the objective corrected the learner still fails to clear the 1.0 floor, which would isolate policy-learning after all."
+          }
+        ],
+        "note": "GOV-FANOUT-1: the bottleneck is a discrimination between the objective and the policy-learning axis, not a single named build. The two probes sit on DIFFERENT design axes (reward vs policy) and each declares its null. CIRCLING DISCLOSURE: axis `reward` maps to family `world`, where H-reward-balance is already eliminated by V3-EXQ-735 -- see the .md section 7 for why this is a genuinely new leg and not the dead one renamed."
+      },
+      "learning_extracted": [
+        "The `weakens` recorded against MECH-457 is not earned: the contrast was run under an objective that penalises the scored behaviour.",
+        "The frozen-vs-cotrain contrast was structurally confounded -- the frozen arms carried an untrained encoder, so it was random-projection vs trained rather than frozen vs co-trained.",
+        "A consolidation pathway for an acquired policy IS constructible (V3-EXQ-792, retcons_kl0p30 retains 0.778 vs the unconstrained 0.525), which is the strongest single piece of evidence that the RL update rather than the representation is the destructive agent."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Every absolute / negative-control criterion passes (oracle 57.2, local-view greedy 48.05, bias-head reproduces the D0 deficit) and every discrimination criterion fails, across three structurally different learners (bias-head, actor-critic, PPO) and two observation interfaces (raw obs, z_world) -- with every learner scoring BELOW the run's own random-walk anchor of 0.933 at hazard-free D3.",
+    "is_independent_bugs": false,
+    "structural_property": "A failure invariant across learner AND representation is a property of neither -- it is a property of the objective they share. The training return is dominated by episode survival (vanilla PPO survives 175.0 steps vs the greedy oracle's 20.4 while foraging 17x less), and survival is maximised by not foraging. Every learner is optimising the objective it was given correctly; the objective is not the foraging objective the DV scores. Corroborated from the other side by V3-EXQ-780/792: a BC-installed policy reaches 20.933 and decays to 11.667 under unconstrained RL but holds at 0.778-0.871 under a KL anchor, so the policy class can represent competent foraging and RL refinement destroys it.",
+    "readings": [
+      "objective_misspecification (CONFIRMED by the user 2026-07-22)",
+      "learner_or_observability_ceiling (REJECTED -- 738/780/792 show the observation interface carries the information)",
+      "zworld_warmup_implementation_gap (SEPARATE and CONFIRMED, affects 734 and 742a only)"
+    ],
+    "secondary_finding": "sd_zworld_warmup_optimizer_group remains implemented_pending_validation with the validation INCOMPLETE: 728b and 737b picked up the SD-070 adoption, 734 and 742a did not. The per-copy _train_all_on_agent duplication is the root."
+  },
+  "granularity_debt_trigger": {
+    "fires": true,
+    "target": "MECH-457",
+    "n_prior_autopsy_targets": 19,
+    "n_prior_autopsy_files": 8,
+    "basis": "MECH-457 has absorbed 19 confirmed autopsy targets across 8 files with structurally different failure signatures each time (representation, exploration, credit-assignment, curriculum, arbitration, drive-schedule, reward-coupling, credit-horizon, BC-prior, approach-primitive, retention, and now objective). A claim that has absorbed 19 autopsies without resolving is several claims.",
+    "routing": "claim-synthesis"
+  }
+}

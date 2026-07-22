@@ -1,0 +1,95 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-22T03:48:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_786a_mech163_dual_system_recruitment_20260721T113809Z_v3",
+      "queue_id": "V3-EXQ-786a",
+      "claim_ids": [
+        "MECH-163"
+      ],
+      "failed_criterion": "discrimination",
+      "self_route_label": "no_differential_recruitment",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened, NARROWLY -- leg (1) tested fairly and returned a null; legs (2) and (3) untested, so the claim as a whole is not falsified",
+        "biological_reference": "clear -- dual-systems is well-evidenced and the null matches the NO-ARBITRATOR signature specifically",
+        "prerequisites": "missing -- ARC-071 (planned->habit transfer) is named in depends_on and is UNBUILT; no arbitration element exists in the substrate",
+        "implementation": "partial -- symbol without functional role: two pathways exist, the mechanism that selects between them under novelty does not",
+        "environment": "adequate -- four generating parameters varied, all locally observable in the 5x5 field views, drift suppressed, discriminability confirmed at AUC 0.848",
+        "measurement": "adequate -- the AUC readout is scale-free with a principled null at 0.5, replacing 786's non-scale-free raw mean-difference floor",
+        "integration": "partially coupled -- pathways present, arbitration absent",
+        "scale": "adequate -- n=8; Cohen's d 0.047 means the effect is absent, not underpowered"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dual-system goal-directed vs habitual control (dorsomedial vs dorsolateral striatum; Balleine & Dickinson devaluation; Daw model-based/model-free arbitration)",
+        "dependencies": [
+          "an uncertainty- or reliability-based ARBITRATOR that reallocates control (Daw; Lee/Shimojo/O'Doherty, vlPFC/FPC)",
+          "ARC-071 planned->habit transfer, the transition mechanism MECH-163 presupposes but does not specify"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- MECH-163 is a biologically-grounded dual-systems claim, not a formal import",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-163": "standard"
+      },
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-163": "weakens"
+      },
+      "recommended_evidence_quality_note": "2026-07-22 (V3-EXQ-786a, EVIDENCE, claim_ids=[MECH-163], weakens; failure_autopsy_V3-EXQ-786a_2026-07-22). `weakens` STANDS, scoped to leg (1) ONLY. This is MECH-163's first genuine V3 experimental evidence (the 2026-04-03 hold recorded 9 lit supports, 0 experimental entries). The test was fair and the instrument was repaired first: the manipulation check passed on both legs (familiarity discriminability AUC 0.848 vs a 0.7 bar; SEM lower bound 0.795 vs the 0.5 null), replacing 786's raw mean-difference floor of 0.05 which was neither scale-free (the readout's units are set by the tracker's bandwidth/EMA, so re-tuning the instrument moved the gate) nor an overlap measure. n=8, non_degenerate:true. The load-bearing criterion C1_recruitment_higher_on_novel failed on BOTH the absolute and standardized legs: recruitment delta mean 0.00435, SEM 0.0325, lower bound -0.0281 against a 0.02 margin, Cohen's d 0.047. That is an ABSENT effect, not an underpowered one -- do not route to a power re-run. SCOPE: leg (1) novel-context recruitment ONLY. Leg (2) long-horizon benefit accumulation is blocked by ARC-007 STRICT value-flat proposals; leg (3) prosocial planning has no V3 substrate; and ARC-071 (planned->habit transfer) -- which the 2026-05-10 targeted_review_arc_071_composition synthesis (lit_conf 0.848) established is the missing transition mechanism MECH-163 presupposes but does not specify -- is UNBUILT. The null's shape is diagnostic: a flat response (7 of 8 seeds within +/-0.15) is the signature of two pathways with NO ARBITRATOR, and in the reference biology differential recruitment is produced by uncertainty/reliability-based arbitration, not by the existence of two pathways. Read as positive evidence for the necessity of an arbitration element. lit_conf and exp_conf must be reported SEPARATELY -- 9 lit supports and 1 experimental weakens do not blend.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "sd_dualsystem_uncertainty_arbitration",
+        "title": "Uncertainty/reliability-based arbitrator that reallocates control between the two MECH-163 pathways -- differential recruitment is produced by arbitration, not by the existence of two pathways",
+        "implementation_hint": "V3-EXQ-786a measured a FLAT recruitment response (delta mean 0.00435, Cohen's d 0.047, 7 of 8 seeds within +/-0.15) with the manipulation check passing at AUC 0.848 -- the signature of two pathways and no arbitrator. Build an uncertainty- or reliability-based arbitration element per the Daw and Lee/Shimojo/O'Doherty reference (vlPFC/FPC reliability arbitration), which is also the mechanism ARC-071 (planned->habit transfer) presupposes. Without it, differential recruitment under novelty cannot be expressed regardless of how discriminable the contexts are.",
+        "unblocks_claims": [
+          "MECH-163",
+          "ARC-071"
+        ],
+        "depends_on_unresolved": [
+          "ARC-071 (planned->habit transfer, unbuilt)"
+        ],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_786a_mech163_dual_system_recruitment_20260721T113809Z_v3",
+          "experiment_type": "v3_exq_786a_mech163_dual_system_recruitment",
+          "metric": "recruitment delta mean 0.00435, SEM 0.0325, robustness lower bound -0.0281 vs a 0.02 margin, Cohen's d 0.047, n=8, with the manipulation check PASSING (familiarity AUC 0.848 vs a 0.7 bar)",
+          "target": "recruitment delta lower bound (mean - SEM) > 0.02 on practised vs held-out layouts with the same manipulation check passing"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "claim-synthesis",
+        "upstream_substrate": "sd_dualsystem_uncertainty_arbitration",
+        "note": "MECH-163 = 0 confirmed substrate_ceiling hits under R1-R3. Does not fire; this autopsy records `standard` (a fair, powered, non-degenerate null), not a ceiling."
+      },
+      "learning_extracted": [
+        "MECH-163's first genuine V3 experimental evidence is a null on leg (1), after a 2026-04-03 hold_pending_v3_substrate with 9 lit supports and 0 experimental entries. Report lit_conf and exp_conf separately -- they do not blend.",
+        "The null has a specific biological shape: NO ARBITRATOR. Delta mean 0.0044 with d 0.047 and 7 of 8 seeds within +/-0.15 is a FLAT response. In the reference biology differential recruitment is produced by an uncertainty/reliability arbitrator, not by two pathways existing. This FAIL is therefore positive evidence for the necessity of an arbitration element -- exactly what ARC-071 names and the substrate lacks.",
+        "786's manipulation-check repair is validated and generalisable: replacing a raw mean-difference floor with an AUC bar makes the gate scale-free with a principled null at 0.5, closing the 're-tuning the instrument moves the gate' hazard. Adopt wherever a manipulation check is currently a raw-difference floor.",
+        "More seeds will not rescue this. sample_size_improvable:true is technically correct but with d=0.047 the effect is absent at the scale the claim predicts, not underpowered."
+      ],
+      "routing": "claim-synthesis"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": true,
+    "target": "MECH-163",
+    "n_prior_autopsy_files": 1,
+    "prior_autopsies": [
+      "failure_autopsy_V3-EXQ-786_2026-07-20"
+    ],
+    "basis": "Second autopsy on MECH-163 with a DIFFERENT failure signature: 786 was an instrument defect (non-scale-free manipulation-check bar), 786a is a substantive null with the instrument repaired. The claim bundles three legs with three different blockers -- leg (2) blocked by ARC-007 value-flat proposals, leg (3) with no V3 substrate at all, leg (1) nulled without ARC-071. That is the granularity-debt shape: a coarse claim that is several claims.",
+    "routing": "claim-synthesis"
+  }
+}

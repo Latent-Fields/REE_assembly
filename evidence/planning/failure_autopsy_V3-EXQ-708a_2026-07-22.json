@@ -1,0 +1,104 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-22T03:48:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_708a_mech440_noisy_selection_head_propagation_falsifier_20260720T211903Z_v3",
+      "queue_id": "V3-EXQ-708a",
+      "claim_ids": [
+        "MECH-440"
+      ],
+      "failed_criterion": "negative_control",
+      "self_route_label": "substrate_not_ready_requeue",
+      "adjudication_flag": "precondition_unmet",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested -- no injected pre-commit variance means no propagation to observe",
+        "biological_reference": "partial, divergence load-bearing: a global softmax temperature and NoisyNet weight noise are engineering imports, while biological selection variability is channel-specific and arousal-modulated",
+        "prerequisites": "missing -- the manipulation's own precondition (a non-collapsed pre-commit distribution, or levers that reach it) is absent",
+        "implementation": "unclear -- cannot distinguish 'lever applied downstream of pre-commit' from 'pre-commit saturated'",
+        "environment": "adequate",
+        "measurement": "under-instrumented -- DOMINANT LAYER: only the between-arm entropy DELTA is recorded; the pre-commit distribution's own shape is not, so the two readings cannot be separated",
+        "integration": "isolated",
+        "scale": "adequate -- 862 fresh selects, 6 seeds, 4 divergent"
+      },
+      "biological_reference": {
+        "closest_mechanism": "stochastic resonance / intrinsic neural variability in action selection (striatal and cortical selection circuits; dopaminergic modulation of exploration)",
+        "dependencies": [
+          "a genuinely distributed pre-commitment representation -- several candidates carrying non-trivial probability mass",
+          "a commitment threshold that variability can push around"
+        ],
+        "is_formal_import": true,
+        "divergence": "'Temperature' is a Boltzmann/softmax import and NoisyNet weight noise an RL-engineering import (Fortunato et al.); real neural variability is channel-specific and arousal-modulated, not a global softmax temperature. Load-bearing -- a plausible cause of the 'lever never arrived' reading.",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-440": "measurement_gap"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-440": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-07-22 (V3-EXQ-708a, diagnostic, claim_ids=[MECH-440], non_contributory -- weights nothing; failure_autopsy_V3-EXQ-708a_2026-07-22). The V3-EXQ-708 instrument repair WORKED: 862 genuinely-fresh E3 select() calls against a floor of 30, 4 divergent seeds, supra-floor and non-trivial-vs-raw noise bias range (0.221), live dACC suppression, dissociable finer channels. MECH-440 was nonetheless not tested, for a new and SUBSTANTIVE reason: neither designed lever moves the dependent variable. ARM_TEMP raises pre-commit sampling-class entropy above A0_OFF on 0 of 4 divergent seeds and ARM_NOISE_SINGLE on 1 of 4, against a bar of 2. With no injected pre-commit variance there is nothing for the propagation question to observe. This is a failed MANIPULATION CHECK on a demonstrably working instrument, not an unready substrate -- the precondition_unmet flag cannot presently distinguish the two, since both are kind:readiness. Two readings are live and are NOT separable from this manifest, which records only the between-arm entropy delta: (i) the pre-commit distribution is already saturated/argmax-like and has no headroom -- the F-dominance signature, now observed PRE-commit; or (ii) the levers are applied downstream of where the pre-commit distribution is formed. Route to 708b recording pre-commit distribution SHAPE (max_prob, effective support, per-candidate mass) per arm per seed, which discriminates them. measurement_gap, explicitly NOT substrate_ceiling. MECH-440 stays candidate / v3_pending; pending_retest_after_substrate NOT set (no substrate build is owed yet).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "MECH-440 = 0 confirmed substrate_ceiling hits under R1-R3 (1 confirmed autopsy target). Does not fire; this autopsy records measurement_gap, not a ceiling."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-precommit-saturated: the pre-commit sampling distribution is already argmax-like and has no entropy headroom for any lever to exploit (the F-dominance signature, observed pre-commit)",
+          "H-lever-downstream: temperature and weight noise are applied downstream of where the pre-commit distribution is formed, so they cannot move it by construction"
+        ],
+        "suggested_probes": [
+          {
+            "hypothesis": "H-precommit-saturated",
+            "axis": "measurement",
+            "sketch": "Record the pre-commit distribution's SHAPE per select -- max_prob, effective support (participation ratio), per-candidate mass summary -- per arm per seed. Declared null: max_prob is near 1 in EVERY arm including A0_OFF, i.e. no headroom exists for any lever."
+          },
+          {
+            "hypothesis": "H-lever-downstream",
+            "axis": "instrumentation",
+            "sketch": "Assert at the E3 call site that the temperature and weight-noise perturbations are applied upstream of the pre-commit softmax, and record the applied value. Declared null: max_prob differs by arm while entropy does not, i.e. the lever arrives but the entropy readout is blind to it."
+          }
+        ],
+        "note": "GOV-FANOUT-1: a discrimination between a substrate property and a wiring defect, on different axes (measurement vs instrumentation). Both are settled by ONE re-run that adds both readouts, so the portfolio is a single experiment with two declared nulls rather than two experiments."
+      },
+      "learning_extracted": [
+        "SUBSTANTIVE FINDING: with a repaired, demonstrably-adequate instrument (862 fresh selects vs a floor of 30), NEITHER a temperature perturbation NOR supra-floor weight noise raises pre-commit sampling-class entropy on a strict majority of divergent seeds (0/4 and 1/4 against a bar of 2). A property of the system, not a readiness failure.",
+        "A failed MANIPULATION CHECK on a working instrument is not the same as an unready substrate, and the precondition_unmet flag cannot tell them apart -- both are kind:readiness. Proposed schema distinction: kind:readiness (was the setup adequate) vs kind:manipulation_check (did the lever move anything). Only the first should self-route substrate_not_ready_requeue.",
+        "The 708 instrument repair is validated and reusable: clear-before-select_action plus record-only-if-repopulated (from v3_exq_785a, lifted into _lib at ree-v3 08e9955) delivered 862 fresh selects where 708 had pure pseudo-replication.",
+        "Measurement gap, NOT recording gap: the pre-commit distribution shape was never computed, so this needs a new readout rather than recording more of what already existed."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": true,
+    "target": "MECH-440",
+    "n_prior_autopsy_files": 6,
+    "prior_autopsies": [
+      "failure_autopsy_700d-708-single-arena-ceiling_2026-06-29",
+      "failure_autopsy_V3-EXQ-708_2026-07-19",
+      "failure_autopsy_V3-EXQ-709_2026-07-03",
+      "failure_autopsy_V3-EXQ-710_2026-07-03",
+      "failure_autopsy_V3-EXQ-707b_2026-07-20",
+      "failure_autopsy_V3-EXQ-699_2026-07-20"
+    ],
+    "basis": "Six prior autopsy files circle MECH-440 with a different failure signature each time -- single-arena ceiling, then a pseudo-replicated DV, now an unmovable pre-commit distribution. Second-or-later autopsy with differing signatures is the granularity-debt shape.",
+    "routing": "claim-synthesis"
+  }
+}

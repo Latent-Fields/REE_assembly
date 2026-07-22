@@ -1,0 +1,102 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-22T03:48:30Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2_20260721T113848Z_v3",
+      "queue_id": "V3-EXQ-794",
+      "claim_ids": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "failed_criterion": "discrimination",
+      "self_route_label": "drift_source_insufficient_dv_still_tautological",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested (both) -- SD-076's lever clamped; MECH-204's correction had no drift to correct",
+        "biological_reference": "partial, divergence load-bearing: biological waking-confidence drift is bounded by a SOFT saturating nonlinearity, not a hard clip at the operating point",
+        "prerequisites": "missing -- C2 requires an operative drift level, which C1 never established",
+        "implementation": "partial -- DOMINANT LAYER (SD-076): rv_final pinned at exactly 0.010000 on all four inflation arms with a bit-identical DV at two doses",
+        "environment": "adequate",
+        "measurement": "adequate -- and it WORKED: the per-arm gate, criteria_non_degenerate and the LO/HI dose contrast are exactly what exposed the saturation",
+        "integration": "coupled but unstable -- the 2x2 cannot resolve because one factor never varies",
+        "scale": "unknown -- n=3 seeds, irrelevant while the arms are clamped"
+      },
+      "biological_reference": {
+        "closest_mechanism": "REM-dependent recalibration of precision/confidence; waking metacognitive overconfidence drift under fatigue and sleep deprivation",
+        "dependencies": [
+          "a precision variable with genuine dynamic range on both sides of its operating point",
+          "a drift process slow relative to the recalibration cycle"
+        ],
+        "is_formal_import": true,
+        "divergence": "running_variance as a precision proxy is a statistical import; V3-EXQ-774 already established the load-bearing consequence (the symmetric precision EMA makes running_variance track true prediction error BY CONSTRUCTION). Separately, a HARD clamp at the operating bound has no biological analogue -- confidence inflation is softly saturating -- and it destroys the dose-response the 2x2 design depends on.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_per_claim": {
+        "SD-076": "competence_implementation_gap",
+        "MECH-204": "competence_implementation_gap"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-076": "non_contributory",
+        "MECH-204": "unknown"
+      },
+      "recommended_evidence_direction_per_claim_note": "SD-076's recorded `does_not_support` is WITHDRAWN and revised to `non_contributory` -- rv_final landed on exactly 0.010000 on every inflation arm with overconfidence_score bit-identical to 15 significant figures at LO and HI, a saturation signature rather than a null, and the manifest's own per-arm gate marks all four inflation arms RED and their criteria criteria_non_degenerate:false. MECH-204's `unknown` STANDS and is correct: C2's d_broadcast_under_drift_at_operative.per_seed is EMPTY because C1 never established an operative drift level, so the correction had nothing to correct.",
+      "recommended_evidence_quality_note": "2026-07-22 (V3-EXQ-794, diagnostic, claim_ids=[MECH-204, SD-076]; failure_autopsy_V3-EXQ-794_2026-07-22). SD-076: the recorded `does_not_support` is WITHDRAWN and revised to `non_contributory` -- SD-076 was never validly tested. running_variance finished at EXACTLY 0.010000 on all four inflation arms and overconfidence_score was bit-identical to 15 significant figures (-1.004111904519277) at the LO and HI asymmetry levels, with calibration_ratio likewise identical (2.7564936387545953). Two nominally different doses producing the same value beyond float noise is a saturation signature, not a null: the variable was clamped before the dose could express itself. The manifest's own per-arm gate agrees -- all four inflation arms are RED on inflation_lowers_rv, their criteria are marked load_bearing:false / criteria_non_degenerate:false, and the degeneracy_reason states 'Read the red arm(s) as unscored, NOT as a refutation.' MECH-204: direction `unknown` STANDS. Phase 7 / Option B (use_rem_precision_broadcast) could not be evaluated -- C2 asks whether the broadcast corrects overconfidence UNDER DRIFT and d_broadcast_under_drift_at_operative.per_seed is EMPTY because C1 never established an operative drift level. Two positives must not be lost: C4 PASSED (ARM_OFF_OFF at -0.192 reproduces the V3-EXQ-774 ceiling, confirming the baseline regime is the one 774 diagnosed), and the 794 design's relocation of the Phase-7 write-site from E3-score space to precision space correctly escapes the V3-EXQ-604c DV-invariance class and should not be revisited. competence_implementation_gap, explicitly NOT substrate_ceiling. Both claims stay candidate; pending_retest_after_substrate set, blocked on sd_waking_confidence_inflation_headroom.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "sd_waking_confidence_inflation_headroom",
+        "title": "Give SD-076 use_waking_confidence_inflation usable dynamic range -- running_variance clamps at exactly 0.010000 on every inflation arm, pinning the DV bit-identically across dose levels",
+        "implementation_hint": "Determine whether the running_variance upper bound sits at or below the operating point (no headroom) or the inflation acts with the WRONG SIGN (the precondition is named inflation_lowers_rv; rv rose to the bound instead). Prefer a SATURATING NONLINEARITY over a hard clip -- biologically, waking confidence drift is softly bounded, and a hard clip at the operating point destroys the dose-response the 2x2 design requires. Verify by asserting a strict LO != HI separation in rv_final before the run is scored. Do NOT revisit the Phase-7 write-site relocation from E3-score space to precision space; that correction is right and escapes the V3-EXQ-604c DV-invariance class.",
+        "unblocks_claims": [
+          "SD-076",
+          "MECH-204"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2_20260721T113848Z_v3",
+          "experiment_type": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2",
+          "metric": "rv_final exactly 0.010000 on all 4 inflation arms (ARM_INFL_LO/HI, ARM_BOTH_LO/HI); overconfidence_score bit-identical at -1.004111904519277 for LO, HI and BOTH_HI; calibration_ratio identical at 2.7564936387545953; 0 of 3 seeds overconfident at either level against a min of 2",
+          "target": "strict LO != HI separation in rv_final with n_seeds_overconfident >= 2 at some asymmetry level, so C1 can establish an operative drift level for C2 to evaluate"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "sd_waking_confidence_inflation_headroom",
+        "note": "MECH-204 = 0 confirmed substrate_ceiling hits under R1-R3 across 5 autopsy targets; SD-076 = 0 (no prior targets). Does not fire for either. Note V3-EXQ-774 WAS a correct ceiling reading about the symmetric precision EMA; 794 is a different failure at a different site and is stamped competence_implementation_gap so it does not inflate either count."
+      },
+      "learning_extracted": [
+        "SD-076's use_waking_confidence_inflation has NO USABLE HEADROOM: rv_final = exactly 0.010000 on all four inflation arms and overconfidence_score is bit-identical at LO and HI to 15 significant figures. Two candidate causes, both implementation-side: (a) the clamp on running_variance sits at or below the operating point, or (b) the inflation has the wrong sign (the precondition is inflation_lowers_rv and rv rose to the bound).",
+        "A bit-identical DV across two nominally different doses is a SATURATION FINGERPRINT and should be a standing lint: two dose levels producing the same value beyond float noise cannot be a null. Cheap to detect automatically. Related to but distinct from the existing inert_arm_knob lint (ree-v3 c040d28), which catches a declared-distinct arm pair that RAN identically -- here the arms ran with different knobs and produced identical output.",
+        "The V3-EXQ-785 per-arm gate pattern earned its keep: because the red arms were gated out rather than allowed to vacate the green ones, ARM_OFF_OFF and ARM_BCAST_ONLY stayed scored and C4 could confirm the 774 ceiling reproduces at -0.192. Without it the whole run would have read precondition_unmet and that confirmation would have been lost.",
+        "The Phase-7 write-site correction (E3-score space -> precision space, escaping the V3-EXQ-604c DV-invariance class) was RIGHT and is untouched by this failure. Only the drift source needs repair.",
+        "Recording debt: none. per_arm_gate, criteria_non_degenerate, aggregates.arm_rv_final and the LO/HI contrast were all recorded and are what made this adjudicable without a re-run."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": true,
+    "target": "MECH-204",
+    "n_prior_autopsy_targets": 5,
+    "n_prior_autopsy_files": 4,
+    "prior_autopsies": [
+      "failure_autopsy_EXQ-541_MECH204_2026-05-17",
+      "failure_autopsy_V3-EXQ-596-602_MECH204_2026-05-29",
+      "failure_autopsy_V3-EXQ-606_2026-05-29",
+      "failure_autopsy_V3-EXQ-774_2026-07-17"
+    ],
+    "basis": "Five prior confirmed autopsy targets across four files with differing signatures -- inconclusive_timescale (541), then a substrate_ceiling on the symmetric precision EMA (774), now an implementation clamp on the paired drift source (794). Does NOT fire for SD-076 (first autopsy).",
+    "routing": "claim-synthesis"
+  }
+}
