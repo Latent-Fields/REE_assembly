@@ -60170,6 +60170,27 @@
     arbitrator existed in the substrate. The flat-response shape is this claim's MOTIVATION,
     not evidence for it. Recorded that way deliberately: reframing a null as a support for
     the mechanism whose absence explains it would be evidence-laundering.
+  implementation_note: >
+    SUBSTRATE LANDED 2026-07-22: SD-081 (e3.dualsystem_uncertainty_arbitration) in ree-v3,
+    session hopeful-panini-cf272d. Default OFF and bit-identical when OFF, per the
+    V3-primacy version-layering doctrine. E3Selector.last_arbitration exposes the paired
+    (uncertainty, weight) series this claim's MANDATORY manipulation check consumes.
+    v3_pending is DELIBERATELY LEFT TRUE: the substrate exists but the two-arm falsifier
+    has not been queued or run, so nothing has yet tested this claim.
+    READ SD-081's evidence_quality_note BEFORE DESIGNING THAT FALSIFIER. Building the
+    arbitrator surfaced, by measurement, that V3-EXQ-786a's recruitment DV was degenerate
+    -- its first-step vector was CONSTANT across all 32 candidates (index 0 of the z_world
+    sequence is the current state, shared by every candidate), and its _spearman
+    degeneracy guard could not fire because it tests the std of the RANKS, which for a
+    constant vector is a permutation of 0..K-1. The DV measured tie-break noise: simulated
+    mean 1.0173 sd 0.1871 against the manifest's reported 1.01725 with per-layout sds
+    0.149-0.207.
+    THIS BEARS DIRECTLY ON THIS CLAIM'S PREMISE. "Two pathways WITHOUT an arbitrator
+    produce a FLAT recruitment response" is not established by 786a on that reading,
+    because a DV measuring tie-break noise returns a flat between-condition delta BY
+    CONSTRUCTION whether or not an arbitrator exists. The OFF arm therefore CANNOT be
+    786a as-run; both arms need a fresh run with a non-degenerate habit read.
+    Re-adjudicating 786a is /failure-autopsy and /governance work -- recorded, not applied.
   notes: >
     Registered 2026-07-22 by /claim-synthesis on MECH-163 (proposal
     evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).
@@ -60314,3 +60335,102 @@
     was originally written down.
     PROMOTES NOTHING; blocks no V3 closure node. Removing it from MECH-163 REMOVES a V3
     completion obligation that was never satisfiable in V3.
+
+- id: SD-081
+  title: "e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT pathway (myopic, depth-limited read of the E3 scorer) and the PLANNED pathway (full-horizon read of the same scorer), driven by the two pathways' relative predictive uncertainty and applied to the E3 selection score upstream of every downstream consumer. Built to make MECH-477 falsifiable: the pre-SD-081 substrate scored candidates with an unconditional full-horizon J(zeta), so no weight existed anywhere between the myopic and the deep read and nothing COULD respond to context novelty."
+  claim_type: design_decision
+  subject: e3.dualsystem_uncertainty_arbitration
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-22"
+  depends_on: [ARC-007, ARC-016, SD-005, MECH-112]
+  evidence: []
+  location: docs/architecture/sd_081_dualsystem_uncertainty_arbitration.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-22 in ree-v3 (session hopeful-panini-cf272d), routed by the
+    confirmed failure_autopsy_V3-EXQ-786a_2026-07-22 (priority_suggested 2,
+    unblocks_claims [MECH-163, MECH-477]).
+    Config on E3Config: use_dualsystem_arbitration (default False -> the block is skipped
+    entirely; no second scoring pass, no familiarity query, last_arbitration stays None),
+    dualsystem_arbitration_gain 4.0, dualsystem_arbitration_bias 0.0,
+    dualsystem_uncertainty_ema_alpha 0.05, dualsystem_habit_depth 2.
+    u_habit = 1 - familiarity(z_world) (fallback: E1 novelty EMA when curiosity is
+    disabled and hippocampal.familiarity_tracker is None; the source is recorded, so an
+    ON arm that silently fell back is visible as a readiness failure). u_planned =
+    E3._running_variance. Each is normalised against its OWN EMA baseline as u/(u+ema),
+    which is what makes the weight scale-free -- familiarity is a clamped kernel density
+    set by familiarity_bandwidth and _running_variance is an unbounded PE-MSE, so a ratio
+    over the raw values would read the instrument rather than the pathways (the same
+    defect V3-EXQ-786a fixed when it replaced a raw mean-difference manipulation check
+    with an AUC). w = sigmoid(gain*(u_habit_n - u_planned_n) + bias) weights the PLANNED
+    pathway; the two score vectors are z-scored before blending and the result rescaled
+    to the planned vector's own mean/std, so w is an ALLOCATION rather than a GAIN (the
+    two reads sum over different numbers of steps) and w=1 returns the planned vector
+    exactly.
+    NO LEARNED PARAMETERS -- no phased training required, and deliberately not a learned
+    gate, which would confound "the arbitrator works" with "the gate trained". Daw's
+    arbitration is normative Bayesian. MECH-094 N/A (nothing written to memory).
+    E3Selector.last_arbitration exposes the paired (uncertainty, weight) series per E3
+    tick, which is what MECH-477's MANDATORY manipulation check consumes.
+    Contracts: ree-v3/tests/contracts/test_sd081_dualsystem_arbitration.py.
+    NO VALIDATION EXPERIMENT QUEUED -- the MECH-477 two-arm OFF-vs-ON falsifier goes
+    through /queue-experiment separately, and see the note below on why its OFF arm
+    cannot simply be V3-EXQ-786a as-run.
+  evidence_quality_note: >
+    TWO CONFIG-LEVEL HAZARDS, both pinned by contract because both were hit during the
+    build rather than anticipated.
+    (1) The params live on E3Config, NOT REEConfig. E3Selector.config IS the E3Config, so
+    a REEConfig-level field reads as a missing attribute in the selector and defaults to
+    False -- the silently-unreachable-flag hazard one level below the documented
+    from_dims one. Observed as: arbitrator wired, kwargs arriving, 45 select() calls,
+    zero arbitrations, no error.
+    (2) dualsystem_habit_depth is 2 and FLOORED at 2. Index 0 of the z_world sequence is
+    the CURRENT state, shared by every candidate (they all start where the agent is), so
+    a depth-1 score vector has cross-candidate range EXACTLY 0.0 and carries no ranking.
+    DEGENERATE DV IN V3-EXQ-786a -- MEASURED, NOT INFERRED, AND NOT ADJUDICATED HERE.
+    786a's recruitment DV was 1 - spearman(full_horizon, first_step) with the first-step
+    read taken as evaluate_trajectory(world_seq[:, :1, :]) -- i.e. exactly the degenerate
+    depth above. Re-run under 786a's own config (build_config + ArmSpec
+    mech163_recruitment) on 786a's own _depth_scores, the first-step vector is CONSTANT:
+    n_unique = 1 across all 32 candidates, range exactly 0, on every scored tick. 786a's
+    _spearman guards this with `if np.std(rb) == 0.0: return None`, but the guard CANNOT
+    FIRE -- it tests the std of the RANKS, and double-argsort of a constant vector
+    returns a permutation of 0..K-1 (std 9.23 at K=32), not a constant. The Spearman was
+    therefore computed between the true full-horizon ranking and an arbitrary stable-sort
+    tie-break ordering: noise centred on zero, giving recruitment ~ 1.0. Simulating that
+    directly over 200 draws gives mean 1.0173 sd 0.1871; the manifest's seed-0 familiar
+    condition reports recruitment_rate 1.01725 with per-layout recruitment_sd 0.149 /
+    0.207 / 0.165 / 0.190. The match is to five significant figures on the mean.
+    786a's candidate_score_range_non_degenerate readiness check gated only the
+    FULL-HORIZON vector's range, which is why the run passed readiness with the
+    first-step vector degenerate.
+    CONSEQUENCE FOR SD-081's FALSIFIER: the OFF arm cannot be 786a as-run. Both arms need
+    a fresh run with a non-degenerate habit read.
+    CONSEQUENCE FOR MECH-163 / MECH-477: NOT SETTLED HERE. Whether MECH-163's `weakens`
+    should stand, and whether 786a should be re-adjudicated non_contributory on a
+    measurement defect (as V3-EXQ-786 was), is /failure-autopsy and /governance work.
+    Recorded, applied nowhere. Note in particular that MECH-477's premise -- "two
+    pathways WITHOUT an arbitrator produce a FLAT recruitment response" -- is not
+    established by 786a on this reading, because a DV measuring tie-break noise returns a
+    flat between-condition delta BY CONSTRUCTION whether or not an arbitrator exists.
+  notes: >
+    DISTINCT FROM ARC-071, which remains unbuilt and is NOT a prerequisite for this SD.
+    ARC-071 is the TRANSFER mechanism (planned -> habitual chunking; slow,
+    repetition-driven, moves content between the pathways). SD-081 implements the
+    ALLOCATION mechanism (which pathway holds control right now; fast,
+    uncertainty-driven). Allocating between two existing pathways does not require
+    content to have been pumped between them. MECH-163 presupposes both and specifies
+    neither.
+    NOT GATED BY ARC-007 STRICT either: the arbitrator re-weights the SCORING of
+    value-flat hippocampal proposals, it does not seed them.
+    Biological grounding (lit already on file, no commission owed): Daw, Niv & Dayan
+    2005, Nature Neuroscience 8(12):1704-1711, conf 0.79, in
+    evidence/literature/targeted_review_connectome_mech_163/2026-04-05_mech163_uncertainty_competition_daw2005
+    -- Bayesian arbitration weighting the two controllers by relative uncertainty,
+    presented as a DISTINCT COMPUTATIONAL ELEMENT.
