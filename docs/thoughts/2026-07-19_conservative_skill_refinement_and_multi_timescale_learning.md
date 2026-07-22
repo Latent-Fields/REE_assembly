@@ -1,5 +1,16 @@
 # Conservative Skill Refinement and Multi-Timescale Learning in REE
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- MECH-471 (competence updates need the bounded/provenanced/rollback discipline consolidation already has), MECH-472 (held-out context distinguishes acquisition from memorisation), MECH-473 (rejected-adaptation memory -- v4, DO NOT build in V3), MECH-474 (learning-regime meta-selection, narrow form), INV-093 (skill optimisation must not trade harm sensitivity for competence)
+- `evidence/planning/manual_proposals.v1.json` -- EXP-0399 (local-update interference test), EXP-0400 (held-out-context acquisition vs memorisation), EXP-0401 (learning-regime meta-selection, narrow)
+
+REE COGNITIVE ARCHITECTURE half of the SkillOpt source. The Assembly half is `2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md`; the split is deliberate and is preserved in the registry (see GOV-ANALOGY-1). INV-093 is registered as a SIBLING of INV-092 (2026-07-12 distractor thought).
+
+---
+
 **Date:** 2026-07-19  
 **Status:** thought_intake / literature_seed  
 **Source:** Microsoft SkillOpt — Executive Strategy for Self-Evolving Agent Skills  

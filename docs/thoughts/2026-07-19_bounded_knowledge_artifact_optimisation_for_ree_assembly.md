@@ -1,5 +1,15 @@
 # Bounded Knowledge Artefact Optimisation for REE Assembly
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-19_bounded_knowledge_artifact_optimisation_assembly.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- GOV-HELDOUT-1 (held-out validation for Assembly workflow and rule changes), GOV-STRAT-1 (artefact-layer authority stratification), GOV-REJECT-1 (rejected-edit memory with reconsideration conditions), GOV-META-1 (meta-optimisation subordinate to provenance, honesty and human authority; carries the kill criteria)
+
+REE ASSEMBLY half of the SkillOpt source, registered as `claim_type: governance_rule` per the INV-077 / GOV-PROC-1 / GOV-CEIL-1 / SD-062 precedent -- NO MECH-* minted. The REE-cognition half is `2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md`; keep separate (GOV-ANALOGY-1). Intake candidate 4 (skill-registry metadata) deliberately NOT registered -- routed straight to implementation. Self-reference hazard recorded in the intake: the proposed pilot target is the intake workflow itself, so that intake is not held-out evidence about intake quality.
+
+---
+
 **Date:** 2026-07-19  
 **Status:** thought_intake / assembly_design_seed  
 **Source:** Microsoft SkillOpt — Executive Strategy for Self-Evolving Agent Skills  

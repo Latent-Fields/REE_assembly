@@ -1,12 +1,12 @@
 # Thought Sweep Report
 
-Generated: `2026-07-21T17:54:07.914860Z`
+Generated: `2026-07-22T00:56:15.561859Z`
 
 | metric | count |
 |---|---|
 | total thought files | 166 |
-| processed | 153 |
-| unprocessed | 13 |
+| processed | 159 |
+| unprocessed | 7 |
 | processed missing `Processed in` links | 2 |
 
 ## Unprocessed Queue
@@ -18,12 +18,6 @@ Generated: `2026-07-21T17:54:07.914860Z`
 - `2026-06-23` `2026-06-23_language_as_cooperation_interface.md` (status=`unprocessed`)
 - `2026-06-23` `2026-06-23_language_as_cooperation_interface_to_nonverbal_cognition.md` (status=`unprocessed`)
 - `2026-06-24` `2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md` (status=`unprocessed`)
-- `2026-07-12` `2026-07-12_goal_relevance_salience_and_distractor_suppression.md` (status=`unprocessed`)
-- `2026-07-12` `2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md` (status=`unprocessed`)
-- `2026-07-14` `2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md` (status=`unprocessed`)
-- `2026-07-19` `2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md` (status=`unprocessed`)
-- `2026-07-19` `2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md` (status=`unprocessed`)
-- `2026-07-19` `2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
@@ -183,5 +177,11 @@ Generated: `2026-07-21T17:54:07.914860Z`
 - `2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md` (1 link(s) in `Processed in`)
 - `2026-06-25_continuity_branching_and_substrate_migration.md` (0 link(s) in `Processed in`)
 - `2026-07-09_residue_as_care_marker_and_mood_regulation.md` (0 link(s) in `Processed in`)
+- `2026-07-12_goal_relevance_salience_and_distractor_suppression.md` (3 link(s) in `Processed in`)
+- `2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md` (2 link(s) in `Processed in`)
+- `2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md` (2 link(s) in `Processed in`)
+- `2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md` (2 link(s) in `Processed in`)
+- `2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md` (3 link(s) in `Processed in`)
+- `2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md` (2 link(s) in `Processed in`)
 - `DEV-ROADMAP-SELF-FIRST-SOCIAL-LATER.md` (3 link(s) in `Processed in`)
 - `FAILURE-2026-02-12_COORDINATE-SYSTEM-FOR-COGNITIVE-PATHOLOGY.md` (1 link(s) in `Processed in`)

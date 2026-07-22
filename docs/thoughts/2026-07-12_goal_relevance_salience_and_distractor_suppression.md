@@ -1,5 +1,16 @@
 # Goal Relevance, Salience, and Distractor Suppression in REE
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- MECH-467 (three dissociable distractor-failure modes; REE's evidence covers rule corruption only), INV-092 (suppression must stay selectively permeable to harm / other-agent signals), Q-082 (pre-selection suppression substrate -- gated open question, do not build)
+- `evidence/planning/manual_proposals.v1.json` -- EXP-0398 (three-leg distractor battery; during-commitment arm excluded)
+
+INV-092 is registered as a SIBLING of INV-093 (2026-07-19 conservative-skill-refinement thought): the same ethical principle on two different control surfaces. Both cross-listed with the ethics perimeter.
+
+---
+
 **Date:** 2026-07-12  
 **Status:** thought_intake / literature_seed / future_benchmark_seed  
 **Source prompt:** recent report on brainstem neurons controlling attention through suppression of competing distractors  

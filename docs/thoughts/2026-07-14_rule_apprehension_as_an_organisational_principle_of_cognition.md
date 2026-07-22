@@ -1,5 +1,15 @@
 # Thought Intake: Rule Apprehension as an Organisational Principle of Cognition
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-14_rule_apprehension_organisational_principle.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- ARC-113 (rule pipeline as an ordered cycle of non-collapsible stages), Q-083 (domain-general vs domain-specific apprehension -- substrate_conditional v4), ARC-114 (language as interface, not substrate -- substrate_conditional v4), GOV-ANALOGY-1 (REE:Assembly analogies must be labelled as analogies)
+
+No experiment proposal minted. ARC-113's stage-ablation is GATED on the ARC-062 GAP-B monostrategy-collapse ceiling and must not be queued until GAP-B yields differentiated rule state; the routing's first move is a rule-pipeline implementation AUDIT. Q-083 and ARC-114 are substrate-blocked (one domain; no language stream) -- registered scoped, not designed.
+
+---
+
 **Status:** Thought Intake
 
 **Prompting literature**

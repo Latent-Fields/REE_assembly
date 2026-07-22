@@ -1,5 +1,15 @@
 # Organisational Principles of Cognition Across Heterogeneous Timescales
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-12_organisational_principles_heterogeneous_timescales.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- Q-081 (configured multi-rate execution does not entail shared cross-stream organisation), MECH-466 (event-relative coordination exceeds clock-relative), INV-091 (integration and protected non-equivalence jointly necessary; viable similarity band), ARC-112 (REE as federation/heterarchy -- parent node for the other three)
+
+No experiment proposal minted: the routing's first move is a retrospective TELEMETRY AUDIT (raw thought open question 6), not a probe. MECH-466 becomes queueable only after that audit confirms the signals exist.
+
+---
+
 **Date:** 2026-07-12  
 **Status:** thought_intake / literature_search_seed / possible_experiment_family_seed  
 **Source prompt:** *Shared spatial and temporal principles govern connectome dynamics across timescales*, Proceedings of the National Academy of Sciences, DOI: `10.1073/pnas.2535464123`  

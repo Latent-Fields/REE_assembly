@@ -1,5 +1,15 @@
 # Thought Intake: Multiple Relational Graph Organisations in Hippocampal Cognition
 
+Status: processed
+
+Processed in:
+- `evidence/planning/thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md` (structured intake, already-owned split, routing)
+- `docs/claims/claims.yaml` -- MECH-468 (anchor topology carries functional information absent from local payloads), MECH-469 (relation types not collapsible to one adjacency), MECH-470 (topological position improves ghost-goal reactivation ranking), Q-084 (higher-order metapath/hyperedge structure -- gated, do not build)
+
+No experiment proposal minted: the routing's first move is an EDGE-TYPE INVENTORY spike against logged telemetry (open questions 1-3), not a probe. The organisational/representational separation travels with all four claims -- this does NOT justify replacing the hippocampal representation with a GNN. Candidate 5 (biological multiple-relational-organisation question) deliberately NOT registered: out-of-domain, routed to /lit-pull.
+
+---
+
 **Status:** Thought Intake / Literature Search Seed / Possible Experimental Design Seed
 
 **Prompting source**
