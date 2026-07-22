@@ -2123,6 +2123,38 @@
     quality (e2_world_r2=0.766, residue populated). Classified non-contributory (2026-04-06
     governance): zero advantage is diagnostic of missing SD-004 substrate (action-object
     hippocampal map backbone), not refutation of ARC-018. Verdict deferred pending SD-004.
+    EXQ-196 MECHANISM IDENTIFIED (2026-07-22, session keen-varahamihira-791a46, substrate
+    defect confirmed by independent reproduction; ree-v3 CLAUDE.md "Action-object round trip
+    is NOT an action source"). The 2026-04-06 governance read -- "zero advantage is diagnostic
+    of missing substrate, not refutation" -- is CONFIRMED and now has an exact mechanism, so
+    the deferral was correct but its stated blocker (SD-004) was not the operative one.
+    EXQ-196 selects with argmax(e3.select(...).selected_action). selected_action is the chosen
+    candidate's actions[:, 0, :], i.e. action_object_decoder output. Measured on a trained
+    agent (CausalGridWorldV2 size=6, 40 warmup episodes, seed 42, e2 regime comparable to the
+    run) under the config defaults in force on 2026-04-04: 68 of 68 ticks (100%) the ENTIRE
+    32-candidate set offered exactly ONE first-action class. E3's choice therefore could not
+    reach the executed action, both arms executed identical action streams, and
+    harm_advantage_mean = EXACTLY 0.0 on all three seeds is arithmetic, not measurement --
+    which is why it was exactly zero rather than merely small, at e2_world_r2 0.766.
+    THE BLOCKER HAS SINCE BEEN REMOVED, incidentally rather than deliberately: SP-CEM became
+    the main-path default on 2026-05-17 (ree-v3 cb1c6da, ARC-065), six weeks AFTER the run.
+    Same measurement under the current default: mean 2.29 distinct first-action classes,
+    min 2, 0% single-class ticks. So LEG B ("explicit rollouts") was UNTESTABLE in April by
+    construction, and is testable now. This does not change ARC-018's status or confidence and
+    does not make EXQ-196 count as evidence in either direction -- it remains non_contributory
+    on a firmer basis. Re-adjudication of the deferral is GOVERNANCE work, not applied here.
+    Note EXQ-172 (FAIL, e2_world_r2 0.203) is a DIFFERENT confound and is not addressed by
+    this finding. Its own note already reads it as E2-quality-gated.
+    RELATED, DISTINCT DEFECT affecting other ARC-018 evidence: recovering a candidate's action
+    by re-decoding its action-object -- argmax(action_object_decoder(traj
+    .get_action_object_sequence()[:, 0, :])) -- is a constant function, because E2's step-0
+    action-object embedding is near action-invariant (5 distinct CONSTRUCTED first actions all
+    re-decode to 1 class, untrained and after 40 warmup episodes alike). EXQ-196 does NOT use
+    that path, but EXQ-120 (PASS, leg A, 2026-03-28) DOES, as do EXQ-114, EXQ-266 and
+    EXQ-266a; flagged by the new validate_experiments action_object_selection lint (6 fires /
+    1113 scripts). Whether EXQ-120's PASS survives is UNASSESSED here and needs its own triage
+    -- a collapsed action stream can still yield a real terrain-quality read, so this is a
+    reason to check, not a reason to discount.
   depends_on:
     - ARC-007
     - ARC-003
@@ -50311,6 +50343,127 @@
     n_slots=64 with 669b's own thresholds. This is the SD-066 fix applied to a second
     consumer of the same broken z_world geometry; the encoder-level repair remains the
     open SD-008 / SD-070 problem.
+  substrate_note_2026_07_22: >
+    The "assume this recurs" instruction in this claim's Architecture Context was acted
+    on 2026-07-22 (session sad-newton-00451d): ree_core was swept for every absolute
+    cosine / absolute-threshold gate on z_world or a z_world-derived key, each hit
+    measured rather than inspected. TWO further genuine consumers were found and fixed,
+    SD-078 (ARC-063 CandidateRuleField context key) and SD-079 (SD-039 Anchor.goal_match
+    on z_goal). The sweep is complete and should not be redone. It also corrected the
+    generalisation twice: the hazard is not confined to z_world but extends to anything
+    INTEGRATED from it (z_goal carries the offset more strongly than its source), and
+    "rank-based readouts are exempt" is too coarse -- a near-constant weighted additive
+    term inside a ranking formula carries no ordering information even though the
+    enclosing readout is nominally a ranking.
+
+- id: SD-078
+  title: "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
+  claim_type: design_decision
+  subject: policy.common_mode_invariant_candidate_rule_field_context_key
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-22"
+  depends_on: [SD-008, SD-066, SD-077, ARC-063]
+  location: docs/architecture/sd_078_centered_candidate_rule_field_context_key.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-22 (ree-v3 ree_core/policy/candidate_rule_field.py
+    CandidateRuleField). Config CandidateRuleFieldConfig.cue_centering (default False =
+    bit-identical OFF; no baseline tensor is allocated) and cue_baseline_alpha (default
+    0.02, matching SD-066 / SD-077 -- z_world is a per-tick encoding, not an integrator).
+    REEConfig knobs crf_cue_centering / crf_cue_baseline_alpha plumbed through all three
+    from_dims sites and read in agent.py's CRF config build. Data flow: z_world context
+    -> observe() EMA baseline (advanced in step(), waking only) -> centered residual ->
+    mint-block cosine + _context_bucket sign pattern + gate_and_select cosine. The
+    recurrence BUCKET is centered too, deliberately: it is a sign pattern, i.e. an
+    absolute threshold at zero, and is common-mode dominated in the same way (1 bucket
+    raw vs 20 centered). context_tags are stored RAW and centered at comparison time;
+    the baseline PERSISTS across reset() because it is cue geometry, not rule content.
+    MECH-094: simulation_mode ticks never advance the baseline. No trainable parameters,
+    so phased training does not apply. Contracts:
+    ree-v3/tests/contracts/test_sd_078_centered_candidate_rule_field_context_key.py
+    (C0 fixture geometry guard, C1 default-off bit-identity + reproduced 654b signature,
+    C2 centering separates, C3 no mint-block threshold in [0.5, 0.94] substitutes,
+    C4 lazy seed + MECH-094, C5 raw-tag self-match under drift, C6 bucket is centered).
+  functional_restatement: >
+    Measured 2026-07-22 by driving the real CandidateRuleField over the real V3-EXQ-669b
+    Stage-0 nursery context stream (160 contexts, seed 101, alpha_world=0.9): raw
+    world_obs pairwise cosine min 0.3000 (60.2 percent of pairs below 0.8), but z_world
+    min 0.9767 and e2.world_forward(z_world, a) min 0.9426, both with ZERO pairs below
+    0.8. Resulting decision statistics: raw z_world gives n_minted 1, max live rules 1,
+    max_pairwise_rule_dist 0.0000 and ONE distinct context bucket; centered gives 9 rules,
+    dist 1.7011 and 20 buckets. The pool is structurally capped at one rule because every
+    pairwise context cosine exceeds any threshold the config can express, so
+    crf_max_pairwise_rule_dist == 0.0 in every V3-EXQ-654b/654d ARM_ON cell is a
+    TAUTOLOGY (the metric needs two concurrent rules) rather than the retire-churn symptom
+    those autopsies read it as. Large cumulative n_minted in those runs is consistent with
+    this: rules retire, and a lone re-mint then succeeds against an empty pool. Both
+    existing mitigations are measured ineffective and are deliberately left in place
+    unchanged: mature_mint_block_threshold raised to 0.8 cannot clear a 0.9426 floor
+    (pinned across [0.5, 0.94] as contract C3), and crf_context_from_e2_world_forward,
+    documented as "the structural relief" for low raw-z_world spread, routes to a
+    different point inside the same cone and still yields 1 rule at dist 0.0000. This is
+    the SD-066 fix applied to a third consumer; the encoder-level repair remains the open
+    SD-008 / SD-070 problem.
+
+- id: SD-079
+  title: "Common-mode-invariant (centered) z_goal cue for goal-anchor match: SD-039's Anchor.goal_match is a raw cosine over z_goal, which as an EMA attractor pulled toward z_world inherits the SD-008 common-mode offset more strongly than its source, so goal_match spans ~0.01 across an anchor pool, the MECH-292 goal_match_floor excludes nothing and the MECH-339 outshining gate is identically zero. Subtract a slow EMA common-mode baseline before the match. ree_core hippocampal change, bit-identical by default."
+  claim_type: design_decision
+  subject: hippocampal.common_mode_invariant_goal_anchor_match
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-22"
+  depends_on: [SD-008, SD-039, SD-066, SD-077, MECH-292]
+  location: docs/architecture/sd_079_centered_goal_anchor_match.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-22 (ree-v3 ree_core/hippocampal/anchor_set.py +
+    ree_core/hippocampal/ghost_goal_bank.py). Config AnchorSetConfig.goal_cue_centering
+    (default False = bit-identical OFF) and goal_cue_baseline_alpha (default 0.05, NOT
+    SD-066's 0.02 -- see functional_restatement). Plumbed via
+    REEConfig.from_dims(goal_cue_centering=, goal_cue_baseline_alpha=) to the nested
+    AnchorSetConfig. The baseline lives on AnchorSet (the pool owner) and GhostGoalBank
+    reads it through its existing anchor_set reference, so both consumers share one
+    baseline. Anchor.goal_match gains an optional baseline argument defaulting to None,
+    which is the identity, so the pre-SD-079 call form is bit-identical. Snapshots are
+    stored RAW and centered at comparison time. BOTH the write path (write_anchor with a
+    goal_payload) and the read paths (query_by_goal_match, GhostGoalBank.rank) advance the
+    baseline -- this is load-bearing, not cosmetic: advancing on reads alone lets the
+    baseline be lazily seeded from the QUERY itself, which centers every snapshot against
+    the query and drives every match to 0.0 (measured; contract C6). MECH-094: simulation
+    cues never advance it, and on the write path this holds by construction because a
+    goal_payload is only attached on a non-simulation write. No trainable parameters.
+    Contracts: ree-v3/tests/contracts/test_sd_079_centered_goal_anchor_match.py (C0-C7).
+  functional_restatement: >
+    Measured 2026-07-22 on the V3-EXQ-669b Stage-0 nursery, seed 101: z_goal pairwise
+    cosine min 0.9878 / mean 0.9969 with ||mean(z_goal)|| / mean||z_goal|| = 0.9987 --
+    tighter than z_world's own 0.9767 / 0.9964, because z_goal integrates it. Scoring a
+    real 24-anchor pool: goal_match spread 0.0111 raw vs 0.9709 centered. Two distinct
+    failures follow. First, the ranking term goal_match_weight * goal_match varies by
+    0.011 across the pool, so MECH-292's motivational-relevance channel contributes
+    essentially no ordering information while appearing to be a four-term composite --
+    which is why "rank-based readouts are exempt from this hazard" is too coarse a rule.
+    Second and more serious, both ABSOLUTE gates downstream are unconditionally dead: the
+    goal_match_floor rumination guard excluded 0 of 24 anchors, and MECH-339's outshining
+    gate clip((outshine_pivot - goal_match) / outshine_pivot) with pivot 0.5 evaluated to
+    EXACTLY 0.0 for every anchor, so MECH-339's composite cue contributes an identically
+    zero context term the moment it is enabled and the constraint would read as falsified
+    by a mechanism that never ran. Centered: 9 of 24 excluded by the floor, gate nonzero
+    on 9 of 24. The alpha default of 0.05 is measured, not inherited: z_goal drifts, so a
+    baseline tuned for a stationary cue lags it -- over seeds 101/202/303 the goal_match
+    spread is 0.0942 / 0.1508 / 0.3319 at alpha 0.02 versus 0.9995+ at 0.05, while 0.2 and
+    0.5 over-track and drive 14 and 18 of 20 anchors below the floor. Fourth instance of
+    the SD-066 pattern and the first on a DERIVED latent rather than z_world itself.
 
 - id: SD-075
   title: "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default."
