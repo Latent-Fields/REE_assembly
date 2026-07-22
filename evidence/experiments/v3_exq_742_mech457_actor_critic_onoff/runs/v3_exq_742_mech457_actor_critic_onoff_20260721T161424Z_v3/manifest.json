@@ -23,7 +23,7 @@
     "MECH-457"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {
     "MECH-457": "weakens"
   },
@@ -599,5 +599,7 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "95ade0473bfc3927551092662bce8c320391080c8a59db51221bf10ef3a70bc8"
+  "substrate_hash": "95ade0473bfc3927551092662bce8c320391080c8a59db51221bf10ef3a70bc8",
+  "evidence_direction_note": "SUPERSEDED 2026-07-22 (session gracious-austin-6eb2ae). This run's zworld_encoder_guard was RED: the world encoder was a frozen random projection, so the ree_trained_allon / actor-critic arms are uninterpretable as evidence about z_world. CAUSE: the run STRADDLED the SD-070 adoption commit ree-v3 b523b9c (landed 2026-07-20T19:04Z). The manifest timestamp is the manifest-WRITE time, not the start time; elapsed_seconds puts the actual start BEFORE the landing, corroborated by substrate_stability_detail.process_snapshot_drift resolved_at_utc and by the total absence of a zworld_p0_episodes key (post-fix code always emits it). This is NOT a per-copy gap in the adoption -- post-fix runs V3-EXQ-742m-b, V3-EXQ-728b and V3-EXQ-737b all carry zworld_p0_episodes=60 with a GREEN guard. Excluded from scoring so it cannot weight MECH-457 / INV-088 / Q-002 confidence. Flagged for governance rather than adjudicated here.",
+  "superseded_by_substrate": "sd_zworld_warmup_optimizer_group@2026-07-20"
 }

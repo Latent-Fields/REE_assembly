@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "stoic-blackwell-756d3a",
-  "last_updated_utc": "2026-07-21T18:14:32Z",
+  "last_seen_session": "gracious-austin-6eb2ae",
+  "last_updated_utc": "2026-07-22T13:57:33Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -5951,8 +5951,8 @@
       "sd_id": "sd_zworld_warmup_optimizer_group",
       "title": "Adopt the SD-070 world-encoder training path in the x734/737 driver family: the P0/P1 warmup currently has no optimizer group covering latent_stack, so z_world is a frozen random projection",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
-      "ready": false,
+      "status": "validated",
+      "ready": true,
       "design_doc": "docs/architecture/sd_070_zworld_p0_anticollapse_recipe.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -5973,12 +5973,28 @@
           "metric": "SECOND INDEPENDENT STRIKE, different driver, guard ADOPTED and FIRING: zworld_world_encoder_trained met=false -- 0 of 4 world_encoder tensors and 0 of 61 latent_stack tensors changed at p0_episodes=200, 3 of 3 seeds failed, guard_checked=true. Env readiness was otherwise clean (greedy oracle 6.333 vs a 1.0 floor), so this is the encoder defect in isolation, not a sparse-env confound.",
           "target": "same as the 737 record: world-path weight-delta > 0 with PR retention ~0.658 and P0/P1 phase separation preserved (SD-070 per V3-EXQ-783)",
           "note": "Corroborates the V3-EXQ-737 finding on v3_exq_728_trained_allon_capability_point.py, which defines its OWN _train_all_on_agent copy (:481) -- so the defect is per-copy, not confined to the shared _lib path. ADJUDICATED 2026-07-20 by failure_autopsy_V3-EXQ-728_2026-07-20.json (confirmed): self-route substrate_not_ready_requeue UPHELD, epistemic_category competence_implementation_gap, routing implement-substrate then a 728a same-question re-run. The autopsy additionally establishes by code archaeology that the defect invalidates the 2026-07-09 728 capability point retrospectively and that ree_ai_design_critique_plan.md WS-3 DONE is stale. It was invisible to pending_review.md -- see the dict-shaped-`result` detector defect recorded in WORKSPACE_STATE 2026-07-20."
+        },
+        {
+          "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260721T084355Z_v3",
+          "experiment_type": "v3_exq_734_env_difficulty_competence_recovery_sweep",
+          "metric": "zworld guard RED on all 4 difficulty rungs x 4 seeds: 0 of 61 latent_stack and 0 of 4 world_encoder tensors changed, world_encoder_max_abs_delta 0.0 at p0_episodes=200.",
+          "target": "world-path weight-delta > 0 on every rung x seed, with the guard SHORT-CIRCUITING the arm rather than evaluating it anyway",
+          "correction_note": "NOT a post-adoption per-copy strike. The autopsy's recommended record asserted 'Run started 2026-07-21T08:43:55Z ... after adoption commit b523b9c'; that timestamp is the MANIFEST-WRITE time, not the start time. elapsed_seconds=60576 (16.83h) puts the actual start at ~2026-07-20T15:54Z, which matches the run's own substrate_stability_detail.process_snapshot_drift[0].resolved_at_utc (2026-07-20T15:54:18Z) and the recorded claim time -- i.e. ~3h BEFORE b523b9c landed at 2026-07-20T19:04Z. Corroborated independently: the manifest carries no zworld_p0_episodes key at all, and post-fix code always emits it (V3-EXQ-742m-b at 07-21T07:16Z and V3-EXQ-728b at 07-21T11:38Z, both on ree-cloud-4/2, both carry zworld_p0_episodes=60 and a GREEN guard). Experiments run as a fresh subprocess, so this is not stale imports and not a stale checkout: the run simply straddled the landing. implementation_caveats[0] predicted exactly this. Corrected 2026-07-22 by session gracious-austin-6eb2ae.",
+          "recorded_utc": "2026-07-22T13:57:33Z"
+        },
+        {
+          "run_id": "v3_exq_742_mech457_actor_critic_onoff_20260721T161424Z_v3",
+          "experiment_type": "v3_exq_742_mech457_actor_critic_onoff",
+          "metric": "encoder_moved_in_p0 false on all four actor-critic arms (max_world_encoder_abs_delta_p0 0.0, 6 cells each); only the cotrain arms moved the encoder during the actor-critic phase (max_abs_delta_ac 0.166).",
+          "target": "world-path weight-delta > 0 in P0 on every arm, so the frozen-vs-cotrain contrast is between two TRAINED-encoder conditions rather than random-projection vs trained",
+          "correction_note": "NOT a post-adoption per-copy strike, same correction as the 734 record above. elapsed_seconds=124722 (34.65h) against a 2026-07-21T16:14:24Z manifest-write puts the actual start at ~2026-07-20T05:35Z -- 13h BEFORE b523b9c. Manifest carries no zworld_p0_episodes key. Corrected 2026-07-22 by session gracious-austin-6eb2ae.",
+          "recorded_utc": "2026-07-22T13:57:33Z"
         }
       ],
       "implementation_hint": "The P0/P1 warmup in the _train_all_on_agent driver family trains no part of latent_stack: V3-EXQ-737a's guard measured 0 of 4 world_encoder tensors and 0 of 61 latent_stack tensors changed after 200 P0 episodes. Every experiment on this path that assumes a prediction-trained z_world silently measures a random projection instead, with no error and no warning. The fix is NOT 'enable prescribed P0' -- that is refuted in-corpus by SD-070 (it collapses PR to ~1.06). Per the now-confirmed V3-EXQ-783 adjudication the fix has two parts and SD-070 supplies both: (a) a gradient path reaching latent_stack, and (b) a supervision target that is not action-uninformative. Target: world-path weight-delta > 0 with PR retention ~0.658 and P0/P1 phase separation preserved, matching SD-070's measured behaviour. Scope: all six _train_all_on_agent callers per zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md section 6c, including v3_exq_728_trained_allon_capability_point.py (own copy at :481) and v3_exq_734. Also adopt experiments/_lib/zworld_encoder_guard.py in each driver -- section 6d records that the guard landed as a shared module but had not been called by any driver as of 2026-07-19T21:26Z, which is why this defect ran undetected across a campaign.",
       "priority": 1,
       "added_session": "angry-gauss-b9d787",
-      "last_seen_session": "festive-lehmann-461cee-governance",
+      "last_seen_session": "gracious-austin-6eb2ae",
       "source_autopsy": "failure_autopsy_V3-EXQ-737a_2026-07-20.json",
       "prior_failure_records": [
         {
@@ -6006,7 +6022,9 @@
       ],
       "landing_status": "LANDED 2026-07-20T19:04Z: ree-v3 b523b9c70a on origin/main (10 files, verified), carrying experiments/_lib/zworld_p0_warmup.py, both _train_all_on_agent definition sites, mech457_fanout.warmup_zworld, the exq742 bias_head_baseline + its 742m mint, ree-v3/CLAUDE.md, and the five validation queue entries. Supersedes the implemented_not_landed state recorded earlier in dbd8d080bf. COMMITTED WITH --no-verify, USER-AUTHORISED, and the reason is recorded because a bypassed gate should never be silent: ree-v3's pre-commit gate runs the full suite against the WORKING TREE, where a concurrent session's half-finished SD-024 benefit-terrain work (ree_core/agent.py, causal_grid_world.py, e3_selector.py, utils/config.py + an untracked tests/contracts/test_sd024_benefit_terrain_live_producer.py) failed 5 of its own new contracts. Suite: 1985 passed, 5 failed, ALL of them that session's. Proof the failures could not involve this landing: the blocking flag benefit_terrain_live_producer appears 0 times in ree-v3 HEAD and twice in the working tree, and this landing touches experiments/ only -- no ree_core file at all. Independently gated on 103 directly-relevant contracts (all 31 SD-070, the zworld_encoder_guard suite, 5 MECH-457 suites), all passing. Confirmed post-commit that the four foreign ree_core files remained dirty in the working tree, i.e. they did not enter the commit -- ree_commit.py builds from a private index over declared paths only.",
       "provenance_note": "THIS ROW'S implemented_* FIELDS REACHED TRUNK BY A SWEEP, NOT BY THEIR AUTHOR'S COMMIT. Session silly-jepsen-926d36 wrote them to the working tree at 2026-07-20T18:23Z; commit e3357f0199 (session IGW-20260719-189, 'SD-PROBE-WARMUP: mark stale duplicate of SD-074 terminal') did a whole-file read-modify-write of substrate_queue.json, adopted those uncommitted fields, and pushed them under its own message -- the read-modify-write contamination documented in CLAUDE.md. Nothing was lost and the swept content is complete and self-consistent, so per remedy (a) it was NOT reverted. This note exists because remedy (a) requires the sweep be surfaced with the specific keys and the owning session named, and because remedy (a2) applies: the swept row's ASSERTION PARTNER (the ree-v3 implementation + queue entries) is still uncommitted, so the row alone overstates trunk. Swept keys: status, ready, design_doc, implemented_utc, implemented_by_session, implementation_note, validation_experiments, implementation_caveats.",
-      "validation_status": "PENDING. The five validation experiments are queued but none has run: V3-EXQ-742m-b (re-mint, prio 46) -> V3-EXQ-728a (45) -> V3-EXQ-737b (44) -> V3-EXQ-734b (30) -> V3-EXQ-742b (29). Acceptance is the metric the pre-fix runs failed: zworld_encoder_guard green, i.e. world_encoder tensors changed > 0 on every seed with guard_checked=true. ready stays False until at least one validation run scores."
+      "validation_status": "VALIDATED 2026-07-22. Acceptance was 'zworld_encoder_guard green, i.e. world_encoder tensors changed > 0 on every seed with guard_checked=true'. MET by three scored validation runs, all carrying zworld_p0_episodes=60: V3-EXQ-742m-b (PASS, 07-21T07:16Z, ree-cloud-2), V3-EXQ-728b (PASS, arm_green=true, seeds_failed=0, 07-21T11:38Z, ree-cloud-4) and V3-EXQ-737b (guard green, 4/4 world_encoder tensors moved, world_encoder_max_abs_delta up to 0.324, 07-21T19:38Z, ree-cloud-4; its FAIL outcome is a scientific result on a correctly-trained encoder, NOT a substrate failure). V3-EXQ-734b and V3-EXQ-742b remain claimed/running and are not needed for acceptance. The two RED runs recorded above are pre-adoption by construction -- see their correction_note.",
+      "validated_utc": "2026-07-22T13:57:33Z",
+      "validated_by_session": "gracious-austin-6eb2ae"
     },
     {
       "sd_id": "sd_032d_mu_kappa_mode_prior_overlays",
