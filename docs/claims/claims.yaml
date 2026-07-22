@@ -18209,6 +18209,84 @@
 
     Substrate IMPLEMENTED 2026-05-08/09 (sleep_substrate_plan GAP-1): F1 cross-cycle persistent_zero_point EMA in SerotoninModule; WRITEBACK-phase consumer in SleepLoopManager via use_rem_precision_recalibration (default False, bit-identical OFF). V3-EXQ-541 superseded (within-cycle no-op). V3-EXQ-541c PASS 2026-05-09 (supports): C1-C4, monotone step-size dose-response, 16 sleep cycles/arm. EXQ-541a/541b inconclusive_timescale (4 cycles insufficient for C3 rv divergence). Contracts 13/13. Tier-1 integration V3-EXQ-602 queued (StepHarness + sleep aggregation cluster). Claim remains candidate/v3_pending until governance accepts contributory evidence; downstream SD-029/MECH-256 retests still gated on MECH-269/MECH-307 per substrate_queue.
     2026-05-29 (V3-EXQ-596 + V3-EXQ-602 failure_autopsy): closure-handoff integration at 12 cycles, step=0.25: MECH-204 recalibration fires every cycle in 3/3 seeds (C1 PASS); arm relative rv divergence 8.4-27.6% per seed clears the 3% C3 threshold and exceeds the 541c canonical PASS bar (4.5-9% at 16 cycles). Overall FAIL driven by C2 cluster_live_frac >= 50% (0/3 seeds; deterministic 1/11 = 9.09% because MECH-285 sampler under K=1 single-fire driver draws once at buffer-fill, then idle). C2 is a cluster-integration criterion (MECH-285 / GAP-3), not a MECH-204 prediction; 596/602 strengthen MECH-204 on C1+C3. Both manifests reclassified non_contributory -> inconclusive_measurement. Successor EXQ redesigning C2 against the documented K=1 driver pattern (sleep_substrate_plan.md GAP-7) tracked under /queue-experiment. Autopsy: evidence/planning/failure_autopsy_V3-EXQ-596-602_MECH204_2026-05-29.md.
+  epistemic_category: standard
+  what_would_answer: |
+    MECH-204 states a MECHANISM but has never stated its own falsification
+    conditions -- not the DV, not the required drift source, not the timescale at
+    which the correction must act. Every test to date has had to invent all three,
+    and each invention was wrong in a DIFFERENT way (EXQ-541 within-cycle no-op;
+    541a/541b under-powered timescale; V3-EXQ-596/602 scored on a cluster criterion
+    that is not a MECH-204 prediction; V3-EXQ-774 tautological DV; V3-EXQ-794
+    clamped drift source). That signature diversity is a SPECIFICATION gap, not a
+    granularity gap -- /claim-synthesis 2026-07-22
+    (claim_synthesis_MECH-163_2026-07-22.md sec 1c) REFUSED to decompose MECH-204 on
+    exactly this ground: classifying the cluster by the autopsies' own
+    four_layer_diagnosis yields ZERO non-degenerate substrate-ready FAIL signatures
+    and not one target carries `weakened`. This block supplies the three missing
+    objects so they are not re-invented a sixth time.
+
+    (a) THE DRIFT SOURCE -- now SD-076 (`use_waking_confidence_inflation`),
+    registered separately 2026-07-20 because it is the SOURCE while MECH-204 is the
+    CORRECTION, and the two must be independently ablatable. A MECH-204 test is
+    ADMISSIBLE ONLY WITH AN ACTIVE, DEMONSTRATED DRIFT SOURCE. "Sleep recalibrates
+    waking precision drift" is unfalsifiable if waking precision cannot drift, so a
+    null measured without live drift is a TAUTOLOGY, not evidence (V3-EXQ-774). The
+    drift must be shown live IN THE RUN -- a strict dose separation on the drift
+    variable between arms -- BEFORE the correction is scored. SD-076 currently has
+    NO usable headroom: V3-EXQ-794 pinned `rv_final` at exactly 0.010000 on all four
+    inflation arms, with `overconfidence_score` bit-identical to 15 significant
+    figures (-1.004111904519277) at the LO and HI asymmetry levels. MECH-204 is
+    therefore NOT ANSWERABLE until `sd_waking_confidence_inflation_headroom` lands
+    (separate /implement-substrate chip), followed by the V3-EXQ-794a re-run.
+
+    (b) THE PRECISION DV, AND THE NON-TAUTOLOGY BURDEN. ANY proposed DV must be
+    shown non-tautological BEFORE it is used. The paid lesson is V3-EXQ-774: a
+    SYMMETRIC precision EMA makes `running_variance` track true prediction error BY
+    CONSTRUCTION, pinning `overconfidence_score` near zero regardless of what is
+    ablated (774 measured -0.000148 and -0.000918). The DV must be a quantity whose
+    value can be driven materially away from the calibrated point by the drift
+    source ALONE, with the correction ablated. Discharge the burden in-run by
+    showing (i) the drift-on / correction-off arm moves the DV materially away from
+    calibration, and (ii) two drift doses produce DIFFERENT DV values beyond float
+    noise -- identical values at two nominally different doses are a SATURATION
+    fingerprint, not a null (V3-EXQ-794). The Phase 7 / Option B write-site in
+    PRECISION space (not E3-score space) is correct and must not be revisited; it is
+    what escapes the V3-EXQ-604c DV-invariance class.
+
+    (c) THE MINIMUM TIMESCALE IS RESOLVED, NOT OPEN: >= 16 sleep cycles per arm.
+    Measured -- do not re-derive it. At 4 cycles (541a/541b) cross-arm rv divergence
+    tops out at 1.75% against a 5% bar (inconclusive_timescale: the rv EMA damping
+    overwhelms the per-cycle nudge). At 16 cycles (541c; sleep_loop_K=1,
+    EPISODES_PER_RUN=16, precision_zero_point_ema_alpha=0.1) divergence is monotone
+    in step size -- 0.90% / 1.81% / 4.51% / ~10% at step 0.05 / 0.10 / 0.25 / 0.50 --
+    and step=0.50 clears the 5% C4 bar in 3/3 seeds, with C1-C4 PASS overall. A
+    MECH-204 run at fewer than 16 cycles per arm is under-powered BY MEASUREMENT and
+    its null carries no weight.
+
+    ANSWERS MECH-204 (5-HT withdrawal actively CALIBRATES the zero-point, not merely
+    permits recalibration) if, with the drift source demonstrably live and the DV
+    shown non-tautological, at >= 16 cycles per arm the recalibration-ON arm returns
+    the precision DV toward the cumulative zero-point reference relative to the
+    drift-only arm, with a monotone dose-response in
+    `rem_precision_recalibration_step` and sign consistency across seeds.
+
+    REFUTES MECH-204 if, under those same admissibility conditions, the correction
+    fires every cycle (C1) and adjusts with the correct sign (C2) yet leaves the
+    drifted DV statistically indistinguishable from the drift-only arm across the
+    defensible step range {0.05, 0.10, 0.25} -- i.e. 5-HT withdrawal is PERMISSIVE
+    only, and MECH-123 needs no zero-point term.
+
+    DOES NOT ANSWER IT EITHER WAY: any run whose overall outcome is decided by a
+    cluster-integration criterion that is not a MECH-204 prediction. V3-EXQ-596/602
+    FAILED on cluster_live_frac, a MECH-285 / GAP-3 criterion, while STRENGTHENING
+    MECH-204 on its own C1+C3 (recalibration fired every cycle in 3/3 seeds; 8.4-27.6%
+    rv divergence at 12 cycles).
+
+    NO TIMESCALE CHILD CLAIM IS WARRANTED NOW -- 541c already answered it. A
+    `recalibration_timescale` child becomes warranted ONLY IF, after
+    `sd_waking_confidence_inflation_headroom` lands and V3-EXQ-794a runs, the
+    correction fails on CYCLE COUNT again. Registering one now would mint an untested
+    claim from a resolved problem.
   depends_on:
     - MECH-123
     - MECH-186
