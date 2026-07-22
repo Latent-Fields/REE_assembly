@@ -58252,3 +58252,1206 @@
     recommended_substrate_queue_entry.action = none. That verdict is correct for the
     VARIANCE-GEOMETRY framing (every precondition green on every scored arm) and may not
     hold for this one, which is why stage 1 is a spike rather than a queued experiment.
+
+# ---------------------------------------------------------------------------
+# Registered 2026-07-22 -- six thought intakes written 2026-07-21 by session
+# sad-newton-00451d (intakes landed REE_assembly 42f510757b / f9d64740df /
+# 06ab1d8609). Registration was the DEFERRED half of that session's work: it
+# wrote the intakes but made no claims.yaml edit because a concurrent session
+# held the claims.yaml claim. Registered here by epic-burnell-995d28-register.
+# Six clusters, in intake order:
+#   A. organisational principles across heterogeneous timescales (2026-07-12)
+#   B. goal relevance / salience / distractor suppression      (2026-07-12)
+#   C. rule apprehension as an organisational principle        (2026-07-14)
+#   D. multiple relational graph organisations, hippocampal    (2026-07-19)
+#   E. conservative skill refinement, multi-timescale learning (2026-07-19)
+#   F. bounded knowledge-artefact optimisation, REE ASSEMBLY   (2026-07-19)
+# E and F come from ONE source (Microsoft SkillOpt) and were deliberately split
+# by the user: E is REE cognitive architecture, F is REE Assembly governance.
+# Keep them apart -- conflating them is the failure the split exists to prevent.
+# Each intake's already-owned table was resolved by the intake itself; nothing
+# listed there is re-asserted here.
+# ---------------------------------------------------------------------------
+
+# --- Cluster A: organisational principles across heterogeneous timescales ----
+
+- id: Q-081
+  title: "Does REE's configured multi-rate execution produce SHARED cross-stream organisation, or only configured rate separation? SD-006 guarantees that E1/E2/E3 run at characteristic rates; nothing asserts or tests that the heterogeneous streams (E1/E2/E3, harm, goal, salience, hippocampal, control) thereby occupy recurrent system-level configurations or exhibit homologous transition motifs. Configured rate separation does not entail shared organisation."
+  claim_type: open_question
+  subject: architecture.cross_stream_shared_organisation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  what_would_answer: >
+    Recurrent-state / transition-matrix / cross-stream-lag analysis over EXISTING
+    telemetry. The discriminating comparison is emergent shared structure (Outcome A)
+    versus structure trivially implied by the configured rates and wired gates
+    (Outcome B) -- B is the null that most experiments of this shape would fail to
+    exclude, so the rate-matched shuffle control is not optional. The raw thought's
+    outcome taxonomy is the verdict grid: A shared organisation / B wired-gates-only /
+    C unrelated / D too-much-sharing-collapses / E event-relative beats clock-relative.
+    PRECONDITION, and the reason no experiment is proposed here: open question 6 of the
+    raw thought -- do REE's current logs contain sufficient telemetry to test this? --
+    must be answered first by a retrospective telemetry AUDIT, not a probe. The audit
+    checklist is the instrumentation list: E1 hidden state, E2 PE, E3 candidate scores +
+    commitment state, z_self, z_world, z_harm_s, z_harm_a, z_goal, operating_mode, beta,
+    boundary broadcasts, hippocampal proposals, residue updates, offline phase markers.
+    That spike is complicated (buildable). Only after it confirms the signals exist does
+    anything become queueable.
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md
+    - evidence/planning/thought_intake_2026-07-12_organisational_principles_heterogeneous_timescales.md
+    - "Shared spatial and temporal principles govern connectome dynamics across timescales, PNAS, doi:10.1073/pnas.2535464123"
+  depends_on:
+    - SD-006
+    - ARC-023
+    - ARC-025
+    - MECH-288
+    - MECH-321
+    - MECH-091
+  notes: >
+    NON-DEGENERACY GUARD: the cross-stream statistic must show live variance across
+    arms/seeds AND must be computed against a rate-matched shuffle control. A result
+    that merely recovers the configured update periods is Outcome B, not a PASS.
+    WHY THIS MATTERS BEYOND BOOKKEEPING: if the answer is Outcome C (unrelated), REE has
+    an INTEGRATION GAP that its multi-rate substrate decision (SD-006) was assumed to
+    have addressed. That is a live risk to SD-006's stated purpose and is currently
+    untested. This is a diagnostic gap in the existing claim set, not a new mechanism.
+    DO NOT read this as "REE should add multiple timescales" -- REE already has them by
+    founding substrate decision, and the raw thought says so twice. The load-bearing
+    move is the correction of that obvious reading.
+    EXPLICITLY NOT IN SCOPE: any oscillatory / cross-frequency-coupling mechanism (the
+    aim is abstract coupling principles, not importing oscillations); and DLIF, which
+    the thought deliberately separates itself from -- DLIF as a unifying mathematical
+    object is already answered-negative in the registry. Cross-reference as orthogonal,
+    DO NOT MERGE.
+    NOT on the V3 critical path. The raw thought is explicit that it does not justify
+    changing it. First move is the telemetry audit; no experiment proposal minted.
+
+- id: MECH-466
+  title: "Event-relative coordination exceeds clock-relative coordination: cross-stream alignment measured around event boundaries, commitment onset, interruption, completion and offline transitions is stronger than alignment by wall-clock timestep. If so, the boundary stream is the coordination substrate for the whole federation, not merely a detector with a consumer."
+  claim_type: mechanism_hypothesis
+  subject: architecture.event_relative_temporal_grammar
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md
+    - evidence/planning/thought_intake_2026-07-12_organisational_principles_heterogeneous_timescales.md
+  depends_on:
+    - MECH-288
+    - MECH-321
+    - MECH-091
+    - MECH-298
+    - Q-081
+  notes: >
+    FALSIFIER: an event-triggered-average / alignment statistic computed BOTH
+    event-locked and clock-locked on the SAME traces. PASS requires event-locked
+    alignment to exceed clock-locked by a margin scaled on the SD of the DELTA plus an
+    absolute floor (per the effect-size gate convention -- do not scale noise on the SD
+    of either arm alone).
+    NON-DEGENERACY GUARD: boundary pulses must be non-degenerate -- boundary rate NOT
+    floor- or ceiling-pinned. A segmenter emitting boundaries every step, or never,
+    makes the comparison vacuous and self-routes substrate_not_ready.
+    This is Outcome E of the Q-081 taxonomy, isolated as its own claim because it is
+    cheap, specific and RETROSPECTIVELY TESTABLE: REE already emits every required
+    landmark (MECH-288 boundary pulses, the beta commitment gate, mode transitions,
+    sleep-phase markers), so no substrate change is needed.
+    It SHARPENS MECH-288/MECH-321 from "a detector exists and a consumer uses it" to
+    "the boundary stream is the coordination substrate for the federation" -- that
+    strengthening is the new content; the detector and consumer are already owned.
+    SEQUENCING: gated behind the Q-081 telemetry audit, which confirms the signals are
+    recoverable from logs. This is the FIRST candidate in cluster A that could be
+    queued, and only after that audit. No experiment proposal minted here for that
+    reason.
+
+- id: INV-091
+  title: "Integration and protected non-equivalence are JOINTLY necessary: cross-stream similarity has a viable band. Too little shared organisation is fragmentation; too much is representational collapse. An adequate architecture must satisfy both constraints at once, with a measurable quantity in between -- not merely satisfy each on a separate axis."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - ARC-025
+    - MECH-063
+    - MECH-069
+    - SD-011
+    - MECH-035
+  subject: architecture.integration_nonequivalence_band
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md
+    - evidence/planning/thought_intake_2026-07-12_organisational_principles_heterogeneous_timescales.md
+  depends_on:
+    - ARC-025
+    - MECH-063
+    - MECH-069
+    - SD-010
+    - SD-011
+    - MECH-035
+    - Q-081
+  notes: >
+    WHAT IS AND IS NOT NEW. Integration (ARC-025 engine irreducibility) and anti-collapse
+    (MECH-063 orthogonal tonic/phasic axes, MECH-069 error incommensurability, SD-011
+    s/a split, MECH-035 vector-valued valence) are EACH already owned, each on one axis.
+    What is NOT owned, and is asserted here, is that an adequate theory must satisfy BOTH
+    AT ONCE with a quantity in between -- a BAND of cross-stream similarity that is
+    healthy, below which the system is fragmented and above which it has collapsed.
+    Outcome D of the Q-081 taxonomy ("too much shared organisation causes collapse") is
+    what makes this measurable rather than rhetorical. Do not re-assert the per-axis
+    guards; they are cited, not restated.
+    FALSIFIER: an ablation series -- remove event broadcasts / remove mode conditioning /
+    remove commitment landmarks / remove residue feedback / force lockstep / randomise
+    rates / collapse the harm streams -- showing a NON-MONOTONIC relation between
+    cross-stream similarity and task plus anti-collapse function. Monotonic improvement
+    with similarity refutes the band; monotonic degradation refutes it in the other
+    direction.
+    NON-DEGENERACY GUARD: at least one ablation must move the similarity statistic
+    measurably, or the series tested nothing.
+    invariant_type emergent (emergent_from the five per-axis guards it binds together),
+    so it IS subject to substrate reconfirmation -- unlike a universal invariant.
+    Gated behind the Q-081 telemetry audit like the rest of cluster A.
+
+- id: ARC-112
+  title: "REE is a FEDERATION / heterarchy of asynchronous, partially independent cognitive streams coordinated by shared organisational constraints -- neither a monolith nor a collection of independent modules. Successful integration preserves functionally necessary differences among streams rather than making their dynamics identical."
+  claim_type: architectural_commitment
+  subject: architecture.federation_heterarchy_framing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_organisational_principles_of_cognition_across_heterogeneous_timescales.md
+    - evidence/planning/thought_intake_2026-07-12_organisational_principles_heterogeneous_timescales.md
+  depends_on:
+    - ARC-025
+    - MECH-063
+    - SD-006
+    - SD-010
+    - SD-011
+  notes: >
+    FRAMING CLAIM, registered as the PARENT NODE for Q-081 / MECH-466 / INV-091. The
+    intake's registration condition was explicit -- "register only if it earns its keep
+    as the parent node for 1-3; otherwise leave as intake prose" -- and it is registered
+    here because those three ARE registered and it is the frame that makes them one
+    programme rather than three unrelated probes.
+    ARGUABLY IMPLIED by ARC-025 + MECH-063 + SD-010/SD-011 taken together, but nowhere
+    stated as a claim. That is the whole of its novelty; it introduces no mechanism.
+    THE ANTI-COLLAPSE QUALIFICATION IS LOAD-BEARING and must travel with the framing:
+    integration that makes stream dynamics identical is collapse, not success. Without
+    it "federation" degrades into an argument for more coupling, which is the failure
+    INV-091 exists to bound.
+    LOWER PRIORITY than its three children. It is a frame, not a falsifier; do not queue
+    an experiment against it directly -- it is answered by whatever Q-081, MECH-466 and
+    INV-091 return.
+    NOT a proposal to add heterogeneous timescales (already owned, SD-006/ARC-023), and
+    NOT a DLIF merge (orthogonal, answered-negative as a unifying mathematical object).
+
+# --- Cluster B: goal relevance, salience, distractor suppression -------------
+
+- id: MECH-467
+  title: "Distractor resistance has THREE dissociable failure modes -- sensory capture (distractor enters/dominates the active representation), rule corruption (distractor overwrites or destabilises the active goal/rule/task context), and behavioural capture (rule survives intact but the distractor still controls action selection). REE's distractor evidence covers rule corruption ONLY; a system can pass rule-corruption tests while failing behavioural capture."
+  claim_type: mechanism_hypothesis
+  subject: attention.distractor_failure_mode_dissociation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_goal_relevance_salience_and_distractor_suppression.md
+    - evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md
+  depends_on:
+    - MECH-262
+    - SD-033a
+    - MECH-261
+    - MECH-254
+  notes: >
+    THE COVERAGE GAP, which is the cheapest genuinely-new thing in this intake. REE's
+    distractor evidence (V3-EXQ-484 salience-coordinator gating protecting rule state
+    from replay drift; MECH-262 rule-selective distractor-resistant persistence) is
+    RULE CORRUPTION ONLY. Legs 1 and 3 are untested. Leg 3 matters most because it is
+    precisely the failure that RULE-STATE PROTECTION CANNOT CATCH BY CONSTRUCTION -- an
+    intact rule that fails to steer action is invisible to a rule-drift metric.
+    FALSIFIER: a distractor battery instrumented for all three legs SEPARATELY --
+    sensory-capture rate (distractor present in active representation), rule-state drift,
+    and wrong-target selection rate WITH RULE VERIFIED INTACT. PASS for dissociability
+    requires at least one condition where rule drift is at floor while wrong-target
+    selection is elevated.
+    NON-DEGENERACY GUARD: the distractor must actually be REGISTERED by the system --
+    non-zero sensory-capture rate in at least one arm. A distractor the agent never
+    encodes tests nothing, and an all-floor battery self-routes substrate_not_ready
+    rather than returning a verdict.
+    OWNERSHIP: this claim is the new owner for legs 1 and 3 of the noisy-environment
+    distractor benchmark family; MECH-262 continues to own rule corruption. That answers
+    the raw thought's open question 7.
+    SEQUENCING CAUTION: the during-commitment distractor timing arm depends on stable
+    multi-step commitment, which the substrate cannot currently sustain. Scope the
+    battery to pre-commitment and during-replay/planning arms; EXCLUDE the
+    during-commitment arm until commitment behaviour is stable. See EXP-0398.
+    STANDING CONTAINMENT RULE, still in force from the 2026-06-04 attention analysis:
+    REE-v3 attention is DISTRIBUTED precision-selection control, not a missing module.
+    Do NOT add a generic attention module and do NOT expand the V3 green-board closure
+    path. A new attention substrate is justified only if an experiment exposes a
+    SPECIFIC failure. This claim is a diagnostic over existing substrate, not a build.
+    The goal-relevance-vs-salience distinction is ALREADY architecturally instantiated
+    (z_goal / z_resource / predictive wanting / affordance bias vs salience coordinator /
+    operating mode / dACC / urgency interrupt / mode hysteresis) -- a glossary entry, not
+    a claim.
+
+- id: INV-092
+  title: "Distractor suppression must remain SELECTIVELY PERMEABLE to harm and other-agent signals (ethical interruptibility): any suppression mechanism must preserve the ability of sufficiently important weak evidence to interrupt an established rule or commitment. Suppression strength that improves goal completion by silencing weak harm cues is a FAILURE, not a success -- over-suppression is a safety failure mode, not merely a rigidity cost."
+  claim_type: invariant
+  invariant_type: universal
+  subject: ethics.suppression_interruptibility_permeability
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_goal_relevance_salience_and_distractor_suppression.md
+    - evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md
+  depends_on:
+    - SD-010
+    - SD-011
+    - ARC-027
+    - EXT-009
+    - MECH-467
+    - INV-093
+  notes: >
+    SIBLING CLAIM: INV-093 (skill optimisation must not trade harm sensitivity for
+    competence, from the 2026-07-19 conservative-skill-refinement intake). THESE TWO ARE
+    THE SAME ETHICAL PRINCIPLE ON TWO DIFFERENT CONTROL SURFACES -- attention/suppression
+    here, learning/refinement there -- and were deliberately registered as siblings.
+    Read and revise them together; a change to one that is not mirrored in the other is
+    almost certainly an error.
+    CROSS-LISTED with the ethics perimeter (SENT-*/GOV-*), NOT filed only under
+    attention. The intake is explicit that this must be visible from the ethics perimeter
+    plan.
+    AN ADEQUATE SUPPRESSOR MUST DISTINGUISH FOUR THINGS that all present as "input
+    competing with the current goal": irrelevant distraction (suppress); legitimate
+    interruption (allow); urgent harm signal (must override); another agent's state
+    becoming newly relevant (must override, and is the hardest).
+    FALSIFIER: paired measurement across a suppression-strength sweep -- goal completion
+    under distractor load AND interrupt latency/rate for an INJECTED weak harm or
+    other-agent-urgency signal. FAIL if the suppression setting that MAXIMISES completion
+    also measurably DEGRADES harm interruptibility.
+    NON-DEGENERACY GUARD: the harm-interrupt channel must be demonstrably LIVE at zero
+    suppression -- baseline interrupt rate well above floor. A dead channel cannot be
+    shown to be preserved.
+    ACCEPTANCE SHAPE for any future suppression mechanism: improved goal completion under
+    distractor load AND preserved interruptibility by harm/other-agent signals, measured
+    JOINTLY. A single-axis attention score CANNOT express this, which is why the
+    measurement panel must not be collapsed to one number.
+    invariant_type universal: it constrains any suppression mechanism by design and is
+    not emergent from a particular substrate SD. Currently a constraint on a FUTURE
+    mechanism -- no suppression-strength knob exists to sweep yet, so the falsifier
+    becomes runnable when one does.
+
+- id: Q-082
+  title: "Does REE require an EXPLICIT pre-selection suppression substrate, or do existing precision-weighted cue routing plus the MECH-254 top-k boundary bottleneck already suffice? REE's distractor mechanisms are predominantly POST-ENTRY (write gating, persistence, conflict handling, mode hysteresis); the brainstem/superior-colliculus evidence points at suppression of competing orienting or target-selection signals BEFORE they acquire behavioural control."
+  claim_type: open_question
+  subject: attention.pre_selection_suppression_substrate
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-22
+    needs_review: false
+  what_would_answer: >
+    PROBE-GATED, and the probe is MECH-467 leg 3 (behavioural capture). ONLY a
+    behavioural-capture failure that SURVIVES ablation of the existing mechanisms
+    (precision-weighted cue routing ARC-005/MECH-251, the MECH-254 top-k bottleneck,
+    mode-conditioned write gating MECH-261) would justify a pre-selection substrate.
+    Absent that, the default answer is "existing mechanisms sufficient".
+    The load-bearing literature question, which determines whether this is even a
+    DISTINCT architectural level or a re-description of MECH-254's bottleneck: in the
+    brainstem / superior-colliculus competition results, AT WHAT STAGE does suppression
+    occur -- sensory representation, orienting command, target competition, or motor
+    output? Route to /lit-pull.
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-12_goal_relevance_salience_and_distractor_suppression.md
+    - evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md
+  depends_on:
+    - MECH-467
+    - MECH-254
+    - ARC-005
+    - MECH-251
+    - SD-057
+    - MECH-347
+  notes: >
+    REGISTERED AS A GATED OPEN QUESTION, NOT AS AN ASSERTION, and explicitly gated on
+    MECH-467 leg 3. DO NOT BUILD. epistemic_category substrate_conditional set
+    EXPLICITLY (overriding the open_question -> answer_state default) so the
+    narrow_open_question rule does not fire -- this is a probe-gated question awaiting a
+    specific failure, not a V3-tractable one to narrow by experiment.
+    complex (probe-gated) in the work-graph debt vocabulary: the gate is a REE diagnostic
+    (MECH-467 leg 3), not a fact to look up and not a buildable task.
+    EXPLICITLY NOT PROPOSED, by both the raw thought and the standing containment rule:
+    a general attention architecture, a named distractor-suppression module, or any
+    change to the V3 critical path.
+    DO NOT QUEUE AN EXPERIMENT AGAINST THIS. It is answered, if at all, by MECH-467's
+    battery plus the ablation of existing mechanisms -- not by a probe of its own.
+
+# --- Cluster C: rule apprehension as an organisational principle -------------
+
+- id: ARC-113
+  title: "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module."
+  claim_type: architectural_commitment
+  subject: reasoning.rule_pipeline_stage_noncollapsibility
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md
+    - evidence/planning/thought_intake_2026-07-14_rule_apprehension_organisational_principle.md
+    - "MIT Brain and Cognitive Sciences, Separating Logic and Language (convergent evidence, not the origin of the proposal)"
+  depends_on:
+    - ARC-062
+    - ARC-063
+    - MECH-338
+    - MECH-316
+    - ARC-069
+    - ARC-070
+    - ARC-071
+    - ARC-025
+    - MECH-069
+  notes: >
+    *** GATED: DO NOT QUEUE THE ABLATION WHILE ARC-062 GAP-B IS UNRESOLVED. ***
+    Rule-SELECTIVE behaviour is untestable until a rule-creator emits DIFFERENTIATED
+    (non-monomodal) rule state, and the monostrategy-collapse ceiling is the standing
+    obstacle. An ablation queued now would inherit exactly that degeneracy and return a
+    vacuous null. The release condition is GAP-B yielding differentiated rule state.
+    This claim is REGISTERED as testable-but-gated, and no experiment proposal is minted.
+    FALSIFIER SHAPE: stage ablation -- removing or short-circuiting ONE stage should
+    produce a CHARACTERISTIC failure signature distinct from the others (e.g.
+    apprehension-without-testing yields elegant-but-unvalidated regularities;
+    testing-without-refinement yields repeated identical failures). PASS requires the
+    failure signatures to be DISSOCIABLE, not merely "performance drops" -- an
+    undifferentiated performance decrement across every ablation refutes the ordered-cycle
+    reading rather than supporting it.
+    NON-DEGENERACY GUARD: the intact baseline must show LIVE VARIANCE on the
+    discriminating metric FOR EACH STAGE. A pipeline where no stage measurably
+    contributes has nothing to dissociate.
+    WHAT IS NEW: the stages are largely instantiated already (ARC-062 weak-reading gated
+    policy; ARC-063 distributed CandidateRule field, V4-deferred; MECH-338 cue-driven
+    context-bound retrieval; MECH-262/SD-033a rule-selective persistence; MECH-261 write
+    gating; MECH-316/ARC-064 cross-episode regularity; MECH-211/166/429/INV-039 schema
+    abstraction; MECH-319 simulation-mode rule-write gating; SD-003/ARC-092 counterfactual
+    simulation; ARC-069/070/071 policy composition). Do NOT re-register them. What is new
+    is the ORDERED CYCLE plus the non-collapse requirement -- the same shape as ARC-025
+    (engine irreducibility) and MECH-069 (error incommensurability), never asserted for
+    the rule pipeline.
+    NOTE ON PROVENANCE: this thought ARRIVES AFTER ARC-062/063 (which were registered and
+    already deep in GAP-B falsifier work by mid-June) and generalises them; it was NOT
+    discharged into that line. No file in REE_assembly cited it before this registration.
+    FIRST MOVE IS AN AUDIT, NOT AN EXPERIMENT: which rule-pipeline stages are implemented,
+    which planned, which absent -- as a table against ARC-062/063 / MECH-338 / MECH-316 /
+    ARC-069-071. complicated (buildable), and the precondition for designing the ablation.
+
+- id: Q-083
+  title: "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked."
+  claim_type: open_question
+  subject: reasoning.rule_apprehension_domain_generality
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-22
+    needs_review: false
+  what_would_answer: >
+    CROSS-DOMAIN TRANSFER: a rule apprehended in one domain should (if domain-general)
+    or should not (if domain-specific) accelerate apprehension in another under MATCHED
+    STRUCTURE. The matched-structure requirement is what makes this a test of the
+    apprehender rather than of surface similarity.
+    NON-DEGENERACY PRECONDITION: single-domain apprehension must FIRST be demonstrated
+    above floor in BOTH domains SEPARATELY. Transfer between two domains in neither of
+    which the agent can apprehend a rule is uninterpretable.
+    SUBSTRATE-BLOCKED: V3 has only one real domain, so the transfer test has no second
+    domain to run in. Answering this requires a genuinely multi-domain substrate.
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md
+    - evidence/planning/thought_intake_2026-07-14_rule_apprehension_organisational_principle.md
+  depends_on:
+    - ARC-062
+    - ARC-063
+    - MECH-316
+    - MECH-211
+    - ARC-113
+  notes: >
+    SUBSTRATE-BLOCKED -- REGISTER SCOPED, DO NOT DESIGN. V3 has one domain; there is
+    nothing to transfer between. epistemic_category substrate_conditional set EXPLICITLY
+    so narrow_open_question does not fire. DO NOT QUEUE AN EXPERIMENT AGAINST THIS IN V3.
+    "RULE APPREHENSION" IS DELIBERATELY BROADER THAN INDUCTION and this breadth is the
+    point: induction already implies a formal reasoning framework, whereas rule
+    apprehension is the recognition that the world appears to contain a REUSABLE
+    REGULARITY. It spans physical dynamics, spatial relations, motor control, social
+    interaction, emotional behaviour, ethics, language and mathematics, with the
+    architecture AGNOSTIC regarding domain. That agnosticism is precisely what is
+    untested and is the genuine architectural fork registered here.
+
+- id: ARC-114
+  title: "Language is an INTERFACE to reasoning, not its substrate: reasoning-like behaviour emerging from language alone (LLMs) does not establish language as the native substrate of reasoning. Language functions as compression, communication, coordination, long-horizon scaffolding, working-memory support and explanation -- and may COMPENSATE for weaknesses in other reasoning systems."
+  claim_type: architectural_commitment
+  subject: reasoning.language_as_interface_not_substrate
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md
+    - evidence/planning/thought_intake_2026-07-14_rule_apprehension_organisational_principle.md
+    - "MIT Brain and Cognitive Sciences, Separating Logic and Language -- evidence that formal logical reasoning and language are at least partially dissociable"
+  depends_on:
+    - ARC-113
+    - Q-083
+  notes: >
+    REE POSITIONING CLAIM THAT THE PROGRAMME NEEDS AND LACKS. REE's entire bet is a
+    NON-LINGUISTIC substrate, and the obvious external objection -- "LLMs reason, so
+    language suffices" -- currently has NO REGISTERED ANSWER. This supplies one, and the
+    MIT logic/language dissociation is the external anchor that makes it more than a
+    stance.
+    FALSIFIER SHAPE -- THE COMPENSATION LEG IS THE TESTABLE ONE: if language is a
+    COMPENSATOR, a system with a WEAKENED non-linguistic reasoning stage should show
+    GREATER reliance on linguistic scaffolding, not merely worse performance. That
+    directional prediction is what distinguishes the claim from an untestable preference;
+    "worse performance" alone is consistent with language being the substrate.
+    SUBSTRATE-BLOCKED in V3: no language stream exists. REGISTER SCOPED, DO NOT DESIGN,
+    DO NOT QUEUE IN V3.
+    LITERATURE: the load-bearing /lit-pull family is language and reasoning / language as
+    cognitive scaffold / private speech / language compensation. NOTE there is an existing
+    UNPROCESSED thought on private speech and externalised DMN that should be pulled in
+    the SAME pass rather than separately. The language thought cluster
+    (2026-02-09_language.md, 2026-06-23_language_as_cooperation_interface.md) is a
+    THOUGHT-level cross-reference only -- those are themselves still unprocessed, so this
+    is not yet a claim-level link.
+    Consider registering the MIT source as a research_anchor / EXT-* if it is to be
+    citable as evidence rather than as provenance.
+
+- id: GOV-ANALOGY-1
+  title: "REE:Assembly analogies must be LABELLED as analogies. REE (the cognitive architecture) and REE Assembly (the scientific-development and governance machinery) have strong structural parallels; any analogy between them must be marked as an analogy and must NEVER be used as evidence that REE operates the way Assembly does, or vice versa."
+  claim_type: governance_rule
+  subject: governance.epistemics.ree_assembly_analogy_discipline
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-14_rule_apprehension_as_an_organisational_principle_of_cognition.md
+    - evidence/planning/thought_intake_2026-07-14_rule_apprehension_organisational_principle.md
+  depends_on:
+    - INV-077
+    - GOV-PROC-1
+    - GOV-HELDOUT-1
+    - GOV-STRAT-1
+  notes: >
+    ORIGIN AND HOMING. This is the rule-apprehension intake's candidate 4, which that
+    intake declined to register on its own ("fold into the intake/digestion discipline
+    notes rather than the registry -- UNLESS the 2026-07-19 Assembly governance-rule
+    cluster gives it a natural home, in which case register it there"). That cluster
+    (GOV-HELDOUT-1 / GOV-STRAT-1 / GOV-REJECT-1 / GOV-META-1) IS registered in this same
+    pass, so the condition is met and it is homed here rather than left as prose.
+    WHY IT IS LOAD-BEARING RIGHT NOW: this registration pass itself registers a
+    cognitive-architecture cluster (C: rule apprehension) and a governance cluster (F:
+    Assembly optimisation) that make structurally similar claims about bounded revision,
+    rejected-change memory and authority stratification. That similarity is an ANALOGY.
+    It is not evidence. GOV-STRAT-1 explicitly notes the INV-020 symmetry -- "the Assembly
+    should obey the invariant it demands of the architecture" -- and that observation is
+    exactly the kind of statement this rule requires be marked as analogical rather than
+    treated as a finding about either system.
+    The same discipline applies to the E/F split of the SkillOpt source: E (MECH-471..474,
+    INV-093) and F (this cluster) share a vocabulary, NOT a body of evidence. An
+    experimental result in one NEVER transfers to the other.
+    STANDING DISCIPLINE, not an empirical claim -- there is no falsifier because it
+    constrains how evidence may be cited, not what is true of any system.
+
+# --- Cluster D: multiple relational graph organisations, hippocampal ---------
+
+- id: MECH-468
+  title: "Hippocampal anchor TOPOLOGY carries functional information not present in local anchor payloads. REE's typed relations (spatial, temporal, action-transition, event, goal, valence, social, schema, staleness, scale) are each realised as a payload field, a gate, or a scoring term -- a property of an anchor or proposal -- and none is exposed as an EDGE TYPE over the anchor set. Nothing tests whether the topology carries information beyond local anchor features."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.anchor_topology_functional_information
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md
+    - evidence/planning/thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md
+    - "A Coding Implementation on Spatial Graph Neural Networks for Urban Function Inference (city2graph / OSMnx / PyG) -- software inspiration, NOT primary biological evidence"
+  depends_on:
+    - MECH-238
+    - MECH-239
+    - MECH-288
+    - SD-004
+    - SD-039
+    - MECH-292
+    - MECH-293
+    - ARC-036
+    - SD-014
+    - MECH-269
+    - MECH-283
+    - MECH-284
+  notes: >
+    *** THE ORGANISATIONAL / REPRESENTATIONAL SEPARATION IS THE GUARD THAT KEEPS THIS
+    HONEST, AND IT MUST TRAVEL WITH EVERY DOWNSTREAM USE. *** Organisational claim:
+    cognition depends on several distinct relational structures. Representational claim:
+    those structures should be implemented as explicit graphs. THE FIRST MAY BE TRUE EVEN
+    IF THE SECOND IS FALSE. This claim asserts only the first, and only as a readout.
+    EXPLICITLY NOT PROPOSED: replacing the hippocampal representation with a GNN (the raw
+    thought forbids it in terms); asserting the brain stores software-style graph data
+    structures; merging with the DLIF line (the relationship is a PIPELINE BOUNDARY --
+    distributed latent dynamics -> anchors -> typed relational projections -> functional
+    inference -> action -- and useful projections would NOT establish that the native
+    substrate is graph-like; DLIF as a unifying mathematical object is already
+    answered-negative in the registry).
+    FALSIFIER: build typed projections over EXISTING anchor traces -- A latent proximity,
+    B action transition, C shared event, D shared goal/valence, E causal/outcome, F
+    heterogeneous typed -- and predict held-out functional labels (goal-supporting region,
+    harm-associated region, recurrent trap, bottleneck, completion route,
+    stale/invalidated region, repair opportunity, reactivation candidate, likely
+    interruption point). PASS if features+topology beats features-alone by a margin scaled
+    on the SD of the DELTA plus an absolute floor, AND heterogeneous typed topology (F)
+    beats the collapsed single-adjacency ablation.
+    NON-DEGENERACY GUARD: the anchor set must be non-trivial in the traces used -- a floor
+    on distinct anchors AND on edge density per type. A projection where one relation type
+    is EMPTY or FULLY CONNECTED tests nothing and self-routes substrate_not_ready.
+    WHY THIS IS THE STRONGEST ITEM IN THE INTAKE: a PASS immediately implies a CHEAP
+    CAPABILITY GAIN -- read what is already there -- rather than a build. Retrospective,
+    substrate-free, no V3 critical-path impact.
+    FIRST MOVE IS A SCOPING SPIKE, NOT A PROBE, so no experiment proposal is minted: an
+    EDGE-TYPE INVENTORY against LOGGED TELEMETRY. The intake's already-owned table is the
+    paper answer (which relations exist); the spike confirms which are RECOVERABLE FROM
+    LOGS rather than only from live objects. complicated (buildable).
+
+- id: MECH-469
+  title: "Relation types are NOT collapsible to one adjacency structure: collapsing all edge types into a single adjacency, or removing event / goal-motivational edges, or removing action-transition directionality, degrades functional-label recovery. The same non-collapsibility argument as MECH-069 (error incommensurability), one level down."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.relation_type_noncollapsibility
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md
+    - evidence/planning/thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md
+  depends_on:
+    - MECH-468
+    - MECH-069
+    - MECH-035
+  notes: >
+    THE DIRECT ABLATION FROM MECH-468, registered separately because it is the leg that
+    distinguishes "topology helps" from "TYPED topology helps" -- a single-adjacency win
+    would support MECH-468 while refuting this claim.
+    FALSIFIER: the ablation series (collapse all edge types to one adjacency; remove event
+    edges; remove goal-motivational edges; remove action-transition directionality) PLUS
+    the two CONTROL ablations that separate content from position --
+    (a) RANDOMISE TOPOLOGY while PRESERVING node payloads, and
+    (b) PRESERVE TOPOLOGY while SHUFFLING payloads.
+    Those two controls are not optional: without them a topology effect is
+    indistinguishable from a payload effect leaking through the graph construction.
+    NON-DEGENERACY GUARD: at least one ablation must move the metric measurably, or the
+    series tested nothing.
+    INHERITS MECH-468's organisational/representational guard and its NOT-PROPOSED list
+    (no GNN replacement, no claim about biological storage format, no DLIF merge).
+    Gated behind the MECH-468 edge-type inventory spike; no experiment proposal minted.
+
+- id: MECH-470
+  title: "Topological position improves ghost-goal reactivation ranking: MECH-292/293 rank inactive anchors by preserved-goal-payload match; adding a topological term (relational distance to the current anchor along typed paths) improves reactivation precision. An anchor's functional role -- gateway, bottleneck, recurrent trap, interruption point, repair opportunity -- may be inferable from its POSITION even when its local payload is incomplete."
+  claim_type: mechanism_hypothesis
+  subject: hippocampus.topological_ghost_goal_reactivation_ranking
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md
+    - evidence/planning/thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md
+  depends_on:
+    - MECH-292
+    - MECH-293
+    - MECH-339
+    - SD-039
+    - MECH-468
+  notes: >
+    THE APPLIED CLAIM, AND THE ONE WITH A BUILT CONSUMER. MECH-292/293's ghost-goal bank
+    already ranks inactive anchors on payload match, so a topological term is a DROP-IN
+    COMPARISON ARM rather than a new mechanism. It answers the raw thought's open question
+    12 -- could topology identify which inactive anchor should be reactivated during goal
+    pursuit?
+    FALSIFIER: ranking-quality comparison, payload-only vs payload+topology, on EXISTING
+    ghost-bank traces.
+    NON-DEGENERACY GUARD: the ghost bank must be NON-EMPTY and the baseline ranking
+    NON-DEGENERATE (not all-ties) across arms. An empty bank or an all-tie baseline
+    self-routes substrate_not_ready.
+    SEQUENCING NOTE: this is the CHEAPEST thing in cluster D that could change behaviour,
+    and may be worth doing AHEAD of MECH-468 if a fast win is wanted -- though it is
+    STRICTLY WEAKER EVIDENCE for the general topology claim, since a single consumer
+    improving does not establish that topology carries functional information generally.
+    Do not read a PASS here as confirming MECH-468.
+    Gated behind the MECH-468 edge-type inventory spike (the typed-path distance it needs
+    must be recoverable from logged telemetry); no experiment proposal minted.
+
+- id: Q-084
+  title: "Is HIGHER-ORDER relational structure (metapaths, hyperedges, simplicial relations) required? Some functions may be properties of typed MULTISTEP PATHS rather than of nodes or pairwise edges -- e.g. current state -> available action -> transition region -> predicted hazard -> repair opportunity -> goal completion; or inactive anchor -> shared event -> similar goal state -> successful historical trajectory -> candidate reactivation. Nothing in the registry represents anything above a pairwise relation."
+  claim_type: open_question
+  subject: hippocampus.higher_order_relational_structure
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-22
+    needs_review: false
+  what_would_answer: >
+    PROBE-GATED on MECH-468 projection F (heterogeneous typed topology) versus a
+    METAPATH-AWARE readout. If F already captures what a metapath-aware readout captures,
+    no higher-order structure is required; if the metapath readout beats F on the same
+    held-out functional labels, pairwise typed edges are insufficient.
+    That comparison is only meaningful once MECH-468 has established that typed topology
+    carries functional information at all -- a metapath advantage over a topology that
+    itself adds nothing is uninterpretable.
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_multiple_relational_graph_organisations_in_hippocampal_cognition.md
+    - evidence/planning/thought_intake_2026-07-19_multiple_relational_graph_organisations_hippocampal.md
+  depends_on:
+    - MECH-468
+    - MECH-469
+  notes: >
+    REGISTERED AS A GATED substrate_conditional OPEN QUESTION ONLY. DO NOT BUILD.
+    epistemic_category substrate_conditional set EXPLICITLY so narrow_open_question does
+    not fire. complex (probe-gated) -- the probe is MECH-468 projection F.
+    INHERITS the organisational/representational guard: even a metapath advantage would
+    establish that multistep typed relations carry information, NOT that the substrate
+    should be reimplemented as a hypergraph. No GNN, no simplicial-complex build.
+    DISCIPLINE NOTE worth carrying into the hippocampal architecture doc regardless of
+    whether this is ever answered: GRAPH CONSTRUCTION IS AN EPISTEMIC COMMITMENT. A
+    proximity graph asserts nearness matters; a causal graph asserts intervention matters.
+    So the top-down question -- which relations must be preserved for viable prediction,
+    planning, commitment, causal attribution, residue-sensitive learning and
+    generalisation? -- is ARCHITECTURAL AND PRECEDES THE MATHEMATICS.
+    NOT REGISTERED FROM THIS INTAKE, deliberately: the intake's candidate 5 (does the
+    BIOLOGICAL hippocampal system support multiple partially distinct relational
+    organisations across subregions, axes, inputs and replay regimes?) is an out-of-domain
+    empirical question whose test domain is neuroscience, not REE. The intake's own
+    guidance was "register as research_anchor / out_of_domain IF REGISTERED AT ALL"; it is
+    routed to /lit-pull instead, with the seven candidate biological predictions in the
+    raw thought as the search brief. Check overlap with MECH-316 first -- the
+    successor-representation thread is already registered.
+
+# --- Cluster E: conservative skill refinement, multi-timescale learning ------
+# REE COGNITIVE ARCHITECTURE half of the Microsoft SkillOpt source.
+# The Assembly half is cluster F below. Keep separate; see GOV-ANALOGY-1.
+
+- id: MECH-471
+  title: "Behavioural-competence updates require the same BOUNDED / PROVENANCED / ROLLBACK-CAPABLE discipline already registered for consolidation. MECH-392, INV-080 and MECH-401 give the memory-consolidation path bounded, attributable, provenance-carrying, rollback-capable, over-rewrite-gated editing; NOTHING EQUIVALENT is registered for behavioural competence -- policy / affordance / action-object learning has no rollback, no provenance record, and no gate against a single successful rollout propagating widely."
+  claim_type: mechanism_hypothesis
+  subject: learning.competence_update_bounded_provenance_rollback
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md
+    - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
+    - "Microsoft SkillOpt -- Executive Strategy for Self-Evolving Agent Skills (neighbouring implementation strategy, NOT an architectural template)"
+  depends_on:
+    - MECH-392
+    - INV-080
+    - MECH-401
+    - MECH-083
+    - MECH-261
+    - ARC-092
+  notes: >
+    THE ASYMMETRY IS THE NEW OBSERVATION, and it is a SPECIFIC gap rather than a general
+    aspiration: the consolidation path has the discipline (MECH-392 provenance +
+    contradiction-flag + ROLLBACK; INV-080 raw-episode preservation, consolidation output
+    MUST NOT replace source-episode evidence; MECH-401 gated-write authority with
+    over-frequent rewriting as a named failure mode), and the competence path does not.
+    Registering the CONSOLIDATION properties again would duplicate and contaminate
+    evidence records -- this is a GENERALISATION claim to a different path, not a
+    restatement.
+    FALSIFIER -- a LOCAL-UPDATE INTERFERENCE TEST: train a targeted competence
+    improvement, then measure performance on UNRELATED previously-acquired competences.
+    FAIL (i.e. the discipline IS needed) if unrelated competence degrades measurably;
+    PASS (not needed) if it does not, across a perturbation range. Note the polarity: a
+    FAIL here is what MOTIVATES building the discipline.
+    NON-DEGENERACY GUARD: the "unrelated" competences must be DEMONSTRABLY ACQUIRED in
+    the baseline -- above-floor performance with live cross-seed variance. Testing
+    interference against competences the agent never had is vacuous and self-routes
+    substrate_not_ready.
+    TESTABLE NOW on existing substrate; complicated (buildable). This is the cheapest real
+    probe in cluster E and the right first move. See EXP-0399.
+    A "SKILL" IN REE IS NOT A DOCUMENT -- it is distributed across action objects, learned
+    affordances, predictive models, hippocampal trajectories, goal-conditioned policies,
+    rule-state persistence, control settings, and residue-shaped avoidance/repair
+    tendencies. Text-space skill optimisation is NOT embodied cognitive learning.
+    EXPLICITLY NOT PROPOSED: text-based skill documents inside REE, any literal SkillOpt
+    import, a new foundational learning mechanism, or anything on the V3 critical path.
+
+- id: MECH-472
+  title: "HELD-OUT CONTEXT distinguishes skill acquisition from task memorisation: a competence update should be promoted to durable only on evidence from contexts that did not generate it."
+  claim_type: mechanism_hypothesis
+  subject: learning.heldout_context_acquisition_vs_memorisation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md
+    - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
+  depends_on:
+    - MECH-471
+    - ARC-092
+  notes: >
+    FALSIFIER: paired in-context vs held-out-context evaluation of the SAME learned
+    competence; a gap beyond a threshold marks memorisation rather than acquisition.
+    NON-DEGENERACY GUARD: the held-out contexts must be GENUINELY REACHABLE by the trained
+    policy -- non-zero baseline completion -- or the gap is a FLOOR ARTEFACT rather than
+    evidence of memorisation. This is the guard most likely to be skipped and most likely
+    to produce a false positive.
+    *** DO NOT MERGE WITH THE ASSEMBLY-SIDE HELD-OUT CLAIM. *** GOV-HELDOUT-1 (held-out
+    validation for Assembly workflow and rule changes, cluster F) expresses a
+    structurally similar idea about the GOVERNANCE machinery. This claim is REE-INTERNAL
+    and concerns the agent's own competence promotion. They come from the same source
+    document and were deliberately split; per GOV-ANALOGY-1 the resemblance is an ANALOGY
+    and is NOT evidence in either direction. An experimental result here NEVER transfers
+    to GOV-HELDOUT-1.
+    Methodological but genuinely testable; connects to the validation-before-promotion
+    principle. See EXP-0400.
+
+- id: MECH-473
+  title: "REJECTED-ADAPTATION MEMORY improves later recovery and transfer: retaining failed behavioural revisions together with their failure conditions improves adaptation when conditions later change. A failed adaptation should remain available as evidence about what was tried, why it failed, and under what conditions it might later become useful."
+  claim_type: mechanism_hypothesis
+  subject: learning.rejected_adaptation_memory
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md
+    - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
+  depends_on:
+    - INV-004
+    - INV-006
+    - MECH-392
+    - MECH-471
+  notes: >
+    *** DO NOT BUILD IN V3. *** V3 has NO COMPETENCE-REVISION UNIT that could be
+    identified and stored, which is the substrate this claim presupposes. Registered at
+    implementation_phase v4, scoped, NOT designed. DO NOT QUEUE AN EXPERIMENT AGAINST
+    THIS IN V3.
+    WHAT IS GENUINELY ABSENT: nothing in REE retains REJECTED adaptations. Residue retains
+    the consequences of COMMITTED actions (INV-004/INV-006); MECH-392 flags contradictions
+    in consolidated summaries. NEITHER preserves a TRIED-AND-REJECTED behavioural revision
+    with its failure conditions. That is a new structure, not a re-description.
+    FALSIFIER: arms with and without a rejected-adaptation store, evaluated on a
+    CONDITION-REVERSAL task.
+    THE NULL IS LIVE AND SHOULD BE CARRIED CO-EQUALLY: rejected-change memory may simply
+    be DEAD WEIGHT that slows adaptation. This claim could come out negative, and the
+    condition-reversal design is what makes that outcome informative rather than
+    ambiguous.
+    ASSEMBLY-SIDE ANALOGUE: GOV-REJECT-1 (rejected-edit memory with reconsideration
+    conditions, cluster F). Per GOV-ANALOGY-1 that parallel is an ANALOGY, never evidence.
+
+- id: MECH-474
+  title: "LEARNING-MECHANISM META-SELECTION (narrow form): the control plane selects among the learning regimes REE actually has -- online practice, exploration, counterfactual simulation, offline consolidation -- rather than applying one learning rule universally, and this selection is state- and mode-dependent."
+  claim_type: mechanism_hypothesis
+  subject: learning.regime_meta_selection_narrow
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md
+    - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
+  depends_on:
+    - MECH-312b
+    - MECH-312c
+    - MECH-261
+    - MECH-163
+    - MECH-179
+    - ARC-092
+  notes: >
+    NARROW FORM ONLY IS REGISTERED AS TESTABLE. The BROAD form -- adding imitation and
+    language-mediated scaffolding to the menu -- is SUBSTRATE-BLOCKED (neither is built).
+    It is NOTED here and deliberately NOT registered as testable; do not design against
+    it, and do not silently widen this claim's menu when designing the falsifier.
+    PARTIAL PRECEDENT EXISTS but does not cover this: MECH-312b/c arbitrate between habit
+    and goal-directed CONTROL; MECH-261 gates WHICH SUBSTRATE MAY WRITE by mode; MECH-179
+    routes error TYPE to sleep PHASE. Arbitration over the LEARNING MECHANISM ITSELF
+    across the regime menu is not registered.
+    FALSIFIER: fixed-regime arms vs a SELECTING arm on a task mix that rewards different
+    regimes. PASS requires the selector to BEAT EVERY FIXED REGIME, not merely to beat
+    their mean -- beating the mean is satisfied by a selector that always picks the single
+    best fixed regime, which demonstrates no selection at all.
+    NON-DEGENERACY GUARD: the task mix must ACTUALLY DISSOCIATE the regimes -- AT LEAST
+    TWO regimes must win on DIFFERENT sub-tasks in the FIXED-ARM BASELINE, or there is
+    nothing to select between and the comparison is vacuous. Verify this in the baseline
+    before running the selecting arm.
+    Live V3-adjacent question; testable now. See EXP-0401.
+
+- id: INV-093
+  title: "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT."
+  claim_type: invariant
+  invariant_type: universal
+  subject: ethics.skill_optimisation_harm_sensitivity_floor
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: standard
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_conservative_skill_refinement_and_multi_timescale_learning.md
+    - evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md
+  depends_on:
+    - INV-004
+    - INV-006
+    - ARC-092
+    - EXT-009
+    - MECH-471
+    - INV-092
+  notes: >
+    SIBLING CLAIM: INV-092 (distractor suppression must remain selectively permeable to
+    harm and other-agent signals, from the 2026-07-12 distractor intake). THESE TWO ARE
+    THE SAME ETHICAL PRINCIPLE ON TWO DIFFERENT CONTROL SURFACES -- learning/refinement
+    here, attention/suppression there -- and were deliberately registered as siblings.
+    Read and revise them together; a change to one that is not mirrored in the other is
+    almost certainly an error.
+    CROSS-LISTED with the ethics perimeter (SENT-*/GOV-*), NOT filed only under learning.
+    SOURCE FRAMING, and note it is a CONSTRAINT rather than a caution: "Performance gain
+    is not sufficient evidence of viability or ethical adequacy. A validated skill may
+    still conflict with commitments, harm constraints, or broader goals. Meta-learning
+    itself requires governance so that it cannot optimise away protected structures."
+    FALSIFIER: the JOINT measurement across a refinement-strength sweep -- competence gain
+    AND harm sensitivity AND residue accumulation AND commitment integrity, never
+    collapsed to one score. A single-axis competence metric CANNOT express this
+    constraint, which is the whole reason the panel must stay uncollapsed.
+    ACCEPTANCE SHAPE for any skill-refinement mechanism: improvement in competence AND
+    non-degradation of harm sensitivity / residue accumulation / commitment integrity,
+    measured jointly.
+    invariant_type universal: constrains any refinement mechanism by design, not emergent
+    from a particular substrate SD. Currently a constraint on a FUTURE mechanism -- no
+    refinement-strength knob exists to sweep yet.
+
+# --- Cluster F: bounded knowledge-artefact optimisation, REE ASSEMBLY --------
+# ASSEMBLY GOVERNANCE half of the Microsoft SkillOpt source. Registers as
+# governance_rule per the precedent INV-077 / GOV-PROC-1 / GOV-CEIL-1 / SD-062.
+# DO NOT MINT MECH-* FOR ANYTHING IN THIS CLUSTER. The REE-cognition half is
+# cluster E above; the split is the user's and is deliberate. See GOV-ANALOGY-1.
+
+- id: GOV-HELDOUT-1
+  title: "Held-out validation for Assembly workflow and rule changes: a change to a workflow, skill, or standing rule should be validated against cases that did NOT generate it. Every layer of Assembly practice currently edits the artefact from the session that motivated the edit -- a workflow change judged by the cycle that produced it, a CLAUDE.md rule written by the session that hit the incident, an intake template revised by the intake that strained it. There is no held-out review anywhere in the loop."
+  claim_type: governance_rule
+  subject: governance.assembly.heldout_validation_of_rule_changes
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md
+    - evidence/planning/thought_intake_2026-07-19_bounded_knowledge_artifact_optimisation_assembly.md
+    - "Microsoft SkillOpt -- Executive Strategy for Self-Evolving Agent Skills"
+  depends_on:
+    - INV-077
+    - GOV-PROC-1
+    - GOV-ANALOGY-1
+  notes: >
+    THE SHARPEST GENUINELY-NEW OBSERVATION IN THE INTAKE, and it has a MEASURABLE,
+    ALREADY-VISIBLE COST: rules written from a single incident have repeatedly
+    over-generalised and needed correction. THE WORKED EXAMPLE is the chip-scope rule --
+    broadened, WITHDRAWN ENTIRELY, restored, then narrowed: four revisions, the third of
+    which the user corrected the SAME DAY. A held-out test would have caught at least the
+    over-broad forms.
+    FALSIFIER / ACCEPTANCE: for a proposed rule change, apply it to N>=3 HISTORICAL cases
+    OUTSIDE the motivating incident and check it yields the correct call. A rule that only
+    fits its originating incident is rejected or narrowed.
+    NON-DEGENERACY GUARD: the held-out cases must be ones where the OLD AND NEW RULE
+    ACTUALLY DIFFER. Cases where both give the same answer test nothing -- this is the
+    guard that stops the check degenerating into a rubber stamp.
+    HONEST COUNTERWEIGHT, from the raw thought's own Risks section and NOT to be dropped:
+    held-out validation COSTS CYCLES, and "optimising for easily measured quality may
+    reduce originality or conceptual depth." This is a REAL TRADE, not a free win.
+    CHEAPEST REAL MOVE, and the recommended first one: adopt this as a MANUAL DISCIPLINE,
+    NOT AS TOOLING -- add "check this against 3 cases it wasn't written from" to the
+    rule-editing path. Costs nothing and addresses the observed failure directly. Do that
+    before any registry or harness work.
+    DO NOT MERGE with MECH-472 (held-out context distinguishes skill acquisition from
+    memorisation, cluster E). That is a REE-INTERNAL claim about the agent's competence
+    promotion; this is about the Assembly's rule-editing process. Same source document,
+    deliberately split. Per GOV-ANALOGY-1 the resemblance is an ANALOGY, never evidence.
+    SELF-REFERENCE HAZARD, stated rather than quietly enjoyed: the raw thought's proposed
+    pilot target is the thought-intake generation and review workflow -- the very workflow
+    that produced the intake this claim comes from. That intake is NOT held-out evidence
+    about intake quality and MUST NOT be counted as such in any later pilot. If the pilot
+    runs, that document belongs in the TRAINING subset or is excluded entirely.
+
+- id: GOV-STRAT-1
+  title: "Assembly artefact-layer authority stratification: Assembly artefacts form an update-rate hierarchy -- prompts and local workflow hints (fast) -> thought-intake structure (moderate) -> claims and mechanism status (evidence-gated) -> architecture commitments (slow) -> organisational principles (very slow) -> axioms (exceptional). An edit at a fast layer must not SILENTLY change a slower layer's commitment."
+  claim_type: governance_rule
+  subject: governance.assembly.artefact_layer_authority_stratification
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md
+    - evidence/planning/thought_intake_2026-07-19_bounded_knowledge_artifact_optimisation_assembly.md
+  depends_on:
+    - INV-020
+    - INV-021
+    - GOV-PROC-1
+    - GOV-ANALOGY-1
+  notes: >
+    THE PRACTICE ROUGHLY FOLLOWS THIS HIERARCHY ALREADY. Nothing STATES it, so nothing
+    ENFORCES it, and nothing FLAGS when a fast-layer edit silently changes a slow-layer
+    commitment. That last case -- SILENT SCOPE EXPANSION ACROSS AUTHORITY LAYERS -- is the
+    failure this rule exists to catch.
+    ACCEPTANCE: scope expansion is DETECTABLE -- a fast-layer edit that alters a
+    slow-layer commitment is FLAGGED, NOT MERGED.
+    *** THE INV-020 SYMMETRY IS AN ANALOGY AND MUST BE CITED AS ONE (GOV-ANALOGY-1). ***
+    INV-020 is the ARCHITECTURAL twin: constraint stores are authority-stratified from
+    direct writes. The observation that "the Assembly should obey the invariant it demands
+    of the architecture" is rhetorically strong and is EXACTLY the kind of statement
+    GOV-ANALOGY-1 requires be marked as analogical. It is a reason to ADOPT this rule; it
+    is NOT evidence that the Assembly behaves like the architecture, nor that INV-020's
+    experimental support transfers here. It does not.
+    RELATION TO CLUSTER E: this is the Assembly-side counterpart of the
+    bounded-revision family (MECH-471). Analogy only.
+
+- id: GOV-REJECT-1
+  title: "Rejected-edit memory with reconsideration conditions: rejected proposals -- workflow changes, claim registrations, experiment proposals -- are retained with the proposed edit, why it was proposed, why it was rejected, the evidence considered, and THE CONDITIONS UNDER WHICH RECONSIDERATION IS APPROPRIATE. The last field is what makes it more than an archive."
+  claim_type: governance_rule
+  subject: governance.assembly.rejected_edit_memory
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md
+    - evidence/planning/thought_intake_2026-07-19_bounded_knowledge_artifact_optimisation_assembly.md
+  depends_on:
+    - GOV-HELDOUT-1
+    - GOV-PROC-1
+    - GOV-ANALOGY-1
+  notes: >
+    THE AD-HOC PRECEDENT ALREADY EXISTS AND IS THE STRONGEST ARGUMENT FOR THE RULE: several
+    CLAUDE.md and SKILL.md sections already carry an explicit "Scope history -- read before
+    'simplifying' this" block recording what the rule was, what it was changed to, what was
+    withdrawn, and WHY THE WITHDRAWAL WAS ITSELF CORRECTED. That is a rejected-edit memory
+    with reconsideration conditions, hand-rolled at exactly the place where repeated
+    rediscovery was most costly. This rule GENERALISES AN EXISTING LOCAL PRACTICE rather
+    than importing a foreign one.
+    THE NEAREST EXISTING FORMAL THING IS CLAIM SUPERSESSION, which retains SUPERSEDED
+    ASSERTIONS but NOT REJECTED PROPOSALS. A rejected experiment proposal, a rejected
+    workflow change, a rejected claim registration currently leaves NO TRACE AT ALL.
+    ACCEPTANCE: repeat-rediscovery rate falls; a re-proposal of a previously rejected
+    change is DETECTED.
+    IMPLEMENTATION GUIDANCE from the routing: build this as a LIGHTWEIGHT EXTENSION OF THE
+    EXISTING "Scope history" CONVENTION -- a named section, NOT a new system. Do this
+    AFTER GOV-HELDOUT-1's manual discipline, which is cheaper and addresses a
+    demonstrated cost.
+    SELF-REFERENTIAL KILL CRITERION, and it is load-bearing: an optimiser that REPEATEDLY
+    RE-PROPOSES CHANGES ALREADY REJECTED FOR KNOWN REASONS is precisely what the rejection
+    buffer exists to prevent -- so failing that criterion means THIS RULE DID NOT WORK.
+    DO NOT MERGE with MECH-473 (rejected-adaptation memory, cluster E, V4 REE-internal).
+    Same source, deliberately split; per GOV-ANALOGY-1 the parallel is an analogy.
+
+- id: GOV-META-1
+  title: "Meta-optimisation remains SUBORDINATE to provenance, epistemic honesty, and explicit human authority: an Assembly self-improvement loop must not shift governance authority, erase authorship distinctions or uncertainty, or increase artefact volume at the expense of quality."
+  claim_type: governance_rule
+  subject: governance.assembly.meta_optimisation_subordination_guard
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-07-22"
+  source:
+    - docs/thoughts/2026-07-19_bounded_knowledge_artifact_optimisation_for_ree_assembly.md
+    - evidence/planning/thought_intake_2026-07-19_bounded_knowledge_artifact_optimisation_assembly.md
+  depends_on:
+    - INV-077
+    - GOV-PROC-1
+    - GOV-HELDOUT-1
+    - GOV-STRAT-1
+    - GOV-REJECT-1
+    - GOV-ANALOGY-1
+  notes: >
+    GUARD CLAIM -- the intake's own condition was "register with 1-4 OR NOT AT ALL", so it
+    is registered here alongside GOV-HELDOUT-1 / GOV-STRAT-1 / GOV-REJECT-1 and must be
+    retired with them if they are retired. It is the constraint that makes the other three
+    safe to adopt.
+    KILL CRITERIA -- ADOPTED AS WRITTEN, and the best part of the raw thought. Demote or
+    stop the approach if it: (1) produces no held-out improvement; (2) increases
+    unsupported claims or duplicate artefacts; (3) makes provenance harder to inspect;
+    (4) optimises superficial formatting over scientific quality; (5) increases governance
+    burden more than it reduces; (6) REPEATEDLY PROPOSES CHANGES ALREADY REJECTED FOR
+    KNOWN REASONS; (7) weakens human review or authority boundaries. Criterion (6) is
+    SELF-REFERENTIAL AND LOAD-BEARING -- failing it means GOV-REJECT-1 did not work.
+    DO NOT BUILD A SkillOpt-STYLE OPTIMISER. The raw thought does not ask for one, and the
+    pilot it proposes is deliberately low-risk.
+    METRIC PANEL, WITH THE THOUGHT'S OWN CAUTION ATTACHED -- NO SINGLE METRIC SHOULD BECOME
+    THE OPTIMISER'S SOLE TARGET: unsupported-novelty rate, duplicate-claim creation rate,
+    reviewer correction burden, and frequency of later supersession caused by avoidable
+    intake defects. The LAST is the best because it is measured DOWNSTREAM rather than at
+    production time.
+    LEAST OBVIOUS AND MOST DURABLE RISK, from the raw thought's Risks list: EPISTEMIC
+    MONOCULTURE VIA REVIEWER SELECTION.
+    ALSO CARRIED BY THIS CLAIM, from the governance-interactive rule: pause for user
+    decision, never auto-route.
+    NOT REGISTERED FROM THIS INTAKE, deliberately: candidate 4 (skill-registry metadata --
+    known failure modes, evaluation history, version/provenance, confidence and scope on
+    each SKILL.md). The intake's own guidance was "register ONLY if it needs governance
+    visibility; otherwise route straight to implementation", and it is ROUTED TO
+    IMPLEMENTATION. It is complicated (buildable) and cheap. Building a workflow SELECTOR
+    on top is NOT cheap and must NOT be attempted until the fields have accumulated real
+    history.
