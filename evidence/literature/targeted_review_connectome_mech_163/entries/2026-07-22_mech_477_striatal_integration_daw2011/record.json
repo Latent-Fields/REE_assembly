@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-07-22_mech_477_striatal_integration_daw2011",
+  "timestamp_utc": "2026-07-22T16:22:56Z",
+  "claim_ids_tested": ["MECH-477", "MECH-163"],
+  "source": {
+    "title": "Model-based influences on humans' choices and striatal prediction errors",
+    "authors": ["Nathaniel D. Daw", "Samuel J. Gershman", "Ben Seymour", "Peter Dayan", "Raymond J. Dolan"],
+    "year": 2011,
+    "venue": "Neuron 69(6):1204-1215",
+    "doi": "10.1016/j.neuron.2011.02.027",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3077926/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the fMRI test of the Daw 2005 proposal already on file, and it cuts both ways for MECH-477. It SUPPORTS the graded-weighting half: choices reflected both influences, and the ventral striatal signal reflected model-free and model-based predictions in proportions MATCHING those that best explained each subject's behaviour -- a per-subject correspondence that is hard to get from anything other than a common weighting term. It WEAKENS the clean two-pathway architecture MECH-477 inherits from MECH-163: the authors' own conclusion is that the result challenges the notion of a separate model-free learner and suggests a more integrated computational architecture. Confidence is held at 0.62 because the paper is methodologically strong (source_quality 0.90) but its bearing on MECH-477 is genuinely ambiguous in direction, which is a mapping problem, not a quality problem.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The ventral striatal BOLD signal is NOT a pure model-free report; it carries model-based prediction error too. A REE design that reads 'habit pathway activity' as a clean model-free proxy, and infers arbitration state from it, will mis-attribute planned influence to the habit arm.",
+    "Because the mixing proportions in the neural signal matched the proportions in behaviour, an integrated single-value architecture can reproduce graded recruitment WITHOUT a separable arbitration element -- so a graded novel-minus-familiar recruitment delta is NOT by itself sufficient evidence for MECH-477's arbitrator.",
+    "The two-step task dissociates model-based from model-free influence at the level of choice statistics, not at the level of anatomically separate pathways; evidence for arbitration DYNAMICS does not license the inference to two separable substrates."
+  ],
+  "tags": ["mech_477", "mech_163", "arbitration", "striatum", "prediction_error", "GOV-ANALOGY-1"],
+  "mapping": {
+    "source_claim_statement": "In a multistep decision task that separates model-based from model-free influences on choice, human behaviour showed both; contrary to the authors' expectation, ventral striatal BOLD prediction-error signal was not a pure model-free report but reflected both model-free and model-based predictions, in proportions matching those that best explained choice behaviour -- suggesting a more integrated computational architecture than a separate model-free learner.",
+    "ree_translation": "For MECH-477 this is a caution rather than a confirmation. It supports the claim's GRADED-weighting parameterisation (control is proportionally allocated, and the allocation is visible in the same proportions at both the neural and behavioural level). It simultaneously undercuts the assumption that the two pathways are separable enough for an external arbitrator to be the only architecture that produces novelty-sensitive recruitment -- an integrated value representation can do it too. The consequence for the SD-081 two-arm design is that the mandatory manipulation check does real work: the arbitration weight must be shown to track measured uncertainty, because a graded recruitment delta alone is reproducible without any arbitrator.",
+    "mapping_caveat": "The strongest transfer risk here is that this paper's negative result is about a SIGNAL (striatal BOLD purity), not about the existence of arbitration, and it is easy to over-read it as refuting dual-system architecture wholesale -- it does not, and the same group's later work (including Lee 2014, filed alongside) localises an arbitrator. Additionally, BOLD in ventral striatum aggregates over afferents from both pathways, so apparent integration at the voxel level is partly a measurement-resolution artefact and cannot be cleanly distinguished from genuine computational integration. REE's substrate has no such resolution limit, so the specific finding may simply not transfer -- which is itself the reason to record it as mixed rather than weakens.",
+    "source_context": "Healthy adult humans, fMRI, two-step Markov decision task; per-subject computational model fit, with the behavioural mixing weight compared against the neural mixing weight."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Aggregate pulled well below source_quality because the direction is genuinely two-sided for MECH-477 and because the headline negative result may be a measurement-resolution artefact that does not transfer to a substrate with explicit pathway separation. Filed as mixed deliberately: it is the entry that stops a graded recruitment delta from being read as automatic confirmation of the arbitrator."
+  }
+}

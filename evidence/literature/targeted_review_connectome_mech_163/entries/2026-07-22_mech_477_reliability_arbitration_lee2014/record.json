@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-07-22_mech_477_reliability_arbitration_lee2014",
+  "timestamp_utc": "2026-07-22T16:22:56Z",
+  "claim_ids_tested": ["MECH-477", "MECH-163"],
+  "source": {
+    "title": "Neural computations underlying arbitration between model-based and model-free learning",
+    "authors": ["Sang Wan Lee", "Shinsuke Shimojo", "John P. O'Doherty"],
+    "year": 2014,
+    "venue": "Neuron 81(3):687-699",
+    "doi": "10.1016/j.neuron.2013.11.028",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3968946/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Neuron-tier human fMRI with an explicit computational arbitrator fit to behaviour and localised to inferior lateral PFC / frontopolar cortex. This is the empirical complement MECH-477 was missing: it establishes that a dedicated arbitration ELEMENT exists as a distinct neural signal, not merely that two pathways coexist -- exactly the architecture/dynamics distinction MECH-477 was minted to separate. Mapping fidelity is held below source quality because REE's goal-directed pathway is hippocampally-planned whereas the paper's model-based system is a tree-search over a task graph; the arbitration logic transfers more cleanly than the pathway identities.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Arbitration is driven by RELIABILITY (inverse dispersion of prediction error), not by uncertainty in state-action VALUE as Daw 2005 proposed -- an arbitrator reading value-uncertainty is implementing a different quantity from the one the empirical work localises.",
+    "The two reliabilities are computed by DIFFERENT machinery and are not symmetric: model-based reliability from a Bayesian estimate over state prediction error, model-free reliability from a Pearce-Hall-style running average of |RPE|. A build that computes both arms' reliability with one shared estimator departs from the fitted model.",
+    "Arbitration acts by SUPPRESSING the model-free valuation pathway, with no reciprocal effect detected on the model-based pathway. A symmetric gain-sharing arbitrator is not what the connectivity data support.",
+    "A bias term favouring habit (lower cognitive effort) is required in the fitted transition dynamics; an unbiased arbitrator over-recruits the model-based arm."
+  ],
+  "tags": ["mech_477", "mech_163", "arbitration", "reliability", "frontopolar", "vlpfc", "GOV-ANALOGY-1"],
+  "mapping": {
+    "source_claim_statement": "The degree of control over behaviour exerted by model-based versus model-free learning systems is allocated by an arbitration mechanism that reads the relative RELIABILITY of each system's predictions; inferior lateral prefrontal and frontopolar cortex encode both the reliability signals and the output of their comparison, and arbitration is implemented at least partly by negatively modulating connectivity to model-free valuation regions.",
+    "ree_translation": "MECH-477's asserted arbitration element has a biological referent with a specified read-signal, timescale and functional form. For the REE build (sd_dualsystem_uncertainty_arbitration, SD-081): the arbitrator should read per-pathway RELIABILITY estimated from that pathway's own prediction-error dispersion, update trial-by-trial, output a GRADED weight rather than a discrete switch, and act by attenuating the habit pathway when the planned pathway is reliable -- not by symmetric competition.",
+    "mapping_caveat": "Three transfer risks, all live. (i) The paper's model-based system is a tree-search over an explicit two-step task graph; REE's goal-directed pathway is hippocampal replay-based planning -- the reliability signal available to REE's planner is not obviously the same quantity as SPE-derived reliability over a known transition structure. (ii) The arbitrator is localised by BOLD correlation and psychophysiological interaction, which is evidence for representation and coupling, NOT for causal necessity; no lesion or stimulation test is offered here. (iii) Reliability and uncertainty are used near-interchangeably in the surrounding literature but are formally distinct here (variance-to-mean ratio of prediction error vs posterior variance over value); MECH-477's own wording says 'uncertainty/reliability' and this entry is precisely the source that says the choice between them is a real build decision.",
+    "source_context": "Healthy adult humans, fMRI, two-step Markov decision task with separate manipulations of state-transition uncertainty and outcome reliability; computational model fit per subject and BOLD regressed against arbitrator-derived signals."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-477 is an architectural/mechanistic claim rather than an effect-size claim. The paper is a strong empirical anchor for the EXISTENCE and SIGNAL-TYPE of an arbitrator; it is weaker as evidence for the causal necessity MECH-477's falsifier will test, since correlational fMRI cannot deliver the OFF-vs-ON contrast that the V3 two-arm design will."
+  }
+}

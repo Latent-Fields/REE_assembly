@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-07-22_mech_440_lman_dedicated_variability_channel_olveczky2011",
+  "timestamp_utc": "2026-07-22T16:22:56Z",
+  "claim_ids_tested": ["MECH-440", "MECH-313"],
+  "source": {
+    "title": "Changes in the neural control of a complex motor sequence during learning",
+    "authors": ["Bence P. Olveczky", "Timothy M. Otchy", "Jesse H. Goldberg", "Dmitriy Aronov", "Michale S. Fee"],
+    "year": 2011,
+    "venue": "Journal of Neurophysiology 106(1):386-397",
+    "doi": "10.1152/jn.00018.2011",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3129720/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.74,
+  "confidence_rationale": "Causal, not correlational: pharmacological inactivation of a specific nucleus during behaviour, with single-unit recording in the target. Directly answers the question the pull was owed on -- biological selection variability is injected by a DEDICATED ANATOMICAL CHANNEL (LMAN, a basal-ganglia-forebrain output) onto a specific downstream motor population (RA), and it self-anneals over learning. Filed as MIXED rather than supports because it cuts in opposite directions on MECH-440's two halves: it strongly SUPPORTS the anti-global-temperature half (variability injection is channel-specific and separable) while UNDERCUTTING the sufficiency of the NoisyNet weight-noise form, which is still noise on the selection head's own parameters rather than a separate proposing pathway.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "LMAN inactivation made RA firing patterns adultlike in stereotypy WITHOUT dramatically affecting spike statistics or overall firing patterns -- so the variability source is anatomically SEPARABLE from the pathway that carries the action content. A single global scalar (temperature) applied to the selection distribution cannot reproduce this dissociation, because it necessarily perturbs the content pathway itself.",
+    "The variability is injected by a channel that ALSO carries a corrective bias, i.e. it is a structured exploratory signal, not zero-mean noise. A zero-mean isotropic perturbation is the wrong functional form.",
+    "Removing HVC (the premotor content input) destroyed song stereotypy entirely, whereas removing LMAN did not. Variability injection and action specification are doubly dissociable -- a design in which the exploration knob and the policy share one parameter set conflates them.",
+    "The relative contribution of the variability channel DECLINES as circuits mature, with the annealing implemented as a shift in the balance between two anatomically distinct inputs -- not as a decaying scalar on one input."
+  ],
+  "tags": ["mech_440", "mech_313", "motor_variability", "basal_ganglia", "exploration", "channel_specific", "GOV-ANALOGY-1"],
+  "mapping": {
+    "source_claim_statement": "In juvenile songbirds a basal-ganglia-forebrain circuit (output nucleus LMAN) drives the motor exploration required for trial-and-error learning by ADDING variability to a developing motor program in RA, a motor-cortex analogue. Pharmacological inactivation of LMAN during singing rendered RA's song-aligned firing patterns adultlike in stereotypy without dramatically changing spike statistics or overall firing patterns, while removing the premotor input HVC abolished stereotypy of both song and motor program. As learning proceeds, LMAN's relative contribution falls and HVC's premotor input increasingly drives a stereotyped song.",
+    "ree_translation": "This is the biological answer to the question failure_autopsy_V3-EXQ-708a raised: is a global temperature knob the right translation at all? On this evidence, no. Biological selection variability is delivered by a dedicated, anatomically separate channel that projects onto the action-specifying population, is dissociable from it by inactivation, carries structure rather than isotropic noise, and anneals by shifting the balance between two inputs. The REE analogue is not a scalar on the pre-commit distribution and not (only) parametric noise on the selection head: it is a SEPARATE variability-injecting input to the E3 selection pathway whose contribution is traded off against the content-carrying input as competence grows.",
+    "mapping_caveat": "Substantial and worth stating plainly. (i) Species and system: this is a zebra finch vocal-motor circuit producing a continuously-parameterised song, whereas MECH-440 concerns discrete action selection in E3. Songbird vocal variability is graded acoustic jitter; REE's selected_action_entropy is over a discrete action set, and 'adding variability' to a continuous motor parameter is not the same operation as raising entropy over categories. (ii) The developmental timescale of LMAN's annealing is days-to-weeks of ontogeny, whereas MECH-440's self-annealing is a within-training gradient effect -- the analogy is structural, not temporal. (iii) The songbird system is the canonical case FOR dedicated variability circuitry, so there is selection risk in treating it as representative of cortical/striatal action selection generally; the Churchland 2010 entry filed alongside is the broader-cortex counterweight.",
+    "source_context": "Zebra finch, chronic single-unit recording in RA across development, with reversible pharmacological inactivation of LMAN and of HVC during singing."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.50,
+    "notes": "Source quality high for a causal inactivation study with the double dissociation. Mapping fidelity and transfer risk both reflect the continuous-vocal-motor to discrete-action-selection gap, which is the real weakness of the songbird analogy and the reason this is not filed above 0.75 despite being the most mechanistically direct evidence available on the channel-specificity question."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_440",
+  "entry_id": "2026-07-22_mech_440_variability_quenching_churchland2010",
+  "timestamp_utc": "2026-07-22T16:22:56Z",
+  "claim_ids_tested": ["MECH-440"],
+  "source": {
+    "title": "Stimulus onset quenches neural variability: a widespread cortical phenomenon",
+    "authors": ["Mark M. Churchland", "Byron M. Yu", "John P. Cunningham", "Leo P. Sugrue", "Marlene R. Cohen", "Greg S. Corrado", "William T. Newsome", "Krishna V. Shenoy"],
+    "year": 2010,
+    "venue": "Nature Neuroscience 13(3):369-378",
+    "doi": "10.1038/nn.2501",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2828350/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "Exceptionally broad and robust empirical base -- 14 datasets, seven cortical areas across four lobes, two species, replicated in membrane potential, single-unit spiking and array-measured correlated variability, awake and anaesthetised. Source quality is very high. It is filed as mixed for MECH-440 because it establishes the existence and modulation of a pre-commitment variability regime (supporting the premise that there IS a spread to modulate) while simultaneously identifying a mechanism -- input-driven stabilisation of network state -- that predicts injected variability will be QUENCHED at exactly the point MECH-440 needs it to propagate. That second reading is a candidate explanation for the V3-EXQ-708a null and is the reason this entry is decision-relevant rather than merely contextual.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Variability declines at stimulus onset even when the stimulus produces little change in MEAN firing rate. So a manipulation can be demonstrably live in the mean while its variance contribution is independently suppressed -- an instrument that verifies a lever is 'reaching' the pathway by checking mean-level effects does NOT thereby show the variance survives to commitment.",
+    "The decline was observed for every stimulus tested, in every one of seven cortical areas, awake or anaesthetised -- suggesting a general property of cortex that its state is STABILISED by input. Injected noise upstream of a strongly input-driven stage should be expected to be attenuated by default, not to propagate by default.",
+    "The quenching appears in correlated variability measured across populations, not only in single units, so it is not a spike-count artefact that a population-level readout would average away."
+  ],
+  "tags": ["mech_440", "neural_variability", "pre_commitment", "variance_quenching", "action_selection", "GOV-ANALOGY-1"],
+  "mapping": {
+    "source_claim_statement": "Across 14 datasets from seven cortical areas spanning four lobes in monkeys and cats, stimulus onset caused a decline in neural response variability. This occurred even when the stimulus produced little change in mean firing rate, and was observed in membrane potential, in single-unit spiking, and in correlated spiking variability across 96-electrode arrays, regardless of whether the animal was awake, behaving or anaesthetised -- suggesting a general property of cortex, that its state is stabilised by input.",
+    "ree_translation": "Two readings, both live, and they are what make this decision-relevant for MECH-440. (a) SUPPORTING: there is a real pre-commitment variability regime whose spread is high before an input arrives and collapses as the network is driven toward a decision -- i.e. the stage V3-EXQ-708a was probing genuinely exists in biology, and its spread genuinely is modulated. (b) COMPLICATING: the modulation runs the wrong way for a noise-injection lever. Cortex stabilises under drive, so variance injected into a strongly input-driven selection stage is expected to be attenuated there. If E3's selection pathway is analogous, a temperature or weight-noise term could be demonstrably live and still fail to raise committed-action entropy, not because it never reached the distribution-forming stage but because that stage actively suppresses variance.",
+    "mapping_caveat": "The largest caveat is that 'stimulus onset' in sensory and premotor cortex is not the same event as 'commitment' in E3's selection pathway, and I am mapping a sensory-drive phenomenon onto a decision-commitment stage. The paper does not test action selection under uncertainty; it tests responses to stimuli, mostly in sensory areas, and the interpretive frame of state-stabilisation-by-input is the authors' proposal rather than a demonstrated mechanism. Reading it as 'the pre-commit distribution gets quenched' is an extrapolation. Additionally, variability here is spike-count/membrane-potential variance across trials, which is not the same quantity as entropy over a discrete action distribution -- MECH-440's observable is categorical entropy at argmax and there is no direct measurement correspondence. Filed as a hypothesis-generator for interpreting V3-EXQ-708b, explicitly not as evidence bearing on MECH-440's falsifier.",
+    "source_context": "Macaque and cat cortex, seven areas across four lobes; extracellular single-unit, 96-electrode array, and intracellular membrane-potential recordings; awake, behaving and anaesthetised preparations."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Source quality near ceiling -- this is one of the better-replicated phenomena in systems neuroscience. Aggregate pulled to 0.70 almost entirely by mapping: sensory-drive-onset is being mapped onto decision-commitment, and trial-to-trial rate variance onto categorical action entropy. Both are real gaps. The entry earns its place by generating a discriminating interpretation for the already-queued 708b rather than by directly evidencing the claim."
+  }
+}
