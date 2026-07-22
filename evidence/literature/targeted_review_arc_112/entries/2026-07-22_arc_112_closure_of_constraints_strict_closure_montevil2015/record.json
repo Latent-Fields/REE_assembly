@@ -1,0 +1,51 @@
+{
+  "claim_ids_tested": [
+    "ARC-112"
+  ],
+  "source": {
+    "title": "Biological organisation as closure of constraints",
+    "authors": [
+      "Mael Montevil",
+      "Matteo Mossio"
+    ],
+    "year": 2015,
+    "venue": "Journal of Theoretical Biology 372:179-191",
+    "doi": "10.1016/j.jtbi.2015.02.029"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "The brief asked whether constraint closure yields anything measurable or only a definition. The answer is split, and the split is the finding. The STRUCTURAL criterion is real and computable on a dependency graph: a set of constraints realises overall closure iff every constraint is both dependent and generative, and realises STRICT closure iff it additionally cannot be split into two closed sets. That third condition is ARC-112's assertion almost word for word -- one system rather than two independent ones -- and it can be evaluated on REE's constraint graph today without any experiment. The QUANTITATIVE part does not transfer at all: the tendency-to-closure measure dK(V,l) is defined over an increasing volume of physical SPACE, which REE does not have, and the authors themselves call the treatment 'still preliminary' and footnote that their notion of organised complexity is adopted for the discussion rather than in general. Scored 0.50 as the average of a genuinely useful structural criterion and a non-transferable measure, not as uniform mediocrity.",
+  "failure_signatures": [
+    "The closure conditions are evaluated on a graph of constraints that someone must first construct. For REE that graph is an act of interpretation, not a measurement -- which mechanisms count as constraints, and which dependencies are direct, are analyst choices that determine the verdict before any computation runs.",
+    "Strict closure is a Boolean property of a chosen constraint set. It cannot distinguish a federation whose integration is functionally meaningful from one whose only cross-dependency is a single trivial wire, because both are unsplittable. The criterion therefore cannot speak to INV-091's band at all -- it has no notion of degree in the dimension that matters.",
+    "The quantitative tendency-to-closure measure dK(V,l) is defined by growing a volume of physical space and counting dependencies inside it. REE has no spatial embedding, so there is no non-arbitrary analogue of the volume-growth procedure and no analogue of the boundary-collapse signature the measure detects.",
+    "Garson's liberality objection applies to the framework generally: closure of constraints is satisfiable by simple systems that are intuitively not unified organisms. A REE constraint graph passing strict closure therefore does not by itself establish that REE is a federation in any interesting sense."
+  ],
+  "tags": [
+    "arc_112",
+    "constraint_closure",
+    "organisational_closure",
+    "system_boundary",
+    "substrate_independent",
+    "definitional_thread",
+    "search_10"
+  ],
+  "mapping": {
+    "source_claim_statement": "Biological organisation is characterised as a closure of constraints. Constraints are distinguished from processes by exhibiting conservation (symmetry) at the relevant timescale while acting on those processes. A set C of constraints realises OVERALL CLOSURE if, for each Ci in C, (1) Ci depends directly on at least one other constraint in C (Ci is dependent) and (2) there is at least one Cj in C that depends on Ci (Ci is generative). C realises STRICT CLOSURE if it additionally satisfies (3) C cannot be split into two closed sets -- a condition the authors state is 'aimed at ensuring that the definition applies only to one system (rather than two independent systems)'. Separately and more tentatively, they propose a graded 'tendency to closure' dK(V,l) -- the increase in the number of closure-subject dependencies as a spatial volume V grows, resolved by spatial scale l -- as a way of drawing boundaries between mutually dependent organisms.",
+    "ree_translation": "Condition 3 is the sharpest external statement of ARC-112 found anywhere in this pull. ARC-112 asserts REE is neither a monolith nor a collection of independent modules; strict closure formalises exactly the second half of that -- a set of mutually dependent constraints that CANNOT be partitioned into two independently closed sets is one system by construction, and one that can is two systems that happen to be adjacent. Applied to REE the procedure is concrete and needs no experiment: enumerate the architectural constraints (the scheduler's rate assignment, boundary broadcast, mode conditioning, the beta commitment gate, residue feedback, harm-stream separation, hippocampal proposal routing), draw the direct-dependency edges among them, and check conditions 1-3. Any constraint that is dependent but not generative is a consumer bolted onto the federation rather than a member of it; any bipartition into two closed sets is a place where ARC-112 is locally false. This also gives ARC-112 a use it lacked -- something to do that is not waiting on Q-081's telemetry audit.",
+    "mapping_caveat": "Two caveats, one of them the answer to the question the brief posed. First, this is a framework from theoretical biology and the transfer to an engineered architecture is not the usual neuroscience analogy but is still a transfer: the constraint/process distinction is grounded in non-equilibrium thermodynamics and the conservation of constraints at a timescale, neither of which has an obvious REE counterpart, so the mapping onto 'architectural constraints' is a reading rather than an instantiation. Second, and this is the honest verdict the brief asked for -- the GRADED part of the framework is not usable. dK(V,l) is a spatial construction (grow a volume, count enclosed dependencies, look for the collapse at the organism boundary) with no REE analogue, and the authors describe their own treatment as preliminary and their organised-complexity definition as adopted for that discussion specifically. So constraint closure gives ARC-112 a structural criterion and gives INV-091 nothing: it is Boolean where INV-091 needs a band. That is a real limitation of the thread and is scored as one rather than papered over.",
+    "source_context": "Theoretical biology; conceptual and formal characterisation with illustrative cellular and multicellular examples, no empirical dataset."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "source_quality 0.75: Journal of Theoretical Biology, well cited, a reference statement of the organisational-closure position -- but a conceptual paper with no data and a known live objection (Garson's liberality objection, that the criterion admits intuitively non-living simple systems). mapping_fidelity 0.55 is a deliberate average of two very different numbers: the strict-closure condition maps onto ARC-112 at perhaps 0.8, and the tendency-to-closure measure at near 0.2, because it is spatial and REE is not. transfer_risk 0.45: transferring a thermodynamically grounded account of living organisation to an engineered software architecture is a real leap, mitigated only by the fact that the specific thing being transferred -- an unsplittability condition on a dependency graph -- is the most substrate-neutral part of the framework."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_112",
+  "entry_id": "2026-07-22_arc_112_closure_of_constraints_strict_closure_montevil2015",
+  "timestamp_utc": "2026-07-22T04:34:26Z",
+  "summary_path": "summary.md"
+}

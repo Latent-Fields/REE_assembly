@@ -1,0 +1,59 @@
+{
+  "claim_ids_tested": [
+    "Q-081",
+    "INV-091"
+  ],
+  "source": {
+    "title": "Null models for comparing information decomposition across complex systems",
+    "authors": [
+      "Alberto Liardi",
+      "Fernando E. Rosas",
+      "Robin L. Carhart-Harris",
+      "George Blackburne",
+      "Daniel Bor",
+      "Pedro A. M. Mediano"
+    ],
+    "year": 2025,
+    "venue": "PLoS Computational Biology 21(11):e1013629",
+    "doi": "10.1371/journal.pcbi.1013629"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly methodological and directly load-bearing for the shape this cluster's prospective run has to take. The paper establishes that raw PID atoms are not comparable across systems or conditions with different total mutual information -- systems with identical structure but different noise flip from synergy-dominated to redundancy-dominated -- and supplies a TMI-matched null-model normalisation (NuMIT) with released code. INV-091's falsifier is explicitly an ABLATION SERIES comparing cross-stream statistics across arms; ablations change noise and change total mutual information, so this failure mode is not hypothetical for us, it is structural. Scored 0.72 rather than higher because the validation is on Gaussian and VAR(1) models plus one neuroimaging dataset, the authors state the linear-dynamics assumption is a real limit, and they concede that 'biologically meaningful null models remain unknown' -- the null-construction problem is improved here, not solved.",
+  "failure_signatures": [
+    "Systems with identical source-target structure but different noise levels show PID atoms flipping from synergy-dominated to redundancy-dominated. An INV-091 ablation that changes a stream's effective noise -- which most ablations do -- can therefore reverse the apparent synergy/redundancy verdict with no change in organisation whatever, and be written up as evidence for the band.",
+    "Normalising by total mutual information (the obvious fix) assumes linear scaling, which is false: synergy, redundancy and unique information each scale differently with noise. A REE analysis that divides by TMI to make arms comparable has introduced a distortion rather than removed one.",
+    "Different PID definitions (MMI, CCS, DEP) agreed with each other at only about rho 0.4 on raw or naively normalised atoms. The choice of redundancy function is therefore a free parameter capable of changing the answer, and a REE result reported under a single unnamed PID definition is not reproducible.",
+    "The null ensembles preserve total mutual information ONLY, randomising everything else. The authors state that whether such nulls resemble real systems is an open question and that biologically meaningful nulls remain unknown -- so a NuMIT-normalised REE result is calibrated against a generic ensemble, not against a REE-plausible one.",
+    "Validation covers VAR(1) and linear-Gaussian dynamics; the authors state non-linear relationships are essential but not addressed. REE's streams are nonlinear by construction."
+  ],
+  "tags": [
+    "q_081",
+    "inv_091",
+    "information_decomposition",
+    "pid",
+    "phiid",
+    "null_models",
+    "surrogate_construction",
+    "numit",
+    "search_10"
+  ],
+  "mapping": {
+    "source_claim_statement": "Raw values of PID atoms are often not comparable across systems with different values of total mutual information, because the atoms grow non-linearly and at different rates as TMI changes -- so two systems with identical source-target relationships but different noise can appear synergy-dominated and redundancy-dominated respectively. Normalising by TMI does not fix this because it presumes linear scaling. The authors propose NuMIT: compare a system's PID atoms against an ensemble of randomly generated systems constrained to the same TMI, and report each atom as its quantile in that null distribution. Validated on multivariate Gaussian, VAR and discrete models; applied to 48 subjects under LSD, ketamine and psilocybin, where a synergy increase becomes visible only after NuMIT normalisation. Normalisation raises agreement between PID definitions (MMI, CCS, DEP) from roughly 0.4 to above 0.7. MATLAB implementation released.",
+    "ree_translation": "This is the second half of the null-construction problem the Lancaster et al. 2018 entry in this directory opened. Lancaster governs how to build a surrogate that preserves within-stream temporal structure while destroying cross-stream alignment; Liardi et al. govern how to make the resulting decomposition COMPARABLE ACROSS ARMS -- which is a distinct hazard and, for this cluster, the more dangerous one. INV-091's falsifier is an ablation series (remove event broadcasts, remove mode conditioning, remove commitment landmarks, remove residue feedback, force lockstep, randomise rates, collapse the harm streams) required to produce a NON-MONOTONIC relation between cross-stream similarity and function. Every one of those ablations changes how much total information is flowing, and this paper shows that alone can flip a synergy/redundancy verdict with the underlying organisation untouched. An unnormalised ablation series could therefore produce a beautiful non-monotonic curve that is entirely an artefact of varying TMI across arms -- INV-091 apparently confirmed by a measurement artefact. Concretely the run should: fix and NAME the PID definition in advance, report atoms as NuMIT quantiles rather than raw values, report TMI per arm alongside every atom so the reader can see whether it moved, and treat any non-monotonicity that disappears under normalisation as refuted rather than as noise.",
+    "mapping_caveat": "Two boundaries. First, the substrate: validation is on linear-Gaussian and VAR(1) systems plus resting-state neuroimaging, and the authors state explicitly that non-linear relationships are essential yet not addressed here. REE's streams are nonlinear and non-stationary across training, so the normalisation's calibration in our regime is assumed rather than demonstrated. Second, and more fundamental, the nulls preserve total mutual information and nothing else -- everything about the system's structure is randomised. The authors concede that whether such ensembles resemble real systems is open and that 'biologically meaningful null models remain unknown'. So NuMIT removes a specific, demonstrated confound (TMI-dependence) and does not deliver a REE-plausible null; it is a necessary correction, not a sufficient one, and pairing it with the constrained-realisation surrogates from Lancaster et al. is doing two different jobs, not one job twice. The neuroimaging application is human pharmacological fMRI/MEG, so GOV-ANALOGY-1 applies to that portion -- but the load-bearing content here is the mathematical result about atom comparability, which is substrate-independent.",
+    "source_context": "Method paper; synthetic multivariate Gaussian, VAR and discrete systems for validation, plus a 48-subject psychedelic neuroimaging dataset as application. Code at github.com/alberto-liardi/NuMIT."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.3,
+    "notes": "source_quality 0.85: PLOS Computational Biology, the Rosas/Mediano group, released implementation, validated against synthetic ground truth where the correct answer is known. mapping_fidelity 0.75: the confound identified -- atom values depending on total information rather than on structure -- lands directly on INV-091's arm-comparison falsifier and on Q-081's requirement that the cross-stream statistic be interpreted against a control rather than in absolute terms, and it is a mathematical result rather than a domain finding. Docked from higher because REE has not yet decided to use a PID-family statistic at all; if the prospective run uses a different statistic family this entry constrains it only by analogy. transfer_risk 0.30: low, because the core claim is about the estimator's behaviour rather than about brains -- the residual risk is the untested extension to nonlinear, non-stationary dynamics, which the authors flag themselves."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_081",
+  "entry_id": "2026-07-22_q_081_information_decomposition_null_models_liardi2025",
+  "timestamp_utc": "2026-07-22T04:34:26Z",
+  "summary_path": "summary.md"
+}

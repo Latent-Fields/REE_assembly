@@ -1,0 +1,55 @@
+{
+  "claim_ids_tested": [
+    "ARC-112",
+    "Q-081"
+  ],
+  "source": {
+    "title": "The Causally Emergent Alignment Hypothesis: Causal Emergence Aligns with and Predicts Final Reward in Reinforcement Learning Agents",
+    "authors": [
+      "Federico Pigozzi",
+      "Michael Levin"
+    ],
+    "year": 2026,
+    "venue": "arXiv:2605.06746 [cs.NE] (preprint, conference full-paper submission)",
+    "url": "https://arxiv.org/abs/2605.06746"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "The only paper found in search 10 whose substrate is REE's own kind of object -- causal emergence computed on the latent representations of neural-network RL agents across six Gymnasium-family environments, two architectures (MLP, GRU) and two algorithm families -- so it establishes that the Rosas/Mediano estimator can actually be run on a trained agent, which is a real precondition for using it on REE. Held to 0.45 by three things the paper itself reports. It is an unrefereed preprint. The macro variable was not chosen on principled grounds but produced by a minimum-information bipartition via the Fiedler vector, because PhiID cannot handle many parts -- so what was measured is emergence across an algorithmically chosen half-split of the latent layer, not across functionally meaningful streams, which is the case REE needs. And the authors' own control found causal emergence 'did not capture a quantitatively different direction' from standard representation metrics -- it summarised information already scattered across weaker signals. Add a sign flip on CrafterReward (global alignment -0.95 against +0.35 to +1.00 elsewhere) and the quantity looks task-dependent rather than invariant.",
+  "failure_signatures": [
+    "The macro variable was obtained by bisecting the latent graph with the Fiedler vector and averaging within each half, adopted explicitly because the decomposition cannot handle systems with many parts. REE's question is about emergence across NAMED heterogeneous streams with different dimensionalities and update rates; an algorithmic bipartition of a single latent layer is a different measurement and the paper offers no evidence the two behave alike.",
+    "Causal emergence scores were significantly above random projections but NOT significantly different from standard representation metrics (entropy, mutual information, autocorrelation, effective dimension, latent magnitude). The authors conclude it 'did not capture a quantitatively different direction'. A REE result showing high causal emergence may therefore be re-describable by a much cheaper statistic, which is a discriminant-validity failure, not merely a redundancy.",
+    "Global reward alignment was strongly POSITIVE in five environments and strongly NEGATIVE in CrafterReward (-0.95), which the authors attribute post hoc to exploration. A quantity whose sign depends on the task cannot be read as a substrate-independent organisational invariant, which is what search 10 was looking for.",
+    "Local (step-by-step) alignment was approximately zero in every environment. The quantity tracks slow representational drift over training, not moment-to-moment coordination -- so it does not speak to Q-081's per-step cross-stream organisation question at all.",
+    "Gaussian information theory was assumed after a copula rank-normal transform, and 28.53% of units still rejected normality. The estimator is a linear-Gaussian approximation applied to non-Gaussian neural activations."
+  ],
+  "tags": [
+    "arc_112",
+    "q_081",
+    "causal_emergence",
+    "phiid",
+    "reinforcement_learning",
+    "latent_representations",
+    "substrate_matched",
+    "preprint",
+    "search_10"
+  ],
+  "mapping": {
+    "source_claim_statement": "Causal emergence -- estimated with PhiID as the sum of the downward-causation and causal-decoupling atoms, computed from the lag-1 mutual information matrix of an agent's latent representation under a Gaussian approximation, with dimensionality reduced by a minimum-information bipartition -- rises over training in neural-network RL agents, aligns globally with the direction of reward improvement in five of six environments, and measured over the first 20% of training predicts final reward better than standard representation-metric baselines. The authors propose this as a Causally Emergent Alignment Hypothesis: causal emergence is an axis of representational reorganisation in RL agents.",
+    "ree_translation": "This is the existence proof that the Rosas/Mediano machinery runs on objects of REE's kind rather than only on cellular automata and flocking models -- the gap the Rosas 2020 entry in this directory leaves open. It shows the pipeline (per-step latent trace -> lag-1 MI matrix -> Gaussianisation -> PhiID atoms -> causal emergence) is implementable on a trained agent over its lifetime, and that the resulting quantity is not noise, since it beats random projections and carries predictive signal about final reward. For ARC-112 that matters because it moves 'compute Psi over REE's streams' from a proposal to a procedure with a public implementation (PhiRL). For Q-081 the transferable warning is the negative control the authors ran and reported honestly: they checked whether causal emergence was distinguishable from cheap standard metrics, and it was not. That is the discriminant-validity check REE's prospective run should copy -- report the causal-emergence statistic alongside entropy, mutual information, autocorrelation and effective dimension of the same traces, and treat a result that any of those reproduces as uninformative.",
+    "mapping_caveat": "The substrate match is closer than anything else in this cluster and is still not close. Their system is ONE latent layer of ONE agent, split in half by an algorithm; REE's federation is a set of named, heterogeneous, differently-dimensioned streams on different update clocks, wired to one another by design. Emergence measured across an arbitrary bipartition of a homogeneous layer and emergence measured across E1/E2/E3/harm/goal/control are not the same quantity, and the paper gives no reason to expect them to behave alike -- if anything the bipartition was chosen for tractability against the very combinatorics REE's multi-stream case would incur. Two further boundaries: the quantity tracks slow drift over TRAINING (local alignment ~0 everywhere), so it cannot address Q-081's per-step coordination question; and the sign of its relation to performance flipped between environments, which is fatal to reading it as a substrate-independent invariant. Not a neuroscience source, so GOV-ANALOGY-1 is not engaged.",
+    "source_context": "Six Gymnasium-family environments (Pendulum, LunarLander, BipedalWalker, Walker2D, Ant, CrafterReward); MLP and GRU policies; PPO and SAC/DQN; stable-baselines3; code at github.com/pigozzif/PhiRL."
+  },
+  "confidence_components": {
+    "source_quality": 0.45,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "source_quality 0.45: unrefereed preprint, but with released code, sensible controls (random-projection null, time-residualisation, architecture and algorithm crossings), and results reported against its own baselines including where they were unflattering -- which is the main reason it is included rather than dropped. mapping_fidelity 0.50: the substrate is right (learned neural agents, latent traces) and the pipeline is exactly the one REE would run, but the macro variable is an algorithmic bipartition of a single homogeneous layer, which is not REE's multi-stream case. transfer_risk 0.40: low domain risk (artificial agent to artificial agent) but a real methodological transfer risk from the linear-Gaussian estimator, the residual non-normality, and the task-dependent sign."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_112",
+  "entry_id": "2026-07-22_arc_112_causal_emergence_rl_agents_pigozzi2026",
+  "timestamp_utc": "2026-07-22T04:34:26Z",
+  "summary_path": "summary.md"
+}

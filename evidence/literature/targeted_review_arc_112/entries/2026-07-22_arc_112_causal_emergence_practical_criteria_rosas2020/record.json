@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "ARC-112",
+    "Q-081",
+    "INV-091"
+  ],
+  "source": {
+    "title": "Reconciling emergences: An information-theoretic approach to identify causal emergence in multivariate data",
+    "authors": [
+      "Fernando E. Rosas",
+      "Pedro A. M. Mediano",
+      "Henrik J. Jensen",
+      "Anil K. Seth",
+      "Adam B. Barrett",
+      "Robin L. Carhart-Harris",
+      "Daniel Bor"
+    ],
+    "year": 2020,
+    "venue": "PLoS Computational Biology 16(12):e1008289",
+    "doi": "10.1371/journal.pcbi.1008289"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the entry that makes search 10 non-decorative. It converts ARC-112's framing assertion -- that REE is one system rather than a collection of modules -- into a quantity with a scalable estimator (Psi, Delta, Gamma; pairwise mutual information only; linear in system size) and public code. Scored 0.68 rather than higher because the criteria are explicitly ONE-SIDED: Psi>0 is sufficient for causal emergence but not necessary, and the authors state plainly that they 'are unable to rule out emergence'. Combined with their own warning that redundancy makes emergence HARDER to detect, and REE's streams being heavily redundant by construction, a negative result in REE would be uninterpretable. So the paper enables a positive test of ARC-112 and forbids a negative one -- hence mixed rather than supports.",
+  "failure_signatures": [
+    "Psi, Delta and Gamma are sufficient but not necessary conditions. A REE run returning Psi <= 0 across all candidate macro features licenses NO conclusion about ARC-112; reporting it as evidence that the federation framing is wrong would be a direct misuse of the criterion.",
+    "The criteria double-count redundancy up to n times, so systems with high redundancy yield false negatives. REE's streams share environmental input and are causally wired to each other (E2 consumes E1, the beta gate reads across), which is exactly the high-redundancy regime where the estimator is least sensitive.",
+    "Emergence is defined only relative to a chosen microscopic partition, and the authors state no principled method for choosing it. In REE the partition is a design decision (per-stream? per-latent-block? per-module?) that can manufacture or destroy the result, and nothing in the theory constrains it.",
+    "The framework assumes fully observable systems with Markovian dynamics, which the authors say 'often do not hold when dealing with experimental data'. REE's per-step telemetry is a partial view of a non-Markovian system with hidden recurrent state."
+  ],
+  "tags": [
+    "arc_112",
+    "q_081",
+    "inv_091",
+    "causal_emergence",
+    "integrated_information_decomposition",
+    "phiid",
+    "substrate_independent",
+    "computable_criterion",
+    "search_10"
+  ],
+  "mapping": {
+    "source_claim_statement": "A supervenient macroscopic feature V of a multivariate system X is causally emergent when it carries unique predictive information about the system's future that no individual microscopic component (or group of order k) carries on its own. Two modalities are distinguished: downward causation (the macro variable predicts future MICRO variables irreducibly) and causal decoupling (the macro variable predicts its own future without that being mediated by the micro variables). Three practical criteria are derived that require only standard pairwise mutual information: Psi(V) = I(V_t; V_t') - sum_j I(X_t^j; V_t') detects emergence, Delta(V) = max_j [ I(V_t; X_t'^j) - sum_i I(X_t^i; X_t'^j) ] detects downward causation, and Gamma(V) = max_j I(V_t; X_t'^j) near zero alongside Psi>0 supports decoupling. Each is a sufficient, not necessary, condition.",
+    "ree_translation": "ARC-112 asserts that REE is a federation -- one system, not a monolith and not a collection of independent modules -- and it was registered on the explicit condition that it earn its keep as the parent node rather than remain framing prose. This paper is the closest thing found to a way of earning it. Take the micro variables X to be the per-stream states the Q-081 telemetry audit already enumerates (E1 hidden state, E2 PE, E3 candidate scores and commitment state, z_self, z_world, z_harm_s/a, z_goal, beta, operating_mode), and take V to be a candidate system-level descriptor over them. ARC-112 then says something checkable: there exists a V whose Psi is positive -- a system-level variable carrying predictive information no single stream has. If no such V exists, REE is a collection of coupled modules under a scheduler, which is the position ARC-112 denies. Delta maps onto the federation's downward arm specifically: a positive Delta for a control-plane V (operating_mode, beta) against a future per-stream variable is the computable form of 'shared organisational constraints coordinate the streams'. And Gamma bears on INV-091 from an unexpected side -- a high-Psi, near-zero-Gamma regime is causal decoupling, a macro variable running free of its constituents, which is a candidate formal signature of the COLLAPSE end of INV-091's band rather than of health.",
+    "mapping_caveat": "Three boundaries, and the first is decisive for how any REE result may be reported. (1) The criteria are one-sided. They can establish ARC-112 and cannot refute it; a null must be recorded as uninformative, not as weakening. (2) The user must supply V. The paper offers Theorem 1 as a feature-agnostic test of emergence CAPACITY (Syn(X_t; X_t') > 0) but that quantity is the expensive one that does not scale, and the cheap criteria all presuppose a hypothesis about what the macro variable is. In REE this means the analyst chooses the very thing the claim is about, and a poorly chosen V yields a false negative that is indistinguishable from a true one. (3) Nothing here is neuroscience, so GOV-ANALOGY-1 does not apply on the substrate axis -- this is a substrate-independent information-theoretic result, which is precisely what search 10 was looking for -- but the paper's own worked examples are simulated cellular automata, flocking models and Gaussian systems, not learned agents, so the transfer is from toy dynamical systems to a trained recurrent architecture and remains untested at that scale.",
+    "source_context": "Theory paper with simulated validation (particle/flocking models, cellular automata, Gaussian linear systems); public MATLAB implementation (ReconcilingEmergences)."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "source_quality 0.88: PLOS Computational Biology, seven authors spanning the information-theory and consciousness-science groups, heavily cited, with released code and an estimator family that has since been used at scale. mapping_fidelity 0.70: the formal object -- a macro variable carrying irreducible predictive information over a set of micro components -- is a genuinely close match to what ARC-112 asserts, and it is substrate-independent by construction, which is exactly the search-10 target; docked from higher because the criterion's one-sidedness means it can only ever license half of what the claim needs, and because V must be hypothesised rather than discovered. transfer_risk 0.35 -- the lowest in this pull, and deliberately so: there is no species, modality or task transfer to make, since the theory is stated over arbitrary multivariate stochastic processes. The residual risk is estimator risk (Gaussian/linear estimators, Markov and full-observability assumptions, redundancy-induced false negatives) rather than domain risk."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_112",
+  "entry_id": "2026-07-22_arc_112_causal_emergence_practical_criteria_rosas2020",
+  "timestamp_utc": "2026-07-22T04:34:26Z",
+  "summary_path": "summary.md"
+}
