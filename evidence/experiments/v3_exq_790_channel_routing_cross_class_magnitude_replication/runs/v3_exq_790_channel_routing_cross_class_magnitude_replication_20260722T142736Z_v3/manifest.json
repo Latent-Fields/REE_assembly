@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_790_channel_routing_cross_class_magnitude_replication",
+  "run_id": "v3_exq_790_channel_routing_cross_class_magnitude_replication_20260722T142736Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-22T14:27:36Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "adequate_fresh_selection_sample",
+        "kind": "readiness",
+        "description": "Every scored cell recorded at least FRESH_SELECT_FLOOR genuine E3 select() calls on the CORRECTED denominator (diagnostics cleared before every select_action, so a latched tick contributes no row). This is the gate on the ~9x pseudo-replication defect that the shared 662/663 driver carried: route_range_mean there was a mean over latched repeats, so its effective n -- and any variance or significance statement built on it -- was inflated ~9-fold. Reported as the WORST cell (met is an all(...) quantifier), never a mean. Below floor => truncated or latch-starved run => substrate_not_ready_requeue, never a substrate verdict.",
+        "control": "nominal window P1*(steps-measure_after)=3600 ticks yields ~360 selections at the default heartbeat.e3_steps_per_tick=10",
+        "measured": 19,
+        "threshold": 200,
+        "direction": "lower",
+        "offending_cell": "ARM_1_ROUTE_ON::seed49",
+        "met": false
+      },
+      {
+        "name": "arm1_routed_bias_range_supra_floor",
+        "kind": "readiness",
+        "description": "ARM_1 (routing ON, cand_world_summary source) routed-bias cross-candidate RANGE (modulatory_channel_route_range -- the RAW range the P0 gate keys on, pre-normalise/pre-rescale) clears the floor. This is a RANGE statistic, the SAME one C1 routes on, NOT a magnitude. Below floor => under-trained e2 / collapsed candidate pool / amend not wired => substrate_not_ready_requeue, never a substrate verdict.",
+        "control": "ARM_1: SD-056 contrastive trained online; SP-CEM multi-class candidates; candidate_summary_source=e2_world_forward; routing ON",
+        "measured": 0.268527,
+        "threshold": 0.01,
+        "direction": "lower",
+        "measured_note": "7th-largest per-seed route_range_mean of 10 ARM_1 seeds (order statistic, NOT a mean): clears the floor iff >= 7 seeds do, which is exactly what `met` asserts. Arm mean, for reference: 0.455101.",
+        "met": true
+      },
+      {
+        "name": "routed_range_bounded",
+        "kind": "readiness",
+        "description": "Routed-bias range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout-norm clamp ON).",
+        "control": "max route_range across all arms",
+        "measured": 1.665297,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_routed_range_reaches_accumulator_on_active_off_inactive",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_committed_class_distribution_moves_on_vs_off",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true
+    },
+    "routing": {
+      "route_range_substrate_ready": "PASS -> /queue-experiment per-claim behavioural retests (ARC-065/MECH-294/ARC-062/MECH-309/MECH-341), each separate",
+      "substrate_not_ready_requeue": "re-queue as V3-EXQ-663a at higher P0 budget (or fix e2/SD-056 wiring); do NOT weaken",
+      "route_range_inert": "FAIL -> /failure-autopsy on the routing wiring"
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "35a86de82a4e9fb4c66d3644b49328c97eac422be64feed51adfd93373706ce3"
+}
