@@ -180,7 +180,7 @@ Restated because it is load-bearing and easy to lose once a p-value exists:
 
 **Clearing this null is NECESSARY for Outcome A and nowhere near sufficient.** Wired
 coordination is real coordination and will correctly clear any surrogate test. The surrogate
-destroys cross-stream alignment *in the analysis*; only the **structure-destroying arm** —
+destroys cross-stream alignment *in the analysis*; only the **structure-destroying arm** (BUILT 2026-07-22 — `q081_landmark_removal_arm_design.md`) —
 removing event/commitment landmark structure while leaving streams, rates and environmental
 input statistics intact — destroys it *in the system*, and only the ablation series
 separates Outcome A from Outcome B. A statistic that survives that arm was measuring the
@@ -196,7 +196,7 @@ This module builds the null. It does not adjudicate the claim.
 | Per-step multi-stream recorder | IN FLIGHT | session `suspicious-williamson-73da0d` |
 | **Constrained-realisation surrogate + null validation** | **DONE — this record** | this session |
 | Prospective recording run (experiment script + queue entry) | NOT STARTED — must go through `/queue-experiment` | unowned |
-| Structure-destroying (landmark-removal) arm | NOT STARTED — substrate work | unowned |
+| Structure-destroying (landmark-removal) arm | **DONE (2026-07-22)** — `experiments/_lib/q081_landmark_removal.py`; experiment-layer, no ree_core change. Record: `q081_landmark_removal_arm_design.md` | closed |
 | Ablation series (the only A-vs-B discriminator) | NOT STARTED | unowned |
 
 The surrogate is usable independently of all of the above: it consumes the recorder's array
