@@ -40466,6 +40466,24 @@
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: ARC-071
+  implementation_note: >-
+    SUBSTRATE BUILT 2026-07-22 in ree-v3 (ree_core/policy/policy_chunking.py), default OFF and
+    bit-identical when OFF. Both registered child operators landed together: MECH-323 formation
+    (ChunkAccumulator) and MECH-324 maintenance (ChunkLibrary), plus the MECH-322 sleep-replay
+    carve-out as a separate method behind a separate flag. Master switch REEConfig.use_policy_chunking;
+    parameter defaults are the registered MECH-323/MECH-324 suggested defaults verbatim
+    (R_min 20, W 100, F_low 0.15, F_high 0.45, evaluative margin 0.05, chunk size 2-5, depth cap 3,
+    C_min 5, T_dissolve 50, N 75). Chunks reach the ARC-007 proposal pool as single atomic
+    value-flat Trajectories under a further default-OFF knob (use_chunk_proposal_injection);
+    value_tag is provenance metadata only, so ARC-007 strict is preserved. MECH-094 is STRICT on
+    the default write path (record_step refuses hypothesis_tag=True at any parameter setting);
+    the MECH-322 path ANDs all three conditions and fails closed on each. 25 interface contracts
+    in ree-v3/tests/contracts/test_arc071_policy_chunking.py. NO EXPERIMENTAL EVIDENCE YET --
+    v3_pending stays True; the substrate-readiness diagnostic (does the accumulator fire at all)
+    is queued separately. NOTE the accumulator's evaluative gate is RELATIVE to a running
+    baseline, so a validation task must supply outcome CONTRAST, not merely repetition.
+    DISTINCT FROM MECH-477/SD-081 (allocation; built in parallel the same day): ARC-071 is the
+    TRANSFER mechanism. MECH-163 presupposes both and specifies neither.
   title: "policy_composition_via_repeated_grounding (zoom-out / chunk a sequence of primitives into a single atomic primitive after repeated successful execution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: sequences of policy primitives that have been repeatedly executed together with consistent outcomes are accumulated into a single primitive that the rule-apprehension and diversity-generation layers can treat atomically. Trigger: repetition count + outcome consistency (slow accumulator). Direction: zoom out. Phenomenology anchor: 'making coffee was once seventeen motor acts; after a thousand repetitions it is one unit.' Names the TRANSITION mechanism (planned -> habitual chunk) that MECH-163 dual systems presupposes but does not specify."
   claim_type: architectural_commitment
   subject: policy.composition_via_repeated_grounding
@@ -41432,6 +41450,23 @@
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-322
+  implementation_note: >-
+    CARVE-OUT PATH BUILT 2026-07-22 in ree-v3/ree_core/policy/policy_chunking.py as
+    ChunkAccumulator.record_replay_sequence (agent entry point:
+    REEAgent.note_chunk_replay_sequence), behind REEConfig.use_chunk_replay_origin_path.
+    SAFETY POSTURE AS REGISTERED: that flag is False by default EVEN WHEN chunking itself is on,
+    so the shipped default is MECH-094-strict and no chunk can originate from replayed or imagined
+    content. It is a SEPARATE METHOD, not a parameter on the default path -- the strict path
+    (record_step) refuses hypothesis_tag=True outright and cannot be made permissive by any
+    configuration. All three registered conditions are ANDed and each fails CLOSED independently:
+    (a) value-tag at or above the replay_value_quantile of the REAL-execution outcome distribution,
+    so the bar is set by waking achievement and an empty real history makes it unreachable (+inf);
+    (b) designated SD-017 sleep phase -- the agent entry point reads the serotonin phase when not
+    given one, so waking DMN (MECH-292/293 ghost-goal probe territory) reads False and is refused;
+    (c) replay_origin=True audit flag, carried into the proposal-candidate metadata, plus the
+    accelerated-dissolution deadline retiring an uncorroborated chunk direct to DISSOLVED, with any
+    real waking execution resetting the counter. Refusals are counted, not silently dropped.
+    Pinned by contracts C3/C4/C5. NO EXPERIMENTAL EVIDENCE YET; v3_pending stays True.
   title: "policy_composition.sleep_replay_value_conditioned_chunking_consolidation -- narrow exception path that permits ARC-071 chunk formation from replayed (hypothesis_tag=True) sequences during designated sleep phase, IF the replayed sequence carries a value-tag from prior real-executed episodes AND the formed chunk carries a replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution within N episodes. Resolves ARC-071 lit-pull R6 governance escalation (Option B carve-out, picked 2026-05-11)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.sleep_replay_value_conditioned_consolidation
@@ -41669,6 +41704,19 @@
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-323
+  implementation_note: >-
+    SUBSTRATE BUILT 2026-07-22 as ChunkAccumulator in ree-v3/ree_core/policy/policy_chunking.py,
+    default OFF (REEConfig.use_policy_chunking). Joint formation gate implemented exactly as
+    registered: repetitions >= R_min over window W AND outcome variance < F_low AND outcome mean >
+    running baseline + evaluative margin. Chunked-primitive object carries all seven registered
+    fields (sequence, initiation_set, termination_condition, value_tag, replay_origin,
+    formation_timestamp, depth); the Sutton 1999 options structure is adopted as STRUCTURE ONLY --
+    discovery stays Graybiel repetition-and-consistency and the chunk stays value-flat.
+    Chunks-of-chunks recursion works and is capped at max_depth (verified: a repeating 4-element
+    sequence yields a depth 1/2/3 ladder). Both write paths present: MECH-094-strict default plus
+    the MECH-322 carve-out. Bounded by construction (contiguous sub-sequences of length 2-5 only,
+    FIFO-capped tally table) -- the naive enumeration is combinatorial in episode length.
+    NO EXPERIMENTAL EVIDENCE YET; v3_pending stays True.
   title: "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution; chunk-size budget 2-5 elements per level). Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_accumulator_formation
@@ -41967,6 +42015,20 @@
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-324
+  implementation_note: >-
+    SUBSTRATE BUILT 2026-07-22 as ChunkLibrary in ree-v3/ree_core/policy/policy_chunking.py, behind
+    its OWN sub-switch (REEConfig.use_chunk_maintenance, default False) so the registered ARM_1 vs
+    ARM_2 dissociation is runnable: with maintenance off, chunks still FORM but never crystallise
+    and never become selectable -- the substrate analog of Smith & Graybiel 2013 IL disruption.
+    Pinned by contract test_c7_formation_only_arm_never_crystallises. All four lifecycle states
+    implemented (FORMING -> CRYSTALLISED -> DISSOLVING -> DISSOLVED) with all three registered
+    sub-mechanisms: (A) crystallisation counter incremented by REAL executions only, (B) asymmetric
+    hysteresis dissolution gate -- variance_low < variance_high is ENFORCED by config validation,
+    not merely documented, and DISSOLVING is recoverable if variance falls back inside the band,
+    (C) the MECH-322 replay-origin accelerated-dissolution deadline, which retires direct to
+    DISSOLVED and bypasses the slower DISSOLVING window. NO EXPERIMENTAL EVIDENCE YET; v3_pending
+    stays True. MECH-324's registered signature (the latency / rollout-cost drop) requires the
+    ARM_1-vs-ARM_2 experiment, which is downstream of the readiness diagnostic.
   title: "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_maintenance_dissolution

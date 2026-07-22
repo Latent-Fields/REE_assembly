@@ -8,6 +8,8 @@ nav_order: 8
 # Policy Primitive Granularity — Architectural Family
 
 **Status:** family slot registered 2026-05-10 (ARC-069 parent + ARC-070 + ARC-071 candidate / pending_design).
+**ARC-071 substrate BUILT 2026-07-22** (`ree-v3/ree_core/policy/policy_chunking.py`) — MECH-323 formation operator (`ChunkAccumulator`) + MECH-324 maintenance operator (`ChunkLibrary`) + the MECH-322 sleep-replay carve-out, default OFF and bit-identical when OFF. Registered parameter defaults implemented verbatim; 25 interface contracts in `ree-v3/tests/contracts/test_arc071_policy_chunking.py`. No experimental evidence yet — the substrate-readiness diagnostic is queued separately, and all four claims stay `v3_pending: true`. **ARC-070 remains UNBUILT**, so the family's decomposition direction is still missing: a chunk can currently form and dissolve, but cannot be re-decomposed under prediction failure.
+**Family principle:** the unit of policy that the rule-apprehension and diversity-generation layers operate on is itself a dynamic representation — primitives can decompose into finer ones (ARC-070, on prediction failure) or compose into coarser ones (ARC-071, on repeated grounding).
 **Family principle:** the unit of policy that the rule-apprehension and diversity-generation layers operate on is itself a dynamic representation — primitives can decompose into finer ones (ARC-070, on prediction failure) or compose into coarser ones (ARC-071, on repeated grounding).
 
 ---
