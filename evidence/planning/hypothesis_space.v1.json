@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-22T04:02:38Z",
+  "generated_at": "2026-07-22T04:48:35Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -672,8 +672,10 @@
           "desc": "The training return is dominated by episode survival, so the optimal policy under the given reward is NOT to forage. Every learner correctly un-learns the behaviour the DV scores. Evidence: at hazard-free D3 every learner (REE bias-head 0.533, ppo_raw_obs 0.567, ppo_ree_latent 0.233, all four actor-critic arms 0.200-0.267) sits BELOW the run's own random-walk anchor of 0.933, while a local-view greedy reading the same 5x5 field scores 48.05; and at D0 vanilla PPO survives 175.0 steps vs the greedy oracle's 20.4 while foraging 17x less.",
           "axis": "reward",
           "state": "alive",
-          "evidence_runs": [],
-          "basis": "Pre-registered 2026-07-22 from the confirmed 734/737b/742a cluster autopsy. Its discriminating probe -- a return-decomposition diagnostic recording per-term return attribution (survival / harm / consumption / proximity) alongside foraging_competence, with a consumption:survival weighting sweep -- has NOT been queued or run. Declared null: the consumption term already dominates at the training horizon and re-weighting does not move D3 competence.",
+          "evidence_runs": [
+            "V3-EXQ-808"
+          ],
+          "basis": "Pre-registered 2026-07-22 from the confirmed 734/737b/742a cluster autopsy. Its discriminating probe is QUEUED as V3-EXQ-808 (2026-07-22, coordinator /queue/add): a return-decomposition diagnostic holding the learner fixed (all-ON REE stack per seed on the SD-070 z_world encoder-warmup path, zworld guard GREEN-GATING) on the hazard-free D3 rung, recording per-term return attribution (consumption / proximity / harm / novelty / other) in both the training and eval phases alongside foraging_competence and survival_horizon, and sweeping the consumption:survival weighting over 4 levels (1.0/1.0 baseline, 5.0/1.0, 25.0/1.0, 1.0/0.0 survival-zeroed). Declared null: the consumption term already dominates the realised return at the training horizon (consumption_share >= 0.50 at baseline) AND re-weighting does not move D3 foraging competence (cross-level range < 0.50 res/ep) -- under which this leg is REFUTED and the observability / policy-learning route re-opens. Not yet run.",
           "children": [],
           "met_elimination_bar": false
         }
