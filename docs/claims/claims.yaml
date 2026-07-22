@@ -8403,6 +8403,19 @@
     not the substrate. SD-004 stands as implemented.
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
+  cross_reference_note: >
+    SEE SD-080 (registered 2026-07-22). A scoping spike measured that
+    E2.action_object_head receives zero gradient from every REE training path, so the
+    action-object space O this claim's map backbone navigates is a frozen random
+    projection fixed at initialisation -- 99.5% of its variance explained by the action
+    label alone, pairwise action distances varying <1% across 120 world states, and
+    parameters bit-identical after 40 warmup episodes. SD-080 therefore asserts that
+    SD-004's stated "compressed action-object representation" rationale is NOT
+    instantiated in the live substrate. This note is a pointer only: SD-004's status
+    (implemented) and its EXQ-114 behavioural evidence are deliberately left unchanged
+    here, because deciding what that evidence supports once O is known to be
+    state-invariant is a governance decision, not a registration one. Full measurements:
+    evidence/planning/action_object_invariance_spike_2026-07-22.md.
 
 - id: SD-005
   evidence_quality_note: |
@@ -14073,19 +14086,19 @@
   evidence: []
 
 - id: MECH-163
-  title: "Two distinct goal-directed systems operate in parallel: a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in familiar contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) required for novel contexts, long-horizon benefit accumulation, and prosocial planning."
+  title: "NARROWED 2026-07-22 to leg (1) only. Two dissociable goal-directed systems operate in parallel -- a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in practised contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) -- AND THE PLANNED SYSTEM IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. This is exactly the proposition V3-EXQ-786a tested, and the claim retains that run's weakens. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration)."
   claim_type: mechanism_hypothesis
-  subject: goal_directed.dual_system_architecture
+  subject: goal_directed.dual_system_novel_context_recruitment
   polarity: asserts
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-20
+    as_of: 2026-07-22
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-786_2026-07-20
-      as_of: 2026-07-20
-      verdict: non_contributory/measurement_test_design_defect
+      from: failure_autopsy_V3-EXQ-786a_2026-07-22
+      as_of: 2026-07-22
+      verdict: weakens/standard
   implementation_phase: v3
   depends_on:
     - ARC-007
@@ -14094,6 +14107,7 @@
     - SD-012
     - INV-029
     - ARC-071     # transition mechanism (planned -> habitual chunk); added 2026-05-10 per ARC-071 lit-pull R3 verdict
+    - MECH-477    # control-allocation arbitrator; added 2026-07-22 per claim_synthesis_MECH-163_2026-07-22
   notes: >
     Registered 2026-04-02 from architectural discussion about V3/V4 boundary.
     Matches the SNc/VTA dopaminergic dual split and the model-free/model-based
@@ -14233,6 +14247,46 @@
     what V3-EXQ-786a measures. This STRENGTHENS the "present and discriminating" finding
     and the rejection of the substrate self-route; only the reusable NUMBER was
     bandwidth-conditional.
+
+    ADJUDICATED 2026-07-22 (V3-EXQ-786a, evidence, claim_ids=[MECH-163], WEAKENS;
+    failure_autopsy_V3-EXQ-786a_2026-07-22). This is MECH-163's FIRST genuine V3
+    experimental evidence (the 2026-04-03 hold recorded 9 lit supports, 0 experimental
+    entries). The test was fair and the instrument was repaired before the result was
+    taken: the manipulation check passed on both legs (familiarity discriminability
+    AUC 0.848 against a 0.7 bar; SEM lower bound 0.795 against the 0.5 null), replacing
+    786's raw mean-difference floor of 0.05 which was neither scale-free nor an overlap
+    measure. n=8 seeds, non_degenerate true. The load-bearing criterion
+    C1_recruitment_higher_on_novel failed on BOTH the absolute and standardized legs:
+    recruitment delta mean 0.00435, SEM 0.0325, lower bound -0.0281 against a 0.02
+    margin, Cohen's d 0.047. That is an ABSENT effect, not an underpowered one -- do NOT
+    route to a power re-run. epistemic_category standard; explicitly NOT
+    substrate_ceiling and NOT a measurement defect. Report lit_conf and exp_conf
+    SEPARATELY: 9 lit supports and 1 experimental weakens do not blend.
+
+    DECOMPOSED 2026-07-22 (/claim-synthesis; proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).
+    MECH-163 is NARROWED IN PLACE to leg (1) -- the proposition 786a actually tested --
+    and therefore retains the weakens, now correctly whole-claim-scoped by STRUCTURE
+    rather than by a prose qualifier. That structural fix is the point: a prose scope
+    note does not survive the indexer, so claim_evidence.v1.json would have attached this
+    weakens to the WHOLE claim and legs (2) and (3) -- one of which has no V3 substrate
+    in existence -- would have silently inherited a refutation they did not earn.
+    Split out, each with its own blocker stated in its own right and evidence: []:
+      - MECH-478 long_horizon_benefit_requires_model_based_rollout (leg 2), blocked by
+        ARC-007 STRICT value-flat proposals.
+      - MECH-479 prosocial_planning_requires_planned_system (leg 3), no V3 substrate;
+        refiled implementation_phase v4.
+    Registered as the missing mechanism this claim presupposed but never named:
+      - MECH-477 dual_system_uncertainty_arbitration.
+    The null's SHAPE is what identified it: a FLAT response (delta mean 0.0044, d 0.047,
+    7 of 8 seeds within +/-0.15) is the signature of two pathways with NO ARBITRATOR. In
+    the reference biology differential recruitment is produced by uncertainty/
+    reliability-based arbitration (Daw, Niv & Dayan 2005, already on file in this
+    claim's OWN targeted review since 2026-04-05, conf 0.79), not by the mere existence
+    of two pathways. NOTE the granularity debt was therefore documented in MECH-163's own
+    lit folder for three and a half months before 786a made it cost anything.
+    ARC-071 (planned -> habit transfer) is NOT re-registered -- it already exists, is
+    already in depends_on, and needs BUILDING not registering.
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
@@ -50465,6 +50519,52 @@
     0.5 over-track and drive 14 and 18 of 20 anchors below the floor. Fourth instance of
     the SD-066 pattern and the first on a DERIVED latent rather than z_world itself.
 
+- id: SD-080
+  title: "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it."
+  claim_type: design_decision
+  subject: e2.action_object_consequence_grounding
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-22"
+  depends_on: [SD-004, ARC-018, SD-056]
+  evidence: []
+  location: evidence/planning/action_object_invariance_spike_2026-07-22.md
+  functional_restatement: >
+    Scoping spike 2026-07-22 (session epic-burnell-995d28). Four measurements, all on the
+    live substrate: 99.5% of action-object variance is explained by the action label
+    alone; the 5-action pairwise-distance matrix varies <1% across 120 world states;
+    within-action-pair consequence correlation is ~0; and the head's parameters are
+    bit-identical after 40 warmup episodes (delta L2 exactly 0.0). The last of these is
+    the mechanism rather than a symptom -- no REE training path writes a gradient to
+    action_object_head, so the projection never departs from its initialisation. The
+    consequence is that SD-004's stated rationale ("E2 produces COMPRESSED action-object
+    representations", enabling planning horizons beyond raw state space) is not
+    instantiated: a state-invariant O carries no world-effect structure for the
+    hippocampal map to be a backbone OF. This does not by itself impeach SD-004's
+    behavioural evidence (EXQ-114 PASS 4/4, 99.2% harm reduction under MAP_NAV) -- it
+    relocates what that evidence can be attributed to, which is a governance question and
+    is deliberately left open here.
+  relation_note: >
+    Same failure FAMILY as SD-056, different site. SD-056 fixed action-collapse in
+    world_forward with a contrastive objective, having diagnosed the cause as "under
+    reconstruction-shaped training the state-dominated solution is the local minimum". The
+    action-object head has the identical input geometry (Linear(world_dim + action_dim,
+    ...), action = 4/36 of the input) but a STRONGER form of the same problem: it has no
+    training signal at all, so it never even reaches a local minimum. SD-056's remedy is
+    the natural template, but its objective is not directly reusable -- SD-056 pushes
+    ACTIONS apart, whereas the ao head's deficiency is that STATES are not represented.
+  falsification_note: >
+    Proposed falsifier in evidence/planning/action_object_invariance_spike_2026-07-22.md
+    Sec 4.2. SD-080 is falsified if a training path writing gradient to
+    action_object_head is identified in the live substrate, or if action-object
+    representations are shown to vary with world state beyond the measured <1%.
+
 - id: SD-075
   title: "Episode-boundary continuity for the SD-069 phasic surprise-EMA baseline, plus convergence-gated event accounting: carry the baseline across episode boundaries so it reflects the agent's surprise distribution rather than the current episode's first tick, and split event counts into pre-warmup vs converged so a short-episode cell reports honestly or declares itself uninformative instead of emitting a near-zero count that a MIN-across-cells precondition treats as a real measurement. ree_core regulator change, no-op by default."
   claim_type: design_decision
@@ -59648,3 +59748,452 @@
     IMPLEMENTATION. It is complicated (buildable) and cheap. Building a workflow SELECTOR
     on top is NOT cheap and must NOT be attempted until the fields have accumulated real
     history.
+
+- id: MECH-475
+  title: "uninformative_value_baseline_makes_optimisation_iatrogenic. In REE's MECH-457 actor-critic pathway the value baseline is UNINFORMATIVE on the policy's own state distribution, so the advantage carries variance rather than signal and ADDED OPTIMISATION PRESSURE IS IATROGENIC: policy capacity, training budget, an earned intrinsic approach drive, environmental reward-coupling and post-installation RL refinement each drive competence BELOW THEIR OWN CONTROLS rather than plateauing beneath a ceiling, and the magnitude of the loss tracks baseline uninformativeness rather than the identity of the intervention. Measured mechanism: V3-EXQ-782 R-(b) reads the shared CTRL critic at std(V)/std(G) = 0.041 against a 0.25 collapse threshold and a pre-reward-vs-far separation ratio of 0.016 against a 0.25 floor -- an unbaselined high-variance advantage. A ceiling plateaus; this does not."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.baseline_informativeness
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-22"
+  registered: "2026-07-22"
+  split_from: MECH-457
+  depends_on:
+    - MECH-457  # the actor-critic pathway whose baseline this claim characterises; MECH-457 is retained as the narrowed umbrella
+    - MECH-459  # owns the NORMALISER / critic-FORM lever; this claim owns the baseline-informativeness -> iatrogenic-optimisation CONSEQUENCE (opposite-signed prediction, see functional_restatement)
+  location: docs/architecture/competence_bootstrap_mechanisms.md#7-mech-475----uninformative-value-baseline-makes-optimisation-iatrogenic
+  functional_restatement: >
+    Registered 2026-07-22 by /claim-synthesis as a child of the MECH-457 granularity-debt
+    decomposition (evidence/planning/claim_synthesis_MECH-457_2026-07-22.md, user-approved
+    per-child). The campaign's nineteen autopsy targets have been read throughout as a
+    search for the mechanism that would PRODUCE competence. Read as a set, they show
+    something the individual autopsies could not: five INDEPENDENT interventions each drove
+    competence BELOW ITS OWN CONTROL.
+      V3-EXQ-769  more capacity + 5x budget      raw ON 6.48 -> 0.12
+      V3-EXQ-781  earned approach drive (0.70)   raw 2.983  -> 0.200
+      V3-EXQ-771  metabolic reward-coupling      reward 3.47 / survive ~170 -> 1.12 / death rate 1.0
+      V3-EXQ-780  unconstrained RL after BC      post-BC 20.933 -> 11.667
+      V3-EXQ-789  RL vs persistent imitation aux installed -> decayed at EVERY schedule
+    A capacity, representation or observability ceiling predicts a PLATEAU, approached from
+    below. It does not predict a treatment landing beneath its own control, five times, on
+    five different axes. The uninformative baseline predicts exactly that: with an advantage
+    dominated by variance rather than signal, MORE GRADIENT IS MORE DRIFT, whatever
+    direction the drift is pushed from -- which is also why the same signature appears on
+    the acquisition side (769/781/771) and the retention side (780/789), where the campaign
+    has treated them as separate problems.
+    NOT MECH-459 RE-LABELLED, and the two are independently falsifiable because THEY
+    PREDICT OPPOSITE SIGNS. MECH-459 asserts the two-sided normaliser makes the gradient
+    scale-invariant, so magnitude levers CANNOT MOVE the floor -- an INERTNESS prediction.
+    This claim asserts the baseline is uninformative, so added optimisation ACTIVELY
+    DEGRADES -- a DESTRUCTIVENESS prediction. V3-EXQ-769 / 781 / 771 are all magnitude-class
+    levers that MECH-459 predicts should be inert, and all three were destructive. MECH-459's
+    own probe splits the same way: V3-EXQ-782 R-(a) WEAKENED its normaliser half (C_pre 1.918
+    z_world / 1.203 raw_view, both ABOVE the 0.5 "tiny" threshold, so there is no tiny forage
+    signal for novelty noise to swamp) while R-(b) CORROBORATED its critic half. This claim
+    is that corroborated half, promoted to its own falsifiable object.
+    THE POSITIVE CONTROL ALREADY EXISTS. V3-EXQ-788 (clean PASS) shows a distributional
+    critic RETAINS 1.839 of installed competence where the scalar critic does not -- i.e.
+    making the baseline informative demonstrably changes the sign of the outcome on at least
+    one of the five instances. The claim's decisive test is whether that generalises to the
+    other four.
+  what_would_answer: >
+    Two readouts, in decreasing order of decisiveness.
+    (a) REVERSAL -- the decisive test. Re-run the three destructive ACQUISITION-side
+    treatments (V3-EXQ-769 capacity/budget, V3-EXQ-781 approach drive, V3-EXQ-771 metabolic
+    coupling) with the V3-EXQ-788 DISTRIBUTIONAL CRITIC in place, everything else
+    byte-identical to the original arm, on the non-regressed reference build (128-wide /
+    3x budget / z_world detached / credit-replay 3 / topk 32). SUPPORTED if the
+    treatment-below-control inversion REVERSES OR FLATTENS in at least 2 of 3.
+    WEAKENED if treatments still land below their own controls with an informative baseline
+    -- the destructiveness is then not the baseline's doing and this claim is WITHDRAWN
+    (it does not degrade into a weaker version; the whole content is the causal attribution).
+    (b) DOSE -- the cheap standing readout. Record std(V)/std(G) and the
+    pre-reward-vs-far separation ratio as DECLARED COVARIATES on every arm of every future
+    MECH-457-family run, and test whether the control->treatment competence DELTA is
+    predicted by baseline informativeness across instances. SUPPORTED if the correlation
+    holds and is signed as predicted; a null here is weak evidence only (n is small and the
+    five existing instances differ on many axes at once).
+    MANDATORY on both: TRAJECTORY, not terminal competence. This signature is invisible to
+    terminal-only measurement, which is precisely what hid it across nineteen autopsy
+    targets -- every one of which recorded the numbers that show it.
+    NON-DEGENERACY GUARD: an arm whose control did not itself clear the readiness anchors
+    cannot exhibit a treatment-below-control inversion and must self-route
+    substrate_not_ready_requeue, never a reversal verdict.
+  notes: >
+    LITERATURE GROUNDING (2026-07-22, /claim-synthesis Step 5; targeted searches recorded
+    here, full /lit-pull targeted_review_mech_457_baseline_informativeness COMMISSIONED and
+    owed).
+      - Sutton, McAllester, Singh & Mansour 2000 (NeurIPS), policy-gradient theorem --
+        already on file in targeted_review_actor_critic_action_learning. The value baseline's
+        FUNCTION IS VARIANCE REDUCTION; an uninformative baseline reduces nothing, which is
+        the formal statement of this claim. This is the theoretical anchor.
+      - O'Doherty et al. 2004 (Science), dissociable ventral/dorsal striatum -- on file. A
+        SILENT CRITIC is a specific lesion, not a degraded actor: the biological prediction
+        is that the deficit should look like loss of value-side grounding, not loss of motor
+        competence.
+      - Rothenhoefer et al. 2017 (J Neurosci 37:6902), ventral striatum lesions in rhesus
+        macaques. THE CLOSEST DIRECT TEST FOUND, and it CUTS BOTH WAYS -- recorded as a
+        divergence rather than smoothed over. SUPPORTING: VS-lesioned monkeys were MORE
+        INFLUENCED BY NEGATIVE FEEDBACK and had LOWER CHOICE CONSISTENCY -- degradation with
+        an unbaselined-error signature, not a plateau, which is this claim's predicted shape.
+        DIVERGING: the VS deficit was specific to learning the value of STIMULI and left
+        ACTION-value learning INTACT, whereas REE's deficit is on actions. So the biology
+        does not straightforwardly license "remove the critic -> action learning degrades";
+        the next lit-pull must resolve whether REE's foraging DV is stimulus-like
+        (resource-directed) or action-like in the relevant sense.
+      - Salamone & Correa 2003 (targeted_review_arc_068_opportunity_cost) and Szczypka et al.
+        2001 (targeted_review_competence_bootstrap_without_demonstrator) -- dopamine-deficient
+        mice with INTACT perception, INTACT motor apparatus and INTACT hedonics STARVE IN
+        FRONT OF FOOD. The closest biological analog of REE's "readiness met on every leg,
+        foraging at floor" signature. Already cited by MECH-461 for the DRIVE half; cited here
+        for the distinct point that an intact actor with a compromised value channel produces
+        competence loss rather than a plateau.
+    EVIDENCE MOTIVATING REGISTRATION: the five instances tabulated in functional_restatement,
+    plus V3-EXQ-782 R-(b) (the measured mechanism) and V3-EXQ-788 (the positive control).
+    Full derivation, the Step-3 discrimination gate, and the declined children in
+    evidence/planning/claim_synthesis_MECH-457_2026-07-22.md.
+    PROMOTES NOTHING. Registered as candidate/v3_pending. No hypothesis-space fan-out growth
+    event is created by this registration -- see the synthesis document section 6.
+
+- id: MECH-476
+  title: "competence_retention_dissociable_from_acquisition. ACQUIRING competence and RETAINING it are dissociable capabilities with separate substrate requirements: REE has the first and lacks the second. Behavioural cloning installs foraging competence at 20.933 on raw_view (3/3 seeds took) and 32.72 on z_world, and unconstrained RL refinement then ERODES it to 11.667 -- while a distributional critic (V3-EXQ-788, retains 1.839) and a KL anchor to the installed snapshot (V3-EXQ-792, retains 0.778 vs 0.525 unconstrained, still plastic) each preserve it. Retention is supplied by properties of the VALUE ESTIMATOR and the UPDATE CONSTRAINT, NOT by continued demonstration (V3-EXQ-789 eliminates the imitation-auxiliary schedule axis at every setting). COROLLARY, and the claim's distinctive testable content: consolidation is properly defined as RESISTANCE TO RETROGRADE INTERFERENCE (Krakauer 2005), hence dependent on install DOSE and elapsed offline INTERVAL -- neither of which REE has ever varied."
+  claim_type: mechanism_hypothesis
+  subject: f_dominance_conversion_ceiling.acquisition_retention_dissociation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-22"
+  registered: "2026-07-22"
+  split_from: MECH-457
+  depends_on:
+    - MECH-457  # the narrowed umbrella
+    - MECH-459  # critic-side retention lever (V3-EXQ-788)
+    - MECH-460  # behavioural-prior-side lever; already names KL-to-a-frozen-own-snapshot as the literature's anti-forgetting object
+    - MECH-475  # sibling child: the uninformative baseline is the leading candidate ROOT of the erosion this claim characterises
+  location: docs/architecture/competence_bootstrap_mechanisms.md#8-mech-476----competence-retention-dissociable-from-acquisition
+  functional_restatement: >
+    Registered 2026-07-22 by /claim-synthesis as a child of the MECH-457 decomposition
+    (evidence/planning/claim_synthesis_MECH-457_2026-07-22.md, user-approved per-child).
+    The campaign's first ten legs all asked which mechanism PRODUCES competence, every one
+    adjudicated against an arm that never left the ~0-1 floor. V3-EXQ-780's raw_view arm
+    reached 20.933 -- the first supra-lift-target (13.05) observation in the campaign -- and
+    RL then eroded it to 11.667. That is the moment the question changed, and the
+    2026-07-19 three-way split of H-bc-prior recorded it: acquisition CONFIRMED, retention
+    OPEN. This claim names the dissociation itself.
+    WHAT THIS ASSERTS THAT MECH-459 AND MECH-460 DO NOT -- the anti-duplication test, stated
+    so a reader can dispute it. MECH-459 owns the critic/normaliser LEVER; MECH-460 owns the
+    behavioural-prior LEVER. Each is a claim about one lever. Neither asserts that acquisition
+    and retention are DISSOCIABLE CAPABILITIES. The distinctive content here is threefold:
+    (i) the DOUBLE DISSOCIATION -- a mechanism can retain without acquiring (the KL anchor
+    acquires nothing) and acquire without retaining (BC), which is a structural claim about
+    the substrate, not about a coefficient;
+    (ii) CONSOLIDATION-AS-INTERFERENCE-RESISTANCE, which makes install DOSE and elapsed
+    OFFLINE INTERVAL the untested levers -- V3-EXQ-780 ran a single BC dose straight into RL
+    with no interval, so REE has never tested for a consolidation PROCESS at all, only for
+    concurrent REGULARISATION;
+    (iii) TRACE SELECTIVITY -- recorded in the V3-EXQ-792 autopsy section 3: a GLOBAL KL
+    coefficient cannot express WHICH traces are protected, whereas biological protection is
+    synapse- and trace-specific.
+    THE INTENDED FAILURE MODE, stated up front: if the falsifier returns invariance to dose
+    and interval, there is no consolidation PROCESS -- only a regulariser -- and this claim
+    is WITHDRAWN back into MECH-459/460 rather than kept as an umbrella. That is what keeps
+    it from being a third lever claim.
+  what_would_answer: >
+    An A -> B -> A RETROGRADE-INTERFERENCE design, the standard consolidation assay
+    (Krakauer 2005). A = BC-install competence; B = an interfering unconstrained-RL phase;
+    then re-measure A. Vary the TWO factors REE has never varied: INSTALL DOSE (BC episodes)
+    and A->B INTERVAL (offline steps before refinement begins). DV: retained-fraction
+    TRAJECTORY, never terminal competence.
+    SUPPORTED if resistance to interference GROWS with install dose and/or with the A->B
+    interval -- retention is then a dose/time-dependent consolidation PROCESS, and the build
+    target is a consolidation window rather than a larger constraint coefficient.
+    WEAKENED if retained fraction is INVARIANT to both and tracks only the concurrent
+    constraint coefficient -- there is then no consolidation process and this claim is
+    withdrawn into MECH-459/460.
+    THIRD ARM, from the behavioural-tagging literature (Moncada & Viola 2007) and cheap
+    because REE already owns the signal: pair the install with a NOVELTY episode (the landed
+    RND drive) inside the consolidation window. Behavioural tagging predicts a WEAK install
+    that would not otherwise persist becomes durable when a novelty exposure falls close in
+    time. SUPPORTED if a sub-threshold BC dose consolidates only in the novelty-paired
+    condition. This arm is the sharpest available discrimination between "consolidation
+    process" and "regulariser", because a regulariser has no reason to care about an
+    unrelated novelty exposure.
+    PREREQUISITE, inherited from the retention portfolio and NON-NEGOTIABLE: an install that
+    did not take is UNINFORMATIVE about retention and must self-route
+    substrate_not_ready_requeue, never a retention verdict. Bands: floor 1.0, RND plateau
+    5.22, lift target 13.05, BC-expert 32.72, local_view_greedy 48.05, greedy_oracle 57.2,
+    random_walk 0.933.
+  notes: >
+    LITERATURE GROUNDING (2026-07-22, /claim-synthesis Step 5; full /lit-pull
+    targeted_review_mech_457_consolidation on TRACE-SELECTIVE VS GLOBAL consolidation
+    COMMISSIONED and owed -- the V3-EXQ-792 autopsy had already recommended it as secondary;
+    this claim makes it primary).
+      - Krakauer, Ghez & Ghilardi 2005 (J Neurosci 25:473), visuomotor adaptation.
+        CONSOLIDATION IS DEFINED as resistance to retrograde interference, and is shown to
+        emerge BOTH with elapsed time AND with DOUBLED INITIAL TRAINING. This is the direct
+        source of the dose x interval design above, and the reason terminal-only measurement
+        could never have detected it.
+      - Walker et al. 2003 (Nature 425:616), dissociable stages of human memory consolidation
+        and reconsolidation. At least three separable post-acquisition stages, and
+        REACTIVATION RETURNS A CONSOLIDATED MEMORY TO A LABILE STATE -- the direct analog of
+        RL refinement destroying an installed policy, and a caution that "protected" is not a
+        stable end-state.
+      - Moncada & Viola 2007 (J Neurosci 27:7476), behavioural tagging. A WEAK inhibitory-
+        avoidance training that induces only short-term memory CONSOLIDATES INTO LONG-TERM
+        MEMORY when paired with exploration of a NOVEL environment close in time,
+        D1/D5-dependent and protein-synthesis-dependent. Source of the third falsifier arm.
+      - On file: targeted_review_systems_consolidation_waking_propagation (Frankland &
+        Bonhoeffer 2005 systems consolidation; Carr 2011 awake replay; Tambini 2019;
+        Peyrache 2009 PFC rule-learning replay).
+      - Bin Ibrahim et al. 2024 (Phil Trans R Soc B), synaptic tagging and capture review --
+        the trace-selectivity mechanism (tag setting and plasticity-related-product synthesis
+        are separable events), which is what a single global KL coefficient cannot express.
+    KNOWN DIVERGENCE, recorded not smoothed: the biological mechanisms above are
+    SLEEP- AND REPLAY-DEPENDENT and TRACE-SELECTIVE, while both of REE's demonstrated
+    protection pathways (distributional critic, global KL anchor) are AWAKE, ONLINE and
+    UNDIFFERENTIATED. The dose x interval falsifier is agnostic to that divergence by
+    construction; the trace-selectivity question is deferred to the commissioned lit-pull.
+    CROSS-LINK: REE already has a sleep/consolidation substrate line (evidence/planning/
+    sleep_substrate_plan.md, SD-017 / MECH-204). If the interval arm returns SUPPORTED, that
+    is the natural home for the offline half and this claim should be wired to it rather than
+    growing its own.
+    PROMOTES NOTHING. Registered as candidate/v3_pending. Creates no hypothesis-space fan-out
+    growth event -- H-retention-critic and H-retention-consolidation already exist as legs on
+    qid competence_floor.
+- id: MECH-477
+  title: "dual_system_uncertainty_arbitration. Differential recruitment between the habit and the hippocampally-planned goal-directed pathways is produced by an explicit ARBITRATION element that reads the two pathways' relative uncertainty/reliability and reallocates control accordingly -- NOT by the mere presence of two pathways. Two pathways WITHOUT an arbitrator produce a FLAT recruitment response regardless of context novelty. Registered 2026-07-22 as the control-allocation mechanism MECH-163 presupposed but never named; MECH-163 conflated ARCHITECTURE (two pathways exist) with DYNAMICS (control shifts between them with novelty, uncertainty and practice)."
+  claim_type: mechanism_hypothesis
+  subject: goal_directed.uncertainty_based_control_arbitration
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: "2026-07-22"
+  registered: "2026-07-22"
+  depends_on:
+    - MECH-163
+    - ARC-071
+    - ARC-007
+  evidence: []
+  location: docs/architecture/mech163_v3_full_completion_gate_session_prompt.md
+  functional_restatement: >
+    MECH-163 asserts the PRESENCE of two goal-directed systems and names no mechanism that
+    ALLOCATES control between them -- yet both experiments run against it (V3-EXQ-786,
+    V3-EXQ-786a) measured allocation. 786a established the measurement conditions cleanly
+    (familiarity discriminability AUC 0.848, n=8, non_degenerate) and found allocation FLAT:
+    recruitment delta mean 0.00435, Cohen's d 0.047, 7 of 8 seeds within +/-0.15. A flat
+    response, not a noisy or bimodal one.
+    That is the signature of two pathways and no arbitrator. In the reference biology,
+    differential recruitment is the OUTPUT of an arbitrator that reads uncertainty and
+    reallocates control -- a distinct computational element, not a property of having two
+    controllers. This claim names that element.
+    REE LOCUS: an arbitration weight over the habit-pathway and planned-pathway
+    contributions to E3 selection, driven by their relative predictive uncertainty.
+    Build target sd_dualsystem_uncertainty_arbitration, default OFF / bit-identical, per the
+    V3-primacy version-layering doctrine.
+  what_would_answer: >
+    Build an uncertainty/reliability-weighted arbitrator over the two pathways
+    (sd_dualsystem_uncertainty_arbitration, default OFF and bit-identical when OFF). Re-run
+    the V3-EXQ-786a design as a two-arm contrast, arbitrator OFF vs ON, holding the
+    familiarity manipulation and the AUC manipulation-check bar (>= 0.7) fixed.
+    SUPPORTED if the novel-minus-familiar recruitment delta is strictly greater with the
+    arbitrator ON than OFF on >= 2/3 of divergent seeds, with the ON-arm delta clearing
+    mean - SEM > margin.
+    REFUTED if the ON arm reproduces the OFF arm's flat response (delta mean within noise of
+    zero, d < 0.1) WITH the arbitrator demonstrably live -- mandatory manipulation check:
+    the arbitration weight must be shown to vary with measured uncertainty, otherwise the
+    run is a readiness failure and scores nothing.
+    NOTE the OFF arm is already measured: V3-EXQ-786a IS that arm.
+  evidence_quality_note: >
+    BIOLOGY (lit-pull satisfied BEFORE registration, per the SD-003 / SD-010-011 discipline;
+    no new commission owed for the primary grounding). The arbitration mechanism is already
+    reviewed INSIDE MECH-163's own targeted review:
+    evidence/literature/targeted_review_connectome_mech_163/2026-04-05_mech163_uncertainty_competition_daw2005
+    -- Daw, Niv & Dayan 2005, Nature Neuroscience 8(12):1704-1711, conf 0.79. Its summary
+    states the point directly: "given that both systems exist, how does the brain decide
+    which one to trust at any given moment?" -- a Bayesian arbitration weighting the two
+    systems by relative uncertainty, presented as a DISTINCT COMPUTATIONAL ELEMENT.
+    Supporting, same folder: balleine_odoherty_2010 (0.83), dolan_dayan_2013 (0.85),
+    niv_2009 (0.78), fraser2023 VTA/SNc dissociation (0.88), miller2017 (0.87),
+    vikbladh2019 (0.86). is_formal_import false.
+    This is itself the granularity-debt evidence: MECH-163's lit review contained the
+    arbitrator as a separate mechanism since 2026-04-05 and the claim text never named it.
+    The debt was documented for three and a half months before V3-EXQ-786a made it cost
+    anything.
+    LIT TOP-UP OWED (not a blocker, does not gate this registration): the reliability-based
+    arbitration in vlPFC/FPC (Lee, Shimojo & O'Doherty 2014) that is the empirical
+    complement to Daw's normative account is NOT on file, nor is Daw 2011 (the fMRI test of
+    the 2005 proposal). Commission as a targeted_review_connectome_mech_163 extension; both
+    refine this claim's parameterisation.
+    EVIDENCE FROM V3-EXQ-786a: non_contributory -- this claim was NOT tested, because no
+    arbitrator existed in the substrate. The flat-response shape is this claim's MOTIVATION,
+    not evidence for it. Recorded that way deliberately: reframing a null as a support for
+    the mechanism whose absence explains it would be evidence-laundering.
+  notes: >
+    Registered 2026-07-22 by /claim-synthesis on MECH-163 (proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).
+    Recommended independently by failure_autopsy_V3-EXQ-786a_2026-07-22, which routes
+    /implement-substrate -> sd_dualsystem_uncertainty_arbitration, priority_suggested 2,
+    unblocks_claims [MECH-163, MECH-477].
+    DISTINCT FROM ARC-071. ARC-071 is the TRANSFER mechanism (planned -> habitual chunking,
+    which pumps content from one pathway into the other, slow and repetition-driven).
+    MECH-477 is the ALLOCATION mechanism (which pathway holds control right now, fast and
+    uncertainty-driven). MECH-163 presupposes BOTH and specifies NEITHER. ARC-071 is already
+    registered and needs building, not registering -- do not mint a duplicate.
+    PROMOTES NOTHING; blocks no V3 closure node. candidate / v3_pending until the arbitrator
+    substrate lands and the two-arm contrast returns contributory.
+- id: MECH-478
+  title: "long_horizon_benefit_requires_model_based_rollout. Sustained benefit accumulation is a TRAJECTORY property, not a single-contact event, and is therefore reachable only by goal-seeded multi-step rollout; a 1-step greedy or value-flat-proposal policy cannot navigate toward it. Split out of MECH-163 leg (2) on 2026-07-22 because it carries a blocker of its own -- ARC-007 STRICT value-flat proposals -- entirely unrelated to the blockers on MECH-163 legs (1) and (3), and was inheriting MECH-163's V3-EXQ-786a weakens without ever having been tested."
+  claim_type: mechanism_hypothesis
+  subject: goal_directed.long_horizon_benefit_accumulation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  generation: v3
+  epistemic_category: substrate_conditional
+  claim_level: mechanistic
+  registered_utc: "2026-07-22"
+  registered: "2026-07-22"
+  split_from: MECH-163
+  depends_on:
+    - MECH-163
+    - ARC-007
+    - SD-012
+    - INV-029
+  evidence: []
+  location: docs/architecture/mech163_v3_full_completion_gate_session_prompt.md
+  functional_restatement: >
+    "Sustained joy is a trajectory property, not a single contact event" (MECH-163's original
+    leg 2 wording). A policy that maximises immediate contact value cannot reach states whose
+    value is only realised over a multi-step horizon, because the intermediate steps are not
+    themselves rewarding. Requires the hippocampal proposer to generate GOAL-SEEDED
+    trajectories rather than value-flat ones that E3 then scores post-hoc.
+  blocker: >
+    ARC-007 STRICT value-flat proposals. The hippocampal proposer is value-flat by
+    ARCHITECTURAL COMMITMENT, so no goal-seeded rollout can be generated at all. This is
+    THIS claim's blocker, stated in its own right -- it is NOT MECH-163's blocker and must
+    not be inferred from a parent. Relaxation route already registered: MECH-292 (ranked
+    ghost-goal bank) -> MECH-293 (waking ghost-goal probe search), which is the
+    HippocampalModule.propose_trajectories() seeding hook.
+  what_would_answer: >
+    GATED on an ARC-007 relaxation supplying goal-seeded proposal generation (the
+    MECH-292 / MECH-293 ghost-goal path is the registered candidate route). Then: an
+    environment in which the cumulative-benefit optimum DIVERGES from the greedy-contact
+    optimum, with the divergence verified as a property of the environment by a manipulation
+    check on the environment itself, not on the agent.
+    SUPPORTED if the goal-seeded arm accumulates strictly higher INTEGRATED benefit than the
+    value-flat arm on >= 2/3 seeds WHILE MATCHED ON CONTACT COUNT -- the matching is
+    load-bearing, since an unmatched advantage is consistent with the planned arm simply
+    foraging more.
+    REFUTED if integrated benefit is equal or lower with goal-seeded rollout demonstrably
+    live and the two optima demonstrably divergent.
+  evidence_quality_note: >
+    EVIDENCE: none. This leg has NEVER been tested. It explicitly does NOT inherit
+    V3-EXQ-786a, which tested MECH-163 leg (1) novel-context recruitment only -- the 786a
+    manifest's own scope_note says so, and the autopsy
+    failure_autopsy_V3-EXQ-786a_2026-07-22 confirms "legs (2) and (3) untested".
+    Splitting this out is precisely what stops the 786a weakens reaching it: a prose scope
+    qualifier on MECH-163 would not have survived the indexer, which attaches evidence at
+    claim granularity.
+    LIT: miller2017 (conf 0.87) and vikbladh2019 (conf 0.86) in
+    evidence/literature/targeted_review_connectome_mech_163 both bear on the hippocampal
+    contribution to model-based planning and carry over to this leg. No new commission owed
+    to register; a leg-specific pull may be worth commissioning at test-design time.
+  notes: >
+    Registered 2026-07-22 by /claim-synthesis on MECH-163 (proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).
+    Sequenced BEFORE MECH-479 -- long-horizon rollout is a prerequisite for prosocial
+    rollout, which is long-horizon rollout over a SECOND agent's state.
+    PROMOTES NOTHING. candidate / substrate_conditional; not testable until ARC-007 relaxes.
+- id: MECH-479
+  title: "prosocial_planning_requires_planned_system. Planning trajectories that affect ANOTHER agent's z_harm_a accumulation and benefit_exposure over time is structurally inaccessible to a 1-step greedy policy and requires the hippocampally-planned pathway. Split out of MECH-163 leg (3) on 2026-07-22 and REFILED implementation_phase v3 -> v4: there is no V3 substrate for it whatsoever -- no second agent exists, hence no other-agent z_harm_a to plan over. Arguably the clearest single piece of granularity debt in MECH-163, since the leg had been carrying a V3 implementation_phase it could not possibly satisfy since 2026-04-02."
+  claim_type: mechanism_hypothesis
+  subject: goal_directed.prosocial_trajectory_planning
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-22
+    needs_review: false
+  implementation_phase: v4
+  generation: v4
+  epistemic_category: substrate_conditional
+  claim_level: mechanistic
+  registered_utc: "2026-07-22"
+  registered: "2026-07-22"
+  split_from: MECH-163
+  depends_on:
+    - MECH-163
+    - MECH-478
+    - INV-029
+    - ARC-007
+  evidence: []
+  location: docs/architecture/mech163_v3_full_completion_gate_session_prompt.md
+  functional_restatement: >
+    MECH-163's original leg (3): prosocial planning -- "sharing joys and sorrows" (INV-029
+    benefit gradient) -- requires planning trajectories that affect ANOTHER agent's z_harm_a
+    accumulation and benefit_exposure over time. One-step greedy cannot predict or navigate
+    toward states that sustain another agent's joy or reduce another's sorrow over time.
+    This is MECH-163's stated V4 social-extension rationale, and it belongs in V4.
+  blocker: >
+    NO V3 SUBSTRATE EXISTS. There is no second agent in the V3 environment, therefore no
+    other-agent z_harm_a and no other-agent benefit_exposure to plan over. This is a V4
+    prerequisite, not a V3 gap that could be closed by building something. Stated in its own
+    right rather than inherited: it is unrelated to MECH-163 leg (1)'s missing arbitrator and
+    to MECH-478's ARC-007 blocker.
+  what_would_answer: >
+    GATED on the V4 multi-agent substrate.
+    SUPPORTED if a planned-arm agent reduces a SECOND agent's integrated z_harm_a relative to
+    a greedy-arm agent on >= 2/3 seeds, WITH ITS OWN RESOURCE ACQUISITION MATCHED -- the
+    matching is load-bearing, otherwise the effect is confounded by the planned agent simply
+    being better at everything.
+    REFUTED if planned and greedy arms are indistinguishable on the other agent's integrated
+    harm, with both arms demonstrably able to PERCEIVE the other agent (mandatory
+    manipulation check; without it a null is a perception failure, not a planning failure).
+  evidence_quality_note: >
+    EVIDENCE: none. Never tested; no substrate in which to test it. Explicitly does NOT
+    inherit V3-EXQ-786a -- see failure_autopsy_V3-EXQ-786a_2026-07-22, which scopes that
+    run's weakens to leg (1) alone.
+    LIT: external grounding is OWED before this claim is tested. INV-029 (benefit gradient)
+    is registry-internal, not literature. A /lit-pull on prosocial / vicarious planning and
+    on whether other-agent-directed planning recruits the model-based system specifically
+    should be commissioned at child-test design time -- deliberately NOT commissioned now,
+    since the claim cannot be tested for a generation and a lit-pull that far ahead of its
+    test would go stale.
+  notes: >
+    Registered 2026-07-22 by /claim-synthesis on MECH-163 (proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).
+    The v3 -> v4 refile follows the "phase label follows dependency" discipline: a claim
+    whose prerequisite is the V4 multi-agent substrate is a V4 claim regardless of where it
+    was originally written down.
+    PROMOTES NOTHING; blocks no V3 closure node. Removing it from MECH-163 REMOVES a V3
+    completion obligation that was never satisfiable in V3.

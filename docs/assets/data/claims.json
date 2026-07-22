@@ -3795,8 +3795,8 @@
     "assembly_state": "gated_v3",
     "epistemic_stance": "believed",
     "status": "candidate",
-    "subject": "goal_directed.dual_system_architecture",
-    "title": "Two distinct goal-directed systems operate in parallel: a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in familiar contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) required for novel contexts, long-horizon benefit accumulation, and prosocial planning.",
+    "subject": "goal_directed.dual_system_novel_context_recruitment",
+    "title": "NARROWED 2026-07-22 to leg (1) only. Two dissociable goal-directed systems operate in parallel -- a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in practised contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) -- AND THE PLANNED SYSTEM IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. This is exactly the proposition V3-EXQ-786a tested, and the claim retains that run's weakens. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration).",
     "type": "mechanism_hypothesis"
   },
   "MECH-164": {
@@ -6477,6 +6477,51 @@
     "title": "LEARNING-MECHANISM META-SELECTION (narrow form): the control plane selects among the learning regimes REE actually has -- online practice, exploration, counterfactual simulation, offline consolidation -- rather than applying one learning rule universally, and this selection is state- and mode-dependent.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-475": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "f_dominance_conversion_ceiling.baseline_informativeness",
+    "title": "uninformative_value_baseline_makes_optimisation_iatrogenic. In REE's MECH-457 actor-critic pathway the value baseline is UNINFORMATIVE on the policy's own state distribution, so the advantage carries variance rather than signal and ADDED OPTIMISATION PRESSURE IS IATROGENIC: policy capacity, training budget, an earned intrinsic approach drive, environmental reward-coupling and post-installation RL refinement each drive competence BELOW THEIR OWN CONTROLS rather than plateauing beneath a ceiling, and the magnitude of the loss tracks baseline uninformativeness rather than the identity of the intervention. Measured mechanism: V3-EXQ-782 R-(b) reads the shared CTRL critic at std(V)/std(G) = 0.041 against a 0.25 collapse threshold and a pre-reward-vs-far separation ratio of 0.016 against a 0.25 floor -- an unbaselined high-variance advantage. A ceiling plateaus; this does not.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "Two readouts, in decreasing order of decisiveness. (a) REVERSAL -- the decisive test. Re-run the three destructive ACQUISITION-side treatments (V3-EXQ-769 capacity/budget, V3-EXQ-781 approach drive, V3-EXQ-771 metabolic coupling) with the V3-EXQ-788 DISTRIBUTIONAL CRITIC in place, everything else byte-identical to the original arm, on the non-regressed reference build (128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32). SUPPORTED if the treatment-below-control inversion REVERSES OR FLATTENS in at least 2 of 3. WEAKENED if treatments still land below their own controls with an informative baseline -- the destructiveness is then not the baseline's doing and this claim is WITHDRAWN (it does not degrade into a weaker version; the whole content is the causal attribution). (b) DOSE -- the cheap standing readout. Record std(V)/std(G) and the pre-reward-vs-far separation ratio as DECLARED COVARIATES on every arm of every future MECH-457-family run, and test whether the control->treatment competence DELTA is predicted by baseline informativeness across instances. SUPPORTED if the correlation holds and is signed as predicted; a null here is weak evidence only (n is small and the five existing instances differ on many axes at once). MANDATORY on both: TRAJECTORY, not terminal competence. This signature is invisible to terminal-only measurement, which is precisely what hid it across nineteen autopsy targets -- every one of which recorded the numbers that show it. NON-DEGENERACY GUARD: an arm whose control did not itself clear the readiness anchors cannot exhibit a treatment-below-control inversion and must self-route substrate_not_ready_requeue, never a reversal verdict.\n"
+  },
+  "MECH-476": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "f_dominance_conversion_ceiling.acquisition_retention_dissociation",
+    "title": "competence_retention_dissociable_from_acquisition. ACQUIRING competence and RETAINING it are dissociable capabilities with separate substrate requirements: REE has the first and lacks the second. Behavioural cloning installs foraging competence at 20.933 on raw_view (3/3 seeds took) and 32.72 on z_world, and unconstrained RL refinement then ERODES it to 11.667 -- while a distributional critic (V3-EXQ-788, retains 1.839) and a KL anchor to the installed snapshot (V3-EXQ-792, retains 0.778 vs 0.525 unconstrained, still plastic) each preserve it. Retention is supplied by properties of the VALUE ESTIMATOR and the UPDATE CONSTRAINT, NOT by continued demonstration (V3-EXQ-789 eliminates the imitation-auxiliary schedule axis at every setting). COROLLARY, and the claim's distinctive testable content: consolidation is properly defined as RESISTANCE TO RETROGRADE INTERFERENCE (Krakauer 2005), hence dependent on install DOSE and elapsed offline INTERVAL -- neither of which REE has ever varied.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "An A -> B -> A RETROGRADE-INTERFERENCE design, the standard consolidation assay (Krakauer 2005). A = BC-install competence; B = an interfering unconstrained-RL phase; then re-measure A. Vary the TWO factors REE has never varied: INSTALL DOSE (BC episodes) and A->B INTERVAL (offline steps before refinement begins). DV: retained-fraction TRAJECTORY, never terminal competence. SUPPORTED if resistance to interference GROWS with install dose and/or with the A->B interval -- retention is then a dose/time-dependent consolidation PROCESS, and the build target is a consolidation window rather than a larger constraint coefficient. WEAKENED if retained fraction is INVARIANT to both and tracks only the concurrent constraint coefficient -- there is then no consolidation process and this claim is withdrawn into MECH-459/460. THIRD ARM, from the behavioural-tagging literature (Moncada & Viola 2007) and cheap because REE already owns the signal: pair the install with a NOVELTY episode (the landed RND drive) inside the consolidation window. Behavioural tagging predicts a WEAK install that would not otherwise persist becomes durable when a novelty exposure falls close in time. SUPPORTED if a sub-threshold BC dose consolidates only in the novelty-paired condition. This arm is the sharpest available discrimination between \"consolidation process\" and \"regulariser\", because a regulariser has no reason to care about an unrelated novelty exposure. PREREQUISITE, inherited from the retention portfolio and NON-NEGOTIABLE: an install that did not take is UNINFORMATIVE about retention and must self-route substrate_not_ready_requeue, never a retention verdict. Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy 48.05, greedy_oracle 57.2, random_walk 0.933.\n"
+  },
+  "MECH-477": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal_directed.uncertainty_based_control_arbitration",
+    "title": "dual_system_uncertainty_arbitration. Differential recruitment between the habit and the hippocampally-planned goal-directed pathways is produced by an explicit ARBITRATION element that reads the two pathways' relative uncertainty/reliability and reallocates control accordingly -- NOT by the mere presence of two pathways. Two pathways WITHOUT an arbitrator produce a FLAT recruitment response regardless of context novelty. Registered 2026-07-22 as the control-allocation mechanism MECH-163 presupposed but never named; MECH-163 conflated ARCHITECTURE (two pathways exist) with DYNAMICS (control shifts between them with novelty, uncertainty and practice).",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "Build an uncertainty/reliability-weighted arbitrator over the two pathways (sd_dualsystem_uncertainty_arbitration, default OFF and bit-identical when OFF). Re-run the V3-EXQ-786a design as a two-arm contrast, arbitrator OFF vs ON, holding the familiarity manipulation and the AUC manipulation-check bar (>= 0.7) fixed. SUPPORTED if the novel-minus-familiar recruitment delta is strictly greater with the arbitrator ON than OFF on >= 2/3 of divergent seeds, with the ON-arm delta clearing mean - SEM > margin. REFUTED if the ON arm reproduces the OFF arm's flat response (delta mean within noise of zero, d < 0.1) WITH the arbitrator demonstrably live -- mandatory manipulation check: the arbitration weight must be shown to vary with measured uncertainty, otherwise the run is a readiness failure and scores nothing. NOTE the OFF arm is already measured: V3-EXQ-786a IS that arm.\n"
+  },
+  "MECH-478": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal_directed.long_horizon_benefit_accumulation",
+    "title": "long_horizon_benefit_requires_model_based_rollout. Sustained benefit accumulation is a TRAJECTORY property, not a single-contact event, and is therefore reachable only by goal-seeded multi-step rollout; a 1-step greedy or value-flat-proposal policy cannot navigate toward it. Split out of MECH-163 leg (2) on 2026-07-22 because it carries a blocker of its own -- ARC-007 STRICT value-flat proposals -- entirely unrelated to the blockers on MECH-163 legs (1) and (3), and was inheriting MECH-163's V3-EXQ-786a weakens without ever having been tested.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "GATED on an ARC-007 relaxation supplying goal-seeded proposal generation (the MECH-292 / MECH-293 ghost-goal path is the registered candidate route). Then: an environment in which the cumulative-benefit optimum DIVERGES from the greedy-contact optimum, with the divergence verified as a property of the environment by a manipulation check on the environment itself, not on the agent. SUPPORTED if the goal-seeded arm accumulates strictly higher INTEGRATED benefit than the value-flat arm on >= 2/3 seeds WHILE MATCHED ON CONTACT COUNT -- the matching is load-bearing, since an unmatched advantage is consistent with the planned arm simply foraging more. REFUTED if integrated benefit is equal or lower with goal-seeded rollout demonstrably live and the two optima demonstrably divergent.\n"
+  },
+  "MECH-479": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal_directed.prosocial_trajectory_planning",
+    "title": "prosocial_planning_requires_planned_system. Planning trajectories that affect ANOTHER agent's z_harm_a accumulation and benefit_exposure over time is structurally inaccessible to a 1-step greedy policy and requires the hippocampally-planned pathway. Split out of MECH-163 leg (3) on 2026-07-22 and REFILED implementation_phase v3 -> v4: there is no V3 substrate for it whatsoever -- no second agent exists, hence no other-agent z_harm_a to plan over. Arguably the clearest single piece of granularity debt in MECH-163, since the leg had been carrying a V3 implementation_phase it could not possibly satisfy since 2026-04-02.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "GATED on the V4 multi-agent substrate. SUPPORTED if a planned-arm agent reduces a SECOND agent's integrated z_harm_a relative to a greedy-arm agent on >= 2/3 seeds, WITH ITS OWN RESOURCE ACQUISITION MATCHED -- the matching is load-bearing, otherwise the effect is confounded by the planned agent simply being better at everything. REFUTED if planned and greedy arms are indistinguishable on the other agent's integrated harm, with both arms demonstrably able to PERCEIVE the other agent (mandatory manipulation check; without it a null is a perception failure, not a planning failure).\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7196,7 +7241,7 @@
     "subject": "architecture.cross_stream_shared_organisation",
     "title": "Does REE's configured multi-rate execution produce SHARED cross-stream organisation, or only configured rate separation? SD-006 guarantees that E1/E2/E3 run at characteristic rates; nothing asserts or tests that the heterogeneous streams (E1/E2/E3, harm, goal, salience, hippocampal, control) thereby occupy recurrent system-level configurations or exhibit homologous transition motifs. Configured rate separation does not entail shared organisation.",
     "type": "open_question",
-    "what_would_answer": "Recurrent-state / transition-matrix / cross-stream-lag analysis over EXISTING telemetry. The discriminating comparison is emergent shared structure (Outcome A) versus structure trivially implied by the configured rates and wired gates (Outcome B) -- B is the null that most experiments of this shape would fail to exclude, so the rate-matched shuffle control is not optional. The raw thought's outcome taxonomy is the verdict grid: A shared organisation / B wired-gates-only / C unrelated / D too-much-sharing-collapses / E event-relative beats clock-relative. PRECONDITION, and the reason no experiment is proposed here: open question 6 of the raw thought -- do REE's current logs contain sufficient telemetry to test this? -- must be answered first by a retrospective telemetry AUDIT, not a probe. The audit checklist is the instrumentation list: E1 hidden state, E2 PE, E3 candidate scores + commitment state, z_self, z_world, z_harm_s, z_harm_a, z_goal, operating_mode, beta, boundary broadcasts, hippocampal proposals, residue updates, offline phase markers. That spike is complicated (buildable). Only after it confirms the signals exist does anything become queueable.\n"
+    "what_would_answer": "Recurrent-state / transition-matrix / cross-stream-lag analysis over EXISTING telemetry. The discriminating comparison is emergent shared structure (Outcome A) versus structure trivially implied by the configured rates and wired gates (Outcome B) -- B is the null that most experiments of this shape would fail to exclude, so the constrained-realisation surrogate control specified in the non-degeneracy guard below is not optional, and neither is the structure-destroying arm that accompanies it. The raw thought's outcome taxonomy is the verdict grid: A shared organisation / B wired-gates-only / C unrelated / D too-much-sharing-collapses / E event-relative beats clock-relative. PRECONDITION, and the reason no experiment is proposed here: open question 6 of the raw thought -- do REE's current logs contain sufficient telemetry to test this? -- must be answered first by a retrospective telemetry AUDIT, not a probe. The audit checklist is the instrumentation list: E1 hidden state, E2 PE, E3 candidate scores + commitment state, z_self, z_world, z_harm_s, z_harm_a, z_goal, operating_mode, beta, boundary broadcasts, hippocampal proposals, residue updates, offline phase markers. That spike is complicated (buildable). Only after it confirms the signals exist does anything become queueable.\n"
   },
   "Q-082": {
     "assembly_state": "awaiting_substrate",
@@ -8013,6 +8058,30 @@
     "status": "candidate",
     "subject": "goal.common_mode_invariant_super_ordinal_cue_key",
     "title": "Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189 SuperOrdinalGoalMemory keys anchors on raw z_world cosine, which under SD-008 z_world under-differentiation measures the shared common-mode offset rather than the context, so every nursery contact reinforces one slot and anchor_count saturates at 1. Subtract a slow EMA common-mode baseline before every cue cosine. ree_core goal.py change, bit-identical by default.",
+    "type": "design_decision"
+  },
+  "SD-078": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "policy.common_mode_invariant_candidate_rule_field_context_key",
+    "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default.",
+    "type": "design_decision"
+  },
+  "SD-079": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "hippocampal.common_mode_invariant_goal_anchor_match",
+    "title": "Common-mode-invariant (centered) z_goal cue for goal-anchor match: SD-039's Anchor.goal_match is a raw cosine over z_goal, which as an EMA attractor pulled toward z_world inherits the SD-008 common-mode offset more strongly than its source, so goal_match spans ~0.01 across an anchor pool, the MECH-292 goal_match_floor excludes nothing and the MECH-339 outshining gate is identically zero. Subtract a slow EMA common-mode baseline before the match. ree_core hippocampal change, bit-identical by default.",
+    "type": "design_decision"
+  },
+  "SD-080": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "e2.action_object_consequence_grounding",
+    "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it.",
     "type": "design_decision"
   },
   "SENT-0": {
