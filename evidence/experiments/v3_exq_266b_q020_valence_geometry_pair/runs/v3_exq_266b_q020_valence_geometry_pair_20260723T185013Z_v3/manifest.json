@@ -1,0 +1,100 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_266b_q020_valence_geometry_pair",
+  "run_id": "v3_exq_266b_q020_valence_geometry_pair_20260723T185013Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T18:50:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-020"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "q020_resolution_a_not_behaviourally_confirmed",
+    "text": "Q-020 Resolution A NOT CONFIRMED behaviourally once selection is routed through E3, the DV is harm per episode at a matched episode budget, and a static no-op control is present: reduction vs the binding control A1_TERRAIN_FLAT was 6.5% (C1 needs 15%), terrain_harm_corr in the shaped arm was -0.340 (C5 needs >= 0.1). The candidate sets offered E3 a genuine choice and the shaped arm's terrain genuinely varied with position (gate green), so this is a MEASUREMENT rather than an instrument failure -- which is exactly what EXQ-266 and EXQ-266a could not deliver. Read A2_STATIC before concluding anything about navigation: if it is the binding control, the honest reading is that standing still is at least as safe as terrain-guided navigation in this env. Note that Q-020 is RESOLVED on literature (Resolution A, 2026-04-02) and carried no experimental support before this run, so a negative here weakens the behavioural leg only and does not by itself reopen the literature ruling.",
+    "preconditions": [
+      {
+        "name": "A0_TERRAIN_SHAPED::candidate_action_diversity",
+        "precondition": "candidate_action_diversity",
+        "arm": "A0_TERRAIN_SHAPED",
+        "kind": "readiness",
+        "description": "distinct TRUE first-action classes across the candidate set, read via HippocampalModule.candidate_first_action_class (which reads trajectory.actions, NOT the non-invertible decoder round trip). If every candidate proposes the same action then E3 has nothing to choose between and the arm is a no-op however selection is routed -- the EXQ-266 failure mode surviving the selection fix",
+        "control": "post-training positive-control probe over CEM candidate sets that genuinely differ",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A0_TERRAIN_SHAPED::terrain_score_spread",
+        "precondition": "terrain_score_spread",
+        "arm": "A0_TERRAIN_SHAPED",
+        "kind": "readiness",
+        "description": "spread (max - min) of residue_field.evaluate(z_world) across the post-training probe's visited positions. C5 routes on a terrain-vs-harm CONTRAST, so the readiness check asserts SPREAD rather than magnitude (V3-EXQ-643 same-statistic rule): a terrain with a large mean but zero spread carries no positional information, and a contrast measured on it is starved, not falsified",
+        "control": "post-training probe after the shaped arm has accumulated harm residue",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0034637451171875,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "A1_TERRAIN_FLAT::candidate_action_diversity",
+        "precondition": "candidate_action_diversity",
+        "arm": "A1_TERRAIN_FLAT",
+        "kind": "readiness",
+        "description": "distinct TRUE first-action classes across the candidate set, read via HippocampalModule.candidate_first_action_class (which reads trajectory.actions, NOT the non-invertible decoder round trip). If every candidate proposes the same action then E3 has nothing to choose between and the arm is a no-op however selection is routed -- the EXQ-266 failure mode surviving the selection fix",
+        "control": "post-training positive-control probe over CEM candidate sets that genuinely differ",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_harm_per_episode_reduction": true,
+      "C2_effect_size": true,
+      "C3_seed_consistency": true,
+      "C5_terrain_harm_corr": true,
+      "C4_data_quality": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
