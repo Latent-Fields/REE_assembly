@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-23T14:09:42Z",
+  "last_tick_utc": "2026-07-23T15:20:03Z",
   "state": "running",
   "current_exq": "V3-EXQ-266b",
   "current_exq_started_utc": "2026-07-23T12:03:41.596731+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 456 / A0_TERRAIN_SHAPED",
     "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 50,
+    "episodes_done": 150,
     "episodes_total": 150,
-    "overall_pct": 70.4
+    "overall_pct": 77.8
   },
-  "seconds_elapsed": 7561,
-  "seconds_remaining": 1398,
+  "seconds_elapsed": 11781,
+  "seconds_remaining": 1048,
   "recent_lines": [
     "[V3-EXQ-266b] design-audit OK: gate satisfiable, num_elite=6 (>= 2)",
     "Seed 42 Condition A0_TERRAIN_SHAPED",
@@ -57,7 +57,9 @@
     "[eval] seed=123 arm=A2_STATIC harm_per_episode=6.0000 harm_per_step=1.0000 terrain_corr=+0.0000 mean_ep_len=6.0 terminated=40/40 cells/ep=1.00 action_classes=1 residue_total=0.0000",
     "verdict: PASS",
     "Seed 456 Condition A0_TERRAIN_SHAPED",
-    "[train] seed=456 arm=A0_TERRAIN_SHAPED ep 50/150 harm_events=227 residue_total=2.3412"
+    "[train] seed=456 arm=A0_TERRAIN_SHAPED ep 50/150 harm_events=227 residue_total=2.3412",
+    "[train] seed=456 arm=A0_TERRAIN_SHAPED ep 100/150 harm_events=500 residue_total=5.0748",
+    "[train] seed=456 arm=A0_TERRAIN_SHAPED ep 150/150 harm_events=763 residue_total=7.7396"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
