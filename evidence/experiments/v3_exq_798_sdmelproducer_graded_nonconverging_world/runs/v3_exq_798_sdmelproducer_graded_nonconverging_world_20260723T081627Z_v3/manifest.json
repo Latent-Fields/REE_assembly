@@ -1,0 +1,92 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_798_sdmelproducer_graded_nonconverging_world",
+  "run_id": "v3_exq_798_sdmelproducer_graded_nonconverging_world_20260723T081627Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T08:16:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "producer_graded_but_not_learnable",
+    "preconditions": [
+      {
+        "name": "world_model_converged_frozen_probe",
+        "description": "recon-only P0 base converges on the FIXED frozen probe battery (readiness R2)",
+        "measured": 0.9817001091718259,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "worst seed's stable-base P0 conv_rel_drop",
+        "met": true
+      },
+      {
+        "name": "frozen_pe_responds_to_shock",
+        "description": "on the converged frozen base, PE rises under a max-novelty shock (readiness R1) -- the instrument can move at all",
+        "measured": 0.45168558515262086,
+        "threshold": 0.25,
+        "direction": "lower",
+        "control": "SHOCK_DRIFT positive control vs STABLE_DRIFT, ready seeds",
+        "met": true
+      },
+      {
+        "name": "learnability_bins_populated",
+        "description": "the post-shift and long-after bins both carry enough samples for the C4 decay comparison to be readable",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "min 5 samples in bin[0-2] and bin[13+] on ARM_3_HIGH and ARM_4_NOISE",
+        "met": false
+      },
+      {
+        "name": "noise_control_at_least_as_elevated",
+        "description": "the negative control's MEL is at least the HIGH arm's, so the C4 decay comparison is fair-or-conservative rather than won by the graded arm simply having more PE",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_4_NOISE mel vs ARM_3_HIGH mel, all seeds",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": false,
+      "C4": false
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
