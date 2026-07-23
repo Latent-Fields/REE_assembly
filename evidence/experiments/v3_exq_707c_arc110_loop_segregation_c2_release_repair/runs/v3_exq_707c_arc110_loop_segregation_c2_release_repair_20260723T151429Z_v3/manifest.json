@@ -1,0 +1,795 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_707c_arc110_loop_segregation_c2_release_repair",
+  "run_id": "v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260723T151429Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T15:14:29Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-110"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "ARC-110": "weakens"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "valid_null_loops_vary_but_no_conversion_ceiling_intrinsic_weakens_arc110",
+    "preconditions": [
+      {
+        "name": "crf_matured",
+        "kind": "readiness",
+        "description": "CRF maturity: the consumed matched constant must be DIFFERENTIATED (per-seed crf_differentiated) on at least MIN_SEEDS_FOR_PASS seeds within EVERY arm -- an undifferentiated constant makes the manipulation vacuous => substrate_not_ready_requeue. measured = the SMALLEST per-arm count of seeds carrying crf_differentiated, over arms (a0_rows, a1_rows, noise_rows, drop_rows).",
+        "control": "per-seed crf_differentiated, counted within each arm",
+        "measured": 8.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_crf_differentiated_counts_per_arm": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "met": true
+      },
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "number of seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0 + A1 + ARM_NOISE) >= MIN_DIVERGENT_SEEDS. Per-seed-divergent gating; too few => substrate_not_ready_requeue (pool too collapsed to test conversion).",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_divergence_headroom": 0,
+        "observed_divergence_margins": [
+          {
+            "seed": 42,
+            "binding_arm": "ARM_NOISE",
+            "binding_consumed_spread": 0.075284,
+            "floor": 0.05,
+            "margin_to_floor": 0.025284,
+            "margin_frac_of_floor": 0.50568,
+            "divergent": true
+          },
+          {
+            "seed": 43,
+            "binding_arm": "A0_SINGLE_ARENA",
+            "binding_consumed_spread": 0.026163,
+            "floor": 0.05,
+            "margin_to_floor": -0.023837,
+            "margin_frac_of_floor": -0.47674,
+            "divergent": false
+          },
+          {
+            "seed": 44,
+            "binding_arm": "ARM_NOISE",
+            "binding_consumed_spread": 0.079378,
+            "floor": 0.05,
+            "margin_to_floor": 0.029378,
+            "margin_frac_of_floor": 0.58756,
+            "divergent": true
+          },
+          {
+            "seed": 45,
+            "binding_arm": "A1_LOOPS",
+            "binding_consumed_spread": 0.025065,
+            "floor": 0.05,
+            "margin_to_floor": -0.024935,
+            "margin_frac_of_floor": -0.4987,
+            "divergent": false
+          },
+          {
+            "seed": 46,
+            "binding_arm": "ARM_NOISE",
+            "binding_consumed_spread": 0.083939,
+            "floor": 0.05,
+            "margin_to_floor": 0.033939,
+            "margin_frac_of_floor": 0.67878,
+            "divergent": true
+          },
+          {
+            "seed": 47,
+            "binding_arm": "A0_SINGLE_ARENA",
+            "binding_consumed_spread": 0.051418,
+            "floor": 0.05,
+            "margin_to_floor": 0.001418,
+            "margin_frac_of_floor": 0.02836,
+            "divergent": true
+          },
+          {
+            "seed": 48,
+            "binding_arm": "A0_SINGLE_ARENA",
+            "binding_consumed_spread": 0.047726,
+            "floor": 0.05,
+            "margin_to_floor": -0.002274,
+            "margin_frac_of_floor": -0.04548,
+            "divergent": false
+          },
+          {
+            "seed": 49,
+            "binding_arm": "ARM_NOISE",
+            "binding_consumed_spread": 0.047745,
+            "floor": 0.05,
+            "margin_to_floor": -0.002255,
+            "margin_frac_of_floor": -0.0451,
+            "divergent": false
+          }
+        ],
+        "observed_n_seeds_attempted": 8,
+        "met": true
+      },
+      {
+        "name": "loops_carry_live_cross_loop_variance",
+        "kind": "readiness",
+        "description": "ARC-110 NON-DEGENERACY guard (what_would_answer): on A1_LOOPS a non-motor loop must FLIP the within-eligible winner (loop_committed_neq_motor_winner) or the loops must DISAGREE (loop_cross_loop_winner_disagreement) on a non-trivial fraction of P2 ticks, AND a non-motor loop must carry per-loop preference RANGE > 0 -- on a majority of seeds. A loop pinned to the motor winner is a vacuous split => substrate_not_ready_requeue. measured = the NUMBER of A1 seeds carrying live cross-loop variance.",
+        "control": "A1_LOOPS loop_frac_committed_neq_motor / loop_frac_disagree + per-loop pref range",
+        "measured": 8.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_a1_flip_or_disagree_frac": 0.410346,
+        "observed_cross_loop_variance_frac_floor": 0.05,
+        "met": true
+      },
+      {
+        "name": "named_channel_routing_live",
+        "kind": "readiness",
+        "description": "ARC-110 C2 RELEASE non-degeneracy gate (707b): on A1_LOOPS at least one LIMBIC channel (ofc/liking/vigour) must reach the segregated-loop arbitration carrying a routed per-candidate RANGE > LIMBIC_ROUTED_RANGE_FLOOR (peak over P2 ticks), on a strict-majority of DIVERGENT seeds. This is the MECH-191 phasic-externalisation gate: the named bias HEADS emit per-candidate-FLAT output, so without the use_named_channel_routing release the limbic loop is inert and ARM_DROP_LIMBIC is byte-identical to A1 (the 707 vacuous DROP==A1). Evaluated BEFORE C2 is scored. measured = the NUMBER of DIVERGENT seeds on which a limbic channel is routing-live. 707c FRAMING CORRECTION (autopsy 2026-07-20 sec 3a): this gate is BINARY LIVENESS ONLY and carries NO magnitude. In 707b it read EXACTLY 1.414214 = sqrt(2) on every arm and every seed -- zero variance across all 24 cells -- because it is a STRUCTURAL CONSTANT of project_channel_range (e3_selector.py:124-177): the projection centers the [K, D] feature matrix and projects onto its leading right-singular vector, so a channel routed as ORTHONORMAL one-hot rows yields ||e_i - e_j|| = sqrt(2) whenever >= 2 candidates occupy distinct categories, independent of K, seed and arm. The 707b reading '1.414 >> 0.001' therefore does NOT denote a 1414x margin on a graded magnitude. It certifies routing is ON and non-degenerate (and it does cleanly resolve 707's byte-identical DROP == A1), and nothing more. The MAGNITUDE half of the C2 non-degeneracy claim is carried by the separate limbic_graded_competition_live entry below.",
+        "control": "A1_LOOPS loop_limbic_routed_range_max (peak limbic routed per-candidate range over P2)",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_a1_limbic_routed_range_max": 1.414214,
+        "observed_limbic_routed_range_floor": 0.001,
+        "observed_a1_limbic_routed_range_distinct_values": [
+          1.414214
+        ],
+        "met": true
+      },
+      {
+        "name": "limbic_graded_competition_live",
+        "kind": "readiness",
+        "description": "GRADED magnitude half of the C2 non-degeneracy claim, replacing the sqrt(2)-pinned structural constant above as the basis on which C2 rests. On A1_LOOPS the limbic loop must carry MEASURED per-candidate competition: loop_limbic_pref_range_peak (e3_selector.py:1881-1883, the range of the z-scored limbic-loop accumulation across the ELIGIBLE candidates, peaked over FRESH E3 selections) > LIMBIC_GRADED_PREF_RANGE_FLOOR, on a strict-majority of DIVERGENT seeds. Unlike the routed-range gate this quantity is genuinely graded in the 707b record (0.013 .. 3.12 across cells, hard ZERO on A0 where routing is off) and it DISSOCIATES exactly where C2 requires: on seed 43 it collapses A1 1.0931 -> DROP 0.0133 while assoc_pref_range RISES to receive the remapped channels. A limbic ABLATION is only interpretable if the limbic loop was carrying competition to begin with; if it was not, C2 is vacuous and the run must self-route substrate_not_ready_requeue, NEVER a weakens. measured = the WORST (minimum) A1 cell over the divergent seeds, matching the per-seed majority-count semantics rather than a mean that could mask a dead cell.",
+        "control": "A1_LOOPS loop_limbic_pref_range_peak over fresh E3 selections; worst divergent-seed cell seed=42",
+        "offending_cell": "A1_LOOPS:seed42",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_worst_a1_limbic_pref_range_peak": 4.278724,
+        "observed_limbic_graded_pref_range_floor": 0.05,
+        "met": true
+      },
+      {
+        "name": "fresh_selects_sufficient",
+        "kind": "readiness",
+        "description": "EVERY arm-seed recorded at least MIN_FRESH_SELECTS genuinely FRESH E3 selections in P2. 707c accumulates the primary DV ONLY on verified-fresh ticks (agent.e3.last_score_diagnostics cleared to None before every select_action and required to repopulate), so the honest denominator is ~1/e3_steps_per_tick of 707b's, whose per-env-step read made committed_class_entropy_nats an entropy over a HOLD-WEIGHTED histogram. An honest-but-underpowered DV must route substrate_not_ready_requeue, NEVER a weakens -- which is precisely the branch 707b took on an instrument whose A1-vs-null contrast was sign-inconsistent across all three divergent seeds and 8x below the demonstrated contamination floor. measured = the WORST cell (min across arm-seeds), matching the all(...) quantifier this `met` expression uses, so the indexer's recompute agrees. DIAGNOSTIC TRIPWIRE: n_fresh_select == n_p2_ticks on any arm-seed would mean the guard is not working -- that exact equality was the 708 defect signature.",
+        "control": "worst arm-seed n_fresh_select over P2; offending cell arm=A0_SINGLE_ARENA seed=44",
+        "offending_cell": "A0_SINGLE_ARENA:seed44",
+        "measured": 922.0,
+        "threshold": 30.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "in_layer_null_live",
+        "kind": "readiness",
+        "description": "707a FIX (supersedes in_layer_null_verified_lifting): the S2 IN-LAYER same-layer null (ARM_NOISE: magnitude-matched random structure at the non-motor loop accumulators) is a LIVE perturbation -- it actively perturbs the committed selection (loop_noise_active_ticks > 0 AND loop_frac_committed_neq_motor or loop_frac_disagree > the cross-loop-variance floor) on a strict-majority of DIVERGENT seeds. This is the SAME-LAYER null the single arena could NOT construct (704b/706b binding constraint); a null that does NOT reach the committed-class readout makes C1's strict-above-null bar meaningless => substrate_not_ready_requeue (NOT a weakens). The RETIRED 707 proxy required the null to LIFT entropy strict-above A0 -- the 700-lineage TEMPERATURE-null liveness test, INVALID for a structured-accumulator null: random magnitude-matched loop content lands at baseline, not above it (structured beats random; random ~ A0), so it spuriously requeued a valid result and made the WEAKENS branch unreachable. The path-artifact hypothesis is ruled out by C1 (A1 strict-above the live null), NOT by null-lift. measured = n divergent seeds the null is LIVE on (n_noise_lifts recorded separately for continuity, no longer gates).",
+        "control": "ARM_NOISE loop_frac_committed_neq_motor / loop_frac_disagree + loop_noise_active_ticks, divergent seeds",
+        "measured": 4.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable",
+        "kind": "readiness",
+        "description": "on A1_LOOPS the finer w_chan_finer entries MOVED + carry cross-channel range above floor, on a majority of seeds -- learning is engaged (else the loops are reading an un-trained gate). measured = the NUMBER of A1 seeds with fcg_moved. Below floor => substrate_not_ready_requeue.",
+        "control": "A1 fcg_w_chan_finer_range_max",
+        "measured": 8.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_a1_w_chan_finer_range_max": 0.00123239,
+        "observed_w_chan_finer_range_floor": 0.0001,
+        "met": true
+      },
+      {
+        "name": "learning_engaged_delta_nonflat",
+        "kind": "readiness",
+        "description": "on A1_LOOPS the signed-RPE delta_t carries cross-tick variance above floor on a majority of seeds -- the second leg of the learning-engaged guard. measured = the NUMBER of A1 seeds with fcg_delta_nonflat.",
+        "control": "A1 fcg_delta_t_std",
+        "measured": 8.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_a1_delta_t_std": 0.00054334,
+        "observed_delta_t_std_floor": 0.0001,
+        "met": true
+      },
+      {
+        "name": "candidate_pool_divergent",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the GAP-A non-vacuity floor on enough seeds: measured = the NUMBER of seeds DIVERGENT on all C1 comparison arms, threshold = MIN_DIVERGENT_SEEDS.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 4.0,
+        "threshold": 4.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_consumed_spread": 0.025065,
+        "observed_consumed_spread_floor": 0.05,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_A1_loops_strict_above_A0_and_in_layer_null",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_limbic_loop_load_bearing_A1_above_drop_limbic",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "preconditions_met": true,
+      "enough_divergent_seeds": true,
+      "loops_carry_live_cross_loop_variance": true,
+      "named_channel_routing_live": true,
+      "limbic_graded_competition_live": true,
+      "fresh_selects_sufficient": true,
+      "in_layer_null_live": true,
+      "learning_engaged": true,
+      "crf_matured": true,
+      "c2_drop_differs_from_a1": true
+    },
+    "replication_telemetry": {
+      "exposure_imbalance": [
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 42,
+          "n_p2_ticks": 1625,
+          "n_fresh_select": 1029,
+          "n_latched": 596,
+          "n_dv_ticks": 1029,
+          "fresh_select_yield": 0.633231,
+          "a0_n_fresh_select": 1029,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 43,
+          "n_p2_ticks": 18389,
+          "n_fresh_select": 2659,
+          "n_latched": 15730,
+          "n_dv_ticks": 2659,
+          "fresh_select_yield": 0.144597,
+          "a0_n_fresh_select": 2659,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 44,
+          "n_p2_ticks": 1581,
+          "n_fresh_select": 922,
+          "n_latched": 659,
+          "n_dv_ticks": 922,
+          "fresh_select_yield": 0.583175,
+          "a0_n_fresh_select": 922,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 45,
+          "n_p2_ticks": 3297,
+          "n_fresh_select": 1363,
+          "n_latched": 1934,
+          "n_dv_ticks": 1363,
+          "fresh_select_yield": 0.413406,
+          "a0_n_fresh_select": 1363,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 46,
+          "n_p2_ticks": 2536,
+          "n_fresh_select": 1261,
+          "n_latched": 1275,
+          "n_dv_ticks": 1261,
+          "fresh_select_yield": 0.49724,
+          "a0_n_fresh_select": 1261,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 47,
+          "n_p2_ticks": 5580,
+          "n_fresh_select": 1630,
+          "n_latched": 3950,
+          "n_dv_ticks": 1630,
+          "fresh_select_yield": 0.292115,
+          "a0_n_fresh_select": 1630,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 48,
+          "n_p2_ticks": 1536,
+          "n_fresh_select": 987,
+          "n_latched": 549,
+          "n_dv_ticks": 987,
+          "fresh_select_yield": 0.642578,
+          "a0_n_fresh_select": 987,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A0_SINGLE_ARENA",
+          "seed": 49,
+          "n_p2_ticks": 2748,
+          "n_fresh_select": 1507,
+          "n_latched": 1241,
+          "n_dv_ticks": 1507,
+          "fresh_select_yield": 0.548399,
+          "a0_n_fresh_select": 1507,
+          "exposure_imbalance_vs_a0": 0.0,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 42,
+          "n_p2_ticks": 2434,
+          "n_fresh_select": 1206,
+          "n_latched": 1228,
+          "n_dv_ticks": 1206,
+          "fresh_select_yield": 0.495481,
+          "a0_n_fresh_select": 1029,
+          "exposure_imbalance_vs_a0": 0.172012,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 43,
+          "n_p2_ticks": 18183,
+          "n_fresh_select": 2571,
+          "n_latched": 15612,
+          "n_dv_ticks": 2571,
+          "fresh_select_yield": 0.141396,
+          "a0_n_fresh_select": 2659,
+          "exposure_imbalance_vs_a0": -0.033095,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 44,
+          "n_p2_ticks": 1692,
+          "n_fresh_select": 954,
+          "n_latched": 738,
+          "n_dv_ticks": 954,
+          "fresh_select_yield": 0.56383,
+          "a0_n_fresh_select": 922,
+          "exposure_imbalance_vs_a0": 0.034707,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 45,
+          "n_p2_ticks": 6515,
+          "n_fresh_select": 1720,
+          "n_latched": 4795,
+          "n_dv_ticks": 1720,
+          "fresh_select_yield": 0.264006,
+          "a0_n_fresh_select": 1363,
+          "exposure_imbalance_vs_a0": 0.261922,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 46,
+          "n_p2_ticks": 2703,
+          "n_fresh_select": 1109,
+          "n_latched": 1594,
+          "n_dv_ticks": 1109,
+          "fresh_select_yield": 0.410285,
+          "a0_n_fresh_select": 1261,
+          "exposure_imbalance_vs_a0": -0.120539,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 47,
+          "n_p2_ticks": 4251,
+          "n_fresh_select": 1461,
+          "n_latched": 2790,
+          "n_dv_ticks": 1461,
+          "fresh_select_yield": 0.343684,
+          "a0_n_fresh_select": 1630,
+          "exposure_imbalance_vs_a0": -0.103681,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 48,
+          "n_p2_ticks": 1175,
+          "n_fresh_select": 933,
+          "n_latched": 242,
+          "n_dv_ticks": 933,
+          "fresh_select_yield": 0.794043,
+          "a0_n_fresh_select": 987,
+          "exposure_imbalance_vs_a0": -0.054711,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "A1_LOOPS",
+          "seed": 49,
+          "n_p2_ticks": 1246,
+          "n_fresh_select": 1118,
+          "n_latched": 128,
+          "n_dv_ticks": 1118,
+          "fresh_select_yield": 0.897271,
+          "a0_n_fresh_select": 1507,
+          "exposure_imbalance_vs_a0": -0.258129,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 42,
+          "n_p2_ticks": 1700,
+          "n_fresh_select": 964,
+          "n_latched": 736,
+          "n_dv_ticks": 964,
+          "fresh_select_yield": 0.567059,
+          "a0_n_fresh_select": 1029,
+          "exposure_imbalance_vs_a0": -0.063168,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 43,
+          "n_p2_ticks": 18072,
+          "n_fresh_select": 2575,
+          "n_latched": 15497,
+          "n_dv_ticks": 2575,
+          "fresh_select_yield": 0.142486,
+          "a0_n_fresh_select": 2659,
+          "exposure_imbalance_vs_a0": -0.031591,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 44,
+          "n_p2_ticks": 1813,
+          "n_fresh_select": 1043,
+          "n_latched": 770,
+          "n_dv_ticks": 1043,
+          "fresh_select_yield": 0.57529,
+          "a0_n_fresh_select": 922,
+          "exposure_imbalance_vs_a0": 0.131236,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 45,
+          "n_p2_ticks": 6241,
+          "n_fresh_select": 1688,
+          "n_latched": 4553,
+          "n_dv_ticks": 1688,
+          "fresh_select_yield": 0.270469,
+          "a0_n_fresh_select": 1363,
+          "exposure_imbalance_vs_a0": 0.238445,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 46,
+          "n_p2_ticks": 3374,
+          "n_fresh_select": 1235,
+          "n_latched": 2139,
+          "n_dv_ticks": 1235,
+          "fresh_select_yield": 0.366034,
+          "a0_n_fresh_select": 1261,
+          "exposure_imbalance_vs_a0": -0.020619,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 47,
+          "n_p2_ticks": 4325,
+          "n_fresh_select": 1455,
+          "n_latched": 2870,
+          "n_dv_ticks": 1455,
+          "fresh_select_yield": 0.336416,
+          "a0_n_fresh_select": 1630,
+          "exposure_imbalance_vs_a0": -0.107362,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 48,
+          "n_p2_ticks": 1688,
+          "n_fresh_select": 1013,
+          "n_latched": 675,
+          "n_dv_ticks": 1013,
+          "fresh_select_yield": 0.600118,
+          "a0_n_fresh_select": 987,
+          "exposure_imbalance_vs_a0": 0.026342,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_NOISE",
+          "seed": 49,
+          "n_p2_ticks": 2055,
+          "n_fresh_select": 1380,
+          "n_latched": 675,
+          "n_dv_ticks": 1380,
+          "fresh_select_yield": 0.671533,
+          "a0_n_fresh_select": 1507,
+          "exposure_imbalance_vs_a0": -0.084273,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 42,
+          "n_p2_ticks": 1409,
+          "n_fresh_select": 983,
+          "n_latched": 426,
+          "n_dv_ticks": 983,
+          "fresh_select_yield": 0.697658,
+          "a0_n_fresh_select": 1029,
+          "exposure_imbalance_vs_a0": -0.044704,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 43,
+          "n_p2_ticks": 18658,
+          "n_fresh_select": 2631,
+          "n_latched": 16027,
+          "n_dv_ticks": 2631,
+          "fresh_select_yield": 0.141012,
+          "a0_n_fresh_select": 2659,
+          "exposure_imbalance_vs_a0": -0.01053,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 44,
+          "n_p2_ticks": 1733,
+          "n_fresh_select": 930,
+          "n_latched": 803,
+          "n_dv_ticks": 930,
+          "fresh_select_yield": 0.536642,
+          "a0_n_fresh_select": 922,
+          "exposure_imbalance_vs_a0": 0.008677,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 45,
+          "n_p2_ticks": 4826,
+          "n_fresh_select": 1545,
+          "n_latched": 3281,
+          "n_dv_ticks": 1545,
+          "fresh_select_yield": 0.320141,
+          "a0_n_fresh_select": 1363,
+          "exposure_imbalance_vs_a0": 0.133529,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 46,
+          "n_p2_ticks": 3751,
+          "n_fresh_select": 1497,
+          "n_latched": 2254,
+          "n_dv_ticks": 1497,
+          "fresh_select_yield": 0.399094,
+          "a0_n_fresh_select": 1261,
+          "exposure_imbalance_vs_a0": 0.187153,
+          "beyond_report_floor": true
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 47,
+          "n_p2_ticks": 4935,
+          "n_fresh_select": 1575,
+          "n_latched": 3360,
+          "n_dv_ticks": 1575,
+          "fresh_select_yield": 0.319149,
+          "a0_n_fresh_select": 1630,
+          "exposure_imbalance_vs_a0": -0.033742,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 48,
+          "n_p2_ticks": 1751,
+          "n_fresh_select": 996,
+          "n_latched": 755,
+          "n_dv_ticks": 996,
+          "fresh_select_yield": 0.568818,
+          "a0_n_fresh_select": 987,
+          "exposure_imbalance_vs_a0": 0.009119,
+          "beyond_report_floor": false
+        },
+        {
+          "arm_id": "ARM_DROP_LIMBIC",
+          "seed": 49,
+          "n_p2_ticks": 3395,
+          "n_fresh_select": 1619,
+          "n_latched": 1776,
+          "n_dv_ticks": 1619,
+          "fresh_select_yield": 0.476878,
+          "a0_n_fresh_select": 1507,
+          "exposure_imbalance_vs_a0": 0.07432,
+          "beyond_report_floor": true
+        }
+      ],
+      "max_exposure_imbalance_vs_a0": 0.261922,
+      "exposure_imbalance_report_floor": 0.05,
+      "worst_cell_n_fresh_select": 922,
+      "worst_cell": "A0_SINGLE_ARENA:seed44",
+      "note": "707b's arm exposure spread reached +97.6% (s45) / +49.8% (s42) / -23.8% (s47) on the RAW per-env-step denominator. Recorded here so the mechanism of that distortion stays auditable. GATES NOTHING."
+    },
+    "divergence_headroom": {
+      "n_primary_div": 4,
+      "min_divergent_seeds": 4,
+      "headroom": 0,
+      "n_seeds_attempted": 8,
+      "margins": [
+        {
+          "seed": 42,
+          "binding_arm": "ARM_NOISE",
+          "binding_consumed_spread": 0.075284,
+          "floor": 0.05,
+          "margin_to_floor": 0.025284,
+          "margin_frac_of_floor": 0.50568,
+          "divergent": true
+        },
+        {
+          "seed": 43,
+          "binding_arm": "A0_SINGLE_ARENA",
+          "binding_consumed_spread": 0.026163,
+          "floor": 0.05,
+          "margin_to_floor": -0.023837,
+          "margin_frac_of_floor": -0.47674,
+          "divergent": false
+        },
+        {
+          "seed": 44,
+          "binding_arm": "ARM_NOISE",
+          "binding_consumed_spread": 0.079378,
+          "floor": 0.05,
+          "margin_to_floor": 0.029378,
+          "margin_frac_of_floor": 0.58756,
+          "divergent": true
+        },
+        {
+          "seed": 45,
+          "binding_arm": "A1_LOOPS",
+          "binding_consumed_spread": 0.025065,
+          "floor": 0.05,
+          "margin_to_floor": -0.024935,
+          "margin_frac_of_floor": -0.4987,
+          "divergent": false
+        },
+        {
+          "seed": 46,
+          "binding_arm": "ARM_NOISE",
+          "binding_consumed_spread": 0.083939,
+          "floor": 0.05,
+          "margin_to_floor": 0.033939,
+          "margin_frac_of_floor": 0.67878,
+          "divergent": true
+        },
+        {
+          "seed": 47,
+          "binding_arm": "A0_SINGLE_ARENA",
+          "binding_consumed_spread": 0.051418,
+          "floor": 0.05,
+          "margin_to_floor": 0.001418,
+          "margin_frac_of_floor": 0.02836,
+          "divergent": true
+        },
+        {
+          "seed": 48,
+          "binding_arm": "A0_SINGLE_ARENA",
+          "binding_consumed_spread": 0.047726,
+          "floor": 0.05,
+          "margin_to_floor": -0.002274,
+          "margin_frac_of_floor": -0.04548,
+          "divergent": false
+        },
+        {
+          "seed": 49,
+          "binding_arm": "ARM_NOISE",
+          "binding_consumed_spread": 0.047745,
+          "floor": 0.05,
+          "margin_to_floor": -0.002255,
+          "margin_frac_of_floor": -0.0451,
+          "divergent": false
+        }
+      ],
+      "note": "707b cleared enough_divergent_seeds at EXACTLY 3.0/3.0 (zero headroom) with seed 47 missing by 1.3%. GATES NOTHING here -- enough_divergent_seeds is the gate; this is the margin record that makes a near-miss visible."
+    },
+    "limbic_ablation_effect": [
+      {
+        "seed": 42,
+        "a1_limbic_pref_range": 2.412924,
+        "drop_limbic_pref_range": 2.096243,
+        "limbic_loss_frac": 0.131244,
+        "a1_assoc_pref_range": 3.157316,
+        "drop_assoc_pref_range": 3.14108
+      },
+      {
+        "seed": 44,
+        "a1_limbic_pref_range": 1.902173,
+        "drop_limbic_pref_range": 1.383344,
+        "limbic_loss_frac": 0.272756,
+        "a1_assoc_pref_range": 1.948647,
+        "drop_assoc_pref_range": 2.487597
+      },
+      {
+        "seed": 46,
+        "a1_limbic_pref_range": 2.103473,
+        "drop_limbic_pref_range": 1.769604,
+        "limbic_loss_frac": 0.158723,
+        "a1_assoc_pref_range": 2.47721,
+        "drop_assoc_pref_range": 2.702401
+      },
+      {
+        "seed": 47,
+        "a1_limbic_pref_range": 1.847337,
+        "drop_limbic_pref_range": 0.913004,
+        "limbic_loss_frac": 0.505773,
+        "a1_assoc_pref_range": 2.066859,
+        "drop_assoc_pref_range": 2.248455
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "172ba39e5e29b552f0cbaa6de3178544f94d8c58eb5d492785e9067115bbf23d"
+}
