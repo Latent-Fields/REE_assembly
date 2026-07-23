@@ -1,0 +1,107 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_809_sd080_action_object_init_invariance",
+  "run_id": "v3_exq_809_sd080_action_object_init_invariance_20260723T061050Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-23T06:10:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-004"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ao_content_reaches_proposals_but_not_behaviour",
+    "preconditions": [
+      {
+        "name": "ao_head_reinit_divergence",
+        "description": "The re-draws of action_object_head must genuinely differ. Below this floor the manipulation was never applied and any null is about nothing.",
+        "measured": 9.939456303914389,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "worst seed's mean pairwise L2 between the 4 re-drawn parameter vectors, measured directly on the head",
+        "offending_cell": "seed0",
+        "met": true
+      },
+      {
+        "name": "cem_elite_refit_consumed_action_objects",
+        "description": "The CEM elite refit (module.py:1400-1409) is the only path by which the head reaches behaviour. This is the fraction of matched-state propose_trajectories calls returning candidates that carry action-object sequences. Below the floor the head was never read.",
+        "measured": 1.0,
+        "threshold": 0.9,
+        "direction": "lower",
+        "control": "worst seed in the D1 matched-state bank, where the CEM path is exercised by construction",
+        "offending_cell": "seed0",
+        "met": true
+      },
+      {
+        "name": "d2_cross_seed_spread_nondegenerate",
+        "description": "SAME STATISTIC the load-bearing C2 routes on: C2 is a ratio of the across-init spread of survival_ratio to its across-seed spread. If that DENOMINATOR is ~0 the ratio is meaningless and an apparent invariance would be an artefact of a pinned DV, not a finding.",
+        "measured": 2.1442005317509945,
+        "threshold": 0.02,
+        "direction": "lower",
+        "control": "ordinary seed-to-seed variation of the terrain advantage, measured within each ao_init and averaged",
+        "met": true
+      },
+      {
+        "name": "residue_field_shaped_by_warmup_harm",
+        "description": "EXQ-003's own C3. TERRAIN is terrain-guided CEM over the residue field; with zero warmup harm the terrain is unshaped and the contrast is not EXQ-003's.",
+        "measured": 52.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "worst cell across all seeds x inits",
+        "offending_cell": "seed2/ao_init1",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_mechanism_proposal_invariance",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C2_behavioural_init_effect_below_seed_noise",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_mechanism_proposal_invariance": true,
+      "C2_behavioural_init_effect_below_seed_noise": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "71a910958f99ae544f1d10454ae1aa48904778e4177a39f121583fa5b7b74318"
+}
