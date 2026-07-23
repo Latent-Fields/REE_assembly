@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-23T11:08:52Z",
+  "last_tick_utc": "2026-07-23T11:18:57Z",
   "state": "running",
   "current_exq": "V3-EXQ-708b",
   "current_exq_started_utc": "2026-07-23T05:43:12.290104+00:00",
@@ -9,22 +9,16 @@
   "current_claim_id": "MECH-440",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / matched_pre_commit_variance_temperature_control_687_non_propagating",
-    "runs_done": 6,
+    "run_label": "Seed 43 / matched_pre_commit_variance_temperature_control_687_non_propagating",
+    "runs_done": 7,
     "runs_total": 18,
-    "episodes_done": 220,
+    "episodes_done": 10,
     "episodes_total": 250,
-    "overall_pct": 38.2
+    "overall_pct": 39.1
   },
-  "seconds_elapsed": 19540,
-  "seconds_remaining": 31376,
+  "seconds_elapsed": 20146,
+  "seconds_remaining": 24897,
   "recent_lines": [
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 50/250",
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 60/250",
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 70/250",
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 80/250",
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 90/250",
-    "[train] arm=A0_OFF seed=45 phase=P0 ep 100/250",
     "[train] arm=A0_OFF seed=45 phase=P1 ep 110/250",
     "[train] arm=A0_OFF seed=45 phase=P1 ep 120/250",
     "[train] arm=A0_OFF seed=45 phase=P1 ep 130/250",
@@ -118,7 +112,13 @@
     "[train] arm=ARM_TEMP seed=42 phase=P2 ep 190/250",
     "[train] arm=ARM_TEMP seed=42 phase=P2 ep 200/250",
     "[train] arm=ARM_TEMP seed=42 phase=P2 ep 210/250",
-    "[train] arm=ARM_TEMP seed=42 phase=P2 ep 220/250"
+    "[train] arm=ARM_TEMP seed=42 phase=P2 ep 220/250",
+    "[train] arm=ARM_TEMP seed=42 phase=P2 ep 230/250",
+    "[train] arm=ARM_TEMP seed=42 phase=P2 ep 240/250",
+    "[train] arm=ARM_TEMP seed=42 phase=P2 ep 250/250",
+    "verdict: PASS",
+    "Seed 43 Condition matched_pre_commit_variance_temperature_control_687_non_propagating",
+    "[train] arm=ARM_TEMP seed=43 phase=P0 ep 10/250"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
