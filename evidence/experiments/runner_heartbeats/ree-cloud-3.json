@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-23T19:36:04Z",
+  "last_tick_utc": "2026-07-23T21:16:29Z",
   "state": "running",
   "current_exq": "V3-EXQ-801",
   "current_exq_started_utc": "2026-07-23T15:24:48.756878+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "ARC-018",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 456 / A1_SHALLOW",
-    "runs_done": 9,
+    "run_label": "Seed 456 / A2_FULL",
+    "runs_done": 10,
     "runs_total": 12,
-    "episodes_done": 100,
+    "episodes_done": 50,
     "episodes_total": 300,
-    "overall_pct": 77.8
+    "overall_pct": 84.7
   },
-  "seconds_elapsed": 15076,
-  "seconds_remaining": 3562,
+  "seconds_elapsed": 21100,
+  "seconds_remaining": 2954,
   "recent_lines": [
     "[V3-EXQ-801] design-audit OK: gate satisfiable, num_elite=6 (>= 2)",
     "Seed 42 Condition A0_DEPTH0",
@@ -103,7 +103,15 @@
     "verdict: PASS",
     "Seed 456 Condition A1_SHALLOW",
     "[train] seed=456 arm=A1_SHALLOW ep 50/300 harm_events=243 harm_rate=0.0268",
-    "[train] seed=456 arm=A1_SHALLOW ep 100/300 harm_events=390 harm_rate=0.0211"
+    "[train] seed=456 arm=A1_SHALLOW ep 100/300 harm_events=390 harm_rate=0.0211",
+    "[train] seed=456 arm=A1_SHALLOW ep 150/300 harm_events=594 harm_rate=0.0214",
+    "[train] seed=456 arm=A1_SHALLOW ep 200/300 harm_events=767 harm_rate=0.0207",
+    "[train] seed=456 arm=A1_SHALLOW ep 250/300 harm_events=912 harm_rate=0.0194",
+    "[train] seed=456 arm=A1_SHALLOW ep 300/300 harm_events=1116 harm_rate=0.0199",
+    "[eval] seed=456 arm=A1_SHALLOW h=3 harm_rate=0.0212 e2_r2=-174.5030 score_range_min=1.215e-01",
+    "verdict: PASS",
+    "Seed 456 Condition A2_FULL",
+    "[train] seed=456 arm=A2_FULL ep 50/300 harm_events=326 harm_rate=0.1446"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
