@@ -60237,8 +60237,15 @@
     session hopeful-panini-cf272d. Default OFF and bit-identical when OFF, per the
     V3-primacy version-layering doctrine. E3Selector.last_arbitration exposes the paired
     (uncertainty, weight) series this claim's MANDATORY manipulation check consumes.
-    v3_pending is DELIBERATELY LEFT TRUE: the substrate exists but the two-arm falsifier
-    has not been queued or run, so nothing has yet tested this claim.
+    v3_pending is DELIBERATELY LEFT TRUE: the two-arm falsifier V3-EXQ-811 ran 2026-07-23
+    (run_id v3_exq_811_mech477_dualsystem_arbitration_falsifier_20260723T054309Z_v3) but
+    returned evidence_direction=non_contributory, interpretation=substrate_not_ready_requeue
+    -- both arms measured an exact-zero score range against the readiness gate
+    (full_score_range_non_degenerate and habit_score_range_non_degenerate both failed on
+    arm_off and arm_on), so the run is vacuous and nothing has yet tested this claim. A
+    /failure-autopsy has been separately spawned to root-cause the discrepancy against the
+    authoring-time smoke test's non-zero ranges; this note should be revisited once that
+    lands.
     READ SD-081's evidence_quality_note BEFORE DESIGNING THAT FALSIFIER. Building the
     arbitrator surfaced, by measurement, that V3-EXQ-786a's recruitment DV was degenerate
     -- its first-step vector was CONSTANT across all 32 candidates (index 0 of the z_world
@@ -60441,9 +60448,17 @@
     E3Selector.last_arbitration exposes the paired (uncertainty, weight) series per E3
     tick, which is what MECH-477's MANDATORY manipulation check consumes.
     Contracts: ree-v3/tests/contracts/test_sd081_dualsystem_arbitration.py.
-    NO VALIDATION EXPERIMENT QUEUED -- the MECH-477 two-arm OFF-vs-ON falsifier goes
-    through /queue-experiment separately, and see the note below on why its OFF arm
-    cannot simply be V3-EXQ-786a as-run.
+    V3-EXQ-811 (script v3_exq_811_mech477_dualsystem_arbitration_falsifier.py, lineage
+    module experiments/_lib/baselines/mech477_dualsystem_arbitration.py) is the MECH-477
+    two-arm OFF-vs-ON falsifier; see the note below on why its OFF arm cannot simply be
+    V3-EXQ-786a as-run. It ran 2026-07-23 (run_id
+    v3_exq_811_mech477_dualsystem_arbitration_falsifier_20260723T054309Z_v3),
+    evidence_direction=non_contributory, interpretation=substrate_not_ready_requeue --
+    both arms measured an exact-zero score range against the readiness gate
+    (full_score_range_non_degenerate and habit_score_range_non_degenerate both failed on
+    arm_off and arm_on). A /failure-autopsy has been separately spawned to root-cause the
+    discrepancy against the authoring-time smoke test's non-zero ranges; this citation
+    should be revisited once that lands.
   evidence_quality_note: >
     TWO CONFIG-LEVEL HAZARDS, both pinned by contract because both were hit during the
     build rather than anticipated.

@@ -66,6 +66,12 @@ u_n        = u / (u + ema_of_u)              per pathway; 0.5 at its own baselin
 w_planned  = sigmoid( gain * (u_habit_n - u_planned_n) + bias )
 ```
 
+**Fallback caveat (V3-EXQ-811, ARB-SOURCE).** The E1-novelty-EMA fallback is the path taken
+when `curiosity_weight = 0.0`, so `hippocampal.familiarity_tracker` is `None`. Measured on
+the 811 config, that fallback returns `u_habit_raw = 0.0` on every tick, i.e. `u_habit_norm`
+is constant and the novelty channel never varies. `curiosity_weight > 0` is therefore a
+precondition for testing MECH-477 at all, not a preference.
+
 Daw, Niv & Dayan 2005 (Nature Neuroscience 8(12):1704-1711, conf 0.79, on file at
 `evidence/literature/targeted_review_connectome_mech_163/2026-04-05_mech163_uncertainty_competition_daw2005`):
 control is allocated to whichever controller is **less uncertain**. Novel context ->
@@ -203,6 +209,26 @@ hippocampal proposals; it does not seed them.
   holding the familiarity manipulation and the AUC manipulation-check bar (>= 0.7) fixed,
   and carrying the mandatory arbitration-weight-varies-with-uncertainty check.
 - A MECH-163 leg (1) retest on a substrate that can express differential recruitment.
+
+**Falsifier status.** Queued and executed as V3-EXQ-811 (script
+`experiments/v3_exq_811_mech477_dualsystem_arbitration_falsifier.py`, lineage module
+`experiments/_lib/baselines/mech477_dualsystem_arbitration.py`). Two design points 811 adds
+beyond this doc's own spec: (a) the readiness gate asserts the HABIT vector's cross-candidate
+RANGE and DISTINCT-VALUE FRACTION, not only the full-horizon vector -- gating only the latter
+is exactly why 786a passed readiness with a degenerate depth-1 habit read; (b) the rank
+correlation between `w_planned` and `(u_habit_norm - u_planned_norm)` is an ARITHMETIC
+IDENTITY (`w = sigmoid(gain*diff + bias)` is strictly monotone in `diff`, measured rho =
+1.000000), so it is a no-numerical-pathology check rather than evidence of responsiveness --
+the non-vacuous readiness legs are ARB-LIVE, ARB-SOURCE, and ARB-W-RANGE.
+
+V3-EXQ-811 ran 2026-07-23 (run_id
+`v3_exq_811_mech477_dualsystem_arbitration_falsifier_20260723T054309Z_v3`),
+`evidence_direction=non_contributory`, `interpretation=substrate_not_ready_requeue` -- both
+arms measured an exact-zero score range against the readiness gate
+(`full_score_range_non_degenerate` and `habit_score_range_non_degenerate` both failed on
+`arm_off` and `arm_on`). A `/failure-autopsy` has been separately spawned to root-cause the
+discrepancy against the smoke test's non-zero ranges; this citation should be revisited once
+that lands.
 
 ## Constraints
 
