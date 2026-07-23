@@ -1,0 +1,102 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_810_arc071_chunk_accumulator_readiness",
+  "run_id": "v3_exq_810_arc071_chunk_accumulator_readiness_20260723T222726Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T22:27:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-071",
+    "MECH-323",
+    "MECH-324"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "ARC-071": "unknown",
+    "MECH-323": "unknown",
+    "MECH-324": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "chunk_accumulator_silent",
+    "preconditions": [
+      {
+        "name": "episode_outcome_spread_supra_floor",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so formation is structurally impossible on a flat outcome stream. Asserts the SAME statistic the gate routes on (spread), on the chunking-on arms.",
+        "measured": 0.25634735165061473,
+        "threshold": 0.05,
+        "direction": "lower",
+        "control": "worst cell across all chunking-on cells; the task is a resource-bearing grid whose per-episode collection varies",
+        "offending_cell": "ARM_FORM/seed202",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_accumulator_fires",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_crystallisation",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C3_off_arm_inert",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C4_no_replay_origin_chunks",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C5_formation_only_dissociation",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true,
+      "C5": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "e228d8f303ccb09eb32c1eb6ef5e12b26abf08b81477278774a5034abb2e22ab"
+}
