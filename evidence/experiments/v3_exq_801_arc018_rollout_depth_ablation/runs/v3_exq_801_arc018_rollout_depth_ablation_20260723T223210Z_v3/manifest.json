@@ -1,0 +1,203 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_801_arc018_rollout_depth_ablation",
+  "run_id": "v3_exq_801_arc018_rollout_depth_ablation_20260723T223210Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T22:32:10Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-018"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "text": "SUBSTRATE NOT READY -- not a verdict on ARC-018. Non-vacuity gate RED in EVERY arm: arm 'A0_DEPTH0' failed e2_world_r2_adequate; arm 'A1_SHALLOW' failed e2_world_r2_adequate; arm 'A2_FULL' failed e2_world_r2_adequate; arm 'A3_NOISE' failed e2_world_r2_adequate. No arm is scored; this run is NOT a refutation.",
+    "preconditions": [
+      {
+        "name": "A0_DEPTH0::e2_world_r2_adequate",
+        "precondition": "e2_world_r2_adequate",
+        "arm": "A0_DEPTH0",
+        "kind": "readiness",
+        "description": "in-run E2 world-forward R^2 against realised next z_world. Below the floor the EXQ-172 confound recurs: a negative advantage from a poor forward model indicts E2, not the rollout architecture",
+        "control": "one-step world_forward predictions vs realised z_world at eval",
+        "direction": "lower",
+        "applies": true,
+        "measured": -274.5036937549129,
+        "threshold": 0.6,
+        "met": false
+      },
+      {
+        "name": "A0_DEPTH0::rollout_score_range",
+        "precondition": "rollout_score_range",
+        "arm": "A0_DEPTH0",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of rollout-derived scores -- the SAME statistic the argmin selection routes on. The rollout must actually discriminate between candidates or the depth manipulation has no path to the DV",
+        "control": "32 CEM candidates rolled out at the arm's own horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.010545730590820312,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A0_DEPTH0::executed_action_diversity",
+        "precondition": "executed_action_diversity",
+        "arm": "A0_DEPTH0",
+        "kind": "readiness",
+        "description": "distinct EXECUTED action classes -- the statistic the DV literally routes on. 1 class means the DV is invariant under the depth manipulation and nothing was measured (the EXQ-196 shape)",
+        "control": "E3-selected actions over the eval phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A1_SHALLOW::e2_world_r2_adequate",
+        "precondition": "e2_world_r2_adequate",
+        "arm": "A1_SHALLOW",
+        "kind": "readiness",
+        "description": "in-run E2 world-forward R^2 against realised next z_world. Below the floor the EXQ-172 confound recurs: a negative advantage from a poor forward model indicts E2, not the rollout architecture",
+        "control": "one-step world_forward predictions vs realised z_world at eval",
+        "direction": "lower",
+        "applies": true,
+        "measured": -174.50299559218928,
+        "threshold": 0.6,
+        "met": false
+      },
+      {
+        "name": "A1_SHALLOW::rollout_score_range",
+        "precondition": "rollout_score_range",
+        "arm": "A1_SHALLOW",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of rollout-derived scores -- the SAME statistic the argmin selection routes on. The rollout must actually discriminate between candidates or the depth manipulation has no path to the DV",
+        "control": "32 CEM candidates rolled out at the arm's own horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.12153244018554688,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A1_SHALLOW::executed_action_diversity",
+        "precondition": "executed_action_diversity",
+        "arm": "A1_SHALLOW",
+        "kind": "readiness",
+        "description": "distinct EXECUTED action classes -- the statistic the DV literally routes on. 1 class means the DV is invariant under the depth manipulation and nothing was measured (the EXQ-196 shape)",
+        "control": "E3-selected actions over the eval phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A2_FULL::e2_world_r2_adequate",
+        "precondition": "e2_world_r2_adequate",
+        "arm": "A2_FULL",
+        "kind": "readiness",
+        "description": "in-run E2 world-forward R^2 against realised next z_world. Below the floor the EXQ-172 confound recurs: a negative advantage from a poor forward model indicts E2, not the rollout architecture",
+        "control": "one-step world_forward predictions vs realised z_world at eval",
+        "direction": "lower",
+        "applies": true,
+        "measured": -86.40420392681547,
+        "threshold": 0.6,
+        "met": false
+      },
+      {
+        "name": "A2_FULL::rollout_score_range",
+        "precondition": "rollout_score_range",
+        "arm": "A2_FULL",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of rollout-derived scores -- the SAME statistic the argmin selection routes on. The rollout must actually discriminate between candidates or the depth manipulation has no path to the DV",
+        "control": "32 CEM candidates rolled out at the arm's own horizon",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.494110107421875,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A2_FULL::executed_action_diversity",
+        "precondition": "executed_action_diversity",
+        "arm": "A2_FULL",
+        "kind": "readiness",
+        "description": "distinct EXECUTED action classes -- the statistic the DV literally routes on. 1 class means the DV is invariant under the depth manipulation and nothing was measured (the EXQ-196 shape)",
+        "control": "E3-selected actions over the eval phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A2_FULL::harm_advantage_wired",
+        "precondition": "harm_advantage_wired",
+        "arm": "A2_FULL",
+        "kind": "readiness",
+        "description": "number of seeds whose harm_advantage is NOT bit-exactly 0.0. The EXQ-196 signature (exactly 0.0 on every seed at good fidelity) means the rollout output never reached the DV. Thresholded on the COUNT of nonzero seeds, NEVER on magnitude -- a genuine null has small nonzero advantages and must remain scoreable as a FAIL",
+        "control": "per-seed harm_advantage of the full-depth arm vs the depth-0 arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "A3_NOISE::e2_world_r2_adequate",
+        "precondition": "e2_world_r2_adequate",
+        "arm": "A3_NOISE",
+        "kind": "readiness",
+        "description": "in-run E2 world-forward R^2 against realised next z_world. Below the floor the EXQ-172 confound recurs: a negative advantage from a poor forward model indicts E2, not the rollout architecture",
+        "control": "one-step world_forward predictions vs realised z_world at eval",
+        "direction": "lower",
+        "applies": true,
+        "measured": -155.35590576106992,
+        "threshold": 0.6,
+        "met": false
+      }
+    ],
+    "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+    "criteria_non_degenerate": {
+      "C1_monotonic_depth_response": false,
+      "C2_effect_sd": false,
+      "C3_seed_consistency": false,
+      "C4_above_matched_noise": false
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
