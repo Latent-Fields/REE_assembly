@@ -1,0 +1,292 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_799_mech048_stability_temperature_behavioural_did",
+  "run_id": "v3_exq_799_mech048_stability_temperature_behavioural_did_20260723T095928Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T09:59:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-048"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mu_overlay_entropy_only_no_behavioural_authority",
+    "routing_detail": "mu moved, the mode-prior entropy moved with it (mechanism confirmed), but no behavioural consequence survived the DiD. This is a statement about V3's mode-prior CONSUMERS, not a falsification of MECH-048: the entropy half is implemented and fires, but nothing downstream converts it into action at a detectable scale. Route to /implement-substrate on the consumer path (write_gate breadth), and note the interaction with the sd_salience_contested_mode_occupancy row -- with contested modes unoccupied the soft vector stays near one-hot, which bounds how much the gate can travel.",
+    "preconditions": [
+      {
+        "name": "STABLE_OFF::mu_separation_env",
+        "precondition": "mu_separation_env",
+        "arm": "STABLE_OFF",
+        "kind": "readiness",
+        "description": "The ENVIRONMENT actually moves mu: mean pcc_stability(STABLE) - mean pcc_stability(VOLATILE), measured on fresh E3 ticks. This is THE manipulation check -- use_pcc_analog has never been exercised by any experiment (0 manifests), so it is measured, never assumed.",
+        "control": "STABLE (resource-rich, low hazard, periodic rest) vs VOLATILE (resource-sparse, hazard-dense, no rest); outcomes fed from the env harm_signal. pcc_stability is never written directly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.342631677032413,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "STABLE_OFF::mu_invariant_to_coupling",
+        "precondition": "mu_invariant_to_coupling",
+        "arm": "STABLE_OFF",
+        "kind": "readiness",
+        "description": "mu is UPSTREAM of the coupling, so it must not differ between coupling ON and OFF within an env regime. A violation means the coupling is feeding back into its own driver and the DiD contrast is confounded.",
+        "control": "max over env regimes of |mu(ON) - mu(OFF)| within regime.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.00012263359233627424,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "STABLE_OFF::dacc_bias_cross_candidate_range",
+        "precondition": "dacc_bias_cross_candidate_range",
+        "arm": "STABLE_OFF",
+        "kind": "readiness",
+        "description": "The dACC score bias must vary ACROSS CANDIDATES. write_gate('e3_policy') multiplies that vector, so a bias uniform across candidates is a broadcast constant that cancels in the argmax -- the 604c DV-symmetry vacuity. This asserts the SAME statistic the load-bearing criterion routes on (range), NOT a magnitude proxy.",
+        "control": "Fresh E3 ticks with use_dacc=True and salience_apply_to_dacc_bias=True, i.e. the live behavioural channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.009755449744980474,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "STABLE_OFF::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "STABLE_OFF",
+        "kind": "readiness",
+        "description": "Enough genuine E3 selections for the action-entropy DV to have a real denominator. The E3 cadence is 10, so env steps are NOT selections.",
+        "control": "n_fresh_select for this arm, sentinel-key gated.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 410.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "STABLE_ON::mu_separation_env",
+        "precondition": "mu_separation_env",
+        "arm": "STABLE_ON",
+        "kind": "readiness",
+        "description": "The ENVIRONMENT actually moves mu: mean pcc_stability(STABLE) - mean pcc_stability(VOLATILE), measured on fresh E3 ticks. This is THE manipulation check -- use_pcc_analog has never been exercised by any experiment (0 manifests), so it is measured, never assumed.",
+        "control": "STABLE (resource-rich, low hazard, periodic rest) vs VOLATILE (resource-sparse, hazard-dense, no rest); outcomes fed from the env harm_signal. pcc_stability is never written directly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.342631677032413,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "STABLE_ON::mu_invariant_to_coupling",
+        "precondition": "mu_invariant_to_coupling",
+        "arm": "STABLE_ON",
+        "kind": "readiness",
+        "description": "mu is UPSTREAM of the coupling, so it must not differ between coupling ON and OFF within an env regime. A violation means the coupling is feeding back into its own driver and the DiD contrast is confounded.",
+        "control": "max over env regimes of |mu(ON) - mu(OFF)| within regime.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.00012263359233627424,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "STABLE_ON::dacc_bias_cross_candidate_range",
+        "precondition": "dacc_bias_cross_candidate_range",
+        "arm": "STABLE_ON",
+        "kind": "readiness",
+        "description": "The dACC score bias must vary ACROSS CANDIDATES. write_gate('e3_policy') multiplies that vector, so a bias uniform across candidates is a broadcast constant that cancels in the argmax -- the 604c DV-symmetry vacuity. This asserts the SAME statistic the load-bearing criterion routes on (range), NOT a magnitude proxy.",
+        "control": "Fresh E3 ticks with use_dacc=True and salience_apply_to_dacc_bias=True, i.e. the live behavioural channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.00935494388817983,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "STABLE_ON::mode_entropy_responds_to_mu",
+        "precondition": "mode_entropy_responds_to_mu",
+        "arm": "STABLE_ON",
+        "kind": "mechanism",
+        "description": "MECHANISM CONFIRMATION ONLY, and explicitly NOT load-bearing: with the coupling ON, H(operating_mode) must differ across env regimes by more than the floor. This is the ARITHMETIC IDENTITY of the temperature coupling -- it is recorded to show the overlay fired, and must never be cited as evidence for MECH-048.",
+        "control": "coupling-ON arms only; |H(STABLE,ON) - H(VOLATILE,ON)|.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.1050248545523391,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "STABLE_ON::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "STABLE_ON",
+        "kind": "readiness",
+        "description": "Enough genuine E3 selections for the action-entropy DV to have a real denominator. The E3 cadence is 10, so env steps are NOT selections.",
+        "control": "n_fresh_select for this arm, sentinel-key gated.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 410.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_OFF::mu_separation_env",
+        "precondition": "mu_separation_env",
+        "arm": "VOLATILE_OFF",
+        "kind": "readiness",
+        "description": "The ENVIRONMENT actually moves mu: mean pcc_stability(STABLE) - mean pcc_stability(VOLATILE), measured on fresh E3 ticks. This is THE manipulation check -- use_pcc_analog has never been exercised by any experiment (0 manifests), so it is measured, never assumed.",
+        "control": "STABLE (resource-rich, low hazard, periodic rest) vs VOLATILE (resource-sparse, hazard-dense, no rest); outcomes fed from the env harm_signal. pcc_stability is never written directly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.342631677032413,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_OFF::mu_invariant_to_coupling",
+        "precondition": "mu_invariant_to_coupling",
+        "arm": "VOLATILE_OFF",
+        "kind": "readiness",
+        "description": "mu is UPSTREAM of the coupling, so it must not differ between coupling ON and OFF within an env regime. A violation means the coupling is feeding back into its own driver and the DiD contrast is confounded.",
+        "control": "max over env regimes of |mu(ON) - mu(OFF)| within regime.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.00012263359233627424,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_OFF::dacc_bias_cross_candidate_range",
+        "precondition": "dacc_bias_cross_candidate_range",
+        "arm": "VOLATILE_OFF",
+        "kind": "readiness",
+        "description": "The dACC score bias must vary ACROSS CANDIDATES. write_gate('e3_policy') multiplies that vector, so a bias uniform across candidates is a broadcast constant that cancels in the argmax -- the 604c DV-symmetry vacuity. This asserts the SAME statistic the load-bearing criterion routes on (range), NOT a magnitude proxy.",
+        "control": "Fresh E3 ticks with use_dacc=True and salience_apply_to_dacc_bias=True, i.e. the live behavioural channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01774127275854609,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_OFF::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "VOLATILE_OFF",
+        "kind": "readiness",
+        "description": "Enough genuine E3 selections for the action-entropy DV to have a real denominator. The E3 cadence is 10, so env steps are NOT selections.",
+        "control": "n_fresh_select for this arm, sentinel-key gated.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 409.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_ON::mu_separation_env",
+        "precondition": "mu_separation_env",
+        "arm": "VOLATILE_ON",
+        "kind": "readiness",
+        "description": "The ENVIRONMENT actually moves mu: mean pcc_stability(STABLE) - mean pcc_stability(VOLATILE), measured on fresh E3 ticks. This is THE manipulation check -- use_pcc_analog has never been exercised by any experiment (0 manifests), so it is measured, never assumed.",
+        "control": "STABLE (resource-rich, low hazard, periodic rest) vs VOLATILE (resource-sparse, hazard-dense, no rest); outcomes fed from the env harm_signal. pcc_stability is never written directly.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.342631677032413,
+        "threshold": 0.15,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_ON::mu_invariant_to_coupling",
+        "precondition": "mu_invariant_to_coupling",
+        "arm": "VOLATILE_ON",
+        "kind": "readiness",
+        "description": "mu is UPSTREAM of the coupling, so it must not differ between coupling ON and OFF within an env regime. A violation means the coupling is feeding back into its own driver and the DiD contrast is confounded.",
+        "control": "max over env regimes of |mu(ON) - mu(OFF)| within regime.",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.00012263359233627424,
+        "threshold": 0.02,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_ON::dacc_bias_cross_candidate_range",
+        "precondition": "dacc_bias_cross_candidate_range",
+        "arm": "VOLATILE_ON",
+        "kind": "readiness",
+        "description": "The dACC score bias must vary ACROSS CANDIDATES. write_gate('e3_policy') multiplies that vector, so a bias uniform across candidates is a broadcast constant that cancels in the argmax -- the 604c DV-symmetry vacuity. This asserts the SAME statistic the load-bearing criterion routes on (range), NOT a magnitude proxy.",
+        "control": "Fresh E3 ticks with use_dacc=True and salience_apply_to_dacc_bias=True, i.e. the live behavioural channel.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01781296034400725,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_ON::mode_entropy_responds_to_mu",
+        "precondition": "mode_entropy_responds_to_mu",
+        "arm": "VOLATILE_ON",
+        "kind": "mechanism",
+        "description": "MECHANISM CONFIRMATION ONLY, and explicitly NOT load-bearing: with the coupling ON, H(operating_mode) must differ across env regimes by more than the floor. This is the ARITHMETIC IDENTITY of the temperature coupling -- it is recorded to show the overlay fired, and must never be cited as evidence for MECH-048.",
+        "control": "coupling-ON arms only; |H(STABLE,ON) - H(VOLATILE,ON)|.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.1050248545523391,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "VOLATILE_ON::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "VOLATILE_ON",
+        "kind": "readiness",
+        "description": "Enough genuine E3 selections for the action-entropy DV to have a real denominator. The E3 cadence is 10, so env steps are NOT selections.",
+        "control": "n_fresh_select for this arm, sentinel-key gated.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 409.0,
+        "threshold": 100.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_visitation_entropy_did": true,
+      "C2_action_entropy_did": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "66e422215d137734f0bb6fee6e039d150eb88fd427b2660a57c6de4210566d0b"
+}
