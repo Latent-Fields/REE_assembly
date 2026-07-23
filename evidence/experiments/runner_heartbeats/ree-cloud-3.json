@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-23T11:18:58Z",
+  "last_tick_utc": "2026-07-23T12:29:18Z",
   "state": "running",
   "current_exq": "V3-EXQ-114a",
   "current_exq_started_utc": "2026-07-23T09:27:42.742879+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 456 / A0_MAP_NAV",
     "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 150,
-    "overall_pct": 66.7
+    "overall_pct": 70.4
   },
-  "seconds_elapsed": 6676,
-  "seconds_remaining": 25,
+  "seconds_elapsed": 10896,
+  "seconds_remaining": 23,
   "recent_lines": [
     "[V3-EXQ-114a] design-audit OK: gate satisfiable, num_elite=6 (>= 2)",
     "Seed 42 Condition A0_MAP_NAV",
@@ -56,7 +56,8 @@
     "[train] seed=123 arm=A2_STATIC ep 150/150 harm_events=900 harm_rate=1.0000",
     "[eval] seed=123 arm=A2_STATIC harm_per_episode=6.0000 harm_per_step=1.0000 mean_ep_len=6.0 terminated=40/40 cells/ep=1.00 action_classes=1",
     "verdict: PASS",
-    "Seed 456 Condition A0_MAP_NAV"
+    "Seed 456 Condition A0_MAP_NAV",
+    "[train] seed=456 arm=A0_MAP_NAV ep 50/150 harm_events=227 harm_rate=0.0233"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
