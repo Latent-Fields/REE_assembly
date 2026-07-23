@@ -1,0 +1,150 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_791a_channel_routing_cross_class_magnitude_replication",
+  "run_id": "v3_exq_791a_channel_routing_cross_class_magnitude_replication_20260723T044051Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-23T04:40:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "route_range_substrate_ready",
+    "preconditions": [
+      {
+        "name": "ARM_0_NO_ROUTE::arm0_route_inactivity_observable",
+        "precondition": "arm0_route_inactivity_observable",
+        "arm": "ARM_0_NO_ROUTE",
+        "kind": "readiness",
+        "description": "Every ARM_0 cell recorded at least one genuine E3 selection, so C1's off-inactive leg reads an OBSERVED zero rather than an absent one. This is the ONLY sample question the structural control arm poses: it makes no estimate, so it needs observability, not statistical power. measured is the worst cell (met is an all(...) quantifier).",
+        "control": "routing OFF makes modulatory_channel_route_range return 0.0 on every genuine selection; one observation per cell suffices to record that",
+        "direction": "lower",
+        "applies": true,
+        "measured": 36.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_0_NO_ROUTE::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_0_NO_ROUTE",
+        "kind": "readiness",
+        "description": "Routed-bias range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout-norm clamp ON). Applies to BOTH arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_ROUTE_ON::adequate_fresh_selection_sample",
+        "precondition": "adequate_fresh_selection_sample",
+        "arm": "ARM_1_ROUTE_ON",
+        "kind": "readiness",
+        "description": "At least MIN_SEEDS_FOR_PASS ARM_1 seeds recorded FRESH_SELECT_FLOOR genuine E3 select() calls on the CORRECTED denominator (diagnostics cleared immediately before every select_action, so a latched tick contributes NO row). This is the gate on the ~9x pseudo-replication defect the shared 662/663 driver carried, and it is UNCHANGED in strength: the corrected denominator is byte-identical to 790's. Two things changed. (1) SCOPE: applied only to the arm whose statistics are estimated from the sample. (2) DERIVATION: the floor is now 3600 nominal window ticks / beta_rate_max_steps=20 = 180, the MECH-093-modulated cadence range's WORST case, replacing 790's 200 keyed to the nominal heartbeat.e3_steps_per_tick=10 (which the substrate does not run). measured is the MIN_SEEDS_FOR_PASS-th largest per-seed n_fresh_select -- an ORDER STATISTIC, not a mean -- because met is a count quantifier matching the >= MIN_SEEDS_FOR_PASS-of-10 readiness criterion it guards. Below floor => too few seeds carry an adequate sample => substrate_not_ready_requeue, never a substrate verdict.",
+        "control": "nominal window P1*(steps-measure_after)=3600 ticks at the MECH-093-modulated worst-case cadence of beta_rate_max_steps=20 steps/selection yields 180 selections; V3-EXQ-790 measured a 7th-largest ARM_1 count of 262 on this identical design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 211.0,
+        "threshold": 180.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_ROUTE_ON::fresh_selection_yield_supra_cadence_floor",
+        "precondition": "fresh_selection_yield_supra_cadence_floor",
+        "arm": "ARM_1_ROUTE_ON",
+        "kind": "readiness",
+        "description": "EVERY ARM_1 cell's n_fresh_select / n_p1_ticks_past_window cleared 1/beta_rate_max_steps = 0.05. The same cadence bound as the absolute floor above, expressed as a FRACTION of the cell's OBSERVED window ticks and therefore invariant to window TRUNCATION -- which is the measured cause of 790's starved cells (per-cell windows ran 330..3600 ticks because episodes terminate early on `done`; every cell's yield was 0.100..0.181, i.e. an effective cadence of 5.5..10 steps per selection, at or FASTER than nominal and never near the slow end). This is a STRICTLY STRONGER latch-pathology detector than an absolute count: a dead or latch-inflated selection loop is visible in the ratio at any window length. measured is the WORST cell (met is an all(...) quantifier), with the offending cell named in recorded_preconditions.",
+        "control": "MECH-093 caps the E3 cadence at beta_rate_max_steps=20 steps per selection, so a healthy cell yields >= 1/20 of its observed window ticks as genuine selections regardless of how short that window is",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.1,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_1_ROUTE_ON::arm1_routed_bias_range_supra_floor",
+        "precondition": "arm1_routed_bias_range_supra_floor",
+        "arm": "ARM_1_ROUTE_ON",
+        "kind": "readiness",
+        "description": "ARM_1 (routing ON, cand_world_summary source) routed-bias cross-candidate RANGE (modulatory_channel_route_range -- the RAW range the P0 gate keys on, pre-normalise/pre-rescale) clears the floor. This is a RANGE statistic, the SAME one C1 routes on, NOT a magnitude. measured is the MIN_SEEDS_FOR_PASS-th largest per-seed route_range_mean (order statistic, not a mean), which clears the floor iff at least that many seeds do -- exactly what met asserts. Below floor => under-trained e2 / collapsed candidate pool / amend not wired => substrate_not_ready_requeue, never a substrate verdict.",
+        "control": "ARM_1: SD-056 contrastive trained online; SP-CEM multi-class candidates; candidate_summary_source=e2_world_forward; routing ON",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.482567,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_1_ROUTE_ON::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_1_ROUTE_ON",
+        "kind": "readiness",
+        "description": "Routed-bias range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability; rollout-norm clamp ON). Applies to BOTH arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 1.707094,
+        "threshold": 1000000.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria": [
+      {
+        "name": "C1_routed_range_reaches_accumulator_on_active_off_inactive",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_committed_class_distribution_moves_on_vs_off",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_routed_range_reaches_accumulator_on_active_off_inactive": true,
+      "C2_committed_class_distribution_moves_on_vs_off": true
+    },
+    "routing": {
+      "route_range_substrate_ready": "PASS -> /queue-experiment per-claim behavioural retests (ARC-065/MECH-294/ARC-062/MECH-309/MECH-341), each separate",
+      "substrate_not_ready_requeue": "ARM_1 gate red -> re-queue at higher P0 budget (or fix e2/SD-056 wiring); do NOT weaken. NOTE a red ARM_0_NO_ROUTE alone never routes here -- that was the V3-EXQ-790 defect.",
+      "route_range_inert": "FAIL -> /failure-autopsy on the routing wiring"
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2f78f243d1ec1c835cea01e3e5fc2e71c3baa2deedd16a300c8c63b98fdacac6"
+}
