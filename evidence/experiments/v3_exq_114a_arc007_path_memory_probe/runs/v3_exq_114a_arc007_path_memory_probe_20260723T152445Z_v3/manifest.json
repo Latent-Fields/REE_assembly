@@ -1,0 +1,73 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_114a_arc007_path_memory_probe",
+  "run_id": "v3_exq_114a_arc007_path_memory_probe_20260723T152445Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T15:24:45Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-007"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc007_path_memory_harm_advantage_not_reproduced",
+    "text": "ARC-007 leg 1 NOT REPRODUCED once selection is routed through E3, the DV is harm per episode at a matched episode budget, and a static no-op control is present: reduction vs the binding control A2_STATIC was 11.4% < 15% required. The candidate set offered E3 a genuine choice (P1 green), so this is a measurement rather than an instrument failure. EXQ-114's 99.2% figure was a denominator artifact of a constant action stream; ARC-007's sole behavioural support does not survive its removal, and the claim's exp_conf should be revised on this run rather than on EXQ-114. This is a decision-flipping negative, not a null. Read A2_STATIC before concluding anything about navigation: if it is the binding control, the honest reading is that standing still is at least as safe as terrain-guided navigation in this env.",
+    "preconditions": [
+      {
+        "name": "A0_MAP_NAV::candidate_action_diversity",
+        "precondition": "candidate_action_diversity",
+        "arm": "A0_MAP_NAV",
+        "kind": "readiness",
+        "description": "distinct TRUE first-action classes across the candidate set, read via HippocampalModule.candidate_first_action_class (which reads trajectory.actions, NOT the non-invertible decoder round trip). If every candidate proposes the same action then E3 has nothing to choose between and the arm is a no-op however selection is routed -- an upstream failure mode that survives the selection fix",
+        "control": "post-training positive-control probe over CEM candidate sets that genuinely differ",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_harm_per_episode_reduction": true,
+      "C2_effect_size": true,
+      "C3_seed_consistency": true,
+      "C4_data_quality": false
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
