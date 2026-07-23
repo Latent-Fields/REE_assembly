@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-23T12:34:19Z",
+  "last_tick_utc": "2026-07-23T13:59:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-266b",
   "current_exq_started_utc": "2026-07-23T12:03:41.596731+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "Q-020",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 123 / A1_TERRAIN_FLAT",
-    "runs_done": 4,
+    "run_label": "Seed 456 / A0_TERRAIN_SHAPED",
+    "runs_done": 6,
     "runs_total": 9,
-    "episodes_done": 100,
+    "episodes_done": 50,
     "episodes_total": 150,
-    "overall_pct": 51.9
+    "overall_pct": 70.4
   },
-  "seconds_elapsed": 1838,
-  "seconds_remaining": 2053,
+  "seconds_elapsed": 6955,
+  "seconds_remaining": 1398,
   "recent_lines": [
     "[V3-EXQ-266b] design-audit OK: gate satisfiable, num_elite=6 (>= 2)",
     "Seed 42 Condition A0_TERRAIN_SHAPED",
@@ -46,7 +46,18 @@
     "verdict: PASS",
     "Seed 123 Condition A1_TERRAIN_FLAT",
     "[train] seed=123 arm=A1_TERRAIN_FLAT ep 50/150 harm_events=303 residue_total=0.0000",
-    "[train] seed=123 arm=A1_TERRAIN_FLAT ep 100/150 harm_events=608 residue_total=0.0000"
+    "[train] seed=123 arm=A1_TERRAIN_FLAT ep 100/150 harm_events=608 residue_total=0.0000",
+    "[train] seed=123 arm=A1_TERRAIN_FLAT ep 150/150 harm_events=915 residue_total=0.0000",
+    "[eval] seed=123 arm=A1_TERRAIN_FLAT harm_per_episode=6.2000 harm_per_step=0.5781 terrain_corr=+0.5261 mean_ep_len=10.7 terminated=40/40 cells/ep=1.45 action_classes=4 residue_total=0.0000",
+    "verdict: PASS",
+    "Seed 123 Condition A2_STATIC",
+    "[train] seed=123 arm=A2_STATIC ep 50/150 harm_events=300 residue_total=0.0000",
+    "[train] seed=123 arm=A2_STATIC ep 100/150 harm_events=600 residue_total=0.0000",
+    "[train] seed=123 arm=A2_STATIC ep 150/150 harm_events=900 residue_total=0.0000",
+    "[eval] seed=123 arm=A2_STATIC harm_per_episode=6.0000 harm_per_step=1.0000 terrain_corr=+0.0000 mean_ep_len=6.0 terminated=40/40 cells/ep=1.00 action_classes=1 residue_total=0.0000",
+    "verdict: PASS",
+    "Seed 456 Condition A0_TERRAIN_SHAPED",
+    "[train] seed=456 arm=A0_TERRAIN_SHAPED ep 50/150 harm_events=227 residue_total=2.3412"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
