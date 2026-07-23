@@ -1,0 +1,113 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_629c_mech342_ecological_maintenance_release_evidence",
+  "run_id": "v3_exq_629c_mech342_ecological_maintenance_release_evidence_20260723T230514Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T23:05:14Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-342"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-342": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "readiness_route": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "foraging_contact_guard",
+        "description": "603n G2+G3 contact guard on >= 2/3 seeds (a foraging-incompetent agent cannot commit naturally).",
+        "control": "scaffolded_sd054_onboarding run_p2 consumption-gated readout.",
+        "measured": 0.3333333333333333,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      },
+      {
+        "name": "baseline_commits_C1",
+        "description": "both arms commit in both windows (the exact NO_NATURAL_COMMITMENT gap 629 hit; now delivered by the commitment-inducing scaffolded curriculum). C1 FAIL -> non_contributory, not a falsification.",
+        "control": "min n_commit_entries across arms x windows.",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      },
+      {
+        "name": "degradation_occurred_C2",
+        "description": "the SD-047 degraded window genuinely crossed the R-c floors while committed (>= C2_DEGRADE_MIN_TICKS, both arms). C2 FAIL -> non_contributory (INVALID_HARNESS), not a falsification.",
+        "control": "summed degraded_committed_ticks.",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C3_release_authority",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C4_no_false_abort",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C5_distinct_from",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C3": false,
+      "C4": false,
+      "C5": false
+    },
+    "contact_guard": {
+      "definition": "per-seed P2 contact_rate > 0 AND z_goal_norm_at_contact_peak > 0.4; < 2/3 seeds -> substrate_not_ready_requeue.",
+      "min_fraction": 0.6666666666666666,
+      "p2_zgoal_gate": 0.4,
+      "contact_gate": 0.0
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5eda31c4145d59c37792f7344dddaaac0dcfeaa095d163e4034f8650bc728efb"
+}
