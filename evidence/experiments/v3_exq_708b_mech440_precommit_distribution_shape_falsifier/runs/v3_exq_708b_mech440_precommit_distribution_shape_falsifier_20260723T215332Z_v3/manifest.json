@@ -1,0 +1,163 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_708b_mech440_precommit_distribution_shape_falsifier",
+  "run_id": "v3_exq_708b_mech440_precommit_distribution_shape_falsifier_20260723T215332Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T21:53:32Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-440"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-440": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "precommit_shape_headroom_unexplained",
+    "preconditions": [
+      {
+        "name": "enough_divergent_seeds",
+        "kind": "readiness",
+        "description": "seeds whose candidate pool is DIVERGENT on ALL C1 comparison arms (A0_OFF + ARM_TEMP + ARM_NOISE_SINGLE) >= MIN_DIVERGENT_SEEDS. Too few => substrate_not_ready_requeue.",
+        "control": "consumed cand_world_summary pairwise spread > floor (GAP-A); per-seed",
+        "measured": 4.0,
+        "threshold": 3.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "noise_bias_range_supra_floor_vs_raw",
+        "kind": "readiness",
+        "description": "ARM_NOISE_SINGLE per-candidate noise bias range > floor AND a non-trivial fraction of the raw-score range (so the noise CAN flip the within-eligible argmin). A noise too small to ever compete is a vacuous test => requeue. measured = min noise_bias_range_mean across ARM_NOISE_SINGLE seeds.",
+        "control": "ARM_NOISE_SINGLE noisy_selection_bias_range / e3_raw_score_range",
+        "measured": 0.22109529,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "dacc_suppression_live",
+        "kind": "readiness",
+        "description": "dACC perseveration No-Go axis is LIVE (dacc_max_suppression > 0) on a majority of seeds across the dACC-bearing arms. A flat dACC means the Go/No-Go constitution is inert => the SOTA stack is not actually engaged.",
+        "control": "agent._dacc_last_bundle['suppression'] max over P2",
+        "measured": 1.0,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "fresh_selects_sufficient",
+        "kind": "readiness",
+        "description": "EVERY arm-seed recorded at least MIN_FRESH_SELECTS genuinely fresh E3 selections in P2. 708a accumulates the pre-commit DV ONLY on verified-fresh ticks (agent.e3.last_score_diagnostics / .last_precommit_probs cleared to None before every select_action and required to repopulate), so the honest denominator is ~1/e3_steps_per_tick of V3-EXQ-708's, whose per-env-step read gave n_precommit_ticks == n_p2_ticks on all 24 arm-seeds. An honest-but-underpowered DV must route substrate_not_ready_requeue, NEVER a weakens. measured = the WORST cell (min across arm-seeds), matching the all(...) quantifier this met expression uses, so the indexer's recompute agrees.",
+        "control": "worst arm-seed n_fresh_select over P2; offending cell arm=A0_OFF seed=44",
+        "offending_cell": "A0_OFF:seed44",
+        "measured": 862.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "learning_engaged_finer_channels_dissociable",
+        "kind": "readiness",
+        "description": "on ARM_NOISE_SINGLE the finer w_chan_finer entries MOVED + the signed-RPE delta_t carries cross-tick variance, on a majority of seeds. Below floor => substrate_not_ready_requeue.",
+        "control": "ARM_NOISE_SINGLE fcg_w_chan_finer_range_max + fcg_delta_t_std",
+        "measured": 0.00127071,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "shape_samples_sufficient",
+        "kind": "readiness",
+        "description": "708b NEW. EVERY arm-seed recovered at least MIN_SHAPE_SAMPLES usable pre-commit distributions (a finite probability vector matching the candidate count, on a verified-FRESH select). The shape moments are this run's load-bearing readout, so below the floor the (i)-vs-(ii) discrimination cannot be attempted and the correct route is substrate_not_ready_requeue, NEVER a verdict on an unestimated shape. measured = the WORST cell (min across arm-seeds), matching the all(...) quantifier this met expression uses, so the indexer's recompute agrees.",
+        "control": "worst arm-seed n_shape_samples over P2; offending cell arm=A0_OFF seed=44",
+        "offending_cell": "A0_OFF:seed44",
+        "measured": 862.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "The two entries temperature_control_raises_precommit_entropy and weight_noise_raises_precommit_entropy are carried under 'recorded_preconditions', NOT under the adjudicating flat 'preconditions' list. They are MANIPULATION CHECKS, not readiness gates: they ask whether the designed lever MOVED the dependent variable, and a null there is a RESULT ABOUT THE SYSTEM, not a statement that the setup was inadequate. V3-EXQ-708a carried them as kind: readiness, so its null (ARM_TEMP 0/4 divergent seeds, ARM_NOISE_SINGLE 1/4, bar 2) self-routed substrate_not_ready_requeue and the REE_assembly indexer flagged the whole run precondition_unmet -- on an instrument its OWN numbers prove was working (862 genuinely-fresh E3 select() calls against a floor of 30, 4 divergent seeds, supra-floor noise bias range 0.221, live dACC suppression, dissociable finer channels). Adjudicated 2026-07-22 (failure_autopsy_V3-EXQ-708a_2026-07-22, user-confirmed): record as a substantive finding. The schema has no manipulation_check kind; kind is recorded descriptively on each entry. The genuine READINESS gates -- divergent seeds, noise bias range, dACC, learning engaged, fresh selects, shape samples -- remain in the adjudicating list and DO gate.",
+    "recorded_preconditions": [
+      {
+        "name": "temperature_control_raises_precommit_entropy",
+        "kind": "manipulation_check",
+        "description": "MANIPULATION CHECK (recorded, non-gating). Does ARM_TEMP (the V3-EXQ-687 temperature control) raise PRE-COMMIT sampling-class entropy strict-above A0_OFF by margin on a strict-majority of divergent seeds? V3-EXQ-708a measured 0 of 4 against a bar of 2. A null here is this run's SUBJECT, and the shape moments + the recovered applied temperature are what explain it. measured = n divergent seeds on which ARM_TEMP lifts pre-commit entropy.",
+        "control": "ARM_TEMP precommit_class_entropy vs A0_OFF, divergent seeds, paired",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "weight_noise_raises_precommit_entropy",
+        "kind": "manipulation_check",
+        "description": "MANIPULATION CHECK (recorded, non-gating). Does ARM_NOISE_SINGLE's factorised-Gaussian selection-head weight noise raise PRE-COMMIT sampling-class entropy strict-above A0_OFF by margin on a strict-majority of divergent seeds? V3-EXQ-708a measured 1 of 4 against a bar of 2, WITH a supra-floor bias range (0.221) -- i.e. the perturbation was injected and the entropy still did not move, which is precisely the observation this run exists to explain. measured = n divergent seeds lifting pre-commit.",
+        "control": "ARM_NOISE_SINGLE precommit_class_entropy vs A0_OFF, divergent seeds, paired",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "D1_precommit_shape_discriminates_saturation_vs_lever_arrival",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C1_noise_single_committed_strict_above_temp",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "D1_shape_estimable": true,
+      "D1_off_baseline_present": true,
+      "D1_temperature_recoverable": true,
+      "C1_preconditions_met": true,
+      "C1_manipulation_fired": false,
+      "enough_divergent_seeds": true,
+      "noise_bias_supra_floor": true,
+      "dacc_live": true,
+      "learning_engaged": true,
+      "fresh_selects_sufficient": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
