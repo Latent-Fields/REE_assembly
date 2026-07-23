@@ -1,0 +1,209 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_805_arc016_eval_derived_commit_threshold",
+  "run_id": "v3_exq_805_arc016_eval_derived_commit_threshold_20260723T092739Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T09:27:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "A0_TRAIN_BASELINE::precision_manipulation_took",
+        "precondition": "precision_manipulation_took",
+        "arm": "A0_TRAIN_BASELINE",
+        "kind": "readiness",
+        "description": "RELATIVE variance lift: (mean rv(perturbed) - mean rv(stable)) / mean rv(stable), worst cell. If the perturbation does not raise prediction-error variance, nothing downstream can track it and the run measures the environment rather than the precision-to-commitment circuit. Relative rather than absolute because rv's operating scale is itself what this experiment recalibrates against, so no absolute floor is meaningful across arms; EXQ-018b's C1 was relative for the same reason",
+        "control": "EXQ-018b extreme env contrast (2 hazards / static vs 25 / drift every step at p=1.0), which measured a ~38% lift",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.05581684197242094,
+        "threshold": 0.25,
+        "met": false
+      },
+      {
+        "name": "A0_TRAIN_BASELINE::commit_decision_count",
+        "precondition": "commit_decision_count",
+        "arm": "A0_TRAIN_BASELINE",
+        "kind": "readiness",
+        "description": "genuine E3 commit decisions banked in the leaner condition",
+        "control": "one e3.select() every E3_DECISION_INTERVAL steps",
+        "direction": "lower",
+        "applies": true,
+        "measured": 400.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "A0_TRAIN_BASELINE::calibrated_threshold_positive",
+        "precondition": "calibrated_threshold_positive",
+        "arm": "A0_TRAIN_BASELINE",
+        "kind": "readiness",
+        "description": "the calibrated commit threshold is finite and strictly positive (EXQ-018b's C0 -- a zero baseline means calibration never ran)",
+        "control": "CALIBRATION_FACTOR x a measured baseline variance",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0002092141629568683,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "A1_EVAL_DERIVED::precision_manipulation_took",
+        "precondition": "precision_manipulation_took",
+        "arm": "A1_EVAL_DERIVED",
+        "kind": "readiness",
+        "description": "RELATIVE variance lift: (mean rv(perturbed) - mean rv(stable)) / mean rv(stable), worst cell. If the perturbation does not raise prediction-error variance, nothing downstream can track it and the run measures the environment rather than the precision-to-commitment circuit. Relative rather than absolute because rv's operating scale is itself what this experiment recalibrates against, so no absolute floor is meaningful across arms; EXQ-018b's C1 was relative for the same reason",
+        "control": "EXQ-018b extreme env contrast (2 hazards / static vs 25 / drift every step at p=1.0), which measured a ~38% lift",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.05581684197242094,
+        "threshold": 0.25,
+        "met": false
+      },
+      {
+        "name": "A1_EVAL_DERIVED::threshold_engagement_headroom",
+        "precondition": "threshold_engagement_headroom",
+        "arm": "A1_EVAL_DERIVED",
+        "kind": "readiness",
+        "description": "min(commit_rate, 1 - commit_rate), taken over the WORST of the arm's two conditions (not just the reference one -- the V3-EXQ-779b/777 saturation-guard defect). THE THRESHOLD MUST ACTUALLY ENGAGE: a rate pinned at 0.0 or 1.0 makes all arms identical and is exactly what voided EXQ-396a/b. Declared as a single-bound FLOOR on a worst-cell statistic so the indexer's recompute is exact, rather than a half-declared two-sided band",
+        "control": "eval-derived calibration on the stable reference condition",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.02,
+        "met": false
+      },
+      {
+        "name": "A1_EVAL_DERIVED::commit_decision_count",
+        "precondition": "commit_decision_count",
+        "arm": "A1_EVAL_DERIVED",
+        "kind": "readiness",
+        "description": "genuine E3 commit decisions banked in the leaner condition",
+        "control": "one e3.select() every E3_DECISION_INTERVAL steps",
+        "direction": "lower",
+        "applies": true,
+        "measured": 400.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "A1_EVAL_DERIVED::calibrated_threshold_positive",
+        "precondition": "calibrated_threshold_positive",
+        "arm": "A1_EVAL_DERIVED",
+        "kind": "readiness",
+        "description": "the calibrated commit threshold is finite and strictly positive (EXQ-018b's C0 -- a zero baseline means calibration never ran)",
+        "control": "CALIBRATION_FACTOR x a measured baseline variance",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0001924037019822254,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "A2_ONLINE_ADAPTED::precision_manipulation_took",
+        "precondition": "precision_manipulation_took",
+        "arm": "A2_ONLINE_ADAPTED",
+        "kind": "readiness",
+        "description": "RELATIVE variance lift: (mean rv(perturbed) - mean rv(stable)) / mean rv(stable), worst cell. If the perturbation does not raise prediction-error variance, nothing downstream can track it and the run measures the environment rather than the precision-to-commitment circuit. Relative rather than absolute because rv's operating scale is itself what this experiment recalibrates against, so no absolute floor is meaningful across arms; EXQ-018b's C1 was relative for the same reason",
+        "control": "EXQ-018b extreme env contrast (2 hazards / static vs 25 / drift every step at p=1.0), which measured a ~38% lift",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.05581684197242094,
+        "threshold": 0.25,
+        "met": false
+      },
+      {
+        "name": "A2_ONLINE_ADAPTED::threshold_engagement_headroom",
+        "precondition": "threshold_engagement_headroom",
+        "arm": "A2_ONLINE_ADAPTED",
+        "kind": "readiness",
+        "description": "min(commit_rate, 1 - commit_rate), taken over the WORST of the arm's two conditions (not just the reference one -- the V3-EXQ-779b/777 saturation-guard defect). THE THRESHOLD MUST ACTUALLY ENGAGE: a rate pinned at 0.0 or 1.0 makes all arms identical and is exactly what voided EXQ-396a/b. Declared as a single-bound FLOOR on a worst-cell statistic so the indexer's recompute is exact, rather than a half-declared two-sided band",
+        "control": "eval-derived calibration on the stable reference condition",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.015000000000000013,
+        "threshold": 0.02,
+        "met": false
+      },
+      {
+        "name": "A2_ONLINE_ADAPTED::commit_decision_count",
+        "precondition": "commit_decision_count",
+        "arm": "A2_ONLINE_ADAPTED",
+        "kind": "readiness",
+        "description": "genuine E3 commit decisions banked in the leaner condition",
+        "control": "one e3.select() every E3_DECISION_INTERVAL steps",
+        "direction": "lower",
+        "applies": true,
+        "measured": 400.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "A2_ONLINE_ADAPTED::calibrated_threshold_positive",
+        "precondition": "calibrated_threshold_positive",
+        "arm": "A2_ONLINE_ADAPTED",
+        "kind": "readiness",
+        "description": "the calibrated commit threshold is finite and strictly positive (EXQ-018b's C0 -- a zero baseline means calibration never ran)",
+        "control": "CALIBRATION_FACTOR x a measured baseline variance",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0001924037019822254,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_commit_rate_tracks_precision_under_eval_derived_threshold": false,
+      "C2_train_baseline_arm_reproduces_396_non_engagement": false,
+      "C3_online_adapted_threshold_also_tracks": false
+    },
+    "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+    "not_a_discovery_experiment_note": "ARC-016's core circuit (E3-derived variance -> relative commit threshold -> BetaGate -> action_selection) is ALREADY VALIDATED by V3-EXQ-018b (PASS 5/5) and V3-EXQ-060 (PASS 4/5). This run closes the single open item named in the claim's own notes: 'pending recalibration with eval-derived threshold'. A PASS confirms the 396-series death was a CALIBRATION ARTEFACT and leaves the existing validation standing unqualified; it PROMOTES NOTHING.",
+    "scope_guard_note": "STRUCTURAL ONLY. Post-split (2026-03-22) ARC-016 covers just the mechanistic circuit; the behavioural consequence layer is ARC-029 and is NOT tagged or tested. No behavioural harm DV is attached, because that would re-import the V_s MONOSTRATEGY-LOCK confound that voided EXQ-454. The exclusion is STRUCTURAL, not a promise: the driver takes RANDOM actions throughout, so there is no learned policy that could lock into a single strategy, and no harm or benefit quantity is a DV anywhere in the run.",
+    "engagement_is_a_precondition_note": "'The threshold must actually engage' is a PRECONDITION (P2), never a criterion. A threshold that never fires makes every arm identical -- exactly what voided EXQ-396a/b -- and must self-route substrate_not_ready_requeue rather than deliver a verdict on ARC-016. It is SCOPED OUT of A0_TRAIN_BASELINE, whose designated role is to reproduce that non-engagement (disposition (a): not meaningful for the regime, arm stays scorable); A0's headroom is still measured and emitted non-gating.",
+    "dv_symmetry_note": "DV = commit_rate = fraction of selections with running_variance < commit_threshold. Symmetry group: any transform preserving the SIGN of (threshold - rv) per tick -- in particular any monotone transform applied JOINTLY to rv and threshold, and any threshold move that stays on the same side of the rv distribution's mass. A1_EVAL_DERIVED is NOT invariant: the train- and eval-derived thresholds sit on OPPOSITE sides of the eval rv mass (~15-30x apart), so the sign flips for most ticks; the realised ratio is emitted as threshold_ratio_eval_over_train. A0_TRAIN_BASELINE is a declared REFERENCE arm with an expected-pinned DV. A2_ONLINE_ADAPTED carries a REAL invariance hazard -- a fast-adapting baseline makes rv < 2 x EMA(rv) true by arithmetic -- so its EMA is deliberately slow and the realised absorption is measured as a2_threshold_tracking_ratio; above A2_TRACKING_CEILING C3 is declared degenerate and routes nothing.",
+    "threshold_held_fixed_note": "The threshold is derived ONCE from the STABLE reference condition and held FIXED across the manipulated precision levels (A0/A1). Deriving it per-condition would ABSORB the manipulation and measure nothing -- the same reason EXQ-018b calibrated on stable and then evaluated stable-vs-perturbed.",
+    "reset_protocol_note": "Every scored phase, AND the eval-time calibration window, starts from precision_init and lets the EMA settle. That matching is the point: the 396 threshold came from TRAINING, which carries no such reset transient at all, so it was calibrated against a variance regime the eval phases never occupy.",
+    "driver_constraint_note": "V3-EXQ-396a: update_running_variance() has NO CALLER anywhere in ree_core, so the driver must drive the EMA itself or _running_variance stays pinned at precision_init and the commit gate never fires (measured commit rate 0.000 in that state). Do not 'simplify' this away.",
+    "governance_flag_not_acted_on": "ARC-016's exp_conf 0.53 is an AGGREGATION ARTEFACT: 15 FAILs, nearly all already stamped non_contributory or substrate-version-stale (heterogeneity_note), still score it as half-refuted. Re-scoring needs a governance eye rather than an experiment, because stripping non-contributory FAILs can expose that the remaining supports are thinner than the headline number suggested. This run neither promotes nor re-scores."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
