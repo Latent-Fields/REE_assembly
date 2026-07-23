@@ -1,0 +1,248 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_804_arc003_e3_selection_authority",
+  "run_id": "v3_exq_804_arc003_e3_selection_authority_20260723T085056Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T08:50:56Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-003"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "e3_score_gradient_without_selection_authority",
+    "preconditions": [
+      {
+        "name": "A0_INTACT::cand_pool_divergent",
+        "precondition": "cand_pool_divergent",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "mean cand_world_pairwise_dist across the candidate pool (SD-056, e2_fast.py). The GAP-A guard: scoring a pool of near-identical candidates makes the score gradient trivially flat and would MANUFACTURE a FAIL. V3-EXQ-571 measured exactly this collapse at 0.0000 across K=8 candidates differing only in first action",
+        "control": "SD-056 action-contrastive P0 warmup + support-preserving CEM",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.04155050933795671,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::pool_first_action_class_support",
+        "precondition": "pool_first_action_class_support",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "mean distinct FIRST-ACTION classes per candidate pool. If the pool is single-class the generation prior is a point mass and the KL DV is IDENTICALLY 0 for every arm INCLUDING A0 -- the contrast would read as a clean FAIL while measuring nothing",
+        "control": "support_preserving_min_first_action_classes=2 on the proposer",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.4313333333333333,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::score_magnitude_bounded",
+        "precondition": "score_magnitude_bounded",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "max |E3 per-candidate score|. CEILING. The V3-EXQ-643 float32 cancellation regime (~1e32 raw scores) makes every downstream statistic meaningless",
+        "control": "e2_rollout_output_norm_clamp at ratio 4.0",
+        "direction": "upper",
+        "applies": true,
+        "measured": 17.824832916259766,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::selection_count",
+        "precondition": "selection_count",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "genuine E3 selections banked in this cell",
+        "control": "direct e3.select() per tick -- every tick is one selection",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1000.0,
+        "threshold": 300.0,
+        "met": true
+      },
+      {
+        "name": "A1_E3_LESIONED::cand_pool_divergent",
+        "precondition": "cand_pool_divergent",
+        "arm": "A1_E3_LESIONED",
+        "kind": "readiness",
+        "description": "mean cand_world_pairwise_dist across the candidate pool (SD-056, e2_fast.py). The GAP-A guard: scoring a pool of near-identical candidates makes the score gradient trivially flat and would MANUFACTURE a FAIL. V3-EXQ-571 measured exactly this collapse at 0.0000 across K=8 candidates differing only in first action",
+        "control": "SD-056 action-contrastive P0 warmup + support-preserving CEM",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.04151530641441544,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "A1_E3_LESIONED::pool_first_action_class_support",
+        "precondition": "pool_first_action_class_support",
+        "arm": "A1_E3_LESIONED",
+        "kind": "readiness",
+        "description": "mean distinct FIRST-ACTION classes per candidate pool. If the pool is single-class the generation prior is a point mass and the KL DV is IDENTICALLY 0 for every arm INCLUDING A0 -- the contrast would read as a clean FAIL while measuring nothing",
+        "control": "support_preserving_min_first_action_classes=2 on the proposer",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.4373333333333336,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "A1_E3_LESIONED::score_magnitude_bounded",
+        "precondition": "score_magnitude_bounded",
+        "arm": "A1_E3_LESIONED",
+        "kind": "readiness",
+        "description": "max |E3 per-candidate score|. CEILING. The V3-EXQ-643 float32 cancellation regime (~1e32 raw scores) makes every downstream statistic meaningless",
+        "control": "e2_rollout_output_norm_clamp at ratio 4.0",
+        "direction": "upper",
+        "applies": true,
+        "measured": 17.83157730102539,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "A1_E3_LESIONED::selection_count",
+        "precondition": "selection_count",
+        "arm": "A1_E3_LESIONED",
+        "kind": "readiness",
+        "description": "genuine E3 selections banked in this cell",
+        "control": "direct e3.select() per tick -- every tick is one selection",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1000.0,
+        "threshold": 300.0,
+        "met": true
+      },
+      {
+        "name": "A1_E3_LESIONED::lesion_took",
+        "precondition": "lesion_took",
+        "arm": "A1_E3_LESIONED",
+        "kind": "readiness",
+        "description": "fraction of selections where the EXECUTED candidate differs from E3's own pick. Verifies the lesion was APPLIED and not merely requested -- the V3-EXQ-689d defect, where a matched-noise control was bit-identical to its sibling control and 'strict above BOTH' degraded silently to 'strict above one'",
+        "control": "a content-free draw over K candidates re-picks E3 at rate 1/K",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.957,
+        "threshold": 0.35,
+        "met": true
+      },
+      {
+        "name": "ARM_NOISE::cand_pool_divergent",
+        "precondition": "cand_pool_divergent",
+        "arm": "ARM_NOISE",
+        "kind": "readiness",
+        "description": "mean cand_world_pairwise_dist across the candidate pool (SD-056, e2_fast.py). The GAP-A guard: scoring a pool of near-identical candidates makes the score gradient trivially flat and would MANUFACTURE a FAIL. V3-EXQ-571 measured exactly this collapse at 0.0000 across K=8 candidates differing only in first action",
+        "control": "SD-056 action-contrastive P0 warmup + support-preserving CEM",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.04179176784617206,
+        "threshold": 0.001,
+        "met": true
+      },
+      {
+        "name": "ARM_NOISE::pool_first_action_class_support",
+        "precondition": "pool_first_action_class_support",
+        "arm": "ARM_NOISE",
+        "kind": "readiness",
+        "description": "mean distinct FIRST-ACTION classes per candidate pool. If the pool is single-class the generation prior is a point mass and the KL DV is IDENTICALLY 0 for every arm INCLUDING A0 -- the contrast would read as a clean FAIL while measuring nothing",
+        "control": "support_preserving_min_first_action_classes=2 on the proposer",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.4343333333333335,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_NOISE::score_magnitude_bounded",
+        "precondition": "score_magnitude_bounded",
+        "arm": "ARM_NOISE",
+        "kind": "readiness",
+        "description": "max |E3 per-candidate score|. CEILING. The V3-EXQ-643 float32 cancellation regime (~1e32 raw scores) makes every downstream statistic meaningless",
+        "control": "e2_rollout_output_norm_clamp at ratio 4.0",
+        "direction": "upper",
+        "applies": true,
+        "measured": 17.795955657958984,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_NOISE::selection_count",
+        "precondition": "selection_count",
+        "arm": "ARM_NOISE",
+        "kind": "readiness",
+        "description": "genuine E3 selections banked in this cell",
+        "control": "direct e3.select() per tick -- every tick is one selection",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1000.0,
+        "threshold": 300.0,
+        "met": true
+      },
+      {
+        "name": "ARM_NOISE::lesion_took",
+        "precondition": "lesion_took",
+        "arm": "ARM_NOISE",
+        "kind": "readiness",
+        "description": "fraction of selections where the EXECUTED candidate differs from E3's own pick. Verifies the lesion was APPLIED and not merely requested -- the V3-EXQ-689d defect, where a matched-noise control was bit-identical to its sibling control and 'strict above BOTH' degraded silently to 'strict above one'",
+        "control": "a content-free draw over K candidates re-picks E3 at rate 1/K",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.955,
+        "threshold": 0.35,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_selection_departs_generation_prior": true,
+      "C2_e3_score_gradient_non_flat": true,
+      "C3_taken_candidate_predictable_above_chance": false
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "leg_scope_note": "ARC-003 is CONJUNCTIVE. This run tests LEG A (E3 SELECTS) ONLY, at the candidate-scoring level, with NO sustained multi-step action commitment anywhere in the design. LEG B (E3 COMMITS) is BLOCKED on the BG / action-commitment layer and is registered separately as EXP-0395 (blocked_substrate). NO result here licenses any reading of leg B, in either direction.",
+    "commitment_free_note": "The driver calls agent.e3.select() DIRECTLY rather than agent.select_action(), because select_action interposes the E3 cadence (heartbeat.e3_steps_per_tick default 10), the commitment latch and the BetaGate -- the very machinery leg B is blocked on. Consequence: every tick is one genuine independent selection, so the V3-EXQ-785 ~9x diagnostics pseudo-replication defect is structurally impossible here (n_latched_ticks = 0 by construction, emitted as 0, not merely guarded).",
+    "score_scope_note": "select() is called on its CORE scoring path: score_bias, score_bias_channels and channel_route_bias are NOT injected (they are what agent.select_action would otherwise assemble). So this tests E3's OWN scoring authority (F / M / Phi_R). It tests NOTHING about the modulatory channels' authority, which is claimed under MECH-314 / MECH-341 / MECH-320 and tested separately.",
+    "dv_symmetry_note": "DV = KL(executed first-action-class distribution || per-tick pool prior). Symmetry group: permutations of candidates within a class, relabellings of candidate slots preserving per-tick class counts, and any score transform preserving the within-tick argmin (including a uniform additive constant -- the V3-EXQ-604c broadcast-scalar trap). A0_INTACT's manipulation is NOT invariant: E3's score is a state-dependent function of predicted candidate outcomes and its cross-candidate RANGE is measured and gated. A1_E3_LESIONED and ARM_NOISE ARE invariant BY CONSTRUCTION and are DECLARED REFERENCE ARMS: a content-free selector draws uniformly over candidates and so reproduces the prior. Their KL is the sampling floor at this n, fixed before the run; it is never reported as a measured effect and never routes a verdict alone.",
+    "two_null_arms_note": "Both null arms estimate the SAME floor and both are ~0 by construction. Their distinct value is WHAT EACH HOLDS FIXED: A1 holds the selection rule content-free while the score distribution is whatever it is; ARM_NOISE permutes E3's REAL scores across candidates, holding the score DISTRIBUTION exactly fixed while destroying its content. If A0's KL were an artifact of the score-magnitude regime rather than of score content, ARM_NOISE would reproduce it and A1 might not. Agreement strengthens the floor; disagreement is diagnostic.",
+    "within_tick_counterfactual_note": "kl_ctf_uniform_vs_prior and kl_ctf_permuted_vs_prior are the same two nulls computed WITHIN each tick from the SAME candidate pool the executed selection saw, in every arm. They carry zero trajectory-divergence between the contrasted quantities and are therefore strictly better powered than the across-arm contrast. They are reported as CORROBORATION and are deliberately NOT the pre-registered criterion, which stays the across-arm contrast the proposal specified.",
+    "cross_arm_contrast_note": "C1 is a CROSS-ARM CONTRAST, so a red NULL arm removes the contrast it participates in and C1 becomes unscorable (selection_contrast_unscorable_null_arm_red, non_contributory). That is the arithmetic of a difference, NOT the V3-EXQ-785 vacating defect, which destroyed an arm's own self-contained result. C2 and C3 are A0-INTERNAL and still score when a null arm is red.",
+    "gap_a_note": "The GAP-A guard is P1 (cand_world_pairwise_dist above floor). Its companion P2 -- mean distinct first-action classes per pool -- is the one that is easy to miss: on a single-class pool the generation prior is a point mass and the KL DV is IDENTICALLY 0 for EVERY arm including A0, so the contrast would read as a clean FAIL while measuring nothing at all."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
