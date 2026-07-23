@@ -1,0 +1,75 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_120a_arc018_viability_map_pair",
+  "run_id": "v3_exq_120a_arc018_viability_map_pair_20260723T120339Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-23T12:03:39Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-018"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc018_viability_map_harm_advantage_not_reproduced",
+    "text": "ARC-018 NOT REPRODUCED on this leg once selection is routed through E3, the DV is harm per episode at a matched episode budget, and a static no-op control is present: reduction vs the binding control A2_STATIC was -18.1% < 15% required (C2 map populated=True, C5 active centers=True). The candidate set offered E3 a genuine choice (P1 green), so this is a measurement rather than an instrument failure. Read C2/C5 before concluding: a FAIL with the map UNPOPULATED is a different finding (the mechanism never formed) from a FAIL with the map populated (it formed and did not help). Note ARC-018 leg A retains EXQ-042 and EXQ-053, neither of which uses the round trip -- this run replaces the EXQ-120 leg only, and should not be read as retiring the claim on its own.",
+    "preconditions": [
+      {
+        "name": "A0_VIABILITY_MAP_ON::candidate_action_diversity",
+        "precondition": "candidate_action_diversity",
+        "arm": "A0_VIABILITY_MAP_ON",
+        "kind": "readiness",
+        "description": "distinct TRUE first-action classes across the candidate set, read via HippocampalModule.candidate_first_action_class (which reads trajectory.actions, NOT the non-invertible decoder round trip). If every candidate proposes the same action then E3 has nothing to choose between and the arm is a no-op however selection is routed -- the EXQ-120 failure mode surviving the selection fix",
+        "control": "post-training positive-control probe over CEM candidate sets that genuinely differ",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_harm_per_episode_reduction": true,
+      "C2_map_populated": true,
+      "C3_seed_consistency": true,
+      "C5_active_centers": true,
+      "C6_effect_size": true,
+      "C4_data_quality": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
