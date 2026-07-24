@@ -1,0 +1,135 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_689j_mech448_factor_b_noise_control_repower",
+  "run_id": "v3_exq_689j_mech448_factor_b_noise_control_repower_20260724T155840Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T15:58:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-448": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "matched_noise_control_repowered_still_unmeetable",
+    "preconditions": [
+      {
+        "name": "cells_share_one_substrate_hash",
+        "kind": "readiness",
+        "description": "The set of per-cell arm_fingerprint.substrate_hash values across ALL cells has cardinality exactly 1 (carried over from 689i's C_SUBSTRATE_INVARIANT defect-3 repair).",
+        "control": "arm_fingerprint.substrate_hash stamped per (arm, seed) cell",
+        "measured": 1,
+        "threshold": 1,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "control_arms_produce_distinct_class_histograms",
+        "kind": "readiness",
+        "description": "ARM_PROPOSER_CTRL and ARM_MATCHED_NOISE do not produce an identical committed-class count vector on the same seed (carried over from 689i's C_CONTROL_DISTINCT defect-2 repair, trimmed to the two retained arms).",
+        "control": "pairwise comparison of selected_class_counts across ARM_PROPOSER_CTRL / ARM_MATCHED_NOISE, per seed",
+        "measured": 0,
+        "threshold": 0,
+        "direction": "upper",
+        "comparator": "<=",
+        "met": true
+      },
+      {
+        "name": "fresh_e3_selection_sufficiency_all_cells",
+        "kind": "readiness",
+        "description": "Every cell banked at least MIN_FRESH_SELECT_PER_CELL GENUINE E3 selections (carried over from 689i's C_FRESH_SUFFICIENT defect-1/power repair, UNCHANGED target).",
+        "control": "sentinel-key freshness marker on agent.e3.last_score_diagnostics, which e3_selector.select() reassigns wholesale",
+        "measured": 200,
+        "threshold": 200,
+        "direction": "lower",
+        "comparator": ">=",
+        "observed_mean_fresh_select_yield": 0.413615,
+        "observed_mean_replication_factor": 3.920475,
+        "met": true
+      },
+      {
+        "name": "matched_noise_control_verifiably_lifts_repowered",
+        "kind": "readiness",
+        "description": "REPOWERED read (12 seeds vs 689i's 4) of whether the noise negative control raises committed-class entropy over the collapsed proposer baseline on >= MIN_SEEDS_FOR_PASS seeds. 689i's per-seed deltas (-0.038, -0.032, -0.035, +0.089) showed a consistent small-negative cluster on 3/4 seeds, not scatter around a positive mean -- this is the read of whether that pattern persists at n=12.",
+        "control": "ARM_MATCHED_NOISE (use_gap_scaled_commit_temperature=True) vs ARM_PROPOSER_CTRL, same seed",
+        "measured": 3,
+        "threshold": 9,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_SUBSTRATE_INVARIANT_cells_share_one_build",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_CONTROL_DISTINCT_no_identical_control_histograms",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_FRESH_SUFFICIENT_effective_n_meets_target",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_NOISE_LIFTS_REPOWERED_matched_noise_verifiably_lifts",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_SUBSTRATE_INVARIANT": true,
+      "C_CONTROL_DISTINCT": true,
+      "C_FRESH_SUFFICIENT": true,
+      "C_NOISE_LIFTS_REPOWERED": true
+    },
+    "routing": {
+      "matched_noise_control_repowered_lifting_confirmed": "689i's C_NOISE_LIFTS 1/4 reading was small-N noise; the noise control verifiably lifts at n=12 -- corroborates 689i's C_PRIMARY finding as resting on a valid instrument. No governance action beyond noting the corroboration in 689i's evidence_quality_note.",
+      "matched_noise_control_repowered_still_unmeetable": "the weak/negative effect on the noise control persists at n=12 -- route to a design review of Factor B (gap_scaled_commit_entropy_alpha / base_temperature / shortlist-scoped sampling per factor_b_diagnostics), NOT a weakening of MECH-448 (which does not depend on this control's magnitude, only its non-vacuity, already separately guaranteed by C_CONTROL_DISTINCT).",
+      "intra_run_substrate_divergence_invalid": "cells did not share one substrate build -- the two arms are not mutually controlled; re-run at a pinned commit on a cloud worker.",
+      "control_arms_not_distinct_invalid": "the two arms produced identical committed-class histograms on some seed -- reproduces the 689d defect-2 signature; investigate before any noise-control read.",
+      "substrate_not_ready_requeue": "insufficient GENUINE E3 selections in some cell; re-queue."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "282bff9f1ff12f719f34a86cbf05cde1e3e7c259dd337a25147dd30d58f2a645"
+}
