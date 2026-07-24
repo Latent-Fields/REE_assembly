@@ -191,6 +191,65 @@
         "A consolidation pathway for an acquired policy IS constructible (V3-EXQ-792, retcons_kl0p30 retains 0.778 vs the unconstrained 0.525), which is the strongest single piece of evidence that the RL update rather than the representation is the destructive agent."
       ],
       "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_742_mech457_actor_critic_onoff_20260722T175904Z_v3",
+      "queue_id": "V3-EXQ-742b",
+      "claim_ids": ["MECH-457"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "deeper_than_action_learning",
+      "added_2026_07_24": "Extended into this cluster autopsy per user-confirmed routing (governance cycle 2026-07-24): '742b: extend cluster autopsy, fanout stays open.'",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the P0 encoder-training confound from 742a is RESOLVED here (guard shows encoder_moved_in_p0=true, 6/6 cells on every arm; frozen arms correctly stay frozen in the AC phase, cotrain arms correctly continue moving), but MECH-457 still not tested under conditions where it could express itself due to the SEPARATE objective-misspecification confound",
+        "biological_reference": "clear",
+        "prerequisites": "present -- all 5 readiness preconditions met (oracle/local-view clear both rungs, bias-head reproduces the D0 deficit)",
+        "implementation": "complete this time -- zworld_encoder_guard shows encoder_moved_in_p0 true on every arm (max_abs_delta_p0 0.333), and encoder_moved_in_ac correctly differs by arm (true for the two cotrain arms, false for the two frozen arms). The 742a confound (all arms frozen-random) is fixed.",
+        "environment": "wrong pressures -- DOMINANT LAYER, unchanged from 742a: all four actor-critic arms score 0.267-0.383 D3 foraging, UNDER the bias_head_baseline's own 0.533 (itself sub-floor) and the run's own random-walk-adjacent anchors",
+        "measurement": "reward_hacking_guard now instrumented (not load-bearing, foraging teacher) -- shows train_return_vs_eval_foraging_divergence strongly negative on every arm (-0.82 to -1.40), i.e. training return and eval foraging competence move in OPPOSITE directions, direct corroboration of the objective-misspecification reading",
+        "integration": "coupled",
+        "scale": "adequate -- 3 seeds/arm, all readiness gates clear"
+      },
+      "biological_reference": {
+        "closest_mechanism": "risk-sensitive foraging / patch-leaving under predation risk",
+        "dependencies": [
+          "a consumption term competitive with the survival term at the training horizon"
+        ],
+        "is_formal_import": false,
+        "divergence": "none -- consistent with 742a: the mechanism behaves correctly on a mis-set objective",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {"MECH-457": "measurement_test_design_defect"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-457": "non_contributory"},
+      "recommended_evidence_quality_note": "2026-07-24 (V3-EXQ-742b actor-critic ON/OFF successor, evidence, claim_ids=[MECH-457]; extends failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22). 742b closes the P0 encoder-training confound that invalidated 742a (zworld_encoder_guard now shows encoder_moved_in_p0=true on every arm, with encoder_moved_in_ac correctly differing between frozen and cotrain arms as designed) -- the frozen-vs-cotrain contrast is now a genuine one. Despite the fix, all four actor-critic arms still fail to clear D3 (0.267-0.383), UNDERPERFORMING even the simple bias_head_baseline (0.533, itself sub-floor). The newly instrumented reward_hacking_guard shows train_return_vs_eval_foraging_divergence strongly negative on every arm (-0.82 to -1.40): what is being trained (return) and what is being scored (foraging) move in opposite directions on every arm, direct corroboration of the cluster's objective-misspecification reading first raised on 742a. This run is NOT the literal return-decomposition or reweighted-objective probe the fanout recommended (it does not decompose reward terms or sweep the consumption:survival weighting), so it does not itself resolve H-objective-misspecification vs H-policy-learning -- it closes one confound (encoder) while leaving the other (objective) uncontrolled-for, with corroborating evidence. `weakens` WITHDRAWN, revised to `non_contributory`. MECH-457 stays candidate/v3_pending. Both fanout probes remain the sanctioned next step -- this run does not substitute for either.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "MECH-457 carries 0 confirmed substrate_ceiling hits (this and 742a are both measurement_test_design_defect). Brake does not fire on the ceiling count, but 742b's own manifest notes field self-flags: 'deeper_than_action_learning routes to RE-AUTOPSY, NOT a lettered floor re-test (the 734/737 RESOLVED_BY_FANOUT refusal stands)' -- refusing a THIRD lettered actor-critic re-run (742c) in favour of the two fanout probes already on file."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-objective-misspecification: unchanged from 742a, now further corroborated by the train/eval divergence signal on every arm",
+          "H-policy-learning (INCUMBENT, stays alive): unchanged -- neither probe has run yet"
+        ],
+        "suggested_probes": "UNCHANGED from the 742a target -- see that entry's suggested_probes. 742b did not implement either.",
+        "note": "GOV-FANOUT-1 status unchanged: the return-decomposition (reward axis) and reweighted-objective re-run (policy axis) probes remain open. This run adds corroborating evidence for H-objective-misspecification via train/eval divergence but is not a substitute for either probe."
+      },
+      "learning_extracted": [
+        "The 742a encoder-training confound is CLOSED (sd_zworld_warmup_optimizer_group's fix reached this driver copy) -- the frozen-vs-cotrain contrast in 742b is a genuine one, unlike 742a.",
+        "With that confound closed, all four actor-critic arms STILL fail to clear D3 and still underperform the simple bias_head baseline -- the encoder confound was not the (or not the only) explanation for the FAIL.",
+        "The newly instrumented reward_hacking_guard's train/eval divergence (-0.82 to -1.40 on every arm) is direct, quantified corroboration of the objective-misspecification reading: training return and eval foraging competence move in opposite directions."
+      ],
+      "routing": "queue-experiment"
     }
   ],
   "cluster_pattern": {
@@ -207,9 +266,9 @@
   "granularity_debt_trigger": {
     "fires": true,
     "target": "MECH-457",
-    "n_prior_autopsy_targets": 19,
+    "n_prior_autopsy_targets": 20,
     "n_prior_autopsy_files": 8,
-    "basis": "MECH-457 has absorbed 19 confirmed autopsy targets across 8 files with structurally different failure signatures each time (representation, exploration, credit-assignment, curriculum, arbitration, drive-schedule, reward-coupling, credit-horizon, BC-prior, approach-primitive, retention, and now objective). A claim that has absorbed 19 autopsies without resolving is several claims.",
+    "basis": "MECH-457 has absorbed 20 confirmed autopsy targets across 8 files with structurally different failure signatures each time (representation, exploration, credit-assignment, curriculum, arbitration, drive-schedule, reward-coupling, credit-horizon, BC-prior, approach-primitive, retention, objective, and now objective-with-encoder-confound-resolved). A claim that has absorbed 20 autopsies without resolving is several claims. This count already stood at 19/coherent_campaign per the 2026-07-16 GOV-GRAN-1 human adjudication (see MECH-457's claims.yaml granularity_debt_recurrence_note) -- 742b does not change that adjudication, it is a further instance of the SAME coherent campaign, not a new signature.",
     "routing": "claim-synthesis"
   }
 }

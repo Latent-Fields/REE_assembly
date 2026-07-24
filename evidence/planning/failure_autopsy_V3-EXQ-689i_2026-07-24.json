@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T07:18:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_689i_mech448_f_eligibility_demotion_falsifier_repair_20260722T162850Z_v3",
+      "queue_id": "V3-EXQ-689i",
+      "claim_ids": ["MECH-448"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "substrate_not_ready_requeue",
+      "adjudication_flag": "precondition_unmet",
+      "self_route_verdict": "WITHDRAWN -- gate defect (noise-control power gap), science upheld on C_PRIMARY",
+      "predecessor": "v3_exq_689d_mech448_f_eligibility_demotion_falsifier",
+      "predecessor_autopsy": "failure_autopsy_V3-EXQ-689d_2026-07-20",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- the discrimination criterion for MECH-448 itself (C_PRIMARY) was tested cleanly and passed",
+        "biological_reference": "clear -- divisive-normalisation eligibility envelope, ARC-107 BG-selector constitution",
+        "prerequisites": "present -- 689i is the repaired-instrument successor to 689d (three independent defects closed: hold-weighted DV, vacuous control re-instantiation, intra-run substrate divergence, plus power increase 3->4 seeds / 2-of-3->3-of-4)",
+        "implementation": "complete -- the rank-preserving F->eligibility demotion mechanism is built and exercised",
+        "environment": "adequate",
+        "measurement": "misleading on 2 of 8 load-bearing gates -- DOMINANT LAYER on those two: (1) matched_noise_control_verifiably_lifts only clears on 1/4 seeds against a >=3/4 bar -- this is a POWER gap in the noise-control instrument (Factor B gap-scaled stochastic commit), not evidence that the noise control is wrong in kind; (2) on_f_eligibility_envelope_excludes_on_divergent_pool measured 0.0376 against a 0.0 threshold with an ambiguous comparator direction in the manifest -- flagged for a follow-up read of the experiment script rather than adjudicated definitively here",
+        "integration": "coupled",
+        "scale": "4 seeds, 200 genuine selections/cell -- adequate for C_PRIMARY; the noise-control comparison specifically is under-powered (1/4 seeds lifting is not distinguishable from a small genuine effect at n=4)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "divisive-normalisation gain control (ARC-107 BG-selector constitution)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none at issue -- this is an instrument-repair adjudication on a landed substrate feature, not a mechanism test",
+        "lit_status": "present -- established in the original 689a/689d lineage"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "2026-07-24 (V3-EXQ-689i, MECH-448 repaired-instrument successor to 689d; failure_autopsy_V3-EXQ-689i_2026-07-24). 689i closed the three independent defects 689d's own autopsy identified (hold-weighted DV, vacuous matched-noise control, intra-run substrate divergence) plus a power increase (3->4 seeds, 2-of-3->3-of-4 pass bar). 6 of 8 load-bearing criteria PASS, INCLUDING the mechanism's own discrimination test: C_PRIMARY (on-selected committed-class entropy strictly above both collapsed controls) passes, as do C_RANK_PRESERVING (eligible set is an F-rank prefix) and C_SAFETY (harm not above OFF). The self-route substrate_not_ready_requeue is driven by two OTHER gates: C_NOISE_LIFTS (matched_noise_control_verifiably_lifts, 1/4 seeds vs a >=3/4 bar) and C_READINESS (envelope-exclusion readiness check). Read as a power gap in the newly re-instantiated noise-control instrument (Factor B gap-scaled stochastic commit is a NEW control, first exercised here) rather than evidence against the mechanism itself -- the mechanism's own discrimination criterion is clean. MECH-448 supports on C_PRIMARY; the noise-control power gap is flagged as an instrument follow-up (more seeds on Factor B specifically, or a design review of why it only lifts on 1/4), not a reason to withhold the primary PASS. Second independent confirmation of the ARC-107 BG-selector constitution (first was 689a, now retracted by 689d's withdrawal and restored on repaired grounds by 689i).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "MECH-448 carries 0 substrate_ceiling hits (689d and 699 were both measurement_test_design_defect, not ceiling). Brake does not fire. Recommend a targeted follow-up on the Factor B noise-control instrument specifically (more seeds, or a design review of why gap-scaled stochastic commit only verifiably lifted on 1/4 seeds) rather than a full same-question re-letter of the whole falsifier."
+      },
+      "learning_extracted": [
+        "The rank-preserving F->eligibility demotion mechanism (MECH-448/ARC-107) clears its own discrimination criterion cleanly on the repaired instrument -- second independent confirmation.",
+        "The newly re-instantiated Factor B noise control (gap-scaled stochastic commit temperature) is under-powered at n=4 seeds -- 1/4 lifting is not distinguishable from a real-but-small effect at this sample size. This is a first-use instrument teething problem, not a substrate defect.",
+        "The envelope-exclusion readiness check (on_f_eligibility_envelope_excludes_on_divergent_pool) needs a script-level read to resolve its comparator direction before it can be adjudicated with confidence -- flagged, not resolved, in this autopsy."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

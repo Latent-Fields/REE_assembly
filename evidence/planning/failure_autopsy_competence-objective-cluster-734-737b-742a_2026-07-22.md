@@ -1,7 +1,7 @@
-# Failure autopsy — competence-floor cluster: V3-EXQ-734 / 737b / 742a
+# Failure autopsy — competence-floor cluster: V3-EXQ-734 / 737b / 742a / 742b
 
-**Scope:** cluster (3 targets). **Status:** confirmed (user-adjudicated 2026-07-22).
-**Generated:** 2026-07-22T03:48:30Z.
+**Scope:** cluster (4 targets as of the 2026-07-24 amendment). **Status:** confirmed (user-adjudicated 2026-07-22; extended 2026-07-24).
+**Generated:** 2026-07-22T03:48:30Z. **Amended:** 2026-07-24T07:18:04Z (see §9).
 **This document promotes and demotes nothing.** It produces a diagnosis and a routing recommendation; `/governance` applies them.
 
 ---
@@ -298,3 +298,68 @@ event on a family with an eliminated member. It has not converged.
 The user selected **"Objective mis-specification"** over the `learner_or_observability_ceiling`
 reading and over holding both as co-equal rivals — with the explicit instruction that
 `H-policy-learning` is not to be eliminated. This document reflects that adjudication.
+
+---
+
+## 9. Amendment 2026-07-24 — V3-EXQ-742b added as a fourth target
+
+**Why this is an amendment, not a new autopsy.** 742b (queue_id `V3-EXQ-742b`) is the direct
+lettered successor to 742a, same experiment_type, same claim (MECH-457), and its own manifest
+`notes` field self-flags: *"route to /failure-autopsy (accepts a PASS target) before any governance
+action / MECH-457 promotion. deeper_than_action_learning routes to RE-AUTOPSY, NOT a lettered floor
+re-test (the 734/737 RESOLVED_BY_FANOUT refusal stands)."* It belongs in this cluster document, not
+a standalone one.
+
+**What changed between 742a and 742b: the encoder confound is CLOSED.**
+
+| | 742a (2026-07-21) | 742b (2026-07-22) |
+|---|---|---|
+| `encoder_moved_in_p0` | **false on every arm** — all arms ran on a frozen random projection | **true on every arm** (max_abs_delta_p0 0.333) — P0 legitimately trained the encoder |
+| `encoder_moved_in_ac` (frozen arms) | n/a (P0 never trained it) | **false**, correctly — frozen arms stay frozen post-P0 |
+| `encoder_moved_in_ac` (cotrain arms) | true (0.166) | **true** (0.187) — correctly continues training |
+| Frozen-vs-cotrain contrast | confounded (random-projection vs trained) | **genuine** |
+
+**What did NOT change: all four actor-critic arms still fail D3, and now underperform even the
+simple bias_head baseline.**
+
+| Arm | 742b D3 foraging | vs floor 1.0 | vs bias_head_baseline (0.533) |
+|---|---|---|---|
+| `actor_critic_frozen_plain` | 0.383 | ✗ | below |
+| `actor_critic_cotrain_plain` | 0.317 | ✗ | below |
+| `actor_critic_frozen_sf` | 0.267 | ✗ | below |
+| `actor_critic_cotrain_sf` | 0.283 | ✗ | below |
+| `bias_head_baseline` | 0.533 | ✗ (itself sub-floor) | — |
+
+**New corroborating instrumentation: `reward_hacking_guard`.** 742b is the first run in this family
+to record `train_return_vs_eval_foraging_divergence` per arm:
+
+| Arm | train return (recent) | eval foraging | divergence |
+|---|---|---|---|
+| frozen_plain | 1.200 | 0.383 | **−0.817** |
+| cotrain_plain | 1.407 | 0.317 | **−1.090** |
+| frozen_sf | 1.667 | 0.267 | **−1.400** |
+| cotrain_sf | 0.820 | 0.283 | **−0.537** |
+
+Every arm's training return and eval foraging competence move in **opposite directions**. This is
+the return-decomposition-adjacent signal the cluster's fanout was waiting for — not the literal
+probe (it does not decompose reward into survival/harm/consumption/proximity terms, and does not
+sweep the consumption:survival weighting), but strong, quantified corroboration of
+`H-objective-misspecification` from a different angle than 742a's survival-horizon argument.
+
+**Adjudication (user-confirmed 2026-07-24): "Extend cluster autopsy, fanout stays open."** 742b is
+added as a fourth target with the same `non_contributory` / `measurement_test_design_defect`
+reading as 742a, under the SAME `H-objective-misspecification` diagnosis (now with the encoder
+confound removed and reward-divergence corroboration added). It does **not** resolve
+`H-objective-misspecification` vs `H-policy-learning` outright — the two GOV-FANOUT-1 probes
+(return-decomposition on the reward axis; reweighted-objective re-run on the policy axis) remain
+open and are still the sanctioned next step. 742b's own manifest explicitly refuses a third lettered
+actor-critic re-run (742c) in favour of those two probes — this amendment upholds that refusal.
+
+**Granularity-debt count updated:** MECH-457 now carries **20** confirmed autopsy targets (was 19).
+This does not change the 2026-07-16 GOV-GRAN-1 `coherent_campaign` adjudication recorded in
+MECH-457's `claims.yaml` — 742b is a further instance of that same coherent campaign, not a new
+signature requiring re-adjudication.
+
+**Frozen-ledger delta (Step 9b):** no new leg opened. 742b's `resolving_runs` are appended to
+`H-objective-misspecification`'s evidence trail (still `alive` — the leg is not yet resolved, only
+further corroborated); `H-policy-learning` remains untouched (`alive`, unchanged).

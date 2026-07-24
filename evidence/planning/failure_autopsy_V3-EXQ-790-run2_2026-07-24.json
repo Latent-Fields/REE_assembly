@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T07:18:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_790_channel_routing_cross_class_magnitude_replication_20260722T142736Z_v3",
+      "queue_id": "V3-EXQ-790",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "self_route_label": "substrate_not_ready_requeue",
+      "adjudication_flag": "precondition_unmet",
+      "self_route_verdict": "WITHDRAWN -- same gate defect as the sibling run V3-EXQ-791, science upheld",
+      "sibling_run": "v3_exq_790_channel_routing_cross_class_magnitude_replication_20260722T021558Z_v3",
+      "sibling_autopsy": "failure_autopsy_V3-EXQ-790_2026-07-22",
+      "independent_verification": "Re-derived from this run's own manifest rather than assumed from the sibling: identical precondition/criteria schema (adequate_fresh_selection_sample, arm1_routed_bias_range_supra_floor, routed_range_bounded; C1 load-bearing + C2 non-load-bearing). Difference from the sibling: the under-sampled cell here is ARM_1_ROUTE_ON::seed49 (measured 19, floor 200) rather than the sibling's ARM_0_NO_ROUTE::seed49 (measured 53) -- i.e. this time the shortfall lands on the TREATMENT arm, not the control arm, and is more severe (19 vs 53). Despite that, C1_routed_range_reaches_accumulator_on_active_off_inactive (load-bearing) and C2_committed_class_distribution_moves_on_vs_off both PASS, and arm1_routed_bias_range_supra_floor clears comfortably (0.269 vs a 0.01 floor, routed_range_bounded 1.665 vs a 1e6 ceiling) -- the same signature: the science criteria are measurable and pass even under the under-sampled cell, which is consistent with a genuinely strong effect surviving low power rather than a substrate that isn't ready.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- readiness diagnostic, claim_ids=[]",
+        "biological_reference": "partial -- not the operative axis for this adjudication",
+        "prerequisites": "present -- routing wired and active, range supra-floor and bounded",
+        "implementation": "complete -- routing mechanism functions correctly on both arms",
+        "environment": "adequate",
+        "measurement": "misleading -- DOMINANT LAYER: same gate-defect mechanism as the sibling -- the readiness floor (200 genuine selections) is derived from the nominal default cadence (e3_steps_per_tick=10) that the MECH-093-modulated 5-20-step substrate does not run, and is applied arm-blind so either arm can starve depending on which seed's cadence happens to run slow that tick",
+        "integration": "coupled",
+        "scale": "adequate for the science criteria (which pass); inadequate only for the readiness floor as currently set"
+      },
+      "biological_reference": {
+        "closest_mechanism": "neuromodulatory gain control scaling a competition among candidates",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none at issue -- instrumentation adjudication on a landed substrate feature",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "2026-07-24 (V3-EXQ-790 second run, timestamp 20260722T142736Z, diagnostic, claim_ids=[], non_contributory -- weights nothing; failure_autopsy_V3-EXQ-790-run2_2026-07-24, independently re-derived sibling of failure_autopsy_V3-EXQ-790_2026-07-22). Same gate-defect mechanism confirmed on a second, independent run: the substrate_not_ready_requeue self-route and its precondition_unmet flag are WITHDRAWN as a GATE DEFECT (readiness floor of 200 genuine selections derived from the nominal e3_steps_per_tick=10 cadence, which the MECH-093-modulated 5-20-step substrate does not run; applied arm-blind so either arm can starve). This run's shortfall landed on ARM_1_ROUTE_ON::seed49 (19 vs floor 200) rather than the sibling's control arm -- a different cell, same mechanism. Both science criteria pass cleanly: C1 (load-bearing, routed range reaches accumulator on active/off inactive) and C2 (committed-class distribution moves on vs off). arm1_routed_bias_range_supra_floor clears at 0.269 (floor 0.01), routed_range_bounded at 1.665 (ceiling 1e6). Two independent runs now confirm the P0 routed-range gate under the same defect signature. claim_ids=[] -- weights no claim.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "none",
+        "note": "claim_ids=[]; brake is claim-keyed and does not apply. Recommend a standing fix to the readiness-floor computation itself (compute from the arm's actual observed cadence rather than the nominal default) so this gate-defect class stops recurring across future channel-routing diagnostics -- flagged as an infra follow-up, not a re-queue."
+      },
+      "learning_extracted": [
+        "The adequate_fresh_selection_sample readiness floor (200, derived from nominal e3_steps_per_tick=10) is mis-calibrated for the MECH-093-modulated 5-20-step cadence and is applied arm-blind -- confirmed on TWO independent runs now, landing on different arms both times.",
+        "Both times, the load-bearing science criterion (C1) and the non-load-bearing corroborator (C2) pass cleanly despite the under-sampled cell, indicating the routing effect is strong enough to be measurable even under low power -- this is evidence FOR robustness of the routed-range mechanism, not against it."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "two independent runs of the same diagnostic (queue_ids 790 and 791), same readiness-gate defect, different offending cell each time",
+    "is_independent_bugs": false,
+    "structural_property": "the adequate_fresh_selection_sample floor is computed from a cadence assumption (nominal e3_steps_per_tick=10) that this substrate does not honor (actual cadence is MECH-093-modulated, 5-20 steps), so under-sampling on SOME cell is close to guaranteed regardless of which arm; the science criteria are robust to it.",
+    "readings": ["measurement_test_design_defect (readiness-floor miscalibration)"]
+  }
+}

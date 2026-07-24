@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T07:18:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3",
+      "queue_id": "V3-EXQ-793",
+      "claim_ids": ["SD-049"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "both_levers_sufficient_alone",
+      "adjudication_flag": "precondition_unmet",
+      "self_route_verdict": "PARTIALLY UPHELD -- the lever-sufficiency finding is real, but seed-level fragility on the joint-levers arm means it should not be read as a clean, decisive PASS, and it does not address the separate prerequisite SD-049's ceiling park is actually gated on",
+      "four_layer_diagnosis": {
+        "claim_alignment": "narrow -- tests curriculum/density lever sufficiency for the D3 gate specifically, NOT the foraging-competent-policy prerequisite SD-049's Phase-2 validation (V3-EXQ-514) is parked on",
+        "biological_reference": "partial -- not the operative axis for this diagnostic",
+        "prerequisites": "present -- density-preserving spawn kwarg available, A00 baseline reproduces the 693a ceiling (0.0202 vs 0.02 threshold), density manipulation not truncated on any density-ON cell",
+        "implementation": "complete for the levers under test",
+        "environment": "adequate for the narrow D3 gate; not adequate for the broader Phase-2 foraging-competence question",
+        "measurement": "arm-level d3_clears is computed from mean contact_rate across 3 seeds and does not itself surface per-seed guard/survival failures -- those are visible only in arm_summaries.per_seed_guard_pass, not in the load-bearing criteria",
+        "integration": "coupled",
+        "scale": "3 seeds/arm -- thin for a joint-levers arm that shows 2/3 seeds failing guard_pass despite passing on contact_rate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- this is a curriculum/environment-design diagnostic, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "2026-07-24 (V3-EXQ-793, diagnostic, claim_ids=[SD-049]; failure_autopsy_V3-EXQ-793_2026-07-24). All 3 manifest preconditions and all 4 criteria (C_BASE_FAILS, C_CURR, C_DENS, load-bearing C_JOINT) pass at the arm level: A00 (base curriculum, density off) reproduces the 693a ceiling (0.0202, just under the 0.02 threshold, d3_clears=false); A10 (amended curriculum alone) and A01 (density-preserving spawn alone) each independently clear the D3 gate; A11 (both) also clears. Self-routed label both_levers_sufficient_alone. HOWEVER per-seed guard_pass shows real fragility not visible in the arm-level criteria: A11 (both levers) fails guard_pass on 2/3 seeds despite the arm-level contact_rate pass; A01 and A10 each show 1/3 seed guard failures. The arm-level PASS rests on a majority-by-contact_rate reading that does not require guard_pass, so this is a genuine but THIN result -- read as informative for curriculum/environment design (both levers independently help), not as a decisive, robust confirmation. Separately: SD-049 is parked (epistemic_category substrate_ceiling, ceiling_decision deferred, 2026-06-19 triage) on a DIFFERENT and unaddressed prerequisite -- Phase-2 V3-EXQ-514 full validation is blocked on a foraging-COMPETENT policy (~0.2% consumption on the enriched reef), which this D3-gate lever-sufficiency diagnostic does not test or lift. SD-049 stays candidate/v3_pending/substrate_ceiling/deferred; this run does not change that park.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-538a_2026-07-10"],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "SD-049's one prior substrate_ceiling hit (538a) is on the DIFFERENT foraging-competence prerequisite, not the curriculum/density lever question 793 tests. If a repowered follow-up on A11 specifically (more seeds, explicit guard-pass as a load-bearing criterion) is queued, that is a legitimate targeted power fix, not a same-question re-letter of a ceilinged claim."
+      },
+      "learning_extracted": [
+        "Both the curriculum amendment and the density-preserving spawn independently lift the D3 gate over the 693a baseline -- a genuine, narrow curriculum/environment-design finding.",
+        "The arm-level d3_clears criterion (majority-by-contact_rate) can pass while the per-seed guard fails on a majority of seeds -- this is a real gap in the diagnostic's own criteria design: guard_pass should arguably be load-bearing for a joint-levers arm, not just contact_rate.",
+        "This result does not lift SD-049's parked substrate_ceiling status -- the park is gated on a foraging-competent policy for Phase-2 validation (V3-EXQ-514), which this diagnostic neither tests nor addresses."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
