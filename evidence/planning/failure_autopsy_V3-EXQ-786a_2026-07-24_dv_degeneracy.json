@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T07:30:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "supersedes_autopsy": "failure_autopsy_V3-EXQ-786a_2026-07-22",
+  "targets": [
+    {
+      "run_id": "v3_exq_786a_mech163_dual_system_recruitment_20260721T113809Z_v3",
+      "queue_id": "V3-EXQ-786a",
+      "claim_ids": ["MECH-163"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "no_differential_recruitment",
+      "self_route_verdict": "WITHDRAWN -- the recorded null is an artefact of a degenerate DV, not evidence about differential recruitment",
+      "re_adjudication_trigger": "Discovered 2026-07-22 by session hopeful-panini-cf272d while building V3-EXQ-811 (the SD-081 dualsystem-arbitration falsifier), recorded in WORKSPACE_STATE.md but never routed through /failure-autopsy + /governance. This artifact closes that debt.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-163 leg (1) was NOT tested under conditions where it could express itself; the instrument could not have detected differential recruitment even if present",
+        "biological_reference": "clear -- dual-systems is well-evidenced; irrelevant to this adjudication, which is purely instrumentation",
+        "prerequisites": "n/a for this finding",
+        "implementation": "n/a for this finding -- the defect is in the DIAGNOSTIC SCRIPT's DV computation, not the substrate under test",
+        "environment": "n/a",
+        "measurement": "DEGENERATE -- DOMINANT LAYER. `recruitment = 1 - spearman(full, first)` with `first = residue_field.evaluate_trajectory(world_seq[:, :1, :])`. Index 0 of every candidate's world_state_sequence is the CURRENT state -- shared across all candidates before any trajectory diverges -- so `first` is a CONSTANT vector (verified: n_unique=1 across all 32 candidates on 786a's own re-derived `_depth_scores`, range exactly 0 on every scored tick). Spearman correlation between the true full-horizon ranking and a stable-sort tie-break ordering of a constant vector is pure noise centred on zero -- simulated over 200 draws: mean 1.0173, sd 0.1871. The manifest's actual seed-0 familiar-condition `recruitment_rate` is 1.01725, per-layout sds 0.149/0.207/0.165/0.190 -- a match to the noise simulation to FIVE SIGNIFICANT FIGURES.",
+        "integration": "n/a",
+        "scale": "n=8 -- irrelevant; the DV itself carries no signal regardless of sample size"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- this finding is purely instrumentation, not a biology question",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none at issue",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {"MECH-163": "measurement_test_design_defect"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-163": "non_contributory"},
+      "recommended_evidence_quality_note": "2026-07-24 (V3-EXQ-786a DV-degeneracy re-adjudication; failure_autopsy_V3-EXQ-786a_2026-07-24_dv_degeneracy, superseding failure_autopsy_V3-EXQ-786a_2026-07-22). The `weakens` recorded 2026-07-22 is WITHDRAWN and revised to `non_contributory`. 786a's recruitment DV (`1 - spearman(full_horizon_score, first_step_score)`) computes `first_step_score` from `world_seq[:, :1, :]` -- index 0 of the world-state sequence, which is the CURRENT state and therefore IDENTICAL across every candidate before any trajectory diverges. `first` is thus a constant vector (verified: n_unique=1 across all 32 candidates, range exactly 0). Spearman correlation against a constant vector reduces to a comparison between the true ranking and an ARBITRARY stable-sort tie-break ordering -- pure noise. Simulated over 200 draws: mean 1.0173, sd 0.1871; the manifest's actual recruitment_rate (1.01725, per-layout sds 0.149-0.207) matches this simulated noise distribution to five significant figures. 786a's own `candidate_score_range_non_degenerate` readiness gate checked only the FULL-HORIZON score range, never the first-step vector, so the degenerate case passed readiness cleanly and the manifest self-reports `non_degenerate: true`. Same class of defect as V3-EXQ-786's own withdrawn measurement (non-scale-free floor); this is the SIBLING defect in the successor instrument. Consequence: the recorded 'flat response' (recruitment delta mean 0.00435, Cohen's d 0.047) is GUARANTEED by construction regardless of whether an arbitrator exists or differential recruitment occurs -- it cannot discriminate MECH-163 leg (1) either way. MECH-163 leg (1) reverts to EXPERIMENTALLY UNTESTED (matching its pre-786a state: literature-only, 9 supports, 0 experimental entries) pending a non-degenerate re-test. MECH-477's motivating observation ('two pathways without an arbitrator produce a flat response') is correspondingly weakened AS A MOTIVATION for having registered the claim -- but MECH-477 itself is independently supported by the confirmed V3-EXQ-811 autopsy, whose design was BUILT specifically to correct this defect (HABIT_DEPTH=2 instead of the degenerate depth-1 read, plus new readiness gates on the habit vector's range and distinct-value fraction) and which measured a real, non-degenerate, load-bearing recruitment-delta effect (Cohen's d 0.999 ON vs -0.158 OFF). MECH-477 stands on 811's own merits, not on 786a's flawed premise.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "Not a substrate_ceiling reading -- 0 hits on MECH-163's ceiling count from this target. A non-degenerate re-test of leg (1) (habit-depth or equivalent fix, matching V3-EXQ-811's readiness-gate pattern) is the correct next step if the leg is to be re-tested; V3-EXQ-811 itself tests the ARBITRATOR (MECH-477), not leg (1) of MECH-163 directly, so it does not substitute for one."
+      },
+      "learning_extracted": [
+        "A Spearman correlation against a CONSTANT vector is not merely under-powered or zero-signal -- it produces NOISE with a specific, simulatable distribution (mean ~1.02, sd ~0.19 for K=32 candidates under double-argsort tie-breaking), which can pass a naive 'is it a clean null' visual check.",
+        "A readiness gate that checks the FULL-HORIZON score range but not every OTHER vector the DV computes from (here, the first-step vector) can pass cleanly while the DV itself is degenerate -- gate every input to a difference/ratio/correlation statistic, not just the more prominent one.",
+        "This is now the SECOND consecutive iteration of this diagnostic (786 -> 786a) found to carry a measurement defect on re-derivation rather than at design time. A THIRD iteration (a non-degenerate leg-1 retest) should budget explicit time to re-derive the DV from first principles against a hand-constructed toy case before trusting a clean-looking manifest."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Same defect CLASS as V3-EXQ-786's own withdrawn measurement (non-scale-free floor) -- the successor instrument (786a) replaced that specific defect but introduced a NEW degenerate-DV defect in the same recruitment statistic.",
+    "is_independent_bugs": true,
+    "structural_property": "Two independent instrumentation defects in successive iterations of the same diagnostic, not one structural property -- 786's was a non-scale-free floor, 786a's is a constant-vector Spearman correlation. Both share the root cause of insufficiently adversarial readiness-gate design (each gate checked only the more obviously load-bearing quantity, not every input to the final statistic).",
+    "readings": ["measurement_test_design_defect (both 786 and 786a, independently)"]
+  }
+}
