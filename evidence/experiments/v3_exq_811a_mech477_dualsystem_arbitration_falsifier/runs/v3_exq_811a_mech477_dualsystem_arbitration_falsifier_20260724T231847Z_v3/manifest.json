@@ -1,0 +1,256 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_811a_mech477_dualsystem_arbitration_falsifier",
+  "run_id": "v3_exq_811a_mech477_dualsystem_arbitration_falsifier_20260724T231847Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-24T23:18:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-477",
+    "MECH-163"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-477": "supports",
+    "MECH-163": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arbitration_produces_differential_recruitment",
+    "preconditions": [
+      {
+        "name": "arb_off::familiarity_discriminability_auc",
+        "precondition": "familiarity_discriminability_auc",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "MANIPULATION CHECK, substantive leg (V3-EXQ-786a's, held fixed). Rank discriminability (AUC) of practiced vs held-out layout familiarity, mean across seeds, read from the experiment-owned tracker at the pre-registered query bandwidth 0.20. AUC is invariant under any monotone transform of the readout, so it measures the manipulation and not the instrument's gain, and it has a principled null at 0.5.",
+        "control": "practiced vs held-out layouts differing in generating parameters (size 10->14, hazards 3->7, resources 5->2, landmarks_b 2->5), all locally observable in the agent's 5x5 field views, drift suppressed in both",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8483796296296297,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "arb_off::familiarity_discriminability_above_chance",
+        "precondition": "familiarity_discriminability_above_chance",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "MANIPULATION CHECK, above-chance leg. The SEM lower bound of the same AUC must beat the 0.5 null across seeds, so the discrimination is reliable and not a large point estimate carried by one seed.",
+        "control": "same layout populations as the substantive leg",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.7949275363898018,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "arb_off::full_score_range_non_degenerate",
+        "precondition": "full_score_range_non_degenerate",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "Cross-candidate RANGE of the FULL-HORIZON score, worst scored tick (never a mean). The DV routes on a rank correlation over candidates, which is arbitrary noise unless the candidates are separable. RANGE, not magnitude (V3-EXQ-643): a uniform per-tick offset has large magnitude and ~0 range.",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.42197227478027344,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_off::habit_score_range_non_degenerate",
+        "precondition": "habit_score_range_non_degenerate",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "THE GATE V3-EXQ-786a LACKED. Cross-candidate RANGE of the HABIT (depth-2) score, worst scored tick. 786a gated only the full-horizon vector, which is why it passed readiness while its depth-1 habit vector was constant (range exactly 0, n_unique 1 over 32 candidates on every tick).",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01206207275390625,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_off::habit_score_distinct_fraction",
+        "precondition": "habit_score_distinct_fraction",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "The 786a defect stated as its OWN statistic: the fraction of DISTINCT values in the habit score vector, worst scored tick. A constant vector reads 1/K (0.031 at K=32) here while its RANK std is 9.23 -- which is exactly why 786a's _spearman rank-variance guard could not fire. Range and distinctness are gated together because they fail independently under float quantisation.",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9375,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "arb_off::curiosity_scorer_lever_inert",
+        "precondition": "curiosity_scorer_lever_inert",
+        "arm": "arb_off",
+        "kind": "readiness",
+        "description": "CEILING. curiosity_weight > 0 is required to build the familiarity tracker the arbitrator reads, but it also makes the CEM scorer novelty-sensitive (SD-025), which would make the within-arm MECH-163 leg-(1) reading circular. Measured rather than assumed: the bonus is proportional to the SD-024 representational density and benefit_terrain_live_producer defaults False, so the benefit map is unpopulated and the CROSS-CANDIDATE range is 0.0 exactly on this config. RANGE, not magnitude -- a uniform bonus is invariant under the CEM argmin and could not reorder anything anyway. Fail-closed: an unmeasurable bonus reports +inf and refuses the run.",
+        "control": "all candidates on the first scored E3 tick of each probe layout",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_on::familiarity_discriminability_auc",
+        "precondition": "familiarity_discriminability_auc",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "MANIPULATION CHECK, substantive leg (V3-EXQ-786a's, held fixed). Rank discriminability (AUC) of practiced vs held-out layout familiarity, mean across seeds, read from the experiment-owned tracker at the pre-registered query bandwidth 0.20. AUC is invariant under any monotone transform of the readout, so it measures the manipulation and not the instrument's gain, and it has a principled null at 0.5.",
+        "control": "practiced vs held-out layouts differing in generating parameters (size 10->14, hazards 3->7, resources 5->2, landmarks_b 2->5), all locally observable in the agent's 5x5 field views, drift suppressed in both",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9041666666666666,
+        "threshold": 0.7,
+        "met": true
+      },
+      {
+        "name": "arb_on::familiarity_discriminability_above_chance",
+        "precondition": "familiarity_discriminability_above_chance",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "MANIPULATION CHECK, above-chance leg. The SEM lower bound of the same AUC must beat the 0.5 null across seeds, so the discrimination is reliable and not a large point estimate carried by one seed.",
+        "control": "same layout populations as the substantive leg",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8477702522810378,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "arb_on::full_score_range_non_degenerate",
+        "precondition": "full_score_range_non_degenerate",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "Cross-candidate RANGE of the FULL-HORIZON score, worst scored tick (never a mean). The DV routes on a rank correlation over candidates, which is arbitrary noise unless the candidates are separable. RANGE, not magnitude (V3-EXQ-643): a uniform per-tick offset has large magnitude and ~0 range.",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0022034645080566406,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_on::habit_score_range_non_degenerate",
+        "precondition": "habit_score_range_non_degenerate",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "THE GATE V3-EXQ-786a LACKED. Cross-candidate RANGE of the HABIT (depth-2) score, worst scored tick. 786a gated only the full-horizon vector, which is why it passed readiness while its depth-1 habit vector was constant (range exactly 0, n_unique 1 over 32 candidates on every tick).",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.34302806854248e-06,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_on::habit_score_distinct_fraction",
+        "precondition": "habit_score_distinct_fraction",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "The 786a defect stated as its OWN statistic: the fraction of DISTINCT values in the habit score vector, worst scored tick. A constant vector reads 1/K (0.031 at K=32) here while its RANK std is 9.23 -- which is exactly why 786a's _spearman rank-variance guard could not fire. Range and distinctness are gated together because they fail independently under float quantisation.",
+        "control": "candidate set on a real E3 tick after the practice phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "arb_on::curiosity_scorer_lever_inert",
+        "precondition": "curiosity_scorer_lever_inert",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "CEILING. curiosity_weight > 0 is required to build the familiarity tracker the arbitrator reads, but it also makes the CEM scorer novelty-sensitive (SD-025), which would make the within-arm MECH-163 leg-(1) reading circular. Measured rather than assumed: the bonus is proportional to the SD-024 representational density and benefit_terrain_live_producer defaults False, so the benefit map is unpopulated and the CROSS-CANDIDATE range is 0.0 exactly on this config. RANGE, not magnitude -- a uniform bonus is invariant under the CEM argmin and could not reorder anything anyway. Fail-closed: an unmeasurable bonus reports +inf and refuses the run.",
+        "control": "all candidates on the first scored E3 tick of each probe layout",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "arb_on::arbitration_live_non_degenerate",
+        "precondition": "arbitration_live_non_degenerate",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "ARB-LIVE. Fraction of ON-arm E3 ticks producing a non-degenerate arbitration (E3Selector flags degenerate on no_habit_uncertainty / insufficient_candidates / degenerate_score_spread / non_finite_scores and returns the planned scores unchanged). An ON arm that mostly declined to arbitrate is an OFF arm.",
+        "control": "ON arm only; e3.last_arbitration cleared before every select_action",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "arb_on::arbitration_habit_uncertainty_source_is_familiarity",
+        "precondition": "arbitration_habit_uncertainty_source_is_familiarity",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "ARB-SOURCE. Fraction of ON-arm arbitrations resolving u_habit through the FAMILIARITY path rather than the E1 novelty-EMA fallback. Not a preference: with curiosity_weight = 0.0 the fallback was measured on this exact config returning u_habit_raw = 0.0 on EVERY tick, so u_habit_norm is constant and the novelty channel MECH-477 is about never varies -- w would then be gated by u_planned alone and the claim would be untested.",
+        "control": "ON arm only; habit_uncertainty_source recorded per arbitration",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.95,
+        "met": true
+      },
+      {
+        "name": "arb_on::arbitration_weight_uncertainty_coupling",
+        "precondition": "arbitration_weight_uncertainty_coupling",
+        "arm": "arb_on",
+        "kind": "readiness",
+        "description": "MECH-477's mandated form of the manipulation check: rank correlation between w_planned and (u_habit_norm - u_planned_norm) across scored ON ticks. READ IT FOR WHAT IT IS -- w = sigmoid(gain*diff + bias) is strictly monotone in that difference, so rho is 1.0 BY ARITHMETIC (measured 1.000000 during authoring). It detects a NaN, a clipped sigmoid or a mixed-degenerate series; it is NOT evidence of responsiveness. ARB-LIVE / ARB-SOURCE / ARB-W-RANGE carry that.",
+        "control": "ON arm only; full paired series, not a sample",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C2_arbitration_weight_novelty_shift": true,
+      "C1_recruitment_delta_greater_with_arbitrator": true
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c02cdd8df3836af3b028581a49a7c74c7c7554d32db7f732c6e57e61842a86e9"
+}
