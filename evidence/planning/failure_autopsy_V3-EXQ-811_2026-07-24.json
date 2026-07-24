@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T05:11:04Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_811_mech477_dualsystem_arbitration_falsifier_20260723T054309Z_v3",
+      "queue_id": "V3-EXQ-811",
+      "claim_ids": ["MECH-477", "MECH-163"],
+      "failed_criterion": "readiness (non-vacuity gate), NOT discrimination -- C1/C2 both passed in the raw manifest; the run self-routed on a readiness precondition, not on the substantive criteria",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear as self-labelled by the manifest; intact once the readiness-gate bug is corrected -- C1_recruitment_delta_greater_with_arbitrator passed (7 divergent seeds, 6/7 ON greater, Cohen's d 0.999 on ON vs -0.158 on OFF, robustness bar clears ON / fails OFF exactly as MECH-163's prior null predicts for the no-arbitrator baseline)",
+        "biological_reference": "clear -- Daw, Niv & Dayan 2005 arbitration-by-relative-reliability, already reviewed and satisfied inside MECH-163's own targeted_review_connectome_mech_163 folder (conf 0.79) before MECH-477 was even registered; is_formal_import=false per MECH-477's own evidence_quality_note",
+        "prerequisites": "present -- SD-081 (e3.dualsystem_uncertainty_arbitration) landed 2026-07-22, default OFF, bit-identical when OFF",
+        "implementation": "complete -- the arbitration mechanism itself is exercised correctly (arbitration_live_non_degenerate 1.0, arbitration_habit_uncertainty_source_is_familiarity 1.0, arbitration_weight_uncertainty_coupling 1.0, all on arb_on); the DEFECT is confined to the non-vacuity READINESS-GATE aggregation code, not the mechanism under test",
+        "environment": "adequate -- CausalGridWorldV2 familiar/novel layout manipulation passed its own manipulation checks robustly (AUC 0.848/0.904 vs 0.70 floor, both legs above-chance); a secondary, non-blocking observation: 20/128 (15.6%) of (arm, seed, condition, layout) cells scored zero ticks, skewed toward novel condition (16/64, 25%) and arb_on (13/64) vs familiar (4/64, 6.25%) and arb_off (7/64) -- plausibly shorter episodes on unpracticed layouts, not investigated further here since it does not block the readiness verdict once correctly excluded",
+        "measurement": "MISLEADING -- this is the dominant diagnosis layer. experiments/_lib/baselines/mech477_dualsystem_arbitration.py aggregates three non-vacuity statistics (min_full_score_range, min_habit_score_range, min_habit_distinct_frac) with an inconsistent empty-cell default: `float(min(full_ranges)) if full_ranges else 0.0` (and the analogous habit-range/distinct-fraction lines), while the adjacent recruitment_rate field in the SAME function correctly uses `float(np.mean(recruitments)) if recruitments else None`. A cell with zero scored ticks therefore reports an indistinguishable-from-genuine-degeneracy 0.0 for the range/distinctness fields, and the aggregate `_worst()` (a true min-across-cells, by design, to prevent a single out-of-band cell hiding inside a mean) propagates that spurious 0.0 through every level of aggregation, so ANY zero-tick cell anywhere unconditionally zeroes the whole run's readiness verdict for BOTH arms, regardless of how the other 108/128 (84%) cells read.",
+        "integration": "coupled and stable -- the arbitration weight w tracks (u_habit_norm - u_planned_norm) with rho_w_vs_relative_uncertainty=1.0 (arithmetic identity confirming no numerical pathology) and rho_w_vs_u_habit_alone=0.646 (genuine responsiveness to the novelty channel specifically)",
+        "scale": "adequate -- 8 seeds, robust effect size once correctly aggregated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Prefrontal/striatal arbitration between model-based (goal-directed) and model-free (habitual) control by relative reliability/uncertainty (Daw, Niv & Dayan 2005, Nature Neuroscience 8(12):1704-1711)",
+        "dependencies": ["MECH-163 (dual pathways must exist to arbitrate between)", "familiarity/novelty discrimination (the manipulation check both this run and 786a share)"],
+        "is_formal_import": false,
+        "divergence": "none identified -- this is a faithful translation, already lit-satisfied before MECH-477's registration (conf 0.79 primary + 6 corroborating refs in the same folder)",
+        "lit_status": "present"
+      },
+      "recording_debt_vs_measurement_debt": "MEASUREMENT debt, not recording debt. All always-core recording fields are present (recording_schema=rec/v1, substrate_hash, machine/machine_class, elapsed_seconds, full config, explicit seeds list) -- ree-v3/validate_recording.py would find no gap. The raw per-cell data needed to compute the CORRECT readiness verdict (ticks_scored, min_full_score_range, min_habit_score_range, min_habit_distinct_frac per cell) is already fully present in the manifest for every one of the 108 non-empty cells; the defect is purely in the AGGREGATION FUNCTION's empty-cell default value (0.0 instead of None+exclude), not in what was recorded. This is why the corrected verdict could be re-derived from the existing manifest without a fresh run.",
+      "manual_rederivation": {
+        "method": "Re-aggregate the manifest's own per_layout cells (arm x seed x condition x layout, n=128), excluding the 20 cells with ticks_scored==0 (which the buggy code populates with 0.0 for range/distinctness fields instead of the None the adjacent recruitment_rate field correctly uses for the same empty condition), applying the SAME statistic (worst-case / min-across-cells) the original code intended.",
+        "worst_full_score_range_corrected": 0.0022034645080566406,
+        "worst_full_score_range_floor": 1e-06,
+        "worst_habit_score_range_corrected": 9.34302806854248e-06,
+        "worst_habit_score_range_floor": 1e-06,
+        "worst_habit_distinct_fraction_corrected": 0.875,
+        "worst_habit_distinct_fraction_floor": 0.5,
+        "verdict": "all three non-vacuity gates PASS once zero-tick cells are correctly excluded; the manifest's raw non_degenerate=False is an artifact of the aggregation bug, not a genuine substrate/instrument degeneracy",
+        "reproducibility_note": "Fully reproducible from the committed manifest v3_exq_811_mech477_dualsystem_arbitration_falsifier_20260723T054309Z_v3.json alone; no new experiment run was needed to reach this number."
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-477": "supports",
+        "MECH-163": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-811 self-routed substrate_not_ready_requeue (non_degenerate=False, both arms failed full_score_range_non_degenerate / habit_score_range_non_degenerate / habit_score_distinct_fraction) -- THE RUN'S OWN SELF-ROUTE IS REJECTED (confirmed failure_autopsy_V3-EXQ-811_2026-07-24). The manifest's non-vacuity gate has an aggregation bug in experiments/_lib/baselines/mech477_dualsystem_arbitration.py: cells with zero scored ticks (20/128, 15.6%, skewed to the novel condition and arb_on) default the range/distinctness fields to 0.0 instead of None (unlike the adjacent recruitment_rate field, which correctly excludes them), and the true-minimum aggregation across all 128 cells propagates that spurious 0.0 regardless of how the other 108 cells read. Re-deriving the same worst-case statistics from the manifest's own per-cell data, excluding only the zero-tick cells, ALL THREE gates clear comfortably (worst full-score-range 0.0022 vs floor 1e-6; worst habit-score-range 9.3e-6 vs floor 1e-6; worst distinct-fraction 0.875 vs floor 0.5) -- fully reproducible from the committed manifest, no new run needed. Once corrected, this is MECH-477's FIRST genuine experimental evidence: C1_recruitment_delta_greater_with_arbitrator passed (6/7 seeds ON greater, Cohen's d 0.999 ON vs -0.158 OFF, robustness bar clears ON / fails OFF), a clean confirmation of the Daw/Niv/Dayan arbitration-by-relative-reliability mechanism this claim translates. Apply supports to MECH-477 (its v3_pending gate should be reconsidered on this evidence). MECH-163 gets NO additional weight from this run (user-confirmed 2026-07-24): the OFF arm's flat response is a necessary control replicating 786a's baseline, not an independent fair test of MECH-163's already-narrowed leg-1 claim -- record as context alongside the existing 786a weakens, not as a second data point against it. The underlying aggregation bug is routed to /queue-experiment as a same-question alphabetic-suffix re-run (V3-EXQ-811a) so a clean manifest exists for future reference, even though 811's own verdict is settled by this re-derivation.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "implementation_hint": "No substrate gap -- SD-081 works as designed. This is a script-level (experiments/_lib/baselines/mech477_dualsystem_arbitration.py) measurement bug, not a substrate need."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "Neither 786 (measurement_test_design_defect) nor 786a (standard) nor this 811 reading (measurement_test_design_defect, corrected) carries recommended_epistemic_category=substrate_ceiling for MECH-163 or MECH-477 -- R3 of the re-derive-brake counting convention excludes non-ceiling non_contributory readings, so the brake does not fire and no re-queue refusal applies."
+      },
+      "fanout_recommendation": null,
+      "granularity_debt_note": "MECH-163's granularity-debt cluster (scripts/granularity_debt_cluster.py MECH-163) shows 2 prior targets (786 unclear, 786a weakened) plus this one. The trigger does NOT need to re-fire: the 2026-07-22 /claim-synthesis decomposition already split exactly this gap out as MECH-477 (dual_system_uncertainty_arbitration), MECH-478 (long-horizon), and MECH-479 (prosocial). This autopsy's finding is evidence FOR that decomposition having correctly identified the missing mechanism, not a new signal that further splitting is owed.",
+      "hypothesis_space_registry_note": "Step 9b skipped deliberately. This autopsy did not emit a fanout_recommendation (a single mechanism test with a well-diagnosed implementation-bug root cause, not a GOV-FANOUT-1 portfolio of >=2 rival hypotheses on a different design axis), and no existing hypothesis_space_registry.v1.json question references MECH-477 or MECH-163. Forcing a new rival-hypothesis-set question into the ledger for a single linear mechanism test risked a low-quality entry against a schema built for discrimination portfolios; left unregistered rather than mis-populate the frozen ledger. Flagged here for a human to override if this reading is wrong.",
+      "learning_extracted": [
+        "The non-vacuity gate's empty-cell default (0.0) is inconsistent with the adjacent recruitment_rate field's correct default (None) in the same aggregation function -- an implementation gap, not a substrate or biology gap.",
+        "The manifest's own per-cell data is rich enough to re-derive a corrected verdict without a fresh run when the bug is a pure aggregation-default defect and the raw per-tick data was genuinely computed for non-empty cells.",
+        "MECH-477 (SD-081 arbitration) has its first genuine, robust experimental support once the false self-route is corrected -- the Daw/Niv/Dayan biological translation is working as designed.",
+        "Zero-tick cells cluster in the novel condition and arb_on arm (secondary, non-blocking observation) -- worth a footnote for whoever designs V3-EXQ-811a, though not investigated further here."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
