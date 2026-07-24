@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "gracious-austin-6eb2ae",
-  "last_updated_utc": "2026-07-22T13:57:33Z",
+  "last_updated_utc": "2026-07-24T08:01:48Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6126,6 +6126,35 @@
       "validation_experiment": "V3-EXQ-798",
       "landed_utc": "2026-07-21",
       "note": "User UN-PARKED the 2026-07-08 re-park on 2026-07-21 (the ecological producer demonstration was off the V3 critical path). Producer-only scope: agent competence under load (V3-EXQ-677 goal_success 0.0 in both arms) is deliberately NOT addressed here and remains open."
+    },
+    {
+      "sd_id": "sd_waking_confidence_inflation_headroom",
+      "title": "SD-076 rv-floor headroom repair (scale-relative + softplus-saturating floor)",
+      "node_class": "complicated (buildable)",
+      "status": "implemented",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_076_waking_confidence_inflation.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2_20260721T113848Z_v3",
+          "experiment_type": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2",
+          "metric": "SD-076 absolute rv floor (0.01) sat above the substrate real operating point at the measured error scale (un-inflated rv=0.005420, true_error_ref~0.0037): max(0.01, rv) clamped on first tick and never released, pinning rv_final at EXACTLY 0.010000 on all four inflation arms (overconfidence_score bit-identical to 15 sig figs at LO/HI asymmetry) -- a saturation defect, not a null.",
+          "target": "rv_final must be dose-ordered (LO != HI) and both genuinely overconfident at the measured 794 error scale (true_error ~0.0037)"
+        }
+      ],
+      "implementation_hint": "Replace the absolute rv floor with a scale-relative bound (waking_confidence_rv_floor_relative_frac, fraction of the counterfactual un-inflated rv EMA) plus an optional softplus-saturating mode (waking_confidence_rv_floor_mode) so the bound scales with the substrate own error magnitude rather than a fixed constant validated at one scale.",
+      "priority": 1,
+      "added_session": "jolly-yonath-68893d",
+      "last_seen_session": "jolly-yonath-68893d",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-07-22T00:00:00Z",
+      "implementation_note_update": "IMPLEMENTED 2026-07-22 (ree-v3 452f99e367, session hopeful-panini-cf272d): waking_confidence_rv_floor_relative_frac (default 0.0, bit-identical) + waking_confidence_rv_floor_mode (hard/soft) + waking_confidence_rv_floor_softness added to E3Config. Smoke at the measured 794 scale (true error 0.0037) 14/14 PASS: old config reproduces the defect exactly (LO==HI==0.01); repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident. Pinned by 17 contracts in ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py. Behavioural validation (V3-EXQ-794a, same-question re-run of the identical 2x2) not yet queued.",
+      "validation_experiment": "V3-EXQ-794a (not yet queued)"
     }
   ],
   "schema_version": "substrate_queue/v2"
