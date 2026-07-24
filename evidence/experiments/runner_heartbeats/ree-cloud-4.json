@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-07-24T15:16:05Z",
+  "last_tick_utc": "2026-07-24T16:16:40Z",
   "state": "running",
   "current_exq": "V3-EXQ-793a",
   "current_exq_started_utc": "2026-07-24T12:38:27.229148+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / A00_base_curriculum_density_off",
     "runs_done": 2,
     "runs_total": 24,
-    "episodes_done": 0,
+    "episodes_done": 170,
     "episodes_total": 340,
-    "overall_pct": 8.3
+    "overall_pct": 10.4
   },
-  "seconds_elapsed": 9458,
-  "seconds_remaining": 113604,
+  "seconds_elapsed": 13093,
+  "seconds_remaining": 111022,
   "recent_lines": [
     "[v3_exq_793a_sd049_arm2_competence_repower] starting (dry_run=False)",
     "[setup] P_DENSITY_FLAG: env accepts sd049_preserve_per_type_density = True",
@@ -36,7 +36,9 @@
     "[eval] arm=A00 seed=43 contact=0.0089 (floor 0.02) d1=False survival=False clears=False guard_pass=True",
     "verdict: FAIL arm=A00 seed=43 d1_contact=False d2_survival=False",
     "Seed 44 Condition A00_base_curriculum_density_off",
-    "[A00/base_curriculum_density_off] seed 44 curriculum_amended=False density_on=False n_types=3"
+    "[A00/base_curriculum_density_off] seed 44 curriculum_amended=False density_on=False n_types=3",
+    "[train] p0 arm=A00 seed=44 ep 130/250",
+    "[train] hazard arm=A00 seed=44 ep 170/250 survival_pass=True"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
