@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-24T08:34:10Z",
+  "last_tick_utc": "2026-07-24T08:49:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-812",
   "current_exq_started_utc": "2026-07-24T05:10:48.208290+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 44 / MECH295_CUE_AUTHORITY_SD054",
     "runs_done": 2,
     "runs_total": 3,
-    "episodes_done": 30,
+    "episodes_done": 170,
     "episodes_total": 250,
-    "overall_pct": 70.7
+    "overall_pct": 89.3
   },
-  "seconds_elapsed": 12202,
-  "seconds_remaining": 4821,
+  "seconds_elapsed": 13113,
+  "seconds_remaining": 1753,
   "recent_lines": [
     "[v3_exq_812_mech295_cue_authority_sd054] starting (dry_run=False)",
     "Seed 42 Condition MECH295_CUE_AUTHORITY_SD054",
@@ -44,7 +44,9 @@
     "verdict: PASS seed=43 g0=True g1=True",
     "Seed 44 Condition MECH295_CUE_AUTHORITY_SD054",
     "[train] stage0_nursery seed=44 ep 20/250 z_goal_peak=0.3750 formed=False",
-    "[train] stage0b_consolidate seed=44 ep 30/250 retention=0.941"
+    "[train] stage0b_consolidate seed=44 ep 30/250 retention=0.941",
+    "[train] p0_guided seed=44 ep 130/250 mean_len=200.0",
+    "[train] hazard_avoidance seed=44 ep 170/250 survival_gate=pass harm_eval_range=0.2484"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
