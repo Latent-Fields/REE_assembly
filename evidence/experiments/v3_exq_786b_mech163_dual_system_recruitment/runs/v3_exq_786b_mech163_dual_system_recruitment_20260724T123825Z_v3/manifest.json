@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_786b_mech163_dual_system_recruitment",
+  "run_id": "v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T12:38:25Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-163"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "no_differential_recruitment",
+    "preconditions": [
+      {
+        "name": "familiarity_discriminability_auc",
+        "description": "MANIPULATION CHECK, substantive leg. Rank discriminability (AUC) of practiced vs held-out layout familiarity, mean across seeds, queried at the pre-registered FAMILIARITY_QUERY_BANDWIDTH. Replaces V3-EXQ-786's raw mean-difference floor of 0.05, which was neither scale-free (the readout's units are set by the tracker's bandwidth/EMA, so re-tuning the instrument moved the gate) nor an overlap measure (a mean gap with heavy overlap does not establish distinct conditions). AUC is invariant under any monotone transform of the readout and has a principled null at 0.5.",
+        "measured": 0.8483796296296297,
+        "threshold": 0.7,
+        "direction": "lower",
+        "control": "practiced vs held-out layouts differing in generating parameters (size 10->14, hazards 3->7, resources 5->2, landmarks_b 2->5), all locally observable in the agent's 5x5 field views, drift suppressed",
+        "met": true
+      },
+      {
+        "name": "familiarity_discriminability_above_chance",
+        "description": "MANIPULATION CHECK, above-chance leg. SEM lower bound of the same AUC must beat the 0.5 null across seeds, so the discrimination is reliable and not a large point estimate carried by one seed. Split from the substantive leg so each is independently recomputable from its own measured/threshold pair.",
+        "measured": 0.7949275363898018,
+        "threshold": 0.5,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "same layout populations as the substantive leg",
+        "met": true
+      },
+      {
+        "name": "full_score_range_non_degenerate",
+        "description": "Cross-candidate RANGE of the full-horizon score (NOT magnitude), WORST tick across all seeds/conditions/layouts (never a mean): the load-bearing criterion routes on a rank correlation over candidates, which is arbitrary noise unless candidates are separable. This is the precondition 786a HAD.",
+        "measured": 0.42197227478027344,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "candidate set on a real E3 tick",
+        "met": true
+      },
+      {
+        "name": "habit_score_range_non_degenerate",
+        "description": "Cross-candidate RANGE of the HABIT_DEPTH score (NOT magnitude), WORST tick across all seeds/conditions/layouts. THE DV-DEGENERACY REPAIR: this is the precondition 786a LACKED -- it gated the full-horizon input to the rank correlation but never the OTHER input, so a constant depth-1 vector (786a's bug) passed readiness cleanly while the DV it fed was pure noise. A below-floor reading here means the habit-depth read is constant across candidates -- exactly 786a's failure mode -- and routes to substrate_not_ready_requeue rather than a false weakens/supports.",
+        "measured": 0.01206207275390625,
+        "threshold": 1e-06,
+        "direction": "lower",
+        "control": "candidate set on a real E3 tick, same ticks as the full-horizon check",
+        "met": true
+      },
+      {
+        "name": "habit_score_distinct_fraction_non_degenerate",
+        "description": "Fraction of candidates whose habit-depth score is numerically distinct from every other candidate's, WORST tick across all seeds/conditions/layouts. A second, independent check on the SAME input as the range precondition above: catches near-constant-but-not-exactly-zero-range cases (e.g. floating-point noise on an otherwise-constant computation collapsing to a small number of tied values) that a pure range floor could miss. Matches the V3-EXQ-811 precedent's min_habit_distinct_frac gate.",
+        "measured": 0.9375,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "candidate set on a real E3 tick, same ticks as the range checks",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_recruitment_higher_on_novel": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "49b8a7b26f2e6bf7ba9dc7e0cf2a6201f1827e9e10f806f0708f37e9ce84914b"
+}
