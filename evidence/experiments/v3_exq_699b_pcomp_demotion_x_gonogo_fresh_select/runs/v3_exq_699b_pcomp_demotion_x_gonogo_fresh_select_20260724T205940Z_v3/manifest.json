@@ -1,0 +1,197 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select",
+  "run_id": "v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select_20260724T205940Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T20:59:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-448",
+    "MECH-449"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-448": "non_contributory",
+    "MECH-449": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "composition_verdict": "levers_neutral",
+    "preconditions": [
+      {
+        "name": "fresh_e3_selection_sufficiency_all_arms",
+        "kind": "readiness",
+        "description": "Each arm has a majority of seeds with >= MIN_FRESH_SELECT_PER_CELL GENUINE E3 selections in P2. NEW IN 699b: the primary DV is a per-COMMITMENT class entropy, so its sampling unit is the E3 selection, not the env step. V3-EXQ-699 recorded no fresh-selection count at all, which is why its replication factor could not even be estimated from the manifest (n_p2_ticks counts ENV STEPS and varies with episode termination). Below-floor self-routes substrate_not_ready_requeue, never a composition verdict.",
+        "control": "sentinel-key freshness marker on agent.e3.last_score_diagnostics, which e3_selector.select() reassigns wholesale at :2452",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_n_fresh_select": 540,
+        "observed_min_fresh_select_yield": 0.11925,
+        "observed_fresh_select_floor": 100,
+        "met": true
+      },
+      {
+        "name": "committed_class_axis_exercisable_all_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in ALL FOUR arms. SAME-statistic family as the committed-class entropy DV (class multiplicity bounds class entropy).",
+        "control": "SP-CEM multi-class candidate pool, all arms",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_frac_pre_ge2": 1.0,
+        "observed_frac_pre_ge2_floor": 0.3,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_divergence_all_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in ALL arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.",
+        "control": "SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 1.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_consumed_summary_pairwise_dist_mean": 0.004401,
+        "observed_consumed_spread_floor": 0.05,
+        "met": false
+      },
+      {
+        "name": "gapa_consumed_summary_bounded",
+        "kind": "readiness",
+        "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all cells",
+        "measured": 0.328562,
+        "threshold": 1000000.0,
+        "direction": "upper",
+        "comparator": "<",
+        "met": true
+      },
+      {
+        "name": "rule_field_differentiated_and_matured_all_arms",
+        "kind": "readiness",
+        "description": "the matched CandidateRuleField (use_candidate_rule_field=True, constant) minted >= CRF_MIN_MINTED distinct rules AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P2 ticks, on a majority of seeds in ALL arms. Below-floor => the differentiated source the levers convert is absent => substrate_not_ready_requeue.",
+        "control": "crf frac-active (matured pool) + crf_n_minted_total, all arms",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_crf_frac_active": 0.02376,
+        "observed_crf_frac_active_floor": 0.3,
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity_bias_reaches_committed_action_all_arms",
+        "kind": "readiness",
+        "description": "mean_lateral_pfc_bias_abs > floor on a majority of seeds in ALL arms (the trained head + matured field produce a non-zero per-candidate bias that reaches committed action). Below-floor => vacuous propagation => substrate_not_ready_requeue. Supported by the within-arm rule_state counterfactual delta (zeroing rule_state changes the bias).",
+        "control": "mean lateral_pfc bias on the matched trained-head stack, all arms",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_mean_lateral_pfc_bias_abs": 0.02806675,
+        "observed_prop_nonvac_floor": 0.001,
+        "met": true
+      },
+      {
+        "name": "mech448_demotion_lever_live_and_excluding_demotion_armed_arms",
+        "kind": "readiness",
+        "description": "On the DEMOTION-ARMED arms (ARM_DEM, ARM_BOTH) the f_demotion envelope is ACTIVE on >= DEMOTION_ACTIVE_FRAC_FLOOR of P2 ticks AND actually EXCLUDES (mean f_eligibility_excluded_count > EXCLUDED_COUNT_FLOOR) on a majority of seeds. An all-admit envelope (excluded_count==0; flat-F pool) means demotion did nothing -> the composition cell is vacuous => substrate_not_ready_requeue. Demotion is OFF by design on ARM_OFF/ARM_GNG (inactivity there is correct, NOT vacuous). Mirrors V3-EXQ-689d readiness.",
+        "control": "f_demotion active-frac + excluded_count on the demotion-armed arms",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_f_eligibility_excluded_count_mean": 15.632754,
+        "observed_excluded_count_floor": 0.0,
+        "met": true
+      },
+      {
+        "name": "mech449_active_nogo_live_and_suppressing_gng_armed_arms",
+        "kind": "readiness",
+        "description": "On the GO/NO-GO-ARMED arms (ARM_GNG, ARM_BOTH) the Go/No-Go constitution is ACTIVE on >= NOGO_ACTIVE_FRAC_FLOOR of P2 ticks AND actually SUPPRESSES (mean go_nogo_n_safety_nogo + go_nogo_n_soft_applied > NOGO_SUPPRESSED_FLOOR; the perseveration No-Go fed by the MECH-260 recency-share vector with use_dacc=True) on a majority of seeds. An inert No-Go means the opponency leg did nothing -> vacuous => substrate_not_ready_requeue. Go/No-Go is OFF by design on ARM_OFF/ARM_DEM. Mirrors the V3-EXQ-689g non-degeneracy gate.",
+        "control": "Go/No-Go active-frac + suppressed-count on the gng-armed arms",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_go_nogo_suppressed_per_tick_mean": 0.81844,
+        "observed_nogo_suppressed_floor": 0.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_READY_levers_engaged_and_substrate_exercisable",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a_class_axis_exercisable_all_arms": true,
+      "C1b_gapa_divergence_all_arms": false,
+      "C1c_rule_field_differentiated_matured_all_arms": true,
+      "C1d_propagation_non_vacuity_all_arms": true,
+      "C1d_within_arm_rule_state_counterfactual_nonzero": true,
+      "C1e_mech448_demotion_live_demotion_armed_arms": true,
+      "C1f_mech449_active_nogo_live_gng_armed_arms": true,
+      "C1g_fresh_e3_selection_sufficiency_all_arms": true,
+      "arms_not_bit_identical": true
+    },
+    "instrumentation_repair_note": "V3-EXQ-699b repairs the V3-EXQ-699 instrument. The 699 PASS and its C1 readiness battery STAND (autopsy: the C1e/C1f non-vacuity floors are literally 0.0 and the active-frac gates saturate at exactly 1.0, both threshold-invariant to the defect); the 699 `levers_compound` finding is WITHDRAWN. 699's DV was accumulated once per ENV STEP from the action RETURNED by agent.select_action, and on a non-E3 tick agent.py:5430 returns the HELD action -- so it was hold-duration-weighted OCCUPANCY entropy standing in for the per-COMMITMENT construct MECH-448/449 act on. The bias is ALIGNED with the hypothesis (ARM_OFF is the reference for every delta and an unarmed agent perseverates longer, depressing its occupancy entropy and inflating every delta), so no sign-check was available and the corrected sign was UNKNOWN going in. This run must NOT be read as confirming or refuting `levers_compound` in advance; whatever it returns is the FIRST valid measurement of this composition. See defect_measurement_699_hold_weighting for the matched-instrumentation comparison, which is diagnostic context and not a finding. BEFORE ACTING ON THIS RUN, read `parked_successor` below: a further instrument repair (V3-EXQ-699c) is already written and committed but deliberately UNQUEUED, pending exactly the numbers this run measures.",
+    "parked_successor": {
+      "queue_id": "V3-EXQ-699c",
+      "script": "experiments/v3_exq_699c_pcomp_demotion_x_gonogo_fixed_n.py",
+      "status": "written, committed (ree-v3 cb35a38211), validated, NOT queued",
+      "fixes": "P2 sample size N is set by SURVIVAL -- CausalGridWorldV2 ends an episode on death (causal_grid_world.py:2626) and steps_per_episode caps below its 500-step limit -- so N differs across arms WITHIN a seed and the plug-in entropy estimator's ~(K-1)/(2N) downward bias becomes ARM-DEPENDENT and signed: an arm dying sooner reads as lower committed-class entropy for a purely statistical reason. 699c runs P2 to a FIXED N (400 genuine E3 selections per cell, capped at 800 episodes) so the bias is common-mode by construction, and applies a Miller-Madow correction for the residual K_obs term.",
+      "why_not_queued": "The MAGNITUDE is unknown and THIS RUN measures it. E3 firing is event-driven (clock.advance() fires on a pending phase reset; agent.py:5430 runs select() whenever _last_action is None), so an episode RESET buys a free selection -- which means a death-prone cell running many short episodes earns a HIGHER yield and PARTIALLY COMPENSATES the very spread 699c removes. Estimated at ~0.0136 nats (27% of COMPOSITION_LIFT_MARGIN=0.05) without that compensation and ~0.005 (~10%) with it. Not derivable from any recorded manifest: V3-EXQ-699 recorded no fresh-selection counts at all.",
+      "decision_rule": "From this run's arm_results, compute the within-seed spread in n_fresh_select across the four arms, then the implied bias differential (K_obs-1)/2 * (1/N_min_arm - 1/N_max_arm) using each cell's own n_unique_committed_classes for K_obs. Queue 699c only if that differential is a material fraction of COMPOSITION_LIFT_MARGIN=0.05 nats. If it is small, leave it parked and record that it was considered.",
+      "fields_to_read": [
+        "n_fresh_select",
+        "n_latched",
+        "fresh_select_yield",
+        "replication_factor",
+        "n_p2_ticks",
+        "n_unique_committed_classes"
+      ],
+      "caveat_if_queued": "Re-check 699c's TARGET_FRESH_SELECT_PER_CELL=400 against this run's measured yield before queueing -- 400 was sized assuming ~4000 P2 env steps per cell at yield ~0.1 (supported by V3-EXQ-785a's measured 0.111/0.143/0.111, but not yet confirmed for THIS config). Note the tradeoff: equal-N trades unequal SAMPLE SIZE for unequal DURATION.",
+      "full_rationale": "the STATUS: PARKED banner at the top of the 699c driver's module docstring"
+    }
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "87d5d58c0cb282151e7005d8abfe5a6c2841e845df75a6e03161189c67068e49"
+}
