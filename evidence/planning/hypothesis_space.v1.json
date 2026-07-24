@@ -1,42 +1,42 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-22T05:13:34Z",
+  "generated_at": "2026-07-24T19:06:53Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 123,
-      "built_modules": 99,
-      "fraction_built": 0.8049,
+      "total_modules": 124,
+      "built_modules": 100,
+      "fraction_built": 0.8065,
       "state_counts": {
         "proposed": 24,
-        "implemented": 70,
-        "implemented_pending_validation": 17,
-        "validated": 12
+        "implemented": 71,
+        "implemented_pending_validation": 16,
+        "validated": 13
       },
       "build_proof_gap": 87,
-      "build_proof_gap_note": "99 modules built, 87 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "100 modules built, 87 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": null,
-      "node_total": null,
-      "node_done_weighted": null,
-      "unavailable_reason": "ModuleNotFoundError",
-      "source": "serve.read_closure() (read-only mirror)"
+      "closure_pct": 76.2,
+      "node_total": 82,
+      "node_done_weighted": 62.5,
+      "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
+      "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
       "total_surviving": 26,
-      "total_initial": 47,
+      "total_initial": 48,
       "total_initial_at_registration": 36,
-      "total_fanout_added": 11,
-      "total_resolved_out": 22,
-      "reduction_pct_vs_current": 46.8,
+      "total_fanout_added": 12,
+      "total_resolved_out": 23,
+      "reduction_pct_vs_current": 47.9,
       "net_narrowing_pct": 27.8,
       "convergence_classes": {
         "narrowing": 4,
@@ -44,7 +44,7 @@
         "circling": 3
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "26 alive against 36 originally enumerated, and against 47 including 11 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "26 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 11
     },
     "decide": {
@@ -56,57 +56,57 @@
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 46,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 47,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-13",
-      "surviving": 44,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 45,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-15",
-      "surviving": 40,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 41,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-16",
-      "surviving": 39,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 40,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-17",
-      "surviving": 36,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 37,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-18",
-      "surviving": 30,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 31,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-19",
-      "surviving": 26,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 27,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
       "date": "2026-07-20",
-      "surviving": 25,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "surviving": 26,
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     },
     {
-      "date": "2026-07-22",
+      "date": "2026-07-24",
       "surviving": 26,
-      "closure_pct": null,
-      "build_pct": 80.5
+      "closure_pct": 76.2,
+      "build_pct": 80.7
     }
   ],
   "questions": [
@@ -551,9 +551,9 @@
         "ARC-065"
       ],
       "is_hero": false,
-      "initial_frozen_count": 5,
+      "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
-      "fanout_added": 1,
+      "fanout_added": 2,
       "fanout_growth_events": [
         {
           "recorded_utc": "2026-07-22T04:02:33Z",
@@ -564,9 +564,19 @@
           ],
           "delta": 1,
           "note": "GOV-FANOUT-1 growth routed by the confirmed 734/737b/742a cluster autopsy (user-adjudicated 2026-07-22). The live gate V3-EXQ-737 returned a null that does NOT discriminate H-policy-learning, because every learner scored below its own random-walk anchor -- a failure invariant across learner AND representation is a property of the objective they share. Pre-registered BEFORE its adjudicating run exists (none queued), so invariant 3a(a) is satisfied by construction. CIRCLING DISCLOSURE: axis `reward` maps to family `world`, where H-reward-balance is already eliminated by V3-EXQ-735, so build_hypothesis_space.py will classify this growth as CIRCLING. That is accepted, not dodged -- see the autopsy .md section 7. H-reward-balance asked whether RE-WEIGHTING reward terms lifts committed-action DIVERSITY; this leg asserts that under the given weighting the OPTIMAL policy is not to forage at all, on the FORAGING-COMPETENCE DV, and rests on evidence that did not exist when 735 was adjudicated. A reader who judges that distinction too fine should merge this leg into H-reward-balance and re-open that elimination -- NOT re-label the axis."
+        },
+        {
+          "recorded_utc": "2026-07-24T18:59:26Z",
+          "pre_registered_utc": "2026-07-24T14:33:33Z",
+          "fanout_source": "failure_autopsy_backlog_2026-07-24.json",
+          "added_hids": [
+            "H-observation-interface"
+          ],
+          "delta": 1,
+          "note": "813 autopsy override: raw-obs actor forages, latent-actor does not -> representation/observation-interface is the surviving live root after H-policy-learning eliminated and H-objective-misspecification displaced."
         }
       ],
-      "fanout_growth_note": "First fan-out growth event on this question (2026-07-22). It re-enters the `world` family, which already holds an eliminated leg (H-reward-balance), so the convergence class will read CIRCLING. Read that as the signal it is: this campaign has not converged, and the growth inflates the headline narrowing ratio precisely because a new candidate explanation had to be invented.",
+      "fanout_growth_note": "First fan-out growth event on this question (2026-07-22). It re-enters the `world` family, which already holds an eliminated leg (H-reward-balance), so the convergence class will read CIRCLING. Read that as the signal it is: this campaign has not converged, and the growth inflates the headline narrowing ratio precisely because a new candidate explanation had to be invented. || 2nd growth event 2026-07-24: adds H-observation-interface on the `representation` family, which holds NO eliminated leg -> REFINING (survivors moving to fresh territory), not circling. The campaign has now eliminated reward-balance (735), policy-learning (813) and displaced objective-misspecification (808); the live front is representation/substrate. Non-convergence signal: this is the 2nd fan-out on this question -- watch for further growth.",
       "net_narrowing_ratio": 0.0,
       "bits_removed_vs_registration": 0.0,
       "convergence": {
@@ -574,11 +584,12 @@
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [],
         "families_touched": [
+          "process",
           "world"
         ],
         "families_fresh": [
           "constitution",
-          "process"
+          "representation"
         ],
         "unclassified_axes": [],
         "growth_events": [
@@ -601,16 +612,32 @@
             "families_already_dead": [
               "world"
             ]
+          },
+          {
+            "recorded_utc": "2026-07-24T18:59:26Z",
+            "fanout_source": "failure_autopsy_backlog_2026-07-24.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-observation-interface",
+                "family": "representation"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": [
+              "process",
+              "world"
+            ]
           }
         ]
       },
       "surviving": 4,
       "alive": 4,
-      "resolved_out": 1,
+      "resolved_out": 2,
       "confirmed": 0,
-      "reduction_numerator": 1,
-      "reduction_ratio": 0.2,
-      "bits_removed": 0.32,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.3333,
+      "bits_removed": 0.58,
       "synthesis": null,
       "hypotheses": [
         {
@@ -635,7 +662,7 @@
           "evidence_runs": [
             "V3-EXQ-734"
           ],
-          "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path.",
+          "basis": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -644,14 +671,15 @@
           "label": "policy-learning insufficient (or deeper root)",
           "desc": "the policy-learning stage cannot convert representation into committed diversity",
           "axis": "policy",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
             "V3-EXQ-737b",
-            "V3-EXQ-742a"
+            "V3-EXQ-742a",
+            "V3-EXQ-813"
           ],
-          "basis": "V3-EXQ-737b (z_world guard GREEN: 4/4 world_encoder tensors moved, max_abs_delta 0.103) and V3-EXQ-742a both returned nulls, but neither DISCRIMINATES this axis. Every learner scored below the run's own random-walk anchor of 0.933 at hazard-free D3 (ppo_ree_latent 0.233, ppo_raw_obs 0.567, actor-critic 0.200-0.267) -- 737b's own criteria_non_degenerate.ppo_ree_latent_beats_random_floor_at_d3 is false. A null produced under an objective that penalises the scored behaviour cannot eliminate the policy-learning axis. Readiness controls all passed (oracle 57.2, local_view_greedy 48.05, bias-head reproduces the D0 deficit), so control_passed is true, but non_degenerate is false and the elimination bar is NOT met. STAYS ALIVE by explicit user adjudication 2026-07-22. Re-adjudicate once H-objective-misspecification is settled.",
+          "basis": "V3-EXQ-813 (survival-zeroed PPO probe) DISCRIMINATES this axis where 737b/742a could not: PPO on raw observations CLEARS the D3 hazard-free floor (9.033 >> 1.0) while PPO on the REE latent does not (0.5), under the identical W3_survival_zeroed objective. A competent external actor learns the foraging policy fine, so the policy-learning stage is NOT the bottleneck -- eliminated. (Autopsy failure_autopsy_backlog_2026-07-24: 813 self-routed substrate_not_ready on an unmet manipulation-check, a false self-route overridden per user-confirmed judgment.)",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-f-dominance",
@@ -675,7 +703,20 @@
           "evidence_runs": [
             "V3-EXQ-808"
           ],
-          "basis": "Pre-registered 2026-07-22 from the confirmed 734/737b/742a cluster autopsy. Its discriminating probe is QUEUED as V3-EXQ-808 (2026-07-22, coordinator /queue/add): a return-decomposition diagnostic holding the learner fixed (all-ON REE stack per seed on the SD-070 z_world encoder-warmup path, zworld guard GREEN-GATING) on the hazard-free D3 rung, recording per-term return attribution (consumption / proximity / harm / novelty / other) in both the training and eval phases alongside foraging_competence and survival_horizon, and sweeping the consumption:survival weighting over 4 levels (1.0/1.0 baseline, 5.0/1.0, 25.0/1.0, 1.0/0.0 survival-zeroed). Declared null: the consumption term already dominates the realised return at the training horizon (consumption_share >= 0.50 at baseline) AND re-weighting does not move D3 foraging competence (cross-level range < 0.50 res/ep) -- under which this leg is REFUTED and the observability / policy-learning route re-opens. Not yet run.",
+          "basis": "V3-EXQ-808 CONFIRMS the descriptive core -- the realised return is SURVIVAL-dominated (consumption_share 0.282 < 0.50), so the training objective under-weights the scored foraging objective. But its declared null required consumption ALREADY >= 0.50 AND reweighting inert to REFUTE, and the first clause did not hold, so the leg is NOT refuted. C2_reweighting_moves_d3_competence FAILED (0.333, non-degenerate): reweighting toward consumption (up to 25:1) does not lift competence -- naive reweighting is not the removable lever. Misspecification is real but DISPLACED as the actionable root; live discrimination passes to policy (813, eliminated) and representation.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-observation-interface",
+          "label": "the REE latent is not a foraging-adequate representation for an external actor",
+          "desc": "A competent external PPO actor forages on raw observations but not on the frozen REE latent (V3-EXQ-813), so the ceiling lies in what the latent EXPOSES to a downstream reader -- representational adequacy / observation-interface -- not in the learner (policy-learning eliminated) or the reward (objective displaced).",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-813"
+          ],
+          "basis": "V3-EXQ-813: raw-obs PPO clears the D3 floor (9.033) while REE-latent PPO does not (0.5) under the survival-zeroed objective -> the representation, not the learner or reward, is the surviving live root. Newly articulated by the 813 autopsy override; this is the ELEVATED survivor, not eliminated. Needs a positive demonstration (a foraging-adequate re-representation lifts competence) to confirm.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -1511,6 +1552,38 @@
   ],
   "momentum": [
     {
+      "run": "V3-EXQ-813",
+      "all_runs": [
+        "V3-EXQ-737b",
+        "V3-EXQ-742a",
+        "V3-EXQ-813"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "V3-EXQ-813 (survival-zeroed PPO probe) DISCRIMINATES this axis where 737b/742a could not: PPO on raw observations CLEARS the D3 hazard-free floor (9.033 >> 1.0) while PPO on the REE latent does not (0.5), under the identical W3_survival_zeroed objective. A competent external actor learns the foraging policy fine, so the policy-learning stage is NOT the bottleneck -- eliminated. (Autopsy failure_autopsy_backlog_2026-07-24: 813 self-routed substrate_not_ready on an unmet manipulation-check, a false self-route overridden per user-confirmed judgment.)",
+      "resolved_utc": "2026-07-24T14:33:33Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-808",
+      "all_runs": [
+        "V3-EXQ-808"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "V3-EXQ-808 CONFIRMS the descriptive core -- the realised return is SURVIVAL-dominated (consumption_share 0.282 < 0.50), so the training objective under-weights the scored foraging objective. But its declared null required consumption ALREADY >= 0.50 AND reweighting inert to REFUTE, and the first clause did not hold, so the leg is NOT refuted. C2_reweighting_moves_d3_competence FAILED (0.333, non-degenerate): reweighting toward consumption (up to 25:1) does not lift competence -- naive reweighting is not the removable lever. Misspecification is real but DISPLACED as the actionable root; live discrimination passes to policy (813, eliminated) and representation.",
+      "resolved_utc": "2026-07-24T04:40:39Z",
+      "evidence_direction": "mixed"
+    },
+    {
       "run": "V3-EXQ-789",
       "all_runs": [
         "V3-EXQ-789"
@@ -1918,7 +1991,7 @@
         "MECH-457",
         "ARC-065"
       ],
-      "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path.",
+      "moved": "a substrate ceiling remains consistent with the null; not discriminated away -- stays alive. CORRECTION 2026-07-22 (failure_autopsy_competence-objective-cluster-734-737b-742a): the recorded adjudicating run V3-EXQ-734 is now known INVALID -- its z_world encoder guard was RED on all 4 rungs x 4 seeds (0 of 61 latent_stack and 0 of 4 world_encoder tensors moved, max_abs_delta 0.0), so ree_trained_allon ran on a frozen random projection throughout. The leg was already alive so no state moves, but 734 must not be cited as evidence for or against it. Awaiting the 734a re-run on the SD-070 encoder-warmup path. | UPDATE 2026-07-24 (failure_autopsy_backlog): the V3-EXQ-734 20260722T202649Z re-run has a GREEN z_world encoder guard (unlike the invalidated earlier 734) and still shows REE all-ON recovering at NO difficulty rung while vanilla PPO recovers at D2 -- a VALID corroboration of the substrate/representation ceiling. 813 corroborates via the representation route (H-observation-interface). Stays alive as a leading live root alongside H-observation-interface.",
       "resolved_utc": "2026-07-11T00:00:00Z",
       "evidence_direction": "non_contributory"
     },
@@ -2001,22 +2074,6 @@
         "SD-069"
       ],
       "moved": "777a narrowed nothing, but for a NEW reason. Sampling is genuinely repaired (all 56 cells reached 250 fresh E3 selections, zero starved cells) and all six preconditions were MET, so control_passed and non_degenerate are true for the first time. C1 still failed -- NOT on collinearity: mean_sin_angle 0.5454 EXCEEDS the 0.500 margin and c1_seed_count PASSED (3 of 4 informative seeds, required 3). The sole failing bar, c1_robust, is defined as mean minus POPULATION SD (statistics.pstdev, script line 541/697) and so cannot be met at any n; repaired to standard-error form it needs ~51 informative seeds against an observed 28.6% informative yield (~177 raw seeds, ~31 h). That yield is substrate-gated: corr(D-saturation-distance, norm_v_score) = 0.884 with 9 of 14 seeds saturated, a property of an untrained agent's degenerate action-value distribution that barely moved from 777's starved run. Hypothesis stays ALIVE -- a substrate-ceiling non_contributory discriminates nothing. Note the surviving evidence points TOWARD this leg, not away: within the informative pool the angle does not track score-axis magnitude (corr 0.028) and the best-conditioned seed 17 gives sin_angle 0.9883. Re-derive brake FIRED; pending SD-PROBE-WARMUP, not a further lettered iteration.",
-      "resolved_utc": null,
-      "evidence_direction": "non_contributory"
-    },
-    {
-      "run": "V3-EXQ-742a",
-      "all_runs": [
-        "V3-EXQ-737b",
-        "V3-EXQ-742a"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "conversion_ceiling_root",
-      "claims": [
-        "MECH-457",
-        "ARC-065"
-      ],
-      "moved": "V3-EXQ-737b (z_world guard GREEN: 4/4 world_encoder tensors moved, max_abs_delta 0.103) and V3-EXQ-742a both returned nulls, but neither DISCRIMINATES this axis. Every learner scored below the run's own random-walk anchor of 0.933 at hazard-free D3 (ppo_ree_latent 0.233, ppo_raw_obs 0.567, actor-critic 0.200-0.267) -- 737b's own criteria_non_degenerate.ppo_ree_latent_beats_random_floor_at_d3 is false. A null produced under an objective that penalises the scored behaviour cannot eliminate the policy-learning axis. Readiness controls all passed (oracle 57.2, local_view_greedy 48.05, bias-head reproduces the D0 deficit), so control_passed is true, but non_degenerate is false and the elimination bar is NOT met. STAYS ALIVE by explicit user adjudication 2026-07-22. Re-adjudicate once H-objective-misspecification is settled.",
       "resolved_utc": null,
       "evidence_direction": "non_contributory"
     },

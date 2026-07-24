@@ -1,0 +1,564 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-24T18:59:26Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "note": "Batch autopsy of the 2026-07-24 pending backlog (24 targets; V3-EXQ-811 autopsied separately). Grouped: C1 substrate_not_ready family (801/800/629c/805/699b/813), C2 harm_advantage cluster (120a/114a/266b), C3 conversion_ceiling_root fan-out (734/808/813), C4 MECH-448 (689j), C5 MECH-163 (786b), singletons + 2 flagged PASS. All Step-8 judgments user-confirmed 2026-07-24.",
+  "targets": [
+    {
+      "run_id": "v3_exq_801_arc018_rollout_depth_ablation_20260723T223210Z_v3",
+      "queue_id": "V3-EXQ-801",
+      "claim_ids": [
+        "ARC-018"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "likely insufficient"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-801 self-routed substrate_not_ready_requeue: e2_world_r2_adequate FALSE in every arm (A0/A1/A2/A3). A rollout-depth ablation cannot express when the world model's forward R2 is below the non-vacuity floor -- no arm scored, this is NOT a refutation of ARC-018. Genuine unmet precondition (V3-EXQ-642 test: the branch's premise -- an adequate forward model to roll out -- truly did not hold). Route to substrate: raise e2_world forward-model quality, then re-test. pending_retest_after_substrate.",
+      "routing": "implement-substrate",
+      "pending_retest_after_substrate": true
+    },
+    {
+      "run_id": "v3_exq_800_arc007_residue_scramble_dissociation_20260724T063057Z_v3",
+      "queue_id": "V3-EXQ-800",
+      "claim_ids": [
+        "ARC-007"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-800 self-routed substrate_not_ready_requeue: executed_action_diversity FALSE (A0_INTACT and A2_RESIDUE_PERMUTED). The residue-scramble dissociation cannot be read when the agent does not act diversely enough to expose the base gap -- no arm scored, NOT a refutation of ARC-007. Genuine unmet precondition. Distinct from the VALID ARC-007 negative V3-EXQ-114a (weakens); this probe simply could not express. pending_retest_after_substrate.",
+      "routing": "implement-substrate",
+      "pending_retest_after_substrate": true
+    },
+    {
+      "run_id": "v3_exq_629c_mech342_ecological_maintenance_release_evidence_20260723T230514Z_v3",
+      "queue_id": "V3-EXQ-629c",
+      "claim_ids": [
+        "MECH-342"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "wrong pressures",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-629c self-routed substrate_not_ready_requeue: foraging_contact_guard FALSE (contact_rate 0.0), baseline_commits_C1 FALSE, degradation_occurred_C2 FALSE -- the ecological maintenance/release scenario never materialised (no contacts, no commits, no degradation to release from). This is a TEST-BED CONSTRUCTION defect, NOT a substrate ceiling: deliberately categorised measurement_test_design_defect (not substrate_ceiling) so it does NOT count as MECH-342's 2nd re-derive-brake ceiling hit. Route: rebuild the ecological scenario so contacts+degradation occur, then re-test.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_805_arc016_eval_derived_commit_threshold_20260723T092739Z_v3",
+      "queue_id": "V3-EXQ-805",
+      "claim_ids": [
+        "ARC-016"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-805 self-routed substrate_not_ready_requeue: precision_manipulation_took FALSE -- the precision lever never moved running-variance, so the threshold never engaged and every arm is identical (the exact EXQ-396a/b void mode). Whole run vacuous; NOT a verdict on ARC-016, whose core circuit (E3 variance -> relative commit threshold -> BetaGate) is already validated by V3-EXQ-018b (5/5) and V3-EXQ-060 (4/5). SEPARATE GOVERNANCE ITEM the manifest itself raises: ARC-016 exp_conf 0.53 is an aggregation artefact of ~15 non_contributory/stale FAILs -- re-scoring needs a governance eye, not an experiment (stripping non-contributory FAILs may expose thinner remaining supports). Route: queue-experiment to fix the precision manipulation; flag ARC-016 re-score for governance.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select_20260724T123550Z_v3",
+      "queue_id": "V3-EXQ-699b",
+      "claim_ids": [
+        "MECH-448",
+        "MECH-449"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-699b self-routed substrate_not_ready_requeue (C_READY: gapa_consumed_summary_divergence FALSE). CRITICAL GOVERNANCE ACTION the manifest establishes: 699b REPAIRS the V3-EXQ-699 instrument and WITHDRAWS 699's levers_compound finding -- 699's DV accumulated occupancy entropy from held actions on non-E3 ticks (hold-duration-weighted, biased toward the hypothesis) rather than the per-commitment construct MECH-448/449 act on. composition_verdict is now levers_neutral. 699's C1 readiness battery STANDS (threshold-invariant floors). 699b's own readiness then failed, so it delivers no new verdict. Route: governance must withdraw 699 levers_compound; re-queue after the composed substrate is exercisable.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_813_survival_zeroed_ppo_latent_policy_probe_20260724T143333Z_v3",
+      "queue_id": "V3-EXQ-813",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-813 self-routed substrate_not_ready_requeue on an unmet MANIPULATION-CHECK precondition (consumption_share_dominates_under_correction FALSE) -- a FALSE self-route in the V3-EXQ-642 class. The adjudicating criteria discriminate cleanly and are fully interpretable: PPO on raw observations CLEARS the D3 hazard-free competence floor (9.033 >> 1.0) while PPO on the REE latent does NOT (0.5 < 1.0), under the identical W3_survival_zeroed objective imported verbatim from 808. USER-CONFIRMED OVERRIDE (2026-07-24): this ELIMINATES H-policy-learning for conversion_ceiling_root (a competent external actor learns the foraging policy fine on raw obs) and ELEVATES a representation / observation-interface hypothesis (the REE latent does not expose foraging-adequate structure to a downstream reader). Registered in hypothesis_space_registry conversion_ceiling_root (Step 9b).",
+      "routing": "governance",
+      "self_route_label": "substrate_not_ready_requeue",
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-observation-interface: the REE latent is not a foraging-adequate representation for an external actor"
+        ],
+        "resolved_this_cycle": [
+          "H-policy-learning"
+        ],
+        "note": "813 raw-obs clears / latent fails -> eliminate H-policy-learning, elevate representation axis. Registered in conversion_ceiling_root."
+      }
+    },
+    {
+      "run_id": "v3_exq_120a_arc018_viability_map_pair_20260723T120339Z_v3",
+      "queue_id": "V3-EXQ-120a",
+      "claim_ids": [
+        "ARC-018"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "C2 cluster (harm-advantage-not-reproduced): once selection is routed through E3, the DV is harm/episode at a MATCHED episode budget, and a STATIC no-op control is present, the harm-reduction advantage collapses to -18.1% (< 15% required). P1 GREEN (E3 offered a genuine candidate choice) => MEASUREMENT, not instrument failure; a decision-flipping negative, not a null. supersedes EXQ-120's round-trip. ARC-018 leg A retains EXQ-042/053 (no round trip). USER-CONFIRMED (2026-07-24) as weakens: the behavioural leg demotes; the biological existence-proof for the mechanism class is unaffected -- what fails is the translation to a harm-navigation advantage. Part of a structural cluster (see cluster_pattern).",
+      "routing": "governance-demotion",
+      "narrow_supports_flag": true
+    },
+    {
+      "run_id": "v3_exq_114a_arc007_path_memory_probe_20260723T152445Z_v3",
+      "queue_id": "V3-EXQ-114a",
+      "claim_ids": [
+        "ARC-007"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "C2 cluster (harm-advantage-not-reproduced): once selection is routed through E3, the DV is harm/episode at a MATCHED episode budget, and a STATIC no-op control is present, the harm-reduction advantage collapses to 11.4% (< 15% required). P1 GREEN (E3 offered a genuine candidate choice) => MEASUREMENT, not instrument failure; a decision-flipping negative, not a null. EXQ-114's 99.2% figure was a denominator artifact of a constant action stream; ARC-007's sole behavioural support does not survive its removal. USER-CONFIRMED (2026-07-24) as weakens: the behavioural leg demotes; the biological existence-proof for the mechanism class is unaffected -- what fails is the translation to a harm-navigation advantage. Part of a structural cluster (see cluster_pattern).",
+      "routing": "governance-demotion",
+      "narrow_supports_flag": true
+    },
+    {
+      "run_id": "v3_exq_266b_q020_valence_geometry_pair_20260723T185013Z_v3",
+      "queue_id": "V3-EXQ-266b",
+      "claim_ids": [
+        "Q-020"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "C2 cluster (harm-advantage-not-reproduced): once selection is routed through E3, the DV is harm/episode at a MATCHED episode budget, and a STATIC no-op control is present, the harm-reduction advantage collapses to 6.5% (terrain_harm_corr -0.340) (< 15% required). P1 GREEN (E3 offered a genuine candidate choice) => MEASUREMENT, not instrument failure; a decision-flipping negative, not a null. supersedes EXQ-266/266a which could not deliver a matched-budget static-control read. USER-CONFIRMED (2026-07-24) as weakens: the behavioural leg demotes; the biological existence-proof for the mechanism class is unaffected -- what fails is the translation to a harm-navigation advantage. Part of a structural cluster (see cluster_pattern).",
+      "routing": "governance-demotion",
+      "narrow_supports_flag": true
+    },
+    {
+      "run_id": "v3_exq_734_env_difficulty_competence_recovery_sweep_20260722T202649Z_v3",
+      "queue_id": "V3-EXQ-734",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "likely insufficient"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-734 (20260722 re-run): ree_substrate_ceiling. REE all-ON recovers foraging competence at NO difficulty rung (ree_recovery_rungs=[]); vanilla PPO recovers at D2_proximity_layout_derisked. Unlike the INVALIDATED earlier 734 run (z_world guard failed), THIS run's zworld_world_encoder_trained_ree_trained_allon precondition is GREEN and any_arm_green TRUE -- so it is a VALID corroboration of the substrate/representation-ceiling reading. Extends the confirmed competence-objective cluster (734/737b/742a, 2026-07-22). No claim tags (diagnostic). Feeds conversion_ceiling_root H-substrate-ceiling.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_808_return_decomposition_objective_misspecification_20260724T044039Z_v3",
+      "queue_id": "V3-EXQ-808",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-808 (objective/reward axis of the conversion_ceiling_root fan-out): C1_consumption_dominates_return_at_baseline FAILED (measured 0.282 < 0.5) -> the return is SURVIVAL-dominated, so the objective IS misspecified as H-objective-misspecification hypothesises (this part is CONFIRMED). C2_reweighting_moves_d3_competence FAILED (0.333 < 0.5, non-degenerate) -> reweighting toward consumption does NOT lift foraging competence within the tested range. Reading: the misspecification is REAL but objective-reweighting is NOT the removable lever. H-objective-misspecification is therefore not eliminated (its descriptive premise holds) but is displaced as the actionable root; the live discrimination passes to the policy (813) and representation legs. Registered in conversion_ceiling_root (Step 9b).",
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_689j_mech448_factor_b_noise_control_repower_20260724T155840Z_v3",
+      "queue_id": "V3-EXQ-689j",
+      "claim_ids": [
+        "MECH-448"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "likely insufficient"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-689j: 3 non-vacuity gates PASS (C_SUBSTRATE_INVARIANT, C_CONTROL_DISTINCT, C_FRESH_SUFFICIENT) but C_NOISE_LIFTS_REPOWERED FAILS -- the matched-noise control cannot be verified to lift even after repowering. MECH-448's PRIMARY is already SUPPORTED by V3-EXQ-689i (PASS on C_PRIMARY, repaired instrument, 2026-07-24); 689j is the narrow non-gating Factor-B noise-control follow-up, so MECH-448 is UNAFFECTED. The 689 lineage (689a->d->i->j) is long; recommend CLOSING this noise-control axis rather than another lettered repower (re-derive spirit). Route: queue-experiment only if a fundamentally different noise-control design is proposed.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3",
+      "queue_id": "V3-EXQ-786b",
+      "claim_ids": [
+        "MECH-163"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-786b (repaired retest of 786a, whose DV degeneracy was confirmed 2026-07-24): C1_recruitment_higher_on_novel FAILS non-degenerately (no_differential_recruitment) with the HABIT_DEPTH=2 repaired DV. First GENUINE V3 experimental evidence on MECH-163's dual-system recruitment distinction (the claim held 9 lit supports, 0 exp). USER-CONFIRMED weakens for the dual-system recruitment leg (leg 1). Pairs with V3-EXQ-811's MECH-477 supports (arbitration mechanism): the arbitration fires but the differential-recruitment-on-novelty signature does not reproduce. Biological existence-proof (habit/goal-directed dual systems) intact; the specific novelty-graded recruitment translation weakens.",
+      "routing": "governance",
+      "narrow_supports_flag": true
+    },
+    {
+      "run_id": "v3_exq_802_arc005_control_plane_routing_double_dissociation_20260722T212125Z_v3",
+      "queue_id": "V3-EXQ-802",
+      "claim_ids": [
+        "ARC-005"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-802: C1_dissociation PASS, C3_regime_reproducibility PASS, C2_monotonicity FAIL -- all non-degenerate. USER-CONFIRMED mixed/partial: the control-plane double dissociation and its reproducibility hold, but the routing does not vary monotonically with the control parameter. ARC-005 stays active; record the monotonicity gap as a bounded qualifier, not a demotion.",
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_669c_mech329_wanting_first_goal_seeding_20260722T214724Z_v3",
+      "queue_id": "V3-EXQ-669c",
+      "claim_ids": [
+        "MECH-329",
+        "MECH-189"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-669c (supersedes 669b): C1_wanting_more_anchors PASS (wanting seeds more goal anchors; C2 manip-check PASS), but C3_wanting_higher_p01_complexity FAIL (frac 0.33) -- the wanting-before-liking ORDERING is not demonstrated. Mixed: the anchor-seeding half of MECH-329 reproduces, the temporal ordering (MECH-189 dependency) does not. Not a falsification; a partial with the ordering leg unshown.",
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_804_arc003_e3_selection_authority_20260723T085056Z_v3",
+      "queue_id": "V3-EXQ-804",
+      "claim_ids": [
+        "ARC-003"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-804 (ARC-003 LEG A only -- E3 SELECTS, commitment-free select() path; leg B E3-COMMITS is blocked substrate, EXP-0395): C1_selection_departs_generation_prior FAILS -- KL delta 0.0507 < 0.0588 threshold (NARROWLY under); C3_taken_candidate_predictable_above_chance also fails. Both null arms (~0 KL by construction) agree, strengthening the floor. USER-CONFIRMED weakens (narrow, leg-A-only): a genuine-but-marginal negative on E3's own scoring authority. Records that E3 has a score gradient (C2 pass) but its selected-candidate distribution does not depart the proposer's prior beyond the null margin. NO reading of leg B is licensed. Weight accordingly (marginal, single leg).",
+      "routing": "governance",
+      "narrow_supports_flag": true
+    },
+    {
+      "run_id": "v3_exq_799_mech048_stability_temperature_behavioural_did_20260723T095928Z_v3",
+      "queue_id": "V3-EXQ-799",
+      "claim_ids": [
+        "MECH-048"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-799: C1_visitation_entropy_did and C2_action_entropy_did both FAIL (DiD ~0.0007/0.002 vs 0.02 floor). The manifest's own routing_detail is decisive: mu moved and the mode-prior entropy moved WITH it (mechanism CONFIRMED and firing), but no behavioural consequence survived the difference-in-differences. This is NOT a falsification of MECH-048 -- it is an IMPLEMENTATION GAP on the CONSUMER path: nothing downstream converts mode-prior entropy into action at a detectable scale (write_gate breadth; interacts with unoccupied contested modes keeping the soft vector near one-hot). Route to implement-substrate on the write_gate/consumer path.",
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_708b_mech440_precommit_distribution_shape_falsifier_20260723T215332Z_v3",
+      "queue_id": "V3-EXQ-708b",
+      "claim_ids": [
+        "MECH-440"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-708b (supersedes 708a): D1_precommit_shape_discriminates_saturation_vs_lever_arrival FAILS; C1 (noise single-committed above temp) PASS. The two manipulation-check preconditions (temperature/weight-noise raise precommit entropy) did not fire but are correctly carried as recorded_preconditions (non-gating) -- so this is NOT precondition_unmet vacuity, it is a RESULT: the designed levers did not move precommit entropy, so the falsifier cannot discriminate saturation from lever-arrival. precommit_shape_headroom_unexplained. MECH-440's DV lineage was already flagged invalid (708 re-adjudication 2026-07-19). Route: queue-experiment with a lever that demonstrably moves the precommit distribution.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_810_arc071_chunk_accumulator_readiness_20260723T222726Z_v3",
+      "queue_id": "V3-EXQ-810",
+      "claim_ids": [
+        "ARC-071",
+        "MECH-323",
+        "MECH-324"
+      ],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "stub",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-810: chunk_accumulator_silent. C1_accumulator_fires FAILS (form_n_crystallised_mean 0.0 in ARM_FORM; only 1/3 seeds form) while C3/C4/C5 (off-arm inert, no replay-origin chunks, formation-only dissociation) PASS non-degenerately. The MECH-323 formation operator is present but effectively SILENT -- the accumulator does not reach crystallisation on the formation arm. This is an IMPLEMENTATION/readiness gap on the ARC-071 chunk-accumulator substrate, not a claim refutation (all three claims are candidate/v3_pending). Route to implement-substrate: make the accumulator reliably fire+crystallise before re-testing the formation/maintenance dissociation.",
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3",
+      "queue_id": "V3-EXQ-794a",
+      "claim_ids": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-794a (supersedes 794): drift_source_insufficient_dv_still_tautological. C1_inflation_creates_absolute_overconfidence FAILS (0 seeds overconfident), C2_broadcast_corrects_under_drift FAILS (mean_delta 0.0), C3 fails; C4_off_off_reproduces_774_ceiling PASS. The DV remains TAUTOLOGICAL (the same defect 794's autopsy flagged persists) AND the drift source is insufficient to create the overconfidence the calibration loop is meant to correct. Two coupled measurement defects. SD-076 already carries a governance does_not_support->non_contributory note (794). Route: queue-experiment with a non-tautological calibration DV and a sufficient drift source.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_812_mech295_cue_authority_sd054_20260724T085838Z_v3",
+      "queue_id": "V3-EXQ-812",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-812 (MECH-295 Layer-C cue-authority, scaffolded_sd054): INVALID_HARNESS. C1_cue_fires PASS but C0_evaluability, C2_reaches_scoring, C3_selection_authority all FAIL -- the C3 diff-in-diff per seed is ~1e-9 (numerically zero): the cue fires but never reaches the scoring path, so selection authority is unmeasurable. Harness defect, not a MECH-295 verdict (manifest carries no claim tags). Route: queue-experiment to repair the harness so the cue reaches scoring, then re-test cue authority.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_798_sdmelproducer_graded_nonconverging_world_20260723T081627Z_v3",
+      "queue_id": "V3-EXQ-798",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "wrong pressures",
+        "measurement": "under-instrumented",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-798: producer_graded_but_not_learnable. C1_mel_graded_in_shift_rate PASS (2/3 seeds) and C2/C3 (above stable ref, sustained non-convergence) PASS, but C4_load_is_learnable_not_noise FAILS with NULL decay means (graded_decay_mean/noise_decay_mean both null; 0 late-bin-readable seeds). The SDMelProducer test-bed produces a graded but NON-LEARNABLE load -- the world does not converge and the graded signal is indistinguishable from noise on the readable window. Test-bed construction defect (no claim tags). Route: queue-experiment to make the graded load learnable (readable late bins) before it can serve as a substrate.",
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_792a_mech457_retention_consolidation_20260722T212954Z_v3",
+      "queue_id": "V3-EXQ-792a",
+      "claim_ids": [
+        "MECH-457"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "V3-EXQ-792a (repaired retest of 792, which was non_contributory/measurement_test_design_defect): flagged vacuous_pass by the indexer, but USER-CONFIRMED (2026-07-24) as a GENUINE PASS. The indexer flag fires on the failed non-gating C_anchor_bound_dose_response criterion -- but 792a DELIBERATELY demoted that broken DV to non-gating and REPLACED it with the load-bearing C_anchor_bound_vs_measured_control, which PASSED non-degenerately: an anchored arm suppressed > 0.10 of the unconstrained control's MEASURED kl-drift (control eroded 20.933 -> 11.667). C_anchored_arm_consolidates (consolidation not freezing: KL>0.001, peak>=1.05x install) also PASS. First genuine SUPPORTS for MECH-457's retention-consolidation leg. NB retention-consolidation is a DISTINCT leg from the competence-bootstrap leg that carries the FAIL campaign.",
+      "routing": "governance",
+      "narrow_supports_flag": true,
+      "self_route_label": "retention_consolidation_protects_competence"
+    },
+    {
+      "run_id": "v3_exq_797_mech266_external_task_engagement_instrumentation_20260722T213650Z_v3",
+      "queue_id": "V3-EXQ-797",
+      "claim_ids": [
+        "MECH-266",
+        "SD-032a"
+      ],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "substrate_conditional",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-797: flagged precondition_unmet, self-route commitment_layer_starved. readiness_met PASS but the injection-time commit term fired on < BETA_FLOOR of genuine coordinator ticks (reconstructed from engagement, not a post-hoc latch read). The self-route is MEANINGFUL not vacuous: H1 (nav-competence) and H2 (coordinator argmax frozen) were BOTH falsified BEFORE this run (467d 3/3 contact guard; direct coordinator execution), so this spike discriminates within the remaining injection-path space and localises the bottleneck to the BG / action-commitment layer -- the latch is the only engagement term that can clear the flip point. Route to implement-substrate on the BG commitment layer (route_upstream_bg_commitment). non_contributory as direct evidence for MECH-266.",
+      "routing": "implement-substrate",
+      "pending_retest_after_substrate": true,
+      "self_route_label": "commitment_layer_starved"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "C2: three claims' SOLE behavioural harm-advantage supports (ARC-007 via 114a, ARC-018 via 120a, Q-020 via 266b) each collapse below the 15% bar once selection is E3-routed, the episode budget is matched, and a static no-op control is present. Each prior support was a denominator artefact of a constant-action stream.",
+    "is_independent_bugs": false,
+    "structural_property": "The round-trip harm-navigation advantage does not survive a matched-budget, E3-routed, static-controlled redesign for ANY of the three claims -- a shared measurement artefact (constant-action denominator), not three independent mechanism failures. The mechanism CLASS existence-proof is intact; the behavioural translation to a harm advantage is what fails uniformly.",
+    "readings": [
+      "behavioural_support_was_measurement_artefact",
+      "mechanism_class_intact_translation_fails"
+    ]
+  }
+}
