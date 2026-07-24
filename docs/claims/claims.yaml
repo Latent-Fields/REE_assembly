@@ -40269,6 +40269,26 @@
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: ARC-070
+  implementation_note: >-
+    SUBSTRATE BUILT 2026-07-24 in ree-v3 (ree_core/policy/policy_decomposition.py), default
+    OFF and bit-identical when OFF. MECH-321 (below) is the sole registered child mechanism;
+    this entry's implementation IS MECH-321's implementation. Loud precondition:
+    use_policy_decomposition=True requires hippocampal.use_event_segmenter=True (MECH-321
+    reads MECH-288's boundary_on(stream="rollout", ...)). Master switch
+    REEConfig.use_policy_decomposition; decomposition_vs_threshold 0.4 (matches this
+    codebase's existing vs_gate_e1/e2_threshold convention), decomposition_depth_cap 3
+    (mirrors ARC-071's chunk_max_depth default). 15 interface contracts in
+    ree-v3/tests/contracts/test_arc070_policy_decomposition.py. NO EXPERIMENTAL EVIDENCE YET
+    -- v3_pending stays True; a substrate-readiness diagnostic (does decomposition fire and
+    correctly withhold/replace a chunk candidate) is queued separately, and the full
+    ARM_0/ARM_1/ARM_2 discriminative-pair design from MECH-321's functional_restatement is a
+    LATER experiment. THE ASYMMETRY WITH ARC-071: unlike ARC-071's MECH-094-strict write
+    refusal (hallucinated content must never mint a chunk it can commit to), ARC-070
+    legitimately fires under hypothesis_tag=True during rollout deliberation -- that is its
+    PRIMARY phase, not an exception. PolicyDecomposition.evaluate() has no residue-write side
+    effect at all, so there is nothing to refuse; hypothesis_tag is a diagnostics label only.
+    Closes the family loop the 2026-07-22 ARC-071 landing left open: a chunk can now form,
+    dissolve, AND be re-decomposed under prediction failure.
   title: "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'"
   claim_type: architectural_commitment
   subject: policy.decomposition_on_prediction_failure
@@ -41221,6 +41241,38 @@
   location: docs/architecture/non_deficit_action_drives.md
 
 - id: MECH-321
+  implementation_note: >-
+    SUBSTRATE BUILT 2026-07-24 in ree-v3, default OFF and bit-identical when OFF.
+    ree_core/policy/policy_decomposition.py: DecompositionDecision, PolicyDecomposition,
+    PolicyDecompositionConfig -- pure decision logic (evaluate() implements the R1 OR
+    trigger against a caller-supplied region V_s and MECH-288.boundary_on(stream="rollout",
+    ...); decompose_sequence() is the one-level, library-aware tiling helper). Wired into
+    ree_core/hippocampal/module.py (set_decomposition_source, _apply_policy_decomposition --
+    pre-commit / R4 first phase: withholds a triggering ARC-071 chunk candidate and replaces
+    it with recursively-tiled leaf-tile candidates up to depth_cap, or excludes it when
+    depth_cap is reached / no tiles exist) and ree_core/agent.py (instantiation with a loud
+    precondition on hippocampal.use_event_segmenter; a mid-execution / R4 second phase abort
+    hook beside the existing MECH-091 / rung-6 / SD-034 principled commit-latch releases;
+    get_policy_decomposition_state API). Master switch REEConfig.use_policy_decomposition; NO
+    hippocampal sub-config mirror needed (HippocampalModule acts on whether
+    set_decomposition_source() was called, matching the external-source-injection pattern
+    ARC-071 already established for _chunk_source -- not on a config flag it reads itself).
+    R3 depth cap defaults to 3 (mirrors ARC-071's chunk_max_depth so the inverse operations
+    stay symmetric). 15 interface contracts in
+    ree-v3/tests/contracts/test_arc070_policy_decomposition.py; registered PROBED in
+    ree-v3/tests/test_flag_inertness.py. NO EXPERIMENTAL EVIDENCE YET -- v3_pending stays
+    True; the discriminative-pair validation experiment specified below (ARM_0/ARM_1/ARM_2)
+    is deferred behind a substrate-readiness diagnostic queued separately, mirroring how
+    ARC-071's own behavioural-latency measurement was deferred past its substrate-readiness
+    diagnostic. CAUGHT DURING THIS LANDING'S OWN ACTIVATION SMOKE TEST: decompose_sequence()'s
+    first draft returned no tiles whenever a primitive's depth was <=1, which made the single
+    most common ARC-071 chunk shape (depth 1, composed directly of raw actions) permanently
+    un-decomposable -- every triggering depth-1 chunk landed as marked_unreliable/dropped
+    rather than genuinely re-segmented. Fixed to skip only the library sub-chunk lookup at
+    depth<=1 while still falling through to raw-action tiling (contract C3 pins this as a
+    regression guard). See ARC-070's implementation_note for the ARC-071-asymmetry framing
+    (MECH-321 has no MECH-094 write-refusal branch; hypothesis_tag is a diagnostics label,
+    not a gate on evaluate() itself).
   title: "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007). Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged)."
   claim_type: mechanism_hypothesis
   subject: policy.decomposition_via_event_segmenter
