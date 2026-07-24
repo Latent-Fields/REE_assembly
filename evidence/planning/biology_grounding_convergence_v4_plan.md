@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Biology-Grounding Convergence (ARC-106 forward roadmap)"
   registered: 2026-06-20
-  last_updated: 2026-07-07
+  last_updated: 2026-07-24
   scope_claims: [ARC-106, MECH-439, SD-034, MECH-090, MECH-436, ARC-035, SD-011]
   sibling_plans: [behavioral_diversity_isolation, commitment_closure, drives_motivation_v4, goal_deliberation_v4, ethics_perimeter]
   roadmap_note: >
@@ -57,7 +57,7 @@ closure_plan:
     - id: "biology_grounding_convergence_v4:BG-2"
       title: "Action selector (E3) grounding L2 -> L3 [V3 instance -- mirrors GAP-I (falsifier front) + GAP-J (build front)]"
       phase: 2
-      status: in_progress
+      status: done
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [MECH-439, ARC-107, MECH-448, MECH-449]
@@ -66,22 +66,39 @@ closure_plan:
       readiness_gate:
         - "V3-OWNED by behavioral_diversity_isolation:GAP-I (falsifier front, generation:v3) AND behavioral_diversity_isolation:GAP-J (the ARC-107 BG-selector-constitution BUILD front, generation:v3, lead MECH-448 / follow-on MECH-449). This node MIRRORS that grounding-level status and does NOT duplicate or own it -- no owner_exq, generation:v4"
         - "Neural analog: basal-ganglia disinhibitory competition (direct/indirect Go-NoGo + hyperdirect/STN conflict-graded hold + pallidal permission gate), NOT argmax-over-value. Divergence: deterministic argmin over a near-monopolised scalar F (88-89% committed-selection variance, V3-EXQ-571)"
-        - "L2 -> L3 transition: 689a SETTLED no-lift (conflict-grade near-tie family exhausted; A1B1 0/3) => the import as a near-tie parametric tweak is NOT validated -> escalate to the rank-preserving F->eligibility demotion build (MECH-448) carried by GAP-J. L3 promotion now gated on GAP-J's MECH-448 falsifier, which is queued + in flight as V3-EXQ-689d (ree-v3 main 8d87d4a; coordinator DB pending ree-cloud-3; script experiments/v3_exq_689d_mech448_f_eligibility_demotion_falsifier.py): a 689d PASS (committed-class entropy strict-above the conflict-grade controls >=2/3, acceptance arc_107_selector_constitution_design_2026-06-20.md s4) advances the selector grounding to L3. 689d PROMOTES NOTHING (MECH-448 stays candidate). 689c (Factor-B-alone, also in flight) does NOT gate build scope -- stripped of decision authority by the MECH-442 Section-7 fidelity steer (no-authority confirmatory data only; GAP-J governance_2026_06_20c)"
-      last_updated: 2026-06-20
+        - "L2 -> L3 transition: 689a SETTLED no-lift (conflict-grade near-tie family exhausted; A1B1 0/3) => escalate to the rank-preserving F->eligibility demotion build (MECH-448) carried by GAP-J. GAP-J's MECH-448 falsifier PASSED as V3-EXQ-689d (2026-06-21: committed-class entropy strict-above both collapsed controls, reaching the proposer ceiling; acceptance arc_107_selector_constitution_design_2026-06-20.md s4 MET) and GAP-J went status:done on that PASS. 689d was then WITHDRAWN 2026-07-20 (failure_autopsy_V3-EXQ-689d_2026-07-20, non_contributory/measurement_test_design_defect: hold-weighted DV + a matched-noise control bit-identical to its own baseline; MECH-448 reverted provisional->candidate in claims.yaml). The repaired-instrument successor V3-EXQ-689i (confirmed 2026-07-24, user-adjudicated 'gate defect, science upheld') closes the defects 689d's own autopsy identified and RECONFIRMS C_PRIMARY (committed-class entropy strict-above both collapsed controls) cleanly -- 6 of 8 load-bearing criteria pass, including C_PRIMARY, C_RANK_PRESERVING and C_SAFETY. This restores the L3-advancing criterion this node names, on valid grounds, with 689i superseding the withdrawn 689d as its evidentiary basis. The two gates 689i did NOT clear (C_NOISE_LIFTS -- a first-use Factor-B noise-control power gap; C_READINESS -- a comparator-direction ambiguity needing a script read) are instrument-side per the autopsy's four-layer diagnosis, not the mechanism test. V3-EXQ-689j (queued 2026-07-24) is a TARGETED, non-gating follow-up repowering ONLY C_NOISE_LIFTS (2 arms / 12 seeds, ARM_ON/ARM_OFF dropped entirely) -- it explicitly does NOT retest C_PRIMARY and does not bear on this transition. L3 is REACHED on GAP-J's build-validation front specifically (this node mirrors GAP-J status:done); the broader GAP-I falsifier front (downstream generalisation of the F-dominance conversion across behavioural channels beyond GAP-A) stays in-progress separately and was never what this node's L2->L3 criterion gated on -- only GAP-J's MECH-448 discrimination test was. CAVEAT: GAP-J's own plan-doc text (last_updated 2026-06-21) has not itself been reconciled for the 689d-withdrawal/689i-restoration cycle and still cites only 689d as if unwithdrawn -- a staleness gap in the owning node, flagged here but NOT corrected (do not edit GAP-I/GAP-J from this plan)"
+      last_updated: 2026-07-24
       completion_note: >
-        The selector is the worked example of the framework and the only
-        currently-V3 slice. Its grounding convergence (F->eligibility-set +
-        stochastic-commit) is the F-dominance campaign: the GAP-I falsifier
-        front (689a settled no-lift) plus the GAP-J build front (ARC-107
-        BG-selector constitution; MECH-448 rank-preserving F->eligibility
-        demotion lead, MECH-449 Go/No-Go follow-on). This node exists only so
-        the grounding programme is visible as a whole. Do not edit GAP-I or
-        GAP-J from here -- the live F-dominance campaign owns them.
-        CROSS-LINK 2026-06-20: the MECH-448 falsifier that gates this node's
-        L2->L3 transition is now queued as V3-EXQ-689d (mirrors GAP-J owner_exq;
-        this node keeps owner_exq null by the v4-mirror design). No status change
-        (stays in_progress; 689d PROMOTES NOTHING). Reconcile session
-        reconcile-arc107-689d-closure-nodes-20260620T1934Z.
+        L2 -> L3 REACHED 2026-07-24, mirroring GAP-J status:done. The selector
+        is the worked example of the framework and the only currently-V3
+        slice. Its grounding convergence (F->eligibility-set + stochastic-commit)
+        is the F-dominance campaign: the GAP-I falsifier front (689a settled
+        no-lift, 2026-06-20) plus the GAP-J build front (ARC-107 BG-selector
+        constitution; MECH-448 rank-preserving F->eligibility demotion lead,
+        MECH-449 Go/No-Go follow-on). GAP-J's MECH-448 falsifier PASSED as
+        V3-EXQ-689d (2026-06-21), was WITHDRAWN 2026-07-20 on a measurement
+        defect (hold-weighted DV + a vacuous matched-noise control;
+        failure_autopsy_V3-EXQ-689d_2026-07-20), and was RESTORED on a repaired
+        instrument by V3-EXQ-689i (confirmed 2026-07-24, "gate defect, science
+        upheld" -- C_PRIMARY passes cleanly, 6/8 load-bearing criteria).
+        V3-EXQ-689j (queued 2026-07-24) is a narrow open follow-up on 689i's
+        one instrument-side gap (Factor-B noise-control power); it does not
+        retest C_PRIMARY and does not reopen this transition. CLAIM PROMOTION
+        IS SEPARATE from grounding level (same pattern as BG-4): MECH-448's
+        claims.yaml `status` field stays `candidate` pending a full governance
+        re-promotion pass, though `live_status.reading` already reads
+        `provisional` as of 689i (2026-07-24) -- the L3 grounding criterion
+        (divergence-audited AND validated on a REE falsifier) is satisfied
+        independent of that formal claim-status lag. BG-3's live-grounding-front
+        trigger ("FIRED: 689a routed readiness-met/no-lift") already fired
+        independently in 2026-06-20 on 689a's routing verdict alone -- it does
+        NOT depend on 689i's PASS or on this node reaching done; the two are
+        separate triggers that happen to share the BG-2 depends_on edge. This
+        node exists only so the grounding programme is visible as a whole. Do
+        not edit GAP-I or GAP-J from here -- the live F-dominance campaign owns
+        them; GAP-J's own text is flagged (not fixed) as stale for the
+        689d-withdrawal/689i cycle. Reconcile session festive-moser-b1aebf,
+        2026-07-24.
     - id: "biology_grounding_convergence_v4:BG-3"
       title: "Commitment / de-commit latch grounding L1 -> L3"
       phase: 3
@@ -272,12 +289,18 @@ Each node's `readiness_gate` is the V3-era prerequisite that must land before
 that component's grounding can honestly advance. That prerequisite **is** the
 deferral:
 
-- **BG-2 (selector)** -- the only currently-V3 slice -- mirrors the live
-  `behavioral_diversity_isolation:GAP-I` node (owner V3-EXQ-689a). It does not
-  own or duplicate it. Its L2->L3 transition is gated on 689a's
-  gap-concentrated-vs-uniform verdict (the framework's load-bearing test).
-- **BG-3 (commitment latch)** is gated behind BG-2: if 689a routes
-  readiness-met-no-lift, the blocker is the latch and BG-3 becomes the live front.
+- **BG-2 (selector)** -- the only currently-V3 slice -- mirrors
+  `behavioral_diversity_isolation:GAP-I` (falsifier front) and `:GAP-J` (build
+  front). L2->L3 DONE 2026-07-24: 689a settled no-lift on the near-tie family,
+  escalating to GAP-J's MECH-448 rank-preserving demotion build, whose
+  falsifier reached a confirmed PASS on C_PRIMARY via V3-EXQ-689i (2026-07-24,
+  repaired-instrument successor to the withdrawn V3-EXQ-689d). V3-EXQ-689j
+  (queued 2026-07-24) is a narrow, non-gating follow-up on a residual
+  noise-control instrument gate only.
+- **BG-3 (commitment latch)** was gated behind BG-2: if 689a routes
+  readiness-met-no-lift, the blocker is the latch and BG-3 becomes the live
+  front -- FIRED 2026-06-20 on 689a's routing verdict alone, independent of
+  BG-2's later GAP-J outcome.
 - **BG-4 (drive)** -- L2 -> L3 DONE 2026-07-07. Was gated on the V3-EXQ-514u
   measurement-redesign (the scalar gain knob was falsified); 514u LANDED
   PASS/supports and was governance-applied 2026-06-21 (MECH-436 ceiling lifted),
@@ -311,10 +334,16 @@ better-finish enrichment), it is pulled into V3 like this -- `generation` is a
    pointer to the new V3 node (status `in_progress`, `owner_exq: null`), so the
    programme stays legible end-to-end without double-counting.
 
-This is not hypothetical: **BG-2 ↔ `behavioral_diversity_isolation:GAP-I` is the
-pattern already running.** The selector grounding was the first node to be V3-
-required; it lives as a counted V3 node in GAP-I, and BG-2 is its mirror. BG-3
-(commitment) follows the same route the moment 689a makes it V3-blocking. BG-4
+This is not hypothetical: **BG-2 ↔ `behavioral_diversity_isolation:GAP-I`/`:GAP-J`
+is the pattern already running.** The selector grounding was the first node to
+be V3-required; it lives as counted V3 nodes in GAP-I (falsifier front,
+in-progress) and GAP-J (build front, done), and BG-2 is their mirror --
+reaching L2->L3 itself on 2026-07-24 once GAP-J's build-validation front
+(MECH-448, confirmed on the repaired-instrument V3-EXQ-689i) went done, per
+the BG-2 node's own text. BG-3 (commitment) followed the same trigger
+structure, but on its own separate condition -- it fired the moment 689a
+itself routed readiness-met-no-lift (2026-06-20), not when BG-2 later reached
+done. BG-4
 (drive) has reached L3 grounding on a V3 falsifier (514u, applied 2026-06-21) but
 is NOT pulled into V3: MECH-436 is v3_pending-held and closes no live V3 node
 today, so phase-label-follows-dependency has not fired -- it stays a graduated
