@@ -58939,6 +58939,27 @@
     in the SYSTEM. A cross-stream statistic that survives it was measuring the clock,
     which is the sharpest available discriminator between Outcome A and Outcome B.
     A result that merely recovers the configured update periods is Outcome B, not a PASS.
+
+    STRUCTURE-DESTROYING (LANDMARK-REMOVAL) ARM BUILT 2026-07-22 (ree-v3 2f0a91e,
+    REE_assembly 6e5b20c8c1): experiments/_lib/q081_landmark_removal.py, 35 contracts in
+    tests/contracts/test_q081_landmark_removal.py, full suite 2212 passed. It is an
+    EXPERIMENT-LAYER arm with NO ree_core change: it wraps hippocampal.event_segmenter.step,
+    the single choke point feeding all three live consumers (MECH-288 boundary queue,
+    MECH-287 broadcast trigger, MECH-269 anchor install), following the
+    consolidation_lesion_harness / V3-EXQ-702 precedent. The primary lever is a YOKED
+    PERMUTATION of the intact arm's own boundary train, matched seed-for-seed and
+    episode-for-episode, permuting (interval, payload) units jointly, so that boundary
+    count, IEI multiset, posterior multiset (= the broadcast drive) and scale mix are
+    preserved EXACTLY, not merely distributionally. Suppression was REJECTED as primary
+    (it removes the drive as well as the alignment -- a lesion, not a scramble); online
+    rate-matched resampling was REJECTED (it imposes geometric IEIs on a train that is
+    bursty by construction). CLOSED-LOOP caveat: Chang's stimulus was exogenous, REE's is
+    not, so environmental input statistics cannot be preserved by fiat -- they are
+    preserved BY CONSTRUCTION at the intervention site and MEASURED downstream against
+    pre-registered thresholds; a breach marks the arm CONFOUNDED rather than reportable as
+    a null, and behavioural reach is asserted (assert_behavioural_reach), not assumed.
+    NOT YET RUNNABLE: the per-step multi-stream recorder is still unlanded on ree-v3 main.
+    Design record: evidence/planning/q081_landmark_removal_arm_design.md
     CEILING ON WHAT THE SURROGATE CAN DELIVER: clearing a well-built null is NECESSARY
     for Outcome A and nowhere near sufficient. Wired coordination is real coordination
     and will correctly clear any surrogate test; only the ablation series separates A
