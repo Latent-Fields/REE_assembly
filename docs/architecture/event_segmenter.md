@@ -175,10 +175,29 @@ class Scale:
 class EventSegmenter:
     def __init__(self, scales: list[Scale], emit_to: list[str],
                  scale_id_format: str = "{outer}.{inner}"): ...
-    def step(self, latent_dict: dict, pe_dict: dict, t: int) -> list[BoundaryEvent]: ...
-    def force_boundary(self, scale: str, reason: str) -> BoundaryEvent: ...
-    def current_segment_id(self) -> str: ...   # returns "outer.inner"
+    def step(self, latent_dict: dict, pe_dict: dict, t: int,
+              input_stream: str = "observation") -> list[BoundaryEvent]: ...
+    def force_boundary(self, scale: str, reason: str, t: int | None = None,
+                        input_stream: str = "observation") -> BoundaryEvent: ...
+    def current_segment_id(self, input_stream: str = "observation") -> str: ...   # "outer.inner"
+    def boundary_on(self, stream: str, latent: dict, pe: dict | None = None,
+                     t: int | None = None) -> BoundaryQueryResult: ...
+    def reset(self) -> None: ...   # resets BOTH streams
 ```
+
+**Bidirectional substrate (input_stream), IMPLEMENTED 2026-07-24.** Every piece of
+per-tick state (detector instances, last-fire ticks, outer/inner counters) is keyed by
+`input_stream` (`"observation" | "rollout"`), built for both at construction time. A
+rollout-stream tick cannot advance the observation stream's `segment_id` or perturb its
+detector calibration -- MECH-094 is enforced structurally (disjoint dict keys), not by
+caller convention. `boundary_on(stream, latent, pe=None, t=None) -> BoundaryQueryResult`
+(`fired: bool`, `posterior: float`, `events: list[BoundaryEvent]`) is the ergonomic query
+entrypoint for the rollout/imagination consumer -- matches the call shape MECH-321's spec
+names (`MECH-288.boundary_on(stream=rollout, latent=..., pe=...)`, claims.yaml MECH-321).
+`BoundaryEvent` gained an `input_stream: str = "observation"` field. All defaults preserve
+the pre-extension single-stream call shape exactly; the one existing caller
+(`agent.py` `sense()`) is unaffected. See `ree_core/hippocampal/event_segmenter.py` module
+docstring for the full MECH-094 argument.
 
 ## Canonical default config (to ship)
 
@@ -296,3 +315,20 @@ Candidate experiment names (not yet queued):
     BoundaryEvent subscriber in the MECH-288 era. Whether to refactor MECH-287 claim text
     to make this explicit is a downstream governance decision (not contradictory with
     current entries; tracked in MECH-287 status log).
+
+- **2026-07-24** -- **`input_stream` extension IMPLEMENTED** (the bidirectional-substrate
+  commitment from the 2026-05-10 ARC-070 lit-pull addendum, claims.yaml). `step()` /
+  `force_boundary()` gained an `input_stream: str = "observation"` parameter; a new
+  `boundary_on(stream, latent, pe=None, t=None) -> BoundaryQueryResult` query entrypoint
+  matches MECH-321's spec call shape. Detector instances and outer/inner/last-fire counters
+  are now keyed per-stream (`{"observation": ..., "rollout": ...}`), built for both at
+  construction time, so a rollout-stream tick cannot share so much as a sliding-window mean
+  with the observation stream -- MECH-094 (rollout fires must not advance the observation
+  `segment_id`) is enforced structurally, not by caller convention. All defaults preserve
+  the pre-extension single-stream call shape exactly; the existing `agent.py` `sense()` call
+  site is unaffected. This is the substrate prerequisite ARC-070/MECH-321 (policy
+  decomposition on prediction failure) named as blocking -- see MECH-321's `depends_on`.
+  Does not itself change MECH-288's promote-to-active status (Phase 2 ii/iii/iv integration
+  + the falsifiable predictions above remain the open gate) and does not clear MECH-321's
+  own `v3_pending` (ARC-070 itself and live MECH-094-gated usage remain unbuilt). Pseudocode
+  API + canonical example above updated to match.

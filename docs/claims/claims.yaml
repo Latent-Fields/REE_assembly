@@ -31080,6 +31080,25 @@
     promotion bar above -- integration into Phase 2 (ii)+(iii)+(iv) downstream
     substrate plus the falsifiable predictions -- remains the separate
     promote-to-active gate.
+
+    [2026-07-24 substrate -- input_stream extension IMPLEMENTED]: the
+    bidirectional-substrate commitment recorded above (2026-05-10) is now
+    substrate-implemented in event_segmenter.py. step() / force_boundary() /
+    the new boundary_on() query entrypoint all take input_stream
+    ("observation" | "rollout", default "observation"); detector instances
+    and outer/inner/last-fire counters are fully isolated per stream, so
+    MECH-094 (a rollout tick must not advance the observation segment_id)
+    is enforced structurally rather than by caller convention. This is the
+    substrate prerequisite MECH-321/ARC-070 named as blocking (see MECH-321
+    depends_on and its functional_restatement's MECH-288.boundary_on(...)
+    call). Default input_stream="observation" is bit-identical to the
+    pre-extension single-stream call shape; the only existing caller
+    (agent.py sense()) is unaffected. Does NOT itself promote this claim --
+    the promote-to-active gate above (Phase 2 ii/iii/iv integration +
+    falsifiable predictions) is unchanged and still open. See
+    ree-v3/CLAUDE.md MECH-288 entry for the landing commit. This does not
+    touch MECH-321's own v3_pending (still true -- its other dependencies,
+    ARC-070 itself and live MECH-094-gated usage, remain unbuilt).
   location: docs/architecture/event_segmenter.md
 
 - id: MECH-289
