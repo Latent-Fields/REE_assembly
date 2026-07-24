@@ -1,0 +1,165 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_813_survival_zeroed_ppo_latent_policy_probe",
+  "run_id": "v3_exq_813_survival_zeroed_ppo_latent_policy_probe_20260724T143333Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T14:33:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "declared_null": "Neither ppo_ree_latent nor ppo_raw_obs clears the 1.0 competence floor (strict majority of seeds) at hazard-free D3 under the W3_survival_zeroed (consumption-only, imported verbatim from V3-EXQ-808) objective -> policy_learning_isolated_after_objective_correction. The failure can no longer be attributed to a survival-dominated objective -- deleted BY CONSTRUCTION, not merely by measurement -- so it isolates policy-learning inadequacy (or a deeper obstruction) as the surviving candidate explanation. This does NOT prove H-policy-learning outright; it closes the objective-misspecification confound on the POLICY axis specifically. H-objective-misspecification itself is adjudicated on the reward axis by its own dedicated probe, V3-EXQ-808, independently of this script's outcome.",
+    "alternative_outcome_note": "If ppo_ree_latent (or ppo_raw_obs) DOES clear the floor once the objective is corrected, that WEAKENS H-policy-learning and further corroborates H-objective-misspecification from the policy side: a real actor on the representation CAN forage; 737b's original null was an artifact of the mis-set reward, not of the learner or the representation.",
+    "sibling_probe_independence_note": "This probe and V3-EXQ-808 are independent legs on different design axes (policy vs reward) of the same GOV-FANOUT-1 portfolio. Neither one's outcome is a precondition for the other; this script does not read or depend on V3-EXQ-808's manifest, and vice versa.",
+    "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+    "preconditions": [
+      {
+        "name": "ppo_ree_latent::zworld_encoder_trained_in_p0",
+        "precondition": "zworld_encoder_trained_in_p0",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The z_world world_encoder must have moved during P0 (SD-070 warmup path). An unmoved encoder means ppo_ree_latent is PPO on a frozen random projection, which cannot license an 'isolates policy-learning' reading.",
+        "control": "worst-cell world_encoder_max_abs_delta over all seed warmups vs 1e-6",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2752901315689087,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable under the LEARNER'S OWN observability (the same 5x5 local field), not only under a privileged global oracle (the 732a confound). 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_ree_latent::consumption_share_dominates_under_correction",
+        "precondition": "consumption_share_dominates_under_correction",
+        "arm": "ppo_ree_latent",
+        "kind": "readiness",
+        "description": "At the W3_survival_zeroed weighting, the train-phase realised return must be overwhelmingly consumption (survival-linked terms are deleted by construction; harm is rare-to-absent at hazard-free D3). A below-floor reading signals an implementation defect, not a finding -- the objective correction did not actually land.",
+        "control": "worst-cell train-phase consumption_share for this arm at W3_survival_zeroed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.571669,
+        "threshold": 0.9,
+        "met": false
+      },
+      {
+        "name": "ppo_raw_obs::d3_oracle_clears_floor",
+        "precondition": "d3_oracle_clears_floor",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "The hazard-free D3 env must be floor-achievable with global information.",
+        "control": "greedy_oracle worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.0,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::d3_local_view_greedy_clears_floor",
+        "precondition": "d3_local_view_greedy_clears_floor",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "The env must be floor-achievable under the LEARNER'S OWN observability (the same 5x5 local field), not only under a privileged global oracle (the 732a confound). 738 measured 48.05 here.",
+        "control": "local_view_greedy worst-seed mean resources/ep vs the 1.0 competence floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 45.75,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ppo_raw_obs::consumption_share_dominates_under_correction",
+        "precondition": "consumption_share_dominates_under_correction",
+        "arm": "ppo_raw_obs",
+        "kind": "readiness",
+        "description": "At the W3_survival_zeroed weighting, the train-phase realised return must be overwhelmingly consumption (survival-linked terms are deleted by construction; harm is rare-to-absent at hazard-free D3). A below-floor reading signals an implementation defect, not a finding -- the objective correction did not actually land.",
+        "control": "worst-cell train-phase consumption_share for this arm at W3_survival_zeroed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.809733,
+        "threshold": 0.9,
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_ppo_ree_latent_clears_floor_at_D3_corrected_objective": false,
+      "C_ppo_raw_obs_clears_floor_at_D3_corrected_objective": false
+    },
+    "criteria": [
+      {
+        "name": "C_ppo_ree_latent_clears_floor_at_D3_corrected_objective",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0.5,
+        "threshold": 1.0
+      },
+      {
+        "name": "C_ppo_raw_obs_clears_floor_at_D3_corrected_objective",
+        "load_bearing": true,
+        "passed": true,
+        "measured": 9.033333,
+        "threshold": 1.0
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "5cb59b77b6953887e1453e386b58b5e29693a7f8f58026525879371839874031"
+}
