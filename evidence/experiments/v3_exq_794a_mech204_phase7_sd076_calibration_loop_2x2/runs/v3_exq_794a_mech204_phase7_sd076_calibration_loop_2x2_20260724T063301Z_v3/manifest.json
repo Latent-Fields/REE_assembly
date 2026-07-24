@@ -1,0 +1,444 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2",
+  "run_id": "v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2_20260724T063301Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T08:15:18Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-204",
+    "SD-076"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "SD-076": "does_not_support",
+    "MECH-204": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "drift_source_insufficient_dv_still_tautological",
+    "preconditions": [
+      {
+        "name": "ARM_OFF_OFF::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_OFF_OFF",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49162181311818137,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_OFF_OFF::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_OFF_OFF",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.008734636207032286,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.48151870654709994,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01372666469704766,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::zero_point_populated",
+        "precondition": "zero_point_populated",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "fraction of this arm's cells whose serotonin._persistent_zero_point is populated at eval start. The broadcast returns its no-target sentinel (0.0) and does nothing when it is None.",
+        "control": "a REM entry must have occurred during training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_BCAST_ONLY::broadcast_moves_rv",
+        "precondition": "broadcast_moves_rv",
+        "arm": "ARM_BCAST_ONLY",
+        "kind": "readiness",
+        "description": "mean over seeds of |rv_final(this arm) - rv_final(matched broadcast-OFF arm)|. SAME STATISTIC the DV routes on (rv level), measured against a matched positive control differing only in the broadcast flag -- not a magnitude proxy (the V3-EXQ-643 defect).",
+        "control": "matched broadcast-OFF arm at the same inflation level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.004412536740986787,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4956449653527696,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.006600314803550076,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "mean over seeds of (rv_final(matched inflation-OFF arm) - rv_final(this arm)). SIGNED: SD-076 must push rv DOWN (below the symmetric-EMA level) or it is not an inflation source. Same statistic the DV routes on.",
+        "control": "matched inflation-OFF arm at the same broadcast level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0014218882874486034,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry, same broadcast level)|. THE 794 GATE: two nominally different doses producing the same rv is a SATURATION signature, not a null -- 794 measured EXACTLY 0.010000 on all four inflation arms and a bit-identical overconfidence_score at both doses. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same broadcast level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0001273661331108976,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4950040852757353,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.009505845336489837,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::zero_point_populated",
+        "precondition": "zero_point_populated",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "fraction of this arm's cells whose serotonin._persistent_zero_point is populated at eval start. The broadcast returns its no-target sentinel (0.0) and does nothing when it is None.",
+        "control": "a REM entry must have occurred during training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::broadcast_moves_rv",
+        "precondition": "broadcast_moves_rv",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "mean over seeds of |rv_final(this arm) - rv_final(matched broadcast-OFF arm)|. SAME STATISTIC the DV routes on (rv level), measured against a matched positive control differing only in the broadcast flag -- not a magnitude proxy (the V3-EXQ-643 defect).",
+        "control": "matched broadcast-OFF arm at the same inflation level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.00045056549661218713,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "mean over seeds of (rv_final(matched inflation-OFF arm) - rv_final(this arm)). SIGNED: SD-076 must push rv DOWN (below the symmetric-EMA level) or it is not an inflation source. Same statistic the DV routes on.",
+        "control": "matched inflation-OFF arm at the same broadcast level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.005383859531823202,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_LO::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_BOTH_LO",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry, same broadcast level)|. THE 794 GATE: two nominally different doses producing the same rv is a SATURATION signature, not a null -- 794 measured EXACTLY 0.010000 on all four inflation arms and a bit-identical overconfidence_score at both doses. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same broadcast level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0002860950707495209,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4956783544324203,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.005874636167992761,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "mean over seeds of (rv_final(matched inflation-OFF arm) - rv_final(this arm)). SIGNED: SD-076 must push rv DOWN (below the symmetric-EMA level) or it is not an inflation source. Same statistic the DV routes on.",
+        "control": "matched inflation-OFF arm at the same broadcast level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.001549254420559501,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry, same broadcast level)|. THE 794 GATE: two nominally different doses producing the same rv is a SATURATION signature, not a null -- 794 measured EXACTLY 0.010000 on all four inflation arms and a bit-identical overconfidence_score at both doses. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same broadcast level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0001273661331108976,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49554988024310365,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv. Phase 7's broadcast read is a no-op until a REM entry populates serotonin._persistent_zero_point.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.008624914123139723,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::zero_point_populated",
+        "precondition": "zero_point_populated",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "fraction of this arm's cells whose serotonin._persistent_zero_point is populated at eval start. The broadcast returns its no-target sentinel (0.0) and does nothing when it is None.",
+        "control": "a REM entry must have occurred during training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::broadcast_moves_rv",
+        "precondition": "broadcast_moves_rv",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "mean over seeds of |rv_final(this arm) - rv_final(matched broadcast-OFF arm)|. SAME STATISTIC the DV routes on (rv level), measured against a matched positive control differing only in the broadcast flag -- not a magnitude proxy (the V3-EXQ-643 defect).",
+        "control": "matched broadcast-OFF arm at the same inflation level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.00029183655897356293,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "mean over seeds of (rv_final(matched inflation-OFF arm) - rv_final(this arm)). SIGNED: SD-076 must push rv DOWN (below the symmetric-EMA level) or it is not an inflation source. Same statistic the DV routes on.",
+        "control": "matched inflation-OFF arm at the same broadcast level, same seeds",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.005669954602572723,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_BOTH_HI::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_BOTH_HI",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry, same broadcast level)|. THE 794 GATE: two nominally different doses producing the same rv is a SATURATION signature, not a null -- 794 measured EXACTLY 0.010000 on all four inflation arms and a bit-identical overconfidence_score at both doses. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same broadcast level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0002860950707495209,
+        "threshold": 0.0001,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_inflation_creates_absolute_overconfidence",
+        "load_bearing": true,
+        "passed": false,
+        "operative_asymmetry": null,
+        "operative_level": null,
+        "n_seeds_overconfident": 0,
+        "min_required": 2,
+        "per_level_n_seeds": {
+          "LO": 0,
+          "HI": 0
+        }
+      },
+      {
+        "name": "C2_broadcast_corrects_under_drift",
+        "load_bearing": true,
+        "passed": false,
+        "mean_delta": 0.0,
+        "sd": 0.0,
+        "evaluated_at_level": null
+      },
+      {
+        "name": "C3_interaction_correction_larger_under_drift",
+        "load_bearing": false,
+        "passed": false,
+        "delta_drift": 0.0,
+        "delta_nodrift": -0.3154261553162019
+      },
+      {
+        "name": "C4_off_off_reproduces_774_ceiling",
+        "load_bearing": false,
+        "passed": true,
+        "off_off_score": -0.19212288776540318
+      },
+      {
+        "name": "C5_asymmetry_dose_response_monotone",
+        "load_bearing": false,
+        "passed": true,
+        "lo_score": -0.04107870854172046,
+        "hi_score": -0.02272394703390973
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_inflation_creates_absolute_overconfidence": true,
+      "C5_asymmetry_dose_response_monotone": false,
+      "C2_broadcast_corrects_under_drift": false,
+      "C3_interaction_correction_larger_under_drift": false,
+      "C4_off_off_reproduces_774_ceiling": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f569f39451e9746adbc2a81be785826d3bf494e3a4c3a3809ad3d79d6e827969"
+}
