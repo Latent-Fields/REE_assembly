@@ -1,0 +1,129 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_812_mech295_cue_authority_sd054",
+  "run_id": "v3_exq_812_mech295_cue_authority_sd054_20260724T085838Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T08:58:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "INVALID_HARNESS",
+    "preconditions": [
+      {
+        "name": "harm_pathway_discriminative",
+        "kind": "readiness",
+        "description": "Harm pathway trained + harm_eval range lifts above 603i noise floor (same non-vacuity precondition as 603n; this experiment reuses the same landed curriculum).",
+        "control": "scaffold_train_harm_pathway=True; measured on P0+Stage-H.",
+        "measured": 0.24842530488967896,
+        "threshold": 0.005,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "reached_p2_alive",
+        "kind": "readiness",
+        "description": "P1 survival >=2/3 seeds so the agent reaches P2 alive.",
+        "control": "P1 survival gate (median episode length last 10 P1 eps >= 75).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "candidate_proximity_evaluable",
+        "kind": "readiness",
+        "description": "candidate_proximity range non-degenerate (same statistic C3 routes on -- NOT a magnitude proxy, the V3-EXQ-643 lesson) AND >= 3 cue-fire ticks recorded, in ARM_CUE_ON, on >=2/3 seeds that reached P2.",
+        "control": "measured directly from the wrapped mech295_bridge calls in ARM_CUE_ON (the positive-gain arm; candidates genuinely differ in world-state, so this is a non-degenerate positive control for the range statistic).",
+        "measured": 0.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0_evaluability": true,
+      "C1_cue_fires": true,
+      "C2_reaches_scoring": true,
+      "C3_selection_authority": true
+    },
+    "criteria": [
+      {
+        "name": "C0_evaluability",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C1_cue_fires",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_reaches_scoring",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_selection_authority",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "c3_diff_in_diff_per_seed": [
+      {
+        "seed": 42,
+        "lift_on": 4.69327911617249e-10,
+        "lift_off": -5.259233362534467e-10,
+        "diff_in_diff": 9.952512478706957e-10
+      },
+      {
+        "seed": 43,
+        "lift_on": -1.2614739635003306e-09,
+        "lift_off": -1.897230072426227e-09,
+        "diff_in_diff": 6.357561089258962e-10
+      },
+      {
+        "seed": 44,
+        "lift_on": -7.64162112505008e-10,
+        "lift_off": -3.926054446283215e-09,
+        "diff_in_diff": 3.1618923337782074e-09
+      }
+    ],
+    "c4_informative_approach_commit_lift_fraction": 0.6666666666666666
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3ca120be2c866f692d68479a7d5b2312f09e3a1e601449d1b6c891aaba574d27"
+}
