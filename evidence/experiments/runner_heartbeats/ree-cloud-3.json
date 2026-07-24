@@ -1,35 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-24T09:09:39Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-813",
-  "current_exq_started_utc": "2026-07-24T08:45:38.459402+00:00",
-  "current_title": "GOV-FANOUT-1 policy-axis probe: re-run 737b PPO-on-latent design under a survival-zeroed objective (H-policy-learning)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 42 / D3_hazard_free",
-    "runs_done": 0,
-    "runs_total": 15,
-    "episodes_done": 60,
-    "episodes_total": 1000,
-    "overall_pct": 0.4
-  },
-  "seconds_elapsed": 1440,
-  "seconds_remaining": 14581,
-  "recent_lines": [
-    "structural-vacuity audit: 8 (spec, arm) pairs checked, no unsatisfiable gate",
-    "Seed 42 Condition D3_hazard_free:warmup_all_on",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0a ep 1/60 (SD-070 z_world encoder)",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0a ep 50/60 (SD-070 z_world encoder)",
-    "[train] ree_allon rung=D3_hazard_free seed=42 phase=P0a ep 60/60 (SD-070 z_world encoder)"
+  "last_tick_utc": "2026-07-24T14:46:01Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-811a",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-790",
+      "result": "FAIL",
+      "completed_at": "2026-07-22T14:27:37.106248+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-797",
+      "result": "PASS",
+      "completed_at": "2026-07-22T21:36:51.152385+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-813",
+      "result": "FAIL",
+      "completed_at": "2026-07-24T14:33:34.601286+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-815",
+      "result": "PASS",
+      "completed_at": "2026-07-24T14:41:52.129181+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-814",
+      "result": "PASS",
+      "completed_at": "2026-07-24T14:41:55.666555+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 746,
-  "runner_version": "r4246 24cd870 2026-07-24 (running r4242 d6fa44a)",
+  "runner_version": "r4267 b45b3d2 2026-07-24 (running r4242 d6fa44a)",
   "gpu": {
     "available": false
   },
