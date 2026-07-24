@@ -1,0 +1,164 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_800_arc007_residue_scramble_dissociation",
+  "run_id": "v3_exq_800_arc007_residue_scramble_dissociation_20260724T063057Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-24T06:30:57Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-007"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "text": "SUBSTRATE NOT READY -- not a verdict on ARC-007. Non-vacuity gate RED in EVERY arm: arm 'A0_INTACT' failed executed_action_diversity; arm 'A1_HIPPO_ABLATED' failed (no applied preconditions); arm 'A2_RESIDUE_PERMUTED' failed executed_action_diversity; arm 'A3_RESIDUE_FROZEN' failed (no applied preconditions). No arm is scored; this run is NOT a refutation.",
+    "preconditions": [
+      {
+        "name": "A0_INTACT::residue_structure_live",
+        "precondition": "residue_structure_live",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "cross-center variance of active residue RBF weights -- a flat field makes the permutation a no-op and would manufacture a false FAIL",
+        "control": "active centers accumulated over the full training phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0004331116215325892,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::base_effect_reproduced",
+        "precondition": "base_effect_reproduced",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "absolute A0->A1 eval harm-rate gap; reproduces the EXQ-114 base effect so a degradation has something to be attributed against",
+        "control": "A1 uniform-random selection vs A0 intact hippocampal selection",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.2837420996147105,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::candidate_score_range",
+        "precondition": "candidate_score_range",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of residue trajectory scores on a positive control -- the SAME statistic the argmin selection routes on. A uniform offset has large magnitude but ~0 range and must trip readiness, never read as a refuted claim (V3-EXQ-643 rule)",
+        "control": "CEM candidates that genuinely differ, probed in P0 after training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31337738037109375,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A0_INTACT::executed_action_diversity",
+        "precondition": "executed_action_diversity",
+        "arm": "A0_INTACT",
+        "kind": "readiness",
+        "description": "distinct EXECUTED action classes. This is the statistic the DV literally routes on: harm_rate is a function of the executed action stream, so if every tick executes the same class the DV is INVARIANT under the residue manipulation and no result is a measurement. Measured directly on this substrate: selecting via action_object_decoder argmax collapses to 1 class at every tick, while the E3 path spans 2 -- hence the E3 path (see _select_action)",
+        "control": "E3-selected actions over the post-training positive-control probe",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.5,
+        "met": false
+      },
+      {
+        "name": "A2_RESIDUE_PERMUTED::residue_structure_live",
+        "precondition": "residue_structure_live",
+        "arm": "A2_RESIDUE_PERMUTED",
+        "kind": "readiness",
+        "description": "cross-center variance of active residue RBF weights -- a flat field makes the permutation a no-op and would manufacture a false FAIL",
+        "control": "active centers accumulated over the full training phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0004331116215325892,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A2_RESIDUE_PERMUTED::permutation_effective",
+        "precondition": "permutation_effective",
+        "arm": "A2_RESIDUE_PERMUTED",
+        "kind": "readiness",
+        "description": "fraction of active RBF centers whose weight actually changed -- the permutation must verifiably alter field state, not merely be requested",
+        "control": "pre- vs post-permutation weight vector over active centers",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "A2_RESIDUE_PERMUTED::candidate_score_range",
+        "precondition": "candidate_score_range",
+        "arm": "A2_RESIDUE_PERMUTED",
+        "kind": "readiness",
+        "description": "cross-candidate RANGE of residue trajectory scores on a positive control -- the SAME statistic the argmin selection routes on. A uniform offset has large magnitude but ~0 range and must trip readiness, never read as a refuted claim (V3-EXQ-643 rule)",
+        "control": "CEM candidates that genuinely differ, probed in P0 after training",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31337738037109375,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "A2_RESIDUE_PERMUTED::executed_action_diversity",
+        "precondition": "executed_action_diversity",
+        "arm": "A2_RESIDUE_PERMUTED",
+        "kind": "readiness",
+        "description": "distinct EXECUTED action classes. This is the statistic the DV literally routes on: harm_rate is a function of the executed action stream, so if every tick executes the same class the DV is INVARIANT under the residue manipulation and no result is a measurement. Measured directly on this substrate: selecting via action_object_decoder argmax collapses to 1 class at every tick, while the E3 path spans 2 -- hence the E3 path (see _select_action)",
+        "control": "E3-selected actions over the post-training positive-control probe",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 1.5,
+        "met": false
+      }
+    ],
+    "preconditions_scope_note": "",
+    "criteria_non_degenerate": {
+      "C1_recovery_of_base_gap": false,
+      "C2_effect_sd": false,
+      "C3_seed_consistency": false,
+      "C4_data_quality": false
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "99838572791733e11eb4c553c33f90475115e4fea67512df7a0224acd1578ec3"
+}
