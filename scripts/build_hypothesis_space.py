@@ -41,6 +41,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+
+# serve.py does `import graceful_timeout` at module scope; that module lives in
+# REPO_ROOT, not scripts/. Running this file as `python3 scripts/build_hypothesis_space.py`
+# puts scripts/ (not REPO_ROOT) at sys.path[0], so serve.py's import fails unless
+# REPO_ROOT is on sys.path before it is loaded via spec_from_file_location below.
+sys.path.insert(0, str(REPO_ROOT))
+
 PLANNING_DIR = REPO_ROOT / "evidence" / "planning"
 EXPERIMENTS_DIR = REPO_ROOT / "evidence" / "experiments"
 REGISTRY = PLANNING_DIR / "hypothesis_space_registry.v1.json"

@@ -8,7 +8,14 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-SERVE_PATH = Path(__file__).resolve().parents[1] / "serve.py"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SERVE_PATH = REPO_ROOT / "serve.py"
+
+# serve.py does `import graceful_timeout` at module scope; that module lives in
+# REPO_ROOT, not scripts/. Running this file as `python3 scripts/test_coord_snap_cache.py`
+# puts scripts/ (not REPO_ROOT) at sys.path[0], so serve.py's import fails unless
+# REPO_ROOT is on sys.path before it is loaded via spec_from_file_location below.
+sys.path.insert(0, str(REPO_ROOT))
 
 
 def _load_serve():
