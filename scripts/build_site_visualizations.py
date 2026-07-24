@@ -33,6 +33,12 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent  # REE_assembly/
 DOCS = REPO / "docs"
 
+# serve.py does `import graceful_timeout` at module scope; that module lives in
+# REPO, not scripts/. Running this file as `python3 scripts/build_site_visualizations.py`
+# puts scripts/ (not REPO) at sys.path[0], so serve.py's import fails unless REPO
+# is on sys.path before it is loaded via spec_from_file_location below.
+sys.path.insert(0, str(REPO))
+
 # Curated showcase runs (experiment dir names). Small, built to be watched.
 # Deliberately excludes the 16-37 MB ablation logs (223 minimal_vertebrate, 483*).
 SHOWCASE_RUNS = [
