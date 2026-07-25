@@ -1,0 +1,84 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_807_sd079_centered_goal_anchor_match",
+  "run_id": "v3_exq_807_sd079_centered_goal_anchor_match_20260725T191402Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-25T19:14:02Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-079"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd079_centering_unpins_goal_match_and_downstream_gates",
+    "preconditions": [
+      {
+        "name": "zgoal_common_mode_cone_present",
+        "description": "min pairwise z_goal cosine in this run clears the cone floor -- the geometry SD-079 exists to repair. Below it there is no common mode to subtract and a null says nothing about centering.",
+        "measured": 0.9861112833023071,
+        "threshold": 0.9,
+        "direction": "lower",
+        "control": "worst cell across all arms/seeds (ARM_OFF/seed202), measured on the run's own z_goal stream",
+        "offending_cell": "ARM_OFF/seed202",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_on_spread_above_floor",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_off_reproduces_pin",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_on_outshine_gate_live",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_on_spread_above_floor": true,
+      "C2_off_reproduces_pin": true,
+      "C3_on_outshine_gate_live": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "959758ce3e5c98077cdaab484dafb2ea353890eacdd3368ed39994c8734069d7"
+}
