@@ -1,0 +1,100 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_818_arc016_eval_derived_noise_precision_sweep",
+  "run_id": "v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-25T18:58:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-016"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "eval_time_threshold_engages_and_tracks_precision_monotonically",
+    "preconditions": [
+      {
+        "name": "precision_manipulation_took",
+        "description": "relative rv lift across the noise sweep, (rv[top]-rv[bottom])/rv[bottom], worst seed. Additive PE noise is calibrated to bracket the threshold, so a failure here means the EMA/reset washed the manipulation out and the run measures nothing",
+        "control": "sigma_L = sqrt((k_L-1) x eval_baseline); top multiple 7x",
+        "measured": 5.391503884036723,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "commit_rate_engages",
+        "description": "commit_rate RANGE (max-min) across levels, worst seed -- the residual gate's non-degeneracy mandate. A rate pinned at 0.0 or 1.0 across the whole sweep means the threshold never engaged (the 396a/b state) and routes substrate_not_ready, NOT a verdict",
+        "control": "threshold = 2 x eval_baseline sits inside the swept rv range",
+        "measured": 0.9966666666666667,
+        "threshold": 0.3,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "commit_decision_count",
+        "description": "genuine E3 commit decisions banked per level, worst seed x level",
+        "control": "one e3.select() every E3_DECISION_INTERVAL steps",
+        "measured": 300.0,
+        "threshold": 200.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "calibrated_threshold_positive",
+        "description": "the eval-derived commit threshold is finite and strictly positive (018b's C0 -- a zero baseline means calibration never ran)",
+        "control": "CALIBRATION_FACTOR x measured eval_baseline",
+        "measured": 0.0002138973393867056,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_commit_rate_tracks_precision_monotonically": true
+    },
+    "not_a_discovery_experiment_note": "ARC-016's core circuit is ALREADY VALIDATED at train-time by V3-EXQ-018b (PASS 5/5) and V3-EXQ-060 (PASS 4/5); the 2026-07-25 rescore confirmed exp_conf 0.775 / confirmed_established / zero genuine refutations. This run closes the SINGLE residual open item: eval-time threshold engagement + monotonic tracking. A PASS confirms the eval-time circuit engages and tracks; it PROMOTES NOTHING (governance owns status).",
+    "manipulation_note": "The precision manipulation is graded Gaussian noise injected into the world_forward prediction error that feeds e3.update_running_variance (error_var = PE.pow(2).mean(), so additive N(0,sigma^2) raises rv by ~sigma^2). sigma_L is calibrated per-seed from the measured eval baseline so the swept rv brackets the eval-derived threshold BY CONSTRUCTION -- the fix for V3-EXQ-805, whose env-difficulty lever moved rv only ~5.6%. The variance stays E3-derived (EMA of a genuine PE, now with a controlled surprise term).",
+    "scope_guard_note": "STRUCTURAL ONLY. Post-split (2026-03-22) ARC-016 covers just the mechanistic circuit; the behavioural consequence layer is ARC-029 and is NOT tagged or tested. No behavioural harm DV is attached (that would re-import the V_s MONOSTRATEGY-LOCK confound that voided EXQ-454). The exclusion is STRUCTURAL: the driver takes RANDOM actions throughout, so there is no learned policy to lock, and no harm/benefit quantity is a DV anywhere.",
+    "engagement_is_a_precondition_note": "'The threshold must actually engage' is a PRECONDITION (commit_rate range above floor), never a criterion. A threshold that never fires makes every level identical -- exactly what voided EXQ-396a/b -- and self-routes substrate_not_ready_requeue rather than a verdict.",
+    "dv_symmetry_note": "DV = commit_rate = fraction of selections with running_variance < commit_threshold. Symmetry group: transforms preserving sign(threshold - rv) per tick. The additive-noise manipulation is NOT invariant: it moves rv across a FIXED threshold (derived once from the noise-free baseline, held constant over the sweep), flipping the sign as sigma rises -- the measured effect. No broadcast-scalar / rank / permutation degeneracy: rv is a scalar the noise genuinely moves, commit_rate is a fraction not an argmax.",
+    "threshold_held_fixed_note": "The threshold is derived ONCE from the noise-free eval calibration window and held FIXED across the sweep. Deriving it per-level would ABSORB the manipulation and measure nothing.",
+    "latch_note": "n_latched_ticks = 0 by construction: agent.e3.select() is called directly, so the E3 cadence / commitment latch is not in the path and no diagnostic can be re-read from a stale tick (V3-EXQ-785 defect structurally impossible).",
+    "governance_flag_not_acted_on": "This run neither promotes nor re-scores ARC-016. The 2026-07-25 rescore already corrected the exp_conf aggregation artefact (0.521 -> 0.775); a PASS here is the evidence a future /governance cycle would weigh for provisional -> shown, not a status change this run applies."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "37da8de61f3e4c33f8371e54d91007a6dfaa09dab95aba445ef96552ea2229c0"
+}
