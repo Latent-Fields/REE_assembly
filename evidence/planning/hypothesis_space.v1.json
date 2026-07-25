@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-25T23:14:39Z",
+  "generated_at": "2026-07-25T23:27:39Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -547,10 +547,10 @@
         }
       ],
       "decision": {
-        "readiness_state": "decidable_now",
-        "evidence_decile": 9,
+        "readiness_state": "decided",
+        "evidence_decile": 10,
         "decision_question": "What sets the decay half-life of an already-installed competent policy under continued RL refinement -- the value estimator, the update constraint, auxiliary persistence, or consummatory binding?",
-        "distance_phrase": "DECIDABLE NOW (2026-07-25): all four named retention loci resolved. Two PROCESS-family loci CONFIRMED protective -- value estimator (H-retention-critic, V3-EXQ-788) and update constraint (H-retention-consolidation, V3-EXQ-792a) -- and two CONSTITUTION-family loci ELIMINATED -- auxiliary persistence (H-retention-auxiliary-decay, V3-EXQ-789) and consummatory binding (H-consummation-binding, V3-EXQ-821). Awaiting a human decision_log.v1.jsonl entry.",
+        "distance_phrase": "DECIDED 2026-07-25 (scoped to RETENTION; decision_log.v1.jsonl@2026-07-25T23:26:31Z). The retention decision_question is closed: PROCESS-family loci set the decay half-life of a BC-installed competent policy -- value estimator (H-retention-critic / V3-EXQ-788) and update constraint (H-retention-consolidation / V3-EXQ-792a), each independently sufficient -- while CONSTITUTION-family loci were eliminated (H-retention-auxiliary-decay / V3-EXQ-789; H-consummation-binding / V3-EXQ-821). SCOPE: retention only. The INSTALLABILITY / representation explanandum (the competence FLOOR itself; whether prediction-trained z_world confers any advantage) remains the LIVE FRONTIER -- carried by V3-EXQ-819 and the sibling question conversion_ceiling_root (H-observation-interface), and owed its own question per the bifurcation_note. Marking this hero question 'decided' closes RETENTION, not the floor.",
         "live_gate": "H-retention-critic + H-retention-auxiliary-decay, queued AS A PAIR under new EXQ numbers. Both substrate-unblocked 2026-07-18; the retention portfolio's own 'queue nothing until at least two legs are buildable' gate is MET, and ree-v3/experiment_queue.json is empty. Pair, not singly: GOV-FANOUT-1 exists because adjudicating a leg in isolation is how a confident-but-wrong elimination enters the frozen ledger, and 781's elimination alone would have rested on no demonstration that competence was reachable at all.",
         "observation_bottleneck": "Any new leg on this question MUST carry the four measurement_requirement constraints: a competence TRAJECTORY DV (not terminal); an explicit 'manipulation succeeded and then decayed' branch in the interpretation grid; routing on DECLARED COVARIATES; and substrate_not_ready_requeue when an install did not take. V3-EXQ-780 is the standing worked example of what their absence costs -- the catching covariate (post_bc_foraging_competence) was present, declared and load-bearing, yet the grid enumerated only a ~0 null, so a manipulation that succeeded ABOVE target was scored a null. The instrumentation was adequate; the interpretation grid was not."
       }
