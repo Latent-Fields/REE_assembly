@@ -1,0 +1,241 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_821_mech457_consummation_binding",
+  "run_id": "v3_exq_821_mech457_consummation_binding_20260725T222252Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-25T22:22:52Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "consummation_binding_eroded_under_both",
+    "preconditions": [
+      {
+        "name": "consumbind_extinct_off::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "consumbind_extinct_off",
+        "kind": "readiness",
+        "description": "The consummatory-aware LocalViewGreedyPolicy (reads the SAME 5x5 resource_field_view and CONSUMEs on contact) forages above the 1.0 floor in the CONSUMMATORY env -- the positive control that the env is solvable from the local view WITH a consummatory act. Below-floor means the substrate/env is not ready, NOT that a drive failed.",
+        "control": "consummatory local_view_greedy foraging_competence @D3 (live, ~13.5)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 34.166667,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_off::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "consumbind_extinct_off",
+        "kind": "readiness",
+        "description": "Consummatory env is floor-achievable with global info (achievability anchor).",
+        "control": "consummatory greedy_oracle foraging_competence @D3 vs the 1.0 floor (live, ~13.0)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 42.8,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_off::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "consumbind_extinct_off",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start, in the consummatory env) clears the 1.0 floor on the WORST seed of this arm. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to retain, so the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.3,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_off::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "consumbind_extinct_off",
+        "kind": "measurability",
+        "description": "The retention DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_on::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "consumbind_extinct_on",
+        "kind": "readiness",
+        "description": "The consummatory-aware LocalViewGreedyPolicy (reads the SAME 5x5 resource_field_view and CONSUMEs on contact) forages above the 1.0 floor in the CONSUMMATORY env -- the positive control that the env is solvable from the local view WITH a consummatory act. Below-floor means the substrate/env is not ready, NOT that a drive failed.",
+        "control": "consummatory local_view_greedy foraging_competence @D3 (live, ~13.5)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 34.166667,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_on::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "consumbind_extinct_on",
+        "kind": "readiness",
+        "description": "Consummatory env is floor-achievable with global info (achievability anchor).",
+        "control": "consummatory greedy_oracle foraging_competence @D3 vs the 1.0 floor (live, ~13.0)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 42.8,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_on::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "consumbind_extinct_on",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING READINESS PRECONDITION. The BC install must have TAKEN before RL: post_bc_foraging_competence (measured pre-RL, post warm-start, in the consummatory env) clears the 1.0 floor on the WORST seed of this arm. An install that did not take is UNINFORMATIVE about retention: there is no installed prior to retain, so the run self-routes substrate_not_ready_requeue rather than any retention verdict.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.3,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_on::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "consumbind_extinct_on",
+        "kind": "measurability",
+        "description": "The retention DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate 'retained' from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "consumbind_extinct_on::approach_extinction_active",
+        "precondition": "approach_extinction_active",
+        "arm": "consumbind_extinct_on",
+        "kind": "manipulation_active",
+        "description": "The treatment arm must actually be running the extinguish-and-hand-off drive (approach_extinguishes_on_contact = 1). Scoped OUT of the non-extinguishing CONTROL arm, where extinction is not merely absent but is the very thing being controlled against -- asserting it there would make the control's gate structurally un-passable and collapse the two-arm design.",
+        "control": "cfg.approach_extinguishes_on_contact as constructed for this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria": [
+      {
+        "name": "C_extinguishing_drive_retains_installed_competence",
+        "load_bearing": true,
+        "description": "The extinguishing (consummatory) arm holds a strict majority of seeds at retained_fraction >= 0.5 AND beats the non-extinguishing control's mean retained_fraction by >= 0.15.",
+        "passed": false
+      },
+      {
+        "name": "C_non_extinguishing_control_erodes_installed_competence",
+        "load_bearing": false,
+        "description": "The non-extinguishing control does NOT hold the installed competence -- the contrast the treatment is read against.",
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_extinguishing_drive_retains_installed_competence": true,
+      "C_non_extinguishing_control_erodes_installed_competence": true,
+      "boot_arm_vs_anchor_foraging_spread": true,
+      "install_took_on_both_arms": true,
+      "trajectory_has_shape_on_both_arms": true
+    },
+    "anchor_reachability": {
+      "anchor_name": "post_bc_install_took",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "live consummatory anchors this run: local_view_greedy=34.167, greedy_oracle=42.800 (the consummatory install band the BC demonstrator clones toward)",
+      "threshold": 1.0,
+      "margin_cells": 0,
+      "required_score": 1.0,
+      "reachable": true,
+      "n_reference_cells": 2,
+      "n_reference_scored_true": 2,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true,
+        true
+      ]
+    },
+    "interpretation_grid": [
+      {
+        "label": "substrate_not_ready_requeue",
+        "outcome": "FAIL",
+        "condition": "an anchor is sub-floor, OR post_bc_foraging_competence fails the 1.0 install floor on a strict majority of seeds in either arm",
+        "reading": "There is no installed prior to retain, so the run is UNINFORMATIVE about retention. NEVER a retention verdict and never substrate_ceiling / does_not_support. Requeue."
+      },
+      {
+        "label": "consummation_binding_retains_competence",
+        "outcome": "PASS",
+        "condition": "the extinguishing arm retains on a strict majority of seeds AND beats the non-extinguishing control's mean retained_fraction by the declared margin",
+        "reading": "781's drive-side null WAS a consummatory-act artefact: an approach drive that extinguishes on contact and hands off to CONSUME does not suppress foraging."
+      },
+      {
+        "label": "consummation_binding_succeeded_then_decayed",
+        "outcome": "FAIL",
+        "condition": "the extinguishing arm's trajectory PEAK cleared the install floor on a strict majority of seeds, but its terminal retained_fraction fell below the retention floor",
+        "reading": "The manipulation SUCCEEDED and then DECAYED -- a retention-DYNAMICS finding, not a null. Read the trajectory and the half-life, not the terminal scalar."
+      },
+      {
+        "label": "consummation_binding_eroded_under_both",
+        "outcome": "FAIL",
+        "condition": "neither arm retains and their mean retained_fraction differ by less than the declared margin",
+        "reading": "THE DECLARED NULL. The installed prior erodes identically whether or not the drive extinguishes -> the extinguish-and-hand-off binding is NOT the retention mechanism (H-consummation-binding eliminated). Does NOT weaken MECH-457 (diagnostic). This is 'competence still flat under the extinguish-and-hand-off arm => the binding is not what 781 lacked'."
+      },
+      {
+        "label": "consummation_binding_grid_nondiscriminative",
+        "outcome": "FAIL",
+        "condition": "no arm passed its precondition gate, or the arms/anchors do not separate",
+        "reading": "Not a refutation. Unscored; re-pose the measurement."
+      }
+    ]
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "b03e6515d5d88722d1f1ccd305b1afab8e3acc2022e97c9cbe095bb8d122b129"
+}
