@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-25T22:45:28Z",
+  "generated_at": "2026-07-25T23:14:39Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,25 +31,25 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 25,
+      "total_surviving": 23,
       "total_initial": 48,
       "total_initial_at_registration": 36,
       "total_fanout_added": 12,
       "total_resolved_out": 24,
       "reduction_pct_vs_current": 50.0,
-      "net_narrowing_pct": 30.6,
+      "net_narrowing_pct": 36.1,
       "convergence_classes": {
         "narrowing": 4,
         "static": 4,
         "circling": 3
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "25 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "23 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 11
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 5,
+      "ready": 6,
       "open_questions": 11
     }
   },
@@ -110,7 +110,7 @@
     },
     {
       "date": "2026-07-25",
-      "surviving": 25,
+      "surviving": 23,
       "closure_pct": 76.2,
       "build_pct": 81.5
     }
@@ -167,14 +167,15 @@
         }
       ],
       "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
-      "net_narrowing_ratio": 0.5714,
-      "bits_removed_vs_registration": 1.22,
+      "net_narrowing_ratio": 0.8571,
+      "bits_removed_vs_registration": 2.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
           "instrumentation",
+          "process",
           "representation",
           "world"
         ],
@@ -289,16 +290,16 @@
           }
         ]
       },
-      "surviving": 3,
-      "alive": 2,
+      "surviving": 1,
+      "alive": 0,
       "resolved_out": 13,
-      "confirmed": 1,
+      "confirmed": 3,
       "reduction_numerator": 13,
       "reduction_ratio": 0.8125,
-      "bits_removed": 2.42,
+      "bits_removed": 4.0,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
-        "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it.",
+        "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
         "under_test": "RETENTION portfolio -- 2 of 4 legs now buildable and UNQUEUED (H-retention-critic on ree-v3 8e88ffc; H-retention-auxiliary-decay on ree-v3 9a8dbae, both landed 2026-07-18). H-retention-consolidation and H-consummation-binding remain substrate-blocked (mech457_policy_kl_anchor, mech457_consummatory_act -- both 'proposed'). The superseded H-bc-prior / H-approach-primitive portfolio RAN and RESOLVED on 2026-07-18: V3-EXQ-780 inconclusive (self-route rejected; leg split 2026-07-19T15:14:23Z), V3-EXQ-781 non_contributory (H-approach-primitive eliminated)."
       },
       "hypotheses": [
@@ -496,9 +497,11 @@
           "label": "flat/uninformed value baseline fails to refine an installed competent policy",
           "desc": "BC-install to the raw_view ~20.9 competence point, then run the SAME RL refinement with a distributional/two-hot critic vs the current scalar critic. Changes the VALUE ESTIMATOR only; the update rule is untouched (anti-alias vs H-retention-consolidation). DV: post-installation competence TRAJECTORY, not terminal competence. Reference build: NON-REGRESSED 128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32 (NOT the 769-falsified 256/5x). Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy ceiling 48.05, greedy_oracle 57.2, random_walk 0.933.",
           "axis": "algorithm",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED -- but NO LONGER SUBSTRATE-BLOCKED as of 2026-07-19T15:14:23Z. The blocking build landed 2026-07-18: ree-v3 8e88ffc (mech457_distributional_critic), recorded status 'implemented' in evidence/planning/substrate_queue.json. probe_status cleared substrate_blocked -> buildable_unqueued (competence_floor_reposing_2026-07-19.md D4; plain factual staleness, no scientific reinterpretation). Route is now /queue-experiment, NOT /implement-substrate. Queue AS A PAIR with the other unblocked retention leg, honouring the four measurement_requirement constraints verbatim. No adjudicating run exists, so invariant labelled_fanout_growth (a) still holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-788"
+          ],
+          "basis": "V3-EXQ-788 (diagnostic PASS, 3 seeds [42,43,44], non_degenerate; failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25): value-estimator-only manipulation (scalar-MSE critic vs categorical two-hot/HL-Gauss distributional critic), update rule byte-identical across arms (anti-aliased vs consolidation / bc_aux / KL-anchor). Anchors ready (local_view_greedy 48.05, greedy_oracle 57.2), BC install took on both arms. The FLAT scalar critic fails to hold the installed competence (retained_fraction 0.525) while the DISTRIBUTIONAL critic RETAINS it (1.839; competence grows), margin 1.314 >> 0.15 floor. CONFIRMS H-retention-critic: a flat/uninformed value baseline fails to refine an installed competent policy; an informative (distributional) value estimator is a retention mechanism. Biology-faithful (Dabney/Kurth-Nelson/Uchida 2020 distributional value code in dopamine); the scalar-MSE critic is the impoverished formal import. Diagnostic -> does NOT change MECH-457 status (stays candidate/v3_pending); corroborates its core claim that a value-baseline critic is load-bearing. axis=algorithm (process family).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -507,11 +510,12 @@
           "label": "no consolidation/protection pathway for an acquired policy",
           "desc": "BC-install, then RL with a trust-region / KL-anchor to the INSTALLED policy vs unconstrained. Changes the UPDATE CONSTRAINT only; the value estimator is untouched (anti-alias vs H-retention-critic). Must anchor to a frozen snapshot of the installed policy, NOT via bc_aux_coef -- anchoring to the demonstrator would alias with H-retention-auxiliary-decay. DV: post-installation competence TRAJECTORY. Reference build: NON-REGRESSED 128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32 (NOT the 769-falsified 256/5x). Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy ceiling 48.05, greedy_oracle 57.2, random_walk 0.933.",
           "axis": "policy",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-792"
+            "V3-EXQ-792",
+            "V3-EXQ-792a"
           ],
-          "basis": "V3-EXQ-792 ran and does NOT resolve this leg -- and its load-bearing criterion PASSED. retcons_kl0p30 retained 0.778 of installed competence vs the unconstrained arm's 0.525 (margin +0.252 against a 0.15 bar) while keeping plasticity (realised KL 0.278; peak >= 1.05x install), scored consolidates:true / frozen:false -- so a consolidation pathway for an acquired policy IS constructible. The overall FAIL rests on the load_bearing:false dose-response leg: realised KL is non-monotone in the coefficient (0.868 / 1.143 / 0.278) because the 0.10 arm's anchor did not bind, and at n=3 with the control's mean_policy_kl_to_anchor_recent hard-coded to a 0.0 SENTINEL that single cell vacates the grid (criteria_non_degenerate.anchor_bound_dose_response false). Readiness fully cleared -- install took on every arm, worst cell 17.75 vs a 1.0 floor -- so control_passed is true, but the elimination bar is NOT met. Under-powered with a structurally weak control. Re-run as 792a with a MEASURED control drift and >= 6 seeds. Adjudicated failure_autopsy_V3-EXQ-792_2026-07-22.",
+          "basis": "V3-EXQ-792a (diagnostic PASS, 6 seeds [42-47], non_degenerate; supersedes 792 nondiscriminative; failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25): update-constraint-only manipulation (unconstrained RL vs KL-anchor to the installed post-BC policy at 3 doses), anti-aliased vs critic/bc_aux. Anchors ready (local_view_greedy 47.73, greedy_oracle 57.79). Unconstrained control erodes to retained_fraction 0.509 with measured policy drift 0.705 (the measure_policy_drift instrument working); the strong anchor kl0p30 RETAINS 0.895 (margin 0.386, anchor-bound, drift suppressed 0.562); kl0p03 also clears (0.814, margin 0.305). CONFIRMS H-retention-consolidation: a consolidation/protection pathway does protect an acquired policy against continued value updating -- see caveat for the non-monotone dose-response. Biology: protection-against-interference / systems consolidation of acquired skills; KL-anchor is the trust-region translation. Diagnostic -> does NOT change MECH-457 status. axis=policy (process family).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -543,10 +547,10 @@
         }
       ],
       "decision": {
-        "readiness_state": "observation_bottleneck",
-        "evidence_decile": 2,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "What sets the decay half-life of an already-installed competent policy under continued RL refinement -- the value estimator, the update constraint, auxiliary persistence, or consummatory binding?",
-        "distance_phrase": "2 buildable retention legs, queued as a pair -- unblocked and not yet queued (was 'not yet queued' for a portfolio that had already run; corrected 2026-07-19T15:14:23Z)",
+        "distance_phrase": "DECIDABLE NOW (2026-07-25): all four named retention loci resolved. Two PROCESS-family loci CONFIRMED protective -- value estimator (H-retention-critic, V3-EXQ-788) and update constraint (H-retention-consolidation, V3-EXQ-792a) -- and two CONSTITUTION-family loci ELIMINATED -- auxiliary persistence (H-retention-auxiliary-decay, V3-EXQ-789) and consummatory binding (H-consummation-binding, V3-EXQ-821). Awaiting a human decision_log.v1.jsonl entry.",
         "live_gate": "H-retention-critic + H-retention-auxiliary-decay, queued AS A PAIR under new EXQ numbers. Both substrate-unblocked 2026-07-18; the retention portfolio's own 'queue nothing until at least two legs are buildable' gate is MET, and ree-v3/experiment_queue.json is empty. Pair, not singly: GOV-FANOUT-1 exists because adjudicating a leg in isolation is how a confident-but-wrong elimination enters the frozen ledger, and 781's elimination alone would have rested on no demonstration that competence was reachable at all.",
         "observation_bottleneck": "Any new leg on this question MUST carry the four measurement_requirement constraints: a competence TRAJECTORY DV (not terminal); an explicit 'manipulation succeeded and then decayed' branch in the interpretation grid; routing on DECLARED COVARIATES; and substrate_not_ready_requeue when an install did not take. V3-EXQ-780 is the standing worked example of what their absence costs -- the catching covariate (post_bc_foraging_competence) was present, declared and load-bearing, yet the grid enumerated only a ~0 null, so a manipulation that succeeded ABOVE target was scored a null. The instrumentation was adequate; the interpretation grid was not."
       }
@@ -1608,6 +1612,22 @@
       "evidence_direction": "mixed"
     },
     {
+      "run": "V3-EXQ-792a",
+      "all_runs": [
+        "V3-EXQ-792",
+        "V3-EXQ-792a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-792a (diagnostic PASS, 6 seeds [42-47], non_degenerate; supersedes 792 nondiscriminative; failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25): update-constraint-only manipulation (unconstrained RL vs KL-anchor to the installed post-BC policy at 3 doses), anti-aliased vs critic/bc_aux. Anchors ready (local_view_greedy 47.73, greedy_oracle 57.79). Unconstrained control erodes to retained_fraction 0.509 with measured policy drift 0.705 (the measure_policy_drift instrument working); the strong anchor kl0p30 RETAINS 0.895 (margin 0.386, anchor-bound, drift suppressed 0.562); kl0p03 also clears (0.814, margin 0.305). CONFIRMS H-retention-consolidation: a consolidation/protection pathway does protect an acquired policy against continued value updating -- see caveat for the non-monotone dose-response. Biology: protection-against-interference / systems consolidation of acquired skills; KL-anchor is the trust-region translation. Diagnostic -> does NOT change MECH-457 status. axis=policy (process family).",
+      "resolved_utc": "2026-07-22T21:29:54Z",
+      "evidence_direction": "supports"
+    },
+    {
       "run": "V3-EXQ-789",
       "all_runs": [
         "V3-EXQ-789"
@@ -1621,6 +1641,21 @@
       "moved": "ELIMINATED. No schedule of the imitation auxiliary rescues retention: retained_fraction 0.191 (constant 0.5) / 0.408 (annealed 0.5->0.0) / 0.046 (off) against a 0.5 floor, with 0/3 seeds retained on EVERY arm and 0 arms failing to decay. Not an unready substrate -- the load-bearing readiness gate passed (post-BC install took on 3/3 seeds, worst 17.75 against a 1.0 floor; local-view greedy 48.05; greedy oracle 57.2; 12 trajectory readings on the worst cell; non_degenerate true). Schedule verification passed (annealed arm's realised bc_aux_coef moved, drop 0.5) so it did not alias onto the constant arm, and use_distributional_critic was held False on all arms as an anti-alias control against V3-EXQ-788's locus. The half-life ordering constant 416.7 >= annealed 333.3 >= off 250.0 is directionally correct but UNRESOLVABLE: half-life is quantised at the 250-episode probe interval while the cross-arm spread is 166.7 episodes, below one quantum. Read jointly with V3-EXQ-788 (H-retention-critic), where a distributional critic retains 1.839 of installed competence against 0.525 scalar -- the value estimator, not the auxiliary, is what sets retention.",
       "resolved_utc": "2026-07-20T11:21:03Z",
       "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-788",
+      "all_runs": [
+        "V3-EXQ-788"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-788 (diagnostic PASS, 3 seeds [42,43,44], non_degenerate; failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25): value-estimator-only manipulation (scalar-MSE critic vs categorical two-hot/HL-Gauss distributional critic), update rule byte-identical across arms (anti-aliased vs consolidation / bc_aux / KL-anchor). Anchors ready (local_view_greedy 48.05, greedy_oracle 57.2), BC install took on both arms. The FLAT scalar critic fails to hold the installed competence (retained_fraction 0.525) while the DISTRIBUTIONAL critic RETAINS it (1.839; competence grows), margin 1.314 >> 0.15 floor. CONFIRMS H-retention-critic: a flat/uninformed value baseline fails to refine an installed competent policy; an informative (distributional) value estimator is a retention mechanism. Biology-faithful (Dabney/Kurth-Nelson/Uchida 2020 distributional value code in dopamine); the scalar-MSE critic is the impoverished formal import. Diagnostic -> does NOT change MECH-457 status (stays candidate/v3_pending); corroborates its core claim that a value-baseline critic is load-bearing. axis=algorithm (process family).",
+      "resolved_utc": "2026-07-19T23:55:43Z",
+      "evidence_direction": "supports"
     },
     {
       "run": "V3-EXQ-787",
@@ -2036,21 +2071,6 @@
       "moved": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732).",
       "resolved_utc": "2026-06-07T19:30:29Z",
       "evidence_direction": "supports"
-    },
-    {
-      "run": "V3-EXQ-792",
-      "all_runs": [
-        "V3-EXQ-792"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "V3-EXQ-792 ran and does NOT resolve this leg -- and its load-bearing criterion PASSED. retcons_kl0p30 retained 0.778 of installed competence vs the unconstrained arm's 0.525 (margin +0.252 against a 0.15 bar) while keeping plasticity (realised KL 0.278; peak >= 1.05x install), scored consolidates:true / frozen:false -- so a consolidation pathway for an acquired policy IS constructible. The overall FAIL rests on the load_bearing:false dose-response leg: realised KL is non-monotone in the coefficient (0.868 / 1.143 / 0.278) because the 0.10 arm's anchor did not bind, and at n=3 with the control's mean_policy_kl_to_anchor_recent hard-coded to a 0.0 SENTINEL that single cell vacates the grid (criteria_non_degenerate.anchor_bound_dose_response false). Readiness fully cleared -- install took on every arm, worst cell 17.75 vs a 1.0 floor -- so control_passed is true, but the elimination bar is NOT met. Under-powered with a structurally weak control. Re-run as 792a with a MEASURED control drift and >= 6 seeds. Adjudicated failure_autopsy_V3-EXQ-792_2026-07-22.",
-      "resolved_utc": null,
-      "evidence_direction": "unknown"
     },
     {
       "run": "V3-EXQ-779b",

@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-25T23:10:32Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "cluster_pattern": {
+    "shape": "two diagnostic PASS-confirms of distinct retention mechanisms on one claim/portfolio (MECH-457 competence_floor retention sub-portfolio)",
+    "is_independent_bugs": false,
+    "structural_property": "The reference RL refinement erodes a BC-installed competent policy to ~half its installed competence in BOTH control arms (scalar-critic control retained_fraction 0.525; unconstrained-policy control 0.509; consistent with V3-EXQ-780's raw_view 20.933->11.667 ~= 0.557). Two DISJOINT single-knob manipulations each independently restore retention: an informative (distributional) value estimator (788) and a KL-anchor policy-consolidation constraint (792a). Both confirmed loci are PROCESS-family (axis algorithm / policy); the two ELIMINATED retention loci (789 auxiliary-decay, 821 consummation-binding) are CONSTITUTION-family. The competence_floor retention deficit is therefore a process-family property, not a constitution-family one.",
+    "readings": ["process_family_retention_mechanism_confirmed"]
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_788_mech457_retention_critic_20260719T235543Z_v3",
+      "queue_id": "V3-EXQ-788",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "self_route_label": "retention_critic_retains_competence",
+      "failed_criterion": "none (diagnostic PASS; load-bearing discrimination criterion cleared)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (corroborating) -- diagnostic; confirms a rival dependency (value-estimator quality) that MECH-457's core claim names (a value-baseline critic). Neither promotes nor demotes MECH-457.",
+        "biological_reference": "clear -- distributional value code in dopamine (Dabney/Kurth-Nelson/Uchida 2020): real dopaminergic neurons carry a distribution of value predictions, not a scalar mean. The distributional critic is the biology-faithful translation; the scalar-MSE critic is the impoverished formal import.",
+        "prerequisites": "present -- BC install took on both arms (raw_view; 780 measured post-BC 20.933, 3/3 seeds); anchors clear the floor (local_view_greedy 48.05, greedy_oracle 57.2).",
+        "implementation": "complete -- mech457_distributional_critic (ree-v3 8e88ffc); single-knob anti-aliased (value term only via mech457_fanout.critic_value_loss); update rule byte-identical across arms.",
+        "environment": "adequate -- D3 foraging rung, raw_view; solvable from the local view (anchors clear floor).",
+        "measurement": "adequate -- retention TRAJECTORY DV (retention_probe_every 250, ~12 readings/cell), non-perturbing probe; interpretation grid carries the mandatory 'succeeded_then_decayed' branch; routes on the post_bc_foraging_competence covariate.",
+        "integration": "coupled and stable -- the distributional critic composes with the reference build and retains.",
+        "scale": "adequate -- 3000 ep / 3 seeds / 128-wide 3x reference build (NOT the 769-falsified 256/5x)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "distributional reinforcement learning / distributional value coding in midbrain dopamine",
+        "dependencies": ["a value-baseline critic (dorsal-striatal actor-critic, MECH-457)", "an installed competent policy to refine"],
+        "is_formal_import": false,
+        "divergence": "The scalar-MSE critic (a formal least-squares value import) is what fails to retain; the biology-faithful distributional form is what retains. Biology SUPPORTS the confirmed mechanism.",
+        "lit_status": "present (distributional-RL / dopamine distributional code is well established)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "unknown",
+      "recommended_evidence_direction_per_claim": {"MECH-457": "unknown"},
+      "recommended_evidence_quality_note": "V3-EXQ-788 (H-retention-critic, GOV-FANOUT-1 retention leg, DIAGNOSTIC, does not score): value-estimator-only manipulation (scalar-MSE vs distributional two-hot/HL-Gauss critic; update rule byte-identical, anti-aliased vs consolidation/bc_aux/KL-anchor). Anchors ready, BC install took on both arms. The FLAT scalar critic fails to hold the installed competence (retained_fraction 0.525) while the DISTRIBUTIONAL critic RETAINS it (1.839), margin 1.314 >> 0.15. CONFIRMS the leg: a flat/uninformed value baseline fails to refine an installed competent policy; an informative value estimator is a retention mechanism. MECH-457 neither supported nor weakened (diagnostic), stays candidate/v3_pending; corroborates its core claim that a value-baseline critic is load-bearing.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "note": "0 substrate_ceiling autopsies on MECH-457; this is a diagnostic PASS-confirm, not a ceiling loop. Brake does not fire."},
+      "learning_extracted": [
+        "H-retention-critic CONFIRMED: the flat/uninformed scalar critic is a retention failure mode; a distributional value estimator restores retention of a BC-installed policy (0.525 -> 1.839).",
+        "The reference RL refinement erodes the BC install to ~half (scalar control retained_fraction 0.525) -- the same ~0.5 erosion seen in 792a's unconstrained control and in 780 (20.933->11.667).",
+        "Registry staleness caused a duplicate order: 788 ran 2026-07-19/20 and PASSed, but the leg stayed 'alive, un-run' in hypothesis_space_registry.v1.json and no autopsy adjudicated it, so the V3-EXQ-821 autopsy (2026-07-25) treated H-retention-critic as un-run and chipped a duplicate /queue-experiment. 'reviewed' in review_tracker != adjudicated (no autopsy + registry unresolved)."
+      ],
+      "routing": "governance"
+    },
+    {
+      "run_id": "v3_exq_792a_mech457_retention_consolidation_20260722T212954Z_v3",
+      "queue_id": "V3-EXQ-792a",
+      "claim_ids": ["MECH-457"],
+      "experiment_purpose": "diagnostic",
+      "outcome": "PASS",
+      "supersedes": "v3_exq_792_mech457_retention_consolidation_20260720T234440Z_v3",
+      "self_route_label": "retention_consolidation_protects_competence",
+      "failed_criterion": "none (diagnostic PASS; load-bearing criterion cleared at the strong anchor)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (corroborating) -- diagnostic; confirms a protection/consolidation pathway for an acquired policy. Neither promotes nor demotes MECH-457.",
+        "biological_reference": "clear -- protection-against-interference / systems + synaptic consolidation of acquired skills (motor-skill consolidation, sleep-dependent). The KL-anchor to the installed policy is the trust-region translation (analogous to EWC / policy distillation).",
+        "prerequisites": "present -- BC install took; anchors clear the floor (local_view_greedy 47.73, greedy_oracle 57.79); measure_policy_drift instrument reported control drift 0.705 (not a 0.0 sentinel).",
+        "implementation": "complete -- mech457_policy_kl_anchor; update-constraint-only, anti-aliased vs critic/bc_aux.",
+        "environment": "adequate -- D3 foraging rung, raw_view.",
+        "measurement": "adequate -- retention TRAJECTORY DV; control drift measured directly via measure_policy_drift; per-dose KL / drift-suppression / anchor-bound recorded.",
+        "integration": "coupled but dose-sensitive -- only the strong anchor (kl0p30) cleanly binds and suppresses drift; kl0p03/kl0p10 increased measured drift.",
+        "scale": "adequate -- 6 seeds [42-47]; 3000 ep reference build."
+      },
+      "biological_reference": {
+        "closest_mechanism": "consolidation / protection of an acquired policy against continued value updating (trust-region KL constraint; EWC-like)",
+        "dependencies": ["an installed competent policy snapshot to anchor to", "a mechanism to measure/limit policy drift"],
+        "is_formal_import": true,
+        "divergence": "The KL-anchor is a formal trust-region import, but it maps to a biologically real function (interference protection of consolidated skills). Confirmed at strong anchoring; the non-monotone dose-response is a tuning question, not a biology divergence.",
+        "lit_status": "partial (consolidation/interference biology is established; the specific KL-anchor form is a formal translation)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {"MECH-457": "supports"},
+      "recommended_evidence_quality_note": "V3-EXQ-792a (H-retention-consolidation, GOV-FANOUT-1 retention leg, DIAGNOSTIC, does not score; supersedes 792 nondiscriminative): update-constraint-only manipulation (unconstrained vs KL-anchor to installed policy at 3 doses; anti-aliased vs critic/bc_aux). Unconstrained control erodes to retained_fraction 0.509 with measured drift 0.705; strong anchor kl0p30 RETAINS 0.895 (margin 0.386, anchor-bound, drift suppressed 0.562), kl0p03 clears (0.814, margin 0.305). CONFIRMS the leg: a consolidation/protection pathway protects an acquired policy. CAVEAT: non-monotone dose-response -- only kl0p30 cleanly binds/suppresses; kl0p03/kl0p10 INCREASED measured drift (-0.148/-0.215) and kl0p10 missed the margin floor. MECH-457 not directly weakened (diagnostic), stays candidate/v3_pending.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "note": "0 substrate_ceiling autopsies on MECH-457; diagnostic PASS-confirm. Brake does not fire."},
+      "learning_extracted": [
+        "H-retention-consolidation CONFIRMED: a KL-anchor consolidation constraint protects a BC-installed policy against continued value updating -- but only at strong anchoring (kl0p30 retained 0.895; kl0p03 0.814).",
+        "Non-monotone dose-response: weak/mid anchors (kl0p03/kl0p10) increased measured drift and kl0p10 missed the margin floor -- the protection is coherent only at the strong anchor. A follow-on dose-response probe is an optional (not blocking) refinement, NOT a same-question re-queue (the leg is resolved).",
+        "The unconstrained control's ~0.51 retained_fraction and measured 0.705 drift replicate 788's ~0.5 scalar-control erosion -- the two retention experiments mutually corroborate the baseline half-erosion."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "hypothesis_space_ledger_applied": {
+    "question": "competence_floor",
+    "mode_B_resolutions": [
+      {"hid": "H-retention-critic", "state": "confirmed", "resolving_runs": ["V3-EXQ-788"], "resolved_utc": "2026-07-19T23:55:43Z"},
+      {"hid": "H-retention-consolidation", "state": "confirmed", "resolving_runs": ["V3-EXQ-792", "V3-EXQ-792a"], "resolved_utc": "2026-07-22T21:29:54Z"}
+    ],
+    "decision_decidable_set_true": true,
+    "decision_log_ref": null,
+    "no_fanout_growth": "No hypotheses added; initial_frozen_count unchanged (16). Both legs were pre-registered 2026-07-18 (mech457_retention_portfolio_2026-07-18.md); pre_registered_utc <= resolved_utc for each.",
+    "convergence": "Both confirmed axes (algorithm, policy) map to the process family (already in axis_families.map); both eliminated axes (learning-signal, intrinsic-architecture) are constitution family. No new family row needed."
+  }
+}
