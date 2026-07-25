@@ -1,0 +1,88 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-25T22:38:43Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_821_mech457_consummation_binding_20260725T222252Z_v3",
+      "queue_id": "V3-EXQ-821",
+      "experiment_type": "v3_exq_821_mech457_consummation_binding",
+      "claim_ids": ["MECH-457"],
+      "self_route_label": "consummation_binding_eroded_under_both",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- diagnostic; eliminates a rival dependency leg (H-consummation-binding), not the parent. MECH-457 neither supported nor weakened; stays candidate/v3_pending.",
+        "biological_reference": "clear -- Craig/Sherrington appetitive->consummatory hand-off with satiety extinction; mesolimbic seeking hands off to consummatory circuits. Well-motivated hypothesis, cleanly refuted AS the retention lever.",
+        "prerequisites": "present -- install took (post-BC 4.3/5.7/4.3 > 1.0 floor, both arms), CONSUME action wired, extinction knob active, consummatory env floor-achievable (anchors 34.2/42.8).",
+        "implementation": "complete -- 3 substrate builds landed 2026-07-25 (mech457_consummatory_act env, mech457_approach_extinction, consummatory_aware_reference_policies, rawview action_dim 5->6); single-knob anti-aliased manipulation; substrate_hash stable across run.",
+        "environment": "adequate -- consummatory env, resource retained until CONSUME, both greedy anchors clear the 1.0 floor.",
+        "measurement": "adequate -- retention trajectory (12 readings/cell), peak read alongside terminal, non-perturbing mid-training probe, criteria non-degenerate.",
+        "integration": "coupled but unstable -- the drive + BC install + RL refinement composed correctly; the failure is in the coupled behaviour (RL erodes the BC install), not a wiring gap.",
+        "scale": "adequate -- 3000 episodes / 3 seeds / 128-wide-3x-budget reference build; competence gone by first probe (half-life 250) so NOT a budget-starvation artefact."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Ethological appetitive/consummatory distinction (Craig 1918; Sherrington): appetitive approach/seeking terminates in a consummatory act that resolves the drive; satiety extinguishes the appetitive signal.",
+        "dependencies": ["mesolimbic seeking (approach)", "consummatory circuit hand-off", "satiety/extinction signal", "protection/consolidation of the acquired foraging policy against ongoing value updating"],
+        "is_formal_import": false,
+        "divergence": "The consummatory binding was present and functional, yet the installed foraging POLICY was not protected against the RL gradient. Failure matches a MISSING value-protection/consolidation dependency, not 'binding is the retention mechanism'. A discovered non-dependency.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"MECH-457": "standard"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-457": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-821 (H-consummation-binding, GOV-FANOUT-1 retention leg 4, DIAGNOSTIC, non_contributory): the consummatory-act binding (approach_extinguishes_on_contact hand-off to a distinct CONSUME) is NOT the retention mechanism. BC-installed foraging competence (post-BC 4.3-5.7 > 1.0 floor on both arms) eroded to retained_fraction 0.0 on all 3 seeds in BOTH the extinguishing treatment and the non-extinguishing control (arm margin 0.0 < 0.15 floor); neither arm's trajectory peak re-cleared the install floor. Consummatory env solvable (anchors local_view_greedy 34.2 / greedy_oracle 42.8), criteria non-degenerate. H-consummation-binding ELIMINATED; MECH-457 neither supported nor weakened, stays candidate/v3_pending. Converges with 780/782 on H-retention-critic (flat value estimator) as the leading remaining retention candidate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Re-derive brake does NOT fire (0 prior substrate_ceiling autopsies for MECH-457). This is a clean diagnostic elimination against a ready substrate/env; no substrate build is owed. Leave any substrate write to governance's standard Step 6a sweep."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "mech457_substrate_ceiling_count_R1R3": 0,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "MECH-457 has 0 prior substrate_ceiling autopsies under the R1-R3 convention (24 targets across 14 files: all competence_implementation_gap / measurement_test_design_defect / standard / substrate_starved_precondition_unmet). Not a ceiling loop -- a GOV-FANOUT-1 sufficiency-dependency search. This leg is a clean elimination, not a same-question re-pose against a ceiling. The follow-on (H-retention-critic) tests a DIFFERENT mechanism (value estimator, algorithm/process axis) and is brake-exempt regardless."
+      },
+      "circling_context": {
+        "gov_frozen_1_convergence_class": "CIRCLING",
+        "qid": "competence_floor",
+        "axis": "intrinsic-architecture",
+        "family": "constitution",
+        "note": "H-consummation-binding sits in the constitution family (same axis as the already-eliminated H-approach-primitive), so this leg was arguably a circling leg -- consistent with GOV-FROZEN-1's standing CIRCLING flag (families_fresh empty). With it eliminated, 3 of 4 named retention mechanisms are resolved (auxiliary-decay eliminated/789; consummation-binding eliminated/821; consolidation inconclusive/792-alive; critic alive-and-un-run). The remaining discrimination (H-retention-critic value-estimator vs H-retention-consolidation) is already pre-registered, so NO new fanout_recommendation is emitted.",
+        "granularity_debt_trigger": {
+          "fires": false,
+          "cluster_targets": 24,
+          "cluster_files": 14,
+          "alignment_distribution": {"intact": 12, "strengthened": 4, "unclear": 2, "unstamped": 2, "weakened": 2, "untested": 1},
+          "weakened_targets": ["V3-EXQ-789 (retention_auxiliary_decay)", "V3-EXQ-742 (actor_critic_onoff, sufficiency refuted)"],
+          "reasoning": "Two targets read weakened, but the signatures are consistent-SUFFICIENCY refutations (MECH-457 necessary-but-not-sufficient), not structurally-distinct falsifications of one coarse claim. A /claim-synthesis PROPOSAL already exists (claim_synthesis_MECH-457_2026-07-22.md, awaiting per-child user approval) -- the handoff was NOT dropped. No new claim-synthesis routing."
+        }
+      },
+      "learning_extracted": [
+        "H-consummation-binding is ELIMINATED: the extinguish-and-hand-off binding (a distinct CONSUME act + approach_extinguishes_on_contact) is NOT the retention mechanism. BC-installed competence erodes identically with and without extinction.",
+        "781's 'approach without consummation' signature (drive earned ~0.8 / forage suppressed) REPLICATES even in the extinguishing arm -- so the deficit is upstream of the consummatory act: the RL objective out-competes the BC-installed forage/CONSUME policy regardless of drive extinction.",
+        "The retention question converges: 3 of 4 named retention mechanisms resolved (auxiliary-decay eliminated, consummation-binding eliminated, consolidation inconclusive). H-retention-critic (flat value estimator, algorithm/process axis) is the leading remaining candidate, corroborated by 780 (raw_view 20.933->11.667) and 782 (std(V)/std(G)=0.041, separation 0.016).",
+        "Diagnostic value confirmed: a clean pre-registered null that narrows the frozen hypothesis space by one constitution-family leg without touching MECH-457's status."
+      ],
+      "routing": "governance",
+      "follow_on_chip": {
+        "type": "queue-experiment",
+        "target": "H-retention-critic (leg 5): value-estimator retention probe (flat / distributional critic, mech457_distributional_critic node) in the retention framing.",
+        "rationale": "User-confirmed 2026-07-25. The convergent next target with 780/782 support; a DIFFERENT mechanism (value estimator) so brake-exempt. NOT a re-open of the eliminated consummatory/constitution axis."
+      }
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_applied": {
+    "qid": "competence_floor",
+    "mode": "B_resolve",
+    "hid": "H-consummation-binding",
+    "resolution_state": "eliminated",
+    "resolving_runs": ["V3-EXQ-821"],
+    "resolved_utc": "2026-07-25T22:22:52Z",
+    "note": "Pure Mode B resolve of an already-pre-registered leg (pre_registered_utc 2026-07-18T18:37:29Z, source mech457_retention_portfolio_2026-07-18.md, already a labelled fanout_growth_event). No new growth; initial_frozen_count unchanged at 16."
+  }
+}

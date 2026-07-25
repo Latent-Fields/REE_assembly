@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-25T16:56:52Z",
+  "generated_at": "2026-07-25T22:45:28Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 124,
-      "built_modules": 100,
-      "fraction_built": 0.8065,
+      "built_modules": 101,
+      "fraction_built": 0.8145,
       "state_counts": {
-        "proposed": 24,
-        "implemented": 71,
+        "proposed": 23,
+        "implemented": 72,
         "implemented_pending_validation": 16,
         "validated": 13
       },
-      "build_proof_gap": 87,
-      "build_proof_gap_note": "100 modules built, 87 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 88,
+      "build_proof_gap_note": "101 modules built, 88 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,20 +31,20 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 26,
+      "total_surviving": 25,
       "total_initial": 48,
       "total_initial_at_registration": 36,
       "total_fanout_added": 12,
-      "total_resolved_out": 23,
-      "reduction_pct_vs_current": 47.9,
-      "net_narrowing_pct": 27.8,
+      "total_resolved_out": 24,
+      "reduction_pct_vs_current": 50.0,
+      "net_narrowing_pct": 30.6,
       "convergence_classes": {
         "narrowing": 4,
         "static": 4,
         "circling": 3
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "26 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "25 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 11
     },
     "decide": {
@@ -58,61 +58,61 @@
       "date": "2026-07-11",
       "surviving": 47,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-13",
       "surviving": 45,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-15",
       "surviving": 41,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-16",
       "surviving": 40,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-17",
       "surviving": 37,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-18",
       "surviving": 31,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-19",
       "surviving": 27,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-20",
       "surviving": 26,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-24",
       "surviving": 25,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     },
     {
       "date": "2026-07-25",
-      "surviving": 26,
+      "surviving": 25,
       "closure_pct": 76.2,
-      "build_pct": 80.7
+      "build_pct": 81.5
     }
   ],
   "questions": [
@@ -167,12 +167,13 @@
         }
       ],
       "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
-      "net_narrowing_ratio": 0.4286,
-      "bits_removed_vs_registration": 0.81,
+      "net_narrowing_ratio": 0.5714,
+      "bits_removed_vs_registration": 1.22,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
+          "constitution",
           "instrumentation",
           "representation",
           "world"
@@ -288,13 +289,13 @@
           }
         ]
       },
-      "surviving": 4,
-      "alive": 3,
-      "resolved_out": 12,
+      "surviving": 3,
+      "alive": 2,
+      "resolved_out": 13,
       "confirmed": 1,
-      "reduction_numerator": 12,
-      "reduction_ratio": 0.75,
-      "bits_removed": 2.0,
+      "reduction_numerator": 13,
+      "reduction_ratio": 0.8125,
+      "bits_removed": 2.42,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it.",
@@ -532,11 +533,13 @@
           "label": "appetitive approach is not bound to a consummatory act",
           "desc": "Approach drive gated to EXTINGUISH on resource contact and hand off to a consummatory act, vs V3-EXQ-781's non-extinguishing terminal drive. Tests whether 781's drive-side null was itself an artefact of a missing consummatory act. DV: post-installation competence TRAJECTORY. Reference build: NON-REGRESSED 128-wide / 3x budget / z_world detached / credit-replay 3 / topk 32 (NOT the 769-falsified 256/5x). Bands: floor 1.0, RND plateau 5.22, lift target 13.05, BC-expert 32.72, local_view_greedy ceiling 48.05, greedy_oracle 57.2, random_walk 0.933.",
           "axis": "intrinsic-architecture",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_consummatory_act (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness.",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-821"
+          ],
+          "basis": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar).",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         }
       ],
       "decision": {
@@ -1557,6 +1560,21 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-821",
+      "all_runs": [
+        "V3-EXQ-821"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar).",
+      "resolved_utc": "2026-07-25T22:22:52Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-813",
       "all_runs": [

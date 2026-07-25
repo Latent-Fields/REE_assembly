@@ -537,23 +537,27 @@
      "axis": "intrinsic-architecture",
      "pre_registered_utc": "2026-07-18T18:37:29Z",
      "pre_registration_source": "mech457_retention_portfolio_2026-07-18.md",
-     "adjudicating_runs": [],
+     "adjudicating_runs": [
+      "V3-EXQ-821"
+     ],
      "null_declared": "Competence still flat -> the binding is NOT what 781 lacked.",
      "measurement_requirement": "MANDATORY: records the post-installation competence TRAJECTORY, not terminal competence -- terminal-only measurement is precisely what kept this deficit invisible for ten legs. MANDATORY: the interpretation grid must enumerate a 'manipulation succeeded and then decayed' branch and route on DECLARED COVARIATES, not only on the terminal criterion (V3-EXQ-780's grid enumerated only a ~0 null, so a successful manipulation was scored as a null while the covariate that catches it, post_bc_foraging_competence, was present and declared but never consumed). MANDATORY: an install that did not take is uninformative about retention and must self-route substrate_not_ready_requeue, never a retention verdict.",
      "motivating_evidence": "V3-EXQ-781 load-bearing positive finding: the approach drive was EARNED at 0.707 while raw_view foraging was SUPPRESSED to 0.200 from a 2.983 control, tight across all three seeds -- approach-without-consummation.",
-     "probe_status": "substrate_blocked",
+     "probe_status": "resolved",
      "blocked_by_substrate": "mech457_consummatory_act",
      "resolution": {
-      "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": null,
-      "epistemic_category": null,
-      "self_route_label": null,
-      "control_passed": false,
-      "non_degenerate": false,
-      "met_elimination_bar": false,
-      "resolved_utc": null,
-      "basis": "PRE-REGISTERED, NOT YET PROBED. The probe is substrate-blocked on substrate_queue.json:mech457_consummatory_act (route: /implement-substrate, NOT another /queue-experiment iteration). No adjudicating run exists, so invariant labelled_fanout_growth (a) holds trivially: pre-registration necessarily precedes resolution, and the git commit of the pre_registration_source artifact is the durable witness."
+      "state": "eliminated",
+      "resolving_runs": [
+       "V3-EXQ-821"
+      ],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "standard",
+      "self_route_label": "consummation_binding_eroded_under_both",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": true,
+      "resolved_utc": "2026-07-25T22:22:52Z",
+      "basis": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar)."
      }
     }
    ],

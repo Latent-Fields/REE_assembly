@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-25T16:56:55Z
+Generated: 2026-07-25T22:45:30Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **11** open question(s) across **8** time-series snapshot(s). **0** flag(s) raised, **14** advisory note(s), **9** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
+Audited **11** open question(s) across **8** time-series snapshot(s). **0** flag(s) raised, **14** advisory note(s), **10** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -59,9 +59,9 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 **Response is routing, not demotion.** These are questions, not claims; nothing is promoted or demoted. Re-pose the operationalization before opening another portfolio -- enumerating a further round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Warn-only: this never gates a cycle.
 
-- `competence_floor`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 16, 3 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `mech457_retention_portfolio_2026-07-18.md`
+- `competence_floor`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 16, 2 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `mech457_retention_portfolio_2026-07-18.md`
 
-## Pre-registration provenance (9 witnessed, 0 unverifiable)
+## Pre-registration provenance (10 witnessed, 0 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -73,6 +73,7 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `competence_floor`/`H-bc-prior`: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json` committed 2026-07-18 <= resolution 2026-07-18
 - `competence_floor`/`H-approach-primitive`: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json` committed 2026-07-18 <= resolution 2026-07-18
 - `competence_floor`/`H-retention-auxiliary-decay`: `mech457_retention_portfolio_2026-07-18.md` committed 2026-07-18 <= resolution 2026-07-20
+- `competence_floor`/`H-consummation-binding`: `mech457_retention_portfolio_2026-07-18.md` committed 2026-07-18 <= resolution 2026-07-25
 - `conversion_ceiling_root`/`H-objective-misspecification`: `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json` committed 2026-07-22 <= resolution 2026-07-24
 - `conversion_ceiling_root`/`H-observation-interface`: `failure_autopsy_backlog_2026-07-24.json` committed 2026-07-24 <= resolution 2026-07-24
 - `arousal-variance-amplifier`/`H-arousal-channel-agnostic`: `failure_autopsy_V3-EXQ-785_2026-07-19.json` committed 2026-07-19 <= resolution 2026-07-19
