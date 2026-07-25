@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-4",
   "hostname": "ree-cloud-4",
-  "last_tick_utc": "2026-07-25T00:48:51Z",
+  "last_tick_utc": "2026-07-25T02:59:17Z",
   "state": "running",
   "current_exq": "V3-EXQ-793a",
   "current_exq_started_utc": "2026-07-24T12:38:27.229148+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-049",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 44 / A10_amended_curriculum_density_off",
-    "runs_done": 8,
+    "run_label": "Seed 45 / A10_amended_curriculum_density_off",
+    "runs_done": 9,
     "runs_total": 24,
     "episodes_done": 0,
     "episodes_total": 340,
-    "overall_pct": 33.3
+    "overall_pct": 37.5
   },
-  "seconds_elapsed": 43825,
-  "seconds_remaining": 90832,
+  "seconds_elapsed": 51650,
+  "seconds_remaining": 87117,
   "recent_lines": [
     "[v3_exq_793a_sd049_arm2_competence_repower] starting (dry_run=False)",
     "[setup] P_DENSITY_FLAG: env accepts sd049_preserve_per_type_density = True",
@@ -78,7 +78,14 @@
     "[eval] arm=A10 seed=43 contact=0.0116 (floor 0.02) d1=False survival=True clears=False guard_pass=False",
     "verdict: FAIL arm=A10 seed=43 d1_contact=False d2_survival=True",
     "Seed 44 Condition A10_amended_curriculum_density_off",
-    "[A10/amended_curriculum_density_off] seed 44 curriculum_amended=True density_on=False n_types=3"
+    "[A10/amended_curriculum_density_off] seed 44 curriculum_amended=True density_on=False n_types=3",
+    "[train] p0 arm=A10 seed=44 ep 180/340",
+    "[train] hazard arm=A10 seed=44 ep 260/340 survival_pass=True",
+    "[train] p2_guard arm=A10 seed=44 ep 325/340 contact_rate=0.4102 events=187 z_goal_at_contact=0.4165",
+    "[eval] arm=A10 seed=44 contact=0.0295 (floor 0.02) d1=True survival=True clears=True guard_pass=True",
+    "verdict: PASS arm=A10 seed=44 d1_contact=True d2_survival=True",
+    "Seed 45 Condition A10_amended_curriculum_density_off",
+    "[A10/amended_curriculum_density_off] seed 45 curriculum_amended=True density_on=False n_types=3"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
