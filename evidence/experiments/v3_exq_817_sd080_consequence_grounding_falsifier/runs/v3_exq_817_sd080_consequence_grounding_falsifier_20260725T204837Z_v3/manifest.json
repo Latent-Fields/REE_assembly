@@ -1,0 +1,80 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_817_sd080_consequence_grounding_falsifier",
+  "run_id": "v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-25T20:48:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-080",
+    "SD-004"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-080": "non_contributory",
+    "SD-004": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "grounding_took": false,
+    "preconditions": [
+      {
+        "name": "arm1_ao_state_dependence_acquired",
+        "description": "ARM_1 r2_explained_by_action_alone (M5, ao) DROPS below the ceiling (baseline ~0.994); grounding made O state-dependent.",
+        "measured": 0.9824664278907964,
+        "threshold": 0.95,
+        "direction": "upper",
+        "control": "same M5 statistic the spike reported; ARM_0 stays ~0.994",
+        "met": false
+      },
+      {
+        "name": "arm1_ao_consequence_structure_acquired",
+        "description": "ARM_1 mean_within_pair_spearman (M6, ao) RISES above the floor (baseline ~0); grounding made O consequence-structured.",
+        "measured": 0.08490256267796376,
+        "threshold": 0.15,
+        "direction": "lower",
+        "control": "same M6 statistic the spike reported; ARM_0 stays ~0",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "grounding_gate": false,
+      "behavioural_load_bearing": false
+    },
+    "summary": "Grounding objective did NOT move the substrate DVs in ARM_1 (M5 r2=0.9825 vs ceil 0.95; M6=0.0849 vs floor 0.15). Behavioural read uninterpretable; re-queue with a stronger grounding objective."
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "3d938bd225a64263455af0a68cedbbb1321b62679c67dddcfb98fa34e3d4bdba"
+}
