@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-25T17:59:14Z",
+  "scope": "single",
+  "status": "confirmed",
+  "adjudication_kind": "flagged_pass_unknown_direction",
+  "targets": [
+    {
+      "run_id": "v3_exq_809_sd080_action_object_init_invariance_20260723T061050Z_v3",
+      "queue_id": "V3-EXQ-809",
+      "supersedes": null,
+      "claim_ids": ["SD-004"],
+      "also_bears_on": ["SD-080"],
+      "outcome": "PASS",
+      "self_route_label": "ao_content_reaches_proposals_but_not_behaviour",
+      "flag": "unknown_direction",
+      "failed_criterion": null,
+      "failed_criterion_detail": "PASS, not a FAIL. Load-bearing C2_behavioural_init_effect_below_seed_noise PASSED (behaviour invariant to AO-head re-init). Non-load-bearing C1_mechanism_proposal_invariance did NOT hold (re-drawn heads DO shift first-action distributions, pairwise TV up to 0.15) -- i.e. the AO-head content reaches the proposal stage but washes out by the behavioural readout. Both criteria non-degenerate; all 4 preconditions passed.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-004: does_not_support (RATIONALE-scoped). SD-004's behavioural validation (EXQ-114 99.2% harm reduction MAP_NAV-active-vs-ablated; EXQ-003 6x survival) is UNTOUCHED -- 809 re-inits head CONTENT, it does not ablate the pathway. But SD-004's stated efficiency / 'semantically-grounded learned compression to world-effects' RATIONALE is not the operative mechanism: O's content is behaviourally inert, so terrain/residue navigation is what produced the survival advantage. SD-080: supports -- confirms the frozen-random-projection prediction (content reaches proposals, washes out behaviourally).",
+        "biological_reference": "n/a for the direct claim; this is a formal-vs-functional import issue. SD-004's design doc asserts a LEARNED compression to world-effects, but nothing in any REE training path trains E2.action_object_head (zero gradient; SD-080). 809 is the clean behavioural confirmation that the asserted mechanism is not the operative one.",
+        "prerequisites": "n/a -- the finding IS the prerequisite gap (SD-080: the head needs a consequence-grounding training objective it never receives).",
+        "implementation": "the head, its call sites and its consumers are correctly PLACED (cem_elite_refit_consumed_action_objects 1.0); the deficiency is a missing training OBJECTIVE, not a wrong architecture.",
+        "environment": "adequate -- CausalGridWorldV2, replicates EXQ-003 TERRAIN-vs-RANDOM; residue field shaped by warmup harm (52>>1).",
+        "measurement": "adequate and decisive -- all 4 preconditions passed (ao_head_reinit_divergence 9.94>>0.1, cem_elite_refit_consumed_action_objects 1.0, d2_cross_seed_spread 2.14>>0.02, residue_field_shaped 52>>1); the DV denominator that the load-bearing C2 ratio routes on is non-degenerate. The 'unknown' direction was an un-hardcoded diagnostic label, not genuine measurement ambiguity.",
+        "integration": "the AO head integrates into the hippocampal CEM (elite refit reads it) but its content does not propagate to behaviour -- coupled at the proposal layer, decoupled at the behavioural layer.",
+        "scale": "adequate."
+      },
+      "biological_reference": {
+        "closest_mechanism": "action-consequence representation (action objects O as world-effect compression); SD-004/SD-005 encoder co-design + ARC-018 reframe.",
+        "dependencies": ["a training signal that makes o_t predict realised world-effects from (z_world_t, a_t)"],
+        "is_formal_import": true,
+        "divergence": "SD-004's rationale is a semantic-grounding claim that the substrate never earns: O is a frozen random projection (state-invariant, not consequence-structured). Load-bearing by default -- the divergence between asserted mechanism and operative mechanism is the finding.",
+        "lit_status": "n/a -- diagnosed by the 2026-07-22 scoping spike; no lit-pull owed."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"SD-004": "standard", "SD-080": "standard"},
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_direction_per_claim": {"SD-004": "does_not_support", "SD-080": "supports"},
+      "recommended_evidence_quality_note": "V3-EXQ-809 (2026-07-23, action-object init-invariance prior probe; diagnostic; confirmed failure_autopsy_V3-EXQ-809_2026-07-25; PROMOTES NOTHING). This is the 'cheaper prior probe' the SD-080 scoping spike (action_object_invariance_spike_2026-07-22.md Sec 4.2) prescribed: re-run the EXQ-003 TERRAIN-vs-RANDOM contrast with E2.action_object_head re-initialised at several seeds. RESULT (label ao_content_reaches_proposals_but_not_behaviour): re-drawn heads genuinely differ (ao_param L2 9.94; first-action TV up to 0.15) and reach the CEM proposals (C1 proposal-invariance rejected), but the load-bearing C2 shows the behavioural effect of AO-head init is BELOW seed noise -- O's content is NOT behaviourally load-bearing. All 4 preconditions passed; both criteria non-degenerate. DIRECTION w.r.t. SD-004: does_not_support, SCOPED TO SD-004's efficiency / 'semantically-grounded learned compression' RATIONALE ONLY. SD-004's behavioural validation (EXQ-114 harm reduction; EXQ-003 survival) is EXPLICITLY PRESERVED and SD-004 STAYS implemented -- 809 does not touch the MAP_NAV pathway, only the head's content. Per the spike's pre-declared 'defect real but not load-bearing' branch: SD-004's efficiency rationale is demoted (the actual mechanism producing EXQ-003's survival is terrain/residue navigation, not O's semantic grounding). SUPPORTS SD-080 (E2.action_object_head is a frozen random projection; correctness-not-capability finding).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "The spike explicitly says: do NOT widen SD-080 into a substrate change without the falsifier. The consequence-grounding training-objective build is complicated (buildable) but gated behind the Sec 4.2 3-arm capability falsifier. No substrate_queue write from this autopsy."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_flag_note": "After 809, SD-004's surviving mechanistic support is NARROW / single-pathway: the harm-reduction and survival PASSes stand, but the mechanism producing them is now attributed to terrain/residue navigation rather than to O's semantic grounding. Governance should record that SD-004's efficiency rationale is no longer evidenced, while its behavioural claim remains.",
+      "learning_extracted": [
+        "E2.action_object_head content reaches the hippocampal CEM proposals but washes out behaviourally: O's content is not behaviourally load-bearing. This confirms SD-080 (frozen random projection) with a live behavioural probe, not just the static spike measurements.",
+        "SD-004's behavioural validity and its stated RATIONALE dissociate: the harm-reduction/survival results are real, but the 'semantically-grounded learned compression' story is not what produces them -- terrain/residue navigation is. A formal-definition import (learned world-effect compression) was asserted in the design doc but never trained.",
+        "The forward question splits cleanly: whether GROUNDING O would IMPROVE planning (capability) is the orthogonal open question, answerable only by the Sec 4.2 3-arm falsifier (ARM_0 frozen / ARM_1 consequence-grounded / ARM_2 shuffled-target control). 809 answers only the correctness question (is current O load-bearing? no)."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "Two-part: (1) GOVERNANCE-APPLY the direction adjudication above (SD-004 does_not_support rationale-scoped, behavioural PASS preserved; SD-080 supports). (2) Chippable /queue-experiment follow-on: the spike Sec 4.2 3-arm consequence-grounding falsifier (frozen / consequence-grounded / shuffled-target control), testing the orthogonal CAPABILITY question. This is /queue-experiment work (new scientific question), so it is chipped, not inlined. Coordinate with active session dazzling-taussig-f58f4c which is fleshing out SD-080 + the SD-004 cross-reference note."
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_step_9b": {
+    "applied": false,
+    "reason": "809 adjudicates a direction (does_not_support SD-004 rationale / supports SD-080) but emits NO fanout_recommendation and there is NO registered hypothesis-space question owned by SD-004 or SD-080. Registering a new single-question here for a routine adjudication, or force-mapping onto an unrelated question, is not warranted. The Sec 4.2 3-arm falsifier is a genuine future discrimination portfolio -- if/when it is queued via /queue-experiment, THAT is the moment to pre-register its legs (Mode A). Skipped cleanly."
+  }
+}

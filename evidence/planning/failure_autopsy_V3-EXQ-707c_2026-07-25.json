@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-25T17:59:14Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260723T151429Z_v3",
+      "queue_id": "V3-EXQ-707c",
+      "supersedes": "V3-EXQ-707b",
+      "claim_ids": ["ARC-110"],
+      "failed_criterion": "discrimination",
+      "failed_criterion_detail": "C1_A1_loops_strict_above_A0_and_in_layer_null (load_bearing) failed: A1_LOOPS committed-class conversion did NOT clear strict-above max(A0_SINGLE_ARENA, the LIVE same-layer null) + margin. C2 (limbic loop load-bearing) also failed but is non-load-bearing and moot given C1.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (narrow sub-hypothesis ONLY). ARC-110 bundles (a) an architectural assertion -- parallel segregated cortico-BG-thalamic loops are biologically real and load-bearing -- and (b) a narrow sub-hypothesis: the F-dominance conversion ceiling (MECH-439) is partly an ARTEFACT of the single-arena collapse. 707c tests only (b), on a fully-live substrate, and weakens it: segregation alone does not lift F-dominance, so the ceiling is INTRINSIC not a collapse artefact. (a) is NOT falsified.",
+        "biological_reference": "clear -- Alexander/DeLong/Strick parallel segregated cortico-BG-thalamic loops, a faithful FUNCTIONAL translation. The failure matches a missing-dependency signature: in real brains the loops are integrated by dopamine (Haber ascending spiral) and that integration LEARNS; the current build has static arithmetic cross-loop arbitration, so segregation-without-learned-integration is biologically expected NOT to lift F-dominance -- exactly what is observed.",
+        "prerequisites": "missing BUT substrate-exhausted -- the discovered prerequisite (learned DA-gated cross-loop arbitration; MECH-448/449/ARC-107) was built and tested three times (709 learned cross-loop arbitration, 711 ascending-spiral gain, 713 bounded-parity controller) and ALL confirmed substrate_ceiling: the arbitration regime is degenerate/saturated and the conversion question cannot be validly measured on the current substrate.",
+        "implementation": "complete and demonstrably live -- all readiness preconditions passed on this run (crf_matured 8/8, enough_divergent_seeds 4/4, loops_carry_live_cross_loop_variance, named_channel_routing_live, limbic_graded_competition_live worst-cell 4.28>>0.05, fresh_selects_sufficient, in_layer_null_live, learning_engaged). The static arithmetic cross-loop arbitration is a DESIGN FACT, not a defect of this run.",
+        "environment": "adequate -- same GAP-A reef-bipartite foraging substrate + landed arithmetic envelope + finer-channel gating + learned settling as a matched constant; the only swept factor is loop segregation.",
+        "measurement": "adequate NOW -- this is the whole point of 707c. It repairs the 707b measurement_test_design_defect (hold-weighted histogram entropy contaminated by up to +97.6% exposure imbalance) by accumulating the DV ONLY on verified-fresh E3 selections, with fresh-select-sufficiency + divergence-headroom + graded-limbic-competition guards and exposure telemetry.",
+        "integration": "coupled but static -- the segregated loops integrate via arithmetic (non-learning) cross-loop arbitration. Learned integration is the missing piece, and its substrate is exhausted (see prerequisites).",
+        "scale": "adequate -- not the binding constraint."
+      },
+      "biological_reference": {
+        "closest_mechanism": "Alexander/DeLong/Strick parallel segregated cortico-basal ganglia-thalamic loops (motor / associative-cognitive-set / limbic-motivational), integrated by Haber's ascending dopamine spiral.",
+        "dependencies": ["dopamine-gated cross-loop arbitration plasticity (Haber spiral)", "within-loop striatal competition", "D1/D2 population split (ARC-109)", "loop-local eligibility traces (MECH-452)"],
+        "is_formal_import": false,
+        "divergence": "The build has the segregation and the within-loop competition but a STATIC (arithmetic) cross-loop arbitration where biology has a LEARNED, dopamine-gated one. The FAIL is consistent with that specific divergence, not with the architecture being wrong.",
+        "lit_status": "present -- the parallel-loop organisation and Haber spiral are well-grounded; no new lit-pull owed."
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"ARC-110": "standard"},
+      "recommended_epistemic_category_note": "NOT substrate_ceiling. The substrate was demonstrably live (every readiness gate passed) and the instrument was repaired; the narrow sub-hypothesis was FAIRLY tested and weakened. This run must NOT be counted toward the ARC-110 re-derive-brake ceiling tally.",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {"ARC-110": "weakens"},
+      "recommended_evidence_quality_note": "V3-EXQ-707c (2026-07-23, C2-release VALIDATION on a REPAIRED instrument; supersedes 707b; confirmed failure_autopsy_V3-EXQ-707c_2026-07-25; diagnostic; PROMOTES NOTHING) -> weakens (NARROW). Replaces and supersedes the stale withdrawn 707b-2026-06-29 note. CONTEXT: the 707b-2026-06-29 weakens was WITHDRAWN 2026-07-20 as a measurement_test_design_defect (hold-weighted histogram entropy DV, +97.6% exposure imbalance, sign-inconsistent A1-vs-null contrast); 707c recovers the question on a clean instrument (DV accumulated only on verified-fresh E3 selections). DECISIVE pre-registered test on a FULLY-LIVE substrate: all readiness gates passed (loops carry live cross-loop variance; named-channel routing live; graded limbic competition worst-cell 4.28>>0.05; valid same-layer null LIVE; enough divergent seeds 4/4). Load-bearing C1 FAILED: A1_LOOPS did not convert strict-above max(A0_SINGLE_ARENA, the live null). Per ARC-110's own pre-registered grid -> the F-dominance conversion ceiling is INTRINSIC, NOT a single-arena-collapse artefact. WEAKENS the narrow single-arena-artefact SUB-hypothesis ONLY; does NOT falsify the architectural assertion (segregated loops are biologically real + load-bearing). NARROWED (re-established on a valid instrument): loop segregation is necessary-but-not-sufficient; alone (with static arithmetic cross-loop arbitration) it does not lift the F-dominance ceiling. The missing dependency is learned DA-gated cross-loop arbitration (MECH-448/449/ARC-107) -- but that rescue path is SUBSTRATE-EXHAUSTED: 709/711/713 all confirmed substrate_ceiling (degenerate/saturated arbitration regime). Do NOT re-queue another same-claim learned-arbitration validation letter. ARC-110 stays candidate / substrate_conditional / implementation_phase=v3.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate build recommended. The learned cross-loop arbitration substrate the narrowing points to has ALREADY been built and tested three times (709/711/713) and is substrate_ceiling-exhausted. A new, genuinely-different arbitration substrate is not yet articulated and is out of scope for this autopsy; do not create a duplicate substrate_queue entry for the exhausted path."
+      },
+      "pending_retest_after_substrate": true,
+      "pending_retest_after_substrate_note": "Scoped to the ARCHITECTURAL assertion only. The narrow single-arena-artefact sub-hypothesis is SETTLED (weakened, valid instrument) and needs no retest. The architectural assertion stays substrate_conditional and awaits a genuinely-different learned-arbitration substrate; the current one is exhausted (709/711/713 ceiling), so this is NOT an actionable retest until a new substrate is designed.",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "fired_note": "707c reads WEAKENS on a live substrate, not substrate_ceiling, so it is not itself a brake-counting hit and does not increment the ARC-110 tally (which stands at 3: 709/711/713). Recorded here for provenance and to make the forward refusal explicit.",
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-709_2026-07-03", "failure_autopsy_V3-EXQ-711-713_2026-07-20"],
+        "refused_requeue": true,
+        "refused_requeue_note": "A same-claim learned-DA-gated-cross-loop-arbitration validation re-queue (another 70x/71x-style letter against the current arbitration substrate) is REFUSED: 709/711/713 exhausted that path at substrate_ceiling. A redesign testing a genuinely DIFFERENT mechanism (new EXQ number, different claim_ids) remains allowed.",
+        "route_to": "governance-apply",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The F-dominance conversion ceiling (MECH-439) is INTRINSIC, not an artefact of single-arena collapse: segregating the loops on a fully-live substrate does not lift it. This settles ARC-110's narrow sub-hypothesis on a valid instrument (the 707b withdrawal had left it untested).",
+        "The instrument repair mattered: the same weakens conclusion that was withdrawn as a measurement defect (707b) reproduces cleanly when the DV is accumulated only on verified-fresh E3 selections -- confirming the conclusion was directionally right but the 707b evidence was invalid.",
+        "The biologically-grounded rescue (learned DA-gated cross-loop arbitration) is substrate-exhausted (709/711/713 ceiling). ARC-110's V3 conversion-ceiling attack has now been probed from both the collapse-artefact angle (weakened) and the learned-integration angle (substrate-blocked); the honest posture is candidate/substrate_conditional awaiting a new arbitration substrate, not another lettered retest."
+      ],
+      "routing": "governance-apply"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_step_9b": {
+    "applied": false,
+    "reason": "707c adjudicates a leg (weakens ARC-110 narrow sub-hyp) but emits NO fanout_recommendation and is not a pre-registered leg of any hypothesis-space question OWNED by ARC-110. The registry's `conversion_ceiling_root` question (owned by MECH-457/ARC-065) carries an `H-f-dominance` hypothesis that 707c is topically adjacent to -- 707c reinforces that F-dominance is a real intrinsic ceiling rather than a collapse artefact -- but 707c is tagged ARC-110, not MECH-457/ARC-065, and force-mapping it onto that question's leg risks the over-attribution the skill warns against. Skipped cleanly; cross-link recorded for a future MECH-457/ARC-065 governance/synthesis pass."
+  }
+}
