@@ -74,6 +74,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-2`
 
@@ -145,6 +146,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-3`
 
@@ -216,6 +218,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-4`
 
@@ -287,6 +290,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-5`
 
@@ -358,6 +362,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-6`
 
@@ -429,6 +434,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-7`
 
@@ -500,6 +506,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-8`
 
@@ -571,6 +578,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-9`
 
@@ -642,6 +650,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-10`
 
@@ -713,6 +722,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-11`
 
@@ -784,6 +794,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-11b`
 
@@ -855,6 +866,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-12`
 
@@ -926,6 +938,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-13`
 
@@ -997,6 +1010,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-14`
 
@@ -1069,6 +1083,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-14-c2`
 
@@ -1140,6 +1155,7 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 
 ## `infant_substrate:GAP-15`
 
@@ -1211,4 +1227,5 @@ Source plan: `evidence/planning/infant_substrate_plan.md`
 - `2026-07-10T06:24Z` [autopsy] `failure_autopsy_V3-EXQ-732_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732_2026-07-10.json) :: autopsy non_contributory/precondition_unmet routing=queue-experiment
 - `2026-07-10T11:53Z` [autopsy] `failure_autopsy_V3-EXQ-732a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-732a_2026-07-10.json) :: autopsy non_contributory/test_design_ceiling routing=governance _(modifier)_
 - `2026-07-20T06:44Z` [autopsy] `failure_autopsy_V3-EXQ-604c_2026-07-20` -> [`evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-604c_2026-07-20.json) :: autopsy mixed/substrate_ceiling routing=implement-substrate **<- live head**
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-669c` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 

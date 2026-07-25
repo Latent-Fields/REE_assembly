@@ -10,31 +10,31 @@
       "timestamp_utc": "2026-02-25T16:56:17.901452Z"
     },
     "ARC-007": {
-      "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-cool-jackson-04aba4-gov",
+      "decision_needed": "Demotion review: active -> provisional (behavioural leg weakens)",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Path memory ablation PASS (EXQ-024) is real but v3_pending gate applies; ARC-007 requires proper HippocampalModule (SD-004) before conclusive V3 testing.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.360735Z"
+      "rationale": "V3-EXQ-114a USER-CONFIRMED weakens (harm advantage 11.4% < 15%; EXQ-114 was a denominator artefact); behavioural leg only; 800 substrate_conditional held out of ratio",
+      "recommendation": "demote_to_provisional",
+      "selected_option": "demote active->provisional, leg-scoped",
+      "timestamp_utc": "2026-07-25T16:55:22.896761Z"
     },
     "ARC-016": {
-      "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "User confirmed hold. Precision regime probe FAIL (EXQ-025) is substrate-limited: V3 needs E3-derived dynamic precision and end-to-end commitment\u2192behavior wiring.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361120Z"
+      "actor": "governance-cool-jackson-04aba4-gov",
+      "decision_needed": "Demotion review: provisional -> candidate",
+      "decision_status": "rejected",
+      "rationale": "aggregation artefact: exp_conf ~0.53 aggregates 15 FAILs nearly all non_contributory/stale; 805 non_contributory not weakens; USER-CONFIRMED hold; rescore routed to /claim-synthesis",
+      "recommendation": "demote_to_candidate",
+      "selected_option": "HOLD provisional, do not demote",
+      "timestamp_utc": "2026-07-25T16:55:22.999033Z"
     },
     "ARC-018": {
-      "actor": "user",
-      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "actor": "governance-cool-jackson-04aba4-gov",
+      "decision_needed": "Demotion review: active -> provisional (behavioural leg weakens)",
       "decision_status": "applied",
-      "rationale": "User confirmed hold. Rollout viability mapping FAIL (EXQ-021) is substrate-limited: requires SD-004 HippocampalModule for proper map backbone.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-03-16T18:20:19.361124Z"
+      "rationale": "V3-EXQ-120a USER-CONFIRMED weakens (harm advantage -18.1% < 15%); behavioural leg only, biological existence-proof intact; 801 substrate_conditional held out of ratio",
+      "recommendation": "demote_to_provisional",
+      "selected_option": "demote active->provisional, leg-scoped",
+      "timestamp_utc": "2026-07-25T16:55:22.860424Z"
     },
     "ARC-022": {
       "actor": "user",
@@ -1782,6 +1782,15 @@
       "selected_option": "hold as candidate; resolve conflict before promotion",
       "timestamp_utc": "2026-07-20T20:22:21.561005Z"
     },
+    "MECH-477": {
+      "actor": "governance-cool-jackson-04aba4-gov",
+      "decision_needed": "Clear V3-pending gate given first clean V3 support",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-811a landed clean self-route arbitration_produces_differential_recruitment / supports; two concordant V3 reads (811 re-derived + 811a); USER-CONFIRMED clear; stays candidate (promotable on evidence, not promoted)",
+      "recommendation": "clear_v3_pending",
+      "selected_option": "v3_pending true->false, evaluate normally",
+      "timestamp_utc": "2026-07-25T16:55:22.964934Z"
+    },
     "Q-006": {
       "actor": "user",
       "decision_needed": "Open-question governance lane initialization",
@@ -1873,13 +1882,13 @@
       "timestamp_utc": "2026-03-16T18:20:19.361158Z"
     },
     "Q-020": {
-      "actor": "user",
-      "decision_needed": "Question narrowing review",
+      "actor": "governance-cool-jackson-04aba4-gov",
+      "decision_needed": "Reopen resolved -> candidate (weakens against resolution)",
       "decision_status": "applied",
-      "rationale": "Q-020 already resolved via literature synthesis (Resolution A, 2026-04-02): ARC-007 and MECH-073 are co-true. Experimental FAILs (EXQ-266 x2, conditions identical) flagged for /diagnose-errors. The question is closed at the resolution level; experimental validation requires separate /diagnose-errors investigation.",
-      "recommendation": "narrow_open_question",
-      "selected_option": "Narrow the question into testable sub-questions (higher tractability)",
-      "timestamp_utc": "2026-04-10T18:06:06.975132Z"
+      "rationale": "V3-EXQ-266b USER-CONFIRMED weakens (harm advantage 6.5% < 15%); load-bearing behavioural leg for Resolution A no longer settled; needs_review",
+      "recommendation": "reopen_to_candidate",
+      "selected_option": "reopen resolved->candidate",
+      "timestamp_utc": "2026-07-25T16:55:22.930722Z"
     },
     "Q-021": {
       "actor": "user",
@@ -2332,7 +2341,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-21T06:07:16.170511Z",
+  "generated_at_utc": "2026-07-25T16:56:36.036801Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

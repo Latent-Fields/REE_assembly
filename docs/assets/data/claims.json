@@ -53,8 +53,8 @@
   },
   "ARC-007": {
     "assembly_state": "mature",
-    "epistemic_stance": "believed",
-    "status": "active",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "hippocampus.path_memory",
     "title": "Hippocampal systems store and replay paths through residue-field terrain.",
     "type": "architectural_commitment",
@@ -147,8 +147,8 @@
   },
   "ARC-018": {
     "assembly_state": "mature",
-    "epistemic_stance": "believed",
-    "status": "active",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "hippocampus.rollout_viability_mapping",
     "title": "Hippocampus generates explicit rollouts and post-commitment viability mapping.",
     "type": "architectural_commitment",
@@ -3796,7 +3796,7 @@
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "goal_directed.dual_system_novel_context_recruitment",
-    "title": "NARROWED 2026-07-22 to leg (1) only. Two dissociable goal-directed systems operate in parallel -- a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in practised contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) -- AND THE PLANNED SYSTEM IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. This is exactly the proposition V3-EXQ-786a tested, and the claim retains that run's weakens. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration).",
+    "title": "NARROWED 2026-07-22 to leg (1) only. Two dissociable goal-directed systems operate in parallel -- a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in practised contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) -- AND THE PLANNED SYSTEM IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. This is exactly the proposition V3-EXQ-786a tested; that run's `weakens` was WITHDRAWN 2026-07-24 (failure_autopsy_V3-EXQ-786a_2026-07-24_dv_degeneracy) on discovering its recruitment DV was degenerate (constant first-step vector, Spearman-vs-tie-break noise) -- leg (1) is EXPERIMENTALLY UNTESTED pending a non-degenerate re-run. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration).",
     "type": "mechanism_hypothesis"
   },
   "MECH-164": {
@@ -4130,11 +4130,14 @@
   },
   "MECH-204": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "sd_waking_confidence_inflation_headroom",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "Serotonergic withdrawal during REM actively defines the precision recalibration zero-point by removing the benefit gradient, not merely permitting recalibration",
     "title": "serotonergic_rem_gate_zero_point",
-    "type": "mechanism_hypothesis"
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "MECH-204 states a MECHANISM but has never stated its own falsification\nconditions -- not the DV, not the required drift source, not the timescale at\nwhich the correction must act. Every test to date has had to invent all three,\nand each invention was wrong in a DIFFERENT way (EXQ-541 within-cycle no-op;\n541a/541b under-powered timescale; V3-EXQ-596/602 scored on a cluster criterion\nthat is not a MECH-204 prediction; V3-EXQ-774 tautological DV; V3-EXQ-794\nclamped drift source). That signature diversity is a SPECIFICATION gap, not a\ngranularity gap -- /claim-synthesis 2026-07-22\n(claim_synthesis_MECH-163_2026-07-22.md sec 1c) REFUSED to decompose MECH-204 on\nexactly this ground: classifying the cluster by the autopsies' own\nfour_layer_diagnosis yields ZERO non-degenerate substrate-ready FAIL signatures\nand not one target carries `weakened`. This block supplies the three missing\nobjects so they are not re-invented a sixth time.\n\n(a) THE DRIFT SOURCE -- now SD-076 (`use_waking_confidence_inflation`),\nregistered separately 2026-07-20 because it is the SOURCE while MECH-204 is the\nCORRECTION, and the two must be independently ablatable. A MECH-204 test is\nADMISSIBLE ONLY WITH AN ACTIVE, DEMONSTRATED DRIFT SOURCE. \"Sleep recalibrates\nwaking precision drift\" is unfalsifiable if waking precision cannot drift, so a\nnull measured without live drift is a TAUTOLOGY, not evidence (V3-EXQ-774). The\ndrift must be shown live IN THE RUN -- a strict dose separation on the drift\nvariable between arms -- BEFORE the correction is scored. SD-076 currently has\nNO usable headroom: V3-EXQ-794 pinned `rv_final` at exactly 0.010000 on all four\ninflation arms, with `overconfidence_score` bit-identical to 15 significant\nfigures (-1.004111904519277) at the LO and HI asymmetry levels. MECH-204 is\ntherefore NOT ANSWERABLE until `sd_waking_confidence_inflation_headroom` lands\n(separate /implement-substrate chip), followed by the V3-EXQ-794a re-run.\n\n(b) THE PRECISION DV, AND THE NON-TAUTOLOGY BURDEN. ANY proposed DV must be\nshown non-tautological BEFORE it is used. The paid lesson is V3-EXQ-774: a\nSYMMETRIC precision EMA makes `running_variance` track true prediction error BY\nCONSTRUCTION, pinning `overconfidence_score` near zero regardless of what is\nablated (774 measured -0.000148 and -0.000918). The DV must be a quantity whose\nvalue can be driven materially away from the calibrated point by the drift\nsource ALONE, with the correction ablated. Discharge the burden in-run by\nshowing (i) the drift-on / correction-off arm moves the DV materially away from\ncalibration, and (ii) two drift doses produce DIFFERENT DV values beyond float\nnoise -- identical values at two nominally different doses are a SATURATION\nfingerprint, not a null (V3-EXQ-794). The Phase 7 / Option B write-site in\nPRECISION space (not E3-score space) is correct and must not be revisited; it is\nwhat escapes the V3-EXQ-604c DV-invariance class.\n\n(c) THE MINIMUM TIMESCALE IS RESOLVED, NOT OPEN: >= 16 sleep cycles per arm.\nMeasured -- do not re-derive it. At 4 cycles (541a/541b) cross-arm rv divergence\ntops out at 1.75% against a 5% bar (inconclusive_timescale: the rv EMA damping\noverwhelms the per-cycle nudge). At 16 cycles (541c; sleep_loop_K=1,\nEPISODES_PER_RUN=16, precision_zero_point_ema_alpha=0.1) divergence is monotone\nin step size -- 0.90% / 1.81% / 4.51% / ~10% at step 0.05 / 0.10 / 0.25 / 0.50 --\nand step=0.50 clears the 5% C4 bar in 3/3 seeds, with C1-C4 PASS overall. A\nMECH-204 run at fewer than 16 cycles per arm is under-powered BY MEASUREMENT and\nits null carries no weight.\n\nANSWERS MECH-204 (5-HT withdrawal actively CALIBRATES the zero-point, not merely\npermits recalibration) if, with the drift source demonstrably live and the DV\nshown non-tautological, at >= 16 cycles per arm the recalibration-ON arm returns\nthe precision DV toward the cumulative zero-point reference relative to the\ndrift-only arm, with a monotone dose-response in\n`rem_precision_recalibration_step` and sign consistency across seeds.\n\nREFUTES MECH-204 if, under those same admissibility conditions, the correction\nfires every cycle (C1) and adjusts with the correct sign (C2) yet leaves the\ndrifted DV statistically indistinguishable from the drift-only arm across the\ndefensible step range {0.05, 0.10, 0.25} -- i.e. 5-HT withdrawal is PERMISSIVE\nonly, and MECH-123 needs no zero-point term.\n\nDOES NOT ANSWER IT EITHER WAY: any run whose overall outcome is decided by a\ncluster-integration criterion that is not a MECH-204 prediction. V3-EXQ-596/602\nFAILED on cluster_live_frac, a MECH-285 / GAP-3 criterion, while STRENGTHENING\nMECH-204 on its own C1+C3 (recalibration fired every cycle in 3/3 seeds; 8.4-27.6%\nrv divergence at 12 cycles).\n\nNO TIMESCALE CHILD CLAIM IS WARRANTED NOW -- 541c already answered it. A\n`recalibration_timescale` child becomes warranted ONLY IF, after\n`sd_waking_confidence_inflation_headroom` lands and V3-EXQ-794a runs, the\ncorrection fails on CYCLE COUNT again. Registering one now would mint an untested\nclaim from a resolved problem.\n"
   },
   "MECH-205": {
     "assembly_state": "mature",
@@ -6497,7 +6500,7 @@
   },
   "MECH-477": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "goal_directed.uncertainty_based_control_arbitration",
     "title": "dual_system_uncertainty_arbitration. Differential recruitment between the habit and the hippocampally-planned goal-directed pathways is produced by an explicit ARBITRATION element that reads the two pathways' relative uncertainty/reliability and reallocates control accordingly -- NOT by the mere presence of two pathways. Two pathways WITHOUT an arbitrator produce a FLAT recruitment response regardless of context novelty. Registered 2026-07-22 as the control-allocation mechanism MECH-163 presupposed but never named; MECH-163 conflated ARCHITECTURE (two pathways exist) with DYNAMICS (control shifts between them with novelty, uncertainty and practice).",
@@ -6689,8 +6692,8 @@
   },
   "Q-020": {
     "assembly_state": "remaining",
-    "epistemic_stance": "believed",
-    "status": "resolved",
+    "epistemic_stance": "asked",
+    "status": "candidate",
     "subject": "hippocampal.arc007_valence_constraint_survival",
     "title": "Does ARC-007's no-value-computation constraint survive MECH-073 (valence intrinsic to hippocampal map)?",
     "type": "open_question"
@@ -8046,6 +8049,8 @@
   },
   "SD-076": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "sd_waking_confidence_inflation_headroom",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "precision.waking_confidence_inflation",
@@ -8082,6 +8087,14 @@
     "status": "candidate",
     "subject": "e2.action_object_consequence_grounding",
     "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it.",
+    "type": "design_decision"
+  },
+  "SD-081": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "e3.dualsystem_uncertainty_arbitration",
+    "title": "e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT pathway (myopic, depth-limited read of the E3 scorer) and the PLANNED pathway (full-horizon read of the same scorer), driven by the two pathways' relative predictive uncertainty and applied to the E3 selection score upstream of every downstream consumer. Built to make MECH-477 falsifiable: the pre-SD-081 substrate scored candidates with an unconditional full-horizon J(zeta), so no weight existed anywhere between the myopic and the deep read and nothing COULD respond to context novelty.",
     "type": "design_decision"
   },
   "SENT-0": {

@@ -543,7 +543,7 @@
   claim_type: architectural_commitment
   subject: hippocampus.path_memory
   polarity: asserts
-  status: active
+  status: provisional
   live_status:
     reading: active
     as_of: 2026-07-11
@@ -580,6 +580,18 @@
     internal probe metric is sign-inverted (intact more negative than ablated, near bit-identical
     across the "harder env" fix) -- the probe is broken, not the mechanism. ARC-007 stands on the
     EXQ-114 behavioural PASS (99.2% harm reduction). Spawned diagnostic to redesign the probe.
+
+    2026-07-25 (governance): status active -> provisional. V3-EXQ-114a (path-memory probe,
+    C2 cluster) is a USER-CONFIRMED weakens -- with E3-routed selection, a matched episode
+    budget and a static no-op control, the harm-reduction advantage collapses to 11.4%
+    (< 15% required). Critically, EXQ-114's headline 99.2% figure was a DENOMINATOR ARTEFACT
+    of a constant action stream; ARC-007's sole behavioural support does not survive its
+    removal, so the "stands on the EXQ-114 PASS" reading above is retired. The DEMOTION IS
+    LEG-SCOPED: it demotes the behavioural harm-navigation translation; the biological
+    existence-proof (hippocampal path store/replay) is unaffected. NOT unconditional:
+    V3-EXQ-800 (residue-scramble dissociation) on this claim is non_contributory /
+    substrate_conditional (pending_retest_after_substrate) and is HELD OUT of the conflict
+    ratio -- the demotion is driven solely by 114a's genuine null.
   depends_on:
     - ARC-004
     - ARC-003
@@ -1988,6 +2000,18 @@
     threshold-adaptation behaviour is dominated by the lock-in rather than by the
     precision-to-commitment circuit under test. ARC-016 core circuit remains
     validated by EXQ-018b/EXQ-060; pending behavioural retest after MECH-269.
+
+    2026-07-25 (governance): the derived agenda recommended demote_to_candidate
+    (provisional -> candidate), but this is an AGGREGATION ARTEFACT and is NOT applied.
+    The exp_conf ~0.53 driving the demotion aggregates 15 FAILs, nearly all already stamped
+    non_contributory or substrate-version-stale (see heterogeneity_note); this cycle's
+    V3-EXQ-805 (eval-derived commit threshold) is likewise non_contributory
+    (measurement_test_design_defect, confirmed backlog autopsy 2026-07-24), not weakens.
+    USER-CONFIRMED HOLD: keep provisional, do NOT demote. A proper rescore that stamps the
+    non_contributory/stale FAILs out of the conflict ratio is owed before any status change
+    -- routed to /claim-synthesis (rescore), not applied inline, because stripping the
+    non-contributory FAILs may expose that the remaining supports are thinner than the
+    headline number and that is a synthesis judgement, not a governance edit.
   heterogeneity_note: "Substrate-version confound: the FAILs predate the relative-threshold implementation (EXQ-018) or are confounded by V_s monostrategy lock (EXQ-396a/396b, EXQ-454) rather than reflecting a circuit failure; the core mechanism is validated by EXQ-018b and EXQ-060."
   depends_on:
     - ARC-005
@@ -2077,7 +2101,7 @@
   claim_type: architectural_commitment
   subject: hippocampus.rollout_viability_mapping
   polarity: asserts
-  status: active
+  status: provisional
   live_status:
     reading: active
     as_of: 2026-07-11
@@ -2155,6 +2179,18 @@
     1113 scripts). Whether EXQ-120's PASS survives is UNASSESSED here and needs its own triage
     -- a collapsed action stream can still yield a real terrain-quality read, so this is a
     reason to check, not a reason to discount.
+
+    2026-07-25 (governance): status active -> provisional. V3-EXQ-120a (viability-map pair,
+    C2 cluster) is a USER-CONFIRMED weakens -- with E3-routed selection, a matched episode
+    budget and a static no-op control, the harm-reduction advantage collapses to -18.1%
+    (< 15% required); P1 GREEN so this is a MEASUREMENT, a decision-flipping negative, not an
+    instrument null. The DEMOTION IS LEG-SCOPED: it demotes the BEHAVIOURAL harm-navigation
+    translation only; ARC-018's biological existence-proof (hippocampal rollout + viability
+    mapping exists) and leg A (EXQ-042/053, no round-trip) are unaffected. NOT unconditional:
+    V3-EXQ-801 (rollout-depth ablation) on this same claim is non_contributory /
+    substrate_conditional (pending_retest_after_substrate) and is HELD OUT of the conflict
+    ratio, not counted as an additional weakens -- the demotion is driven solely by 120a's
+    genuine null.
   depends_on:
     - ARC-007
     - ARC-003
@@ -5949,7 +5985,17 @@
   claim_type: open_question
   subject: hippocampal.arc007_valence_constraint_survival
   polarity: open
-  status: resolved
+  status: candidate
+  evidence_quality_note: >-
+    REOPENED 2026-07-25 (governance): V3-EXQ-266b (valence-geometry pair, C2 cluster) is a
+    USER-CONFIRMED weakens -- once selection is routed through E3 with a matched episode
+    budget and a static no-op control, the harm-reduction advantage of valence-shaped
+    geometry collapses to 6.5% (< 15% required). This behavioural leg was load-bearing for
+    Resolution A's "value-shaped geometry helps harm navigation" reading, so the resolution
+    is no longer settled: status resolved -> candidate, needs_review. resolution_a is kept
+    below as the prior (now-questioned) ruling; the biological existence-proof for
+    value-shaped hippocampal geometry is unaffected -- what weakens is the behavioural
+    translation to a harm-navigation advantage.
   live_status:
     reading: resolved
     as_of: 2026-07-11
@@ -57753,6 +57799,7 @@
     2026-07-24 governance (V3-EXQ-792, evidence, claim_ids=[MECH-457]; failure_autopsy_V3-EXQ-792_2026-07-22, confirmed): the retention-consolidation retest RAN and FAILED (retention_grid_nondiscriminative). User-selected routing "Re-power, keep leg alive" over resolving as confirmed on the load-bearing PASS. epistemic_category measurement_test_design_defect; evidence_direction non_contributory (PROMOTES/DEMOTES NOTHING). MECH-457 stays candidate/v3_pending.
     2026-07-24 governance (V3-EXQ-734 / 737b / 742a cluster, evidence+diagnostic, claim_ids=[] for 734/737b, [MECH-457] for 742a; failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22, confirmed, user-selected routing "Objective mis-specification"): the recorded `weakens` on 742a is WITHDRAWN and revised to `non_contributory`. All four actor-critic arms scored 0.200-0.267 D3 foraging competence -- BELOW the run's own random-walk anchor of 0.933 -- while the training return is dominated by episode survival (vanilla PPO survives 175.0 steps vs the greedy oracle's 20.4 while foraging 17x less). MECH-457 was not tested under conditions where it could express itself; H-objective-misspecification is the live reading (H-policy-learning explicitly NOT eliminated). Additionally the frozen-encoder arms ran on an untrained z_world (sd_zworld_warmup_optimizer_group adoption did not reach this driver copy -- FOURTH per-copy strike, substrate_queue amended). epistemic_category measurement_test_design_defect; evidence_direction non_contributory. GOV-FANOUT-1 portfolio open: return-decomposition (reward axis, queued V3-EXQ-808) + reweighted-objective re-run (policy axis). MECH-457 stays candidate/v3_pending; pending_retest_after_substrate.
     2026-07-24 governance (V3-EXQ-742b, evidence, claim_ids=[MECH-457]; extends failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22 as a 4th target, confirmed, user-selected routing "Extend cluster autopsy, fanout stays open"): 742b closed the P0 encoder-training confound that invalidated 742a (zworld_encoder_guard now shows encoder_moved_in_p0=true on every arm, encoder_moved_in_ac correctly differing between frozen/cotrain) -- the frozen-vs-cotrain contrast is now genuine. Despite the fix, all four actor-critic arms STILL fail D3 (0.267-0.383), underperforming even the simple bias_head_baseline (0.533, itself sub-floor). The newly instrumented reward_hacking_guard shows train_return_vs_eval_foraging_divergence strongly negative on every arm (-0.82 to -1.40) -- direct, quantified corroboration of H-objective-misspecification from a different angle than 742a's survival-horizon argument. Does NOT itself resolve H-objective-misspecification vs H-policy-learning (not the literal return-decomposition/reweighted-objective probe); both GOV-FANOUT-1 probes remain the sanctioned next step. `weakens` WITHDRAWN, revised to `non_contributory`. Granularity-debt count now 20 confirmed autopsy targets (was 19) -- does NOT change the 2026-07-16 GOV-GRAN-1 coherent_campaign adjudication; this is a further instance of the same coherent campaign. MECH-457 stays candidate/v3_pending. 742b's own manifest self-flags refusal of a third lettered actor-critic re-run (742c) in favour of the two open fanout probes -- upheld.
+    2026-07-25 governance (V3-EXQ-792a, evidence, claim_ids=[MECH-457]; confirmed failure_autopsy_backlog_2026-07-24): FIRST GENUINE SUPPORTS for MECH-457 -- but on the RETENTION-CONSOLIDATION leg, which is DISTINCT from the competence-bootstrap leg that carries the FAIL campaign above. Indexer flagged vacuous_pass (on the deliberately-demoted non-gating C_anchor_bound_dose_response DV), but USER-CONFIRMED genuine: the load-bearing C_anchor_bound_vs_measured_control PASSED non-degenerately (anchored arm suppressed >0.10 of the unconstrained control's MEASURED kl-drift; control eroded 20.933 -> 11.667) and C_anchored_arm_consolidates PASSED (KL>0.001, peak>=1.05x install). Manifest evidence_direction stamped supports this cycle. Does NOT lift v3_pending (the competence-bootstrap leg's FAIL campaign is unresolved and gates the claim); records that the retention-consolidation sub-mechanism has its first genuine V3 confirmation.
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic
@@ -60346,7 +60393,7 @@
       as_of: 2026-07-24
       verdict: supports/measurement_test_design_defect
   implementation_phase: v3
-  v3_pending: true
+  v3_pending: false
   generation: v3
   epistemic_category: standard
   claim_level: mechanistic
@@ -60461,6 +60508,17 @@
     a SINGLE genuine confirming experiment (however clean), status stays candidate/v3_pending
     pending a second independent confirmation or the 811a re-run landing a clean self-route --
     promotion is a decision for a future governance cycle, not applied here.
+
+    2026-07-25 UPDATE (governance): V3-EXQ-811a landed with a CLEAN self-route
+    (run_id v3_exq_811a_mech477_dualsystem_arbitration_falsifier_20260724T231847Z_v3;
+    interpretation=arbitration_produces_differential_recruitment; evidence_direction=supports),
+    exactly the condition the paragraph above named ("or the 811a re-run landing a clean
+    self-route"). The aggregation bug is now fixed in the manifest itself, so the supports
+    reading no longer requires hand re-derivation. USER-CONFIRMED to CLEAR the V3-pending gate:
+    v3_pending true -> false. MECH-477 now carries two concordant V3 confirming reads (811
+    re-derived + 811a clean) and is evaluated normally. Status remains candidate this cycle --
+    clearing the gate makes it promotable-on-evidence, not promoted; a promotion decision is
+    for a future cycle once the confidence recomputes.
   notes: >
     Registered 2026-07-22 by /claim-synthesis on MECH-163 (proposal
     evidence/planning/claim_synthesis_MECH-163_2026-07-22.md, user-approved per-child).

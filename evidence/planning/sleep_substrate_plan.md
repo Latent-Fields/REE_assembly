@@ -11,10 +11,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -28,10 +28,10 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -55,10 +55,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -73,10 +73,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -93,10 +93,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -110,10 +110,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -128,10 +128,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -178,10 +178,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -197,10 +197,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:
@@ -215,10 +215,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-538a_2026-07-10"
-        verdict: "non_contributory/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        verdict: "inconclusive/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
       join:

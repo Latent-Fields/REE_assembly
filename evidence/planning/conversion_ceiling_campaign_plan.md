@@ -14,13 +14,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -30,13 +29,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -46,13 +44,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -62,13 +59,12 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -78,13 +74,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -95,13 +90,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]
@@ -116,13 +110,12 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-689d-D3_2026-07-20"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-699b"
         verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=governance-affirm (no claim change; D3 withdrawn from the record)"
+        next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_decision_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-063", "f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["MECH-439", "MECH-309", "ARC-062", "MECH-445", "MECH-446", "MECH-448", "MECH-449", "SD-033b", "MECH-263", "ARC-107", "ARC-108", "MECH-450", "MECH-458"]

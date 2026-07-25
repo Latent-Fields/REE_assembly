@@ -6,29 +6,29 @@ Source plan: `evidence/planning/perceptual_adaptors_v4_plan.md`
 
 ## `perceptual_adaptors_v4:PA-1`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-2`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-3`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-4`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-5`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-6`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 
 ## `perceptual_adaptors_v4:PA-7`
 
-_(no joined events)_
+- `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance **<- live head**
 

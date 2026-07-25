@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -30,13 +29,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -48,13 +46,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -66,13 +63,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -84,13 +80,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -102,13 +97,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -120,13 +114,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]
@@ -138,13 +131,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-24"
+        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
+        verdict: "non_contributory/substrate_conditional"
+        next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033", "SD-033a", "SD-033b", "SD-034", "MECH-266", "MECH-267", "MECH-268"]

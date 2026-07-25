@@ -1,12 +1,12 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-07-21T04:19:27Z
+Generated: 2026-07-25T16:58:27Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Docs resolved to a claim: 86
+Docs resolved to a claim: 90
 
 ## Frontmatter drift -- HARD (0)
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (113)
+## Unresolved with a hand status line -- INFO (114)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -118,6 +118,7 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `sd_mech457_distributional_critic.md` -- "IMPLEMENTED"
 - `sd_mech457_retention_trajectory_probe.md` -- "IMPLEMENTED"
 - `sd_mel_consumer.md` -- "IMPLEMENTED"
+- `sd_mel_producer.md` -- "PENDING"
 - `sd_v4_loop_segregation.md` -- "IMPLEMENTED 2026-06-27; finer-channel plumbing DEFECT fixed 2026-06-28; **C2 RELEASE (per-named-channel range-preserving"
 - `self_attribution_per_stream.md` -- "Active roadmap document. Supersedes the narrow SD-003 counterfactual architecture."
 - `sensory_stream_tags.md` -- "provisional"

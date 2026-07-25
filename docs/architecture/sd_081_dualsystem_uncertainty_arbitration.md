@@ -1,8 +1,13 @@
+---
+status: candidate
+status_asof: 2026-07-25
+status_claim: SD-081
+---
+
 # SD-081: e3.dualsystem_uncertainty_arbitration
 
 **Claim ID:** SD-081
 **Subject:** e3.dualsystem_uncertainty_arbitration
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-22
 **Implemented:** 2026-07-22
 **Depends on:** ARC-007, ARC-016, SD-005, MECH-112
