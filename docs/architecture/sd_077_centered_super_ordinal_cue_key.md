@@ -1,8 +1,8 @@
 ---
 title: "SD-077: common-mode-invariant (centered) super-ordinal goal-anchor cue key"
 nav_exclude: true
-status: candidate/v3_pending
-status_asof: 2026-07-21
+status: candidate
+status_asof: 2026-07-24
 status_claim: SD-077
 ---
 
@@ -157,6 +157,50 @@ encoder. The encoder-level repair remains the SD-008 / SD-070 open problem. That
 this pattern has now recurred twice is itself evidence about where the real debt
 sits: any future consumer keying an absolute cosine on `z_world` should be assumed
 to need centering until SD-008 is resolved.
+
+### The sweep this motivated -- run 2026-07-22, TWO more consumers found
+
+The "assume it recurs" instruction above was acted on: `ree_core/` was swept for
+every cosine / normalize-then-dot / absolute-threshold gate whose operand is
+`z_world` or a `z_world`-derived key, and each hit was measured (module driven on
+the real 669b nursery stream, not inspected). **The sweep is complete; do not
+redo it.** Result -- two further genuine hits, both now fixed:
+
+- **SD-078** -- ARC-063 `CandidateRuleField` context key (mint-block, recurrence
+  bucket, gate retrieval on raw `z_world`). Pool structurally capped at **1 rule**,
+  `max_pairwise_rule_dist = 0.0000`; centered, 9 rules and 1.7011. This one had
+  already caused **two rounds of misdiagnosis** (the V3-EXQ-654b and 654d
+  autopsies read the pinned statistic as retire-churn, then as conflict-gate
+  crowding) and two ineffective mitigations.
+- **SD-079** -- SD-039 `Anchor.goal_match` on **`z_goal`**. `goal_match` spread
+  0.0111 across a 24-anchor pool; MECH-292's `goal_match_floor` excluded 0/24 and
+  MECH-339's outshining gate sat at **exactly 0.0 for every anchor**, i.e. the
+  composite cue's context channel was unconditionally dead whenever enabled.
+
+**Two corrections to the generalisation as stated above**, both from the sweep:
+
+1. **It is not confined to `z_world`.** `z_goal` is *derived* from `z_world` (an
+   EMA attractor pulled toward it) and carries the offset **more** strongly than
+   its source (pairwise cosine min 0.9878 vs 0.9767). The rule is "`z_world` **or
+   anything integrated from it**". And because an integrated cue *drifts*, its
+   baseline needs a faster alpha -- SD-079 measured 0.05, where 0.02 still lags.
+2. **"Rank-based readouts are exempt" is too coarse.** A near-constant *weighted
+   additive term inside* a ranking formula contributes no ordering information
+   even though the readout is nominally rank-based -- that is failure (1) of
+   SD-079's `goal_match_weight * goal_match` term. Exempt means the *comparison*
+   is relative (argmax, Spearman, sorted cost), not merely that the enclosing
+   function returns a ranking.
+
+Checked and confirmed **not** affected (rank-based, difference-based, or a
+non-`z_world` operand): `ObjectFileBuffer._cos_distance` (rank-sorted greedy
+assignment over object features), `MultiContentThetaPacket` (per-candidate
+ranking on actions), `CrossStreamBinder` (contrastive InfoNCE),
+`E1Deep` off-diagonal slot-similarity loss, `StalenessAccumulator` (cosine
+surrogate over *string* sets), `shared_latent_probe` (gradient cosine,
+diagnostic), `causal_grid_world` trajectory telemetry (advisory, on observations).
+Distance-based `z_world` consumers -- the curiosity density kernel and the
+MECH-303 safety terrain RBF -- are translation-invariant under a shared offset and
+belong to the **SD-067 bandwidth** class, a related but distinct failure.
 
 ## What This SD Enables
 

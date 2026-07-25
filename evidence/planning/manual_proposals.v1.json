@@ -1614,7 +1614,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "executed",
       "registered_utc": "2026-07-21",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 300,
@@ -1626,7 +1626,11 @@
         "FAIL / weakens ARC-003 leg A: candidate choice under A0_INTACT is statistically indistinguishable from the proposer's prior -- E3 is a pass-through, not a selector. MECH-060/061/062 and the tri-loop gating claims lose their premise. Decision-flipping negative.",
         "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): the candidate pool must be DIVERGENT -- cand_world_pairwise_dist above floor (the GAP-A guard). A pool of near-identical candidates makes the score gradient trivially flat and would manufacture a false FAIL. Also verify the E3 lesion actually removed the contribution rather than merely being requested."
       ],
-      "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (45 reverse deps, zero experimental evidence). Deliberately COMMITMENT-FREE per the standing rule from IGW-20260620-194: do not queue a behavioural DV requiring sustained multi-step action commitment while the BG/commitment layer is under construction, because a FAIL re-derives the F-dominance conversion ceiling rather than adjudicating the claim. The commitment leg is registered separately as EXP-0395 (blocked_substrate). Digestion proposes; it does not promote."
+      "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (45 reverse deps, zero experimental evidence). Deliberately COMMITMENT-FREE per the standing rule from IGW-20260620-194: do not queue a behavioural DV requiring sustained multi-step action commitment while the BG/commitment layer is under construction, because a FAIL re-derives the F-dominance conversion ceiling rather than adjudicating the claim. The commitment leg is registered separately as EXP-0395 (blocked_substrate). Digestion proposes; it does not promote.",
+      "executed_by": "V3-EXQ-804",
+      "executed_queue_id": "V3-EXQ-804",
+      "executed_utc": "2026-07-22",
+      "executed_note": "Queued as V3-EXQ-804 (ree-v3 371d3b3a88 script + 02f97edc2d queue entry, both on origin/main; coordinator /queue/add applied). Script: experiments/v3_exq_804_arc003_e3_selection_authority.py. Tests LEG A (E3 SELECTS) only, commitment-free at the candidate-scoring level; LEG B remains EXP-0395 blocked_substrate."
     },
     {
       "proposal_id": "EXP-0395",
@@ -1715,7 +1719,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "executed",
       "registered_utc": "2026-07-21",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 300,
@@ -1727,7 +1731,11 @@
         "FAIL / first genuine evidence against the circuit: even with a correctly-calibrated eval-time threshold that demonstrably engages, commit_rate does not track precision. The 15 prior FAILs would then need re-reading as right for the wrong reasons, and ARC-016 demotes from provisional. Decision-flipping negative.",
         "NON-DEGENERACY + SCOPE (else substrate_not_ready_requeue, NOT a verdict): (a) THE THRESHOLD MUST ACTUALLY ENGAGE -- commit_rate strictly between floor and ceiling, not pinned at 0.0 or 1.0, and eval-time variance within the threshold's dynamic range; a threshold that never fires makes all arms identical and is exactly what voided EXQ-396a/b. (b) SCOPE GUARD: structural only -- do NOT attach a behavioural harm DV, which re-imports the V_s monostrategy-lock confound that voided EXQ-454; the behavioural consequence layer is ARC-029, split off 2026-03-22."
       ],
-      "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (35 reverse deps, 23 genuine experiments -- the most-tested claim in the spine). GOVERNANCE FLAG, not acted on here: ARC-016's exp_conf 0.53 is an AGGREGATION ARTEFACT -- 15 FAILs of which nearly all are already stamped non_contributory or substrate-version-stale (see the claim's heterogeneity_note) still score it as half-refuted. Re-scoring needs a governance eye rather than a digestion edit, because stripping non-contributory FAILs can expose that the remaining supports are thinner than the headline number suggested. Digestion proposes; it does not promote."
+      "notes": "Minted by /thought-digestion 2026-07-21 digesting the load-bearing ARC spine (35 reverse deps, 23 genuine experiments -- the most-tested claim in the spine). GOVERNANCE FLAG, not acted on here: ARC-016's exp_conf 0.53 is an AGGREGATION ARTEFACT -- 15 FAILs of which nearly all are already stamped non_contributory or substrate-version-stale (see the claim's heterogeneity_note) still score it as half-refuted. Re-scoring needs a governance eye rather than a digestion edit, because stripping non-contributory FAILs can expose that the remaining supports are thinner than the headline number suggested. Digestion proposes; it does not promote.",
+      "executed_by": "V3-EXQ-805",
+      "executed_queue_id": "V3-EXQ-805",
+      "executed_utc": "2026-07-22",
+      "executed_note": "Queued as V3-EXQ-805 (ree-v3 371d3b3a88 script + 02f97edc2d queue entry, both on origin/main; coordinator /queue/add applied). Script: experiments/v3_exq_805_arc016_eval_derived_commit_threshold.py. Structural only -- no behavioural harm DV, ARC-029 deliberately not tagged."
     },
     {
       "proposal_id": "EXP-0398",
