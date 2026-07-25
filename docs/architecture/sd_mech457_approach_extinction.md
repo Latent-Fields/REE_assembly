@@ -132,8 +132,27 @@ contact occurred); both half-wired guards raise; `as_slice()` declares the knob 
 False; the config-level half-wired guard fires through `train_bootstrap_explorer`; ASCII-only
 sources. The mech457 contract regression surface (bootstrap-explorer, retention-probe, kl-anchor,
 distributional-critic + arm-fingerprint / inert-knob lints) passes 96/96 with the change. The
-behavioural **H-consummation-binding** experiment (V3-EXQ-810) is the validation run, queued via
+behavioural **H-consummation-binding** experiment (V3-EXQ-821) is the validation run, queued via
 `/queue-experiment`.
+
+## Companion build: consummatory-aware reference/demonstrator policies
+
+The leg-4 experiment uses the **retention (BC-install) framing** (architect decision 2026-07-25):
+BC-install the raw-view policy to its competence band, then RL-refine under the approach drive
+and measure whether the installed competence is RETAINED under an extinguishing vs a
+non-extinguishing drive, on the `mech457_retention_trajectory_probe` DV. That framing needs a
+demonstrator and readiness anchors that can forage in the consummatory env, which the hand-coded
+greedy policies could not (they return "stay" on the target cell and never CONSUME). Built the
+same day in `experiments/_lib/capability_eval.py`: a shared `_consummatory_consume_action(env)`
+helper applied to `OraclePolicy` and `LocalViewGreedyPolicy`, returning the CONSUME index when the
+env is in consummatory mode and the agent stands on a resource cell (gated; byte-identical no-op
+otherwise). Measured: in the D3 consummatory env `local_view_greedy` forages ~13.5/ep and
+`greedy_oracle` ~13.0 (vs ~17.9 / ~18.7 non-consummatory -- CONSUME costs one step per resource),
+so the consummatory achievable ceiling / install band is ~13, **not** the non-consummatory 20.933;
+the leg records the live consummatory anchors as denominators. Contracts:
+`tests/contracts/test_consummatory_aware_policies.py` (CG1-CG4). This is why the demonstrator-free
+781 framing (which needs no BC install) was the buildable-without-it alternative; the retention
+framing was chosen and this companion build unblocks it.
 
 ## Related Claims
 
