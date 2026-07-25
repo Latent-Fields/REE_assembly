@@ -1,0 +1,108 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_816_mech321_policy_decomposition_discriminative",
+  "run_id": "v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-25T21:47:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-070",
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "ARC-070": "unknown",
+    "MECH-321": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "vs_heterogeneity_low_vs_steps_present",
+        "description": "The R1 V_s-drop trigger can only fire where region V_s < threshold. Asserts the worst ARM_1 cell has >= MIN_LOW_VS_STEPS low-V_s measurement steps -- the same quantity the low-V_s forward-PE mean is computed over, not a proxy.",
+        "measured": 0.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "worst ARM_1 cell",
+        "met": false
+      },
+      {
+        "name": "decomposition_fires_in_arm1",
+        "description": "Fraction of ARM_1 cells where decomposition actually fired.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "ARM_1 cells",
+        "met": true
+      },
+      {
+        "name": "off_forward_pe_varies",
+        "description": "OFF positive control: committed-trajectory forward PE must have non-zero variance (world_forward learned something). Worst-cell variance.",
+        "measured": 2.1633939801643212e-08,
+        "threshold": 1e-12,
+        "direction": "lower",
+        "control": "worst ARM_0 cell",
+        "met": true
+      },
+      {
+        "name": "off_forward_pe_bounded",
+        "description": "OFF positive control: forward PE bounded (no explosion / NaN).",
+        "measured": 0.009085183275359062,
+        "threshold": 1000.0,
+        "direction": "upper",
+        "control": "worst ARM_0 cell",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_MAIN_lowvs_forward_pe_reduced",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_DELIB_deliberation_cost_rises",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_MAIN": false,
+      "C_DELIB": false
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "521c9263fb138b64722e315eec1d7b6193161954719842001f39f58a8dde763c"
+}
