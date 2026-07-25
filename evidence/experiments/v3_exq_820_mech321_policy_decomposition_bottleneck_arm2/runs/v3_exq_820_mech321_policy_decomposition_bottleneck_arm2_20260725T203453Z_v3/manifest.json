@@ -1,0 +1,108 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2",
+  "run_id": "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-25T20:34:53Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-070",
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "ARC-070": "unknown",
+    "MECH-321": "unknown"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "vs_heterogeneity_low_vs_steps_present",
+        "description": "The high/low-V_s partition (and ARM_1's V_s trigger) require region V_s < threshold to occur. Worst ARM_1 cell low-V_s steps.",
+        "measured": 0.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "worst ARM_1 cell",
+        "met": false
+      },
+      {
+        "name": "arm1_vs_drop_decomposition_fires",
+        "description": "Fraction of ARM_1 cells where V_s-drop decomposition fired.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "ARM_1 cells",
+        "met": true
+      },
+      {
+        "name": "arm2_bottleneck_decomposition_fires",
+        "description": "READINESS: ARM_2's bottleneck trigger must fire AND decompose (env has recurring funnel structure at these params). The SAME statistic the load-bearing frac_decomp_at_high_vs is computed over -- if ARM_2 never decomposes there is no locus to measure.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "ARM_2 cells (positive control for the R5 trigger)",
+        "met": true
+      },
+      {
+        "name": "enough_decomposition_events_both_arms",
+        "description": "frac_decomp_at_high_vs is estimable only with enough events. Worst of the two arms' pooled event totals.",
+        "measured": 334.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "min over ARM_1/ARM_2 pooled events",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_MAIN_arm2_decomposes_at_high_vs",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_CONVERGE_both_reduce_lowvs_forward_pe",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_MAIN": false,
+      "C_CONVERGE": false
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2e2f0d27231b57de046b15cf5c48fbfb0d94e64f963f4ce43579d0bfb979f7bd"
+}
