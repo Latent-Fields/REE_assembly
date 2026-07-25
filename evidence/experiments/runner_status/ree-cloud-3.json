@@ -1,30 +1,41 @@
 {
   "schema_version": "v1",
   "runner_pid": 746,
-  "runner_started_at": "2026-07-24T08:45:38.248388+00:00",
-  "last_updated": "2026-07-24T14:41:55.667364+00:00",
+  "runner_started_at": "2026-07-25T19:05:40.506081+00:00",
+  "last_updated": "2026-07-25T19:14:03.219398+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-811a",
+      "queue_id": "V3-EXQ-816",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-477 dual-system arbitration falsifier, repaired aggregation (empty-cell 0.0 -> None fix; supersedes 811)",
+      "claim_id": "MECH-321",
+      "title": "ARC-070/MECH-321 policy_decomposition discriminative (ARM_0 OFF vs ARM_1 V_s-drop ON): execution-time forward-PE + deliberation cost",
       "description": "",
-      "estimated_minutes": 256.0,
+      "estimated_minutes": 80.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-689j",
+      "queue_id": "V3-EXQ-817",
       "backlog_id": "",
-      "claim_id": "MECH-448",
-      "title": "MECH-448 Factor B (MECH-439 gap-scaled stochastic commit) noise-control instrument repower: 2-arm, 12-seed C_NOISE_LIFTS follow-up to V3-EXQ-689i (diagnostic, does not re-test C_PRIMARY)",
+      "claim_id": "SD-080",
+      "title": "SD-080 consequence-grounding CAPABILITY falsifier (3-arm: ARM_0 frozen / ARM_1 grounded / ARM_2 shuffled-target control)",
       "description": "",
-      "estimated_minutes": 512.0,
+      "estimated_minutes": 80.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-819",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "competence_floor R4: prediction-trained z_world vs frozen random-projection (MECH-457/INV-088 instrument-validity)",
+      "description": "",
+      "estimated_minutes": 6000.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -2078,6 +2089,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_814_mech288_input_stream_isolation_diagnostic/v3_exq_814_mech288_input_stream_isolation_diagnostic_20260724T144155Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 1.7
+    },
+    {
+      "queue_id": "V3-EXQ-806",
+      "backlog_id": "",
+      "claim_id": "SD-078",
+      "title": "SD-078 validation: centered CandidateRuleField context key (ARC-063 GAP-B)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-806 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-806.json",
+      "started_at": "2026-07-25T19:05:40.771987+00:00",
+      "completed_at": "2026-07-25T19:10:42.830564+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_806_sd078_centered_rule_field_context_key_20260725T191042Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 301.0
+    },
+    {
+      "queue_id": "V3-EXQ-807",
+      "backlog_id": "",
+      "claim_id": "SD-079",
+      "title": "SD-079 validation: centered z_goal goal-anchor match (MECH-292 floor + MECH-339 outshining)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-807 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-807.json",
+      "started_at": "2026-07-25T19:10:44.612341+00:00",
+      "completed_at": "2026-07-25T19:14:03.218504+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_807_sd079_centered_goal_anchor_match_20260725T191402Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 198.6
     }
   ]
 }
