@@ -2012,6 +2012,31 @@
     -- routed to /claim-synthesis (rescore), not applied inline, because stripping the
     non-contributory FAILs may expose that the remaining supports are thinner than the
     headline number and that is a synthesis judgement, not a governance edit.
+
+    2026-07-25 (/claim-synthesis rescore, session cool-dijkstra-3f6f0c; RESCORE COMPLETE
+    + APPLIED). The rescore confirmed the artefact and corrected it at source. Diagnosis:
+    the reclassifications this note describes were documented in prose but NEVER stamped
+    onto the manifests' evidence_direction field, so the indexer scored ~23 stale /
+    non_contributory / mis-scoped runs as genuine weakens. Stamped the documented
+    exclusions (even-handedly -- version-stale supersession also removed the pre-relative-
+    threshold EXQ-018 PASSes and the EXQ-041 baseline smoke in BOTH directions, so this is
+    not a strip-the-weakens cherry-pick) across 50 manifest files + rebuilt the index:
+    exp_conf 0.521 -> 0.775; genuine directions 8 supports / 13 weakens / 2 mixed ->
+    5 supports / 0 weakens / 0 mixed; quadrant plausible_unproven -> confirmed_established.
+    Zero genuine refutations remain (surviving supports: EXQ-018b, EXQ-060, EXQ-031,
+    EXQ-096a). VERDICT: HOLD provisional (confirms the governance rejection); NOT
+    granularity debt, so NO claim decomposition -- the cluster is substrate-version-stale +
+    calibration/test-design debt + mis-scoped-to-ARC-029, not >=2 genuine structural FAIL
+    signatures. IMPORTANT -- the corrected exp_conf 0.775 is NOT a promotion trigger: all
+    5 supports are TRAIN-TIME / STRUCTURAL; the EVAL-TIME engagement of the commit threshold
+    (the one thing that would close the claim) has never produced a clean support, every
+    eval-time attempt (EXQ-396a/b, 454, 530, 805) being non_contributory. The confirmed_
+    established quadrant reflects structural supports + strong literature, not a closed
+    eval-time validation. The residual gate to `shown` is the eval-derived-threshold
+    STRUCTURAL re-run named in what_would_answer (NON-DEGENERACY precondition; no harm DV).
+    Detail: evidence/planning/claim_synthesis_arc-016_2026-07-25.md; decision_log
+    2026-07-25 (rescore_complete). Cross-cycle guard: a future /governance cycle seeing
+    the promote signal must read it against this rescore.
   heterogeneity_note: "Substrate-version confound: the FAILs predate the relative-threshold implementation (EXQ-018) or are confounded by V_s monostrategy lock (EXQ-396a/396b, EXQ-454) rather than reflecting a circuit failure; the core mechanism is validated by EXQ-018b and EXQ-060."
   depends_on:
     - ARC-005

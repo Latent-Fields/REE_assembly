@@ -23,9 +23,9 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-016": "weakens"
+    "ARC-016": "non_contributory"
   },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Documented non_contributory (claims.yaml, governance 2026-04-22): adaptive-threshold test cannot resolve while V_s monostrategy locks the policy; lock-in dominates, not the circuit under test. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

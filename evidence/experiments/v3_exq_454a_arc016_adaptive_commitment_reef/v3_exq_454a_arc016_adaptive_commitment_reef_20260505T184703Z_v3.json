@@ -8,9 +8,9 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "timestamp_utc": "20260505T184703Z",
   "outcome": "FAIL",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-016": "weakens"
+    "ARC-016": "non_contributory"
   },
   "supersedes": "v3_exq_454_arc016_adaptive_commitment_threshold",
   "pass_criteria_summary": {
@@ -210,5 +210,6 @@
     "adaptive_base_thresh": 0.3,
     "adaptive_min": 0.05,
     "adaptive_max": 2.0
-  }
+  },
+  "evidence_direction_note": "Documented non_contributory (claims.yaml, governance 2026-04-22): adaptive-threshold test cannot resolve while V_s monostrategy locks the policy; lock-in dominates, not the circuit under test. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

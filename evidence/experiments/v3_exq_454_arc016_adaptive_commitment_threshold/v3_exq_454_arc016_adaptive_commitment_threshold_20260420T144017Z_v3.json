@@ -10,7 +10,7 @@
   "outcome": "FAIL",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-016": "weakens"
+    "ARC-016": "non_contributory"
   },
   "pass_criteria_summary": {
     "c1_static_low_behavioural_signature": {
@@ -210,5 +210,5 @@
     "adaptive_min": 0.05,
     "adaptive_max": 2.0
   },
-  "evidence_direction_note": "Reclassified non_contributory 2026-04-22: ADAPTIVE collapses to STATIC_LOW behaviour (commit_rate=0); pe_variance_mean stuck at default 0.5 (PE -> commitment threshold update circuit not wired). Same calibration/wiring substrate gap as EXQ-396a x3 / EXQ-396b. Pending PE -> threshold wiring."
+  "evidence_direction_note": "Documented non_contributory (claims.yaml, governance 2026-04-22): adaptive-threshold test cannot resolve while V_s monostrategy locks the policy; lock-in dominates, not the circuit under test. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

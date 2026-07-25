@@ -25,12 +25,14 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "failure_signatures": [
     "v2_verdict_fail:precision_regime_probe"
   ],
   "artifacts": {
     "metrics_path": "metrics.json",
     "summary_path": "summary.md"
-  }
+  },
+  "evidence_direction_note": "V2 precursor: precision externally imposed (not E3-derived), commitment circuit not wired end-to-end; superseded by V3 relative-threshold circuit (018b). ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)",
+  "superseded_by": "v3_exq_018b_arc016_relative_threshold_20260320T193340Z_v3"
 }

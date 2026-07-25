@@ -23,12 +23,13 @@
   "claim_ids": [
     "ARC-016"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "experiment_type": "v3_exq_088_arc016_harm_variance_commit",
   "fatal_error_count": 0,
   "run_timestamp": "20260323T184218Z",
   "claim": "ARC-016",
   "verdict": "FAIL",
   "run_id": "v3_exq_088_arc016_harm_variance_commit_20260323T184218Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "Mis-scoped: behavioural harm DV belongs to ARC-029 (mode/harm consequence, split 2026-03-22), not the ARC-016 structural circuit; re-imports the V_s monostrategy-lock confound. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

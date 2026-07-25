@@ -24,7 +24,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,6 +43,7 @@
   "claim_ids_correction_note": "SD-008 removed 2026-03-22: experiment tests SD-003 attribution pipeline, not whether alpha_world value matters. Running with alpha=0.9 does not constitute a test of SD-008. Per claim_ids accuracy rule.",
   "evidence_direction_per_claim": {
     "SD-003": "weakens",
-    "ARC-016": "weakens"
-  }
+    "ARC-016": "non_contributory"
+  },
+  "evidence_direction_note": "Early SD-008 / E2-world integration run; ARC-016 tag incidental, predates the end-to-end precision-to-commitment circuit -> not a circuit test. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

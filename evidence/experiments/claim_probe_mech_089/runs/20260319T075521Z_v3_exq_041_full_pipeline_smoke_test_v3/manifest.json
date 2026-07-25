@@ -25,7 +25,7 @@
     "MECH-071"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -43,7 +43,8 @@
   "failure_signatures": [],
   "evidence_direction_per_claim": {
     "MECH-089": "supports",
-    "ARC-016": "supports",
+    "ARC-016": "non_contributory",
     "MECH-071": "supports"
-  }
+  },
+  "evidence_direction_note": "Full-pipeline SMOKE/baseline test (both PASS and FAIL variants); not an ARC-016 evidence run in either direction. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }

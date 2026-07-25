@@ -24,7 +24,7 @@
     "MECH-090"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -41,7 +41,9 @@
   },
   "failure_signatures": [],
   "evidence_direction_per_claim": {
-    "ARC-016": "weakens",
+    "ARC-016": "superseded",
     "MECH-090": "weakens"
-  }
+  },
+  "evidence_direction_note": "Fixed-threshold BetaGate precursor; superseded by 060 (committed-BetaGate PASS 4/5). ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)",
+  "superseded_by": "20260321T131836Z_v3_exq_060_arc016_beta_gate_fixed_threshold_v3"
 }

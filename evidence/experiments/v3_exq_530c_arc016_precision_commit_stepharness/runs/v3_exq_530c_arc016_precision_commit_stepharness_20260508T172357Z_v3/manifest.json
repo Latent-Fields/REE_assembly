@@ -23,7 +23,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -40,5 +40,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "ARC-016 rescore 2026-07-25: non_contributory (measurement/test-design defect on the eval-derived commit-threshold step harness; the eval-time threshold never engages -> not a structural refutation). Note added so the flat correction is honoured by the indexer overlay. See claim_synthesis_arc-016_2026-07-25.md."
 }

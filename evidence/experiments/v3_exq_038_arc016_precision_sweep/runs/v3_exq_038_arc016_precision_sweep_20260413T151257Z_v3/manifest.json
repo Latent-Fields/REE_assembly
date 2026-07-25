@@ -24,8 +24,8 @@
     "MECH-093"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
-  "evidence_direction_note": "Known-broken script: same failure pattern as all prior EXQ-038 runs (March 2026) -- zero commits, var_diff ~0 regardless of hazard level. Mechanism never fires under these environment params. Fix staged as EXQ-396 (awaiting queue confirmation). Does not weaken ARC-016 (provisional, EXQ-018b/060 PASS) or MECH-093 (EXQ-097b PASS).",
+  "evidence_direction": "superseded",
+  "evidence_direction_note": "Absolute-threshold-era precision sweep; superseded by relative-threshold 018b. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -42,5 +42,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "superseded_by": "v3_exq_018b_arc016_relative_threshold_20260320T193340Z_v3"
 }

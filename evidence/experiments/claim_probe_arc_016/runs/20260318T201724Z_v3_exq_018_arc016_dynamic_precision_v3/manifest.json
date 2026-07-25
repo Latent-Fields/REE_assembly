@@ -23,7 +23,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "superseded",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -38,5 +38,7 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "Absolute-threshold config (0.40 = 100x operating variance range); superseded by relative-threshold 018b. All 018 runs (incl. early PASSes) sit on the superseded absolute-threshold substrate. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)",
+  "superseded_by": "v3_exq_018b_arc016_relative_threshold_20260320T193340Z_v3"
 }

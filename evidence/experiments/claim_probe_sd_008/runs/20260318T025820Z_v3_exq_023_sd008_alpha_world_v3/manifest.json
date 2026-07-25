@@ -26,7 +26,7 @@
     "ARC-016"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -42,11 +42,11 @@
     "tier": "causal_grid_world_v3"
   },
   "failure_signatures": [],
-  "evidence_direction_note": "Corrected 2026-03-22: SD-008-specific criterion (event_selectivity_margin=0.084) passed. Overall FAIL was due to unrelated criteria (SD-007 R2, ARC-016 precision, SD-003 calibration). Direction changed from weakens to supports per per-claim criterion analysis.",
+  "evidence_direction_note": "Early SD-008 / E2-world integration run; ARC-016 tag incidental, predates the end-to-end precision-to-commitment circuit -> not a circuit test. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)",
   "evidence_direction_per_claim": {
     "SD-008": "supports",
     "SD-003": "weakens",
     "MECH-098": "weakens",
-    "ARC-016": "weakens"
+    "ARC-016": "non_contributory"
   }
 }

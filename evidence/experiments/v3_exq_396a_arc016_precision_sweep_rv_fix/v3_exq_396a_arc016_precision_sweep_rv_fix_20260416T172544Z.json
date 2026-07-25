@@ -53,9 +53,9 @@
     "ARC-016",
     "MECH-093"
   ],
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-016": "weakens",
+    "ARC-016": "non_contributory",
     "MECH-093": "weakens"
   },
   "experiment_type": "v3_exq_396a_arc016_precision_sweep_rv_fix",
@@ -64,5 +64,6 @@
   "claim": "ARC-016",
   "verdict": "FAIL",
   "run_id": "v3_exq_396a_arc016_precision_sweep_rv_fix_20260416T172544Z_v3",
-  "architecture_epoch": "ree_hybrid_guardrails_v1"
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "evidence_direction_note": "Documented non_contributory (claims.yaml): train variance (~3e-5..6e-5) << eval variance (~1e-3); commit threshold never engages in eval -> not evidence against the precision-to-commitment circuit. ARC-016 rescore 2026-07-25 (claim_synthesis_arc-016_2026-07-25.md; decision_log 2026-07-25)"
 }
