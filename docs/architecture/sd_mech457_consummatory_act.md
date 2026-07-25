@@ -71,9 +71,23 @@ Module: `ree_core/environment/causal_grid_world.py`.
 
 The benefit reward is bound to the consummatory **act**, not to arrival: contact yields 0 reward;
 CONSUME delivers it. This is the operational meaning of "affords rather than effects" and is what
-lets an approach drive extinguish on contact (via the already-wired `goal.py` drive machinery
-reacting to `resource_contact` / `on_consumable_resource`) while consuming remains a separate,
-learnable action.
+lets an approach drive extinguish on contact while consuming remains a separate, learnable action.
+
+> **CORRECTION (2026-07-25).** The original wording of this section, and the "drive half was
+> already built" claim in the Problem section, asserted that extinction happens "via the
+> already-wired `goal.py` drive machinery reacting to `resource_contact` /
+> `on_consumable_resource`." That is **incorrect for the leg-4 experiment's path.** `goal.py`'s
+> drive is the *homeostatic* per-axis system (`drive_ema_alpha` / `drive_floor` /
+> `per_axis_restoration_fraction`); it is a different system from V3-EXQ-781's approach primitive,
+> it does not reference `on_consumable_resource`, and it is not imported anywhere in the mech457
+> bootstrap-explorer path (`GOAL_DIM = 2` there is spatial navigation, not a physiological drive).
+> The env emits the `on_consumable_resource` affordance flag, but **nothing consumed it** -- 781's
+> approach primitive reads `obs_dict`, which does not carry the flag. The drive-side consumer that
+> the leg-4 treatment arm actually needs was built separately as
+> **`sd_mech457_approach_extinction.md`** (IMPLEMENTED 2026-07-25): a default-OFF
+> `approach_extinguishes_on_contact` knob that threads `info['on_consumable_resource']` into
+> `train_a2c`'s approach block. This env node remains correct and unchanged; only the claim that
+> the drive half was already wired is corrected here.
 
 ### Known minor limitation
 
