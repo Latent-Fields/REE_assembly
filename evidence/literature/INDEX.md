@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-22T16:27:07.310342Z`
+Generated: `2026-07-25T06:08:36.540004Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -336,6 +336,8 @@ Generated: `2026-07-22T16:27:07.310342Z`
 | `targeted_review_q_080` | [`2026-07-04_q_080_opportunity_cost_effort_kurzban2013`](targeted_review_q_080/entries/2026-07-04_q_080_opportunity_cost_effort_kurzban2013/record.json) | 3 | [`summary`](targeted_review_q_080/entries/2026-07-04_q_080_opportunity_cost_effort_kurzban2013/summary.md) |
 | `targeted_review_q_081` | [`2026-07-22_q_081_information_decomposition_null_models_liardi2025`](targeted_review_q_081/entries/2026-07-22_q_081_information_decomposition_null_models_liardi2025/record.json) | 6 | [`summary`](targeted_review_q_081/entries/2026-07-22_q_081_information_decomposition_null_models_liardi2025/summary.md) |
 | `targeted_review_q_082` | [`2026-07-22_q_082_target_facilitation_without_suppression_forschack2022`](targeted_review_q_082/entries/2026-07-22_q_082_target_facilitation_without_suppression_forschack2022/record.json) | 4 | [`summary`](targeted_review_q_082/entries/2026-07-22_q_082_target_facilitation_without_suppression_forschack2022/summary.md) |
+| `targeted_review_q_083` | [`2026-07-25_q_083_statistical_learning_domain_generality_paradox_frost2015`](targeted_review_q_083/entries/2026-07-25_q_083_statistical_learning_domain_generality_paradox_frost2015/record.json) | 3 | [`summary`](targeted_review_q_083/entries/2026-07-25_q_083_statistical_learning_domain_generality_paradox_frost2015/summary.md) |
+| `targeted_review_q_084` | [`2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020`](targeted_review_q_084/entries/2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020/record.json) | 3 | [`summary`](targeted_review_q_084/entries/2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/record.json) | 5 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/summary.md) |

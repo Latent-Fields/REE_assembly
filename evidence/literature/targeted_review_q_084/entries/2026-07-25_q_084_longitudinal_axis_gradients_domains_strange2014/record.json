@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_084",
+  "entry_id": "2026-07-25_q_084_longitudinal_axis_gradients_domains_strange2014",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-084"
+  ],
+  "source": {
+    "title": "Functional organization of the hippocampal longitudinal axis.",
+    "authors": [
+      "Bryan A Strange",
+      "Menno P Witter",
+      "Ed S Lein",
+      "Edvard I Moser"
+    ],
+    "year": 2014,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3785"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Authoritative review directly addressing the source thought's candidate biological prediction 4 (longitudinal differences correspond to different levels of granularity) and bearing on prediction 1 (subregions preferentially encode different relation types). It supports the weaker organisational reading -- multiple functional domains plus superimposed gradients -- but says nothing about higher-order or multistep relational structure, which is Q-084's actual proposition. Filed at 0.60 because the mapping is to the thought's background hypothesis rather than to the registered claim.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The long axis shows BOTH sharply demarcated gene-expression domains AND continuous anatomical/electrophysiological gradients, so a clean 'one subregion, one relation type' partition is not what the biology offers -- an REE design that assigns distinct relation types to distinct discrete modules would be over-committing.",
+    "Multiple functional organisations along the axis are established at the level of granularity and affective-versus-spatial function, not at the level of RELATION TYPE, so the review does not deliver the differentiated-relational-organisation evidence the source thought hoped for."
+  ],
+  "tags": [
+    "q-084",
+    "hippocampal-longitudinal-axis",
+    "granularity",
+    "multiple-organizations",
+    "subregions"
+  ],
+  "mapping": {
+    "source_claim_statement": "The hippocampal long axis is not simply dichotomous (dorsal-spatial/memory versus ventral-anxiety); gene expression reveals multiple functional domains with sharply demarcated borders, while anatomy and electrophysiology reveal continuous gradients, supporting a model in which long-axis gradients are superimposed on discrete functional domains.",
+    "ree_translation": "The Q-084 source thought's candidate biological prediction 4 was that longitudinal hippocampal differences correspond to different levels of spatial, temporal, contextual or abstract granularity, and prediction 1 that different subregions preferentially encode different relation types. This review substantiates the granularity/multiple-organisation reading at the coarse level: the hippocampus is not running one uniform relational computation. For REE it supports keeping scale-tagged anchors and multiple coexisting organisational levels rather than collapsing to a single adjacency, which is MECH-469's territory more than Q-084's.",
+    "mapping_caveat": "This is the weakest-mapped entry in the folder and is filed as background rather than as evidence on the registered proposition. Q-084 is specifically about structure ABOVE a pairwise relation -- metapaths, hyperedges, simplicial relations -- and the long-axis literature is about anatomical and functional differentiation, which is an orthogonal axis of variation. Multiple organisations existing does not entail that any of them is higher-order. The domains distinguished are granularity and affective-versus-spatial function, not relation type, so even the source thought's prediction 1 is only indirectly addressed. Rodent and human anatomy, gene expression and ephys; no agent-architecture mapping is direct.",
+    "source_context": "Rodent and human hippocampus; review of gene-expression, anatomical tract-tracing, and electrophysiological evidence on dorsoventral/anteroposterior organisation."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.42,
+    "transfer_risk": 0.45,
+    "notes": "Source quality very high (NRN review, authors include Witter and Moser). Mapping fidelity is deliberately low and dominates the aggregate: the paper addresses the source thought's background hypothesis about multiple relational organisations, not Q-084's higher-order proposition. Recorded at 0.60 to avoid inflating Q-084's literature confidence with adjacent-but-not-on-point evidence."
+  }
+}

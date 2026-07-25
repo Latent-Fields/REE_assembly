@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_083",
+  "entry_id": "2026-07-25_q_083_analogical_reasoning_domain_general_rlpfc_hobeika2016",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-083"
+  ],
+  "source": {
+    "title": "General and specialized brain correlates for analogical reasoning: A meta-analysis of functional imaging studies.",
+    "authors": [
+      "Lucie Hobeika",
+      "Capucine Diard-Detoeuf",
+      "Beatrice Garcin",
+      "Richard Levy",
+      "Emmanuelle Volle"
+    ],
+    "year": 2016,
+    "venue": "Human Brain Mapping",
+    "doi": "10.1002/hbm.23149"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "A quantitative coordinate-based meta-analysis over 27 experiments is a strong aggregate source, and its central contrast -- semantic versus visuospatial analogy -- is a genuine cross-domain comparison of the kind Q-083 needs. Confidence is held below 0.8 because co-activation of a common region is architectural evidence of a weaker kind than behavioural transfer: shared BOLD activation does not establish a shared computation, and Q-083 is asked in terms of transfer, not localisation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Two relational-reasoning tasks that a domain-general account would treat as the same computation (visuospatial analogy and matrix problems) recruit at least partly distinct left/right networks and separate subregions within left rostrolateral PFC, so a single apprehender does not fall out of the imaging data even within one domain.",
+    "Domain-oriented regions in inferior and middle frontal gyri are recruited alongside the domain-general region, so any REE architecture claiming a single apprehender must still explain what the domain-specific machinery is doing."
+  ],
+  "tags": [
+    "q-083",
+    "analogical-reasoning",
+    "domain-generality",
+    "rostrolateral-prefrontal",
+    "meta-analysis"
+  ],
+  "mapping": {
+    "source_claim_statement": "Across 27 functional imaging experiments, analogical reasoning consistently recruits left rostrolateral prefrontal cortex regardless of whether the analogy is semantic or visuospatial, while inferior and middle frontal regions are recruited in a domain-oriented way; two different relational-reasoning task families additionally engage partly distinct networks and distinct left-RLPFC subregions.",
+    "ree_translation": "This is the closest thing the neuroimaging literature offers to a direct read on Q-083's fork. It supports a hybrid: a domain-general relational-apprehension resource (left RLPFC) that is genuinely shared across semantic and visuospatial content, sitting on top of domain-oriented representational machinery. Mapped to REE, that argues against both pure arms -- against N independent per-domain apprehenders, and against a single apprehender with no domain-specific structure beneath it -- and toward one apprehension stage consuming per-domain encoders.",
+    "mapping_caveat": "This is co-activation, not transfer. A region activating for both semantic and visuospatial analogy is compatible with two adjacent domain-specific circuits that fMRI cannot resolve, and the paper's own finding that visuospatial analogy and matrix problems engage SEPARATE left-RLPFC subregions is a direct demonstration of that resolution limit biting. Q-083 asks a transfer question -- does apprehending a rule in one domain accelerate apprehension in another -- and no imaging meta-analysis can answer that. Additionally, 'semantic vs visuospatial' is a two-domain contrast; Q-083 names six domains including ethical and social, which are unrepresented here.",
+    "source_context": "Human fMRI/PET; coordinate-based meta-analysis (ALE-family) of 27 experiments using analogy and relational-reasoning tasks in healthy adults."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "Source quality high for an aggregate imaging result. Mapping fidelity is the limiter and is weighted heavily: co-activation is a structurally weaker signal than the transfer test Q-083 specifies, and the paper's own within-domain dissociation shows how easily shared activation dissolves at finer spatial resolution."
+  }
+}

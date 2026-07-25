@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_084",
+  "entry_id": "2026-07-25_q_084_clique_topology_geometric_structure_giusti2015",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-084"
+  ],
+  "source": {
+    "title": "Clique topology reveals intrinsic geometric structure in neural correlations.",
+    "authors": [
+      "Chad Giusti",
+      "Eva Pastalkova",
+      "Carina Curto",
+      "Vladimir Itskov"
+    ],
+    "year": 2015,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1506407112"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Rat hippocampal pyramidal-cell recordings analysed with an explicitly higher-order method (cliques are simplices; Betti curves are homology of the clique complex), finding structure that eigenvalue-based pairwise analysis misses. That is close to a direct demonstration that higher-order relational structure is present and informative in hippocampal population activity. Held below 0.8 because the higher-order object here is an ANALYST'S projection over a pairwise correlation matrix, not a demonstration that the circuit represents or uses hyperedges -- which is exactly Q-084's organisational-versus-representational distinction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Standard eigenvalue/PCA analyses of the same correlation matrices fail to distinguish geometric from random structure in the presence of unknown monotone nonlinearities, so a pairwise-summary readout can be actively misleading rather than merely incomplete.",
+    "Geometric organisation of correlations persists during wheel running and REM sleep, i.e. when there is no spatial position to code, so the structure cannot be explained as a downstream consequence of position coding -- an REE analogue would be topological structure in anchor correlations that survives removal of the spatial payload.",
+    "The clique-topology signal is computed from a PAIRWISE correlation matrix; a positive result therefore does not establish that anything above a pairwise relation is stored, only that the pairwise relations have higher-order geometric consequences."
+  ],
+  "tags": [
+    "q-084",
+    "clique-topology",
+    "simplicial",
+    "higher-order-structure",
+    "hippocampus",
+    "topological-data-analysis"
+  ],
+  "mapping": {
+    "source_claim_statement": "Applying clique topology (Betti curves of the order complex, invariant under monotone nonlinear transformations of matrix entries) to rat hippocampal pyramidal-cell correlations detects geometric organisation that eigenvalue-based methods cannot, and the same geometric signature appears during non-spatial behaviours including wheel running and REM sleep.",
+    "ree_translation": "Q-084 asks whether higher-order relational structure -- metapaths, hyperedges, simplicial relations -- is required, given that nothing in the REE registry represents anything above a pairwise relation. This paper supplies the strongest form of the affirmative available in the biology: a higher-order (simplicial) READOUT over hippocampal population structure extracts organisation that pairwise-summary methods provably miss. For REE that is a direct argument for the MECH-468/Q-084 comparison being worth running -- a metapath-aware readout may see what a typed-pairwise projection does not -- and a warning that a null from a pairwise-summary readout is weak evidence of absence.",
+    "mapping_caveat": "The decisive caveat is the one Q-084's own notes insist on: this is an ORGANISATIONAL result obtained with a higher-order ANALYSIS METHOD applied to pairwise data, not evidence that the hippocampus represents hyperedges or that REE should be reimplemented as a hypergraph or simplicial complex. The paper's higher-order object lives in the analyst's toolkit. Additionally this is rat electrophysiology over anatomical position correlations; REE's anchors are action-object and trajectory structures with no guarantee that their correlation geometry behaves comparably, and the paper says nothing about metapaths of TYPED edges, which is Q-084's specific formulation.",
+    "source_context": "Rat hippocampus, pyramidal-cell population recordings during 2D open-field exploration, wheel running, and REM sleep; topological data analysis of correlation matrices plus simulation controls."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high (PNAS, strong method paper with simulation controls, well replicated as a technique). Mapping fidelity moderate: it supports the ORGANISATIONAL half of Q-084 and is silent-to-negative on the representational half. Transfer risk elevated -- rodent spatial ephys to REE action-object anchors is a long jump, and 'higher-order analysis of pairwise data' is not 'higher-order representation'."
+  }
+}

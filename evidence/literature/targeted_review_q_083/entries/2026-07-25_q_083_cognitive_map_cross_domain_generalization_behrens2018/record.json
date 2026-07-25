@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_083",
+  "entry_id": "2026-07-25_q_083_cognitive_map_cross_domain_generalization_behrens2018",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-083"
+  ],
+  "source": {
+    "title": "What Is a Cognitive Map? Organizing Knowledge for Flexible Behavior.",
+    "authors": [
+      "Timothy E J Behrens",
+      "Timothy H Muller",
+      "James C R Whittington",
+      "Shirley Mark",
+      "Alon B Baram",
+      "Kimberly L Stachenfeld",
+      "Zeb Kurth-Nelson"
+    ],
+    "year": 2018,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2018.10.002"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Authoritative review arguing explicitly that map-like coding observed in spatial tasks is an instance of a general knowledge-organising mechanism that applies across domains -- the domain-general arm of Q-083's fork, stated as the paper's thesis. Confidence is held in the moderate band because it is a review advancing a position rather than a decisive test, and because the non-spatial domains it draws on (conceptual, social, task-space) are a narrower and more structurally homogeneous set than Q-083's six.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The evidence for cross-domain map-like coding is strongest where the non-spatial domain has an obvious low-dimensional metric structure (continuous concept spaces, social hierarchies); domains without such structure are not shown to be organised this way, so the generality claim is untested exactly where Q-083 is least confident.",
+    "Demonstrating that the same REPRESENTATIONAL FORMAT appears in several domains does not demonstrate that one apprehension PROCESS built all of them -- shared format is compatible with parallel domain-specific learners converging on the same code."
+  ],
+  "tags": [
+    "q-083",
+    "cognitive-map",
+    "domain-generality",
+    "generalization",
+    "structure-learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Map-like neural representations observed during spatial navigation are an instance of general coding mechanisms capable of organising knowledge of all kinds; the same principles for learning and deploying abstract generalisable structure appear in non-spatial conceptual, social, and task domains, and artificial agents given these principles learn brain-like map representations.",
+    "ree_translation": "This is direct argumentative support for Q-083's domain-general arm: one structure-learning mechanism that inherits its content from whatever inputs it is given, rather than a family of per-domain apprehenders. Mapped to REE, it says the hippocampal-style relational machinery already in V3 is the right place to look for a domain-general apprehender, and that the domain-agnosticism Q-083 registers as untested is at least biologically plausible rather than merely convenient.",
+    "mapping_caveat": "The paper argues a position; it is a review, and the cross-domain evidence it assembles is concentrated in domains that already have metric or ordinal structure resembling space (continuous concept spaces, dominance hierarchies, structured task spaces). Q-083's hardest cases -- ethical and social regularity apprehension without an obvious metric -- are precisely where this evidence thins. There is also a format-versus-process conflation risk: shared representational format across domains is weaker evidence than shared apprehension process, and REE's question is about the process.",
+    "source_context": "Human and rodent electrophysiology and fMRI, plus artificial-agent modelling; review synthesising spatial and non-spatial cognitive-map findings."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "High source quality (Neuron review by the group that subsequently built TEM). Mapping fidelity is moderate: the paper supports domain-generality of the representational FORMAT more strongly than of the apprehension PROCESS, and Q-083 asks about the latter. Weighted toward mapping fidelity as an architectural claim."
+  }
+}

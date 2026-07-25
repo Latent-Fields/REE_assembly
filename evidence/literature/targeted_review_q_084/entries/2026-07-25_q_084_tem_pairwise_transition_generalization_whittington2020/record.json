@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_084",
+  "entry_id": "2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-084"
+  ],
+  "source": {
+    "title": "The Tolman-Eichenbaum Machine: Unifying Space and Relational Memory through Generalization in the Hippocampal Formation.",
+    "authors": [
+      "James C R Whittington",
+      "Timothy H Muller",
+      "Shirley Mark",
+      "Guifen Chen",
+      "Caswell Barry",
+      "Neil Burgess",
+      "Timothy E J Behrens"
+    ],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.10.024"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "A model built entirely on pairwise transition structure reproduces the diversity of entorhinal and hippocampal cell types, matches non-spatial relational task recordings, and yields a confirmed novel prediction (structure preserved across remapping) -- all without any representation above a pairwise relation. That is a substantive existence proof against Q-084's necessity claim. Held at 0.68 because absence of a need in one model family is not absence of a need in general, and TEM was never tested against the multistep typed-path readouts Q-084 specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A purely pairwise-transition model accounts for grid, band, border, object-vector, place and landmark cells plus non-spatial relational task representations, so the observed richness of hippocampal-entorhinal coding is not by itself evidence that higher-order structure is represented.",
+    "TEM's generalisation comes from factorising structure from sensory content, not from higher-order relations -- so an REE metapath readout that beats a pairwise baseline might be recovering factorisation the pairwise baseline failed to learn, rather than genuinely higher-order information.",
+    "The model was never compared against a metapath-aware or hyperedge readout, so its success bounds the necessity claim without testing the sufficiency claim Q-084 poses."
+  ],
+  "tags": [
+    "q-084",
+    "tolman-eichenbaum-machine",
+    "pairwise-transitions",
+    "generalization",
+    "hippocampal-formation",
+    "computational-model"
+  ],
+  "mapping": {
+    "source_claim_statement": "Medial entorhinal cells form a basis describing structural knowledge and hippocampal cells bind that basis to sensory representations; a model built on this principle (TEM), learning from sequences of pairwise transitions, reproduces grid, band, border, object-vector, place and landmark cell types, matches representations recorded in complex non-spatial tasks, and correctly predicts that structural knowledge is preserved across hippocampal remapping.",
+    "ree_translation": "Q-084 asks whether higher-order relational structure is REQUIRED. TEM is the strongest available counterexample: it is built from pairwise transition structure alone, contains nothing resembling a hyperedge or metapath, and nonetheless captures the phenomena Q-084's motivating examples appeal to -- multistep functional roles emerging from relational position. For REE this says that a pairwise typed-edge topology (MECH-468 projection F) with the right factorisation of structure from content may already exhaust what a metapath-aware readout would add, and that Q-084's probe must therefore control for factorisation quality, not just for path length.",
+    "mapping_caveat": "This weakens the NECESSITY claim without answering the comparison Q-084 actually specifies: TEM was never benchmarked against a metapath-aware or hyperedge readout on the same held-out functional labels, so its success shows higher-order structure was not needed FOR TEM'S TASKS, not that it is never needed. The tasks are also mostly graph-traversal and relational-inference problems with homogeneous edge semantics, whereas Q-084's motivating cases are heterogeneous TYPED paths (hazard, repair opportunity, goal completion). And TEM is a model of biology, not biology -- its success constrains what is sufficient to reproduce recordings, which is weaker than constraining what the brain does.",
+    "source_context": "Computational model (TEM) trained on structured sequence prediction, compared against rodent entorhinal/hippocampal recordings including simultaneously recorded place and grid cells across remapping, and against non-spatial relational task data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Very high source quality -- Cell, model plus confirmed novel empirical prediction. Mapping fidelity moderate: it is a clean existence proof against necessity but does not run Q-084's specified comparison. Transfer risk relatively low because TEM is itself a computational agent architecture, so the REE mapping is unusually direct for a neuroscience entry."
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_083",
+  "entry_id": "2026-07-25_q_083_statistical_learning_domain_generality_paradox_frost2015",
+  "timestamp_utc": "2026-07-25T06:04:25Z",
+  "claim_ids_tested": [
+    "Q-083"
+  ],
+  "source": {
+    "title": "Domain generality versus modality specificity: the paradox of statistical learning.",
+    "authors": [
+      "Ram Frost",
+      "Blair C Armstrong",
+      "Noam Siegelman",
+      "Morten H Christiansen"
+    ],
+    "year": 2015,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2014.12.010"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "High-quality synthesis in a leading review venue, and it addresses Q-083's fork head-on rather than by analogy -- the paper exists precisely because the domain-general assumption failed empirically. It is downgraded from the top band because it is a review of behavioural statistical-learning studies in humans, not a direct test of a cross-domain transfer prediction under matched structure, which is the design Q-083's what_would_answer specifies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Learners' statistical-learning performance in one modality correlates poorly or not at all with their performance in another, so a single latent 'apprehender' capacity does not account for individual differences across domains.",
+    "Regularities of identical formal structure are learned at different rates and to different asymptotes depending on the modality and stimulus type carrying them, so apprehension rate is not a pure function of rule structure.",
+    "A cross-domain transfer test can therefore return a null not because the apprehender is domain-specific but because the two domains impose different input constraints on a shared computation -- the null is ambiguous between the two arms of Q-083."
+  ],
+  "tags": [
+    "q-083",
+    "statistical-learning",
+    "domain-generality",
+    "modality-specificity",
+    "rule-apprehension"
+  ],
+  "mapping": {
+    "source_claim_statement": "Statistical learning is not a unitary domain-general mechanism; it is a set of domain-general computational principles instantiated separately in different modalities, each subject to the representational and processing constraints of its own brain regions -- which is why cross-modal commonality is repeatedly not found.",
+    "ree_translation": "Q-083 asks whether REE needs separate regularity-apprehension systems per domain or one domain-general apprehender that inherits domain structure from its inputs. This paper says the dichotomy is malformed: the biological answer is a third option in which the COMPUTATION is shared but its INSTANTIATION is per-domain. Mapped onto REE, that argues for one apprehension algorithm parameterised by per-domain input encoders, and it predicts that REE would show exactly the pattern the paper reports -- transfer that is real at the level of learning principles yet largely invisible at the level of measured cross-domain performance correlations.",
+    "mapping_caveat": "The paper's units of division are MODALITIES (auditory, visual, tactile) and stimulus types, not the DOMAINS Q-083 enumerates (causal, social, ethical, motor, spatial, relational). Those are different partitions of the space and the paper offers no evidence that constraint-driven specificity carries over from the modality partition to the domain partition. Treating a modality-specificity result as a domain-specificity result is the transfer risk here and it is not small. The paper also concerns human statistical learning over passively observed sequences, whereas REE apprehension is embedded in an acting agent with goals.",
+    "source_context": "Human behavioural statistical learning across auditory, visual, and tactile modalities; review and theoretical framework, including individual-differences and neuroimaging evidence."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is high (TICS review, heavily cited, framework with stated testable predictions). Mapping fidelity is weighted heavily here because Q-083 is an architectural fork, and the paper maps onto the fork's STRUCTURE well while mapping onto its specific DOMAIN partition poorly. Transfer risk is moderate-high: modality != domain."
+  }
+}
