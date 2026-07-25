@@ -1,48 +1,38 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-25T17:56:14Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-793a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-682",
-      "result": "PASS",
-      "completed_at": "2026-06-15T03:20:44.390213+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-689d",
-      "result": "PASS",
-      "completed_at": "2026-06-21T06:34:10.419384+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-729",
-      "result": "PASS",
-      "completed_at": "2026-07-10T11:38:27.814950+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    }
+  "last_tick_utc": "2026-07-25T18:32:17Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-817",
+  "current_exq_started_utc": "2026-07-25T18:28:31.894012+00:00",
+  "current_title": "SD-080 consequence-grounding CAPABILITY falsifier (3-arm: ARM_0 frozen / ARM_1 grounded / ARM_2 shuffled-target control)",
+  "current_claim_id": "SD-080",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_1",
+    "runs_done": 1,
+    "runs_total": 15,
+    "episodes_done": 0,
+    "episodes_total": 40,
+    "overall_pct": 6.7
+  },
+  "seconds_elapsed": 225,
+  "seconds_remaining": 2181,
+  "recent_lines": [
+    "[train] p0 seed=0 ep 10/40  harm=11.45",
+    "[train] p0 seed=0 ep 20/40  harm=24.19",
+    "[train] p0 seed=0 ep 30/40  harm=36.31",
+    "[train] p0 seed=0 ep 40/40  harm=48.74",
+    "Seed 0 Condition ARM_0",
+    "[ARM_0 seed=0] M5_r2=0.9958 M6_spearman=-0.1085 harm_rate=0.7097 survival=9.3 head_delta=0.0000",
+    "verdict: PASS",
+    "Seed 0 Condition ARM_1"
   ],
-  "runner_pid": 69802,
-  "runner_version": "r4271 e401fcb 2026-07-25 (running 720dd23 2026-07-25)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 85950,
+  "runner_version": "r4274 120efac 2026-07-25 (running e401fcb 2026-07-25)",
   "gpu": {
     "available": false
   },
