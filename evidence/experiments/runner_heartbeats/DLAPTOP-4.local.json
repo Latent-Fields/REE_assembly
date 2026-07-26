@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T18:50:47Z",
+  "last_tick_utc": "2026-07-26T23:35:55Z",
   "state": "idle",
   "current_exq": null,
   "current_exq_started_utc": null,
@@ -12,9 +12,14 @@
   "seconds_elapsed": null,
   "seconds_remaining": null,
   "recent_lines": null,
-  "queue_depth": 3,
+  "queue_depth": 1,
   "queue_id_at_head": "V3-EXQ-819a",
   "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-689d",
+      "result": "PASS",
+      "completed_at": "2026-06-21T06:34:10.419384+00:00"
+    },
     {
       "queue_id": "V3-EXQ-729",
       "result": "PASS",
@@ -34,15 +39,10 @@
       "queue_id": "V3-EXQ-823",
       "result": "PASS",
       "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-816d",
-      "result": "FAIL",
-      "completed_at": "2026-07-26T18:50:28.236140+00:00"
     }
   ],
-  "runner_pid": 7829,
-  "runner_version": "r4326 c7f9a35 2026-07-26 (running r4325 82d0482)",
+  "runner_pid": 92317,
+  "runner_version": "6e2accf 2026-07-26",
   "gpu": {
     "available": false
   },
