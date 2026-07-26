@@ -1960,7 +1960,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-209-proposal-for-arc-112 && claude --resume cc1fb6fb-177a-4b32-8108-609e58eb4faa",
       "task_claim_session_id": "igw-auto-igw-209-proposal-for-arc-112-20260726T170308Z",
       "assigned_at": "2026-07-26T17:02:48Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-26T17:17:09Z",
+      "completion_summary": "gated EVB-0460/ARC-112 (framing parent claim, not directly falsifiable; answered by children Q-081/MECH-466/INV-091)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0199 -> gated (triage landed)"
     }
   ],
   "dispositions": [
@@ -2580,6 +2584,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-21T06:22:16Z",
       "re_eligible_after": "2026-07-23T06:22:16Z"
+    },
+    {
+      "stable_hash": "705a12029589",
+      "igw_id_at_disposition": "IGW-20260726-209",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-112"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for ARC-112",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-26T17:17:09Z",
+      "re_eligible_after": "2026-07-28T17:17:09Z"
     }
   ]
 }
