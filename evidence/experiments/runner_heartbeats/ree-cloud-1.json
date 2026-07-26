@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-26T09:21:36Z",
+  "last_tick_utc": "2026-07-26T10:36:51Z",
   "state": "running",
   "current_exq": "V3-EXQ-822",
   "current_exq_started_utc": "2026-07-26T07:47:28.851157+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-078",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 101 / ARM_OFF",
-    "runs_done": 0,
+    "run_label": "Seed 101 / ARM_ON",
+    "runs_done": 1,
     "runs_total": 6,
-    "episodes_done": 140,
+    "episodes_done": 100,
     "episodes_total": 170,
-    "overall_pct": 13.7
+    "overall_pct": 26.5
   },
-  "seconds_elapsed": 5647,
-  "seconds_remaining": 25424,
+  "seconds_elapsed": 10163,
+  "seconds_remaining": 42659,
   "recent_lines": [
     "Seed 101 Condition ARM_OFF",
     "[train] crf seed=101 arm=ARM_OFF phase=P0 ep 20/170 live=1 minted=1",
@@ -26,7 +26,16 @@
     "[train] crf seed=101 arm=ARM_OFF phase=P1 ep 80/170 live=1 minted=1",
     "[train] crf seed=101 arm=ARM_OFF phase=P1 ep 100/170 live=1 minted=1",
     "[train] crf seed=101 arm=ARM_OFF phase=P1 ep 120/170 live=1 minted=1",
-    "[train] crf seed=101 arm=ARM_OFF phase=P2 ep 140/170 live=1 minted=1"
+    "[train] crf seed=101 arm=ARM_OFF phase=P2 ep 140/170 live=1 minted=1",
+    "[train] crf seed=101 arm=ARM_OFF phase=P2 ep 160/170 live=1 minted=1",
+    "[train] crf seed=101 arm=ARM_OFF phase=P2 ep 170/170 live=1 minted=1",
+    "verdict: PASS",
+    "Seed 101 Condition ARM_ON",
+    "[train] crf seed=101 arm=ARM_ON phase=P0 ep 20/170 live=16 minted=16",
+    "[train] crf seed=101 arm=ARM_ON phase=P0 ep 40/170 live=16 minted=16",
+    "[train] crf seed=101 arm=ARM_ON phase=P0 ep 60/170 live=16 minted=16",
+    "[train] crf seed=101 arm=ARM_ON phase=P1 ep 80/170 live=16 minted=16",
+    "[train] crf seed=101 arm=ARM_ON phase=P1 ep 100/170 live=16 minted=16"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

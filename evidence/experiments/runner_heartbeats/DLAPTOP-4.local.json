@@ -1,48 +1,33 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T09:21:02Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-822",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-689d",
-      "result": "PASS",
-      "completed_at": "2026-06-21T06:34:10.419384+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-729",
-      "result": "PASS",
-      "completed_at": "2026-07-10T11:38:27.814950+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    }
+  "last_tick_utc": "2026-07-26T10:36:53Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-816b",
+  "current_exq_started_utc": "2026-07-26T10:31:23.230638+00:00",
+  "current_title": "MECH-321 policy_decomposition P-A (env axis): harshened env -> low-V_s production + region-V_s distribution recording",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / ARM_0",
+    "runs_done": 0,
+    "runs_total": 10,
+    "episodes_done": 20,
+    "episodes_total": 60,
+    "overall_pct": 3.3
+  },
+  "seconds_elapsed": 330,
+  "seconds_remaining": 13345,
+  "recent_lines": [
+    "Seed 11 Condition ARM_0",
+    "[train] decomp seed=11 arm=ARM_0 ep 10/60 decomposed=0 vs_trigger=0 low_vs_steps=0",
+    "[train] decomp seed=11 arm=ARM_0 ep 20/60 decomposed=0 vs_trigger=0 low_vs_steps=0"
   ],
-  "runner_pid": 40773,
-  "runner_version": "r4304 07639e2 2026-07-26 (running r4303 0f408e8)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 70438,
+  "runner_version": "r4305 2e41652 2026-07-26 (running r4304 07639e2)",
   "gpu": {
     "available": false
   },
