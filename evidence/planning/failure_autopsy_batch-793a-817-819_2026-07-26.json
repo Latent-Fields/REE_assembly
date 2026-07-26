@@ -1,0 +1,215 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T11:32:51Z",
+  "scope": "batch",
+  "status": "confirmed",
+  "batch_note": "Batch autopsy of all pending FAIL runs as of 2026-07-26. Five FAILs were in pending_review.md; 816 + 820 already carry a confirmed cluster autopsy (failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26) and only linger in pending_review because /failure-autopsy does not mark runs reviewed (governance's loop). No flagged/vacuous diagnostic PASSes exist (the only unclaimed PASS, V3-EXQ-823, is a clean supports-direction consumer run). Genuine debt = the three distinct targets below. Cross-cutting meta-observation (not a formal cluster): two of the three (817, 819) are cases where the run's own self-route/precondition label MISNAMES the cause -- the substrate was trained in both; the real fault is an ineffective training OBJECTIVE (817) or a mis-calibrated non-vacuity GATE (819), not an unready substrate. This is the canonical 'self-route is a hypothesis, not a verdict' pattern (V3-EXQ-642).",
+  "targets": [
+    {
+      "run_id": "v3_exq_793a_sd049_arm2_competence_repower_20260724T123828Z_v3",
+      "queue_id": "V3-EXQ-793a",
+      "claim_ids": [
+        "SD-049"
+      ],
+      "self_route_label": "joint_arm_clears_but_fragile_guard_pass_below_floor",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "Sole load-bearing criterion C_JOINT_ROBUST (a within-arm per-seed floor: joint arm A11 guard_pass_frac >= MIN_FRACTION 2/3) FAILED at guard_pass_frac 0.5 (3/6 seeds vs 4/6 required). Not a discrimination or negative-control criterion; a robustness/floor gate. The four informational criteria (C_BASE_FAILS, C_CURR, C_DENS, C_JOINT) all passed non-degenerately; A11 cleared D3 on mean contact (d1_frac 1.0, d2_survival_frac 1.0).",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- decisive for the narrow lever-robustness question; the joint (amended-curriculum x density-ON) config lifts D3 over the 693a ceiling but is NOT a robust hand-off. Orthogonal to and does NOT lift SD-049's park (the separate foraging-competent-policy prerequisite, gated on the foraging scaffold /implement-substrate).",
+        "biological_reference": "partial -- goal-latching at resource contact (z_goal norm at contact peak) is the analog under test; the fragility is a real developmental-variance property, not a formal import.",
+        "prerequisites": "present -- density-preserving spawn kwarg available; baseline (A00) correctly reproduces the 693a ceiling (0.0195 just under the 0.02 floor); density manipulation effective on ON arms.",
+        "implementation": "complete -- the repower did exactly what the 793 autopsy asked: n=3->6 seeds and made guard_pass load-bearing via C_JOINT_ROBUST.",
+        "environment": "adequate -- CausalGridWorldV2 6x6 with SD-049 density preservation; the levers move contact and survival as designed.",
+        "measurement": "adequate -- C_JOINT_ROBUST is exactly the instrument the 793 autopsy prescribed and it discriminated cleanly (non_degenerate True); the earlier arm-level d3_clears that hid per-seed guard failures is now fixed.",
+        "integration": "isolated -- single-substrate 2x2; no cross-module interaction under test.",
+        "scale": "adequate -- n=6 seeds sufficient to detect the fragility (3/6 pass); the guard failures concentrate on the 3 low-baseline seeds."
+      },
+      "biological_reference": {
+        "closest_mechanism": "appetitive goal-latching at resource contact (ventral-striatal / hypothalamic drive-to-goal coupling)",
+        "dependencies": [
+          "z_goal representation strength at contact",
+          "drive weighting",
+          "seed_gain on low-baseline episodes"
+        ],
+        "is_formal_import": false,
+        "divergence": "none load-bearing -- the guard failures are z_goal_norm_at_contact_peak below the 0.4 gate on the negative-seed-gain seeds (0.372/0.360/0.391), i.e. the goal latch under-develops on the hard seeds.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_direction_per_claim": {
+        "SD-049": "inconclusive"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-793a (2026-07-24, ree-cloud-4, non-degenerate FAIL, ~37.7h/24 cells): repowers 793 (n=3->6, guard_pass made load-bearing) exactly per the 793 autopsy. DECISIVE robustness finding -- the joint arm A11 (amended curriculum x density-ON) clears D3 on mean contact (d1=1.0, d2=1.0) but C_JOINT_ROBUST fails: guard_pass 3/6 seeds vs the 2/3 floor, short by one seed. The 3 guard failures are the low-baseline seeds (43/44/47) whose z_goal_norm_at_contact_peak sits just under the 0.4 gate (0.372/0.360/0.391). Reading: the joint config is NOT a robust hand-off -- a future 693b must address the z_goal-at-contact guard fragility before receiving this config. epistemic_category standard; evidence_direction inconclusive. This does NOT lift SD-049's park (still gated on the foraging-competent-policy prerequisite / foraging scaffold, per the 2026-06-19 ceiling_routing_note). NOT a substrate_ceiling reading -- the SD-049 re-derive brake (4 prior ceilings: 514l/538a/693/693a) does NOT fire on this.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-514l_2026-06-03",
+          "failure_autopsy_V3-EXQ-538a_2026-07-10",
+          "failure_autopsy_V3-EXQ-693_2026-06-20",
+          "failure_autopsy_V3-EXQ-693a_2026-06-21"
+        ],
+        "refused_requeue": false,
+        "route_to": "governance",
+        "not_fired_reason": "SD-049 carries 4 prior confirmed substrate_ceiling autopsies (brake threshold exceeded), but this reading is `standard` (a decisive, non-degenerate robustness FAIL), NOT substrate_ceiling. Under R3 only substrate_ceiling readings count, so the brake does not fire. This autopsy does not circle the ceiling -- it answers a different (lever-robustness) question the 793 autopsy explicitly asked."
+      },
+      "routing": "governance",
+      "routing_note": "User-confirmed 2026-07-26: record the decisive finding; NO re-queue owed. The design implication (a future 693b must address the z_goal-at-contact guard fragility on hard seeds before a robust hand-off) is noted but not queued now -- queuing another SD-049 letter would risk circling the ceiling, and SD-049's real park is the foraging scaffold (separate /implement-substrate route). Governance records the note and marks the run reviewed.",
+      "learning_extracted": [
+        "The joint amended-curriculum x density-ON config lifts D3 over the 693a ceiling but is a FRAGILE hand-off: guard_pass 3/6 at n=6.",
+        "The fragility localises to z_goal_norm_at_contact_peak falling below the 0.4 gate on the low-baseline (negative-seed-gain) seeds -- the goal latch under-develops on hard seeds.",
+        "Making guard_pass load-bearing (C_JOINT_ROBUST, as the 793 autopsy prescribed) surfaced a per-seed failure mode that arm-level d3_clears had hidden -- a measurement-design win.",
+        "This narrow lever-robustness result is orthogonal to SD-049's foraging-competence park and does not lift it."
+      ]
+    },
+    {
+      "run_id": "v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3",
+      "queue_id": "V3-EXQ-817",
+      "claim_ids": [
+        "SD-080",
+        "SD-004"
+      ],
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "MISNAMED -- the substrate WAS trained; the grounding OBJECTIVE was ineffective.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "The two ARM_1 readiness preconditions (absolute-threshold gates on the trained head's DVs) both failed: arm1_ao_state_dependence_acquired (M5 r2 0.98247 vs ceil 0.95, direction upper -- r2 did not DROP enough) and arm1_ao_consequence_structure_acquired (M6 within-pair spearman 0.08490 vs floor 0.15, direction lower -- did not RISE enough). grounding_took=false gated the load-bearing behavioural criterion, which was therefore never evaluated. non_degenerate False.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-080 intact (the frozen-random-projection defect was already CONFIRMED by the V3-EXQ-809 autopsy; 817 does not re-test it). SD-004 intact/untested -- the behavioural falsifier could not run because the grounding gate blocked it.",
+        "biological_reference": "partial -- SD-004 specifies O as a LEARNED world-effect compression (consequence-structured), a mechanism with clear biological grounding; 817 attempted to induce it with a bespoke prediction objective.",
+        "prerequisites": "missing -- a consequence-grounding TRAINING OBJECTIVE that actually induces state-dependent, consequence-structured geometry. This is SD-080's whole point (the head receives zero gradient from every REE path).",
+        "implementation": "partial -- the grounding objective WAS built and DID train the head (M0 delta_l2_from_frozen ~1.3-1.47, grounding loss ~1e-5), but it did not produce the targeted representational change (M5 fell only to 0.982; M6 rose only to 0.085).",
+        "environment": "adequate -- CausalGridWorldV2, terrain-CEM planner harness.",
+        "measurement": "under-instrumented / mis-calibrated -- the M5<=0.95 / M6>=0.15 absolute thresholds may be too tight given high seed variance (M6 across seeds 0/1/2 = 0.011/0.251/0.088; seed-1 EXCEEDED the floor while two low seeds dragged the mean under).",
+        "integration": "isolated -- frozen encoder, head-only grounding.",
+        "scale": "adequate for the gate (5 seeds), but the high inter-seed M6 variance suggests the objective is only intermittently effective."
+      },
+      "biological_reference": {
+        "closest_mechanism": "learned action-consequence (efference-copy / forward-model) compression -- O as a consequence-structured code",
+        "dependencies": [
+          "a training signal that couples action-object identity to world-effect",
+          "sufficient transitions",
+          "a loss that rewards state-dependence + consequence-structure, not just delta prediction"
+        ],
+        "is_formal_import": false,
+        "divergence": "the delta-prediction objective (predict z_world_{t+1}-z_world_t with a frozen encoder) moved the head but did not make O state-dependent or consequence-structured -- predicting the delta is not the same as encoding the consequence geometry.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_secondary": "measurement_test_design_defect (M5/M6 threshold calibration vs high seed variance)",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "SD-080": "non_contributory",
+        "SD-004": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-817 (2026-07-25, Mac, 3-arm consequence-grounding falsifier) self-routed substrate_not_ready_requeue but this label is a MISNOMER: the AO head DID train (ARM_1 M0_action_object_head_param_delta_l2_from_frozen ~1.3-1.47, grounding loss converged ~1e-5) -- it did NOT collapse onto ARM_0 (delta 0.0 is the ARM_0 value). What failed is that the delta-prediction grounding OBJECTIVE did not induce the targeted geometry: M5 r2 fell only 0.994->0.982 (needed <=0.95) and M6 within-pair spearman rose only to 0.085 (needed >=0.15), with high seed variance (seed-1 M6=0.251 cleared the floor; seeds 0/2 = 0.011/0.088). grounding_took=false, so the behavioural (load-bearing) discrimination was never evaluated -> non_contributory for both SD-080 and SD-004. SD-080's frozen-random-projection defect stands as confirmed by V3-EXQ-809; 817 adds no new direction. epistemic_category competence_implementation_gap (the grounding objective is insufficient) with a secondary measurement_test_design_defect (M5/M6 threshold calibration). Re-queue 817a with a stronger grounding objective (e.g. a contrastive consequence loss) AND reconsidered M5/M6 thresholds.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "governance_note_correction": {
+        "target": "SD-080 evidence_quality_note in docs/claims/claims.yaml (line ~51015)",
+        "current_wrong_text": "did not move the AO head (delta_l2_from_frozen = 0.0), so ARM_1 collapsed onto ARM_0 ...",
+        "correction": "The manifest CONTRADICTS this: ARM_1 M0_action_object_head_param_delta_l2_from_frozen is ~1.3-1.47 (0.0 is the ARM_0/frozen value). ARM_1 did NOT collapse onto ARM_0 at the parameter level. The head trained; the grounding objective failed to move the M5/M6 representational DVs past threshold. Governance should correct the note to say the head trained but the objective did not induce state-dependent/consequence-structured geometry.",
+        "confirmed_by_user": true
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "SD-080 and SD-004 each have 0 prior substrate_ceiling autopsies; this reading is not a ceiling."
+      },
+      "routing": "queue-experiment",
+      "routing_note": "User-confirmed 2026-07-26: queue-experiment 817a with a stronger/different grounding objective (e.g. contrastive consequence loss) AND recalibrated M5<=0.95 / M6>=0.15 thresholds given the high inter-seed variance. SD-080's defect stays confirmed (via 809); 817 adds no direction. ALSO: flag governance to correct the SD-080 note's delta_l2=0.0 / 'collapsed onto ARM_0' error (see governance_note_correction).",
+      "learning_extracted": [
+        "A delta-prediction grounding objective (predict z_world delta with a frozen encoder, 2400 transitions) MOVES the AO head but does NOT make O state-dependent or consequence-structured -- predicting the delta != encoding the consequence geometry.",
+        "The self-route label substrate_not_ready_requeue is a misnomer here: the substrate trained; the objective was ineffective. Confirms the 'self-route is a hypothesis' rule (V3-EXQ-642).",
+        "SD-080's evidence_quality_note carries a factual error (delta_l2=0.0 / collapsed-onto-ARM_0) contradicted by the manifest -- governance must correct it.",
+        "M6 within-pair spearman is only intermittently induced (seed-1 0.251 vs seeds 0/2 ~0.01/0.09) -- either the objective is unstable or the >=0.15 floor is mis-set for this variance."
+      ]
+    },
+    {
+      "run_id": "v3_exq_819_mech457_inv088_zworld_trained_vs_random_20260726T005930Z_v3",
+      "queue_id": "V3-EXQ-819",
+      "claim_ids": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "self_route_label": "zworld_advantage_grid_nondiscriminative",
+      "adjudication_flag": "precondition_unmet",
+      "self_route_verdict": "MISNAMED as 'not ready': the z_world encoder DID train (3/3 seeds, world_encoder_max_abs_delta 0.277-0.333) -- the V3-EXQ-780 frozen-random-projection fault is FIXED. The failing precondition post_bc_install_took is a worst-seed FORAGING-COMPETENCE floor, not an encoder-training check. The run is vacated by a mis-calibrated non-vacuity GATE, not by an unready substrate.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "Precondition post_bc_install_took met=false on BOTH arms under the WORST-SEED rule (min post-BC foraging competence across seeds vs 1.0 floor): trained 0.9 (worst seed 43), random 0.4 (worst seed 43). non_degenerate=false vacated the whole run. INTERNAL CONTRADICTION: the routing predicate advantage_confirmed uses install_took_strict_majority (trained 2/3 -> True, random 0/3 -> False) => asymmetric install => advantage_confirmed=True (and manifest headline.advantage_confirmed IS true). The worst-seed non-vacuity gate vacated a run the strict-majority routing predicate would have PASSed, on a single seed-43 0.1 near-miss (0.9 vs 1.0). The precondition's own docstring declares it 'NON-vacating per-arm', yet the aggregate gate vacated both arms.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "MECH-457 untested (run vacated) -- but a weak directional signal is recorded: a prediction-TRAINED z_world still only reaches AUC 0.90 (worst post-BC 0.9), ~2% of the 48-57 achievable ceiling, mildly consistent with MECH-457's thesis that encoder quality alone does not confer competent action. INV-088 untested (precondition blocked; governance-downstream of the MECH-457 campaign, per the 780 autopsy).",
+        "biological_reference": "partial -- MECH-457 posits a dedicated RPE-driven actor-critic (dorsal-striatal analog) distinct from the thin bias_head REINFORCE readout.",
+        "prerequisites": "present -- the z_world encoder now trains (780 fault fixed; upstream substrate sd_zworld_warmup_optimizer_group built ree-v3 b523b9c70a, validated REE_assembly 25a69fcd4c).",
+        "implementation": "complete for the encoder; DEFECTIVE for the non-vacuity gate -- the worst-seed rule contradicts the strict-majority routing predicate and its own per-arm-non-vacating docstring.",
+        "environment": "adequate -- anchors reachable (local_view_greedy D3 48.05, greedy_oracle 57.2, all 3 seeds supra-floor); the env is provably floor-achievable; the z_world arms simply forage near-floor within a solvable env.",
+        "measurement": "test_design_defect -- the load-bearing paired-advantage DV was never scored because the non-vacuity gate vacated the run; the gate and the routing predicate disagree on the same data.",
+        "integration": "partially coupled -- encoder + BC warm-start + detached-encoder actor-critic; the pipeline runs but the gate mis-adjudicates.",
+        "scale": "under-powered for a worst-seed rule -- n=3 seeds means a single seed vacates the whole run; the effect margin (1.0 absolute) is also large vs the near-floor competence range (0.35-2.4/ep)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal RPE-driven actor-critic policy-learning substrate",
+        "dependencies": [
+          "a value baseline / critic",
+          "a trained world representation to read",
+          "sufficient exploration to install a supra-floor policy"
+        ],
+        "is_formal_import": false,
+        "divergence": "not the load-bearing point here -- the run was vacated on instrument grounds before the mechanism could be adjudicated.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-457": "non_contributory",
+        "INV-088": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-819 (2026-07-26, cloud, diagnostic, seeds 42/43/44) self-routed zworld_advantage_grid_nondiscriminative (precondition_unmet), non_degenerate=false. The 'not ready' label is a MISNOMER: the z_world encoder trained on 3/3 seeds (delta 0.277-0.333) -- the 780 frozen-random-projection fault is fixed. The failing precondition post_bc_install_took is a WORST-SEED foraging-competence floor (trained 0.9 / random 0.4 vs 1.0). INTERNAL CONTRADICTION: the routing predicate (strict-majority install: trained 2/3, random 0/3 -> asymmetric install) sets headline.advantage_confirmed=true, but the worst-seed non-vacuity gate vacated the run on a single seed-43 0.1 near-miss. Diagnosis: measurement_test_design_defect -- the worst-seed gate contradicts the strict-majority routing predicate and its own 'non-vacating per-arm' docstring. Directional (unscored) signal worth noting: a prediction-trained z_world still only reaches AUC 0.90 (~2% of the 48-57 achievable ceiling; mean paired advantage +0.442, 0/3 over the 1.0 margin) -- mild support for MECH-457's necessity thesis. non_contributory for both claims (unscored). NOT substrate_ceiling (MECH-457 has 0 ceiling autopsies; the campaign is all competence_implementation_gap). Re-queue 819a with the non-vacuity gate reconciled to the routing predicate (per-arm non-vacating or strict-majority) and/or the 1.0 worst-seed floor + 1.0 effect margin reconsidered against the near-floor competence range.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "The only surviving supports are the small directional advantage (+0.442 paired AUC, 2/3 vs 0/3 install) and the near-floor absolute competence -- both UNSCORED (run vacated). They must not be read as confirming MECH-457; they are recorded as a weak, non-load-bearing direction pending a scored 819a.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Under R3 only substrate_ceiling readings count. MECH-457 has 0 substrate_ceiling autopsies (the whole campaign is competence_implementation_gap / measurement_test_design_defect); INV-088 has 0. The queue note's 'brake released (MECH-457 count 8)' refers to the non_contributory tally under the OLD disjunct convention -- superseded by R3, under which the ceiling count is 0 and the brake was never engaged. This 819a routing is a TEST-DESIGN fix, not a same-question ceiling re-pose, so it does not circle."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "No fan-out: 819 routes to ONE unambiguous test-design fix (819a -- reconcile the non-vacuity gate), not a multi-hypothesis discrimination portfolio. Exempt from GOV-FANOUT-1 per the single-build carve-out. The competence_floor R4 instrument-validity leg IS pre-registered in the frozen ledger (Step 9b) as hypothesis H-zworld-trained-instrument, state alive (819 vacated it, awaits 819a)."
+      },
+      "hypothesis_space_ledger_applied": {
+        "question_qid": "competence_floor",
+        "added_hid": "H-zworld-trained-instrument",
+        "axis": "instrumentation",
+        "state": "alive",
+        "growth_kind": "fanout_growth (invariant 3a) -- labelled, pre-registration precedes adjudication, git-witnessed by this artifact; original denominator (initial_frozen_count_at_registration=7) preserved.",
+        "circling_check": "This leg re-enters the representation question but is labelled axis=instrumentation, not representation, and is NOT the dead H-rep leg wearing a new name: H-rep was eliminated (747/749) on a z_world encoder that the 780 autopsy later proved was a FROZEN RANDOM PROJECTION. R4 re-tests whether that elimination is valid once the encoder actually trains (fixed in 819). Instrument-validity, not circling."
+      },
+      "routing": "queue-experiment",
+      "routing_note": "User-confirmed 2026-07-26: measurement_test_design_defect -> queue-experiment 819a reconciling the worst-seed non-vacuity gate with the strict-majority routing predicate (align to per-arm non-vacating as the docstring intends, or strict-majority), and reconsider the 1.0 worst-seed floor + 1.0 effect margin given the near-floor competence range. Encoder trains; not a ceiling.",
+      "learning_extracted": [
+        "819 is the FIRST z_world arm where the encoder actually trains (3/3 seeds) -- the 780 frozen-random-projection fault is fixed by sd_zworld_warmup_optimizer_group.",
+        "A prediction-trained z_world lifts installed competence only from AUC 0.46 -> 0.90 (still ~2% of the 48-57 achievable ceiling; 0/3 seeds over the 1.0 effect margin) -- mild, unscored support for MECH-457's thesis that encoder quality alone does not confer competent action.",
+        "The run's non-vacuity gate (worst-seed post_bc_install_took floor) CONTRADICTS its own routing predicate (strict-majority) and its own 'non-vacating per-arm' docstring -- it vacated a run headline.advantage_confirmed called an advantage. This is a test-design defect, not a substrate ceiling.",
+        "n=3 seeds is under-powered for a worst-seed non-vacuity rule (a single seed vacates the run)."
+      ]
+    }
+  ],
+  "cluster_pattern": null
+}

@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-26T05:43:01Z
+Generated: 2026-07-26T11:37:55Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **12** open question(s) across **9** time-series snapshot(s). **0** flag(s) raised, **15** advisory note(s), **12** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
+Audited **12** open question(s) across **9** time-series snapshot(s). **0** flag(s) raised, **16** advisory note(s), **12** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -30,7 +30,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (15, NOT violations)
+## Advisory -- labelled fan-out growth (16, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -39,7 +39,8 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `competence_floor`: +3 leg(s) (H1-drive-schedule, H2-reward-coupling, H3-credit-horizon) added by labelled fan-out from `failure_autopsy_V3-EXQ-769_2026-07-17.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `competence_floor`: +2 leg(s) (H-bc-prior, H-approach-primitive) added by labelled fan-out from `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `competence_floor`: +4 leg(s) (H-retention-critic, H-retention-consolidation, H-retention-auxiliary-decay, H-consummation-binding) added by labelled fan-out from `mech457_retention_portfolio_2026-07-18.md` -- conditions (a)-(c) satisfied, advisory not a violation.
-- `competence_floor`: denominator grew 7 -> 16 across 3 labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
+- `competence_floor`: +1 leg(s) (H-zworld-trained-instrument) added by labelled fan-out from `failure_autopsy_batch-793a-817-819_2026-07-26.json` -- conditions (a)-(c) satisfied, advisory not a violation.
+- `competence_floor`: denominator grew 7 -> 17 across 4 labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `conversion_ceiling_root`: +1 leg(s) (H-objective-misspecification) added by labelled fan-out from `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `conversion_ceiling_root`: +1 leg(s) (H-observation-interface) added by labelled fan-out from `failure_autopsy_backlog_2026-07-24.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `conversion_ceiling_root`: denominator grew 4 -> 6 across 2 labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
@@ -50,7 +51,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-07-19 -> 2026-07-20: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
 - time series 2026-07-21 -> 2026-07-22: total_initial grew by 1, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 1 leg(s)) -- advisory, not a violation.
 - time series 2026-07-22 -> 2026-07-24: total_initial grew by 1, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 1 leg(s)) -- advisory, not a violation.
-- time series 2026-07-25 -> 2026-07-26: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
+- time series 2026-07-25 -> 2026-07-26: total_initial grew by 5, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 5 leg(s)) -- advisory, not a violation.
 
 ## Fan-out recurrence (ACTIONABLE, 1) -- N >= 3 portfolios on one question
 
@@ -60,7 +61,7 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 **Response is routing, not demotion.** These are questions, not claims; nothing is promoted or demoted. Re-pose the operationalization before opening another portfolio -- enumerating a further round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Warn-only: this never gates a cycle.
 
-- `competence_floor`: 3 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 16, 0 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 4; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `mech457_retention_portfolio_2026-07-18.md`
+- `competence_floor`: 4 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 17, 1 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 5; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `failure_autopsy_batch-793a-817-819_2026-07-26.json`, `mech457_retention_portfolio_2026-07-18.md`
 
 ## Pre-registration provenance (12 witnessed, 0 unverifiable)
 
