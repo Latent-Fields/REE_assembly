@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_321",
+  "entry_id": "2026-07-26_mech_321_event_boundary_markers_swr_bilkey2019",
+  "timestamp_utc": "2026-07-26T06:06:17Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Neural Markers of Event Boundaries",
+    "authors": ["David K Bilkey", "Charlotte Jensen"],
+    "year": 2019,
+    "venue": "Topics in Cognitive Science",
+    "doi": "10.1111/tops.12470"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Peer-reviewed review in a respectable venue by authors with primary hippocampal expertise, and it is the closest thing in the literature to a direct statement of MECH-321's central architectural bet -- that one boundary-marker class serves both externally-driven and internally-generated sequences. But it is a hypothesis paper, not new data, and it argues for shared MARKERS, not for the specific operation MECH-321 needs (a boundary detected within an imagined trajectory causing that trajectory to be re-segmented at finer grain). Mapping fidelity is therefore the binding constraint and confidence is held below 0.6 despite good source quality.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Sharp-wave ripples are described as occurring following the CESSATION of a unit of behaviour -- a post-hoc boundary marker. If REE's rollout-side segmenter inherits this timing, boundaries would be available only after a chunk has finished being imagined, which cannot support MECH-321's mid-execution decomposition phase.",
+    "The review treats consolidation, preplay and boundary-marking as competing interpretations of the same SWR signal. If one physiological event is genuinely doing all three jobs, a REE substrate that reads BoundaryEvents filtered by input_stream may be discarding the very multiplexing that makes the biological signal work.",
+    "No evidence is offered that boundary markers on internally generated sequences are RECURSIVE. The depth-cap-3-4 commitment MECH-321 inherits from Badre & D'Esposito has no support in this paper."
+  ],
+  "tags": ["mech-321", "event_segmentation", "sharp_wave_ripples", "hippocampus", "imagination", "arc-070", "mech-288"],
+  "mapping": {
+    "source_claim_statement": "Hippocampal sharp-wave ripples, usually modelled as serving memory consolidation or preplay linked to future thinking, tend to occur following the cessation of units of behaviour and should additionally be interpreted as event boundary markers.",
+    "ree_translation": "One detector class can mark boundaries in both the perceptual stream and internally generated (preplay / future-thinking) sequences. This is the biological warrant for MECH-288's event_segmenter being bidirectional -- taking an input_stream label rather than being duplicated into separate observation-side and rollout-side detectors -- which is the substrate precondition MECH-321 is built on.",
+    "mapping_caveat": "The paper supports SHARED MARKERS across perception and internally generated sequence, not the re-segmentation operation MECH-321 actually specifies. Nothing here shows that a boundary detected on an imagined trajectory causes that trajectory to be decomposed into finer sub-elements; SWRs during preplay are plausibly a generation signal, not a segmentation-of-the-generated signal. The identification of a physiological burst marker with REE's computational V_s-drop trigger is analogical, not established.",
+    "source_context": "Review of rodent and human hippocampal electrophysiology, primarily sharp-wave ripple literature, framed around episodic memory and future thinking."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.60,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-321 is an architectural claim -- what matters is whether the paper licenses the one-detector-two-streams design, and it licenses it only at the level of marker sharing. Transfer risk is moderate rather than high because the claim being borrowed is structural (one signal, two directions) rather than parametric."
+  }
+}

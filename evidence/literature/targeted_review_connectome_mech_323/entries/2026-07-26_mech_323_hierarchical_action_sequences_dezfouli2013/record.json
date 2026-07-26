@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-26_mech_323_hierarchical_action_sequences_dezfouli2013",
+  "timestamp_utc": "2026-07-26T06:06:17Z",
+  "claim_ids_tested": ["MECH-323"],
+  "source": {
+    "title": "Actions, action sequences and habits: evidence that goal-directed and habitual action control are hierarchically organized",
+    "authors": ["Amir Dezfouli", "Bernard W Balleine"],
+    "year": 2013,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1003364"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "The most direct available support for MECH-323's output contract: an empirical test, with formal Bayesian model comparison over model families, finding that humans build action sequences and that a goal-directed controller selecting over a mixed inventory of primitives and chunked sequences beats a flat architecture with an external arbitrator. Converging choice and reaction-time evidence. High mapping fidelity because what transfers is an architectural relation rather than a parameter. Held below 0.8 because the task is a single two-stage decision paradigm and the authors are careful that their result does not rule out all model-free accounts.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors conclude that model-free RL is UNNECESSARY to explain habitual action -- chunked action sequences alone suffice. This bears directly on MECH-163 dual_goal_directed_systems, which MECH-323 cross-links to: if chunking is sufficient, the habit system may be the chunk inventory rather than a separate value-caching controller, and MECH-323 would be the whole habit story rather than the formation half of a dual system.",
+    "If habits are action sequences selected by a goal-directed process, then apparent outcome-insensitivity is a consequence of sequence GRAIN (the controller cannot intervene mid-sequence) rather than of a separate insensitive controller. A REE substrate that models habit as cached values will reproduce the phenomenon by the wrong mechanism and will mispredict where intervention is possible.",
+    "Chunk boundaries become the only points at which goal-directed control can act. A chunk-size budget set too high therefore silently reduces controllability, and the failure presents as outcome-insensitivity rather than as anything the accumulator itself reports."
+  ],
+  "tags": ["mech-323", "chunking", "action_sequences", "habit", "hierarchical_reinforcement_learning", "arc-071", "mech-163"],
+  "mapping": {
+    "source_claim_statement": "Human subjects combine single actions into action sequences, and the formation of such sequences is sufficient to explain habitual actions; Bayesian model comparison favours a hierarchical architecture in which a goal-directed process selects between individual goal-directed actions and habitual sequences of actions over a flat architecture in which model-free habits are arbitrated externally.",
+    "ree_translation": "This is MECH-323's output contract stated as an empirical finding. MECH-323 takes planned-system trajectories as input and emits chunked primitives; the planner then selects over a mixed inventory of primitives and chunks. Dezfouli and Balleine tested exactly that architecture against the flat alternative and found it favoured -- which converts MECH-323's ARC-071 R3 planned-to-habitual transition from an assumption into a lit-grounded design commitment.",
+    "mapping_caveat": "Evidence for the ARCHITECTURE, not for the ACCUMULATOR. The paper says chunked sequences exist and are selected hierarchically; it says nothing about the formation TRIGGER (repetition plus outcome consistency), nothing about hysteresis thresholds F_low and F_high, and nothing about the 2-5 element chunk-size budget -- the three parameters MECH-323 actually commits to. It is also a single two-stage decision paradigm with abstract choices, far from motor or policy-primitive grain, and the authors explicitly state the result does not rule out all possible model-free accounts.",
+    "source_context": "Human behavioural experiment on a two-stage decision-making task; inference from choice patterns and reaction times, with Bayesian model comparison across families of flat and hierarchical RL models."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.25,
+    "notes": "Mapping fidelity is unusually high for a lit entry against a REE mechanism because the transferred content is an architectural relation (who selects over what inventory), which is domain-portable in a way that thresholds and rates are not. Transfer risk is correspondingly low. Source quality reflects a solid computational-neuroscience venue, formal model comparison, and two converging behavioural measures, discounted for single-paradigm evidence."
+  }
+}

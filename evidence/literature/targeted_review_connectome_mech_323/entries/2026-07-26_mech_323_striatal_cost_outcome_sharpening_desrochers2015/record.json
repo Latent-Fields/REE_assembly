@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-26_mech_323_striatal_cost_outcome_sharpening_desrochers2015",
+  "timestamp_utc": "2026-07-26T06:06:17Z",
+  "claim_ids_tested": ["MECH-323"],
+  "source": {
+    "title": "Habit Learning by Naive Macaques Is Marked by Response Sharpening of Striatal Neurons Representing the Cost and Outcome of Acquired Action Sequences",
+    "authors": ["Theresa M Desrochers", "Ken-ichi Amemori", "Ann M Graybiel"],
+    "year": 2015,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2015.07.019"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.75,
+  "confidence_rationale": "Primate single-unit recordings during untutored sequence acquisition, in a strong venue, hitting three separate MECH-323 commitments at once: an integrated cost-benefit (not repetition-only) formation signal, a gradual rather than step-like crystallisation profile, and a trial-end phasic response that sharpens with learning and reads naturally as a termination-condition marker. Discounted for being correlational -- the sharpening parallels learning with no causal manipulation -- and for a saccadic-motor notion of sequence that is well below REE's policy-primitive grain.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The learning-correlated signal is an INTEGRATED cost-benefit quantity, not outcome alone. A REE accumulator gated on outcome consistency while ignoring accumulated action cost would form chunks the biology would not form, and would be blind to the case where a reliably-rewarded sequence is nevertheless too expensive to crystallise.",
+    "Sequence acquisition was untutored and repetitive scanning emerged without instruction, so the accumulator can crystallise chunks that no planner ever proposed as a unit. MECH-323's default MECH-094-strict write path assumes real executions are the trustworthy source; this shows real executions can be self-generated repetition rather than deliberate policy, which the replay_origin flag does not distinguish.",
+    "The trial-end response SHARPENS progressively rather than switching on. A substrate implementing chunk formation as a threshold crossing on F_low will produce a step-like commitment profile with no biological counterpart, and will lose the graded window in which a partly-formed chunk is still cheap to abandon."
+  ],
+  "tags": ["mech-323", "chunking", "striatum", "caudate", "action_sequences", "habit_formation", "termination_condition", "arc-071"],
+  "mapping": {
+    "source_claim_statement": "Macaques acquired repetitive scanning sequences on a sequential saccade task without instruction; caudate spike activity after each trial corresponded to an integrated cost-benefit signal highly correlated with the degree of untutored learning, and across learning neurons encoding both cost and outcome acquired increasingly sharp phasic trial-end responses paralleling the development of habit-like repetitive sequences.",
+    "ree_translation": "Three MECH-323 commitments get direct neural support. (1) The R1 formation trigger: chunks crystallise under an evaluative signal integrating outcome and cost, not under repetition alone -- so outcome consistency belongs in the trigger, as registered. (2) The R4 options structure: the phasic response sits at trial-END and sharpens with learning, which is what a termination-condition field being written onto a chunked primitive would look like as a neural signature. (3) The R5 hysteresis framing: crystallisation is gradual, supporting graded formation rather than an all-or-nothing chunk-creation event.",
+    "mapping_caveat": "The evidence is correlational -- the sharpening parallels learning, and no lesion or perturbation shows the caudate signal is REQUIRED for chunk formation, so the trigger mapping is a correspondence rather than a demonstrated causal role. The unit of sequence is a handful of saccades in a tightly constrained oculomotor task, several levels below REE's policy-primitive grain, and the standard ARC-071 transfer risk applies: motor-sequence chunking may not generalise to abstract policy chunks. 'Cost' here is saccadic effort and 'outcome' is juice, both far simpler than the evaluative quantities a REE chunk would integrate. The paper also gives no evidence at all on the chunk-size budget or on a dissolution threshold, so it cannot ground F_high or the 2-5 element commitment.",
+    "source_context": "Macaque single-unit recordings in caudate nucleus during a sequential saccade task with naturalistic, uninstructed acquisition of repetitive scanning sequences."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is high -- Neuron, primate single-unit, and an unusually clean design in that the learning is untutored, which removes instruction as a confound on what drives crystallisation. Mapping fidelity is capped at 0.72 by the grain mismatch: the trigger and termination-marker correspondences are strong, but a saccade sequence is not a policy primitive. Weighted toward source_quality here because MECH-323's R1 and R4 verdicts are empirical commitments about what the trigger IS, rather than architectural relations."
+  }
+}

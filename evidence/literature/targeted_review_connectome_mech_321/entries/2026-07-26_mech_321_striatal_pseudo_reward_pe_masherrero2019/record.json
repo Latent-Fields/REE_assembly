@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_321",
+  "entry_id": "2026-07-26_mech_321_striatal_pseudo_reward_pe_masherrero2019",
+  "timestamp_utc": "2026-07-26T06:06:17Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "The contribution of striatal pseudo-reward prediction errors to value-based decision-making",
+    "authors": ["Ernest Mas-Herrero", "Guillaume Sescousse", "Roshan Cools", "Josep Marco-Pallares"],
+    "year": 2019,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2019.02.052"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Confirms that subgoal-grain prediction-error signals are real, striatally instantiated, and behaviourally consequential -- which supports the machinery MECH-321 presupposes. But the headline result is a cost, not a benefit: subgoal-grain signals biased choice toward pseudo-rewarding options that carried no actual reward advantage. Directionally mixed for that reason. Held at 0.60 because the samples are small (n=20 fMRI, n=19 behavioural) and the striatal individual-differences correlation is the statistically fragile part of the paper, while the mapping requires a mediating assumption REE has not yet committed to.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Participants developed a preference for the most pseudo-rewarding option even though it did not yield more monetary reward -- subgoal-grain credit signals bias policy toward subgoal-rich trajectories with no terminal-objective advantage.",
+    "The strength of that bias tracked individual differences in relative striatal sensitivity to pseudo-reward PEs versus real reward PEs, so the distortion scales with how strongly the decomposition machinery is weighted rather than being a fixed offset that could be calibrated away once.",
+    "A decomposition operator that fires more readily (lower V_s threshold) produces more subgoals and therefore more pseudo-reward signal, giving a positive feedback path from decomposition depth to subgoal-seeking bias that MECH-321's depth cap does not obviously bound."
+  ],
+  "tags": ["mech-321", "hierarchical_reinforcement_learning", "subgoal", "prediction_error", "striatum", "arc-070", "failure_mode"],
+  "mapping": {
+    "source_claim_statement": "Subgoals in hierarchically organised tasks are associated with pseudo-reward prediction errors that generate learning signals in the striatum; these signals bias choice behaviour toward pseudo-rewarding options despite those options carrying no association with actual reward.",
+    "ree_translation": "Decomposing a chunked primitive into finer sub-elements means the agent begins assigning credit at subgoal grain. This paper says that once subgoal-grain credit signals exist they are not evaluatively neutral -- they pull the policy toward trajectories rich in subgoal completions regardless of terminal value. For MECH-321 this is a predicted side effect of decomposition itself, and a falsifiable one: a REE agent whose rollout decomposition fires more often should show measurable drift toward subgoal-dense trajectories.",
+    "mapping_caveat": "REE's decomposition trigger is a V_s drop / prediction-error signal on the chunk's region, not a pseudo-reward, and MECH-321 as registered does not mint subgoal-level reward signals at all. The mapping therefore requires the mediating assumption that decomposition creates subgoal-grain CREDIT (not merely subgoal-grain SEGMENTATION), which is an implementation choice still open at substrate-landing time. If MECH-321 lands as pure segmentation with credit assignment left at the terminal objective, this failure mode does not apply and the entry's relevance drops sharply. The experimental task also delivers explicit pseudo-reward feedback, which may be what drives the bias rather than implicit segmentation.",
+    "source_context": "Human value-based decision making; novel paradigm dissociating reward PEs from pseudo-reward PEs, run as an fMRI study (n=20) with a separate behavioural replication of the choice bias (n=19); monetary reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is helped by the behavioural replication of the preference effect and hurt by an n=20 fMRI individual-differences correlation, which is the least robust class of neuroimaging inference. Mapping fidelity sits at 0.65 because the abstraction that transfers (subgoal-grain credit signals distort policy) is genuine but sits one implementation decision away from what MECH-321 currently commits to."
+  }
+}

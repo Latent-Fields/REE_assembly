@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-26T00:09:19.739764Z`
+Generated: `2026-07-26T06:10:24.820541Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -139,6 +139,8 @@ Generated: `2026-07-26T00:09:19.739764Z`
 | `targeted_review_connectome_mech_314` | [`2026-06-18_mech_314_frontopolar_exploration_daw2006`](targeted_review_connectome_mech_314/entries/2026-06-18_mech_314_frontopolar_exploration_daw2006/record.json) | 1 | [`summary`](targeted_review_connectome_mech_314/entries/2026-06-18_mech_314_frontopolar_exploration_daw2006/summary.md) |
 | `targeted_review_connectome_mech_319` | [`2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018`](targeted_review_connectome_mech_319/entries/2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018/record.json) | 4 | [`summary`](targeted_review_connectome_mech_319/entries/2026-06-11_mech_319_swr_hpc_pfc_signature_tang2018/summary.md) |
 | `targeted_review_connectome_mech_320` | [`2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/record.json) | 3 | [`summary`](targeted_review_connectome_mech_320/entries/2026-05-19_mech_320_tonic_dopamine_opportunity_cost_niv2007/summary.md) |
+| `targeted_review_connectome_mech_321` | [`2026-07-26_mech_321_striatal_pseudo_reward_pe_masherrero2019`](targeted_review_connectome_mech_321/entries/2026-07-26_mech_321_striatal_pseudo_reward_pe_masherrero2019/record.json) | 2 | [`summary`](targeted_review_connectome_mech_321/entries/2026-07-26_mech_321_striatal_pseudo_reward_pe_masherrero2019/summary.md) |
+| `targeted_review_connectome_mech_323` | [`2026-07-26_mech_323_striatal_cost_outcome_sharpening_desrochers2015`](targeted_review_connectome_mech_323/entries/2026-07-26_mech_323_striatal_cost_outcome_sharpening_desrochers2015/record.json) | 2 | [`summary`](targeted_review_connectome_mech_323/entries/2026-07-26_mech_323_striatal_cost_outcome_sharpening_desrochers2015/summary.md) |
 | `targeted_review_connectome_mech_333` | [`2026-06-07_mech_333_vgat_necessary_plasticity_priya2019`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/record.json) | 3 | [`summary`](targeted_review_connectome_mech_333/entries/2026-06-07_mech_333_vgat_necessary_plasticity_priya2019/summary.md) |
 | `targeted_review_connectome_mech_341` | [`2026-06-07_mech_341_lman_variability_injection_olveczky2011`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_341/entries/2026-06-07_mech_341_lman_variability_injection_olveczky2011/summary.md) |
 | `targeted_review_connectome_mech_346` | [`2026-06-16_mech_346_value_of_identity_gottfried2011`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/record.json) | 3 | [`summary`](targeted_review_connectome_mech_346/entries/2026-06-16_mech_346_value_of_identity_gottfried2011/summary.md) |
