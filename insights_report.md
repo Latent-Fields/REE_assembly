@@ -2,6 +2,31 @@
 
 Generated: 2026-07-26T13:20:01Z
 Recommendations fixed as of: 2026-07-26T13:19:22Z (re-checked `git log --since="2 hours ago"` on REE_assembly immediately before writing Recommendations — see note below)
+Corrected: 2026-07-26T13:59:47Z — see **Correction** below before citing the Governance State pending-decision count.
+
+---
+
+## Correction (2026-07-26T13:59:47Z)
+
+**"Pending promotion/demotion decisions: 0" in Governance State, below, was wrong.**
+Found while building the companion `/dual-insights` report: the original check
+(`grep -c "pending_user" .../promotion_demotion_recommendations.md`) was run once
+against a nonexistent path (silently empty) and once, later in the same tool call
+batch, against the correct path — but the correct-path result (`29` substring
+matches) was misread as belonging to a different command and the stat was written
+up as `0`. The precise per-row count (matching the `decision_status` column, not a
+loose substring) is **12** rows reading `pending_user`: ARC-112, INV-091, MECH-321,
+MECH-323, MECH-329, MECH-457, MECH-466, Q-081, Q-082, Q-084, SD-024, SD-076 —
+almost all `hold_candidate_resolve_conflict` or `hold_pending_v3_substrate` holds,
+not silently-stuck routine reviews.
+
+**This does not change any of the four Recommendation gates** (none of them cited
+this stat) but it does soften the closing "genuinely clean, fully-routed state"
+framing — there is a real, non-zero decision backlog, oldest row ~118 days
+(Q-084, git-`-S` first-appearance proxy). See `REE_assembly/dual_insights_report.md`
+(REE_assembly-side "decision backlog age") for the full breakdown, ages, and the two
+items worth naming specifically (MECH-457: a genuinely hard REE-side ceiling *plus*
+a 16-day-old unresolved decision; Q-084: no hard science left, just a stale decision).
 
 ---
 
@@ -43,7 +68,7 @@ Recommendations fixed as of: 2026-07-26T13:19:22Z (re-checked `git log --since="
 ## Governance State
 
 - Claims pending V3 substrate (`v3_pending: true`): **225**.
-- Pending promotion/demotion decisions (`decision_status` not `applied` in `promotion_demotion_recommendations.md`, 3241-line file, last generated 2026-07-26T06:10:24Z): **0** — every decision row in the current file reads `applied`.
+- Pending promotion/demotion decisions (`decision_status` not `applied` in `promotion_demotion_recommendations.md`, 3241-line file, last generated 2026-07-26T06:10:24Z): **12** rows read `pending_user` (238 total rows, 158 `applied`, 12 `pending_user`, remainder other statuses) — see **Correction** above; this was mis-reported as 0.
 - Evidence marked `superseded` across flat manifests: **321** (rework/correction volume — consistent with the EXQ-lettering supersession policy, not necessarily a defect).
 - `pending_review.md` (generated 2026-07-26T11:21:11Z, last review 2026-07-26T00:07:00Z): **7 items** — 5 FAIL, 1 runner-only, 1 diagnostic self-route flagged. **Flag to user per skill Step 6:** all 5 FAILs (793a, 816, 817, 819, 820) already have autopsy coverage as of 12:38Z today (either the direct `failure_autopsy_batch-793a-817-819_2026-07-26` or the earlier same-day `failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26`) — governance's own mark-reviewed step (Step 5) simply hasn't run since. No unowned FAILs are sitting in the backlog.
 
