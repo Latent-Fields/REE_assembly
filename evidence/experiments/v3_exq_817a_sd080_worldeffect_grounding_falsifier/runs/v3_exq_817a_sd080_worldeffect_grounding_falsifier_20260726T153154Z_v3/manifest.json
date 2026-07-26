@@ -1,0 +1,175 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_817a_sd080_worldeffect_grounding_falsifier",
+  "run_id": "v3_exq_817a_sd080_worldeffect_grounding_falsifier_20260726T153154Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T15:31:54Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-080",
+    "SD-004"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {
+    "SD-080": "mixed",
+    "SD-004": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "grounding_real_but_not_load_bearing",
+    "grounding_took": true,
+    "preconditions": [
+      {
+        "name": "worldeffect_groundable_from_zworld",
+        "description": "ARM_1 median grounding MSE onto the realised next-world-state (unit-variance target; 1.0 = no fit). <= ceiling => z_world carries enough world-effect information for O to be grounded; > ceiling => a SUBSTRATE limit (z_world under-informative), not an objective failure.",
+        "measured": 0.772613525390625,
+        "threshold": 0.85,
+        "direction": "upper",
+        "control": "ARM_2 (shuffled target) fits at ~1.0 -- the no-real-structure baseline",
+        "met": true
+      },
+      {
+        "name": "arm1_state_dependence_acquired",
+        "description": "ARM_1 median r2_explained_by_action_alone (M5, ao) DROPS to <= ceiling (frozen baseline ~0.99); grounding made O materially state-dependent. Low-noise and reproducible (unlike M6).",
+        "measured": 0.7246835402302204,
+        "threshold": 0.9,
+        "direction": "upper",
+        "control": "ARM_0 (frozen) stays ~0.99; ARM_2 (shuffled, unfittable) also stays ~0.99",
+        "met": true
+      },
+      {
+        "name": "arm1_state_dependence_paired_drop",
+        "description": "median(ARM_0 M5 - ARM_1 M5) -- paired within-seed state-dependence gain from grounding, removing the seed baseline.",
+        "measured": 0.2706416112103285,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "ARM_0 is the same substrate with a frozen head",
+        "met": true
+      },
+      {
+        "name": "content_not_traffic_discriminated",
+        "description": "median(ARM_2 M5 - ARM_1 M5) -- TRUE-effect grounding is state-dependent while the SHUFFLED control is not (its target is unfittable). Confirms the manipulation is world-effect CONTENT, not gradient traffic.",
+        "measured": 0.27498500462983266,
+        "threshold": 0.1,
+        "direction": "lower",
+        "control": "ARM_2 = same objective + traffic on shuffled targets",
+        "met": true
+      }
+    ],
+    "gate_detail": {
+      "worldeffect_groundable_from_zworld": true,
+      "state_dependence_acquired": true,
+      "content_not_traffic_discriminated": true,
+      "arm1_fit_per_seed": [
+        0.6390824317932129,
+        0.772613525390625,
+        0.836223304271698,
+        0.7794791460037231,
+        0.7455105781555176
+      ],
+      "arm1_fit_median": 0.772613525390625,
+      "arm0_m5_per_seed": [
+        0.9944058169296045,
+        0.9964478138890446,
+        0.9953251514405489,
+        0.9944380398446336,
+        0.9952407987968546
+      ],
+      "arm1_m5_per_seed": [
+        0.7943191463992172,
+        0.7381853016564334,
+        0.7246835402302204,
+        0.6360132187510024,
+        0.7130291578012051
+      ],
+      "arm2_m5_per_seed": [
+        0.9953606251410341,
+        0.9961700983953928,
+        0.9996685448600531,
+        0.9972150118813977,
+        0.9985545226320395
+      ],
+      "arm1_m5_median": 0.7246835402302204,
+      "paired_m5_drop_arm0_minus_arm1": 0.2706416112103285,
+      "state_dep_margin_arm2_minus_arm1": 0.27498500462983266,
+      "arm0_m6_per_seed": [
+        -0.21166985199342192,
+        0.037931285834926,
+        -0.020412640561802763,
+        0.029770567580781365,
+        0.04391555180230233
+      ],
+      "arm1_m6_per_seed": [
+        0.26420125338903955,
+        -0.12136823858838171,
+        -0.039657584781545865,
+        0.19746015378461265,
+        0.28782185874927774
+      ],
+      "arm2_m6_per_seed": [
+        0.07503657940352904,
+        0.008357349215520676,
+        -0.03753837948353261,
+        -0.0663037468331926,
+        0.027754477976798964
+      ],
+      "world_forward_m5_per_seed": [
+        0.3514357772237159,
+        0.45122774245896513,
+        0.23940942710091795,
+        0.33048002265904886,
+        0.4011683622224411
+      ],
+      "world_forward_m6_per_seed": [
+        0.0768204809102627,
+        -0.1159866660740477,
+        0.07722761011600514,
+        0.01640926263389485,
+        0.1788456375838926
+      ],
+      "m6_is_gated": false,
+      "m6_note": "M6 (within-pair consequence spearman) is recorded but NOT gated: calibration showed the frozen ao head's M6 varies -0.18..+0.13 by seed and world_forward's own M6 is 0.07-0.22, so an absolute M6 floor is not usable on the 16-dim ao head."
+    },
+    "criteria_non_degenerate": {
+      "worldeffect_groundable": true,
+      "state_dependence_acquired": true,
+      "content_discriminated": true,
+      "grounding_gate": true,
+      "behavioural_load_bearing": false
+    },
+    "summary": "Grounding O in the world-effect took (M5 median=0.7247, fit MSE=0.7726, ARM_2-ARM_1 M5 margin=0.2750) but did NOT change behaviour (ARM_1 harm_rate=0.5144 vs ARM_0=0.4426, ARM_2=0.4209). SD-004's semantic-grounding efficiency rationale is demoted; SD-080 stays candidate as a correctness-not-capability finding."
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "1b098527cf10e5a1ea66b26b489b2f550abfb14df20bbbea4831557db01498de"
+}
