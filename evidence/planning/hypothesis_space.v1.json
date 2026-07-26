@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-26T00:09:35Z",
+  "generated_at": "2026-07-26T05:42:58Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,92 +31,92 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 23,
-      "total_initial": 48,
-      "total_initial_at_registration": 36,
+      "total_surviving": 27,
+      "total_initial": 52,
+      "total_initial_at_registration": 40,
       "total_fanout_added": 12,
       "total_resolved_out": 24,
-      "reduction_pct_vs_current": 50.0,
-      "net_narrowing_pct": 36.1,
+      "reduction_pct_vs_current": 46.2,
+      "net_narrowing_pct": 32.5,
       "convergence_classes": {
+        "static": 5,
         "narrowing": 4,
-        "static": 4,
         "circling": 3
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "23 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 11
+      "honest_pair_note": "27 alive against 40 originally enumerated, and against 52 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 12
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 6,
-      "open_questions": 11
+      "open_questions": 12
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 47,
+      "surviving": 51,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-13",
-      "surviving": 45,
+      "surviving": 49,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-15",
-      "surviving": 41,
+      "surviving": 45,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-16",
-      "surviving": 40,
+      "surviving": 44,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-17",
-      "surviving": 37,
+      "surviving": 41,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-18",
-      "surviving": 31,
+      "surviving": 35,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-19",
-      "surviving": 27,
+      "surviving": 31,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-20",
-      "surviving": 26,
+      "surviving": 30,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-24",
-      "surviving": 25,
+      "surviving": 29,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-25",
-      "surviving": 24,
+      "surviving": 28,
       "closure_pct": 76.2,
       "build_pct": 81.5
     },
     {
       "date": "2026-07-26",
-      "surviving": 23,
+      "surviving": 27,
       "closure_pct": 76.2,
       "build_pct": 81.5
     }
@@ -1567,6 +1567,106 @@
         "live_gate": "Per-candidate uncertainty and learning-progress reads over the e2_world_forward candidate rollouts (ARC-065 amend). Until those land, no experiment can move this question.",
         "observation_bottleneck": "MECH-314b/314c are Phase-1 broadcast scalars (one constant across all K candidates). A uniform additive constant is invariant under both argmax and softmax, so EVERY selection-level readout returns an exact structural zero regardless of the claims' truth. Any future leg on this question must either (a) test against a DV the manipulation can actually move, or (b) wait for the per-candidate implementation. Note the trap this run walked into: the 604c readiness gate r2 used curiosity_bias_range, which is precisely the statistic in which a broadcast constant CANCELS -- so the gate certified readiness for the novelty channel alone while appearing to certify the whole experiment."
       }
+    },
+    {
+      "qid": "policy_decomposition_discrimination",
+      "title": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+      "short_title": "Policy decomposition R1-vs-R5",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation",
+          "process",
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 4,
+      "alive": 4,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-r1-reduces-lowvs-pe",
+          "label": "R1 (V_s-drop) decomposition reduces low-V_s execution-time forward-PE",
+          "desc": "turning on the V_s-drop-triggered decomposition operator withholds/replaces committed chunks in low-V_s regions and reduces execution-time forward-prediction error vs the OFF baseline",
+          "axis": "policy",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816"
+          ],
+          "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-r1-r5-dissociable",
+          "label": "R1 (V_s-boundary) and R5 (bottleneck) decompose at dissociable loci",
+          "desc": "the R5 bottleneck trigger decomposes at high-V_s graph-structural funnel states where the R1 V_s-drop trigger is silent, so the two triggers are behaviourally dissociable",
+          "axis": "arbitration",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-820"
+          ],
+          "basis": "820's R5 arm fired abundantly (1524 fires, 484 events) but R1 never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 -- there is no R1 side to dissociate R5 FROM. Same unmet precondition as 816 (lowvs_worst_arm1=0). Uninformative; hypothesis stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-env-underdrives-uncertainty",
+          "label": "the env under-drives persistent prediction uncertainty by measure time",
+          "desc": "the default env (8x8, 3 hazards, env_drift_interval default, 40 warmup) is fully learned by the measure window (forward-PE ~0.005), so no low-V_s regions arise; a harsher/non-stationary env produces both forward-PE heterogeneity and low-V_s regions",
+          "axis": "environment",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816b (P-A env-harshen; pending queue)"
+          ],
+          "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-A: re-run the 816 design with env_drift_interval->3 / background_drift, recording the region-V_s distribution + per-cell forward-PE. Null: even at faster drift, worst-cell low-V_s steps remain < MIN_LOW_VS_STEPS. cf. V3-EXQ-677 (env_drift_interval 999->3 produced a high-vs-low mean-PE contrast).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-vs-proxy-saturation",
+          "label": "region-V_s (latent-stability) is decoupled from forward-PE and saturates in a trained encoder",
+          "desc": "region V_s is a '1 - relative-latent-change' stability proxy that saturates near 1.0 once the encoder is trained, decoupled from forward-model PE; if so no env manipulation lowers it and the R1 V_s-drop trigger cannot fire in a competent agent, and MECH-321's trigger must be reframed toward its own forward-model-disagreement alternative",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816c (P-B forward-PE comparator trigger; pending queue)"
+          ],
+          "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+        "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable",
+        "live_gate": null,
+        "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised"
+      }
     }
   ],
   "momentum": [
@@ -1583,6 +1683,36 @@
       ],
       "moved": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar).",
       "resolved_utc": "2026-07-25T22:22:52Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-816",
+      "all_runs": [
+        "V3-EXQ-816"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+      "resolved_utc": "2026-07-25T21:47:51Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-820",
+      "all_runs": [
+        "V3-EXQ-820"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "820's R5 arm fired abundantly (1524 fires, 484 events) but R1 never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 -- there is no R1 side to dissociate R5 FROM. Same unmet precondition as 816 (lowvs_worst_arm1=0). Uninformative; hypothesis stays alive.",
+      "resolved_utc": "2026-07-25T20:34:53Z",
       "evidence_direction": "non_contributory"
     },
     {

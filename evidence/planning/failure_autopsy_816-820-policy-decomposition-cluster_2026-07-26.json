@@ -1,0 +1,136 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T05:38:01Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3",
+      "queue_id": "V3-EXQ-816",
+      "claim_ids": ["ARC-070", "MECH-321"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too_easy_or_wrong_window",
+        "measurement": "under_instrumented_partial_recording_gap",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PE-driven event segmentation (Zacks 2007) on imagined continuation; chunk-size bounds (Sakai 2003)",
+        "dependencies": ["MECH-269 region V_s substrate", "MECH-288 rollout boundary segmenter", "trained world_forward for meaningful forward-PE"],
+        "is_formal_import": false,
+        "divergence": "trigger READOUT operationalization: region V_s is a '1 - relative-latent-change' stability proxy, whereas the claim glosses V_s as 'cannot predict outcomes' (forward-PE). Decoupling is the open question, not the mechanism.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"ARC-070": "standard", "MECH-321": "standard"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"ARC-070": "non_contributory", "MECH-321": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-816 FAILed on an unmet precondition -- vs_heterogeneity_low_vs_steps_present measured 0 low-V_s steps (threshold 5) in every arm/seed. Decomposition fired abundantly (frac 1.0) and arms diverged behaviourally, but the R1 V_s-drop trigger never fired (0 vs-triggers) because the trained forward model reached near-zero PE (~0.005) by the measure window so region-V_s never dropped below 0.5. Weights neither ARC-070 nor MECH-321; both stay candidate/v3_pending. Retest gated on a fan-out spike that first produces low-V_s states.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "bears_on": ["ARC-070", "MECH-321"],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_arc_070": 0,
+        "count_mech_321": 0,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "R1-R3 convention, confirmed-only: 0 prior substrate_ceiling autopsies for both claims (first autopsy of the lineage). This reading is standard, not substrate_ceiling, so adds no ceiling hit."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_tagging_targets": 0,
+        "alignment_distribution": {"intact": 1},
+        "note": "First autopsy circling these claims; alignment intact (untested), not weakened. Candidate future /claim-synthesis on MECH-321 trigger operationalization only if fan-out probe P-B confirms V_s/forward-PE decoupling."
+      },
+      "learning_extracted": [
+        "On this env (8x8, 3 hazards, env_drift_interval default, 40-episode warmup) the trained forward model reaches near-zero PE by the measure window, so latent-stability region-V_s never drops below 0.5; the R1 V_s-drop trigger is un-exercisable there even with threshold pre-raised 0.4->0.5.",
+        "The R5 bottleneck trigger keys on visitation/graph structure and fires independent of V_s, so it drives behaviour even when R1 cannot -- R5 works but cannot stand in for testing R1.",
+        "Open, claim-relevant operationalization question: region-V_s-stability and forward-model-PE may be decoupled in a trained encoder; MECH-321's functional_restatement itself lists 'E2 forward-model disagreement' as an alternative trigger.",
+        "Recording gap: log the region-V_s distribution (not just the derived low_vs_steps count) so a future run can distinguish saturation-near-1.0 from just-above-threshold."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3",
+      "queue_id": "V3-EXQ-820",
+      "claim_ids": ["ARC-070", "MECH-321"],
+      "self_route_label": "substrate_not_ready_requeue",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too_easy_or_wrong_window",
+        "measurement": "under_instrumented_partial_recording_gap",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "PE-driven event segmentation (Zacks 2007); R5 bottleneck = graph-structural funnel detection",
+        "dependencies": ["MECH-269 region V_s substrate", "MECH-288 rollout boundary segmenter", "decomposition_trigger_mode=bottleneck build (ree-v3 2422632)"],
+        "is_formal_import": false,
+        "divergence": "same trigger-readout operationalization question as 816; the R5 arm added here works but cannot exercise the R1 V_s-drop path.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"ARC-070": "standard", "MECH-321": "standard"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"ARC-070": "non_contributory", "MECH-321": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-820 adds ARM_2 (R5 bottleneck). The R5 trigger fired abundantly (1524 fires, 484 events, frac 1.0) but the R1 V_s-drop trigger never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 and the R1-vs-R5-vs-OFF dissociation is vacuous -- identical precondition failure as 816 (lowvs_worst_arm1=0). Weights neither claim; both stay candidate/v3_pending.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "bears_on": ["ARC-070", "MECH-321"],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_arc_070": 0,
+        "count_mech_321": 0,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "R1-R3 convention, confirmed-only: 0 prior substrate_ceiling autopsies for both claims. Standard reading, adds no ceiling hit."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "prior_tagging_targets": 0,
+        "alignment_distribution": {"intact": 1},
+        "note": "First autopsy circling these claims; alignment intact (untested)."
+      },
+      "learning_extracted": [
+        "The R5 bottleneck trigger is correctly built and fires abundantly, confirming the decomposition_trigger_mode=bottleneck substrate (ree-v3 2422632) works.",
+        "R5 firing cannot substitute for exercising R1: the two triggers are only dissociable if the env enters the low-V_s regime, which it never did."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "fanout_recommendation": {
+    "is_discrimination": true,
+    "live_hypotheses": [
+      "H-env-underdrives-uncertainty: the default env (8x8, 3 hazards, env_drift_interval default, 40 warmup) under-drives persistent prediction uncertainty by measure time; a harsher/non-stationary env produces both forward-PE heterogeneity and low-V_s regions",
+      "H-vs-proxy-saturation: region-V_s (latent-stability proxy) saturates near 1.0 in a trained encoder and is decoupled from forward-model PE, so no env manipulation lowers it and the R1 V_s-drop trigger cannot fire in a competent agent"
+    ],
+    "suggested_probes": [
+      {"hypothesis": "H-env-underdrives-uncertainty", "axis": "environment", "sketch": "re-run the 816 design with a harshened env (env_drift_interval->3 / background_drift_enabled, or shorter warmup / larger grid) and RECORD the region-V_s distribution + per-cell forward-PE. Null: even at faster drift, worst-cell low-V_s steps remain < MIN_LOW_VS_STEPS -> H-env refuted. cf. V3-EXQ-677 (env_drift_interval 999->3 produced a high-vs-low mean-PE contrast). Fix if confirmed: driver-config re-queue new letter (816b/820b)."},
+      {"hypothesis": "H-vs-proxy-saturation", "axis": "measurement", "sketch": "add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires (hostable on the P-A harshened env). Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe MECH-321's R1 trigger toward the claim's own forward-model-disagreement alternative (candidate /claim-synthesis)."}
+    ],
+    "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential env-harshen letter. A single well-instrumented harshened-env leg recording V_s distribution AND forward-PE can discriminate both hypotheses; P-B adds the parallel comparator to make the decoupling directly observable."
+  },
+  "cluster_pattern": {
+    "shape": "load-bearing DISCRIMINATION criterion never evaluable because a shared PRECONDITION (env producing low-V_s states) was unmet in both runs; all positive/negative controls passed and the decomposition machinery fired abundantly",
+    "is_independent_bugs": false,
+    "structural_property": "the environment, as configured and after 40 warmup episodes, never produced low-V_s (high-prediction-uncertainty) states in the measurement window, so the R1 V_s-drop trigger's condition was never satisfied; 820 merely adds the R5 arm (which works) on top of 816's design, and its R1-vs-R5 dissociation is vacuous for the identical reason (lowvs_worst_arm1=0 in both)",
+    "readings": ["environment_underdrives_uncertainty", "vs_proxy_saturation_decoupled_from_forward_pe"]
+  }
+}

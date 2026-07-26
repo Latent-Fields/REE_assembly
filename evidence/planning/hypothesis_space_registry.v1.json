@@ -1749,6 +1749,126 @@
         "observation_bottleneck": "MECH-314b/314c are Phase-1 broadcast scalars (one constant across all K candidates). A uniform additive constant is invariant under both argmax and softmax, so EVERY selection-level readout returns an exact structural zero regardless of the claims' truth. Any future leg on this question must either (a) test against a DV the manipulation can actually move, or (b) wait for the per-candidate implementation. Note the trap this run walked into: the 604c readiness gate r2 used curiosity_bias_range, which is precisely the statistic in which a broadcast constant CANCELS -- so the gate certified readiness for the novelty channel alone while appearing to certify the whole experiment."
       },
       "provenance_note": "Registered 2026-07-20 by failure_autopsy_V3-EXQ-604c_2026-07-20 (pre-register + resolve in one edit -- the common single-cycle case; no prior registry question covered MECH-314/Q-044). pre_registered_utc is set to the resolving run's own completion stamp 2026-06-07T19:30:29Z, satisfying pre_registered_utc <= resolved_utc; the experiment was designed and queued before it ran."
+    },
+    {
+      "qid": "policy_decomposition_discrimination",
+      "title": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+      "short_title": "Policy decomposition R1-vs-R5",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "registered_utc": "2026-07-26T05:38:01Z",
+      "fanout_sources": [
+        "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-r1-reduces-lowvs-pe",
+          "label": "R1 (V_s-drop) decomposition reduces low-V_s execution-time forward-PE",
+          "desc": "turning on the V_s-drop-triggered decomposition operator withholds/replaces committed chunks in low-V_s regions and reduces execution-time forward-prediction error vs the OFF baseline",
+          "axis": "policy",
+          "pre_registered_utc": "2026-07-25T21:47:51Z",
+          "adjudicating_runs": [
+            "V3-EXQ-816"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-816"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-25T21:47:51Z",
+            "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive."
+          }
+        },
+        {
+          "hid": "H-r1-r5-dissociable",
+          "label": "R1 (V_s-boundary) and R5 (bottleneck) decompose at dissociable loci",
+          "desc": "the R5 bottleneck trigger decomposes at high-V_s graph-structural funnel states where the R1 V_s-drop trigger is silent, so the two triggers are behaviourally dissociable",
+          "axis": "arbitration",
+          "pre_registered_utc": "2026-07-25T20:34:53Z",
+          "adjudicating_runs": [
+            "V3-EXQ-820"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-820"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-25T20:34:53Z",
+            "basis": "820's R5 arm fired abundantly (1524 fires, 484 events) but R1 never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 -- there is no R1 side to dissociate R5 FROM. Same unmet precondition as 816 (lowvs_worst_arm1=0). Uninformative; hypothesis stays alive."
+          }
+        },
+        {
+          "hid": "H-env-underdrives-uncertainty",
+          "label": "the env under-drives persistent prediction uncertainty by measure time",
+          "desc": "the default env (8x8, 3 hazards, env_drift_interval default, 40 warmup) is fully learned by the measure window (forward-PE ~0.005), so no low-V_s regions arise; a harsher/non-stationary env produces both forward-PE heterogeneity and low-V_s regions",
+          "axis": "environment",
+          "pre_registered_utc": "2026-07-26T05:38:01Z",
+          "adjudicating_runs": [
+            "V3-EXQ-816b (P-A env-harshen; pending queue)"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-A: re-run the 816 design with env_drift_interval->3 / background_drift, recording the region-V_s distribution + per-cell forward-PE. Null: even at faster drift, worst-cell low-V_s steps remain < MIN_LOW_VS_STEPS. cf. V3-EXQ-677 (env_drift_interval 999->3 produced a high-vs-low mean-PE contrast)."
+          }
+        },
+        {
+          "hid": "H-vs-proxy-saturation",
+          "label": "region-V_s (latent-stability) is decoupled from forward-PE and saturates in a trained encoder",
+          "desc": "region V_s is a '1 - relative-latent-change' stability proxy that saturates near 1.0 once the encoder is trained, decoupled from forward-model PE; if so no env manipulation lowers it and the R1 V_s-drop trigger cannot fire in a competent agent, and MECH-321's trigger must be reframed toward its own forward-model-disagreement alternative",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-07-26T05:38:01Z",
+          "adjudicating_runs": [
+            "V3-EXQ-816c (P-B forward-PE comparator trigger; pending queue)"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization)."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+        "live_gate": null,
+        "decidable": false,
+        "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised",
+        "decision_log_ref": null,
+        "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable"
+      }
     }
   ]
 }
