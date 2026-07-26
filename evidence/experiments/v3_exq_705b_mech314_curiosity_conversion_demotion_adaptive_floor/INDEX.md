@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_705b_mech314_curiosity_conversion_demotion_adaptive_floor
 
-Generated: `2026-07-25T16:56:36.036801Z`
+Generated: `2026-07-26T00:09:19.739764Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

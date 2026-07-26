@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_483c_sd037_broadcast_gap4_tier1
 
-Generated: `2026-07-25T16:56:36.036801Z`
+Generated: `2026-07-26T00:09:19.739764Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

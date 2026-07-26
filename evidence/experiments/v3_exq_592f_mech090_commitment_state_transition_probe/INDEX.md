@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_592f_mech090_commitment_state_transition_probe
 
-Generated: `2026-07-25T16:56:36.036801Z`
+Generated: `2026-07-26T00:09:19.739764Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

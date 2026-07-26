@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-07-18T06:52:07.594390+00:00",
+  "generated_at_utc": "2026-07-26T00:13:10.086940+00:00",
   "repo_root": "/Users/dgolden/REE_Working/REE_assembly",
-  "git_head": "d37c53b45060dd27e35dc65613a47191c79fe97e",
+  "git_head": "aebd07b5dd31fb117129fc0274260ff288bfbdff",
   "status": "pass",
   "findings": [
     {
@@ -16,7 +16,7 @@
     {
       "severity": "warn",
       "code": "CENTRAL_RUNNER_STATUS_STALE",
-      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 936.9h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
+      "message": "evidence/experiments/runner_status.json last_updated 2026-06-09T06:00:15.871353+00:00 is 1122.2h old (threshold: 12.0h). Per-machine runner_status files may carry more recent data.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runner_status.json"
       ],
@@ -25,7 +25,7 @@
     {
       "severity": "warn",
       "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_777_mech063_orthogonal_control_axes_dissociation_20260717T155914Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "message": "FAIL experiment 'v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
         "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
@@ -35,7 +35,17 @@
     {
       "severity": "warn",
       "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
-      "message": "FAIL experiment 'v3_exq_779_mech063_tonic_phasic_dissociation_20260717T191826Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "message": "FAIL experiment 'v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
+      "evidence_paths": [
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
+        "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
+      ],
+      "suggested_next_action": "Run /failure-autopsy for this experiment, or add a non_contributory rationale with explicit reason to its manifest, before closing the governance cycle."
+    },
+    {
+      "severity": "warn",
+      "code": "FAILED_EXPERIMENT_WITHOUT_DIAGNOSIS_LINK",
+      "message": "FAIL experiment 'v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3' is in pending_review.md FAIL section but no failure_autopsy file was found for it in evidence/planning/.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/pending_review.md",
         "/Users/dgolden/REE_Working/REE_assembly/evidence/planning"
@@ -45,7 +55,7 @@
     {
       "severity": "info",
       "code": "SUBSTRATE_QUEUE_NODE_CLASS_UNMARKED",
-      "message": "97/110 substrate_queue entries lack node_class; read as complicated (buildable) by default (the queue is the execution backlog). Governance Step 6a populates it going forward.",
+      "message": "98/124 substrate_queue entries lack node_class; read as complicated (buildable) by default (the queue is the execution backlog). Governance Step 6a populates it going forward.",
       "evidence_paths": [
         "/Users/dgolden/REE_Working/REE_assembly/evidence/planning/substrate_queue.json"
       ],
@@ -54,7 +64,7 @@
   ],
   "summary": {
     "block_count": 0,
-    "warn_count": 4,
+    "warn_count": 5,
     "info_count": 1
   }
 }

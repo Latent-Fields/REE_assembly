@@ -19,13 +19,13 @@
       "timestamp_utc": "2026-07-25T16:55:22.896761Z"
     },
     "ARC-016": {
-      "actor": "governance-cool-jackson-04aba4-gov",
-      "decision_needed": "Demotion review: provisional -> candidate",
-      "decision_status": "rejected",
-      "rationale": "aggregation artefact: exp_conf ~0.53 aggregates 15 FAILs nearly all non_contributory/stale; 805 non_contributory not weakens; USER-CONFIRMED hold; rescore routed to /claim-synthesis",
-      "recommendation": "demote_to_candidate",
-      "selected_option": "HOLD provisional, do not demote",
-      "timestamp_utc": "2026-07-25T16:55:22.999033Z"
+      "actor": "user-decision-angry-ardinghelli-d99740-gov",
+      "decision_needed": "Promotion review: provisional -> stable",
+      "decision_status": "applied",
+      "rationale": "V3-EXQ-818 (eval_derived_noise_precision_sweep) is the eval-time STRUCTURAL support the 2026-07-25 rescore named as the residual gate to shown: mean_rho_rv_vs_commit -0.955, commit-rate tracks E3-derived precision monotonically, load-bearing C1 pass, gate_green. First clean eval-time support; promotion is structural-only (no harm DV; ARC-029 behavioural layer separate).",
+      "recommendation": "promote_to_stable",
+      "selected_option": "Promote provisional -> stable",
+      "timestamp_utc": "2026-07-26T00:04:21.917834Z"
     },
     "ARC-018": {
       "actor": "governance-cool-jackson-04aba4-gov",
@@ -1756,13 +1756,13 @@
       "timestamp_utc": "2026-07-12T09:47:09.611060Z"
     },
     "MECH-457": {
-      "actor": "governance/brave-ishizaka-fa60b4",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
-      "decision_status": "applied",
-      "rationale": "v3_pending gate; promotion gated on the V3-EXQ-737 H1 discriminator + the f_dominance_conversion_ceiling actor-critic build. Stays candidate.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path).",
-      "timestamp_utc": "2026-07-10T20:15:33.790607Z"
+      "actor": "user-decision-competence-floor-fan-out-46b459",
+      "decision_needed": "Dimension-4 Decide: close the competence_floor RETENTION decision_question -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life of a BC-installed competent policy under continued RL refinement.",
+      "decision_status": "approved",
+      "rationale": "All four named retention loci resolved on a competence TRAJECTORY DV adjudicated from V3-EXQ-780's 20.933 install point (the instrument the first ten legs lacked). CONFIRMED (process family): value estimator -- V3-EXQ-788, distributional critic retains 1.839 vs flat scalar 0.525, margin 1.314; update constraint -- V3-EXQ-792a, strong KL-anchor kl0p30 retains 0.895 vs unconstrained 0.509, margin 0.386 (non-monotone dose-response caveat: only the strong anchor cleanly binds/suppresses drift). ELIMINATED (constitution family): auxiliary persistence -- V3-EXQ-789; consummatory binding -- V3-EXQ-821. The reference RL refinement erodes a BC install to ~half its installed competence (control retained_fraction 0.51-0.53, replicated across 788/792a/780); two disjoint process mechanisms each restore it. Diagnostics -> MECH-457 corroborated (a value-baseline critic is load-bearing) but stays candidate/v3_pending; claim_synthesis_MECH-457 proposal awaits per-child user approval. SCOPE: retention only. The competence FLOOR itself (acquiring competence without a BC seed; whether prediction-trained z_world confers any advantage over a random projection) remains the live frontier under V3-EXQ-819 and conversion_ceiling_root; INV-088 sits on that OPEN side, not this decision. Adjudicated via /failure-autopsy Step 9b (registry Mode B) + user scope decision 2026-07-25.",
+      "recommendation": "Close the competence_floor RETENTION decision_question: PROCESS-family mechanisms (value estimator + update constraint) set the decay half-life of a BC-installed competent policy; CONSTITUTION-family mechanisms do not.",
+      "selected_option": "DECIDED, scoped to RETENTION: the value estimator and the update constraint each independently set it (distributional critic + KL-anchor consolidation); auxiliary persistence and consummatory binding do not. The INSTALLABILITY / representation explanandum remains OPEN (live frontier: V3-EXQ-819 z_world-vs-random-projection instrument-validity + sibling question conversion_ceiling_root / H-observation-interface).",
+      "timestamp_utc": "2026-07-25T23:26:31Z"
     },
     "MECH-459": {
       "actor": "governance-festive-lehmann-461cee",
@@ -2341,7 +2341,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-25T16:56:36.036801Z",
+  "generated_at_utc": "2026-07-26T00:09:19.739764Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

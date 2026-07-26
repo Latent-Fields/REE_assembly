@@ -5,7 +5,7 @@ nav_order: 12
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-07-25T16:56:51Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-07-26T00:09:34Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
@@ -48,19 +48,19 @@ The two health signals from [`docs/architecture/cognitive_architecture_graveyard
 
 ### Ratio 2 -- governance-mass : cognitive-mass  (commit proxy)
 
-Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (2521 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
+Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (2613 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
 
-- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **60%** of all commits (1501 / 2521). The source critique's ~60-77% estimate, live.
-- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **12 : 1** (governance 1870 : cognitive 156).
+- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **59%** of all commits (1554 / 2613). The source critique's ~60-77% estimate, live.
+- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **12 : 1** (governance 1925 : cognitive 165).
 
 Bucket tally (both repos, window):
 
 | bucket | commits | what it is |
 |--------|--------:|------------|
-| machine coordination | 1501 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
-| human governance | 369 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
-| cognitive / substrate | 156 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
-| neutral / other | 495 | docs, explorer/serve, site, tooling (excluded from the ratio) |
+| machine coordination | 1554 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
+| human governance | 371 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
+| cognitive / substrate | 165 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
+| neutral / other | 523 | docs, explorer/serve, site, tooling (excluded from the ratio) |
 
 > Reading: a very high ratio is the graveyard signal, not a bug to 'fix' by suppressing coordination commits. It is only a problem if, cycle after cycle, governance is busy while capability is flat. The governance mass is justified *only* as a falsification engine that kills dead structure -- never as a substitute for earning capability.
 

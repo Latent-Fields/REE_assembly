@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_689c_mech439_factor_b_gap_scaled_t_isolation
 
-Generated: `2026-07-25T16:56:36.036801Z`
+Generated: `2026-07-26T00:09:19.739764Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

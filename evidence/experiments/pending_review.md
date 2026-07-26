@@ -1,20 +1,16 @@
 # Pending Experiment Review
 
-Generated: `2026-07-25T16:56:40Z`  
-Last review: `2026-07-25T16:56:11Z`  
-Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-26T00:09:24Z`  
+Last review: `2026-07-26T00:07:00Z`  
+Pending: **3** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260723T151429Z_v3` | 2026-07-23T15:14 | ARC-110 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_809_sd080_action_object_init_invariance_20260723T061050Z_v3` | 2026-07-23T06:10 | SD-004 |
+| `v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3` | 2026-07-25T20:34 | ARC-070, MECH-321 | — |
+| `v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3` | 2026-07-25T20:48 | SD-004, SD-080 | — |
+| `v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3` | 2026-07-25T21:47 | ARC-070, MECH-321 | — |
 
 ---
 

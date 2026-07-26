@@ -1,6 +1,6 @@
 # Claims-Doc Status Drift Report
 
-Generated: 2026-07-25T16:58:27Z
+Generated: 2026-07-26T00:11:11Z
 
 Mirror of the closure-plan drift report, for architecture docs. Flags docs whose status has fallen out of step with `docs/claims/claims.yaml`. Resolution + derivation are shared with `docs/apply_status_frontmatter.py`. Only the **Frontmatter drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -26,7 +26,7 @@ Residual hand-typed `**Status:**` lines (the stamper leaves prose lines in place
 
 _None._
 
-## Unresolved with a hand status line -- INFO (114)
+## Unresolved with a hand status line -- INFO (116)
 
 Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` line, no registered filename stem). Outside the stamper's reach; listed for visibility only.
 
@@ -113,8 +113,10 @@ Docs with a hand `**Status:**` line but no derivable claim id (no `**Claim:**` l
 - `rule_distinguishability_maintenance.md` -- "architecture stub for candidate claims MECH-437 / MECH-438 (candidate / substrate_conditional / implementation_phase v4 "
 - `sd_actor_critic_action_learning.md` -- "SUBSTRATE IMPLEMENTED 2026-07-12 (module + agent hooks + config-switchable A0–A3 arms landed, smoke-tested — see §7). **"
 - `sd_cross_stream_binding_substrate.md` -- "IMPLEMENTED -- two modes. FIXED field (2026-07-08; retest V3-EXQ-720 RAN, SPEC 3/6, gate not cleared). LEARNED (plastic)"
+- `sd_mech457_approach_extinction.md` -- "IMPLEMENTED"
 - `sd_mech457_bc_aux_schedule.md` -- "IMPLEMENTED (2026-07-18)"
 - `sd_mech457_competence_bootstrap_explorer.md` -- "IMPLEMENTED"
+- `sd_mech457_consummatory_act.md` -- "IMPLEMENTED"
 - `sd_mech457_distributional_critic.md` -- "IMPLEMENTED"
 - `sd_mech457_retention_trajectory_probe.md` -- "IMPLEMENTED"
 - `sd_mel_consumer.md` -- "IMPLEMENTED"
