@@ -1155,3 +1155,7 @@ One line per hourly tick. ASCII only.
 2026-07-26T16:02:20Z no eligible item (skipped 237): IGW-20260726-001:skill /governance not allowed; IGW-20260726-002:skill /governance not allowed; IGW-20260726-190:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
 2026-07-26T17:02:48Z SPAWN IGW-20260726-209 skill=/queue-experiment prio=40 uuid=cc1fb6fb-177a-4b32-8108-609e58eb4faa pid=35412 worktree=igw-209-proposal-for-arc-112
 2026-07-26T17:17:09Z auto-defer IGW-20260726-209 hash=705a12029589 for 48h (complete)
+2026-07-26T17:17:16Z complete IGW-20260726-209 spawned->completed outcome=USEFUL_LANDED: gated EVB-0460/ARC-112 (framing parent claim, not directly falsifiable; answered
+2026-07-26T18:04:30Z reconcile-release hash=705a12029589 (IGW-20260726-209 -> completed)
+2026-07-26T18:04:07Z skip IGW-20260726-209: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-26T19:04:48Z skip IGW-20260726-209: no fresh runner heartbeat (experiment-lane item would just sit in queue)
