@@ -1,48 +1,32 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T15:47:42Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-819a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-816b",
-      "result": "FAIL",
-      "completed_at": "2026-07-26T12:32:22.418565+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-817a",
-      "result": "FAIL",
-      "completed_at": "2026-07-26T15:31:59.267995+00:00"
-    }
+  "last_tick_utc": "2026-07-26T16:18:46Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-816d",
+  "current_exq_started_utc": "2026-07-26T16:14:50.080175+00:00",
+  "current_title": "MECH-321 policy_decomposition P-A (env axis), dose escalation: harshened env v2 -> low-V_s production + region-V_s distribution recording",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / ARM_0",
+    "runs_done": 0,
+    "runs_total": 10,
+    "episodes_done": 10,
+    "episodes_total": 60,
+    "overall_pct": 1.7
+  },
+  "seconds_elapsed": 236,
+  "seconds_remaining": 14121,
+  "recent_lines": [
+    "Seed 11 Condition ARM_0",
+    "[train] decomp seed=11 arm=ARM_0 ep 10/60 decomposed=0 vs_trigger=0 low_vs_steps=0"
   ],
-  "runner_pid": 70438,
-  "runner_version": "r4324 e1c27aa 2026-07-26 (running r4304 07639e2)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 7829,
+  "runner_version": "r4326 c7f9a35 2026-07-26 (running r4325 82d0482)",
   "gpu": {
     "available": false
   },
