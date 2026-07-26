@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_816c_mech321_vs_pe_decoupling_comparator",
+  "run_id": "v3_exq_816c_mech321_vs_pe_decoupling_comparator_20260726T105608Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-26T10:56:08Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "vs_pe_decoupled_proxy_saturation",
+    "preconditions": [
+      {
+        "name": "vs_tracking_live",
+        "description": "READINESS: region-V_s tracking must be live (per_stream_vs populated), else region_vs is the degenerate constant-1.0 fallback and a 'V_s flat' reading is an artefact -- a false decoupling. Worst-cell max streams tracked during measurement.",
+        "measured": 3.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "worst cell (min over cells of max streams tracked)",
+        "met": true
+      },
+      {
+        "name": "forward_pe_varies",
+        "description": "READINESS positive control: forward PE must actually vary on the harshened env (best-cell variance). SAME statistic the decoupling verdict routes on (pe_heterogeneous). If flat, the env under-drove uncertainty and the decoupling is untestable.",
+        "measured": 8.63597199642689e-07,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "best cell (positive control for PE heterogeneity)",
+        "met": true
+      },
+      {
+        "name": "forward_pe_bounded",
+        "description": "READINESS: forward PE bounded (no explosion / NaN). Worst cell mean.",
+        "measured": 0.008594142647792494,
+        "threshold": 1000.0,
+        "direction": "upper",
+        "control": "worst cell",
+        "met": true
+      },
+      {
+        "name": "enough_paired_steps",
+        "description": "READINESS: enough aligned (region_vs, forward_pe) pairs pooled across seeds to estimate the relationship.",
+        "measured": 1654.0,
+        "threshold": 30.0,
+        "direction": "lower",
+        "control": "pooled over seeds",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_DECOUPLING_testable_and_resolved",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_DECOUPLING": true
+    },
+    "null_reading_guide": {
+      "vs_pe_decoupled_proxy_saturation": "H-vs-proxy-saturation CONFIRMED: PE varies while V_s stays flat -> region-V_s decoupled from forward-PE -> reframe MECH-321 R1 trigger toward forward-model disagreement (candidate /claim-synthesis)",
+      "vs_tracks_uncertainty_not_saturated": "H-vs-proxy-saturation REFUTED: region-V_s DOES drop -> not saturated -> env-axis reading (V3-EXQ-816b) governs",
+      "substrate_not_ready_requeue": "forward-PE positive control failed (PE flat / too few pairs) -> env under-drove uncertainty -> needs a harsher env (P-A territory), NOT a decoupling verdict"
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "97780328933eee30a783f68b3dd1e506b4893906b0982a6dc7f820c1fb8f8148"
+}
