@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_822a_sd078_rule_selection_consumer",
+  "run_id": "v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T14:55:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-078"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "zworld_common_mode_cone_present",
+        "description": "min pairwise z_world cosine clears the cone floor -- the geometry SD-078 exists to repair.",
+        "measured": 0.9632475972175598,
+        "threshold": 0.9,
+        "direction": "lower",
+        "control": "worst cell across all arms/seeds (ARM_OFF/seed101), on the run's own z_world stream",
+        "offending_cell": "ARM_OFF/seed101",
+        "met": true
+      },
+      {
+        "name": "on_pool_differentiated",
+        "description": "ARM_ON must recover a differentiated pool (dist>floor, >=2 live) on a majority of seeds -- centering did its upstream job so a behavioural null is the consumer's.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "on_rule_active_p2",
+        "description": "ARM_ON rule active on >= frac floor of P2 ticks so the rule_state differentiation DV is not starved.",
+        "measured": 0.8818055555555556,
+        "threshold": 0.1,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity",
+        "description": "ARM_ON rule_state reaches the per-candidate action bias (prop_delta>floor) AND differs from ARM_OFF paired by seed -- the trained head + SD-082 read-out made the executive state behavioural. Also the SD-082 validation.",
+        "measured": 0.0,
+        "threshold": 0.001,
+        "direction": "lower",
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_on_rule_state_differentiates",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_on_rule_state_differentiates": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "a69e4f2a31c8008029d9c1d419e35ed9a1d659ec9bb334c8e0f73157b4e96532"
+}
