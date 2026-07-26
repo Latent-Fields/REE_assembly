@@ -221,7 +221,8 @@ def render_report(r, now_iso):
         lines.append("| claim | would-derive |")
         lines.append("|-------|--------------|")
         for u in us[:60]:
-            lines.append("| {claim} | `{wd}` |".format(**u))
+            lines.append("| {claim} | `{wd}` |".format(
+                claim=u["claim"], wd=u.get("would_derive") or "(undeterminable)"))
         if len(us) > 60:
             lines.append(f"| ... | (+{len(us) - 60} more) |")
         lines.append("")
