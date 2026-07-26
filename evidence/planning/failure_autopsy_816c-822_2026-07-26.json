@@ -1,0 +1,134 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T12:22:13Z",
+  "scope": "batch",
+  "status": "confirmed",
+  "batch_note": "Two independent ran-to-completion targets surfaced after the committed pending_review.md (generated 2026-07-26T00:09Z) went stale: V3-EXQ-816c (passed diagnostic, non_contributory, MECH-321/ARC-070 policy-decomposition fanout, measurement axis) and V3-EXQ-822 (SD-078 rule-selection consumer, self-route substrate_not_ready_requeue). The 3 FAILs still listed in the committed pending_review (816/817/820) were already adjudicated in failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26 and failure_autopsy_batch-793a-817-819_2026-07-26. Scope regenerated read-only; the shared REE_assembly working tree carried an active concurrent /governance regeneration (1123 dirty derived files, INDEX.md mtime 11:31Z) which was NOT disturbed -- this artifact and its landing used a throwaway worktree off origin/master.",
+  "targets": [
+    {
+      "run_id": "v3_exq_816c_mech321_vs_pe_decoupling_comparator_20260726T105608Z_v3",
+      "queue_id": "V3-EXQ-816c",
+      "claim_ids": [],
+      "bears_on": ["MECH-321", "ARC-070"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "vs_pe_decoupled_proxy_saturation",
+      "outcome": "PASS",
+      "failed_criterion": "none",
+      "failed_criterion_detail": "Passed diagnostic. Positive controls all held: vs_tracking_live=true (worst-cell 3 streams tracked, not the degenerate constant-1.0 fallback), pe_control_ok=true, forward_pe_varies=true (pe_var_best 8.6e-7 > 1e-9), forward_pe_bounded=true (0.0086 << 1000), enough_paired_steps=1654 > 30. The decoupling question was answerable; the self-route label carries WHICH answer.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (diagnostic; untagged; bears on MECH-321/ARC-070 policy-decomposition discrimination without weighting)",
+        "biological_reference": "partial",
+        "prerequisites": "present (V_s tracking live, forward-PE positive control held)",
+        "implementation": "complete (comparator instrument fired correctly)",
+        "environment": "adequate for the comparator (the harsher-env question is the sibling env-axis leg 816b, in flight)",
+        "measurement": "misleading -- region-V_s (latent-stability proxy) saturates near 1.0 in the trained encoder (region_vs_min_over_cells 0.934, var_best 0.00027, total_low_vs_steps 0) and is decoupled from forward-PE (spearman_unc_vs_pe 0.083, decoupled=true, not_saturated=false). The proxy cannot carry the R1 V_s-drop discrimination in a competent agent.",
+        "integration": "coupled but unstable (V_s and forward-PE evolve independently; pe_heterogeneous=true while vs_heterogeneous=false)",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "value/uncertainty signalling for policy-boundary detection (V_s-drop as a latent-instability marker triggering decomposition); analogous to ACC/striatal uncertainty signals gating hierarchical option boundaries",
+        "dependencies": ["a readout whose dynamic range is preserved in a trained/competent agent (biological uncertainty signals do not saturate to a constant once a policy is learned)"],
+        "is_formal_import": false,
+        "divergence": "The REE region-V_s proxy is a latent-stability statistic that saturates to a near-constant high value once the encoder is trained, unlike a biological uncertainty signal that retains dynamic range. This is a proxy-design divergence, not a claim divergence.",
+        "lit_status": "present (targeted_review_arc_070_decomposition)"
+      },
+      "recommended_epistemic_category": "measurement_saturation",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-816c (2026-07-26, passed diagnostic, non_contributory) is the MEASUREMENT-axis leg of the policy_decomposition_discrimination fanout (question qid=policy_decomposition_discrimination). It confirms the substance of hypothesis H-vs-proxy-saturation: region-V_s saturates near 1.0 in the trained encoder (region_vs_min 0.934, var 0.00027, total_low_vs_steps 0) and is decoupled from forward-PE (spearman 0.083), so the R1 V_s-drop decomposition trigger cannot fire via this proxy. Per user adjudication 2026-07-26, the ledger leg H-vs-proxy-saturation is LEFT ALIVE pending the env-axis sibling 816b (claimed/running): if a harsher env can drive region-V_s into a low band, the proxy could still be usable, so 816c narrows but does not yet eliminate the leg. Does not weight MECH-321/ARC-070 (diagnostic).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "reason": "diagnostic, untagged; no substrate_ceiling reading; not a claim re-test"},
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "resolves_this_cycle": [],
+        "narrows_this_cycle": ["H-vs-proxy-saturation"],
+        "note": "816c is the measurement-axis leg of an already-open fanout (question policy_decomposition_discrimination, frozen 4, opened by failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26). No NEW fanout is opened here. Per user call the measurement leg is narrowed (resolving_run + basis recorded) but LEFT ALIVE until the environment-axis leg 816b returns."
+      },
+      "learning_extracted": [
+        "region-V_s (latent-stability proxy) saturates near 1.0 in a trained REE encoder and is statistically decoupled from forward-model prediction error (spearman 0.083) -- the R1 V_s-drop decomposition trigger cannot fire via this proxy in a competent agent.",
+        "The policy-decomposition discrimination cannot be instrumented off region-V_s alone; either a non-saturating readout is needed, or the env-axis leg (816b) must show env can create low-V_s regions.",
+        "Positive-control design worked: vs_tracking_live and forward-PE controls held, so 'V_s flat' is a real reading, not the degenerate constant-1.0 fallback artefact."
+      ],
+      "routing": "governance",
+      "routing_note": "Governance consumes the resolution (derive-only). No re-queue of 816c. Ledger leg H-vs-proxy-saturation stays ALIVE (resolving_run + basis) pending 816b -- see hypothesis_space_ledger_pending below. Campaign next move is decided by 816b's result, not by 816c."
+    },
+    {
+      "run_id": "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+      "queue_id": "V3-EXQ-822",
+      "claim_ids": ["SD-078"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "outcome": "FAIL",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Readiness gate (d) propagation_non_vacuity FAILED: on_prop_delta_mean = off_prop_delta_mean = exactly 0.0 (readiness_prop_nonvac=false), while the other three readiness gates PASSED (zworld_common_mode_cone 0.963 > 0.9; on_pool_differentiated 3.0 > 2.0; on_rule_active_p2 0.882 > 0.1). The rule-attributable state signal is present (on_rule_state_diff_mean 0.644 vs off 0.0, frac_c1_rule_state_diff 1.0, c1_pass=true; ON pool activates, on_max_live 16 vs off 1) but the trained bias-head does not carry rule_state through to the action bias -- propagation is a structural zero on BOTH arms.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the run could not test SD-078's consumer behaviour because the propagation substrate is absent; it neither supports nor weakens SD-078.",
+        "biological_reference": "clear",
+        "prerequisites": "missing -- SD-078 rule-selection cue geometry is landed and validated (V3-EXQ-806 PASS), and the ON pool differentiates and activates, but the DOWNSTREAM CONSUMER (rule_state -> trained bias-head -> action bias) is not wired/trained.",
+        "implementation": "partial (stub/absent consumer) -- the bias-head REINFORCE + propagation-counterfactual machinery is reused from 654f but produced zero propagation delta; the coupling rule_state -> bias-head is not carrying signal.",
+        "environment": "adequate",
+        "measurement": "adequate -- both arms measured exactly 0.0 (a real measured zero, not the best-effort None-on-failure fallback), while the same instrument returns nonzero for rule_state (0.644); the propagation readout is discriminating and works.",
+        "integration": "isolated -- rule-selection module works alone (state differentiates) but its output does not reach the action-bias module.",
+        "scale": "unknown"
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action mapping: a selected rule/context representation must gate a motor bias for the selection to have behavioural consequence. Selection without a trained read-out to action is inert.",
+        "dependencies": ["a trained mapping (learned bias-head) from the differentiated rule_state to an action-bias; without it a differentiated rule pool is behaviourally silent"],
+        "is_formal_import": false,
+        "divergence": "none -- the biology predicts exactly this: a differentiated rule representation with no trained consumer produces no behavioural propagation. The FAIL is a discovered prerequisite (consumer substrate), consistent with the mechanism.",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-078": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-822 (2026-07-26, evidence, self-route substrate_not_ready_requeue) confirms its own designed self-route: the SD-078 rule-selection cue geometry is landed and validated (806 PASS) and the ON rule pool differentiates (on_rule_state_diff 0.644, c1_pass) and activates (max_live 16 vs 1), but propagation to the action bias is a structural zero on both arms (on/off_prop_delta_mean 0.0; readiness_prop_nonvac=false). The precondition is genuinely unmet -- the trained bias-head consumer that maps rule_state -> action bias is not wired/trained. NON-CONTRIBUTORY for SD-078 (the consumer behaviour could not be exercised); DOES NOT weaken SD-078. pending_retest_after_substrate. First substrate-not-ready for SD-078 -- re-derive brake does not fire.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-rule-selection-action-consumer",
+        "title": "Trained bias-head consumer coupling differentiated rule_state to an action bias (SD-078 propagation consumer)",
+        "implementation_hint": "V3-EXQ-822 shows the SD-078 rule pool differentiates (on_rule_state_diff 0.644) and activates (max_live 16), but propagation to the action bias is exactly 0.0 on both arms -- the rule_state -> bias-head -> action coupling is unwired/untrained. Build/train the consumer read-out (the bias-head REINFORCE + propagation-counterfactual path reused from 654f exists but carries no signal here) so a selected rule produces a non-vacuous action bias, then re-queue 822 (alphabetic suffix, same question) to test the SD-078 consumer behaviour on the ON/OFF contrast.",
+        "unblocks_claims": ["SD-078"],
+        "depends_on_unresolved": ["SD-008", "SD-066", "SD-077", "ARC-063"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+          "experiment_type": "v3_exq_822_sd078_rule_selection_consumer",
+          "metric": "propagation delta (rule_state -> action bias): on_prop_delta_mean = off_prop_delta_mean = 0.0 (structural zero on both arms) while on_rule_state_diff_mean = 0.644",
+          "target": "on_prop_delta_mean >= 0.001 (readiness_prop_nonvac) with an ON>OFF propagation contrast"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "reason": "First substrate-not-ready autopsy for SD-078; category precondition_unmet (not substrate_ceiling), so it does not count toward the brake under R3."},
+      "learning_extracted": [
+        "SD-078's rule-selection substrate is landed and behaviourally silent: the differentiated rule pool (on_rule_state_diff 0.644) does not propagate to an action bias (prop_delta 0.0) because the trained consumer (rule_state -> bias-head -> action) is not wired.",
+        "A differentiated selection substrate needs a paired trained consumer read-out before it can express behaviour -- selection without consumption is inert (matches corticostriatal rule-to-action biology).",
+        "The 0.0-not-None propagation zero (vs the same instrument's nonzero rule_state) confirms this is a substrate gap, not a measurement/recording artefact."
+      ],
+      "routing": "implement-substrate",
+      "routing_note": "Route to /implement-substrate to build the SD-078 propagation consumer (create substrate_queue entry above). Then re-queue V3-EXQ-822 under an alphabetic suffix (same question) once the consumer is trained. Do NOT re-queue 822 blind before the consumer exists -- it would reproduce the same vacuous propagation. Governance materialises the substrate_queue entry."
+    }
+  ],
+  "cluster_pattern": {"shape": "n/a -- two independent single-target adjudications bundled for one autopsy session", "is_independent_bugs": true, "structural_property": null, "readings": []},
+  "hypothesis_space_ledger_pending": {
+    "reason": "Registry write deferred to avoid contending with the concurrent /governance regeneration active in the shared REE_assembly tree at autopsy time. This is a NARROW (leave-alive) update, not a state flip -- to be applied by the next /governance walk (which will also re-visit this question when the env-axis leg 816b returns).",
+    "question_qid": "policy_decomposition_discrimination",
+    "mode": "B-narrow",
+    "leg": {
+      "hid": "H-vs-proxy-saturation",
+      "state": "alive",
+      "action": "record resolving_run + basis; DO NOT flip state (user adjudication 2026-07-26: leave alive pending env-axis leg 816b)",
+      "resolving_runs": ["V3-EXQ-816c"],
+      "evidence_direction": "non_contributory",
+      "epistemic_category": "measurement_saturation",
+      "control_passed": true,
+      "non_degenerate": true,
+      "met_elimination_bar": false,
+      "resolved_utc": null,
+      "basis": "V3-EXQ-816c (2026-07-26) confirms region-V_s saturates near 1.0 (region_vs_min 0.934, var 0.00027, total_low_vs_steps 0) and is decoupled from forward-PE (spearman 0.083), so the R1 V_s-drop trigger cannot fire via this proxy. Leg LEFT ALIVE pending 816b: a harsher env may still drive region-V_s into a low band, which would keep the proxy usable. 816c narrows the leg but does not meet the elimination bar."
+    }
+  }
+}
