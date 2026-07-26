@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T15:13:16Z",
+  "last_tick_utc": "2026-07-26T15:22:49Z",
   "state": "running",
   "current_exq": "V3-EXQ-817a",
   "current_exq_started_utc": "2026-07-26T12:47:28.147559+00:00",
@@ -9,14 +9,14 @@
   "current_claim_id": "SD-080",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 4 / ARM_1",
-    "runs_done": 13,
+    "run_label": "Seed 4 / ARM_2",
+    "runs_done": 14,
     "runs_total": 15,
-    "episodes_done": 600,
+    "episodes_done": 0,
     "episodes_total": 600,
     "overall_pct": 93.3
   },
-  "seconds_elapsed": 8748,
+  "seconds_elapsed": 9322,
   "seconds_remaining": 554,
   "recent_lines": [
     "[train] p0 seed=0 ep 10/40  harm=11.45",
@@ -114,7 +114,10 @@
     "[ground] ARM_1-ground seed=4 step 150/600  mse=0.89894",
     "[ground] ARM_1-ground seed=4 step 300/600  mse=0.79055",
     "[ground] ARM_1-ground seed=4 step 450/600  mse=0.75927",
-    "[ground] ARM_1-ground seed=4 step 600/600  mse=0.74551"
+    "[ground] ARM_1-ground seed=4 step 600/600  mse=0.74551",
+    "[ARM_1 seed=4] M5_r2=0.7130 M6_spearman=0.2878 wf_M6=0.1788 harm_rate=0.2340 survival=33.5 head_delta=16.6703",
+    "verdict: PASS",
+    "Seed 4 Condition ARM_2"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

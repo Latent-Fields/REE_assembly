@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-26T15:13:17Z",
+  "last_tick_utc": "2026-07-26T15:23:23Z",
   "state": "running",
   "current_exq": "V3-EXQ-819a",
   "current_exq_started_utc": "2026-07-26T12:02:11.380278+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 46 / D3_hazard_free",
     "runs_done": 22,
     "runs_total": 30,
-    "episodes_done": 0,
+    "episodes_done": 50,
     "episodes_total": 3000,
-    "overall_pct": 73.3
+    "overall_pct": 73.4
   },
-  "seconds_elapsed": 11466,
-  "seconds_remaining": 14347,
+  "seconds_elapsed": 12072,
+  "seconds_remaining": 14317,
   "recent_lines": [
-    "[GUARD-WARNING] z_world UNTRAINED-ENCODER GUARD TRIPPED [mech457_fanout.warmup_zworld]: the P0 warmup changed 0 of 4 split_encoder.world_encoder tensors across 200 episode(s) -- max|delta| = 0.000e+00 (bit-identical). latent_stack: 0/61 tensors changed. Frozen: split_encoder.world_encoder.0.bias, split_encoder.world_encoder.0.weight, split_encoder.world_encoder.2.bias, split_encoder.world_encoder.2.weight. This arm's z_world is a FROZEN RANDOM PROJECTION at initialisation, NOT a prediction-trained encoder, so any result it produces is uninterpretable as evidence about z_world. Known cause: no optimizer in _train_all_on_agent covers a latent_stack parameter (P0 trains e2; P1 trains the lPFC bias + OFC devaluation heads), and the P0 loop buffers latent.z_world.detach(), so no gradient reaches the world encoder. See REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md. If a frozen random projection is the DELIBERATE condition under test, pass require_trained_encoder=False (make_rep / ZWorldRep) or strict=False (warmup_zworld) so the choice is explicit and auditable in the manifest.",
     "[GUARD-WARNING] z_world UNTRAINED-ENCODER GUARD TRIPPED [mech457_fanout.warmup_zworld]: the P0 warmup changed 0 of 4 split_encoder.world_encoder tensors across 200 episode(s) -- max|delta| = 0.000e+00 (bit-identical). latent_stack: 0/61 tensors changed. Frozen: split_encoder.world_encoder.0.bias, split_encoder.world_encoder.0.weight, split_encoder.world_encoder.2.bias, split_encoder.world_encoder.2.weight. This arm's z_world is a FROZEN RANDOM PROJECTION at initialisation, NOT a prediction-trained encoder, so any result it produces is uninterpretable as evidence about z_world. Known cause: no optimizer in _train_all_on_agent covers a latent_stack parameter (P0 trains e2; P1 trains the lPFC bias + OFC devaluation heads), and the P0 loop buffers latent.z_world.detach(), so no gradient reaches the world encoder. See REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md. If a frozen random projection is the DELIBERATE condition under test, pass require_trained_encoder=False (make_rep / ZWorldRep) or strict=False (warmup_zworld) so the choice is explicit and auditable in the manifest.",
     "[train] zworld_random_proj seed=42 phase=BC ep 100/300",
     "[train] zworld_random_proj seed=42 phase=BC ep 200/300",
@@ -118,7 +117,8 @@
     "[train] zworld_random_proj seed=45 phase=RL ep 2800/3000",
     "[train] zworld_random_proj seed=45 phase=RL ep 3000/3000",
     "verdict: FAIL (arm=zworld_random_proj seed=45 forage/ep=0.5)",
-    "Seed 46 Condition D3_hazard_free:zworld_random_proj"
+    "Seed 46 Condition D3_hazard_free:zworld_random_proj",
+    "[train] ree_allon rung=D3_hazard_free seed=46 phase=P0 ep 50/200"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
