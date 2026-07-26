@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync",
+  "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T19:34:19Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-091"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "note": "C1 (non-degeneracy) failed: the manipulation did not move the cross-stream similarity statistic measurably in the pre-registered direction (decouple=0.2243, intact=0.2232, lockstep=0.3237 [real-time-matched lag window; raw ticks=8 lockstep reading was 0.3237]; degeneracy_reason=''). Per INV-091's own non-degeneracy guard, the series tested nothing. Not a verdict on INV-091. V3-EXQ-827a redesign note: lockstep's clock manipulation now collapses to E3's own native rate (never exceeding any stream's intact sampling density) and its similarity readout uses a lag window matched to intact's real-time span per pair; see module docstring for the full V3-EXQ-827 root-cause trace."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9"
+}
