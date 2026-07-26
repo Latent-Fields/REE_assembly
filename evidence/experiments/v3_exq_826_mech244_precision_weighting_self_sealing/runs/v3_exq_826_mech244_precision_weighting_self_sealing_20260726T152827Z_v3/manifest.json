@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_826_mech244_precision_weighting_self_sealing",
+  "run_id": "v3_exq_826_mech244_precision_weighting_self_sealing_20260726T152827Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T15:28:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-244"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "world_model_converged_phaseA_control",
+        "measured": 0.0,
+        "threshold": 0.25,
+        "direction": "lower",
+        "control": "ARM_CONTROL phase-A E1 loss reduction ratio, worst seed",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "regime_change_disconfirms_control",
+        "measured": 0.0,
+        "threshold": 1.15,
+        "direction": "lower",
+        "control": "ARM_CONTROL phase-B onset spike ratio vs late phase-A, worst seed",
+        "met": false,
+        "kind": "readiness"
+      },
+      {
+        "name": "pe_precision_manipulation_took",
+        "measured": 0.0,
+        "threshold": 1.5,
+        "direction": "lower",
+        "control": "ARM_CONTROL / ARM_VERYLOW E1 param L2 drift ratio in phase A, worst seed",
+        "met": false,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false
+    },
+    "criteria": [
+      {
+        "name": "C1_verylow_suppression",
+        "load_bearing": true,
+        "passed": false
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3cb8cb9f81750be907a7822a0cf5befca3847737339f32dc671c92a09f41d196"
+}
