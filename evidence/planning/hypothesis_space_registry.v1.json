@@ -1861,15 +1861,17 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": null,
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-816b"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "standard",
+            "self_route_label": "env_still_underdrives_uncertainty",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-A: re-run the 816 design with env_drift_interval->3 / background_drift, recording the region-V_s distribution + per-cell forward-PE. Null: even at faster drift, worst-cell low-V_s steps remain < MIN_LOW_VS_STEPS. cf. V3-EXQ-677 (env_drift_interval 999->3 produced a high-vs-low mean-PE contrast)."
+            "resolved_utc": "2026-07-26T12:32:16Z",
+            "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json."
           }
         },
         {

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-26T11:37:52Z",
+  "generated_at": "2026-07-26T14:39:17Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -1688,7 +1688,7 @@
           "evidence_runs": [
             "V3-EXQ-816b"
           ],
-          "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-A: re-run the 816 design with env_drift_interval->3 / background_drift, recording the region-V_s distribution + per-cell forward-PE. Null: even at faster drift, worst-cell low-V_s steps remain < MIN_LOW_VS_STEPS. cf. V3-EXQ-677 (env_drift_interval 999->3 produced a high-vs-low mean-PE contrast).",
+          "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1717,6 +1717,21 @@
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-816b",
+      "all_runs": [
+        "V3-EXQ-816b"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
+      "resolved_utc": "2026-07-26T12:32:16Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-821",
       "all_runs": [

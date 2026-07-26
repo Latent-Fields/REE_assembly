@@ -1,0 +1,74 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T14:37:45Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_816b_mech321_policy_decomposition_harshened_env_20260726T123216Z_v3",
+      "queue_id": "V3-EXQ-816b",
+      "claim_ids": [],
+      "bears_on": ["ARC-070", "MECH-321"],
+      "self_route_label": "env_still_underdrives_uncertainty",
+      "self_route_verdict": "MATCHES the data -- unlike 817/819 (misnamed 'not ready'), 816b's own pre-declared null-reading guide anticipated exactly this outcome and the label is correctly applied.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "Load-bearing C_LOWVS_harshened_env_produces_low_vs FAILED: worst-cell low_vs_steps=0 vs floor 5, same as 816/820. The disambiguating co-recorded readout (this run's whole purpose -- closing 816's recording gap) shows WHY: off_pe_mean_worst=0.0086 vs PE_ELEVATED_FLOOR=0.01 -- pe_elevated=false. Harshening (env_drift_interval->3 + world_rule_shift_interval=24/depth=1) moved forward-PE in the right direction (816/820's baseline PE was ~0.005; this run reached 0.0086, ~86% of the floor) but did not cross it. C_SECONDARY (lowvs_forward_pe_reduced) is degenerate (non_degenerate=false) since no low-vs states existed to test it. Readiness preconditions (vs_tracking_live, off_forward_pe_varies, off_forward_pe_bounded) all met -- this is a clean, correctly-instrumented negative, not a broken run.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (untested) -- same as 816/820; ARC-070/MECH-321's R1 trigger still has not been behaviourally exercised.",
+        "biological_reference": "clear -- PE-driven event segmentation (Zacks 2007); unchanged from 816/820.",
+        "prerequisites": "present -- forward model, region-V_s tracking, and (new in this run) the full region-V_s + forward-PE distribution recording that closes 816's recording gap.",
+        "implementation": "complete -- the harshening machinery (env_drift_interval + world_rule_shift) and the expanded per-cell distributional recording both worked exactly as designed.",
+        "environment": "insufficient magnitude, right axis -- the harshening direction is correct (PE rose from ~0.005 baseline toward the 0.01 floor, reaching 0.0086) but the applied dose (drift_interval=3, world_rule_shift depth=1/interval=24) is not yet strong enough to cross it.",
+        "measurement": "adequate, and improved -- this run recorded the full region-V_s and forward-PE distributions per cell (not just the derived low_vs_steps count), which is exactly the instrumentation 816/820 lacked.",
+        "integration": "isolated -- single-substrate, unchanged from 816/820.",
+        "scale": "adequate for the question -- 5 seeds (11/23/47/71/97) sufficient to establish the PE-not-elevated finding cleanly; not a scale problem, a dose problem."
+      },
+      "biological_reference": {
+        "closest_mechanism": "PE-driven event segmentation (Zacks 2007) on imagined continuation; chunk-size bounds (Sakai 2003)",
+        "dependencies": ["MECH-269 region V_s substrate", "MECH-288 rollout boundary segmenter", "trained world_forward for meaningful forward-PE"],
+        "is_formal_import": false,
+        "divergence": "none new -- same trigger-readout question as 816/820; this run adds the dose-response datapoint rather than a new divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_epistemic_category_per_claim": {"ARC-070": "standard", "MECH-321": "standard"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"ARC-070": "non_contributory", "MECH-321": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-816b (2026-07-26, GOV-FANOUT-1 P-A leg, env axis, bears_on ARC-070/MECH-321, no claim tags): harshened env (env_drift_interval->3, world_rule_shift_interval=24/depth=1) did NOT elevate forward-PE above the 0.01 discrimination floor (measured 0.0086, up from ~0.005 baseline but under threshold), so zero low-V_s steps were produced (same failure shape as 816/820) and the R1 V_s-drop trigger remains un-exercised. Self-route label 'env_still_underdrives_uncertainty' matches the data (contrast with 817/819's misnamed self-routes). This is an informative negative on the DOSE, not a refutation of H-env-underdrives-uncertainty -- PE moved in the predicted direction, just not far enough. Does not weight ARC-070 or MECH-321 (bears_on only); both stay candidate/v3_pending. Recommend a same-question re-queue with a stronger harshening dose (e.g. world_rule_shift_depth 1->2 and/or interval shortened, or env_drift_interval->1) BEFORE pivoting to the P-B measurement-comparator probe, which presupposes PE is actually elevated to be informative.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "bears_on": ["ARC-070", "MECH-321"],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_arc_070": 0,
+        "count_mech_321": 0,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "note": "R1-R3 convention, confirmed-only: this reading is `standard`, not `substrate_ceiling`, and ARC-070/MECH-321 have 0 confirmed substrate_ceiling autopsies. Does not add a ceiling hit; the recommended re-queue is a dose escalation of the SAME probe axis (environment), not a same-claim ceiling circle."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": false,
+        "note": "No new fan-out from this autopsy -- 816b continues to test the already-pre-registered hypothesis H-env-underdrives-uncertainty (registry qid policy_decomposition_discrimination) at higher resolution. Recommend queuing one more environment-axis letter (stronger dose) before running the already-pre-registered P-B (H-vs-proxy-saturation, hid H-vs-proxy-saturation, queue_id placeholder V3-EXQ-816c) -- P-B's comparator design presupposes PE is actually elevated, which this dose did not achieve."
+      },
+      "hypothesis_space_ledger_applied": {
+        "question_qid": "policy_decomposition_discrimination",
+        "resolved_hid": "H-env-underdrives-uncertainty",
+        "state": "alive",
+        "note": "Mode B resolve of the leg pre-registered by failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26.json. Result is informative-but-not-eliminating (dose insufficient, direction correct) -- does not meet the elimination bar; hypothesis stays alive pending a stronger-dose retest. adjudicating_runs left as V3-EXQ-816b; a future stronger-dose letter will need its own pre-registration/resolution when queued."
+      },
+      "learning_extracted": [
+        "Harshening via env_drift_interval->3 + world_rule_shift (interval 24, depth 1) moves forward-PE in the right direction (0.005 baseline -> 0.0086) but does not cross the 0.01 discrimination floor -- this specific dose is insufficient, not the wrong lever.",
+        "The recording gap 816/820 left open (only the derived low_vs_steps count, not the underlying distributions) is now closed: this run records full per-cell region-V_s and forward-PE distributions for both arms, so future legs on this ladder inherit rich instrumentation.",
+        "PE reaching 86% of the discrimination floor on the first harshening attempt suggests one more dose step (not a fundamentally different lever) is the efficient next move, before spending on the P-B measurement-comparator probe.",
+        "This is the first pure-diagnostic (claim_ids=[]) autopsy hit on the policy_decomposition_discrimination bears_on token (GOV-DIAG-1 count: 1 of 3) -- not a recurrence concern yet."
+      ],
+      "routing": "queue-experiment",
+      "routing_note": "User-confirmed 2026-07-26: queue-experiment a next letter (env axis, stronger dose -- e.g. world_rule_shift_depth 1->2 and/or env_drift_interval->1) continuing the SAME hypothesis (H-env-underdrives-uncertainty) before running the already-pre-registered P-B measurement-comparator probe. Not a substrate gap; not a ceiling; not a re-derive-brake circle (dose escalation of one probe, not a repeat of a fully-explored lever)."
+    }
+  ],
+  "cluster_pattern": null
+}
