@@ -1,0 +1,207 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T17:06:06Z",
+  "scope": "batch",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_826_mech244_precision_weighting_self_sealing_20260726T152827Z_v3",
+      "queue_id": "V3-EXQ-826",
+      "claim_ids": ["MECH-244"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "MISNAMED -- not a substrate readiness/convergence issue. It is an experiment-script API-misuse bug: the script's deliberate random-action rollout never calls agent.act()/act_with_split_obs()/act_with_log_prob(), and REEAgent._e1_tick() -- the only place that appends to self._world_experience_buffer -- is called exclusively from those three methods (ree_core/agent.py:8208/8238/8260). compute_prediction_loss() hard-returns a zero-gradient stub tensor whenever len(self._world_experience_buffer) < 2 (ree_core/agent.py:8556), so E1 is structurally never ticked and never trained for the entire run, on any arm, any seed.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "All three P0 readiness preconditions (world_model_converged_phaseA_control, regime_change_disconfirms_control, pe_precision_manipulation_took) measured exactly 0.0 against thresholds 0.25/1.15/1.5. arm_results confirm phaseA_episode_means and phaseB_episode_means are literally [0.0, 0.0, ...] for every episode, every seed, both metrics -- not a near-zero convergence failure but a structurally pinned zero from episode 1. The script's own degeneracy check (criteria_non_degenerate.C1=false) correctly caught this and self-routed to FAIL rather than reporting a false PASS or false negative -- no scientific harm was done, but the self-route label misattributes the cause to substrate immaturity.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- MECH-244 was not tested at all; E1 (\"the generative model\" the claim is about) never received a training gradient in this run under any arm.",
+        "biological_reference": "clear -- precision-weighted PE suppression as a psychosis mechanism is well-grounded (predictive-processing literature); the manipulation design (scaling E1's own PE gradient via a dedicated optimizer, leaving forward dynamics unscaled) is a faithful operationalisation. The failure is entirely at the implementation/wiring layer, not a biological-translation gap.",
+        "prerequisites": "present -- E1 (E1DeepPredictor), the substrate's literal generative-model module, exists and is otherwise functional; nothing about MECH-244's dependencies (MECH-094, INV-011) is missing.",
+        "implementation": "absent for this run -- compute_prediction_loss()'s buffer-population contract requires an act*() call; the script's design choice (random rollout to avoid a policy confound, matching the V3-EXQ-818 convention) is incompatible with that contract. This is a script bug, not a substrate defect: compute_prediction_loss() behaves exactly per its documented early-return.",
+        "environment": "adequate -- CausalGridWorldV2, deterministic regime-A/regime-B hazard relocation is a clean, well-instrumented manipulation of disconfirming evidence (untested here only because E1 never trained).",
+        "measurement": "adequate and self-diagnosing -- the P0/P1/P2 readiness structure and the C1 degeneracy guard did their job; the pinned-zero signature was correctly caught rather than silently scored.",
+        "integration": "isolated -- E1 in principle trains independently via its own optimizer; the break is entirely in how the experiment script drives the tick loop, not in any cross-module coupling.",
+        "scale": "not reached -- no training occurred to evaluate scale/capacity questions."
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision-weighted prediction-error gating on a generative (world) model -- e.g. dopaminergic/cholinergic modulation of cortical PE gain in predictive-processing accounts of psychosis.",
+        "dependencies": ["a generative model that receives and integrates PE-driven correction under normal operation", "a mechanism to scale that correction's gain independently of the model's forward dynamics"],
+        "is_formal_import": false,
+        "divergence": "none identified -- the manipulation design is biologically faithful; the failure is purely at the experiment-script wiring layer (E1 never ticked under random-action rollout).",
+        "lit_status": "present (2 lit entries; this was to be the first experimental entry, exp_conf=0.0 going in and remains 0.0 -- no experimental evidence was produced)"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-244": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-826 (2026-07-26, first experimental test of MECH-244) self-routed substrate_not_ready_requeue but produced no interpretable signal on the claim: E1 never received a training gradient because the script's random-action rollout never calls agent.act*() -- the only path that ticks E1 and populates the experience buffer compute_prediction_loss() reads (ree_core/agent.py:8556, 8208/8238/8260). All three P0 readiness metrics and both C1 delta arrays are structurally pinned at exactly 0.0 from episode 1, confirming a wiring bug rather than a genuine convergence failure. MECH-244 remains untested (exp_conf=0.0); route to /queue-experiment for a same-question redesign (V3-EXQ-826a) that explicitly ticks E1 (e.g. call agent._e1_tick(latent) after agent.sense(), mirroring the pattern already used correctly in V3-EXQ-822a) while preserving the random-action design (no policy confound). Also flag for follow-on: the precedent scripts this design cited for its sense()+compute_prediction_loss() API usage (v3_exq_032/032b/032c, v3_exq_396a) show the identical sense()-then-compute_prediction_loss() pattern under random-action rollout and may share the same silent zero-E1-loss defect -- worth a dedicated audit, out of scope for this autopsy.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "MECH-244 has 0 prior autopsies of any kind (this is its first experimental test) and this reading is measurement_gap, not substrate_ceiling."
+      },
+      "learning_extracted": [
+        "compute_prediction_loss() silently returns a zero-gradient stub whenever the world-experience buffer has <2 entries, and that buffer is populated ONLY inside _e1_tick(), which only fires from agent.act()/act_with_split_obs()/act_with_log_prob(). Any experiment combining pure random-action rollout (bypassing all three act* methods) with E1 training via compute_prediction_loss() will silently and deterministically never train E1 -- the self-consistency check (C1 degeneracy) is what catches it, not the API.",
+        "The self-route label substrate_not_ready_requeue is a misnomer here (mirrors the V3-EXQ-642 canonical case): the substrate (E1 itself) is fine; the experiment script's driving loop never engaged it.",
+        "The 'established V3-EXQ-818 convention' of random-action rollout to remove policy confounds is incompatible with training E1 via compute_prediction_loss() as currently wired -- any future script following that convention for E1 training needs to explicitly tick E1 (e.g. via agent._e1_tick(latent), as V3-EXQ-822a already does correctly) rather than relying on sense() alone.",
+        "The same sense()+compute_prediction_loss()-under-random-rollout pattern appears in the precedent scripts this design cited (v3_exq_032 family, v3_exq_396a) -- unverified whether they share the defect; flagged as follow-on, not confirmed here."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3",
+      "queue_id": "V3-EXQ-822a",
+      "claim_ids": ["SD-078"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "Correctly labelled as a precondition failure (unlike 826) -- but this is the SECOND consecutive time this exact readiness gate has failed identically for the SD-078/SD-082 chain (predecessor V3-EXQ-822, autopsied in failure_autopsy_816c-822_2026-07-26, also failed propagation_non_vacuity at exactly 0.0). SD-082 was built and landed specifically to fix this, is correctly engaged in this run's config, and the upstream signal it depends on (rule_state differentiation) is now genuinely present and strong -- yet the fix did not resolve the gate it targeted.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Readiness gate (d) propagation_non_vacuity FAILED again: on_prop_delta_mean = off_prop_delta_mean = exactly 0.0. The other three readiness gates all PASSED, and more strongly than in 822: zworld_common_mode_cone 0.963>0.9; on_pool_differentiated 3.0>2.0; on_rule_active_p2 0.882>0.1; on_rule_state_diff_mean 0.644 (C1 passes, non-degenerate). lateral_pfc_rule_readout_consumer=True and lateral_pfc_train_rule_bias_head=True are both correctly set in config -- SD-082's centering+soft-tanh fix is engaged, not bypassed.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- SD-078's downstream consumer behaviour (does the differentiated rule pool change an agent-level decision) still cannot be tested; the propagation link remains a structural zero.",
+        "biological_reference": "clear",
+        "prerequisites": "present -- SD-082 (rule_state -> action-bias read-out consumer) is landed and engaged; the upstream chain (SD-078 cue centering, differentiated rule pool, differentiated rule_state) all now function correctly per this run's own readiness gates.",
+        "implementation": "partial -- traced to ree_core/pfc/lateral_pfc_analog.py:227-244 (rule_bias_head = Linear(rule_dim+world_dim, hidden_dim) -> ReLU -> Linear(hidden_dim, 1)). SD-082's fix (Step 8 confirmed via source read) only touches (i) the candidate-summary input centering and (ii) the final layer's output bound (scaled-tanh replacing a hard clamp) plus a rescale of the LAST linear layer's init. The FIRST Linear+ReLU layer is untouched by SD-082 and always uses standard random init regardless of train_rule_bias_head/rule_readout_consumer. Working hypothesis (unverified, no head-internals diagnostics recorded): dead or insensitive ReLU units in the first hidden layer make the head's scalar output insensitive to the rule_state slice of its concatenated input, independent of the output-stage fix SD-082 applied.",
+        "environment": "adequate",
+        "measurement": "under-instrumented for root-causing -- the manifest records only the aggregate prop_delta/flip outcome, not any diagnostic of the trained head's internals (weight norms per phase, hidden-layer activation statistics, or the raw magnitude of rule_state vs the world-summary component it is concatenated with). This is a recording gap that blocks confirming WHY propagation stays vacuous even though the upstream chain and the SD-082-targeted saturation mechanism are both now healthy.",
+        "integration": "isolated -- rule-selection substrate works; SD-082's specific fix engaged; the coupling from rule_state through the FIRST layer of the trained head to the output is still not carrying signal.",
+        "scale": "5 seeds, adequate for the gate; all seeds presumably affected given the mean is bit-exact 0.0 (not reported per-seed in metrics, another instrumentation gap)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action mapping: a selected rule/context representation must gate a motor bias for the selection to have behavioural consequence.",
+        "dependencies": ["a trained mapping from the differentiated rule_state to an action-bias that is actually SENSITIVE to rule_state, not just technically 'trainable'"],
+        "is_formal_import": false,
+        "divergence": "none -- consistent with the 816c-822 autopsy's reading: a differentiated rule representation with an insufficiently-coupled read-out produces no behavioural propagation. This run narrows the diagnosis from 'consumer absent' (822's finding) to 'consumer present but its input-stage coupling to rule_state appears broken' (822a's finding) -- a discovered SECOND-ORDER prerequisite, not a claim falsification.",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-078": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-822a (2026-07-26, SD-082-consumer re-run of V3-EXQ-822) again self-routed substrate_not_ready_requeue on the identical propagation_non_vacuity gate, despite SD-082 (landed in response to 822's autopsy) being correctly engaged and the upstream rule_state differentiation signal now strong and non-degenerate (0.644, C1 passes). Source trace (ree_core/pfc/lateral_pfc_analog.py:227-244, 359-416) shows SD-082's fix only touched the read-out head's input centering and output bound; the first Linear+ReLU layer of rule_bias_head is untouched and randomly initialized regardless -- a plausible but UNVERIFIED dead-ReLU/insensitivity mechanism, since the manifest records no head-internals diagnostics. SD-078 remains non_contributory (its downstream consumer behaviour still cannot be tested). Route to /implement-substrate to amend the SD-082 substrate_queue entry: add head-internals instrumentation (weight norms per phase, hidden-activation stats, rule_state-vs-world-summary input magnitude ratio) and chase the dead-ReLU hypothesis as the lead, before queuing a third consumer-validation run.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "failure_record_entry": {
+          "run_id": "v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3",
+          "experiment_type": "v3_exq_822a_sd078_rule_selection_consumer",
+          "metric": "on_prop_delta_mean / off_prop_delta_mean, both exactly 0.0 despite SD-082's centering+soft-tanh fix being engaged and the upstream rule_state signal being strong (0.644) and non-degenerate",
+          "target": "on_prop_delta_mean > prop_nonvac_floor (readiness threshold, ~1e-3) with an ON vs OFF contrast"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "SD-078 has 1 prior autopsy (V3-EXQ-822, failure_autopsy_816c-822_2026-07-26) recommending epistemic_category=precondition_unmet, and this target recommends competence_implementation_gap -- neither reading is substrate_ceiling under R3, so the brake's counting condition is not met even though this is the second consecutive failure of the identical readiness gate. Flagged as a routing consideration anyway: two consecutive implementation-gap failures on the same gate argue for a substrate amend (chosen) over a third blind re-queue letter, without needing the formal brake to fire."
+      },
+      "learning_extracted": [
+        "SD-082's centering+soft-tanh fix resolved the mechanism it was built to fix (clamp saturation under the SD-008 z_world cone) but did NOT resolve propagation_non_vacuity -- there is a second, still-unidentified point of insensitivity in rule_bias_head, most plausibly the untouched first Linear+ReLU layer.",
+        "The upstream chain (SD-078 cue centering -> differentiated CandidateRuleField pool -> differentiated SD-033a rule_state) is now fully validated and healthy across two runs -- the bottleneck is entirely inside the trained read-out head, not upstream.",
+        "This is a recording gap, not a measurement gap: the manifest could have carried head-internals diagnostics (they exist at run time inside the trained nn.Module) but the script did not persist them. A third run should record these before or alongside another fix attempt."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_817a_sd080_worldeffect_grounding_falsifier_20260726T153154Z_v3",
+      "queue_id": "V3-EXQ-817a",
+      "claim_ids": ["SD-080", "SD-004"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "grounding_real_but_not_load_bearing",
+      "self_route_verdict": "Correctly labelled -- this is a clean, well-instrumented, self-consistent finding, not a mislabelled precondition flag. Redesigned successor to V3-EXQ-817 (autopsied as competence_implementation_gap in failure_autopsy_batch-793a-817-819_2026-07-26; that autopsy's own routing was queue-experiment with action=none, i.e. exactly this redesign).",
+      "failed_criterion": "absolute (the load-bearing behavioural criterion, gated behind the grounding-took precondition, was evaluated and failed -- not vacuously skipped)",
+      "failed_criterion_detail": "All four grounding-took preconditions PASSED cleanly with clean controls: worldeffect_groundable_from_zworld (MSE 0.773 <= 0.85 ceiling; ARM_2 shuffled control ~1.0); arm1_state_dependence_acquired (r2 0.725 <= 0.90 ceiling, dropped from the ARM_0/ARM_2 frozen baseline of ~0.99); paired within-seed drop 0.271 >= 0.10 floor; content-vs-traffic discrimination margin 0.275 >= 0.10 floor (ARM_2's shuffled target stays unfittable, confirming the effect is CONTENT not just gradient traffic). grounding_took=true. The behavioural load-bearing criterion (does grounded O change harm-avoidance behaviour) then FAILED: ARM_1 harm_rate=0.5144 vs ARM_0 (frozen)=0.4426 vs ARM_2 (shuffled)=0.4209 -- grounding did not reduce harm, if anything nominally worse than the frozen baseline.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "SD-080 stays candidate, reframed: the run demonstrates O CAN be made state-dependent/consequence-structured given a dedicated training objective (a capability finding), which nuances but does not resolve SD-080's core claim about the DEFAULT substrate (no existing REE path currently writes this gradient) -- 817a's grounding objective is itself the bespoke, newly-added training path, consistent with, not contradicting, SD-080's 'zero gradient from every REE path' framing about the unmodified substrate. SD-004's specific behavioural/efficiency rationale (that this compressed representation drives measurably better long-horizon planning) is directly challenged: even when grounding is technically achieved, no behavioural benefit appears.",
+        "biological_reference": "partial -- SD-004 specifies O as a learned world-effect compression with clear biological grounding (efference-copy/forward-model consequence coding); 817a's bespoke delta-to-consequence grounding objective is a reasonable induction attempt and this time succeeded representationally.",
+        "prerequisites": "present -- the training objective needed to induce state-dependent, consequence-structured geometry (SD-080's central gap) has now been built and shown to work at the representational level.",
+        "implementation": "complete for the representational half (grounding objective trains the head to the targeted geometry); the behavioural coupling from that geometry to the CEM planner's action choice is where the chain still fails to produce benefit.",
+        "environment": "adequate -- CausalGridWorldV2, terrain-CEM planner harness, same as the predecessor.",
+        "measurement": "adequate and thorough -- 5-seed per-arm breakdowns, paired controls, a dedicated content-vs-traffic discrimination check (ARM_2 shuffled), and an explicit note that a candidate consequence-spearman readout (M6) was deliberately left ungated due to high inter-seed variance rather than silently gated on a shaky floor. This is a model instance of self-aware instrumentation.",
+        "integration": "isolated -- frozen encoder, head-only grounding; whether a genuinely integrated (not head-only) grounding path would propagate to behaviour is untested.",
+        "scale": "adequate for the gate (5 seeds); low per-seed variance on the grounding metrics themselves (0.636-0.836), unlike the predecessor's M6 instability."
+      },
+      "biological_reference": {
+        "closest_mechanism": "learned action-consequence (efference-copy/forward-model) compression -- O as a consequence-structured code that should, per SD-004, support long-horizon planning.",
+        "dependencies": ["a training signal coupling action-object identity to world-effect (now built)", "a planner (CEM) that actually exploits the newly consequence-structured geometry differently from the frozen/shuffled baseline (unconfirmed -- behaviour was flat)"],
+        "is_formal_import": false,
+        "divergence": "none in the grounding mechanism itself; the divergence is in SD-004's implicit assumption that achieving consequence-structured geometry is SUFFICIENT for behavioural benefit -- the CEM planner may not be reading O in a way that is sensitive to this geometry, or 250 warmup + P1 grounding episodes may be too few for the planner-side benefit to manifest even once the representation is correct.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {"SD-004": "weakens", "SD-080": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-817a (2026-07-26, redesigned successor to V3-EXQ-817) demonstrates that a dedicated consequence-grounding objective CAN make the action-object space O state-dependent and consequence-structured (r2 0.98->0.72, clean paired and shuffled controls, content-vs-traffic discriminated) -- resolving V3-EXQ-817's competence_implementation_gap. But grounding this representation produced NO behavioural benefit (harm_rate flat/nominally worse across ARM_0/1/2), demoting SD-004's specific rationale that this compressed representation drives measurably better long-horizon planning/harm-avoidance. SD-080 stays candidate: this run is a correctness-not-capability finding about the DEFAULT (unmodified) substrate SD-080 describes -- 817a's objective is itself a bespoke addition, not evidence that an existing REE path already grounds O, so SD-080's 'zero gradient from every REE path' framing is not falsified by this run, though the claim's language may need updating to acknowledge grounding is achievable in principle.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Neither SD-004 nor SD-080 has any prior substrate_ceiling autopsy; this reading is standard/mixed, not a ceiling reading."
+      },
+      "learning_extracted": [
+        "The delta-prediction grounding objective that failed in V3-EXQ-817 (predicting z_world delta, which only moved the head without inducing state-dependence) was successfully replaced by a state-dependence-targeted objective in 817a -- confirms the 817 autopsy's diagnosis that the OBJECTIVE, not the substrate, was the blocker.",
+        "Achieving a consequence-structured, state-dependent O does not by itself produce a behavioural benefit in this harness -- the planner-side coupling from representation quality to action choice is a separate, still-open question, worth its own falsifier if SD-004's efficiency rationale is to be tested fairly.",
+        "SD-080 and SD-004 should be scored on different directions from the same run -- treating this as a blanket weakens on both would conflate a claim about the unmodified substrate (SD-080) with a claim about behavioural consequence (SD-004)."
+      ],
+      "routing": "governance-demotion"
+    },
+    {
+      "run_id": "v3_exq_827_inv091_cross_stream_similarity_band_20260726T163221Z_v3",
+      "queue_id": "V3-EXQ-827",
+      "claim_ids": ["INV-091"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "The manifest's own note is honest and correctly scoped ('Not a verdict on INV-091'), but the label undersells a specific, traceable design confound rather than a generic readiness gap.",
+      "failed_criterion": "precondition (C1 non-degeneracy / pre-registered-direction guard)",
+      "failed_criterion_detail": "Pre-registered order: similarity(decouple) < similarity(intact) < similarity(lockstep). Measured: decouple=0.2262, intact=0.2715, lockstep=0.1679. First inequality holds (decouple < intact). Second inequality is REVERSED: lockstep (0.168) is the LOWEST of all three arms, not the highest -- not a null result but a directional reversal on the lockstep leg specifically.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- per the script's own non-degeneracy guard, the manipulation did not test the pre-registered hypothesis; INV-091 itself is neither supported nor weakened.",
+        "biological_reference": "clear -- forcing synchronous cross-stream update cadence as an operationalisation of 'lockstep' coupling is a reasonable design intent (collapsed inter-stream asynchrony predicts higher similarity).",
+        "prerequisites": "present -- decoupling (scrambling) worked as expected on its own leg; only the lockstep leg misbehaved.",
+        "implementation": "traced to _force_lockstep() (script:261-265): sets e1_steps_per_tick=e2_steps_per_tick=e3_base_steps=e3_current_steps=1 -- collapsing ALL three streams to update every single environment step. Under 'intact', E3 only ticks once per 10 env-steps by default. This changes not only phase-alignment (the intended manipulation) but also the TICK SAMPLING DENSITY/RESOLUTION of every stream relative to intact, and the similarity statistic (_cross_stream_xcorr) operates in TICK units with max_lag_ticks=8 -- so a lag of '8 ticks' represents very different amounts of real elapsed time under lockstep vs intact. This is a plausible confound: the manipulation bundles synchrony together with a change in effective sampling resolution, and the two may pull the correlation statistic in opposite directions.",
+        "environment": "adequate for the decouple/intact contrast; the lockstep arm's clock-rate collapse is itself the confound under suspicion.",
+        "measurement": "the xcorr statistic and its tick-unit lag window were not designed to be invariant to a change in per-stream tick rate -- a design gap in the DV, not an instrumentation bug (the measured numbers are presumably correct given what was fed to them).",
+        "integration": "n/a",
+        "scale": "1 seed reported in this pending-review row (seed[0] per the docstring's calibration note; check full per-seed detail before finalising, not required for this autopsy's routing)."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cross-stream temporal binding / phase-coupling between distinct processing streams (e.g. thalamocortical synchrony) as a substrate for felt unity/self-world integration -- INV-091's emergent-invariant framing.",
+        "dependencies": ["a way to manipulate synchrony independent of sampling resolution -- not cleanly available via the current clock-rate lever"],
+        "is_formal_import": false,
+        "divergence": "none identified in the underlying biological framing; the gap is in the experimental operationalisation of 'lockstep', which conflates phase-alignment with tick-rate/sampling-density.",
+        "lit_status": "n/a (INV-091 is an emergent invariant derived from ARC-025/MECH-063/MECH-069/SD-010/SD-011/MECH-035, not a single literature-grounded claim)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"INV-091": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-827 (2026-07-26) failed its own pre-registered non-degeneracy guard: the lockstep arm produced the LOWEST cross-stream similarity of the three arms (0.168), reversing rather than merely nulling the predicted decouple<intact<lockstep order (decouple 0.226 < intact 0.271 held; lockstep did not exceed intact). Traced to _force_lockstep() collapsing e1/e2/e3 tick rates to 1, which changes tick sampling density/resolution alongside phase-alignment -- a likely confound given the similarity statistic (_cross_stream_xcorr) operates in tick-unit lags (max_lag_ticks=8) that represent very different real time under lockstep vs intact's default ~10-env-step E3 cadence. Per the script's own guard, this is 'not a verdict on INV-091'. Route to /queue-experiment for a same-question redesign (V3-EXQ-827a) that forces phase-synchrony without altering per-stream tick rate/sampling density (e.g. align tick BOUNDARIES across streams while preserving each stream's own native rate), and/or normalizes the cross-correlation window to real elapsed time rather than raw tick count so cross-arm comparisons are on a common temporal scale.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "INV-091 has 0 prior autopsies; this is its first test and the reading is measurement_test_design_defect, not substrate_ceiling."
+      },
+      "learning_extracted": [
+        "The decouple leg of the design (iei_permute landmark scrambling) worked exactly as intended (decouple < intact held) -- the design's problem is isolated to the lockstep leg's clock-rate manipulation, not the whole apparatus.",
+        "Forcing synchrony via a uniform tick-rate-of-1 collapse conflates phase-alignment with sampling-density/resolution; any INV-091 redesign needs a synchrony lever that is orthogonal to tick rate, or a similarity statistic normalized to real elapsed time rather than raw tick count.",
+        "A directional REVERSAL (not just a null) on one specific arm, while the other arm's leg of the same guard behaved as predicted, is itself diagnostic -- it points at that arm's specific manipulation rather than a generic power/measurement problem across the whole design."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
