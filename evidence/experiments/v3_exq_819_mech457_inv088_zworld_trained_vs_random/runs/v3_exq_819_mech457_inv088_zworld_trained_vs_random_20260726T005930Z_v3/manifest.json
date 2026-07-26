@@ -1,0 +1,249 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_819_mech457_inv088_zworld_trained_vs_random",
+  "run_id": "v3_exq_819_mech457_inv088_zworld_trained_vs_random_20260726T005930Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T00:59:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457",
+    "INV-088"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown",
+    "INV-088": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "zworld_advantage_grid_nondiscriminative",
+    "preconditions": [
+      {
+        "name": "zworld_random_proj::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "zworld_random_proj",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable. Below-floor means the substrate/env is not ready, NOT that a z_world arm failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_random_proj::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "zworld_random_proj",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_random_proj::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "zworld_random_proj",
+        "kind": "readiness",
+        "description": "The BC install took on this arm before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed. An install that did not take carries no installed prior; the run self-routes substrate_not_ready_requeue when NEITHER arm installs, or records an asymmetric-install ADVANTAGE finding when only one does. Per-arm and NON-vacating: a non-installing control never vacates the trained arm's valid result.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4,
+        "threshold": 1.0,
+        "met": false
+      },
+      {
+        "name": "zworld_random_proj::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "zworld_random_proj",
+        "kind": "measurability",
+        "description": "The DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate advantage from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "zworld_trained::local_view_greedy_clears_floor_at_d3",
+        "precondition": "local_view_greedy_clears_floor_at_d3",
+        "arm": "zworld_trained",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the 5x5 resource_field_view forages above the 1.0 competence floor at D3 -- the positive control that the env is solvable. Below-floor means the substrate/env is not ready, NOT that a z_world arm failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_trained::greedy_oracle_clears_floor_at_d3",
+        "precondition": "greedy_oracle_clears_floor_at_d3",
+        "arm": "zworld_trained",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 57.2,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "zworld_trained::post_bc_install_took",
+        "precondition": "post_bc_install_took",
+        "arm": "zworld_trained",
+        "kind": "readiness",
+        "description": "The BC install took on this arm before RL: post_bc_foraging_competence (measured pre-RL, post warm-start) clears the 1.0 floor on the WORST seed. An install that did not take carries no installed prior; the run self-routes substrate_not_ready_requeue when NEITHER arm installs, or records an asymmetric-install ADVANTAGE finding when only one does. Per-arm and NON-vacating: a non-installing control never vacates the trained arm's valid result.",
+        "control": "post-BC / pre-RL foraging_competence of this arm's worst seed vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9,
+        "threshold": 1.0,
+        "met": false
+      },
+      {
+        "name": "zworld_trained::competence_trajectory_readings",
+        "precondition": "competence_trajectory_readings",
+        "arm": "zworld_trained",
+        "kind": "measurability",
+        "description": "The DV is a TRAJECTORY, so the arm's worst cell must carry at least two probe readings -- one reading has no shape and cannot separate advantage from 'succeeded then decayed'.",
+        "control": "number of mid-training competence probe readings in this arm's worst cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "zworld_trained::zworld_world_encoder_trained",
+        "precondition": "zworld_world_encoder_trained",
+        "arm": "zworld_trained",
+        "kind": "readiness",
+        "description": "P0a warmup moved at least one split_encoder.world_encoder tensor (max|delta| > 0), i.e. z_world is a PREDICTION-TRAINED encoder rather than a frozen random projection. GATING on the TRAINED arm ONLY: a guard fire there means the treatment was not applied -> substrate_not_ready_requeue. SCOPED OUT of the random-projection CONTROL, where a frozen (untrained) encoder is the deliberate condition under test -- asserting training there would make the control's gate structurally un-passable and collapse the two-arm design.",
+        "control": "the SD-070 P0a warmup on the trained arm's own env at zworld_p0=60 -- the phase whose stated job is to train the world encoder",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.277173936,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+    "criteria": [
+      {
+        "name": "C_zworld_training_confers_competence_advantage",
+        "load_bearing": true,
+        "description": "The prediction-trained z_world arm confers a reliable competence-trajectory advantage over the random-projection control: mean paired AUC delta >= the effect margin (max of 1.0 absolute and 0.15 of the control AUC) on a strict majority of seeds, OR it installs competence where the random projection cannot.",
+        "passed": true
+      },
+      {
+        "name": "C_random_projection_provides_measured_baseline",
+        "load_bearing": false,
+        "description": "The random-projection control installs and provides a measured baseline the trained arm is read against (the control that ran for sixteen legs).",
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_zworld_training_confers_competence_advantage": false,
+      "C_random_projection_provides_measured_baseline": false,
+      "zworld_arm_trajectory_auc_spread": true,
+      "at_least_one_arm_installed": true,
+      "trained_encoder_actually_trained": true,
+      "arms_paired_on_seeds": true
+    },
+    "anchor_reachability": {
+      "anchor_name": "zworld_world_encoder_trained",
+      "guard": "assert_anchor_reachable",
+      "reference_source": "ree-v3 CLAUDE.md SD-070 ADOPTION note (substrate ree-v3 b523b9c70a, validated REE_assembly 25a69fcd4c 2026-07-22): split_encoder.world_encoder tensors move on every seed at zworld_p0_episodes=60, max_delta ~6.03e-03 (guard PASSES)",
+      "threshold": 1.0,
+      "margin_cells": 0,
+      "required_score": 1.0,
+      "reachable": true,
+      "n_reference_cells": 1,
+      "n_reference_scored_true": 1,
+      "reference_score": 1.0,
+      "per_cell_scored": [
+        true
+      ]
+    },
+    "interpretation_grid": [
+      {
+        "label": "substrate_not_ready_requeue",
+        "outcome": "FAIL",
+        "condition": "an anchor is sub-floor, OR the trained arm's encoder did not train (treatment not applied), OR NEITHER arm installed",
+        "reading": "UNINFORMATIVE about the z_world instrument. NEVER a scientific verdict and never substrate_ceiling / substrate_conditional / does_not_support. Requeue."
+      },
+      {
+        "label": "zworld_prediction_training_confers_advantage",
+        "outcome": "PASS",
+        "condition": "the trained arm beats the random projection on the paired trajectory-AUC by the effect margin on a strict majority of seeds, OR installs where the random projection cannot",
+        "reading": "Prediction-training the z_world encoder confers a competence advantage over a random projection of the same dimensionality: the representation is load-bearing for competence. The campaign's sixteen legs of z_world readings become re-interpretable against a substrate that can express them."
+      },
+      {
+        "label": "zworld_training_advantage_transient",
+        "outcome": "FAIL",
+        "condition": "the trained arm's trajectory PEAK cleared the lift-competence target on a strict majority of seeds, but its terminal retained_fraction fell below the retention floor and no reliable terminal advantage remains",
+        "reading": "The manipulation SUCCEEDED and then DECAYED -- prediction-training installs a competence that erodes under refinement. Read the trajectory and half-life, not the terminal scalar. This is the branch V3-EXQ-780's grid lacked."
+      },
+      {
+        "label": "zworld_training_harms_competence",
+        "outcome": "FAIL",
+        "condition": "the trained arm is reliably WORSE than the random projection on the paired trajectory-AUC by the effect margin, OR the random projection installs where the trained encoder cannot",
+        "reading": "Prediction-training the encoder HURT competence relative to a random projection (possible if the SD-070 recipe over-specialises or collapses the representation for the foraging task). Weakens the z_world-quality-helps-competence reading."
+      },
+      {
+        "label": "zworld_pathway_dispensable_for_competence",
+        "outcome": "FAIL",
+        "condition": "both arms install and the trained arm neither reliably beats nor is beaten by the random projection (within the null band)",
+        "reading": "THE INFORMATIVE NULL. Prediction-training confers NO competence advantage over a random projection -> the z_world pathway is DISPENSABLE for competence and INV-088's differentiation programme is reframed. Decisive in this direction, not weak evidence."
+      },
+      {
+        "label": "zworld_advantage_grid_nondiscriminative",
+        "outcome": "FAIL",
+        "condition": "no arm passed its precondition gate, or the arms do not separate, or the readouts fall in none of the enumerated branches",
+        "reading": "Not a refutation. Unscored; re-pose the measurement."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2b8ac42ee1c06fea75663f6ed5116004a5873b08a17a3a9f957d7dbae3923af5"
+}
