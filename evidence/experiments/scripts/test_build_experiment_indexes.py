@@ -800,6 +800,63 @@ def test_recorded_findings_absent_key_is_empty():
     assert b._recorded_precondition_findings({"recorded_preconditions": [None, 3]}) == []
 
 
+def _conflicted_claim_meta():
+    return {
+        "direction_counts": {"supports": 1, "weakens": 1},  # conflict_ratio == 1.0
+        "experimental_confidence": 0.0,
+        "source_counts": {"experimental": 0, "literature": 2},
+        "entries_total": 2,
+    }
+
+
+def test_hold_candidate_resolve_conflict_probe_gated_gets_acknowledge_option():
+    """substrate_conditional/substrate_ceiling claims are explicitly parked
+    pending an unbuilt upstream probe -- 'run conflict-resolution experiments'
+    and 'promote despite conflict' don't name an action anyone can take."""
+    criteria = {"thresholds": {"candidate_to_provisional": {"max_conflict_ratio": 0.35}}}
+    registry_meta = {"epistemic_category": "substrate_conditional"}
+    rec = b._recommendation_for_claim(
+        "Q-TEST-PROBE-GATED", _conflicted_claim_meta(), "candidate", "open_question",
+        criteria, registry_meta, matrix={"entries": []},
+    )
+    assert rec["recommendation"] == "hold_candidate_resolve_conflict"
+    assert any("acknowledge conflict, no status change" in o.lower() for o in rec["options"])
+    assert not any("run conflict-resolution experiments" in o.lower() for o in rec["options"])
+
+
+def test_hold_candidate_resolve_conflict_substrate_ceiling_gets_acknowledge_option():
+    criteria = {"thresholds": {"candidate_to_provisional": {"max_conflict_ratio": 0.35}}}
+    registry_meta = {"epistemic_category": "substrate_ceiling"}
+    rec = b._recommendation_for_claim(
+        "Q-TEST-CEILING", _conflicted_claim_meta(), "candidate", "open_question",
+        criteria, registry_meta, matrix={"entries": []},
+    )
+    assert rec["recommendation"] == "hold_candidate_resolve_conflict"
+    assert any("acknowledge conflict, no status change" in o.lower() for o in rec["options"])
+
+
+def test_hold_candidate_resolve_conflict_standard_category_options_unchanged():
+    """A plain (non-gated) claim in conflict keeps the original balanced options
+    -- the probe-gated variant must not leak into standard-category claims."""
+    criteria = {"thresholds": {"candidate_to_provisional": {"max_conflict_ratio": 0.35}}}
+    claim_meta = {
+        "direction_counts": {"supports": 1, "weakens": 1},
+        "experimental_confidence": 0.0,
+        "genuine_exp_direction_counts": {"supports": 0},
+        "source_counts": {"experimental": 2, "literature": 2},
+        "entries_total": 4,
+    }
+    matrix = {"entries": [
+        {"claim_id": "MECH-TEST-STANDARD", "source_type": "experimental", "run_id": "x_ree_v1_minimal"},
+    ]}
+    rec = b._recommendation_for_claim(
+        "MECH-TEST-STANDARD", claim_meta, "candidate", "mechanism_hypothesis",
+        criteria, registry_meta=None, matrix=matrix,
+    )
+    assert rec["recommendation"] == "hold_candidate_resolve_conflict"
+    assert any("run conflict-resolution experiments" in o.lower() for o in rec["options"])
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

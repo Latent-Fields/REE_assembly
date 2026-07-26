@@ -3274,6 +3274,13 @@ def _recommendation_for_claim(
     epistemic_category = _resolve_epistemic_category(_ct, _it, _explicit_cat)
     _exp_conf_gated = (epistemic_category == "standard")
     _is_answer_state = (epistemic_category == "answer_state")
+    # substrate_conditional / substrate_ceiling are the two EXPLICIT-only
+    # categories that mean "no build-relevant action is available until an
+    # upstream probe/substrate lands" (see REE_assembly/CLAUDE.md "Epistemic
+    # categories"). A conflict-resolution hold on one of these claims cannot
+    # offer "run conflict-resolution experiments" as a real option -- there is
+    # nothing to run yet.
+    _is_probe_gated_category = epistemic_category in ("substrate_conditional", "substrate_ceiling")
     # ── end epistemic-category gating ────────────────────────────────────────
 
     thresholds = criteria.get("thresholds", {})
@@ -3333,8 +3340,12 @@ def _recommendation_for_claim(
             # claim_types -- substrate validation can still produce conflicting
             # evidence -- but promote_to_provisional is suppressed.
             if conflict_ratio > float(t_candidate.get("max_conflict_ratio", 0.35)):
-                decision_needed = "Conflict resolution before promotion"
                 recommendation = "hold_candidate_resolve_conflict"
+                decision_needed = (
+                    "Literature conflict noted; claim stays gated pending upstream probe/substrate"
+                    if _is_probe_gated_category else
+                    "Conflict resolution before promotion"
+                )
 
     elif current_status == "provisional":
         if _exp_conf_gated:
@@ -3432,6 +3443,16 @@ def _recommendation_for_claim(
             "Reassess defer condition — may have been resolved already.",
         ],
     }
+
+    if recommendation == "hold_candidate_resolve_conflict" and _is_probe_gated_category:
+        # substrate_conditional / substrate_ceiling claims are deliberately parked
+        # pending an upstream probe or substrate build -- "run conflict-resolution
+        # experiments" and "promote/demote" don't name an action anyone can take.
+        option_set["hold_candidate_resolve_conflict"] = [
+            "Acknowledge conflict, no status change (claim remains gated pending the probe/substrate — no build-relevant experiment is available yet)",
+            "Escalate the upstream probe/substrate dependency if resolving this conflict has become urgent",
+            "Re-open for conflict-resolution experiments once the upstream probe/substrate lands and the gate clears",
+        ]
 
     discussion_prompts = [
         "Which uncertainty source dominates: model variance, threshold choice, or claim scope?",
