@@ -1,0 +1,161 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T17:33:45Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "follow_on_from": "failure_autopsy_batch-822a-826-817a-827_2026-07-26.md#1 (V3-EXQ-826); session optimistic-ellis-4357c6",
+  "targets": [
+    {
+      "run_id": "v3_exq_032b_mech102_ttype_escalation_20260319T054952Z_v3",
+      "queue_id": "V3-EXQ-032b",
+      "claim_ids": ["MECH-102", "ARC-024", "SD-003"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confounded",
+        "integration": "isolated",
+        "scale": "adequate_for_what_was_measured"
+      },
+      "biological_reference": {
+        "closest_mechanism": "graded, energy-scaled threat response (approach-gradient signalling preceding contact)",
+        "dependencies": ["INV-029", "INV-070", "INV-071", "INV-072"],
+        "is_formal_import": false,
+        "divergence": "none identified -- gap is implementation-wiring, not biological mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "SUPERSEDED (2026-07-26, failure-autopsy V3-EXQ-032-family): V3-EXQ-032b's standard_params optimizer (body_obs_encoder, world_obs_encoder, latent_stack, E1, most of E3) never received a gradient for the entire run -- agent.sense() was called instead of act*()/no _e1_tick() call, and record_transition() was never called, so compute_prediction_loss()/compute_e2_loss() were structurally pinned to their zero-gradient stubs (identical mechanism to the V3-EXQ-826 finding). Only world_forward and harm_eval_head trained, via separate script-local buffers, atop a perceptual embedding (z_world) frozen at random init. The measured causal_sig escalation ladder is real but reflects downstream-head discriminability on frozen random features, not the intended trained perception->attribution pipeline. Reclassified evidence_direction: non_contributory, epistemic_category: competence_implementation_gap. Superseded by a corrected re-run once queued. MECH-102's remaining supports (059c, 533) are flagged for the same-signature audit -- see companion note.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Not a substrate gap -- E1/E2/E3 modules are functional. This is a script-wiring defect; routes to /queue-experiment, not /implement-substrate."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "narrow_supports_note": "MECH-102 already documented (claims.yaml evidence_quality_note, 2026-05-02 substrate-ceiling flag) as having only narrow, fragment-capturing operationalisations pass (032b ttype, 059c advantage_fixed). Invalidating 032b drops MECH-102 from 3/~12 distinct-experiment supports to 2/~12 -- and both remaining supports (059c, 533) are flagged in this same artifact as sharing the identical code signature, pending full verification.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "epistemic_category is competence_implementation_gap, not substrate_ceiling -- R3 excludes this from the brake count by design."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The v3_exq_032 family's 'random policy + sense()-only + compute_prediction_loss/compute_e2_loss' convention was propagated across 3 sibling scripts and into v3_exq_396a without verifying the E1/E2-self buffer-population precondition -- identical mechanism to V3-EXQ-826.",
+        "world_forward and harm_eval_head train via separate script-local buffers/optimizers, independent of the agent's internal E1/E2-self loss path -- so a high world_forward_r2 does NOT imply the perceptual encoder trained; it is consistent with a random-features effect on a frozen embedding.",
+        "A causal_sig readout built from [trained downstream heads] + [untrained, frozen, deterministic perceptual encoding] is a materially different and weaker experiment than the one the claim requires (the agent's own trained pipeline), even when internally self-consistent and passing its own stated criteria."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_032_mech102_energy_escalation_20260318T201910Z_v3",
+      "queue_id": "V3-EXQ-032",
+      "claim_ids": ["MECH-102"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confounded (compounds pre-existing documented policy-avoidance confound)",
+        "integration": "isolated",
+        "scale": "not_reached"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "EXTEND existing note (does not replace): the documented harm_exposure-EMA-too-rare cause is real, but incomplete -- this script shares the identical E1/E2-self tick-omission defect as V3-EXQ-032b/032c/396a (agent.sense()-only, no act*()/record_transition()), so the perceptual encoder never trained regardless of harm_scale. FAIL verdict unchanged (already negative, no live weight at risk); causal narrative extended for future redesign guidance.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false, "route_to": "queue-experiment", "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "FAILs can be overdetermined: 032's documented policy-avoidance confound (n_high=0) and the tick-omission defect are independent, compounding causes."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_032c_mech102_dense_grid_20260319T055000Z_v3",
+      "queue_id": "V3-EXQ-032c",
+      "claim_ids": ["MECH-102"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confounded",
+        "integration": "isolated",
+        "scale": "not_reached"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "EXTEND existing note: shares the identical E1/E2-self tick-omission defect as V3-EXQ-032/032b/396a. FAIL verdict unchanged (already negative, no live weight at risk).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false, "route_to": "queue-experiment", "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_396a_arc016_precision_sweep_rv_fix (3 runs: 20260414T211017Z, 20260414T211102Z, 20260416T172544Z)",
+      "queue_id": "V3-EXQ-396a",
+      "claim_ids": ["ARC-016", "MECH-093"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unaffected (no live governance weight)",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confounded",
+        "integration": "isolated",
+        "scale": "not_reached"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "EXTEND existing note: shares the identical E1/E2-self tick-omission defect. No governance action required -- ARC-016's live_status already anchors to a later unaffected run (v3_exq_818_...); MECH-093's live_status already points elsewhere. Already non_contributory, now for a known reason.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "refused_requeue": false, "route_to": "queue-experiment", "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "one structural script-wiring defect (E1/E2-self tick-omission) propagated across 4 sibling experiment scripts via a shared, unverified authoring convention -- identical mechanism to the independently-diagnosed V3-EXQ-826",
+    "is_independent_bugs": false,
+    "structural_property": "agent.sense() + compute_prediction_loss()/compute_e2_loss() without act*()/_e1_tick()/record_transition() unconditionally pins both losses to zero-gradient stubs; world_forward/harm_eval train via separate local buffers regardless, producing self-consistent but confounded downstream metrics atop a frozen random-init perceptual encoding",
+    "readings": ["competence_implementation_gap"]
+  },
+  "scope_extension_flagged_not_investigated": {
+    "targets": ["V3-EXQ-059c (v3_exq_059c_sd010_mech102_advantage_fixed)", "V3-EXQ-533 (v3_exq_533_mech102_harm_stream_ablation)"],
+    "claim_ids": ["MECH-102"],
+    "evidence_level": "grep-level pattern match only (agent.sense() present, compute_prediction_loss/compute_e2_loss present, zero act*()/record_transition() matches) -- NOT a full deep-read to the depth performed on 032b",
+    "significance": "these are MECH-102's other 2 distinct-experiment supports entries; if confirmed, MECH-102 would have zero valid positive experimental support",
+    "disposition": "chipped as a dedicated follow-on failure-autopsy per user instruction (2026-07-26 AskUserQuestion) -- NOT investigated to completion in this session"
+  },
+  "user_adjudication": {
+    "date": "2026-07-26",
+    "method": "AskUserQuestion",
+    "decisions": {
+      "032b_characterization": "non_contributory (recommended option selected)",
+      "032_032c_396a_scope": "include all four in this autopsy (recommended option selected)",
+      "059c_533_finding": "flag as chip for dedicated follow-on autopsy (recommended option selected)",
+      "requeue_now": "chip as follow-on, do not run /queue-experiment inline (recommended option selected)"
+    }
+  }
+}
