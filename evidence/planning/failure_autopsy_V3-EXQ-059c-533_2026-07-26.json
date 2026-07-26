@@ -1,0 +1,145 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T17:40:12Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "follow_on_from": "failure_autopsy_V3-EXQ-032-family_2026-07-26.json",
+  "targets": [
+    {
+      "run_id": "v3_exq_059c_sd010_mech102_advantage_fixed_20260321T084609Z_v3",
+      "queue_id": "V3-EXQ-059c",
+      "claim_ids": ["MECH-102", "SD-010"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "confounded",
+        "integration": "isolated",
+        "scale": "adequate for what was measured"
+      },
+      "biological_reference": {
+        "closest_mechanism": "approach-gradient threat avoidance (avoidance leverage before contact, predictive-processing / threat-appraisal account)",
+        "dependencies": ["trained perceptual representation of hazard proximity", "self-supervised E1/E2-self experience learning"],
+        "is_formal_import": false,
+        "divergence": "none in design intent; the gap is entirely at the implementation-wiring layer",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-102": "competence_implementation_gap",
+        "SD-010": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "SD-010 not implicated: its supporting runs (EXQ-058b, EXQ-056c) train HarmEncoder directly from harm_obs, independent of this script's z_world-freezing defect.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-102": "non_contributory",
+        "SD-010": "supports"
+      },
+      "recommended_evidence_quality_note": "SUPERSEDED (2026-07-26, failure-autopsy V3-EXQ-059c-533): V3-EXQ-059c's standard_params optimizer (body_obs_encoder, world_obs_encoder, latent_stack, E1, most of E3) never received a gradient for the entire run -- identical mechanism to V3-EXQ-032b/826 (agent.sense() only, no act*()/_e1_tick()/record_transition()). The eval-time 'ethical' action-selecting policy (argmin harm_eval_z_harm(harm_enc(harm_bridge(E2(z_world,a))))) is computed entirely from this frozen z_world, piped through four separately/genuinely-trained supervised modules (world_forward R2=0.954, harm_bridge, harm_enc, harm_eval_z_harm_head). The measured 9.5x contact-rate reduction is real but demonstrates that supervised auxiliary heads composed on a frozen embedding can produce hazard-avoidance behaviour, not that REE's intended self-supervised E1/E2-self pathway does. Reclassified evidence_direction: non_contributory, epistemic_category: competence_implementation_gap. SD-010 is not implicated. Superseded by a corrected re-run once queued (folded into the existing 032-family /queue-experiment follow-on).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null,
+        "note": "R3 excludes competence_implementation_gap from the ceiling count; brake correctly does not fire."
+      },
+      "learning_extracted": [
+        "The 032-family script-wiring convention (agent.sense() + compute_prediction_loss()/compute_e2_loss(), no act*()/record_transition()) also propagated into V3-EXQ-059c, which was written independently but shares the identical mechanism.",
+        "Unlike 032b's passive causal_sig readout, 059c's untrained z_world is directly load-bearing on the action-SELECTING policy via four separately-trained supervised heads (world_forward, harm_bridge, harm_enc, harm_eval_z_harm_head) -- a stronger engineering demonstration but a weaker test of MECH-102's intended self-supervised mechanism.",
+        "SD-010 (dedicated harm-stream separation) is independently validated by other runs unaffected by this defect; 059c's SD-010 tag should not be read as invalidating SD-010's implemented status."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3",
+      "queue_id": "V3-EXQ-533",
+      "claim_ids": ["MECH-102"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "absent",
+        "prerequisites": "present",
+        "implementation": "absent",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "none tested -- this is an environment-level baseline-disruption check, not a policy mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-102": "measurement_test_design_defect"
+      },
+      "recommended_epistemic_category_per_claim_note": "Not competence_implementation_gap: the confirmed encoder-untrained defect (agent.sense()-only, no act*()/record_transition()) is present in this script's code but is CAUSALLY IRRELEVANT to C1/C2 -- action selection is np.random.randint(...), fully independent of the sensed latent/z_world/use_harm_stream by construction. The category reflects the test design (a permissive criterion that can barely fail given a policy blind to any agent state), not a training defect reaching the result.",
+      "recommended_evidence_direction": "does_not_support",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-102": "does_not_support"
+      },
+      "recommended_evidence_quality_note": "LABEL CORRECTION (2026-07-26, failure-autopsy V3-EXQ-059c-533): V3-EXQ-533's action selection (np.random.randint) is independent of agent.sense()'s output by construction -- the sensed latent is never consulted for behaviour, so neither the confirmed encoder-untrained defect nor use_harm_stream itself can causally affect voluntary_harm_rate/food_rate. The run's own docstring declares its expected result as does_not_support and its manifest note frames it as documenting a substrate ceiling; the entry's mechanical evidence_direction: supports tag (from the indexer's PASS-to-supports default) contradicts this. The entry already carries scoring_excluded: diagnostic_probe and so has zero weight in MECH-102's exp_conf/pass_runs -- this is a labeling-accuracy fix, not a scoring change. Recommend correcting the tag to does_not_support and updating MECH-102's live_status.evidence pointer, which currently cites this run as supports/PASS.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "already_scoring_excluded": "diagnostic_probe",
+      "scoring_weight_finding": "Verified in claim_evidence.v1.json: this entry carries scoring_excluded='diagnostic_probe' (set because experiment_purpose='diagnostic'), which causes build_experiment_indexes.py to `continue` before ever appending it to claim_to_entries[MECH-102]. It therefore contributes ZERO weight to MECH-102's pass_runs=3/exp_conf=0.411/genuine_exp_count=24 regardless of this autopsy's findings. Those figures are fully explained by 032b (counted twice via the claim's documented duplicate-emission pattern) + 059c (once) -- never a third distinct experiment. This corrects the originating task's framing, which treated 533 as one of 3 live-weighted supports entries.",
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "governance-label-correction",
+        "upstream_substrate": null,
+        "note": "R3 excludes non-substrate_ceiling categories; also this entry is already scoring_excluded so the brake's purpose (protect against re-derive burn) does not apply."
+      },
+      "learning_extracted": [
+        "Shared code signature (agent.sense()-only) is not sufficient by itself to conclude a shared defect is causally load-bearing -- 533's policy never reads the sensed latent, so the defect that invalidates 059c/032b is inert here.",
+        "The indexer's PASS-to-'supports' default direction mapping can contradict a diagnostic script's own explicitly-declared expected evidence_direction_per_claim, producing a misleading per-entry tag even when the entry is correctly scoring_excluded.",
+        "This mislabeled tag is the current live_status.evidence anchor for MECH-102 in claims.yaml (dashboard-facing), so the label-accuracy issue has visibility despite carrying zero scoring weight."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "two targets sharing a superficial code signature (agent.sense()-only, no act*()/record_transition()) but diverging on causal relevance",
+    "is_independent_bugs": false,
+    "structural_property": "059c: frozen z_world is causally load-bearing on the action-selecting policy via genuinely-trained downstream heads (same mechanism as 032b, stronger in effect). 533: frozen z_world is present but never read by the policy (np.random.randint action selection), so the shared code defect is causally inert for this script's specific criteria.",
+    "readings": ["competence_implementation_gap (059c)", "measurement_test_design_defect (533, defect-independent)"]
+  },
+  "governance_framing_correction": {
+    "original_task_premise": "MECH-102 has 3 distinct-experiment supports entries (032b, 059c, 533) that could all be invalidated by the shared defect.",
+    "corrected_finding": "533 was never a scored supports entry (scoring_excluded='diagnostic_probe' since indexing, contributes zero weight to pass_runs/exp_conf regardless). The pass_runs=3/genuine_exp_direction_counts.supports=3 figure is fully explained by 032b (2 entries via known duplicate-emission of one run) + 059c (1 entry) -- never 3 distinct experiments. Net effect is the same magnitude the task anticipated (MECH-102 would drop to zero supports among genuine_exp_count=24 if both 032b and 059c reclassifications are applied) but via 2 reclassifications, not 3, since 533 was inert from the start.",
+    "verification_method": "Direct read of claim_evidence.v1.json entries list + matrix['claims']['MECH-102'] summary + build_experiment_indexes.py scoring_excluded gate logic (lines ~2287-2331) + claims.yaml MECH-102 2026-05-02 SUBSTRATE-CEILING FLAG note (independently names only 032b and 059c as PASSed)."
+  },
+  "granularity_debt_recurrence_check": {
+    "tool_used": "REE_assembly/scripts/granularity_debt_cluster.py MECH-102",
+    "targets_found": 3,
+    "alignment_distribution": {"unclear": 3},
+    "fires": false,
+    "reason": "No target reads claim_alignment=weakened; this is implementation debt, not granularity debt. Adding 059c (also unclear) does not change the verdict."
+  },
+  "hypothesis_space_ledger_check": {
+    "step_9b_applicable": false,
+    "reason": "No fanout_recommendation emitted (single clear implementation-gap diagnosis for 059c; label-only fix for 533). Checked hypothesis_space_registry.v1.json directly: 0 of 12 questions tag MECH-102 or SD-010."
+  },
+  "routing_summary": {
+    "059c": "queue-experiment (folded into existing 032-family follow-on chip; identical fix: add agent._e1_tick()/record_transition() calls, preserve random-action training design intent)",
+    "533": "governance label-correction only (no re-queue needed; correct evidence_direction tag and MECH-102 live_status.evidence pointer)"
+  }
+}
