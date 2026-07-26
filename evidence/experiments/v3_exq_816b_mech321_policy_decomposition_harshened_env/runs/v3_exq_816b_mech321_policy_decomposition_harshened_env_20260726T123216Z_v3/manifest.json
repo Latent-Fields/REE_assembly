@@ -1,0 +1,99 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_816b_mech321_policy_decomposition_harshened_env",
+  "run_id": "v3_exq_816b_mech321_policy_decomposition_harshened_env_20260726T123216Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T12:32:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "env_still_underdrives_uncertainty",
+    "preconditions": [
+      {
+        "name": "vs_tracking_live",
+        "description": "READINESS: region-V_s tracking must be live (per_stream_vs populated), else region_vs is the degenerate constant-1.0 fallback and low_vs_steps=0 is a substrate artefact not an env finding. Worst-cell max streams tracked during measurement.",
+        "measured": 3.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "worst cell (min over cells of max streams tracked)",
+        "met": true
+      },
+      {
+        "name": "off_forward_pe_varies",
+        "description": "READINESS positive control: OFF-arm committed-trajectory forward PE must have non-zero variance (world_forward learned something on the harshened env). SAME statistic the elevation disambiguation reads. Worst ARM_0 cell variance.",
+        "measured": 2.217202540346881e-08,
+        "threshold": 1e-09,
+        "direction": "lower",
+        "control": "worst ARM_0 cell (positive control)",
+        "met": true
+      },
+      {
+        "name": "off_forward_pe_bounded",
+        "description": "READINESS: forward PE bounded (no explosion / NaN). Worst ARM_0 cell mean.",
+        "measured": 0.008594142567830455,
+        "threshold": 1000.0,
+        "direction": "upper",
+        "control": "worst ARM_0 cell",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_LOWVS_harshened_env_produces_low_vs",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C_SECONDARY_lowvs_forward_pe_reduced",
+        "load_bearing": false,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_LOWVS": true,
+      "C_SECONDARY": false
+    },
+    "null_reading_guide": {
+      "env_harshen_produced_low_vs": "H-env-underdrives-uncertainty SUPPORTED; R1 trigger now exercisable",
+      "low_vs_absent_despite_elevated_pe": "H-env REFUTED; forward-PE elevated but V_s flat -> favours H-vs-proxy-saturation (see V3-EXQ-816c)",
+      "env_still_underdrives_uncertainty": "harshening insufficient (PE not elevated); H-env not refuted, needs a harsher env",
+      "substrate_not_ready_requeue": "forward-PE positive control failed; re-queue with a corrected forward model / horizon"
+    }
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "97780328933eee30a783f68b3dd1e506b4893906b0982a6dc7f820c1fb8f8148"
+}
