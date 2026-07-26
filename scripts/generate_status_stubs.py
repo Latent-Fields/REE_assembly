@@ -157,11 +157,15 @@ INDEX_BODY = """<div class="ree-home">
     <img class="ree-hero-image" src="{{ '/architecture/brain_sagittal.jpg' | relative_url }}" alt="Sagittal brain image illustrating REE's neuroscience validation path.">
     <div class="ree-shell">
       <p class="ree-kicker">Latent Fields research programme</p>
-      <h1 id="ree-title">Reflective-Ethical Engine</h1>
+      <div class="ree-home-heading-1" id="ree-title" role="heading" aria-level="1">Reflective-Ethical Engine</div>
       <p class="ree-hero-deck">
         REE asks what architecture an agent needs in order to act ethically, and
         whether that architecture can be derived from first principles rather
         than designed by hand.
+      </p>
+      <p class="ree-research-disclosure">
+        Exploratory research materials: no REE manuscript or related work has
+        been accepted for peer-reviewed publication. <a href="{{ '/research_status.html' | relative_url }}">Read the research status</a>.
       </p>
       <p class="ree-hero-thesis">
         The core claim is that alignment belongs inside the generative machinery
@@ -187,19 +191,19 @@ INDEX_BODY = """<div class="ree-home">
     <div class="ree-shell">
       <div class="ree-section-heading">
         <p class="ree-kicker">What changes</p>
-        <h2>Ethics becomes a substrate question.</h2>
+        <div class="ree-home-heading-2" role="heading" aria-level="2">Ethics becomes a substrate question.</div>
       </div>
       <div class="ree-card-grid ree-card-grid-three">
         <article class="ree-card">
-          <h3>Not a rule layer</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Not a rule layer</div>
           <p>REE does not begin by specifying desired behaviour and training toward it. It asks which computational capacities cannot be absent if an agent is to act in a world at all.</p>
         </article>
         <article class="ree-card">
-          <h3>Not a post-hoc filter</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Not a post-hoc filter</div>
           <p>A sufficiently capable optimiser can learn to satisfy or explain a proxy while leaving its generator unchanged. REE places constraint-relevant content inside state construction, trajectory generation, commitment, and memory.</p>
         </article>
         <article class="ree-card">
-          <h3>Not only philosophy</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Not only philosophy</div>
           <p>The derivation is cross-checked against neuroscience and psychiatric breakdowns. Missing structures should fail in recognisable ways if the architecture is genuinely necessary.</p>
         </article>
       </div>
@@ -210,7 +214,7 @@ INDEX_BODY = """<div class="ree-home">
     <div class="ree-shell ree-split">
       <div>
         <p class="ree-kicker">Derived architecture</p>
-        <h2>What the derivation found</h2>
+        <div class="ree-home-heading-2" role="heading" aria-level="2">What the derivation found</div>
         <p class="ree-lead">
           Starting from foundational axioms, REE derives a compact set of
           structures that ethical agency cannot do without. Remove one, and a
@@ -231,22 +235,22 @@ INDEX_BODY = """<div class="ree-home">
     <div class="ree-shell">
       <div class="ree-section-heading">
         <p class="ree-kicker">Why it matters</p>
-        <h2>The same absences predict AI alignment failures and biological regime breakdowns.</h2>
+        <div class="ree-home-heading-2" role="heading" aria-level="2">The same absences predict AI alignment failures and biological regime breakdowns.</div>
       </div>
       <div class="ree-evidence-row">
         <div class="ree-evidence-item">
           <span>01</span>
-          <h3>Neuroscience convergence</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Neuroscience convergence</div>
           <p>The offline consolidation phase maps onto two-stage sleep; commitment gating maps onto basal-ganglia circuitry; harm accumulation maps onto cingulate and serotonergic modulation.</p>
         </div>
         <div class="ree-evidence-item">
           <span>02</span>
-          <h3>Psychiatric validation path</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Psychiatric validation path</div>
           <p>If capacities are necessary, their failure should produce structured breakdowns: depression, dementia, OCD, mania, psychosis, and related disturbances become tests of the substrate.</p>
         </div>
         <div class="ree-evidence-item">
           <span>03</span>
-          <h3>Evidence discipline</h3>
+          <div class="ree-home-heading-3" role="heading" aria-level="3">Evidence discipline</div>
           <p>REE claims are typed, registered, confidence-scored, and governed through an experiment-evidence pipeline rather than maintained as loose prose.</p>
         </div>
       </div>
@@ -257,7 +261,7 @@ INDEX_BODY = """<div class="ree-home">
     <div class="ree-shell">
       <div class="ree-section-heading">
         <p class="ree-kicker">Reader routes</p>
-        <h2>Start at the right depth.</h2>
+        <div class="ree-home-heading-2" role="heading" aria-level="2">Start at the right depth.</div>
       </div>
       <div class="ree-route-grid">
         <a class="ree-route-card" href="{{ '/architecture/ethical_agency_derivation.html' | relative_url }}">
@@ -290,6 +294,11 @@ INDEX_BODY = """<div class="ree-home">
           <strong>Glossary</strong>
           <p>Canonical terms before the component documents become too dense.</p>
         </a>
+        <a class="ree-route-card" href="{{ '/related_work.html' | relative_url }}">
+          <span>Programme map</span>
+          <strong>Related Latent-Fields Work</strong>
+          <p>Manuscript drafts, prototypes, research versions, and adjacent projects with explicit status labels.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -298,7 +307,7 @@ INDEX_BODY = """<div class="ree-home">
     <div class="ree-shell ree-status-panel">
       <div>
         <p class="ree-kicker">Live programme state</p>
-        <h2>The current front is generated, not hand-maintained.</h2>
+        <div class="ree-home-heading-2" role="heading" aria-level="2">The current front is generated, not hand-maintained.</div>
         <p class="ree-lead">
           For the single live front of progress, with no history mixed in, read
           the generated Current Front. Narrative history remains in the

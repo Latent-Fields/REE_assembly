@@ -5,6 +5,12 @@ nav_order: 2
 
 # Deriving Ethical Agency from Necessary Comparators
 
+<div class="ree-doc-intro">
+  <p class="ree-eyebrow">Architecture route</p>
+  <p class="ree-doc-lead">This is the primary derivation route into REE: it asks which representational distinctions and comparators cannot be absent if an agent is to attribute harm, model consequences, and act with ethical agency.</p>
+  <p class="ree-doc-meta">Architecture note. Exploratory research material; no REE work has been accepted for peer-reviewed publication.</p>
+</div>
+
 **Status:** architecture note  
 **Depends on:** five_axioms_foundations.md, overview.md, sd_011_dual_nociceptive_streams.md,
 sd_005 (z_self/z_world), ARC-043, INV-042  

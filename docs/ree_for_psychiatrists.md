@@ -1,6 +1,6 @@
 ---
 title: REE for Psychiatrists
-nav_order: 10
+nav_order: 12
 ---
 
 # REE for Psychiatrists

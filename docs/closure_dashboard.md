@@ -1,6 +1,6 @@
 ---
 title: Closure Dashboard
-nav_order: 12
+nav_order: 14
 ---
 
 # REE-v3 Closure Dashboard

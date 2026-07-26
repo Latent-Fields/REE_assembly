@@ -9,9 +9,9 @@ Run from repo root:
 Structure produced:
   TOP LEVEL (ordered):
     Home / Why This Architecture? / Architecture (section) / Foundations /
-    Invariants / Roadmap / Glossary / Failure Modes / Vignettes /
-    REE for Psychiatrists / Closure Dashboard / Governance (section) /
-    Contribute Compute
+    Invariants / Roadmap / Research Status / Related Work / Glossary /
+    Failure Modes / Vignettes / REE for Psychiatrists / Closure Dashboard /
+    Governance (section) / Contribute Compute
   ARCHITECTURE -> 16 themed collapsible sub-sections (3-level nav):
     Architecture (overview.md, has_children)
       -> <Theme> section stub (architecture/sections/<key>.md, has_children)
@@ -43,21 +43,23 @@ TOP_LEVEL = {
     "architecture/five_axioms_foundations.md":   {"title": "Foundations",           "nav_order": 4},
     "invariants.md":                             {"title": "Invariants",            "nav_order": 5},
     "roadmap.md":                                {"title": "Roadmap",               "nav_order": 6},
-    "glossary.md":                               {"title": "Glossary",              "nav_order": 7},
-    "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 8},
-    "vignettes.md":                              {"title": "Vignettes",             "nav_order": 9},
-    "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 10},
-    "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 11},
-    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 12},
-    "visualizations.md":                          {"title": "Visualizations",        "nav_order": 13},
-    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 15},
+    "research_status.md":                        {"title": "Research Status",       "nav_order": 7},
+    "related_work.md":                           {"title": "Related Work",          "nav_order": 8},
+    "glossary.md":                               {"title": "Glossary",              "nav_order": 9},
+    "REE_failure_modes.md":                      {"title": "Failure Modes",         "nav_order": 10},
+    "vignettes.md":                              {"title": "Vignettes",             "nav_order": 11},
+    "ree_for_psychiatrists.md":                  {"title": "REE for Psychiatrists", "nav_order": 12},
+    "ree_for_my_parents.md":                     {"title": "REE for My Parents",    "nav_order": 13},
+    "closure_dashboard.md":                      {"title": "Closure Dashboard",     "nav_order": 14},
+    "visualizations.md":                         {"title": "Visualizations",        "nav_order": 15},
+    "contribute.html":                           {"title": "Contribute Compute",    "nav_order": 17},
 }
 
 # ---------------------------------------------------------------------------
 # 2. Governance section (top-level parent + children)
 # ---------------------------------------------------------------------------
 
-GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 14, "has_children": True}
+GOVERNANCE_PARENT = {"title": "Governance", "nav_order": 16, "has_children": True}
 GOVERNANCE_CHILDREN = {
     "governance_verification_gate.md":            {"title": "Governance Verification Gate",     "parent": "Governance", "nav_order": 1},
     "architecture/evaluation_channel_integrity.md": {"title": "Evaluation-Channel Integrity",   "parent": "Governance", "nav_order": 2},

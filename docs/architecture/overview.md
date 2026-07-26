@@ -6,6 +6,17 @@ has_children: true
 
 # Overview
 
+<div class="ree-doc-intro">
+  <p class="ree-eyebrow">Architecture route</p>
+  <p class="ree-doc-lead">REE is organised around persistent self/world modelling, fast counterfactual prediction, and commitment under uncertainty. This overview gives the shortest technical map before the component and mechanism documents.</p>
+  <p class="ree-doc-meta">Legacy overview retained as a route into the current architecture. Exploratory research material; no REE work has been accepted for peer-reviewed publication.</p>
+</div>
+
+<figure class="ree-architecture-figure">
+  <img src="{{ '/architecture/architecture_static.svg' | relative_url }}" alt="Static REE architecture diagram showing the relationships between major cognitive components.">
+  <figcaption>Architecture map. Component names and boundaries are working research constructs, not validated biological one-to-one mappings.</figcaption>
+</figure>
+
 **Claim Type:** implementation_note  
 **Scope:** Architecture folder overview (legacy)  
 **Depends On:** None  
