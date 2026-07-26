@@ -1,0 +1,93 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_824_q081_shared_organisation_landmark_removal",
+  "run_id": "v3_exq_824_q081_shared_organisation_landmark_removal_20260726T165630Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-26T16:56:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "wired_gates_only_landmark_invariant",
+    "summary": "Outcome B: RV(z_world, operating_mode) delta (ON-minus-REMOVED) mean=0.0000 did not clear the effective floor 0.0300 across 5 valid seeds. Whatever cross-stream coupling exists survives landmark removal -- it was measuring the clock, not landmark-dependent organisation. Informative, not a null result: FAIL is the correct outcome for a weakening finding, per the project's non-standard-directions convention.",
+    "preconditions": [
+      {
+        "name": "landmark_arm_behavioural_reach",
+        "description": "assert_behavioural_reach: the boundary stream has at least one live consumer (MECH-287/MECH-269/staleness), so the landmark-removal arm is not vacuously inert.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "q081 profile sets use_invalidation_trigger=True",
+        "met": true
+      },
+      {
+        "name": "landmark_arm_preserved_by_construction_fraction",
+        "description": "Fraction of seeds where the landmark-removal arm's Level-1 preservation (count/IEI-multiset/posterior-multiset/scale-mix) held exactly, per q081_landmark_removal.preservation_report.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "iei_permute is a rearrangement of the ON arm's own multiset",
+        "met": true
+      },
+      {
+        "name": "landmark_arm_input_statistics_preserved_fraction",
+        "description": "Fraction of seeds where Level-2 input_statistics_divergence found no breach (the closed-loop confound check) -- a seed that breaches is CONFOUNDED, not a null, and is excluded.",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "pre-registered DEFAULT_INPUT_STAT_THRESHOLDS in q081_landmark_removal",
+        "met": true
+      },
+      {
+        "name": "sufficient_valid_seeds_for_delta_sd",
+        "description": "At least 2 seeds must clear every precondition above (admissible primary statistic, artefact ruled out, preserved, unconfounded) to compute an SD of the ON-minus-REMOVED delta.",
+        "measured": 5.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_ablation_delta_clears_effect_size_floor": true
+    },
+    "outcome_taxonomy_note": "This design adjudicates ONLY Outcome A vs Outcome B. Outcome C (unrelated) is partially visible in per-seed rv_p_value_vs_surrogate on the ON arm (a statistic that never clears its own null even intact leans C rather than A/B). Outcomes D (too-much-sharing-collapses) and E (event-relative beats clock-relative, incl. sleep-phase structure) need different comparator arms and are deferred to a lettered follow-up."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "04bdcb1ca4644163143cd74dfcd3927dfd81ea2ba5dd35018ea4fc81adcd0a91"
+}
