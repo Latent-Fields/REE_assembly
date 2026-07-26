@@ -4955,7 +4955,7 @@
     evidence:
       from: v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3
       as_of: 2026-05-06
-      verdict: supports/PASS
+      verdict: non_contributory/measurement_test_design_defect
   epistemic_category: substrate_conditional
   pending_retest_after_substrate: true
   governance_note_2026_06_18: >
@@ -5078,6 +5078,33 @@
     weakens balance is not affected since duplicates always carry the same evidence
     direction, but the inflation in counts means the effective evidence base is closer
     to ~12 distinct experiments. Flagged for a follow-up dup-sweep pass.
+
+    LABEL CORRECTION (2026-07-26, failure-autopsy V3-EXQ-059c-533): V3-EXQ-533's action
+    selection (np.random.randint) is independent of agent.sense()'s output by
+    construction -- the sensed latent is never consulted for behaviour, so neither the
+    confirmed encoder-untrained defect (agent.sense()-only, no act*()/record_transition())
+    nor use_harm_stream itself can causally affect voluntary_harm_rate/food_rate. The
+    run's own docstring declares its expected result as does_not_support and its
+    manifest note frames it as documenting a substrate ceiling; the entry's mechanical
+    evidence_direction: "supports" tag (from the indexer's PASS-to-supports default)
+    contradicted this. The entry already carried scoring_excluded: "diagnostic_probe"
+    and so has zero weight in MECH-102's exp_conf/pass_runs -- this was a
+    labeling-accuracy fix, not a scoring change. claim_evidence.v1.json's per-entry
+    evidence_direction corrected to non_contributory (confidence 0.0, rationale
+    "non_contributory -- excluded from scoring", matching the schema's established
+    non_contributory/diagnostic_probe convention; "does_not_support" is not a value the
+    indexer's schema uses). live_status.evidence.verdict above corrected from
+    "supports/PASS" to "non_contributory/measurement_test_design_defect" to stop citing
+    this run as supporting behavioural evidence for MECH-102. Note: V3-EXQ-032b and
+    V3-EXQ-059c (this claim's other two nominal supports entries) are SEPARATELY
+    recommended for non_contributory reclassification by the 032-family autopsy and by
+    this same 059c-533 autopsy's Section 1, respectively -- both still read supports/PASS
+    in claim_evidence.v1.json as of this edit (unapplied, tracked as separate governance
+    apply-step work, not performed by this edit). This 533 label-correction is
+    independent of that pending decision either way; if/when 032b and 059c are also
+    applied, the live_status.evidence anchor above should be revisited since it would
+    leave MECH-102 with zero remaining supports entries among its scored experimental
+    evidence.
   heterogeneity_note: "Genuine scientific contradiction: the conflict reflects irreducible philosophical disagreement about when violence is justified as last resort and an operationalisation ceiling (current substrate has 2-3 coping channels rather than the multi-channel hierarchy the claim requires); the structural claim is separable from the normative question and held at substrate_ceiling pending V4 multi-agent substrate."
 
 # Three-gate BG gating architecture — registered 2026-02-27
