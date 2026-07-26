@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "gracious-austin-6eb2ae",
-  "last_updated_utc": "2026-07-25T18:32:47Z",
+  "last_seen_session": "gracious-villani-1d1ac4",
+  "last_updated_utc": "2026-07-26T13:27:50Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6159,6 +6159,34 @@
       "implemented_utc": "2026-07-22T00:00:00Z",
       "implementation_note_update": "IMPLEMENTED 2026-07-22 (ree-v3 452f99e367, session hopeful-panini-cf272d): waking_confidence_rv_floor_relative_frac (default 0.0, bit-identical) + waking_confidence_rv_floor_mode (hard/soft) + waking_confidence_rv_floor_softness added to E3Config. Smoke at the measured 794 scale (true error 0.0037) 14/14 PASS: old config reproduces the defect exactly (LO==HI==0.01); repaired config gives rv_final 0.0025377 (LO) vs 0.0021031 (HI), dose-ordered and both genuinely overconfident. Pinned by 17 contracts in ree-v3/tests/contracts/test_sd076_rv_floor_headroom.py. Behavioural validation (V3-EXQ-794a, same-question re-run of the identical 2x2) not yet queued.",
       "validation_experiment": "V3-EXQ-794a (not yet queued)"
+    },
+    {
+      "sd_id": "SD-082",
+      "title": "Trained bias-head consumer coupling differentiated rule_state to an action bias (SD-078 propagation consumer)",
+      "status": "implemented_pending_validation",
+      "implementation_status": "implemented",
+      "added_session": "gracious-villani-1d1ac4",
+      "implemented_session": "gracious-villani-1d1ac4",
+      "implemented_utc": "2026-07-26T13:27:50Z",
+      "last_seen_session": "gracious-villani-1d1ac4",
+      "priority": 2,
+      "ready": false,
+      "design_doc": "docs/architecture/sd_082_rule_selection_action_consumer.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-078"
+      ],
+      "validation_experiment": "V3-EXQ-822a",
+      "implementation_hint": "V3-EXQ-822 showed the SD-078 rule pool differentiates (on_rule_state_diff 0.644) and activates (max_live 16) but propagation to the action bias was exactly 0.0 on both arms -- the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state erased) AND the clamp's flat region zeros the REINFORCE gradient (head untrainable). Reproduced and fixed.",
+      "implementation_note_update": "IMPLEMENTED 2026-07-26 (ree-v3 d4f758082d). lateral_pfc_rule_readout_consumer (no-op default) makes compute_bias (i) center its candidate-summary input across candidates (subtract the common mode, as SD-078 does upstream) and (ii) use bias_scale*tanh(raw/bias_scale) instead of a hard clamp so the head stays gradient-trainable. OFF bit-identical; ON prop 0.0->~0.005 (>1e-3 floor); grad-norm 0.0->~6.1. Contract test_sd082_rule_readout_consumer.py (6 pass); full gate 2300 passed. Validation = V3-EXQ-822a (consumer flag ON both arms; crf_cue_centering the swept variable). ready flips true on 822a PASS.",
+      "failure_record": [
+        {
+          "run_id": "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+          "experiment_type": "v3_exq_822_sd078_rule_selection_consumer",
+          "metric": "propagation delta (rule_state -> action bias): on_prop_delta_mean = off_prop_delta_mean = 0.0 (structural zero on both arms) while on_rule_state_diff_mean = 0.644",
+          "target": "on_prop_delta_mean >= 0.001 (readiness_prop_nonvac) with an ON>OFF propagation contrast"
+        }
+      ]
     }
   ],
   "schema_version": "substrate_queue/v2"

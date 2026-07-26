@@ -60920,3 +60920,44 @@
     evidence/literature/targeted_review_connectome_mech_163/2026-04-05_mech163_uncertainty_competition_daw2005
     -- Bayesian arbitration weighting the two controllers by relative uncertainty,
     presented as a DISTINCT COMPUTATIONAL ELEMENT.
+
+- id: SD-082
+  title: "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default."
+  claim_type: design_decision
+  subject: pfc.lateral_pfc.common_mode_invariant_trained_rule_to_action_readout
+  polarity: asserts
+  status: candidate_substrate_landed
+  live_status:
+    reading: candidate_substrate_landed
+    as_of: 2026-07-26
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-26"
+  depends_on: [SD-008, SD-066, SD-077, SD-033a, ARC-063, SD-078]
+  evidence: []
+  location: docs/architecture/sd_082_rule_selection_action_consumer.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-26 (ree-v3 d4f758082d; ree_core/pfc/lateral_pfc_analog.py
+    LateralPFCAnalog.compute_bias + __init__). Config LateralPFCConfig.rule_readout_consumer
+    (default False = bit-identical OFF: hard clamp on the raw summary input) and
+    readout_init_scale (default 0.25); REEConfig knobs lateral_pfc_rule_readout_consumer /
+    lateral_pfc_readout_init_scale plumbed through all three from_dims sites and read in
+    agent.py's LateralPFCConfig build. When on: (i) compute_bias subtracts the per-tick mean
+    summary across candidates (>=2) so the SD-008 common-mode cone no longer saturates every
+    candidate to the same rail; (ii) the output bound becomes bias_scale*tanh(raw/bias_scale)
+    instead of a hard clamp, same magnitude bound but gradient-preserving so the head trains
+    under REINFORCE. Verified: OFF bit-identical (torch.allclose); ON prop_delta 0.0->~0.005
+    (>1e-3 floor) in the common-mode cone; head grad-norm 0.0->~6.1. Contract
+    ree-v3 tests/contracts/test_sd082_rule_readout_consumer.py (6 pass); full pre-commit
+    contract gate 2300 passed. Completes the SD-033a signature-(iv) trained-head variant
+    (DESIGN ALTERNATIVE A2) that the landing deferred.
+  evidence_quality_note: |
+    Landed 2026-07-26 from /implement-substrate, routed by failure_autopsy_816c-822_2026-07-26
+    (REE_assembly afb2df901e) off the V3-EXQ-822 self-route substrate_not_ready_requeue. NOT
+    YET VALIDATED by experiment: the substrate makes the SD-078 rule_state -> action-bias
+    propagation MEASURABLE and non-vacuous, but the downstream-consumer behaviour is exercised
+    by V3-EXQ-822a (re-run of 822 with lateral_pfc_rule_readout_consumer=True on both arms;
+    crf_cue_centering stays the swept variable). Acceptance for 822a: on_prop_delta_mean >=
+    0.001 with an ON>OFF contrast. SD-082 unblocks the SD-078 downstream-consumer test that
+    holds SD-078 at candidate_substrate_landed; it does not itself promote SD-078.
