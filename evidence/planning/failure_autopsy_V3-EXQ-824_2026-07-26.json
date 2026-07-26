@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-26T18:16:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "targets": [
+    {
+      "run_id": "v3_exq_824_q081_shared_organisation_landmark_removal_20260726T165630Z_v3",
+      "queue_id": "V3-EXQ-824",
+      "claim_ids": ["Q-081"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cross-timescale connectome coordination (structure-destroying/scrambled-control paradigm, Chang/Nastase/Hasson 2022; surrogate-null construction, Lancaster et al. 2018)",
+        "dependencies": ["SD-006", "ARC-023", "ARC-025", "MECH-288", "MECH-321", "MECH-091", "MECH-269", "MECH-287"],
+        "is_formal_import": false,
+        "divergence": "none -- design is well-grounded; defect is REE-internal (precondition-check permissiveness), not a biology/architecture mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-824 (2026-07-26) self-routed wired_gates_only_landmark_invariant (Outcome B) but is non_contributory, not weakens: the ON/REMOVED arms' RV(z_world, operating_mode) statistics were bit-identical at all 5 seeds because the run's only enabled consumer flag (use_invalidation_trigger) has no causal reach to z_world/operating_mode in this codebase (confirmed by source trace, failure_autopsy_V3-EXQ-824_2026-07-26) -- the landmark manipulation never reached the measured pair. Sibling script V3-EXQ-827 already carries the fix (use_anchor_sets=True). Superseded by V3-EXQ-824a pending a corrected re-run with real behavioural reach.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Existing dependency strengthened, not weakened: nothing here bears on Q-081 Outcome A vs B -- the finding is entirely about test-design validity.",
+        "Measurement gap in the shared library precondition check assert_behavioural_reach() (experiments/_lib/q081_landmark_removal.py:857-897): 'at least one live consumer flag' does not imply reach to the specific measured pair. For (z_world, operating_mode), only use_anchor_sets and/or use_per_region_vs provide real reach (confirmed by source trace of every consumer of hippocampal._broadcast_event_queue in ree_core/agent.py); use_invalidation_trigger alone does not.",
+        "Propagation-prevention finding: the fix already exists and is documented verbatim in sibling script v3_exq_827_inv091_cross_stream_similarity_band.py:216-231 (cfg.hippocampal.use_anchor_sets = True), but did not propagate to v3_exq_824 because the two scripts were authored concurrently and collided on a queue ID before being separated (WORKSPACE_STATE.md 2026-07-26T15:27Z). The library precondition check should be tightened rather than relying on each script author to independently rediscover 827's docstring."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
