@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_670_inv048_pharmacological_sleep_disruption_equivalence
 
-Generated: `2026-07-26T00:09:19.739764Z`
+Generated: `2026-07-26T15:38:57.944226Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

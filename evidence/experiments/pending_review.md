@@ -1,16 +1,22 @@
 # Pending Experiment Review
 
-Generated: `2026-07-26T00:09:24Z`  
-Last review: `2026-07-26T00:07:00Z`  
-Pending: **3** item(s) -- 0 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-07-26T15:39:06Z`  
+Last review: `2026-07-26T15:34:37Z`  
+Pending: **4** item(s) -- 1 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3` | 2026-07-25T20:34 | ARC-070, MECH-321 | — |
-| `v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3` | 2026-07-25T20:48 | SD-004, SD-080 | — |
-| `v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3` | 2026-07-25T21:47 | ARC-070, MECH-321 | — |
+| `v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3` | 2026-07-26T14:55 | SD-078 | — |
+| `v3_exq_826_mech244_precision_weighting_self_sealing_20260726T152827Z_v3` | 2026-07-26T15:28 | MECH-244 | — |
+| `v3_exq_817a_sd080_worldeffect_grounding_falsifier_20260726T153154Z_v3` | 2026-07-26T15:31 | SD-004, SD-080 | — |
+
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` | 2026-07-26T15:21 | MECH-245 |
 
 ---
 

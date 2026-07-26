@@ -7145,13 +7145,13 @@
       ],
       "depends_on_count": 1,
       "evidence_bearing": true,
-      "evidence_quadrant": "plausible_unproven",
+      "evidence_quadrant": "confirmed_established",
       "experiment_planned": false,
       "first_seen_commit": "880a5bd6f514",
       "first_seen_date": "2026-03-20",
       "first_seen_subject": "Register SD-001\u2013SD-010 as design_decision claims; add governance.sh wrapper",
       "first_seen_week": "2026-03-16",
-      "genuine_exp_count": 7,
+      "genuine_exp_count": 8,
       "id": "SD-004",
       "incoming_dependency_count": 18,
       "lifecycle": "governance_evidence_bearing",
@@ -7273,7 +7273,7 @@
       "first_seen_week": "2026-03-16",
       "genuine_exp_count": 4,
       "id": "SD-008",
-      "incoming_dependency_count": 6,
+      "incoming_dependency_count": 7,
       "lifecycle": "governance_evidence_bearing",
       "phase": "substrate_unspecified",
       "status": "stable",
@@ -16411,12 +16411,12 @@
       "depends_on_count": 3,
       "evidence_bearing": true,
       "evidence_quadrant": "plausible_unproven",
-      "experiment_planned": true,
+      "experiment_planned": false,
       "first_seen_commit": "ba1c5f1cb94a",
       "first_seen_date": "2026-04-16",
       "first_seen_subject": "lit-pull ARC-032: 4 new entries (Jones2005, Sigurdsson2010, Dragoi2006, Pfeiffer2013)",
       "first_seen_week": "2026-04-13",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 3,
       "id": "MECH-245",
       "incoming_dependency_count": 2,
       "lifecycle": "governance_evidence_bearing",
@@ -17706,7 +17706,7 @@
       "first_seen_week": "2026-04-13",
       "genuine_exp_count": 3,
       "id": "SD-033a",
-      "incoming_dependency_count": 15,
+      "incoming_dependency_count": 16,
       "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
       "status": "candidate",
@@ -20232,7 +20232,7 @@
       "depends_on_count": 3,
       "evidence_bearing": true,
       "evidence_quadrant": "plausible_unproven",
-      "experiment_planned": true,
+      "experiment_planned": false,
       "first_seen_commit": "d3d716b984be",
       "first_seen_date": "2026-05-03",
       "first_seen_subject": "sd048: register implementation + queue V3-EXQ-511 partial-PASS manifest",
@@ -20469,7 +20469,7 @@
       "first_seen_week": "2026-05-04",
       "genuine_exp_count": 0,
       "id": "ARC-063",
-      "incoming_dependency_count": 20,
+      "incoming_dependency_count": 21,
       "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
       "status": "candidate",
@@ -21482,7 +21482,7 @@
       "type": "mechanism_hypothesis"
     },
     {
-      "attention_rank": 3,
+      "attention_rank": 4,
       "class": "active_v3_closure",
       "component_id": "C479",
       "dependency_components": [
@@ -21499,8 +21499,8 @@
         "MECH-094"
       ],
       "depends_on_count": 4,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "plausible_unproven",
       "experiment_planned": true,
       "first_seen_commit": "4a7e7818c16b",
       "first_seen_date": "2026-05-10",
@@ -21509,7 +21509,7 @@
       "genuine_exp_count": 0,
       "id": "MECH-321",
       "incoming_dependency_count": 2,
-      "lifecycle": "substrate_implementation_active",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
       "status": "candidate",
       "substrate_active": true,
@@ -21664,7 +21664,7 @@
       "type": "mechanism_hypothesis"
     },
     {
-      "attention_rank": 3,
+      "attention_rank": 4,
       "class": "active_v3_closure",
       "component_id": "C481",
       "dependency_components": [
@@ -21684,8 +21684,8 @@
         "MECH-269"
       ],
       "depends_on_count": 6,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "plausible_unproven",
       "experiment_planned": true,
       "first_seen_commit": "48d2fdb07357",
       "first_seen_date": "2026-05-11",
@@ -21694,7 +21694,7 @@
       "genuine_exp_count": 0,
       "id": "MECH-323",
       "incoming_dependency_count": 1,
-      "lifecycle": "substrate_implementation_active",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
       "status": "candidate",
       "substrate_active": true,
@@ -29152,7 +29152,7 @@
       "class": "other",
       "component_id": "C121",
       "dependency_components": [
-        "C777"
+        "C778"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29252,9 +29252,9 @@
         "C124",
         "C125",
         "C130",
-        "C773",
-        "C777",
-        "C778"
+        "C774",
+        "C778",
+        "C779"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29293,7 +29293,7 @@
       "component_id": "C130",
       "dependency_components": [
         "C121",
-        "C777"
+        "C778"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29505,7 +29505,7 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C773",
+      "component_id": "C774",
       "dependency_components": [],
       "dependency_referenced": true,
       "depends_on": [],
@@ -29535,7 +29535,7 @@
       "component_id": "C029",
       "dependency_components": [
         "C029",
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29565,10 +29565,10 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C774",
+      "component_id": "C775",
       "dependency_components": [
-        "C783",
-        "C784"
+        "C784",
+        "C785"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29598,9 +29598,9 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C775",
+      "component_id": "C776",
       "dependency_components": [
-        "C774"
+        "C775"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29629,10 +29629,10 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C776",
+      "component_id": "C777",
       "dependency_components": [
-        "C775",
-        "C785"
+        "C776",
+        "C786"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29665,7 +29665,7 @@
       "component_id": "C030",
       "dependency_components": [
         "C030",
-        "C774"
+        "C775"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29695,10 +29695,10 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C777",
+      "component_id": "C778",
       "dependency_components": [
         "C030",
-        "C782"
+        "C783"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29731,7 +29731,7 @@
       "component_id": "C029",
       "dependency_components": [
         "C029",
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29761,10 +29761,10 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C778",
+      "component_id": "C779",
       "dependency_components": [
-        "C776",
-        "C785"
+        "C777",
+        "C786"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29794,9 +29794,9 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C779",
+      "component_id": "C780",
       "dependency_components": [
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29828,7 +29828,7 @@
       "component_id": "C030",
       "dependency_components": [
         "C030",
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29858,10 +29858,10 @@
     {
       "attention_rank": 0,
       "class": "other",
-      "component_id": "C780",
+      "component_id": "C781",
       "dependency_components": [
-        "C774",
-        "C779"
+        "C775",
+        "C780"
       ],
       "dependency_referenced": false,
       "depends_on": [
@@ -29891,10 +29891,10 @@
     {
       "attention_rank": 0,
       "class": "other",
-      "component_id": "C781",
+      "component_id": "C782",
       "dependency_components": [
         "C029",
-        "C773"
+        "C774"
       ],
       "dependency_referenced": false,
       "depends_on": [
@@ -29924,9 +29924,9 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C782",
+      "component_id": "C783",
       "dependency_components": [
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29955,9 +29955,9 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C783",
+      "component_id": "C784",
       "dependency_components": [
-        "C773"
+        "C774"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -29986,10 +29986,10 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C784",
+      "component_id": "C785",
       "dependency_components": [
-        "C779",
-        "C783"
+        "C780",
+        "C784"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -30019,9 +30019,9 @@
     {
       "attention_rank": 1,
       "class": "other",
-      "component_id": "C785",
+      "component_id": "C786",
       "dependency_components": [
-        "C783"
+        "C784"
       ],
       "dependency_referenced": true,
       "depends_on": [
@@ -31200,7 +31200,7 @@
       "first_seen_week": "2026-07-13",
       "genuine_exp_count": 0,
       "id": "SD-066",
-      "incoming_dependency_count": 3,
+      "incoming_dependency_count": 4,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
       "status": "candidate",
@@ -31905,7 +31905,7 @@
       "first_seen_week": "2026-07-20",
       "genuine_exp_count": 0,
       "id": "SD-077",
-      "incoming_dependency_count": 2,
+      "incoming_dependency_count": 3,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
       "status": "candidate",
@@ -33022,7 +33022,7 @@
         "C757",
         "C768"
       ],
-      "dependency_referenced": false,
+      "dependency_referenced": true,
       "depends_on": [
         "SD-008",
         "SD-066",
@@ -33039,18 +33039,18 @@
       "first_seen_week": "2026-07-20",
       "genuine_exp_count": 0,
       "id": "SD-078",
-      "incoming_dependency_count": 0,
+      "incoming_dependency_count": 1,
       "lifecycle": "substrate_implementation_active",
       "phase": "v3",
       "status": "candidate_substrate_landed",
       "substrate_active": true,
       "substrate_target": false,
-      "substrate_unblocked": false,
+      "substrate_unblocked": true,
       "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default.",
       "type": "design_decision"
     },
     {
-      "attention_rank": 3,
+      "attention_rank": 4,
       "class": "active_v3_closure",
       "component_id": "C770",
       "dependency_components": [
@@ -33069,19 +33069,19 @@
         "MECH-292"
       ],
       "depends_on_count": 5,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "novel_discovery",
       "experiment_planned": true,
       "first_seen_commit": "791412cbfffc",
       "first_seen_date": "2026-07-22",
       "first_seen_subject": "claims(ARC-018): record the EXQ-196 zero-advantage mechanism and that Leg B is now testable",
       "first_seen_week": "2026-07-20",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "id": "SD-079",
       "incoming_dependency_count": 0,
-      "lifecycle": "substrate_implementation_active",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
-      "status": "candidate_substrate_landed",
+      "status": "provisional",
       "substrate_active": true,
       "substrate_target": false,
       "substrate_unblocked": false,
@@ -33089,7 +33089,7 @@
       "type": "design_decision"
     },
     {
-      "attention_rank": 3,
+      "attention_rank": 4,
       "class": "active_v3_closure",
       "component_id": "C771",
       "dependency_components": [
@@ -33104,17 +33104,17 @@
         "SD-056"
       ],
       "depends_on_count": 3,
-      "evidence_bearing": false,
-      "evidence_quadrant": null,
+      "evidence_bearing": true,
+      "evidence_quadrant": "speculative",
       "experiment_planned": true,
       "first_seen_commit": "be114d5d3571",
       "first_seen_date": "2026-07-22",
       "first_seen_subject": "claim-synthesis MECH-163: narrow to leg (1) + register MECH-477 (uncertainty arbitration), MECH-478 (long-horizon, ARC-007-blocked), MECH-479 (prosocial, refiled v4)",
       "first_seen_week": "2026-07-20",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "id": "SD-080",
       "incoming_dependency_count": 0,
-      "lifecycle": "substrate_implementation_active",
+      "lifecycle": "governance_evidence_bearing",
       "phase": "v3",
       "status": "candidate",
       "substrate_active": true,
@@ -33141,7 +33141,7 @@
       "depends_on_count": 4,
       "evidence_bearing": false,
       "evidence_quadrant": null,
-      "experiment_planned": true,
+      "experiment_planned": false,
       "first_seen_commit": "949a4c7fa031",
       "first_seen_date": "2026-07-22",
       "first_seen_subject": "SD-081: register e3.dualsystem_uncertainty_arbitration (IMPLEMENTED) + MECH-477 implementation note",
@@ -33156,6 +33156,47 @@
       "substrate_target": false,
       "substrate_unblocked": false,
       "title": "e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT pathway (myopic, depth-limited read of the E3 scorer) and the PLANNED pathway (full-horizon read of the same scorer), driven by the two pathways' relative predictive uncertainty and applied to the E3 selection score upstream of every downstream consumer. Built to make MECH-477 falsifiable: the pre-SD-081 substrate scored candidates with an unconditional full-horizon J(zeta), so no weight existed anywhere between the myopic and the deep read and nothing COULD respond to context novelty.",
+      "type": "design_decision"
+    },
+    {
+      "attention_rank": 3,
+      "class": "active_v3_closure",
+      "component_id": "C773",
+      "dependency_components": [
+        "C002",
+        "C005",
+        "C706",
+        "C757",
+        "C768",
+        "C769"
+      ],
+      "dependency_referenced": false,
+      "depends_on": [
+        "SD-008",
+        "SD-066",
+        "SD-077",
+        "SD-033a",
+        "ARC-063",
+        "SD-078"
+      ],
+      "depends_on_count": 6,
+      "evidence_bearing": false,
+      "evidence_quadrant": null,
+      "experiment_planned": false,
+      "first_seen_commit": "d36fd8ba2f88",
+      "first_seen_date": "2026-07-26",
+      "first_seen_subject": "SD-082: register + queue the rule_state->action-bias propagation consumer (implemented)",
+      "first_seen_week": "2026-07-20",
+      "genuine_exp_count": 0,
+      "id": "SD-082",
+      "incoming_dependency_count": 0,
+      "lifecycle": "substrate_implementation_active",
+      "phase": "v3",
+      "status": "candidate_substrate_landed",
+      "substrate_active": true,
+      "substrate_target": true,
+      "substrate_unblocked": false,
+      "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default.",
       "type": "design_decision"
     }
   ],
@@ -33790,15 +33831,15 @@
     },
     {
       "source": "C029",
-      "target": "C773"
-    },
-    {
-      "source": "C030",
-      "target": "C773"
+      "target": "C774"
     },
     {
       "source": "C030",
       "target": "C774"
+    },
+    {
+      "source": "C030",
+      "target": "C775"
     },
     {
       "source": "C031",
@@ -34906,7 +34947,7 @@
     },
     {
       "source": "C121",
-      "target": "C777"
+      "target": "C778"
     },
     {
       "source": "C124",
@@ -34958,15 +34999,15 @@
     },
     {
       "source": "C127",
-      "target": "C773"
-    },
-    {
-      "source": "C127",
-      "target": "C777"
+      "target": "C774"
     },
     {
       "source": "C127",
       "target": "C778"
+    },
+    {
+      "source": "C127",
+      "target": "C779"
     },
     {
       "source": "C128",
@@ -34982,7 +35023,7 @@
     },
     {
       "source": "C130",
-      "target": "C777"
+      "target": "C778"
     },
     {
       "source": "C133",
@@ -42509,80 +42550,104 @@
       "target": "C704"
     },
     {
-      "source": "C774",
-      "target": "C783"
+      "source": "C773",
+      "target": "C002"
     },
     {
-      "source": "C774",
+      "source": "C773",
+      "target": "C005"
+    },
+    {
+      "source": "C773",
+      "target": "C706"
+    },
+    {
+      "source": "C773",
+      "target": "C757"
+    },
+    {
+      "source": "C773",
+      "target": "C768"
+    },
+    {
+      "source": "C773",
+      "target": "C769"
+    },
+    {
+      "source": "C775",
       "target": "C784"
     },
     {
       "source": "C775",
-      "target": "C774"
+      "target": "C785"
     },
     {
       "source": "C776",
       "target": "C775"
     },
     {
-      "source": "C776",
-      "target": "C785"
-    },
-    {
       "source": "C777",
-      "target": "C030"
-    },
-    {
-      "source": "C777",
-      "target": "C782"
-    },
-    {
-      "source": "C778",
       "target": "C776"
     },
     {
+      "source": "C777",
+      "target": "C786"
+    },
+    {
       "source": "C778",
-      "target": "C785"
+      "target": "C030"
+    },
+    {
+      "source": "C778",
+      "target": "C783"
     },
     {
       "source": "C779",
-      "target": "C773"
+      "target": "C777"
+    },
+    {
+      "source": "C779",
+      "target": "C786"
     },
     {
       "source": "C780",
       "target": "C774"
     },
     {
-      "source": "C780",
-      "target": "C779"
+      "source": "C781",
+      "target": "C775"
     },
     {
       "source": "C781",
-      "target": "C029"
-    },
-    {
-      "source": "C781",
-      "target": "C773"
+      "target": "C780"
     },
     {
       "source": "C782",
-      "target": "C773"
+      "target": "C029"
+    },
+    {
+      "source": "C782",
+      "target": "C774"
     },
     {
       "source": "C783",
-      "target": "C773"
+      "target": "C774"
     },
     {
       "source": "C784",
-      "target": "C779"
-    },
-    {
-      "source": "C784",
-      "target": "C783"
+      "target": "C774"
     },
     {
       "source": "C785",
-      "target": "C783"
+      "target": "C780"
+    },
+    {
+      "source": "C785",
+      "target": "C784"
+    },
+    {
+      "source": "C786",
+      "target": "C784"
     }
   ],
   "components": [
@@ -57344,9 +57409,9 @@
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "mechanism_general",
-      "evidenced_claims": 0,
+      "evidenced_claims": 1,
       "first_week": "2026-04-13",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 3,
       "latest_week": "2026-04-13",
       "phase_counts": {
         "unset": 1
@@ -65287,12 +65352,12 @@
         "substrate_or_design": 1
       },
       "component_id": "C703",
-      "confirmed_established": 0,
+      "confirmed_established": 1,
       "cyclic": false,
       "dominant_class": "substrate_or_design",
       "evidenced_claims": 1,
       "first_week": "2026-03-16",
-      "genuine_exp_count": 7,
+      "genuine_exp_count": 8,
       "latest_week": "2026-03-16",
       "phase_counts": {
         "substrate_unspecified": 1
@@ -67233,9 +67298,9 @@
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "active_v3_closure",
-      "evidenced_claims": 0,
+      "evidenced_claims": 1,
       "first_week": "2026-07-20",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "latest_week": "2026-07-20",
       "phase_counts": {
         "v3": 1
@@ -67245,7 +67310,7 @@
       ],
       "size": 1,
       "status_counts": {
-        "candidate_substrate_landed": 1
+        "provisional": 1
       },
       "type_counts": {
         "design_decision": 1
@@ -67262,9 +67327,9 @@
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "active_v3_closure",
-      "evidenced_claims": 0,
+      "evidenced_claims": 1,
       "first_week": "2026-07-20",
-      "genuine_exp_count": 0,
+      "genuine_exp_count": 1,
       "latest_week": "2026-07-20",
       "phase_counts": {
         "v3": 1
@@ -67311,12 +67376,41 @@
     },
     {
       "claim_ids": [
+        "SD-082"
+      ],
+      "class_counts": {
+        "active_v3_closure": 1
+      },
+      "component_id": "C773",
+      "confirmed_established": 0,
+      "cyclic": false,
+      "dominant_class": "active_v3_closure",
+      "evidenced_claims": 0,
+      "first_week": "2026-07-20",
+      "genuine_exp_count": 0,
+      "latest_week": "2026-07-20",
+      "phase_counts": {
+        "v3": 1
+      },
+      "sample_claim_ids": [
+        "SD-082"
+      ],
+      "size": 1,
+      "status_counts": {
+        "candidate_substrate_landed": 1
+      },
+      "type_counts": {
+        "design_decision": 1
+      }
+    },
+    {
+      "claim_ids": [
         "SENT-0"
       ],
       "class_counts": {
         "other": 1
       },
-      "component_id": "C773",
+      "component_id": "C774",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67345,7 +67439,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C774",
+      "component_id": "C775",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67374,7 +67468,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C775",
+      "component_id": "C776",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67403,7 +67497,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C776",
+      "component_id": "C777",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67432,7 +67526,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C777",
+      "component_id": "C778",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67461,7 +67555,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C778",
+      "component_id": "C779",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67490,7 +67584,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C779",
+      "component_id": "C780",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67519,7 +67613,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C780",
+      "component_id": "C781",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67548,7 +67642,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C781",
+      "component_id": "C782",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67577,7 +67671,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C782",
+      "component_id": "C783",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67606,7 +67700,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C783",
+      "component_id": "C784",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67635,7 +67729,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C784",
+      "component_id": "C785",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67664,7 +67758,7 @@
       "class_counts": {
         "other": 1
       },
-      "component_id": "C785",
+      "component_id": "C786",
       "confirmed_established": 0,
       "cyclic": false,
       "dominant_class": "other",
@@ -67687,17 +67781,177 @@
       }
     }
   ],
-  "generated_at_utc": "2026-07-26T00:10:29Z",
+  "generated_at_utc": "2026-07-26T15:41:37Z",
   "recent": {
     "churn_health": {
-      "avg_outdeps": 3.716,
-      "cyclic_target_edge_share": 0.3698,
+      "avg_outdeps": 3.724,
+      "cyclic_target_edge_share": 0.3696,
       "pressure_score": 36,
-      "recurrent_hub_edge_share": 0.4714,
+      "recurrent_hub_edge_share": 0.4716,
       "status": "watch",
-      "top_target_share": 0.0232
+      "top_target_share": 0.0231
     },
     "created_claims": [
+      {
+        "attention_rank": 3,
+        "claim_id": "SD-082",
+        "class": "active_v3_closure",
+        "component_id": "C773",
+        "depends_on_count": 6,
+        "evidence_bearing": false,
+        "experiment_planned": false,
+        "first_seen_date": "2026-07-26",
+        "first_seen_week": "2026-07-20",
+        "hub_targets": [
+          {
+            "attention_rank": 4,
+            "claim_id": "ARC-063",
+            "class": "active_v3_closure",
+            "component_id": "C005",
+            "dependency_referenced": true,
+            "evidence_bearing": true,
+            "evidence_quadrant": "plausible_unproven",
+            "experiment_planned": true,
+            "genuine_exp_count": 0,
+            "incoming_dependency_count": 21,
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v3",
+            "recent_dependency_count": 17,
+            "recurrence": "recurrent",
+            "status": "candidate",
+            "substrate_active": true,
+            "substrate_target": false,
+            "substrate_unblocked": true,
+            "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+            "type": "architectural_commitment",
+            "week_count": 4
+          },
+          {
+            "attention_rank": 4,
+            "claim_id": "SD-033a",
+            "class": "active_v3_closure",
+            "component_id": "C002",
+            "dependency_referenced": true,
+            "evidence_bearing": true,
+            "evidence_quadrant": "confirmed_established",
+            "experiment_planned": true,
+            "genuine_exp_count": 3,
+            "incoming_dependency_count": 16,
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v3",
+            "recent_dependency_count": 4,
+            "recurrence": "recurrent",
+            "status": "candidate",
+            "substrate_active": true,
+            "substrate_target": true,
+            "substrate_unblocked": true,
+            "title": "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes.",
+            "type": "design_decision",
+            "week_count": 3
+          },
+          {
+            "attention_rank": 4,
+            "claim_id": "SD-008",
+            "class": "substrate_or_design",
+            "component_id": "C706",
+            "dependency_referenced": true,
+            "evidence_bearing": true,
+            "evidence_quadrant": "confirmed_established",
+            "experiment_planned": false,
+            "genuine_exp_count": 4,
+            "incoming_dependency_count": 7,
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "substrate_unspecified",
+            "recent_dependency_count": 6,
+            "recurrence": "recurrent",
+            "status": "stable",
+            "substrate_active": false,
+            "substrate_target": false,
+            "substrate_unblocked": false,
+            "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness.",
+            "type": "design_decision",
+            "week_count": 2
+          },
+          {
+            "attention_rank": 3,
+            "claim_id": "SD-066",
+            "class": "active_v3_closure",
+            "component_id": "C757",
+            "dependency_referenced": true,
+            "evidence_bearing": false,
+            "evidence_quadrant": null,
+            "experiment_planned": false,
+            "genuine_exp_count": 0,
+            "incoming_dependency_count": 4,
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "recent_dependency_count": 4,
+            "recurrence": "single_week",
+            "status": "candidate",
+            "substrate_active": true,
+            "substrate_target": false,
+            "substrate_unblocked": false,
+            "title": "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix.",
+            "type": "design_decision",
+            "week_count": 1
+          },
+          {
+            "attention_rank": 3,
+            "claim_id": "SD-077",
+            "class": "active_v3_closure",
+            "component_id": "C768",
+            "dependency_referenced": true,
+            "evidence_bearing": false,
+            "evidence_quadrant": null,
+            "experiment_planned": false,
+            "genuine_exp_count": 0,
+            "incoming_dependency_count": 3,
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "recent_dependency_count": 3,
+            "recurrence": "single_week",
+            "status": "candidate",
+            "substrate_active": true,
+            "substrate_target": false,
+            "substrate_unblocked": false,
+            "title": "Common-mode-invariant (centered) super-ordinal goal-anchor cue key: the MECH-189 SuperOrdinalGoalMemory keys anchors on raw z_world cosine, which under SD-008 z_world under-differentiation measures the shared common-mode offset rather than the context, so every nursery contact reinforces one slot and anchor_count saturates at 1. Subtract a slow EMA common-mode baseline before every cue cosine. ree_core goal.py change, bit-identical by default.",
+            "type": "design_decision",
+            "week_count": 1
+          },
+          {
+            "attention_rank": 3,
+            "claim_id": "SD-078",
+            "class": "active_v3_closure",
+            "component_id": "C769",
+            "dependency_referenced": true,
+            "evidence_bearing": false,
+            "evidence_quadrant": null,
+            "experiment_planned": true,
+            "genuine_exp_count": 0,
+            "incoming_dependency_count": 1,
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "recent_dependency_count": 1,
+            "recurrence": "single_week",
+            "status": "candidate_substrate_landed",
+            "substrate_active": true,
+            "substrate_target": false,
+            "substrate_unblocked": true,
+            "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default.",
+            "type": "design_decision",
+            "week_count": 1
+          }
+        ],
+        "incoming_dependency_count": 0,
+        "lifecycle": "substrate_implementation_active",
+        "phase": "v3",
+        "status": "candidate_substrate_landed",
+        "substrate_active": true,
+        "substrate_target": true,
+        "substrate_unblocked": false,
+        "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default.",
+        "type": "design_decision"
+      },
       {
         "attention_rank": 3,
         "claim_id": "SD-081",
@@ -67705,7 +67959,7 @@
         "component_id": "C772",
         "depends_on_count": 4,
         "evidence_bearing": false,
-        "experiment_planned": true,
+        "experiment_planned": false,
         "first_seen_date": "2026-07-22",
         "first_seen_week": "2026-07-20",
         "hub_targets": [
@@ -67813,12 +68067,12 @@
         "type": "design_decision"
       },
       {
-        "attention_rank": 3,
+        "attention_rank": 4,
         "claim_id": "SD-080",
         "class": "active_v3_closure",
         "component_id": "C771",
         "depends_on_count": 3,
-        "evidence_bearing": false,
+        "evidence_bearing": true,
         "experiment_planned": true,
         "first_seen_date": "2026-07-22",
         "first_seen_week": "2026-07-20",
@@ -67876,9 +68130,9 @@
             "component_id": "C703",
             "dependency_referenced": true,
             "evidence_bearing": true,
-            "evidence_quadrant": "plausible_unproven",
+            "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
-            "genuine_exp_count": 7,
+            "genuine_exp_count": 8,
             "incoming_dependency_count": 18,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
@@ -67894,7 +68148,7 @@
           }
         ],
         "incoming_dependency_count": 0,
-        "lifecycle": "substrate_implementation_active",
+        "lifecycle": "governance_evidence_bearing",
         "phase": "v3",
         "status": "candidate",
         "substrate_active": true,
@@ -67904,12 +68158,12 @@
         "type": "design_decision"
       },
       {
-        "attention_rank": 3,
+        "attention_rank": 4,
         "claim_id": "SD-079",
         "class": "active_v3_closure",
         "component_id": "C770",
         "depends_on_count": 5,
-        "evidence_bearing": false,
+        "evidence_bearing": true,
         "experiment_planned": true,
         "first_seen_date": "2026-07-22",
         "first_seen_week": "2026-07-20",
@@ -67947,10 +68201,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
             "genuine_exp_count": 4,
-            "incoming_dependency_count": 6,
+            "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
-            "recent_dependency_count": 5,
+            "recent_dependency_count": 6,
             "recurrence": "recurrent",
             "status": "stable",
             "substrate_active": false,
@@ -67993,10 +68247,10 @@
             "evidence_quadrant": null,
             "experiment_planned": false,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 3,
+            "incoming_dependency_count": 4,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "single_week",
             "status": "candidate",
             "substrate_active": true,
@@ -68016,10 +68270,10 @@
             "evidence_quadrant": null,
             "experiment_planned": false,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 2,
+            "incoming_dependency_count": 3,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "recent_dependency_count": 2,
+            "recent_dependency_count": 3,
             "recurrence": "single_week",
             "status": "candidate",
             "substrate_active": true,
@@ -68031,9 +68285,9 @@
           }
         ],
         "incoming_dependency_count": 0,
-        "lifecycle": "substrate_implementation_active",
+        "lifecycle": "governance_evidence_bearing",
         "phase": "v3",
-        "status": "candidate_substrate_landed",
+        "status": "provisional",
         "substrate_active": true,
         "substrate_target": false,
         "substrate_unblocked": false,
@@ -68061,10 +68315,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -68084,10 +68338,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
             "genuine_exp_count": 4,
-            "incoming_dependency_count": 6,
+            "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
-            "recent_dependency_count": 5,
+            "recent_dependency_count": 6,
             "recurrence": "recurrent",
             "status": "stable",
             "substrate_active": false,
@@ -68107,10 +68361,10 @@
             "evidence_quadrant": null,
             "experiment_planned": false,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 3,
+            "incoming_dependency_count": 4,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "single_week",
             "status": "candidate",
             "substrate_active": true,
@@ -68130,10 +68384,10 @@
             "evidence_quadrant": null,
             "experiment_planned": false,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 2,
+            "incoming_dependency_count": 3,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "recent_dependency_count": 2,
+            "recent_dependency_count": 3,
             "recurrence": "single_week",
             "status": "candidate",
             "substrate_active": true,
@@ -68144,13 +68398,13 @@
             "week_count": 1
           }
         ],
-        "incoming_dependency_count": 0,
+        "incoming_dependency_count": 1,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
         "status": "candidate_substrate_landed",
         "substrate_active": true,
         "substrate_target": false,
-        "substrate_unblocked": false,
+        "substrate_unblocked": true,
         "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default.",
         "type": "design_decision"
       },
@@ -68175,10 +68429,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
             "genuine_exp_count": 4,
-            "incoming_dependency_count": 6,
+            "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
-            "recent_dependency_count": 5,
+            "recent_dependency_count": 6,
             "recurrence": "recurrent",
             "status": "stable",
             "substrate_active": false,
@@ -68198,10 +68452,10 @@
             "evidence_quadrant": null,
             "experiment_planned": false,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 3,
+            "incoming_dependency_count": 4,
             "lifecycle": "substrate_implementation_active",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "single_week",
             "status": "candidate",
             "substrate_active": true,
@@ -68212,7 +68466,7 @@
             "week_count": 1
           }
         ],
-        "incoming_dependency_count": 2,
+        "incoming_dependency_count": 3,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
         "status": "candidate",
@@ -68356,10 +68610,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -68713,17 +68967,17 @@
             "week_count": 1
           },
           {
-            "attention_rank": 3,
+            "attention_rank": 4,
             "claim_id": "MECH-321",
             "class": "active_v3_closure",
             "component_id": "C479",
             "dependency_referenced": true,
-            "evidence_bearing": false,
-            "evidence_quadrant": null,
+            "evidence_bearing": true,
+            "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 2,
-            "lifecycle": "substrate_implementation_active",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
             "recent_dependency_count": 2,
             "recurrence": "single_week",
@@ -70156,9 +70410,9 @@
             "component_id": "C703",
             "dependency_referenced": true,
             "evidence_bearing": true,
-            "evidence_quadrant": "plausible_unproven",
+            "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
-            "genuine_exp_count": 7,
+            "genuine_exp_count": 8,
             "incoming_dependency_count": 18,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
@@ -70365,10 +70619,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": true,
             "genuine_exp_count": 3,
-            "incoming_dependency_count": 15,
+            "incoming_dependency_count": 16,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -70493,17 +70747,17 @@
             "week_count": 1
           },
           {
-            "attention_rank": 3,
+            "attention_rank": 4,
             "claim_id": "MECH-321",
             "class": "active_v3_closure",
             "component_id": "C479",
             "dependency_referenced": true,
-            "evidence_bearing": false,
-            "evidence_quadrant": null,
+            "evidence_bearing": true,
+            "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 2,
-            "lifecycle": "substrate_implementation_active",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
             "recent_dependency_count": 2,
             "recurrence": "single_week",
@@ -71916,10 +72170,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -72962,10 +73216,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
             "genuine_exp_count": 4,
-            "incoming_dependency_count": 6,
+            "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
-            "recent_dependency_count": 5,
+            "recent_dependency_count": 6,
             "recurrence": "recurrent",
             "status": "stable",
             "substrate_active": false,
@@ -73030,10 +73284,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": false,
             "genuine_exp_count": 4,
-            "incoming_dependency_count": 6,
+            "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
             "phase": "substrate_unspecified",
-            "recent_dependency_count": 5,
+            "recent_dependency_count": 6,
             "recurrence": "recurrent",
             "status": "stable",
             "substrate_active": false,
@@ -73090,7 +73344,7 @@
             "week_count": 1
           }
         ],
-        "incoming_dependency_count": 3,
+        "incoming_dependency_count": 4,
         "lifecycle": "substrate_implementation_active",
         "phase": "v3",
         "status": "candidate",
@@ -76331,7 +76585,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-9",
         "class": "other",
-        "component_id": "C785",
+        "component_id": "C786",
         "depends_on_count": 1,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76342,7 +76596,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-7",
             "class": "other",
-            "component_id": "C783",
+            "component_id": "C784",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76376,7 +76630,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-8",
         "class": "other",
-        "component_id": "C784",
+        "component_id": "C785",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76387,7 +76641,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-7",
             "class": "other",
-            "component_id": "C783",
+            "component_id": "C784",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76410,7 +76664,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-2",
             "class": "other",
-            "component_id": "C779",
+            "component_id": "C780",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76444,7 +76698,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-7",
         "class": "other",
-        "component_id": "C783",
+        "component_id": "C784",
         "depends_on_count": 1,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76455,7 +76709,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76489,7 +76743,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-6",
         "class": "other",
-        "component_id": "C782",
+        "component_id": "C783",
         "depends_on_count": 1,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76500,7 +76754,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76534,7 +76788,7 @@
         "attention_rank": 0,
         "claim_id": "SENT-5",
         "class": "other",
-        "component_id": "C781",
+        "component_id": "C782",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76545,7 +76799,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76602,7 +76856,7 @@
         "attention_rank": 0,
         "claim_id": "SENT-4",
         "class": "other",
-        "component_id": "C780",
+        "component_id": "C781",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76613,7 +76867,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-10",
             "class": "other",
-            "component_id": "C774",
+            "component_id": "C775",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76636,7 +76890,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-2",
             "class": "other",
-            "component_id": "C779",
+            "component_id": "C780",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76681,7 +76935,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76738,7 +76992,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-2",
         "class": "other",
-        "component_id": "C779",
+        "component_id": "C780",
         "depends_on_count": 1,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76749,7 +77003,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76783,7 +77037,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-16",
         "class": "other",
-        "component_id": "C778",
+        "component_id": "C779",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76794,7 +77048,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-9",
             "class": "other",
-            "component_id": "C785",
+            "component_id": "C786",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76817,7 +77071,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-12",
             "class": "other",
-            "component_id": "C776",
+            "component_id": "C777",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76862,7 +77116,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76919,7 +77173,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-14",
         "class": "other",
-        "component_id": "C777",
+        "component_id": "C778",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -76953,7 +77207,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-6",
             "class": "other",
-            "component_id": "C782",
+            "component_id": "C783",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -76998,7 +77252,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-10",
             "class": "other",
-            "component_id": "C774",
+            "component_id": "C775",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77055,7 +77309,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-12",
         "class": "other",
-        "component_id": "C776",
+        "component_id": "C777",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -77066,7 +77320,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-9",
             "class": "other",
-            "component_id": "C785",
+            "component_id": "C786",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77089,7 +77343,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-11",
             "class": "other",
-            "component_id": "C775",
+            "component_id": "C776",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77123,7 +77377,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-11",
         "class": "other",
-        "component_id": "C775",
+        "component_id": "C776",
         "depends_on_count": 1,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -77134,7 +77388,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-10",
             "class": "other",
-            "component_id": "C774",
+            "component_id": "C775",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77168,7 +77422,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-10",
         "class": "other",
-        "component_id": "C774",
+        "component_id": "C775",
         "depends_on_count": 2,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -77179,7 +77433,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-7",
             "class": "other",
-            "component_id": "C783",
+            "component_id": "C784",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77202,7 +77456,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-8",
             "class": "other",
-            "component_id": "C784",
+            "component_id": "C785",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77247,7 +77501,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -77304,7 +77558,7 @@
         "attention_rank": 1,
         "claim_id": "SENT-0",
         "class": "other",
-        "component_id": "C773",
+        "component_id": "C774",
         "depends_on_count": 0,
         "evidence_bearing": false,
         "experiment_planned": false,
@@ -78161,10 +78415,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": true,
             "genuine_exp_count": 3,
-            "incoming_dependency_count": 15,
+            "incoming_dependency_count": 16,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -78890,10 +79144,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -79050,10 +79304,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -79231,7 +79485,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -79318,7 +79572,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-14",
             "class": "other",
-            "component_id": "C777",
+            "component_id": "C778",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -79363,7 +79617,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-0",
             "class": "other",
-            "component_id": "C773",
+            "component_id": "C774",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -79409,7 +79663,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-14",
             "class": "other",
-            "component_id": "C777",
+            "component_id": "C778",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -79455,7 +79709,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-16",
             "class": "other",
-            "component_id": "C778",
+            "component_id": "C779",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -79682,7 +79936,7 @@
             "attention_rank": 1,
             "claim_id": "SENT-14",
             "class": "other",
-            "component_id": "C777",
+            "component_id": "C778",
             "dependency_referenced": true,
             "evidence_bearing": false,
             "evidence_quadrant": null,
@@ -83762,10 +84016,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -83898,10 +84152,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -84194,10 +84448,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -84262,10 +84516,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -84330,10 +84584,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -87613,10 +87867,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -93678,10 +93932,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -94863,7 +95117,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -95755,10 +96009,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -95846,10 +96100,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -95937,10 +96191,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -95960,10 +96214,10 @@
             "evidence_quadrant": "confirmed_established",
             "experiment_planned": true,
             "genuine_exp_count": 3,
-            "incoming_dependency_count": 15,
+            "incoming_dependency_count": 16,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 3,
+            "recent_dependency_count": 4,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -96028,10 +96282,10 @@
             "evidence_quadrant": "plausible_unproven",
             "experiment_planned": true,
             "genuine_exp_count": 0,
-            "incoming_dependency_count": 20,
+            "incoming_dependency_count": 21,
             "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
-            "recent_dependency_count": 16,
+            "recent_dependency_count": 17,
             "recurrence": "recurrent",
             "status": "candidate",
             "substrate_active": true,
@@ -96254,7 +96508,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -96482,7 +96736,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -96573,7 +96827,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -97441,7 +97695,7 @@
             "dependency_referenced": true,
             "evidence_bearing": true,
             "evidence_quadrant": "plausible_unproven",
-            "experiment_planned": true,
+            "experiment_planned": false,
             "genuine_exp_count": 0,
             "incoming_dependency_count": 7,
             "lifecycle": "governance_evidence_bearing",
@@ -97561,41 +97815,41 @@
       }
     ],
     "horizon_drift": {
-      "claim_share": 0.3813,
-      "dependency_share": 0.1404,
-      "engineering_claim_share": 0.3417,
+      "claim_share": 0.3799,
+      "dependency_share": 0.1396,
+      "engineering_claim_share": 0.3405,
       "horizon_claims": 106,
       "horizon_dependency_edges": 145,
       "horizon_engineering_claims": 95,
       "status": "warning"
     },
     "metrics": {
-      "active_work_claim_share": 0.8129,
-      "active_work_claims": 226,
-      "avg_outdeps": 3.716,
-      "captured_claim_share": 0.0719,
+      "active_work_claim_share": 0.8136,
+      "active_work_claims": 227,
+      "avg_outdeps": 3.724,
+      "captured_claim_share": 0.0717,
       "captured_claims": 20,
-      "cyclic_target_edge_share": 0.3698,
-      "dependency_edges": 1033,
-      "horizon_claim_share": 0.3813,
+      "cyclic_target_edge_share": 0.3696,
+      "dependency_edges": 1039,
+      "horizon_claim_share": 0.3799,
       "horizon_claims": 106,
       "horizon_dependency_edges": 145,
-      "horizon_dependency_share": 0.1404,
-      "horizon_engineering_claim_share": 0.3417,
+      "horizon_dependency_share": 0.1396,
+      "horizon_engineering_claim_share": 0.3405,
       "horizon_engineering_claims": 95,
       "lifecycle_counts": {
         "captured_only": 20,
         "dependency_referenced": 32,
         "experiment_planned": 3,
-        "governance_evidence_bearing": 106,
-        "substrate_implementation_active": 117
+        "governance_evidence_bearing": 108,
+        "substrate_implementation_active": 116
       },
-      "new_claims": 278,
-      "recurrent_hub_edge_share": 0.4714,
-      "recurrent_hub_edges": 487,
-      "top_target_edge_share": 0.0232,
-      "v3_claim_share": 0.4388,
-      "v3_claims": 122
+      "new_claims": 279,
+      "recurrent_hub_edge_share": 0.4716,
+      "recurrent_hub_edges": 490,
+      "top_target_edge_share": 0.0231,
+      "v3_claim_share": 0.4409,
+      "v3_claims": 123
     },
     "recurrent_dependency_hubs": [
       {
@@ -97827,6 +98081,219 @@
       },
       {
         "attention_rank": 4,
+        "claim_id": "ARC-063",
+        "class": "active_v3_closure",
+        "component_id": "C005",
+        "count": 17,
+        "dependency_referenced": true,
+        "evidence_bearing": true,
+        "evidence_quadrant": "plausible_unproven",
+        "experiment_planned": true,
+        "genuine_exp_count": 0,
+        "incoming_dependency_count": 21,
+        "lifecycle": "governance_evidence_bearing",
+        "phase": "v3",
+        "recurrence": "recurrent",
+        "source_claims": [
+          {
+            "claim_id": "SD-082",
+            "class": "active_v3_closure",
+            "component_id": "C773",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default."
+          },
+          {
+            "claim_id": "SD-078",
+            "class": "active_v3_closure",
+            "component_id": "C769",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
+          },
+          {
+            "claim_id": "Q-083",
+            "class": "horizon_v4",
+            "component_id": "C697",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked."
+          },
+          {
+            "claim_id": "ARC-113",
+            "class": "active_v3_closure",
+            "component_id": "C107",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module."
+          },
+          {
+            "claim_id": "MECH-438",
+            "class": "horizon_v4",
+            "component_id": "C586",
+            "first_seen_week": "2026-06-15",
+            "lifecycle": "captured_only",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse)."
+          },
+          {
+            "claim_id": "MECH-437",
+            "class": "horizon_v4",
+            "component_id": "C585",
+            "first_seen_week": "2026-06-15",
+            "lifecycle": "dependency_referenced",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
+          },
+          {
+            "claim_id": "MECH-422",
+            "class": "active_v3_closure",
+            "component_id": "C570",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it."
+          },
+          {
+            "claim_id": "MECH-420",
+            "class": "active_v3_closure",
+            "component_id": "C568",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map."
+          },
+          {
+            "claim_id": "MECH-417",
+            "class": "active_v3_closure",
+            "component_id": "C565",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs."
+          },
+          {
+            "claim_id": "MECH-416",
+            "class": "active_v3_closure",
+            "component_id": "C564",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table."
+          },
+          {
+            "claim_id": "MECH-415",
+            "class": "active_v3_closure",
+            "component_id": "C563",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability."
+          },
+          {
+            "claim_id": "MECH-386",
+            "class": "horizon_v4",
+            "component_id": "C536",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome."
+          },
+          {
+            "claim_id": "ARC-091",
+            "class": "horizon_v4",
+            "component_id": "C089",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge."
+          },
+          {
+            "claim_id": "MECH-352",
+            "class": "active_v3_closure",
+            "component_id": "C505",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules."
+          },
+          {
+            "claim_id": "MECH-351",
+            "class": "active_v3_closure",
+            "component_id": "C504",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases)."
+          },
+          {
+            "claim_id": "MECH-350",
+            "class": "active_v3_closure",
+            "component_id": "C503",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find."
+          },
+          {
+            "claim_id": "MECH-349",
+            "class": "active_v3_closure",
+            "component_id": "C502",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed."
+          }
+        ],
+        "status": "candidate",
+        "substrate_active": true,
+        "substrate_target": false,
+        "substrate_unblocked": true,
+        "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+        "type": "architectural_commitment",
+        "week_count": 4,
+        "weeks": [
+          {
+            "count": 4,
+            "week_start": "2026-06-01"
+          },
+          {
+            "count": 7,
+            "week_start": "2026-06-08"
+          },
+          {
+            "count": 2,
+            "week_start": "2026-06-15"
+          },
+          {
+            "count": 4,
+            "week_start": "2026-07-20"
+          }
+        ]
+      },
+      {
+        "attention_rank": 4,
         "claim_id": "MECH-094",
         "class": "mechanism_general",
         "component_id": "C001",
@@ -98031,209 +98498,6 @@
           {
             "count": 1,
             "week_start": "2026-06-22"
-          }
-        ]
-      },
-      {
-        "attention_rank": 4,
-        "claim_id": "ARC-063",
-        "class": "active_v3_closure",
-        "component_id": "C005",
-        "count": 16,
-        "dependency_referenced": true,
-        "evidence_bearing": true,
-        "evidence_quadrant": "plausible_unproven",
-        "experiment_planned": true,
-        "genuine_exp_count": 0,
-        "incoming_dependency_count": 20,
-        "lifecycle": "governance_evidence_bearing",
-        "phase": "v3",
-        "recurrence": "recurrent",
-        "source_claims": [
-          {
-            "claim_id": "SD-078",
-            "class": "active_v3_closure",
-            "component_id": "C769",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate_substrate_landed",
-            "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
-          },
-          {
-            "claim_id": "Q-083",
-            "class": "horizon_v4",
-            "component_id": "C697",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "governance_evidence_bearing",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked."
-          },
-          {
-            "claim_id": "ARC-113",
-            "class": "active_v3_closure",
-            "component_id": "C107",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module."
-          },
-          {
-            "claim_id": "MECH-438",
-            "class": "horizon_v4",
-            "component_id": "C586",
-            "first_seen_week": "2026-06-15",
-            "lifecycle": "captured_only",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse)."
-          },
-          {
-            "claim_id": "MECH-437",
-            "class": "horizon_v4",
-            "component_id": "C585",
-            "first_seen_week": "2026-06-15",
-            "lifecycle": "dependency_referenced",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
-          },
-          {
-            "claim_id": "MECH-422",
-            "class": "active_v3_closure",
-            "component_id": "C570",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it."
-          },
-          {
-            "claim_id": "MECH-420",
-            "class": "active_v3_closure",
-            "component_id": "C568",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map."
-          },
-          {
-            "claim_id": "MECH-417",
-            "class": "active_v3_closure",
-            "component_id": "C565",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs."
-          },
-          {
-            "claim_id": "MECH-416",
-            "class": "active_v3_closure",
-            "component_id": "C564",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table."
-          },
-          {
-            "claim_id": "MECH-415",
-            "class": "active_v3_closure",
-            "component_id": "C563",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability."
-          },
-          {
-            "claim_id": "MECH-386",
-            "class": "horizon_v4",
-            "component_id": "C536",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome."
-          },
-          {
-            "claim_id": "ARC-091",
-            "class": "horizon_v4",
-            "component_id": "C089",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "governance_evidence_bearing",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge."
-          },
-          {
-            "claim_id": "MECH-352",
-            "class": "active_v3_closure",
-            "component_id": "C505",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules."
-          },
-          {
-            "claim_id": "MECH-351",
-            "class": "active_v3_closure",
-            "component_id": "C504",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases)."
-          },
-          {
-            "claim_id": "MECH-350",
-            "class": "active_v3_closure",
-            "component_id": "C503",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find."
-          },
-          {
-            "claim_id": "MECH-349",
-            "class": "active_v3_closure",
-            "component_id": "C502",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed."
-          }
-        ],
-        "status": "candidate",
-        "substrate_active": true,
-        "substrate_target": false,
-        "substrate_unblocked": true,
-        "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
-        "type": "architectural_commitment",
-        "week_count": 4,
-        "weeks": [
-          {
-            "count": 4,
-            "week_start": "2026-06-01"
-          },
-          {
-            "count": 7,
-            "week_start": "2026-06-08"
-          },
-          {
-            "count": 2,
-            "week_start": "2026-06-15"
-          },
-          {
-            "count": 3,
-            "week_start": "2026-07-20"
           }
         ]
       },
@@ -99224,7 +99488,7 @@
             "class": "active_v3_closure",
             "component_id": "C771",
             "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
             "status": "candidate",
             "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it."
@@ -100659,7 +100923,7 @@
             "class": "active_v3_closure",
             "component_id": "C771",
             "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
             "status": "candidate",
             "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it."
@@ -100995,7 +101259,7 @@
         "phase_counts": {
           "v3": 7
         },
-        "recent_dependency_count": 39,
+        "recent_dependency_count": 40,
         "sample_claim_ids": [
           "ARC-062",
           "ARC-063",
@@ -101007,6 +101271,16 @@
         ],
         "size": 7,
         "source_claims": [
+          {
+            "claim_id": "SD-082",
+            "class": "active_v3_closure",
+            "component_id": "C773",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default."
+          },
           {
             "claim_id": "SD-078",
             "class": "active_v3_closure",
@@ -101176,16 +101450,6 @@
             "phase": "v4",
             "status": "candidate",
             "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
-          },
-          {
-            "claim_id": "MECH-437",
-            "class": "horizon_v4",
-            "component_id": "C585",
-            "first_seen_week": "2026-06-15",
-            "lifecycle": "dependency_referenced",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
           }
         ],
         "status_counts": {
@@ -101210,7 +101474,7 @@
             "week_start": "2026-06-15"
           },
           {
-            "count": 6,
+            "count": 7,
             "week_start": "2026-07-20"
           }
         ]
@@ -101773,7 +102037,7 @@
           "unset": 2,
           "v3": 15
         },
-        "recent_dependency_count": 28,
+        "recent_dependency_count": 29,
         "sample_claim_ids": [
           "ARC-038",
           "ARC-039",
@@ -101795,6 +102059,16 @@
         ],
         "size": 17,
         "source_claims": [
+          {
+            "claim_id": "SD-082",
+            "class": "active_v3_closure",
+            "component_id": "C773",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default."
+          },
           {
             "claim_id": "MECH-474",
             "class": "active_v3_closure",
@@ -101964,16 +102238,6 @@
             "phase": "v4",
             "status": "candidate",
             "title": "Consolidation gated-write-authority: over-frequent rewriting of consolidated memory is a failure mode; the consolidation operator's authority to overwrite is gated by schema-stability / schedule-sensitivity, not run after every interaction."
-          },
-          {
-            "claim_id": "MECH-398",
-            "class": "horizon_v4",
-            "component_id": "C548",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "governance_evidence_bearing",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "ACh-analog basal-forebrain plasticity-gain gate: a state-conditional scalar in [0,1] multiplying cortical encoder learning rates and residue write magnitudes, driven by novelty/attention/arousal, distinct from LC-NE/5-HT/orexin content signals."
           }
         ],
         "status_counts": {
@@ -102009,7 +102273,7 @@
             "week_start": "2026-07-13"
           },
           {
-            "count": 5,
+            "count": 6,
             "week_start": "2026-07-20"
           }
         ]
@@ -103966,6 +104230,219 @@
       },
       {
         "attention_rank": 4,
+        "claim_id": "ARC-063",
+        "class": "active_v3_closure",
+        "component_id": "C005",
+        "count": 17,
+        "dependency_referenced": true,
+        "evidence_bearing": true,
+        "evidence_quadrant": "plausible_unproven",
+        "experiment_planned": true,
+        "genuine_exp_count": 0,
+        "incoming_dependency_count": 21,
+        "lifecycle": "governance_evidence_bearing",
+        "phase": "v3",
+        "recurrence": "recurrent",
+        "source_claims": [
+          {
+            "claim_id": "SD-082",
+            "class": "active_v3_closure",
+            "component_id": "C773",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default."
+          },
+          {
+            "claim_id": "SD-078",
+            "class": "active_v3_closure",
+            "component_id": "C769",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate_substrate_landed",
+            "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
+          },
+          {
+            "claim_id": "Q-083",
+            "class": "horizon_v4",
+            "component_id": "C697",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked."
+          },
+          {
+            "claim_id": "ARC-113",
+            "class": "active_v3_closure",
+            "component_id": "C107",
+            "first_seen_week": "2026-07-20",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module."
+          },
+          {
+            "claim_id": "MECH-438",
+            "class": "horizon_v4",
+            "component_id": "C586",
+            "first_seen_week": "2026-06-15",
+            "lifecycle": "captured_only",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse)."
+          },
+          {
+            "claim_id": "MECH-437",
+            "class": "horizon_v4",
+            "component_id": "C585",
+            "first_seen_week": "2026-06-15",
+            "lifecycle": "dependency_referenced",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
+          },
+          {
+            "claim_id": "MECH-422",
+            "class": "active_v3_closure",
+            "component_id": "C570",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it."
+          },
+          {
+            "claim_id": "MECH-420",
+            "class": "active_v3_closure",
+            "component_id": "C568",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map."
+          },
+          {
+            "claim_id": "MECH-417",
+            "class": "active_v3_closure",
+            "component_id": "C565",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs."
+          },
+          {
+            "claim_id": "MECH-416",
+            "class": "active_v3_closure",
+            "component_id": "C564",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table."
+          },
+          {
+            "claim_id": "MECH-415",
+            "class": "active_v3_closure",
+            "component_id": "C563",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v6",
+            "status": "candidate",
+            "title": "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability."
+          },
+          {
+            "claim_id": "MECH-386",
+            "class": "horizon_v4",
+            "component_id": "C536",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome."
+          },
+          {
+            "claim_id": "ARC-091",
+            "class": "horizon_v4",
+            "component_id": "C089",
+            "first_seen_week": "2026-06-08",
+            "lifecycle": "governance_evidence_bearing",
+            "phase": "v4",
+            "status": "candidate",
+            "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge."
+          },
+          {
+            "claim_id": "MECH-352",
+            "class": "active_v3_closure",
+            "component_id": "C505",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules."
+          },
+          {
+            "claim_id": "MECH-351",
+            "class": "active_v3_closure",
+            "component_id": "C504",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases)."
+          },
+          {
+            "claim_id": "MECH-350",
+            "class": "active_v3_closure",
+            "component_id": "C503",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find."
+          },
+          {
+            "claim_id": "MECH-349",
+            "class": "active_v3_closure",
+            "component_id": "C502",
+            "first_seen_week": "2026-06-01",
+            "lifecycle": "substrate_implementation_active",
+            "phase": "v3",
+            "status": "candidate",
+            "title": "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed."
+          }
+        ],
+        "status": "candidate",
+        "substrate_active": true,
+        "substrate_target": false,
+        "substrate_unblocked": true,
+        "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+        "type": "architectural_commitment",
+        "week_count": 4,
+        "weeks": [
+          {
+            "count": 4,
+            "week_start": "2026-06-01"
+          },
+          {
+            "count": 7,
+            "week_start": "2026-06-08"
+          },
+          {
+            "count": 2,
+            "week_start": "2026-06-15"
+          },
+          {
+            "count": 4,
+            "week_start": "2026-07-20"
+          }
+        ]
+      },
+      {
+        "attention_rank": 4,
         "claim_id": "MECH-094",
         "class": "mechanism_general",
         "component_id": "C001",
@@ -104170,209 +104647,6 @@
           {
             "count": 1,
             "week_start": "2026-06-22"
-          }
-        ]
-      },
-      {
-        "attention_rank": 4,
-        "claim_id": "ARC-063",
-        "class": "active_v3_closure",
-        "component_id": "C005",
-        "count": 16,
-        "dependency_referenced": true,
-        "evidence_bearing": true,
-        "evidence_quadrant": "plausible_unproven",
-        "experiment_planned": true,
-        "genuine_exp_count": 0,
-        "incoming_dependency_count": 20,
-        "lifecycle": "governance_evidence_bearing",
-        "phase": "v3",
-        "recurrence": "recurrent",
-        "source_claims": [
-          {
-            "claim_id": "SD-078",
-            "class": "active_v3_closure",
-            "component_id": "C769",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate_substrate_landed",
-            "title": "Common-mode-invariant (centered) CandidateRuleField context key: the ARC-063 field keys mint-block, recurrence bucketing and gate retrieval on a raw z_world context, which under SD-008 z_world under-differentiation sits in a ~0.98-cosine common-mode cone, so the mint-block fires against the first minted rule for every later context at any expressible threshold and the pool is structurally capped at ONE rule. Subtract a slow EMA common-mode baseline before every cue comparison. ree_core policy change, bit-identical by default."
-          },
-          {
-            "claim_id": "Q-083",
-            "class": "horizon_v4",
-            "component_id": "C697",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "governance_evidence_bearing",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Is rule apprehension DOMAIN-GENERAL or domain-specific? Does REE need separate regularity-apprehension systems per domain (causal / social / ethical / motor / spatial / relational), or one domain-general apprehender that inherits domain structure from its inputs? ARC-062/063 are scoped to policy-layer behavioural regimes; the domain-agnosticism question is wider and unasked."
-          },
-          {
-            "claim_id": "ARC-113",
-            "class": "active_v3_closure",
-            "component_id": "C107",
-            "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "The rule pipeline is an ORDERED CYCLE of non-collapsible stages: experience -> pattern sensitivity -> candidate regularity apprehension -> representation -> prediction -> counterfactual simulation -> behavioural interaction -> outcome comparison -> regularity refinement -> generalisation -> long-term integration. Each stage has claims; the CYCLE does not, and the stages must not collapse into a single reasoning module."
-          },
-          {
-            "claim_id": "MECH-438",
-            "class": "horizon_v4",
-            "component_id": "C586",
-            "first_seen_week": "2026-06-15",
-            "lifecycle": "captured_only",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Constructive rule-key separability: minted CandidateRule context keys should be assigned in a quantised / categorical codebook that is separable by construction (a DreamerV3-style discrete latent codebook), bounding the number of rules that co-match any context (n_matched) up front so theta(n_matched) stays below the availability ceiling -- rather than letting overlapping continuous context tags produce unbounded co-match counts that the conflict gate then locks out. The codebook capacity must be large enough to keep genuinely-distinct rules on distinct keys (no key-collapse)."
-          },
-          {
-            "claim_id": "MECH-437",
-            "class": "horizon_v4",
-            "component_id": "C585",
-            "first_seen_week": "2026-06-15",
-            "lifecycle": "dependency_referenced",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Rule-pool distinguishability is a MAINTAINED property, not a minting byproduct: keeping the CandidateRuleField pool mutually distinguishable (so co-matching rules remain jointly selectable through the conflict gate) requires a periodic, non-gradient consolidation/refactor operator over the minted pool -- compress and merge near-duplicate rules, retire rules that never reach selection, and re-separate the survivors under a description-length / separability objective -- rather than a reactive affine gate theta(n_matched). The maintained invariant is that mean n_matched stays low enough that theta(n_matched) sits below the availability ceiling."
-          },
-          {
-            "claim_id": "MECH-422",
-            "class": "active_v3_closure",
-            "component_id": "C570",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Event-arc grammatical realisation: grammatical tense/aspect/connectives (because, but, unless, done, again, stop, resume) are the symbolic rendering of the pre-linguistic ActionEventArc (initiate/persist/interrupt/reorient/resume/close). 'unless' = ARC-063 exception gate; 'because' = causal link; 'again/done' = aspect over closure. The action arc must EXIST (V3..V5) before grammar can name it."
-          },
-          {
-            "claim_id": "MECH-420",
-            "class": "active_v3_closure",
-            "component_id": "C568",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Relational/propositional inference over named relations: transitive inference, role-binding (giver vs receiver), and proposition chaining are realised as theta-sequence traversal (MECH-300) of a SYMBOLIC/type-graph cognitive map whose nodes are named symbols. The V6 realisation of MECH-300's cognitive-map-traversal primitive over a named symbolic map."
-          },
-          {
-            "claim_id": "MECH-417",
-            "class": "active_v3_closure",
-            "component_id": "C565",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Grammatical aspect is a map of REE's event arc and post-commit closure: starting/ongoing/repeated/interrupted/resumed/completed/failed/abandoned aspect is a grammatical naming of the pre-linguistic ActionEventArc and closure machinery, not a replacement for it. Event Segmentation Theory: experience segments around prediction error and event boundaries, overlapping REE's contact/interruption/closure/transition needs."
-          },
-          {
-            "claim_id": "MECH-416",
-            "class": "active_v3_closure",
-            "component_id": "C564",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "REE frame inventory: a small extensible V5/V6 inventory of scene-frames (feeding, hazard, contact, interruption, help-harm, give-receive, request-response, belief-report, error-correction) where each frame binds to REE substrates, not to words. Frame semantics (Fillmore): a word evokes a whole scene; in REE each frame is a scene-schema over rule structures, the second mining artifact after the grammar->substrate table."
-          },
-          {
-            "claim_id": "MECH-415",
-            "class": "active_v3_closure",
-            "component_id": "C563",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v6",
-            "status": "candidate",
-            "title": "Predicate-argument-event rule bridge: a V6 grammar-facing layer renders ARC-063 CandidateRule structures as 'if context, then action-object, causing outcome, unless exception' -- naming, querying, and recombining pre-linguistic rules without making language the rule substrate. Predicate-argument-event structure is the same context->action-object->outcome shape ARC-063 already mints; the 'unless/except/but' exception grammar is a shadow of ARC-063 tolerance-gated availability."
-          },
-          {
-            "claim_id": "MECH-386",
-            "class": "horizon_v4",
-            "component_id": "C536",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Inferred affordance field: REE can infer affordances not directly perceived by combining current cues, hippocampal traces, E2 action-consequence predictions, CandidateRuleField content, affective gradients, and control-plane precision; these inferred affordances bias E3 candidate trajectories without overwriting perception and remain corrigible by action outcome."
-          },
-          {
-            "claim_id": "ARC-091",
-            "class": "horizon_v4",
-            "component_id": "C089",
-            "first_seen_week": "2026-06-08",
-            "lifecycle": "governance_evidence_bearing",
-            "phase": "v4",
-            "status": "candidate",
-            "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge."
-          },
-          {
-            "claim_id": "MECH-352",
-            "class": "active_v3_closure",
-            "component_id": "C505",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule eligibility-trace credit (ARC-063 CREDIT face): each rule active when an action was taken leaves a decaying eligibility trace; the subsequent outcome/PE updates the rule's availability (raise on success, lower on exception), recency-weighted, with slow availability decay and retire-below-floor. The 'weight' half of mint-then-weight -- credit refines an existing rule's availability, it does not create rules."
-          },
-          {
-            "claim_id": "MECH-351",
-            "class": "active_v3_closure",
-            "component_id": "C504",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule tolerance gate (ARC-063 GATE face): a candidate rule becomes AVAILABLE (eligible to enter the active rule_state) only when its availability clears a threshold that RISES with the number of competing context-matched rules. The conflict-graded 'hold your horses' dynamic threshold; availability (which rules enter the active set) is distinct from selection (which action E3 picks among available rules' biases)."
-          },
-          {
-            "claim_id": "MECH-350",
-            "class": "active_v3_closure",
-            "component_id": "C503",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule field representation (ARC-063 REPRESENT face): the field holds K candidate rules as a population of distinct pinned subspace directions, so distinct minted rules occupy distinct directions and the rule_state handed to SD-033a is differentiated by construction. The architectural answer to why two shared-gradient scalar heads collapse (598b) but a minted field does not -- separability is structural, not an equilibrium gradient must find."
-          },
-          {
-            "claim_id": "MECH-349",
-            "class": "active_v3_closure",
-            "component_id": "C502",
-            "first_seen_week": "2026-06-01",
-            "lifecycle": "substrate_implementation_active",
-            "phase": "v3",
-            "status": "candidate",
-            "title": "CandidateRule mint (ARC-063 CREATE face): a non-gradient structural event mints a distinct CandidateRule slot when a (context-bucket -> action-object) regularity recurs above threshold and no existing rule's context_tag already covers it. The literal MECH-309 answer -- the creator that 'invents' rules so that credit only 'weights' them. Bottom-up (ARC-064 regularity detection) primary; optional top-down ARC-062 discriminator seed."
-          }
-        ],
-        "status": "candidate",
-        "substrate_active": true,
-        "substrate_target": false,
-        "substrate_unblocked": true,
-        "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
-        "type": "architectural_commitment",
-        "week_count": 4,
-        "weeks": [
-          {
-            "count": 4,
-            "week_start": "2026-06-01"
-          },
-          {
-            "count": 7,
-            "week_start": "2026-06-08"
-          },
-          {
-            "count": 2,
-            "week_start": "2026-06-15"
-          },
-          {
-            "count": 3,
-            "week_start": "2026-07-20"
           }
         ]
       },
@@ -105534,7 +105808,7 @@
             "class": "active_v3_closure",
             "component_id": "C771",
             "first_seen_week": "2026-07-20",
-            "lifecycle": "substrate_implementation_active",
+            "lifecycle": "governance_evidence_bearing",
             "phase": "v3",
             "status": "candidate",
             "title": "E2.action_object_head receives zero gradient from every REE training path, so the action-object space O that SD-004's hippocampal map backbone navigates is a frozen random projection fixed at initialisation, not the learned world-effect compression SD-004 specifies. O is state-invariant rather than consequence-structured, and the hippocampal CEM searches and refits inside it."
@@ -106546,16 +106820,16 @@
   },
   "schema_version": "claim_dependency_process/v1",
   "source": {
-    "claims_count": 938,
+    "claims_count": 939,
     "claims_path": "docs/claims/claims.yaml",
-    "component_edges": 2356,
-    "dependency_edges": 3377,
-    "git_head": "aebd07b5dd"
+    "component_edges": 2362,
+    "dependency_edges": 3383,
+    "git_head": "339664641b"
   },
   "summary": {
-    "claims_total": 938,
+    "claims_total": 939,
     "class_counts": {
-      "active_v3_closure": 377,
+      "active_v3_closure": 378,
       "architecture_general": 33,
       "horizon_v4": 126,
       "horizon_v5": 32,
@@ -106567,7 +106841,7 @@
       "substrate_gap_marked": 33,
       "substrate_or_design": 15
     },
-    "components_total": 785,
+    "components_total": 786,
     "cycle_audit_counts": {
       "accepted_reciprocal_architecture": 4,
       "co_definition_module_function": 8,
@@ -106581,20 +106855,20 @@
       "watch": 6
     },
     "cyclic_components": 30,
-    "dependency_edges": 3377,
+    "dependency_edges": 3383,
     "largest_component_size": 72,
     "lifecycle_counts": {
       "captured_only": 104,
       "dependency_referenced": 149,
       "experiment_planned": 9,
-      "governance_evidence_bearing": 480,
-      "substrate_implementation_active": 196
+      "governance_evidence_bearing": 484,
+      "substrate_implementation_active": 193
     },
     "phase_counts": {
       "post_v5": 3,
       "substrate_unspecified": 15,
       "unset": 384,
-      "v3": 360,
+      "v3": 361,
       "v4": 126,
       "v5": 32,
       "v6": 18
@@ -108756,8 +109030,8 @@
       },
       "horizon_dependency_edges": 0,
       "lifecycle_counts": {
-        "governance_evidence_bearing": 29,
-        "substrate_implementation_active": 11
+        "governance_evidence_bearing": 30,
+        "substrate_implementation_active": 10
       },
       "new_claims": 40,
       "phase_counts": {
@@ -108938,8 +109212,8 @@
       "lifecycle_counts": {
         "captured_only": 6,
         "dependency_referenced": 3,
-        "governance_evidence_bearing": 9,
-        "substrate_implementation_active": 11
+        "governance_evidence_bearing": 10,
+        "substrate_implementation_active": 10
       },
       "new_claims": 29,
       "phase_counts": {
@@ -109842,7 +110116,7 @@
           "count": 13
         },
         {
-          "component_id": "C773",
+          "component_id": "C774",
           "count": 8
         },
         {
@@ -109878,7 +110152,7 @@
         {
           "claim_id": "SENT-0",
           "class": "other",
-          "component_id": "C773",
+          "component_id": "C774",
           "count": 8,
           "phase": "unset",
           "status": "candidate",
@@ -109959,7 +110233,7 @@
         {
           "claim_id": "SENT-14",
           "class": "other",
-          "component_id": "C777",
+          "component_id": "C778",
           "count": 3,
           "phase": "unset",
           "status": "candidate",
@@ -110554,34 +110828,35 @@
       "week_start": "2026-07-13"
     },
     {
-      "avg_outdeps": 4.405,
+      "avg_outdeps": 4.447,
       "class_counts": {
-        "active_v3_closure": 31,
+        "active_v3_closure": 32,
         "horizon_v4": 6
       },
       "dependency_target_category_counts": {
-        "active_v3_closure": 99,
+        "active_v3_closure": 104,
         "architecture_general": 12,
         "horizon_v4": 13,
         "invariant_or_foundation": 11,
         "mechanism_general": 10,
         "other": 7,
-        "substrate_or_design": 11
+        "substrate_or_design": 12
       },
       "horizon_dependency_edges": 13,
       "lifecycle_counts": {
         "captured_only": 3,
-        "governance_evidence_bearing": 9,
-        "substrate_implementation_active": 25
+        "governance_evidence_bearing": 11,
+        "substrate_implementation_active": 24
       },
-      "new_claims": 37,
+      "new_claims": 38,
       "phase_counts": {
-        "v3": 31,
+        "v3": 32,
         "v4": 6
       },
       "status_counts": {
         "candidate": 35,
-        "candidate_substrate_landed": 2
+        "candidate_substrate_landed": 2,
+        "provisional": 1
       },
       "top_dependency_components": [
         {
@@ -110594,10 +110869,14 @@
         },
         {
           "component_id": "C005",
-          "count": 6
+          "count": 7
         },
         {
           "component_id": "C007",
+          "count": 6
+        },
+        {
+          "component_id": "C002",
           "count": 6
         },
         {
@@ -110605,8 +110884,12 @@
           "count": 5
         },
         {
-          "component_id": "C002",
-          "count": 5
+          "component_id": "C706",
+          "count": 4
+        },
+        {
+          "component_id": "C757",
+          "count": 4
         },
         {
           "component_id": "C043",
@@ -110615,14 +110898,6 @@
         {
           "component_id": "C090",
           "count": 4
-        },
-        {
-          "component_id": "C706",
-          "count": 3
-        },
-        {
-          "component_id": "C757",
-          "count": 3
         }
       ],
       "top_dependency_targets": [
@@ -110645,6 +110920,24 @@
           "title": "Ethics-as-process: translate the ethics-perimeter intakes into REE's claim-governed loop as governance claims, roadmap metadata, experiment preflights, review-status updates, and release gates -- progressively binding (V3 tag-and-continue -> V4 welfare/continuity -> V5 social/refusal/external-review -> V6 security/release/legal)."
         },
         {
+          "claim_id": "SD-008",
+          "class": "substrate_or_design",
+          "component_id": "C706",
+          "count": 4,
+          "phase": "substrate_unspecified",
+          "status": "stable",
+          "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness."
+        },
+        {
+          "claim_id": "SD-066",
+          "class": "active_v3_closure",
+          "component_id": "C757",
+          "count": 4,
+          "phase": "v3",
+          "status": "candidate",
+          "title": "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix."
+        },
+        {
           "claim_id": "ARC-025",
           "class": "architecture_general",
           "component_id": "C043",
@@ -110652,6 +110945,15 @@
           "phase": "unset",
           "status": "provisional",
           "title": "Three-engine (E1/E2/E3) architecture is irreducible; no engine can be collapsed into another."
+        },
+        {
+          "claim_id": "ARC-063",
+          "class": "active_v3_closure",
+          "component_id": "C005",
+          "count": 4,
+          "phase": "v3",
+          "status": "candidate",
+          "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint)."
         },
         {
           "claim_id": "GOV-ANALOGY-1",
@@ -110688,44 +110990,17 @@
           "phase": "unset",
           "status": "provisional",
           "title": "Hippocampal systems store and replay paths through residue-field terrain."
-        },
-        {
-          "claim_id": "SD-008",
-          "class": "substrate_or_design",
-          "component_id": "C706",
-          "count": 3,
-          "phase": "substrate_unspecified",
-          "status": "stable",
-          "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness."
-        },
-        {
-          "claim_id": "SD-066",
-          "class": "active_v3_closure",
-          "component_id": "C757",
-          "count": 3,
-          "phase": "v3",
-          "status": "candidate",
-          "title": "Common-mode-invariant (centered) conditioned-safety readout: an opt-in, non-parametric readout mode on the SD-051 ConditionedSafetyStore that subtracts a slow EMA of z_world (the common-mode direction that saturates the raw cosine under SD-008 z_world under-differentiation) before accumulating and querying the prototype, so the cue-carrying residual dominates. Lifts the z_world common-mode CEILING that blocks MECH-304's behavioural promote-to-active gate (the raw-cosine gate fires unconditionally once the prototype is non-empty; the cue is a ~0.006-cosine signal below its absolute-threshold resolution). NOT the V4 trainable-contrastive store -- a readout workaround for the SD-008 common-mode, not a representation fix."
-        },
-        {
-          "claim_id": "SD-010",
-          "class": "substrate_or_design",
-          "component_id": "C001",
-          "count": 3,
-          "phase": "substrate_unspecified",
-          "status": "implemented",
-          "title": "HARM stream is a dedicated sensory pathway separate from z_world processing."
         }
       ],
       "type_counts": {
         "architectural_commitment": 3,
-        "design_decision": 6,
+        "design_decision": 7,
         "governance_rule": 5,
         "invariant": 3,
         "mechanism_hypothesis": 16,
         "open_question": 4
       },
-      "v3_dependency_edges": 107,
+      "v3_dependency_edges": 112,
       "week_start": "2026-07-20"
     }
   ]

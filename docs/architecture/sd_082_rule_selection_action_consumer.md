@@ -1,8 +1,13 @@
+---
+status: candidate_substrate_landed
+status_asof: 2026-07-26
+status_claim: SD-082
+---
+
 # SD-082: pfc.lateral_pfc.rule_selection_action_consumer
 
 **Claim ID:** SD-082
 **Subject:** pfc.lateral_pfc.common_mode_invariant_trained_rule_to_action_readout
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-26
 **Implemented:** 2026-07-26
 **Depends on:** SD-008, SD-066, SD-077, SD-033a (ARC-062 GAP-D trainable bias head), ARC-063, SD-078

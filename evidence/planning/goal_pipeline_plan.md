@@ -36,10 +36,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -54,10 +54,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -85,10 +85,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -103,10 +103,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -127,10 +127,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -145,10 +145,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:
@@ -164,10 +164,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_V3-EXQ-793_2026-07-24"
-        verdict: "inconclusive/measurement_gap"
-        next: "routing=queue-experiment"
+        as_of: "2026-07-26"
+        from: "failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a"
+        verdict: "inconclusive/standard"
+        next: "routing=governance"
         brake: "fired"
         needs_review: false
       join:

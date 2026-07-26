@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_047l_mech095_agency_routing_sd047
 
-Generated: `2026-07-26T00:09:19.739764Z`
+Generated: `2026-07-26T15:38:57.944226Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

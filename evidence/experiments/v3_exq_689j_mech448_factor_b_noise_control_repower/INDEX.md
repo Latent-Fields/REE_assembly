@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_689j_mech448_factor_b_noise_control_repower
 
-Generated: `2026-07-26T00:09:19.739764Z`
+Generated: `2026-07-26T15:38:57.944226Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

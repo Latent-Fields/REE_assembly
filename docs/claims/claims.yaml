@@ -8503,6 +8503,13 @@
     (the frozen-AO-head claim). Applied /governance 2026-07-25 (session
     angry-ardinghelli-d99740-gov, user-approved). Routing: chips the Sec 4.2 3-arm capability
     falsifier (queue-experiment).
+    [2026-07-26 governance, V3-EXQ-817 non_contributory; failure_autopsy_batch-793a-817-819_2026-07-26,
+    confirmed]: the Sec 4.2 falsifier (817) ran. Self-route substrate_not_ready_requeue is a MISNOMER --
+    the AO head DID train (delta_l2_from_frozen ~1.3-1.47, not the 0.0 collapse-onto-ARM_0 an earlier note
+    here misread it as). The delta-prediction grounding objective simply did not induce the targeted
+    representational change (M5/M6 thresholds not met, high seed variance) so grounding_took=false gated
+    the load-bearing behavioural criterion before it could run -> non_contributory, does NOT weaken SD-004's
+    behavioural claim (EXQ-114 stands). Re-queue 817a with a stronger grounding objective is recommended.
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
   cross_reference_note: >
@@ -19302,6 +19309,18 @@
     (V3-EXQ-780 H-bc-prior vs V3-EXQ-781 H-approach-primitive); both remain claimed, the
     discrimination remains open, and mech457_competence_bootstrap_explorer stays
     blocked_pending_discrimination.
+
+    [2026-07-26 governance, V3-EXQ-819 non_contributory (flagged precondition_unmet);
+    failure_autopsy_batch-793a-817-819_2026-07-26, confirmed]: this run's self-route
+    zworld_advantage_grid_nondiscriminative is a MISNOMER for "not ready" -- the z_world encoder DID
+    train (3/3 seeds, delta 0.277-0.333; the 780 frozen-random-projection fault is FIXED by
+    sd_zworld_warmup_optimizer_group). The vacating fault is a worst-seed non-vacuity gate that
+    contradicts its own strict-majority routing predicate (a measurement_test_design_defect, not a
+    ceiling). Directional, UNSCORED signal only: a prediction-trained z_world still reaches only AUC
+    0.90 (~2% of the achievable 48-57 ceiling) -- mild, non-load-bearing support for INV-088/MECH-457's
+    shared thesis that encoder quality alone does not confer competent action. Re-queue 819a reconciling
+    the non-vacuity gate to the routing predicate is recommended; this is orthogonal to the open
+    GOV-FANOUT-1 discrimination above.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -33267,6 +33286,16 @@
     substrate per failure_autopsy_V3-EXQ-626_2026-06-01 routing (do not re-run ecological dissociation until
     object-bound substrate + positive-control-guarded harness). Reclassified weakens->non_contributory; not load-
     bearing against SD-049. MECH-229/MECH-230 remain non_contributory.
+
+    [2026-07-26 governance, V3-EXQ-793a inconclusive; failure_autopsy_batch-793a-817-819_2026-07-26, confirmed]:
+    repowers 793 (n=3->6, guard_pass made load-bearing via C_JOINT_ROBUST) exactly per the 793 autopsy. DECISIVE
+    robustness finding: the joint arm A11 (amended curriculum x density-ON) clears D3 on mean contact (d1=1.0,
+    d2=1.0) but C_JOINT_ROBUST fails -- guard_pass 3/6 seeds vs the 2/3 floor, short by one seed. The 3 guard
+    failures are the low-baseline seeds (43/44/47) whose z_goal_norm_at_contact_peak sits just under the 0.4
+    gate. Reading: the joint config is NOT a robust hand-off -- a future 693b must address the z_goal-at-contact
+    guard fragility before receiving this config. This is a narrow lever-robustness result, orthogonal to and
+    does NOT lift SD-049's foraging-competence park (still gated on the foraging scaffold /implement-substrate
+    prerequisite). No re-queue owed this cycle -- queuing another SD-049 letter would risk circling the ceiling.
   location: docs/architecture/sd_049_multi_resource_heterogeneity.md
 
 - id: MECH-296
@@ -40397,6 +40426,20 @@
     via an online incremental McGovern-Barto diverse-density accumulator on a quantised
     z_world region key). Default OFF / bit-identical; v3_pending unchanged (substrate, not
     evidence). Unblocks the three-arm ARM_0/ARM_1/ARM_2 dissociation (ARM_0/ARM_1 = V3-EXQ-816).
+    [2026-07-26 governance, V3-EXQ-816/820 FAIL cluster; failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26,
+    confirmed]: both runs FAILed on a shared unmet precondition (the env never produced low-V_s states in the
+    measure window after 40 warmup episodes), not on the decomposition machinery itself -- both positive controls
+    passed and the machinery fired abundantly (frac 1.0). non_contributory for ARC-070/MECH-321; stays
+    candidate/v3_pending. GOV-FANOUT-1 fired: opened a 2-hypothesis discrimination portfolio
+    (H-env-underdrives-uncertainty / H-vs-proxy-saturation) rather than one sequential re-pose.
+    [2026-07-26 governance, V3-EXQ-816b FAIL (P-A env-axis leg); failure_autopsy_V3-EXQ-816b_2026-07-26, confirmed]:
+    harshening (env_drift_interval->3, world_rule_shift) moved forward-PE toward but not across its discrimination
+    floor (0.0086 vs 0.01), so zero low-V_s steps resulted -- informative but non-eliminating; bears_on only, no
+    claim weight. A further dose-escalation letter is recommended before the campaign concludes.
+    [2026-07-26 governance, V3-EXQ-816c PASS (P-B measurement-axis leg); failure_autopsy_816c-822_2026-07-26,
+    confirmed]: found forward-PE heterogeneous while region-V_s stayed flat (spearman 0.083) -- fairly strong
+    direct support for H-vs-proxy-saturation (region-V_s saturates near 1.0 in a trained encoder, decoupled from
+    forward-PE). Left alive (not yet eliminated) pending the env-axis ladder; bears_on only, no claim weight.
   title: "policy_decomposition_on_prediction_failure (zoom-in / re-segment imagined chains when chunks fail to ground at execution resolution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: when an imagined chunk's predicted outcome diverges from what its sub-elements would predict (or when MECH-269 V_s on the chunk's region drops), the chunk is broken into finer primitives in the rollout proposal stream. Trigger: simulation-side prediction failure. Direction: zoom in. Phenomenology anchor: 'I planned go-to-the-kitchen; turns out I need to plan the steps.'"
   claim_type: architectural_commitment
   subject: policy.decomposition_on_prediction_failure
@@ -41403,6 +41446,20 @@
     decomp_n_bottleneck_regions_tracked. STILL NO EXPERIMENTAL EVIDENCE -- v3_pending stays
     True (this is substrate, not evidence). ARM_0/ARM_1 half is V3-EXQ-816 (V_s-drop);
     ARM_2 (bottleneck) is now buildable on top of it.
+    [2026-07-26 governance, V3-EXQ-816/820 FAIL cluster; failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26,
+    confirmed]: both runs FAILed on a shared unmet precondition (the env never produced low-V_s states in the
+    measure window after 40 warmup episodes), not on the decomposition machinery itself -- both positive controls
+    passed and the machinery fired abundantly (frac 1.0). non_contributory for ARC-070/MECH-321; stays
+    candidate/v3_pending. GOV-FANOUT-1 fired: opened a 2-hypothesis discrimination portfolio
+    (H-env-underdrives-uncertainty / H-vs-proxy-saturation) rather than one sequential re-pose.
+    [2026-07-26 governance, V3-EXQ-816b FAIL (P-A env-axis leg); failure_autopsy_V3-EXQ-816b_2026-07-26, confirmed]:
+    harshening (env_drift_interval->3, world_rule_shift) moved forward-PE toward but not across its discrimination
+    floor (0.0086 vs 0.01), so zero low-V_s steps resulted -- informative but non-eliminating; bears_on only, no
+    claim weight. A further dose-escalation letter is recommended before the campaign concludes.
+    [2026-07-26 governance, V3-EXQ-816c PASS (P-B measurement-axis leg); failure_autopsy_816c-822_2026-07-26,
+    confirmed]: found forward-PE heterogeneous while region-V_s stayed flat (spearman 0.083) -- fairly strong
+    direct support for H-vs-proxy-saturation (region-V_s saturates near 1.0 in a trained encoder, decoupled from
+    forward-PE). Left alive (not yet eliminated) pending the env-axis ladder; bears_on only, no claim weight.
   title: "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007). Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged)."
   claim_type: mechanism_hypothesis
   subject: policy.decomposition_via_event_segmenter
@@ -50873,7 +50930,17 @@
     evidence, but HOLD at candidate (status candidate_substrate_landed) pending more evidence /
     a downstream consumer test -- not promoted to provisional this cycle. The encoder-level
     repair (SD-008 / SD-070) remains the separate open problem this fix routes around.
+
+    [2026-07-26 governance, V3-EXQ-822 non_contributory (the downstream consumer test); failure_autopsy_816c-822_2026-07-26,
+    confirmed]: the consumer test RAN. Self-route substrate_not_ready_requeue confirmed as genuinely unmet: the
+    rule pool differentiates fine (on_rule_state_diff_mean 0.644, c1_pass) and activates (on_max_live 16 vs off 1),
+    but propagation to the action bias is a structural zero on BOTH arms (on/off_prop_delta_mean 0.0) -- the
+    trained bias-head consumer (rule_state -> action bias) is not wired/trained. non_contributory (the consumer
+    behaviour could not be exercised); does NOT weaken SD-078. pending_retest_after_substrate. Substrate gap
+    already actioned: SD-082 (rule-selection action-bias consumer) built same-day (ree-v3 d4f758082d) and
+    V3-EXQ-822a queued to validate it.
   claim_level: architectural
+  pending_retest_after_substrate: true
   registered_utc: "2026-07-22"
   depends_on: [SD-008, SD-066, SD-077, ARC-063]
   location: docs/architecture/sd_078_centered_candidate_rule_field_context_key.md
@@ -50922,15 +50989,15 @@
   claim_type: design_decision
   subject: hippocampal.common_mode_invariant_goal_anchor_match
   polarity: asserts
-  status: candidate_substrate_landed
+  status: provisional
   live_status:
-    reading: candidate_substrate_landed
-    as_of: 2026-07-25
+    reading: provisional
+    as_of: 2026-07-26
     needs_review: false
     evidence:
-      from: "v3_exq_807_sd079_centered_goal_anchor_match_20260725T191402Z_v3"
-      as_of: 2026-07-25
-      verdict: "supports -- centering unpins goal-anchor match and revives the dead downstream gates (on_spread 0.999 vs off 0.009; on_gate_nonzero 3.3 vs off 0; on_n_below_floor 3.0 vs off 0; C1/C2/C3 all pass frac 1.0). Substrate landed 2026-07-22 + validated; v3 gate cleared. Held at candidate pending a downstream consumer test."
+      from: "v3_exq_823_sd079_ghost_goal_retrieval_consumer_20260726T075327Z_v3"
+      as_of: 2026-07-26
+      verdict: "supports -- the downstream consumer test (goal retrieval + rumination guard) PASSED cleanly and non-degenerately (all preconditions met; C1/C3 load-bearing PASS, C2 PASS). Third consecutive PASS (806/807/823) with no conflicting evidence. Promoted candidate_substrate_landed -> provisional /governance 2026-07-26, user-approved."
   implementation_phase: v3
   evidence_quality_note: |
     V3-EXQ-807 (2026-07-25, PASS, supports) validated the landed SD-079 centering fix on a real
@@ -50943,6 +51010,15 @@
     evidence, but HOLD at candidate (status candidate_substrate_landed) pending more evidence /
     a downstream consumer test -- not promoted to provisional this cycle. Fourth instance of the
     SD-066 pattern and the first on a DERIVED latent; the SD-008 encoder repair stays separate.
+
+    [2026-07-26 governance, V3-EXQ-823 supports (the downstream consumer test), clean PASS -- no autopsy
+    needed]: sd079_centering_enables_reliable_goal_retrieval_and_rumination_guard. All preconditions met
+    (z_goal common-mode cone 0.986 >= 0.9 floor; enrolled pool 64 anchors >> 6 floor); load-bearing criteria
+    C1_on_retrieval_discriminates and C3_on_rumination_guard_live both PASS non-degenerately, plus
+    C2_off_reproduces_pin. This is the downstream consumer test the note above was held pending -- unlike
+    SD-078's sibling consumer test (V3-EXQ-822, non_contributory), this one PASSED cleanly. Surfaced and
+    user-approved for promotion this cycle -- see status/live_status above (candidate_substrate_landed ->
+    provisional).
   claim_level: architectural
   registered_utc: "2026-07-22"
   depends_on: [SD-008, SD-039, SD-066, SD-077, MECH-292]
@@ -51010,11 +51086,19 @@
     but never the behaviour. Corroborates SD-080's core assertion (O is a frozen random projection,
     state-invariant rather than consequence-structured). The same run does_not_support SD-004's
     grounding RATIONALE (see SD-004). Stays candidate. Applied /governance 2026-07-25 (session
-    angry-ardinghelli-d99740-gov, user-approved). NOTE: V3-EXQ-817 (the 3-arm consequence-grounding
-    falsifier) ran 2026-07-25 but self-routed substrate_not_ready_requeue -- the grounding objective
-    did not move the AO head (delta_l2_from_frozen = 0.0), so ARM_1 collapsed onto ARM_0 and the
-    falsifier could not discriminate; it is pending /failure-autopsy and adds no direction here yet
-    (ironically it, too, re-confirms the frozen head).
+    angry-ardinghelli-d99740-gov, user-approved).
+
+    [2026-07-26 governance, V3-EXQ-817 non_contributory; failure_autopsy_batch-793a-817-819_2026-07-26,
+    confirmed -- CORRECTS the note above]: V3-EXQ-817 (3-arm consequence-grounding falsifier) self-routed
+    substrate_not_ready_requeue, but this label is a MISNOMER and the prior note's reading of it was wrong.
+    The manifest shows ARM_1's M0_action_object_head_param_delta_l2_from_frozen is ~1.3-1.47 (0.0 is the
+    ARM_0/frozen value) -- the AO head DID train; it did NOT collapse onto ARM_0. What actually failed is
+    that the delta-prediction grounding OBJECTIVE did not induce the targeted representational change (M5
+    r2 fell only 0.994->0.982, needed <=0.95; M6 within-pair spearman rose only to 0.085, needed >=0.15,
+    with high seed variance). grounding_took=false gated the load-bearing behavioural criterion, which was
+    never evaluated -> non_contributory for both SD-080 and SD-004. SD-080's frozen-random-projection
+    defect stands as confirmed by V3-EXQ-809; 817 adds no new direction on it. Re-queue 817a with a
+    stronger grounding objective (e.g. contrastive consequence loss) and recalibrated M5/M6 thresholds.
   functional_restatement: >
     Scoping spike 2026-07-22 (session epic-burnell-995d28). Four measurements, all on the
     live substrate: 99.5% of action-object variance is explained by the action label
@@ -57950,6 +58034,20 @@
     2026-07-24 governance (V3-EXQ-742b, evidence, claim_ids=[MECH-457]; extends failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22 as a 4th target, confirmed, user-selected routing "Extend cluster autopsy, fanout stays open"): 742b closed the P0 encoder-training confound that invalidated 742a (zworld_encoder_guard now shows encoder_moved_in_p0=true on every arm, encoder_moved_in_ac correctly differing between frozen/cotrain) -- the frozen-vs-cotrain contrast is now genuine. Despite the fix, all four actor-critic arms STILL fail D3 (0.267-0.383), underperforming even the simple bias_head_baseline (0.533, itself sub-floor). The newly instrumented reward_hacking_guard shows train_return_vs_eval_foraging_divergence strongly negative on every arm (-0.82 to -1.40) -- direct, quantified corroboration of H-objective-misspecification from a different angle than 742a's survival-horizon argument. Does NOT itself resolve H-objective-misspecification vs H-policy-learning (not the literal return-decomposition/reweighted-objective probe); both GOV-FANOUT-1 probes remain the sanctioned next step. `weakens` WITHDRAWN, revised to `non_contributory`. Granularity-debt count now 20 confirmed autopsy targets (was 19) -- does NOT change the 2026-07-16 GOV-GRAN-1 coherent_campaign adjudication; this is a further instance of the same coherent campaign. MECH-457 stays candidate/v3_pending. 742b's own manifest self-flags refusal of a third lettered actor-critic re-run (742c) in favour of the two open fanout probes -- upheld.
     2026-07-25 governance (V3-EXQ-792a, evidence, claim_ids=[MECH-457]; confirmed failure_autopsy_backlog_2026-07-24): FIRST GENUINE SUPPORTS for MECH-457 -- but on the RETENTION-CONSOLIDATION leg, which is DISTINCT from the competence-bootstrap leg that carries the FAIL campaign above. Indexer flagged vacuous_pass (on the deliberately-demoted non-gating C_anchor_bound_dose_response DV), but USER-CONFIRMED genuine: the load-bearing C_anchor_bound_vs_measured_control PASSED non-degenerately (anchored arm suppressed >0.10 of the unconstrained control's MEASURED kl-drift; control eroded 20.933 -> 11.667) and C_anchored_arm_consolidates PASSED (KL>0.001, peak>=1.05x install). Manifest evidence_direction stamped supports this cycle. Does NOT lift v3_pending (the competence-bootstrap leg's FAIL campaign is unresolved and gates the claim); records that the retention-consolidation sub-mechanism has its first genuine V3 confirmation.
     2026-07-25 governance (V3-EXQ-821, diagnostic, claim_ids=[MECH-457]; confirmed failure_autopsy_V3-EXQ-821_2026-07-25, GOV-FANOUT-1 retention leg 4 H-consummation-binding): the consummatory-act binding (approach_extinguishes_on_contact hand-off to a distinct CONSUME action) is NOT the retention mechanism. Null shape consummation_binding_eroded_under_both: BC-installed foraging competence took on both arms (post-BC 4.3-5.7 > 1.0 floor) but eroded to retained_fraction 0.0 in BOTH the extinguishing treatment AND the control -> H-consummation-binding ELIMINATED. epistemic_category standard (NOT substrate_ceiling; 0 ceiling verdicts added, GOV-CEIL-1 unaffected); evidence_direction non_contributory (PROMOTES/DEMOTES NOTHING; MECH-457 unaffected, stays candidate/v3_pending). This closed the LAST open competence_floor retention leg: with the constitution-family loci eliminated (789/821) and the process-family loci confirmed (788 critic / 792a consolidation), the retention decision_question was CLOSED `decided` (decision_log 2026-07-25, scoped to retention) -- the FIRST decided question in the frozen ledger. The competence FLOOR / installability explanandum (V3-EXQ-819, conversion_ceiling_root) remains the live frontier and is NOT closed by this. Applied /governance 2026-07-25 (session angry-ardinghelli-d99740-gov, user-approved).
+    2026-07-26 governance (V3-EXQ-819, diagnostic, flagged precondition_unmet, claim_ids=[MECH-457, INV-088];
+    failure_autopsy_batch-793a-817-819_2026-07-26, confirmed): the competence-floor/installability leg named
+    above RAN. Self-route zworld_advantage_grid_nondiscriminative ("not ready") is a MISNOMER -- the z_world
+    encoder DID train on 3/3 seeds (delta 0.277-0.333; the 780 frozen-random-projection fault is FIXED). The
+    vacating fault is a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate
+    (headline.advantage_confirmed was true) -- a measurement_test_design_defect, NOT a substrate_ceiling (0
+    ceiling verdicts added, GOV-CEIL-1 unaffected). Directional, UNSCORED signal only: a prediction-trained
+    z_world still reaches only AUC 0.90 (~2% of the 48-57 achievable ceiling; 0/3 seeds over the 1.0 effect
+    margin) -- mild, non-load-bearing support for the necessity thesis (encoder quality alone does not confer
+    competent action). evidence_direction non_contributory; PROMOTES/DEMOTES NOTHING. Hypothesis-space ledger:
+    new leg H-zworld-trained-instrument pre-registered alive (competence_floor question, labelled fan-out,
+    axis=instrumentation) -- this is instrument-validity, not a re-entry of the eliminated H-rep leg. Re-queue
+    819a reconciling the non-vacuity gate to the routing predicate is recommended. MECH-457 stays
+    candidate/v3_pending; INV-088 stays candidate, reconfirmation still unresolved.
   v3_pending: true # substrate BUILT 2026-07-12 (ree_core/action_learning/actor_critic.py); the V3-EXQ-737 H1 discriminator RAN and FAILED (frozen-latent refuted); the MECH-457 ON/OFF validation V3-EXQ-742 (2026-07-13) RAN and WEAKENS (all 4 arms sub-floor with readiness met) -- refutes the 734-737 'single missing mechanism = MECH-457' conclusion; deficit sits UPSTREAM of action-learning; stays candidate/v3_pending, discrimination now via GOV-FANOUT-1 (H-rep vs H-explore)
   epistemic_category: standard
   claim_level: mechanistic

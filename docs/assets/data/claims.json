@@ -7319,7 +7319,7 @@
   },
   "SD-004": {
     "assembly_state": "remaining",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "implemented",
     "subject": "hippocampal_module.action_object_map_backbone",
     "title": "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories.",
@@ -8067,6 +8067,8 @@
   },
   "SD-078": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "SD-082",
     "epistemic_stance": "believed",
     "status": "candidate_substrate_landed",
     "subject": "policy.common_mode_invariant_candidate_rule_field_context_key",
@@ -8074,9 +8076,9 @@
     "type": "design_decision"
   },
   "SD-079": {
-    "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
-    "status": "candidate_substrate_landed",
+    "assembly_state": "mature",
+    "epistemic_stance": "shown",
+    "status": "provisional",
     "subject": "hippocampal.common_mode_invariant_goal_anchor_match",
     "title": "Common-mode-invariant (centered) z_goal cue for goal-anchor match: SD-039's Anchor.goal_match is a raw cosine over z_goal, which as an EMA attractor pulled toward z_world inherits the SD-008 common-mode offset more strongly than its source, so goal_match spans ~0.01 across an anchor pool, the MECH-292 goal_match_floor excludes nothing and the MECH-339 outshining gate is identically zero. Subtract a slow EMA common-mode baseline before the match. ree_core hippocampal change, bit-identical by default.",
     "type": "design_decision"
@@ -8095,6 +8097,14 @@
     "status": "candidate",
     "subject": "e3.dualsystem_uncertainty_arbitration",
     "title": "e3.dualsystem_uncertainty_arbitration. An explicit arbitration weight over the HABIT pathway (myopic, depth-limited read of the E3 scorer) and the PLANNED pathway (full-horizon read of the same scorer), driven by the two pathways' relative predictive uncertainty and applied to the E3 selection score upstream of every downstream consumer. Built to make MECH-477 falsifiable: the pre-SD-081 substrate scored candidates with an unconditional full-horizon J(zeta), so no weight existed anywhere between the myopic and the deep read and nothing COULD respond to context novelty.",
+    "type": "design_decision"
+  },
+  "SD-082": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate_substrate_landed",
+    "subject": "pfc.lateral_pfc.common_mode_invariant_trained_rule_to_action_readout",
+    "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default.",
     "type": "design_decision"
   },
   "SENT-0": {

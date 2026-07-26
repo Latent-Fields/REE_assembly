@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-26T00:09:35Z",
+  "generated_at": "2026-07-26T15:39:43Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 124,
-      "built_modules": 101,
-      "fraction_built": 0.8145,
+      "total_modules": 125,
+      "built_modules": 102,
+      "fraction_built": 0.816,
       "state_counts": {
         "proposed": 23,
         "implemented": 72,
-        "implemented_pending_validation": 16,
+        "implemented_pending_validation": 17,
         "validated": 13
       },
-      "build_proof_gap": 88,
-      "build_proof_gap_note": "101 modules built, 88 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 89,
+      "build_proof_gap_note": "102 modules built, 89 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,94 +31,94 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 23,
-      "total_initial": 48,
-      "total_initial_at_registration": 36,
-      "total_fanout_added": 12,
+      "total_surviving": 28,
+      "total_initial": 53,
+      "total_initial_at_registration": 40,
+      "total_fanout_added": 13,
       "total_resolved_out": 24,
-      "reduction_pct_vs_current": 50.0,
-      "net_narrowing_pct": 36.1,
+      "reduction_pct_vs_current": 45.3,
+      "net_narrowing_pct": 30.0,
       "convergence_classes": {
+        "static": 5,
         "narrowing": 4,
-        "static": 4,
         "circling": 3
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "23 alive against 36 originally enumerated, and against 48 including 12 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 11
+      "honest_pair_note": "28 alive against 40 originally enumerated, and against 53 including 13 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 12
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 6,
-      "open_questions": 11
+      "open_questions": 12
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 47,
+      "surviving": 52,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-13",
-      "surviving": 45,
+      "surviving": 50,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-15",
-      "surviving": 41,
+      "surviving": 46,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-16",
-      "surviving": 40,
+      "surviving": 45,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-17",
-      "surviving": 37,
+      "surviving": 42,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-18",
-      "surviving": 31,
+      "surviving": 36,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-19",
-      "surviving": 27,
+      "surviving": 32,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-20",
-      "surviving": 26,
+      "surviving": 31,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-24",
-      "surviving": 25,
+      "surviving": 30,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-25",
-      "surviving": 24,
+      "surviving": 29,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     },
     {
       "date": "2026-07-26",
-      "surviving": 23,
+      "surviving": 28,
       "closure_pct": 76.2,
-      "build_pct": 81.5
+      "build_pct": 81.6
     }
   ],
   "questions": [
@@ -131,9 +131,9 @@
         "INV-088"
       ],
       "is_hero": true,
-      "initial_frozen_count": 16,
+      "initial_frozen_count": 17,
       "initial_frozen_count_at_registration": 7,
-      "fanout_added": 9,
+      "fanout_added": 10,
       "fanout_growth_events": [
         {
           "recorded_utc": "2026-07-18T04:49:14Z",
@@ -170,17 +170,26 @@
           ],
           "delta": 4,
           "note": "GOV-FANOUT-1 consumer half. RETENTION discrimination portfolio designed by session priceless-lewin-f47019 from the fanout_recommendation of failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18. QUESTION SHAPE CHANGED: the campaign's first ten legs asked which mechanism PRODUCES competence, every one adjudicated against an arm that never left the ~0-1 floor. V3-EXQ-780's raw_view arm reached 20.933 -- the FIRST supra-lift-target (13.05) observation in the campaign -- and RL then ERODED it to 11.667. The open question is therefore why produced competence is not RETAINED. ALL FOUR LEGS ARE SUBSTRATE-BLOCKED and NOTHING WAS QUEUED: /queue-experiment Step 2.5 stopped the portfolio (no distributional critic, no KL-anchor/frozen-policy snapshot, bc_aux_coef is a constant with no schedule, no consummatory act). Four complicated (buildable) nodes minted in substrate_queue.json; route is /implement-substrate. INVARIANT 3a(a) holds trivially and maximally cleanly -- these legs have NO adjudicating runs at all, so pre-registration necessarily precedes resolution. NUMERATOR HONESTY: this moves surviving/frozen from 2/12 = 0.167 to 6/16 = 0.375, which records that the question got WIDER, not that it narrowed -- the opposite direction from the padding the sanctioning decision flagged when it declined H-return-scale. Registering at fan-out DESIGN time, before any probe exists, is the moment this invariant sanctions; the producer-half autopsy deliberately deferred it honouring V3-EXQ-782's pre-declaration, and that deferral is discharged here. AXIS-FAMILY DISPUTE (recorded per axis_families._authority, which designates this as the correct mechanism for disputing a convergence verdict): a naive read scores this portfolio as CIRCLING because the process family already holds 6 eliminated legs. Two corrections. (a) The autopsy's caution overstates the arithmetic -- it says three of four axes map to process, but learning-signal maps to CONSTITUTION, so the split is algorithm+policy -> process (2) and learning-signal+intrinsic-architecture -> constitution (2). (b) The remaining re-entry is not circling, and the distinction is measurable: every eliminated process leg intervened on how competence is DISCOVERED and was adjudicated against an arm at the ~0-1 floor; these legs intervene on whether ALREADY-INSTALLED competence is RETAINED, are adjudicated from a 20.933 starting point, and read a TRAJECTORY. A retention deficit was not merely unobserved by the prior legs, it was UNOBSERVABLE to them -- an arm that never produces competence cannot be seen failing to retain it. DELIBERATELY NO `retention` AXIS INTRODUCED, hence no new axis_families.map row and no forced indeterminate convergence_class: axis_families is drawn on intervention LOCUS, and 'retention' is a question SHAPE. Minting a retention axis to escape an unfavourable score is exactly the confirmation-by-construction the map's own _provenance_caveat warns against. A critic swap is an algorithm intervention whether the question is discovery or retention. ANTI-ALIAS: H-retention-critic changes the VALUE ESTIMATOR, H-retention-consolidation changes the UPDATE CONSTRAINT; a leg changing both is disallowed, which is why the consolidation leg must anchor to a frozen snapshot of the installed policy rather than via bc_aux_coef (that would anchor to the demonstrator and alias with H-retention-auxiliary-decay)."
+        },
+        {
+          "recorded_utc": "2026-07-26T11:32:51Z",
+          "pre_registered_utc": "2026-07-26T11:32:51Z",
+          "fanout_source": "failure_autopsy_batch-793a-817-819_2026-07-26.json",
+          "added_hids": [
+            "H-zworld-trained-instrument"
+          ],
+          "delta": 1,
+          "note": "V3-EXQ-819 competence_floor R4 instrument-validity leg (D12). Re-opens the representation question with a CORRECTED instrument: the 780 autopsy proved the prior representation-axis eliminations (H-rep) ran on a frozen random projection; R4 tests whether a prediction-trained z_world confers a competence advantage. Pre-registered ALIVE -- 819 vacated by the worst-seed non-vacuity gate (measurement_test_design_defect), awaits scored 819a. Labelled axis=instrumentation (not representation) -- instrument-validity, not circling."
         }
       ],
-      "fanout_growth_note": "This question's denominator grew 7 -> 12 across two labelled portfolios while 8 of its legs were eliminated. That is genuine discrimination-portfolio enumeration, NOT retro-padding. SUPERSEDED READING (kept deliberately, 2026-07-18): this note previously concluded 'the campaign has not converged -- it is inventing new candidate explanations as fast as it rules old ones out.' The axis-family discriminator falsifies that. Four families (instrumentation, process, representation, world) are closed out and the live frontier `constitution` is fresh territory with zero eliminations, so the classification is REFINING: the count grew while the KIND of answer narrowed. The campaign swept the whole 'tune the learner' category and moved to 'what is the agent constituted with'. The honest residue is the 769 portfolio's partial_re_entry (H1-drive-schedule landed in the already-swept `process` family) -- refinement, but not a clean sweep. Still report the ratio BOTH ways (see labelled_fanout_growth); a growing denominator remains worth reading, it just is not by itself evidence of failure.",
-      "net_narrowing_ratio": 0.8571,
-      "bits_removed_vs_registration": 2.81,
+      "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
+      "net_narrowing_ratio": 0.7143,
+      "bits_removed_vs_registration": 1.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
-          "instrumentation",
           "process",
           "representation",
           "world"
@@ -293,16 +302,40 @@
               "representation",
               "world"
             ]
+          },
+          {
+            "recorded_utc": "2026-07-26T11:32:51Z",
+            "fanout_source": "failure_autopsy_batch-793a-817-819_2026-07-26.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-zworld-trained-instrument",
+                "family": "instrumentation"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-zworld-trained-instrument",
+                "family": "instrumentation"
+              }
+            ],
+            "families_already_dead": [
+              "constitution",
+              "instrumentation",
+              "process",
+              "representation",
+              "world"
+            ]
           }
         ]
       },
-      "surviving": 1,
-      "alive": 0,
+      "surviving": 2,
+      "alive": 1,
       "resolved_out": 13,
       "confirmed": 3,
       "reduction_numerator": 13,
-      "reduction_ratio": 0.8125,
-      "bits_removed": 4.0,
+      "reduction_ratio": 0.7647,
+      "bits_removed": 3.09,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -550,6 +583,20 @@
           "basis": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar).",
           "children": [],
           "met_elimination_bar": true
+        },
+        {
+          "hid": "H-zworld-trained-instrument",
+          "label": "prediction-trained z_world confers a competence advantage over a random projection",
+          "desc": "Instrument-validity leg (R4/D12): does a PREDICTION-TRAINED z_world beat a FROZEN RANDOM-PROJECTION z_world on installed foraging competence? Re-validates whether the representation-axis eliminations (H-rep, 747/749) hold now that the encoder actually trains -- V3-EXQ-780 proved every prior z_world arm used a frozen random projection, so the earlier eliminations may have been run on a broken instrument.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-819",
+            "V3-EXQ-819a"
+          ],
+          "basis": "V3-EXQ-819 attempted this leg and the encoder DID train (3/3 seeds, delta 0.277-0.333; 780 fault fixed), showing a directional advantage (trained AUC 0.90 vs random 0.46, asymmetric install 2/3 vs 0/3, mean paired +0.442). But the run was VACATED (non_degenerate=false) by a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate -- a measurement_test_design_defect. Leg stays ALIVE; awaits a scored V3-EXQ-819a with the gate reconciled. Observation bottleneck: worst-seed post_bc_install_took floor vacates instrument-validity runs at n=3.",
+          "children": [],
+          "met_elimination_bar": false
         }
       ],
       "decision": {
@@ -1567,9 +1614,124 @@
         "live_gate": "Per-candidate uncertainty and learning-progress reads over the e2_world_forward candidate rollouts (ARC-065 amend). Until those land, no experiment can move this question.",
         "observation_bottleneck": "MECH-314b/314c are Phase-1 broadcast scalars (one constant across all K candidates). A uniform additive constant is invariant under both argmax and softmax, so EVERY selection-level readout returns an exact structural zero regardless of the claims' truth. Any future leg on this question must either (a) test against a DV the manipulation can actually move, or (b) wait for the per-candidate implementation. Note the trap this run walked into: the 604c readiness gate r2 used curiosity_bias_range, which is precisely the statistic in which a broadcast constant CANCELS -- so the gate certified readiness for the novelty channel alone while appearing to certify the whole experiment."
       }
+    },
+    {
+      "qid": "policy_decomposition_discrimination",
+      "title": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+      "short_title": "Policy decomposition R1-vs-R5",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 4,
+      "initial_frozen_count_at_registration": 4,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation",
+          "process",
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 4,
+      "alive": 4,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-r1-reduces-lowvs-pe",
+          "label": "R1 (V_s-drop) decomposition reduces low-V_s execution-time forward-PE",
+          "desc": "turning on the V_s-drop-triggered decomposition operator withholds/replaces committed chunks in low-V_s regions and reduces execution-time forward-prediction error vs the OFF baseline",
+          "axis": "policy",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816"
+          ],
+          "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-r1-r5-dissociable",
+          "label": "R1 (V_s-boundary) and R5 (bottleneck) decompose at dissociable loci",
+          "desc": "the R5 bottleneck trigger decomposes at high-V_s graph-structural funnel states where the R1 V_s-drop trigger is silent, so the two triggers are behaviourally dissociable",
+          "axis": "arbitration",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-820"
+          ],
+          "basis": "820's R5 arm fired abundantly (1524 fires, 484 events) but R1 never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 -- there is no R1 side to dissociate R5 FROM. Same unmet precondition as 816 (lowvs_worst_arm1=0). Uninformative; hypothesis stays alive.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-env-underdrives-uncertainty",
+          "label": "the env under-drives persistent prediction uncertainty by measure time",
+          "desc": "the default env (8x8, 3 hazards, env_drift_interval default, 40 warmup) is fully learned by the measure window (forward-PE ~0.005), so no low-V_s regions arise; a harsher/non-stationary env produces both forward-PE heterogeneity and low-V_s regions",
+          "axis": "environment",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816b"
+          ],
+          "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-vs-proxy-saturation",
+          "label": "region-V_s (latent-stability) is decoupled from forward-PE and saturates in a trained encoder",
+          "desc": "region V_s is a '1 - relative-latent-change' stability proxy that saturates near 1.0 once the encoder is trained, decoupled from forward-model PE; if so no env manipulation lowers it and the R1 V_s-drop trigger cannot fire in a competent agent, and MECH-321's trigger must be reframed toward its own forward-model-disagreement alternative",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-816c"
+          ],
+          "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does V_s-drop-triggered (R1) policy decomposition reduce execution-time forward-prediction failure, and is it dissociable from the R5 bottleneck trigger?",
+        "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable",
+        "live_gate": null,
+        "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised"
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-816b",
+      "all_runs": [
+        "V3-EXQ-816b"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
+      "resolved_utc": "2026-07-26T12:32:16Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-821",
       "all_runs": [
@@ -1583,6 +1745,36 @@
       ],
       "moved": "V3-EXQ-821 (failure_autopsy_V3-EXQ-821_2026-07-25): install took on both arms (post-BC 4.3/5.7/4.3 > 1.0 floor) and the consummatory env is solvable (anchors local_view_greedy 34.2, greedy_oracle 42.8), so the leg could express itself. Both the extinguishing treatment and the non-extinguishing control eroded to retained_fraction 0.0 on all 3 seeds (arm margin 0.0 < 0.15); neither arm peak re-cleared the install floor. The extinguish-and-hand-off binding is NOT the retention mechanism -> H-consummation-binding ELIMINATED. Diagnostic; does not weaken MECH-457. Full bar met (control_passed + non_degenerate + met_elimination_bar).",
       "resolved_utc": "2026-07-25T22:22:52Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-816",
+      "all_runs": [
+        "V3-EXQ-816"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+      "resolved_utc": "2026-07-25T21:47:51Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-820",
+      "all_runs": [
+        "V3-EXQ-820"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "policy_decomposition_discrimination",
+      "claims": [
+        "ARC-070",
+        "MECH-321"
+      ],
+      "moved": "820's R5 arm fired abundantly (1524 fires, 484 events) but R1 never fired in either arm (arm1/arm2_vs_trigger_total=0), so dissociation_high_vs_frac=0.0 -- there is no R1 side to dissociate R5 FROM. Same unmet precondition as 816 (lowvs_worst_arm1=0). Uninformative; hypothesis stays alive.",
+      "resolved_utc": "2026-07-25T20:34:53Z",
       "evidence_direction": "non_contributory"
     },
     {

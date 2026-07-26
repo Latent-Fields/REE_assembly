@@ -1,7 +1,7 @@
 ---
 title: "SD-079: common-mode-invariant (centered) z_goal cue for goal-anchor match"
 nav_exclude: true
-status: candidate_substrate_landed
+status: provisional
 status_asof: 2026-07-26
 status_claim: SD-079
 ---

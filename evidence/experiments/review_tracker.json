@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-26T00:07:00Z",
+  "last_review_utc": "2026-07-26T15:34:37Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -968,7 +968,16 @@
     "v3_exq_821_mech457_consummation_binding",
     "v3_exq_806_sd078_centered_rule_field_context_key",
     "v3_exq_807_sd079_centered_goal_anchor_match",
-    "v3_exq_818_arc016_eval_derived_noise_precision_sweep"
+    "v3_exq_818_arc016_eval_derived_noise_precision_sweep",
+    "v3_exq_793a_sd049_arm2_competence_repower",
+    "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2",
+    "v3_exq_817_sd080_consequence_grounding_falsifier",
+    "v3_exq_816_mech321_policy_decomposition_discriminative",
+    "v3_exq_819_mech457_inv088_zworld_trained_vs_random",
+    "v3_exq_822_sd078_rule_selection_consumer",
+    "v3_exq_816b_mech321_policy_decomposition_harshened_env",
+    "v3_exq_823_sd079_ghost_goal_retrieval_consumer",
+    "v3_exq_816c_mech321_vs_pe_decoupling_comparator"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3596,7 +3605,16 @@
     "v3_exq_821_mech457_consummation_binding_20260725T222252Z_v3",
     "v3_exq_806_sd078_centered_rule_field_context_key_20260725T191042Z_v3",
     "v3_exq_807_sd079_centered_goal_anchor_match_20260725T191402Z_v3",
-    "v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3"
+    "v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3",
+    "v3_exq_793a_sd049_arm2_competence_repower_20260724T123828Z_v3",
+    "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3",
+    "v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3",
+    "v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3",
+    "v3_exq_819_mech457_inv088_zworld_trained_vs_random_20260726T005930Z_v3",
+    "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+    "v3_exq_816b_mech321_policy_decomposition_harshened_env_20260726T123216Z_v3",
+    "v3_exq_823_sd079_ghost_goal_retrieval_consumer_20260726T075327Z_v3",
+    "v3_exq_816c_mech321_vs_pe_decoupling_comparator_20260726T105608Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5591,6 +5609,22 @@
         "v3_exq_sd068_rem_gen_gain_content_scale_diagnostic_20260718T122200Z_v3"
       ],
       "note": "Applied the governance writes owed by the CONFIRMED SD-068 REM GOV-FANOUT-1 cluster autopsy (REE_assembly master deda5e17ed). Three discrimination legs on distinct design axes converge: the SD-068 REM per-phase readout is content-free and is NOT a functional-damage instrument. Net effect: the staged-failure contract is carried by nrem plus the rebuilt sws (V3-EXQ-778g) only; the generative-gain pillar does not evidence content-dependent correction; the staging order REMAINS UNSUPPORTED. The attenuation finding STANDS -- only the interpretive gloss is retracted. SD-068 SWS leg untouched."
+    },
+    {
+      "utc": "2026-07-26T15:34:37Z",
+      "session": "optimistic-ellis-4357c6 (/governance cycle 2026-07-26)",
+      "reviewed": [
+        "v3_exq_793a_sd049_arm2_competence_repower_20260724T123828Z_v3",
+        "v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3",
+        "v3_exq_817_sd080_consequence_grounding_falsifier_20260725T204837Z_v3",
+        "v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3",
+        "v3_exq_819_mech457_inv088_zworld_trained_vs_random_20260726T005930Z_v3",
+        "v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3",
+        "v3_exq_816b_mech321_policy_decomposition_harshened_env_20260726T123216Z_v3",
+        "v3_exq_823_sd079_ghost_goal_retrieval_consumer_20260726T075327Z_v3",
+        "v3_exq_816c_mech321_vs_pe_decoupling_comparator_20260726T105608Z_v3"
+      ],
+      "note": "Governance cycle 2026-07-26. 9 pending items applied: (1) V3-EXQ-793a/SD-049 inconclusive (decisive lever-robustness FAIL, orthogonal to the foraging-competence park; no re-queue owed). (2) V3-EXQ-816+820/ARC-070+MECH-321 non_contributory (shared unmet precondition; GOV-FANOUT-1 opened H-env-underdrives-uncertainty vs H-vs-proxy-saturation portfolio). (3) V3-EXQ-816b (bears_on ARC-070/MECH-321, P-A env-axis leg) non_contributory -- autopsied inline this session (failure_autopsy_V3-EXQ-816b_2026-07-26); harshening moved PE toward but not across the discrimination floor; a further dose-escalation letter is recommended. (4) V3-EXQ-816c (bears_on ARC-070/MECH-321, P-B measurement-axis leg) non_contributory -- strong support for region-V_s/forward-PE decoupling, left alive pending the env-axis ladder. (5) V3-EXQ-817/SD-080+SD-004 non_contributory -- corrected a factual error in SD-080/SD-004 notes (AO head DID train, delta_l2~1.3-1.47, did not collapse onto ARM_0; the grounding OBJECTIVE was ineffective, not the substrate). Re-queue 817a recommended. (6) V3-EXQ-819/MECH-457+INV-088 non_contributory (flagged precondition_unmet, adjudicated: z_world encoder DID train -- 780 fault fixed -- but a worst-seed non-vacuity gate contradicts its own routing predicate; measurement_test_design_defect, not a ceiling). Re-queue 819a recommended. New hypothesis-space leg H-zworld-trained-instrument pre-registered alive. (7) V3-EXQ-822/SD-078 non_contributory (propagation to action-bias structurally zero on both arms; substrate gap already actioned same-day as SD-082, V3-EXQ-822a queued to validate). pending_retest_after_substrate set. (8) V3-EXQ-823/SD-079 supports, clean PASS -- the downstream consumer test SD-079 was held pending; PROMOTED candidate_substrate_landed -> provisional (user-approved). Step 3: 12 pending_user promotion/demotion items acknowledged (7 routine v3-pending holds, 5 conflict-resolution holds) via record_decision.py, no status changes -- no new evidence this cycle to shift any of the 5 conflict-resolution calls."
     }
   ]
 }

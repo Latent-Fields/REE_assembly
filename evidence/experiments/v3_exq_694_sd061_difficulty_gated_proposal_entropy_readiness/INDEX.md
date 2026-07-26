@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_694_sd061_difficulty_gated_proposal_entropy_readiness
 
-Generated: `2026-07-26T00:09:19.739764Z`
+Generated: `2026-07-26T15:38:57.944226Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

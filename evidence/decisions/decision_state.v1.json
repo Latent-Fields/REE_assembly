@@ -387,6 +387,15 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-06-20T21:04:53.749691Z"
     },
+    "ARC-112": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.308685Z"
+    },
     "CONVERGENCE-QUEUE": {
       "actor": "user",
       "decision_needed": "Convergence packet review queue approval",
@@ -467,6 +476,15 @@
       "recommendation": "promote_to_provisional",
       "selected_option": "Promote candidate->provisional",
       "timestamp_utc": "2026-07-12T13:26:08.939398Z"
+    },
+    "INV-091": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.371476Z"
     },
     "MECH-025": {
       "actor": "user",
@@ -1494,6 +1512,24 @@
       "selected_option": "Wait for V3 substrate implementation (correct path)",
       "timestamp_utc": "2026-05-16T19:08:31Z"
     },
+    "MECH-321": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.442933Z"
+    },
+    "MECH-323": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.519404Z"
+    },
     "MECH-325": {
       "actor": "dgolden",
       "decision_needed": "Held by V4 architectural commitment (no V3-substrate decision required)",
@@ -1511,6 +1547,15 @@
       "recommendation": "held_v4_by_architectural_commitment",
       "selected_option": "Keep held under the V4 architectural commitment (correct path).",
       "timestamp_utc": "2026-06-06T07:53:48.739107Z"
+    },
+    "MECH-329": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-26T15:35:34.834502Z"
     },
     "MECH-332": {
       "actor": "user",
@@ -1756,13 +1801,13 @@
       "timestamp_utc": "2026-07-12T09:47:09.611060Z"
     },
     "MECH-457": {
-      "actor": "user-decision-competence-floor-fan-out-46b459",
-      "decision_needed": "Dimension-4 Decide: close the competence_floor RETENTION decision_question -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life of a BC-installed competent policy under continued RL refinement.",
-      "decision_status": "approved",
-      "rationale": "All four named retention loci resolved on a competence TRAJECTORY DV adjudicated from V3-EXQ-780's 20.933 install point (the instrument the first ten legs lacked). CONFIRMED (process family): value estimator -- V3-EXQ-788, distributional critic retains 1.839 vs flat scalar 0.525, margin 1.314; update constraint -- V3-EXQ-792a, strong KL-anchor kl0p30 retains 0.895 vs unconstrained 0.509, margin 0.386 (non-monotone dose-response caveat: only the strong anchor cleanly binds/suppresses drift). ELIMINATED (constitution family): auxiliary persistence -- V3-EXQ-789; consummatory binding -- V3-EXQ-821. The reference RL refinement erodes a BC install to ~half its installed competence (control retained_fraction 0.51-0.53, replicated across 788/792a/780); two disjoint process mechanisms each restore it. Diagnostics -> MECH-457 corroborated (a value-baseline critic is load-bearing) but stays candidate/v3_pending; claim_synthesis_MECH-457 proposal awaits per-child user approval. SCOPE: retention only. The competence FLOOR itself (acquiring competence without a BC seed; whether prediction-trained z_world confers any advantage over a random projection) remains the live frontier under V3-EXQ-819 and conversion_ceiling_root; INV-088 sits on that OPEN side, not this decision. Adjudicated via /failure-autopsy Step 9b (registry Mode B) + user scope decision 2026-07-25.",
-      "recommendation": "Close the competence_floor RETENTION decision_question: PROCESS-family mechanisms (value estimator + update constraint) set the decay half-life of a BC-installed competent policy; CONSTITUTION-family mechanisms do not.",
-      "selected_option": "DECIDED, scoped to RETENTION: the value estimator and the update constraint each independently set it (distributional critic + KL-anchor consolidation); auxiliary persistence and consummatory binding do not. The INSTALLABILITY / representation explanandum remains OPEN (live frontier: V3-EXQ-819 z_world-vs-random-projection instrument-validity + sibling question conversion_ceiling_root / H-observation-interface).",
-      "timestamp_utc": "2026-07-25T23:26:31Z"
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.610339Z"
     },
     "MECH-459": {
       "actor": "governance-festive-lehmann-461cee",
@@ -1781,6 +1826,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "hold as candidate; resolve conflict before promotion",
       "timestamp_utc": "2026-07-20T20:22:21.561005Z"
+    },
+    "MECH-466": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.678027Z"
     },
     "MECH-477": {
       "actor": "governance-cool-jackson-04aba4-gov",
@@ -2061,6 +2115,33 @@
       "selected_option": "Keep broad until V3-EXQ-730/731 land",
       "timestamp_utc": "2026-07-10T20:15:33.824360Z"
     },
+    "Q-081": {
+      "actor": "user",
+      "decision_needed": "Hold \u2014 V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: no new V3 evidence this cycle; hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-26T15:35:34.741714Z"
+    },
+    "Q-082": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-26T15:35:34.898138Z"
+    },
+    "Q-084": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-26T15:35:34.975552Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -2159,6 +2240,15 @@
       "recommendation": "hold_candidate_resolve_conflict",
       "selected_option": "Hold until one additional confirming run (better robustness, slower progress)",
       "timestamp_utc": "2026-05-03T02:50:00Z"
+    },
+    "SD-024": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-26T15:35:35.089092Z"
     },
     "SD-029": {
       "actor": "governance-2026-04-25T15:15",
@@ -2322,6 +2412,15 @@
       "selected_option": "Promote to provisional",
       "timestamp_utc": "2026-07-09T20:23:07.151995Z"
     },
+    "SD-076": {
+      "actor": "user",
+      "decision_needed": "Conflict resolution before promotion",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-26T15:35:35.165868Z"
+    },
     "WEEKLY-DISPATCH": {
       "actor": "user",
       "decision_needed": "Weekly dispatch export approval",
@@ -2341,7 +2440,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-26T00:09:19.739764Z",
+  "generated_at_utc": "2026-07-26T15:38:57.944226Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

@@ -50,7 +50,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-2`
 
@@ -98,7 +99,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-3`
 
@@ -146,7 +148,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-4`
 
@@ -194,7 +197,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-5`
 
@@ -242,7 +246,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-6`
 
@@ -290,7 +295,8 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
 ## `goal_pipeline:GAP-7`
 
@@ -338,5 +344,6 @@ Source plan: `evidence/planning/goal_pipeline_plan.md`
 - `2026-06-21T11:46Z` [autopsy] `failure_autopsy_V3-EXQ-693a_2026-06-21` -> [`evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-693a_2026-06-21.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-10T06:33Z` [autopsy] `failure_autopsy_V3-EXQ-538a_2026-07-10` -> [`evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-538a_2026-07-10.json) :: autopsy non_contributory/substrate_ceiling routing=implement-substrate
 - `2026-07-21T11:38Z` [manifest] `v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3` -> [`evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json`](../../../../evidence/experiments/v3_exq_793_sd049_arm2_competence_calibration_20260721T113813Z_v3.json) :: PASS manifest supports
-- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment **<- live head**
+- `2026-07-24T07:18Z` [autopsy] `failure_autopsy_V3-EXQ-793_2026-07-24` -> [`evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-793_2026-07-24.json) :: autopsy inconclusive/measurement_gap routing=queue-experiment
+- `2026-07-26T11:32Z` [autopsy] `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` -> [`evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_batch-793a-817-819_2026-07-26.json) :: autopsy inconclusive/standard routing=governance **<- live head**
 
