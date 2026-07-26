@@ -6352,7 +6352,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_112",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6361,7 +6361,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-07-26T17:06:24Z",
+      "gated_by_session": "igw-209-proposal-for-arc-112",
+      "gating_reason": "Not directly falsifiable. ARC-112 is an architectural_commitment/FRAMING claim registered explicitly as the PARENT NODE for Q-081 / MECH-466 / INV-091; its own claims.yaml notes state verbatim: 'It is a frame, not a falsifier; do not queue an experiment against it directly -- it is answered by whatever Q-081, MECH-466 and INV-091 return.' The auto-generated EVB-0460 proposal is a generic replication nudge (why_now: insufficient_experimental_replication / low_exp_conf / synthetic_signals_only) with no falsifier design -- suggested_experiment_type 'claim_probe_arc_112' has no corresponding mechanism to probe because ARC-112 introduces none. A direct run would either credit or discredit experimental confidence to a frame on the basis of a child's result mislabelled as the parent's, which is not evidence about the framing itself. Not queued this IGW cycle (igw-209, 2026-07-26); this is NOT substrate absence -- the children are the runnable falsifiers.",
+      "release_condition": "Resolved indirectly when its three children resolve in governance: Q-081 (shared cross-stream organisation vs configured rate separation), MECH-466 (event-relative > clock-relative coordination), INV-091 (integration + protected non-equivalence jointly necessary, viable similarity band). Do NOT re-offer ARC-112 as a standalone 'proposed' experimental proposal; if governance ever wants a direct frame-level test, it requires a NEW design pass, not this generic auto-proposal."
     },
     {
       "acceptance_checks": [
