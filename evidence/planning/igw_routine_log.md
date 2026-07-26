@@ -1146,3 +1146,4 @@ One line per hourly tick. ASCII only.
 2026-07-26T06:05:14Z skip IGW-20260726-216: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-26T07:06:03Z skip IGW-20260726-218: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-26T08:06:39Z no eligible item (skipped 248): IGW-20260726-001:skill /governance not allowed; IGW-20260726-006:skill /governance not allowed; IGW-20260726-010:skill /governance not allowed
+2026-07-26T09:56:38Z no eligible item (skipped 248): IGW-20260726-001:skill /governance not allowed; IGW-20260726-006:skill /governance not allowed; IGW-20260726-010:skill /governance not allowed
