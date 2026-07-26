@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-26T15:23:07Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 3,
-  "queue_id_at_head": "V3-EXQ-819a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-815",
-      "result": "PASS",
-      "completed_at": "2026-07-24T14:41:52.129181+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-814",
-      "result": "PASS",
-      "completed_at": "2026-07-24T14:41:55.666555+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-806",
-      "result": "PASS",
-      "completed_at": "2026-07-25T19:10:42.830564+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-807",
-      "result": "PASS",
-      "completed_at": "2026-07-25T19:14:03.218504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-825",
-      "result": "PASS",
-      "completed_at": "2026-07-26T15:21:03.267718+00:00"
-    }
+  "last_tick_utc": "2026-07-26T15:48:41Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-827",
+  "current_exq_started_utc": "2026-07-26T15:29:14.106983+00:00",
+  "current_title": "INV-091: cross-stream similarity BAND falsifier (landmark-removal + forced-lockstep ablations on a shared trained substrate)",
+  "current_claim_id": "INV-091",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / warmup_shared",
+    "runs_done": 0,
+    "runs_total": 3,
+    "episodes_done": 30,
+    "episodes_total": 40,
+    "overall_pct": 25.0
+  },
+  "seconds_elapsed": 1167,
+  "seconds_remaining": 3502,
+  "recent_lines": [
+    "Seed 11 Condition warmup_shared",
+    "[train] warmup_shared seed=11 ep 10/40",
+    "[train] warmup_shared seed=11 ep 20/40",
+    "[train] warmup_shared seed=11 ep 30/40"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 745,
-  "runner_version": "r4320 624e254 2026-07-26 (running r4317 f55d79e)",
+  "runner_version": "r4323 1aa44db 2026-07-26 (running r4317 f55d79e)",
   "gpu": {
     "available": false
   },
