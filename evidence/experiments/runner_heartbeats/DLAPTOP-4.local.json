@@ -1,48 +1,43 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T05:04:06Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-793a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-729",
-      "result": "PASS",
-      "completed_at": "2026-07-10T11:38:27.814950+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-817",
-      "result": "FAIL",
-      "completed_at": "2026-07-25T20:48:49.653075+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-821",
-      "result": "FAIL",
-      "completed_at": "2026-07-25T22:22:57.979686+00:00"
-    }
+  "last_tick_utc": "2026-07-26T07:51:01Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-823",
+  "current_exq_started_utc": "2026-07-26T07:47:56.722957+00:00",
+  "current_title": "SD-079 consumer: centered z_goal cue -> reliable ghost-goal retrieval decision + MECH-340 rumination-guard efficacy",
+  "current_claim_id": "SD-079",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 202 / ARM_ON",
+    "runs_done": 3,
+    "runs_total": 6,
+    "episodes_done": 0,
+    "episodes_total": 8,
+    "overall_pct": 50.0
+  },
+  "seconds_elapsed": 184,
+  "seconds_remaining": 156,
+  "recent_lines": [
+    "Seed 101 Condition ARM_OFF",
+    "[train] goal seed=101 arm=ARM_OFF ep 4/8 enrolled=32",
+    "[train] goal seed=101 arm=ARM_OFF ep 8/8 enrolled=64",
+    "verdict: PASS",
+    "Seed 101 Condition ARM_ON",
+    "[train] goal seed=101 arm=ARM_ON ep 4/8 enrolled=32",
+    "[train] goal seed=101 arm=ARM_ON ep 8/8 enrolled=64",
+    "verdict: PASS",
+    "Seed 202 Condition ARM_OFF",
+    "[train] goal seed=202 arm=ARM_OFF ep 4/8 enrolled=32",
+    "[train] goal seed=202 arm=ARM_OFF ep 8/8 enrolled=64",
+    "verdict: PASS",
+    "Seed 202 Condition ARM_ON"
   ],
-  "runner_pid": 85950,
-  "runner_version": "r4300 ae0c569 2026-07-26 (running e401fcb 2026-07-25)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 35747,
+  "runner_version": "r4302 d19ca7e 2026-07-26 (running r4301 74c3d02)",
   "gpu": {
     "available": false
   },
