@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-26T13:42:54Z",
+  "last_tick_utc": "2026-07-26T13:57:55Z",
   "state": "running",
   "current_exq": "V3-EXQ-819a",
   "current_exq_started_utc": "2026-07-26T12:02:11.380278+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 43 / D3_hazard_free",
     "runs_done": 19,
     "runs_total": 30,
-    "episodes_done": 100,
+    "episodes_done": 200,
     "episodes_total": 3000,
-    "overall_pct": 63.4
+    "overall_pct": 63.6
   },
-  "seconds_elapsed": 6043,
-  "seconds_remaining": 38698,
+  "seconds_elapsed": 6944,
+  "seconds_remaining": 38581,
   "recent_lines": [
     "MECH-457 / INV-088 competence_floor R4 z_world instrument-validity (5 arms x 1 rung [D3_hazard_free] x 6 seeds; rep=z_world DETACHED, ON_budget=3000, probe_every=250, eval=20, steps=200; ref_hidden=128, budget_mult=3, p0=200, zworld_p0=60; manipulation=prediction-training the z_world encoder ONLY)",
     "anchor reachability: zworld_world_encoder_trained reference=1/1 reachable=True",
@@ -85,7 +85,11 @@
     "verdict: FAIL (arm=zworld_random_proj seed=42 forage/ep=0.35)",
     "Seed 43 Condition D3_hazard_free:zworld_random_proj",
     "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 50/200",
-    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 100/200"
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 100/200",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 150/200",
+    "[train] ree_allon rung=D3_hazard_free seed=43 phase=P0 ep 200/200",
+    "[GUARD-WARNING] z_world UNTRAINED-ENCODER GUARD TRIPPED [mech457_fanout.warmup_zworld]: the P0 warmup changed 0 of 4 split_encoder.world_encoder tensors across 200 episode(s) -- max|delta| = 0.000e+00 (bit-identical). latent_stack: 0/61 tensors changed. Frozen: split_encoder.world_encoder.0.bias, split_encoder.world_encoder.0.weight, split_encoder.world_encoder.2.bias, split_encoder.world_encoder.2.weight. This arm's z_world is a FROZEN RANDOM PROJECTION at initialisation, NOT a prediction-trained encoder, so any result it produces is uninterpretable as evidence about z_world. Known cause: no optimizer in _train_all_on_agent covers a latent_stack parameter (P0 trains e2; P1 trains the lPFC bias + OFC devaluation heads), and the P0 loop buffers latent.z_world.detach(), so no gradient reaches the world encoder. See REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md. If a frozen random projection is the DELIBERATE condition under test, pass require_trained_encoder=False (make_rep / ZWorldRep) or strict=False (warmup_zworld) so the choice is explicit and auditable in the manifest.",
+    "[GUARD-WARNING] z_world UNTRAINED-ENCODER GUARD TRIPPED [mech457_fanout.warmup_zworld]: the P0 warmup changed 0 of 4 split_encoder.world_encoder tensors across 200 episode(s) -- max|delta| = 0.000e+00 (bit-identical). latent_stack: 0/61 tensors changed. Frozen: split_encoder.world_encoder.0.bias, split_encoder.world_encoder.0.weight, split_encoder.world_encoder.2.bias, split_encoder.world_encoder.2.weight. This arm's z_world is a FROZEN RANDOM PROJECTION at initialisation, NOT a prediction-trained encoder, so any result it produces is uninterpretable as evidence about z_world. Known cause: no optimizer in _train_all_on_agent covers a latent_stack parameter (P0 trains e2; P1 trains the lPFC bias + OFC devaluation heads), and the P0 loop buffers latent.z_world.detach(), so no gradient reaches the world encoder. See REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md. If a frozen random projection is the DELIBERATE condition under test, pass require_trained_encoder=False (make_rep / ZWorldRep) or strict=False (warmup_zworld) so the choice is explicit and auditable in the manifest."
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-26T13:42:51Z",
+  "last_tick_utc": "2026-07-26T13:57:53Z",
   "state": "running",
   "current_exq": "V3-EXQ-817a",
   "current_exq_started_utc": "2026-07-26T12:47:28.147559+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "SD-080",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 2 / ARM_0",
-    "runs_done": 6,
+    "run_label": "Seed 2 / ARM_1",
+    "runs_done": 7,
     "runs_total": 15,
     "episodes_done": 0,
     "episodes_total": 40,
-    "overall_pct": 40.0
+    "overall_pct": 46.7
   },
-  "seconds_elapsed": 3324,
-  "seconds_remaining": 5835,
+  "seconds_elapsed": 4225,
+  "seconds_remaining": 5186,
   "recent_lines": [
     "[train] p0 seed=0 ep 10/40  harm=11.45",
     "[train] p0 seed=0 ep 20/40  harm=24.19",
@@ -65,7 +65,10 @@
     "[train] p0 seed=2 ep 20/40  harm=25.88",
     "[train] p0 seed=2 ep 30/40  harm=39.99",
     "[train] p0 seed=2 ep 40/40  harm=53.51",
-    "Seed 2 Condition ARM_0"
+    "Seed 2 Condition ARM_0",
+    "[ARM_0 seed=2] M5_r2=0.9953 M6_spearman=-0.0204 wf_M6=-0.0597 harm_rate=0.0210 survival=187.7 head_delta=0.0000",
+    "verdict: PASS",
+    "Seed 2 Condition ARM_1"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
