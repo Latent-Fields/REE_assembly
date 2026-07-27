@@ -1175,3 +1175,6 @@ One line per hourly tick. ASCII only.
 2026-07-27T19:13:09Z SPAWN IGW-20260727-210 skill=/queue-experiment prio=40 uuid=3e15ee30-ad18-47aa-ad72-3f383c069c7d pid=37395 worktree=igw-210-proposal-for-mech-466
 2026-07-27T19:35:26Z retire-proposal EXP-0287 -> executed (IGW-20260727-210; complete)
 2026-07-27T19:35:26Z auto-defer IGW-20260727-210 hash=d6c276bcac45 for 48h (complete)
+2026-07-27T19:35:29Z complete IGW-20260727-210 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-831 for MECH-466 (event-relative vs clock-relative cross-stream al
+2026-07-27T20:15:00Z reconcile-release hash=d6c276bcac45 (IGW-20260727-210 -> completed)
+2026-07-27T20:14:51Z skip IGW-20260727-210: no fresh runner heartbeat (experiment-lane item would just sit in queue)
