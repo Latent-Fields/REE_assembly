@@ -587,7 +587,64 @@ def _fmt_delta(value: float | None) -> str:
     return f"{sign}{_fmt_number(value)}"
 
 
-def _parse_timestamp(raw: str | None, fallback_path: Path) -> tuple[str, datetime]:
+# Timestamps embedded in a run_id / entry_id. Two shapes are in the corpus:
+#   compact  -- 20260321T131836Z_v3_exq_060_...  /  ..._20260329T203824_v3
+#   epoch    -- v3_exq_208_arc022_..._1775182116_v3   (10-digit epoch seconds)
+# The epoch form is guarded to the 1e9..2e9 second band so a 10-digit seed or
+# hash suffix is not mistaken for a time.
+_RUNID_COMPACT_TS_RE = re.compile(r"(\d{8})T(\d{6})Z?")
+_RUNID_EPOCH_TS_RE = re.compile(r"(?:^|[_-])(1[0-9]{9})(?:[_-]|$)")
+
+# Sentinel for a run whose time cannot be recovered from any data-derived
+# source. Deterministic and maximally-old, so such a run never wins a
+# "latest" selection unless it is the only candidate. NEVER a wall clock.
+_UNKNOWN_TIMESTAMP_DT = datetime(1970, 1, 1, tzinfo=timezone.utc)
+
+
+def _timestamp_from_identifier(identifier: str) -> tuple[str, datetime] | None:
+    """Recover a run's time from a timestamp embedded in its run_id/entry_id.
+
+    Returns ``(iso_string, datetime)`` or ``None``. The ISO string is emitted
+    in the same ``...Z`` form as a real ``timestamp_utc`` so downstream string
+    sorts order derived and declared timestamps consistently.
+    """
+    if not identifier:
+        return None
+    match = _RUNID_COMPACT_TS_RE.search(identifier)
+    if match:
+        try:
+            dt = datetime.strptime(match.group(1) + match.group(2), "%Y%m%d%H%M%S")
+        except ValueError:
+            dt = None
+        if dt is not None:
+            dt = dt.replace(tzinfo=timezone.utc)
+            return dt.isoformat().replace("+00:00", "Z"), dt
+    match = _RUNID_EPOCH_TS_RE.search(identifier)
+    if match:
+        try:
+            dt = datetime.fromtimestamp(int(match.group(1)), tz=timezone.utc)
+        except (ValueError, OverflowError, OSError):
+            return None
+        return dt.isoformat().replace("+00:00", "Z"), dt
+    return None
+
+
+def _parse_timestamp(raw: str | None, identifier: str = "") -> tuple[str, datetime]:
+    """Resolve a record's timestamp deterministically.
+
+    Order of precedence: the declared ``timestamp_utc``; then a timestamp
+    parsed out of the record's own identifier; then an explicit unknown
+    (empty string + epoch-0 sentinel).
+
+    There is deliberately NO wall-clock or file-mtime fallback. Both are
+    unstable across regenerations and machines: an mtime fallback here was
+    the cause of `latest_run_id` flipping between rebuilds for the 29
+    experiment types holding runs with a blank ``timestamp_utc``, and of
+    a regeneration time being written into the durable ``timestamp_utc``
+    column of the derived artifacts (where it looks authoritative and
+    changes every build). An empty marker is strictly better than a
+    plausible-looking wrong value.
+    """
     if raw:
         normalized = raw
         if normalized.endswith("Z"):
@@ -599,8 +656,10 @@ def _parse_timestamp(raw: str | None, fallback_path: Path) -> tuple[str, datetim
             return raw, dt.astimezone(timezone.utc)
         except ValueError:
             pass
-    mtime = datetime.fromtimestamp(fallback_path.stat().st_mtime, tz=timezone.utc)
-    return mtime.isoformat().replace("+00:00", "Z"), mtime
+    derived = _timestamp_from_identifier(identifier)
+    if derived is not None:
+        return derived
+    return "", _UNKNOWN_TIMESTAMP_DT
 
 
 def _parse_timestamp_only(raw: str) -> datetime:
@@ -988,7 +1047,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 )
 
         timestamp_raw, timestamp = _parse_timestamp(
-            manifest.get("timestamp_utc"), manifest_path
+            manifest.get("timestamp_utc"), run_id or run_dir.name
         )
         architecture_epoch = str(manifest.get("architecture_epoch", "")).strip()
         if not architecture_epoch and current_epoch and epoch_start and timestamp >= epoch_start:
@@ -1176,7 +1235,7 @@ def _detect_and_mark_duplicate_emissions(
         for sig, dup in by_signature.items():
             if len(dup) < 2:
                 continue
-            dup_sorted = sorted(dup, key=lambda r: r.timestamp)
+            dup_sorted = sorted(dup, key=lambda r: (r.timestamp, r.run_id))
             canonical = dup_sorted[-1]
             for stale in dup_sorted[:-1]:
                 stale.evidence_direction = "superseded"
@@ -1227,7 +1286,9 @@ def _scan_literature(
 
         record = _load_json(record_path)
         entry_id = str(record.get("entry_id", entry_dir.name))
-        timestamp_raw, timestamp = _parse_timestamp(record.get("timestamp_utc"), record_path)
+        timestamp_raw, timestamp = _parse_timestamp(
+            record.get("timestamp_utc"), entry_id or entry_dir.name
+        )
 
         claim_ids_raw = record.get("claim_ids_tested") or record.get("claim_ids", [])
         if not isinstance(claim_ids_raw, list):
@@ -1760,7 +1821,20 @@ def _experimental_entry_confidence(run: RunRecord, inferred_direction: str) -> t
 def _recency_score(entries: list[dict[str, Any]], now: datetime, horizon_days: int) -> float:
     if not entries:
         return 0.0
-    latest_ts = max(_parse_timestamp_only(str(e["timestamp_utc"])) for e in entries)
+    parsed: list[datetime] = []
+    for e in entries:
+        raw = str(e.get("timestamp_utc", "")).strip()
+        if not raw:
+            # Explicit unknown (see _parse_timestamp): contributes no recency
+            # signal rather than a fabricated one.
+            continue
+        try:
+            parsed.append(_parse_timestamp_only(raw))
+        except ValueError:
+            continue
+    if not parsed:
+        return 0.0
+    latest_ts = max(parsed)
     age_days = max(0.0, (now - latest_ts).total_seconds() / 86400.0)
     score = max(0.0, 1.0 - (age_days / float(horizon_days)))
     return round(score, 3)
@@ -5771,15 +5845,14 @@ def _arm_fp_manifest_timestamp(manifest: dict[str, Any], path: Path) -> str:
         val = manifest.get(key)
         if isinstance(val, str) and val:
             return val
-    # fall back to run_id compact stamp (…_YYYYMMDDTHHMMSSZ_v3) or mtime.
+    # Fall back to a stamp embedded in the run_id (compact or epoch form). NO
+    # mtime fallback -- mtime is unstable across regenerations and checkouts,
+    # so it made this collapse-prefer-newest pick flip between rebuilds. An
+    # empty string sorts first, i.e. an unknown-time run never displaces a
+    # dated one; ties resolve on the sorted manifest iteration order.
     rid = str(manifest.get("run_id", path.stem))
-    m = re.search(r"(\d{8}T\d{6}Z)", rid)
-    if m:
-        return m.group(1)
-    try:
-        return datetime.fromtimestamp(path.stat().st_mtime, tz=timezone.utc).isoformat()
-    except OSError:
-        return ""
+    derived = _timestamp_from_identifier(rid)
+    return derived[0] if derived is not None else ""
 
 
 def _arm_fp_cell_keys(cell: dict[str, Any]) -> list[str]:
