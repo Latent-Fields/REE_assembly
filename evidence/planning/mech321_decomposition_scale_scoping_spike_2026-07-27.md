@@ -38,10 +38,10 @@ rather than the title:
 
 | Site | Fact |
 |---|---|
-| [`policy_chunking.py:1215`](../../../ree-v3/ree_core/policy/policy_chunking.py) | `_depth_for(seq) = 1 + deepest chunk it contains` |
-| [`policy_chunking.py:412`](../../../ree-v3/ree_core/policy/policy_chunking.py) | ARC-071 `max_depth: int = 3` -- chunks **cannot be minted** above this |
-| [`module.py:883`](../../../ree-v3/ree_core/hippocampal/module.py) | MECH-321's `depth` is read straight off `traj.metadata["chunk_depth"]` |
-| [`policy_decomposition.py:427`](../../../ree-v3/ree_core/policy/policy_decomposition.py) | `if depth >= depth_cap: mark unreliable` |
+| [`policy_chunking.py:1215`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/policy/policy_chunking.py) | `_depth_for(seq) = 1 + deepest chunk it contains` |
+| [`policy_chunking.py:412`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/policy/policy_chunking.py) | ARC-071 `max_depth: int = 3` -- chunks **cannot be minted** above this |
+| [`module.py:883`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/hippocampal/module.py) | MECH-321's `depth` is read straight off `traj.metadata["chunk_depth"]` |
+| [`policy_decomposition.py:427`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/policy/policy_decomposition.py) | `if depth >= depth_cap: mark unreliable` |
 
 So MECH-321's `depth` is *not* a recursion counter it increments itself. It is the ARC-071
 composition depth of the chunk handed to it, and it is bounded above by ARC-071's ceiling as a

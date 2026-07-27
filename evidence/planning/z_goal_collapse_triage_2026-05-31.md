@@ -29,7 +29,7 @@ The substrate at REE-v3 default config cannot produce non-trivial z_goal under r
 | [sd_054_scaffolded_onboarding_substrate_design.md](sd_054_scaffolded_onboarding_substrate_design.md) | Substrate-design memo (2026-05-29). Plan-of-record for the goal-pipeline training-regime fix. Three-phase scheduler (P0 scaffolded SD-054 + goal pipeline frozen / P1 annealed `mech295_min_drive_to_fire` 1.0->0.01 + `mech307_conjunction_z_beta_threshold` 0.6->0.3 + spawn returning to midline / P2 measurement). Master switch `use_scaffolded_sd054_onboarding_scheduler` default OFF; all new flags. Implementation surface: new `ree-v3/experiments/scaffolded_sd054_onboarding.py` + one new env kwarg `reef_bipartite_agent_spawn_in_reef_half`. `ree_core/` untouched. |
 | substrate_queue.json entry 89 | `sd_id: scaffolded_sd054_onboarding`, `status: pending_implementation`, `priority: 1`, `ready: false`, `design_doc: evidence/planning/sd_054_scaffolded_onboarding_substrate_design.md`, `unblocks_claims: [Q-045, MECH-313, MECH-260, MECH-295, MECH-307, MECH-117, SD-049 Phase 2 behavioural, ARC-030, Q-040]`. autopsy_refs include both V3-EXQ-490g-cohort and V3-EXQ-603a-b-c-604-605. |
 | [inter_governance_workset.md](inter_governance_workset.md) IGW-20260531-029 | `Implement substrate: scaffolded_sd054_onboarding (unblocks MECH-260)`. Lane=substrate, Skill=/implement-substrate. Currently blocked behind SD-054 candidate_v3_pending (transitive, non-load-bearing). |
-| [ree-v3 ree_core/goal.py](../../../ree-v3/ree_core/goal.py) lines 100-228 | Authoritative source for z_goal update logic. See section 3 for the code trace. |
+| [ree-v3 ree_core/goal.py](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/goal.py) lines 100-228 | Authoritative source for z_goal update logic. See section 3 for the code trace. |
 
 ---
 
@@ -47,7 +47,7 @@ The correction in this triage is a documentation fix, not a scientific finding. 
 
 ## 3. Code trace -- why z_goal collapses in default config
 
-z_goal is updated in [ree-v3/ree_core/goal.py](../../../ree-v3/ree_core/goal.py) `GoalState.update()` (lines 148-225). The update gate:
+z_goal is updated in [ree-v3/ree_core/goal.py](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/goal.py) `GoalState.update()` (lines 148-225). The update gate:
 
 ```python
 # line 173: always decay

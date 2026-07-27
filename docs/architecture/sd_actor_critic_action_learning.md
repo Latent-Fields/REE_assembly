@@ -110,7 +110,7 @@ sub-question empirically.
 ## 2. Co-shaping design (from REE_convergence intake)
 
 > **Provenance.** This section wires in the SECONDARY convergence intake
-> [`2026-07-11_action_representation_coshaping_synthesis.md`](../../../REE_convergence/reports/2026-07-11_action_representation_coshaping_synthesis.md)
+> [`2026-07-11_action_representation_coshaping_synthesis.md`](https://github.com/Latent-Fields/REE_convergence/blob/master/reports/2026-07-11_action_representation_coshaping_synthesis.md)
 > (landed REE_convergence master `42646d6`; snapshot ref `git-f0dda1d`), which
 > completed **after** the substrate_queue entry was materialized and which the
 > originating build session (`nice-blackwell-f367f8`) could not have seen. The

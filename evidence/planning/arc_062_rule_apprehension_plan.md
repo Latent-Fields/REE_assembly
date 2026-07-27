@@ -2182,7 +2182,7 @@ forwarded to 2026-05-10 with the partial-absorption note.
 ### 2026-05-09 - GAP-A done (Phase 1 substrate landed; V3-EXQ-542 5/5 PASS)
 
 Phase 1 substrate landed. New module
-[ree-v3/ree_core/policy/gated_policy.py](../../../ree-v3/ree_core/policy/gated_policy.py)
+[ree-v3/ree_core/policy/gated_policy.py](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/policy/gated_policy.py)
 implements `GatedPolicy` (N=2 scoring heads sharing E3 candidate features +
 3-stream context discriminator on `(z_world, z_self, z_harm_a)`) plus
 `GatedPolicyConfig` and `GatedPolicyOutput`. Symmetry-broken init on the
@@ -2206,7 +2206,7 @@ on the GatedPolicy module (no persistent state to clear; module is
 stateless across ticks).
 
 5 contract tests in
-[ree-v3/tests/contracts/test_gated_policy.py](../../../ree-v3/tests/contracts/test_gated_policy.py)
+[ree-v3/tests/contracts/test_gated_policy.py](https://github.com/Latent-Fields/ree-v3/blob/main/tests/contracts/test_gated_policy.py)
 landed: C1 default-off no-op + C2 backward-compat + C3 discriminator output
 in [0, 1] across diverse latents + C4 head differentiation under training
 pressure (output-divergence metric, >5x growth on held-out batch after 200

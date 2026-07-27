@@ -5,7 +5,7 @@
 **Status:** STAGED -- design doc only; NOT queued. Submission gated on V3-EXQ-614b PASS.
 **Reserved queue ID:** V3-EXQ-618 (assignment confirmed at queue-time)
 **Plan-of-record parent:** [`behavioral_diversity_isolation_plan.md`](behavioral_diversity_isolation_plan.md) sections "Isolation matrix" + "Experiment sequencing -> Phase P4"
-**Closest fork:** [`ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py`](../../../ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py) (3-arm; this design extends ARMS list to 11 entries with identical env + amend + measurement scaffolding)
+**Closest fork:** [`ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py) (3-arm; this design extends ARMS list to 11 entries with identical env + amend + measurement scaffolding)
 
 ---
 
@@ -106,7 +106,7 @@ MATCHED_NOISE (ARM_10, FP-2 control per plan-doc Section "Isolation matrix"):
 ### SD-056 amend levers (held constant across ALL 11 arms)
 
 Inherited verbatim from V3-EXQ-614b so the amend is not confounded with the
-A/B/C/D axis state. From [`ree-v3/CLAUDE.md`](../../../ree-v3/CLAUDE.md) "SD-056
+A/B/C/D axis state. From [`ree-v3/CLAUDE.md`](https://github.com/Latent-Fields/ree-v3/blob/main/CLAUDE.md) "SD-056
 multi-step rollout stability amend (2026-05-31)" section:
 
 | Flag | Value | Lever |
@@ -305,7 +305,7 @@ supersedes:           none (P4 is a phase-extension, not a successor to 614b;
 
 ### 7.1 Fork choice rationale
 
-**Closest parent:** [`ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py`](../../../ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py)
+**Closest parent:** [`ree-v3/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended.py)
 (1026 lines).
 
 **Why this fork over alternatives:**

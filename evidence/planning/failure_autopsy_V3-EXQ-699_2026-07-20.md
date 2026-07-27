@@ -34,9 +34,9 @@ fresh**. What is replicated is the *reading*, once per env step, of a per-select
 ## 2. Facts
 
 Primary DV `committed_class_entropy_nats` is accumulated at driver
-[`:882`/`:899`](../../../ree-v3/experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition.py:882)
+[`:882`/`:899`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_699_pcomp_demotion_x_gonogo_composition.py#L882)
 from `int(action[0].argmax())` on the action **returned** by `agent.select_action`. On a non-E3
-tick [`agent.py:5430`](../../../ree-v3/ree_core/agent.py:5430) returns the **held** action before
+tick [`agent.py:5430`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py#L5430) returns the **held** action before
 `e3.select()` is reached. Cadence defaults to 10 steps (`config.py:2017`) and varies 5–20 under
 MECH-093 arousal modulation (`clock.py:52-70`).
 

@@ -85,7 +85,7 @@ spans two commits' worth of change.)
 | C -> D | `experiments/_lib/consolidation_lesion_harness.py` +191/-13 |
 
 Transitive static import closure of
-[`v3_exq_782_mech459_advantage_composition_probe.py`](../../../ree-v3/experiments/v3_exq_782_mech459_advantage_composition_probe.py)
+[`v3_exq_782_mech459_advantage_composition_probe.py`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_782_mech459_advantage_composition_probe.py)
 (driver lines 196-208; `mech459_probe_r.py:70-72`) = **110 files**, of which **103** are globbed.
 None of the three changed files is in it:
 

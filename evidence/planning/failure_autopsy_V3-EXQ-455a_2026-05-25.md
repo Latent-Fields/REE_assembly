@@ -14,7 +14,7 @@ V3-EXQ-455a's result is ERROR (NotImplementedError raise), not FAIL. The /failur
 ## 1. Facts -- no interpretation
 
 ### V3-EXQ-455a
-- Script: [`ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py`](../../../ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py).
+- Script: [`ree-v3/experiments/v3_exq_455a_sd032a_salience_with_vs.py`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_455a_sd032a_salience_with_vs.py).
 - Line 107: `raise NotImplementedError("V3-EXQ-455a gated. MECH-284 Phase 3 substrate landed 2026-04-24, but cascade gate V3-EXQ-476a/476b ran FAIL ... Do not run until SD-037 has landed and a new cascade gate has confirmed V_s flags break the baseline monostrategy lock.")`.
 - Runner ran the script 2026-04-23T23:23:46Z on DLAPTOP-4.local, hit the raise, logged ERROR (exit code 1). Runner skip-on-completed prevents re-execution.
 - The stub was written 2026-04-24 when SD-037 had not landed AND EXQ-476a/476b had FAILed. As of 2026-05-25: SD-037 substrate-landed 2026-04-25 (V3-EXQ-483b substrate-readiness PASS 2026-05-08); MECH-269b + MECH-284 substrate-landed (V3-EXQ-601 PASS 2026-05-21); ARC-065 SP-CEM substrate-landed as main-path default 2026-05-17 (V3-EXQ-567 PASS). EXQ-476a/476b themselves remain FAIL -- the V_s cascade gate via that pathway did not pass; the monostrategy lock the stub was waiting on was instead addressed at the candidate-generation layer by SP-CEM.

@@ -25,7 +25,7 @@ The current REE-V3 BetaGate elevates into committed mode when
 
     running_variance < commitment_threshold
 
-is satisfied at [e3_selector.py:829](../../../ree-v3/ree_core/predictors/e3_selector.py).
+is satisfied at [e3_selector.py:829](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py).
 `running_variance` is an EMA over E2 world-forward prediction error -- a precision-of-prediction proxy.
 Nothing else gates entry.
 
@@ -88,7 +88,7 @@ on operating mode). MECH-090 R-c is the third member of a category: it gates the
 beta-elevation event itself.
 
 The gate logic lives in `BetaGate.should_admit_elevation(score_margin, n_candidates)`
-([ree-v3/ree_core/heartbeat/beta_gate.py](../../../ree-v3/ree_core/heartbeat/beta_gate.py)):
+([ree-v3/ree_core/heartbeat/beta_gate.py](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/heartbeat/beta_gate.py)):
 when `use_commit_readiness_gate=False`, the predicate is unconditionally `True` (bit-identical
 to pre-R-c). When `True`, the predicate returns `margin >= commit_readiness_floor`.
 

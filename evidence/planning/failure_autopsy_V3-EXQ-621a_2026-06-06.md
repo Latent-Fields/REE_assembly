@@ -52,7 +52,7 @@ C3_cascade_consequential: true  C3_reason: "approach_commit_lift in ARM_2_SCAFFO
 overall_pass:          true
 ```
 
-Decision rule (script `evaluate_acceptance`, [v3_exq_621a...py:347-399](../../../ree-v3/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py)):
+Decision rule (script `evaluate_acceptance`, [v3_exq_621a...py:347-399](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py)):
 `overall = C1 AND (C2 OR C3)`.
 
 ### Per-cell (12 cells = 4 arms x 3 seeds)
@@ -86,7 +86,7 @@ Decision rule (script `evaluate_acceptance`, [v3_exq_621a...py:347-399](../../..
   *"goal-pipeline training regime produces non-trivial z_goal."* z_goal was 0 everywhere.
 - **C1 passed at exactly the floor (6/12)** but only because the 3 `ARM_0_ALL_OFF` cells
   are hardcoded `cell_completed = True  # baseline always "completes"`
-  ([v3_exq_621a...py:290](../../../ree-v3/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py)).
+  ([v3_exq_621a...py:290](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py)).
   The numerator and denominator both include baseline auto-completes.
 - **C3 passed** via `np.mean(approach_commit_rate over completed ARM_2 cells) -
   baseline_rate = 1.0 - 0.0 = 1.0 >= 0.10`.
@@ -145,7 +145,7 @@ reasons:
    module had 0.
 
 2. **The agent was built without `z_goal_enabled`.** `build_agent`
-   ([v3_exq_621a...py:124](../../../ree-v3/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py))
+   ([v3_exq_621a...py:124](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_621a_scaffolded_sd054_onboarding_substrate_readiness.py))
    calls `REEConfig.from_dims(...)` with `use_mech295_liking_bridge=True` +
    `use_mech307_conjunction=True` but **no `z_goal_enabled=True` and no `drive_weight`**.
    With `from_dims` defaulting `z_goal_enabled=False`, `agent.goal_state` is `None` and

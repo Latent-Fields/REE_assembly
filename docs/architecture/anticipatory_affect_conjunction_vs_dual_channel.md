@@ -36,7 +36,7 @@ adjudicates between them.
 
 ### Gap 1: VALENCE_SURPRISE is unsigned magnitude
 
-**Code:** [`agent.py:3075-3077`](../../../ree-v3/ree_core/agent.py#L3075-L3077):
+**Code:** [`agent.py:3075-3077`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py#L3075-L3077):
 
 ```python
 pe_mag = float(pe_val.detach())                            # magnitude only
@@ -62,7 +62,7 @@ separation.
 
 ### Gap 2: MECH-216 schema readout writes only to VALENCE_WANTING
 
-**Code:** [`agent.py:3753-3757`](../../../ree-v3/ree_core/agent.py#L3753-L3757):
+**Code:** [`agent.py:3753-3757`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py#L3753-L3757):
 
 ```python
 self.residue_field.update_valence(
@@ -114,7 +114,7 @@ that biology has anatomically.
 
 ### Gap 4: MECH-216 writes at the agent's current z_world, not at the predicted-imminent location
 
-**Code:** [`agent.py:3754`](../../../ree-v3/ree_core/agent.py#L3754) writes to
+**Code:** [`agent.py:3754`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py#L3754) writes to
 `self._current_latent.z_world`. The residue field is marked at "wherever the agent is now,"
 not at "where the agent predicts the goal will be." Biology's hippocampal place-cell preplay +
 NAcc-anticipation marks the *predicted* goal location.

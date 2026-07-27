@@ -12,7 +12,7 @@
 
 ### Manifest
 
-- `gates_on_exq: V3-EXQ-543k` (script-declared scientific gate, [ree-v3/experiments/v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate.py:25](../../../ree-v3/experiments/v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate.py) line 25 "Scientific gate: interpret only after V3-EXQ-543k contributory PASS (GAP-B).")
+- `gates_on_exq: V3-EXQ-543k` (script-declared scientific gate, [ree-v3/experiments/v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate.py:25](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_606_arc064_gap_i_mech318_multi_rule_empirical_gate.py) line 25 "Scientific gate: interpret only after V3-EXQ-543k contributory PASS (GAP-B).")
 - Pre-existing `evidence_direction_note`: "Premature GAP-I gate: run before V3-EXQ-543k contributory PASS (plan resume_condition). C3 rule_state_active PASS (wiring live); C1/C2 behavioral cross-regime failed (1/3 seeds only). Re-queue after GAP-B closure."
 - Accepted into governance 2026-05-21 (review_tracker decision_log: "606 MECH-318 premature NC").
 - Acceptance flags:

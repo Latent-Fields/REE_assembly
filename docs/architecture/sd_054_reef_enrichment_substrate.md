@@ -260,7 +260,7 @@ the two gradient signals are comparable in scale.
 ### V3-EXQ-522 -- substrate-ceiling demonstration via heuristic policy (PASS, 2026-05-05)
 
 **Important framing.** EXQ-522 used a hand-coded reef-aware avoidance heuristic
-([v3_exq_522_reef_monostrategy_break.py:65](../../ree-v3/experiments/v3_exq_522_reef_monostrategy_break.py))
+([v3_exq_522_reef_monostrategy_break.py:65](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_522_reef_monostrategy_break.py))
 as the policy under test, not a trained REE agent. The heuristic is:
 ```
 if hazard within FLEE_THRESHOLD cells AND reef cells available:

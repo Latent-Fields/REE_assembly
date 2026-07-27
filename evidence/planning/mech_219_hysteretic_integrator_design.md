@@ -16,7 +16,7 @@ pre-implementation.)
 `SD-019b (harm_stream.suffering_accumulator)` is `ready: false` because the mechanism it
 names — `MECH-219 affective_harm_hysteretic_integration` — has never been built, and the
 `escapability_estimate` input MECH-219 needs was only ever a no-op placeholder
-([cea.py:40](../../../ree-v3/ree_core/amygdala/cea.py)). Since MECH-219 was registered
+([cea.py:40](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/amygdala/cea.py)). Since MECH-219 was registered
 (2026-04-24) a control-efficacy subsystem has landed (SD-058 `avoidance_efficacy`, MECH-353
 `capacity_belief`, SD-059 escape-affordance credit) that now supplies that signal. This memo
 (a) adjudicates the open `Q-036` variable set, (b) selects the escapability source, (c)
@@ -91,8 +91,8 @@ and can supply it:
 
 | Source | Accessor | Semantics | Fit |
 |---|---|---|---|
-| **A. SD-058 / MECH-357 `InstrumentalAvoidanceGate`** | `agent.instrumental_avoidance.effective_efficacy()` → `[0,1]` ([infralimbic_avoidance_gate.py:182](../../../ree-v3/ree_core/pfc/infralimbic_avoidance_gate.py)) | learned avoidance-efficacy (eligibility trace), cross-episode-persistent, scaffold-floored | **RECOMMENDED.** Directly *is* "how well can I act to make this stop" — the literal escapability construct (Maier/Moscarello). Already cross-episode (matches suffering's slow timescale). |
-| **B. MECH-353 `BlockedAgency` `capacity_belief`** | `capacity_belief` arg into `BlockedAgency.update` / `BlockedAgencyOutput.capacity_belief` ([blocked_agency.py:133](../../../ree-v3/ree_core/affect/blocked_agency.py)) | belief that capacity to act is retained; splits assert-vs-withdraw on the **same controllability axis** (its docstring names SD-019b explicitly) | strong conceptual sibling (assert pole vs suffering withdraw pole). But `capacity_belief` is itself derived from `1 - w·‖z_harm_a‖` → **circular** if z_harm_a is the MECH-219 output. Use as a *cross-check*, not the primary source. |
+| **A. SD-058 / MECH-357 `InstrumentalAvoidanceGate`** | `agent.instrumental_avoidance.effective_efficacy()` → `[0,1]` ([infralimbic_avoidance_gate.py:182](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/pfc/infralimbic_avoidance_gate.py)) | learned avoidance-efficacy (eligibility trace), cross-episode-persistent, scaffold-floored | **RECOMMENDED.** Directly *is* "how well can I act to make this stop" — the literal escapability construct (Maier/Moscarello). Already cross-episode (matches suffering's slow timescale). |
+| **B. MECH-353 `BlockedAgency` `capacity_belief`** | `capacity_belief` arg into `BlockedAgency.update` / `BlockedAgencyOutput.capacity_belief` ([blocked_agency.py:133](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/affect/blocked_agency.py)) | belief that capacity to act is retained; splits assert-vs-withdraw on the **same controllability axis** (its docstring names SD-019b explicitly) | strong conceptual sibling (assert pole vs suffering withdraw pole). But `capacity_belief` is itself derived from `1 - w·‖z_harm_a‖` → **circular** if z_harm_a is the MECH-219 output. Use as a *cross-check*, not the primary source. |
 | **C. SD-059 / MECH-358 escape-affordance credit** | `agent.escape_affordance_bridge.get_state()` per-action relief/safety credit | per-action-class directed-escape credit | too fine-grained (per-action); escapability for suffering is a scalar regime signal. Could *aggregate* (max over classes) as a fallback. |
 | **D. legacy `cea.py` `escapability_hint`** | placeholder | no-op | retire; replaced by (A). |
 
@@ -185,7 +185,7 @@ MECH-219 must be falsifiably distinct from adjacent substrates, or it is over-sp
 - **vs MECH-353 blocked-agency:** MECH-353 is the *capacity-RETAINED ASSERT* pole (high
   capacity_belief → act); MECH-219 is the *capacity-COLLAPSED WITHDRAW* pole (low escapability
   → suffer). Same controllability axis, opposite pole — already noted in
-  [blocked_agency.py:17](../../../ree-v3/ree_core/affect/blocked_agency.py). They must
+  [blocked_agency.py:17](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/affect/blocked_agency.py). They must
   anti-correlate in the validation.
 - **vs SD-032e pACC (`drive_bias`):** pACC accumulates a slow autonomic drift from z_harm_a.
   MECH-219 sits UPSTREAM (it *produces* the z_harm_a that pACC then drifts on). Wiring order

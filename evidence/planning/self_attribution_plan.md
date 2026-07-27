@@ -216,7 +216,7 @@ path) vs dACC-ON-shared-trunk (ARC-058 path).
 **Two findings invert the original Phase 1 plan:**
 
 1. EXQ-445h is two-arm only -- `CONDITIONS = ["OFF", "ON_INDEPENDENT"]`
-   ([v3_exq_445h_sd032b_dacc_reef.py:83](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py)).
+   ([v3_exq_445h_sd032b_dacc_reef.py:83](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_445h_sd032b_dacc_reef.py)).
    The ARC-058 arm was silently dropped after EXQ-445b. EXQ-445a/c/d/f/g/h
    all run `use_shared_harm_trunk=False` hard-coded. The "latest in the
    series" that the plan keyed on has no shared-trunk data.
@@ -504,7 +504,7 @@ queued. Three findings:
 
 1. **445h two-arm read re-confirmed** (predecessor 2026-05-11 finding still
    accurate): `CONDITIONS = ["OFF", "ON_INDEPENDENT"]` at
-   [v3_exq_445h_sd032b_dacc_reef.py:83](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py);
+   [v3_exq_445h_sd032b_dacc_reef.py:83](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_445h_sd032b_dacc_reef.py);
    `use_shared_harm_trunk=False` hardcoded at line 127; manifest
    `config.conditions` matches; manifest per-seed
    `action_class_entropy=0.0` across all 6 seed/arm cells; manifest
@@ -608,7 +608,7 @@ Phase 1 forensic read of V3-EXQ-445h, performed today, surfaced that the
 arbitration data the plan keyed on does not exist. Two findings:
 
 1. **EXQ-445h is two-arm only.** Script line 83 of
-   [v3_exq_445h_sd032b_dacc_reef.py](../../../ree-v3/experiments/v3_exq_445h_sd032b_dacc_reef.py)
+   [v3_exq_445h_sd032b_dacc_reef.py](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_445h_sd032b_dacc_reef.py)
    sets `CONDITIONS = ["OFF", "ON_INDEPENDENT"]`. The ON_SHARED arm was
    silently dropped after the EXQ-445b iteration; EXQ-445a/c/d/f/g/h all
    run `use_shared_harm_trunk=False` hard-coded. The 2026-05-08 plan-

@@ -17,7 +17,7 @@ a separate session to land.
 
 ### F1. MECH-111 broadcast novelty branch is dead-by-construction
 
-[`ree-v3/ree_core/predictors/e3_selector.py`](../../../ree-v3/ree_core/predictors/e3_selector.py) lines 606-613 subtract a single scalar `self._novelty_ema`
+[`ree-v3/ree_core/predictors/e3_selector.py`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py) lines 606-613 subtract a single scalar `self._novelty_ema`
 uniformly from every candidate's score. Uniform shift is argmin-invariant,
 so the branch has no behavioural effect under any
 `config.novelty_bonus_weight`. V3-EXQ-590a's bit-identical per-seed metrics
@@ -30,21 +30,21 @@ behaviour change.
 End-to-end trace verified:
 
 - `REEAgent.select_action()` composes per-channel biases into
-  `dacc_score_bias` ([`ree_core/agent.py:3275-3322`](../../../ree-v3/ree_core/agent.py)
+  `dacc_score_bias` ([`ree_core/agent.py:3275-3322`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py)
   for MECH-314a curiosity; sibling blocks for dacc, lateral_pfc, ofc,
   gated_policy, mech295, tonic_vigor) and passes it as
-  `score_bias=dacc_score_bias` to `e3.select()` ([`ree_core/agent.py:3455`](../../../ree-v3/ree_core/agent.py)).
+  `score_bias=dacc_score_bias` to `e3.select()` ([`ree_core/agent.py:3455`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py)).
 - `e3.select()` adds the bias to per-candidate scores
-  ([`ree_core/predictors/e3_selector.py:737`](../../../ree-v3/ree_core/predictors/e3_selector.py) `scores = scores + bias_tensor`).
+  ([`ree_core/predictors/e3_selector.py:737`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py) `scores = scores + bias_tensor`).
 - Selection is `argmin(scores)` (committed) or `multinomial(softmax(-scores/T))`
-  (uncommitted), both on the biased scores ([`ree_core/predictors/e3_selector.py:807-810`](../../../ree-v3/ree_core/predictors/e3_selector.py)).
+  (uncommitted), both on the biased scores ([`ree_core/predictors/e3_selector.py:807-810`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py)).
 
 If `score_bias[i]` varies across `i ∈ [K]`, argmin shifts. There is no
 plumbing-side bug.
 
 ### F3. EXQ-571's `bias_fraction_curiosity` is a mean-collapsed scalar
 
-The diagnostic at [`ree_core/agent.py:3437-3448`](../../../ree-v3/ree_core/agent.py) records
+The diagnostic at [`ree_core/agent.py:3437-3448`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py) records
 `_last_score_bias_decomp["curiosity"] = _bdc_mean(_bdc_curiosity)`, i.e. the
 mean of the `[K]` bias vector across candidates. For a per-candidate signal
 whose mean-across-K is roughly stationary in time, the temporal variance of
@@ -64,7 +64,7 @@ Empirical drivers (`/tmp/verify_mech314a_propagation.py`,
   ticks: `_bdc_curiosity` is identically `[0, 0, ..., 0]`. Cause:
   `residue_field.rbf_field.active_mask.sum() == 0` for every tick, because
   `residue_field.accumulate()` only fires on `harm_occurred=True` AND a
-  committed trajectory ([`ree_core/predictors/e3_selector.py:894`](../../../ree-v3/ree_core/predictors/e3_selector.py)). Untrained
+  committed trajectory ([`ree_core/predictors/e3_selector.py:894`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py)). Untrained
   random-policy runs satisfy neither. MECH-314a's
   `_compute_novelty` returns `None` (line 414 of `structured_curiosity.py`)
   and contributes zero.
@@ -117,7 +117,7 @@ first-step `z_world` and is doomed by the same upstream collapse.**
 
 ## Acted on this session
 
-- Deleted dead MECH-111 broadcast branch ([`ree-v3/ree_core/predictors/e3_selector.py`](../../../ree-v3/ree_core/predictors/e3_selector.py) lines 606-613). `_novelty_ema` instance state,
+- Deleted dead MECH-111 broadcast branch ([`ree-v3/ree_core/predictors/e3_selector.py`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py) lines 606-613). `_novelty_ema` instance state,
   `update_novelty_ema()` method, and `novelty_bonus_weight` config field are
   intentionally retained so the ~30 existing call sites that pass
   `novelty_bonus_weight=0.0` are bit-identical. `score_components.novelty_weighted` in `last_score_decomp` stays at 0.0 (was already 0.0 because
@@ -164,7 +164,7 @@ should be landed by separate sessions with explicit user assent:
    probes will continue to produce the same false-positive "bias channel
    not propagating" headline even after the actual upstream fix lands. The
    raw values are already captured on `agent.e3.last_score_diagnostics`
-   ([`ree_core/predictors/e3_selector.py:744-764`](../../../ree-v3/ree_core/predictors/e3_selector.py)
+   ([`ree_core/predictors/e3_selector.py:744-764`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e3_selector.py)
    `score_bias_range_mean`, `score_bias_to_raw_range_ratio`) — they just
    are not exposed per-channel in the decomp record.
 

@@ -25,7 +25,7 @@ present-tense "Problem" section below is the original as-designed framing (regis
 
 ## Problem
 
-ree-v3 produces `z_harm_a` via `AffectiveHarmEncoder` ([ree-v3/ree_core/latent/stack.py:168](../../../ree-v3/ree_core/latent/stack.py)) and consumes it downstream in the cingulate cluster (SD-032a–e). The partial urgency interrupt at [ree-v3/ree_core/agent.py:869-886](../../../ree-v3/ree_core/agent.py) gives us a CeA-like fast pulse, and AICAnalog (SD-032c) gives us cortical urgency. But the explicit amygdala claims — MECH-046 (fast salience classification writes a mode prior) and MECH-074 (amygdala as read/write head for valenced hippocampal map) — have **no dedicated substrate**.
+ree-v3 produces `z_harm_a` via `AffectiveHarmEncoder` ([ree-v3/ree_core/latent/stack.py:168](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/latent/stack.py)) and consumes it downstream in the cingulate cluster (SD-032a–e). The partial urgency interrupt at [ree-v3/ree_core/agent.py:869-886](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py) gives us a CeA-like fast pulse, and AICAnalog (SD-032c) gives us cortical urgency. But the explicit amygdala claims — MECH-046 (fast salience classification writes a mode prior) and MECH-074 (amygdala as read/write head for valenced hippocampal map) — have **no dedicated substrate**.
 
 Before SD-035, MECH-046/074 were promised-but-unimplemented. The cingulate is downstream; it consumes what the amygdala writes. Without an upstream amygdala stage:
 
@@ -168,7 +168,7 @@ class CeAConfig:
 - `SalienceCoordinator.tick` accepts `mode_prior` from CeA and adds to pre-softmax logits (reuses existing API; mirror SD-032c AICAnalog wiring).
 - `HippocampalModule` write path multiplies write strength by BLA `encoding_gain`; accepts `remap_signal` on its existing update hook.
 - `E3.select` accepts BLA `retrieval_bias` to reweight hippocampal candidate proposals.
-- Urgency interrupt at [agent.py:869-886](../../../ree-v3/ree_core/agent.py) stays inline this pass (deliberate; migration into `CeAAnalog.fast_prime` is a second pass once MECH-074c is validated).
+- Urgency interrupt at [agent.py:869-886](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py) stays inline this pass (deliberate; migration into `CeAAnalog.fast_prime` is a second pass once MECH-074c is validated).
 
 ---
 

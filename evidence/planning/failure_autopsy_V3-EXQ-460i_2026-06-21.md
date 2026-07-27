@@ -49,7 +49,7 @@ ARM_LEVER_OFF mirrors the fragmentation (seed 43: 415 elevated / 405 releases ~=
 The manifest self-routed `lever_did_not_shorten_occupancy`. The autopsy adjudicates **why** the lever did nothing -- the two readings the user posed:
 
 ### (A) Config / wiring gap (lever not armed) -> re-queue with the lever armed. **RULED OUT.**
-- `_make_config` leaves the lever OFF on the trained base; [`_clone_arm`](../../../ree-v3/experiments/v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier.py) explicitly sets `use_natural_commit_urgency_release = lv["on"]` + `urgency`/`action_extent`/`gap_sensitivity` per arm. Manifest confirms `lever_present: true` on all three armed arms (`false` only on ARM_LEVER_OFF).
+- `_make_config` leaves the lever OFF on the trained base; [`_clone_arm`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_460i_natural_commit_occupancy_release_decommit_falsifier.py) explicitly sets `use_natural_commit_urgency_release = lv["on"]` + `urgency`/`action_extent`/`gap_sensitivity` per arm. Manifest confirms `lever_present: true` on all three armed arms (`false` only on ARM_LEVER_OFF).
 - The eval runs the full `agent.select_action` path, so the lever's arm-site (`note_commit_entry`) and release-site (`tick`) were reachable.
 
 ### (B) Armed but ineffective -> substrate finding routing to a lever amend. **CONFIRMED (refined).**

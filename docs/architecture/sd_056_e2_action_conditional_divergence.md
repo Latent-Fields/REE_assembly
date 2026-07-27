@@ -19,7 +19,7 @@ status_claim: SD-056
 
 ## Problem
 
-[`ree-v3/ree_core/predictors/e2_fast.py:176-197`](../../../ree-v3/ree_core/predictors/e2_fast.py)
+[`ree-v3/ree_core/predictors/e2_fast.py:176-197`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e2_fast.py)
 implements `world_forward`:
 
 ```python

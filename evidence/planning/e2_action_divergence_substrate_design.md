@@ -18,7 +18,7 @@ This memo specifies what gets added to E2 and what the next experiment programme
 
 ## What is broken
 
-[`ree-v3/ree_core/predictors/e2_fast.py:176-197`](../../../ree-v3/ree_core/predictors/e2_fast.py):
+[`ree-v3/ree_core/predictors/e2_fast.py:176-197`](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/predictors/e2_fast.py):
 
 ```python
 def world_forward(self, z_world, action):

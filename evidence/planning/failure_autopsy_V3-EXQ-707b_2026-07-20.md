@@ -25,7 +25,7 @@
 ## 1. Facts -- the defect, confirmed at both ends
 
 `committed_class_counts` is accumulated in
-[`v3_exq_707b_arc110_loop_segregation_c2_release.py:1023-1035`](../../../ree-v3/experiments/v3_exq_707b_arc110_loop_segregation_c2_release.py)
+[`v3_exq_707b_arc110_loop_segregation_c2_release.py:1023-1035`](https://github.com/Latent-Fields/ree-v3/blob/main/experiments/v3_exq_707b_arc110_loop_segregation_c2_release.py)
 on **every P2 env step**, gated only by `is_p2`:
 
 ```python

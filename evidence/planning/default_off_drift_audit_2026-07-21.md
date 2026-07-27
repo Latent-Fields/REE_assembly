@@ -44,14 +44,14 @@ Ranked by severity. `exp/test` = number of files under `experiments/` and `tests
 
 | # | Claim | Status | Knob (file:line) | exp/test | Evidence run |
 |---|-------|--------|------------------|----------|--------------|
-| 1 | **SD-020** | `stable` | `harm_surprise_pe_enabled` — [config.py:2306](../../../ree-v3/ree_core/utils/config.py) | **1 / 0** | `v3_exq_324b_sd020_harm_surprise_pe_20260419T045630Z_v3` (`supports/PASS`) |
+| 1 | **SD-020** | `stable` | `harm_surprise_pe_enabled` — [config.py:2306](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/utils/config.py) | **1 / 0** | `v3_exq_324b_sd020_harm_surprise_pe_20260419T045630Z_v3` (`supports/PASS`) |
 
 The exemplar, and worse than recorded. The **only** experiment that ever sets
 `harm_surprise_pe_enabled=True` is `v3_exq_324_sd020_harm_surprise_pe.py` — the **superseded**
 predecessor. The run SD-020's `live_status` actually cites, **324b**, never references the flag: it
 trains the affective encoder in a script-local loop (`v3_exq_324b_...py:212-222`,
 `if pe_enabled: target_val = harm_pe`), bypassing `compute_harm_accum_loss`
-([agent.py:8598](../../../ree-v3/ree_core/agent.py), PE branch at 8641-8642) and the substrate flag
+([agent.py:8598](https://github.com/Latent-Fields/ree-v3/blob/main/ree_core/agent.py), PE branch at 8641-8642) and the substrate flag
 entirely. So SD-020 is `stable` on evidence from a **script-local prototype of the mechanism, not the
 substrate path** — flipping the flag today would not reproduce the validated configuration, it would
 exercise a code path no PASS run has ever covered. Meanwhile the default agent trains `z_harm_a`
