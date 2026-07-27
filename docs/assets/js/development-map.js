@@ -106,6 +106,11 @@
     controlsRoot.querySelectorAll("button[data-filter]").forEach(function (button) {
       button.setAttribute("aria-pressed", String(button.dataset.filter === nextFilter));
     });
+    if (nextFilter !== "all") {
+      tracksRoot.querySelectorAll('.development-map-node-group[data-bucket="' + nextFilter + '"]').forEach(function (group) {
+        group.open = true;
+      });
+    }
   }
 
   function renderControls() {
