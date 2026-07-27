@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_562_wpc1_goal_score_margin_20260514T050338Z_v3` at `2026-05-14T06:31:17.026780Z` signatures: none
+- `v3_exq_562_wpc1_goal_score_margin_20260514T050338Z_v3` at `2026-07-27T05:36:04.668043Z` signatures: none
 
 Recurring signatures:
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_559_goal_stream_heartbeat
 
-Generated: `2026-07-26T15:38:57.944226Z`
+Generated: `2026-07-27T05:36:32.471458Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,4 +9,4 @@ Generated: `2026-07-26T15:38:57.944226Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3` | `2026-05-14T06:31:17.018219Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/summary.md) / [`manifest`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/manifest.json) / [`metrics`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/metrics.json) |
+| `v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3` | `2026-07-27T05:36:04.662088Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/summary.md) / [`manifest`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/manifest.json) / [`metrics`](runs/v3_exq_559_goal_stream_heartbeat_20260513T164155Z_v3/metrics.json) |

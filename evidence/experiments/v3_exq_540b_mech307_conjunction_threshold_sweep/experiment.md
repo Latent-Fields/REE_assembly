@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3` at `2026-05-12T04:18:04.773790Z` signatures: none
+- `v3_exq_540b_mech307_conjunction_threshold_sweep_20260512T025041Z_v3` at `2026-07-27T05:36:04.618037Z` signatures: none
 
 Recurring signatures:
 

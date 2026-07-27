@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2
 
-Generated: `2026-07-26T15:38:57.944226Z`
+Generated: `2026-07-27T05:36:32.471458Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

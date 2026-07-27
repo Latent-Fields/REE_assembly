@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_224_mech124_zgoal_salience_diag_20260404T022857Z_v3` at `2026-04-18T12:40:11.108876Z` signatures: none
+- `v3_exq_224_mech124_zgoal_salience_diag_20260404T022857Z_v3` at `2026-07-27T05:36:03.967705Z` signatures: none
 
 Recurring signatures:
 
