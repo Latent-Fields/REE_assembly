@@ -1,0 +1,96 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_831_mech466_event_relative_alignment",
+  "run_id": "v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-27T20:14:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-466"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "clock_relative_not_exceeded",
+    "summary": "Outcome not-E: event-minus-clock RV delta mean=-0.0912 did not clear the effective floor 0.1713 across 3 valid seeds. Coordination is no tighter around events than around arbitrary clock points -- the boundary stream reads as a detector, not the federation's coordination substrate. Informative FAIL (weakens), not a null result, per the project's non-standard-directions convention.",
+    "preconditions": [
+      {
+        "name": "boundary_rate_non_degenerate_band",
+        "description": "Claim-mandated non-degeneracy guard: the mean boundary-pulse rate (fraction of env steps carrying a boundary onset) must lie strictly inside the band -- neither floor-pinned (segmenter silent, no event grammar to test) nor ceiling-pinned (a boundary every step makes event-relative == clock-relative by construction).",
+        "measured": 0.0377865972570829,
+        "threshold_low": 0.001,
+        "threshold_high": 0.6,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "control": "q081 profile enables hippocampal.use_event_segmenter (MECH-288)",
+        "met": true
+      },
+      {
+        "name": "boundary_non_degenerate_seed_fraction",
+        "description": "Fraction of seeds whose own boundary rate is inside the band; a single well-placed mean must not mask per-seed pinning.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      },
+      {
+        "name": "sufficient_union_events_seed_fraction",
+        "description": "Fraction of seeds with >= 6 distinct union event onsets (boundary + commitment + mode-switch + offline), so peri-event pooling is not starved.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      },
+      {
+        "name": "sufficient_valid_seeds_for_delta_sd",
+        "description": "At least 2 seeds must clear every precondition (non-degenerate boundary rate, valid matched pools, finite RVs) to compute an SD of the event-minus-clock delta.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_event_relative_beats_clock_relative": true
+    },
+    "scope_note": "WAKING event grammar only (use_sleep_loop=False). Offline/sleep-phase transitions -- the fifth landmark class in MECH-466 -- are recorded as an available-but-empty event type this iteration and deferred to a lettered follow-up with the sleep loop enabled. Sibling of V3-EXQ-824, which deferred this Outcome E."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25"
+}
