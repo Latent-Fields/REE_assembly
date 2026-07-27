@@ -41845,9 +41845,23 @@
         MECH-321's mirror, where there is nothing for it to bound;
         it belongs on ARC-071's chunk_max_depth. Note (b) is an
         ARC-071 question inherited here only by mis-attachment,
-        and should register against ARC-071 if registered at all.
-        Registration deferred pending a decision on (a): today
-        this is a substrate-design question, not a claim.
+        and should register against ARC-071 / MECH-323 if
+        registered at all.
+
+        DO NOT REGISTER (b) SEPARATELY -- half of it is already
+        registered. Q-085 (grain_as_controllability, registered
+        2026-07-27 by /claim-synthesis on MECH-163) asks whether
+        chunk_max_size x chunk_max_depth is a CONTROLLABILITY
+        parameter and not only a formation one, which is the
+        UPPER bound on the same knob; the 2026-07-27 MECH-321/323
+        parameter lit-pull (REE_assembly 36901c01ed, Ramkumar
+        2016 / Bo & Seidler 2009 / Solway 2014's explicit null on
+        a subtask-size budget) supplies the LOWER bound from
+        deliberation cost. (b) is the scaling question between
+        those two bounds and belongs in Q-085's what_would_answer
+        rather than in a new Q-claim. Only (a) is unregistered.
+        Registration of (a) deferred: today it is a
+        substrate-design decision, not a claim.
 
       - Q-XXX: MECH-321 vs MECH-269b threshold coupling -- both
         read V_s; both may use thresholds. Whether the thresholds
