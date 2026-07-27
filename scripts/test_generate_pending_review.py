@@ -101,5 +101,164 @@ class LoadUnclaimedManifestsTests(unittest.TestCase):
         self.assertEqual(out[0]["result"], "FAIL")
 
 
+def _block(**kw):
+    """A z_goal_stream block with the producer's key set; override per test."""
+    b = {"ticks_total": 12000, "ticks_active": 0, "writer_calls": 0,
+         "active_frac": 0.0, "writer_defect": True,
+         "goal_state_present": True, "n_agents": 6}
+    b.update(kw)
+    return b
+
+
+class ZGoalWriterDefectTests(unittest.TestCase):
+    """The interpretation rules for the dead-z_goal-stream flag.
+
+    Getting these wrong makes the surface WORSE than nothing: the false
+    positives below are all legitimate, common readings, and flagging them
+    would bury the two real cases (V3-EXQ-626, V3-EXQ-830) in noise.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def test_writer_defect_true_is_flagged(self):
+        """The real signature: agent stepped, update_z_goal never called."""
+        self.assertTrue(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block()}))
+
+    def test_zero_active_frac_with_writer_calls_is_NOT_flagged(self):
+        """Correctly wired, benefit gate never opened -- the agent met no
+        resource. MEASURED on a StepHarness run, which pins the update_z_goal
+        call as an invariant and so structurally CANNOT carry the defect.
+        Flagging it would send a reader hunting for a call that is already
+        there."""
+        self.assertFalse(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block(writer_calls=12000, writer_defect=False)}))
+
+    def test_goal_off_parity_arm_reading_zero_is_NOT_flagged(self):
+        """A goal-OFF parity arm / negative control (V3-EXQ-626b's
+        ARM_NO_BENEFIT) reads active_frac 0.0 CORRECTLY."""
+        self.assertFalse(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block(ticks_total=0, active_frac=None,
+                                     writer_defect=None,
+                                     goal_state_present=False)}))
+
+    def test_absent_block_is_unmeasured_not_a_defect(self):
+        """The historical corpus carries no block at all. UNMEASURED must never
+        render as measured-zero, and must never be flagged."""
+        self.assertFalse(self.mod._z_goal_writer_defect({}))
+        self.assertFalse(self.mod._z_goal_writer_defect({"z_goal_stream": {}}))
+        self.assertFalse(self.mod._z_goal_writer_defect({"z_goal_stream": None}))
+
+    def test_malformed_block_is_not_a_defect(self):
+        """A non-dict block is bad data, not evidence of a dead stream."""
+        self.assertFalse(self.mod._z_goal_writer_defect({"z_goal_stream": "true"}))
+        self.assertFalse(self.mod._z_goal_writer_defect({"z_goal_stream": []}))
+
+    def test_writer_defect_null_is_not_a_defect(self):
+        """The producer writes None when nothing was measured (ticks_total 0).
+        `is True` and not truthiness is what keeps that out of the section."""
+        self.assertFalse(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block(writer_defect=None)}))
+        self.assertFalse(self.mod._z_goal_writer_defect(
+            {"z_goal_stream": _block(writer_defect=False)}))
+
+    def test_active_frac_alone_can_never_flag(self):
+        """The load-bearing negative: no value of active_frac flags a run whose
+        writer_defect is not True. active_frac is NOT the signal."""
+        for frac in (0.0, None, 0.5, 1.0):
+            self.assertFalse(
+                self.mod._z_goal_writer_defect(
+                    {"z_goal_stream": _block(active_frac=frac,
+                                             writer_defect=False)}),
+                f"active_frac={frac!r} flagged without writer_defect")
+
+
+class ZGoalSectionRenderTests(unittest.TestCase):
+    """The rendered section is a record, not a gate."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _render(self, runs, unclaimed=()):
+        import io
+        from contextlib import redirect_stdout
+        written = {}
+
+        class _FakeOut:
+            """Captures the rendered markdown instead of writing evidence/."""
+
+            def __init__(self, store):
+                self.store = store
+
+            def write_text(self, text):
+                self.store["text"] = text
+
+            def relative_to(self, _root):
+                return "evidence/experiments/pending_review.md"
+
+        orig = self.mod.OUTPUT
+        self.mod.OUTPUT = _FakeOut(written)
+        try:
+            with redirect_stdout(io.StringIO()):
+                self.mod.write_pending_review(
+                    list(runs), [], list(unclaimed), [], "2026-07-27T00:00:00Z")
+        finally:
+            self.mod.OUTPUT = orig
+        return written.get("text", "")
+
+    def _run(self, run_id="v3_exq_626_x_20260101T000000Z_v3", **kw):
+        r = {"run_id": run_id, "timestamp_utc": "2026-07-27T10:00:00Z",
+             "status": "PASS", "claims": ["MECH-288"], "failure_signatures": [],
+             "adjudication": "n/a", "interpretation_label": "",
+             "recorded_preconditions_unmet": [], "preconditions_scope_note": "",
+             "z_goal_stream": {}}
+        r.update(kw)
+        return r
+
+    def test_defective_run_gets_its_own_section(self):
+        text = self._render([self._run(z_goal_stream=_block())])
+        self.assertIn("Dead z_goal stream", text)
+        self.assertIn("v3_exq_626_x_20260101T000000Z_v3", text)
+        self.assertIn("record, not a gate", text)
+
+    def test_clean_and_unmeasured_runs_produce_no_section(self):
+        """No block, and a measured-but-fine block, both stay silent -- the
+        section must not appear for the whole historical corpus."""
+        text = self._render([
+            self._run(run_id="unmeasured_20260101T000000Z_v3"),
+            self._run(run_id="wired_20260101T000000Z_v3",
+                      z_goal_stream=_block(writer_calls=99, writer_defect=False)),
+        ])
+        self.assertNotIn("Dead z_goal stream", text)
+
+    def test_unclaimed_manifest_with_defect_is_surfaced(self):
+        """Both confirmed defects were claim-less readiness diagnostics, which
+        can land outside claim_evidence entirely -- the likeliest carrier."""
+        unclaimed = [{
+            "manifest_stem": "v3_exq_830_probe_20260727T120000Z_v3",
+            "run_id": "v3_exq_830_probe_20260727T120000Z_v3",
+            "result": "FAIL", "experiment_type": "v3_exq_830_probe",
+            "evidence_direction": "", "timestamp_utc": "2026-07-27T12:00:00Z",
+            "queue_id": "V3-EXQ-830", "z_goal_stream": _block(),
+        }]
+        text = self._render([], unclaimed=unclaimed)
+        self.assertIn("Dead z_goal stream", text)
+        self.assertIn("v3_exq_830_probe_20260727T120000Z_v3", text)
+        # Unclaimed entries carry `result`, not `status` -- render, don't crash.
+        self.assertNotIn("| ? |", text.split("Dead z_goal stream")[1][:2000])
+
+    def test_section_does_not_change_pending_counts(self):
+        """Membership is non-blocking: it must not inflate the pending total or
+        move a run between the PASS/FAIL tables."""
+        clean = self._render([self._run()])
+        dead = self._render([self._run(z_goal_stream=_block())])
+        for text in (clean, dead):
+            self.assertIn("Pending: **1** item(s)", text)
+            self.assertIn("1 PASS, 0 FAIL", text)
+
+
 if __name__ == "__main__":
     unittest.main()

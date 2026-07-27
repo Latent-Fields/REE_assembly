@@ -178,6 +178,37 @@ def _manifest_pass_fail(d: dict) -> str | None:
     return None
 
 
+def _z_goal_writer_defect(run: dict) -> bool:
+    """True ONLY for the unambiguous dead-z_goal-stream defect.
+
+    Keys on the producer's precomputed `writer_defect` verdict -- i.e. the run
+    stepped the agent (`ticks_total > 0`) and `update_z_goal`, the substrate's
+    SOLE z_goal writer, was never called. z_goal then sat at zero-init for the
+    whole run and the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD
+    scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the
+    MECH-295 liking->approach bridge and the frontopolar counterfactual read all
+    silently no-opped. Confirmed on V3-EXQ-626 and V3-EXQ-830.
+
+    DELIBERATELY NOT keyed on `active_frac == 0.0`, and this is the whole point
+    of the helper. A zero fraction is a legitimate and common reading, produced
+    by at least three benign shapes: a goal-OFF parity arm, a negative control
+    (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose GoalState
+    benefit gate never opened because the agent met no resource -- the last of
+    which is measured, not hypothetical, on a StepHarness run that structurally
+    cannot carry the defect. Flagging the fraction would bury the real signal
+    under those.
+
+    `is True` rather than a truthiness test: the producer writes None for
+    "nothing measured" (`ticks_total == 0`), and an ABSENT block means the run
+    never measured the stream at all -- almost the whole historical corpus.
+    Neither is a defect, and neither may be rendered as one.
+    """
+    block = run.get("z_goal_stream")
+    if not isinstance(block, dict) or not block:
+        return False
+    return block.get("writer_defect") is True
+
+
 def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
     run_id = e["run_id"]
     if run_id not in by_run:
@@ -201,6 +232,11 @@ def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
             # so they never read as action-required.
             "recorded_preconditions_unmet": e.get("recorded_preconditions_unmet", []),
             "preconditions_scope_note": e.get("preconditions_scope_note", ""),
+            # z_goal-stream liveness (2026-07-27): the indexer carries the run's
+            # z_goal_stream counter block through when the run measured one.
+            # Absent => UNMEASURED (almost the whole corpus) => never flagged.
+            # Read via _z_goal_writer_defect, never via active_frac.
+            "z_goal_stream": e.get("z_goal_stream") or {},
         }
     claim = e.get("claim_id") or default_claim
     if claim not in by_run[run_id]["claims"]:
@@ -459,6 +495,10 @@ def load_unclaimed_manifests(reviewed: set, discussed: set,
             "evidence_direction": d.get("evidence_direction", ""),
             "timestamp_utc": d.get("timestamp_utc", "") or "",
             "queue_id": d.get("queue_id", "") or "",
+            # Read straight off the flat manifest: these runs are by definition
+            # absent from claim_evidence, so the indexer never saw them and the
+            # block can only come from disk. Same absent==UNMEASURED rule.
+            "z_goal_stream": d.get("z_goal_stream") or {},
         })
 
     return sorted(out, key=lambda r: (r["timestamp_utc"], r["run_id"]))
@@ -616,6 +656,14 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     # both lists independently; membership here confers no blocking status and does
     # not affect the counts of PASS/FAIL or `flagged`.
     recorded = [r for r in runs if r.get("recorded_preconditions_unmet")]
+    # Dead z_goal stream -- another SEPARATE, non-blocking list, on the `recorded`
+    # pattern. Drawn from BOTH the indexed runs and the unclaimed manifests: a
+    # substrate-readiness diagnostic tagging no claims is exactly the shape both
+    # confirmed defects took, and those can land outside claim_evidence entirely.
+    # Membership confers no blocking status, changes no count above, and never
+    # excludes a run from scoring.
+    zgoal_dead = ([r for r in runs if _z_goal_writer_defect(r)]
+                  + [r for r in unclaimed if _z_goal_writer_defect(r)])
 
     total_pending = (len(runs) + len(runner_undiscussed) + len(unclaimed)
                      + len(error_manifests))
@@ -633,7 +681,9 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f" {len(error_manifests)} ERROR manifest(s)"
         f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication"
         + (f"; {len(recorded)} run(s) with recorded (non-gating) preconditions"
-           if recorded else ""),
+           if recorded else "")
+        + (f"; {len(zgoal_dead)} run(s) with a DEAD z_goal stream"
+           if zgoal_dead else ""),
         "",
     ]
 
@@ -722,6 +772,61 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                     note = note[:197] + "..."
                 lines.append(
                     f"| `{r['run_id']}` | {r['status']} | {detail} | {note or '—'} |"
+                )
+            lines.append("")
+
+        if zgoal_dead:
+            lines += ["## Dead z_goal stream (interpret before trusting a z_goal readout)", ""]
+            lines += [
+                "**This is a record, not a gate.** No claim status, confidence or "
+                "`v3_pending` changes on account of it, and the runs below are scored "
+                "exactly as they would be otherwise. It is here so the condition is seen "
+                "at review time instead of only by whoever opens the raw manifest.",
+                "",
+                "Each run below reports `z_goal_stream.writer_defect: true`: the agent was "
+                "stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the "
+                "substrate -- was never called. z_goal therefore sat at zero-init for the "
+                "whole run, `GoalState.is_active()` returned False throughout, and every "
+                "consumer received `current_z_goal=None` on every tick: the E3 goal term, "
+                "MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal "
+                "anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge "
+                "and the frontopolar counterfactual read all silently no-opped. Nothing "
+                "raises. The usual cause is a driver that hand-rolls its inner loop and "
+                "omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal "
+                "that never left zero; V3-EXQ-830, caught only because its readiness gate "
+                "happened to name an ad-hoc `zgoal_present_frac`).",
+                "",
+                "**A result that does not read z_goal is unaffected** -- V3-EXQ-816's "
+                "harness carries no defect for its own question. Judge each run by whether "
+                "its criteria depend on a live z_goal; if they do, the run measured "
+                "something other than what it claimed to.",
+                "",
+                "**`active_frac` is NOT the signal and must not be read as one.** A zero "
+                "fraction is legitimate and common -- a goal-OFF parity arm, a negative "
+                "control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose "
+                "`GoalState` benefit gate never opened because the agent met no resource "
+                "all read 0.0 correctly. `writer_calls == 0` is what separates the defect "
+                "from those, and it is the only thing flagged here. A run with **no** "
+                "`z_goal_stream` block is UNMEASURED, not zero, and never appears below -- "
+                "which is almost the whole historical corpus (the runtime backstop landed "
+                "in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 "
+                "`experiments/_lib/z_goal_stream.py`.",
+                "",
+                "| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |",
+                "|--------|--------|-------|--------------|-------------|-----------|",
+            ]
+            for r in zgoal_dead:
+                blk = r.get("z_goal_stream") or {}
+                # Indexed runs carry `status`; unclaimed manifests carry `result`.
+                status = r.get("status") or r.get("result") or "?"
+                frac = blk.get("active_frac")
+                frac_s = "n/a" if frac is None else f"{float(frac):.3f}"
+                present = blk.get("goal_state_present")
+                present_s = ("live" if present is True
+                             else "absent" if present is False else "?")
+                lines.append(
+                    f"| `{r['run_id']}` | {status} | {blk.get('ticks_total', '?')} | "
+                    f"**{blk.get('writer_calls', 0)}** | {frac_s} | {present_s} |"
                 )
             lines.append("")
 

@@ -452,6 +452,68 @@ def test_is_annotated_signals():
     assert b._is_annotated({}) is False
 
 
+# --- z_goal-stream liveness surfacing (2026-07-27) -------------------------
+# The `z_goal_stream` block is carried through the indexer for QUERYABILITY
+# ONLY. These pin the two ways the surface could be made worse than nothing:
+# rendering an UNMEASURED run as a measured zero, and letting the block change
+# how a run scores.
+
+def test_prov_is_empty_is_type_aware():
+    """The reason _prov_is_empty replaced `str(v).strip() == ""`: that test
+    renders an empty dict as the non-empty literal "{}", which would backfill
+    `z_goal_stream: {}` onto a pack and turn UNMEASURED into measured-zero."""
+    assert b._prov_is_empty({}) is True
+    assert b._prov_is_empty({"ticks_total": 0}) is False
+    # String/None behaviour must be unchanged for machine / machine_class /
+    # substrate_hash, which shared this loop before the dict field joined it.
+    assert b._prov_is_empty(None) is True
+    assert b._prov_is_empty("") is True
+    assert b._prov_is_empty("   ") is True
+    assert b._prov_is_empty("linux-x86_64-py3.10") is False
+
+
+def test_z_goal_stream_backfilled_from_flat_onto_thin_pack():
+    """A pack materialised by a sync_v3_results predating the run-pack mapping
+    drops the block; the flat sibling still carries it, so backfill it. Same
+    shape as the 2026-07-16 machine_class case, and NOT gated on annotation."""
+    block = {"ticks_total": 12000, "ticks_active": 0, "writer_calls": 0,
+             "active_frac": 0.0, "writer_defect": True,
+             "goal_state_present": True, "n_agents": 6}
+    pack = {"run_id": "r1", "status": "PASS"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, {"z_goal_stream": block})
+    assert applied is False  # provenance backfill never sets the overlay flag
+    assert merged["z_goal_stream"] == block
+
+
+def test_empty_z_goal_stream_block_is_not_backfilled():
+    """UNMEASURED must not be written into the shape of a measured run: an
+    empty block on the flat copy leaves the pack byte-identical."""
+    pack = {"run_id": "r1", "status": "PASS"}
+    merged, _, applied = b._merge_flat_manifest_overrides(pack, {"z_goal_stream": {}})
+    assert merged == pack
+    assert applied is False
+
+
+def test_z_goal_stream_never_overwrites_a_pack_block():
+    """The pack is the scoring source; its own measurement wins."""
+    pack_block = {"ticks_total": 10, "ticks_active": 4, "writer_calls": 10,
+                  "active_frac": 0.4, "writer_defect": False}
+    flat_block = {"ticks_total": 99, "ticks_active": 0, "writer_calls": 0,
+                  "active_frac": 0.0, "writer_defect": True}
+    merged, _, _ = b._merge_flat_manifest_overrides(
+        {"z_goal_stream": pack_block}, {"z_goal_stream": flat_block})
+    assert merged["z_goal_stream"] == pack_block
+
+
+def test_z_goal_stream_is_not_a_direction_field():
+    """Record-and-surface, never a gate. Membership in _FLAT_DIRECTION_FIELDS
+    is what makes a flat/pack disagreement WARN as a governance conflict and is
+    the marker of a scoring-relevant field -- z_goal_stream must stay out of it,
+    and stay in the pure-provenance list that cannot change how a run scores."""
+    assert "z_goal_stream" not in b._FLAT_DIRECTION_FIELDS
+    assert "z_goal_stream" in b._FLAT_PROVENANCE_BACKFILL_FIELDS
+
+
 # --- real-data smoke: the four incident run_ids ----------------------------
 
 def _real_run_pairs():

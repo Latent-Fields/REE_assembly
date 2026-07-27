@@ -234,6 +234,20 @@ def build_runpack_docs(data: dict, experiment_type: str):
         if _val is not None and str(_val).strip() != "":
             manifest[_prov] = _val
 
+    # z_goal-stream liveness (2026-07-27). Carry the runtime backstop's counter
+    # block (ree-v3 experiments/_lib/z_goal_stream.py) through to the pack, which
+    # is what build_experiment_indexes scores -- this mapping is a WHITELIST, so
+    # without this line the block dies at the flat manifest and no derived surface
+    # can ever see it. `update_z_goal` is the sole z_goal writer in the substrate;
+    # a driver that hand-rolls its inner loop and omits the call runs with z_goal
+    # pinned at zero-init and every z_goal consumer silently no-ops (V3-EXQ-626,
+    # V3-EXQ-830). Conditional add on a non-empty dict, so legacy flats (the whole
+    # historical corpus) produce byte-identical output and an ABSENT block keeps
+    # meaning UNMEASURED rather than measured-zero.
+    _zgs = data.get("z_goal_stream")
+    if isinstance(_zgs, dict) and _zgs:
+        manifest["z_goal_stream"] = _zgs
+
     # Build metrics.json. 766-style diagnostic manifests store their scalar
     # readouts under `aggregates` (paired with `thresholds`) rather than a
     # top-level `metrics` dict, which left metrics.values={} on the scored pack.

@@ -163,6 +163,25 @@ class RunRecord:
     # queryability, NOT scored.
     machine: str = ""
     machine_class: str = ""
+    # z_goal-stream liveness (2026-07-27). The runtime backstop's counter block
+    # (ree-v3 experiments/_lib/z_goal_stream.py), carried verbatim for
+    # queryability. Surfaced, NEVER scored: it does not touch confidence,
+    # conflict, scoring_excluded or adjudication -- this is record-and-surface,
+    # not a gate.
+    #   {"ticks_total": N, "ticks_active": M, "writer_calls": W,
+    #    "active_frac": M/N, "writer_defect": bool,
+    #    "goal_state_present": bool, "n_agents": k}
+    # READ IT VIA `writer_defect`, NOT `active_frac`. A zero fraction is a
+    # legitimate and common reading -- a goal-OFF parity arm and a negative
+    # control (V3-EXQ-626b's ARM_NO_BENEFIT) both read 0.0 correctly, and so
+    # does a correctly-wired run whose GoalState benefit gate never opened
+    # because the agent met no resource (measured on a StepHarness run, which
+    # structurally cannot carry the defect). `writer_calls == 0` with
+    # `ticks_total > 0` is the unambiguous defect signature; `writer_defect` is
+    # that verdict precomputed by the producer. An EMPTY dict here means the run
+    # recorded no block at all -- UNMEASURED, which is almost the whole
+    # historical corpus. Unmeasured is never rendered as 0.0 and never flagged.
+    z_goal_stream: dict[str, Any] = field(default_factory=dict)
 
 
 def _is_number(value: Any) -> bool:
@@ -859,7 +878,30 @@ _FLAT_PROVENANCE_BACKFILL_FIELDS = (
     "machine",
     "machine_class",
     "substrate_hash",
+    # z_goal_stream (2026-07-27) is backfilled for the same reason machine_class
+    # was: the run-pack mapper is a whitelist, so a pack materialised by a
+    # sync_v3_results predating the mapping drops the block even when the flat
+    # sibling carries it. Pure provenance -- not in _FLAT_DIRECTION_FIELDS, so it
+    # cannot change how a run scores. Unlike its three string siblings this value
+    # is a DICT, which is why _prov_is_empty below is type-aware.
+    "z_goal_stream",
 )
+
+
+def _prov_is_empty(value: Any) -> bool:
+    """True when a provenance value carries nothing worth backfilling.
+
+    Type-aware because `_FLAT_PROVENANCE_BACKFILL_FIELDS` mixes strings with the
+    dict-valued `z_goal_stream`: the previous `str(value).strip() == ""` test
+    renders an empty dict as the non-empty literal "{}" and would therefore
+    backfill `z_goal_stream: {}` onto the pack -- writing an UNMEASURED run into
+    the shape of a measured one. Behaviour for str/None is unchanged.
+    """
+    if value is None:
+        return True
+    if isinstance(value, (dict, list, tuple, set)):
+        return not value
+    return str(value).strip() == ""
 
 # Sentinel distinguishing "pack has no such key" from "pack value is None".
 _MISSING = object()
@@ -949,10 +991,10 @@ def _merge_flat_manifest_overrides(
     prov_filled: dict[str, Any] = {}
     for fld in _FLAT_PROVENANCE_BACKFILL_FIELDS:
         flat_val = flat_manifest.get(fld)
-        if flat_val is None or str(flat_val).strip() == "":
+        if _prov_is_empty(flat_val):
             continue
         pack_val = pack.get(fld, _MISSING)
-        if pack_val is _MISSING or str(pack_val or "").strip() == "":
+        if pack_val is _MISSING or _prov_is_empty(pack_val):
             prov_filled[fld] = flat_val
     if prov_filled:
         base = {**pack, **prov_filled}
@@ -1151,6 +1193,14 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         # a thin pre-2026-07-16 pack still surfaces the flat sibling's provenance.
         machine = str(manifest.get("machine", "") or "").strip()
         machine_class = str(manifest.get("machine_class", "") or "").strip()
+        # z_goal-stream liveness block, read AFTER the flat-provenance backfill
+        # (same reason as machine_class: a pack from before the mapper carried it
+        # is thin). A non-dict or empty value collapses to {} == UNMEASURED, which
+        # is emitted nowhere -- so a missing block can never be mistaken for a
+        # measured zero. See the RunRecord field comment for why writer_defect,
+        # and not active_frac, is the readable signal.
+        raw_z_goal_stream = manifest.get("z_goal_stream") or {}
+        z_goal_stream = raw_z_goal_stream if isinstance(raw_z_goal_stream, dict) else {}
 
         by_experiment[experiment_type].append(
             RunRecord(
@@ -1188,6 +1238,7 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 label_balance=label_balance,
                 machine=machine,
                 machine_class=machine_class,
+                z_goal_stream=z_goal_stream,
             )
         )
 
@@ -2289,6 +2340,13 @@ def _write_claim_evidence_matrix(
                 unlinked_entry["machine_class"] = run.machine_class
             if run.machine:
                 unlinked_entry["machine"] = run.machine
+            # z_goal-stream liveness: surfaced, never scored. Unlinked runs get it
+            # too -- a substrate-readiness diagnostic that tags no claim is exactly
+            # the shape both confirmed defects took (V3-EXQ-830 was caught only by
+            # its own ad-hoc readiness gate), so omitting it here would blind the
+            # surface to its likeliest carrier.
+            if run.z_goal_stream:
+                unlinked_entry["z_goal_stream"] = run.z_goal_stream
             matrix["unlinked_runs"].append(unlinked_entry)
             continue
 
@@ -2353,6 +2411,14 @@ def _write_claim_evidence_matrix(
                 entry["machine_class"] = run.machine_class
             if run.machine:
                 entry["machine"] = run.machine
+            # z_goal-stream liveness: surfaced for queryability only. Emitted
+            # verbatim and ONLY when the run measured it, so an absent key means
+            # UNMEASURED and legacy entries stay byte-identical. It deliberately
+            # does not appear in any of the scoring_excluded branches below -- a
+            # dead z_goal stream is a fact about the run for a reviewer to weigh,
+            # not a machine verdict that vacates it.
+            if run.z_goal_stream:
+                entry["z_goal_stream"] = run.z_goal_stream
             matrix["entries"].append(entry)
 
             # Epoch-stale, explicitly excluded, or superseded entries are logged
