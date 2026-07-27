@@ -1,0 +1,2346 @@
+{
+  "schema_version": "development_map/v1",
+  "generated_at": "2026-07-26T15:39:43Z",
+  "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
+  "sources": [
+    "docs/CURRENT_FRONT.md",
+    "docs/assets/data/progress.v1.json",
+    "docs/assets/data/claim_dependency_process.v1.json",
+    "docs/roadmap.md"
+  ],
+  "frontier": {
+    "headline": null,
+    "gate": "The two most obvious candidate actions from Step 3 \u2014 re-running V3-EXQ-817/819 with corrected objectives/gates \u2014 are **already queued and claimed** (`V3-EXQ-817a`, `V3-EXQ-819a`, both `status: claimed` in the live queue as of this run)",
+    "questions": [
+      {
+        "id": "competence_floor",
+        "title": "competence retention + installability",
+        "claims": [
+          "MECH-457",
+          "INV-088"
+        ],
+        "surviving": 2,
+        "initial": 17,
+        "convergence": "circling",
+        "is_hero": true
+      },
+      {
+        "id": "arousal-variance-amplifier",
+        "title": "Arousal: concentrate or broaden?",
+        "claims": [
+          "MECH-463"
+        ],
+        "surviving": 1,
+        "initial": 4,
+        "convergence": "circling",
+        "is_hero": false
+      },
+      {
+        "id": "ceiling_vs_driver",
+        "title": "ceiling vs driver",
+        "claims": [
+          "INV-089",
+          "INV-090"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "consolidation_readout_validity",
+        "title": "consolidation readout validity",
+        "claims": [
+          "SD-068",
+          "MECH-168",
+          "INV-047",
+          "MECH-169"
+        ],
+        "surviving": 4,
+        "initial": 6,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "control_plane_rank",
+        "title": "control-plane rank",
+        "claims": [
+          "MECH-063",
+          "SD-069"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "conversion_ceiling_root",
+        "title": "conversion-ceiling root",
+        "claims": [
+          "MECH-457",
+          "ARC-065"
+        ],
+        "surviving": 4,
+        "initial": 6,
+        "convergence": "circling",
+        "is_hero": false
+      },
+      {
+        "id": "curiosity_diversity_vs_amplifier",
+        "title": "curiosity's role",
+        "claims": [
+          "SD-025",
+          "ARC-057"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "curiosity_subflavour_authority",
+        "title": "curiosity sub-flavour selection authority",
+        "claims": [
+          "MECH-314",
+          "MECH-314a",
+          "MECH-314b",
+          "MECH-314c",
+          "Q-044"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "da_density_approach",
+        "title": "DA-modulated density",
+        "claims": [
+          "MECH-232",
+          "SD-024"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "inv088_diversity_readout",
+        "title": "INV-088 diversity readout",
+        "claims": [
+          "INV-088"
+        ],
+        "surviving": 2,
+        "initial": 2,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "policy_decomposition_discrimination",
+        "title": "Policy decomposition R1-vs-R5",
+        "claims": [
+          "ARC-070",
+          "MECH-321"
+        ],
+        "surviving": 4,
+        "initial": 4,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "zworld_underdifferentiation_cause",
+        "title": "z_world under-differentiation cause",
+        "claims": [
+          "Q-002",
+          "SD-031"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "label": "Build",
+      "value": "102 / 125",
+      "detail": "modules recorded as built"
+    },
+    {
+      "label": "Prove",
+      "value": "76.2%",
+      "detail": "weighted closure, not an overall score"
+    },
+    {
+      "label": "Narrow",
+      "value": "28 / 40",
+      "detail": "rival explanations still standing"
+    },
+    {
+      "label": "Decide",
+      "value": "6",
+      "detail": "design choices currently recorded as ready"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "summary": "Invariants and premises carried into the programme.",
+      "total": 70,
+      "buckets": [
+        {
+          "key": "active",
+          "label": "Active / under review",
+          "count": 27,
+          "more_count": 17,
+          "nodes": [
+            {
+              "id": "INV-029",
+              "title": "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 28,
+              "depends_on": [
+                "INV-026",
+                "INV-028"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-010",
+              "title": "Offline integration exists and is required.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-044",
+              "title": "Approximate Bayesian contextual inference is architecturally impossible to co-compute with online encoding: prior construction (schema formation -- which context distinctions are structurally relevant) must precede posterior inference (attribution -- which evidence belongs to which context slot); a system attempting both online produces a degenerate prior that makes attribution uninformative regardless of training duration.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-014",
+              "title": "Representation and regulation are strictly separated.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-089",
+              "title": "harm_evaluator_bounded_by_z_harm_differentiation",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "INV-064",
+                "SD-010",
+                "ARC-003",
+                "ARC-019",
+                "ARC-027"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-005",
+              "title": "Harm to others contributes via mirror modelling, not symbolic rules.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "experiment_planned",
+              "attention_rank": 2,
+              "incoming_dependencies": 10,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-028",
+              "title": "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 23,
+              "depends_on": [
+                "INV-026",
+                "INV-027"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-012",
+              "title": "Responsibility arises through commitment, not prediction alone.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 11,
+              "depends_on": [
+                "SD-026"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-025",
+              "title": "Irreducible uncertainty is an epistemological constraint that cannot be engineered away.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 11,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-026",
+              "title": "A self is an operational prerequisite for responsible agency.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 11,
+              "depends_on": [],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "closed",
+          "label": "Closed record",
+          "count": 3,
+          "more_count": 0,
+          "nodes": [
+            {
+              "id": "INV-053",
+              "title": "Chronic harm-dominated environments produce a self-maintaining depressive attractor: z_goal seeding failure, terrain collapse, and HABIT/PLANNED behavioural equivalence.",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 2,
+              "depends_on": [
+                "INV-052",
+                "MECH-117",
+                "SD-012",
+                "SD-011"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-052",
+              "title": "Goal-directed behaviour in adversive environments requires a tonic regulatory system maintaining benefit orientation across terrain, transduction, and maintenance stages.",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "MECH-186",
+                "MECH-187",
+                "MECH-188",
+                "SD-012"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-018",
+              "title": "Agency is required; passive predictors are not REE.",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 1,
+              "depends_on": [],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "planned",
+          "label": "Planned / conditional",
+          "count": 40,
+          "more_count": 30,
+          "nodes": [
+            {
+              "id": "INV-049",
+              "title": "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 26,
+              "depends_on": [
+                "INV-044",
+                "INV-045",
+                "SD-017"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-034",
+              "title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 11,
+              "depends_on": [
+                "INV-032",
+                "ARC-030",
+                "MECH-112",
+                "Q-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-043",
+              "title": "REE architecture enables but does not guarantee ethical development; without a developmental phase in which the agent experiences love from caregivers and internalises the belief that it is loveable, the architectural capacity for ethics (INV-025-029) may resolve to survival, domination, or indifference instead.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "INV-029",
+                "INV-041",
+                "ARC-040",
+                "ARC-019",
+                "MECH-052",
+                "INV-042"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-046",
+              "title": "Dementia is computationally a progressive failure of contextual attribution rather than primarily a memory storage failure: episodic memory loss is downstream of progressive collapse of the offline consolidation pipeline that maintains the context attribution scaffold.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "INV-045",
+                "INV-044",
+                "MECH-166",
+                "SD-017"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-064",
+              "title": "e1_e2_e3_maturational_sequence_necessity",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "INV-055",
+                "INV-056",
+                "ARC-001",
+                "ARC-002",
+                "ARC-003",
+                "ARC-019",
+                "MECH-212",
+                "MECH-213"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-045",
+              "title": "The biological NREM-then-REM sleep phase sequence is the correct computational order, derivable from the logical dependencies between the failure modes each phase addresses; this ordering is not a contingent biological fact but an engineering necessity, and it serves directly as the V4 rewiring specification: each phase specifies what structural change the REE substrate requires to address its failure mode.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "INV-044",
+                "SD-017",
+                "MECH-120",
+                "MECH-121",
+                "MECH-122",
+                "MECH-123"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-065",
+              "title": "proxy_goal_necessity",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "SD-014",
+                "SD-015",
+                "MECH-216",
+                "MECH-217"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-059",
+              "title": "Mutual frame-maintenance signaling is necessary for play to function as distinct from manipulation: unilateral play declaration without partner agreement masks real harm as synthetic.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "MECH-094",
+                "ARC-049"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-051",
+              "title": "There exists an optimal range of daily Model Error Load (MEL): insufficient MEL (extreme monotony, isolation, institutional under-stimulation) produces progressive model rigidity via under-stimulation of the learning drive even when sleep architecture is intact; excessive MEL (acute trauma, overwhelming novelty, extreme responsibility) produces overload insomnia and incomplete update even with extended sleep opportunity.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "INV-050",
+                "INV-049",
+                "SD-017",
+                "MECH-181"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-058",
+              "title": "Play is a structurally necessary behavioral mode: without a bounded low-stakes learning context, strategy acquisition requires accepting real harm risk or forgoing novel exploration entirely.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "INV-049",
+                "SD-012"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "architecture",
+      "title": "Architecture",
+      "summary": "System commitments and mechanism-level design.",
+      "total": 285,
+      "buckets": [
+        {
+          "key": "active",
+          "label": "Active / under review",
+          "count": 86,
+          "more_count": 76,
+          "nodes": [
+            {
+              "id": "ARC-005",
+              "title": "Control plane routes precision and modes.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 89,
+              "depends_on": [
+                "INV-008",
+                "INV-009",
+                "INV-014",
+                "ARC-004"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-007",
+              "title": "Hippocampal systems store and replay paths through residue-field terrain.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 80,
+              "depends_on": [
+                "ARC-004",
+                "ARC-003",
+                "ARC-018"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-003",
+              "title": "E3 selects and commits trajectories.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 45,
+              "depends_on": [
+                "INV-012",
+                "ARC-001",
+                "ARC-002",
+                "ARC-004",
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-018",
+              "title": "Hippocampus generates explicit rollouts and post-commitment viability mapping.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 42,
+              "depends_on": [
+                "ARC-007",
+                "ARC-003",
+                "ARC-002",
+                "ARC-001",
+                "ARC-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-021",
+              "title": "Three BG-like cortico-striatal loops require distinct learning channels.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 26,
+              "depends_on": [
+                "Q-019",
+                "ARC-004",
+                "MECH-069",
+                "MECH-033"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-001",
+              "title": "E1 is the persistent predictive substrate.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 23,
+              "depends_on": [
+                "INV-013",
+                "ARC-004",
+                "ARC-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-013",
+              "title": "Residue is persistent latent-space curvature; hippocampal paths form a cognitive map.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 21,
+              "depends_on": [
+                "INV-006",
+                "INV-004",
+                "ARC-004"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-057a",
+              "title": "Committed action sequences suppress sensory precision reweighting until execution completes.",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 14,
+              "depends_on": [
+                "ARC-015",
+                "ARC-005",
+                "ARC-003",
+                "ARC-004",
+                "INV-012",
+                "ARC-023",
+                "MECH-090"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-061",
+              "title": "Commit-boundary token reclassifies pre-commit vs post-commit error routing.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 14,
+              "depends_on": [
+                "ARC-003",
+                "ARC-015",
+                "INV-012",
+                "MECH-060"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-073",
+              "title": "Valence is intrinsic to hippocampal map geometry, not applied downstream (ARC-007 reconciled via Q-020 Resolution A; provisional 2026-06-10).",
+              "status": "provisional",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 13,
+              "depends_on": [
+                "ARC-007",
+                "ARC-013",
+                "MECH-035"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "closed",
+          "label": "Closed record",
+          "count": 24,
+          "more_count": 14,
+          "nodes": [
+            {
+              "id": "MECH-094",
+              "title": "The system maintains a functional distinction between simulation-mode content and real-experience content, such that simulation content does not accumulate in the viability map as committed experience; failures of this distinction produce confabulation (simulated events encoded as real).",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 67,
+              "depends_on": [
+                "ARC-014",
+                "INV-011",
+                "INV-019",
+                "MECH-060",
+                "MECH-029",
+                "MECH-248",
+                "MECH-249"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-016",
+              "title": "Modes are control-plane regimes applied to shared predictive machinery: the precision-to-commitment circuit.",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 36,
+              "depends_on": [
+                "ARC-005",
+                "MECH-059",
+                "ARC-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-069",
+              "title": "Sensory prediction error, motor-sensory error, and harm/goal error are incommensurable and cannot be collapsed.",
+              "status": "stable",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 23,
+              "depends_on": [
+                "ARC-021",
+                "MECH-033",
+                "ARC-018",
+                "MECH-099"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-035",
+              "title": "What is the minimal signal architecture for play frame maintenance: is a single bilateral open/close tag sufficient, or does ongoing signal exchange (a continuous play-face equivalent) need to be sustained throughout the episode?",
+              "status": "resolved",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "INV-059",
+                "ARC-049"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "IMPL-022",
+              "title": "Legacy external representation-reference contract (inputs, outputs, knobs, failure gates).",
+              "status": "legacy",
+              "phase": "unset",
+              "claim_class": "implementation_note",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "IMPL-021",
+                "MECH-057a",
+                "ARC-001",
+                "ARC-002",
+                "ARC-005",
+                "ARC-015"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-058",
+              "title": "Slow target-anchor dynamics stabilize E1/E2 representations via functional rate separation.",
+              "status": "retired",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "ARC-001",
+                "ARC-002",
+                "ARC-004",
+                "ARC-015",
+                "MECH-057a"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-008",
+              "title": "Legacy: resolved in favor of valence/mu-kappa separation with calibration follow-up.",
+              "status": "legacy",
+              "phase": "unset",
+              "claim_class": "open_question",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "ARC-017",
+                "MECH-035",
+                "MECH-048"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-009",
+              "title": "Legacy: resolved via bounded care-override policy with hard catastrophic other-harm veto.",
+              "status": "legacy",
+              "phase": "unset",
+              "claim_class": "open_question",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "MECH-036",
+                "MECH-052",
+                "ARC-010"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-011",
+              "title": "Legacy: resolved by placing diversity-floor control in pre-commit/offline sampling.",
+              "status": "legacy",
+              "phase": "unset",
+              "claim_class": "open_question",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "ARC-018",
+                "ARC-005",
+                "ARC-011"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-070",
+              "title": "E2 is a conceptual-sensorium motor model with a planning horizon that exceeds E1.",
+              "status": "retiring",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "ARC-021",
+                "MECH-069",
+                "MECH-033",
+                "ARC-018"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "planned",
+          "label": "Planned / conditional",
+          "count": 175,
+          "more_count": 165,
+          "nodes": [
+            {
+              "id": "ARC-035",
+              "title": "vmPFC is the substrate that converts stored affective, normative, and residue content -- prior outcome history, social and identity constraints, learned value associations, and safety memories -- into active components of the navigable state used by E3 during trajectory evaluation.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "architecture_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 16,
+              "depends_on": [
+                "ARC-007",
+                "ARC-013",
+                "ARC-003",
+                "INV-035",
+                "INV-036",
+                "MECH-126"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-062",
+              "title": "E3 uses coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility layer.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 13,
+              "depends_on": [
+                "ARC-003",
+                "ARC-005",
+                "MECH-061"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-048",
+              "title": "Any pharmacological agent that disrupts sleep architecture produces equivalent attribution pipeline degradation to behavioral sleep deprivation, proportional to which phase(s) are disrupted and the duration of exposure -- the pipeline is mechanism-agnostic and responds only to phase fidelity.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "INV-045",
+                "INV-046",
+                "MECH-120",
+                "MECH-121",
+                "MECH-123"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-168",
+              "title": "Progressive sleep deprivation or neurodegeneration causes staged failure of the offline consolidation pipeline in reverse dependency order: precision recalibration (MECH-123/Phase 4) degrades first, producing early MCI features; slot-filling (MECH-121/Phase 2-3) next, producing the classic early Alzheimer's episodic profile (intact remote, absent new); slot-formation (MECH-120/Phase 1-2) last, producing middle-stage contextual identity loss and schema destabilisation; global context collapse last.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "INV-046",
+                "INV-047",
+                "INV-045",
+                "MECH-120",
+                "MECH-121",
+                "MECH-123",
+                "SD-017"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-183",
+              "title": "z_beta leakage: attributed other-model affective state activates self z_beta directly, not via inference.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "INV-005",
+                "MECH-031",
+                "MECH-032"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-047",
+              "title": "The specific staged cognitive decline profile of Alzheimer's disease -- early precision/confidence loss, then episodic memory failure, then contextual identity loss, then global disorientation -- follows the reverse of the sleep phase dependency ordering and is not explained by diffuse amyloid damage alone, which predicts uniform degradation rather than a staged profile.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "other",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-046",
+                "INV-045",
+                "MECH-168"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-085",
+              "title": "Serotonin as hippocampal map geometry parameter (rollout depth, distal value weighting) \u2014 conflict with MECH-006, pending adjudication.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "MECH-006",
+                "MECH-073",
+                "MECH-076",
+                "ARC-013"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-019",
+              "title": "Three-gate vs single-gate BG architecture: are the three cortico-striatal loops anatomically distinct or convergent?",
+              "status": "open",
+              "phase": "unset",
+              "claim_class": "open_question",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "MECH-057a",
+                "MECH-059",
+                "MECH-061"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-078",
+              "title": "Is the E3 committed-action conversion ceiling CONSTITUTIONAL (the rules by which candidate actions become eligible to win -- eligibility mask, Go/No-Go pressures, conflict-sensitive hold, threshold/widening, recurrent competition, commitment permission, post-commit latch -- are under-specified) rather than PARAMETRIC (upstream signals too weak / modulatory channels too quiet)? Across mechanistically distinct channels (CRF V3-EXQ-654g, OFC V3-EXQ-485h, SD-037 V3-EXQ-625e, dACC V3-EXQ-445h, modulatory V3-EXQ-569g) a formed-and-measurable signal reaches E3 authority yet committed action does not change reliably -- 'signal strength can exist without lawful access to committed action.' The basal-ganglia action-selection bottleneck (direct/Go, indirect/No-Go, hyperdirect-STN conflict-hold, striatal channel competition, pallidal permission-to-commit) is the functional reference; the open question is whether a BG-like selection CONSTITUTION is required BEYOND MECH-439's F-variance-share rebalance / shortlist levers.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "open_question",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "MECH-439",
+                "ARC-107",
+                "ARC-106",
+                "MECH-309"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-025",
+              "title": "Action mode prioritizes short-horizon, high-precision control via context-dependent precision modulation.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "mechanism_general",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "ARC-016",
+                "ARC-005",
+                "ARC-015",
+                "ARC-021",
+                "INV-012",
+                "ARC-044"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "substrate",
+      "title": "Substrate",
+      "summary": "Implementation and test-bed work that makes a question testable.",
+      "total": 184,
+      "buckets": [
+        {
+          "key": "active",
+          "label": "Active / under review",
+          "count": 12,
+          "more_count": 2,
+          "nodes": [
+            {
+              "id": "SD-005",
+              "title": "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain).",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 51,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-010",
+              "title": "HARM stream is a dedicated sensory pathway separate from z_world processing.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 20,
+              "depends_on": [
+                "SD-005",
+                "SD-007",
+                "ARC-027"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-004",
+              "title": "Action objects as hippocampal map backbone, enabling long-horizon planning beyond step-level trajectories.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 18,
+              "depends_on": [
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-007",
+              "title": "ReafferencePredictor provides perspective-corrected world latent by subtracting self-caused sensory change.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-006",
+              "title": "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep.",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-023"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-007",
+              "title": "Do affect dimensions (not necessarily universal expressions) map to stable control-channel regimes in z_beta?",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "ARC-005",
+                "ARC-021",
+                "MECH-039",
+                "MECH-040",
+                "MECH-069"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "Q-015",
+              "title": "What is the smallest commit-boundary token that still supports reliable multi-timescale attribution?",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "MECH-061",
+                "ARC-003",
+                "ARC-015"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-018",
+              "title": "encoder.resource_proximity_supervision",
+              "status": "implemented",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "SD-009",
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-009",
+              "title": "z_world encoder requires event-type cross-entropy auxiliary loss during training.",
+              "status": "provisional",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 2,
+              "depends_on": [
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-102",
+              "title": "Violence is a terminal error-correction mechanism triggered only when all other channels fail.",
+              "status": "active",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "INV-029",
+                "INV-028",
+                "INV-030",
+                "INV-070",
+                "INV-071",
+                "INV-072"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "closed",
+          "label": "Closed record",
+          "count": 6,
+          "more_count": 0,
+          "nodes": [
+            {
+              "id": "SD-003",
+              "title": "Self-attribution via counterfactual E2: causal signature = E2(z_t, a_actual) minus E2(z_t, a_counterfactual).",
+              "status": "superseded",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 15,
+              "depends_on": [
+                "SD-005",
+                "SD-007",
+                "SD-008",
+                "MECH-071",
+                "SD-011",
+                "ARC-033",
+                "SD-013"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-008",
+              "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness.",
+              "status": "stable",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 7,
+              "depends_on": [
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-020",
+              "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
+              "status": "stable",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "SD-011",
+                "SD-019",
+                "ARC-016"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-447",
+              "title": "Conflict-graded near-tie lever sufficiency: a hyperdirect-STN-like conflict-graded shortlist / commit-temperature lever (k = f(top-F gap); T = f(top-F gap)) is SUFFICIENT to lift committed-action-class entropy strict-above both collapsed-proposer and gap-blind controls -- gap-CONCENTRATED (the lift correlates with per-tick top-F gap) -- WITHOUT reducing F's E3 variance share. I.e. F can keep monopolising selection variance and conversion is still recovered by widening/hotting only at near-ties.",
+              "status": "superseded",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "substrate_implementation_active",
+              "attention_rank": 3,
+              "incoming_dependencies": 1,
+              "depends_on": [
+                "MECH-439",
+                "ARC-107",
+                "Q-078"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-001",
+              "title": "CEM-based trajectory search belongs in HippocampalModule, not E2.",
+              "status": "resolved",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "dependency_referenced",
+              "attention_rank": 1,
+              "incoming_dependencies": 1,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-002",
+              "title": "E1 associative prior must be wired into HippocampalModule for terrain-informed rollout search.",
+              "status": "resolved",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "captured_only",
+              "attention_rank": 0,
+              "incoming_dependencies": 0,
+              "depends_on": [
+                "SD-001"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "planned",
+          "label": "Planned / conditional",
+          "count": 166,
+          "more_count": 156,
+          "nodes": [
+            {
+              "id": "ARC-049",
+              "title": "Play mode boundary requires a co-maintained context tag held by both agent and environment; agent-internal tagging alone is insufficient and unilateral play assertion without mutual signal is manipulation.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 18,
+              "depends_on": [
+                "MECH-094",
+                "INV-059"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-194",
+              "title": "Play mode operates by substituting synthetic z_goal and z_harm signals while permitting full learning flow through E3/E2/E1 as if signals were real.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "MECH-094",
+                "SD-012",
+                "ARC-049"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-055",
+              "title": "A pre-childhood infant stage is developmentally necessary: prior to deliberate planning, the agent must accumulate a valence map, behavioral repertoire, and harm/benefit geography through novelty-driven, sleep-dominant, damage-protected exploration.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "ARC-019",
+                "INV-041",
+                "INV-049",
+                "INV-051",
+                "MECH-111",
+                "ARC-046"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-074",
+              "title": "Plasticity crystallization necessity: any model-building agent whose internal scoring is dominated by a high-variance predictive pathway will converge to monostrategy under Hebbian-equivalent learning unless a time-bounded plasticity asymmetry allows competing diversity circuits to establish competitive weight before winner-take-all dynamics close off the option space; without this crystallization window, behavioral diversity is permanently suppressed regardless of diversity-signal magnitude.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "INV-075",
+                "INV-073",
+                "ARC-065",
+                "MECH-120",
+                "MECH-165"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-197",
+              "title": "Play types progress in dependency order (sensorimotor -> constructive -> pretend -> rule-based -> cooperative), each training specific architectural subsystems that the next type requires.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "INV-060",
+                "INV-058",
+                "MECH-194"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-198",
+              "title": "Pretend play is the developmental point where the hypothesis tag (MECH-094) and play frame tag (ARC-049) first co-operate: the agent maintains counterfactual representations within a play frame, exercising the full commitment architecture in synthetic mode.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-094",
+                "ARC-049",
+                "MECH-197"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-046",
+              "title": "The infant stage requires a hazard protection mechanism that permits sensorially salient harm exposure without catastrophic residue saturation.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-055",
+                "ARC-019",
+                "ARC-013",
+                "SD-010",
+                "SD-011"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-050",
+              "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-049",
+                "INV-044",
+                "SD-017",
+                "MECH-120",
+                "MECH-121",
+                "MECH-123"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-173",
+              "title": "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-048",
+                "MECH-123",
+                "INV-047",
+                "MECH-168"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-195",
+              "title": "Strategy and calibration dissociate at play episode close: policy structure transfers to real episodes; goal/harm magnitude calibration is re-anchored by real homeostatic and harm signals.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "MECH-194",
+                "MECH-196",
+                "SD-012"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Evidence",
+      "summary": "V3 claims being exposed to an experimental verdict.",
+      "total": 221,
+      "buckets": [
+        {
+          "key": "active",
+          "label": "Active / under review",
+          "count": 55,
+          "more_count": 45,
+          "nodes": [
+            {
+              "id": "SD-012",
+              "title": "Goal-directed behavior requires homeostatic drive modulation: z_goal seeding demands drive-scaled benefit signals.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 50,
+              "depends_on": [
+                "MECH-071",
+                "MECH-112",
+                "SD-005"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-092",
+              "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 25,
+              "depends_on": [
+                "ARC-023",
+                "ARC-014",
+                "ARC-018",
+                "ARC-022",
+                "MECH-094",
+                "MECH-289",
+                "MECH-291"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-090",
+              "title": "BG-level beta oscillations gate E3-to-action-selection propagation, not E3 internal updating.",
+              "status": "active",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 24,
+              "depends_on": [
+                "ARC-023",
+                "ARC-021",
+                "MECH-057a"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-089",
+              "title": "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging).",
+              "status": "active",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 16,
+              "depends_on": [
+                "ARC-023",
+                "ARC-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-033",
+              "title": "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 12,
+              "depends_on": [
+                "SD-011",
+                "ARC-027",
+                "SD-010"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-230",
+              "title": "E3 maintains a structured latent goal representation (positive attractor in z_goal sub-space, measurable as z_goal_norm > 0) distinct from harm avoidance, enabling hippocampal terrain navigation toward goal states.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 12,
+              "depends_on": [
+                "SD-012",
+                "SD-015",
+                "SD-005",
+                "ARC-007",
+                "MECH-069",
+                "ARC-030"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-284",
+              "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 11,
+              "depends_on": [
+                "MECH-287",
+                "MECH-269",
+                "MECH-285",
+                "MECH-094",
+                "ARC-007",
+                "ARC-018"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-016",
+              "title": "E1 must expose a z_world-only ContextMemory query path that produces two downstream signals: an action-affordance bias for E2 (MECH-151) and a terrain precision weight for E3 harm/goal scoring (MECH-152); the existing bulk generate_prior() path is insufficient because it blends z_self and z_world and produces no cue-specific modulation.",
+              "status": "implemented",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 11,
+              "depends_on": [
+                "SD-005",
+                "SD-010",
+                "ARC-035"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-302",
+              "title": "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 10,
+              "depends_on": [
+                "MECH-057a",
+                "MECH-091",
+                "MECH-094",
+                "MECH-303",
+                "SD-011",
+                "SD-012"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-152",
+              "title": "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation.",
+              "status": "provisional",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "MECH-150",
+                "ARC-016",
+                "SD-010",
+                "ARC-035"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "closed",
+          "label": "Closed record",
+          "count": 13,
+          "more_count": 3,
+          "nodes": [
+            {
+              "id": "SD-011",
+              "title": "Harm stream separates into sensory-discriminative (z_harm_s: proximity/intensity, Adelta-pathway analog, forward-predictable) and affective-motivational (z_harm_a: accumulated homeostatic deviation, C-fiber/paleospinothalamic analog).",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 72,
+              "depends_on": [
+                "SD-010",
+                "ARC-027"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-065",
+              "title": "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 28,
+              "depends_on": [],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-261",
+              "title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 25,
+              "depends_on": [
+                "SD-032a",
+                "MECH-094",
+                "INV-049",
+                "MECH-092",
+                "ARC-038",
+                "ARC-039",
+                "SD-033a",
+                "SD-033b"
+              ],
+              "additional_dependencies": 1
+            },
+            {
+              "id": "SD-017",
+              "title": "REE-v3 requires a minimal sleep-phase infrastructure: an SWS-analog phase (bidirectional hippocampus-to-cortex replay for schema/slot consolidation) and a REM-analog phase (causal attribution replay for slot-filling from co-correlational evidence ordering). Without these offline phases, hippocampal attribution mapping cannot converge and context representations remain globally undifferentiated.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 19,
+              "depends_on": [
+                "MECH-092",
+                "ARC-038",
+                "ARC-007",
+                "SD-014"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-032a",
+              "title": "Salience-network coordinator: network-level module reading AIC-, dACC-, MCC-, PCC-analog subdivisions and outputting a discrete operating-mode variable (external_task / internal_replay / internal_planning / offline_consolidation) plus a mode-switch trigger.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 14,
+              "depends_on": [
+                "SD-032",
+                "SD-032b",
+                "SD-032c",
+                "SD-032d",
+                "MECH-259"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-035",
+              "title": "Amygdala analogue as BLA + CeA salience stage between z_harm_a and the cingulate/hippocampus \u2014 two peer non-trainable arithmetic modules owning the MECH-046 and MECH-074a-d behaviours.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 12,
+              "depends_on": [
+                "SD-011",
+                "SD-032a",
+                "ARC-005",
+                "ARC-007",
+                "MECH-039",
+                "MECH-046",
+                "MECH-074"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-205",
+              "title": "Hippocampal replay is surprise-gated and generative: episodes with high unexplained prediction error are prioritized, replayed with counterfactual variations via E2, and deprioritized only when forward models can account for the surprise.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 10,
+              "depends_on": [
+                "MECH-092",
+                "MECH-094",
+                "MECH-121",
+                "INV-049",
+                "SD-003",
+                "ARC-031"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-117",
+              "title": "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "MECH-112",
+                "MECH-116"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-032e",
+              "title": "pACC-autonomic coupling: module connecting affective-pain stream (z_harm_a) to valence/drive update pathway. Provides the affective-pain -> autonomic/visceral coupling that Vogt 2005 and Craig 2009 locate in perigenual/subgenual ACC.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "SD-032",
+                "SD-011",
+                "SD-012"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-259",
+              "title": "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update.",
+              "status": "stable",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 3,
+              "depends_on": [
+                "SD-032a",
+                "SD-032c",
+                "MECH-091",
+                "MECH-258"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        },
+        {
+          "key": "planned",
+          "label": "Planned / conditional",
+          "count": 153,
+          "more_count": 143,
+          "nodes": [
+            {
+              "id": "MECH-269",
+              "title": "Hippocampal proposer anchor selection AND anchor-reset: (a) trajectory proposals issued between committed actions anchor on the subset of current latent streams whose regional verisimilitude (per-stream prediction/realization alignment) exceeds threshold; misaligned streams hold their last-verified snapshot (anchor carryover) rather than contaminate the rollout. (b) Active anchors are continuously re-evaluated against an effective verisimilitude V_s_anchor(a, t) = V_s(r, t) - staleness[r] (MECH-284 read-out); if V_s_anchor falls below theta_reset(r) for k consecutive steps the anchor is marked inactive (NOT erased -- dual-trace preservation per Bouton 2004) and a new anchor is sought from the current latent slice. A minority probe channel deliberately inverts the gate for low-verisimilitude / high-PE regions, carrying a strengthened MECH-094 hypothesis tag, and does not update the ARC-018 viability map until realized-experience validation.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 36,
+              "depends_on": [
+                "ARC-007",
+                "ARC-018",
+                "MECH-089",
+                "MECH-092",
+                "MECH-094",
+                "MECH-272",
+                "MECH-284",
+                "SD-005"
+              ],
+              "additional_dependencies": 2
+            },
+            {
+              "id": "MECH-121",
+              "title": "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 25,
+              "depends_on": [
+                "MECH-030",
+                "MECH-092",
+                "MECH-094",
+                "MECH-122",
+                "SD-004"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-063",
+              "title": "Rule-apprehension architectural slot, strong reading: a distributed CandidateRule field with tolerance-gated availability, hippocampal-rollout-eligibility shaping, structured per-action evidence-trace records, and waking-vs-sleep refinement asymmetry. The biology-faithful form of the rule-apprehension layer, formalising the 2026-05-04 thought-intake on tolerance-gated rule apprehension (PNAS 10.1073/pnas.2508061123). Brought forward V4->V3 2026-05-18; V3-tractable design landed 2026-06-04 (docs/architecture/arc_063_candidate_rule_field.md). Only the social in-face (ARC-077/MECH-337) is V4-deferred (needs a caregiver-agent substrate absent in V3); the sleep-vs-waking refinement asymmetry is V3 (sleep rescoped to V3 2026-04-20; reuses the MECH-272/273/285 sleep cluster) and is a V3 follow-on within ARC-063, NOT V4. Persistent flag for governance: this slot is expected to be needed if ARC-062 (weak reading) fails or proves insufficient at scale, AND independently as the architectural commitment that supports moral-residue attribution to the rule-field, sleep-vs-waking refinement asymmetry, and clinically-realistic failure modes (trauma schemas, paranoid rule fields, depressive rollout constraint).",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 21,
+              "depends_on": [
+                "MECH-309",
+                "ARC-064",
+                "ARC-062",
+                "ARC-077",
+                "MECH-337",
+                "MECH-338",
+                "SD-029",
+                "SD-033a"
+              ],
+              "additional_dependencies": 2
+            },
+            {
+              "id": "MECH-112",
+              "title": "E3 requires a structured latent goal representation (positive attractor in z_world or z_goal sub-space) distinct from harm avoidance.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 19,
+              "depends_on": [
+                "SD-005",
+                "ARC-007",
+                "MECH-069",
+                "ARC-030"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-014",
+              "title": "Hippocampal map nodes must store an explicit 4-component valence vector (wanting, liking, harm-discriminative, surprise) updated incrementally per visit; replay prioritisation is weighted by drive-state-gated valence relevance.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 19,
+              "depends_on": [
+                "ARC-036",
+                "SD-011",
+                "SD-012",
+                "MECH-030"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-120",
+              "title": "The SWS sub-phase of offline mode performs global attractor flattening and residue field denoising (synaptic homeostasis analog), pruning weak noisy traces and restoring signal-to-noise ratio.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 17,
+              "depends_on": [
+                "MECH-030",
+                "MECH-092",
+                "MECH-094",
+                "ARC-016"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-292",
+              "title": "Inactive or strained anchors whose preserved goal payload still matches the current goal form a ranked ghost-goal bank; priority scales with wanting, goal-match, staleness, and recoverability rather than with staleness alone.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 17,
+              "depends_on": [
+                "SD-039",
+                "MECH-216",
+                "MECH-230",
+                "MECH-269",
+                "MECH-284"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-062",
+              "title": "Rule-apprehension architectural slot, weak reading: a non-Bayesian rule-creator at the policy layer that proposes discriminative policy modes for the updaters (E3, training loop) to refine. V3 instantiation: a gated-policy architecture in which at least two policy heads share encoder features but receive different gating from a learned context discriminator (e.g., reef-context vs open-context heads). Tests the logical-necessity claim of MECH-309 within the existing V3 substrate without registering the heavier CandidateRule machinery (ARC-063, V4-deferred). Architectural slot, not yet implemented.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 16,
+              "depends_on": [
+                "MECH-309",
+                "SD-054",
+                "MECH-269",
+                "SD-029"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-033a",
+              "title": "Lateral-PFC-analog (mid-lateral rule/goal substrate): module that holds stimulus-abstracted rule and goal representations across delays, persists through simulated distractors, and projects bias signals into E3 action selection. Primary write target for MECH-261 under external_task and internal_planning modes.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 16,
+              "depends_on": [
+                "SD-033",
+                "MECH-261",
+                "MECH-262",
+                "MECH-116"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-023",
+              "title": "Three BG-like loops operate at characteristic thalamic heartbeat rates.",
+              "status": "candidate",
+              "phase": "v3",
+              "claim_class": "active_v3_closure",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 15,
+              "depends_on": [
+                "ARC-021",
+                "MECH-069"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "future",
+      "title": "Future shape",
+      "summary": "Later phases and conditional work, not a promised schedule.",
+      "total": 179,
+      "buckets": [
+        {
+          "key": "active",
+          "label": "Active / under review",
+          "count": 0,
+          "more_count": 0,
+          "nodes": []
+        },
+        {
+          "key": "closed",
+          "label": "Closed record",
+          "count": 0,
+          "more_count": 0,
+          "nodes": []
+        },
+        {
+          "key": "planned",
+          "label": "Planned / conditional",
+          "count": 179,
+          "more_count": 169,
+          "nodes": [
+            {
+              "id": "MECH-095",
+              "title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change.",
+              "status": "candidate",
+              "phase": "v5",
+              "claim_class": "horizon_v5",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "SD-005",
+                "MECH-069",
+                "ARC-021"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-359",
+              "title": "Candidate-differentiated affect vector: for proto-affect to carve behaviour it must carry per-candidate (cross-candidate) range, not merely per-tick magnitude. Each E3 candidate trajectory carries a multi-channel affect vector (curiosity / safety / harm-sensory / harm-affective / effort / relief / blocked-agency) so the same world-state can support different candidate rankings (approach / inspect / retreat / persist / retry / rest / reorient) under different internal pressures. A scalar added equally to all K candidates cannot change an argmax; only a per-candidate-differentiated contribution can.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-055",
+                "SD-011",
+                "MECH-341",
+                "SD-056"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-040",
+              "title": "Type-encoder produces a category-prototype feature vector that is written into the AnchorSet alongside z_world, so anchors can be queried by type-key as well as location-key. The type-encoder uses the same input substrate as the existing instance-encoder but produces a different (regularity-extracted) representation, mirroring the trisynaptic-vs-monosynaptic complementary-learning architecture within hippocampus.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 6,
+              "depends_on": [
+                "MECH-269",
+                "SD-039"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-086",
+              "title": "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "IMPL-005",
+                "INV-061",
+                "MECH-343",
+                "RA-002"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-090",
+              "title": "Externalised Default Mode Operation: play instantiates DMN functions (self-reference, autobiographical memory, social imagination, future simulation, counterfactual thought, narrative construction) externally -- pushed outward into objects, roles, movement, spoken narration, and temporary as-if worlds -- as the developmental precursor to the internal DMN, compressing into internal generative modelling over development.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-014",
+                "MECH-029",
+                "ARC-049",
+                "MECH-198",
+                "INV-058",
+                "INV-060"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "MECH-385",
+              "title": "Belief-state hypothesis set: when observations are ambiguous or incomplete, REE maintains a bounded set of competing latent-state hypotheses, each carrying confidence/precision, predicted transitions, goal/antigoal relations, and uncertainty; E3 evaluates candidate trajectories over the hypothesis set rather than over a single collapsed state.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "ARC-091",
+                "MECH-022",
+                "ARC-007",
+                "ARC-018",
+                "MECH-033"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-087",
+              "title": "Sense-specific perceptual-manifold adaptor: each sensory modality requires its own adaptor transforming raw stimulus space into a perceptual-manifold (metric) space before shared-world-model entry; senses are not interchangeable raw streams.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "ARC-017",
+                "MECH-103",
+                "ARC-004",
+                "ARC-005",
+                "ARC-019"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "ARC-091",
+              "title": "Inference / belief-state affordance layer: a named integrative function that constructs latent state hypotheses and inferred affordance fields from partial observation, memory, cue traces, candidate rules, affective gradients, uncertainty, and E2 action-consequence rollouts, so E3 selects trajectories under partial observability without requiring direct perception or oracle-like prior knowledge.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "ARC-004",
+                "ARC-007",
+                "ARC-018",
+                "MECH-022",
+                "MECH-033",
+                "ARC-062",
+                "ARC-063",
+                "SD-057"
+              ],
+              "additional_dependencies": 1
+            },
+            {
+              "id": "MECH-264",
+              "title": "Frontopolar counterfactual-value tracking: SD-033e maintains, in parallel with SD-033c's chosen-option value signal, a running estimate of the value of unchosen alternatives. A switch-to-alternative decision is signalled when the counterfactual estimate exceeds the chosen estimate by a threshold-sensitive margin.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "SD-033e",
+                "SD-033c",
+                "MECH-151"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "SD-033e",
+              "title": "Frontopolar-analog (parallel-goal deliberation substrate): V4-scope module maintaining counterfactual-value estimates for alternatives to the current course of action, mediating transitions between external engagement and internally-generated deliberation, enabling disengagement from the current task to explore novel alternatives, and monitoring relative importance across multiple active goals. Hooks reserved in V3 via the operating_mode vocabulary; substrate deferred to V4.",
+              "status": "candidate",
+              "phase": "v4",
+              "claim_class": "horizon_v4",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 4,
+              "depends_on": [
+                "SD-033",
+                "SD-033a",
+                "MECH-261",
+                "MECH-264",
+                "MECH-265"
+              ],
+              "additional_dependencies": 0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "record_counts": {
+    "active": 180,
+    "closed": 46,
+    "planned": 713
+  },
+  "archive": {
+    "snapshot_count": 83,
+    "latest": "2026-07-27",
+    "earliest": "2026-02-28",
+    "recent_dates": [
+      "2026-07-27",
+      "2026-07-26",
+      "2026-07-25",
+      "2026-07-22",
+      "2026-07-21",
+      "2026-07-20",
+      "2026-07-19",
+      "2026-07-18",
+      "2026-07-17",
+      "2026-07-16"
+    ]
+  }
+}
