@@ -236,6 +236,92 @@ avoidance. The 38% Stage-H argmin-flip rate is a selection counterfactual, not a
 knob makes that experiment possible (a strict-ON vs strict-OFF Stage-H arm pair); it does
 not answer it.
 
+### Follow-on: the residual entropy source is NAMED and FIXED (2026-07-27T23:31Z, session `nice-einstein-46523f`)
+
+**It is the unseeded environment, and it was never per-process -- it is
+per-CONSTRUCTION.** Every `_build_env(...)` call site in
+`experiments/scaffolded_sd054_onboarding.py` built a `CausalGridWorldV2` **without
+passing `seed`**. `CausalGridWorldV2` is a **factory function**, not a class; it forwards
+to `CausalGridWorld.__init__`, whose only RNG is
+`self._rng = np.random.default_rng(seed)` (`ree_core/environment/causal_grid_world.py:1235`).
+**`np.random.default_rng(None)` seeds from OS entropy at construction and does not consume
+the numpy global RNG**, so `_run_seed`'s `np.random.seed(seed)` / `torch.manual_seed(seed)`
+never reached the env at all. `_build_env`'s own docstring says so in as many words
+("Default None preserves the legacy OS-entropy seeding").
+
+The previous grep missed it for a precise reason worth recording: it searched for
+`np.random.default_rng()` with **literal empty parens**, and the call site is
+`default_rng(seed)` with `seed` bound to `None`. The defect is in the argument, not the
+call shape.
+
+**Measured, on the hub / `ree-worker-2` (dry-run 460c, `OMP_NUM_THREADS=1`,
+`MKL_NUM_THREADS=1`, `PYTHONHASHSEED=0` exported *before* interpreter start):**
+
+1. *Localisation.* Two processes on the **same** `git clone -s` tree, traced per
+   `select_action`: agent `state_dict` bit-identical after construction, and the torch /
+   numpy / stdlib-`random` states **all identical both before and after the very first
+   `select_action`** -- yet `last_scores` and the chosen action already differ on the
+   first action of the first episode. Identical parameters + identical RNG state +
+   different scores means the **input** differed, not a draw. `hash("...")` was identical
+   across the two processes, so string-hash-ordered `set`/`dict` iteration is ruled out
+   *empirically*, not just by grep.
+2. *Isolation.* Four `CausalGridWorldV2` builds in **one** process, with
+   `random.seed(0)` + `np.random.seed(42)` + `torch.manual_seed(42)` re-run immediately
+   before each: **four different grids and four different agent spawns**. The same builds
+   with `seed=7` passed: **bit-identical**. Global seeding has no purchase on the env.
+3. *Whole-curriculum.* Two independent control pairs of the full dry-run curriculum
+   diverged end to end. Pinning **only** the env seed (a global patch on
+   `CausalGridWorld.__init__`, covering every construction) made the entire result dict
+   **byte-identical across processes**. So env seeding is the *sole* operative source
+   here -- nothing else remains.
+4. *The stdlib-`random` gap is real but DORMANT in this curriculum.* Repeating (3) with
+   `random.seed(0)` **deliberately omitted** still gave byte-identical runs, and gave the
+   same bytes as the seeded pair. `ree_core/hippocampal/module.py`'s `random.choice` /
+   `random.random()` are never reached by the 460c dry-run path (the stdlib-`random`
+   state never advances across all 60 Stage-0 `select_action` calls). It remains worth
+   closing on its own merits -- it is simply **not** the cause, and the earlier note that
+   it "explains part of it" overstated it for this curriculum. A full-length run may
+   reach that path; that is untested.
+
+**Landed (ree-v3):** `ScaffoldedSD054OnboardingConfig.scaffold_env_seed` (default
+**None**), threaded through all six scheduler `_build_env` call sites plus the read-only
+harm-discriminativeness probe, via `_next_env_seed()` / `_derive_env_seed(base, stream,
+idx)`. Each construction gets a distinct, construction-ordered seed, so every stage still
+sees its own layout rather than all stages collapsing onto one shared grid. Streams
+namespace the callers (0 = curriculum, 1 = probe) so the probe can never collide.
+Contracts: `ree-v3/tests/contracts/test_scaffold_env_seed_determinism.py` (11 tests,
+~1.1s) pins **both** directions -- default -> `seed=None` still reaches the factory and
+the build counter never advances; set -> deterministic, distinct, reproducible, and a
+same-seed env reproduces its trajectory bitwise.
+
+**Default is None on purpose, and the bit-identity is now VERIFIED BY RE-RUNNING** --
+which is the point. Because the env can now be pinned, the pre-change tree and the
+post-change tree (knob unset) were run through the full dry-run curriculum with envs
+globally pinned and compared: **byte-identical**. That is the end-to-end no-op
+verification this document's §5 records as impossible; it is possible now, for this class
+of change, precisely because the entropy source is closed. Do not flip the default:
+pinning it unconditionally would change the env layout, and therefore the results, for
+all 78 scaffold importers and break comparability with every landed run. **No landed run
+or manifest was touched or re-scored.**
+
+**Known residue, stated rather than glossed.** The knob covers the envs the *scheduler*
+builds. A driver that builds its own eval env still seeds it itself. Measured on 460c:
+with the knob set, divergence falls from 31 differing result leaves to 12, and **all 12
+are downstream of the driver's own unseeded `_build_closure_env`** -- 10 directly inside
+the `ARM_CLOSURE_ON` / `ARM_CLOSURE_OFF` blocks and 2 (`commitment_completion_non_vacuity`,
+`criteria/C4`) derived from them. **Every training-stage output is now identical.** So the
+training curriculum is reproducible and the *closure eval arms are not*. Across
+`experiments/`, 988 `CausalGridWorldV2` constructions already pass `seed=`; **191 across
+156 files do not**. Those are experiment-script edits and go through `/queue-experiment`,
+so they were deliberately left to a follow-on rather than swept in here.
+
+**What this changes for claims.** Any "re-running this experiment reproduces the result"
+statement about the scaffold family should be read as reproducing the *training
+curriculum* only once `scaffold_env_seed` is set, and as **not** reproducible at all for
+runs landed before this knob existed -- including their eval arms. That weakness is a
+property of the landed runs, not something this change introduces or repairs
+retroactively.
+
 ---
 
 ## 5. Reproduction
