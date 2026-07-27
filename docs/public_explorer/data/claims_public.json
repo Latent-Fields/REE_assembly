@@ -44,7 +44,7 @@
     "subject": "E3.trajectory_commitment",
     "cognitive_function": "Affect & valuation",
     "status": "Active",
-    "evidence_state": "supported",
+    "evidence_state": "mixed",
     "depends_on": [
       "INV-012",
       "ARC-001",
@@ -55,11 +55,11 @@
     "evidence": {
       "quadrant": "plausible_unproven",
       "supports": 3,
-      "weakens": 0,
+      "weakens": 1,
       "mixed": 0,
       "pass_runs": 0,
-      "fail_runs": 0,
-      "entries_total": 3
+      "fail_runs": 1,
+      "entries_total": 4
     }
   },
   {
@@ -82,7 +82,7 @@
     "subject": "control_plane.precision_routing",
     "cognitive_function": "Goals, drives & commitment",
     "status": "Active",
-    "evidence_state": "supported",
+    "evidence_state": "mixed",
     "depends_on": [
       "INV-008",
       "INV-009",
@@ -93,10 +93,10 @@
       "quadrant": "plausible_unproven",
       "supports": 3,
       "weakens": 0,
-      "mixed": 0,
+      "mixed": 1,
       "pass_runs": 0,
-      "fail_runs": 0,
-      "entries_total": 3
+      "fail_runs": 1,
+      "entries_total": 4
     }
   },
   {
@@ -127,7 +127,7 @@
     "claim_type": "Architectural commitment",
     "subject": "hippocampus.path_memory",
     "cognitive_function": "Memory & consolidation",
-    "status": "Active",
+    "status": "Provisional",
     "evidence_state": "mixed",
     "depends_on": [
       "ARC-004",
@@ -135,12 +135,12 @@
       "ARC-018"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 30,
-      "weakens": 6,
+      "quadrant": "confirmed_established",
+      "supports": 29,
+      "weakens": 7,
       "mixed": 2,
-      "pass_runs": 4,
-      "fail_runs": 4,
+      "pass_runs": 3,
+      "fail_runs": 5,
       "entries_total": 38
     }
   },
@@ -234,12 +234,21 @@
     "subject": "residue.geometry",
     "cognitive_function": "Goals, drives & commitment",
     "status": "Active",
-    "evidence_state": "unresolved",
+    "evidence_state": "supported",
     "depends_on": [
       "INV-006",
       "INV-004",
       "ARC-004"
-    ]
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 4,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 4
+    }
   },
   {
     "id": "ARC-014",
@@ -290,7 +299,7 @@
     "claim_type": "Architectural commitment",
     "subject": "cognitive_modes.control_plane_regimes",
     "cognitive_function": "Language & higher cognition",
-    "status": "Provisional",
+    "status": "Stable",
     "evidence_state": "mixed",
     "depends_on": [
       "ARC-005",
@@ -298,13 +307,13 @@
       "ARC-021"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 18,
-      "weakens": 13,
+      "quadrant": "confirmed_established",
+      "supports": 16,
+      "weakens": 0,
       "mixed": 3,
-      "pass_runs": 8,
-      "fail_runs": 15,
-      "entries_total": 34
+      "pass_runs": 6,
+      "fail_runs": 0,
+      "entries_total": 19
     }
   },
   {
@@ -339,7 +348,7 @@
     "claim_type": "Architectural commitment",
     "subject": "hippocampus.rollout_viability_mapping",
     "cognitive_function": "Memory & consolidation",
-    "status": "Active",
+    "status": "Provisional",
     "evidence_state": "mixed",
     "depends_on": [
       "ARC-007",
@@ -349,12 +358,12 @@
       "ARC-021"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 27,
-      "weakens": 4,
+      "quadrant": "confirmed_established",
+      "supports": 26,
+      "weakens": 5,
       "mixed": 1,
-      "pass_runs": 4,
-      "fail_runs": 2,
+      "pass_runs": 3,
+      "fail_runs": 3,
       "entries_total": 32
     }
   },
@@ -391,10 +400,10 @@
       "quadrant": "plausible_unproven",
       "supports": 8,
       "weakens": 0,
-      "mixed": 1,
+      "mixed": 3,
       "pass_runs": 1,
       "fail_runs": 1,
-      "entries_total": 9
+      "entries_total": 11
     }
   },
   {
@@ -439,13 +448,13 @@
       "INV-029"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 12,
+      "quadrant": "confirmed_established",
+      "supports": 13,
       "weakens": 9,
       "mixed": 10,
-      "pass_runs": 7,
+      "pass_runs": 8,
       "fail_runs": 21,
-      "entries_total": 31
+      "entries_total": 32
     }
   },
   {
@@ -482,7 +491,7 @@
       "MECH-071"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 6,
       "weakens": 1,
       "mixed": 1,
@@ -559,22 +568,44 @@
     }
   },
   {
+    "id": "ARC-057",
+    "title": "Approach behavior toward reward locations emerges from the interaction of DA-mediated representational expansion (MECH-232) and an information-seeking (curiosity) drive operating on the hippocampal map. No explicit approach gradient or wanting field is required in hippocampal terrain.",
+    "claim_type": "Architectural commitment",
+    "subject": "hippocampus.curiosity_approach_emergence",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "MECH-232",
+      "ARC-007",
+      "SD-004"
+    ],
+    "evidence": {
+      "quadrant": "plausible_unproven",
+      "supports": 3,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 0,
+      "fail_runs": 0,
+      "entries_total": 3
+    }
+  },
+  {
     "id": "ARC-065",
     "title": "behavioral_diversity_generation_pathway (multi-substrate distributed: LC-NE tonic + frontopolar curiosity + striatal novelty + hippocampal trajectory sampling). Architectural commitment: a non-trivial behavioural diversity generation pathway is upstream-of and logically prior to both rule pathways (ARC-062 top-down rule-apprehension and ARC-064 bottom-up rule-discovery). Without it, neither pathway has anything to weight or cluster -- gradient descent on a parametric policy without diversity pressure collapses to the smoothest single regime, the predicted equilibrium MECH-309 identifies. The biology distributes diversity generation across at least four substrates: LC-NE tonic noise floor, frontopolar uncertainty-driven curiosity, striatal novelty bonus, and hippocampal trajectory sampling. REE registers this as a foundational architectural slot whose specific child mechanisms (MECH-313 noise-floor, MECH-314 structured-curiosity with three sub-flavours, and the MECH-315-absorbed proposal-diversity channel) are independently testable but jointly load-bearing.",
     "claim_type": "Architectural commitment",
     "subject": "rule_apprehension.behavioral_diversity_generation_pathway",
     "cognitive_function": "Goals, drives & commitment",
-    "status": "Provisional",
+    "status": "Stable",
     "evidence_state": "mixed",
-    "limitation": "substrate",
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 46,
+      "supports": 49,
       "weakens": 0,
-      "mixed": 5,
-      "pass_runs": 5,
+      "mixed": 7,
+      "pass_runs": 6,
       "fail_runs": 0,
-      "entries_total": 51
+      "entries_total": 56
     }
   },
   {
@@ -1077,6 +1108,31 @@
     "invariant_type": "emergent"
   },
   {
+    "id": "INV-089",
+    "title": "harm_evaluator_bounded_by_z_harm_differentiation",
+    "claim_type": "Invariant",
+    "subject": "development.maturational_sequence",
+    "cognitive_function": "Development, play & learning",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "SD-010",
+      "ARC-003",
+      "ARC-019",
+      "ARC-027"
+    ],
+    "invariant_type": "emergent",
+    "evidence": {
+      "quadrant": "plausible_unproven",
+      "supports": 4,
+      "weakens": 1,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 1,
+      "entries_total": 5
+    }
+  },
+  {
     "id": "MECH-002",
     "title": "Precision control analogues shape cognitive regimes.",
     "claim_type": "Mechanism hypothesis",
@@ -1312,6 +1368,7 @@
       "ARC-005",
       "ARC-007",
       "INV-010",
+      "MECH-092",
       "MECH-094",
       "MECH-122"
     ],
@@ -1503,12 +1560,12 @@
     ],
     "evidence": {
       "quadrant": "plausible_unproven",
-      "supports": 3,
+      "supports": 6,
       "weakens": 0,
       "mixed": 1,
       "pass_runs": 0,
       "fail_runs": 0,
-      "entries_total": 4
+      "entries_total": 7
     }
   },
   {
@@ -1550,13 +1607,13 @@
       "SD-035"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 4,
+      "quadrant": "confirmed_established",
+      "supports": 5,
       "weakens": 0,
       "mixed": 0,
-      "pass_runs": 0,
+      "pass_runs": 1,
       "fail_runs": 0,
-      "entries_total": 4
+      "entries_total": 5
     }
   },
   {
@@ -1664,8 +1721,7 @@
       "ARC-003",
       "ARC-004",
       "MECH-034",
-      "MECH-060",
-      "MECH-062"
+      "MECH-060"
     ],
     "evidence": {
       "quadrant": "plausible_unproven",
@@ -1778,29 +1834,6 @@
     }
   },
   {
-    "id": "MECH-062",
-    "title": "E3 uses coordinated tri-loop gating (motor, cognitive-set, motivational) as the pre-commit eligibility layer.",
-    "claim_type": "Mechanism hypothesis",
-    "subject": "commitment.tri_loop_gate_coordination",
-    "cognitive_function": "Goals, drives & commitment",
-    "status": "Stable",
-    "evidence_state": "supported",
-    "depends_on": [
-      "ARC-003",
-      "ARC-005",
-      "MECH-061"
-    ],
-    "evidence": {
-      "quadrant": "confirmed_established",
-      "supports": 3,
-      "weakens": 0,
-      "mixed": 0,
-      "pass_runs": 1,
-      "fail_runs": 0,
-      "entries_total": 3
-    }
-  },
-  {
     "id": "MECH-063",
     "title": "Control plane retains orthogonal tonic/phasic axes rather than collapsing into one scalar.",
     "claim_type": "Mechanism hypothesis",
@@ -1853,10 +1886,10 @@
       "quadrant": "confirmed_established",
       "supports": 4,
       "weakens": 0,
-      "mixed": 6,
+      "mixed": 8,
       "pass_runs": 2,
       "fail_runs": 6,
-      "entries_total": 10
+      "entries_total": 12
     }
   },
   {
@@ -1872,7 +1905,7 @@
       "ARC-024"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 21,
       "weakens": 11,
       "mixed": 10,
@@ -1895,12 +1928,12 @@
     ],
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 5,
-      "weakens": 2,
-      "mixed": 1,
+      "supports": 6,
+      "weakens": 3,
+      "mixed": 2,
       "pass_runs": 3,
       "fail_runs": 0,
-      "entries_total": 8
+      "entries_total": 11
     }
   },
   {
@@ -1977,6 +2010,51 @@
     }
   },
   {
+    "id": "MECH-076",
+    "title": "Residue is structural deformation of hippocampal map topology (CA3 retraction, DG neurogenesis, reconsolidation).",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "residue.hippocampal_map_structural_deformation",
+    "cognitive_function": "Goals, drives & commitment",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "ARC-013",
+      "MECH-056",
+      "MECH-073"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 3,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 3
+    }
+  },
+  {
+    "id": "MECH-086",
+    "title": "Dopamine as trajectory selection gain plane operating downstream of landscape, state, and encoding gate.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "dopamine.trajectory_selection_gain_plane",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "MECH-043",
+      "ARC-005"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 3,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 3
+    }
+  },
+  {
     "id": "MECH-089",
     "title": "E1 updates are batched into theta-cycle summaries before reaching E3 (cross-frequency temporal packaging).",
     "claim_type": "Mechanism hypothesis",
@@ -2011,12 +2089,36 @@
     ],
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 14,
-      "weakens": 9,
-      "mixed": 11,
+      "supports": 16,
+      "weakens": 8,
+      "mixed": 12,
       "pass_runs": 8,
-      "fail_runs": 10,
-      "entries_total": 34
+      "fail_runs": 9,
+      "entries_total": 36
+    }
+  },
+  {
+    "id": "MECH-092",
+    "title": "Quiescent E3 heartbeat cycles trigger hippocampal SWR-equivalent replay for viability map consolidation.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "hippocampal.quiescent_offline_replay",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "ARC-014",
+      "ARC-018",
+      "ARC-022",
+      "MECH-094"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 16,
+      "weakens": 0,
+      "mixed": 1,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 17
     }
   },
   {
@@ -2034,11 +2136,11 @@
     "evidence": {
       "quadrant": "confirmed_established",
       "supports": 10,
-      "weakens": 5,
-      "mixed": 1,
+      "weakens": 1,
+      "mixed": 0,
       "pass_runs": 4,
-      "fail_runs": 8,
-      "entries_total": 16
+      "fail_runs": 3,
+      "entries_total": 11
     }
   },
   {
@@ -2063,30 +2165,6 @@
       "pass_runs": 2,
       "fail_runs": 0,
       "entries_total": 27
-    }
-  },
-  {
-    "id": "MECH-095",
-    "title": "Temporoparietal junction (TPJ) acts as agency-detection comparator distinguishing self-caused from other-caused change.",
-    "claim_type": "Mechanism hypothesis",
-    "subject": "tpj.agency_detection_comparator",
-    "cognitive_function": "Self / world attribution & perception",
-    "status": "Active",
-    "evidence_state": "mixed",
-    "depends_on": [
-      "SD-005",
-      "MECH-069",
-      "ARC-021"
-    ],
-    "limitation": "substrate",
-    "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 20,
-      "weakens": 6,
-      "mixed": 8,
-      "pass_runs": 1,
-      "fail_runs": 9,
-      "entries_total": 34
     }
   },
   {
@@ -2133,30 +2211,6 @@
     }
   },
   {
-    "id": "MECH-102",
-    "title": "Violence is a terminal error-correction mechanism triggered only when all other channels fail.",
-    "claim_type": "Mechanism hypothesis",
-    "subject": "ethics.violence_as_terminal_error_correction",
-    "cognitive_function": "Harm modelling & ethics",
-    "status": "Active",
-    "evidence_state": "mixed",
-    "depends_on": [
-      "INV-029",
-      "INV-028",
-      "INV-030"
-    ],
-    "limitation": "substrate",
-    "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 10,
-      "weakens": 11,
-      "mixed": 12,
-      "pass_runs": 3,
-      "fail_runs": 21,
-      "entries_total": 33
-    }
-  },
-  {
     "id": "MECH-104",
     "title": "Unexpected harm events spike commitment uncertainty (LC-NE volatility interrupt), enabling de-commitment.",
     "claim_type": "Mechanism hypothesis",
@@ -2192,7 +2246,7 @@
       "MECH-104"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 6,
       "weakens": 0,
       "mixed": 1,
@@ -2228,7 +2282,7 @@
     "status": "Stable",
     "evidence_state": "supported",
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 5,
       "weakens": 0,
       "mixed": 0,
@@ -2270,10 +2324,11 @@
     "evidence_state": "supported",
     "depends_on": [
       "MECH-030",
+      "MECH-092",
       "MECH-094"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 5,
       "weakens": 0,
       "mixed": 0,
@@ -2313,6 +2368,7 @@
     "status": "Stable",
     "evidence_state": "supported",
     "depends_on": [
+      "MECH-092",
       "MECH-094",
       "SD-003"
     ],
@@ -2359,15 +2415,14 @@
       "SD-005",
       "MECH-069"
     ],
-    "limitation": "substrate",
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 9,
+      "supports": 10,
       "weakens": 1,
       "mixed": 2,
-      "pass_runs": 1,
+      "pass_runs": 2,
       "fail_runs": 1,
-      "entries_total": 12
+      "entries_total": 13
     }
   },
   {
@@ -2384,7 +2439,6 @@
       "ARC-007",
       "MECH-069"
     ],
-    "limitation": "substrate",
     "evidence": {
       "quadrant": "confirmed_established",
       "supports": 10,
@@ -2421,6 +2475,29 @@
     }
   },
   {
+    "id": "MECH-232",
+    "title": "Dopaminergic modulation of hippocampal place coding at reward-associated locations produces representational expansion (higher information density, finer spatial resolution, more stable place fields), and this expansion -- not an explicit positive valence gradient -- is the mechanism by which approach valence enters hippocampal terrain.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "hippocampus.da_representational_expansion",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "ARC-007",
+      "SD-004",
+      "MECH-229"
+    ],
+    "evidence": {
+      "quadrant": "plausible_unproven",
+      "supports": 2,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 0,
+      "fail_runs": 0,
+      "entries_total": 2
+    }
+  },
+  {
     "id": "MECH-259",
     "title": "Salience-network switch threshold: when the precision-weighted salience of any input to the salience-network coordinator (SD-032a) exceeds a threshold, the coordinator fires a whole-system mode switch rather than producing an incremental policy update.",
     "claim_type": "Mechanism hypothesis",
@@ -2432,7 +2509,7 @@
       "SD-032a"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 3,
       "weakens": 0,
       "mixed": 0,
@@ -2451,7 +2528,8 @@
     "evidence_state": "supported",
     "depends_on": [
       "SD-032a",
-      "MECH-094"
+      "MECH-094",
+      "MECH-092"
     ],
     "evidence": {
       "quadrant": "confirmed_established",
@@ -2496,7 +2574,8 @@
     "depends_on": [
       "SD-004",
       "SD-032a",
-      "MECH-261"
+      "MECH-261",
+      "MECH-092"
     ],
     "evidence": {
       "quadrant": "plausible_unproven",
@@ -2527,6 +2606,219 @@
       "pass_runs": 1,
       "fail_runs": 0,
       "entries_total": 9
+    }
+  },
+  {
+    "id": "MECH-272",
+    "title": "MECH-271 routing is state-gated. In waking, the anchor channel dominates the hippocampal fan-out: replay preferentially reaches consolidation and viability-map consumers to support decision-making. In sleep, the probe channel dominates: replay preferentially seeds Bayesian schema restructuring -- testing which action-outcome attributions held up across episodes, creating new buckets for non-fitting experiences, revising causal graphs. The informational needs of sleep (schema revision) and waking (decision support) are distinct, and the routing bias reflects that.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "hippocampus.state_gated_routing",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "MECH-094",
+      "MECH-092"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 16,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 2,
+      "fail_runs": 0,
+      "entries_total": 16
+    }
+  },
+  {
+    "id": "MECH-273",
+    "title": "The self-model has a waking half and a sleep half. The waking half is SD-003 (single-episode counterfactual self-attribution via E2). The sleep half is full-Bayesian aggregation of single-episode SD-003 outputs across many episodes, routed by the anchored channel to E1 and SD-033a, correcting for delayed consequences, failed counterfactuals, and systematic attribution biases. Without the sleep half, REE has an episode-local causal signature but not a durable self-model.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "self_model.sleep_dependent_aggregation",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "SD-003",
+      "MECH-272",
+      "ARC-007"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 5,
+      "weakens": 0,
+      "mixed": 1,
+      "pass_runs": 2,
+      "fail_runs": 0,
+      "entries_total": 6
+    }
+  },
+  {
+    "id": "MECH-279",
+    "title": "PAG-analog gates the freeze response: freeze commit when z_harm_a x duration exceeds threshold; exit requires z_harm_a to fall below an exit_threshold scaled by gaba_tone; failure of exit produces sustained immobility characteristic of stuporous catatonia.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "pag.gabaergic_freeze_gate",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "depends_on": [
+      "SD-011",
+      "MECH-090",
+      "SD-035"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 7,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 7
+    }
+  },
+  {
+    "id": "MECH-284",
+    "title": "V_s residual schema-staleness accumulator: a region-indexed scalar that integrates broadcast invalidation events (MECH-287) with attribution_weight credit assignment over the active anchor set, leaks slowly, and is read by both online anchor-reset (MECH-269 hysteresis check, waking) and sleep-consolidation priority (MECH-285, offline). Distinct from generic prediction error (which operates on latent values and updates online via gradient): MECH-284 is region-indexed, accumulates across events, and exposes a dual read-out (online + offline). Refined 2026-04-22 from sleep-only formulation to dual-readout formulation after V3-EXQ-475 demonstrated that an agent trapped in a stale anchor needs an online consumer of the staleness signal -- MECH-285 sleep-only readout cannot rescue the agent during waking. Saturated map produces over-attention to schema revision (anxiety-analog); absent map produces schema rigidity (V3-EXQ-475 phenotype: 5-6 PAG releases per seed but never integrate to anchor invalidation -> 1000/1000 freeze-active steps).",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "hippocampal.v_s_residual_schema_staleness_accumulator",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "MECH-287",
+      "MECH-094",
+      "ARC-007",
+      "ARC-018"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 13,
+      "weakens": 0,
+      "mixed": 3,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 16
+    }
+  },
+  {
+    "id": "MECH-287",
+    "title": "Dual-component online invalidation trigger: an UPSTREAM anchor-side comparator (CA1/CA3 mismatch flowing through subicular routing per Vinogradova 2001 + O'Mara 2009) coupled to a DOWNSTREAM broadcast event (LC phasic burst per Aston-Jones-Cohen 2005, with parallel signals from generalised dopaminergic prediction error per Schultz 1997 and lateral habenula negative-RPE per Matsumoto-Hikosaka 2007), wired together by the HC-VTA loop (Lisman & Grace 2005). The two components are coupled stages of one trigger event, not alternatives. Distinct from MECH-284 the accumulator: MECH-287 is the discrete trigger event (anchor-side mismatch + broadcast release) that drives accumulation. Triggered by latent-stream prediction failure (norm(z_pred(t-1) - z_obs(t)) > theta_trigger) OR strongly negative value-PE (value_PE(t) < -theta_value) OR exogenous surprise. Carries no schema-region credit on its own; downstream MECH-284 attributes the broadcast event to the active anchor set. Failure modes dissociate from MECH-284: trigger-loss produces single-event blindness (no anchor ever feels invalidated, but staleness map remains queryable); accumulator-loss produces V3-EXQ-475's phenotype directly (releases happen but never integrate). Failure modes also dissociate from MECH-285 sleep priority: trigger-loss prevents staleness from accruing, while sleep-priority loss prevents accrued staleness from being repaired. Within MECH-287 itself, anchor-side comparator failure dissociates from broadcast failure: comparator-loss = no upstream signal to broadcast (silent trigger, biologically a CA1/CA3 lesion); broadcast-loss = comparator fires but no global gain modulation downstream (silent invalidation, biologically an LC lesion).",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "regulators.broadcast_invalidation_trigger",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "MECH-284",
+      "MECH-094",
+      "MECH-272",
+      "SD-005",
+      "ARC-018"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 7,
+      "weakens": 0,
+      "mixed": 1,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 8
+    }
+  },
+  {
+    "id": "MECH-288",
+    "title": "Event-segment detection: a substrate-side two-level hierarchical detector that emits monotonic outer.inner segment IDs on detected event boundaries, feeding region-keyed substrates (anchor sets per MECH-269, V_s readouts per Phase 1, staleness accumulators per MECH-284) and the MECH-287 broadcast trigger at the schema/event-segment scale per Eichenbaum 2017 / Sols-DuBrow-Davachi 2017 / Baldassano 2017. Default substrate: PE-threshold detector on the fast scale (z_world+z_self) and BOCPD-Gaussian latent change-point on the slow scale (z_goal); MECH-287 broadcast fires downstream of MECH-288 boundaries (Clewett 2025) rather than via an independent comparator. The segment_id field is the region key consumed by the V_s invalidation runtime cluster; without it, MECH-269 anchor sets and per-region V_s aggregation have no substrate-native source for the region partition.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "hippocampal.event_segmenter",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "MECH-284",
+      "MECH-287"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 11,
+      "weakens": 0,
+      "mixed": 1,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 12
+    }
+  },
+  {
+    "id": "MECH-302",
+    "title": "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "relief.completion_event_reuses_goal_achievement_pipeline",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "MECH-057a",
+      "MECH-094",
+      "MECH-303",
+      "SD-011",
+      "SD-012"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 7,
+      "weakens": 0,
+      "mixed": 2,
+      "pass_runs": 2,
+      "fail_runs": 0,
+      "entries_total": 9
+    }
+  },
+  {
+    "id": "MECH-303",
+    "title": "Context-bound passive safety representation: the agent encodes 'this environment predicts absence of suffering' through sustained non-occurrence of harm, without requiring a discrete teaching event. Substrate is prefrontal-hippocampal (IL for expression gating; vHipp-to-PL-equivalent for contextual store). Update rule is diffuse and slow -- accumulated context exposure without harm drives the store. Output lowers background vigilance threshold: reduces the general avoidance commitment level when the agent is in an environment the store predicts as safe. Parallel to the 'things liked' goal-cue store but tracking suffering-absence rather than reward-presence. Sister claim to MECH-304 (cue-specific conditioned inhibition pathway).",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "safety_prediction.contextual_passive_substrate",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "SD-011",
+      "SD-012",
+      "ARC-007",
+      "MECH-304"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 5,
+      "weakens": 0,
+      "mixed": 1,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 6
+    }
+  },
+  {
+    "id": "MECH-304",
+    "title": "Cue-specific conditioned safety prediction: a discrete predictive structure encodes 'this stimulus actively predicts that suffering will be omitted', updated by explicit MECH-302 relief-completion events as its teaching signal. Encoding substrate is cortico-striatal (dorsal striatum + dlPFC). Expression/output pathway is IL-to-CeA. This is the conditioned-inhibition mechanism: when a specific cue co-occurs with relief, a separate learned prediction forms that can gate avoidance commitment release when the cue is later present. Sister claim to MECH-303 (contextual passive safety representation).",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "safety_prediction.cue_specific_conditioned_inhibition_substrate",
+    "cognitive_function": "Other",
+    "status": "Active",
+    "evidence_state": "supported",
+    "depends_on": [
+      "MECH-302",
+      "MECH-094",
+      "SD-011",
+      "SD-012",
+      "MECH-303"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 6,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 2,
+      "fail_runs": 0,
+      "entries_total": 6
     }
   },
   {
@@ -2564,12 +2856,12 @@
     ],
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 6,
+      "supports": 7,
       "weakens": 0,
       "mixed": 0,
       "pass_runs": 1,
       "fail_runs": 0,
-      "entries_total": 6
+      "entries_total": 7
     }
   },
   {
@@ -2614,6 +2906,57 @@
       "pass_runs": 3,
       "fail_runs": 0,
       "entries_total": 6
+    }
+  },
+  {
+    "id": "MECH-423",
+    "title": "Cross-model super-additivity: integrating predictive models over a shared latent yields capability gains that EXCEED the sum of the isolated models, because shared features let each model's prediction-error corrections propagate to the others. Integrated (E1 world-model + E2 affordance-model [+ object spine]) beats a param/compute-matched bag of isolated modules -- the 'cross-pollination turbo-charges development' claim, made falsifiable.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "integration.cross_model_super_additivity",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "ARC-004",
+      "ARC-001",
+      "ARC-002",
+      "MECH-033"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 5,
+      "weakens": 0,
+      "mixed": 2,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 7
+    }
+  },
+  {
+    "id": "MECH-447",
+    "title": "Conflict-graded near-tie lever sufficiency: a hyperdirect-STN-like conflict-graded shortlist / commit-temperature lever (k = f(top-F gap); T = f(top-F gap)) is SUFFICIENT to lift committed-action-class entropy strict-above both collapsed-proposer and gap-blind controls -- gap-CONCENTRATED (the lift correlates with per-tick top-F gap) -- WITHOUT reducing F's E3 variance share. I.e. F can keep monopolising selection variance and conversion is still recovered by widening/hotting only at near-ties.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "selection.conflict_graded_near_tie_sufficiency",
+    "cognitive_function": "Other",
+    "status": "Superseded",
+    "evidence_state": "superseded"
+  },
+  {
+    "id": "MECH-449",
+    "title": "Go/No-Go eligibility constitution for committed-action conversion: committed-action diversity is recovered not by any single louder channel but by an explicit eligibility CONSTITUTION -- bounded Go pressure (promote a channel when evidence/value/drive/rule/safety make it eligible) AND bounded No-Go pressure (suppress unsafe / stale / perseverative / irrelevant / low-viability channels) governing which candidates may compete for the pallidal-like permission-to-commit gate -- so that lawful, channel-specific access (not scalar dominance) decides the committed action. The full Go/No-Go eligibility-set governance is what converts when the minimal near-tie lever (MECH-447) does not and isolated F->eligibility demotion (MECH-448) is insufficient alone.",
+    "claim_type": "Mechanism hypothesis",
+    "subject": "selection.go_nogo_eligibility_constitution",
+    "cognitive_function": "Other",
+    "status": "Provisional",
+    "evidence_state": "supported",
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 4,
+      "weakens": 0,
+      "mixed": 0,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 4
     }
   },
   {
@@ -2739,7 +3082,6 @@
     "status": "Active",
     "evidence_state": "mixed",
     "depends_on": [
-      "MECH-062",
       "ARC-003",
       "ARC-005"
     ],
@@ -2784,40 +3126,16 @@
     "status": "Active",
     "evidence_state": "supported",
     "depends_on": [
-      "MECH-062",
       "ARC-005"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 4,
       "weakens": 0,
       "mixed": 0,
       "pass_runs": 1,
       "fail_runs": 0,
       "entries_total": 4
-    }
-  },
-  {
-    "id": "Q-020",
-    "title": "Does ARC-007's no-value-computation constraint survive MECH-073 (valence intrinsic to hippocampal map)?",
-    "claim_type": "Open question",
-    "subject": "hippocampal.arc007_valence_constraint_survival",
-    "cognitive_function": "Memory & consolidation",
-    "status": "Resolved",
-    "evidence_state": "mixed",
-    "depends_on": [
-      "ARC-007",
-      "MECH-073",
-      "ARC-022"
-    ],
-    "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 1,
-      "weakens": 4,
-      "mixed": 1,
-      "pass_runs": 0,
-      "fail_runs": 0,
-      "entries_total": 6
     }
   },
   {
@@ -2856,6 +3174,27 @@
       "supports": 5,
       "weakens": 0,
       "mixed": 0,
+      "pass_runs": 0,
+      "fail_runs": 0,
+      "entries_total": 5
+    }
+  },
+  {
+    "id": "Q-079",
+    "title": "Is there a distinct, useful mathematical object -- a 'structured uncertainty field' / dynamic latent-scale inference field (DLIF) -- that jointly provides directed evidence update, cyclic coherence constraint, latent-node birth/death/merge/split, granularity/scale shift, action coupling, precision modulation, offline consolidation, AND residue/non-erasure; or does it collapse to a re-notation of existing formalisms (dynamic factor graphs + Bayesian-nonparametric structure learning + active inference + ARC-013 residue)?",
+    "claim_type": "Open question",
+    "subject": "research.structured_uncertainty_field_object",
+    "cognitive_function": "Other",
+    "status": "Resolved",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "ARC-013"
+    ],
+    "evidence": {
+      "quadrant": "plausible_unproven",
+      "supports": 0,
+      "weakens": 4,
+      "mixed": 1,
       "pass_runs": 0,
       "fail_runs": 0,
       "entries_total": 5
@@ -2912,13 +3251,13 @@
       "SD-005"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
+      "quadrant": "confirmed_established",
       "supports": 17,
-      "weakens": 4,
+      "weakens": 5,
       "mixed": 0,
       "pass_runs": 3,
-      "fail_runs": 4,
-      "entries_total": 21
+      "fail_runs": 5,
+      "entries_total": 22
     }
   },
   {
@@ -2969,7 +3308,7 @@
       "SD-005"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 16,
       "weakens": 7,
       "mixed": 1,
@@ -3058,11 +3397,11 @@
     "evidence": {
       "quadrant": "confirmed_established",
       "supports": 37,
-      "weakens": 3,
-      "mixed": 4,
+      "weakens": 4,
+      "mixed": 5,
       "pass_runs": 4,
-      "fail_runs": 4,
-      "entries_total": 44
+      "fail_runs": 6,
+      "entries_total": 46
     }
   },
   {
@@ -3101,7 +3440,7 @@
       "ARC-033"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 7,
       "weakens": 1,
       "mixed": 0,
@@ -3141,16 +3480,17 @@
     "status": "Stable",
     "evidence_state": "mixed",
     "depends_on": [
+      "MECH-092",
       "ARC-007"
     ],
     "evidence": {
       "quadrant": "confirmed_established",
-      "supports": 11,
+      "supports": 12,
       "weakens": 0,
       "mixed": 1,
-      "pass_runs": 1,
+      "pass_runs": 2,
       "fail_runs": 0,
-      "entries_total": 12
+      "entries_total": 13
     }
   },
   {
@@ -3254,7 +3594,7 @@
       "MECH-259"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 21,
       "weakens": 0,
       "mixed": 0,
@@ -3287,7 +3627,7 @@
   },
   {
     "id": "SD-034",
-    "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied.",
+    "title": "Closure operator over committed rule_state: on satisfaction of a committed rule_state's completion condition, a 'done' token releases the bistable commitment latch (MECH-090), imposes a temporary No-Go bias (MECH-260) on the just-completed action-class / rule, and discharges the residue associated with that commitment within its domain. The closure token is what turns evaluation off; its absence leaves the governance loop stuck in evaluate-more even when the rule is satisfied. [UMBRELLA NARROWED 2026-06-19: the de-commit-authority sub-property (closure->latch coupling + de-commit magnitude) is decomposed into children MECH-445 (closure->beta coupling engagement) + MECH-446 (de-commit-authority magnitude); see those claims. SD-034 remains the umbrella design_decision -- closure-operator existence + five-part 'done' token firing + No-Go install are retained here and provisional; NOT demoted, NOT superseded.]",
     "claim_type": "Substrate design",
     "subject": "governance.closure_operator",
     "cognitive_function": "Other",
@@ -3299,13 +3639,13 @@
       "SD-032a"
     ],
     "evidence": {
-      "quadrant": "plausible_unproven",
-      "supports": 5,
+      "quadrant": "confirmed_established",
+      "supports": 9,
       "weakens": 0,
       "mixed": 1,
-      "pass_runs": 0,
+      "pass_runs": 1,
       "fail_runs": 0,
-      "entries_total": 6
+      "entries_total": 10
     }
   },
   {
@@ -3325,7 +3665,7 @@
       "MECH-046"
     ],
     "evidence": {
-      "quadrant": "confirmed_established",
+      "quadrant": "plausible_unproven",
       "supports": 6,
       "weakens": 0,
       "mixed": 1,
@@ -3343,7 +3683,6 @@
     "status": "Provisional",
     "evidence_state": "mixed",
     "depends_on": [
-      "MECH-095",
       "SD-022"
     ],
     "evidence": {
@@ -3354,6 +3693,48 @@
       "pass_runs": 0,
       "fail_runs": 1,
       "entries_total": 11
+    }
+  },
+  {
+    "id": "SD-063",
+    "title": "E2 world-forward carries a conditional predictive-uncertainty head (distribution-free quantile form) feeding E3 commitment gating: the forward model emits a per-prediction predictive spread that tracks realized error, instead of relying only on E3's running-variance EMA (a temporally-smoothed global estimate whose predicted uncertainty has near-zero per-point error correlation).",
+    "claim_type": "Substrate design",
+    "subject": "e2.conditional_predictive_uncertainty_head",
+    "cognitive_function": "Self / world attribution & perception",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "MECH-059"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 3,
+      "weakens": 0,
+      "mixed": 2,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 5
+    }
+  },
+  {
+    "id": "SD-079",
+    "title": "Common-mode-invariant (centered) z_goal cue for goal-anchor match: SD-039's Anchor.goal_match is a raw cosine over z_goal, which as an EMA attractor pulled toward z_world inherits the SD-008 common-mode offset more strongly than its source, so goal_match spans ~0.01 across an anchor pool, the MECH-292 goal_match_floor excludes nothing and the MECH-339 outshining gate is identically zero. Subtract a slow EMA common-mode baseline before the match. ree_core hippocampal change, bit-identical by default.",
+    "claim_type": "Substrate design",
+    "subject": "hippocampal.common_mode_invariant_goal_anchor_match",
+    "cognitive_function": "Memory & consolidation",
+    "status": "Provisional",
+    "evidence_state": "mixed",
+    "depends_on": [
+      "SD-008"
+    ],
+    "evidence": {
+      "quadrant": "confirmed_established",
+      "supports": 1,
+      "weakens": 0,
+      "mixed": 2,
+      "pass_runs": 1,
+      "fail_runs": 0,
+      "entries_total": 3
     }
   }
 ]
