@@ -15,6 +15,29 @@ Do NOT create feature branches or pull requests.
 See `REE_Working/CLAUDE.md` for the session startup protocol.
 Check `REE_Working/WORKSPACE_STATE.md` before editing `docs/claims/claims.yaml`.
 
+## Public Information Architecture
+
+Before `/update-docs` or any other user-facing documentation landing, read
+[`docs/design/public_information_architecture.md`](docs/design/public_information_architecture.md).
+Treat it as a required impact review: determine whether the change affects the
+reader's current orientation, a public status/count, a source route, a generated
+visualization, or the public evidence export. Record the answer in the session
+completion note.
+
+The review includes the documentation system itself: inspect the `/update-docs`
+routine plus the affected generators or configuration sources, including
+`docs/apply_nav_frontmatter.py`, `scripts/build_site_visualizations.py`, and
+`scripts/export_public_explorer.py`. Claim and update a system when needed; if
+it is deliberately deferred, name the owner, reason, and next review point in
+the completion note.
+
+The public explorer is a redaction-reviewed publication artifact, not a normal
+derived index. An agent may run its export and safety checks when the design
+record calls for a freshness review, but must not publish regenerated public
+explorer data until the established redaction review is complete. Never expose
+future tests, queue details, or unreviewed run identities to solve a freshness
+problem.
+
 **Editing anything under `evidence/` — or `docs/claims/claims.yaml` — requires an active TASK_CLAIMS entry.** The runner heartbeat (`ree-v3/runner_remote_control.py:push_heartbeat`) does `git pull --rebase --autostash` against this repo every minute under `--remote-control`. With no active claim listed in `REE_Working/TASK_CLAIMS.json`, the autostash interaction can silently revert uncommitted edits across multiple ticks. Three incidents to date: (1) 5 EXQ-232 ARC-026 supersession edits to `evidence/experiments/` made 2026-04-29 reverted by 2026-05-01 with no trace in git history; (2) `evidence/planning/substrate_queue.json` MECH-204 design_doc field edit made 2026-05-08 ~18:25Z silently reverted with the same signature; (3) 2026-06-14 IGW window — an autostash cycle transiently swept a session's (ABM-1/Q-060) uncommitted `docs/claims/claims.yaml` edits out of the working tree (briefly showing it clean) then restored them a tick later (no data lost that time, same shape as the others). The heartbeat now skips its push entirely when an active claim covers ANY path under `evidence/` or `docs/claims/` (originally just `evidence/experiments/`; broadened to the `evidence/` prefix on 2026-05-08 after the planning incident; broadened again 2026-06-14 to add `docs/claims/` since claims.yaml is the most-contended governance file and lives outside the `evidence/` prefix). Register the claim *before* opening any evidence or claims.yaml file for editing, and either commit or close the claim before walking away — uncommitted edits left without an open claim remain vulnerable.
 
 ## Governance Pipeline
