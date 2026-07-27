@@ -1,0 +1,63 @@
+{
+  "_README": [
+    "Human-reviewed baseline of sensitive-pattern scrub hits in the public export.",
+    "",
+    "Consumed by scripts/check_public_export_redactions.py, which is the gate on",
+    "the unattended weekly refresh (.github/workflows/public-explorer-refresh.yml).",
+    "A scrub hit whose (record_type, record_id, field, pattern) key appears below",
+    "has been looked at by a person and judged correct. Any hit NOT listed here",
+    "fails the scheduled run, which then publishes nothing and asks for review.",
+    "",
+    "WHAT THIS GATE IS ACTUALLY FOR -- read this before assuming it stops leaks.",
+    "It does not, because nothing needs it to: the scrub in export_public_explorer.py",
+    "DROPS the whole field on any match, unconditionally, listed here or not. A new",
+    "hit therefore cannot publish a leak even if this file is empty and the gate is",
+    "asleep. What unattended publishing actually loses is the HUMAN, and with them",
+    "two things the scrub cannot do for itself:",
+    "  1. OVER-REDACTION going unnoticed -- the real hazard. The scrub is deliberately",
+    "     blunt (one match kills the entire field), so a legitimate result summary that",
+    "     happens to contain a hostname vanishes from the public site silently. Nothing",
+    "     errors. The page just quietly has less science on it than it should.",
+    "  2. Nobody fixing the SOURCE. A machine identity in an evidence_direction_note is",
+    "     a defect in the note, and the scrub hides it well enough that it survives.",
+    "So the review question for each entry is NOT 'is dropping this safe?' (always yes)",
+    "but 'should this field have been publishable, and is the source worth fixing?'.",
+    "",
+    "KEYED ON (record_type, record_id, field, pattern), DELIBERATELY NOT ON `matched`.",
+    "The matched substring is recorded for the reviewer but excluded from the key: if",
+    "an already-approved note is edited and trips the SAME pattern on a different host,",
+    "the field is dropped either way, so re-review buys nothing and the churn would",
+    "train people to rubber-stamp. A hit on a NEW record is the reviewable event.",
+    "",
+    "TO APPROVE new hits after reviewing them:",
+    "  python3 scripts/check_public_export_redactions.py --update --reviewed-by <name>",
+    "then replace each generated `note` placeholder with the actual finding.",
+    "",
+    "Entries that no longer fire are reported as stale but never fail the run --",
+    "a fixed source is good news. Prune them when convenient."
+  ],
+  "approved": [
+    {
+      "record_type": "experiment",
+      "record_id": "v3_exq_418a_sd016_sd017_context_conditioned_action_20260424T021932Z_v3",
+      "field": "summary",
+      "pattern": "named_host",
+      "matched_when_reviewed": "DLAPTOP",
+      "verdict": "true_positive",
+      "reviewed_utc": "2026-07-27T22:26:15Z",
+      "reviewed_by": "dazzling-taussig-f58f4c",
+      "note": "evidence_direction_note names the host a sibling run executed on ('same host DLAPTOP-4.local with ab_channel_std=3.44e-3'). Correct drop, and no public loss: the note is internal-process text end to end -- a queue_id inheritance mix-up (ran as V3-EXQ-418c under the 418a filename), a bit-identical-ablation diagnosis, and a /diagnose-errors routing instruction. Nothing in it is a result a reader of the public site would want. Record still publishes id/title/status/direction/claims/date."
+    },
+    {
+      "record_type": "experiment",
+      "record_id": "v3_exq_615_arc065_rung1_matched_entropy_20260531T082211Z_v3",
+      "field": "summary",
+      "pattern": "cloud_host",
+      "matched_when_reviewed": "ree-cloud-2",
+      "verdict": "true_positive",
+      "reviewed_utc": "2026-07-27T22:26:15Z",
+      "reviewed_by": "dazzling-taussig-f58f4c",
+      "note": "evidence_direction_note names the worker the canonical run landed on ('200 steps/ep, ree-cloud-2, outcome PASS'). Correct drop, and no public loss: this manifest is a superseded dry_run=true smoke artifact, and the note is a supersession rationale plus a runner-policy observation (the runner should refuse to emit dry_run manifests to flat evidence/). The canonical full-scale 093116Z run carries the publishable result."
+    }
+  ]
+}

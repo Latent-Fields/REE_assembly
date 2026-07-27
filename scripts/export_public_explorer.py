@@ -595,18 +595,33 @@ def validate_outputs():
 
 
 # ---------------------------------------------------------------------------
-# Main
+# Build (no side effects)
 # ---------------------------------------------------------------------------
-def main():
-    ap = argparse.ArgumentParser(description="Export public REE Explorer data.")
-    ap.add_argument("--check", action="store_true",
-                    help="After export, run leak/scope validation; non-zero exit on failure.")
-    args = ap.parse_args()
+class ExportSourceError(Exception):
+    """A canonical source is missing or malformed; the export cannot be built."""
 
+
+def build_export():
+    """Compute the complete public export and WRITE NOTHING.
+
+    Split out of main() so a caller can obtain the scrub `pattern_hits` without
+    touching the tracked output directory or the root redaction report.
+
+    That property is load-bearing for scripts/check_public_export_redactions.py,
+    which runs on every scheduled refresh: a gate that had to perform the real
+    export in order to decide whether the real export is safe would be writing
+    the very files it is gating -- and in a shared multi-session checkout that
+    is the read-modify-write contamination shape that got the test module
+    redirected to a tempdir in 7a6120e3e1. Returning the data instead means the
+    gate is a pure read, safe to run anywhere, in any checkout, at any time.
+
+    Returns a dict with keys: index, claims_public, experiments_public,
+    mechanisms_public, help_wanted, orientation, redactions, counts, generated.
+    Raises ExportSourceError if a canonical source is missing or malformed.
+    """
     for required in (CLAIMS_YAML, CONFIG):
         if not required.exists():
-            print(f"ERROR: required source missing: {required}", file=sys.stderr)
-            return 1
+            raise ExportSourceError(f"required source missing: {required}")
 
     cfg = load_config()
     resolve_fn = build_function_resolver(cfg)
@@ -614,8 +629,7 @@ def main():
 
     claims = yaml.safe_load(CLAIMS_YAML.read_text(encoding="utf-8"))
     if not isinstance(claims, list):
-        print("ERROR: claims.yaml top level must be a list", file=sys.stderr)
-        return 1
+        raise ExportSourceError("claims.yaml top level must be a list")
 
     ev_index = load_evidence_index()
     reviewed_ids, discussed_dirs = load_reviewed_ids()
@@ -641,8 +655,41 @@ def main():
                        "Experiments shown only when reviewed; pending work is a count only."),
     }
 
-    help_wanted = cfg.get("help_wanted", {})
-    orientation = cfg.get("orientation", {})
+    return {
+        "index": index,
+        "claims_public": claims_public,
+        "experiments_public": experiments_public,
+        "mechanisms_public": mechanisms_public,
+        "help_wanted": cfg.get("help_wanted", {}),
+        "orientation": cfg.get("orientation", {}),
+        "redactions": redactions,
+        "counts": {
+            "claims": len(claims_public),
+            "experiments": len(experiments_public),
+            "mechanisms": len(mechanisms_public),
+            "pending": pending_count,
+        },
+        "generated": generated,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+def main():
+    ap = argparse.ArgumentParser(description="Export public REE Explorer data.")
+    ap.add_argument("--check", action="store_true",
+                    help="After export, run leak/scope validation; non-zero exit on failure.")
+    args = ap.parse_args()
+
+    try:
+        built = build_export()
+    except ExportSourceError as exc:
+        print(f"ERROR: {exc}", file=sys.stderr)
+        return 1
+
+    redactions = built["redactions"]
+    counts = built["counts"]
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -650,20 +697,19 @@ def main():
         (OUT_DIR / name).write_text(
             json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    dump("index.json", index)
-    dump("claims_public.json", claims_public)
-    dump("experiments_public.json", experiments_public)
-    dump("mechanisms_public.json", mechanisms_public)
-    dump("help_wanted.json", help_wanted)
-    dump("orientation.json", orientation)
+    dump("index.json", built["index"])
+    dump("claims_public.json", built["claims_public"])
+    dump("experiments_public.json", built["experiments_public"])
+    dump("mechanisms_public.json", built["mechanisms_public"])
+    dump("help_wanted.json", built["help_wanted"])
+    dump("orientation.json", built["orientation"])
 
-    counts = {
-        "claims": len(claims_public),
-        "experiments": len(experiments_public),
-        "mechanisms": len(mechanisms_public),
-        "pending": pending_count,
-    }
-    write_redaction_report(redactions, counts, generated)
+    write_redaction_report(redactions, counts, built["generated"])
+
+    claims_public = built["claims_public"]
+    experiments_public = built["experiments_public"]
+    mechanisms_public = built["mechanisms_public"]
+    pending_count = counts["pending"]
 
     print(f"Public export written to {OUT_DIR}")
     print(f"  claims_public      : {len(claims_public)} "

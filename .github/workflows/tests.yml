@@ -41,10 +41,22 @@ on:
     # file AND every subject under test must be reachable from this list, which
     # is asserted by scripts/test_ci_test_coverage_pin.py rather than trusted.
     paths:
-      - 'scripts/**.py'
+      # `scripts/**`, not `scripts/**.py`: the pin below can only see .py
+      # subjects (it resolves them from imports and .py literals), so a
+      # non-.py subject under test is invisible to it AND was outside this
+      # filter -- two ways to be stranded at once. scripts/ holds exactly two
+      # such files, both real subjects: public_explorer_config.yaml drives the
+      # export, and public_explorer_approved_redactions.json is the gate's
+      # baseline, where landing a TODO placeholder must run the test that
+      # rejects it. Widening costs nothing measurable -- 43 of the preceding
+      # fortnight's 976 commits touched scripts/ at all, none of them from the
+      # phase3 writers this filter exists to keep out.
+      - 'scripts/**'
       - 'evidence/experiments/scripts/**.py'
       - 'serve.py'
       - '.github/workflows/tests.yml'
+      # Asserted by test_refresh_workflow_gates_before_it_publishes.
+      - '.github/workflows/public-explorer-refresh.yml'
   workflow_dispatch:
 
 jobs:

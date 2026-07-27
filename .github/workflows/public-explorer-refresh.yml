@@ -1,0 +1,147 @@
+name: public-explorer-refresh
+
+# Regenerates the published public-Explorer data under docs/public_explorer/data/
+# and commits it to master, once a week.
+#
+# WHY THIS EXISTS (2026-07-27). The published export was found serving a
+# 2026-06-15 snapshot -- six weeks stale, with 17 claims and 80 experiments
+# missing from the public site. The cause was not a bug: NOTHING regenerated it.
+# Not scripts/governance.sh, not a git hook, not a cron, not a workflow. The
+# exporter only ran when a person happened to run it, and for six weeks nobody
+# did. It was found by accident, while auditing whether the repo's test files
+# were run by anything at all.
+#
+# WHY CI RATHER THAN A SCHEDULED JOB ON THE MAC. Same reasoning as tests.yml,
+# and one addition specific to this exporter. REE_assembly is a shared
+# multi-session checkout; running an exporter that writes six tracked JSON
+# files inside it leaves them dirty for the next session's whole-file
+# read-modify-write to sweep into an unrelated commit (root CLAUDE.md,
+# "Read-modify-write contamination"). That is not hypothetical here -- it is
+# why scripts/test_export_public_explorer.py was redirected to a tempdir in
+# 7a6120e3e1. A CI checkout is ephemeral and single-writer, so it is the only
+# place this can run without that hazard.
+#
+# WHY IT DOES NOT JUST PUBLISH. A cron removes the human who used to read
+# public_explorer_redaction_report.md before pushing. scripts/check_public_export_redactions.py
+# is what replaces that reader; see its module docstring for what is actually at
+# risk (over-redaction quietly deleting science from the site, and a source
+# collapse publishing as if it were a real result -- NOT leaks, which the scrub
+# already drops unconditionally). If it fails, this job publishes NOTHING and
+# leaves the previous snapshot standing, which is the safe direction: a
+# fortnight-old good snapshot beats a fresh gutted one.
+#
+# NO WORKFLOW LOOP. The commit touches only docs/public_explorer/data/*.json,
+# which matches no `paths:` filter in tests.yml; and pushes made with
+# GITHUB_TOKEN do not trigger workflows in any case.
+
+on:
+  schedule:
+    # Sundays 03:17 UTC. Off-peak, and deliberately off the hour -- GitHub
+    # queues cron runs and on-the-hour slots are the congested ones.
+    - cron: '17 3 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Build and gate, but do not commit or push'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+# A second run starting while one is mid-push would race on master for no gain.
+concurrency:
+  group: public-explorer-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # Full history: the push step rebases when master moves under it, and
+      # rebasing in a depth-1 shallow clone is the fragile case. This costs a
+      # ~250 MB fetch (51k commits) once a week, which is the cheaper side of
+      # the trade against a refresh that fails whenever a phase3 writer lands
+      # mid-run -- and at ~70 commits/day on master, that window is hit
+      # roughly one run in seven.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # pyyaml is a genuine runtime dependency: the exporter reads
+      # docs/claims/claims.yaml. Everything else is stdlib.
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pyyaml
+
+      # The export must be safe before it is written, so the gate runs first,
+      # off the pre-existing on-disk snapshot. Gate 2 (leak/scope validation)
+      # reads what is on disk, so at this point it is validating the CURRENTLY
+      # PUBLISHED files -- a useful independent check that the live site is
+      # clean -- and the post-export --check below is what validates the new
+      # output. Gates 1 and 3 are computed from the freshly built (unwritten)
+      # export, which is the part that decides whether to publish at all.
+      - name: Gate -- unreviewed redactions, leak/scope, count collapse
+        run: python scripts/check_public_export_redactions.py
+
+      # --check re-runs leak/scope validation against the newly written files.
+      - name: Regenerate the export
+        run: python scripts/export_public_explorer.py --check
+
+      - name: Run the export validation suite
+        run: |
+          python -m pip install --upgrade pytest
+          python -m pytest -q -p no:cacheprovider \
+            scripts/test_export_public_explorer.py \
+            scripts/test_check_public_export_redactions.py
+
+      # The redaction report is gitignored and stays local to the runner; only
+      # the six data files can ever be committed. `git add` is scoped to that
+      # directory so nothing else the run touched could ride along.
+      #
+      # EXPECT A COMMIT EVERY WEEK, INCLUDING QUIET ONES. index.json carries
+      # `generated_utc`, which moves on every run, so the no-op branch below
+      # almost never fires -- a week with no governance activity still lands a
+      # one-line timestamp bump. That is deliberate, not an oversight worth
+      # "fixing" by diffing content-only: 52 commits a year is nothing against
+      # this repo's ~25,000, and a visible weekly heartbeat in history is the
+      # one signal whose ABSENCE let the export sit six weeks stale unnoticed.
+      # A silently dead cron looks exactly like a quiet week otherwise.
+      - name: Commit and push if the data changed
+        if: ${{ github.event_name == 'schedule' || !inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          git add -- docs/public_explorer/data/
+          if git diff --cached --quiet; then
+            echo "No change to the published export -- nothing to commit."
+            exit 0
+          fi
+
+          git diff --cached --stat
+
+          NEW_COUNTS=$(python -c "import json;d=json.load(open('docs/public_explorer/data/index.json'));c=d['counts'];print(f\"claims {c['claims_public']}, experiments {c['experiments_public']}, pending {d['pending_review_count']}\")")
+          git commit -m "public-export: weekly refresh (${NEW_COUNTS})" \
+                     -m "Automated by .github/workflows/public-explorer-refresh.yml. Gated by scripts/check_public_export_redactions.py: no unreviewed scrub hits, leak/scope validation clean, no count collapse."
+
+          # master receives continuous phase3 coordination-data pushes from the
+          # hub's sync_daemon, so a first-try rejection is the normal case, not
+          # an error. The rebase cannot conflict: no other writer touches
+          # docs/public_explorer/data/. Bounded so a genuinely wedged remote
+          # fails the run instead of spinning.
+          for attempt in 1 2 3 4 5; do
+            if git push origin HEAD:master; then
+              echo "pushed on attempt ${attempt}"
+              exit 0
+            fi
+            echo "push rejected (attempt ${attempt}) -- rebasing onto origin/master"
+            git pull --rebase --no-autostash origin master
+          done
+          echo "FAIL: could not push after 5 attempts." >&2
+          exit 1
