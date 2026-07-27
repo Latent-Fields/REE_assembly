@@ -1,48 +1,36 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-27T18:24:34Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-830",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-689d",
-      "result": "PASS",
-      "completed_at": "2026-06-21T06:34:10.419384+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-729",
-      "result": "PASS",
-      "completed_at": "2026-07-10T11:38:27.814950+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-766",
-      "result": "PASS",
-      "completed_at": "2026-07-16T06:25:29.570107+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-767",
-      "result": "PASS",
-      "completed_at": "2026-07-16T07:32:01.420157+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-823",
-      "result": "PASS",
-      "completed_at": "2026-07-26T07:53:28.610132+00:00"
-    }
+  "last_tick_utc": "2026-07-27T18:35:34Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-830",
+  "current_exq_started_utc": "2026-07-27T18:27:03.996731+00:00",
+  "current_title": "MECH-321 scale-resolved rollout boundary diagnostic (spike 5b) on the 816 harness",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 11 / ARM_PROBE_OFF",
+    "runs_done": 0,
+    "runs_total": 10,
+    "episodes_done": 50,
+    "episodes_total": 60,
+    "overall_pct": 8.3
+  },
+  "seconds_elapsed": 510,
+  "seconds_remaining": 13624,
+  "recent_lines": [
+    "Seed 11 Condition ARM_PROBE_OFF",
+    "[train] scale seed=11 arm=ARM_PROBE_OFF ep 10/60 sweeps=66 fast=44 slow=0 cofire=0",
+    "[train] scale seed=11 arm=ARM_PROBE_OFF ep 20/60 sweeps=134 fast=91 slow=0 cofire=0",
+    "[train] scale seed=11 arm=ARM_PROBE_OFF ep 30/60 sweeps=200 fast=137 slow=0 cofire=0",
+    "[train] scale seed=11 arm=ARM_PROBE_OFF ep 40/60 sweeps=254 fast=176 slow=0 cofire=0",
+    "[train] scale seed=11 arm=ARM_PROBE_OFF ep 50/60 sweeps=323 fast=223 slow=0 cofire=0"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 97092,
-  "runner_version": "r4377 87c3328 2026-07-27",
+  "runner_version": "r4378 8d4c0f9 2026-07-27 (running r4377 87c3328)",
   "gpu": {
     "available": false
   },
