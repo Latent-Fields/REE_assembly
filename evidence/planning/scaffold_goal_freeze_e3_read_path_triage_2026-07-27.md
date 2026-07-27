@@ -199,6 +199,43 @@ Reasoning, against option (a) "widen the helper to zero `e3.goal_weight`":
 - The opt-in strict-isolation knob is **not** built -- chipped as `/implement-substrate`
   work.
 
+### Follow-on: the knob is now BUILT (2026-07-27T22:21Z, session `festive-bose-705787`)
+
+The chipped lever landed as `ScaffoldedSD054OnboardingConfig.scaffold_strict_goal_isolation`
+(default **False**) in `ree-v3/experiments/scaffolded_sd054_onboarding.py`. With it set,
+`_set_goal_pipeline_frozen(agent, frozen=True, strict=True)` additionally zeroes
+`agent.e3.config.goal_weight` (the E3 term's own `> 0.0` gate then fails, so the
+subtraction is SKIPPED rather than scaled) and clears
+`agent.config.goal.e1_goal_conditioned` (E1 receives `z_goal=None` -- the same path it
+takes whenever the goal is inactive), restoring the **saved** priors on unfreeze so an
+experiment's non-default `goal_weight` survives the curriculum. All five call sites
+thread the knob; entry is idempotent and restore keys off the saved state rather than the
+caller's flag. Nothing in §1-§4 changes: the default remains the two MECH write-path
+flags, option (a) stays declined, no landed run is affected, and no manifest or claim was
+touched.
+
+One methodological correction to §5 for anyone re-deriving these numbers. **A
+cross-process, whole-curriculum A/B cannot verify a no-op change here, because the 460c
+dry-run curriculum is not reproducible across processes.** Measured on `ree-cloud-2`
+(2026-07-27, 3 concurrent runs, `OMP_NUM_THREADS=1`, `PYTHONHASHSEED=0`, torch + numpy
+**and stdlib `random`** all seeded in the harness): two byte-identical checkouts of the
+same commit produced different `z_goal_peak` at Stage-0 episode 2 and diverged onward, so
+the base-vs-patched diff is uninterpretable. Seeding stdlib `random` is necessary but not
+sufficient -- `ree_core/hippocampal/module.py` draws from it (`random.choice` /
+`random.random()` in the exploration path) while the driver seeds only torch and numpy,
+which explains part of it, but a residual per-process entropy source remains unidentified.
+Bit-identity of the default path was therefore established by **equivalence** instead
+(`test_default_freeze_path_is_equivalent_to_the_pre_knob_helper`): the new helper and a
+verbatim replica of the pre-knob two-assignment body are run on seed-identical twin
+agents and compared on every goal-relevant config field, the full parameter `state_dict`
+bitwise, and the torch / numpy / stdlib-random states -- so a single extra RNG draw or one
+mutated byte fails the test.
+
+**Still unmeasured, stated explicitly:** whether silencing the goal term changes learned
+avoidance. The 38% Stage-H argmin-flip rate is a selection counterfactual, not a DV. The
+knob makes that experiment possible (a strict-ON vs strict-OFF Stage-H arm pair); it does
+not answer it.
+
 ---
 
 ## 5. Reproduction
