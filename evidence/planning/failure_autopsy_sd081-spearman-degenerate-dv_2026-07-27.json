@@ -1,0 +1,121 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-27T05:56:41Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "trigger": "SD-081 (MECH-477) build confirmed V3-EXQ-786a recruitment DV degenerate; guard-shape sweep of ree-v3/experiments surfaced these runs",
+  "root_cause": "Rank-correlation DV computed over a constant-by-construction input vector, past a guard that tests RANK variance (double-argsort of a constant returns a 0..K-1 permutation with large std, so the guard never fires). Correct guard is on the INPUT vector (np.std(a)==0 or len(set(a))<2).",
+  "targets": [
+    {
+      "run_id": "v3_exq_786_mech163_dual_system_recruitment_20260719T163935Z_v3",
+      "queue_id": "V3-EXQ-786",
+      "claim_ids": ["MECH-163"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (claim not tested; the recruitment DV never measured recruitment)",
+        "biological_reference": "not the failing axis; MECH-163 has a clear cortico-striatal existence proof, the failure is instrumental",
+        "prerequisites": "present (substrate ran; substrate_hash recorded)",
+        "implementation": "complete-but-mismeasured (substrate sound; measurement degenerate)",
+        "environment": "adequate",
+        "measurement": "misleading (degenerate) -- DOMINANT layer; DV = 1 - rho(full, first) with 'first' constant (world_seq[:, :1, :] is the shared current state), indistinguishable from the K=32 one-side-constant null (mean +0.005, sd 0.178) vs manifest recruitment_rate 0.996-1.042, sd 0.155-0.204",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cortico-striatal dual-system arbitration (habit vs planned/goal-directed control)",
+        "dependencies": ["novelty/familiarity signal", "candidate trajectory scoring at depth >= 2"],
+        "is_formal_import": false,
+        "divergence": "none load-bearing; failure is a measurement-instrument defect, not a biology-translation gap",
+        "lit_status": "present (MECH-163 carries 9 lit supports)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {"MECH-163": "measurement_test_design_defect"},
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-163": "non_contributory"},
+      "recommended_evidence_quality_note": "2026-07-27 (failure_autopsy_sd081-spearman-degenerate-dv): CONFIRM non_contributory. The load-bearing recruitment DV (1 - rho(full, first)) is degenerate: 'first' is scored at world_seq[:, :1, :], the current state shared by all candidates, so it is constant by construction, and the _spearman guard tests RANK variance which cannot fire on a constant. Recruitment values are indistinguishable from the constant-vector null. The run's own candidate_score_range_non_degenerate precondition checks the 'full' vector's range, not 'first', so it could not catch this. Independent of (and deeper than) the familiarity_separation precondition failure the run self-routed on. MECH-163 UNWEAKENED -- the run tested nothing about the claim. Lineage already repaired by V3-EXQ-786b (ree-v3 2f43287: HABIT_DEPTH=2 so 'first'/habit vector spans >=2 world-states, plus an input-range readiness gate on both score vectors). Instrument defect, NOT substrate_ceiling -- does not count toward the MECH-163 re-derive brake (R3).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "superseded_by_inflight": "V3-EXQ-786b (ree-v3 2f43287, built)",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "reason_not_fired": "recommended category is measurement_test_design_defect, not substrate_ceiling; under convention R3 only substrate_ceiling counts, so this run adds 0 to the MECH-163 ceiling tally"
+      },
+      "learning_extracted": [
+        "A degeneracy guard must test the INPUT vector, not a post-argsort rank vector -- rank variance of a constant input is maximal, not zero.",
+        "A run's own non-degeneracy precondition can check the WRONG vector: 786 checked 'full' range while the DV's second argument 'first' was the constant one. Non-degeneracy checks must cover EVERY input the DV consumes.",
+        "The 786 lineage fix (786b) closes the degenerate path by construction (depth-2) plus an explicit input-range gate; its residual unfireable rank-variance guard should adopt the input-vector form."
+      ],
+      "routing": "governance-annotation (superseded-in-lineage by 786b; no new queue work)"
+    },
+    {
+      "run_id": "v3_exq_543_family_17_runs",
+      "queue_id": "V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)",
+      "member_run_ids": [
+        "v3_exq_543_arc062_phase2a_monomodal_collapse_falsifier_20260509T214517Z_v3",
+        "v3_exq_543b_arc062_phase3_optimized_falsifier_20260510T172558Z_v3",
+        "v3_exq_543c_arc062_phase3_bipartite_falsifier_20260511T190246Z_v3",
+        "v3_exq_543d_arc062_mech260_factorial_falsifier_20260512T010638Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T125958Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130046Z_v3",
+        "v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T130300Z_v3",
+        "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T144716Z_v3",
+        "v3_exq_543g_arc062_outcome_coupled_falsifier_20260517T191536Z_v3",
+        "v3_exq_543h_arc062_crystallization_falsifier_20260518T000930Z_v3",
+        "v3_exq_543h_arc062_crystallization_falsifier_20260518T060905Z_v3",
+        "v3_exq_543i_arc062_differential_heads_falsifier_20260518T063711Z_v3",
+        "v3_exq_543i_arc062_differential_heads_falsifier_20260518T191052Z_v3",
+        "v3_exq_543i_arc062_differential_heads_falsifier_20260521T035802Z_v3",
+        "v3_exq_543j_arc062_differential_heads_xmachine_confirm_20260519T080741Z_v3",
+        "v3_exq_543k_arc062_mode_separation_gap_b_falsifier_20260522T091714Z_v3",
+        "v3_exq_543l_arc062_mode_separation_gap_b_falsifier_20260526T023059Z_v3"
+      ],
+      "claim_ids": ["ARC-062"],
+      "failed_criterion": "n/a (side-diagnostic; not a gate)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-062 verdicts turn on the reef-fraction gates, which are sound",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading but CONFINED -- rho_drive_vs_reef(flat_drives, flat_in_reef) is degenerate on the 64/378 arms with mean_reef_fraction==0.0 (flat_in_reef all-zero -> constant), reaching |0.74| as a deterministic tie-break artifact; but this rho feeds NO load-bearing gate (gates read mean_reef_fraction and d4_delta_abs)",
+        "integration": "adequate",
+        "scale": "adequate"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_epistemic_category_per_claim": {"ARC-062": "measurement_gap"},
+      "recommended_evidence_direction": "unchanged",
+      "recommended_evidence_quality_note": "2026-07-27 (failure_autopsy_sd081-spearman-degenerate-dv): ANNOTATION ONLY -- the 17 runs' outcome/evidence_direction STAND. The rho_drive_vs_reef per-arm diagnostic is degenerate on the 64/378 arms reporting mean_reef_fraction==0.0 (flat_in_reef all-zero -> constant vector past a rank-variance guard that cannot fire), producing values up to |0.74| that are deterministic tie-break artifacts (identical values recur across siblings: 0.74072 in 543g/h/i/j, 0.0088 in 543h/i/j/k/l). This rho is REPORTED ONLY -- the load-bearing PASS/FAIL gates read mean_reef_fraction and d4_delta_abs, not the rho -- so no run's verdict is affected. Do NOT re-adjudicate. Do NOT read rho_drive_vs_reef as drive-reef coupling on any zero-reef arm; it is noise there.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "reason_not_fired": "measurement_gap on a confined non-load-bearing diagnostic; not substrate_ceiling; adds 0 to the ARC-062 ceiling tally (R3)"
+      },
+      "learning_extracted": [
+        "A degenerate metric can be confined to a non-load-bearing diagnostic (543) or be the load-bearing DV (786). Adjudication must trace whether the degenerate quantity feeds a gate before choosing between 'annotate' and 'non_contributory'.",
+        "rho_drive_vs_reef on a zero-reef arm is a deterministic tie-break artifact and must not be cited as coupling."
+      ],
+      "routing": "governance-annotation (no re-adjudication)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "one degenerate constant-vector Spearman guard shape, cloned into 18 experiment scripts; materialized as a LOAD-BEARING DV in 786/786a and as a CONFINED side-diagnostic in the 543 family",
+    "is_independent_bugs": false,
+    "structural_property": "18 copy-pasted rank-correlation helpers share a guard that tests rank variance (unfireable on a constant input) instead of input variance; no shared _lib home, so the defect propagated by cloning and there is nothing to fix centrally without first creating a canonical helper",
+    "readings": ["measurement_instrument_defect"],
+    "latent_not_triggered": {
+      "V3-EXQ-071d": "worst shape (no guard; both-constant -> d2 formula returns exactly 1.0, would pass its >0.90 gate), but landed 1.0s are GENUINE (near-identical-but-distinct sigs, real rank agreement) -- false-PASS path open but not triggered",
+      "V3-EXQ-207/208/210": "defective _spearman_r shape, but RSA/drift inputs (n 40-272) would need total representational collapse to go constant; reported values show none"
+    }
+  },
+  "follow_on_chip": {
+    "routing": "implement-substrate",
+    "summary": "Add canonical experiments/_lib/stats.py Spearman guarding the INPUT vector (np.std(a)==0 or len(set(a))<2), pinned by a contract that feeds a constant vector and asserts None; migrate the 18 defective call sites (and 786b's residual unfireable guard). Fixes no past run; stops the 19th copy-paste.",
+    "note": "Net-new hygiene work, not part of this adjudication; chipped separately."
+  },
+  "hypothesis_space_ledger": "not applicable -- this autopsy emits no fanout_recommendation (measurement defect, not a discrimination portfolio) and adjudicates no pre-registered leg; Step 9b skipped cleanly"
+}
