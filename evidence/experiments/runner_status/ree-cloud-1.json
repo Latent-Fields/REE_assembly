@@ -2,73 +2,18 @@
   "schema_version": "v1",
   "runner_pid": 4043988,
   "runner_started_at": "2026-07-20T05:23:11.094414+00:00",
-  "last_updated": "2026-07-24T23:18:48.082982+00:00",
+  "last_updated": "2026-07-27T00:50:13.340877+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-786b",
-      "backlog_id": "",
-      "claim_id": "MECH-163",
-      "title": "MECH-163 dual-system recruitment (leg 1) -- DV-degeneracy repair: HABIT_DEPTH=2 read + habit-vector readiness gates (V3-EXQ-811 precedent)",
-      "description": "",
-      "estimated_minutes": 128.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-689j",
-      "backlog_id": "",
-      "claim_id": "MECH-448",
-      "title": "MECH-448 Factor B (MECH-439 gap-scaled stochastic commit) noise-control instrument repower: 2-arm, 12-seed C_NOISE_LIFTS follow-up to V3-EXQ-689i (diagnostic, does not re-test C_PRIMARY)",
-      "description": "",
-      "estimated_minutes": 512.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-793a",
-      "backlog_id": "",
-      "claim_id": "SD-049",
-      "title": "SD-049 ARM_2 curriculum/density repower (guard_pass load-bearing on joint arm)",
-      "description": "",
-      "estimated_minutes": 1088.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-813",
+      "queue_id": "V3-EXQ-816b",
       "backlog_id": "",
       "claim_id": "",
-      "title": "GOV-FANOUT-1 policy-axis probe: re-run 737b PPO-on-latent design under a survival-zeroed objective (H-policy-learning)",
+      "title": "MECH-321 policy_decomposition P-A (env axis): harshened env -> low-V_s production + region-V_s distribution recording",
       "description": "",
-      "estimated_minutes": 2000.0,
+      "estimated_minutes": 80.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-815",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-321 policy decomposition readiness (ARC-070 substrate-readiness diagnostic)",
-      "description": "",
-      "estimated_minutes": 16.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-814",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-288 input_stream extension isolation diagnostic (substrate readiness for ARC-070/MECH-321)",
-      "description": "",
-      "estimated_minutes": 0.4,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3539,6 +3484,48 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_811a_mech477_dualsystem_arbitration_falsifier_20260724T231847Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 38453.5
+    },
+    {
+      "queue_id": "V3-EXQ-816",
+      "backlog_id": "",
+      "claim_id": "MECH-321",
+      "title": "ARC-070/MECH-321 policy_decomposition discriminative (ARM_0 OFF vs ARM_1 V_s-drop ON): execution-time forward-PE + deliberation cost",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-816 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-816.json",
+      "started_at": "2026-07-25T18:23:39.025015+00:00",
+      "completed_at": "2026-07-25T21:47:51.777115+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 12252.8
+    },
+    {
+      "queue_id": "V3-EXQ-822",
+      "backlog_id": "",
+      "claim_id": "SD-078",
+      "title": "SD-078 consumer: centered rule-field context key -> context-conditioned executive rule-selection reaching action-bias",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-822 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-822.json",
+      "started_at": "2026-07-26T07:47:28.851157+00:00",
+      "completed_at": "2026-07-26T11:21:53.334185+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_822_sd078_rule_selection_consumer_20260726T112152Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 12864.5
+    },
+    {
+      "queue_id": "V3-EXQ-819a",
+      "backlog_id": "",
+      "claim_id": "MECH-457",
+      "title": "competence_floor R4 819a: reconcile worst-seed non-vacuity gate with strict-majority router + recalibrate 1.0 floor/margin (MECH-457/INV-088 z_world instrument-validity)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS (arm=zworld_trained seed=47 forage/ep=1.55) | outcome: PASS label=zworld_prediction_training_confers_advantage anchors_ready=True trained_encoder=True off_install=False on_install=True non_degenerate=True | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-819a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-819a.json",
+      "started_at": "2026-07-26T12:02:11.380278+00:00",
+      "completed_at": "2026-07-27T00:50:13.339541+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 46082.0
     }
   ]
 }
