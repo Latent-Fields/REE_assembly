@@ -1159,3 +1159,4 @@ One line per hourly tick. ASCII only.
 2026-07-26T18:04:30Z reconcile-release hash=705a12029589 (IGW-20260726-209 -> completed)
 2026-07-26T18:04:07Z skip IGW-20260726-209: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-26T19:04:48Z skip IGW-20260726-209: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-27T06:06:34Z no eligible item (skipped 241): IGW-20260727-001:skill /governance not allowed; IGW-20260727-002:skill /governance not allowed; IGW-20260727-003:skill /governance not allowed
