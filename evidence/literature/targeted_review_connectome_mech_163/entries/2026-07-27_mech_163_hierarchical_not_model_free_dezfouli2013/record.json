@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_163",
+  "entry_id": "2026-07-27_mech_163_hierarchical_not_model_free_dezfouli2013",
+  "timestamp_utc": "2026-07-27T06:13:20Z",
+  "claim_ids_tested": ["MECH-163"],
+  "source": {
+    "title": "Actions, action sequences and habits: evidence that goal-directed and habitual action control are hierarchically organized",
+    "authors": ["Amir Dezfouli", "Bernard W Balleine"],
+    "year": 2013,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1003364"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "Scoped weakening, not a refutation. The paper's Bayesian model comparison over model FAMILIES favours a hierarchical architecture in which habits are chunked action sequences selected by a single goal-directed process, and concludes model-free RL is UNNECESSARY to explain habitual action. That bears directly on MECH-163's characterisation of its habit pathway as `model-free`, and on nothing else in the claim: it does not touch the existence of two selectable grains, and it says nothing whatever about novel-context recruitment (which is V3-EXQ-786b's business). Held below the companion MECH-323 entry's 0.78 because the load-bearing content HERE is the paper's NEGATIVE claim, which the authors themselves hedge as not ruling out all possible model-free accounts -- a negative from a single two-stage paradigm is weaker evidence than the positive architectural relation the MECH-323 entry borrows. Held at 0.72 rather than lower because the weakening is independently corroborated at source: REE's substrate contains no model-free machinery to defend.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "MECH-163's habit pathway is described as `model-free` (SNc/dorsal-striatum, cached S-R associations). ree-v3/ree_core/ contains NO model-free machinery: zero hits for model_free / q_value / q_table / td_error / sarsa. SD-081 implements the habit read as _score_depth_limit truncation of the SAME model-based E3 scorer. The descriptor was never true of the build, so the paper's model comparison and the substrate agree against the claim's wording.",
+    "If the habit pathway is a depth-limited read of one model rather than a second controller, then V3-EXQ-811a's PASS is evidence that DEPTH-arbitration produces the recruitment signature -- not evidence for a cached-value second system. Citing 811a as support for a model-free/model-based dual system would over-read it.",
+    "The hierarchical account relocates outcome-insensitivity from a separate insensitive controller to sequence GRAIN. In REE that relocation is already realised: a committed ARC-071 chunk is released by five mechanisms (MECH-091, MECH-342, rung-6 duration + SD-033e, MECH-321/ARC-070, SD-034) and NONE reads whether the committed outcome is still valuable. A substrate that models habit as cached values will mispredict where intervention is possible."
+  ],
+  "tags": ["mech-163", "mech-323", "mech-477", "arc-071", "sd-081", "hierarchical_reinforcement_learning", "habit", "model_free_unnecessary", "chunking", "restatement"],
+  "mapping": {
+    "source_claim_statement": "Bayesian model comparison over families of flat and hierarchical RL models favours the hierarchical family, in which habits are chunked action sequences and a single goal-directed process selects between individual actions and habitual sequences; the authors conclude that a model-free controller is unnecessary to explain habitual action.",
+    "ree_translation": "MECH-163 asserts two dissociable goal-directed systems, one of them MODEL-FREE and arbitrated against the other. The paper's model comparison disfavours exactly that flat, model-free-second-controller architecture. It does NOT disfavour two selectable grains, which is what REE actually built -- so the weakening lands on the claim's wording rather than on its substrate. Adopted 2026-07-27 as the ground for restatement E1 (claim_synthesis_MECH-163_2026-07-27.md): `model-free` struck, replaced by `myopic, depth-limited read of the same forward model`.",
+    "mapping_caveat": "LOAD-BEARING CAVEAT: the paper's target is a cached-value second controller, and REE NEVER BUILT ONE. Its habit pathway (SD-081) is a depth-2 truncation of the same model-based scorer, and its chunking machinery (ARC-071 + MECH-323, with atomic chunk commitment via _committed_step_idx) is already the paper's own hierarchical architecture. So this entry must not be read as evidence against REE's dual-pathway substrate -- only against the descriptor MECH-163 used for it. A reader who takes the `weakens` at face value without this caveat will conclude the substrate was refuted, which is the opposite of the finding. The weakening is against MECH-163's PRE-RESTATEMENT wording; the restatement it motivated landed the same day, and the note in the claim records that ordering.",
+    "source_context": "Human behavioural experiment on a two-stage decision task; inference from choice patterns and reaction times, with Bayesian model comparison across families of flat and hierarchical RL models. Single paradigm, abstract choices, far from motor or policy-primitive grain."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.30,
+    "notes": "Source quality is carried over from the companion MECH-323 entry (same paper): solid computational-neuroscience venue, formal model comparison over families rather than single models, two converging behavioural measures, discounted for single-paradigm evidence. Mapping fidelity is LOWER here (0.74 vs 0.80) because what transfers to MECH-323 is a positive architectural relation, whereas what transfers here is a negative existence claim about a controller REE does not have -- a weaker inferential step. Transfer risk correspondingly higher at 0.30: the paper's `model-free` target and REE's depth-limited read are not the same object, and the entry depends on the mapping_caveat being read alongside the direction."
+  }
+}

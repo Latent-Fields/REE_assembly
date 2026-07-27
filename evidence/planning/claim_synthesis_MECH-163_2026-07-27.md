@@ -351,10 +351,21 @@ bounded by episode length rather than by the budget.
   `evidence/literature/targeted_review_connectome_mech_323` — the Dezfouli entry's own folder.
   **The §3 entry must go in `targeted_review_connectome_mech_163`**, and the §5 Q-claim should
   be sequenced after that pull lands.
-- `cool-sutherland-623d3f` and `elegant-curran-fe12ba` hold `docs/claims/claims.yaml` with
-  `claimed_at` of 2026-07-22 — **5 days stale** against the 6-hour bar, and their work
-  (MECH-477/478/479) is registered. Confirm with the user before clearing; do not clear
-  silently.
+- ~~`cool-sutherland-623d3f` and `elegant-curran-fe12ba` hold `docs/claims/claims.yaml`
+  with `claimed_at` of 2026-07-22 — 5 days stale against the 6-hour bar.~~
+  **CORRECTED 2026-07-27T06:13Z:** this was a misread on my part. Both were already
+  `status: done` with `closed_at` set (elegant-curran 2026-07-22T04:42:55Z), and were pruned
+  normally by `task_claim.py` when this session opened its second claim (`-7`, all `done`,
+  verified against `HEAD~1`). **No active claim conflicted with the edits in §2e/§3**, and
+  nothing was cleared that should not have been.
+
+## 7a. APPLIED 2026-07-27 (user-approved per-item)
+
+| Item | Decision | Status |
+|---|---|---|
+| §2e E1 + E2 + E3 | approved (all three) | **applied** to `claims.yaml` MECH-163 (title, `live_status`, `evidence_quality_note`) |
+| §3 lit entry | approved, `weakens` scoped to the model-free conjunct | **written** to `targeted_review_connectome_mech_163/entries/2026-07-27_mech_163_hierarchical_not_model_free_dezfouli2013/` |
+| §5 Q-claim | approved, **sequenced after** the `optimistic-ellis-4357c6` MECH-321/323 parameter lit-pull | **not registered** — chipped for follow-on |
 
 ## 8. Registration gate
 

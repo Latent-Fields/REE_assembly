@@ -14222,19 +14222,19 @@
   evidence: []
 
 - id: MECH-163
-  title: "NARROWED 2026-07-22 to leg (1) only. Two dissociable goal-directed systems operate in parallel -- a habit system (SNc/dorsal-striatum, model-free) sufficient for approach in practised contexts, and a hippocampally-planned system (VTA/ventral-striatum+PFC, model-based) -- AND THE PLANNED SYSTEM IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. This is exactly the proposition V3-EXQ-786a tested; that run's `weakens` was WITHDRAWN 2026-07-24 (failure_autopsy_V3-EXQ-786a_2026-07-24_dv_degeneracy) on discovering its recruitment DV was degenerate (constant first-step vector, Spearman-vs-tie-break noise) -- leg (1) is EXPERIMENTALLY UNTESTED pending a non-degenerate re-run. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration)."
+  title: "NARROWED 2026-07-22 to leg (1) only; RESTATED 2026-07-27 (model-free -> depth-limited). Two dissociable goal-directed PATHWAYS operate in parallel -- a HABIT pathway that is a myopic, DEPTH-LIMITED read of the forward model (SD-081 dualsystem_habit_depth, SNc/dorsal-striatum analog) sufficient for approach in practised contexts, and a hippocampally-planned pathway that is the FULL-HORIZON read of the SAME model (VTA/ventral-striatum+PFC analog) -- AND THE PLANNED PATHWAY IS PREFERENTIALLY RECRUITED IN NOVEL CONTEXTS. E1 2026-07-27: the descriptor `model-free` was STRUCK. ree_core contains no model-free machinery of any kind (no cached S-R values, no TD error, no Q-table) and never has; SD-081 implements the habit read as _score_depth_limit truncation of the same model-based E3 scorer, so the two pathways are ONE model read at two grains. E2: WEAKENED by V3-EXQ-786b (2026-07-24, non_degenerate, familiarity AUC 0.848 against a 0.7 bar): C1_recruitment_higher_on_novel FAILED with two pathways and no arbitrator. 786b is the repaired re-test of V3-EXQ-786a, whose own `weakens` was WITHDRAWN 2026-07-24 for a degenerate DV -- leg (1) is therefore NO LONGER experimentally untested. Leg (2) long-horizon benefit accumulation and leg (3) prosocial planning were SPLIT OUT 2026-07-22 to MECH-478 and MECH-479; each carried a distinct blocker and both were silently inheriting a refutation they did not earn. The control-ALLOCATION mechanism this claim presupposes but never named is now MECH-477 (uncertainty-based arbitration), SUPPORTED by V3-EXQ-811a (2026-07-24, PASS). Restatement rationale: evidence/planning/claim_synthesis_MECH-163_2026-07-27.md."
   claim_type: mechanism_hypothesis
   subject: goal_directed.dual_system_novel_context_recruitment
   polarity: asserts
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-24
+    as_of: 2026-07-27
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-786a_2026-07-24_dv_degeneracy
+      from: v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3
       as_of: 2026-07-24
-      verdict: non_contributory/measurement_test_design_defect
+      verdict: weakens/no_differential_recruitment
   implementation_phase: v3
   depends_on:
     - ARC-007
@@ -14450,6 +14450,71 @@
     own merits. MECH-163 stays candidate; the split to MECH-478/479 and the MECH-477 registration are
     UNCHANGED by this re-adjudication (both stand on their own grounds, not on 786a's since-withdrawn
     reading).
+
+    2026-07-24 (V3-EXQ-786b, evidence, claim_ids=[MECH-163], WEAKENS; run_id
+    v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3). RECORDED 2026-07-27 -- this run
+    was in review_tracker as reviewed but had never been written into this claim, so the paragraphs
+    above still asserted leg (1) was EXPERIMENTALLY UNTESTED four days after it had been tested.
+    786b is the non-degenerate re-test 786a's DV-degeneracy autopsy called for, with the DV's own
+    inputs gated this time. Manipulation check PASSED on the substantive leg (familiarity
+    discriminability AUC 0.8484 against a 0.7 bar). non_degenerate true. The load-bearing
+    C1_recruitment_higher_on_novel FAILED; interpretation label no_differential_recruitment.
+    Leg (1) is therefore WEAKENED on a fair test with a repaired instrument, and this is MECH-163's
+    first surviving genuine experimental evidence (786a's was withdrawn).
+    READ IT WITH V3-EXQ-811a, WHICH IS THE OTHER HALF OF THE SAME DISSOCIATION and lands the opposite
+    way: with SD-081's arbitrator ON, differential recruitment APPEARS (PASS/supports for MECH-477 and
+    MECH-163; C1 6 of 7 divergent seeds, 85.7%; C2 novel-minus-familiar mean w_planned 0.194 against a
+    0.01 threshold). Two pathways alone -> flat; two pathways plus an explicit arbitrator ->
+    differential recruitment. That is precisely what the 2026-07-22 decomposition predicted when it
+    registered MECH-477, and it means 786b's weakens should be read as weakening the NO-ARBITRATOR
+    configuration of leg (1), not the existence of the two pathways. Report lit_conf and exp_conf
+    separately as always: 9 lit supports do not blend with this.
+
+    RESTATED 2026-07-27 (/claim-synthesis; proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-27.md, user-approved per-item). NOT a
+    decomposition -- the Step-3 gate returned STOP (one genuine non-degenerate signature, 786b, which
+    is a clean single falsification rather than a cluster; and this claim was already decomposed
+    2026-07-22 and carries registered children). The defect fixed here is DESCRIPTIVE ACCURACY, not
+    granularity: this claim described a substrate that was never built.
+    (E1) THERE IS NO MODEL-FREE MACHINERY IN REE. Verified at source: ree-v3/ree_core/ returns zero
+    hits for model_free / model-free / q_value / q_table / td_error / sarsa. What SD-081 actually
+    builds as the habit pathway is _score_depth_limit = max(2, dualsystem_habit_depth) in
+    ree_core/predictors/e3_selector.py, i.e. the SAME model-based scorer called on a z_world sequence
+    truncated to its first 2 steps. Both of this claim's two systems are one model read at two grains.
+    Consequence for 811a: it is evidence that DEPTH-arbitration produces the recruitment signature, NOT
+    evidence for a cached-value second controller -- so it is fully compatible with Dezfouli and
+    Balleine 2013's negative result, and does not rest on the descriptor just struck.
+    (E3) REE ALREADY INSTANTIATES THE HIERARCHICAL ACCOUNT of habit, and never instantiated the flat
+    one. ARC-071 chunks are spliced into the ARC-007 proposal pool as atomic value-flat Trajectories
+    (ree_core/hippocampal/module.py, use_chunk_proposal_injection); the E3 selector has zero
+    chunk-awareness and scores a chunk exactly like a primitive; a selected chunk is then committed
+    ATOMICALLY (e3._committed_trajectory with metadata source arc071_chunk, stepped by
+    _committed_step_idx in ree_core/agent.py). That is Dezfouli and Balleine's architecture: a single
+    goal-directed process selecting between individual actions and habitual sequences, the sequence
+    executing as a unit once selected.
+    WHY THIS CLAIM IS NOT MERGED INTO MECH-323. On the hierarchical reading the habit leg reduces to
+    MECH-323's chunk INVENTORY plus the GRAIN at which the planner can intervene -- and the grain is
+    owned by the commitment machinery (beta gate + _committed_step_idx + the release set), which is not
+    in MECH-323. The habit leg is MECH-323 COMBINED WITH the commit layer; folding it into MECH-323
+    would lose the half that actually produces the phenomenon.
+    STRUCTURAL OUTCOME-INSENSITIVITY (the finding worth carrying forward). A committed trajectory can
+    be released mid-execution by exactly five mechanisms -- MECH-091 (acute z_harm threat), MECH-342
+    (degraded execution readiness), the rung-6 natural-commit duration lever (with SD-033e frontopolar
+    pressure, which reads the goal-proximity of FOREGONE ALTERNATIVES, the nearest analogue), MECH-321
+    / ARC-070 (V_s prediction failure on the remaining macro), and SD-034 closure de-commit. NONE of
+    them reads whether the committed outcome is still VALUABLE. So a committed chunk runs to
+    completion regardless of devaluation: outcome-insensitivity produced by GRAIN, in a substrate with
+    no model-free controller anywhere. Building a value-driven mid-commitment release would DESTROY the
+    phenomenon under test and must therefore be sequenced AFTER the falsifier, not before.
+    FALSIFIER (designed, NOT queued, and currently BLOCKED). Dezfouli and Balleine's own discriminating
+    signature -- sequence coupling -- does not port: coupling is true BY CONSTRUCTION in REE once a
+    chunk commits, so it would produce a guaranteed and meaningless PASS. The REE discriminator is a
+    DOSE-RESPONSE of post-devaluation policy persistence on realised committed-macro grain, three arms
+    (both knobs off / SD-081 arbitration on / ARC-071 chunk injection on) crossed with chunk_max_size
+    in 2,3,5. Hierarchical reading supported if persistence is monotone in realised mean committed-chunk
+    length with no arbitrator instantiated; flat reading supported if persistence tracks
+    last_arbitration.w_planned and is invariant to length once w is controlled. BLOCKED on V3-EXQ-810
+    (see ARC-071 / MECH-323). Full design, gates and confounders in the proposal doc section 4.
 
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
