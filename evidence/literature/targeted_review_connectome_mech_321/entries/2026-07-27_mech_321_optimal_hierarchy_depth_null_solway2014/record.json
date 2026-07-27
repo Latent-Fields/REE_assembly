@@ -1,0 +1,58 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_321",
+  "entry_id": "2026-07-27_mech_321_optimal_hierarchy_depth_null_solway2014",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-321",
+    "MECH-323"
+  ],
+  "source": {
+    "title": "Optimal behavioral hierarchy",
+    "authors": [
+      "Alec Solway",
+      "Carlos Diuk",
+      "Natalia Cordova",
+      "Debbie Yee",
+      "Andrew G. Barto",
+      "Yael Niv",
+      "Matthew M. Botvinick"
+    ],
+    "year": 2014,
+    "venue": "PLoS Computational Biology",
+    "doi": "10.1371/journal.pcbi.1003779",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/25122479/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "unknown",
+  "confidence": 0.55,
+  "confidence_rationale": "Recorded deliberately as an explicit NULL rather than omitted. This is the strongest available normative account of what makes one action hierarchy better than another at exactly REE's grain (subtasks over primitive actions, not finger movements), backed by four human behavioural experiments -- so if a principled depth cap or subtask-size budget existed at policy grain, this is where it would be. It is not there. The authors restrict their analysis to one-level hierarchies purely 'to assure computational tractability in the present application' and state the framework 'generalizes without any alteration to deeper hierarchies'. They partition on bottleneck states, and impose no constraint on how many primitive actions a subtask may contain. Source quality 0.85; mapping fidelity 0.65 (right grain, right question, no answer); transfer risk 0.30. Direction 'unknown' because the paper neither supports nor weakens the numbers -- it establishes that the normative literature is silent on both.",
+  "failure_signatures": [
+    "The leading normative account of hierarchy quality imposes no depth limit and no subtask-size budget. Both of MECH-321's depth cap and MECH-323's 2-5 chunk-size budget are therefore engineering choices at policy grain, not literature-derived defaults, and should be labelled as such wherever they are stated.",
+    "Solway et al. restrict to one-level hierarchies for tractability -- the same reason MECH-321 caps depth. That is an honest parallel and arguably the correct justification for MECH-321's cap, but it is a computational-cost argument, not a biological one, and it predicts the cap should MOVE as compute allows rather than sit at a fixed biological constant.",
+    "Their optimal hierarchies are defined by WHERE the partition falls (bottleneck states), not by how large or how deep the pieces are. This is a direct argument that MECH-321's R5 bottleneck trigger mode is better motivated than its depth cap -- the literature constrains the partition location and leaves the budget free."
+  ],
+  "tags": [
+    "mech-321",
+    "mech-323",
+    "depth_cap",
+    "chunk_size",
+    "numeric_parameter",
+    "policy_grain",
+    "explicit_null",
+    "hierarchical_rl"
+  ],
+  "mapping": {
+    "source_claim_statement": "We provide a mathematical account for what makes some hierarchies better than others, an account that allows an optimal hierarchy to be identified for any set of tasks. We then present results from four behavioral experiments, suggesting that human learners spontaneously discover optimal action hierarchies. The exposition assumes that hierarchies are one level deep, and that the termination function for each option is non-zero in a single sub-goal state. This restriction was adopted to assure computational tractability in the present application. However, the overall theoretical framework generalizes without any alteration to deeper hierarchies.",
+    "ree_translation": "This entry exists to record an absence. MECH-321's depth cap (3-4) and MECH-323's chunk-size budget (2-5 elements per level) are both stated at POLICY grain -- sequences of policy primitives, subtasks over actions. The only literature currently cited for either number is measured at MOTOR grain (Sakai 2003 finger sequences) or at ANATOMICAL grain (Koechlin cascade levels). Solway et al. is the natural policy-grain arbiter: an optimality analysis over subtask decompositions with human behavioural validation. It declines to bound either quantity. REE's translation is therefore that neither number is grounded at the grain at which REE uses it, and both should be carried as calibration parameters with declared ranges rather than as biologically-motivated defaults.",
+    "mapping_caveat": "An absence of evidence in one paper is not evidence of absence in the field, and this is a single (if central) normative account -- the depth restriction is explicitly a tractability convenience of that application, not a claim that deeper hierarchies are impossible or unhelpful. It would be an over-read in the opposite direction to conclude from this paper that MECH-321's cap is wrong. What it does establish is narrower and sufficient for the governance purpose: the cap and the budget cannot be said to follow from the computational-optimality literature, because that literature does not commit either way. The behavioural experiments are also on relatively small discrete state spaces; REE's rollout trajectories are longer and continuous-latent.",
+    "source_context": "Bayesian model-selection over option sets in discrete MDPs, plus four human behavioural experiments on subtask discovery."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.3,
+    "notes": "Confidence 0.55 reflects confidence that this paper genuinely bears on the parameter question (high) tempered by the weakness inherent in a null result from a single source. Logged per the standing instruction that an ungrounded parameter is a legitimate finding and must be recorded rather than left grounded-by-association."
+  },
+  "summary_path": "summary.md"
+}

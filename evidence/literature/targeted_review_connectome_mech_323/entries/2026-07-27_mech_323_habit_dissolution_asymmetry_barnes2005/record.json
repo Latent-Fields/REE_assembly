@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-27_mech_323_habit_dissolution_asymmetry_barnes2005",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-323",
+    "MECH-324"
+  ],
+  "source": {
+    "title": "Activity of striatal neurons reflects dynamic encoding and recoding of procedural memories",
+    "authors": [
+      "Terra D. Barnes",
+      "Yasuo Kubota",
+      "Dan Hu",
+      "Dezhe Z. Jin",
+      "Ann M. Graybiel"
+    ],
+    "year": 2005,
+    "venue": "Nature",
+    "doi": "10.1038/nature04053",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/16237445/"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "The most direct available evidence for the DIRECTION of MECH-323/MECH-324's hysteresis, from the same lab and preparation as the ARC-071 substrate anchors already in the corpus. Long-term multi-unit recording in sensorimotor striatum across acquisition, extinction and reacquisition: task-related ensemble patterns 'successively formed, reversed and then re-emerged', and the paper opens by noting that learning not to perform an ingrained habit is notoriously difficult while regaining one can occur with a few exposures. That is an explicit acquisition-versus-dissolution asymmetry with a neural correlate, which is exactly the relation F_low < F_high is meant to encode. Source quality 0.92 (Nature, chronic ensemble recording, behaviour-correlated); mapping fidelity 0.55 (it is a timescale and reversibility asymmetry, not a variance-threshold measurement); transfer risk 0.40.",
+  "failure_signatures": [
+    "The asymmetry Barnes et al. demonstrate is one of TIMESCALE and RETRIEVABILITY -- the pattern reverses under extinction but re-emerges almost immediately on reacquisition -- not one of a higher evidence THRESHOLD for dissolution. MECH-324's T_dissolve (slower dissolution timescale) is directly supported; F_high > F_low as a variance-gate asymmetry is supported only by analogy.",
+    "Because the trace survives dissolution, an REE implementation that DELETES a chunk on crossing F_high diverges from the biology: the biological chunk is suppressed and rapidly re-instatable, not erased. A dissolved chunk should be retained in a dormant state with a lowered re-formation threshold, which the current MECH-323/324 pair does not specify.",
+    "Task-irrelevant firing was suppressed, rebounded, then suppressed again across the three phases. If REE's accumulator has no analog of that rebound, dissolution will look cleaner in REE than in biology and the re-formation dynamics will be wrong even if the thresholds are right."
+  ],
+  "tags": [
+    "mech-323",
+    "mech-324",
+    "f_high",
+    "hysteresis",
+    "numeric_parameter",
+    "habit_dissolution",
+    "graybiel",
+    "extinction"
+  ],
+  "mapping": {
+    "source_claim_statement": "Learning to perform a behavioural procedure as a well-ingrained habit requires extensive repetition of the behavioural sequence, and learning not to perform such behaviours is notoriously difficult. Yet regaining a habit can occur quickly, with even one or a few exposures to cues previously triggering the behaviour. Across acquisition, extinction and reacquisition, new patterns of task-related ensemble firing in sensorimotor striatum successively formed, reversed and then re-emerged, highly correlated with changes in behavioural performance.",
+    "ree_translation": "MECH-323 registers formation at outcome-variance below F_low (default 0.15) and MECH-324 dissolution at variance above F_high (default 0.45), with the asymmetry F_low < F_high asserted but previously uncited. Barnes et al. grounds the asymmetry's DIRECTION in the striatal substrate REE is modelling: extensive repetition to form, notorious difficulty to un-form, near-instant recovery. An REE agent whose chunks dissolved as readily as they formed would contradict this directly. The paper also adds a structural requirement the claims do not yet carry: dissolution should be suppression-with-retention, since the biological ensemble pattern re-emerges rather than being rebuilt from scratch.",
+    "mapping_caveat": "This paper does not measure anything like an outcome-variance threshold, so it cannot license the NUMBER 0.45 or the ratio 0.45/0.15 -- only the inequality's direction. The asymmetry it documents is between acquisition effort and extinction effort, and between extinction and re-acquisition, which maps onto MECH-324's dissolution TIMESCALE more cleanly than onto its variance GATE; treating it as evidence for the gate is an analogy across two distinct operationalisations of 'harder'. It is also rodent T-maze behaviour with reward-based procedural learning; REE's outcome dimension is an E3-score-receipt over policy primitives. The value 0.45 remains an uncalibrated engineering default and should be labelled as such.",
+    "source_context": "Rats, chronic multi-electrode recording in sensorimotor (dorsolateral) striatum across sequential acquisition, extinction and reacquisition training on a reward-based T-maze procedural task."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.4,
+    "notes": "High source quality, moderate mapping fidelity. The distinction that holds confidence at 0.70: the hysteresis RELATION is well supported, the hysteresis VALUES are not supported at all. Recorded so that F_high=0.45 is not left looking grounded by association."
+  },
+  "summary_path": "summary.md"
+}

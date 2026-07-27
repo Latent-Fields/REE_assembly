@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_321",
+  "entry_id": "2026-07-27_mech_321_abstraction_gradient_retraction_badre_nee2018",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "source": {
+    "title": "Frontal Cortex and the Hierarchical Control of Behavior",
+    "authors": [
+      "David Badre",
+      "Derek Evan Nee"
+    ],
+    "year": 2018,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2017.11.005",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/29229206/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.72,
+  "confidence_rationale": "This is Badre's own nine-years-later re-appraisal of the review that MECH-321's title cites for the depth cap, and it withdraws the premise the citation rests on: 'Our review of the evidence supports neither a unitary model of lateral frontal function nor a unidimensional abstraction gradient.' If there is no single ordered abstraction axis, there is no well-defined 'number of levels along it' to cap at 3-4. The replacement picture -- separate frontal networks interacting via local AND global hierarchical structure -- is not depth-indexed at all. Source quality 0.88 (TiCS review, first author is the author of the cited 2009 review, so this is self-correction rather than an outside critique); mapping fidelity 0.70 (it speaks directly to the construct the citation depends on); transfer risk 0.35.",
+  "failure_signatures": [
+    "The 2009 rostro-caudal review is cited in MECH-321's title as licensing a depth cap of 3-4. Its own first author concluded in 2018 that a unidimensional abstraction gradient is not supported by the evidence -- so the citation is grounding a numeric cap on a construct its source now disputes.",
+    "If frontal control is multiple interacting networks with local and global hierarchical structure rather than one ordered axis, then 'decomposition depth' may not be the right control parameter at all -- the substrate analog would be several decomposition operators at different scales, not one operator recursing N times.",
+    "MECH-321's implementation currently mirrors ARC-071's chunk_max_depth for inverse-operator symmetry. Nothing in the updated hierarchical-control literature requires the composition and decomposition operators to share a depth budget; that symmetry is an REE design assumption with no biological warrant so far."
+  ],
+  "tags": [
+    "mech-321",
+    "depth_cap",
+    "numeric_parameter",
+    "hierarchical_control",
+    "badre",
+    "over_read_check",
+    "self_correction"
+  ],
+  "mapping": {
+    "source_claim_statement": "The frontal lobes are important for cognitive control, yet their functional organization remains controversial. An influential class of theory proposes that the frontal lobes are organized along their rostrocaudal axis to support hierarchical cognitive control. Our review of the evidence supports neither a unitary model of lateral frontal function nor a unidimensional abstraction gradient. Rather, separate frontal networks interact via local and global hierarchical structure to support diverse task demands.",
+    "ree_translation": "The specific attribution in MECH-321's title -- 'recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007)' -- is an over-read, and this paper is the cleanest demonstration of why. Badre & D'Esposito 2009 supports MULTI-LEVEL decomposition (that part of ARC-070's R3 verdict stands, and the existing ARC-070 entry reads it correctly). It never supported a level COUNT, and by 2018 the same author reports that the unidimensional gradient on which any such count would be defined is not evidentially supported. MECH-321 should keep the multi-level architectural commitment and re-label the 3-4 cap as what its own implementation_note already calls it: an engineering choice, with the open hard-vs-soft Q-claim live.",
+    "mapping_caveat": "This is a review, not a decisive experiment, and it argues against a strong version of the gradient claim rather than against hierarchy in frontal cortex as such -- hierarchical structure survives, both local and global; what does not survive is the single ordered axis. So this weakens the JUSTIFICATION for the 3-4 number without establishing that the cap is wrong or that a different number is right. A depth cap of 3 may still be an excellent default on pure tractability grounds; the finding is that it must be argued for on those grounds and not by citation. The review also concerns overt cognitive control, inheriting the same rollout/imagination transfer risk as the rest of the ARC-070 anchor cluster.",
+    "source_context": "Narrative review of human fMRI, lesion, and connectivity evidence on lateral frontal organization, 2009-2017."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Confidence 0.72 rather than higher because the paper weakens a justification rather than falsifying a parameter -- it establishes that the cited support does not exist, which is a real and useful result but a negative one."
+  },
+  "summary_path": "summary.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_321",
+  "entry_id": "2026-07-27_mech_321_cascade_control_levels_koechlin2003",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "source": {
+    "title": "The architecture of cognitive control in the human prefrontal cortex",
+    "authors": [
+      "Etienne Koechlin",
+      "Chrystele Ody",
+      "Frederique Kouneiher"
+    ],
+    "year": 2003,
+    "venue": "Science",
+    "doi": "10.1126/science.1088545",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/14615530/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the primary empirical source behind the '3-4 levels' number that MECH-321's title attributes to Koechlin & Summerfield 2007, and it does license a small integer: the 2003 fMRI study resolves THREE nested control levels (sensory -> contextual -> episodic, mapped onto premotor -> caudal LPFC -> rostral LPFC), and the 2007 TiCS successor adds branching control at frontopolar cortex for a fourth. So the MAGNITUDE 3-4 is real and empirically anchored. What it does NOT license is the CONSTRUCT: this is a fixed anatomical cascade of qualitatively DIFFERENT control signals, each level adding a distinct kind of context-conditional information, measured during overt task performance. MECH-321's depth cap governs RECURSIVE self-similar re-application of one decomposition operator on the rollout stream. Those are different quantities that happen to share a number. Source quality 0.90 (Science, canonical, heavily replicated cascade design); mapping fidelity 0.45 -- the number transfers, the construct does not; transfer risk 0.50.",
+  "failure_signatures": [
+    "The Koechlin cascade levels are QUALITATIVELY heterogeneous (sensory, contextual, episodic, branching) -- each level processes a different information type. MECH-321's recursion is HOMOGENEOUS (the same tiling operator re-applied). A cap derived from the heterogeneous cascade does not automatically bound the homogeneous recursion, and MECH-321 should not cite this paper as if it did.",
+    "The cascade is measured during OVERT task execution under external cueing, not during rollout / imagination. MECH-321 operates on the imagined trajectory, where nothing constrains the number of nested re-segmentations by an anatomical terminus.",
+    "If MECH-321's depth cap is defended on Koechlin grounds, the falsifier is that raising the cap above 4 should produce NO further behavioural differentiation. If deeper recursion keeps paying, the anatomical-cascade justification is the wrong justification even if the cap is a good engineering choice."
+  ],
+  "tags": [
+    "mech-321",
+    "depth_cap",
+    "numeric_parameter",
+    "hierarchical_control",
+    "koechlin",
+    "over_read_check"
+  ],
+  "mapping": {
+    "source_claim_statement": "The lateral PFC is organized as a cascade of executive processes from premotor to anterior PFC regions that control behavior according to stimuli, the present perceptual context, and the temporal episode in which stimuli occur, respectively. The results support a unified modular model of cognitive control describing the overall functional organization of human lateral PFC.",
+    "ree_translation": "MECH-321's recursive decomposition depth cap of 3-4 levels has a genuine empirical referent in this paper, but at the wrong grain. Koechlin resolves three (2003) to four (with 2007 branching) NESTED CONTROL LEVELS in an anatomically fixed rostro-caudal cascade. REE can legitimately read this as: biological hierarchical action control does not run to arbitrary depth -- it terminates, and it terminates in the low single digits, because the cortex physically runs out of rostral territory at frontopolar cortex. That is a real constraint and a reasonable prior for a decomposition_depth_cap default of 3. It is NOT a measurement of how many times a single decomposition operator may recursively re-apply, which is what MECH-321's depth_cap actually controls.",
+    "mapping_caveat": "The number and the construct come apart. Koechlin's levels are a fixed anatomical series of DIFFERENT control computations; MECH-321's depth is repeated application of the SAME tiling operation. Citing this paper as grounding for a recursion cap is an argument by analogy of magnitude, not a measurement of the quantity in question. Additionally the cascade is measured on overt, externally cued task performance, whereas MECH-321 acts on the rollout / imagination stream (the same imagination-transfer risk the ARC-070 Badre and Koechlin entries already carry). MECH-321's own implementation_note is more honest than its title: it records the cap as mirroring ARC-071's chunk_max_depth for operator symmetry -- an engineering choice -- and registers an open Q-claim on hard-vs-soft. That framing should be the one the title carries.",
+    "source_context": "Healthy adult humans, event-related fMRI, parametric manipulation of stimulus/context/episode information load in a cued response task."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Weighted toward mapping_fidelity because this is an architectural parameter question, not an empirical effect question. The paper is excellent; the inference from it to a recursion cap is the weak link. Direction is 'mixed' rather than 'supports' because it simultaneously supplies the magnitude and undercuts the construct-identity."
+  },
+  "summary_path": "summary.md"
+}

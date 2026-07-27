@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-27_mech_323_instrumental_extinction_relapse_bouton2012",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-323",
+    "MECH-324"
+  ],
+  "source": {
+    "title": "Relapse processes after the extinction of instrumental learning: renewal, resurgence, and reacquisition",
+    "authors": [
+      "Mark E. Bouton",
+      "Neil E. Winterbauer",
+      "Travis P. Todd"
+    ],
+    "year": 2012,
+    "venue": "Behavioural Processes",
+    "doi": "10.1016/j.beproc.2012.03.004",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/22450305/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "The behavioural half of the dissolution-asymmetry case, and specifically the INSTRUMENTAL (action) half rather than the Pavlovian one -- which matters because MECH-323 chunks actions, not cues. Bouton et al. review three converging relapse effects after instrumental extinction (renewal in a changed context, resurgence when an alternative response is itself extinguished, and rapid reacquisition on re-reinforcement), all showing extinction 'weakens behavior without erasing the original learning'. Extinction is new, context-dependent learning stored alongside the old. This is the mechanistic account of why dissolution is asymmetric with formation. Source quality 0.78 (review of the authors' own programme, rat operant, well-replicated effects); mapping fidelity 0.65; transfer risk 0.35.",
+  "failure_signatures": [
+    "Extinction does not erase; it installs a competing, context-gated memory. An REE dissolution operator that removes the chunk from the library implements erasure, which the instrumental-extinction literature says is the wrong operation -- and predicts REE will not show renewal, resurgence, or rapid reacquisition, all of which are robust in the biology.",
+    "Extinction learning is 'relatively dependent on the context for expression'. MECH-323's chunks carry an initiation_set of contexts. If dissolution is context-blind while formation is context-conditioned, an REE chunk dissolved in one context stays dissolved in all -- diverging from renewal, where the behaviour returns simply by changing context.",
+    "Resurgence means a chunk can return not because its own evidence improved but because a COMPETING chunk was extinguished. Nothing in MECH-323/324 as registered produces that coupling, so a chunk library that competes for selection would need dissolution state shared across candidates to reproduce it."
+  ],
+  "tags": [
+    "mech-323",
+    "mech-324",
+    "f_high",
+    "hysteresis",
+    "numeric_parameter",
+    "extinction",
+    "instrumental",
+    "bouton",
+    "context_dependence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Extinction weakens behavior without erasing the original learning. Three relapse effects follow the extinction of instrumental learning: renewal (responding returns when tested in a different context), resurgence (responding recovers when a second response reinforced during extinction of the first is itself extinguished), and rapid reacquisition (extinguished responding returns rapidly when the response is reinforced again). Extinction of instrumental learning involves new learning that is relatively dependent on the context for expression.",
+    "ree_translation": "Together with Barnes et al. 2005 this establishes the F_low < F_high asymmetry as a real property of action learning rather than an REE convenience -- and at the right level of description, since these are instrumental responses rather than Pavlovian cues. It also sharpens what dissolution should DO in MECH-324: install a competing context-gated suppression alongside the chunk, not delete it. That single change would let REE exhibit renewal and rapid reacquisition, giving MECH-323/324 three behavioural falsifiers it does not currently have. The rapid-reacquisition effect is the most directly usable: after dissolution, re-formation of the same chunk should require far fewer than R_min repetitions.",
+    "mapping_caveat": "These are single-response operant contingencies in rats (lever press for food), not multi-element action chunks, so the object being extinguished is simpler than an REE chunked primitive -- whether a composed SEQUENCE extinguishes with the same asymmetry is an extrapolation. As with Barnes, nothing here quantifies a variance threshold, so F_high = 0.45 gains no numeric support; what is supported is the inequality and the retention-not-erasure character of dissolution. The review is also of the authors' own laboratory programme rather than an independent synthesis, though the renewal and resurgence effects are widely replicated elsewhere.",
+    "source_context": "Rat operant conditioning (lever-press for food reinforcement); acquisition, extinction, and test under context change, alternative-response extinction, and re-reinforcement."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity above Barnes (0.65 vs 0.55) because the object of learning is instrumental and the asymmetry is measured behaviourally at the level MECH-323 operates on; source quality below Barnes because it is an own-lab review rather than a primary Nature report. Like Barnes, supports the relation and not the value."
+  },
+  "summary_path": "summary.md"
+}

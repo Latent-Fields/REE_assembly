@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-27_mech_323_chunk_length_wm_capacity_bo2009",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-323"
+  ],
+  "source": {
+    "title": "Age-related declines in visuospatial working memory correlate with deficits in explicit motor sequence learning",
+    "authors": [
+      "J. Bo",
+      "V. Borza",
+      "R. D. Seidler"
+    ],
+    "year": 2009,
+    "venue": "Journal of Neurophysiology",
+    "doi": "10.1152/jn.00393.2009",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/19726728/"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Supplies the missing MECHANISM behind the 2-5 range while undercutting its status as a constant. Chunk length correlates with visuospatial working-memory capacity within both young and older adults, and older adults show a joint reduction in BOTH capacity and chunk length. So the small-integer chunk size is downstream of a capacity bottleneck rather than being a primitive of the chunking system -- which is a satisfying explanation for why the number lands near the classic short-term capacity range, and simultaneously a warning that it is agent-specific and can shift. Source quality 0.72 (J Neurophysiol, correlational, moderate n); mapping fidelity 0.60; transfer risk 0.42.",
+  "failure_signatures": [
+    "Chunk length tracks working-memory capacity across individuals and declines with age alongside it. A chunk-size budget hard-coded at 2-5 for every REE agent asserts a uniformity the human data specifically contradicts -- the budget should be derived from whatever plays the capacity role in REE, not set by fiat.",
+    "The correlation between capacity and LEARNING RATE held in young adults but NOT in older adults, while the capacity-to-chunk-length correlation held in both. Chunk size and formation rate are therefore dissociable, so MECH-323's R_min (repetition count) and its size budget should not be calibrated as if they were governed by one underlying quantity.",
+    "This is explicit sequence learning with a declarative component. If REE's accumulator is meant to be the DLS-analog procedural path (Graybiel repetition-and-consistency, value-flat), a capacity-derived size bound imported from an explicit task may be importing the wrong system's constraint."
+  ],
+  "tags": [
+    "mech-323",
+    "chunk_size",
+    "numeric_parameter",
+    "working_memory_capacity",
+    "arc-071",
+    "individual_differences"
+  ],
+  "mapping": {
+    "source_claim_statement": "Visuospatial working-memory capacity predicts the rate of motor sequence learning and the length of motor chunks formed during explicit sequence learning in young adults. Older adults exhibited a correlation between visuospatial working-memory capacity and motor sequence chunk length, as observed previously in young adults, and showed an overall reduction in both working-memory capacity and motor chunk length relative to young adults. Individual variations in capacity did not correlate with learning rate in older adults.",
+    "ree_translation": "This is the best available answer to why the empirical chunk-size range sits at 2-5 rather than anywhere else: it is a working-memory capacity limit expressing itself in the motor domain. For MECH-323 that converts the budget from an arbitrary constant into a derived one. If REE has an analog of visuospatial working-memory capacity -- the number of policy primitives the agent can hold jointly while evaluating a candidate sub-sequence -- then the chunk-size budget should be READ OFF that quantity rather than configured independently, and it should move when that quantity moves (development, load, degradation). The age effect additionally predicts a testable REE signature: degrade the working-memory analog and chunk length should shorten while the chunking machinery stays otherwise intact.",
+    "mapping_caveat": "Correlational, not causal -- capacity and chunk length covary but the paper cannot show that capacity SETS chunk length, and a third factor (general processing speed, which also declines with age) is not excluded. The task is EXPLICIT motor sequence learning, which recruits declarative and working-memory resources that MECH-323's DLS-analog procedural accumulator is specifically not supposed to depend on; the capacity constraint may therefore belong to a different system than the one REE is modelling here. Finally, 'chunk length' is again finger-press grain, so the transfer to policy primitives inherits the whole ARC-071 grain caveat. Treated as an explanation of the range's ORIGIN, not as an independent confirmation of the numbers 2 and 5.",
+    "source_context": "Young and older healthy adults; explicit visuomotor sequence learning with chunk length derived from response-time structure; visuospatial working-memory capacity measured separately."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.42,
+    "notes": "Direction 'mixed': supports the magnitude of the 2-5 range by explaining its origin, weakens its status as a fixed architectural constant. Transfer risk elevated by the explicit-learning / procedural-system mismatch."
+  },
+  "summary_path": "summary.md"
+}

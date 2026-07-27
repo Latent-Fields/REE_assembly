@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_323",
+  "entry_id": "2026-07-27_mech_323_chunk_size_grows_with_practice_ramkumar2016",
+  "timestamp_utc": "2026-07-27T05:58:13Z",
+  "claim_ids_tested": [
+    "MECH-323"
+  ],
+  "source": {
+    "title": "Chunking as the result of an efficiency computation trade-off",
+    "authors": [
+      "Pavan Ramkumar",
+      "Daniel E. Acuna",
+      "Max Berniker",
+      "Scott T. Grafton",
+      "Robert S. Turner",
+      "Konrad P. Kording"
+    ],
+    "year": 2016,
+    "venue": "Nature Communications",
+    "doi": "10.1038/ncomms12176",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/27397420/"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "Weakens the FIXED-CONSTANT form of MECH-323's chunk-size budget while supporting its small-at-first spirit. Monkeys learning a 10-element reaching sequence over months start with many short chunks and progressively merge them: 'the length of individual chunks increases. As chunks become longer over the course of learning, movements are optimized over increasingly longer horizons.' Chunk size is therefore a MOVING quantity set by a compute-versus-efficiency trade-off, not a species constant in 2-5. The authors propose no fixed upper bound; the observed ceiling is a diminishing-returns effect (chunk structures stay at roughly 50-60% of the complexity of executing the sequence as a single chunk). Source quality 0.85 (Nature Communications, longitudinal non-human primate, explicit generative model); mapping fidelity 0.60 (reaching kinematics, not policy primitives); transfer risk 0.40.",
+  "failure_signatures": [
+    "Chunk size GROWS with practice. A hard chunk-size budget fixed at 2-5 for the agent's lifetime forbids the single most robust longitudinal signature in this literature, and would make MECH-323 unable to reproduce the observed learning trajectory even if every other trigger condition were right.",
+    "The ceiling on chunk size is set by a compute-versus-efficiency trade-off, not by a capacity constant. Two REE agents with different rollout budgets should therefore settle at different chunk sizes -- so a single global max chunk length is the wrong shape of parameter; it should be derived from the deliberation budget.",
+    "The monkeys never chunk the whole sequence as one unit, staying near 50-60% of single-chunk complexity. An REE accumulator that grows chunks monotonically without a returns-based brake would eventually collapse an episode into one chunk, which is the failure mode this paper's trade-off explicitly rules out."
+  ],
+  "tags": [
+    "mech-323",
+    "chunk_size",
+    "numeric_parameter",
+    "arc-071",
+    "longitudinal",
+    "compute_tradeoff"
+  ],
+  "mapping": {
+    "source_claim_statement": "Breaking a compound movement into a series of chunks, each planned over a shorter horizon, reduces overall computational complexity and associated costs while limiting achievable efficiency. To learn new movements we should start with many short chunks to limit the cost of computation; as practice reduces the impediments to more complex computation, the chunking structure should evolve to allow progressively more efficient movements. Monkeys learning a reaching sequence over an extended period adopt this strategy.",
+    "ree_translation": "MECH-323 registers a chunk-size budget of 2-5 elements per level, currently attributed to Sakai 2003 via the ARC-071 R5 verdict. Ramkumar et al. reframe the quantity: chunk size is the output of an optimisation, not a parameter of the organism. Small chunks early are correct BECAUSE compute is the binding constraint early; as the policy stabilises, longer chunks pay. The REE translation is that the accumulator's size cap should be a SCHEDULE or better a derived quantity -- bounded by the agent's rollout / deliberation budget -- rather than a constant. Concretely: 2-5 is a defensible INITIAL budget, and MECH-323 should expose the ceiling as growable and tie it to the same deliberation cost that MECH-321 is meant to relieve. This also supplies the missing coupling between the composition and decomposition operators: they are two sides of one compute-versus-efficiency trade-off, which is a better reason for their parameters to be related than the current 'mirror ARC-071's chunk_max_depth for symmetry'.",
+    "mapping_caveat": "This is macaque reaching kinematics -- 10 elemental center-out and return movements over a 5 s trial -- so the chunk grain is motor, exactly the transfer gap the existing Sakai 2003 entry already flagged for ARC-071. It does not measure chunks of policy primitives. Its force here is structural rather than numeric: it shows that the QUANTITY is dynamic and compute-bound in the one system where it has been measured longitudinally, which is a claim about the shape of the parameter and should transfer more readily than any specific length would. Note also that the paper offers no upper bound at all, so it cannot be used to justify replacing 5 with any other number.",
+    "source_context": "Two macaques, months of practice on a 10-element sequential reaching task; chunk structure inferred from locally optimal trajectory segments under a computational-complexity model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Mapping fidelity held at 0.60: the growth-with-practice finding is robust and structurally transferable, but the specific chunk lengths are motor-grain and do not port. Direction 'weakens' is scoped to the fixed-constant reading of the budget, not to small-chunks-early."
+  },
+  "summary_path": "summary.md"
+}
