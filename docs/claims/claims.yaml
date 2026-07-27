@@ -41863,6 +41863,45 @@
         Registration of (a) deferred: today it is a
         substrate-design decision, not a claim.
 
+        [2026-07-27 UPDATE -- (b) IS NOW BUILT, (a) still open.]
+        chunk_max_depth stopped being a fiat constant: ree-v3
+        7c201f7326 added use_growable_chunk_depth (default OFF,
+        bit-identical when OFF), under which the depth ceiling
+        starts at chunk_max_depth and grows toward
+        floor(chunk_deliberation_horizon x
+        chunk_depth_budget_fraction), each level licensed by a
+        realised marginal outcome gain. The fraction is ANCHORED
+        (0.1 = 3/30) so the derivation returns exactly 3 at REE's
+        real rollout horizon of 30 -- Solway licenses no
+        replacement depth, so no new constant is asserted and only
+        a LARGER deliberation budget derives a deeper hierarchy.
+        Substrate change only; no claim status, confidence,
+        live_status or v3_pending changed by this note.
+
+        TWO CONSEQUENCES FOR MECH-321 SPECIFICALLY.
+        (1) The mirrored ceiling MOVES. depth_cap's useful range
+        is [2, chunk_max_depth] only while the depth ceiling is
+        fixed; with growth on it is [2, derived_chunk_max_depth].
+        depth_cap_config_issues() now takes that bound as an
+        optional third argument and REEAgent passes it only when
+        ARC-071 is on AND growing, so every shipped MECH-321
+        configuration is byte-identical (contracts C17b).
+        (2) A STRUCTURAL coupling was found while building it, and
+        it bears on the depth-cap question directly: chunk depth
+        is bounded by chunk SIZE. A chunk composes another only by
+        containing it, so each level needs a strictly longer
+        sequence and nothing deeper than
+        (effective chunk-size ceiling - chunk_min_size + 1) can be
+        minted -- 4 at the 2-5 budget, verified by construction
+        (max_depth 5 and 4 are the same run). So depth and size
+        are not merely analogous parameters on one trade-off; the
+        size budget mechanically caps the depth budget, and growth
+        refuses to raise the ceiling past it rather than raising
+        it into inertness. Note this also confirms chunk_max_depth
+        does have a real degree of freedom today -- 3 is BINDING,
+        the substrate would otherwise mint depth 4 -- which is
+        exactly what its mirror was found to lack.
+
       - Q-XXX: MECH-321 vs MECH-269b threshold coupling -- both
         read V_s; both may use thresholds. Whether the thresholds
         should be independent (per-consumer parameterisation) or
