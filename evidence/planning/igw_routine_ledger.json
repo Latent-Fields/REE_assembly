@@ -1984,7 +1984,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-210-proposal-for-mech-466 && claude --resume 3e15ee30-ad18-47aa-ad72-3f383c069c7d",
       "task_claim_session_id": "igw-auto-igw-210-proposal-for-mech-466-20260727T191337Z",
       "assigned_at": "2026-07-27T19:13:09Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-27T19:35:24Z",
+      "completion_summary": "queued V3-EXQ-831 for MECH-466 (event-relative vs clock-relative cross-stream alignment, Q-081 Outcome E); ree-v3 29e7310a13 pushed + coordinator DB",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "queued V3-EXQ-831 for MECH-466 (event-relative vs clock-relative cross-stream alignment, Q-081 Outcome E); ree-v3 29e7310a13 pushed + coordinator DB"
     }
   ],
   "dispositions": [
@@ -2618,6 +2622,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-26T17:17:09Z",
       "re_eligible_after": "2026-07-28T17:17:09Z"
+    },
+    {
+      "stable_hash": "d6c276bcac45",
+      "igw_id_at_disposition": "IGW-20260727-210",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-466"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-466",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-27T19:35:26Z",
+      "re_eligible_after": "2026-07-29T19:35:26Z"
     }
   ]
 }

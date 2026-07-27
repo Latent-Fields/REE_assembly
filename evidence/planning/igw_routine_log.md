@@ -1173,3 +1173,5 @@ One line per hourly tick. ASCII only.
 2026-07-27T17:12:20Z no eligible item (skipped 214): IGW-20260727-001:skill /governance not allowed; IGW-20260727-002:skill /governance not allowed; IGW-20260727-003:skill /governance not allowed
 2026-07-27T18:12:41Z no eligible item (skipped 214): IGW-20260727-001:skill /governance not allowed; IGW-20260727-002:skill /governance not allowed; IGW-20260727-003:skill /governance not allowed
 2026-07-27T19:13:09Z SPAWN IGW-20260727-210 skill=/queue-experiment prio=40 uuid=3e15ee30-ad18-47aa-ad72-3f383c069c7d pid=37395 worktree=igw-210-proposal-for-mech-466
+2026-07-27T19:35:26Z retire-proposal EXP-0287 -> executed (IGW-20260727-210; complete)
+2026-07-27T19:35:26Z auto-defer IGW-20260727-210 hash=d6c276bcac45 for 48h (complete)
