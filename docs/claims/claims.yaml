@@ -42470,6 +42470,48 @@
         Child-MECH design should pin a starting policy
         (suggested: contexts that account for >=80% of the
         variance across R_min execution contexts).
+
+        [2026-07-27 SCOPING SPIKE, from MECH-324's
+        CONTEXT-SCOPING OF DISSOLUTION question. Source:
+        evidence/planning/mech324_context_scoping_dissolution_scoping_spike_2026-07-27.md.
+        No status / confidence / v3_pending change. TWO
+        corrections land HERE rather than on MECH-324.
+
+        (1) THE INFERENCE RULE IS UNBUILT. It is listed above
+        under MECH-323's REGISTERED CONTENT ("collect the
+        contexts in which the accumulator's R_min executions
+        occurred; predicate over discriminating context
+        features"), but ChunkedPrimitive.initiation_set is a
+        DECLARED-BUT-NEVER-POPULATED field -- defaults to
+        frozenset(), both mint() call sites omit it, zero reads
+        repo-wide outside the module, and
+        policy_chunking.py:251-253 states plainly that "context
+        bucketing is not yet wired". Any claim text asserting
+        that MECH-323 formation is context-conditioned (incl.
+        this claim's own title, and MECH-324's renewal falsifier
+        (b)) is describing the REGISTRATION, not the substrate.
+        This makes MECH-323 the upstream blocker for MECH-324
+        falsifier (b) RENEWAL: renewal cannot be tested until
+        this rule is built, and it must be built BEFORE the
+        dissolution gate is scoped, not after.
+
+        (2) THE PRECISION QUESTION ABOVE IS PREMATURE, AND ITS
+        SUGGESTED DEFAULT MAY BE UNREACHABLE. It asks how
+        discriminative the predicates should be -- but the prior
+        question is whether the context representation can
+        discriminate AT ALL. Measured on z_world (SD-008
+        under-differentiation): ~0.98-cosine common-mode cone,
+        and the nearest existing implementation of this exact
+        primitive (candidate_rule_field._context_bucket)
+        collapses to ONE bucket on real z_world. At one bucket
+        the ">=80% of the variance across R_min execution
+        contexts" policy is not merely too broad, it is
+        undefined. SD-078 (cue_centering) is the solved fix
+        (1 bucket -> 20) but is candidate_substrate_landed and
+        DEFAULT OFF. So pin the discriminativeness policy only
+        AFTER measuring the achievable bucket count on the
+        chunking stream itself -- see the classification and
+        probe in the MECH-324 block.]
       - Recursion depth cap: 3 by default; child-MECH
         validation may relax to 4 if biology supports.
       - V_s-positive preference weighting: how strong should
@@ -43069,6 +43111,131 @@
         one that makes renewal structurally impossible. Not a
         free parameter -- it decides whether a whole class of
         biological behaviour is expressible.
+
+        [2026-07-27 SCOPING SPIKE -- this question is now OWNED
+        and answered, and its PREMISE is corrected. Source:
+        evidence/planning/mech324_context_scoping_dissolution_scoping_spike_2026-07-27.md.
+        Recommendation only; NO status / confidence /
+        live_status / v3_pending change.
+
+        ANSWERED IN PRINCIPLE: yes, dissolution must be
+        context-scoped, and "leave it global" is a substantive
+        commitment against the biology exactly as registered.
+        RE-GATED IN PRACTICE: the build does NOT route to
+        /implement-substrate, because the premise this question
+        rests on is FALSE OF THE SUBSTRATE. Formation is NOT
+        context-conditioned either. ChunkedPrimitive.
+        initiation_set is a DECLARED-BUT-NEVER-POPULATED field:
+        it defaults to frozenset(), BOTH mint() call sites
+        (MECH-322 replay :741 and MECH-323 formation :1145)
+        omit it, and a repo-wide grep finds ZERO reads outside
+        the module. policy_chunking.py:251-253 concedes it --
+        "context bucketing is not yet wired". MECH-323 lists the
+        initiation_set inference rule under REGISTERED CONTENT;
+        it was registered, never built. So there is no
+        asymmetry: BOTH halves are context-blind, and renewal is
+        blocked one level UPSTREAM of where this Q-claim locates
+        it. This stops being a choice between two implementable
+        options and becomes a downstream consumer of an unbuilt
+        MECH-323 item.
+
+        THE TRAP, which is why "just scope it" must be refused
+        rather than deferred. Layer 1: scoping dissolution to a
+        universally-empty initiation_set is a SILENT NO-OP that
+        reads as renewal-capable -- the inert-flag failure class
+        (cf. use_iterative_inference at settle_iters=1;
+        REEConfig.from_dims swallowing unknown kwargs). Layer 2,
+        the load-bearing one: populating it from raw z_world
+        does NOT fix it. candidate_rule_field.py:408 already
+        implements the same primitive an initiation_set
+        inference would need (_context_bucket, sign pattern over
+        the leading 8 dims), and its in-source record at :255-274
+        MEASURED the outcome on the V3-EXQ-669b Stage-0 nursery
+        (2026-07-22, 155-160 contexts, seed 101): z_world
+        pairwise cosine min 0.9767 with 0.0% of pairs < 0.8 --
+        a ~0.98 common-mode cone under SD-008 z_world
+        under-differentiation -- and the bucket COLLAPSES to
+        n_context_buckets = 1. A renewal run on that substrate
+        has NO CONTEXT B. It would return the registered
+        FALSIFIED verdict BY CONSTRUCTION OF THE INSTRUMENT, and
+        that verdict would land against Bouton 2012's biology
+        rather than against REE's context representation --
+        the same class the V3-EXQ-654b/654d autopsies misread as
+        retire-churn. A renewal FALSIFIED verdict is
+        UNINTERPRETABLE until the bucket count is known > 1.
+
+        SCOPE OF THE CHANGE, for whoever does build it: this is
+        a SEAM change, not a gate tweak. Every ARC-071 entry
+        point is context-free by signature (record_step,
+        note_outcome, note_real_execution, tick_maintenance
+        keyed by sequence, REEAgent.note_chunk_outcome), and
+        chunk lifecycle state is a SINGLE SCALAR per chunk.
+        Context-scoping makes it a map from context bucket to
+        lifecycle state and changes the get_state() shape that
+        contracts and manifests read. Context IS in scope at the
+        seam (record_step is called inside select_action); it is
+        a wiring gap, not an availability gap -- which is
+        precisely what makes the naive build look easy.
+
+        ROUTE THROUGH + WHAT IT INHERITS: SD-078 (cue_centering,
+        slow-EMA common-mode subtraction) is the solved fix in
+        the same module -- measured 1 bucket raw -> 20 centered,
+        1 rule -> 8. Two cautions: SD-078 is
+        candidate_substrate_landed (BUILT, NOT VALIDATED) and
+        its flag is DEFAULT OFF, and the two mitigations
+        measured INEFFECTIVE against this symptom
+        (mature_mint_block_threshold 0.8;
+        crf_context_from_e2_world_forward) are deliberately left
+        in place and must not be re-tuned as the fix. So
+        context-scoped dissolution INHERITS SD-008 z_world
+        under-differentiation as its root blocker -- the same
+        root as the monostrategy representation ceiling -- and
+        is not an independent design choice about this gate.
+
+        CLASSIFICATION: puzzle (known rules), not complicated
+        (buildable). The rules are known (SD-078's method and
+        measurement protocol); ONE missing fact gates the build
+        -- over the CHUNKING regime's own context stream, how
+        many distinct centered-z_world buckets occur, and do a
+        single chunk's real executions span more than one? Do
+        not inherit the 20-bucket nursery number: chunk
+        formation requires R_min repetitions of a STABLE
+        sequence, which plausibly selects for context
+        homogeneity independently of the common-mode problem.
+        If the answer is 1, renewal is inexpressible whatever
+        the gate does and the honest move is to say so on
+        falsifier (b) rather than build a gate that cannot be
+        exercised. If > 1, the build becomes complicated
+        (buildable) and MECH-323's initiation-set inference rule
+        is the thing to build FIRST, with its own registered
+        precision Q-claim.
+
+        SEQUENCING: falsifier (a) rapid reacquisition is
+        UNAFFECTED and remains the correct next move -- it is
+        context-free by construction (it re-presents the same
+        regime rather than changing context). Its substrate
+        landed 2026-07-27 (use_chunk_dissolution_retention,
+        chunk_reacquisition_repetition_factor, ChunkLibrary.
+        revive, _attempt_reacquisition) and it is confirmed NOT
+        YET QUEUED -- zero chunking entries in the queue.
+
+        TRANSFER LIMIT, bearing on THIS question and not only on
+        the falsifiers: the argument that dissolution ought to
+        be context-scoped rests on Bouton 2012's demonstration
+        that instrumental extinction installs new
+        CONTEXT-DEPENDENT learning alongside the old -- and that
+        demonstration is at the SINGLE-RESPONSE level (a rat
+        pressing a lever for food; Barnes 2005 is rodent T-maze).
+        A chunk is by construction not a single response.
+        Whether context-dependence of extinction SURVIVES
+        COMPOSITION is EXTRAPOLATION, NOT EVIDENCE -- a composed
+        sequence might extinguish context-INDEPENDENTLY because
+        its elements were acquired across heterogeneous
+        contexts. The bucket-count probe above is incidentally
+        the same measurement that would start to tell us: a
+        chunk whose R_min formation executions span several
+        buckets is already a counter-example to the naive
+        single-context reading.]
       - LIBRARY-LEVEL COMPETITION (blocks falsifier (c),
         resurgence). MECH-324's dissolution gate is per-chunk
         on its own outcome variance. Resurgence requires a
