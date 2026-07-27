@@ -201,7 +201,7 @@
 
 .development-map-rail {
   display: grid;
-  grid-template-columns: repeat(5, minmax(8rem, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin: 0 -0.15rem 1.35rem;
   overflow-x: visible;
   padding: 0.15rem;
@@ -221,6 +221,8 @@
   gap: 0.3rem;
   justify-content: flex-start;
   min-height: 8.5rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
   padding: 0.9rem;
   text-align: left;
 }
@@ -424,7 +426,7 @@
   .ree-development-map h1 { font-size: 1.9rem; }
   .development-question-grid, .development-map-metrics { grid-template-columns: 1fr; }
   .development-map-metric + .development-map-metric, .development-map-metric:nth-child(3) { border-left: 0; }
-  .development-map-rail { grid-template-columns: repeat(5, minmax(9.6rem, 1fr)); }
+  .development-map-rail { grid-template-columns: repeat(5, minmax(9.6rem, 1fr)); overflow-x: auto; }
   .development-map-node-summary { grid-template-columns: auto auto minmax(0, 1fr) auto; }
   .development-map-node-state { grid-column: 3; grid-row: 2; max-width: none; text-align: left; }
   .development-map-node-summary::after { grid-column: 4; grid-row: 1; }

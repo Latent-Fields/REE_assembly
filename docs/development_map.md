@@ -3,7 +3,7 @@ title: Development Map
 nav_exclude: true
 ---
 
-<link rel="stylesheet" href="{{ '/assets/css/development-map.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/development-map.css?v=2' | relative_url }}">
 
 <div
   id="ree-development-map"
