@@ -1,7 +1,7 @@
 {
   "machine": "DLAPTOP-4.local",
   "hostname": "DLAPTOP-5.local",
-  "last_tick_utc": "2026-07-27T20:21:36Z",
+  "last_tick_utc": "2026-07-27T20:26:37Z",
   "state": "running",
   "current_exq": "V3-EXQ-830",
   "current_exq_started_utc": "2026-07-27T18:27:03.996731+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 71 / ARM_PROBE_ON",
     "runs_done": 8,
     "runs_total": 10,
-    "episodes_done": 10,
+    "episodes_done": 30,
     "episodes_total": 60,
-    "overall_pct": 81.7
+    "overall_pct": 85.0
   },
-  "seconds_elapsed": 6873,
-  "seconds_remaining": 1796,
+  "seconds_elapsed": 7173,
+  "seconds_remaining": 1470,
   "recent_lines": [
     "Seed 11 Condition ARM_PROBE_OFF",
     "[train] scale seed=11 arm=ARM_PROBE_OFF ep 10/60 sweeps=66 fast=44 slow=0 cofire=0",
@@ -84,7 +84,9 @@
     "[train] scale seed=47 arm=ARM_PROBE_ON ep 60/60 sweeps=405 fast=214 slow=0 cofire=0",
     "verdict: PASS",
     "Seed 71 Condition ARM_PROBE_ON",
-    "[train] scale seed=71 arm=ARM_PROBE_ON ep 10/60 sweeps=98 fast=56 slow=0 cofire=0"
+    "[train] scale seed=71 arm=ARM_PROBE_ON ep 10/60 sweeps=98 fast=56 slow=0 cofire=0",
+    "[train] scale seed=71 arm=ARM_PROBE_ON ep 20/60 sweeps=200 fast=116 slow=0 cofire=0",
+    "[train] scale seed=71 arm=ARM_PROBE_ON ep 30/60 sweeps=288 fast=168 slow=0 cofire=0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
