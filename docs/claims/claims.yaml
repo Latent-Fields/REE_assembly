@@ -42494,17 +42494,53 @@
 
     (2) OUTCOME-VARIANCE THRESHOLD (formation hysteresis low).
         The outcome distribution over the R_min repetitions
-        must have variance below F_low on a 0-1 normalised
-        scale. Suggested default F_low = 0.15 (child-MECH
-        calibration range 0.10-0.25). THE VALUE IS AN
-        UNCALIBRATED ENGINEERING DEFAULT with no literature
-        support -- only the F_low < F_high RELATION is
-        literature-grounded (2026-07-27; see
-        evidence_quality_note). The outcome dimension
-        is the realised E3-score-receipt over the sub-sequence
-        (SD-014 valence + accumulated benefit/harm). Variance
-        is computed across the R_min executions, not across
-        steps within an execution.
+        must have POPULATION variance below F_low. Suggested
+        default F_low = 0.15 (child-MECH calibration range
+        0.10-0.25). THE VALUE IS AN UNCALIBRATED ENGINEERING
+        DEFAULT with no literature support -- only the
+        F_low < F_high RELATION is literature-grounded
+        (2026-07-27; see evidence_quality_note). The outcome
+        dimension is the realised E3-score-receipt over the
+        sub-sequence (SD-014 valence + accumulated
+        benefit/harm). Variance is computed across the R_min
+        executions, not across steps within an execution.
+
+        OUTCOME SCALE (2026-07-27 correction -- this paragraph
+        replaces the words "on a 0-1 normalised scale", which
+        were in the original registration and were WRONG; see
+        the SCALE CORRECTION block in evidence_quality_note for
+        why, and why the alternative of re-calibrating the
+        thresholds instead was rejected). The outcome signal is
+        a RAW, UNBOUNDED, CALLER-SUPPLIED scalar in
+        E3-score-receipt units. The substrate applies no
+        normalisation of any kind: `policy_chunking._variance`
+        is plain population variance over the values handed in,
+        and `REEAgent.note_chunk_outcome` passes the harness
+        scalar straight through. F_low and F_high are therefore
+        SCALE-RELATIVE, and any experiment touching either gate
+        MUST pre-register the outcome span it feeds in.
+
+        REACHABILITY CONDITION (the fact this correction exists
+        to stop future authors re-deriving). Population variance
+        of values confined to a span S is at most S^2/4, attained
+        only by the degenerate half-at-each-endpoint
+        distribution. So:
+          - A DISSOLUTION gate F_high is reachable only if
+            S > 2*sqrt(F_high). At the registered F_high = 0.45
+            that is S > 1.342. On a 0-1 span the ceiling is 0.25
+            and dissolution is arithmetically IMPOSSIBLE -- which
+            is exactly the defect this correction repairs.
+          - Because real outcome distributions sit far below the
+            degenerate ceiling, a workable harness wants headroom,
+            not a bare crossing. S >= 2.0 (ceiling 1.0, ~2.2x
+            F_high) is the pre-registered choice in V3-EXQ-829 and
+            is the recommended floor.
+          - F_low has NO analogous obstruction in the reachable
+            direction: it is a below-threshold gate and variance
+            can be 0 at any span. The bite runs the other way --
+            a WIDER span makes F_low harder to satisfy, so span
+            is a live experimental knob on BOTH gates and must
+            never be left implicit.
 
     (3) EVALUATIVE GATE. The accumulated outcome mean must be
         positive (sub-sequence's outcomes are evaluated-as-good
@@ -42865,6 +42901,90 @@
     defaults. Behavioural-latency / rollout-cost / within-chunk-
     timing measurements come in a follow-on validation
     experiment after the accumulator-only diagnostic passes.
+
+    [SCALE CORRECTION, 2026-07-27. Trigger condition (2) as
+    originally registered said outcome variance was measured
+    "on a 0-1 normalised scale". That specification is WITHDRAWN;
+    (2) now declares the raw caller-supplied E3-score-receipt
+    scale explicitly and states the reachability condition.
+    F_low = 0.15 and F_high = 0.45 are UNCHANGED.
+
+    THE DEFECT. Population variance of values confined to a span
+    S is at most S^2/4, so on the specified unit scale the
+    ceiling is 0.25 -- BELOW MECH-324's F_high = 0.45. On the
+    claim's own specified scale the CRYSTALLISED -> DISSOLVING
+    transition was arithmetically unreachable, hence DISSOLVED
+    was unreachable, hence ALL THREE of MECH-324's registered
+    relapse falsifiers -- (a) rapid reacquisition, (b) renewal,
+    (c) resurgence -- had no entry point at the pre-registered
+    defaults, since each requires a dissolved chunk. This is a
+    DIFFERENT defect from the already-registered "F_high is an
+    uncalibrated engineering default" caveat: the problem was
+    not that the value lacked support, it was that the value and
+    the specified scale were mutually inconsistent.
+
+    WHY (b) DECLARE-THE-SCALE AND NOT (a) RE-CALIBRATE. Three
+    reasons, in order of weight.
+
+    (i) The unit scale was never instantiated, so there is
+    nothing to preserve. Verified in substrate:
+    `ree-v3/ree_core/policy/policy_chunking.py` `_variance` is a
+    two-pass population variance over the values as supplied,
+    and nothing in that module clamps, rescales or normalises
+    `outcome_signal`; `REEAgent.note_chunk_outcome`
+    (ree_core/agent.py) forwards the harness scalar unaltered.
+    The "0-1 normalised" wording described a scale the substrate
+    has never had, so (b) corrects a documentation error rather
+    than changing a commitment.
+
+    (ii) Making the unit scale REAL would damage the quantity the
+    gate measures. Since the E3-score-receipt (SD-014 valence
+    plus accumulated benefit/harm) is not naturally bounded, no
+    fixed a-priori 0-1 range is derivable from it; the only
+    normalisation actually available at runtime is
+    window-relative. But rescaling outcomes per-window destroys
+    exactly the signal F_low/F_high read: a chunk with tightly
+    consistent outcomes and one with wildly inconsistent ones
+    both rescale to the same spread, so the variance gate stops
+    discriminating. A fixed declared range instead is just (b)
+    with a rescale bolted on top.
+
+    (iii) (a) would compress the R5 hysteresis for no gain in
+    grounding. Both thresholds would have to fit under 0.25,
+    shrinking the F_low..F_high gap from 0.30 to at most 0.25 in
+    absolute terms while re-guessing two numbers that are
+    admittedly uncalibrated either way. Nothing in the
+    literature adjudicates the new guesses any better than the
+    old ones -- Barnes 2005 and Bouton 2012 ground only the
+    F_low < F_high RELATION, neither quantifies a threshold --
+    so the compression would buy no support and would additionally
+    lock the numbers to a normalisation that (ii) rules out.
+
+    RESIDUAL COST, stated plainly. Under (b) the thresholds are
+    not scale-free: the same F_high means different things at
+    different outcome spans. That is a real cost and (a) would
+    not have fixed it either -- it only relocates the
+    arbitrariness into the choice of normalisation. The correct
+    end-state is child-MECH calibration that reports each
+    threshold TOGETHER WITH the outcome span it was calibrated
+    at; a calibrated threshold quoted without its span is not
+    interpretable and should not be accepted as calibration.
+
+    PROVENANCE. Surfaced 2026-07-27 while authoring V3-EXQ-829
+    (MECH-324 rapid-reacquisition falsifier). That run reached a
+    dissolved chunk only by pre-registering a harness outcome
+    span of 2.0 while leaving both thresholds at their claim
+    defaults, and emitted the arithmetic as the precondition
+    `dissolution_variance_reachable` plus
+    `custom_information.unit_scale_dissolution_unreachable` in
+    manifest
+    v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3.
+    That was a per-experiment workaround; this correction is the
+    fix to the registered defaults, so subsequent ARC-071
+    dissolution experiments read the span requirement off the
+    claim instead of re-deriving it. Governance had separately
+    recorded the 829 result on MECH-324 (REE_assembly fbae929063)
+    without touching the scale/threshold inconsistency.]
   notes: >
     MECH-323 is the FORMATION half of ARC-071's two-operator
     machinery. MECH-324 (registered separately) is the
@@ -43094,7 +43214,28 @@
               ENGINEERING DEFAULT with no literature support;
               only the F_high > F_low RELATION is
               literature-grounded (2026-07-27; see
-              evidence_quality_note); or
+              evidence_quality_note).
+
+              SCALE / REACHABILITY (2026-07-27 correction). The
+              variance here is PLAIN POPULATION VARIANCE over the
+              raw, unbounded, caller-supplied E3-score-receipt
+              outcome signal -- NOT a 0-1 normalised quantity.
+              MECH-323 trigger condition (2) originally said
+              "0-1 normalised scale"; that wording is withdrawn,
+              because the maximum population variance on a span-S
+              range is S^2/4, so on a unit scale the ceiling is
+              0.25 and THIS TRANSITION WOULD BE ARITHMETICALLY
+              UNREACHABLE at F_high = 0.45 -- taking DISSOLVED,
+              and with it all three relapse falsifiers below,
+              out of reach at the registered defaults. F_high is
+              therefore reachable only when the harness outcome
+              span satisfies S > 2*sqrt(F_high) = 1.342, and
+              S >= 2.0 is the recommended floor for headroom.
+              Any experiment exercising dissolution MUST
+              pre-register its outcome span. Full reasoning,
+              including why the thresholds were NOT re-calibrated
+              instead, is in the MECH-323 evidence_quality_note
+              SCALE CORRECTION block; or
           (b) MECH-322 replay-origin dissolution-deadline fires
               (replay_origin=True chunk has not been
               corroborated by real waking execution meeting
@@ -43685,6 +43826,60 @@
     experiment requires both MECH-323 and MECH-324 to have
     substrate-level implementations in ree_core; substrate
     work is queued separately.
+
+    [SCALE CORRECTION, 2026-07-27 -- READ THIS BEFORE DESIGNING
+    ANY DISSOLUTION OR RELAPSE EXPERIMENT. F_high = 0.45 is
+    UNCHANGED, but the scale it is measured on is now declared
+    explicitly, because as registered the two were mutually
+    inconsistent and the inconsistency silently disabled this
+    claim's entire falsifier family.
+
+    MECH-323 trigger condition (2) specified outcome variance
+    "on a 0-1 normalised scale". Maximum POPULATION variance on
+    a span-S range is S^2/4, i.e. 0.25 on the unit scale --
+    BELOW F_high = 0.45. So on the specified scale
+    CRYSTALLISED -> DISSOLVING could never fire, DISSOLVED was
+    unreachable, and all three registered relapse falsifiers
+    (a) rapid reacquisition, (b) renewal, (c) resurgence lost
+    their entry point, each requiring a dissolved chunk. Note
+    this is NOT the already-registered "F_high is uncalibrated"
+    caveat: the defect was an inconsistency between the value
+    and its declared scale, not a missing literature warrant.
+
+    RESOLUTION (option (b) of the two considered). The scale
+    specification is withdrawn and the true scale declared: the
+    outcome signal is a raw, unbounded, caller-supplied scalar
+    in E3-score-receipt units, with no normalisation anywhere in
+    the substrate (`policy_chunking._variance` is plain
+    population variance; `REEAgent.note_chunk_outcome` forwards
+    the harness value unchanged). Consequences for experiment
+    design: F_high is reachable only when the outcome span
+    satisfies S > 2*sqrt(F_high) = 1.342; S >= 2.0 is the
+    recommended floor, since real distributions sit well below
+    the degenerate S^2/4 ceiling; and the span must be
+    pre-registered, because a wider span also makes MECH-323's
+    F_low HARDER to satisfy, so span moves both gates at once.
+
+    The rejected alternative was (a) re-calibrating F_low/F_high
+    to fit under the 0.25 unit-scale ceiling. Rejected because
+    the unit scale was never implemented (nothing to preserve),
+    because the only runtime-available normalisation is
+    window-relative and would destroy the discriminative content
+    of a variance gate, and because compressing the R5
+    hysteresis gap re-guesses two admittedly-uncalibrated
+    numbers with no gain in grounding. Full argument in the
+    MECH-323 evidence_quality_note SCALE CORRECTION block.
+
+    Surfaced by V3-EXQ-829 (manifest
+    v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3,
+    outcome FAIL), which reached a dissolved chunk only via a
+    pre-registered harness outcome span of 2.0 with both
+    thresholds left at claim defaults. Its FAIL therefore stands
+    as a test of the falsifier, NOT as an artefact of this
+    inconsistency -- 829 is the one run that routed around it.
+    Earlier or concurrent ARC-071 work that assumed a unit-scale
+    outcome signal should be re-read in this light before its
+    dissolution-side results are relied on.]
   notes: >
     MECH-324 is the MAINTENANCE half of ARC-071's two-operator
     machinery. MECH-323 (registered 2026-05-11 earlier today)
