@@ -41890,6 +41890,82 @@
     decomposition operators at distinct scales rather than one
     operator recursing N times. Bigger than this correction.]
 
+    [2026-07-27 SCOPING SPIKE -- the design question flagged
+    immediately above is now OWNED and answered. Source:
+    evidence/planning/mech321_decomposition_scale_scoping_spike_2026-07-27.md.
+    Recommendation only; NO status / confidence / live_status /
+    v3_pending change. The question splits, and the halves differ.
+
+    DEPTH HALF -- keep the single tiling operator, but replace the
+    justification. decomposition_depth_cap is not a free parameter
+    over an abstraction axis; it is a DERIVED MIRROR of ARC-071's
+    chunk_max_depth, because the `depth` it tests is read straight
+    off traj.metadata["chunk_depth"] (hippocampal/module.py) and is
+    bounded above by ChunkLibrary.max_depth=3 as a structural fact.
+    So: values > chunk_max_depth are INERT (the mark-unreliable-by-
+    cap branch is unreachable); the value 1 DISABLES decomposition
+    (every chunk has depth >= 1, so all are dropped rather than
+    re-tiled); and neither setting warns. Sharper still, every
+    MECH-321 run to date seeds one depth-1 chunk
+    (seeded_chunk_sequence [0,1,2], minted via the replay path which
+    mints depth=1 unconditionally), and at depth 1 the values 2, 3,
+    4, ... 100 are byte-identical runs -- so at the only
+    configuration the parameter has ever run under it is a BINARY
+    switch, not a depth. The literature argument was therefore
+    conducted over a parameter with no observed degrees of freedom.
+    Corollary: Badre & Nee does not reach this parameter at all --
+    it dissolves a unidimensional ABSTRACTION GRADIENT, while
+    depth_cap indexes the ARC-071 ChunkLibrary's learned
+    COMPOSITIONAL stratification, which that paper's replacement
+    model retains rather than denies. And Solway's "a cost-derived
+    cap should MOVE as compute allows" is right but mis-addressed:
+    it belongs on chunk_max_depth, which is the free, compute-
+    bearing knob, not on MECH-321's mirror of it.
+
+    HETEROGENEITY HALF -- NOT YET DECIDABLE, and not for want of
+    thought: the instrument has never been switched on. REE ALREADY
+    HAS the "small set of operators at distinct scales" the flag
+    hypothesised it would need to acquire -- MECH-288 ships a
+    two-scale heterogeneous detector (fast: PE-threshold z-score
+    over z_world+z_self; slow: BOCPD-Gaussian over z_goal at
+    hazard 1/40). MECH-321 discards it twice: boundary_on()
+    collapses List[BoundaryEvent] to fired:bool + posterior:max and
+    MECH-321 never reads .events[].scale; and the call site builds
+    latent_signature from z_world+z_self only, with NO z_goal, so
+    the BOCPD detector returns (False, 0.0, []) for want of its
+    stream -- the slow scale is STRUCTURALLY DEAD on the rollout
+    stream. MECH-321 is a single-scale consumer of a two-scale
+    substrate. There is consequently no observation of
+    scale-differentiated decomposition to decide from.
+
+    PROBE that decides it (default-off, no behaviour change, no new
+    claim, runs on the EXISTING 816 harness): add z_goal to the
+    rollout latent_signature; read boundary.events[].scale rather
+    than only .fired; emit per-scale fire counts. Question: do fast
+    and slow fire at DISSOCIABLE rollout positions? Dissociable ->
+    register the scale-differentiated extension (a MECH-level
+    extension of MECH-321, NOT a new ARC -- the operators already
+    exist as MECH-288 scales). Slow never fires, or fires only
+    coincident with fast -> one effective scale on the imagination
+    stream, the single-operator position stands, close the question.
+    All three readings are informative; the middle is a live
+    possibility because z_goal is an INTEGRATOR and may not move
+    within one short rollout.
+
+    Why this probe is NOT a duplicate of the live V3-EXQ-816
+    campaign: that campaign's two open axes are trigger SENSITIVITY
+    (H-env-underdrives-uncertainty) and trigger VALIDITY
+    (H-vs-proxy-saturation), both attacking the silent end --
+    arm1_vs_trigger_total = 0 across the whole campaign, i.e.
+    MECH-321's DECLARED PRIMARY (V_s-drop) trigger has never fired
+    once, and every decomposition ever observed came from the
+    boundary/fast half alone. The scale question is a third axis --
+    trigger COMPOSITION -- and it is the only one attacking the
+    SATURATED end (decomp_fired_frac_arm1 = 1.0). A trigger that
+    always fires is exactly as uninformative as one that never
+    does; "fast 100% / slow 3%" is a measurement where "1.0" is
+    not.]
+
     Not yet experimentally tested. Discriminative-pair validation
     experiment specified in functional_restatement; deferred until
     MECH-288 substrate lands (event_segmenter.py with input_stream
