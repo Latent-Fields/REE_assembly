@@ -52,4 +52,4 @@ nav_exclude: true
   </noscript>
 </div>
 
-<script src="{{ '/assets/js/development-map.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/development-map.js?v=2' | relative_url }}"></script>
