@@ -1,0 +1,51 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations",
+  "run_id": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-27T20:37:04Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-091"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "cross_stream_similarity_band_not_supported",
+    "note": "C1 held (at least one ablation moved similarity) but C2 failed: the peak-composite arm 'residue_off' is interior, margin_vs_min=0.143, margin_vs_max=0.154 (threshold 0.15); monotonic_direction='none'. Secondary diagnostic (non-load-bearing): intact_beats_both_extremes=False. Complementary to V3-EXQ-827a -- see interpretation.note there for the landmark-removal/lockstep arms."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4a8a1ca4dd319a7463262233dd3e439d1fe40140b9d1db610f4c9478ce569651"
+}
