@@ -41793,10 +41793,61 @@
         happen to produce overlapping outputs on the execution
         phase.
 
-      - Q-XXX: depth-cap policy -- 3-4 levels suggested by R3
-        verdict, but the cap is an engineering choice. Whether
+      - Q-XXX: depth-cap policy -- RE-POSED 2026-07-27. The
+        question as originally written ("3-4 levels suggested by
+        R3 verdict, but the cap is an engineering choice; whether
         the cap should be hard (architectural commitment) or soft
-        (adaptive based on rollout budget) is open.
+        (adaptive based on rollout budget) is open") presupposes
+        that decomposition_depth_cap is a free parameter. It is
+        not, and while it is inert the hard-vs-soft question
+        cannot be asked. Source: MECH-321 decomposition-scale
+        scoping spike section 5a,
+        evidence/planning/mech321_decomposition_scale_scoping_spike_2026-07-27.md
+        (recommendation only; changed no claim status, confidence,
+        live_status or v3_pending).
+
+        WHY IT IS NOT FREE. The `depth` that
+        PolicyDecomposition.evaluate() tests against depth_cap is
+        read straight off traj.metadata["chunk_depth"]
+        (ree-v3 ree_core/hippocampal/module.py), and ARC-071
+        cannot mint a chunk above ChunkLibrary.max_depth
+        (REEConfig.chunk_max_depth, default 3). So
+        decomposition_depth_cap is a DERIVED MIRROR of
+        chunk_max_depth, and its useful range is
+        [2, chunk_max_depth]: above chunk_max_depth the
+        mark-unreliable-by-cap branch is unreachable and the
+        recursive leaf-tiling bound stops binding (4 and 100 are
+        the same run), while at 1 every chunk is dropped rather
+        than re-tiled and MECH-321 degenerates into a pure
+        withholding mechanism. Sharper still: every MECH-321 run
+        to date (V3-EXQ-815/816/816b/816c/816d/820) used one
+        depth-1 seeded chunk, at which depth every value >= 2 is
+        byte-identical -- the knob has never once exhibited a
+        degree of freedom, so the literature argument the
+        2026-07-27 provenance correction adjudicated was conducted
+        over a parameter with no observed variation.
+        Both mis-settings are now warned about at the REEAgent
+        wiring site (ree-v3 depth_cap_config_issues() in
+        ree_core/policy/policy_decomposition.py, emitted in
+        ree_core/agent.py, contract C17 in
+        tests/contracts/test_arc070_policy_decomposition.py).
+        The guard warns and does not raise, so no
+        currently-valid configuration changed behaviour.
+
+        THE LIVE QUESTION, in two halves:
+        (a) Should decomposition_depth_cap track chunk_max_depth
+        automatically -- a derived default with an explicit
+        opt-out -- rather than remain independently settable?
+        (b) Is chunk_max_depth, which is the actual free and
+        compute-bearing knob, the one that should move as compute
+        allows? Solway et al. 2014's "raise the depth bound as
+        compute permits" argument is currently attached to
+        MECH-321's mirror, where there is nothing for it to bound;
+        it belongs on ARC-071's chunk_max_depth. Note (b) is an
+        ARC-071 question inherited here only by mis-attachment,
+        and should register against ARC-071 if registered at all.
+        Registration deferred pending a decision on (a): today
+        this is a substrate-design question, not a claim.
 
       - Q-XXX: MECH-321 vs MECH-269b threshold coupling -- both
         read V_s; both may use thresholds. Whether the thresholds
