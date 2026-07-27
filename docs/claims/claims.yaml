@@ -42326,6 +42326,63 @@
     the MECH-322 carve-out. Bounded by construction (contiguous sub-sequences of length 2-5 only,
     FIFO-capped tally table) -- the naive enumeration is combinatorial in episode length.
     NO EXPERIMENTAL EVIDENCE YET; v3_pending stays True.
+    CHUNK-SIZE BUDGET CONVERTED FROM CONSTANT TO GROWABLE CEILING 2026-07-27, discharging the
+    follow-on the 2026-07-27 provenance correction opened (Ramkumar 2016; Bo, Borza & Seidler
+    2009). REEConfig.use_growable_chunk_ceiling, default OFF and bit-identical when OFF
+    (ChunkAccumulator.effective_max_chunk_size returns config.max_chunk_size and no growth
+    state is consulted). ON: the effective ceiling starts at max_chunk_size and grows one
+    element at a time toward derived_chunk_ceiling =
+    floor(chunk_deliberation_horizon * chunk_ceiling_budget_fraction), clamped below by
+    max_chunk_size and above by chunk_ceiling_hard_max (12, a tractability backstop, not a
+    claim about chunk size).
+    THE PARAMETER'S SHAPE CHANGED, THE NUMBER DID NOT. Ramkumar 2016 proposes no upper bound
+    and so licenses no replacement constant; none is asserted. chunk_ceiling_budget_fraction
+    defaults to 0.1667 = 5/30, ANCHORED so that at REE's actual rollout horizon (30 --
+    HippocampalConfig.horizon as set by from_dims, NOT the dataclass default of 10 that no
+    built agent uses) the derivation returns exactly 5, the inherited Sakai budget unchanged.
+    Only an agent with a LARGER deliberation budget derives a larger ceiling, which is
+    consequence (ii) of the lit entry (two rollout budgets -> two chunk sizes) made
+    substrate-real. Pinned by contract C11 test_c11_derivation_reproduces_the_inherited_budget
+    _at_reeds_real_horizon, which builds a real REEAgent rather than reading a default.
+    THE DIMINISHING-RETURNS BRAKE IS THE GROWTH RULE, not a second cap. Each growth step must
+    be licensed by a realised marginal outcome gain: the sequence at the current ceiling must
+    beat the better of the two sub-sequences one element shorter by >=
+    chunk_ceiling_returns_threshold. So growth stops when merging stops paying, at whatever
+    size that happens to be, and the Ramkumar plateau (~50-60% of single-unit complexity;
+    the macaques never collapse the sequence into one chunk) is an OUTCOME of the rule rather
+    than a tuned number. A monotonic practice-driven accumulator would eventually collapse the
+    whole sequence whatever number it stopped at; contract C11 test_c11_brake_plateaus_below
+    _the_derived_maximum pins that flat returns leave the ceiling at 5 with headroom to 10
+    available. VALUE STATUS: chunk_ceiling_returns_threshold = 0.10 is an UNCALIBRATED
+    ENGINEERING DEFAULT, exactly the status of F_low / F_high -- the RELATION (growth requires
+    positive marginal return) is literature-grounded, the threshold on this 0-1 outcome scale
+    is not.
+    DECOUPLED FROM R_min BY CONSTRUCTION (the Bo et al. dissociation). Capacity-to-chunk-LENGTH
+    held in both age groups but capacity-to-learning-RATE only in the young, so chunk size and
+    formation rate are separable and must not be calibrated as one quantity. Growth reads
+    realised outcome gain and the deliberation budget, NEVER the repetition tally;
+    min_repetitions enters the returns test only as a judge-ability filter. AUDITED 2026-07-27:
+    no existing or planned calibration sweep couples them (V3-EXQ-810 is the only experiment
+    touching chunk config and sets only chunk_min_repetitions + chunk_window_trials; no queue
+    or substrate_queue entry sweeps size against R_min), and they are already independent knobs
+    -- so nothing needed decoupling, but the OBVIOUS implementation of a growable ceiling
+    (grow it as repetitions accumulate) would have INTRODUCED the coupling. Pinned by contract
+    C11 test_c11_growth_is_decoupled_from_the_repetition_tally.
+    TRACTABILITY PRESERVED, and the pre-existing note above is imprecise: note_outcome tallies
+    only the SUFFIX of each permitted length (actions[-size:]), so its per-outcome cost is
+    O(ceiling), LINEAR, not combinatorial. The combinatorial enumeration the 2-5 bound was
+    justified against is the naive all-sub-sequences-at-all-positions one, which this module
+    has never performed. max_tracked_sequences (FIFO) remains the hard memory bound, unchanged.
+    NOT IMPLEMENTED -- SHRINKAGE. Bo et al. show chunk length DECLINES as capacity declines with
+    age. The cross-agent half is covered (a smaller-budget agent derives a smaller bound); the
+    within-lifetime half is not, because nothing lowers a ceiling once raised. Closing it needs
+    a declining-capacity signal REE does not currently have, so it is recorded as a gap rather
+    than guessed at. 16 further interface contracts (C11 block) in
+    ree-v3/tests/contracts/test_arc071_policy_chunking.py (60 total); registered PROBED in
+    ree-v3/tests/test_flag_inertness.py. Full suite green on ree-worker-2 (2453 passed; the one
+    failure, tests/preflight/test_queue_integrity.py::test_supersedes_targets_well_formed, is
+    PRE-EXISTING at HEAD and concerns V3-EXQ-826a's supersedes field, unrelated to this change).
+    STILL NO EXPERIMENTAL EVIDENCE -- this is substrate, not evidence; v3_pending stays True.
   title: "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution -- the RELATION is literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), the VALUES F_low=0.15 / F_high=0.45 are uncalibrated engineering defaults with NO literature support, awaiting child-MECH calibration; INITIAL chunk-size budget 2-5 elements per level, licensed by Sakai 2003 at MOTOR grain only and NOT a stable architectural constant -- Ramkumar 2016 shows chunk length grows with practice under a compute/efficiency trade-off, Bo & Seidler 2009 shows it tracks visuospatial working-memory capacity and declines with age, so the ceiling should be exposed as growable and ideally DERIVED from the agent's deliberation/rollout budget rather than configured independently; see the 2026-07-27 provenance correction in evidence_quality_note). Dissolution is SUPPRESSION WITH RETENTION, not erasure (2026-07-27 structural correction, registered on MECH-324): a previously-dissolved sequence re-forms at the REDUCED bar R_reacq = R_min * f_reacq rather than at R_min from scratch, so the MECH-323 trigger is state-dependent on the chunk library; and the initiation_set field becomes load-bearing for the renewal falsifier, which is expressible only if dissolution is scoped to the same context granularity formation uses. Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_accumulator_formation
