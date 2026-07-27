@@ -1,0 +1,80 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "c1_pass": false,
+    "c2_pass": false,
+    "c3_pass": true,
+    "c4_pass": false,
+    "c5_pass": true,
+    "median_r_acq_form": 20.0,
+    "median_r_reacq_default_arm": 90.0,
+    "r_min": 20,
+    "forced_bar_default_arm": 5,
+    "scaling_rho_default_window": null,
+    "scaling_rho_short_window": null,
+    "scaling_rho_floor": 0.8,
+    "f_reacq_sweep_default_window": {
+      "ARM_ON_F100_W100": {
+        "f_reacq": 1.0,
+        "median_r_reacq": 90.0,
+        "n_uncensored": 6,
+        "forced_bar": 20
+      },
+      "ARM_ON_F050_W100": {
+        "f_reacq": 0.5,
+        "median_r_reacq": 90.0,
+        "n_uncensored": 6,
+        "forced_bar": 10
+      },
+      "ARM_ON_F025_W100": {
+        "f_reacq": 0.25,
+        "median_r_reacq": 90.0,
+        "n_uncensored": 6,
+        "forced_bar": 5
+      },
+      "ARM_ON_F010_W100": {
+        "f_reacq": 0.1,
+        "median_r_reacq": 90.0,
+        "n_uncensored": 6,
+        "forced_bar": 2
+      }
+    },
+    "f_reacq_sweep_short_window": {
+      "ARM_ON_F100_W30": {
+        "f_reacq": 1.0,
+        "median_r_reacq": 28.0,
+        "n_uncensored": 6,
+        "forced_bar": 20
+      },
+      "ARM_ON_F050_W30": {
+        "f_reacq": 0.5,
+        "median_r_reacq": 28.0,
+        "n_uncensored": 6,
+        "forced_bar": 10
+      },
+      "ARM_ON_F025_W30": {
+        "f_reacq": 0.25,
+        "median_r_reacq": 28.0,
+        "n_uncensored": 6,
+        "forced_bar": 5
+      },
+      "ARM_ON_F010_W30": {
+        "f_reacq": 0.1,
+        "median_r_reacq": 28.0,
+        "n_uncensored": 6,
+        "forced_bar": 2
+      }
+    },
+    "off_arm_any_revived": false,
+    "on_arm_any_revived": true,
+    "n_off_cells_dissolved": 12,
+    "n_off_cells": 12,
+    "median_r_reacq_mild_arm": 84.0,
+    "mild_vs_severe_rel_delta": 0.06666666666666667,
+    "r_reacq_over_window_mean": 0.9081481481481481,
+    "r_reacq_over_window_stdev": 0.028765167168811268,
+    "all_on_cells_sit_on_forced_bar": false,
+    "n_censored_cells": 12,
+    "n_cells": 66
+  }
+}
