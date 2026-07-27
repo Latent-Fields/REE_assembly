@@ -12,14 +12,41 @@ Run standalone:
 Or under pytest:
     pytest scripts/test_export_public_explorer.py
 Exit code 0 == all checks pass; non-zero == failure.
+
+The export is redirected to a TEMP DIR -- see the _REAL_OUT_DIR block below.
 """
+import atexit
 import json
+import shutil
 import sys
+import tempfile
 from pathlib import Path
 
 import export_public_explorer as exp
 
-OUT_DIR = exp.OUT_DIR
+# --- redirect the export away from the tracked output dir -------------------
+# The exporter writes into `exp.OUT_DIR`, which by default is the TRACKED
+# docs/public_explorer/data/. Running this suite therefore used to regenerate
+# six tracked JSON files as a side effect: measured 2026-07-27, a single run
+# left +1979/-484 across four of them, because the published export had been
+# stale since 2026-06-15 and the test refreshed it.
+#
+# That is a real hazard in this repo, not untidiness. REE_assembly is a shared
+# multi-session checkout, so tracked files left dirty by a test are exactly
+# what the next session's whole-file read-modify-write sweeps into ITS commit
+# (root CLAUDE.md, "Read-modify-write contamination"). A test must not stage
+# work for someone else to land.
+#
+# `OUT_DIR` is a module-level global that the exporter re-reads at call time in
+# BOTH main() and validate_outputs(), so rebinding it once here covers the
+# whole suite. It is deliberately NOT restored afterwards: validate_outputs()
+# is called after main() and must see the same directory.
+_REAL_OUT_DIR = exp.OUT_DIR
+_TMP_OUT_DIR = Path(tempfile.mkdtemp(prefix="ree_public_explorer_test_"))
+atexit.register(shutil.rmtree, _TMP_OUT_DIR, ignore_errors=True)
+exp.OUT_DIR = _TMP_OUT_DIR
+
+OUT_DIR = _TMP_OUT_DIR
 
 
 # --- positive controls: the scrub MUST catch these -------------------------
@@ -60,9 +87,15 @@ def test_scrub_allows_clean_science():
     assert not failures, "\n".join(failures)
 
 
+_EXPORT_DONE = False
+
+
 def _ensure_export():
-    # Build the export (idempotent; overwrites previous output).
-    rc = exp.main.__wrapped__ if hasattr(exp.main, "__wrapped__") else None
+    # Build the export into the temp dir. Cached: four tests below need the
+    # output and the exporter is the slow part of this suite.
+    global _EXPORT_DONE
+    if _EXPORT_DONE:
+        return
     # main() parses argv; call it with no args by temporarily clearing argv.
     saved = sys.argv
     try:
@@ -71,6 +104,28 @@ def _ensure_export():
     finally:
         sys.argv = saved
     assert code == 0, f"exporter returned {code}"
+    _EXPORT_DONE = True
+
+
+def test_export_does_not_touch_tracked_output_dir():
+    """The redirect above must hold -- otherwise this suite dirties the repo.
+
+    Guards the redirect itself rather than trusting it, in the same spirit as
+    the LEAK_SAMPLES positive controls: a safety net that is never exercised is
+    not known to work. If someone re-points OUT_DIR at the real directory, or
+    the exporter starts resolving its own path internally instead of reading
+    the module global, this fails instead of silently rewriting tracked JSON.
+    """
+    _ensure_export()
+    assert exp.OUT_DIR == _TMP_OUT_DIR, (
+        f"exporter OUT_DIR was re-pointed at {exp.OUT_DIR}, expected the temp dir"
+    )
+    assert OUT_DIR != _REAL_OUT_DIR, "suite is asserting against the tracked dir"
+    # The export ran; if it landed anywhere, it landed in the temp dir.
+    assert (_TMP_OUT_DIR / "index.json").exists(), (
+        f"export did not write into the temp dir {_TMP_OUT_DIR} -- the redirect "
+        f"is not being honoured and output may have gone to {_REAL_OUT_DIR}"
+    )
 
 
 def test_outputs_valid_and_in_scope():
@@ -108,6 +163,7 @@ def test_pending_is_count_only():
 ALL_TESTS = [
     test_scrub_catches_leaks,
     test_scrub_allows_clean_science,
+    test_export_does_not_touch_tracked_output_dir,
     test_expected_files_exist,
     test_outputs_valid_and_in_scope,
     test_no_future_stage_claims,

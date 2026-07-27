@@ -1,0 +1,88 @@
+name: tests
+
+# Runs REE_assembly's own test suite.
+#
+# WHY THIS EXISTS (2026-07-27). Until this workflow landed, NOTHING ran these
+# tests. There is no pytest.ini / pyproject.toml / setup.cfg / tox.ini, no
+# Makefile, `scripts/governance.sh` never mentions pytest, and no git hook
+# invokes them -- each file just documents "Run: python3 scripts/test_foo.py"
+# in its own docstring and trusted a human to type it. 127 live tests across 7
+# files, four of them edited in the preceding week, sat permanently uncollected.
+# Nothing failed and nothing warned; they simply never ran.
+#
+# This is the third instance of one defect class, after two in ree-v3 on the
+# same day (REE_Working f3ed4eaf3b: remote_pytest.sh defaulted to `tests/` and
+# collected zero of the 264 tests under coordinator/, hiding two regressions on
+# trunk for months; REE_Working e2558ead00: the fix missed four more files, 45
+# more tests). The ree-v3 variant was a runner with too narrow a path list. The
+# variant here is more basic -- no runner at all -- so the fix is to add one.
+#
+# WHY NO EXPLICIT PATH LIST BELOW. A bare `pytest` from the repo root already
+# discovers all 7 files in ~3.4s, so this workflow deliberately passes NO path
+# arguments. That is the point: a path list is the thing that went stale twice
+# in ree-v3, and the safest list is the one that does not exist. The residual
+# drift risk is the `paths:` trigger filter below, and that is what
+# scripts/test_ci_test_coverage_pin.py pins.
+#
+# WHY CI RATHER THAN A HOOK. REE_assembly is the coordination-data plane: the
+# hub's sync_daemon phase3 writers (results, queue snapshot, heartbeats) push
+# to master continuously. A pre-commit or pre-push gate here would sit in front
+# of those writers and could wedge the fleet. CI runs after the push and cannot
+# block them. It is also the only place this suite is safe to run at all --
+# see scripts/test_export_public_explorer.py, whose export used to rewrite
+# tracked JSON in whatever checkout it ran in. A CI checkout is ephemeral.
+
+on:
+  push:
+    branches: [master]
+    # Scoped so the continuous phase3 coordination-data commits (evidence
+    # manifests, queue snapshots, heartbeats) do not each trigger a run -- only
+    # ~10 of the preceding week's commits touched anything below. Every test
+    # file AND every subject under test must be reachable from this list, which
+    # is asserted by scripts/test_ci_test_coverage_pin.py rather than trusted.
+    paths:
+      - 'scripts/**.py'
+      - 'evidence/experiments/scripts/**.py'
+      - 'serve.py'
+      - '.github/workflows/tests.yml'
+  workflow_dispatch:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # The suite is otherwise stdlib-only. pyyaml is a genuine runtime
+      # dependency of the subjects (export_public_explorer, generate_pending_review
+      # and serve.py all import yaml to read docs/claims/claims.yaml).
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip pytest pyyaml
+
+      # No path arguments -- see the header. `-p no:cacheprovider` keeps the
+      # runner from writing a .pytest_cache into the checkout.
+      - name: Run tests
+        run: python -m pytest -q -p no:cacheprovider
+
+      # A green suite that collected nothing is the exact failure being fixed
+      # here, so assert the run was not vacuous. The floor is deliberately well
+      # under the current 128 so ordinary additions do not trip it; the
+      # coverage pin, not this number, is what catches a newly-stranded file.
+      - name: Assert the run was not vacuous
+        run: |
+          set -euo pipefail
+          n=$(python -m pytest --collect-only -q -p no:cacheprovider 2>/dev/null \
+              | grep -c '::' || true)
+          echo "collected $n test(s)"
+          if [ "$n" -lt 100 ]; then
+            echo "FAIL: only $n tests collected (expected >=100)." >&2
+            echo "      Either collection broke or tests were removed without" >&2
+            echo "      updating this floor. A near-empty green run is the" >&2
+            echo "      defect this workflow exists to prevent." >&2
+            exit 1
+          fi
