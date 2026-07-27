@@ -60065,6 +60065,136 @@
     raw thought as the search brief. Check overlap with MECH-316 first -- the
     successor-representation thread is already registered.
 
+- id: Q-085
+  title: "Is committed-macro GRAIN a controllability parameter? If habit is chunked action sequences selected by a single goal-directed process (Dezfouli & Balleine 2013) rather than a separate outcome-insensitive controller, then the duration over which the planner CANNOT intervene is set by committed-macro grain -- MECH-323's chunk_max_size x chunk_max_depth -- and the chunk-size budget is a CONTROLLABILITY parameter, not only a formation parameter. A budget set too high would present as outcome-insensitivity while REPORTING NOTHING at the accumulator, because nothing in MECH-323 measures the intervention interval it creates."
+  claim_type: open_question
+  subject: policy.composition.grain_as_controllability
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-07-27
+    needs_review: false
+  epistemic_category: standard
+  implementation_phase: v3
+  claim_level: mechanistic
+  registered_utc: "2026-07-27"
+  registered: "2026-07-27"
+  depends_on:
+    - MECH-323    # the chunk-size budget whose semantics this question is about
+    - ARC-071     # parent composition commitment
+    - MECH-321    # decomposition operator; the one existing mid-macro release that shortens the interval
+    - MECH-163    # the dual-system claim whose habit leg this reframes
+  evidence: []
+  source:
+    - evidence/planning/claim_synthesis_MECH-163_2026-07-27.md
+    - evidence/literature/targeted_review_connectome_mech_323/entries/2026-07-26_mech_323_hierarchical_action_sequences_dezfouli2013
+  location: docs/architecture/policy_primitive_granularity.md
+  what_would_answer: >
+    THE DOSE-RESPONSE ARM OF THE MECH-163 HIERARCHICAL-VS-FLAT FALSIFIER -- deliberately
+    specified so it costs ZERO additional compute: the same run that discriminates the two
+    architectures answers this question, because the discriminating statistic IS the
+    dose-response. Do not queue a separate experiment for it.
+    Design: post-devaluation policy persistence (SD-033b OFC-analog devaluation; existing
+    driver lineage V3-EXQ-485g/i/k/m) measured across chunk_max_size in {2, 3, 5} on the
+    chunk-injection arm (use_policy_chunking + use_chunk_proposal_injection ON,
+    use_dualsystem_arbitration OFF).
+    RESOLVED-YES if persistence rises MONOTONICALLY with the REALISED mean committed-chunk
+    length. RESOLVED-NO if persistence is flat in realised length while chunks demonstrably
+    form, are selected, AND are committed at differing realised lengths.
+    MANDATORY GATES (this lineage has burned two runs on degenerate DVs -- V3-EXQ-786a's
+    constant first-step vector and V3-EXQ-811's 0.0-for-empty-list aggregation):
+      (a) count committed trajectories with metadata source arc071_chunk > 0 per seed --
+          zero is a READINESS FAILURE that scores nothing, not a null. This is the gate
+          V3-EXQ-810 failed.
+      (b) REALISED mean committed-chunk length must DIFFER across the dose conditions.
+          Configuring chunk_max_size is not the manipulation; the realised length is. An
+          inert dose axis is a readiness failure.
+      (c) the devaluation manipulation check must be measured on a probe that does not
+          involve the agent's policy, else a null is a devaluation failure.
+      (d) gate every input to the DV's own statistic, not merely the prominent one.
+    CONFOUNDER THAT CAN INVERT THE EFFECT, pre-register it: a longer macro is exposed to
+    MORE mid-commitment release opportunities, so it can read as LESS insensitive purely
+    because it was interrupted more often. Log per-release counts for all five releases
+    (MECH-091, MECH-342, rung-6 natural-commit urgency + SD-033e, MECH-321/ARC-070, SD-034)
+    and report persistence both raw and conditioned on UNINTERRUPTED macros.
+  evidence_quality_note: >
+    LIT GROUNDING, and it is stronger than the question was drafted on. Primary:
+    Dezfouli & Balleine 2013 (10.1371/journal.pcbi.1003364), in BOTH targeted reviews --
+    targeted_review_connectome_mech_323 (supports, 0.78) and
+    targeted_review_connectome_mech_163 (weakens, 0.72, scoped to the model-free
+    conjunct). Its third failure_signature states the consequence directly: chunk
+    boundaries become the only points at which goal-directed control can act.
+    CONVERGING, landed 2026-07-27 in REE_assembly 36901c01ed (session
+    optimistic-ellis-4357c6, MECH-321/323 numeric-parameter pull) -- and it arrives from
+    the OPPOSITE direction, which is why the pair is worth more than either alone:
+      - Ramkumar 2016 (Nat Commun, 10.1038/ncomms12176, weakens 0.68): chunk length GROWS
+        with practice under a compute/efficiency trade-off, with NO upper bound proposed.
+      - Bo & Seidler 2009 (J Neurophysiol, 10.1152/jn.00393.2009, mixed 0.62): chunk
+        length tracks visuospatial working-memory capacity and declines with age.
+      - Solway 2014 (PLoS CB, 10.1371/journal.pcbi.1003779, filed as an explicit unknown
+        NULL): the leading normative account of hierarchy quality at POLICY grain imposes
+        no subtask-size budget at all.
+    That pull concluded the ceiling should be derived from the DELIBERATION BUDGET. This
+    question supplies the other side of the same bound: deliberation cost sets a LOWER
+    bound on useful chunk size (chunk more to think less), controllability sets an UPPER
+    one (chunk less to stay correctable). Neither alone determines the budget; MECH-323
+    currently registers 2-5 as a formation parameter with no owner for either bound, and
+    Solway is the evidence that the number does not follow from optimality.
+    SUBSTRATE FINDING MOTIVATING THE QUESTION (verified at source 2026-07-27, not
+    inferred): a committed trajectory can be released mid-execution by exactly five
+    mechanisms -- MECH-091 (acute z_harm threat), MECH-342 (degraded execution readiness),
+    the rung-6 natural-commit duration lever with SD-033e frontopolar pressure (which reads
+    the goal-proximity of FOREGONE ALTERNATIVES -- the nearest analogue, but not
+    devaluation of the committed outcome), MECH-321/ARC-070 (V_s prediction failure on the
+    remaining macro), and SD-034 closure de-commit. NONE reads whether the committed
+    outcome is still VALUABLE. Outcome-insensitivity is therefore already STRUCTURAL in
+    the V3 build, produced by grain, in a substrate that contains no model-free machinery
+    anywhere (ree_core returns zero hits for model_free / q_value / q_table / td_error).
+    BOUNDING NOTE: the registered defaults are chunk_max_size 5 and chunk_max_depth 3, and
+    a depth-3 chunk's sequence may itself contain depth-2 chunks -- so the defaults admit a
+    top-level macro LONGER THAN A TYPICAL EPISODE (V3-EXQ-810 ran at 24 steps/episode). At
+    default settings the insensitivity window is bounded by episode length, not by the
+    budget.
+  notes: >
+    REGISTERED 2026-07-27 by /claim-synthesis on MECH-163 (proposal
+    evidence/planning/claim_synthesis_MECH-163_2026-07-27.md, user-approved per-item).
+    That run's Step-3 gate returned STOP -- MECH-163 has ONE genuine non-degenerate FAIL
+    signature (V3-EXQ-786b), which is a clean single falsification rather than granularity
+    debt, and the claim was already decomposed 2026-07-22. This Q-claim and a three-edit
+    RESTATEMENT of MECH-163 are the entire output; no mechanism claims were minted.
+    User approval was conditional on the MECH-321/323 parameter lit-pull landing first. It
+    had ALREADY landed (36901c01ed, 06:05Z) unknown to both parties at approval time, so
+    the condition was satisfied on registration rather than deferred.
+    WHY THIS IS NOT FOLDED INTO MECH-323: MECH-323 is the FORMATION operator and states its
+    parameters as formation parameters. The controllability semantics belong to the CONSUMER
+    side -- the beta gate, _committed_step_idx, and the release set in agent.select_action --
+    which MECH-323 does not own. Registering it against MECH-323 would hide exactly the
+    coupling this question exists to surface.
+    WHY IT IS NOT A DUPLICATE OF THE MECH-163 FALSIFIER: the falsifier asks WHICH
+    ARCHITECTURE produces outcome-insensitivity (grain vs arbitration). This asks whether a
+    REGISTERED PARAMETER silently sets a control property nothing measures. The second
+    survives either answer to the first: if grain wins, the budget is the control knob; if
+    arbitration wins, the budget still sets an uninstrumented insensitivity floor.
+    BLOCKED, and the probe has already run: V3-EXQ-810 (2026-07-23) failed
+    C1_accumulator_fires at a 2/3 seed bar over n=3 -- chunks formed and crystallised
+    end-to-end on seed 101 (7 formed, 22 tracked sequences, 6 crystallised) and 0 on seeds
+    202/303 (6 tracked sequences each). Its interpretation label chunk_accumulator_silent
+    OVERSTATES this: the accumulator ran on every arm and seed (360 steps, 120 outcomes),
+    the OFF arm was correctly inert, the formation/maintenance dissociation held, and the
+    flat-outcome-stream excuse was ruled out (spread 0.256 against a 0.05 floor). What
+    remains is complicated (buildable): determine which of the three AND-gates
+    (repetition >= R_min / variance < F_low / mean > baseline + margin) blocks seeds
+    202/303. The accumulator's own per-sequence tally already holds the answer. 810 has NO
+    autopsy on file; that adjudication is /failure-autopsy work.
+    SEQUENCING TRAP: building a value-driven mid-commitment release would DESTROY the
+    phenomenon under test. It must come AFTER this question is answered, not before.
+    ID NOTE: allocated as the next free id at write time (max was Q-084) per the
+    allocate-at-write-time rule. MECH-204's 2026-07-22 note pencils "Q-085
+    recalibration_timescale" for a contingent future child; that child was never
+    registered, reservations are not the convention, and it should take the then-next free
+    id when and if it is minted.
+
 # --- Cluster E: conservative skill refinement, multi-timescale learning ------
 # REE COGNITIVE ARCHITECTURE half of the Microsoft SkillOpt source.
 # The Assembly half is cluster F below. Keep separate; see GOV-ANALOGY-1.
