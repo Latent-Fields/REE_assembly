@@ -1,0 +1,164 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_830_mech321_scale_resolved_rollout_boundary",
+  "run_id": "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-27T20:49:27Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "slow_never_fires_on_rollout",
+    "preconditions": [
+      {
+        "name": "ARM_PROBE_OFF::instrumentation_coverage",
+        "precondition": "instrumentation_coverage",
+        "arm": "ARM_PROBE_OFF",
+        "kind": "readiness",
+        "description": "READINESS: the driver-side sweep recorder must have observed essentially every pre-commitment evaluation (n_recorder_ticks / decomp_n_evaluated_precommit), else the position histograms are over an unknown subsample.",
+        "control": "worst cell in this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_PROBE_OFF::fast_scale_fires",
+        "precondition": "fast_scale_fires",
+        "arm": "ARM_PROBE_OFF",
+        "kind": "readiness",
+        "description": "READINESS positive control: the always-fires end must reproduce -- the fast scale must fire at all in this arm, else there is no saturated end to resolve and a slow-scale null is uninterpretable.",
+        "control": "pooled fast-scale fires in this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1387.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_PROBE_ON::instrumentation_coverage",
+        "precondition": "instrumentation_coverage",
+        "arm": "ARM_PROBE_ON",
+        "kind": "readiness",
+        "description": "READINESS: the driver-side sweep recorder must have observed essentially every pre-commitment evaluation (n_recorder_ticks / decomp_n_evaluated_precommit), else the position histograms are over an unknown subsample.",
+        "control": "worst cell in this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.99,
+        "met": true
+      },
+      {
+        "name": "ARM_PROBE_ON::fast_scale_fires",
+        "precondition": "fast_scale_fires",
+        "arm": "ARM_PROBE_ON",
+        "kind": "readiness",
+        "description": "READINESS positive control: the always-fires end must reproduce -- the fast scale must fire at all in this arm, else there is no saturated end to resolve and a slow-scale null is uninterpretable.",
+        "control": "pooled fast-scale fires in this arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1387.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_PROBE_ON::zgoal_present_on_rollout",
+        "precondition": "zgoal_present_on_rollout",
+        "arm": "ARM_PROBE_ON",
+        "kind": "readiness",
+        "description": "READINESS: current_z_goal must actually be a tensor on the rollout side. With z_goal_enabled False (the substrate default) it is None, the BOCPD detector skips it exactly as if absent, and 'slow never fires' would be a wiring artefact.",
+        "control": "pooled fraction of ARM_PROBE_ON sweeps carrying a z_goal tensor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.8700376096949436,
+        "threshold": 0.1,
+        "met": true
+      },
+      {
+        "name": "ARM_PROBE_ON::zgoal_norm_varies",
+        "precondition": "zgoal_norm_varies",
+        "arm": "ARM_PROBE_ON",
+        "kind": "readiness",
+        "description": "READINESS, SAME STATISTIC THE LOAD-BEARING DETECTOR ROUTES ON: MECH-288's slow BOCPD change-points on shifts in the summed per-stream z.norm(), so the readiness check asserts the STD of the z_goal norm ACROSS SWEEPS, not its magnitude or presence. A present-but-frozen z_goal must trip this gate rather than read as a refuted slow scale (the 643 magnitude-vs-range defect).",
+        "control": "pooled ARM_PROBE_ON sweeps (positive control: z_goal is an integrator and is expected to drift across agent ticks once benefit is received)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.07002869757555152,
+        "threshold": 0.0001,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "Flat union of BOTH arms' applied preconditions. ARM_PROBE_ON is the sole load-bearing arm (the control arm's slow-scale zero is structural), so a red ON gate vacates the whole run rather than leaving a scorable remainder. Per-arm detail, including preconditions scoped out of the control arm, is at top level under per_arm_gate.",
+    "criteria": [
+      {
+        "name": "C_DECIDABLE_instrument_returned_a_reading",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C_SLOW_FIRES_on_rollout",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C_DISSOCIABLE_low_cofire_distinct_positions",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C_CONTROL_slow_silent_with_flag_off",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_DECIDABLE": true,
+      "C_SLOW_FIRES": true,
+      "C_DISSOCIABLE": false,
+      "C_CONTROL": true
+    },
+    "null_reading_guide": {
+      "scales_dissociable_on_rollout": "REE's substrate exhibits heterogeneous distinct-scale segmentation on the imagination stream -> register option (b), the MECH-level scale-differentiated-decomposition extension sketched in spike section 5c (fast/PE boundaries re-segment at fine grain, slow/goal-BOCPD boundaries trigger a coarser response). MECH-321 would become the fast-scale member.",
+      "slow_never_fires_on_rollout": "z_goal does not vary informatively WITHIN a rollout; one effective scale on the imagination stream -> option (a) stands, close the design question and retire the section 5c sketch. Says nothing about the OBSERVATION stream, where the slow scale is separately contracted, and does not weaken MECH-288.",
+      "slow_fires_only_with_fast": "Two detectors, one signal; the heterogeneity is nominal at this grain -> option (a) stands, record the null. Also does not weaken MECH-288.",
+      "substrate_not_ready_requeue": "The instrument was not demonstrably switched on (z_goal absent or frozen on the rollout side, recorder coverage short, or the control arm's slow scale non-silent). Re-queue with the failing precondition repaired -- do NOT read this as any of the three scientific outcomes."
+    },
+    "follow_on_named_not_done": "MECH-321's MID-EXECUTION hook (ree_core/agent.py) builds its own {z_world, z_self} signature and is NOT extended by this flag, so midexec ticks advance the fast rollout detector but never the slow one. That dilution is BOUNDED here (on_midexec_dilution_frac, on_slow_frac_precommit_corrected), not removed. Extending the mid-execution hook is a separate /implement-substrate increment and is deliberately NOT done inline."
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "6b5f1090fa2aeddb94462b685b6419d101c6fa9377d39236b8195962022d7ce2"
+}
