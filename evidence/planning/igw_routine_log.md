@@ -1178,3 +1178,4 @@ One line per hourly tick. ASCII only.
 2026-07-27T19:35:29Z complete IGW-20260727-210 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-831 for MECH-466 (event-relative vs clock-relative cross-stream al
 2026-07-27T20:15:00Z reconcile-release hash=d6c276bcac45 (IGW-20260727-210 -> completed)
 2026-07-27T20:14:51Z skip IGW-20260727-210: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-27T23:17:45Z no eligible item (skipped 240): IGW-20260727-001:skill /governance not allowed; IGW-20260727-002:skill /governance not allowed; IGW-20260727-003:skill /governance not allowed
