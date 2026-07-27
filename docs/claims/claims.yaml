@@ -40806,6 +40806,13 @@
     baseline, so a validation task must supply outcome CONTRAST, not merely repetition.
     DISTINCT FROM MECH-477/SD-081 (allocation; built in parallel the same day): ARC-071 is the
     TRANSFER mechanism. MECH-163 presupposes both and specifies neither.
+    FLAG INVENTORY EXTENDED 2026-07-27 (ree-v3 6c3e67e): a further default-OFF sub-switch
+    REEConfig.use_chunk_dissolution_retention (with REEConfig.chunk_reacquisition_repetition_factor
+    = 0.25) nested under use_chunk_maintenance makes the MECH-324 DISSOLVED state DORMANT rather
+    than an absorbing tombstone -- see the MECH-324 implementation_note for the correction and its
+    Barnes 2005 / Bouton 2012 grounding -- taking the interface-contract count in
+    ree-v3/tests/contracts/test_arc071_policy_chunking.py up by 10 (the C10 block, 14 collected
+    cases) at that landing.
   title: "policy_composition_via_repeated_grounding (zoom-out / chunk a sequence of primitives into a single atomic primitive after repeated successful execution). Child of ARC-069 dynamic-regranularisation parent commitment. Architectural commitment: sequences of policy primitives that have been repeatedly executed together with consistent outcomes are accumulated into a single primitive that the rule-apprehension and diversity-generation layers can treat atomically. Trigger: repetition count + outcome consistency (slow accumulator). Direction: zoom out. Phenomenology anchor: 'making coffee was once seventeen motor acts; after a thousand repetitions it is one unit.' Names the TRANSITION mechanism (planned -> habitual chunk) that MECH-163 dual systems presupposes but does not specify."
   claim_type: architectural_commitment
   subject: policy.composition_via_repeated_grounding
@@ -42422,6 +42429,15 @@
     failure, tests/preflight/test_queue_integrity.py::test_supersedes_targets_well_formed, is
     PRE-EXISTING at HEAD and concerns V3-EXQ-826a's supersedes field, unrelated to this change).
     STILL NO EXPERIMENTAL EVIDENCE -- this is substrate, not evidence; v3_pending stays True.
+    CROSS-REFERENCE, MECH-324 RETENTION (2026-07-27, ree-v3 6c3e67e): the sentence above that the
+    joint formation gate is implemented "exactly as registered" is now conditional. Under
+    REEConfig.use_chunk_dissolution_retention (default OFF, so unconditional at defaults) a
+    PREVIOUSLY-DISSOLVED sequence re-enters this SAME gate with only the repetition term
+    substituted -- ceil(R_min * reacquisition_repetition_factor) counted since dissolution, against
+    a dedicated counter rather than the sliding tally -- while the variance < F_low and mean >
+    baseline + margin terms are applied UNCHANGED. So MECH-323's formation trigger becomes
+    state-dependent on the MECH-324 library, and a reader reasoning about repetitions-to-formation
+    must check whether the sequence has a dormant chunk. See the MECH-324 implementation_note.
   title: "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution -- the RELATION is literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), the VALUES F_low=0.15 / F_high=0.45 are uncalibrated engineering defaults with NO literature support, awaiting child-MECH calibration; INITIAL chunk-size budget 2-5 elements per level, licensed by Sakai 2003 at MOTOR grain only and NOT a stable architectural constant -- Ramkumar 2016 shows chunk length grows with practice under a compute/efficiency trade-off, Bo & Seidler 2009 shows it tracks visuospatial working-memory capacity and declines with age, so the ceiling should be exposed as growable and ideally DERIVED from the agent's deliberation/rollout budget rather than configured independently; see the 2026-07-27 provenance correction in evidence_quality_note). Dissolution is SUPPRESSION WITH RETENTION, not erasure (2026-07-27 structural correction, registered on MECH-324): a previously-dissolved sequence re-forms at the REDUCED bar R_reacq = R_min * f_reacq rather than at R_min from scratch, so the MECH-323 trigger is state-dependent on the chunk library; and the initiation_set field becomes load-bearing for the renewal falsifier, which is expressible only if dissolution is scoped to the same context granularity formation uses. Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_accumulator_formation
@@ -42922,6 +42938,65 @@
     DISSOLVED and bypasses the slower DISSOLVING window. NO EXPERIMENTAL EVIDENCE YET; v3_pending
     stays True. MECH-324's registered signature (the latency / rollout-cost drop) requires the
     ARM_1-vs-ARM_2 experiment, which is downstream of the readiness diagnostic.
+    DISSOLUTION CORRECTED FROM ERASURE TO SUPPRESSION-WITH-RETENTION 2026-07-27 (ree-v3 6c3e67e).
+    AS FIRST BUILT, DISSOLVED WAS NOT MERELY TERMINAL BUT AN ABSORBING TOMBSTONE, AND THAT WAS
+    WORSE THAN ERASURE. The chunk was retained in the library dict for the audit trail, and
+    PolicyChunking.note_outcome() skips any sequence already present in the library, while
+    note_real_execution() had no DISSOLVED branch -- so the retained tombstone permanently BLOCKED
+    its own sequence from ever re-forming, at any number of repetitions and any outcome
+    consistency. Erasure would at least have permitted re-formation at R_min. Measured on the
+    contract fixture: after forcing a crystallised chunk to DISSOLVED, 200 further trials of the
+    same perfectly consistent above-baseline regime left it DISSOLVED with zero re-formations.
+    CORRECTED behind REEConfig.use_chunk_dissolution_retention (default False, bit-identical when
+    OFF), grounded in the 2026-07-27 targeted lit-pull (REE_assembly 36901c01ed), which converges
+    from two independent directions: Barnes, Kubota, Hu, Jin & Graybiel 2005 (Nature,
+    10.1038/nature04053) -- sensorimotor striatal ensemble patterns are "successively formed,
+    reversed and then re-emerged", and "regaining a habit can occur quickly, with even one or a few
+    exposures"; and Bouton, Winterbauer & Todd 2012 (Behav Processes,
+    10.1016/j.beproc.2012.03.004) on INSTRUMENTAL extinction -- the action level ARC-071 operates
+    on -- which "weakens behavior without erasing the original learning", installing new
+    context-dependent learning ALONGSIDE the old.
+    WITH THE FLAG ON, DISSOLVED IS DORMANT rather than dead: retained, STILL UNSELECTABLE (retention
+    buys a cheaper route back, not a free pass back into the proposal pool), and re-formable at
+    ceil(R_min * reacquisition_repetition_factor) repetitions counted SINCE DISSOLUTION -- the
+    rapid-reacquisition relapse effect. Repetitions are a dedicated post-dissolution counter, not
+    the accumulator's tally length: that tally is a sliding window capped at window_trials and a
+    long-lived chunk's bucket sits saturated at the cap, so a lowered bar read against it would
+    clear on the first post-dissolution trial and measure nothing. THE OTHER TWO MECH-323 FORMATION
+    GATES ARE UNCHANGED (variance < F_low AND mean > running baseline + evaluative margin), so only
+    the repetition requirement is relaxed -- retention lowers the price of coming back, not the
+    evidence required. Revival returns the chunk to FORMING, not to CRYSTALLISED, so C_min re-runs
+    from zero: rapid reacquisition is a claim about the FORMATION threshold, while the
+    crystallisation counter is the separate Smith & Graybiel 2013 IL sub-mechanism. MECH-322
+    replay-origin chunks are NEVER revived (fails closed) -- a chunk retired for want of real waking
+    corroboration must not return by a REDUCED bar, which would be a shortcut around the MECH-094
+    posture the carve-out exists to preserve. Retention without use_chunk_maintenance RAISES rather
+    than running silently inert (nothing dissolves with maintenance off, so the flag would otherwise
+    read enabled in a manifest while never firing).
+    VALUE STATUS: reacquisition_repetition_factor = 0.25 is an UNCALIBRATED ENGINEERING DEFAULT with
+    NO numeric literature support, on exactly the same footing as F_high = 0.45. Both lit entries
+    establish the DIRECTION (reacquisition is materially faster than acquisition; dissolution
+    suppresses without erasing) and NEITHER quantifies the magnitude. Do not read 0.25 as a
+    literature-derived value.
+    NOT IMPLEMENTED -- the other two Bouton relapse effects are design questions, not builds:
+    RENEWAL needs dissolution gated against the chunk's initiation_set (formation is
+    context-conditioned, dissolution is context-BLIND, so a chunk dissolved in one context is
+    dissolved everywhere and REE cannot exhibit renewal at all), and RESURGENCE needs dissolution
+    state shared across competing library candidates, which per-sequence registration does not
+    produce. 10 new C10 contracts (14 collected cases) in
+    ree-v3/tests/contracts/test_arc071_policy_chunking.py; flag registered PROBED in
+    ree-v3/tests/test_flag_inertness.py. STILL NO EXPERIMENTAL EVIDENCE -- this is substrate, not
+    evidence; v3_pending stays True.
+    VALIDATION STATUS AS OF 2026-07-27T17:15Z -- NOT CLAIMABLE. The rapid-reacquisition falsifier
+    V3-EXQ-829 was authored and landed (script + queue entry, ree-v3 77e3ddc, smoke PASS), but the
+    DB-authoritative phase3 queue snapshot ree-v3 d1d7066 has since REMOVED that entry from
+    experiment_queue.json -- it was never POSTed to the coordinator, so it does not exist in the DB
+    and nothing can claim it. Re-POST is required before this claim can acquire evidence. Note the
+    falsifier is deliberately an OPERATOR-LEVEL driver, not an agent run, because the V3-EXQ-810
+    readiness diagnostic measured the MECH-323 accumulator SILENT under agent control
+    (chunk_accumulator_silent) -- an agent-level reacquisition run would measure that readiness gap
+    rather than MECH-324. Falsifiers (b) renewal and (c) resurgence remain unbuildable per the
+    NOT IMPLEMENTED paragraph above.
   title: "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_maintenance_dissolution
