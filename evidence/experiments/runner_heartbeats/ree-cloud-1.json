@@ -1,48 +1,33 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-27T01:50:36Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-816b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-699b",
-      "result": "FAIL",
-      "completed_at": "2026-07-24T12:35:51.108388+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-811a",
-      "result": "PASS",
-      "completed_at": "2026-07-24T23:18:48.081571+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-816",
-      "result": "FAIL",
-      "completed_at": "2026-07-25T21:47:51.777115+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-822",
-      "result": "FAIL",
-      "completed_at": "2026-07-26T11:21:53.334185+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-819a",
-      "result": "PASS",
-      "completed_at": "2026-07-27T00:50:13.339541+00:00"
-    }
+  "last_tick_utc": "2026-07-27T06:12:36Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-826a",
+  "current_exq_started_utc": "2026-07-27T06:00:20.316184+00:00",
+  "current_title": "MECH-244: precision-weighted PE suppression -> self-sealing world model (CORRECTED -- E1 now ticked)",
+  "current_claim_id": "MECH-244",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 0 / ARM_CONTROL",
+    "runs_done": 0,
+    "runs_total": 15,
+    "episodes_done": 0,
+    "episodes_total": 400,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 736,
+  "seconds_remaining": 3600,
+  "recent_lines": [
+    "V3-EXQ-826a: MECH-244 precision-weighted PE suppression / self-sealing world model (CORRECTED -- E1 now ticked, see module docstring)",
+    "dry_run=False",
+    "Seed 0 Condition ARM_CONTROL"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 4043988,
-  "runner_version": "r4346 a110ccb 2026-07-27 (running r4072 35c103c)",
+  "runner_version": "r4348 611e8a9 2026-07-27 (running r4072 35c103c)",
   "gpu": {
     "available": false
   },
