@@ -42985,17 +42985,42 @@
     state shared across competing library candidates, which per-sequence registration does not
     produce. 10 new C10 contracts (14 collected cases) in
     ree-v3/tests/contracts/test_arc071_policy_chunking.py; flag registered PROBED in
-    ree-v3/tests/test_flag_inertness.py. STILL NO EXPERIMENTAL EVIDENCE -- this is substrate, not
-    evidence; v3_pending stays True.
-    VALIDATION STATUS AS OF 2026-07-27T17:15Z -- NOT CLAIMABLE. The rapid-reacquisition falsifier
-    V3-EXQ-829 was authored and landed (script + queue entry, ree-v3 77e3ddc, smoke PASS), but the
-    DB-authoritative phase3 queue snapshot ree-v3 d1d7066 has since REMOVED that entry from
-    experiment_queue.json -- it was never POSTed to the coordinator, so it does not exist in the DB
-    and nothing can claim it. Re-POST is required before this claim can acquire evidence. Note the
-    falsifier is deliberately an OPERATOR-LEVEL driver, not an agent run, because the V3-EXQ-810
+    ree-v3/tests/test_flag_inertness.py.
+    FIRST EXPERIMENTAL EVIDENCE LANDED 2026-07-27T17:05:39Z, AND THE RAPID-REACQUISITION FALSIFIER
+    FAILED. V3-EXQ-829 (script + queue entry ree-v3 77e3ddc; run
+    v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3, ree-cloud-2, 66 cells =
+    6 seeds x 11 arms) returned outcome FAIL, evidence_direction MIXED for MECH-324 (SUPPORTS for
+    MECH-323), non-degenerate, self-routing label retention_real_but_rapid_reacquisition_falsified.
+    NOT YET AUTOPSIED and NOT marked reviewed -- adjudication is /failure-autopsy work and this
+    note records the result only. v3_pending and status are LEFT UNCHANGED pending that
+    adjudication and the governance cycle; do not read this paragraph as a disposition.
+    WHAT HELD: C3, the retention-vs-erasure discriminator -- with the flag OFF all 12 of 12
+    dissolved cells stayed dead, and with it ON they revived. So the structural correction above is
+    REAL: DISSOLVED genuinely was an absorbing tombstone and no longer is. C5 (mild-dissolution
+    robustness) also held.
+    WHAT FAILED: C1, the LOAD-BEARING criterion -- reacquisition was not faster than acquisition
+    but SLOWER, median r_reacq 90 against a measured median r_acq of 20 (= R_min exactly). And C2,
+    the scaling criterion -- r_reacq was FLAT at 90 across every f_reacq in {1.0, 0.5, 0.25, 0.1}
+    (forced bars 20 / 10 / 5 / 2), so Spearman rho was undefined. The bar the correction introduced
+    had NO measurable effect on the DV it was built to move.
+    THE LIKELY READING, offered as a hypothesis for the autopsy and NOT as a verdict: revival is
+    rate-limited by the VARIANCE window flushing, not by the repetition bar. r_reacq / W = 0.908
+    +/- 0.029 across the sweep, and the W axis (pre-registered as a verdict-aliasing control)
+    separates the two readings cleanly -- median r_reacq is 90 at W = 100 and 28 at W = 30, i.e.
+    the DV tracks the WINDOW, not R_min and not f_reacq. Reaching DISSOLVED requires T_dissolve = 50
+    trials of supra-F_high variance, so at dissolution the variance window is necessarily
+    contaminated with the very stream that caused it, and the variance < F_low gate cannot clear
+    until that contamination ages out -- which takes ~0.9 W trials and always dominates a
+    repetition term of at most R_min = 20. On this reading the repetition term is never the binding
+    constraint, which would make f_reacq inert by construction rather than wrong in value, and the
+    diagnosis structural rather than a calibration miss. The degeneracy check that would have
+    masked this was run and passed (all_on_cells_sit_on_forced_bar = false), so the flatness is a
+    real measurement, not an arithmetic identity.
+    NOTE THE FALSIFIER IS AN OPERATOR-LEVEL DRIVER, NOT AN AGENT RUN, deliberately: the V3-EXQ-810
     readiness diagnostic measured the MECH-323 accumulator SILENT under agent control
-    (chunk_accumulator_silent) -- an agent-level reacquisition run would measure that readiness gap
-    rather than MECH-324. Falsifiers (b) renewal and (c) resurgence remain unbuildable per the
+    (chunk_accumulator_silent), so an agent-level reacquisition run would have measured that
+    readiness gap rather than MECH-324. Evidence therefore attaches to the OPERATOR, not to
+    chunk-driven behaviour. Falsifiers (b) renewal and (c) resurgence remain unbuildable per the
     NOT IMPLEMENTED paragraph above.
   title: "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
   claim_type: mechanism_hypothesis
