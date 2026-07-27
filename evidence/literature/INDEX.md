@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-27T06:04:03.238307Z`
+Generated: `2026-07-27T06:12:53.719808Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -389,6 +389,8 @@ Generated: `2026-07-27T06:04:03.238307Z`
 | `targeted_review_sd_063` | [`2026-07-08_sd_063_probabilistic_dynamics_planning_chua2018`](targeted_review_sd_063/entries/2026-07-08_sd_063_probabilistic_dynamics_planning_chua2018/record.json) | 4 | [`summary`](targeted_review_sd_063/entries/2026-07-08_sd_063_probabilistic_dynamics_planning_chua2018/summary.md) |
 | `targeted_review_sd_068` | [`2026-07-18_sd_068_stage_specific_tmr_delay_picarddeland2021`](targeted_review_sd_068/entries/2026-07-18_sd_068_stage_specific_tmr_delay_picarddeland2021/record.json) | 4 | [`summary`](targeted_review_sd_068/entries/2026-07-18_sd_068_stage_specific_tmr_delay_picarddeland2021/summary.md) |
 | `targeted_review_sd_076` | [`2026-07-22_sd_076_threat_abolishes_asymmetry_garrett2018`](targeted_review_sd_076/entries/2026-07-22_sd_076_threat_abolishes_asymmetry_garrett2018/record.json) | 4 | [`summary`](targeted_review_sd_076/entries/2026-07-22_sd_076_threat_abolishes_asymmetry_garrett2018/summary.md) |
+| `targeted_review_sd_078` | [`2026-07-27_sd_078_rogue_dimensions_cosine_timkey2021`](targeted_review_sd_078/entries/2026-07-27_sd_078_rogue_dimensions_cosine_timkey2021/record.json) | 2 | [`summary`](targeted_review_sd_078/entries/2026-07-27_sd_078_rogue_dimensions_cosine_timkey2021/summary.md) |
+| `targeted_review_sd_079` | [`2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020`](targeted_review_sd_079/entries/2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020/record.json) | 2 | [`summary`](targeted_review_sd_079/entries/2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020/summary.md) |
 | `targeted_review_self_model_integration` | [`2026-06-13_sd_030_motor_awareness_control_comparator_frith2000`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/record.json) | 6 | [`summary`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/record.json) | 8 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |

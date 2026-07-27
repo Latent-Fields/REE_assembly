@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_078",
+  "entry_id": "2026-07-27_sd_078_rogue_dimensions_cosine_timkey2021",
+  "timestamp_utc": "2026-07-27T06:06:11Z",
+  "claim_ids_tested": ["SD-078"],
+  "source": {
+    "title": "All Bark and No Bite: Rogue Dimensions in Transformer Language Models Obscure Representational Quality",
+    "authors": ["William Timkey", "Marten van Schijndel"],
+    "year": 2021,
+    "venue": "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+    "doi": "10.18653/v1/2021.emnlp-main.372",
+    "url": "https://aclanthology.org/2021.emnlp-main.372/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.78,
+  "confidence_rationale": "Strong, carefully-ablated empirical support for the DIAGNOSIS half of SD-078 -- that a cosine over a learned latent can be dominated by a common mode to the point of carrying no usable ordering information, at anisotropy levels quantitatively comparable to REE's measured z_world cone. Weakened on the PRESCRIPTION half: the paper's own comparison found mean-subtraction alone insufficient exactly where the dominant dimension has high variance rather than merely a high mean, with per-dimension standardization the more reliable correction. SD-078 implements mean-subtraction only. Source quality high (EMNLP main, 4 models x all layers, 500k token pairs, public code, prior result replicated); mapping fidelity good but not identity (transformer token embeddings vs an RL world-model latent), so held below 0.8.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Subtracting only the mean vector can leave the cosine still dominated by the same 1-3 dimensions when those dimensions have high variance and not merely a large mean: the paper reports that mean-subtraction yielded substantial gains in most models but failed in the final layers of GPT-2 and XLNet, where 1-3 dimensions still drove the variability of cosine similarity after the mean was removed.",
+    "Rank-based readouts are not automatically safe. Spearman correlation is robust to outlier dimensions, but the paper notes rogue dimensions tend to occupy the top or bottom ranks, so a rank statistic can still be systematically shaped by the common mode.",
+    "The dimensions that dominate cosine similarity are not the dimensions that drive downstream behaviour: ablating the cosine-dominating dimensions in GPT-2 and XLNet produced only vanishingly small changes to the model's output distribution. A representation can therefore look degenerate under cosine while its consumers are unaffected, and vice versa -- so a cosine-level repair does not by itself predict a consumer-level effect."
+  ],
+  "tags": ["sd-078", "sd_078", "common_mode", "anisotropy", "cosine_similarity", "representation_geometry", "centering"],
+  "mapping": {
+    "source_claim_statement": "In contextualized transformer embedding spaces, a small number of 'rogue' dimensions (often 1-3) dominate cosine similarity between token representations; in the most extreme case (XLNet layers 10-11) a single dimension contributes more than 99 percent of the expected cosine similarity between randomly sampled token pairs. These dimensions are centered far from the origin relative to all others (XLNet final layer, dimension 667: mean activation 180.0 against -0.084 +/- 0.77 for all other dimensions). Removing the top 1 such dimension leaves almost none of the variance in cosine similarity explained by the remaining subspace (r-squared 0.028 for XLNet-12, 0.046 for BERT-11). Simple postprocessing -- standardization, all-but-the-top, or ranking -- corrects for this and improves correlation with human similarity judgments across the board.",
+    "ree_translation": "This is the same geometry SD-078 measures on the ARC-063 CandidateRuleField context key. REE's z_world sits at pairwise cosine min 0.9767 / mean 0.9964, which is in the same regime as the paper's anisotropy estimates for the worst transformer layers (GPT-2 layer 12: 0.885; XLNet layer 11: 0.981; BERT layer 11: 0.506). The paper's finding that removing the dominant dimension leaves r-squared ~0.03 is the external analogue of REE's finding that raw z_world yields max_pairwise_rule_dist == 0.0 and exactly ONE context bucket: the ordering information is not merely compressed, it is essentially absent from the raw cosine. It supports the diagnostic core of SD-078 -- that no threshold the config can express can separate contexts inside such a cone, so the mint-block is structurally, not parametrically, broken -- and it supports centering as the right FAMILY of correction. It does not endorse REE's specific instrument: the paper found mean-removal alone to be the weaker of the two subtractive corrections.",
+    "mapping_caveat": "Three boundaries. (1) The correction REE implements is not the correction this paper found most reliable. SD-078 subtracts a slow EMA mean (cue_centering with cue_baseline_alpha 0.02) and does not divide by a per-dimension scale; the paper's most successful method was full standardization (z-score per dimension), and it explicitly reports mean-subtraction alone failing in the two models whose rogue dimensions had high variance. REE's own V3-EXQ-806 measurement (on_dist_mean 1.67 vs off 0.0, 9 rules vs 1) shows mean-subtraction WAS sufficient for the current z_world geometry, so this is a watch-item for drift, not a live contradiction -- but it names the specific way the fix could silently stop working. (2) The domain is different: transformer token embeddings trained on language modelling, not an RL world-model latent, and the causal story for the rogue dimensions there (punctuation and position-0 tokens) has no REE analogue, so the mechanism generating the common mode is not shown to be shared -- only its geometric consequence. (3) The paper measures a static corpus mean over 85k Wikipedia articles; REE's baseline is an online EMA over a non-stationary stream, which is a strictly harder estimation problem the paper does not address.",
+    "source_context": "Computational analysis of BERT, RoBERTa, GPT-2 and XLNet (all d=768, 12 layers) plus static Word2Vec and GloVe (d=300), over an 85k-article English Wikipedia corpus with a 500k random token-pair sample; evaluated against four human word-similarity datasets (RG65, WS353, SimLex999, SimVerb3500)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because SD-078 is an architectural design_decision, not an empirical claim about brains: what matters is whether the geometric argument transfers, and it does -- the paper's anisotropy range brackets REE's measured z_world cone. source_quality is high but not maximal: it is a single-group study with no independent replication of the postprocessing comparison, though it does replicate Ethayarajh (2019) internally. transfer_risk is moderate rather than low because the objective, dimensionality and data distribution all differ; what carries across is a claim about linear-algebraic consequence, which is objective-agnostic, rather than about learned content."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_078",
+  "entry_id": "2026-07-27_sd_078_common_mean_vector_removal_mu2018",
+  "timestamp_utc": "2026-07-27T06:06:11Z",
+  "claim_ids_tested": ["SD-078"],
+  "source": {
+    "title": "All-but-the-Top: Simple and Effective Postprocessing for Word Representations",
+    "authors": ["Jiaqi Mu", "Suma Bhat", "Pramod Viswanath"],
+    "year": 2018,
+    "venue": "International Conference on Learning Representations (ICLR) 2018",
+    "doi": "10.48550/arXiv.1702.01417",
+    "url": "https://openreview.net/pdf?id=HkuGJ3kCb"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "This is the canonical prior-art paper for the operation SD-078 performs: it establishes that a learned representation carries a large common mean vector that is not content, that removing it improves downstream discrimination, and that the improvement is consistent across tasks, datasets, hyperparameters and languages. That breadth is what makes SD-078's centering a well-precedented move rather than an ad-hoc patch. Confidence is capped at 0.70 because REE implements only HALF the prescribed operation -- the common mean vector, not the top dominating directions -- and the paper's evaluation is of the combined procedure, so its headline gains cannot be attributed to mean-removal alone.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's prescribed operation is mean removal PLUS elimination of the top ~d/100 principal directions; its reported gains are for the combination. SD-078 implements only the mean-removal half, so the evidence transfers only partially and the residual dominating directions are left in place.",
+    "The number of directions removed is a hyperparameter, and Timkey & van Schijndel (2021) report all-but-the-top to be highly sensitive to it -- ineffective at the final layer of GPT-2 for any choice of D. A REE extension to PC removal would therefore introduce a tuning surface that the current mean-only fix does not have.",
+    "The method assumes a corpus-level static mean estimated over the whole vocabulary. It says nothing about an online estimate over a non-stationary stream, which is what SD-078's EMA baseline actually is."
+  ],
+  "tags": ["sd-078", "sd_078", "common_mode", "mean_removal", "isotropy", "representation_geometry", "centering", "prior_art"],
+  "mapping": {
+    "source_claim_statement": "Off-the-shelf real-valued word representations (word2vec, GloVe) contain a large common mean vector and a small number of dominating directions that are shared across all words and therefore carry no discriminative information. Eliminating the common mean vector and a few top dominating directions renders the representations 'even stronger', with processed representations 'consistently better than the original ones' across lexical-level tasks (word similarity, concept categorization, word analogy) and sentence-level tasks (semantic textual similarity, text classification), across multiple datasets, representation methods, hyperparameters and languages. The authors note the result is counter-intuitive because standard denoising by dimensionality reduction removes the WEAKEST directions, not the dominating ones.",
+    "ree_translation": "SD-078 subtracts a slow EMA estimate of the common mean from the z_world context key before every CandidateRuleField cue comparison -- the mint-block cosine, the recurrence bucket sign pattern, and gate_and_select. That is the first and principal step of this paper's procedure, applied online to a world-model latent instead of offline to a word-vector table. The paper establishes the general principle SD-078 relies on: the component shared by every vector in a learned representation is, by construction, the component that cannot discriminate between them, so retaining it in a similarity computation is not conservative -- it actively swamps the discriminative residual. It also pre-empts the natural objection that removing a high-energy direction must destroy information: the authors flag their own result as counter-intuitive for exactly that reason and show it is not.",
+    "mapping_caveat": "REE implements half the operation. 'All-but-the-top' is mean removal AND removal of the top ~d/100 principal directions, and every reported gain is for the combination; the paper does not isolate the contribution of mean-removal alone, so its evidence cannot be cleanly apportioned to what SD-078 actually does. The sibling entry for this claim (Timkey & van Schijndel 2021) does isolate it, and finds mean-removal alone to be the weaker correction -- so the honest reading is that this paper licenses the DIRECTION of SD-078's fix, not its sufficiency. Two further gaps: the domain is static word-vector tables built from a fixed corpus, where the mean is a well-defined stationary quantity, whereas SD-078 tracks a drifting online EMA; and the evaluation target is human semantic-similarity agreement, which has no REE counterpart, so the paper's 'better' is not measured on anything resembling rule minting or gate retrieval.",
+    "source_context": "Offline postprocessing of static word-embedding tables (word2vec, GloVe) evaluated on lexical-level tasks (word similarity, concept categorization, word analogy) and sentence-level tasks (semantic textual similarity, text classification), across multiple datasets and languages. No online or streaming setting; no reinforcement-learning or world-model context."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high: ICLR 2018 conference paper, very widely cited and independently reproduced, with breadth across tasks/datasets/languages that is unusual for a postprocessing note. mapping_fidelity is the binding constraint at 0.65 -- the evaluated operation is strictly larger than the one REE implements, and the paper does not decompose it, so this is prior art for the family rather than validation of the instance. Aggregate held at 0.70 rather than the component mean because for an architectural design_decision the question is 'is this a known-good move', and on that narrow question the paper is clear and broad."
+  }
+}
