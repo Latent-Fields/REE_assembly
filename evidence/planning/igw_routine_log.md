@@ -1192,3 +1192,7 @@ One line per hourly tick. ASCII only.
 2026-07-28T15:14:29Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-28T16:14:53Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-28T17:15:16Z SPAWN IGW-20260728-211 skill=/queue-experiment prio=40 uuid=f2c3ce24-c63b-4dbe-ab0c-59ee44d66fd1 pid=25692 worktree=igw-211-proposal-for-inv-056
+2026-07-28T18:16:30Z auto-defer IGW-20260728-211 hash=8fd16faa1623 for 48h (reaped -> completed_resumable)
+2026-07-28T18:16:30Z reaped TASK_CLAIMS igw-auto-igw-211-proposal-for-inv-056-20260728T171532Z (ledger IGW-20260728-211 -> completed_resumable)
+2026-07-28T18:16:31Z GC removed worktree igw-211-proposal-for-inv-056 post-reap (ledger IGW-20260728-211 -> completed_resumable; removed; branch deleted)
+2026-07-28T18:16:08Z skip IGW-20260728-212: no fresh runner heartbeat (experiment-lane item would just sit in queue)

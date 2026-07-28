@@ -2008,7 +2008,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-211-proposal-for-inv-056 && claude --resume f2c3ce24-c63b-4dbe-ab0c-59ee44d66fd1",
       "task_claim_session_id": "igw-auto-igw-211-proposal-for-inv-056-20260728T171532Z",
       "assigned_at": "2026-07-28T17:15:16Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-28T18:16:20Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-07-28T18:16:31Z"
     }
   ],
   "dispositions": [
@@ -2656,6 +2660,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-27T19:35:26Z",
       "re_eligible_after": "2026-07-29T19:35:26Z"
+    },
+    {
+      "stable_hash": "8fd16faa1623",
+      "igw_id_at_disposition": "IGW-20260728-211",
+      "owner_exq": null,
+      "claim_ids": [
+        "INV-056"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for INV-056",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-28T18:16:30Z",
+      "re_eligible_after": "2026-07-30T18:16:20Z"
     }
   ]
 }
