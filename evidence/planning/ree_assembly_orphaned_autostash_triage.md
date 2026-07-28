@@ -544,30 +544,65 @@ Partly, and differently.
   the same phase with strictly less information, and duplicate alarms on the benign case are how a
   guard gets ignored on the real one.
 
-  **STILL OPEN -- the guard-side half is blocked, not skipped.** Applying the shape-aware bound
-  means editing `ree-v3/runner_remote_control.py`, and every line it must touch
-  (`_active_claim_on_paths`, `_claim_age_hours`, `_active_claim_on_evidence_dir`'s docstring)
-  exists **only as session `zealous-merkle-f5dfc8`'s uncommitted working-tree change** -- none of
-  it is on `origin/main`. Committing that file would land ~176 lines of another session's
-  in-flight work under a foreign message (CLAUDE.md read-modify-write contamination) *and* break
-  its coupled set (CLAUDE.md remedy (a2)): `_active_claim_on_ree_v3_code` would land on trunk
-  without its caller in `experiment_runner.py` or its new untracked contract test
-  `tests/contracts/test_ree_v3_pull_claim_guard.py`. Deferred deliberately. The change to make,
-  once that session lands:
+  ### CLOSED (2026-07-28T21:40Z, session `silly-mayer-a60957`) -- the guard-side half landed
+
+  **`ree-v3 2c5fafeda6` on `origin/main`.** Both halves of the thread are now in place: the reap +
+  announce half as `audit_stale_claims.py` bucket G, and the guard half here. An orphaned
+  `governance-sh-*` lock no longer gates the `REE_assembly` heartbeat push indefinitely.
+
+  What shipped, in `_active_claim_on_paths`, applied **per-entry** so it holds for every caller
+  (including the ree-v3 one that passes its own `max_age_hours`):
 
   ```python
-  # in _active_claim_on_paths: bound only the machine-owned locks
   _GOVERNANCE_LOCK_PREFIX = "governance-sh-"
-  _GOVERNANCE_CLAIM_MAX_AGE_HOURS = 2.0   # keep in sync with
-  # REE_Working/scripts/prune_task_claims_done.py GOVERNANCE_REAP_HOURS
+  _GOVERNANCE_LOCK_MAX_AGE_HOURS = 2.0   # keep in sync with
+  # REE_Working/scripts/audit_stale_claims.py GOVERNANCE_REAP_HOURS
   ```
 
-  applied per-entry (a `governance-sh-*` entry past that age does not gate; every other entry is
-  unbounded exactly as today), plus a rewrite of `_active_claim_on_evidence_dir`'s docstring,
-  which currently states the 2026-07-28 generalisation kept "no age bound ... on purpose, so
-  REE_assembly behaviour is bit-identical" -- that deliberate decision is what this narrows, and
-  the docstring must say so rather than be silently contradicted.
+  plus the docstring rewrite this section asked for: `_active_claim_on_evidence_dir` had stated
+  the 2026-07-28 generalisation kept "no age bound ... so REE_assembly behaviour is bit-identical",
+  and now states the narrowing and the single way behaviour differs, rather than being silently
+  contradicted by it. An **undatable** governance lock is treated as expired (fail-open, matching
+  the function's documented convention) -- a deliberate divergence from `audit_stale_claims.py`,
+  which needs certainty because it MUTATES `TASK_CLAIMS.json`, whereas the guard only defers one
+  push and self-corrects on the next tick.
+
+  **CROSS-REFERENCE CORRECTED -- the sketch this section previously carried was wrong.** It named
+  `prune_task_claims_done.py` as the keep-in-sync target (as did this task's chip brief). That
+  constant lives in **`scripts/audit_stale_claims.py:134`**; `prune_task_claims_done.py` is
+  deliberately `done`-only and its own docstring says stale-active claims are the auditor's job.
+  The reap moved in REE_Working `906ba26`. Contract **G10** now pins
+  `_GOVERNANCE_LOCK_MAX_AGE_HOURS` and `_GOVERNANCE_LOCK_PREFIX` against that file, because the
+  pairing is the *only* reason the aging-out is non-silent -- if the numbers drift, a lock stops
+  gating while nothing announces it, which is precisely the silent lapse this design refuses.
+
+  **19 contracts in `tests/contracts/test_governance_lock_age_bound.py`, non-vacuity verified by
+  mutation rather than asserted.** With the governance-prefix check removed (i.e. a flat bound),
+  **G1 still passes** -- so "aged governance lock stops gating" alone does NOT discriminate
+  between the right and wrong implementations -- while **G2** (an equally-aged SESSION claim must
+  still gate) flips `True -> False`. G2 is the discriminating test, and G2c asserts the flat and
+  shipped forms diverge so a later "simplification" to a flat bound fails loudly. Remote suite
+  green on `ree-worker-4`: 2769 passed, 6 skipped, 43 subtests, exit=0.
 
   The sibling ree-v3 gap -- fix (a) of the ree-v3 triage, extending the claim-aware skip to the
-  ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is the same
-  in-flight session `zealous-merkle-f5dfc8`.
+  ree-v3 pull itself, which produced all five of *that* repo's entries -- landed separately as
+  `ree-v3 4a22888bec` (session `zealous-merkle-f5dfc8`), which is what unblocked this half.
+
+  **Process note worth keeping, because it cost real time and nearly cost work.** Three sessions
+  (`beautiful-elbakyan-245a58` 21:12:00Z, `silly-mayer-a60957` 21:12:28Z, `quirky-sinoussi-b9a180`
+  21:13:24Z) opened claims on this same file within **84 seconds**, all released by the same
+  `4a22888bec` landing -- a thundering herd on a chip whose stop-check had been polled by several
+  waiters at once. Root cause, self-reported by `quirky-sinoussi-b9a180`: it spawned **two chips
+  for the same work** (`task_a7b63e6b` could not be withdrawn once started, so `task_fafaa928`
+  duplicated it) and both were picked up. Two implementations were briefly live in the shared
+  working tree simultaneously, leaving `_GOVERNANCE_LOCK_PREFIX` defined **twice**. Both of the
+  other sessions then withdrew -- each surgically reversing only its own insertions at Edit level,
+  never `git checkout` -- so for a moment all three had deferred and nothing was implemented at
+  all. Two things made this recoverable rather than destructive: **(1)** nobody used a broad
+  checkout, so no session destroyed another's lines; **(2)** the withdrawals were recorded in
+  `TASK_CLAIMS` completion notes specific enough to reconstruct what happened, including
+  `beautiful-elbakyan-245a58`'s handover of the corrected `audit_stale_claims.py` cross-reference
+  -- which is the finding that made this commit correct rather than repeating the stale pointer.
+  The mutual-deference livelock is the failure mode to watch for: a stop-check protects against
+  acting on a *blocked* prerequisite, but nothing arbitrates between several sessions unblocked by
+  the same event.
