@@ -232,6 +232,22 @@ def build_runpack_docs(data: dict, experiment_type: str):
         "failure_signatures": [],
     }
 
+    # Dry-run self-identification (2026-07-28). Carry a truthy top-level
+    # `dry_run` from the flat manifest into the pack so the pack STANDS ALONE as
+    # a smoke artifact. Without this the pack -- which is what the indexer
+    # actually scores -- has no dry_run field at any point in its life, so the
+    # only carrier of the flag for a given run is its FLAT SIBLING, and
+    # `build_experiment_indexes._load_dry_run_run_ids` has to carry it across BY
+    # RUN_ID. That cross-file coupling is a live trap for evidence-tree cleanup:
+    # deleting a flat dry-run manifest without also deleting its pack silently
+    # promotes that pack back to real scored evidence. (The upstream `_is_flat_v3`
+    # gate above now refuses dry flats outright, so this branch is unreachable in
+    # the normal path -- it is deliberate defence in depth for direct callers of
+    # this pure function and for any future regression of that gate.) Conditional
+    # add on a truthy value, so every non-dry manifest is byte-identical.
+    if _is_dry_run(data):
+        manifest["dry_run"] = True
+
     # Diagnostic adjudication gate (2026-06-06): carry the script's self-routed
     # interpretation block (label + preconditions[] + criteria_non_degenerate)
     # through to the runs/ manifest so build_experiment_indexes._compute_adjudication

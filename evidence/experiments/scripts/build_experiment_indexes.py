@@ -804,11 +804,11 @@ def _load_dry_run_run_ids(base_dir: Path) -> set[str]:
         `pack_writer.write_flat_manifest` is also threaded it additionally
         prefixes the filename `_dry_<run_id>.json`; while
       * the RUN PACK -- `<experiment_type>/runs/<run_id>/manifest.json`, which
-        is what `_scan_runs` actually scores -- is written from a different
-        code path (`experiment_pack/v1`) that has NO dry_run field at all.
+        is what `_scan_runs` actually scores -- was written from a different
+        code path (`experiment_pack/v1`) that had NO dry_run field at all.
 
-    So the pack that reaches scoring is indistinguishable from a real run when
-    read on its own; the flag has to be carried across from its flat sibling by
+    So the pack that reaches scoring was indistinguishable from a real run when
+    read on its own; the flag had to be carried across from its flat sibling by
     run_id. That is exactly the shape of the confirmed 2026-07-26 MECH-245
     contamination: two 1-seed smokes of V3-EXQ-825 landed as
     `_dry_..._v3.json` (flagged, correctly named, harmless) AND as two
@@ -816,13 +816,53 @@ def _load_dry_run_run_ids(base_dir: Path) -> set[str]:
     which became that claim's entire negative evidence base while its one
     genuine run PASSED.
 
-    Scans both globs so a flag arriving via either path is caught. Best-effort:
+    PACKS NOW SELF-IDENTIFY, AND THE RUN_ID ARM STAYS ANYWAY (2026-07-28).
+    Both pack writers were taught to emit a truthy top-level `dry_run`
+    (`sync_v3_results.build_runpack_docs` unconditionally;
+    `pack_writer.PackWriter.write_pack` via a new `dry_run=` argument), and all
+    36 historical dry packs on disk were backfilled with the flag, so there is
+    no longer any pack whose ONLY carrier is a flat sibling. Callers of
+    `_scan_runs` / `_iter_manifests_with_arm_results` accordingly test
+    `_is_dry_run(manifest) or run_id in dry_run_ids`, and the first arm now
+    fires on its own for every known case.
+
+    The run_id arm is NOT removed, because `write_pack`'s new argument is
+    OPT-IN: a driver that threads `dry_run` to `write_flat_manifest` but not to
+    `write_pack` still emits an unflagged pack, and the flat sibling is again
+    the only carrier. Same for any driver that hand-rolls its own pack dict.
+    Keeping the carry costs one directory walk and preserves the backstop for
+    exactly the silent-failure class that produced the MECH-245 incident.
+
+    The coupling this closes was a live cleanup trap: while the pack could not
+    self-identify, deleting a flat dry-run manifest WITHOUT also deleting its
+    pack silently promoted that smoke back to real scored evidence. Deleting a
+    flat manifest on its own is still never correct -- but it is no longer
+    load-bearing for the dry-run exclusion.
+
+    THE SUBDIRECTORY FLAT GLOB WAS MISSING, AND IT WAS LEAKING (fixed 2026-07-28).
+    This scanned `*.json` (top level) and `**/runs/**/manifest.json` (packs) but NOT
+    `*/*.json` -- a flat manifest living in its per-experiment subdirectory,
+    `<experiment_type>/<run_id>.json`, which is the OTHER placement
+    `sync_v3_results._derive_experiment_type_and_dir` handles and the one older
+    drivers use. A dry smoke written there was invisible to this function, so its
+    pack scored. Measured at the 2026-07-28 backfill: 13 of the 36 dry packs on
+    disk were STILL being counted as real evidence after the cb7298c1c4 fix --
+    v3_exq_147a / 166b / 166c / 166d / 207 / 208 / 209 / 210 / 211 / 212 (x2) /
+    365 / 407 -- contributing phantom PASS/FAIL runs to ARC-042, MECH-070,
+    MECH-075, MECH-104, MECH-153, MECH-155, MECH-156 and MECH-231. Adding the
+    glob is a no-op TODAY (those packs now carry the flag themselves, so the
+    `_is_dry_run(manifest)` arm catches them), and is kept precisely so the
+    backstop is not holed the same way for the next unflagged pack.
+
+    Scans all three globs so a flag arriving via any path is caught. Best-effort:
     an unreadable or non-dict file contributes nothing rather than raising.
     """
     ids: set[str] = set()
     if not base_dir.is_dir():
         return ids
-    for path in list(base_dir.glob("*.json")) + list(base_dir.glob("**/runs/**/manifest.json")):
+    for path in (list(base_dir.glob("*.json"))
+                 + list(base_dir.glob("*/*.json"))
+                 + list(base_dir.glob("**/runs/**/manifest.json"))):
         try:
             manifest = json.loads(path.read_text(encoding="utf-8"))
         except Exception:

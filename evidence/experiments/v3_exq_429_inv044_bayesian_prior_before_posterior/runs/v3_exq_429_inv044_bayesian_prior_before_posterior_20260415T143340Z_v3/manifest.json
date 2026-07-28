@@ -1,5 +1,6 @@
 {
   "schema_version": "experiment_pack/v1",
+  "dry_run": true,
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "experiment_type": "v3_exq_429_inv044_bayesian_prior_before_posterior",
   "run_id": "v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3",
@@ -25,7 +26,9 @@
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
   "evidence_direction_note": "Reclassified non_contributory (governance-2026-04-16): flat JSON has dry_run=true with training_episodes=2; n_sleep_cycles=0 in all conditions. Full run is pending in queue. Invalid as evidence for INV-044.",
-  "evidence_direction_per_claim": {"INV-044": "non_contributory"},
+  "evidence_direction_per_claim": {
+    "INV-044": "non_contributory"
+  },
   "experiment_purpose": "evidence",
   "producer_capabilities": {
     "sd005_split_latent": true,
