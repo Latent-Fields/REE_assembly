@@ -373,6 +373,20 @@ Partly, and differently.
 - **New, `REE_assembly`-specific gap:** a governance-cycle regen has no claim and no crash
   protection. If the runner heartbeat pulls mid-regen, the entire half-written derived-artifact set
   is stashed. Here that was harmless because the regen is idempotent -- rerun it. It becomes
-  harmful only if a regen is ever committed *from* such a stash. `complicated (buildable)` fix if
-  anyone wants it: have `scripts/governance.sh` open a `TASK_CLAIMS` entry covering `evidence/` for
-  its duration, which the existing skip already honours.
+  harmful only if a regen is ever committed *from* such a stash. `complicated (buildable)` fix:
+  have `scripts/governance.sh` open a `TASK_CLAIMS` entry covering `evidence/` for its duration,
+  which the existing skip already honours.
+
+  **IN FLIGHT as of 2026-07-28T17:31Z -- do NOT re-chip this.** Session `gracious-snyder-aa4b35`
+  holds an active claim on `scripts/governance.sh` and has `gov_claim_open` / `gov_claim_close`
+  plus a `trap` written in the shared working tree (**not** yet on `origin/master`; treat that
+  file as another session's uncommitted work). Their notes already capture the two subtleties that
+  make it non-trivial: the `REE_assembly` heartbeat guard has **no `max_age_hours`**, so a leftover
+  `active` entry gates the heartbeat *indefinitely* and the close needs a trap; and the held-flag
+  must be armed **before** the `open` call, because `task_claim.py` writes the entry to disk and
+  only then commits it, so a SIGINT inside that window leaves an `active` entry already gating the
+  heartbeat while `open` exits non-zero.
+
+  The sibling ree-v3 gap -- fix (a) of the ree-v3 triage, extending the claim-aware skip to the
+  ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is separately in
+  flight under session `zealous-merkle-f5dfc8`.
