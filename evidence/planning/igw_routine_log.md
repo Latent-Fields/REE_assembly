@@ -1196,3 +1196,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T18:16:30Z reaped TASK_CLAIMS igw-auto-igw-211-proposal-for-inv-056-20260728T171532Z (ledger IGW-20260728-211 -> completed_resumable)
 2026-07-28T18:16:31Z GC removed worktree igw-211-proposal-for-inv-056 post-reap (ledger IGW-20260728-211 -> completed_resumable; removed; branch deleted)
 2026-07-28T18:16:08Z skip IGW-20260728-212: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-28T19:16:40Z SPAWN IGW-20260728-212 skill=/queue-experiment prio=40 uuid=d63b55bb-236d-415b-80c0-4dd21fbdc1f9 pid=88398 worktree=igw-212-proposal-for-mech-068
