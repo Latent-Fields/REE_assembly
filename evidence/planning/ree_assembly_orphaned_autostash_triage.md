@@ -448,6 +448,25 @@ Partly, and differently.
   missing `closed_at` / `completion_note`. Measured 2026-07-28T18:05Z: **2 of 6 active claims were
   already past the 6h threshold (12.1h and 10.9h) with nothing anywhere surfacing them.**
 
+  > **CORRECTION (2026-07-28T18:4xZ, session `quirky-sinoussi-b9a180`) -- the paragraph above is
+  > WRONG and is left standing only because the paragraphs after it were written on top of it.**
+  > `scripts/audit_stale_claims.py` already existed (REE_Working `f6e0bc5`, 2026-07-27, *"housekeeping:
+  > reap stale ACTIVE claims"*), already defaults to **6.0h**, already classifies every stale active
+  > claim against real git state, and is already wired into `/session-land` **Phase 2b2** with
+  > `--apply`. So stale active claims WERE being reported, and better than by age alone.
+  >
+  > The `stale_after_hours` grep that produced the claim above missed it because that tool
+  > **hardcodes `default=6.0`** rather than reading the field -- i.e. the search was for the field
+  > name when the question was about the concept. Recorded because the same grep will mislead the
+  > next reader the same way, and because it is the failure mode the standing memory
+  > `feedback_ree_vs_ree_assembly_epistemic_state_machine` names: check the existing machinery
+  > before adding a mechanism.
+  >
+  > What survived the correction is only the part genuinely uncovered: a `governance-sh-*` lock has
+  > `evidence/` as its sole resource, which is directory-scoped and therefore deliberately
+  > **non-attributable**, so it fell to bucket **U (undetermined)** and waited on a human forever.
+  > That is now bucket **G**, in that tool, not a second one.
+
   So the follow-on is *aging-out must produce a nudge*, on a **session-facing** surface --
   `prune_task_claims_done.py` (already advisory, already run at every `/session-land`) and the
   Session Startup Protocol -- **not** runner stdout, which is precisely how
@@ -492,28 +511,38 @@ Partly, and differently.
   So the quiet-failure trade the section above warns against is never taken: the only claim that
   can now age out of the guard is one that is abandoned by construction.
 
-  **And the aging-out is not silent, which was the actual requirement.**
-  `scripts/prune_task_claims_done.py` (REE_Working, + `scripts/test_prune_task_claims_stale_active.py`,
-  15 tests) now:
+  **And the aging-out is not silent, which was the actual requirement.** Delivered as **bucket G**
+  in the EXISTING `scripts/audit_stale_claims.py` (+ `scripts/test_audit_stale_claims_governance_lock.py`,
+  14 tests) rather than as a second tool -- see the CORRECTION above for why that mattered. A
+  `governance-sh-*` lock past `GOVERNANCE_REAP_HOURS`:
 
-  * **reaps** `governance-sh-*` locks past the same `GOVERNANCE_REAP_HOURS`, writing a
-    `completion_note` that records it was reaped as stale, by what, and that the regen did NOT
-    complete -- and **announces it** with the two follow-up actions: `scripts/audit_stashes.py`
-    (the load-bearing detector) and a rerun of the idempotent regen. The claim's own aging is thus
-    the trigger for the stash audit, which is the loop this thread wanted closed;
-  * **reports, and never closes,** stale session claims and undatable ones, each with the remedy
-    that fits it.
+  * is **reaped** under the `--apply` that `/session-land` Phase 2b2 already runs, with a
+    `completion_note` recording that it was reaped as stale, by what, and that the regen did NOT
+    complete. It uses `--closed-at`, not `--not-landed`, following `governance.sh`'s own abort
+    path: the entry is a LOCK, not a unit of work, and stamping every dead lock `NOT LANDED:`
+    would burn the signal that flags genuinely unlanded work;
+  * is **announced** with the two follow-ups -- `scripts/audit_stashes.py` (the load-bearing
+    detector) and a rerun of the idempotent regen -- so the claim's own aging is the trigger for
+    the stash audit, which is the loop this thread wanted closed. Reaping without that would be a
+    silent lapse of the protection the lock was holding.
+
+  Aged against its own 2h threshold, **independent of `--min-age-hours`** (that flag calibrates
+  "might a human still be working?", which is not the question for an unowned machine lock), and
+  **not gated on a clean tree**: leftover derived artifacts are the expected residue of a killed
+  derive-only pipeline, and gating on cleanliness would divert the lock into report-only bucket D.
+  Safe against a racing regen for a second reason too: `gov_claim_close` is guarded on
+  `gov_claim_is_active`, so a reaped entry makes the exit trap a clean no-op, and `task_claim.py
+  close` on an already-closed entry reports "already closed -- nothing to change".
 
   One threshold with one meaning: the age at which the guard would stop honouring a governance
-  lock is the same age at which the pruner reaps and announces it, on the session-facing surface
-  (`/session-land` housekeeping, Session Startup Protocol step 3) rather than runner stdout -- the
-  `_warn_on_stash_bloat()` failure mode. Exit 0 always; it must never block a close. The reap is
-  safe against a racing regen for a second reason too: `gov_claim_close` is guarded on
-  `gov_claim_is_active`, so a reaped entry makes the exit trap a clean no-op.
+  lock is the age at which the auditor reaps and announces it, on the session-facing surface
+  (`/session-land` Phase 2b2, Session Startup Protocol step 3) rather than runner stdout -- the
+  `_warn_on_stash_bloat()` failure mode.
 
-  A negative control found a real gap during implementation rather than by inspection: under
-  `--no-reap` a stale governance lock was reported by neither path, reproducing the exact silence
-  this work exists to remove. It is now its own reported bucket.
+  `prune_task_claims_done.py` was left `done`-only, with a docstring note saying not to add an
+  age-based stale-active warning there: it would fire on the same entries at the same threshold in
+  the same phase with strictly less information, and duplicate alarms on the benign case are how a
+  guard gets ignored on the real one.
 
   **STILL OPEN -- the guard-side half is blocked, not skipped.** Applying the shape-aware bound
   means editing `ree-v3/runner_remote_control.py`, and every line it must touch
