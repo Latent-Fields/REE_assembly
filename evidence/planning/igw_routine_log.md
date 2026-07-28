@@ -1199,3 +1199,6 @@ One line per hourly tick. ASCII only.
 2026-07-28T19:16:40Z SPAWN IGW-20260728-212 skill=/queue-experiment prio=40 uuid=d63b55bb-236d-415b-80c0-4dd21fbdc1f9 pid=88398 worktree=igw-212-proposal-for-mech-068
 2026-07-28T19:53:41Z retire-proposal EXP-0301 -> executed (IGW-20260728-212; complete)
 2026-07-28T19:53:41Z auto-defer IGW-20260728-212 hash=ed9947ebaa1d for 48h (complete)
+2026-07-28T19:53:55Z complete IGW-20260728-212 spawned->completed outcome=USEFUL_LANDED: queued V3-EXQ-835 for MECH-068 (CSH-1 consolidation-operator selectivity dissoci
+2026-07-28T20:17:51Z reconcile-release hash=ed9947ebaa1d (IGW-20260728-212 -> completed)
+2026-07-28T20:17:39Z skip IGW-20260728-212: no fresh runner heartbeat (experiment-lane item would just sit in queue)
