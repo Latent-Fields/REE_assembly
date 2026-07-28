@@ -1,4 +1,4 @@
-# Competence-bootstrap mechanisms (MECH-459 / MECH-460 / MECH-461)
+# Competence-bootstrap mechanisms (MECH-459 / MECH-460 / MECH-461 / MECH-475 / MECH-476)
 
 Status: **ARCHITECTURE STUB -- candidate claims only. Nothing here is built, and nothing here
 adjudicates the live discrimination.**
@@ -218,3 +218,90 @@ survival floor on both representations (the V3-EXQ-781 pre-registered null, with
   claim, not a pre-registered hypothesis; whether `competence_floor` should gain a third ALIVE leg
   is a `/governance` decision under the GOV-FANOUT-1 growth contract, deliberately left to that
   process.
+
+---
+
+## 7. MECH-475 -- uninformative value baseline makes optimisation iatrogenic
+
+Registered `candidate` / `v3_pending` 2026-07-22 (`/claim-synthesis`, `split_from: MECH-457`;
+`evidence/planning/claim_synthesis_MECH-457_2026-07-22.md`, user-approved per-child).
+
+**Claim.** In REE's MECH-457 actor-critic pathway the value baseline is **uninformative on the
+policy's own state distribution** (V3-EXQ-782 R-(b): `std(V)/std(G) = 0.041` against a 0.25
+collapse threshold; pre-reward-vs-far separation 0.016 against a 0.25 floor), so the advantage
+carries variance rather than signal and **added optimisation pressure is iatrogenic** -- it drives
+competence *below its own control* rather than plateauing under a ceiling.
+
+**The five instances (read as a set, which no single autopsy could):**
+
+| target | intervention | control | treatment | direction |
+|---|---|---|---|---|
+| V3-EXQ-769 | more capacity + 5x budget | raw ON 6.48 | 0.12 | worse |
+| V3-EXQ-781 | earned approach drive (fired 0.70) | raw 2.983 | 0.200 | worse |
+| V3-EXQ-771 | metabolic reward-coupling | reward 3.47 / survive ~170 | 1.12 / death 100% | worse |
+| V3-EXQ-780 | unconstrained RL after BC install | post-BC 20.933 | 11.667 | worse |
+| V3-EXQ-789 | RL vs persistent imitation auxiliary | installed | decayed at every schedule | worse |
+
+**Why not MECH-459 re-labelled.** MECH-459 (section 3) asserts the two-sided normaliser makes the
+gradient scale-invariant, so magnitude levers **cannot move** the floor -- an *inertness*
+prediction. MECH-475 asserts the baseline is uninformative, so added optimisation **actively
+degrades** -- a *destructiveness* prediction. They predict opposite signs, and 769/781/771 are
+magnitude-class levers MECH-459 calls inert that were in fact destructive. MECH-459's own probe
+splits the same way: V3-EXQ-782 R-(a) **weakened** its normaliser half while R-(b) **corroborated**
+its critic half -- MECH-475 is that corroborated half promoted to a falsifiable object.
+
+**Positive control already on file.** V3-EXQ-788: a distributional critic **retains** 1.839 of
+installed competence where the scalar critic does not.
+
+**Falsifier (decisive).** Re-run the three destructive acquisition-side treatments (769 / 781 /
+771) with the V3-EXQ-788 distributional critic in place, else byte-identical. SUPPORTED if the
+treatment-below-control inversion reverses or flattens in >= 2 of 3; WEAKENED (and withdrawn) if
+treatments still land below their own controls with an informative baseline. Trajectory, not
+terminal. Full `what_would_answer` + lit grounding (Sutton 2000 baseline-as-variance-reduction;
+O'Doherty 2004 silent-critic-as-lesion; Rothenhoefer 2017 VS-lesion, recorded as a two-way
+divergence; Salamone 2003 / Szczypka 2001 DA-deficient starving-in-front-of-food) in the claim
+body and the synthesis document. Owed: `/lit-pull targeted_review_mech_457_baseline_informativeness`.
+
+## 8. MECH-476 -- competence retention dissociable from acquisition
+
+Registered `candidate` / `v3_pending` 2026-07-22 (`/claim-synthesis`, `split_from: MECH-457`).
+
+**Claim.** **Acquiring** competence and **retaining** it are dissociable capabilities with separate
+substrate requirements; REE has the first and lacks the second. BC installs foraging competence at
+20.933 on raw_view (3/3 seeds) and 32.72 on z_world; unconstrained RL then erodes it to 11.667,
+while a distributional critic (788: retains 1.839) and a KL anchor to the installed snapshot (792:
+retains 0.778 vs 0.525 unconstrained, still plastic) each preserve it. Retention is set by the
+**value estimator** and the **update constraint**, not by continued demonstration (789 eliminates
+the imitation-auxiliary schedule axis at every setting).
+
+**Distinctive, testable content -- what MECH-459/460 do not assert.** MECH-459 owns the critic
+lever; MECH-460 owns the behavioural-prior lever (and already names KL-to-a-frozen-own-snapshot).
+Neither asserts the **dissociation itself** (retain-without-acquiring: the KL anchor acquires
+nothing; acquire-without-retaining: BC), nor **consolidation-as-interference-resistance**, which
+makes install **dose** and offline **interval** the untested levers -- V3-EXQ-780 ran a single BC
+dose straight into RL with no offline interval, so REE has never tested for a consolidation
+*process*, only for concurrent *regularisation*.
+
+**Falsifier.** An A -> B -> A retrograde-interference design (Krakauer 2005): A = BC-install; B =
+interfering unconstrained-RL phase; re-measure A. Vary install **dose** and A->B **interval**.
+SUPPORTED if interference-resistance grows with dose and/or interval (a consolidation process);
+WEAKENED (and withdrawn into MECH-459/460) if retained fraction is invariant to both and tracks
+only the concurrent constraint coefficient. Third arm from behavioural tagging (Moncada 2007):
+pair a sub-threshold BC dose with a novelty episode (the landed RND drive) inside the window --
+SUPPORTED if it consolidates only in the novelty-paired condition. Retained-fraction trajectory,
+never terminal; an install that did not take self-routes `substrate_not_ready_requeue`. Lit
+grounding (Krakauer 2005, Walker 2003, Moncada 2007, STC review Bin Ibrahim 2024; known
+sleep/replay/trace-selectivity divergence recorded) in the claim body. Owed: `/lit-pull
+targeted_review_mech_457_consolidation` (trace-selective vs global). Cross-link:
+`evidence/planning/sleep_substrate_plan.md` (SD-017 / MECH-204) is the natural home if the interval
+arm returns SUPPORTED.
+
+## 9. What sections 7-8 do NOT do
+
+- **They do not promote or demote MECH-457.** It stays `candidate` / `v3_pending`, retained as the
+  narrowed umbrella; MECH-475/476 are registered `candidate`.
+- **They do not license a build.** Not the distributional critic as a standing default, not a
+  consolidation window -- each is a *falsifier design*, gated on its experiment resolving.
+- **They create no pre-registration fan-out growth event.** MECH-475's reading rides the existing
+  `conversion_ceiling_root` H-objective-misspecification leg; MECH-476's rides the existing
+  `competence_floor` H-retention-critic / H-retention-consolidation legs.
