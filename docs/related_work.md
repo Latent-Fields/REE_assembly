@@ -1,6 +1,6 @@
 ---
-title: Related Latent-Fields Work
-nav_exclude: true
+title: Related Work
+nav_order: 8
 ---
 
 # Related Latent-Fields Work

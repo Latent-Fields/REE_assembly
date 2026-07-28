@@ -1,6 +1,6 @@
 ---
 title: Research Status
-nav_exclude: true
+nav_order: 7
 ---
 
 # Research Status
