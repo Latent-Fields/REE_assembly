@@ -44,9 +44,16 @@ SKIP_NAMES = {
 _V3_MIDSTRING_RE = re.compile(r"_v3_\d{8}T\d{6,}Z?$")
 
 
-def _is_dry_run(data: dict) -> bool:
-    """True for a dry-run / smoke artifact that must never be scored."""
+def _is_dry_run(data: dict, flat_path: Path | None = None) -> bool:
+    """True for a dry-run / smoke artifact that must never be scored.
+
+    `flat_path` adds the third spelling: `pack_writer.write_flat_manifest`
+    marks a smoke by PREFIXING the filename `_dry_<run_id>.json` and leaves the
+    run_id itself untouched, so neither key-based arm sees it.
+    """
     if str(data.get("dry_run", "")).strip().lower() in ("true", "1", "yes"):
+        return True
+    if flat_path is not None and flat_path.name.startswith("_dry_"):
         return True
     return str(data.get("run_id", "")).endswith("_dry")
 
@@ -62,17 +69,31 @@ def _is_evidence_grade(data: dict) -> bool:
     return not _is_dry_run(data)
 
 
-def _is_flat_v3(data: dict) -> bool:
+def _is_flat_v3(data: dict, flat_path: Path | None = None) -> bool:
     """Return True if this JSON should be converted to a runs/ pack.
 
-    Canonical `..._v3`-suffixed run_ids convert unconditionally (unchanged
-    behaviour). The mis-ordered `..._v3_<timestamp>` form converts ONLY when it
-    is an evidence-grade casualty -- this closes the 628-class silent-drop gap
-    for evidence runs without sweeping the historical mid-string DIAGNOSTIC
-    backlog (claim_ids=[] or experiment_purpose=diagnostic) into pending_review.
+    Canonical `..._v3`-suffixed run_ids convert (subject to the dry-run gate
+    below). The mis-ordered `..._v3_<timestamp>` form converts ONLY when it is
+    an evidence-grade casualty -- this closes the 628-class silent-drop gap for
+    evidence runs without sweeping the historical mid-string DIAGNOSTIC backlog
+    (claim_ids=[] or experiment_purpose=diagnostic) into pending_review.
+
+    DRY RUNS ARE REFUSED ON BOTH BRANCHES (2026-07-28). Until now `_is_dry_run`
+    was consulted only via `_is_evidence_grade` on the mid-string branch, so a
+    `--dry-run` smoke with a canonical `..._v3` run_id -- the overwhelmingly
+    common shape -- converted unconditionally. That conversion is what actually
+    contaminates governance: the flat smoke keeps its `dry_run` flag and is
+    ignored downstream, but `build_runpack_docs` emits an `experiment_pack/v1`
+    manifest with NO dry_run field, and the pack is what the indexer scores.
+    Confirmed on MECH-245, where two 1-seed V3-EXQ-825 smokes became that
+    claim's entire negative evidence base (2 FAIL / `weakens`) while its one
+    genuine run PASSED. Refusing here is the upstream half of the fix; the
+    indexer's own exclusion is the backstop for packs already on disk.
     """
     epoch = str(data.get("architecture_epoch", ""))
     if epoch != "ree_hybrid_guardrails_v1":
+        return False
+    if _is_dry_run(data, flat_path):
         return False
     run_id = str(data.get("run_id", ""))
     if run_id.endswith("_v3"):
@@ -329,7 +350,7 @@ def convert_flat_to_runpack(flat_path: Path) -> str:
         print(f"  [skip] {flat_path.name}: read error -- {exc}", flush=True)
         return ""
 
-    if not _is_flat_v3(data):
+    if not _is_flat_v3(data, flat_path):
         return ""
 
     run_id = str(data["run_id"])

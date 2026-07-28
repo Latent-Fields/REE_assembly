@@ -780,6 +780,63 @@ def _load_json(path: Path) -> dict[str, Any]:
         raise RuntimeError(f"Invalid JSON: {path}: {exc}") from exc
 
 
+def _is_dry_run(manifest: dict[str, Any]) -> bool:
+    """True if a manifest's top-level dry_run flag is set (any truthy form).
+
+    A `--dry-run` smoke writes a real manifest (flat AND run-pack) into
+    evidence/experiments/, but it is NOT evidence: the driver's dry-run branch
+    collapses the design to a couple of toy episodes and often a single seed, so
+    its PASS/FAIL is meaningless. Mirrors `_is_dry_run` in
+    scripts/generate_pending_review.py verbatim -- the str-cast tolerates the
+    bool / int / str spellings that have all appeared in the corpus.
+    """
+    return str(manifest.get("dry_run", "")).strip().lower() in ("true", "1", "yes")
+
+
+def _load_dry_run_run_ids(base_dir: Path) -> set[str]:
+    """run_ids of every manifest on disk that is a `--dry-run` smoke.
+
+    WHY A RUN_ID SET AND NOT A PER-FILE FLAG CHECK. The two signals live in
+    DIFFERENT files for the same run, so neither alone is sufficient:
+
+      * the FLAT manifest carries the top-level `dry_run` flag (drivers thread
+        `"dry_run": args.dry_run` into the dict they serialise), and when
+        `pack_writer.write_flat_manifest` is also threaded it additionally
+        prefixes the filename `_dry_<run_id>.json`; while
+      * the RUN PACK -- `<experiment_type>/runs/<run_id>/manifest.json`, which
+        is what `_scan_runs` actually scores -- is written from a different
+        code path (`experiment_pack/v1`) that has NO dry_run field at all.
+
+    So the pack that reaches scoring is indistinguishable from a real run when
+    read on its own; the flag has to be carried across from its flat sibling by
+    run_id. That is exactly the shape of the confirmed 2026-07-26 MECH-245
+    contamination: two 1-seed smokes of V3-EXQ-825 landed as
+    `_dry_..._v3.json` (flagged, correctly named, harmless) AND as two
+    `status: FAIL` / `evidence_direction: weakens` packs (unflagged, scored),
+    which became that claim's entire negative evidence base while its one
+    genuine run PASSED.
+
+    Scans both globs so a flag arriving via either path is caught. Best-effort:
+    an unreadable or non-dict file contributes nothing rather than raising.
+    """
+    ids: set[str] = set()
+    if not base_dir.is_dir():
+        return ids
+    for path in list(base_dir.glob("*.json")) + list(base_dir.glob("**/runs/**/manifest.json")):
+        try:
+            manifest = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(manifest, dict):
+            continue
+        if not (_is_dry_run(manifest) or path.name.startswith("_dry_")):
+            continue
+        run_id = manifest.get("run_id")
+        if run_id:
+            ids.add(str(run_id))
+    return ids
+
+
 def _load_json_compatible_yaml(path: Path, description: str) -> dict[str, Any]:
     """Load JSON-compatible YAML using stdlib json parser.
 
@@ -1029,11 +1086,23 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
         except ValueError:
             epoch_start = None
 
+    # Smoke runs are not evidence. Resolved ONCE for the whole scan: the pack
+    # being scored carries no dry_run field of its own, so the flag has to come
+    # from its flat sibling by run_id. See _load_dry_run_run_ids.
+    dry_run_ids = _load_dry_run_run_ids(base_dir)
+    n_dry_skipped = 0
+
     for manifest_path in sorted(base_dir.glob("**/runs/**/manifest.json")):
         run_dir = manifest_path.parent
         if run_dir.parent.name != "runs":
             continue
         experiment_type = run_dir.parent.parent.name
+
+        # Cheap pre-read form of the check below, for a pack written under a
+        # `_dry_`-prefixed directory or experiment_type.
+        if run_dir.name.startswith("_dry_") or experiment_type.startswith("_dry_"):
+            n_dry_skipped += 1
+            continue
 
         # Early-exit for pre-epoch runs: parse timestamp from directory name without
         # reading the manifest file. Directory names follow YYYY-MM-DDTHHMMSSz_... format
@@ -1056,6 +1125,15 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
 
         manifest = _load_json(manifest_path)
         run_id = str(manifest.get("run_id", run_dir.name))
+
+        # A `--dry-run` smoke never scores. `run_id in dry_run_ids` is the
+        # load-bearing arm (the flag lives on the flat sibling, not here); the
+        # `_is_dry_run(manifest)` arm covers a future pack that carries the flag
+        # itself. Deliberately BEFORE the flat-override merge below, so a smoke
+        # cannot pick up a governance annotation on the way out.
+        if run_id in dry_run_ids or _is_dry_run(manifest):
+            n_dry_skipped += 1
+            continue
 
         # Flat-manifest authoritative override (2026-06-14). Governance /
         # failure-autopsy corrections land on evidence/experiments/<run_id>.json
@@ -1241,6 +1319,10 @@ def _scan_runs(base_dir: Path, planning_criteria: dict[str, Any]) -> dict[str, l
                 z_goal_stream=z_goal_stream,
             )
         )
+
+    if n_dry_skipped:
+        print(f"Excluded {n_dry_skipped} dry-run smoke pack(s) from scoring "
+              f"({len(dry_run_ids)} dry-run run_id(s) on disk).")
 
     for runs in by_experiment.values():
         runs.sort(key=lambda r: (r.timestamp, r.run_id))
@@ -5933,7 +6015,14 @@ def _arm_fp_cell_keys(cell: dict[str, Any]) -> list[str]:
 
 
 def _iter_manifests_with_arm_results(base_dir: Path):
-    """Yield (manifest_dict, path) for flat + run-pack manifests that have arm_results."""
+    """Yield (manifest_dict, path) for flat + run-pack manifests that have arm_results.
+
+    Dry-run smokes are excluded on the same run_id set the scoring scan uses. A
+    smoke's OFF arm is a toy cell (typically 1 seed x a couple of episodes), so
+    minting it as a reuse SOURCE would let a later real experiment silently
+    inherit a fingerprint-matched baseline computed from nothing.
+    """
+    dry_run_ids = _load_dry_run_run_ids(base_dir)
     seen: set[Path] = set()
     flat = sorted(base_dir.glob("*.json"))
     nested = sorted(base_dir.glob("**/runs/**/manifest.json"))
@@ -5942,8 +6031,12 @@ def _iter_manifests_with_arm_results(base_dir: Path):
         if rp in seen:
             continue
         seen.add(rp)
+        if path.name.startswith("_dry_"):
+            continue
         manifest = _load_json(path)
         if not isinstance(manifest, dict):
+            continue
+        if _is_dry_run(manifest) or str(manifest.get("run_id", "")) in dry_run_ids:
             continue
         if isinstance(manifest.get("arm_results"), list):
             yield manifest, path
