@@ -1185,3 +1185,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T08:53:17Z WARN generator timed out (>420s); falling back to last-good workset on disk (tick proceeds)
 2026-07-28T08:36:08Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
 2026-07-28T10:11:57Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
+2026-07-28T11:12:57Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
