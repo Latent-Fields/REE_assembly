@@ -189,29 +189,45 @@ why test 3 exists, and why the "superseded" grade is not simply "unclear".
 
 ## Actions taken
 
-**Dropped (proven contained on `origin/main`):**
+**All five dropped. The ree-v3 stash list is now EMPTY.** Every one was archive-tagged first
+(see below), so no content was destroyed.
 
-- `stash@{1}` `66f3356e916c7dee4c60f888a0cdbf1008c06204` -- SD-082, all 4 hunks reverse-apply.
-- `stash@{2}` `64a31b95be5bbf09f700d9e65ab9a62584c12138` -- SD-070 P0a, all 3 blobs identical.
+Dropped in two passes, deliberately:
 
-**Left in place, recommended for drop (superseded, not byte-proven):**
+1. **First pass -- the two proven contained on `origin/main`:**
+   - `66f3356e916c7dee4c60f888a0cdbf1008c06204` -- SD-082, all 4 hunks reverse-apply.
+   - `64a31b95be5bbf09f700d9e65ab9a62584c12138` -- SD-070 P0a, all 3 blobs identical.
+2. **Second pass -- the three superseded-but-not-byte-proven, on explicit user
+   authorisation** ("drop them with archive tag", 2026-07-28):
+   - `604e24f0c2c92da8e52cb790c7313cdb30c1986f` (ARC-070/MECH-321, 9 files)
+   - `a9e01fd99cf31e10d7b6db998d2a6be7b6aa0e18` (ARC-071/MECH-323 + SD-078/079 + ARC-063, 20 files)
+   - `87404723f6dfe86d40a50e6320b039567d2b7dcd` (z_world guard + ARC-108/110, 23 files)
 
-- `stash@{0}` `604e24f0c2c92da8e52cb790c7313cdb30c1986f`
-- `stash@{3}` `a9e01fd99cf31e10d7b6db998d2a6be7b6aa0e18`
-- `stash@{4}` `87404723f6dfe86d40a50e6320b039567d2b7dcd`
+**The two-pass split is the point, not bureaucracy.** Pass 1 was mechanically proven and
+needed no permission. Pass 2 rested on a symbol-superset argument plus named landing commits
+-- strong, but an *argument*, so it was reported and left for the owner to decide rather than
+actioned on a judgement call. Preserve that distinction if this triage is ever repeated.
 
 Nothing was restored. Per CLAUDE.md remedy (b), a judgement-call restore onto a moved trunk
 is worse than leaving the entry alone -- and here the judgement call does not even arise,
-since main is ahead of all three.
+since main is ahead of all five.
 
-**Both dropped entries were archived as local tags before being let go**, following the
+**Every dropped entry was archived as a local tag before being let go**, following the
 convention established 2026-07-18 (session `fervent-tereshkova-2f1c69`, WORKSPACE_STATE
-2026-07-18T17:39Z) for the 58-stash fleet clear:
+2026-07-18T17:39Z) for the 58-stash fleet clear. `ree-v3` now carries six such tags -- the
+five below plus `stash-archive/20260714-32c6fd21` from that earlier sweep:
 
 ```
-stash-archive/20260727-66f3356e  -> 66f3356e916c7dee4c60f888a0cdbf1008c06204
-stash-archive/20260724-64a31b95  -> 64a31b95be5bbf09f700d9e65ab9a62584c12138
+stash-archive/20260727-604e24f0  -> 604e24f0c2c92da8e52cb790c7313cdb30c1986f   ( 9 files)
+stash-archive/20260727-66f3356e  -> 66f3356e916c7dee4c60f888a0cdbf1008c06204   ( 4 files)
+stash-archive/20260724-64a31b95  -> 64a31b95be5bbf09f700d9e65ab9a62584c12138   ( 3 files)
+stash-archive/20260722-a9e01fd9  -> a9e01fd99cf31e10d7b6db998d2a6be7b6aa0e18   (20 files)
+stash-archive/20260720-87404723  -> 87404723f6dfe86d40a50e6320b039567d2b7dcd   (23 files)
 ```
+
+File counts were re-verified through the tags *after* the drops (`git stash show --name-only
+<tag>`), which is the check that actually proves the content survived the drop rather than
+merely that a tag exists.
 
 The tags keep the commits reachable, so the content **cannot be garbage-collected**:
 `git stash apply stash-archive/<tag>` or `git show <tag>:<path>` restores it. They are
