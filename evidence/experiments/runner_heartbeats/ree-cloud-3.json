@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-28T21:28:39Z",
+  "last_tick_utc": "2026-07-28T22:03:46Z",
   "state": "running",
   "current_exq": "V3-EXQ-834",
   "current_exq_started_utc": "2026-07-28T17:05:49.150651+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 505 / SIZE_H50",
-    "runs_done": 14,
+    "run_label": "Seed 202 / DEPTH_H50",
+    "runs_done": 16,
     "runs_total": 25,
     "episodes_done": 75,
     "episodes_total": 100,
-    "overall_pct": 59.0
+    "overall_pct": 67.0
   },
-  "seconds_elapsed": 15769,
-  "seconds_remaining": 10925,
+  "seconds_elapsed": 17876,
+  "seconds_remaining": 8690,
   "recent_lines": [
     "Seed 101 Condition STATIC_H50",
     "[train] chunk seed=101 arm=STATIC_H50 ep 25/100 formed=13 ceil=5 depth=3",
@@ -106,7 +106,19 @@
     "Seed 505 Condition SIZE_H50",
     "[train] chunk seed=505 arm=SIZE_H50 ep 25/100 formed=7 ceil=5 depth=3",
     "[train] chunk seed=505 arm=SIZE_H50 ep 50/100 formed=11 ceil=5 depth=3",
-    "[train] chunk seed=505 arm=SIZE_H50 ep 75/100 formed=14 ceil=5 depth=3"
+    "[train] chunk seed=505 arm=SIZE_H50 ep 75/100 formed=14 ceil=5 depth=3",
+    "[train] chunk seed=505 arm=SIZE_H50 ep 100/100 formed=14 ceil=5 depth=3",
+    "verdict: PASS",
+    "Seed 101 Condition DEPTH_H50",
+    "[train] chunk seed=101 arm=DEPTH_H50 ep 25/100 formed=13 ceil=5 depth=4",
+    "[train] chunk seed=101 arm=DEPTH_H50 ep 50/100 formed=28 ceil=5 depth=4",
+    "[train] chunk seed=101 arm=DEPTH_H50 ep 75/100 formed=33 ceil=5 depth=4",
+    "[train] chunk seed=101 arm=DEPTH_H50 ep 100/100 formed=39 ceil=5 depth=4",
+    "verdict: PASS",
+    "Seed 202 Condition DEPTH_H50",
+    "[train] chunk seed=202 arm=DEPTH_H50 ep 25/100 formed=0 ceil=5 depth=3",
+    "[train] chunk seed=202 arm=DEPTH_H50 ep 50/100 formed=0 ceil=5 depth=3",
+    "[train] chunk seed=202 arm=DEPTH_H50 ep 75/100 formed=0 ceil=5 depth=3"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
