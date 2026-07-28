@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_080",
+  "entry_id": "2026-07-28_sd_080_fixed_random_encoder_baseline_seo2021",
+  "timestamp_utc": "2026-07-28T06:13:12Z",
+  "claim_ids_tested": ["SD-080"],
+  "source": {
+    "title": "State Entropy Maximization with Random Encoders for Efficient Exploration",
+    "authors": ["Younggyo Seo", "Lili Chen", "Jinwoo Shin", "Honglak Lee", "Pieter Abbeel", "Kimin Lee"],
+    "year": 2021,
+    "venue": "Proceedings of the 38th International Conference on Machine Learning (ICML), PMLR 139",
+    "doi": "10.48550/arXiv.2102.09430",
+    "url": "https://arxiv.org/abs/2102.09430"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Included deliberately as the counterweight to the two supporting entries: it is the strongest available demonstration that a randomly initialised, never-trained encoder can be not merely adequate but PREFERABLE for a downstream geometric computation, outperforming ICM and RND on DeepMind Control Suite. It therefore weakens the inference 'frozen and random, therefore useless'. But it does NOT weaken SD-080's actual finding, because RE3's random encoder is a random encoder OF THE INPUT and its output varies with the input, which is what makes the k-NN entropy estimate meaningful -- whereas REE's frozen head has measured r2_explained_by_action_alone = 0.9947, i.e. it discards its state input almost entirely. Confidence is moderate because the entry's value is analytic (it sharpens what SD-080's defect IS) rather than directly evidential about REE.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "RE3 shows that random-projection geometry is preserved well enough for k-NN distance computations, which sharpens SD-080 into a stronger claim than 'the head is random': a random projection of (z_world, a) should have INHERITED some of z_world's variation, yet the spike measured between-state variance of about 6e-05 against a z_world total variance of 0.0031. The collapse is therefore attributable to initialisation scale or architecture, not to randomness as such -- and a fix that only 'connects the gradient' without diagnosing why the state input is being annihilated may not resolve it.",
+    "If a frozen random encoder is sufficient for the downstream consumer's purpose, adding a learned one can be pure cost. RE3's authors explicitly motivate the random encoder on compute grounds -- no gradient updates through it. Any REE experiment repairing SD-080 must therefore measure the cost side as well, and must include a frozen-but-non-collapsed control arm, not only frozen-vs-learned.",
+    "The property RE3 needs from its encoder is only that distances be approximately preserved. The property SD-004 needs from O is far stronger: that distance MEAN similarity of world-effect, so that actions with the same consequence embed alike. Random projection gives the first and cannot give the second. An REE experiment that validates only distance-preservation in O would pass while leaving the SD-004 specification unmet."
+  ],
+  "tags": ["sd-080", "sd_080", "random_projection", "frozen_encoder", "representation_learning", "counterweight", "action_object_space"],
+  "mapping": {
+    "source_claim_statement": "State entropy can be estimated 'in a stable and compute-efficient manner by utilizing a randomly initialized encoder, which is fixed throughout training'; a k-nearest-neighbour entropy estimator in that random encoder's low-dimensional representation space yields an intrinsic reward that improves sample efficiency of both model-free and model-based RL on DeepMind Control Suite and MiniGrid, outperforming ICM and RND.",
+    "ree_translation": "This is the honest objection to SD-080's framing. SD-080 reads as an indictment of the action_object_head on the grounds that it is 'a frozen random projection fixed at initialisation'. RE3 establishes that being a frozen random projection is not, by itself, a defect -- a fixed random encoder can beat two well-known learned-representation exploration methods at a downstream geometric task, and the authors choose it on purpose. What survives the objection, and is sharpened by it, is the SECOND half of SD-080: that O is state-INVARIANT. RE3's encoder is random but its output is a function of its input; REE's frozen head is random AND has been measured to be 99.5% a function of the action label alone, with pairwise-distance CV across 120 world states under 1%. So the load-bearing defect is not randomness, it is the annihilation of the state input -- which a random projection alone does not predict, since a random linear map of a varying input varies.",
+    "mapping_caveat": "The transfer is structural rather than empirical and should not be over-read in either direction. RE3's encoder encodes STATES for an entropy estimate; REE's head encodes (state, action) pairs for a CEM search. The two downstream consumers demand different properties -- RE3 needs only approximate distance preservation, whereas SD-004 needs distance to track world-effect similarity, which no random map supplies. So this entry does not show that REE's frozen head is acceptable; it shows that the argument 'frozen random, therefore broken' is invalid as stated, and that SD-080's real content is the state-invariance measurement rather than the frozen-ness. It is filed as 'mixed' for that reason: it weakens SD-080's rhetoric and strengthens SD-080's evidence.",
+    "source_context": "Deep RL exploration. DeepMind Control Suite (locomotion, continuous control from pixels) and MiniGrid (discrete navigation). Comparison methods ICM and RND. Simulated only; no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is high (ICML 2021, strong baselines, two benchmark families). Mapping fidelity is the weak component and deliberately so: the paper is about state encoders for entropy estimation, not action representations for planning, so it speaks to SD-080 by analogy and by contrast rather than directly. Aggregate is pulled below both supporting entries because an entry whose contribution is largely analytic should not carry evidential weight comparable to one that tests the mechanism. Filed as mixed rather than weakens because it cuts against SD-080's framing while corroborating SD-080's measurement."
+  }
+}

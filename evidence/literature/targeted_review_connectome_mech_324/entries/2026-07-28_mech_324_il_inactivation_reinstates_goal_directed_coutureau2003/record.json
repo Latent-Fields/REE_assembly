@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_324",
+  "entry_id": "2026-07-28_mech_324_il_inactivation_reinstates_goal_directed_coutureau2003",
+  "timestamp_utc": "2026-07-28T06:13:12Z",
+  "claim_ids_tested": ["MECH-324"],
+  "source": {
+    "title": "Inactivation of the infralimbic prefrontal cortex reinstates goal-directed responding in overtrained rats",
+    "authors": ["Etienne Coutureau", "Simon Killcross"],
+    "year": 2003,
+    "venue": "Behavioural Brain Research 146(1-2):167-74",
+    "doi": "10.1016/j.bbr.2003.09.025",
+    "url": "https://doi.org/10.1016/j.bbr.2003.09.025"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "Independent causal confirmation, by a different method (muscimol inactivation) in a different task (instrumental lever-press with specific-satiety devaluation) from a different laboratory, that infralimbic cortex is required for habitual rather than goal-directed control, and that removing it restores the goal-directed alternative INTACT. This is the convergent-evidence pillar under MECH-324's maintenance-operator framing, and it independently supports retention: the action-outcome representation survived extended overtraining unimpaired and was immediately usable. Held at 0.76 rather than higher because the paper's own conclusion -- that habit reflects ACTIVE INHIBITION of goal-directed responding -- describes a mechanism MECH-324 does not implement, so the entry supports the claim's phenomenon while flagging a real architectural divergence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The authors conclude that 'the development of habitual responding reflects the active inhibition of goal-directed responses that are mediated by action-outcome associations'. MECH-324's maintenance operator gates whether a CHUNK is selectable; it does not implement an inhibitory projection onto the decomposed goal-directed alternative. These are functionally similar and mechanistically different, and the difference predicts divergence wherever the two alternatives must compete rather than merely be enabled or disabled.",
+    "Goal-directed control returned in full after extended overtraining, meaning the action-outcome representation was never degraded by habitisation. Any REE implementation in which chunk crystallisation weakens, overwrites, or reduces the accessibility of the constituent primitives would diverge from this result. MECH-321 decomposition interacts here: the claim's own notes flag the open question of whether decomposition should trigger DISSOLVING, and this paper argues the primitives stay fully available regardless of chunk state.",
+    "Control-infused overtrained animals were insensitive to devaluation while muscimol animals were sensitive. A validation experiment that measures only chunk selection frequency, without an outcome-sensitivity probe, cannot distinguish 'the chunk was dissolved' from 'the chunk was never selected on these trials'. Devaluation-sensitivity is the discriminating measure and REE has no analog of it registered."
+  ],
+  "tags": ["mech-324", "mech_324", "infralimbic", "habit_maintenance", "goal_directed", "devaluation", "muscimol", "suppression_with_retention", "arc-071"],
+  "mapping": {
+    "source_claim_statement": "Rats given extended instrumental training showed habitual, devaluation-insensitive lever pressing under vehicle infusion, whereas 'animals receiving temporary inactivation of the infralimbic cortex by muscimol showed selective sensitivity to devaluation of the instrumental outcome, indicating a reinstatement of goal-directed responding'. The authors conclude that 'the development of habitual responding reflects the active inhibition of goal-directed responses that are mediated by action-outcome associations'.",
+    "ree_translation": "MECH-324's maintenance operator is what makes a formed chunk crystallised and selectable; when maintenance is off (ARM_2) chunks form but never become selectable, and behaviour should fall back to the underlying primitives. Coutureau & Killcross supply the biological counterpart with a second, independent method: temporarily removing infralimbic function in an overtrained animal returns control to the action-outcome system, and returns it INTACT -- devaluation sensitivity is restored, not partially recovered. Two things follow for MECH-324. First, the maintenance operator is confirmed as a genuine gate on which control regime is expressed, not as a store of the behaviour itself. Second, and independently of Smith et al. 2012, the alternative representation is shown to survive habitisation undamaged, which is the retention half of the corrected DISSOLVED semantics viewed from the primitives' side rather than the chunk's side.",
+    "mapping_caveat": "The paper's mechanistic conclusion and MECH-324's implementation genuinely differ, and this must not be smoothed over. Coutureau & Killcross argue that habit dominance is achieved by ACTIVE INHIBITION of the goal-directed system by infralimbic cortex -- removing IL releases that inhibition. MECH-324 instead gates the chunk's own selectability, with the primitives always available and simply out-competed. Both produce 'habit expressed while IL intact, goal-directed expressed when IL removed', so the phenomenon transfers, but the architectures are not the same and will come apart under manipulations that dissociate release-from-inhibition from loss-of-chunk-selectability. Additionally the task is a single-lever instrumental response, far simpler than a multi-step policy chunk, and muscimol inactivation is spatially and temporally coarse compared with the optogenetic result. Nothing here calibrates the asymmetric hysteresis band or f_reacq.",
+    "source_context": "Rats, instrumental lever-press for food, extended training to habit criterion. Bilateral intracerebral cannulae to infralimbic cortex; muscimol versus vehicle infusion before test. Habit status assessed by specific-satiety devaluation of the instrumental outcome followed by extinction test. Between-subjects comparison of muscimol and vehicle groups."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Source quality solid but below the 2012 PNAS entry: muscimol inactivation is coarser than optogenetic perturbation, the design is between-subjects at test rather than within-animal reversible, and the journal is a specialist rather than a general-science venue. Its value is convergence -- different method, different task, different laboratory, same conclusion -- which is what MECH-324 most needs given its zero experimental evidence. Mapping fidelity is held at 0.72 by the active-inhibition-versus-selectability-gate divergence, which is a real architectural difference rather than a wording difference. Transfer risk moderate: single-response instrumental habit to multi-step policy chunk is a substantial granularity jump."
+  }
+}

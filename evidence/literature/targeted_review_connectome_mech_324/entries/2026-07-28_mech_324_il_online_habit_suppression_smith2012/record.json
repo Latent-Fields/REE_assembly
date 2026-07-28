@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_324",
+  "entry_id": "2026-07-28_mech_324_il_online_habit_suppression_smith2012",
+  "timestamp_utc": "2026-07-28T06:13:12Z",
+  "claim_ids_tested": ["MECH-324"],
+  "source": {
+    "title": "Reversible online control of habitual behavior by optogenetic perturbation of medial prefrontal cortex",
+    "authors": ["Kyle S. Smith", "Arti Virkud", "Karl Deisseroth", "Ann M. Graybiel"],
+    "year": 2012,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America 109(46):18932-7",
+    "doi": "10.1073/pnas.1216264109",
+    "url": "https://doi.org/10.1073/pnas.1216264109"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the causal-necessity paper MECH-324's implementation_note cites in spirit but which was not on file, and it is the direct biological warrant for the 2026-07-27 structural correction from erasure/tombstone to suppression-with-retention. Two findings map almost one-to-one: (1) disrupting infralimbic cortex BLOCKS an established habit online, within an average of three trials and as early as the first trial, so maintenance is a continuously-required gate rather than a one-shot crystallisation event; (2) after weeks of new-habit training, re-imposing the same perturbation caused rats to REGAIN the previously suppressed original habit while the newer one was blocked -- the suppressed chunk was retained, dormant and recoverable, which is exactly what MECH-324's corrected DISSOLVED state now asserts and what the as-first-built absorbing tombstone forbade. Held at 0.82 rather than higher because the mapping runs from an IL population-activity disruption to a software maintenance switch, and because rodent T-maze habit is a much narrower behavioural object than a policy chunk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The original habit was regained on re-perturbation, meaning it survived weeks of a competing habit being trained over it. Any implementation in which DISSOLVED is terminal, or in which a dissolved sequence is blocked from re-forming, is inconsistent with this result -- which is precisely the defect corrected in ree-v3 6c3e67e, where a retained tombstone permanently blocked its own sequence from re-forming at any number of repetitions.",
+    "Blockade occurred within about 9 seconds of inhibition and as soon as the first trial (<3 s). Maintenance is therefore fast-acting and continuously required. An REE maintenance operator whose dissolution is slow-by-construction (the DISSOLVING hysteresis window) will not reproduce this latency; if a validation experiment measures time-to-suppression it should expect a discrepancy attributable to REE design choice, not to a substrate bug.",
+    "Perturbation toggled BOTH ways -- suppressing the new habit while restoring the old one in the same intervention. This implies a competitive selection among retained chunks rather than independent per-chunk gates. MECH-324 implements per-chunk lifecycle states with no cross-chunk competition, so this is an unmodelled degree of freedom and a candidate explanation if a validation experiment finds dissolution behaving independently across chunks when biology predicts trade-off.",
+    "Generalised performance ability and motivation to consume reward were unaffected. A REE dissolution mechanism that degrades general policy performance alongside chunk suppression would be diverging from the biology, and a validation experiment should carry that as an explicit control rather than reading a global performance drop as successful dissolution."
+  ],
+  "tags": ["mech-324", "mech_324", "infralimbic", "habit_maintenance", "chunk_dissolution", "suppression_with_retention", "optogenetics", "arc-071"],
+  "mapping": {
+    "source_claim_statement": "Optogenetic disruption of infralimbic cortex population activity during well-ingrained habitual T-maze runs 'blocked habitual behavior', with the blockade occurring 'on line, within an average of three trials (ca. 9 s of inhibition), and as soon as during the first trial (<3 s)'. After subsequent weeks of training produced a new behavioural pattern, re-imposing the same perturbation caused the rats to 'regain the suppressed maze-running that typified the original habit' while 'the more recently acquired habit was blocked'. Generalised performance ability and motivation to consume reward were unaffected.",
+    "ree_translation": "MECH-324 posits an IL/vmPFC-analog maintenance operator that gates whether a formed policy chunk is crystallised and selectable, with dissolution implemented as suppression-with-retention: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq. Smith et al. 2012 is the causal demonstration of both halves in biology. The 'blocked habitual behaviour' arm is the substrate analog of ARM_2 in MECH-324's registered dissociation, where use_chunk_maintenance is off so chunks form but never crystallise and never become selectable -- and the paper shows the corresponding behaviour is loss of habit EXPRESSION, not loss of the habit. The 'regained the suppressed maze-running' arm is the direct biological warrant for the 2026-07-27 correction: it establishes that the suppressed behavioural unit remains intact and re-expressible after an extended period during which a competing unit was dominant.",
+    "mapping_caveat": "The intervention is an acute optogenetic disruption of a cortical population, not a slow outcome-inconsistency-driven dissolution, so the paper speaks to the RETENTION property and to maintenance-as-continuously-required, and NOT to MECH-324's sub-mechanism (B), the asymmetric hysteresis gate with variance_low < variance_high. Nothing here calibrates the hysteresis band or f_reacq, which remain uncalibrated engineering defaults. Further, a rodent T-maze run habit is a much narrower object than an REE policy chunk over an arbitrary action sequence, and the paper's toggling result implies cross-chunk competition that MECH-324's per-chunk lifecycle does not implement. Finally, the paper cannot distinguish 'the chunk is retained and suppressed' from 'the chunk is re-learned very fast on re-exposure' -- the savings-versus-retention ambiguity is left open, and MECH-324 commits to retention.",
+    "source_context": "Rats, T-maze running habit established by extended training and confirmed habitual by reward-devaluation testing. Optogenetic inhibition of infralimbic cortex delivered during the ca. 3-second maze run itself. Within-animal design with re-perturbation after weeks of further training. Controls for generalised performance and reward motivation."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.30,
+    "notes": "Source quality high: PNAS, causal optogenetic manipulation with devaluation confirmation of habit status, within-animal reversibility, and explicit performance/motivation controls -- this is a causal claim, not a correlational one, which is what MECH-324's 'causally required for chunk crystallisation' framing needs. Mapping fidelity is good and the retention finding maps unusually cleanly, but it is held below 0.8 by the acute-perturbation-vs-gradual-dissolution mismatch and by the unmodelled cross-chunk competition. Transfer risk is relatively low for a rodent-to-software mapping because the claim being transferred is architectural (a gate that suppresses without erasing) rather than parametric. Aggregate weighted toward source_quality, since MECH-324's dependence here is on a causal empirical result."
+  }
+}

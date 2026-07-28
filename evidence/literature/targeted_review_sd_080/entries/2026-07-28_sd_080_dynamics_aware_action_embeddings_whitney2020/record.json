@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_080",
+  "entry_id": "2026-07-28_sd_080_dynamics_aware_action_embeddings_whitney2020",
+  "timestamp_utc": "2026-07-28T06:13:12Z",
+  "claim_ids_tested": ["SD-080"],
+  "source": {
+    "title": "Dynamics-aware Embeddings",
+    "authors": ["William F. Whitney", "Rajat Agarwal", "Kyunghyun Cho", "Abhinav Gupta"],
+    "year": 2020,
+    "venue": "International Conference on Learning Representations (ICLR) 2020",
+    "doi": "10.48550/arXiv.1908.09357",
+    "url": "https://openreview.net/forum?id=BJgZGeHFPH"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly on point for the ISOLABILITY of the action-side deficit: the paper ablates state embeddings and action embeddings separately and reports that 'action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional states'. That is the precise counterfactual SD-080 needs, because the spike's control showed z_world DOES vary and world_forward DOES become state-dependent -- i.e. the REE deficit is action-side-only, exactly the arm this paper isolates. Held below 0.8 because the learning objective is forward prediction over action SEQUENCES in continuous control, whereas REE's O is a per-step, 5-discrete-action space, and the paper's downstream consumer is model-free RL rather than a CEM planner.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's action embedding is trained by forward prediction -- predicting the resulting state from (state embedding, action-sequence embedding). A representation trained this way is state-conditioned by construction. REE's action_object_head takes z_world as input but, being frozen at initialisation, produces output that is 99.5% a function of the action label alone, so it fails the defining property of a dynamics-aware embedding while retaining its input signature.",
+    "The benefit here is measured as sample efficiency and peak performance on continuous control, not as planning quality inside the embedding. If REE reproduces this experiment it must not assume the two transfer: a CEM planner that refits a sampling distribution inside O could in principle be helped or hurt by a learned geometry in ways a policy-gradient learner is not.",
+    "The paper's action embeddings are of action SEQUENCES, deliberately, because the informative dynamics structure lives at the multi-step level. REE's action objects are single-step. If the consequence structure that matters is multi-step, then even a fully-trained single-step REE action_object_head would not recover what this paper shows to be useful -- SD-080's fix as currently framed may be necessary but not sufficient."
+  ],
+  "tags": ["sd-080", "sd_080", "action_representation", "dynamics_aware_embedding", "forward_model", "action_object_space", "planning"],
+  "mapping": {
+    "source_claim_statement": "A forward-prediction objective can simultaneously learn embeddings of states and of action sequences that 'capture the structure of the environment's dynamics'; ablated separately, 'action embeddings alone improve the sample efficiency and peak performance of model-free RL on control from low-dimensional states', and state plus action embeddings together yield efficient goal-conditioned continuous control from pixels within 1-2M environment steps.",
+    "ree_translation": "This is the strongest available external evidence that the ACTION-side half of a state-plus-action representation carries independent value -- which is the exact shape of SD-080. The 2026-07-22 spike established that REE's deficit is isolated to the action side: z_world varies normally across the 120 sampled states (total var 0.0031, mean per-dim std 0.0096), and the trained sibling world_forward moves from r2_action_alone 0.791 untrained to 0.558 after warmup, i.e. it BECOMES state-dependent as designed. Only action_object_head stays frozen. Whitney et al.'s low-dimensional-state ablation is the matching arm: hold the state representation fixed, vary only whether the action representation is dynamics-aware, and the dynamics-aware one wins. That is the counterfactual SD-080 asserts and REE has never run.",
+    "mapping_caveat": "Three transfer gaps, none fatal but all real. (1) The paper embeds action SEQUENCES over a horizon; REE's action objects are single-step, so the dynamics structure the paper exploits may not exist at REE's granularity. (2) The domains are continuous control (DeepMind-Control-style), where the action space has intrinsic metric structure a learned embedding can recover; REE's 5 discrete grid actions may have little metric structure to find. (3) The downstream consumer is model-free RL; REE's is a CEM planner refitting inside O. The paper therefore supports 'a dynamics-aware action representation is worth having' but does not license a quantitative prediction for REE's setting.",
+    "source_context": "Deep RL, continuous control. Low-dimensional-state control tasks (for the action-embedding-only ablation) and goal-conditioned control from pixel observations (for the combined result). Simulated environments only; no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.40,
+    "notes": "ICLR 2020 with clean separate ablations of the state and action halves -- the ablation structure is what makes it useful here, more than the headline pixel result. Mapping fidelity is good but not excellent because of the single-step-vs-sequence and discrete-vs-continuous mismatches. Transfer risk is the highest of the three SD-080 entries: continuous control with metric action structure is the friendliest possible case for a learned action embedding, and REE's 5-action discrete space is close to the least friendly."
+  }
+}

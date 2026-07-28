@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_080",
+  "entry_id": "2026-07-28_sd_080_learned_action_representations_chandak2019",
+  "timestamp_utc": "2026-07-28T06:13:12Z",
+  "claim_ids_tested": ["SD-080"],
+  "source": {
+    "title": "Learning Action Representations for Reinforcement Learning",
+    "authors": ["Yash Chandak", "Georgios Theocharous", "James Kostas", "Scott Jordan", "Philip S. Thomas"],
+    "year": 2019,
+    "venue": "Proceedings of the 36th International Conference on Machine Learning (ICML), PMLR 97:941-950",
+    "doi": "10.48550/arXiv.1902.00183",
+    "url": "https://proceedings.mlr.press/v97/chandak19a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High mapping fidelity: the paper's learned action-representation space is the same object SD-004 specifies for O -- a low-dimensional action space whose geometry is induced by observed consequences (inverse dynamics over state transitions), with the policy searching IN that space. The paper's central empirical result is precisely the counterfactual SD-080 asserts: agents whose action space carries no learned consequence structure degrade as the action set grows, while the learned-representation agent does not. Confidence is held below 0.85 because the demonstrated gains are for LARGE finite action sets (2^4 to 2^12; thousands of actions in the recommender domains), whereas REE's action_dim is 5 -- the paper does not establish that the deficit bites at that scale, and the SD-080 spike measured the representation, not a performance decrement.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An action space with no learned consequence structure cannot support inference about the outcome of an untried action from the outcomes of similar tried actions -- the paper's stated mechanism for generalisation. A frozen random action-object head therefore gives the CEM no basis for generalising across the action-object neighbourhood it searches.",
+    "The paper's baselines (actor-critic, DPG) degrade monotonically as the action set grows from 2^4 to 2^12 while the learned-representation agent holds performance. This predicts that the SD-080 defect is scale-dependent and may be near-invisible at REE's action_dim = 5, so a null result in a small-action-space REE experiment would NOT license concluding the frozen head is harmless.",
+    "The representation is learned by supervised inverse dynamics, NOT by the policy-gradient signal. This means the deficit cannot be repaired merely by letting the existing REE training paths reach the head: the training paths that currently miss it are reward/prediction paths, and the paper's own argument is that a supervised-transition objective is what makes the representation low-variance and learnable."
+  ],
+  "tags": ["sd-080", "sd_080", "action_representation", "inverse_dynamics", "action_object_space", "learned_compression", "planning"],
+  "mapping": {
+    "source_claim_statement": "A policy can be decomposed into a component acting in a low-dimensional space of action representations and a component mapping those representations to actual actions; the representation is learned by minimising the negative log-likelihood of a reconstruction of P(A_t | S_t, S_{t+1}) over observed transitions, and 'these representations improve generalization over large, finite action sets by allowing the agent to infer the outcomes of actions similar to actions already taken'.",
+    "ree_translation": "This is the intended construction of SD-004's action-object space O. Chandak et al.'s learned action space is exactly what the SD-004/SD-005 co-design document calls a 'learned compression from z_world-level effects to 16-dim action objects' that is 'semantically grounded in world-effects'. Their learning signal -- P(A_t | S_t, S_{t+1}) -- is state-conditioned by construction, matching REE's specified o_t = f(z_world_t, a_t). SD-080 reports that REE's E2.action_object_head receives zero gradient from every training path (measured param delta L2 = 0.0 after 40-episode warmup), so REE has the architecture of a learned action representation with none of the learning. The paper establishes that the learning, not the architecture, is where the generalisation comes from.",
+    "mapping_caveat": "The paper's action spaces are large (2^4-2^12 in the maze; thousands in the two commercial recommender domains) and its argument for learned action representations is explicitly a LARGE-action-set argument -- generalising across many actions from few samples. REE's action_dim is 5. Nothing in this paper shows that a frozen action representation is harmful at 5 actions, and a 5-action space may be small enough that one-hot-equivalent structure is sufficient. The transfer therefore supports SD-080's DIAGNOSIS (O is not the learned consequence space SD-004 specifies) far more strongly than it supports any claim about the SIZE of the resulting planning deficit. Separately, PG-RA is a policy-gradient method searching a representation space, whereas REE's consumer is a CEM planner refitting inside O -- the consumer differs, and CEM's sensitivity to representation geometry is not tested here.",
+    "source_context": "Deep RL, discrete finite action sets. Simulated maze with combinatorially scaled action sets (2^4 to 2^12) plus two real-world commercial recommender-system domains (tutorial recommendation; multimedia editing software) with thousands of actions. No neural or biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.35,
+    "notes": "ICML 2019 with a convergence analysis and real-world deployments -- strong for a computational claim. Mapping fidelity is high because the paper's object IS the object SD-004 specifies, down to the state-conditioning. Transfer risk is moderate-not-low, driven by the action-set-size mismatch (thousands vs 5) and by the policy-gradient-vs-CEM consumer mismatch. Aggregate weighted toward mapping_fidelity, since SD-080 is an architectural design_decision claim about what O IS, not an empirical claim about how much performance is lost."
+  }
+}
