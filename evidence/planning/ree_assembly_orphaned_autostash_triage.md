@@ -377,15 +377,34 @@ Partly, and differently.
   have `scripts/governance.sh` open a `TASK_CLAIMS` entry covering `evidence/` for its duration,
   which the existing skip already honours.
 
-  **IN FLIGHT as of 2026-07-28T17:31Z -- do NOT re-chip this.** Session `gracious-snyder-aa4b35`
-  holds an active claim on `scripts/governance.sh` and has `gov_claim_open` / `gov_claim_close`
-  plus a `trap` written in the shared working tree (**not** yet on `origin/master`; treat that
-  file as another session's uncommitted work). Their notes already capture the two subtleties that
-  make it non-trivial: the `REE_assembly` heartbeat guard has **no `max_age_hours`**, so a leftover
-  `active` entry gates the heartbeat *indefinitely* and the close needs a trap; and the held-flag
-  must be armed **before** the `open` call, because `task_claim.py` writes the entry to disk and
-  only then commits it, so a SIGINT inside that window leaves an `active` entry already gating the
-  heartbeat while `open` exits non-zero.
+  **CLOSED 2026-07-28 -- landed on `origin/master` as `49d5c87922`** (session
+  `gracious-snyder-aa4b35`; supersedes the IN FLIGHT note previously here, which said the file was
+  still uncommitted). `scripts/governance.sh` now opens a `TASK_CLAIMS` entry over
+  `REE_assembly/evidence/` (session_id `governance-sh-<host>`) as Step 0-pre and releases it from
+  an exit trap on **every** path. Both subtleties that make it non-trivial are handled:
+
+  - The `REE_assembly` heartbeat guard has **no `max_age_hours`**, so a leftover `active` entry
+    gates the heartbeat push *indefinitely* -- hence `trap` on `EXIT` (covers `set -e` aborts, the
+    Step 4b/9c blocking gates, any explicit exit) plus `INT`/`TERM`, which re-raise so the caller
+    still sees the correct 128+N status.
+  - The held-flag is armed **before** the `open` call, because `task_claim.py` writes the entry to
+    disk and only then commits it, so a SIGINT inside that window leaves an `active` entry already
+    gating the heartbeat while `open` exits non-zero. This was not theoretical -- it was **observed
+    while testing the guard** (SIGINT during the open's git commit orphaned exactly such an entry).
+    The close is therefore guarded on what is actually on disk rather than on the in-memory flag,
+    which additionally **self-heals a leftover claim from a SIGKILLed earlier run** (the next run's
+    `open` adopts it and the trap releases it -- verified).
+
+  Verified against the real script: the claim is active mid-run and the heartbeat guard fires on
+  that entry **alone** (checked in isolation, so other sessions' `evidence/` claims cannot make the
+  check pass spuriously); the entry is closed with `closed_at` + `completion_note` on SIGINT
+  (exit -2), SIGTERM (-15), a non-zero exit (7, status correctly propagated) and exit 0.
+
+  **Residual hole:** `SIGKILL` / power loss still leaves an `active` entry, and because the
+  `REE_assembly` guard is unbounded that entry gates the heartbeat push until a human clears it.
+  Bounding it with a `max_age_hours` (as `_active_claim_on_ree_v3_code` already does) is the
+  follow-on; the machine-obvious `governance-sh-<host>` session_id is what makes such an entry
+  recognisable in the meantime.
 
   The sibling ree-v3 gap -- fix (a) of the ree-v3 triage, extending the claim-aware skip to the
   ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is separately in
