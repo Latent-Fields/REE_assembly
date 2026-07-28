@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-07-27T05:36:42Z`  
+Generated: `2026-07-28T07:00:37Z`  
 Last review: `2026-07-26T15:34:37Z`  
-Pending: **11** item(s) -- 3 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Pending: **18** item(s) -- 5 PASS, 13 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -16,6 +16,11 @@ Pending: **11** item(s) -- 3 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_816d_mech321_policy_decomposition_harshened_env_v2_20260726T185006Z_v3` | 2026-07-26T18:50 | (no claim tags) | — |
 | `v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3` | 2026-07-26T19:34 | INV-091 | — |
 | `v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3` | 2026-07-26T20:23 | Q-081 | — |
+| `v3_exq_826a_mech244_precision_weighting_self_sealing_20260727T141840Z_v3` | 2026-07-27T14:18 | MECH-244 | — |
+| `v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3` | 2026-07-27T17:05 | MECH-323, MECH-324 | — |
+| `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | 2026-07-27T18:09 | SD-078, SD-082 | — |
+| `v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3` | 2026-07-27T20:14 | MECH-466 | — |
+| `v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3` | 2026-07-27T20:37 | INV-091 | — |
 
 ## PASS (verify & close)
 
@@ -24,6 +29,17 @@ Pending: **11** item(s) -- 3 PASS, 8 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` | 2026-07-26T15:21 | MECH-245 |
 | `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` | 2026-07-26T18:02 | ARC-024, MECH-102, SD-003 |
 | `v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3` | 2026-07-27T00:50 | INV-088, MECH-457 |
+| `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | 2026-07-27T20:49 | (no claim tags) |
+| `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` | 2026-07-27T21:45 | INV-041, MECH-153 |
+
+## Diagnostic adjudication required (self-route unverified)
+
+These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+
+| Run ID | Status | Self-route label | Adjudication |
+|--------|--------|------------------|--------------|
+| `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | PASS | slow_never_fires_on_rollout | **vacuous_pass** |
 
 ---
 
