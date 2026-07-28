@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-28T22:08:51Z",
+  "last_tick_utc": "2026-07-28T22:18:55Z",
   "state": "running",
   "current_exq": "V3-EXQ-834",
   "current_exq_started_utc": "2026-07-28T17:05:49.150651+00:00",
@@ -9,21 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 303 / DEPTH_H50",
-    "runs_done": 17,
+    "run_label": "Seed 404 / DEPTH_H50",
+    "runs_done": 18,
     "runs_total": 25,
-    "episodes_done": 25,
+    "episodes_done": 0,
     "episodes_total": 100,
-    "overall_pct": 69.0
+    "overall_pct": 72.0
   },
-  "seconds_elapsed": 18181,
-  "seconds_remaining": 8163,
+  "seconds_elapsed": 18785,
+  "seconds_remaining": 7373,
   "recent_lines": [
-    "[train] chunk seed=101 arm=STATIC_H50 ep 100/100 formed=28 ceil=5 depth=3",
-    "verdict: PASS",
-    "Seed 202 Condition STATIC_H50",
-    "[train] chunk seed=202 arm=STATIC_H50 ep 25/100 formed=0 ceil=5 depth=3",
-    "[train] chunk seed=202 arm=STATIC_H50 ep 50/100 formed=0 ceil=5 depth=3",
     "[train] chunk seed=202 arm=STATIC_H50 ep 75/100 formed=0 ceil=5 depth=3",
     "[train] chunk seed=202 arm=STATIC_H50 ep 100/100 formed=0 ceil=5 depth=3",
     "verdict: PASS",
@@ -118,7 +113,12 @@
     "[train] chunk seed=202 arm=DEPTH_H50 ep 100/100 formed=0 ceil=5 depth=3",
     "verdict: PASS",
     "Seed 303 Condition DEPTH_H50",
-    "[train] chunk seed=303 arm=DEPTH_H50 ep 25/100 formed=0 ceil=5 depth=3"
+    "[train] chunk seed=303 arm=DEPTH_H50 ep 25/100 formed=0 ceil=5 depth=3",
+    "[train] chunk seed=303 arm=DEPTH_H50 ep 50/100 formed=0 ceil=5 depth=3",
+    "[train] chunk seed=303 arm=DEPTH_H50 ep 75/100 formed=3 ceil=5 depth=3",
+    "[train] chunk seed=303 arm=DEPTH_H50 ep 100/100 formed=8 ceil=5 depth=3",
+    "verdict: PASS",
+    "Seed 404 Condition DEPTH_H50"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
