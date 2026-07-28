@@ -1,0 +1,83 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_835_mech068_consolidation_selectivity_ablation",
+  "run_id": "v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-28T20:14:42Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-068"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "consolidation_operator_has_selection_authority",
+    "preconditions": [
+      {
+        "name": "consolidation_channel_range_nondegenerate",
+        "measured": 0.3494949541922451,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "comparator": ">",
+        "control": "cross-candidate range of harm-cost m OR residue-cost phi at baseline weights -- the SAME statistic the flip criterion routes on",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "mean_candidate_count_supra_floor",
+        "measured": 32.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "comparator": ">=",
+        "control": "mean number of E3 candidates per decision; a flip is structurally impossible with <2 candidates",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "operator_selection_authority_flip_rate",
+        "load_bearing": true,
+        "measured": 0.6973684210526315,
+        "threshold": 0.05,
+        "passed": true
+      }
+    ],
+    "linearity_check_affective_off": true,
+    "linearity_max_lambda_eff_dev": 0.0
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b63854ec13267295838f83a915c9656488b88fb39fd2efc4630d232bd230f704"
+}
