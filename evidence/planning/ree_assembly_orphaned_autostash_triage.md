@@ -400,10 +400,11 @@ Partly, and differently.
   check pass spuriously); the entry is closed with `closed_at` + `completion_note` on SIGINT
   (exit -2), SIGTERM (-15), a non-zero exit (7, status correctly propagated) and exit 0.
 
-  **Residual hole:** `SIGKILL` / power loss still leaves an `active` entry, and because the
-  `REE_assembly` guard is unbounded that entry gates the heartbeat push until a human clears it.
-  The machine-obvious `governance-sh-<host>` session_id is what makes such an entry recognisable
-  in the meantime.
+  **Residual hole -- CLOSED 2026-07-28 on the nudge side; the guard bound is deliberately NOT
+  taken in the flat form, and the remaining piece is blocked.** `SIGKILL` / power loss still
+  leaves an `active` entry, and because the `REE_assembly` guard is unbounded that entry gates the
+  heartbeat push until a human clears it. The machine-obvious `governance-sh-<host>` session_id is
+  what makes such an entry recognisable in the meantime.
 
   **The obvious follow-on -- bounding the guard with a `max_age_hours`, as
   `_active_claim_on_ree_v3_code` already does -- is only half a fix, and the missing half is the
@@ -438,6 +439,80 @@ Partly, and differently.
   are safe to reap; session claims are not. It is therefore worth weighing whether to bound the
   guard at all, versus keeping the wedge loud and auto-reaping only the machine-owned entries.
 
+  ### Resolution (2026-07-28, session `quirky-sinoussi-b9a180`)
+
+  **The fork above was resolved AGAINST the flat bound, on measured evidence rather than
+  preference.** The proposal was to bound the `REE_assembly` guard at the 6h `stale_after_hours`
+  threshold, as `_active_claim_on_ree_v3_code` already does. Checked against the live file at the
+  moment of writing, that bound would have de-protected **both** stale entries -- 12.3h
+  `dazzling-dubinsky-dec79b` and 11.1h `zealous-merkle-f5dfc8` -- and **both were holding real
+  uncommitted work in the shared `ree-v3` checkout at that instant** (325 modified lines across
+  `runner_remote_control.py` + `experiment_runner.py`, plus one untracked contract test). A flat
+  6h bound is therefore not a conservative simplification; on the day it was proposed it would
+  have removed live protection from live work. The 6h figure answers "might a human still be
+  working?" and the honest answer for this workspace is routinely yes.
+
+  **What was taken instead -- a SHAPE-AWARE bound.** The two claim shapes get opposite treatment,
+  keyed on the one property that actually distinguishes them:
+
+  * **`governance-sh-*` locks are bounded tightly** (`GOVERNANCE_REAP_HOURS = 2.0`). A regen is a
+    minutes-long derive-only pipeline, so 2h is ~an order of magnitude above any live run -- no
+    running regen is reaped even on a loaded machine -- while a killed one stops wedging the
+    heartbeat the same working day. This is the only shape the residual hole is actually about.
+  * **Session claims stay UNBOUNDED.** The wedge stays loud for exactly the case where a silent
+    lapse would be dangerous, preserving CLAUDE.md's confirm-before-clearing rule and the standing
+    memory `feedback_heartbeat_stale_not_abandoned`.
+
+  So the quiet-failure trade the section above warns against is never taken: the only claim that
+  can now age out of the guard is one that is abandoned by construction.
+
+  **And the aging-out is not silent, which was the actual requirement.**
+  `scripts/prune_task_claims_done.py` (REE_Working, + `scripts/test_prune_task_claims_stale_active.py`,
+  15 tests) now:
+
+  * **reaps** `governance-sh-*` locks past the same `GOVERNANCE_REAP_HOURS`, writing a
+    `completion_note` that records it was reaped as stale, by what, and that the regen did NOT
+    complete -- and **announces it** with the two follow-up actions: `scripts/audit_stashes.py`
+    (the load-bearing detector) and a rerun of the idempotent regen. The claim's own aging is thus
+    the trigger for the stash audit, which is the loop this thread wanted closed;
+  * **reports, and never closes,** stale session claims and undatable ones, each with the remedy
+    that fits it.
+
+  One threshold with one meaning: the age at which the guard would stop honouring a governance
+  lock is the same age at which the pruner reaps and announces it, on the session-facing surface
+  (`/session-land` housekeeping, Session Startup Protocol step 3) rather than runner stdout -- the
+  `_warn_on_stash_bloat()` failure mode. Exit 0 always; it must never block a close. The reap is
+  safe against a racing regen for a second reason too: `gov_claim_close` is guarded on
+  `gov_claim_is_active`, so a reaped entry makes the exit trap a clean no-op.
+
+  A negative control found a real gap during implementation rather than by inspection: under
+  `--no-reap` a stale governance lock was reported by neither path, reproducing the exact silence
+  this work exists to remove. It is now its own reported bucket.
+
+  **STILL OPEN -- the guard-side half is blocked, not skipped.** Applying the shape-aware bound
+  means editing `ree-v3/runner_remote_control.py`, and every line it must touch
+  (`_active_claim_on_paths`, `_claim_age_hours`, `_active_claim_on_evidence_dir`'s docstring)
+  exists **only as session `zealous-merkle-f5dfc8`'s uncommitted working-tree change** -- none of
+  it is on `origin/main`. Committing that file would land ~176 lines of another session's
+  in-flight work under a foreign message (CLAUDE.md read-modify-write contamination) *and* break
+  its coupled set (CLAUDE.md remedy (a2)): `_active_claim_on_ree_v3_code` would land on trunk
+  without its caller in `experiment_runner.py` or its new untracked contract test
+  `tests/contracts/test_ree_v3_pull_claim_guard.py`. Deferred deliberately. The change to make,
+  once that session lands:
+
+  ```python
+  # in _active_claim_on_paths: bound only the machine-owned locks
+  _GOVERNANCE_LOCK_PREFIX = "governance-sh-"
+  _GOVERNANCE_CLAIM_MAX_AGE_HOURS = 2.0   # keep in sync with
+  # REE_Working/scripts/prune_task_claims_done.py GOVERNANCE_REAP_HOURS
+  ```
+
+  applied per-entry (a `governance-sh-*` entry past that age does not gate; every other entry is
+  unbounded exactly as today), plus a rewrite of `_active_claim_on_evidence_dir`'s docstring,
+  which currently states the 2026-07-28 generalisation kept "no age bound ... on purpose, so
+  REE_assembly behaviour is bit-identical" -- that deliberate decision is what this narrows, and
+  the docstring must say so rather than be silently contradicted.
+
   The sibling ree-v3 gap -- fix (a) of the ree-v3 triage, extending the claim-aware skip to the
-  ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is separately in
-  flight under session `zealous-merkle-f5dfc8`.
+  ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is the same
+  in-flight session `zealous-merkle-f5dfc8`.
