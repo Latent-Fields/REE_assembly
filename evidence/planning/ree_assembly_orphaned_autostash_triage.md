@@ -331,14 +331,40 @@ deleting them is the one action that would actually destroy the content.
 
 ## Incidental findings (reported, not actioned)
 
-1. **`graceful_timeout.py` vendor drift.** The module's own banner states that the three copies
+1. **`graceful_timeout.py` vendor drift. FIXED 2026-07-28 -- landed as ree-v3 `d21d880014`**
+   (session `dazzling-dubinsky-dec79b`). The module's own banner states that the three copies
    (`ree-v3/graceful_timeout.py` canonical, `REE_assembly/graceful_timeout.py`,
    `REE_Working/scripts/graceful_timeout.py`) are byte-identical and "`shasum` over all three must
-   match". They do not: `REE_assembly`'s copy (`9cc5f0b9e6`) is missing the 23-line
-   VENDORED COPY banner that `ree-v3`'s canonical copy (`6b05cc02bd`) carries. **The module body
-   below the banner is identical** -- the drift is documentation only, so there is no functional
-   divergence, but the banner's own `shasum` check is currently false. Not fixed here (out of
-   scope); worth a one-line re-vendor.
+   match". They did not. **The module body below the banner was identical** (sha `5a8eb4a3a0`), so
+   the drift was documentation only and there was no functional divergence -- but the banner's own
+   `shasum` check was false.
+
+   **Correction to what this item originally said, because the direction was backwards and the
+   inverted version was acted on.** This entry read "`REE_assembly`'s copy (`9cc5f0b9e6`) is
+   missing the 23-line VENDORED COPY banner that `ree-v3`'s canonical copy (`6b05cc02bd`)
+   carries". It is the other way round: **the two VENDORED copies carried the banner and the
+   CANONICAL copy did not.** The banner was authored at vendoring time (`REE_assembly`
+   `478b7879e5`, umbrella `8816015`) and written into the copies only; it was never back-added to
+   `ree-v3`, which had never carried it in any of that file's three commits (`eb6979b`,
+   `b0a6dd8`, `7b3c5d0`). The `diff` evidence quoted here was consistent with the truth and not
+   with the prose -- `diff <copy> <canonical>` = `3,25d2` means the *copy* holds lines 3-25 --
+   but the prose won, and the follow-up task was written as "bring both stale copies
+   byte-identical to the canonical; do NOT edit the canonical", which executed literally would
+   have **deleted** the banner from both copies.
+
+   That failure mode is worth naming: byte-identity is a symmetric target, so a convergence task
+   is only well-specified once you say *which* content survives. Here the destructive direction
+   satisfied the stated success criterion (`shasum` matches) while destroying the entire point of
+   the fix -- the banner is the only place the sync convention is written down, and stripping it
+   would have removed it from precisely the file the banner exists to point future editors AT.
+
+   **Fix applied: the banner was added to the canonical copy** (23 insertions, 0 deletions,
+   docstring only; module body untouched). All three now hash `9cc5f0b9e6` on their respective
+   `origin` refs, so the banner's `shasum` assertion is true for the first time.
+   `tests/contracts/test_graceful_timeout_lockfile.py` green (8 passed). The banner's path list
+   was re-verified: those three are the only `graceful_timeout.py` files in `REE_Working`, and the
+   named consumers are the real importers (`REE_assembly/serve.py:63`,
+   `scripts/igw_routine_tick.py:110`) -- every other mention in either repo is a comment.
 
 2. **`REE_assembly`'s working tree carried months-stale `docs/` content.** The `95b`/`07a`
    evidence shows the shared Mac checkout holding `docs/glossary.md` from 2026-04-26 and
