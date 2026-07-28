@@ -606,3 +606,48 @@ Partly, and differently.
   The mutual-deference livelock is the failure mode to watch for: a stop-check protects against
   acting on a *blocked* prerequisite, but nothing arbitrates between several sessions unblocked by
   the same event.
+
+  **CLOSED (2026-07-28, session `relaxed-montalcini-eb02e1`).** Both defects the process note
+  names now have owners:
+
+  * **No arbitration on a shared unblock event** -- `scripts/task_claim.py open` arbitrates
+    resource contention and exits **3** when another active claim owns a file you named. The
+    verdict is **asymmetric** (exactly one session told to proceed, the rest told to stop) and
+    **total** (owner = earliest `claimed_at`, ties broken by `session_id`, so every participant
+    computes the same owner from the same board). **Detection was never the missing piece** --
+    all three sessions read `TASK_CLAIMS.json` and all three saw the others; only the RULE was
+    missing, which is why the fix is a verdict rather than a warning. Two checks: pre-append (a
+    rival already on disk costs no commit at all) and post-commit (`ree_commit.py`'s
+    compare-and-swap serialises the *writes*, but a session stamping a later `claimed_at` can
+    still commit first, and its pre-append check would then never have seen the earlier rival).
+    Scope claims are deliberately exempt: a verdict fires only on an exact match of a
+    **file**-shaped resource, because `governance.sh` holds `REE_assembly/evidence/` for the
+    length of a regen and **fails open** on a non-zero `open` -- arbitrating it would stop every
+    evidence session *and* run every regen unprotected, i.e. cause this document's own failure
+    mode. Escape hatch `--allow-overlap` downgrades a verdict to a note without silencing it.
+    Residual, stated plainly: a session cannot detect a rival that has not written its claim yet.
+    Arbitration converges as claims land; it is not a lock.
+  * **Duplicate chips for one piece of work** -- `dismiss_task` cannot withdraw a chip the user
+    has already started, so the spawn-then-dismiss order the tool suggests leaves TWO live chips
+    whenever the dismiss fails. That is `quirky-sinoussi-b9a180`'s self-reported root cause.
+    `.claude/skills/session-land/SKILL.md` (mirrored to `.agents/`) Phase 3 gains rule **4b**:
+    dismiss FIRST and read the result; if the dismiss fails because the chip is running, do NOT
+    spawn a replacement -- the running session owns the work, and a momentary gap in coverage is
+    cheaper than two sessions racing on one file. The stale-chip paragraph's "withdrawing is
+    always allowed" was simply false and is corrected. Rule **4a**'s mandatory STOP-CHECK now
+    carries a `task_claim.py check --resources ...` line: every other predicate asks whether the
+    work already *landed* and is blind to work in progress right now, which is exactly the state
+    a chip released by a shared unblock event walks into.
+
+  Rule and rationale: CLAUDE.md **"Two sessions unblocked by the same event"**. Tests:
+  `scripts/test_task_claim_overlap.py`, 28, time-independent -- the replay of this incident
+  asserts exactly one owner and two deferrals (a report-only implementation yields zero owners,
+  which is the livelock, and fails there), and a `governance.sh` negative control pins that a
+  regen lock never stops an evidence session. Non-vacuity checked by mutation rather than
+  asserted: collapsing the verdict to report-only, arbitrating scope claims, and removing the
+  staleness bound each fail the corresponding test and nothing else.
+
+  Not fixed, and deliberately so: the **thundering herd itself**. Several waiters polling one
+  stop-check and being released together is not a defect -- the stop-check worked correctly here
+  and prevented a genuinely destructive commit earlier in the same sequence. What was wrong was
+  that nothing arbitrated the winners. Do not "fix" this by weakening the stop-check.
