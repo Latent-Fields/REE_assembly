@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "xenodochial-cartwright-aaa6ff",
-  "last_updated_utc": "2026-07-27T20:51:13Z",
+  "last_seen_session": "igw-212-proposal-for-mech-217",
+  "last_updated_utc": "2026-07-28T21:26:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6230,6 +6230,32 @@
           "note": "outcome FAIL, evidence_direction mixed (MECH-324) / supports (MECH-323), non_degenerate true, self-routed label retention_real_but_rapid_reacquisition_falsified. NOT YET AUTOPSIED. Result recorded on the claim by governance in REE_assembly fbae929063, which logged this same mechanism explicitly as 'a hypothesis for the autopsy and NOT a verdict' with v3_pending/status left unchanged."
         }
       ]
+    },
+    {
+      "sd_id": "MECH-217",
+      "title": "Offline VALENCE_WANTING back-spread during SWS/REM reverse replay (temporal_wanting_propagation) -- decayed update_valence write along the reversed approach path",
+      "status": "proposed",
+      "implementation_status": "not_implemented",
+      "added_session": "igw-212-proposal-for-mech-217",
+      "added_utc": "2026-07-28T21:26:00Z",
+      "priority": 3,
+      "ready": true,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-217"
+      ],
+      "related_claims": [
+        "MECH-165",
+        "MECH-216",
+        "MECH-290",
+        "SD-014",
+        "INV-065"
+      ],
+      "validation_experiment": "After build: measurement diagnostic (fresh EXQ id) comparing the post-consolidation VALENCE_WANTING profile ON vs OFF along a previously-traversed resource-approach path. PASS = wanting concentrated along the traversed route and monotonically decaying with graph/spatial distance from the resource terminus; dissociable from MECH-216's schema-specific waking gradient (path-specific vs feature-specific). Commitment-free / read-the-residue-field diagnostic -- no multi-step behavioural DV, so runnable once the write path exists.",
+      "implementation_hint": "Add a decayed VALENCE_WANTING write to the OFFLINE reverse-replay path (agent.py run_rem_attribution_pass ~10105-10194 and/or the diverse_replay mode=='reverse' branch), behind a NEW config flag (e.g. use_offline_wanting_spread, default False for bit-identical backward compat). For each reversed trajectory: terminus_wanting = ResidueField VALENCE_WANTING readout at the contact/terminus z_world (or the source trajectory's stored terminal wanting); then for step index s from the terminus, self.residue_field.update_valence(z_w[s], VALENCE_WANTING, terminus_wanting * gamma**s) with gamma~0.9 (config.offline_wanting_spread_gamma). RBF bandwidth handles spatial smoothing. Mechanically mirrors HippocampalModule.backward_credit_sweep() (module.py:2473) but fires OFFLINE on a replayed (not committed) trajectory. NOTE MECH-094: the offline path is currently hypothesis_tag=True read-only; the wanting write is an INTENTIONAL, flag-gated consolidation write (SWS credit assignment), NOT residue harm accumulation -- keep harm-residue accumulation still blocked; only the valence-wanting consolidation channel writes. Follow REEConfig from_dims 3-site knob rule (see memory reference-reeconfig-from-dims-silent-kwargs).",
+      "what_is_NOT_owed": "Not a new reverse-replay engine (MECH-165 reverse_replay + diverse_replay + exploration buffer already exist). Not the waking path (MECH-290 backward_credit_sweep already covers BetaGate-release credit on the committed trajectory). Not a behavioural navigation/commitment layer -- the validation is a measurement-only residue readout.",
+      "do_not_conflate": "MECH-217 (OFFLINE, SWS reverse replay, path-specific, backward-spreading) is distinct from MECH-216 (WAKING schema-conditioning, feature-specific, forward-looking; BUILT+tested 263a/263b/332/332a) and from MECH-290 (WAKING backward_credit_sweep at BetaGate release on the committed trajectory). Testing either sibling is NOT evidence for MECH-217.",
+      "origin": "IGW-20260728-212 / EVB-0349; proposal flipped blocked_substrate 2026-07-28 (REE_assembly 24e51b2efa)."
     }
   ],
   "schema_version": "substrate_queue/v2"
