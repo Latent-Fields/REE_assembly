@@ -1795,12 +1795,25 @@
       ],
       "registered_utc": "2026-07-26T05:38:01Z",
       "fanout_sources": [
-        "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26.json"
+        "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26.json",
+        "failure_autopsy_2026-07-28-sweep.json"
       ],
       "is_hero": false,
-      "initial_frozen_count": 4,
+      "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
-      "fanout_growth_events": [],
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-07-28T21:11:09Z",
+          "pre_registered_utc": "2026-07-28T21:11:09Z",
+          "fanout_source": "failure_autopsy_2026-07-28-sweep.json",
+          "added_hids": [
+            "H-representation-axis",
+            "H-algorithm-axis"
+          ],
+          "delta": 2,
+          "note": "GOV-FANOUT-1: three consecutive environment-axis attempts (816, 816b, 816d) converged within noise of each other (~0.0086-0.0087), independently confirmed by 830's 'slow never fires' finding. Fanning out to representation and algorithm axes rather than a fourth environment escalation."
+        }
+      ],
       "hypotheses": [
         {
           "hid": "H-r1-reduces-lowvs-pe",
@@ -1814,7 +1827,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-816"
+              "V3-EXQ-816",
+              "V3-EXQ-830"
             ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "standard",
@@ -1823,7 +1837,7 @@
             "non_degenerate": false,
             "met_elimination_bar": false,
             "resolved_utc": "2026-07-25T21:47:51Z",
-            "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive."
+            "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive. V3-EXQ-830 (2026-07-27, independent scale-heterogeneity diagnostic) confirms the identical observation bottleneck from a different angle: the 'slow' pathway fired zero times in 2393 sweeps across both arms, and ON/OFF arms produced bit-identical behaviour. Two independent probes now converge on the same environment-uncertainty ceiling (per failure_autopsy_2026-07-28-sweep.json). Still non-eliminating; hypothesis stays alive."
           }
         },
         {
@@ -1862,7 +1876,8 @@
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-816b"
+              "V3-EXQ-816b",
+              "V3-EXQ-816d"
             ],
             "evidence_direction": "non_contributory",
             "epistemic_category": "standard",
@@ -1871,7 +1886,7 @@
             "non_degenerate": true,
             "met_elimination_bar": false,
             "resolved_utc": "2026-07-26T12:32:16Z",
-            "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json."
+            "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json)."
           }
         },
         {
@@ -1895,6 +1910,48 @@
             "resolved_utc": null,
             "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization)."
           }
+        },
+        {
+          "hid": "H-representation-axis",
+          "label": "forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty",
+          "desc": "a finer-grained or differently-normalized forward-PE readout would discriminate even at the SAME environment harshness that 816/816b/816d already tested",
+          "axis": "representation",
+          "pre_registered_utc": "2026-07-28T21:11:09Z",
+          "pre_registration_source": "failure_autopsy_2026-07-28-sweep.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "pre-registered fan-out leg (GOV-FANOUT-1, per failure_autopsy_2026-07-28-sweep.json). Probe: recompute forward-PE at finer temporal/spatial granularity or with a different normalization on the SAME 816d environment configuration, and check whether the resulting value clears the 0.01 discrimination floor without any further environment harshening."
+          }
+        },
+        {
+          "hid": "H-algorithm-axis",
+          "label": "the R1 V_s-drop trigger's 0.01 discrimination floor is itself miscalibrated",
+          "desc": "the floor is an engineering choice (per ARC-070's own registration, not literature-derived) and should be lowered rather than the environment pushed further",
+          "axis": "algorithm",
+          "pre_registered_utc": "2026-07-28T21:11:09Z",
+          "pre_registration_source": "failure_autopsy_2026-07-28-sweep.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "pre-registered fan-out leg (GOV-FANOUT-1, per failure_autopsy_2026-07-28-sweep.json). Probe: re-run 816d's environment config with the R1 V_s-drop trigger threshold lowered (e.g. to 0.005-0.008) and check whether the decomposition mechanism now engages meaningfully, explicitly scoped as a threshold-calibration question, not a claim revision."
+          }
         }
       ],
       "synthesis": null,
@@ -1905,7 +1962,8 @@
         "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised",
         "decision_log_ref": null,
         "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable"
-      }
+      },
+      "fanout_growth_note": "This question has now accumulated fan-out growth after 3 same-axis (environment) attempts failed to converge -- the campaign has not yet converged; read the growth as a non-convergence signal, not just added coverage."
     }
   ]
 }

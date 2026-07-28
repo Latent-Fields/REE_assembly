@@ -1,0 +1,502 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-28T21:04:30Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "sweep_note": "Regenerated pending_review.md 2026-07-28 surfaced 13 FAIL + 2 flagged diagnostics since the last governance walk (2026-07-26). Several original targets were already autopsied in prior confirmed sessions (failure_autopsy_batch-822a-826-817a-827_2026-07-26, failure_autopsy_V3-EXQ-824_2026-07-26, failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26, failure_autopsy_V3-EXQ-816b_2026-07-26) -- those routed same-question redesigns, which produced the lettered/follow-on runs this autopsy actually diagnoses. 817a's prior confirmed autopsy (governance-demotion) has not yet been applied by a governance walk; noted here for completeness, no new target written for it.",
+  "targets": [
+    {
+      "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+      "queue_id": "V3-EXQ-822b",
+      "claim_ids": ["SD-078", "SD-082"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "The precondition_unmet flag (head_diag_samples_sufficient, worst cell ARM_OFF/seed101 with 0 tick-sampled diagnostic reads) is real but narrowly scoped: it only gates the two NEW per-tick diagnostics (hidden_dead_relu_frac, rule_summary_magnitude_ratio). It does not gate the four phase-boundary weight-norm snapshots, which are unconditional parameter reads per the script's own design (\"safe to read at any point regardless of what the last compute_bias() call was\"). Those show head_untrained_last_layer_static=true, on_last_layer_weight_delta_init_to_p1_mean=0.0 -- a fully-sampled, load-bearing finding independent of the failed precondition.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "head_diag_samples_sufficient: worst-cell count of P2 per-tick head-diagnostic reads = 0.0 against floor 5 (offending_cell ARM_OFF/seed101, rule inactive there during measurement). The four OTHER preconditions (cone present, pool differentiated, rule active, capture-positive-control) all pass. C1_head_diagnostics_interpretable is correctly marked non-degenerate=false for the tick-sampled diagnostics only.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- SD-078's downstream behavioural consequence still untested; block is one level below where SD-082's fix touched.",
+        "biological_reference": "clear -- corticostriatal rule-to-action mapping requires a trained readout that is actually sensitive to the rule signal.",
+        "prerequisites": "present -- upstream chain (cue centering -> differentiated pool -> differentiated rule_state) fully validated and healthy across 822a+822b.",
+        "implementation": "absent for the trained head's last layer -- weight-norm snapshots confirm zero movement from init through P1 REINFORCE, in both 822a and 822b, independent of the sample-starved tick diagnostics.",
+        "environment": "adequate -- unchanged from 822a.",
+        "measurement": "partial -- the two tick-sampled diagnostics are under-sampled on one cell (P2 episode count or ARM_OFF rule-activity duty-cycle too low for that seed); the unconditional weight-norm reads are fully sampled and answer the question these two runs were built to answer.",
+        "integration": "isolated -- rule-selection substrate and SD-082's targeted output-stage fix both function; break is localized inside the trained head's own optimizer/gradient path.",
+        "scale": "adequate for the readable metrics (3 seeds x 2 arms); insufficient for the two tick-sampled diagnostics on the worst cell."
+      },
+      "biological_reference": {
+        "closest_mechanism": "corticostriatal rule-to-action readout requiring reward-modulated plasticity to reach the readout layer.",
+        "dependencies": ["a trained mapping from rule_state to action-bias that the REINFORCE signal actually updates"],
+        "is_formal_import": false,
+        "divergence": "none identified -- gap is a wiring/optimizer defect, not a translation error.",
+        "lit_status": "n/a (implementation question)"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"SD-078": "non_contributory", "SD-082": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-822b (2026-07-27, SD-082 head-internals diagnostic follow-on to 822a) flagged precondition_unmet on head_diag_samples_sufficient (worst cell ARM_OFF/seed101, 0 tick-sampled reads) -- but that precondition only gates the two NEW per-tick diagnostics (dead-ReLU frac, magnitude ratio), not the four unconditional phase-boundary weight-norm snapshots the script also records. Those show head_untrained_last_layer_static=true and on_last_layer_weight_delta_init_to_p1_mean=0.0 in BOTH 822a and 822b: the REINFORCE-trained rule_bias_head's last linear layer moved exactly zero from init through the 70-episode P1 training phase. This is the confirmed root cause of propagation_non_vacuity's repeated 0.0 reading (822, 822a): SD-082's fix (input centering + soft-tanh output bound) resolved the clamp-saturation mechanism it targeted but never reaches the actual gradient update for this layer. SD-078 stays non_contributory (downstream behaviour untested); route to /implement-substrate to amend the SD-082 substrate_queue entry, tracing why REINFORCE never updates this layer (optimizer parameter registration, gradient flow through the tanh bound, or whether the advantage-threshold ADV_MIN_THRESHOLD=0.005 gate ever actually fires in practice). Secondary, smaller fix: bias P2 sampling or extend episode count so ARM_OFF/seed101 clears the 5-sample floor for the other two diagnostics.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "SD-082",
+        "failure_record_entry": {
+          "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+          "experiment_type": "v3_exq_822b_sd082_head_internals_diagnostic",
+          "metric": "on_last_layer_weight_delta_init_to_p1_mean = 0.0 (unconditional weight-norm read, both 822a and 822b) -- REINFORCE never updates rule_bias_head's last linear layer",
+          "target": "non-zero last-layer weight delta from init to post-P1, sufficient to move on_prop_delta_mean above the 1e-3 propagation_non_vacuity floor"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "SD-078 has 2 prior autopsy targets (V3-EXQ-822: precondition_unmet; V3-EXQ-822a: competence_implementation_gap), neither substrate_ceiling under R3. This target (822b) is also competence_implementation_gap, not substrate_ceiling. Brake does not fire, but this is the third same-shape finding in the SD-078/SD-082 chain -- worth a routing consideration even without the formal brake, per the same precedent the 822a autopsy already noted."
+      },
+      "learning_extracted": [
+        "SD-082's fix resolved the mechanism it targeted (clamp saturation under the SD-008 z_world common-mode cone) but a second, independent defect sits upstream in the same head: REINFORCE never updates the last linear layer at all.",
+        "The precondition_unmet flag on a diagnostic run should be checked against WHICH specific readouts it gates -- an unconditional phase-boundary read (weight norms) is not invalidated by a tick-sampling precondition failure that only concerns tick-sampled diagnostics.",
+        "The 822 -> 822a -> 822b chain has now isolated the defect from 'consumer absent' (822) to 'consumer present but input-stage coupling broken' (822a) to 'consumer present, output-stage fix engaged, but the trained layer itself never receives gradient' (822b) -- each step narrowed the diagnosis rather than repeating it."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_826a_mech244_precision_weighting_self_sealing_20260727T141840Z_v3",
+      "queue_id": "V3-EXQ-826a",
+      "claim_ids": ["MECH-244"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "Correctly labelled this time -- 826's E1-tick bug (agent._e1_tick(latent) never called under random-action rollout, so compute_prediction_loss() returned a permanent zero-gradient stub) is confirmed fixed: pe_precision_manipulation_took now reads 2.06 against a 1.5 floor, E1 genuinely trains and the precision-scaling manipulation produces a real parameter-drift contrast. This is the first genuine (non-buggy) readiness read for MECH-244.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Two of three P0 readiness gates still fail: world_model_converged_phaseA_control (0.152 vs 0.25 floor -- E1's own phase-A loss-reduction ratio) and regime_change_disconfirms_control (0.966 vs 1.15 floor -- no clean onset-spike distinguishing the regime change). total_e1_ticks=240000 is non-trivial training volume; the shortfall is in the RATIO-based convergence gate's shape, not raw tick count.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- first genuine attempt to test precision-weighting; substrate readiness itself not yet cleared.",
+        "biological_reference": "clear -- precision-weighted PE gating on a generative model is well-grounded predictive-processing mechanism for psychosis (unchanged from 826's own read).",
+        "prerequisites": "present -- E1DeepPredictor exists and functions; MECH-094/INV-011 dependencies unaffected.",
+        "implementation": "complete -- the E1-tick fix (mirroring 822a's already-correct pattern) works exactly as designed.",
+        "environment": "adequate -- CausalGridWorldV2 regime-A/B relocation is a clean manipulation, untested only because readiness didn't clear.",
+        "measurement": "adequate -- P0 readiness gates caught a real shortfall rather than reporting a false PASS.",
+        "integration": "isolated -- E1 trains via its own optimizer independently of other modules.",
+        "scale": "possibly insufficient -- 240000 E1 ticks accumulated but the phase-A convergence RATIO still under floor; could be training-budget/regime-shape rather than a hard ceiling."
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision-weighted prediction-error gating on a generative (world) model.",
+        "dependencies": ["a generative model that receives and integrates PE-driven correction under normal operation", "a mechanism to scale that correction's gain independently of forward dynamics"],
+        "is_formal_import": false,
+        "divergence": "none identified -- manipulation design is biologically faithful.",
+        "lit_status": "present (2 lit entries; first genuine experimental entry, exp_conf remains 0.0 pending a readiness-clearing run)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"MECH-244": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-826a (2026-07-27, E1-tick-bug fix over 826) confirms the fix works: pe_precision_manipulation_took now passes (2.06 vs 1.5 floor), E1 genuinely trains. This is the first non-buggy readiness read for MECH-244. Two readiness gates still fail (phase-A convergence ratio 0.152 vs 0.25; regime-change disconfirmation 0.966 vs 1.15) despite 240000 E1 ticks. MECH-244 remains untested (exp_conf=0.0). Route to /queue-experiment for 826b with an extended phase-A training budget and/or a sharper regime-B contrast (larger hazard relocation or longer post-onset window) before treating this as a ceiling -- only one genuine (non-buggy) attempt has been made so far.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "MECH-244 has 1 prior confirmed target (826, measurement_gap -- a script bug, not a readiness read). This is the first genuine readiness attempt and reads standard, not substrate_ceiling. Brake does not fire. Flag for next time: if 826b fails these same two gates near-identically, that IS the trigger to stop dose-escalating and treat MECH-244 readiness as a genuine substrate gap rather than a training-budget question."
+      },
+      "learning_extracted": [
+        "The E1-tick fix (call agent._e1_tick(latent) when ticks.get('e1_tick', False), mirroring 822a's already-correct pattern) is confirmed structurally sound for random-action-rollout + E1-training designs.",
+        "This closes (for 826a specifically) the follow-on flagged in the 826 autopsy about whether v3_exq_032/396a-family scripts share the same latent E1-tick defect -- unverified for those scripts, still out of scope here."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3",
+      "queue_id": "V3-EXQ-824a",
+      "claim_ids": ["Q-081"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "824's defect (use_invalidation_trigger alone has no causal reach to z_world/operating_mode) is confirmed fixed in the sense that the reach-check itself now reports MET: landmark_arm_behavioural_reach=1.0 via use_anchor_sets=True (mirroring INV-091's working fix) and the new sanity precondition arm_statistics_not_degenerately_bit_identical. But rv_primary is STILL bit-identical across all 5 valid seeds -- the same defect signature as 824, now occurring DESPITE the reach-check passing. The reach-check is a necessary-but-insufficient proxy: it confirms A reach path exists (to z_world), not that it reaches the SPECIFIC measured pair (z_world, operating_mode).",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "arm_statistics_not_degenerately_bit_identical: measured 0.0 (of 5 valid seeds, 0 were non-bit-identical) against threshold 1.0. All four other preconditions pass, including the reach-check itself.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- Q-081's Outcome A vs B question still cannot be adjudicated.",
+        "biological_reference": "n/a -- Q-081 is a cross-stream-organisation question, not a single literature-grounded mechanism.",
+        "prerequisites": "partial -- z_world reach confirmed via anchor_sets; operating_mode's actual sensitivity to landmark identity remains unconfirmed.",
+        "implementation": "partial -- REACH_CONSUMERS's and/or check (use_anchor_sets and/or use_per_region_vs) is a coarse proxy that confirms SOME reach path, not reach to the specific measured pair.",
+        "environment": "adequate -- unchanged design otherwise.",
+        "measurement": "the reach-check itself is under-specified for this run's measured pair -- core finding.",
+        "integration": "n/a -- not yet reached.",
+        "scale": "adequate -- 5 valid seeds, same as 824."
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- Q-081 tests whether configured multi-rate execution produces genuinely shared cross-stream organisation, not a single biological mechanism.",
+        "dependencies": ["a manipulation whose reach-check is verified against the SPECIFIC measured pair, not a blanket flag"],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"Q-081": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-824a (2026-07-26, use_anchor_sets fix over 824) confirms the reach-check itself now passes (landmark_arm_behavioural_reach=1.0), yet rv_primary remains bit-identical across all 5 valid seeds -- the same defect signature as 824, now occurring despite the reach-check reporting success. rv_primary is a joint statistic over z_world (reached via anchor_sets, confirmed working for INV-091's different stream pairs) AND operating_mode (the salience coordinator's mode-probability read); use_anchor_sets grants reach to z_world specifically but may not extend to operating_mode's own computation. REACH_CONSUMERS's use_anchor_sets-and/or-use_per_region_vs check is a coarse, blanket proxy -- it does not verify reach to the SPECIFIC pair a given run measures. Route to /implement-substrate to amend q081_landmark_removal.py's assert_behavioural_reach to check reach against the specific measured pair (add use_per_region_vs=True and re-verify, or build a pair-specific reach assertion).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "Q081-REACH-CHECK-PAIR-SPECIFIC",
+        "title": "q081_landmark_removal.assert_behavioural_reach: verify reach against the SPECIFIC measured pair, not a blanket use_anchor_sets-or-use_per_region_vs flag check",
+        "implementation_hint": "Two consecutive runs (824, 824a) produced bit-identical ON/REMOVED rv_primary despite the reach-check passing in 824a. The check confirms SOME causal path from the landmark manipulation exists (to z_world) but not that it reaches the SPECIFIC pair (z_world, operating_mode) a given run measures. Amend the check to trace reach to both members of the measured pair, or add use_per_region_vs=True and re-verify empirically first.",
+        "unblocks_claims": ["Q-081", "INV-091"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3",
+          "experiment_type": "v3_exq_824a_q081_shared_organisation_landmark_removal",
+          "metric": "arm_statistics_not_degenerately_bit_identical: 0 of 5 valid seeds non-bit-identical, despite landmark_arm_behavioural_reach=1.0 (reach-check MET)",
+          "target": "at least 1 of the valid seeds produces a non-bit-identical rv_primary between ON and REMOVED arms"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Q-081 has 1 prior target (824, measurement_test_design_defect); this target is the same category, not substrate_ceiling. Brake does not fire, but this is the SECOND consecutive same-shape failure (bit-identical arms) on the identical claim -- worth flagging as a routing consideration even without the formal brake, same precedent as SD-078's chain."
+      },
+      "learning_extracted": [
+        "The REACH_CONSUMERS reach-check (use_anchor_sets and/or use_per_region_vs) is necessary but not sufficient for every measured pair -- it should be validated per-pair, not treated as a blanket precondition once satisfied for SOME pair.",
+        "Any future Q-081/INV-091-family redesign measuring a DIFFERENT stream pair needs its own reach confirmation, not an inherited one from a sibling script's fix."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3",
+      "queue_id": "V3-EXQ-827a",
+      "claim_ids": ["INV-091"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "unknown",
+      "self_route_verdict": "827's tick-rate/sampling-density confound (forcing lockstep by collapsing all stream update rates to 1) is confirmed fixed by this phase-sync redesign: the directional REVERSAL seen in 827 (lockstep lowest of three) is gone (decouple 0.224 ~= intact 0.223 < lockstep 0.324). But neither load-bearing criterion passes (C1_similarity_moves_as_designed, C2_intact_composite_beats_both_extremes), and BOTH are marked non-degenerate -- this is real, interpretable data, not a precondition failure. The surrogate null-validation could not be checked at all: every arm/seed needed 2064-2576 steps but only received 258-1099.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "C1 and C2 both fail on real (non-degenerate) data. null_validation.checked=false for every arm/seed -- run too short for the constrained-realisation surrogate.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- redesigned manipulation tested cleanly but produced no clear effect.",
+        "biological_reference": "clear -- cross-stream temporal binding/phase-coupling as an integration substrate is a reasonable operationalisation of INV-091's emergent framing.",
+        "prerequisites": "present -- the tick-rate confound identified in 827 is fixed in this phase-sync design.",
+        "implementation": "complete for the manipulation itself.",
+        "environment": "adequate.",
+        "measurement": "systematically under-powered -- surrogate-null validation never clears in this campaign; this run alone needed roughly 2-2.5x more steps.",
+        "integration": "n/a.",
+        "scale": "insufficient for the null validation, adequate (3 seeds) for the ablation-style comparison across arms."
+      },
+      "biological_reference": {
+        "closest_mechanism": "cross-stream temporal binding / phase-coupling between distinct processing streams as a substrate for integration.",
+        "dependencies": ["a run long enough to validate the surrogate null (>=2576 steps, this run used 258-1099)"],
+        "is_formal_import": false,
+        "divergence": "none identified -- the design fix (phase-sync instead of rate-collapse) correctly addresses the 827 confound.",
+        "lit_status": "n/a (INV-091 is an emergent invariant, not a single-source claim)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {"INV-091": "non_contributory"},
+      "recommended_evidence_quality_note": "V3-EXQ-827a (2026-07-26, phase-sync redesign fixing 827's tick-rate confound) produces real, non-degenerate data on both load-bearing criteria (C1, C2), both of which fail: decouple (0.224) ~= intact (0.223) < lockstep (0.324), no clean effect. The tick-rate/sampling-density confound identified in 827 is genuinely fixed here. However the surrogate-null validation could not be checked at all -- every arm/seed needed 2064-2576 steps but ran only 258-1099. This is a recording/design gap, not a measurement artifact: the ablation-contrast logic (arms vs each other) is unaffected by the missing null, but absolute significance against chance was never established. Route to /queue-experiment for a longer-run 827b (>=2576 steps) once budget allows.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "INV-091 has 1 prior target (827, measurement_test_design_defect); this target reads standard, not substrate_ceiling. Brake does not fire, but this is the SECOND experiment on the same claim -- noted as part of a 3-run-in-3-days pattern (827, 827a, 828) worth naming even without the formal brake."
+      },
+      "learning_extracted": [
+        "The 827 tick-rate/sampling-density confound is confirmed fixed by the phase-sync design -- that diagnosis was correct and the fix worked as intended, even without producing a clean positive result.",
+        "The surrogate-null validation across this entire INV-091 campaign (827, 827a, 828) has never once succeeded -- every run needs roughly 2-2.8x more steps than has been used. Future INV-091 runs should budget for >=2848 steps as a standing default."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3",
+      "queue_id": "V3-EXQ-828",
+      "claim_ids": ["INV-091"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "cross_stream_similarity_band_not_supported",
+      "self_route_verdict": "Correctly labelled -- C1 (at least one ablation moves similarity) passes, C2 (interior arm beats both extremes) fails on real, non-degenerate data. intact sits in the middle of the ranked-similarity pack (intact_vs_min=-0.005, intact_vs_max=+0.007, essentially indistinguishable from either extreme) while an ABLATION (residue_off) has the best composite reward -- directly contradicting INV-091's Goldilocks-band prediction that intact should be near-optimal. Same campaign-wide null-validation gap as 827a: every arm needed 2464-2848 steps, only received 1500.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "C2_interior_similarity_arm_beats_both_extremes fails: peak_composite_arm=residue_off (an ablation, not intact), intact_beats_both_extremes=false. C1 passes (mode_decorrelated and harm_collapse both move similarity relative to intact).",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakens -- intact is not behaviourally special relative to the tested ablations; an ablation outperforms it on the composite reward.",
+        "biological_reference": "clear -- same integration/anti-collapse framing as 827a.",
+        "prerequisites": "present.",
+        "implementation": "complete.",
+        "environment": "adequate.",
+        "measurement": "systematically under-powered on the null -- same gap as 827a, needing 2464-2848 steps vs 1500 run. The ablation-contrast (C1/C2), which does not require the null, is unaffected.",
+        "integration": "n/a.",
+        "scale": "adequate for the 6-arm ablation contrast; insufficient for the surrogate null."
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as 827a -- cross-stream phase-coupling as an integration substrate with a predicted intermediate-optimum band.",
+        "dependencies": ["a validated null to confirm the ablation-contrast differences exceed chance -- absent here, as in the whole campaign"],
+        "is_formal_import": false,
+        "divergence": "none in the biological framing -- the finding (an ablation beats intact) is a direct empirical challenge to the Goldilocks-band prediction, not a translation gap.",
+        "lit_status": "n/a"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {"INV-091": "weakens"},
+      "recommended_evidence_quality_note": "V3-EXQ-828 (2026-07-27, remaining-ablations sweep) finds intact does not distinguish itself as behaviourally optimal among 6 arms (broadcast_off, mode_decorrelated, residue_off, rate_randomized, harm_collapse vs intact): residue_off has the best composite reward, and intact sits statistically in the middle of the ranked-similarity pack (margin_vs_min=-0.005, margin_vs_max=+0.007). C1 (at least one ablation moves similarity) passes; C2 (an interior arm beats both extremes) fails since the interior peak (residue_off) beats intact, not the reverse. This directly weakens INV-091's Goldilocks-band prediction. As with 827a, the surrogate-null validation was never checked (every arm needed 2464-2848 steps, only 1500 ran) -- the weakens verdict rests on the ablation-contrast alone. Per Q-081's own precedent (\"clearing the surrogate null is necessary and nowhere near sufficient... the sharp discriminator is the ablation contrast\"), and by user confirmation, INV-091 follows the same convention here: the ablation-contrast is treated as the sufficient discriminator, and the null-validation gap is recorded as a standing recording/design note (see 827a) rather than a blocker to this verdict.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "INV091-NULL-VALIDATION-RUN-LENGTH",
+        "title": "INV-091 driver family: bump default episode/step budget so the surrogate-null validation actually clears",
+        "implementation_hint": "All three INV-091 runs to date (827, 827a, 828) have needed roughly 2-2.8x more steps than were run for the constrained-realisation surrogate null to validate at all. Bump the default run length for this driver family to >=2848 steps as a standing default so future runs both compare arms AND establish significance against chance.",
+        "unblocks_claims": ["INV-091"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3",
+          "experiment_type": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations",
+          "metric": "null_validation.checked=false for all 6 arms, needing 2464-2848 steps vs 1500 run",
+          "target": "null_validation.checked=true for at least the intact and peak-composite arms"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "INV-091 has 2 prior targets now (827: measurement_test_design_defect; 827a: standard); this target reads standard/weakens, not substrate_ceiling. Brake does not fire."
+      },
+      "learning_extracted": [
+        "Across all three INV-091 runs, the campaign has never validated its surrogate null -- a standing run-length gap, not incidental to any single run.",
+        "An interior ablation arm (residue_off) outperforming intact on the composite reward is itself informative about which specific coupling components matter -- worth a closer look in a future redesign rather than treating this as a blanket claim weakening alone."
+      ],
+      "routing": "governance-demotion"
+    },
+    {
+      "run_id": "v3_exq_816d_mech321_policy_decomposition_harshened_env_v2_20260726T185006Z_v3",
+      "queue_id": "V3-EXQ-816d",
+      "claim_ids": [],
+      "bears_on": ["ARC-070", "MECH-321"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "env_still_underdrives_uncertainty",
+      "self_route_verdict": "Correctly labelled -- this is the THIRD consecutive environment-axis attempt (816 baseline -> 816b harshened -> 816d harshened-v2), each converging on nearly the same forward-PE ceiling (0.0080 -> 0.0086 -> 0.0087), each still short of the 0.01 discrimination floor. off_pe_mean_worst=0.00867 is recorded directly against predecessor_816b_off_pe_mean_worst=0.0086 in this run's own metrics for comparison -- the diminishing-returns pattern is self-documented.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "low_vs_produced=false, n_paired_seeds=0, delta_mean_lowvs_fwd_pe=0.0 -- same structural vacuity as 816/816b (the R1 V_s-drop trigger's precondition, environment producing low-V_s states, never satisfied).",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- ARC-070/MECH-321's core prediction still cannot be tested; environment never produces the triggering condition on any axis attempt so far.",
+        "biological_reference": "clear -- Zacks 2007 (PE as canonical boundary trigger) / Schapiro 2017 (hippocampal pattern-separation as V_s substrate) are faithful operationalisations; the gap is in the ENVIRONMENT producing PE at the needed magnitude, not the mechanism design.",
+        "prerequisites": "present -- MECH-288 substrate landed; decomposition machinery fires abundantly (decomp_fired_frac_arm1=1.0) once triggered.",
+        "implementation": "complete -- nothing here indicates an implementation bug.",
+        "environment": "the identified bottleneck, now saturating -- three escalations on the same axis (drift interval, rule-shift depth/interval) moved forward-PE by less than 0.0007 total.",
+        "measurement": "adequate -- the 0.01 discrimination floor and PE-control checks are doing their job correctly.",
+        "integration": "isolated -- the break is entirely upstream, in getting the triggering condition to occur at all.",
+        "scale": "n/a to this specific bottleneck."
+      },
+      "biological_reference": {
+        "closest_mechanism": "prediction-error-driven event segmentation / hierarchical policy decomposition (Zacks 2007, Schapiro 2017, Badre & D'Esposito 2009).",
+        "dependencies": ["an environment producing forward-PE at a magnitude the R1 trigger can discriminate"],
+        "is_formal_import": false,
+        "divergence": "none -- the biological framing is sound; the test's environment axis is saturated, not the mechanism.",
+        "lit_status": "present (multiple lit anchors on ARC-070/MECH-321's registration)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {},
+      "recommended_evidence_quality_note": "V3-EXQ-816d (2026-07-26, second env-axis harshening over 816b) confirms the environment axis is likely saturated for this discrimination: three consecutive attempts (816, 816b, 816d) converge on forward-PE ~0.0086-0.0087, each short of the 0.01 discrimination floor, with each escalation's own metrics explicitly comparing itself to its predecessor's near-identical value. Per GOV-FANOUT-1, continuing to escalate the same axis is unlikely to be informative; the productive next moves are on a DIFFERENT axis (representation: recompute forward-PE at finer granularity for a more sensitive readout; or algorithm: lower the R1 V_s-drop trigger threshold, an engineering parameter per ARC-070's own registration, not a literature-derived constant).",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "count_arc_070": 0,
+        "count_mech_321": 0,
+        "not_fired_reason": "R1-R3 convention, confirmed-only: this reading is standard, not substrate_ceiling, and ARC-070/MECH-321 have 0 confirmed substrate_ceiling autopsies. Does not add a ceiling hit. But three consecutive same-axis (environment) attempts converging within noise of each other is exactly the GOV-FANOUT-1 signal to widen the portfolio rather than escalate a fourth time."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-representation-axis: forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty; a finer-grained or differently-normalized readout would discriminate even at the SAME environment harshness.",
+          "H-algorithm-axis: the R1 V_s-drop trigger's 0.01 discrimination floor is itself miscalibrated (an engineering choice per ARC-070's own registration, not literature-derived) and should be lowered rather than the environment pushed further."
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-representation-axis", "axis": "representation", "sketch": "recompute forward-PE at finer temporal/spatial granularity or with a different normalization on the SAME 816d environment configuration, and check whether the resulting value clears 0.01 without any further environment harshening."},
+          {"hypothesis": "H-algorithm-axis", "axis": "algorithm", "sketch": "re-run 816d's environment config with the R1 V_s-drop trigger threshold lowered (e.g. to 0.005-0.008) and check whether the decomposition mechanism now engages meaningfully, explicitly scoped as a threshold-calibration question, not a claim revision."}
+        ],
+        "note": "GOV-FANOUT-1: three consecutive environment-axis attempts (816, 816b, 816d) have converged on forward-PE ~0.0086-0.0087, each within 0.0007 of the last -- diminishing returns on this axis. Fan out to representation and algorithm axes per the two probes above rather than a fourth environment escalation."
+      },
+      "learning_extracted": [
+        "Three consecutive environment-harshness escalations have converged on the same forward-PE ceiling (~0.0086-0.0087), each falling short of the 0.01 discrimination floor by a similar margin -- diminishing returns strongly suggest this axis alone will not clear the floor no matter how much further it is pushed.",
+        "830 (a separate diagnostic) independently confirms the identical root blocker via a different design (the 'slow' pathway never engages at all) -- two different probes converging on the same underlying limitation."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3",
+      "queue_id": "V3-EXQ-830",
+      "claim_ids": [],
+      "bears_on": ["MECH-321", "MECH-288", "ARC-070"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "slow_never_fires_on_rollout",
+      "self_route_verdict": "CONFIRMED VACUOUS PASS. All six positive-control gates pass (instrumentation coverage, fast-scale-fires for both arms, zgoal-present, zgoal-norm-varies) but the ACTUAL test-relevant pathway (the 'slow' scale) never engaged: on_n_sweeps_slow_only=0, on_n_sweeps_cofire=0, slow_sweep_frac=0.0 across 2393 sweeps in either arm. ON and OFF arms produced BIT-IDENTICAL behaviour: on_fast_position_hist == off_fast_position_hist exactly, and on_net_harm_per_step_mean == off_net_harm_per_step_mean to 15 decimal places. The manifest's own evidence_direction=non_contributory (despite outcome=PASS) already flags this internally. The scale-heterogeneity question this run was designed to test was never exercised.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "Positive controls all pass (arm_probe_on_gate_green=true, arm_probe_off_gate_green=true, control_arm_slow_silent=true) but slow_sweep_frac=0.0 means the discriminating mechanism itself never fired in either arm -- same underlying limitation as 816d (environment never produces states extreme enough to trigger the low-V_s/high-uncertainty regime that would engage 'slow').",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the scale-heterogeneity prediction (fast vs slow decomposition triggered by uncertainty) was never actually tested.",
+        "biological_reference": "clear -- same as 816d.",
+        "prerequisites": "present -- MECH-288 substrate landed; fast pathway fires normally, correctly instrumented.",
+        "implementation": "complete -- nothing here indicates an implementation bug in the decomposition mechanism itself.",
+        "environment": "the identified bottleneck -- same root cause as 816d; this run confirms it via an independent design.",
+        "measurement": "adequate -- the instrumentation correctly and honestly reports the vacuity (evidence_direction=non_contributory despite outcome=PASS).",
+        "integration": "isolated -- fast pathway behaves identically regardless of arm, confirming no cross-talk confound.",
+        "scale": "the specific question (scale heterogeneity) untested -- no scale separation was ever exercised."
+      },
+      "biological_reference": {
+        "closest_mechanism": "same as 816d -- PE-driven hierarchical decomposition requiring sufficient environmental uncertainty to trigger the coarser/slower re-segmentation pathway.",
+        "dependencies": ["an environment producing states extreme enough to engage the 'slow' pathway at all"],
+        "is_formal_import": false,
+        "divergence": "none -- confirms 816d's diagnosis from an independent angle.",
+        "lit_status": "n/a (diagnostic purpose)"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {},
+      "recommended_evidence_quality_note": "V3-EXQ-830 (2026-07-27, scale-heterogeneity diagnostic) self-routes slow_never_fires_on_rollout and is correctly self-labelled non_contributory in its own manifest despite an outcome=PASS on all its positive-control gates -- the PASS must NOT be read as confirming any scale-heterogeneity finding. The 'slow' pathway fired zero times in 2393 sweeps across both arms, and ON/OFF arms produced bit-identical behaviour (fast_position_hist identical, net_harm_per_step_mean identical to 15 decimals). This shares the identical root blocker with 816d (environment never produces states extreme enough to trigger the uncertainty-driven pathway) -- two independent probes converging on the same limitation. Do not let this PASS drive any governance action on MECH-321/ARC-070/MECH-288; route alongside 816d's fanout_recommendation to a different design axis.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Same as 816d -- reads measurement_gap, not substrate_ceiling. Shares 816d's fanout_recommendation rather than emitting a separate one."
+      },
+      "learning_extracted": [
+        "A PASS outcome with a self-labelled non_contributory evidence_direction is exactly the vacuous_pass case the diagnostic-adjudication gate exists to catch -- confirmed here: all positive controls green, but the actual discriminating mechanism never engaged.",
+        "This is the second independent design (after 816d) to hit the identical environment-uncertainty ceiling -- reinforces that the environment axis, not any single script, is the bottleneck."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3",
+      "queue_id": "V3-EXQ-829",
+      "claim_ids": ["MECH-324", "MECH-323"],
+      "parent_claim_id": "ARC-071",
+      "experiment_purpose": "evidence",
+      "self_route_label": "none (self-labelled evidence_direction_per_claim: MECH-324=mixed, MECH-323=supports)",
+      "self_route_verdict": "First test of MECH-324's registered rapid-reacquisition falsifier. on_arm_any_revived=true, off_arm_any_revived=false: dissolved chunks DO revive with the intervention and never do without it -- real support for MECH-323's core 'suppression with retention, not erasure' structural claim. But the RATE prediction is directly falsified in the WRONG direction: median_r_reacq_default_arm=90.0 vs forced_bar_default_arm=5 (predicted ~5 reps at f_reacq=0.25) -- slower even than the original 20-rep formation bar. The script's own pre-registered authoring probe (disclosed before this run) already predicted this exact FLAT-across-f_reacq pattern: r_reacq=28/46/90 for W=30/50/100, identical across f_reacq in {1.0, 0.5, 0.25, 0.1}. The manifest confirms it precisely: every F*_W100 arm reads median_r_reacq=90.0 regardless of f_reacq; every F*_W30 arm reads 28.0 regardless of f_reacq. The 'reduced repetition bar' lever is therefore INERT BY CONSTRUCTION -- reacquisition timing is dominated entirely by how long the sliding-window variance takes to clear the dissolution episode's own contamination (W), not by the counter-threshold f_reacq is meant to lower.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "c1_pass=false, c2_pass=false, c4_pass=false (c3_pass=true, c5_pass=true). r_reacq does not scale with f_reacq at all -- flat across all four tested values, confirming the pre-registered verdict-aliasing hypothesis (point 3 of the script's design audit).",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (MECH-323 retention structure) / weakened on the specific quantitative prediction (MECH-324 f_reacq).",
+        "biological_reference": "clear, with an explicitly registered and load-bearing transfer-limit caveat: Barnes 2005 / Bouton 2012 evidence is single-response (rat lever-press, T-maze) and comes from experiments run over DAYS with sleep between sessions; REE's chunk is a composed multi-element sequence tested in continuous waking trials with sleep-replay deliberately disabled (use_chunk_replay_origin_path=False).",
+        "prerequisites": "present for the tested (waking-only) mechanism; UNTESTED for a candidate necessary prerequisite -- offline sleep-replay consolidation (MECH-322), which is fully wired (ree_core/agent.py:1351-1352, ree_core/policy/policy_chunking.py:722/1303, ree_core/utils/config.py:3774/5714/6925) and depends on SD-017 (sleep-phase infrastructure, status=stable/landed), but was explicitly disabled for this run.",
+        "implementation": "a confirmed, pre-registered-and-reproduced gating defect: the crystallisation-counter reset that f_reacq is meant to govern is dominated by sliding-window contamination-clearing time (W), not by the repetition-count threshold itself.",
+        "environment": "n/a -- this is an isolated operator-level test (synthetic action/outcome stream direct into PolicyChunking), deliberately bypassing E3/env/proposal pool.",
+        "measurement": "thorough and self-aware -- the script's own pre-run design audit anticipated and explicitly disclosed the verdict-aliasing risk (crossing f_reacq with W to distinguish 'wrong value' from 'masked by window interaction') before running, and the result reproduces exactly what was predicted.",
+        "integration": "isolated by design (correctly so, per the script's own justification -- V3-EXQ-810 found the accumulator silent under full-agent control, so an operator-level test is the right unit of analysis).",
+        "scale": "adequate -- 6 seeds, multiple window/severity/f_reacq combinations, explicit censoring accounting."
+      },
+      "biological_reference": {
+        "closest_mechanism": "striatal ensemble re-emergence on reacquisition (Barnes 2005) and renewal/resurgence/rapid-reacquisition as retention-not-erasure signatures (Bouton 2012).",
+        "dependencies": ["offline sleep-replay consolidation (MECH-322/SD-017) as a candidate mechanism by which biological 'rapid' reacquisition is achieved via WALL-CLOCK/real-repetition compression rather than an intrinsically lower repetition-count threshold"],
+        "is_formal_import": false,
+        "divergence": "load-bearing, and newly sharpened by this run: MECH-324's f_reacq parameter operationalises 'rapid reacquisition' as a repetition-COUNT reduction. But the cited biological evidence comes from paradigms where sleep occurs BETWEEN real trials/sessions. If biological rapid reacquisition is substantially achieved via offline consolidation compressing the real-trial requirement (rather than the reacquisition THRESHOLD itself being lower), then f_reacq targets the wrong lever entirely -- no amount of tuning a repetition-count multiplier in a continuous-waking harness can show it, and the observed flat/inert result is consistent with this misalignment, independent of (and in addition to) the confirmed W-vs-f_reacq gating defect.",
+        "lit_status": "present -- both Barnes 2005 and Bouton 2012 are cited on MECH-324's own registration; the sleep-between-sessions detail in both source paradigms was not previously connected to f_reacq's operationalisation until this autopsy."
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_per_claim": {"MECH-324": "mixed", "MECH-323": "supports"},
+      "recommended_evidence_quality_note": "V3-EXQ-829 (2026-07-27, MECH-324 rapid-reacquisition falsifier) supports MECH-323's core retention structure (on_arm_any_revived=true, off_arm_any_revived=false -- dissolution is confirmed suppression-with-retention, not erasure) but falsifies MECH-324's specific rapid-reacquisition rate prediction in the wrong direction (median 90 reps vs predicted ~5, slower even than the 20-rep original formation bar). This is not a clean rate-miscalibration: the script's own pre-registered authoring probe predicted exactly this flat-across-f_reacq pattern before the run, and the manifest confirms it -- r_reacq depends entirely on window length W, not on the repetition-count threshold f_reacq is supposed to lower, confirming the reduced-bar lever is INERT BY CONSTRUCTION (verdict aliasing, point 3 of the design audit). Two distinct findings follow: (1) a confirmed implementation defect -- the crystallisation-counter reset should not be dominated by raw sliding-window contamination-clearing time when a reduced repetition bar is meant to govern it; and (2) a newly identified candidate missing prerequisite -- MECH-324's f_reacq operationalises rapid reacquisition as a repetition-COUNT reduction, but the cited biological evidence (Barnes 2005, Bouton 2012) comes from paradigms with sleep BETWEEN real trials, so biological rapid reacquisition may be substantially achieved via offline sleep-replay consolidation (MECH-322, fully wired via use_chunk_replay_origin_path but explicitly disabled here) compressing the real-trial requirement, not via an intrinsically lower threshold. Route BOTH to /implement-substrate (fix the W-vs-f_reacq gating defect) AND to /queue-experiment for 829a with use_chunk_replay_origin_path=True, explicitly framed as testing whether offline-replay corroboration -- not a lower repetition threshold -- is the mechanism behind biological rapid reacquisition.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
+        "title": "MECH-324 chunk-maintenance: decouple the crystallisation-counter reset from raw sliding-window contamination so f_reacq has causal effect on reacquisition timing",
+        "implementation_hint": "829's pre-registered authoring probe and confirmed result both show r_reacq is flat across all tested f_reacq values (1.0, 0.5, 0.25, 0.1) and depends only on window length W -- the reduced repetition bar is inert by construction. The crystallisation-counter's dependence on the sliding-window variance clearing the dissolution episode's own contamination should be decoupled from (or made to properly respect) the reduced repetition threshold f_reacq is meant to encode.",
+        "unblocks_claims": ["MECH-324"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3",
+          "experiment_type": "v3_exq_829_mech324_rapid_reacquisition_falsifier",
+          "metric": "median_r_reacq flat at 90.0 (W=100) / 28.0 (W=30) across all four tested f_reacq values",
+          "target": "median_r_reacq scales measurably with f_reacq at fixed W, per the claim's own falsifiable prediction"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "MECH-324 and MECH-323 have 0 prior autopsy targets -- this is the first test of both. Reads competence_implementation_gap, not substrate_ceiling. Brake does not fire."
+      },
+      "learning_extracted": [
+        "MECH-323's retention-not-erasure structural claim is confirmed: dissolved chunks revive with the intervention and never do without it.",
+        "MECH-324's f_reacq parameter is confirmed inert by construction -- reacquisition timing is dominated by sliding-window contamination-clearing (W), not by the repetition-count threshold, exactly as the script's own pre-registered authoring probe predicted before the run.",
+        "A newly identified candidate missing prerequisite: offline sleep-replay consolidation (MECH-322, substrate-wired via use_chunk_replay_origin_path, deliberately disabled here) may be the actual mechanism behind biological rapid reacquisition -- Barnes 2005/Bouton 2012's source paradigms have sleep BETWEEN real trials, so 'rapid' reacquisition observed biologically may reflect offline consolidation compressing the real-trial requirement, not an intrinsically lower repetition threshold. This reframes f_reacq as possibly targeting the wrong lever entirely, independent of the confirmed W-gating defect."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3",
+      "queue_id": "V3-EXQ-831",
+      "claim_ids": ["MECH-466"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "clock_relative_not_exceeded",
+      "self_route_verdict": "Correctly labelled -- all four preconditions clear cleanly (boundary rate 0.038 well inside [0.001, 0.6]; 100% per-seed non-degeneracy; sufficient union events; 3/3 valid seeds). The load-bearing criterion fails on real data: event-minus-clock RV delta mean=-0.091 against a 0.171 floor. Self-labelled weakens per the project's non-standard-directions convention (an informative FAIL, not a null). Explicitly scoped WAKING-only (use_sleep_loop=False), deferring the sleep-phase-transition landmark class (Outcome E) to a lettered follow-up -- and this run's own scope_note calls itself 'sibling of V3-EXQ-824' (Q-081), the same claim family this sweep's other targets are probing.",
+      "failed_criterion": "absolute",
+      "failed_criterion_detail": "C_event_relative_beats_clock_relative: measured -0.0912, threshold 0.1713, fails.",
+      "non_degenerate": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- coordination is measurably no tighter around events than around arbitrary clock points, in the waking-only scope tested.",
+        "biological_reference": "clear -- event-segmentation-locked neural coordination (Zacks) as a candidate federation-coordination substrate is a reasonable, testable operationalisation.",
+        "prerequisites": "present -- MECH-288 boundary detection landed, produces a well-behaved non-degenerate boundary rate.",
+        "implementation": "complete.",
+        "environment": "adequate.",
+        "measurement": "thorough -- explicit non-degeneracy band on boundary rate (guards against both a silent segmenter and trivial every-step boundaries), union-event sufficiency check.",
+        "integration": "isolated.",
+        "scale": "adequate -- 3/3 seeds valid."
+      },
+      "biological_reference": {
+        "closest_mechanism": "event-segmentation-locked cross-stream coordination as a substrate for federation-wide binding.",
+        "dependencies": ["the sleep-phase-transition landmark class, explicitly deferred here (Outcome E, the fifth landmark class), which the claim's own framing treats as a distinct, untested half"],
+        "is_formal_import": false,
+        "divergence": "none identified -- this is a clean negative in the tested (waking-only) scope; the claim's full (waking + sleep) form remains open."
+      ,
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {"MECH-466": "weakens"},
+      "recommended_evidence_quality_note": "V3-EXQ-831 (2026-07-27, first test of MECH-466, waking-only scope) cleanly weakens the waking-only version of the claim: event-locked coordination does not exceed clock-locked coordination (delta=-0.091 vs a 0.171 floor), with all four non-degeneracy preconditions clearing cleanly across 3/3 valid seeds. This is a complete, self-consistent, already-correctly-labelled result requiring no further diagnostic work. Note for governance: the deferred sleep-phase-transition landmark class (Outcome E) is explicitly out of scope here (use_sleep_loop=False) and, per this sweep's independent finding on 829 (offline sleep-replay consolidation as a candidate load-bearing mechanism for MECH-324's rapid-reacquisition prediction), sleep engagement looks increasingly likely to matter across this claim family -- a lettered follow-up with use_sleep_loop=True is worth prioritising before MECH-466's full (waking+sleep) claim can be considered adequately tested.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "MECH-466 has 0 prior autopsy targets -- this is the first test. Reads standard, not substrate_ceiling. Brake does not fire."
+      },
+      "learning_extracted": [
+        "This is a clean, negative, well-controlled result in the waking-only scope; the claim's own scope_note already reserves the sleep-phase half as untested.",
+        "Read alongside 829's finding, this strengthens a cross-claim pattern: sleep/offline-consolidation engagement may be a load-bearing missing prerequisite across multiple claims in this family (MECH-324's rapid reacquisition, MECH-466's Outcome E), not an isolated gap in any one experiment."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Three independent lettered-iteration campaigns (SD-078/082, MECH-244, Q-081/INV-091) each fixed their FIRST identified bug, then hit a SECOND, deeper gap on the same axis in their very next attempt: SD-078/082 moved from 'consumer absent' to 'consumer present but input-stage broken' to 'consumer present, output-stage fixed, but the trained layer receives zero gradient'; Q-081 moved from 'no reach path' to 'a reach path exists but not to the specific measured pair'; MECH-321/ARC-070 (816d/830) confirms a THIRD consecutive same-axis (environment) escalation converging on an unchanged ceiling. Separately, MECH-321/ARC-070's environment axis and INV-091's null-validation gap are both measurement/design-scope limitations rather than implementation bugs, and 829's sleep-replay reframe surfaces a new cross-claim theme: offline consolidation may be a load-bearing missing prerequisite spanning MECH-324 (rapid reacquisition) and MECH-466 (event-relative vs clock-relative coordination, waking-only tested).",
+    "is_independent_bugs": false,
+    "structural_property": "Each lettered fix correctly resolved the specific defect its predecessor's autopsy identified, but every fix landed on a substrate that had a SECOND layer of gap one level deeper -- narrowing diagnoses are the expected and correct shape of this iteration pattern, not a sign the fixes were wrong.",
+    "readings": ["progressive_narrowing_not_repeated_failure", "environment_axis_saturation_mech321", "sleep_consolidation_candidate_missing_prerequisite_cross_claim"]
+  }
+}
