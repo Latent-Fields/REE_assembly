@@ -1207,3 +1207,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T22:19:40Z auto-defer IGW-20260728-212 hash=6db792a614c1 for 48h (reaped -> completed_resumable)
 2026-07-28T22:19:40Z reaped TASK_CLAIMS igw-auto-igw-212-proposal-for-mech-217-20260728T211821Z (ledger IGW-20260728-212 -> completed_resumable)
 2026-07-28T22:19:40Z GC keep igw-212-proposal-for-mech-217 (ledger IGW-20260728-212 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-07-28T22:19:18Z STAGE IGW-20260728-192 skill=/implement-substrate prio=25 worktree=igw-192-substrate-ready-mech-217 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
