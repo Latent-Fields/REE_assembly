@@ -2032,7 +2032,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-212-proposal-for-mech-068 && claude --resume d63b55bb-236d-415b-80c0-4dd21fbdc1f9",
       "task_claim_session_id": "igw-auto-igw-212-proposal-for-mech-068-20260728T191703Z",
       "assigned_at": "2026-07-28T19:16:40Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-28T19:53:33Z",
+      "completion_summary": "queued V3-EXQ-835 for MECH-068 (CSH-1 consolidation-operator selectivity dissociation; frozen-E1 analytic lambda/rho argmin-flip; smoke PASS, coordinator-confirmed)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "queued V3-EXQ-835 for MECH-068 (CSH-1 consolidation-operator selectivity dissociation; frozen-E1 analytic lambda/rho argmin-flip; smoke PASS, coordinator-confirmed)"
     }
   ],
   "dispositions": [
@@ -2694,6 +2698,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-28T18:16:30Z",
       "re_eligible_after": "2026-07-30T18:16:20Z"
+    },
+    {
+      "stable_hash": "ed9947ebaa1d",
+      "igw_id_at_disposition": "IGW-20260728-212",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-068"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-068",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-28T19:53:41Z",
+      "re_eligible_after": "2026-07-30T19:53:41Z"
     }
   ]
 }
