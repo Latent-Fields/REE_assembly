@@ -48,13 +48,13 @@ its verdict, in a way the ree-v3 shapes were not. A four-figure file count on th
 
 | # | Date (local) | Stash SHA | Shape | Verdict | Action |
 |---|---|---|---|---|---|
-| 0 | 2026-07-27 15:21 | `95b7594f49` | governance regen, 1186 files | SUPERSEDED (regenerable) + **stale-content skew** | left in place |
-| 1 | 2026-07-27 15:20 | `07a5621a02` | near-duplicate of #0, 1186 files | SUPERSEDED (regenerable) + **stale-content skew** | left in place |
-| 2 | 2026-07-26 08:58 | `4a081fbd57` | governance regen, 1130 files | SUPERSEDED (regenerable) | left in place |
-| 3 | 2026-07-26 08:58 | `455475f8b2` | 1 untracked V3-EXQ-823 manifest | **ALREADY-LANDED (proven)** | **DROPPED** |
-| 4 | 2026-07-26 00:56 | `995de28f5b` | governance regen 1120 + 20 untracked | SUPERSEDED (regenerable); **all 20 untracked verified on trunk** | left in place |
-| 5 | 2026-07-22 04:00 | `370ca49bb5` | `graceful_timeout.py` + V3-EXQ-790 run pack | **ALREADY-LANDED (proven)** | **DROPPED** |
-| 6 | 2026-07-22 03:56 | `8f92e7b559` | governance regen, 1063 files | SUPERSEDED (regenerable) | left in place |
+| 0 | 2026-07-27 15:21 | `95b7594f49` | governance regen, 1186 files | SUPERSEDED (regenerable) + **stale-content skew** | DROPPED (pass 2) |
+| 1 | 2026-07-27 15:20 | `07a5621a02` | near-duplicate of #0, 1186 files | SUPERSEDED (regenerable) + **stale-content skew** | DROPPED (pass 2) |
+| 2 | 2026-07-26 08:58 | `4a081fbd57` | governance regen, 1130 files | SUPERSEDED (regenerable) | DROPPED (pass 2) |
+| 3 | 2026-07-26 08:58 | `455475f8b2` | 1 untracked V3-EXQ-823 manifest | **ALREADY-LANDED (proven)** | **DROPPED (pass 1)** |
+| 4 | 2026-07-26 00:56 | `995de28f5b` | governance regen 1120 + 20 untracked | SUPERSEDED (regenerable); **all 20 untracked verified on trunk** | DROPPED (pass 2) |
+| 5 | 2026-07-22 04:00 | `370ca49bb5` | `graceful_timeout.py` + V3-EXQ-790 run pack | **ALREADY-LANDED (proven)** | **DROPPED (pass 1)** |
+| 6 | 2026-07-22 03:56 | `8f92e7b559` | governance regen, 1063 files | SUPERSEDED (regenerable) | DROPPED (pass 2) |
 
 **No entry is GENUINELY-ORPHANED.** Nothing needs restoring. Two residual content differences exist
 and are recorded under "What is genuinely NOT on trunk" below; neither is work, and neither is
@@ -264,24 +264,31 @@ Two residuals, both recorded for completeness. Neither is work; neither justifie
 
 ## Actions taken
 
-**Two dropped, five left in place. The stash list went 7 -> 5.**
+**All seven dropped. The REE_assembly stash list is now EMPTY.** Every one was archive-tagged
+first, so no content was destroyed.
 
-The two-pass split from the ree-v3 triage is preserved deliberately:
+Dropped in two passes, deliberately -- preserving the split established by the ree-v3 triage:
 
-1. **Dropped without asking -- mechanically proven contained:**
+1. **Pass 1, no permission needed -- mechanically proven contained:**
    - `370ca49bb57e7b574e5d1e5b7800cd46a9ed3b39` (6 files; `graceful_timeout.py` byte-identical to
      trunk, run pack present, manifest key-for-key identical)
    - `455475f8b2a349874887eb91336c92570193ef73` (1 untracked manifest; trunk is a strict superset)
-2. **Left in place, reported, awaiting the owner's call -- the five regen entries.** Their verdict
-   rests on the derived-artifact argument (test 4) plus the stale-content direction test (test 5).
-   Both are strong, and the `95b`/`07a` pair is arguably *safer* to drop than the two that were
-   dropped, since applying them would actively damage trunk. But it is still an argument, so it is
-   the owner's decision:
-   - `95b7594f495c91f17f34a857a1323e8d5a08fa82`
-   - `07a5621a02b2a47173977e071fe8dc341578ca38`
-   - `4a081fbd5776846bdc80d974f6781a0870f776dc`
-   - `995de28f5bde53affa5a75348e8d02cabf522f25`
-   - `8f92e7b5596a7d39f9c1ef4dfce28eb292bcda59`
+2. **Pass 2, on explicit user authorisation** (2026-07-28: *"They do sound to be a risk just
+   sitting there. They should not be easily reincorporated and rewinding of our precious repos"*)
+   -- the five regen entries, whose verdict rests on the derived-artifact argument (test 4) plus
+   the stale-content direction test (test 5) rather than on blob identity:
+   - `95b7594f495c91f17f34a857a1323e8d5a08fa82` (1186 files)
+   - `07a5621a02b2a47173977e071fe8dc341578ca38` (1186 files)
+   - `4a081fbd5776846bdc80d974f6781a0870f776dc` (1130 files)
+   - `995de28f5bde53affa5a75348e8d02cabf522f25` (1120 tracked + 20 untracked)
+   - `8f92e7b5596a7d39f9c1ef4dfce28eb292bcda59` (1063 files)
+
+**The two-pass split is the point, not bureaucracy -- and note the ordering is NOT by risk.** Pass 2
+contains the entries that are arguably the *most* dangerous to leave in place: `95b`/`07a` hold
+months-stale `docs/` content, so a future reader who sees "1186 files, N days old" and applies one
+would revert trunk. They still went in pass 2 because their verdict is an *argument* (derived +
+direction-tested), not a blob comparison, and that distinction -- not the size of the hazard -- is
+what decides whether a session may act alone. Preserve it if this triage is repeated.
 
 Nothing was restored, and nothing should be. Every entry is behind trunk.
 
@@ -300,8 +307,20 @@ stash-archive/20260722-8f92e7b5  -> 8f92e7b5596a7d39f9c1ef4dfce28eb292bcda59   (
 
 Content was re-verified **through the tags after the drops** (`git stash show --name-only <tag>`,
 `git ls-tree -r --name-only <tag>^3`), which is the check that proves survival rather than merely
-that a tag exists: `stash-archive/20260722-370ca49b` still lists its 5 tracked files + 1 untracked,
-and `stash-archive/20260726-455475f8` still lists its 1 untracked file.
+that a tag exists. Post-drop file counts match the pre-drop counts exactly:
+
+| tag | tracked | untracked |
+|---|---|---|
+| `stash-archive/20260727-95b7594f` | 1186 | 0 |
+| `stash-archive/20260727-07a5621a` | 1186 | 0 |
+| `stash-archive/20260726-4a081fbd` | 1130 | 0 |
+| `stash-archive/20260726-995de28f` | 1120 | 20 |
+| `stash-archive/20260726-455475f8` | 0 | 1 |
+| `stash-archive/20260722-370ca49b` | 5 | 1 |
+| `stash-archive/20260722-8f92e7b5` | 1063 | 0 |
+
+Blob-level readability was spot-checked too, not just the file lists:
+`git show stash-archive/20260727-95b7594f:docs/glossary.md` still returns the 2026-04-26 content.
 
 Tags keep the commits reachable so `git gc` cannot prune them. Recover with
 `git stash apply stash-archive/<tag>` or `git show <tag>:<path>`. **Local-only and never pushed** --
