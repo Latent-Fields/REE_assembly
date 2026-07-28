@@ -1191,3 +1191,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T14:14:04Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-28T15:14:29Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-28T16:14:53Z skip IGW-20260728-211: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-28T17:15:16Z SPAWN IGW-20260728-211 skill=/queue-experiment prio=40 uuid=f2c3ce24-c63b-4dbe-ab0c-59ee44d66fd1 pid=25692 worktree=igw-211-proposal-for-inv-056
