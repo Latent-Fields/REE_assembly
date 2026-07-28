@@ -406,6 +406,42 @@ echo "--- Step 3h: Unapplied confirmed-autopsy recommendations (GOV-APPLY-1, war
 # Read-only; promotes/demotes nothing. --strict for a blocking CI gate.
 "$PYTHON" scripts/check_unapplied_autopsy_recommendations.py || true
 
+echo "--- Step 3i: Dry-run adjudication leak (GOV-DRY-1, warn-only) ---"
+# The SIXTH sibling, and the only one that asks whether a verdict rests on evidence
+# that DOES NOT EXIST. The others ask what a set of verdicts MEANS (3e/3f/3g),
+# whether it was RECORDED (GOV-CAT-1), or whether it was APPLIED (3h).
+#
+# THE GAP: a `--dry-run` smoke is a truncated budget emitted to prove a driver runs;
+# its metrics are truncation artifacts. The SCORING path has been gated since
+# cb7298c1c4 (converter + indexer + pending-review buckets). Nothing gated the
+# ADJUDICATION path -- a /failure-autopsy or /governance session could read a dry
+# manifest and reason over its metrics as evidence, and did: confirmed twice, in
+# OPPOSITE directions, six hours apart on 2026-05-19 for V3-EXQ-543i, where the
+# correct 01:13Z "vacuous truncation artifact" diagnosis was overwritten at 07:06Z
+# by a basin-nondeterminism narrative built entirely on the smoke, over a real-run
+# set with ZERO variance -- which then propagated into substrate_queue.json as an
+# acceptance bar any future ARC-062 fix must clear. Diagnosis:
+# evidence/planning/dry_run_smoke_in_autopsy_audit_2026-07-28.md; corpus sweep:
+# evidence/planning/dry_run_stamped_manifest_sweep_2026-07-28.md.
+#
+# check_dry_run_citations.py made the check AVAILABLE and the two skills REQUIRE it,
+# but that is skill prose -- it holds only while every session remembers. The audit's
+# own closing finding is that this defect was caught and patched per-instance at
+# least FOUR times without the pipeline being fixed: a correct local diagnosis does
+# not survive on its own, only a gate does.
+#
+# Sweeps confirmed failure_autopsy_*.json + substrate_queue.json for dry-run
+# citations, and reports dry manifests carrying an ASSERTING stamp (a direction, a
+# directional per-claim entry, or any epistemic_category). Quarantine stamps
+# (superseded / non_contributory) are the CORRECT response to a smoke and are never
+# reported -- flagging them would fire on 19 of 36 dry run_ids forever while telling
+# governance to undo the right thing. Reuses check_dry_run_citations.build_index()
+# rather than re-implementing detection. Excludes what the 2026-07-28 audit + sweep
+# already adjudicated (still printed, never hidden); future adjudications use the
+# in-band, hit-scoped `dry_run_citation_metabolized` marker. Read-only; every write
+# it recommends is governance's. --strict for a blocking CI gate.
+"$PYTHON" scripts/check_dry_run_adjudication_leak.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
