@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-28T20:48:28Z",
+  "last_tick_utc": "2026-07-28T21:28:36Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 50 / ARM_LEGACY",
     "runs_done": 8,
     "runs_total": 40,
-    "episodes_done": 30,
+    "episodes_done": 130,
     "episodes_total": 170,
-    "overall_pct": 20.4
+    "overall_pct": 21.9
   },
-  "seconds_elapsed": 76112,
-  "seconds_remaining": 79155,
+  "seconds_elapsed": 78520,
+  "seconds_remaining": 77692,
   "recent_lines": [
     "Seed 42 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=42 ep 20/170 z_goal_peak=0.4849",
@@ -69,7 +69,8 @@
     "verdict: PASS seed=49 arm=ARM_LEGACY mean_surv=101.8 z0peak=0.4185 harm_range=0.2828",
     "Seed 50 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=50 ep 20/170 z_goal_peak=0.4655",
-    "[train] stage0b ARM_LEGACY seed=50 ep 30/170"
+    "[train] stage0b ARM_LEGACY seed=50 ep 30/170",
+    "[train] p0 ARM_LEGACY seed=50 ep 130/170 mean_len=197.6 rv=0.00007"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
