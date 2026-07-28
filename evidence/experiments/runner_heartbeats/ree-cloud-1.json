@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-28T22:34:01Z",
+  "last_tick_utc": "2026-07-28T22:39:01Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 50 / ARM_LEGACY",
-    "runs_done": 8,
+    "run_label": "Seed 51 / ARM_LEGACY",
+    "runs_done": 9,
     "runs_total": 40,
-    "episodes_done": 130,
+    "episodes_done": 0,
     "episodes_total": 170,
-    "overall_pct": 21.9
+    "overall_pct": 22.5
   },
-  "seconds_elapsed": 82446,
-  "seconds_remaining": 77692,
+  "seconds_elapsed": 82746,
+  "seconds_remaining": 94873,
   "recent_lines": [
     "Seed 42 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=42 ep 20/170 z_goal_peak=0.4849",
@@ -70,7 +70,10 @@
     "Seed 50 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=50 ep 20/170 z_goal_peak=0.4655",
     "[train] stage0b ARM_LEGACY seed=50 ep 30/170",
-    "[train] p0 ARM_LEGACY seed=50 ep 130/170 mean_len=197.6 rv=0.00007"
+    "[train] p0 ARM_LEGACY seed=50 ep 130/170 mean_len=197.6 rv=0.00007",
+    "[train] hazard ARM_LEGACY seed=50 ep 170/170 mean_len=71.6 median_last=5.0 auc=0.358 contact_term=0.750 survival_gate=FAIL harm_range=0.2047 goal_w=1.000 e1_gc=True goal_live=True",
+    "verdict: PASS seed=50 arm=ARM_LEGACY mean_surv=71.6 z0peak=0.4655 harm_range=0.2047",
+    "Seed 51 Condition ARM_LEGACY"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
