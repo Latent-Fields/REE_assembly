@@ -402,9 +402,41 @@ Partly, and differently.
 
   **Residual hole:** `SIGKILL` / power loss still leaves an `active` entry, and because the
   `REE_assembly` guard is unbounded that entry gates the heartbeat push until a human clears it.
-  Bounding it with a `max_age_hours` (as `_active_claim_on_ree_v3_code` already does) is the
-  follow-on; the machine-obvious `governance-sh-<host>` session_id is what makes such an entry
-  recognisable in the meantime.
+  The machine-obvious `governance-sh-<host>` session_id is what makes such an entry recognisable
+  in the meantime.
+
+  **The obvious follow-on -- bounding the guard with a `max_age_hours`, as
+  `_active_claim_on_ree_v3_code` already does -- is only half a fix, and the missing half is the
+  important one.** A bound converts a LOUD failure (the heartbeat visibly stops pushing) into a
+  QUIET one: the heartbeat silently resumes, the protection has lapsed, nobody is told, and if a
+  regen genuinely is still running the original autostash hazard returns unannounced. That is the
+  same trade this document's own findings warn against -- cf. CLAUDE.md on the `M ` staged-revert
+  skew being "the quieter and therefore worse one", and GOV-CAT-1, which exists because a verdict
+  that was never *recorded* is invisible to the machinery built to act on it.
+
+  It is worse than a hypothetical, because **nothing reports a stale `active` claim today at all.**
+  `TASK_CLAIMS.json` declares `stale_after_hours: 6`, but the only consumer is
+  `scripts/igw_routine_tick.py` (IGW auto-spawned claims); `scripts/prune_task_claims_done.py`
+  states in its own docstring that it "Keeps all active claims" and warns only about `done` entries
+  missing `closed_at` / `completion_note`. Measured 2026-07-28T18:05Z: **2 of 6 active claims were
+  already past the 6h threshold (12.1h and 10.9h) with nothing anywhere surfacing them.**
+
+  So the follow-on is *aging-out must produce a nudge*, on a **session-facing** surface --
+  `prune_task_claims_done.py` (already advisory, already run at every `/session-land`) and the
+  Session Startup Protocol -- **not** runner stdout, which is precisely how
+  `experiment_runner._warn_on_stash_bloat()` failed (threshold 20 against a 5-entry incident,
+  printed where no session sees it). The actionable content for an aged-out `governance-sh-*` entry
+  is: *a regen was killed mid-write, so its half-written set may be sitting in a stash -- run
+  `scripts/audit_stashes.py` and rerun the regen.* That makes the claim's own aging the trigger for
+  the audit that is the load-bearing mitigation on this repo, closing the loop.
+
+  Note the asymmetry when deciding whether to auto-reap. CLAUDE.md requires user confirmation
+  before clearing a stale claim, because a heartbeat-stale session may still be RUNNING locally --
+  that rule governs human/session claims and must stand. A `governance-sh-<host>` entry is
+  different in kind: a regen takes minutes, so an hours-old one is definitionally abandoned, no
+  human owns it, and the next `governance.sh` on that host already adopts and releases it. Those
+  are safe to reap; session claims are not. It is therefore worth weighing whether to bound the
+  guard at all, versus keeping the wedge loud and auto-reaping only the machine-owned entries.
 
   The sibling ree-v3 gap -- fix (a) of the ree-v3 triage, extending the claim-aware skip to the
   ree-v3 pull itself, which is what produced all five of *that* repo's entries -- is separately in
