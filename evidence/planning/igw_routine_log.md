@@ -1181,3 +1181,7 @@ One line per hourly tick. ASCII only.
 2026-07-27T23:17:45Z no eligible item (skipped 240): IGW-20260727-001:skill /governance not allowed; IGW-20260727-002:skill /governance not allowed; IGW-20260727-003:skill /governance not allowed
 2026-07-28T00:18:05Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
 2026-07-28T06:13:53Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
+2026-07-28T07:22:49Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
+2026-07-28T08:53:17Z WARN generator timed out (>420s); falling back to last-good workset on disk (tick proceeds)
+2026-07-28T08:36:08Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
+2026-07-28T10:11:57Z no eligible item (skipped 240): IGW-20260728-001:skill /governance not allowed; IGW-20260728-002:skill /governance not allowed; IGW-20260728-003:skill /governance not allowed
