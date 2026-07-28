@@ -204,9 +204,25 @@ Nothing was restored. Per CLAUDE.md remedy (b), a judgement-call restore onto a 
 is worse than leaving the entry alone -- and here the judgement call does not even arise,
 since main is ahead of all three.
 
-**The SHAs above are the recovery handles.** A dropped stash commit stays reachable until
-`git gc` prunes it; `git stash apply <sha>` or `git show <sha>` works in the meantime. Record
-them before dropping anything else.
+**Both dropped entries were archived as local tags before being let go**, following the
+convention established 2026-07-18 (session `fervent-tereshkova-2f1c69`, WORKSPACE_STATE
+2026-07-18T17:39Z) for the 58-stash fleet clear:
+
+```
+stash-archive/20260727-66f3356e  -> 66f3356e916c7dee4c60f888a0cdbf1008c06204
+stash-archive/20260724-64a31b95  -> 64a31b95be5bbf09f700d9e65ab9a62584c12138
+```
+
+The tags keep the commits reachable, so the content **cannot be garbage-collected**:
+`git stash apply stash-archive/<tag>` or `git show <tag>:<path>` restores it. They are
+**LOCAL-ONLY and deliberately never pushed** (verified `git ls-remote --tags origin
+'stash-archive/*'` = 0). List with `git tag -l 'stash-archive/*'` -- ree-v3 now has three,
+including `stash-archive/20260714-32c6fd21` from the earlier sweep. **Do not bulk-delete
+these tags**; deleting them is the one action that would actually destroy the content.
+
+A plain `git stash drop` leaves the commit reachable only until `git gc` prunes it, so the
+raw SHAs recorded in the verdict table above are a weaker handle than the tags. Tag first,
+then drop.
 
 ---
 
