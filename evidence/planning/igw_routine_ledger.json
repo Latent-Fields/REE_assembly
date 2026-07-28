@@ -2056,7 +2056,33 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-212-proposal-for-mech-217 && claude --resume eb054696-ef5e-46ee-9cec-d711951532ed",
       "task_claim_session_id": "igw-auto-igw-212-proposal-for-mech-217-20260728T211821Z",
       "assigned_at": "2026-07-28T21:18:04Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-28T22:19:29Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0303 -> blocked_substrate (triage landed)"
+    },
+    {
+      "igw_id": "IGW-20260728-192",
+      "stable_hash": "6e68d37afc33",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "MECH-217"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: MECH-217",
+      "worktree": ".claude/worktrees/igw-192-substrate-ready-mech-217",
+      "branch": "claude/igw-192-substrate-ready-mech-217",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260728-192 --yolo",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-192-substrate-ready-mech-217 && claude --dangerously-skip-permissions \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-192-substrate-ready-mech-217-20260728T221941Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-07-28T22:19:18Z",
+      "staged_at": "2026-07-28T22:19:18Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
@@ -2732,6 +2758,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-28T19:53:41Z",
       "re_eligible_after": "2026-07-30T19:53:41Z"
+    },
+    {
+      "stable_hash": "6db792a614c1",
+      "igw_id_at_disposition": "IGW-20260728-212",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-217"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-217",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-28T22:19:40Z",
+      "re_eligible_after": "2026-07-30T22:19:27Z"
     }
   ]
 }
