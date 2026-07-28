@@ -1,5 +1,21 @@
 # Failure Autopsy — V3-EXQ-543i (ARC-062 differential-heads falsifier)
 
+> **[2026-07-28] CORRECTION NOTICE — do not read this autopsy standalone.**
+> Its central factual premise is false. `..._20260518T063711Z_v3` is a **`dry_run: true` smoke**
+> (691 s vs 12386 s; P1 4 episodes vs 60), not a byte-identical replicate. Its
+> `p1_inert_gating_detected` is **structurally unsettable** — the detector gates on
+> `(ep+1) >= MID_TRAINING_EP = 30` and dry-run P1 never exceeds 4 — so the "0/3 inert, all escape"
+> reading in §1 is a disabled detector, not a measurement. Its gated arms in fact recorded
+> `mean_tv ~ 0.0005`, ~100x **below** the 0.05 inert threshold, i.e. *more* collapsed than the real run.
+> **There is no cross-run bistability:** the three full-budget runs (543i 191052Z, 543i 20260521T035802Z,
+> 543j on ree-cloud-4) are unanimous branch-e, 3/3 inert on all eight gated arms.
+> An earlier autopsy the same day — `failure_autopsy_V3-EXQ-543i_2026-05-19.json`, 01:13:33Z —
+> had already diagnosed the smoke correctly ("truncated-training artifact ... vacuous"); this
+> 07:06Z autopsy regressed against it and is the one governance applied.
+> The `substrate_ceiling` category and the four `non_contributory` dispositions still stand, on
+> different grounds. Full analysis, propagation, and recommended governance writes:
+> [`dry_run_smoke_in_autopsy_audit_2026-07-28.md`](dry_run_smoke_in_autopsy_audit_2026-07-28.md).
+
 - **Generated (UTC):** 2026-05-19T07:06:52Z
 - **Scope:** cluster (543f -> 543g -> 543h -> **543i**; extended family 433e/433f, 522, 523/523a/523b)
 - **Status:** confirmed (interactive gate, user-confirmed 2026-05-19)
