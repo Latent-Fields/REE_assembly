@@ -1,0 +1,359 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_810a_arc071_chunk_accumulator_readiness",
+  "run_id": "v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-28T20:45:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-071",
+    "MECH-323",
+    "MECH-324"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "ARC-071": "supports",
+    "MECH-323": "supports",
+    "MECH-324": "supports"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "chunk_accumulator_fires",
+    "preconditions": [
+      {
+        "name": "ARM_OFF::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+        "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL_TRAILING::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_FULL_TRAILING",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so formation is structurally impossible on a flat outcome stream. Asserts the SAME statistic the gate routes on (population stdev of the per-episode outcome).",
+        "control": "worst seed in this arm; the task is a hazard- and resource-bearing grid whose per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL_TRAILING::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_FULL_TRAILING",
+        "kind": "readiness",
+        "description": "ChunkAccumulator.note_outcome breaks out at len(actions) < size, so a per-trial buffer shorter than chunk_max_size makes the top of the size budget structurally unreachable -- V3-EXQ-810's actual failure (measured 3.00 symbols/trial at 24-step episodes). Asserts recorded symbols per trial, the SAME quantity that break condition consumes.",
+        "control": "worst seed in this arm; e3_steps_per_tick = 10 gives ~8 periodic symbols in a 72-step episode before any MECH-091 phase-reset extras",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL_TRAILING::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_FULL_TRAILING",
+        "kind": "readiness",
+        "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+        "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_FULL",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so formation is structurally impossible on a flat outcome stream. Asserts the SAME statistic the gate routes on (population stdev of the per-episode outcome).",
+        "control": "worst seed in this arm; the task is a hazard- and resource-bearing grid whose per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_FULL",
+        "kind": "readiness",
+        "description": "ChunkAccumulator.note_outcome breaks out at len(actions) < size, so a per-trial buffer shorter than chunk_max_size makes the top of the size budget structurally unreachable -- V3-EXQ-810's actual failure (measured 3.00 symbols/trial at 24-step episodes). Asserts recorded symbols per trial, the SAME quantity that break condition consumes.",
+        "control": "worst seed in this arm; e3_steps_per_tick = 10 gives ~8 periodic symbols in a 72-step episode before any MECH-091 phase-reset extras",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_FULL::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_FULL",
+        "kind": "readiness",
+        "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+        "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_accumulator_fires",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_crystallisation",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_off_arm_inert",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C4_no_replay_origin_chunks",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C6_size_range_exercised",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C7_credit_rule_separable",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C3_off_arm_inert": true,
+      "C7_credit_rule_separable": true,
+      "C1_accumulator_fires": true,
+      "C2_crystallisation": true,
+      "C6_size_range_exercised": true,
+      "C4_no_replay_origin_chunks": true
+    },
+    "per_arm_gate": {
+      "green_arms": [
+        "ARM_OFF",
+        "ARM_FULL_TRAILING",
+        "ARM_FULL"
+      ],
+      "red_arms": [],
+      "structurally_vacuous_arms": [],
+      "vacuity_reason_by_arm": {},
+      "all_green": true,
+      "any_green": true,
+      "failed_preconditions_by_arm": {},
+      "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+      "green": [
+        {
+          "arm": "ARM_OFF",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_OFF::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_OFF",
+              "kind": "readiness",
+              "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+              "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "ARM_OFF::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_OFF",
+              "applies": false,
+              "reason": "ARM_OFF never constructs the accumulator, so there is no evaluative gate whose satisfiability this could bound. Scoped out rather than failed (disposition (a))."
+            },
+            {
+              "name": "ARM_OFF::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_OFF",
+              "applies": false,
+              "reason": "ARM_OFF never constructs the accumulator, so it records no symbols and the buffer length is undefined rather than deficient. Scoped out (disposition (a))."
+            }
+          ]
+        },
+        {
+          "arm": "ARM_FULL_TRAILING",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_FULL_TRAILING::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_FULL_TRAILING",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so formation is structurally impossible on a flat outcome stream. Asserts the SAME statistic the gate routes on (population stdev of the per-episode outcome).",
+              "control": "worst seed in this arm; the task is a hazard- and resource-bearing grid whose per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_FULL_TRAILING::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_FULL_TRAILING",
+              "kind": "readiness",
+              "description": "ChunkAccumulator.note_outcome breaks out at len(actions) < size, so a per-trial buffer shorter than chunk_max_size makes the top of the size budget structurally unreachable -- V3-EXQ-810's actual failure (measured 3.00 symbols/trial at 24-step episodes). Asserts recorded symbols per trial, the SAME quantity that break condition consumes.",
+              "control": "worst seed in this arm; e3_steps_per_tick = 10 gives ~8 periodic symbols in a 72-step episode before any MECH-091 phase-reset extras",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_FULL_TRAILING::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_FULL_TRAILING",
+              "kind": "readiness",
+              "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+              "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        },
+        {
+          "arm": "ARM_FULL",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_FULL::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_FULL",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so formation is structurally impossible on a flat outcome stream. Asserts the SAME statistic the gate routes on (population stdev of the per-episode outcome).",
+              "control": "worst seed in this arm; the task is a hazard- and resource-bearing grid whose per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_FULL::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_FULL",
+              "kind": "readiness",
+              "description": "ChunkAccumulator.note_outcome breaks out at len(actions) < size, so a per-trial buffer shorter than chunk_max_size makes the top of the size budget structurally unreachable -- V3-EXQ-810's actual failure (measured 3.00 symbols/trial at 24-step episodes). Asserts recorded symbols per trial, the SAME quantity that break condition consumes.",
+              "control": "worst seed in this arm; e3_steps_per_tick = 10 gives ~8 periodic symbols in a 72-step episode before any MECH-091 phase-reset extras",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_FULL::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_FULL",
+              "kind": "readiness",
+              "description": "MECH-091's clock.phase_reset() is reached ONLY on harm_signal < 0 inside REEAgent.update_residue, so with no harm events this run's PRIMARY manipulation (full agent loop on a hazard-bearing task, de-periodising the E3 tick) never fired and a C1 failure would carry no information about it. Asserts the fraction of env steps carrying negative harm_signal.",
+              "control": "worst seed in this arm on an 8x8 grid with num_hazards=2 and proxy fields, where proximity to a hazard field already yields negative harm_signal",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        }
+      ],
+      "red": []
+    },
+    "gate_offending_cells": {
+      "ARM_OFF": {
+        "episode_outcome_spread_supra_floor": "ARM_OFF/seed202",
+        "chunk_buffer_supports_size_range": "ARM_OFF/seed101",
+        "salient_harm_events_fire": "ARM_OFF/seed202"
+      },
+      "ARM_FULL_TRAILING": {
+        "episode_outcome_spread_supra_floor": "ARM_FULL_TRAILING/seed202",
+        "chunk_buffer_supports_size_range": "ARM_FULL_TRAILING/seed303",
+        "salient_harm_events_fire": "ARM_FULL_TRAILING/seed202"
+      },
+      "ARM_FULL": {
+        "episode_outcome_spread_supra_floor": "ARM_FULL/seed202",
+        "chunk_buffer_supports_size_range": "ARM_FULL/seed303",
+        "salient_harm_events_fire": "ARM_FULL/seed202"
+      }
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882"
+}
