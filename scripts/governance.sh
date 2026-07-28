@@ -6,6 +6,10 @@
 #   bash scripts/governance.sh --v2   # V2: also sync from ../ree-v2/ first
 #
 # Steps:
+#   0-pre. Open a TASK_CLAIMS entry covering evidence/ for the run's duration, so
+#          the runner heartbeat's `git pull --rebase --autostash` cannot stash the
+#          half-written derived-artifact set. Released by an exit trap on every
+#          path (success, failure, Ctrl-C). See the block above Step 0-pre.
 #   1. [V2 only] Sync V2 experiment results from ree-v2/ into run-pack format
 #   1b. Sync V3 flat JSON results to run-pack format
 #   2. Build all evidence indexes (experiments, literature, planning, recommendations)
@@ -30,7 +34,162 @@ for arg in "$@"; do
   esac
 done
 
+# ---------------------------------------------------------------------------
+# Autostash guard: hold a TASK_CLAIMS entry for the duration of the regen.
+#
+# THE HAZARD. A full regen rewrites ~1050-1190 derived files (per-experiment
+# INDEX.md, claim_evidence.v1.json, the evidence/planning/ registries, the docs
+# stubs) over several minutes. The runner heartbeat
+# (ree-v3/runner_remote_control.py:push_heartbeat) does
+# `git pull --rebase --autostash` against REE_assembly every minute. Land one of
+# those mid-regen and the ENTIRE half-written set is stashed, with no error
+# reaching the running pipeline -- it just carries on writing into a tree that
+# was swept out from under it.
+#
+# Not hypothetical: five such stash entries were sitting in the REE_assembly
+# stash list on 2026-07-28, dated 07-22, 07-26 (x2) and 07-27 (x2), of 1063 /
+# 1120 / 1130 / 1186 / 1186 files (triage:
+# evidence/planning/ree_assembly_orphaned_autostash_triage.md). All seven
+# entries there were harmless ONLY because this pipeline is idempotent -- rerun
+# it and the artifacts come back. It turns harmful the moment a regen is
+# committed *from* such a stash, or a half-written set is popped over a good one.
+#
+# THE FIX. runner_remote_control._active_claim_on_evidence_dir() already skips
+# the heartbeat push entirely whenever an active TASK_CLAIMS.json claim names a
+# resource under `evidence/` or `docs/claims/`. Nothing about a governance run
+# opened such a claim, so the one existing mitigation was never engaged. This
+# opens one for the run's duration.
+#
+# WHY THE RESOURCE STRINGS BELOW MATCH. The REE_assembly guard runs
+# _active_claim_on_paths(..., ("evidence/", "docs/claims/")) with anchored=False
+# -- a plain SUBSTRING test (`p in res`) against each active claim's `resources`,
+# with no age bound. `REE_assembly/evidence/` therefore matches on `evidence/`.
+# One matching resource is enough (the skip is all-or-nothing for the whole
+# push); docs/ and contributors/ are listed because the regen genuinely writes
+# them, not because the match needs them.
+#
+# WHY task_claim.py RATHER THAN A HAND-EDIT. It appends the entry and commits it
+# in the SAME step, so the claim never sits dirty in a shared working tree for
+# the next session's whole-file read-modify-write to sweep (CLAUDE.md
+# "Read-modify-write contamination"). No --push: the heartbeat reads the local
+# working-tree TASK_CLAIMS.json, so the claim only has to exist here to be
+# honoured, and pushing mid-regen would add a network failure mode for nothing.
+#
+# WHY THE TRAP. The REE_assembly guard has NO max_age_hours, so a leftover
+# `active` entry gates the heartbeat push indefinitely. A crashed or
+# Ctrl-C'd regen must therefore still release it -- hence EXIT (covers `set -e`
+# aborts, the Step 4b/9c blocking gates, and any explicit exit) plus INT and
+# TERM, which re-raise so the caller still sees the right 128+N status. A
+# SIGKILL or a power cut is the residual hole: the entry is left `active` under
+# an obviously-machine session_id (`governance-sh-<host>`) so a human reading
+# TASK_CLAIMS.json can recognise and clear it, and CLAUDE.md's 6-hour staleness
+# rule applies to it like any other claim.
+# ---------------------------------------------------------------------------
+GOV_CLAIM_HOST="$(hostname -s 2>/dev/null || echo unknown-host)"
+GOV_CLAIM_SESSION_ID="governance-sh-${GOV_CLAIM_HOST}"
+# Resolved ONCE, here, rather than at each call site: the helpers below run from
+# an exit trap, and a `cd` anywhere in the pipeline body would otherwise silently
+# re-resolve `..` to the wrong directory and skip the release.
+GOV_UMBRELLA="$(cd .. && pwd)"
+GOV_CLAIM_PY="$GOV_UMBRELLA/scripts/task_claim.py"
+GOV_CLAIM_HELD=0
+
+gov_claim_open() {
+  if [ ! -f "$GOV_CLAIM_PY" ]; then
+    # Not under the REE_Working umbrella (hub / cloud worker / standalone
+    # checkout). Those have no TASK_CLAIMS.json, so the heartbeat guard is
+    # inert there anyway -- warn and carry on rather than blocking a regen.
+    echo "  (no $GOV_CLAIM_PY -- running WITHOUT an autostash claim guard)" >&2
+    return 0
+  fi
+  # HELD is armed BEFORE the call, not after it. task_claim.py writes the entry
+  # to disk and only then commits it, so a Ctrl-C landing inside that window
+  # leaves an `active` entry on disk -- already gating the heartbeat -- while
+  # `open` exits non-zero. Arming afterwards left exactly that entry orphaned
+  # (observed while testing this guard: SIGINT during the open's git commit ->
+  # claim active, uncommitted, never closed). Arm first; the close is guarded on
+  # what is actually on disk, so an open that wrote nothing still closes nothing.
+  GOV_CLAIM_HELD=1
+  if "$PYTHON" "$GOV_CLAIM_PY" open \
+        --session-id "$GOV_CLAIM_SESSION_ID" \
+        --session-label "governance.sh regen (automated)" \
+        --task "Governance pipeline regen: rewrites the derived evidence/docs artifact set; holds this claim so the runner heartbeat autostash cannot stash a half-written regen." \
+        --resources \
+          REE_assembly/evidence/ \
+          REE_assembly/docs/ \
+          REE_assembly/contributors/; then
+    :
+  else
+    # Fail OPEN, matching the guard's own posture: an unclaimable regen is
+    # still a regen worth running, just an unprotected one.
+    echo "WARNING: could not open the TASK_CLAIMS autostash guard -- continuing" >&2
+    echo "         UNPROTECTED. A heartbeat pull may stash this regen mid-write." >&2
+  fi
+}
+
+# True when an `active` entry for this session_id is on disk RIGHT NOW. The
+# close is guarded on this rather than on the in-memory flag alone, so it
+# releases an entry written by an interrupted `open`, and skips cleanly when
+# the open wrote nothing at all.
+gov_claim_is_active() {
+  "$PYTHON" - "$GOV_UMBRELLA/TASK_CLAIMS.json" "$GOV_CLAIM_SESSION_ID" <<'PYEOF'
+import json, sys
+try:
+    claims = json.load(open(sys.argv[1]))["claims"]
+except Exception:
+    sys.exit(1)
+sys.exit(0 if any(c.get("session_id") == sys.argv[2]
+                  and c.get("status") == "active" for c in claims) else 1)
+PYEOF
+}
+
+gov_claim_close() {
+  local rc="${1:-0}" note
+  [ "$GOV_CLAIM_HELD" = "1" ] || return 0
+  GOV_CLAIM_HELD=0   # re-entrancy guard: EXIT still fires after INT/TERM
+  [ -f "$GOV_CLAIM_PY" ] || return 0
+  gov_claim_is_active || return 0
+  if [ "$rc" = "0" ]; then
+    note="governance.sh regen completed (exit 0) on ${GOV_CLAIM_HOST}. Lock claim only"
+  else
+    note="governance.sh regen ABORTED (exit ${rc}) on ${GOV_CLAIM_HOST}; claim released by the exit trap. Lock claim only"
+  fi
+  note="${note}; the pipeline is derive-only and commits nothing -- derived artifacts are left in the working tree for review."
+  # --closed-at, not --not-landed: this entry is a LOCK held for the regen
+  # window, not a unit of work, and there is no landing commit for it to carry
+  # the committer date of. Stamping every routine regen "NOT LANDED:" would
+  # burn the signal that flags genuinely unlanded work.
+  "$PYTHON" "$GOV_CLAIM_PY" close \
+      --session-id "$GOV_CLAIM_SESSION_ID" \
+      --closed-at "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+      --completion-note "$note" \
+    || echo "WARNING: failed to close TASK_CLAIMS claim $GOV_CLAIM_SESSION_ID -- clear it by hand (it gates the runner heartbeat push)." >&2
+}
+
+gov_on_exit() {
+  local rc=$?
+  gov_claim_close "$rc"
+  # Explicit: an `exit` inside an EXIT trap sets the final status and does not
+  # re-enter the trap, so the caller still sees the pipeline's own status
+  # rather than the claim helper's.
+  exit "$rc"
+}
+
+gov_on_signal() {
+  local sig="$1"
+  gov_claim_close "$((128 + $2))"
+  trap - "$sig" EXIT
+  kill -"$sig" $$      # re-raise under the default handler: correct 128+N status
+}
+
+trap gov_on_exit EXIT
+trap 'gov_on_signal INT 2' INT
+trap 'gov_on_signal TERM 15' TERM
+
 echo "=== REE Governance Pipeline ==="
+
+echo "--- Step 0-pre: Opening TASK_CLAIMS autostash guard ---"
+gov_claim_open
 
 echo "--- Step 0: Validating claims.yaml (strict) ---"
 if ! "$PYTHON" scripts/validate_claims.py --strict; then
