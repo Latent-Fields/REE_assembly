@@ -1,0 +1,121 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "c0_pass": true,
+    "c1_pass": true,
+    "c2_pass": false,
+    "c3_pass": true,
+    "c4_pass": false,
+    "c5_pass": true,
+    "c6_pass": true,
+    "c3a_structural_below_derived": true,
+    "c3b_depth_saturates_at_structural": true,
+    "c4_structural_rose_frac": 0.4,
+    "c4_no_orphan_depth": true,
+    "c2_size_grew_frac": 0.4,
+    "derivation_matches_preregistered": true,
+    "green_arms": [],
+    "red_arms": [
+      "BOTH_H30",
+      "BOTH_H50",
+      "DEPTH_H50",
+      "SIZE_H50",
+      "STATIC_H50"
+    ],
+    "per_arm": {
+      "STATIC_H50": {
+        "effective_ceiling_max": 5,
+        "effective_ceiling_mean": 5.0,
+        "effective_depth_max": 3,
+        "effective_depth_mean": 3.0,
+        "derived_size": 8,
+        "derived_depth": 5,
+        "structural_depth_max": 4,
+        "n_ceiling_growths_mean": 0.0,
+        "n_depth_growths_mean": 0.0,
+        "n_formed_mean": 15.0,
+        "symbols_per_episode_mean": 10.064,
+        "max_chunk_length": 5,
+        "max_chunk_depth": 3
+      },
+      "BOTH_H30": {
+        "effective_ceiling_max": 5,
+        "effective_ceiling_mean": 5.0,
+        "effective_depth_max": 3,
+        "effective_depth_mean": 3.0,
+        "derived_size": 5,
+        "derived_depth": 3,
+        "structural_depth_max": 4,
+        "n_ceiling_growths_mean": 0.0,
+        "n_depth_growths_mean": 0.0,
+        "n_formed_mean": 15.0,
+        "symbols_per_episode_mean": 10.064,
+        "max_chunk_length": 5,
+        "max_chunk_depth": 3
+      },
+      "SIZE_H50": {
+        "effective_ceiling_max": 8,
+        "effective_ceiling_mean": 5.8,
+        "effective_depth_max": 3,
+        "effective_depth_mean": 3.0,
+        "derived_size": 8,
+        "derived_depth": 5,
+        "structural_depth_max": 7,
+        "n_ceiling_growths_mean": 0.8,
+        "n_depth_growths_mean": 0.0,
+        "n_formed_mean": 17.8,
+        "symbols_per_episode_mean": 10.064,
+        "max_chunk_length": 7,
+        "max_chunk_depth": 3
+      },
+      "DEPTH_H50": {
+        "effective_ceiling_max": 5,
+        "effective_ceiling_mean": 5.0,
+        "effective_depth_max": 4,
+        "effective_depth_mean": 3.2,
+        "derived_size": 8,
+        "derived_depth": 5,
+        "structural_depth_max": 4,
+        "n_ceiling_growths_mean": 0.0,
+        "n_depth_growths_mean": 0.2,
+        "n_formed_mean": 17.2,
+        "symbols_per_episode_mean": 10.064,
+        "max_chunk_length": 5,
+        "max_chunk_depth": 4
+      },
+      "BOTH_H50": {
+        "effective_ceiling_max": 8,
+        "effective_ceiling_mean": 5.8,
+        "effective_depth_max": 5,
+        "effective_depth_mean": 3.6,
+        "derived_size": 8,
+        "derived_depth": 5,
+        "structural_depth_max": 7,
+        "n_ceiling_growths_mean": 0.8,
+        "n_depth_growths_mean": 0.6,
+        "n_formed_mean": 21.6,
+        "symbols_per_episode_mean": 10.064,
+        "max_chunk_length": 7,
+        "max_chunk_depth": 4
+      }
+    },
+    "n_replay_formed_total": 0,
+    "action_stream_hash_sets": {
+      "101": [
+        "3887b886b3070b9cdd3912990020c40c2eebc48b"
+      ],
+      "202": [
+        "d33cf084f9c5b5aaefed2fc1703fdb793b3896ac"
+      ],
+      "303": [
+        "1af44dd62b66cdba4baec94cde520381e3a0aa3f"
+      ],
+      "404": [
+        "8bfe8193553f50d2fa6b6e4891d7a6ec62163a03"
+      ],
+      "505": [
+        "1cba7902f62b670820af75d1723f23611a54a480"
+      ]
+    }
+  }
+}

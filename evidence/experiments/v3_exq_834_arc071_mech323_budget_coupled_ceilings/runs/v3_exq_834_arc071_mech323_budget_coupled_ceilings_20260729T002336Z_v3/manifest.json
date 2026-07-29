@@ -1,0 +1,365 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_834_arc071_mech323_budget_coupled_ceilings",
+  "run_id": "v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-29T00:23:36Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-071",
+    "MECH-323"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-323": "unknown",
+    "ARC-071": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "STATIC_H50::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "STATIC_H50",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so a flat outcome stream makes formation structurally impossible and every downstream ceiling reading meaningless. Asserts the SAME statistic the gate routes on (spread), never a mean or a magnitude proxy for it.",
+        "control": "worst cell in the arm; the task is a resource-and-hazard grid whose per-episode collection genuinely varies episode to episode",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31585068185497317,
+        "threshold": 0.05,
+        "met": true,
+        "offending_cell": "STATIC_H50/seed303"
+      },
+      {
+        "name": "STATIC_H50::symbol_buffer_per_episode",
+        "precondition": "symbol_buffer_per_episode",
+        "arm": "STATIC_H50",
+        "kind": "readiness",
+        "description": "record_step is reached only on the E3 deliberation path and E3 ticks every e3_steps_per_tick env steps, so the accumulator sees steps_per_episode/10 symbols per episode. note_outcome breaks out at len(actions) < size, so every ceiling at or above that count is STRUCTURALLY inert -- the exact defect that made V3-EXQ-810's 24-step episodes unable to reach sizes 4-5. Asserts the buffer clears the largest ceiling this ladder derives.",
+        "control": "worst cell in the arm; measured as chunk_acc_n_steps / n_episodes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.87,
+        "threshold": 7.5,
+        "met": true,
+        "offending_cell": "STATIC_H50/seed303"
+      },
+      {
+        "name": "STATIC_H50::chunks_formed",
+        "precondition": "chunks_formed",
+        "arm": "STATIC_H50",
+        "kind": "readiness",
+        "description": "No chunk, no ceiling reading: the growth rules read the accumulator's live tally and the registered chunk set, so a silent accumulator makes every criterion here unmeasurable rather than false. This is the V3-EXQ-810 failure mode carried forward as a gate.",
+        "control": "worst cell in the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false,
+        "offending_cell": "STATIC_H50/seed202"
+      },
+      {
+        "name": "BOTH_H30::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "BOTH_H30",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so a flat outcome stream makes formation structurally impossible and every downstream ceiling reading meaningless. Asserts the SAME statistic the gate routes on (spread), never a mean or a magnitude proxy for it.",
+        "control": "worst cell in the arm; the task is a resource-and-hazard grid whose per-episode collection genuinely varies episode to episode",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31585068185497317,
+        "threshold": 0.05,
+        "met": true,
+        "offending_cell": "BOTH_H30/seed303"
+      },
+      {
+        "name": "BOTH_H30::symbol_buffer_per_episode",
+        "precondition": "symbol_buffer_per_episode",
+        "arm": "BOTH_H30",
+        "kind": "readiness",
+        "description": "record_step is reached only on the E3 deliberation path and E3 ticks every e3_steps_per_tick env steps, so the accumulator sees steps_per_episode/10 symbols per episode. note_outcome breaks out at len(actions) < size, so every ceiling at or above that count is STRUCTURALLY inert -- the exact defect that made V3-EXQ-810's 24-step episodes unable to reach sizes 4-5. Asserts the buffer clears the largest ceiling this ladder derives.",
+        "control": "worst cell in the arm; measured as chunk_acc_n_steps / n_episodes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.87,
+        "threshold": 7.5,
+        "met": true,
+        "offending_cell": "BOTH_H30/seed303"
+      },
+      {
+        "name": "BOTH_H30::chunks_formed",
+        "precondition": "chunks_formed",
+        "arm": "BOTH_H30",
+        "kind": "readiness",
+        "description": "No chunk, no ceiling reading: the growth rules read the accumulator's live tally and the registered chunk set, so a silent accumulator makes every criterion here unmeasurable rather than false. This is the V3-EXQ-810 failure mode carried forward as a gate.",
+        "control": "worst cell in the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false,
+        "offending_cell": "BOTH_H30/seed202"
+      },
+      {
+        "name": "SIZE_H50::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "SIZE_H50",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so a flat outcome stream makes formation structurally impossible and every downstream ceiling reading meaningless. Asserts the SAME statistic the gate routes on (spread), never a mean or a magnitude proxy for it.",
+        "control": "worst cell in the arm; the task is a resource-and-hazard grid whose per-episode collection genuinely varies episode to episode",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31585068185497317,
+        "threshold": 0.05,
+        "met": true,
+        "offending_cell": "SIZE_H50/seed303"
+      },
+      {
+        "name": "SIZE_H50::symbol_buffer_per_episode",
+        "precondition": "symbol_buffer_per_episode",
+        "arm": "SIZE_H50",
+        "kind": "readiness",
+        "description": "record_step is reached only on the E3 deliberation path and E3 ticks every e3_steps_per_tick env steps, so the accumulator sees steps_per_episode/10 symbols per episode. note_outcome breaks out at len(actions) < size, so every ceiling at or above that count is STRUCTURALLY inert -- the exact defect that made V3-EXQ-810's 24-step episodes unable to reach sizes 4-5. Asserts the buffer clears the largest ceiling this ladder derives.",
+        "control": "worst cell in the arm; measured as chunk_acc_n_steps / n_episodes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.87,
+        "threshold": 7.5,
+        "met": true,
+        "offending_cell": "SIZE_H50/seed303"
+      },
+      {
+        "name": "SIZE_H50::chunks_formed",
+        "precondition": "chunks_formed",
+        "arm": "SIZE_H50",
+        "kind": "readiness",
+        "description": "No chunk, no ceiling reading: the growth rules read the accumulator's live tally and the registered chunk set, so a silent accumulator makes every criterion here unmeasurable rather than false. This is the V3-EXQ-810 failure mode carried forward as a gate.",
+        "control": "worst cell in the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false,
+        "offending_cell": "SIZE_H50/seed202"
+      },
+      {
+        "name": "SIZE_H50::size_gain_evaluable_trials",
+        "precondition": "size_gain_evaluable_trials",
+        "arm": "SIZE_H50",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC readiness for the size criterion (the V3-EXQ-643 rule). consider_ceiling_growth grows only when marginal_return_at_ceiling() is non-None, which needs a sequence AT the ceiling attested to min_repetitions. This counts the trials on which that test was actually evaluable. Zero means the growth test NEVER RAN, which is substrate not-ready -- not a refusal of the coupling.",
+        "control": "worst cell in the arm; counted once per note_outcome by calling the same accessor the growth rule consumes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 65.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "DEPTH_H50::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "DEPTH_H50",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so a flat outcome stream makes formation structurally impossible and every downstream ceiling reading meaningless. Asserts the SAME statistic the gate routes on (spread), never a mean or a magnitude proxy for it.",
+        "control": "worst cell in the arm; the task is a resource-and-hazard grid whose per-episode collection genuinely varies episode to episode",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31585068185497317,
+        "threshold": 0.05,
+        "met": true,
+        "offending_cell": "DEPTH_H50/seed303"
+      },
+      {
+        "name": "DEPTH_H50::symbol_buffer_per_episode",
+        "precondition": "symbol_buffer_per_episode",
+        "arm": "DEPTH_H50",
+        "kind": "readiness",
+        "description": "record_step is reached only on the E3 deliberation path and E3 ticks every e3_steps_per_tick env steps, so the accumulator sees steps_per_episode/10 symbols per episode. note_outcome breaks out at len(actions) < size, so every ceiling at or above that count is STRUCTURALLY inert -- the exact defect that made V3-EXQ-810's 24-step episodes unable to reach sizes 4-5. Asserts the buffer clears the largest ceiling this ladder derives.",
+        "control": "worst cell in the arm; measured as chunk_acc_n_steps / n_episodes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.87,
+        "threshold": 7.5,
+        "met": true,
+        "offending_cell": "DEPTH_H50/seed303"
+      },
+      {
+        "name": "DEPTH_H50::chunks_formed",
+        "precondition": "chunks_formed",
+        "arm": "DEPTH_H50",
+        "kind": "readiness",
+        "description": "No chunk, no ceiling reading: the growth rules read the accumulator's live tally and the registered chunk set, so a silent accumulator makes every criterion here unmeasurable rather than false. This is the V3-EXQ-810 failure mode carried forward as a gate.",
+        "control": "worst cell in the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false,
+        "offending_cell": "DEPTH_H50/seed202"
+      },
+      {
+        "name": "DEPTH_H50::depth_gain_evaluable_trials",
+        "precondition": "depth_gain_evaluable_trials",
+        "arm": "DEPTH_H50",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC readiness for the depth criteria. consider_depth_growth grows only when marginal_return_at_depth_ceiling() is non-None, which needs a chunk AT the depth ceiling attested to min_repetitions with a judgeable shallower chunk it contains. This counts the trials on which that test was evaluable. Zero means the depth growth test never ran, so a saturating depth reading would be starvation, not the structural bound.",
+        "control": "worst cell in the arm; counted once per note_outcome by calling the same accessor the growth rule consumes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false
+      },
+      {
+        "name": "BOTH_H50::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "BOTH_H50",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so a flat outcome stream makes formation structurally impossible and every downstream ceiling reading meaningless. Asserts the SAME statistic the gate routes on (spread), never a mean or a magnitude proxy for it.",
+        "control": "worst cell in the arm; the task is a resource-and-hazard grid whose per-episode collection genuinely varies episode to episode",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.31585068185497317,
+        "threshold": 0.05,
+        "met": true,
+        "offending_cell": "BOTH_H50/seed303"
+      },
+      {
+        "name": "BOTH_H50::symbol_buffer_per_episode",
+        "precondition": "symbol_buffer_per_episode",
+        "arm": "BOTH_H50",
+        "kind": "readiness",
+        "description": "record_step is reached only on the E3 deliberation path and E3 ticks every e3_steps_per_tick env steps, so the accumulator sees steps_per_episode/10 symbols per episode. note_outcome breaks out at len(actions) < size, so every ceiling at or above that count is STRUCTURALLY inert -- the exact defect that made V3-EXQ-810's 24-step episodes unable to reach sizes 4-5. Asserts the buffer clears the largest ceiling this ladder derives.",
+        "control": "worst cell in the arm; measured as chunk_acc_n_steps / n_episodes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 7.87,
+        "threshold": 7.5,
+        "met": true,
+        "offending_cell": "BOTH_H50/seed303"
+      },
+      {
+        "name": "BOTH_H50::chunks_formed",
+        "precondition": "chunks_formed",
+        "arm": "BOTH_H50",
+        "kind": "readiness",
+        "description": "No chunk, no ceiling reading: the growth rules read the accumulator's live tally and the registered chunk set, so a silent accumulator makes every criterion here unmeasurable rather than false. This is the V3-EXQ-810 failure mode carried forward as a gate.",
+        "control": "worst cell in the arm",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false,
+        "offending_cell": "BOTH_H50/seed202"
+      },
+      {
+        "name": "BOTH_H50::size_gain_evaluable_trials",
+        "precondition": "size_gain_evaluable_trials",
+        "arm": "BOTH_H50",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC readiness for the size criterion (the V3-EXQ-643 rule). consider_ceiling_growth grows only when marginal_return_at_ceiling() is non-None, which needs a sequence AT the ceiling attested to min_repetitions. This counts the trials on which that test was actually evaluable. Zero means the growth test NEVER RAN, which is substrate not-ready -- not a refusal of the coupling.",
+        "control": "worst cell in the arm; counted once per note_outcome by calling the same accessor the growth rule consumes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 65.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "BOTH_H50::depth_gain_evaluable_trials",
+        "precondition": "depth_gain_evaluable_trials",
+        "arm": "BOTH_H50",
+        "kind": "readiness",
+        "description": "SAME-STATISTIC readiness for the depth criteria. consider_depth_growth grows only when marginal_return_at_depth_ceiling() is non-None, which needs a chunk AT the depth ceiling attested to min_repetitions with a judgeable shallower chunk it contains. This counts the trials on which that test was evaluable. Zero means the depth growth test never ran, so a saturating depth reading would be starvation, not the structural bound.",
+        "control": "worst cell in the arm; counted once per note_outcome by calling the same accessor the growth rule consumes",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": false
+      }
+    ],
+    "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+    "criteria": [
+      {
+        "name": "C0_budget_inert_without_flags",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C1_anchor_reproduces_inherited_constants",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_size_ceiling_responds_to_budget",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_depth_bound_by_pinned_size_ceiling",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C4_depth_beyond_pinned_bound_requires_size_growth",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C5_chunking_does_not_perturb_selection",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C6_no_replay_origin_chunks",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C3": false,
+      "C4": false,
+      "C2": false,
+      "C0": true,
+      "C1": true,
+      "C5": true,
+      "C6": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882"
+}
