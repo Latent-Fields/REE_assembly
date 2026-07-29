@@ -436,9 +436,9 @@ attribution work. See [Resume ritual](#resume-ritual) below.
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
-| GAP-1 | 1 | blocked | sleep_substrate Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture (same gates as GAP-2) -- specifically: SP-CEM ARM_1 knob bundle (stratified sampling + ao_std_floor + activation gating) plumbed into the default agent path that 445-cohort + SD-029 retest cohort use; `use_support_preserving_cem=True` default in config.py is a naming coincidence and is NOT the activation gate (V3-EXQ-567 ARM_0 confirms this) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. 2026-05-11 forensic read surfaced substrate-ceiling, not arbitration data; 2026-05-30 STOP verification disproved the methodology-fix framing -- see Decision log | TBD (post-substrate-gates) | 2026-05-30 |
-| GAP-2 | 2 | blocked | sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | After all three upstream gates close, re-queue SD-029 / MECH-256 retest with full substrate stack | TBD (post-substrate-gates) | 2026-05-08 |
-| GAP-3 | 3 | blocked | Phase 2 PASS + Phase 1 verdict | After Phase 2 PASS, re-queue MECH-257 dual-function 3-arm ablation | re-queue of EXQ-452 (TBD) | 2026-05-08 |
+| GAP-1 | 1 | blocked | **GATE RE-POINTED — reconciled 2026-07-29 (docs-only). Two of the three gates named below HAVE CLEARED: `sleep_substrate:GAP-1` is `done`, and "MECH-307 conjunction architecture" = `goal_pipeline:GAP-1`, also `done`.** The node nonetheless stays legitimately `blocked`, on a *re-pointed* third gate, not on the original three (node record `governance_2026_06_09` + `governance_2026_06_23`): "MECH-269 V_s monostrategy landing in the main agent path" was itself stale-then-insufficient — ARC-065 SP-CEM became the main-path default 2026-05-17 (V3-EXQ-583), one day after the gate was written, but 543l / 598b / 614e prove the candidate pool collapses at the z_world layer *upstream* of SP-CEM, so SP-CEM alone does not break monostrategy. The live gate is the behavioural-diversity stack behaviourally validated in the main agent path, tracked via `behavioral_diversity_isolation:GAP-A` (now `done`) / `:GAP-I` (`in-progress`), and ultimately `conversion_ceiling_campaign:FULLSTACK` (`assembling`) — because the 2026-06-20 V3-EXQ-625e autopsy showed the 569i conversion is ENV-CONDITIONAL and does not propagate to a threat-engaged candidate pool, so "GAP-A done -> unblock" is a trap. GAP-1 "is not a separate gap from GAP-2" and unblocks with it. **Prior gate text (retained for reconstruction):** specifically: SP-CEM ARM_1 knob bundle (stratified sampling + ao_std_floor + activation gating) plumbed into the default agent path that 445-cohort + SD-029 retest cohort use; `use_support_preserving_cem=True` default in config.py is a naming coincidence and is NOT the activation gate (V3-EXQ-567 ARM_0 confirms this) | After upstream gates close, queue a fresh three-arm ablation (NOT 445h -- that script is two-arm) that exercises ARC-033 vs ARC-058 under balanced events. 2026-05-11 forensic read surfaced substrate-ceiling, not arbitration data; 2026-05-30 STOP verification disproved the methodology-fix framing -- see Decision log | none assignable (the 3-arm ARC-033-vs-ARC-058 arbitration cannot be authored until the re-pointed diversity gate lands; not "TBD pending attention") | 2026-07-29 (row reconcile; node record 2026-06-23) |
+| GAP-2 | 2 | blocked | **GATE RE-POINTED — reconciled 2026-07-29 (docs-only), same correction as GAP-1: of the three gates named here, `sleep_substrate:GAP-1` and MECH-307 (= `goal_pipeline:GAP-1`) are both `done`, and the MECH-269 / SP-CEM one was satisfied 2026-05-17 yet proved insufficient.** Live gate per node record `governance_2026_06_23`: `conversion_ceiling_campaign:FULLSTACK` (`assembling`) demonstrating the conversion survives off the reef-bipartite env; `behavioral_diversity_isolation:GAP-A` is `done` but that alone does NOT unblock (the 2026-06-20 V3-EXQ-625e autopsy found the 569i conversion env-conditional). **Prior gate text (retained):** sleep_substrate_plan Phase 1 PASS + MECH-269 V_s landing + MECH-307 conjunction architecture | Re-queue the SD-029 / MECH-256 retest **with the full stack enabled** (candidate_summary_source=e2_world_forward + SP-CEM + modulatory authority) once FULLSTACK lands — NOT before: a retest now would re-derive the known monostrategy non_contributory result. Do **not** "plumb SP-CEM harder"; it is already the default and is empirically insufficient. | none assignable until the FULLSTACK arm lands | 2026-07-29 (row reconcile; node record 2026-06-23) |
+| GAP-3 | 3 | blocked | `self_attribution:GAP-1` + `self_attribution:GAP-2` — both still blocked (on the re-pointed diversity/FULLSTACK gate above), so this row's gate is genuinely unmet and unchanged | After GAP-1 / GAP-2 clear, re-queue the MECH-257 dual-function 3-arm ablation. **Reconciled 2026-07-29 (docs-only): status and gate confirmed CORRECT — only the date was stale.** The node record was refreshed twice since (`governance_2026_06_04`, `governance_2026_06_25`), both stale-since-review acknowledgements: closure/residue-discharge autopsies (466b, then `failure_autopsy_V3-EXQ-466d_2026-06-24`) reclassified MECH-094 -> non_contributory and drop-tagged it from the scored set precisely to PROTECT its `stable` status (conf 0.868). **MECH-094 itself is unweakened** and neither reclassification changes GAP-3. | none assignable (blocked upstream) | 2026-07-29 (row reconcile; node record 2026-06-25) |
 | GAP-4 | 4 | done | (none) | Lit-pull complete: 2 entries written (De Preter & Heinricher 2024 Trends Neurosci; Seymour 2019 Neuron). Verdict: Option A -- MECH-256 generalises to z_harm_s; SD-029 inherits lit_conf; PAG/RVM implements parallel precision-gating (NOT efference-copy); no separate SD-029 design doc needed | n/a (lit-pull) | 2026-05-17 |
 | GAP-5 | 5 | deferred V4 | z_self / z_world materialisation in V4 | none in V3 | n/a | 2026-05-08 |
 
@@ -489,6 +489,45 @@ unblocks_claims -- this is reflected explicitly in the
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-07-29 - Status-table reconcile: GAP-1/2/3 were listing gates that have since CLEARED; nodes stay blocked, on a re-pointed gate
+
+**Docs-only. No experiments queued, no claims.yaml edit, no manifest touched.
+No node status changed -- all three remain `blocked`.**
+
+This plan had logged no decision since 2026-05-30 (60 days), and all three open
+rows named `TBD (post-substrate-gates)` as owner, which invited the reading
+"blocked on three unmet gates, nobody assigned". **The answer to the question
+that reading raises -- have the gates cleared? -- is: two of the three have.**
+
+- `sleep_substrate:GAP-1` ("Phase 1 PASS") is **`done`**.
+- "MECH-307 conjunction architecture" = `goal_pipeline:GAP-1`, also **`done`**.
+- "MECH-269 V_s monostrategy landing in the main agent path" was satisfied
+  **2026-05-17** (ARC-065 SP-CEM became the main-path default, V3-EXQ-583) --
+  *one day after the gate was written*, so it had been silently stale for
+  roughly three weeks.
+
+None of that unblocks the work, and the node records already say why (the
+2026-06-09 re-adjudication and `governance_2026_06_23`): the gate's *intent* was
+"break monostrategy so SD-029 C2/C3 become measurable", and SP-CEM alone does
+not achieve it -- 543l, 598b and the 614e autopsy show the candidate pool
+collapses at the z_world layer **upstream** of SP-CEM, so stratified sampling has
+nothing to stratify. The gate was therefore RE-POINTED to the behavioural-
+diversity stack, and now to `conversion_ceiling_campaign:FULLSTACK`
+(`assembling`): `behavioral_diversity_isolation:GAP-A` is `done` (V3-EXQ-569i
+PASS), but the 2026-06-20 V3-EXQ-625e autopsy found that conversion is
+ENV-CONDITIONAL and does not propagate to a threat-engaged candidate pool, so
+"GAP-A done -> unblock GAP-2" is precisely the trap the axis_b autopsy caught.
+
+So the rows were rewritten to name the *live* gate rather than three superseded
+ones, and the owners changed from `TBD` to "none assignable" -- for the same
+reason recorded in the arc_062 reconcile: there is no experiment to author yet,
+which is a different state from an unassigned one. Explicitly retained: do
+**not** re-queue the SD-029/MECH-256 retest before FULLSTACK lands (it would
+re-derive the known monostrategy `non_contributory` result), and do **not**
+"plumb SP-CEM harder" -- it is already the default and is empirically
+insufficient. GAP-3's gate (`GAP-1` + `GAP-2`) was verified still unmet and
+unchanged; only its date was stale.
 
 ### 2026-05-30 - GAP-1 STOP on methodology-fix re-queue: SP-CEM substrate default-off in 445-cohort agent path {#2026-05-30-gap-1-stop-methodology-fix}
 

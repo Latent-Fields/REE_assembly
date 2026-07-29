@@ -403,7 +403,7 @@ Ten gaps, ordered by leverage. Each is the basis for one row of the
 | **GAP-5** | MECH-090 V_s -> commit-release pathway substrate-readiness FAIL: V3-EXQ-481 vs_commit_release_count=0 in BOTH ON and OFF arms; release predicate never matches; anchor resets fire (63/31 per seed) but release threshold never met | medium | MECH-090 release-via-V_s pathway empirical validation; tighter coupling between hippocampal anchor invalidation (MECH-269 / MECH-284) and BG beta release |
 | **GAP-6** | MECH-260 vs SD-034 No-Go pulse boundary unclear: lit-pull 2026-04-27 recommended routing post-completion negative bias through SD-033a per-candidate bias projection rather than only via MECH-260 action-class FIFO; current implementation does both, with overlapping function | medium (V4 flag) | Cleaner mode-governance separation in V4; not urgent for V3 |
 | **GAP-7** | MECH-091 salient-event phase-reset held on SD-006 phase 2 async heartbeat (V3-EXQ-133 reclassified non_contributory 2026-04-22) | low (V4 deferred) | MECH-091 empirical validation; deferred to V4 unless SD-006 phase 2 lands earlier |
-| **GAP-8** | SD-033b behavioural validation deferred: substrate-readiness PASS (UC1-UC5) and oracle round-trip PASS (V3-EXQ-485a sub-tests); devaluation sensitivity + perceptually-identical / task-distinct discrimination need env extensions; no behavioural EXQ queued | medium | SD-033b promotion candidate -> provisional via behavioural evidence (currently lit-only at lit_conf 0.863) |
+| **GAP-8** | SD-033b behavioural validation deferred: substrate-readiness PASS (UC1-UC5) and oracle round-trip PASS (V3-EXQ-485a sub-tests); devaluation sensitivity + perceptually-identical / task-distinct discrimination need env extensions (env blocker GAP-3 landed 2026-05-17; the two representation-level diagnostics V3-EXQ-485b/485c then RAN PASS 2026-06-03 — see the node record and Status table) | medium | SD-033b promotion candidate -> provisional via behavioural evidence (currently lit-only at lit_conf 0.863) |
 | **GAP-9** | SD-033c / SD-033d / SD-033e graph-consolidation **DONE 2026-06-09**: SD-033c consolidation step taken (subsumes ↔ instantiates closed; consolidation_status complete); SD-033d design_doc written + linked (sd_033d_premotor_sma_analog.md, E3/MECH-090 → premotor/SMA mapping, no new substrate); SD-033e V3/V4 boundary made explicit (substrate deferred, stays v4; forward-compat hook present) | low | Claim-graph completeness; V3-scope finishing (not V4-deferred); not gating any V3 evidence path |
 | **GAP-10** | StepHarness audit of governance write paths: SD-034 closure pulse, MECH-260 inject_nogo, MECH-268 outcome buffer, SD-033a bias write should all flow through the canonical `sense / update_z_goal / update_residue` sequence enforced by StepHarness landed 2026-05-08 | medium | bit-aligned governance writes; shared concern with [sleep_substrate_plan.md GAP-6](./sleep_substrate_plan.md#gap-inventory) |
 
@@ -659,7 +659,7 @@ closure / mode-governance work. See [Resume ritual](#resume-ritual) below.
 | GAP-5 | 6 | done | (none) | Two root causes fixed: (1) forced commitment pattern for 481b; (2) empty-snapshot re-population in agent.py. V3-EXQ-481b queued 2026-05-17; dry-run UC1/UC2/UC3 PASS. | V3-EXQ-481b | 2026-05-17 |
 | GAP-6 | 8 | deferred V4 | post Phase-4 PASS; lit-pull 2026-04-27 V4 reconsideration | none in V3 | n/a | 2026-05-08 |
 | GAP-7 | 8 | deferred V4 | SD-006 phase 2 async heartbeat | none in V3 unless SD-006 phase 2 lands | n/a | 2026-05-08 |
-| GAP-8 | 7 | in-progress | nothing (GAP-3 DONE 2026-05-17 -> unblocked). Awaiting runner for 485b/485c. | DONE 2026-06-03: audited 485b/485c = NEVER ran (no manifest/runner_status/git/coordinator rows; prior "queued" note was aspirational). Authored+smoke+queued both as representation-level MECH-263 functional-signature diagnostics (ree-v3 main 9f45b0f; 485b 3/3 + 485c 4/4 PASS at smoke). OFC reads only z_world+z_harm -> appetitive SD-049 satiety + GAP-3 counter-evidence invisible to state_code; 485b uses aversive devaluation, 485c same-z_world/diff-task-stage. On PASS -> GAP-8 PARTIAL (full done still needs trained-OFC-head behavioural arm, parallel SD-033a GAP-1). | V3-EXQ-485b, 485c | 2026-06-03 |
+| GAP-8 | 7 | assembling | nothing on 485b/485c (both RAN PASS 2026-06-03, reviewed). Node awaiting `conversion_ceiling_campaign:FULLSTACK` (assembly_status=built; the decoupled devaluation_bias_head is built, ree-v3 758956f) | **ROW RECONCILED 2026-07-29 (docs-only) — this row had been frozen at 2026-06-03 while the node record advanced eight times.** Current node state (frontmatter `governance_2026_06_23`): status `assembling`; the owner frontier ran 485b/485c -> 485d -> 485e -> ... -> 485k, all superseded/non_contributory, and 485m's CONFIRMED autopsy face-validated the OFC valuation face and FOLDED it into `conversion_ceiling_campaign:FULLSTACK` (use_ofc_devaluation_head ON); the re-derive brake REFUSES an isolated 485n, so this node's resolution path is the campaign's full-stack arm, not another isolated behavioural letter. SD-033b / MECH-263 UNWEAKENED (candidate / substrate_conditional / pending_retest_after_substrate). REOPEN on the FULLSTACK run. **Superseded row text (2026-06-03, retained for reconstruction):** "Awaiting runner for 485b/485c. DONE 2026-06-03: audited 485b/485c = NEVER ran (no manifest/runner_status/git/coordinator rows; prior "queued" note was aspirational). Authored+smoke+queued both as representation-level MECH-263 functional-signature diagnostics (ree-v3 main 9f45b0f; 485b 3/3 + 485c 4/4 PASS at smoke). OFC reads only z_world+z_harm -> appetitive SD-049 satiety + GAP-3 counter-evidence invisible to state_code; 485b uses aversive devaluation, 485c same-z_world/diff-task-stage. On PASS -> GAP-8 PARTIAL (full done still needs trained-OFC-head behavioural arm, parallel SD-033a GAP-1)." — that PASS duly arrived (485b supports 3/3, post-onset divergence 0.105; 485c supports, separation_ratio ~297; both reviewed), which is what makes the "NEVER ran" wording read backwards today. | V3-EXQ-485k (frontier; 485b/485c/485d-j preserved as [HISTORY]); awaits `conversion_ceiling_campaign:FULLSTACK` | 2026-07-29 (row reconcile; node record 2026-06-23) |
 | GAP-9 | 8 | done | low-priority graph completeness | none in V3 | n/a | 2026-06-09 |
 | GAP-10 | 8 | done | (none) | Audit complete: 6 write sub-sites documented in sd_034_governance_closure_operator.md; all are within-select_action() architectural exceptions; zero require StepHarness re-routing | substrate audit (no EXQ) | 2026-05-17 |
 | GAP-11 | 4 | done | (none) | DONE 2026-05-17: committed_mode_curriculum.py harness helper IMPLEMENTED; P0/P1/P2/clone_trained_agent API; smoke PASS. Pilot EXQ V3-EXQ-592 queued (3 arms: EMERGENT/FORCED_RV/STARVED). | V3-EXQ-592 | 2026-05-17 |
@@ -723,7 +723,7 @@ evidence -- see `governance_2026_07_21`).
 | V3-EXQ-445h | SD-032b dACC reef + MECH-258/260 supports | PASS (per-claim) | MECH-260 first clean supporting evidence |
 | V3-EXQ-481 | MECH-090 V_s -> commit-release substrate-readiness | FAIL (inconclusive) | GAP-5 / Phase 6 |
 | V3-EXQ-485 / 485a | SD-033b OFC substrate readiness + oracle round-trip | PASS / queued | GAP-8 / Phase 7 |
-| V3-EXQ-485b / 485c | SD-033b OFC MECH-263 functional signatures (devaluation sensitivity / task-role discrimination; representation-level) | queued 2026-06-03 (smoke PASS) | GAP-8 / Phase 7 |
+| V3-EXQ-485b / 485c | SD-033b OFC MECH-263 functional signatures (devaluation sensitivity / task-role discrimination; representation-level) | **PASS / supports both** (ran 2026-06-03T20:10Z; 485b post-onset divergence 0.105 supports 3/3, 485c separation_ratio ~297 + z_world match 1.0; both reviewed 2026-06-04) | GAP-8 / Phase 7 |
 | V3-EXQ-456 | SD-033a substrate-landing diagnostic | (per substrate_queue) | GAP-1 / Phase 1 baseline |
 | V3-EXQ-592 / 592b / 592c / 592d | MECH-090 commit-entry conjunction (curriculum pilot -> 4-arm validation) | FAIL/superseded chain (592d non_contributory, measurement defect) | GAP-4 / Phase 2,4,5 |
 | V3-EXQ-592e | MECH-090 conjunction, C1-baseline fix attempt | FAIL does_not_support (2026-06-01) | GAP-4; superseded by 592f |
@@ -789,6 +789,36 @@ both this plan and the sleep plan.
 ## Decision log
 
 Append-only. Every architectural choice + every deviation pause / resume.
+
+### 2026-07-29 - GAP-8 reconcile: the row still said 485b/485c "NEVER ran"; they had run and PASSED, and the frontier has since moved eight letters on
+
+**Docs-only. No experiments queued, no claims.yaml edit, no manifest touched.**
+
+The GAP-8 Status-table row was frozen at 2026-06-03, when an audit had correctly
+found that V3-EXQ-485b/485c were never queued (the prior "queued 485b/c" note
+having been aspirational) and had authored + smoke-tested + queued both. The row
+recorded that audit finding -- "audited 485b/485c = NEVER ran" -- and then never
+recorded the sequel. **They ran the same day** (2026-06-03T20:10Z) and both
+PASSED: 485b devaluation sensitivity, supports 3/3, post-onset divergence 0.105;
+485c task-role discrimination, supports, separation_ratio ~297, z_world match
+1.0. Both were reviewed 2026-06-04. Read cold today, the row asserts the exact
+opposite of what happened.
+
+The node record, by contrast, is current and has advanced eight times since
+(485d -> 485e -> ... -> 485k, plus the 485m autopsy). Per
+`governance_2026_06_23` the node is now `assembling`, not `in-progress`: 485m's
+confirmed autopsy face-validated the OFC valuation face and folded it into
+`conversion_ceiling_campaign:FULLSTACK` (`use_ofc_devaluation_head` ON), and the
+re-derive brake REFUSES an isolated 485n -- so the resolution path is the
+campaign's full-stack arm, not another isolated behavioural letter. The row was
+brought into line with that, with the 2026-06-03 text retained verbatim for
+reconstruction. SD-033b / MECH-263 are unweakened and unchanged (candidate /
+substrate_conditional / pending_retest_after_substrate).
+
+Also corrected: the gap-description table said GAP-8 had "no behavioural EXQ
+queued" (its env blocker GAP-3 landed 2026-05-17), and the experiment table
+listed 485b/485c as "queued 2026-06-03 (smoke PASS)" rather than as the PASSes
+they became.
 
 ### 2026-06-03 - GAP-4: Phase 4/5 OCD behavioural *b cohort authored + queued (460b/461b/463b/464b/466b/467b/468b)
 
