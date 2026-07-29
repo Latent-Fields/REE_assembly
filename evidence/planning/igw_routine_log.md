@@ -1214,3 +1214,6 @@ One line per hourly tick. ASCII only.
 2026-07-29T07:39:44Z SPAWN IGW-20260729-215 skill=/queue-experiment prio=40 uuid=804a1e9a-ebb4-4c37-b3c3-efd5201ef46f pid=27823 worktree=igw-215-proposal-for-q-085
 2026-07-29T08:27:24Z retire-proposal LIT-0413 -> executed (IGW-20260729-215; complete)
 2026-07-29T08:27:24Z auto-defer IGW-20260729-215 hash=4abad7338f12 for 48h (complete)
+2026-07-29T08:27:30Z complete IGW-20260729-215 spawned->completed outcome=USEFUL_LANDED: marked EVB-0477/Q-085 blocked_substrate: committed-macro grain dose axis not rea
+2026-07-29T08:40:52Z reconcile-release hash=4abad7338f12 (IGW-20260729-215 -> completed)
+2026-07-29T08:40:41Z no eligible item (skipped 243): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
