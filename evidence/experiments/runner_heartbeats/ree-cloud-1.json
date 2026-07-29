@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-29T16:02:56Z",
+  "last_tick_utc": "2026-07-29T16:13:02Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -12,14 +12,13 @@
     "run_label": "Seed 49 / ARM_STRICT",
     "runs_done": 27,
     "runs_total": 40,
-    "episodes_done": 30,
+    "episodes_done": 130,
     "episodes_total": 170,
-    "overall_pct": 67.9
+    "overall_pct": 69.4
   },
-  "seconds_elapsed": 145381,
-  "seconds_remaining": 33952,
+  "seconds_elapsed": 145987,
+  "seconds_remaining": 32395,
   "recent_lines": [
-    "verdict: PASS seed=52 arm=ARM_LEGACY mean_surv=36.5 z0peak=0.4080 harm_range=0.1642",
     "Seed 53 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=53 ep 20/170 z_goal_peak=0.4136",
     "[train] stage0b ARM_LEGACY seed=53 ep 30/170",
@@ -118,7 +117,8 @@
     "verdict: PASS seed=48 arm=ARM_STRICT mean_surv=55.0 z0peak=0.4394 harm_range=0.0588",
     "Seed 49 Condition ARM_STRICT",
     "[train] stage0 ARM_STRICT seed=49 ep 20/170 z_goal_peak=0.4176",
-    "[train] stage0b ARM_STRICT seed=49 ep 30/170"
+    "[train] stage0b ARM_STRICT seed=49 ep 30/170",
+    "[train] p0 ARM_STRICT seed=49 ep 130/170 mean_len=198.1 rv=0.00001"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
