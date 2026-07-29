@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-29T19:34:18Z",
+  "last_tick_utc": "2026-07-29T20:54:34Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -9,22 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 51 / ARM_STRICT",
-    "runs_done": 29,
+    "run_label": "Seed 52 / ARM_STRICT",
+    "runs_done": 30,
     "runs_total": 40,
     "episodes_done": 30,
     "episodes_total": 170,
-    "overall_pct": 72.9
+    "overall_pct": 75.4
   },
-  "seconds_elapsed": 158062,
-  "seconds_remaining": 32949,
+  "seconds_elapsed": 162878,
+  "seconds_remaining": 29904,
   "recent_lines": [
-    "verdict: PASS seed=54 arm=ARM_LEGACY mean_surv=107.4 z0peak=0.3730 harm_range=0.3461",
-    "Seed 55 Condition ARM_LEGACY",
-    "[train] stage0 ARM_LEGACY seed=55 ep 20/170 z_goal_peak=0.4367",
-    "[train] stage0b ARM_LEGACY seed=55 ep 30/170",
-    "[train] p0 ARM_LEGACY seed=55 ep 130/170 mean_len=170.2 rv=0.00012",
-    "[train] hazard ARM_LEGACY seed=55 ep 170/170 mean_len=7.0 median_last=5.5 auc=0.035 contact_term=1.000 survival_gate=FAIL harm_range=0.2903 goal_w=1.000 e1_gc=True goal_live=True",
     "verdict: PASS seed=55 arm=ARM_LEGACY mean_surv=7.0 z0peak=0.4367 harm_range=0.2903",
     "Seed 56 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=56 ep 20/170 z_goal_peak=0.4483",
@@ -118,7 +112,13 @@
     "verdict: PASS seed=50 arm=ARM_STRICT mean_surv=88.7 z0peak=0.4581 harm_range=0.1957",
     "Seed 51 Condition ARM_STRICT",
     "[train] stage0 ARM_STRICT seed=51 ep 20/170 z_goal_peak=0.4041",
-    "[train] stage0b ARM_STRICT seed=51 ep 30/170"
+    "[train] stage0b ARM_STRICT seed=51 ep 30/170",
+    "[train] p0 ARM_STRICT seed=51 ep 130/170 mean_len=195.2 rv=0.00004",
+    "[train] hazard ARM_STRICT seed=51 ep 170/170 mean_len=64.0 median_last=6.0 auc=0.320 contact_term=0.750 survival_gate=FAIL harm_range=0.4064 goal_w=0.000 e1_gc=False goal_live=False",
+    "verdict: PASS seed=51 arm=ARM_STRICT mean_surv=64.0 z0peak=0.4041 harm_range=0.4064",
+    "Seed 52 Condition ARM_STRICT",
+    "[train] stage0 ARM_STRICT seed=52 ep 20/170 z_goal_peak=0.4047",
+    "[train] stage0b ARM_STRICT seed=52 ep 30/170"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

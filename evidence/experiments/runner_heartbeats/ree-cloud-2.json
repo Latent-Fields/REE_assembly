@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-29T19:34:20Z",
+  "last_tick_utc": "2026-07-29T20:54:37Z",
   "state": "running",
   "current_exq": "V3-EXQ-687a",
   "current_exq_started_utc": "2026-07-29T18:21:24.703846+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "Q-045",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_1_mech313_only",
-    "runs_done": 1,
+    "run_label": "Seed 42 / ARM_2_mech260_only",
+    "runs_done": 2,
     "runs_total": 12,
-    "episodes_done": 20,
+    "episodes_done": 170,
     "episodes_total": 220,
-    "overall_pct": 9.1
+    "overall_pct": 23.1
   },
-  "seconds_elapsed": 4376,
-  "seconds_remaining": 36479,
+  "seconds_elapsed": 9193,
+  "seconds_remaining": 30855,
   "recent_lines": [
     "Seed 42 Condition ARM_0_both_off",
     "[train] stage0 ARM_0_both_off seed=42 ep 20/220 z_goal_peak=0.4834",
@@ -29,7 +29,18 @@
     "[P2 eval] arm=ARM_0_both_off seed=42 eval_ep 30 of 30 fresh=309 committed=0",
     "verdict: PASS seed=42 arm=ARM_0_both_off precommit_H=3.4068 committed_H=0.0000 pos_H=2.0146 fresh=309 tonic_lift=0.0000 dacc_supp=n/a",
     "Seed 42 Condition ARM_1_mech313_only",
-    "[train] stage0 ARM_1_mech313_only seed=42 ep 20/220 z_goal_peak=0.4761"
+    "[train] stage0 ARM_1_mech313_only seed=42 ep 20/220 z_goal_peak=0.4761",
+    "[train] p0 ARM_1_mech313_only seed=42 ep 130/220 mean_len=190.1",
+    "[train] hazard ARM_1_mech313_only seed=42 ep 170/220 mean_len=68.8 survival_gate=FAIL",
+    "[train] p1 ARM_1_mech313_only seed=42 ep 220/220 median_last=200.0 survival_gate=pass",
+    "[P2 eval] arm=ARM_1_mech313_only seed=42 eval_ep 10 of 30 fresh=76 committed=0",
+    "[P2 eval] arm=ARM_1_mech313_only seed=42 eval_ep 20 of 30 fresh=141 committed=0",
+    "[P2 eval] arm=ARM_1_mech313_only seed=42 eval_ep 30 of 30 fresh=250 committed=0",
+    "verdict: PASS seed=42 arm=ARM_1_mech313_only precommit_H=3.1095 committed_H=0.0000 pos_H=2.3888 fresh=250 tonic_lift=0.5000 dacc_supp=n/a",
+    "Seed 42 Condition ARM_2_mech260_only",
+    "[train] stage0 ARM_2_mech260_only seed=42 ep 20/220 z_goal_peak=0.4704",
+    "[train] p0 ARM_2_mech260_only seed=42 ep 130/220 mean_len=188.3",
+    "[train] hazard ARM_2_mech260_only seed=42 ep 170/220 mean_len=29.3 survival_gate=FAIL"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
