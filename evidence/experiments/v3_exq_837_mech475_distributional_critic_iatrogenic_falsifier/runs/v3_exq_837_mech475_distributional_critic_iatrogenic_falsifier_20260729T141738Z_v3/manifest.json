@@ -1,0 +1,209 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_837_mech475_distributional_critic_iatrogenic_falsifier",
+  "run_id": "v3_exq_837_mech475_distributional_critic_iatrogenic_falsifier_20260729T141738Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-29T14:17:38Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-475"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "iatrogenesis_persists_under_informative_baseline",
+    "preconditions": [
+      {
+        "name": "capacity::env_local_view_clears_floor",
+        "precondition": "env_local_view_clears_floor",
+        "arm": "capacity",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the same 5x5 resource_field_view forages above the 1.0 competence floor on THIS family's env -- the positive control that the env is solvable from the local view (same statistic the verdict routes on). Below-floor means the substrate/env is not ready, NOT that the baseline mechanism failed.",
+        "control": "local_view_greedy foraging_competence on the family's control env vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "capacity::scalar_control_competent",
+        "precondition": "scalar_control_competent",
+        "arm": "capacity",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING NON-DEGENERACY GUARD. The family's SCALAR control must be competent -- mean late_competence across seeds clears the 1.0 floor -- so there is a control LEVEL for the treatment to be below. A control at floor cannot exhibit a treatment-below-control inversion, so the family self-routes substrate_not_ready_requeue, never a reversal verdict.",
+        "control": "scalar control arm mean late_competence vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.644444,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "capacity::scalar_inversion_reproduces",
+        "precondition": "scalar_inversion_reproduces",
+        "arm": "capacity",
+        "kind": "readiness",
+        "description": "The destructive treatment-below-control inversion must REPRODUCE on this build under the scalar critic: scalar control mean late_competence beats scalar treatment by >= INVERSION_MARGIN. Without a reproduced inversion there is nothing for the informative baseline to reverse, so the family is excluded (guards against substrate drift having already erased the phenomenon).",
+        "control": "scalar (control - treatment) mean late_competence vs INVERSION_MARGIN",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.45,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "capacity::trajectory_readings",
+        "precondition": "trajectory_readings",
+        "arm": "capacity",
+        "kind": "measurability",
+        "description": "The DV is a TRAJECTORY, so the family's worst cell must carry at least two probe readings -- one reading has no shape and cannot support a late-competence mean.",
+        "control": "worst-cell number of mid-training competence probe readings in the family",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "approach::env_local_view_clears_floor",
+        "precondition": "env_local_view_clears_floor",
+        "arm": "approach",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the same 5x5 resource_field_view forages above the 1.0 competence floor on THIS family's env -- the positive control that the env is solvable from the local view (same statistic the verdict routes on). Below-floor means the substrate/env is not ready, NOT that the baseline mechanism failed.",
+        "control": "local_view_greedy foraging_competence on the family's control env vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "approach::scalar_control_competent",
+        "precondition": "scalar_control_competent",
+        "arm": "approach",
+        "kind": "readiness",
+        "description": "THE LOAD-BEARING NON-DEGENERACY GUARD. The family's SCALAR control must be competent -- mean late_competence across seeds clears the 1.0 floor -- so there is a control LEVEL for the treatment to be below. A control at floor cannot exhibit a treatment-below-control inversion, so the family self-routes substrate_not_ready_requeue, never a reversal verdict.",
+        "control": "scalar control arm mean late_competence vs the 1.0 floor",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.644444,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "approach::scalar_inversion_reproduces",
+        "precondition": "scalar_inversion_reproduces",
+        "arm": "approach",
+        "kind": "readiness",
+        "description": "The destructive treatment-below-control inversion must REPRODUCE on this build under the scalar critic: scalar control mean late_competence beats scalar treatment by >= INVERSION_MARGIN. Without a reproduced inversion there is nothing for the informative baseline to reverse, so the family is excluded (guards against substrate drift having already erased the phenomenon).",
+        "control": "scalar (control - treatment) mean late_competence vs INVERSION_MARGIN",
+        "direction": "lower",
+        "applies": true,
+        "measured": 4.444444,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "approach::trajectory_readings",
+        "precondition": "trajectory_readings",
+        "arm": "approach",
+        "kind": "measurability",
+        "description": "The DV is a TRAJECTORY, so the family's worst cell must carry at least two probe readings -- one reading has no shape and cannot support a late-competence mean.",
+        "control": "worst-cell number of mid-training competence probe readings in the family",
+        "direction": "lower",
+        "applies": true,
+        "measured": 12.0,
+        "threshold": 1.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "interpretation.preconditions carries the GREEN arm(s) only (capacity, approach). The RED arm(s) (metabolic) are carried in full at top level under per_arm_gate.red, and their criteria are marked load_bearing:false + criteria_non_degenerate:false. The indexer's _compute_adjudication reads interpretation.preconditions FLAT and ARM-BLIND and returns precondition_unmet for the WHOLE RUN on the first unmet entry, so including a scored-out arm's failure here would re-vacate the green arm at adjudication time.",
+    "criteria": [
+      {
+        "name": "C_two_of_three_families_reverse_or_flatten",
+        "load_bearing": true,
+        "description": "In >= 2 of the 3 SCORABLE families, the treatment-below-control inversion REVERSES OR FLATTENS under the distributional (informative) critic on a strict majority of seeds -- late_competence, paired within seed.",
+        "passed": false
+      },
+      {
+        "name": "C_capacity_reverses_or_flattens",
+        "load_bearing": false,
+        "description": "family 'capacity' (actor_critic_hidden 128->256 + budget 3x->5x (make_on_config; 769 ON arm)) reverses/flattens on a strict majority of seeds",
+        "passed": false
+      },
+      {
+        "name": "C_approach_reverses_or_flattens",
+        "load_bearing": false,
+        "description": "family 'approach' (non-extinguishing appetitive-approach drive (approach_coef=1.0; 781 treat)) reverses/flattens on a strict majority of seeds",
+        "passed": false
+      },
+      {
+        "name": "C_metabolic_reverses_or_flattens",
+        "load_bearing": false,
+        "description": "family 'metabolic' (MetabolicForageWrapper energy->health starvation coupling (771 treat)) reverses/flattens on a strict majority of seeds",
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_capacity_reverses_or_flattens": true,
+      "C_approach_reverses_or_flattens": true,
+      "C_metabolic_reverses_or_flattens": false,
+      "two_of_three_families_reverse_or_flatten": true
+    },
+    "interpretation_grid": [
+      {
+        "label": "baseline_informativeness_reverses_iatrogenesis",
+        "outcome": "PASS",
+        "condition": ">= 2 of 3 scorable families reverse or flatten under the distributional critic",
+        "reading": "The uninformative value baseline WAS the source of the destructiveness: making the baseline informative changes the sign/flattens the treatment-below-control inversion across a majority of independent interventions. Supports MECH-475."
+      },
+      {
+        "label": "iatrogenesis_persists_under_informative_baseline",
+        "outcome": "FAIL",
+        "condition": ">= 2 families scorable but < 2 reverse/flatten",
+        "reading": "Treatments still land below their own controls with an informative baseline. The destructiveness is NOT the baseline's doing -> MECH-475 is WITHDRAWN (the whole content is the causal attribution; it does not degrade to a weaker version). Weakens MECH-475."
+      },
+      {
+        "label": "substrate_not_ready_requeue",
+        "outcome": "FAIL",
+        "condition": "fewer than 2 families are scorable: an env anchor is sub-floor, the scalar control is not competent, the scalar inversion did not reproduce, or the trajectory has no shape",
+        "reading": "A family whose control did not clear the readiness anchors (or whose destructive inversion did not reproduce on this build) CANNOT exhibit a reversal. UNINFORMATIVE about the claim; requeue. NEVER a reversal or a weakens verdict."
+      }
+    ]
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c0e6399454a24159b89a0eea43dd91f071b1148e6bc28a9d327f526f0d271927"
+}
