@@ -1238,3 +1238,4 @@ One line per hourly tick. ASCII only.
 2026-07-29T16:19:37Z GC removed worktree igw-212-proposal-for-mech-068 (removed; branch deleted)
 2026-07-29T16:19:37Z GC removed worktree igw-215-proposal-for-q-085 (removed; branch deleted)
 2026-07-29T16:28:18Z skip IGW-20260729-216: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-29T16:25:58Z skip IGW-20260729-216: no fresh runner heartbeat (experiment-lane item would just sit in queue)
