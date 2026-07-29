@@ -1,0 +1,125 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-29T20:23:19Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_836_mech476_dose_dependent_consolidation_20260729T092449Z_v3",
+      "queue_id": "V3-EXQ-836",
+      "claim_ids": ["MECH-476"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "likely_insufficient_n"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Krakauer et al. 2005 retrograde-interference consolidation, over-training dose-response",
+        "dependencies": ["MECH-457", "MECH-459", "MECH-460", "MECH-475"],
+        "is_formal_import": false,
+        "divergence": "REE's protection pathways are awake/online/undifferentiated vs the biology's sleep/replay-dependent, trace-selective mechanisms; this run's design is agnostic to that divergence and does not resolve it either way.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-836 (2026-07-29, DOSE arm) self-routed non_monotone_dose_response, but is non_contributory, not mixed: the verdict rests on a fixed 0.15 effect-size margin not scaled to observed per-arm noise (dose_bc300 SEM 0.150 vs the 0.301/0.136 between-arm deltas it is read from), and does not survive a leave-one-out check on its single most extreme seed (retained_fraction=1.274 vs siblings 0.259-0.637) (failure_autopsy_mech476-mech475-cluster_2026-07-29). Superseded pending V3-EXQ-836a under a noise-scaled discrimination rule.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Measurement gap: fixed (non-noise-scaled) 0.15 discrimination margin at n=6 seeds; retained_fraction ratio DV highly sensitive to single-seed RL-trajectory variance.",
+        "Propagation risk: V3-EXQ-836b (interval arm, still running on ree-cloud-3) shares the same script family and likely the same fixed-margin pattern.",
+        "Existing dependency neither strengthened nor weakened: nothing here bears on whether consolidation is genuinely dose-dependent."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_836c_mech476_novelty_tagging_consolidation_20260729T181956Z_v3",
+      "queue_id": "V3-EXQ-836c",
+      "claim_ids": ["MECH-476"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "likely_insufficient_n"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moncada & Viola 2007 behavioural tagging: sub-threshold install consolidates when paired with temporally-close novelty",
+        "dependencies": ["MECH-457", "MECH-459", "MECH-460", "MECH-475"],
+        "is_formal_import": false,
+        "divergence": "Same as V3-EXQ-836 (awake/online/undifferentiated vs sleep/replay-dependent, trace-selective).",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-836c (2026-07-29, NOVELTY arm) self-routed reversed_novelty_effect, but is non_contributory, not mixed: the entire reversal (paired 0.844 vs unpaired 1.133) is attributable to one outlier seed in the unpaired arm (retained_fraction=2.767 vs siblings 0.183-1.358, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to a small paired-favouring delta (+0.038) well inside the 0.15 margin (failure_autopsy_mech476-mech475-cluster_2026-07-29). Superseded pending a 836c redo under a noise-scaled discrimination rule.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Measurement gap: same fixed-margin defect as V3-EXQ-836, compounded by a weak (fixed_weak_bc_dose=150) install regime that is deliberately low-competence and therefore high-variance in ratio terms.",
+        "Single-seed sensitivity: the load-bearing verdict does not survive leave-one-out on the arm's most extreme value."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_837_mech475_distributional_critic_iatrogenic_falsifier_20260729T141738Z_v3",
+      "queue_id": "V3-EXQ-837",
+      "claim_ids": ["MECH-475"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dopaminergic/striatal value-signal grounding of instrumental learning (Rothenhoefer 2017 VS-lesion macaques; Salamone/Szczypka dopamine-deficient mice)",
+        "dependencies": ["MECH-457", "MECH-459"],
+        "is_formal_import": true,
+        "divergence": "Rothenhoefer's VS-lesion deficit is specific to stimulus-value learning and spares action-value learning, whereas REE's deficit is on actions -- unresolved, but orthogonal to this specific reversal test.",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-837 (2026-07-29) is MECH-475's own decisive REVERSAL test (what_would_answer (a)): substituting a distributional critic for the scalar one on 2 of the 3 named destructive instances (capacity/769, approach/781; metabolic/771 correctly self-excluded, its own control never cleared the competence floor). Result: the destructive treatment-below-control inversion did NOT reverse or flatten in either scorable family -- it got 3.4x worse under the informative baseline (dist_inversion 15.1/14.9 vs scalar_inversion 4.5/4.4, both families, reverses_or_flattens: false on all 6 scorable seeds). Per the claim's own text, this outcome means the destructiveness is not the baseline's doing and MECH-475 is WITHDRAWN rather than narrowed (failure_autopsy_mech476-mech475-cluster_2026-07-29). MECH-476/MECH-460 (which cite MECH-475 in depends_on) lean on the independently-established destructiveness phenomenon, not on MECH-475's specific causal attribution -- unaffected.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Claim falsified on its own most decisive, self-nominated prediction, under a fair and well-powered test with every readiness/positive-control gate green.",
+        "Effect size (dist_inversion ~15 vs floor 1.0) is well outside plausible n=3 noise -- this is the robust, gate-confirmed member of the cluster, in contrast to 836/836c."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Shared lineage (MECH-457 mech457_retention baseline substrate, both children of the 2026-07-22 /claim-synthesis decomposition) and a shared measurement pattern (ratio-DV-at-small-n), but NOT one convergent structural failure.",
+    "is_independent_bugs": true,
+    "structural_property": "V3-EXQ-837 avoided the trap V3-EXQ-836/836c fell into by having a much larger, gate-confirmed effect size (dist_inversion ~15x floor) well outside plausible small-n noise, whereas 836/836c's discrimination verdicts sit inside their own per-arm SEM and do not survive a leave-one-out check.",
+    "readings": ["mech476_measurement_test_design_defect", "mech475_clean_falsification"]
+  }
+}

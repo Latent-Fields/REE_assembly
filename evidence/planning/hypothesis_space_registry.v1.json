@@ -68,10 +68,11 @@
         "failure_autopsy_V3-EXQ-769_2026-07-17.json",
         "failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json",
         "failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18.json",
-        "failure_autopsy_batch-793a-817-819_2026-07-26.json"
+        "failure_autopsy_batch-793a-817-819_2026-07-26.json",
+        "failure_autopsy_mech476-mech475-cluster_2026-07-29.json"
       ],
       "is_hero": true,
-      "initial_frozen_count": 17,
+      "initial_frozen_count": 20,
       "initial_frozen_count_at_registration": 7,
       "fanout_growth_events": [
         {
@@ -119,6 +120,36 @@
           ],
           "delta": 1,
           "note": "V3-EXQ-819 competence_floor R4 instrument-validity leg (D12). Re-opens the representation question with a CORRECTED instrument: the 780 autopsy proved the prior representation-axis eliminations (H-rep) ran on a frozen random projection; R4 tests whether a prediction-trained z_world confers a competence advantage. Pre-registered ALIVE -- 819 vacated by the worst-seed non-vacuity gate (measurement_test_design_defect), awaits scored 819a. Labelled axis=instrumentation (not representation) -- instrument-validity, not circling."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T14:17:38Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech475-baseline-reversal"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech475-baseline-reversal (MECH-475 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T09:24:49Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech476-dose-response"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech476-dose-response (MECH-476 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T18:19:56Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech476-novelty-tagging"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech476-novelty-tagging (MECH-476 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
         }
       ],
       "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
@@ -607,6 +638,96 @@
             "met_elimination_bar": false,
             "resolved_utc": null,
             "basis": "V3-EXQ-819 attempted this leg and the encoder DID train (3/3 seeds, delta 0.277-0.333; 780 fault fixed), showing a directional advantage (trained AUC 0.90 vs random 0.46, asymmetric install 2/3 vs 0/3, mean paired +0.442). But the run was VACATED (non_degenerate=false) by a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate -- a measurement_test_design_defect. Leg stays ALIVE; awaits a scored V3-EXQ-819a with the gate reconciled. Observation bottleneck: worst-seed post_bc_install_took floor vacates instrument-validity runs at n=3."
+          }
+        },
+        {
+          "hid": "H-mech475-baseline-reversal",
+          "label": "an informative (distributional) value baseline reverses/flattens the destructive competence-below-control inversion",
+          "desc": "MECH-475's decisive REVERSAL test: substitute a distributional critic for the scalar one on the named destructive instances (capacity/V3-EXQ-769, approach/V3-EXQ-781, metabolic/V3-EXQ-771), holding the rest of the build byte-identical, and ask whether the treatment-below-control inversion reverses or flattens in >=2/3 families. Anti-alias vs H-retention-critic: that leg tests whether the critic swap RETAINS an installed competent policy under ordinary RL refinement; this leg tests whether it REVERSES an actively DESTRUCTIVE manipulation on an uninstalled/in-training policy.",
+          "axis": "algorithm",
+          "pre_registered_utc": "2026-07-29T14:17:38Z",
+          "pre_registration_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "adjudicating_runs": [
+            "V3-EXQ-837"
+          ],
+          "null_declared": "the destructive treatment-below-control inversion persists or worsens under the distributional critic on the destructive instances -> the informative baseline is not the causal mechanism behind this specific destructiveness, and MECH-475 is withdrawn per its own pre-registered criterion.",
+          "measurement_requirement": "Per-family non-degeneracy guard (scalar_control_competent) and phenomenon-reproduction guard (scalar_inversion_reproduces) both mandatory before a family is scorable -- a family whose own control never cleared the competence floor cannot exhibit a treatment-below-control inversion and must self-exclude, never be forced into a reading.",
+          "motivating_evidence": "Five independent destructive instances (V3-EXQ-769/781/771/780/789) plus the measured uninformative-critic mechanism (V3-EXQ-782 R-(b): std(V)/std(G)=0.041 vs 0.25 floor) plus the positive control (V3-EXQ-788: distributional critic retains 1.839 where scalar does not, under ordinary RL refinement).",
+          "probe_status": "resolved",
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-837"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "iatrogenesis_persists_under_informative_baseline",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-29T14:17:38Z",
+            "adjudicated_by": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "basis": "V3-EXQ-837 (FAIL, non_degenerate, 2/2 scorable families capacity+approach both readiness- and phenomenon-reproduction-gated green; metabolic correctly self-excluded on its own unmet control-competence guard): the distributional critic's treatment-below-control inversion (15.13/14.90) is 3.4x LARGER than the scalar critic's (4.45/4.44) in both scorable families, reverses_or_flattens=false on all 6 scorable seeds. The informative baseline does not reverse or flatten the destructive effect -- it worsens it. ELIMINATES H-mech475-baseline-reversal; per MECH-475's own text this outcome shape means the claim is WITHDRAWN, not narrowed."
+          }
+        },
+        {
+          "hid": "H-mech476-dose-response",
+          "label": "competence retention is a dose-dependent consolidation process (over-training deepens the trace)",
+          "desc": "MECH-476 DOSE arm (Krakauer 2005 over-training paradigm ported): BC-install at 300/600/900 episodes, then identical unconstrained RL refinement; DV is retained_fraction TRAJECTORY. SUPPORTED if retained_fraction_mean is monotone non-decreasing in dose and grows by >= the discrimination margin; WEAKENED if invariant to dose.",
+          "axis": "curriculum",
+          "pre_registered_utc": "2026-07-29T09:24:49Z",
+          "pre_registration_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "adjudicating_runs": [
+            "V3-EXQ-836"
+          ],
+          "null_declared": "retained_fraction_mean is invariant to install dose (spread < margin) -> retention tracks only the concurrent constraint, no dose-dependent consolidation process.",
+          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory; an install that did not take is uninformative about retention. DISCOVERED GAP (this resolution): the SUPPORTED/WEAKENED/NON-MONOTONE discrimination margin must be scaled to observed per-arm noise (SD of the inter-arm delta), not a fixed literal -- see basis.",
+          "motivating_evidence": "V3-EXQ-780 (single BC dose straight into RL refinement, no dose variation) established the erosion phenomenon this leg dose-varies.",
+          "probe_status": "resolved",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-836"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "non_monotone_dose_response",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-29T09:24:49Z",
+            "adjudicated_by": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "basis": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a)."
+          }
+        },
+        {
+          "hid": "H-mech476-novelty-tagging",
+          "label": "a temporally-close novelty exposure consolidates an otherwise sub-threshold (weak) install via behavioural tagging",
+          "desc": "MECH-476 NOVELTY arm (Moncada & Viola 2007 behavioural-tagging paradigm ported): fixed weak BC install (150 episodes, deliberately sub-threshold), then an offline novelty-paired vs novelty-unpaired consolidation window (SD-083 OfflineEWCAnchor, novelty-gated capture). SUPPORTED if the novelty-paired arm retains a larger fraction than unpaired.",
+          "axis": "drive",
+          "pre_registered_utc": "2026-07-29T18:19:56Z",
+          "pre_registration_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "adjudicating_runs": [
+            "V3-EXQ-836c"
+          ],
+          "null_declared": "retained_fraction is invariant (or reversed) between paired and unpaired -> no behavioural-tagging-style novelty-gated consolidation effect.",
+          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory. DISCOVERED GAP (this resolution): same fixed-margin defect as H-mech476-dose-response, compounded by a deliberately low/noisy weak-install competence regime.",
+          "motivating_evidence": "SD-083 offline policy-consolidation window (landed 2026-07-29) provides the novelty-gated EWC capture mechanism this leg exercises for the first time.",
+          "probe_status": "resolved",
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-836c"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "reversed_novelty_effect",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-29T18:19:56Z",
+            "adjudicated_by": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "basis": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct."
           }
         }
       ],
