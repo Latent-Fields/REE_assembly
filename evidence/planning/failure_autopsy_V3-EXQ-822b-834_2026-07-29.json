@@ -1,0 +1,83 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-29T20:00:13Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "not_reautopsied": [
+    {
+      "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+      "queue_id": "V3-EXQ-822b",
+      "reason": "already confirmed by failure_autopsy_2026-07-28-sweep.json (target index 0, generated_utc 2026-07-28T21:04:30Z) with a more decisive finding (unconditional weight-norm read: head_untrained_last_layer_static=true) than this session's independent read reached before discovering it. Verified 2026-07-29T20:00Z: recommendation (routing=implement-substrate, amend SD-082 substrate_queue) has NOT yet been applied -- no SD-082 entry in substrate_queue.json, run_id not in review_tracker.json reviewed_run_ids. This is a /governance backlog item, not an autopsy gap.",
+      "prior_autopsy_artifact": "failure_autopsy_2026-07-28-sweep.json",
+      "action_needed": "run /governance to apply the confirmed 2026-07-28 sweep (9 targets including this one), not another autopsy"
+    }
+  ],
+  "targets": [
+    {
+      "run_id": "v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3",
+      "queue_id": "V3-EXQ-834",
+      "claim_ids": ["ARC-071", "MECH-323"],
+      "experiment_purpose": "diagnostic",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "The precondition_unmet flag (chunks_formed, worst cell = seed 202 across every arm, measured 0.0 against floor 0.5) is real -- no arm scores -- but the underlying cause is a gate-strictness mismatch, not a substrate defect. Readiness for chunks_formed/depth_gain_evaluable_trials is evaluated at worst-cell (100% of 5 seeds); the run's own SEED_PASS_FRACTION=0.6 is used for the actual scoring criteria (C2, C4) but not applied to readiness. 4/5 seeds (80%) formed chunks robustly (8-44 each), clearing the 60% bar the criteria themselves would accept. Seed 202's symbol throughput (9.10/episode) was mid-pack, not the lowest (seed 303 at 7.87/episode -- lower than 202 -- still formed 8 chunks), so this is not a recurrence of the V3-EXQ-810 too-few-symbols defect; it matches the baseline module's own documented other-failure-mode (excess symbol diversity outrunning the min_repetitions=5 threshold within the 60-trial window).",
+      "failed_criterion": "readiness_precondition (chunks_formed; not a discrimination or absolute/negative-control criterion)",
+      "failed_criterion_detail": "chunks_formed precondition: worst-cell (min across 5 seeds) chunk count = 0.0 against floor 0.5, offending_cell seed 202 in every one of 5 arms (STATIC_H50, BOTH_H30, SIZE_H50, DEPTH_H50, BOTH_H50). DEPTH_H50 and BOTH_H50 additionally fail depth_gain_evaluable_trials (measured 0.0, floor 0.5) for the same underlying reason (no chunks -> no depth-growth trials evaluable). All 4 other readiness preconditions (episode_outcome_spread_supra_floor, symbol_buffer_per_episode, size_gain_evaluable_trials, and for arms where applicable) pass.",
+      "non_degenerate": false,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- diagnostic-purpose run, not scored either way; mechanism itself shows no sign of failure on 4/5 seeds",
+        "biological_reference": "clear -- procedural/motor-sequence (striatal) chunking is a well-established reference mechanism; nothing here implicates the biology",
+        "prerequisites": "present -- V3-EXQ-810a already validated the chunk-accumulator readiness fix on the identical substrate_hash",
+        "implementation": "complete for the mechanism; the readiness GATE (not the mechanism) is the defective piece -- 4/5 seeds form 8-44 chunks",
+        "environment": "adequate -- resource-and-hazard grid with num_hazards=2 deliberately avoids the perfectly-periodic E3 tick that starved V3-EXQ-810",
+        "measurement": "under-instrumented at the gate level -- chunks_formed/depth_gain_evaluable_trials readiness use worst-cell (100% of seeds) where the run's own scoring criteria use seed_pass_fraction=0.6",
+        "integration": "isolated -- single-seed anomaly within one baseline's own accumulator, no cross-module coupling issue",
+        "scale": "adequate -- 100 episodes x 5 seeds x 5 arms is the declared design, not a truncation"
+      },
+      "biological_reference": {
+        "closest_mechanism": "striatal/procedural chunking of action sequences (Graybiel and related motor-sequence chunking literature)",
+        "dependencies": ["sufficient behavioral-symbol throughput per episode to populate a repetition-based accumulator"],
+        "is_formal_import": false,
+        "divergence": "none identified -- this is a test-design/gate-threshold question, not a translation question",
+        "lit_status": "n/a (implementation/test-design question)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "unknown",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-071": "unknown",
+        "MECH-323": "unknown"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-834 (2026-07-29, ARC-071/MECH-323 budget-coupled-ceilings diagnostic) self-routed substrate_not_ready_requeue: the chunks_formed readiness precondition failed in every arm because seed 202 formed zero chunks. However 4/5 seeds (80%) formed chunks robustly (8-44 each), comfortably clearing this run's own seed_pass_fraction=0.6 tolerance used for its scoring criteria. Seed 202's throughput (9.10 symbols/episode) was mid-pack -- not the lowest -- so this does not reproduce the V3-EXQ-810 too-few-symbols defect that V3-EXQ-810a already confirmed fixed on the identical substrate build (substrate_hash 12dc9bf..., both started within 8s of each other). Read as measurement_test_design_defect: the readiness gate (100%-of-seeds, worst-cell) is stricter than the criteria it protects (60%-of-seeds). Recommend /queue-experiment V3-EXQ-834a with the readiness gate re-evaluated at seed_pass_fraction rather than worst-cell. pending_retest_after_substrate: false -- no substrate work is needed.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "810a already validated the underlying chunk-accumulator mechanism on the identical substrate build; this run's own majority-seed data corroborates it works. No substrate gap to fill -- only a gate-logic fix in the driver script (readiness threshold, not substrate)."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Prior autopsies against ARC-071/MECH-323: V3-EXQ-810 (failure_autopsy_backlog_2026-07-24, category competence_implementation_gap, non_contributory) and V3-EXQ-810a (PASS, no autopsy target). Neither is substrate_ceiling under R3; this target's own recommended category (measurement_test_design_defect) is also not substrate_ceiling. Count = 0. No refusal of a same-question re-queue is warranted."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "arc071_targets": [
+          {"artifact": "failure_autopsy_backlog_2026-07-24", "run_id": "v3_exq_810_arc071_chunk_accumulator_readiness_20260723T222726Z_v3", "claim_alignment": "unclear"}
+        ],
+        "mech323_targets": [
+          {"artifact": "failure_autopsy_2026-07-28-sweep", "run_id": "v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3", "claim_alignment": "strengthened (MECH-323 retention structure) / weakened only on MECH-324's quantitative prediction, not on MECH-323 itself"},
+          {"artifact": "failure_autopsy_backlog_2026-07-24", "run_id": "v3_exq_810_arc071_chunk_accumulator_readiness_20260723T222726Z_v3", "claim_alignment": "unclear"}
+        ],
+        "note": "No target for either claim reads `weakened` on ARC-071/MECH-323 itself -- the one weakened reading in the MECH-323 cluster is scoped to MECH-324's quantitative prediction. Measurement/implementation debt, not granularity debt."
+      },
+      "learning_extracted": [
+        "A readiness/vacuity gate can be stricter than the scoring criteria it exists to protect -- here, worst-cell-across-100%-of-seeds versus the run's own declared 60% seed_pass_fraction. Distinct failure mode from 'gate correctly catches a real substrate defect' (V3-EXQ-810); needs checking on every readiness precondition rather than assuming uniformity with the scoring logic in the same driver.",
+        "Comparing a flagged run against a sibling mint run on the identical substrate_hash (810a, started within 8 seconds of 834) is a fast, decisive way to rule out a substrate regression when a new driver's own readiness gate fails.",
+        "A baseline module's own docstring anticipating a specific failure mode (diversity-vs-repetition margin) is worth checking against the actual per-seed data before accepting a readiness gate's verdict at face value."
+      ],
+      "routing": "queue-experiment"
+    }
+  ]
+}
