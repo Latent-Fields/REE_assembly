@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-29T16:28:08Z",
+  "last_tick_utc": "2026-07-29T17:18:22Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -9,20 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 50 / ARM_STRICT",
-    "runs_done": 28,
+    "run_label": "Seed 51 / ARM_STRICT",
+    "runs_done": 29,
     "runs_total": 40,
-    "episodes_done": 30,
+    "episodes_done": 0,
     "episodes_total": 170,
-    "overall_pct": 70.4
+    "overall_pct": 72.5
   },
-  "seconds_elapsed": 146893,
-  "seconds_remaining": 31304,
+  "seconds_elapsed": 149906,
+  "seconds_remaining": 33486,
   "recent_lines": [
-    "verdict: PASS seed=53 arm=ARM_LEGACY mean_surv=92.9 z0peak=0.4136 harm_range=0.2352",
-    "Seed 54 Condition ARM_LEGACY",
-    "[train] stage0 ARM_LEGACY seed=54 ep 20/170 z_goal_peak=0.3730",
-    "[train] stage0b ARM_LEGACY seed=54 ep 30/170",
     "[train] p0 ARM_LEGACY seed=54 ep 130/170 mean_len=189.9 rv=0.00007",
     "[train] hazard ARM_LEGACY seed=54 ep 170/170 mean_len=107.4 median_last=200.0 auc=0.537 contact_term=0.550 survival_gate=pass harm_range=0.3461 goal_w=1.000 e1_gc=True goal_live=True",
     "verdict: PASS seed=54 arm=ARM_LEGACY mean_surv=107.4 z0peak=0.3730 harm_range=0.3461",
@@ -118,7 +114,11 @@
     "verdict: PASS seed=49 arm=ARM_STRICT mean_surv=109.2 z0peak=0.4176 harm_range=0.0225",
     "Seed 50 Condition ARM_STRICT",
     "[train] stage0 ARM_STRICT seed=50 ep 20/170 z_goal_peak=0.4581",
-    "[train] stage0b ARM_STRICT seed=50 ep 30/170"
+    "[train] stage0b ARM_STRICT seed=50 ep 30/170",
+    "[train] p0 ARM_STRICT seed=50 ep 130/170 mean_len=196.9 rv=0.00001",
+    "[train] hazard ARM_STRICT seed=50 ep 170/170 mean_len=88.7 median_last=200.0 auc=0.443 contact_term=0.650 survival_gate=pass harm_range=0.1957 goal_w=0.000 e1_gc=False goal_live=False",
+    "verdict: PASS seed=50 arm=ARM_STRICT mean_surv=88.7 z0peak=0.4581 harm_range=0.1957",
+    "Seed 51 Condition ARM_STRICT"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,

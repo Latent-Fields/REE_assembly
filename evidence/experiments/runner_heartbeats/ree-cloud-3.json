@@ -1,48 +1,38 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-29T16:14:53Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-833",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-806",
-      "result": "PASS",
-      "completed_at": "2026-07-25T19:10:42.830564+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-807",
-      "result": "PASS",
-      "completed_at": "2026-07-25T19:14:03.218504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-825",
-      "result": "PASS",
-      "completed_at": "2026-07-26T15:21:03.267718+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-834",
-      "result": "FAIL",
-      "completed_at": "2026-07-29T00:23:36.692076+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-798a",
-      "result": "PASS",
-      "completed_at": "2026-07-29T12:58:59.537736+00:00"
-    }
+  "last_tick_utc": "2026-07-29T17:18:21Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-836b",
+  "current_exq_started_utc": "2026-07-29T17:15:34.234185+00:00",
+  "current_title": "MECH-476 INTERVAL falsifier: retained_fraction vs offline consolidation-window steps (SD-083)",
+  "current_claim_id": "MECH-476",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / window_n0",
+    "runs_done": 0,
+    "runs_total": 24,
+    "episodes_done": 600,
+    "episodes_total": 3000,
+    "overall_pct": 0.8
+  },
+  "seconds_elapsed": 167,
+  "seconds_remaining": 35227,
+  "recent_lines": [
+    "MECH-476 INTERVAL-dependent consolidation falsifier (4 interval arms x 6 seeds; N=[0, 150, 400, 900]; rep=raw_view, dose=300, RL_budget=3000, probe_every=250, eval=20, steps=60; ewc_max_coef=100.0, capture_tau=200.0, fisher_samples=256; manipulation=offline INTERVAL ONLY, refinement=unconstrained reference)",
+    "Seed 42 Condition window_n0",
+    "[train] window_n0 seed=42 phase=BC ep 100/300",
+    "[train] window_n0 seed=42 phase=BC ep 200/300",
+    "[train] window_n0 seed=42 phase=BC ep 300/300",
+    "[train] window_n0 seed=42 phase=RL ep 200/3000 (returns=0 credit_passes=585)",
+    "[train] window_n0 seed=42 phase=RL ep 400/3000 (returns=0 credit_passes=1170)",
+    "[train] window_n0 seed=42 phase=RL ep 600/3000 (returns=0 credit_passes=1758)"
   ],
-  "runner_pid": 748,
-  "runner_version": "r4490 7b27b1a 2026-07-29 (running r4484 60427ea)",
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
+  "runner_pid": 744,
+  "runner_version": "r4498 92b9b99 2026-07-29 (running r4490 7b27b1a)",
   "gpu": {
     "available": false
   },
