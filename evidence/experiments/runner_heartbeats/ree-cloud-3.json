@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-29T17:18:21Z",
+  "last_tick_utc": "2026-07-29T17:23:30Z",
   "state": "running",
   "current_exq": "V3-EXQ-836b",
   "current_exq_started_utc": "2026-07-29T17:15:34.234185+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / window_n0",
     "runs_done": 0,
     "runs_total": 24,
-    "episodes_done": 600,
+    "episodes_done": 2200,
     "episodes_total": 3000,
-    "overall_pct": 0.8
+    "overall_pct": 3.1
   },
-  "seconds_elapsed": 167,
-  "seconds_remaining": 35227,
+  "seconds_elapsed": 475,
+  "seconds_remaining": 32320,
   "recent_lines": [
     "MECH-476 INTERVAL-dependent consolidation falsifier (4 interval arms x 6 seeds; N=[0, 150, 400, 900]; rep=raw_view, dose=300, RL_budget=3000, probe_every=250, eval=20, steps=60; ewc_max_coef=100.0, capture_tau=200.0, fisher_samples=256; manipulation=offline INTERVAL ONLY, refinement=unconstrained reference)",
     "Seed 42 Condition window_n0",
@@ -26,7 +26,15 @@
     "[train] window_n0 seed=42 phase=BC ep 300/300",
     "[train] window_n0 seed=42 phase=RL ep 200/3000 (returns=0 credit_passes=585)",
     "[train] window_n0 seed=42 phase=RL ep 400/3000 (returns=0 credit_passes=1170)",
-    "[train] window_n0 seed=42 phase=RL ep 600/3000 (returns=0 credit_passes=1758)"
+    "[train] window_n0 seed=42 phase=RL ep 600/3000 (returns=0 credit_passes=1758)",
+    "[train] window_n0 seed=42 phase=RL ep 800/3000 (returns=0 credit_passes=2349)",
+    "[train] window_n0 seed=42 phase=RL ep 1000/3000 (returns=0 credit_passes=2943)",
+    "[train] window_n0 seed=42 phase=RL ep 1200/3000 (returns=0 credit_passes=3531)",
+    "[train] window_n0 seed=42 phase=RL ep 1400/3000 (returns=0 credit_passes=4119)",
+    "[train] window_n0 seed=42 phase=RL ep 1600/3000 (returns=0 credit_passes=4713)",
+    "[train] window_n0 seed=42 phase=RL ep 1800/3000 (returns=0 credit_passes=5304)",
+    "[train] window_n0 seed=42 phase=RL ep 2000/3000 (returns=0 credit_passes=5898)",
+    "[train] window_n0 seed=42 phase=RL ep 2200/3000 (returns=0 credit_passes=6492)"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
