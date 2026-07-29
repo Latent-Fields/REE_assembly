@@ -1210,3 +1210,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T22:19:18Z STAGE IGW-20260728-192 skill=/implement-substrate prio=25 worktree=igw-192-substrate-ready-mech-217 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-07-29T04:38:03Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-29T05:38:39Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-29T06:39:19Z no eligible item (skipped 242): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
