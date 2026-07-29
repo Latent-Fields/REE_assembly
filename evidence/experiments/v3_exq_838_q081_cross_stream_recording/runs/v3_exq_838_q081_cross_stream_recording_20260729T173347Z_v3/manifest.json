@@ -1,0 +1,114 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_838_q081_cross_stream_recording",
+  "run_id": "v3_exq_838_q081_cross_stream_recording_20260729T173347Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-29T17:33:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "summary": "Substrate/arm readiness gate did not clear -- see interpretation.preconditions. Excluded seeds: {}. NOTE: RV(INTACT) still bit-identical to RV(IEI_PERMUTE) at every valid seed DESPITE use_per_region_vs=True -- this confirms the pair-specific reach check (Q081-REACH-CHECK-PAIR-SPECIFIC) is genuinely required; the blanket use_anchor_sets/use_per_region_vs flag reach is insufficient for this pair.",
+    "preconditions": [
+      {
+        "name": "landmark_arm_behavioural_reach",
+        "description": "assert_behavioural_reach(strict): boundary stream must reach (z_world, operating_mode) via REACH_CONSUMERS. 838 enables BOTH use_anchor_sets (z_world, MECH-269) AND use_per_region_vs (operating_mode via apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3) -- the 2026-07-28 V3-EXQ-824a autopsy fix.",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "make_agent() sets use_anchor_sets=True and use_per_region_vs=True",
+        "met": true
+      },
+      {
+        "name": "arm_statistics_not_degenerately_bit_identical",
+        "description": "824/824a defect guard: RV(INTACT) must NOT be bit-identical to RV(IEI_PERMUTE) at every valid seed. Exact float64 equality across independently-simulated seeds is the confirmed signature of the manipulation never reaching the measured pair (824a's wall: it reached z_world but not operating_mode), not landmark-invariance. If this fails despite use_per_region_vs=True, the pair-specific reach check (Q081-REACH-CHECK-PAIR-SPECIFIC) is genuinely required.",
+        "measured": 0.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "use_per_region_vs=True gives operating_mode reach (824a lacked it)",
+        "met": false
+      },
+      {
+        "name": "yoked_arms_preserved_by_construction_fraction",
+        "description": "Fraction of seeds where BOTH yoked arms (iei_permute, circular_shift) held Level-1 preservation (count/IEI-multiset/posterior-multiset/scale-mix) exactly, per preservation_report.",
+        "measured": 0.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": "yoked arms replay a rearrangement of INTACT's own multiset",
+        "met": false
+      },
+      {
+        "name": "yoked_arms_input_statistics_preserved_fraction",
+        "description": "Fraction of seeds where Level-2 input_statistics_divergence found no breach for BOTH yoked arms (the closed-loop confound check). A breaching seed is CONFOUNDED, not a null, and is excluded.",
+        "measured": 1.0,
+        "threshold": 0.5,
+        "direction": "lower",
+        "control": "pre-registered DEFAULT_INPUT_STAT_THRESHOLDS in q081_landmark_removal",
+        "met": true
+      },
+      {
+        "name": "sufficient_valid_seeds_for_delta_sd",
+        "description": "At least 2 seeds must clear every precondition above (admissible primary, artefact ruled out, iei_permute preserved + unconfounded) to compute an SD of the INTACT-minus-IEI_PERMUTE delta.",
+        "measured": 5.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_ablation_delta_clears_effect_size_floor": false
+    },
+    "dissociation": {
+      "role": "diagnostic",
+      "mean_intact_minus_iei_permute": 0.0,
+      "mean_intact_minus_circular_shift": 0.0,
+      "interpretation": "If the coupling drops under iei_permute (alignment destroyed) but is LARGELY PRESERVED under circular_shift (landmark-train internal structure kept, only rigid-shifted), the primary statistic was reading cross-stream ALIGNMENT. If it drops equally under both, the drop may reflect loss of the landmark train's own structure rather than its alignment. NOT load-bearing; circular_shift is the conservative secondary, not the discriminator."
+    },
+    "interpretation_rules": [
+      "Clearing the surrogate null is NECESSARY and NOWHERE NEAR SUFFICIENT for Outcome A -- wired coordination clears it correctly.",
+      "A statistic that SURVIVES the landmark-removal arm was measuring the clock -- Outcome B evidence, NOT support for the claim.",
+      "Neither control, nor both together, is the ablation series, which remains the only full A-vs-B discriminator.",
+      "The SUPPRESS arm is a LESION reference (removes the drive as well as the alignment); reported for context, never the discriminator."
+    ],
+    "outcome_taxonomy_note": "This design adjudicates ONLY Outcome A vs Outcome B. Outcome C (unrelated) is partially visible in per-seed rv_p_value_vs_surrogate on the INTACT arm. Outcomes D (too-much-sharing-collapses) and E (event-relative beats clock-relative, incl. sleep-phase structure) need different comparator arms and are deferred to a lettered follow-up."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ae03f074fd764098e56c3a5f7eae37f6ca5fca6b087f439343dee4f2cd7fcbdf"
+}
