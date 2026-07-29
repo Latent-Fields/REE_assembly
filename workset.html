@@ -270,6 +270,44 @@
     background: #0d1117; border: 1px solid #30363d; color: var(--text);
     padding: 2px 6px; border-radius: 4px; font-size: 11px;
   }
+  #pending-chips {
+    margin: 0 0 14px 0;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    background: #0d111780;
+  }
+  #pending-chips summary {
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--muted);
+    user-select: none;
+  }
+  #pending-chips summary:hover { color: var(--text); }
+  #pending-chips[open] summary { border-bottom: 1px solid #30363d; }
+  #pending-chips .pc-note { padding: 6px 12px; font-size: 10px; color: var(--muted); border-bottom: 1px solid #21262d; }
+  #pending-chips .pc-list { padding: 6px 0; max-height: 320px; overflow-y: auto; }
+  #pending-chips .pc-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 140px 90px;
+    gap: 10px;
+    padding: 6px 12px;
+    font-size: 11px;
+    align-items: center;
+    border-bottom: 1px solid #21262d;
+  }
+  #pending-chips .pc-row:last-child { border-bottom: none; }
+  #pending-chips .pc-row:hover { background: #161b22; }
+  #pending-chips .pc-row .pc-status {
+    font-family: ui-monospace, monospace; font-size: 10px;
+    padding: 1px 6px; border-radius: 8px; text-align: center;
+    background: #d4a72c22; color: #e3b341;
+  }
+  #pending-chips .pc-row .pc-status.status-withdrawn { background: #8b949e22; color: var(--muted); }
+  #pending-chips .pc-row .pc-title { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #pending-chips .pc-row .pc-session { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #pending-chips .pc-row .pc-when { color: var(--muted); font-family: ui-monospace, monospace; }
+  #pending-chips .pc-empty { padding: 12px; font-size: 12px; color: var(--muted); }
   .claim-row.unblocks-row .claim-chip { border-color: #2ea04355; }
   .meta-row { font-size: 10px; color: var(--muted); }
   .actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
@@ -327,6 +365,13 @@
   </div>
   <div class="ra-list" id="ra-list"></div>
 </details>
+<details id="pending-chips">
+  <summary>Pending chips (durable spawn_task ledger) -- <span id="pc-count">0</span></summary>
+  <div class="pc-note">Recorded by scripts/chip_ledger.py so a chip survives a session
+    archive or crash. "open" means not known to be stale -- it cannot see whether you
+    already clicked the live chip in the UI, only whether a session later withdrew it.</div>
+  <div class="pc-list" id="pc-list"></div>
+</details>
 <section class="leverage-rail" id="leverage-rail" hidden></section>
 
 <div class="toolbar" id="toolbar">
@@ -370,6 +415,7 @@ let LENS_FILTER = '';
 let VERSION_FILTER = '';
 let CLAIM_SEARCH = '';
 let RA = { count: 0, releases: [], hours: 24 };  // recent activity (released assignments)
+let CHIPS = { open: 0, items: [] };  // durable spawn_task ledger (TASK_CHIPS.json)
 
 const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops'];
 
@@ -382,6 +428,7 @@ async function load() {
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
     ' | ' + (WS.items || []).length + ' packages';
   await loadRecentActivity();  // populate RA before summary so the chip count is right
+  await loadChips();
   renderSummary();
   renderLeverageRail();
   renderAll();
@@ -448,6 +495,43 @@ function renderRecentActivity() {
       }
     });
   });
+}
+
+async function loadChips() {
+  try {
+    const r = await fetch('/api/chips');
+    const data = await r.json();
+    CHIPS.items = data.chips || [];
+    CHIPS.open = CHIPS.items.filter(c => c.status === 'open').length;
+  } catch (e) {
+    CHIPS.items = []; CHIPS.open = 0;
+  }
+  renderChips();
+}
+
+function renderChips() {
+  const list = document.getElementById('pc-list');
+  const c = document.getElementById('pc-count');
+  if (c) c.textContent = String(CHIPS.open) + ' open / ' + CHIPS.items.length + ' total';
+  if (!list) return;
+  if (!CHIPS.items.length) {
+    list.innerHTML = '<div class="pc-empty">No chips recorded yet. Chips get recorded here ' +
+      'by scripts/chip_ledger.py whenever a session calls spawn_task.</div>';
+    return;
+  }
+  // Most recently spawned first.
+  const sorted = CHIPS.items.slice().sort((a, b) =>
+    (b.spawned_at || '').localeCompare(a.spawned_at || ''));
+  list.innerHTML = sorted.map(ch => {
+    const statusCls = ch.status === 'withdrawn' ? ' status-withdrawn' : '';
+    const titleTip = (ch.tldr || ch.prompt || '').replace(/"/g, '&quot;');
+    return '<div class="pc-row">' +
+      '<span class="pc-status' + statusCls + '">' + escapeHtml(ch.status || '?') + '</span>' +
+      '<span class="pc-title" title="' + escapeAttr(titleTip) + '">' + escapeHtml(ch.title || '(untitled)') + '</span>' +
+      '<span class="pc-session" title="' + escapeAttr(ch.cwd || '') + '">' + escapeHtml(ch.session_id || '?') + '</span>' +
+      '<span class="pc-when">' + escapeHtml(formatReleaseWindow(null, ch.spawned_at)) + '</span>' +
+      '</div>';
+  }).join('');
 }
 
 function formatReleaseWindow(assignedAt, releasedAt) {
