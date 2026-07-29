@@ -248,12 +248,23 @@ Node: `complicated (buildable)`. Build a persistent committed-program handle for
 
 Only once that lands does `use_decomposition_scale_resolved_probe_midexec` become exercisable, and only then is MECH-321's R4 half measurable at all.
 
-### 8b. Secondary -- adjudication-machinery hardening (both loci confirmed)
+### 8b. Secondary -- adjudication-machinery hardening
 
-- **`ree-v3/validate_experiments.py`** -- author-time lint: WARN when a `criteria_non_degenerate` key matches no `interpretation.criteria[].name`. Prevents new manifests acquiring the defect. No retroactive re-scoring.
-- **`REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py`** -- make the `non_load_bearing` exclusion tolerate the short-key/long-name relationship (a key that is a prefix of exactly one `criteria[].name`), so 830 and any future case adjudicate correctly without editing manifests. Must be conservative: match only on an unambiguous single prefix hit, never a fuzzy match.
+Both loci were confirmed at the Step 8 gate and then **implemented inline at the user's instruction (2026-07-29)**. One landed; one was measured and withdrawn. Recorded here because the measurement that killed it is the more useful finding.
 
-Both are infrastructure, not governance-plane objects. Neither is applied by this skill.
+**INFRA-830-B -- LANDED (`REE_assembly` `7e97f3f5a7` on `origin/master`).** `_compute_adjudication`'s `non_load_bearing` exclusion now resolves a `criteria_non_degenerate` key against `criteria[].name` **prefix-tolerantly**: an exact match always wins, and failing that a key inherits a criterion's tag only if it prefixes exactly ONE name on an underscore boundary. 0 candidates (unmatched) or >= 2 (ambiguous) inherit nothing, so ambiguity resolves toward FLAGGING -- conservative by construction, because a false HIT would suppress a real vacuity flag. **Verified against the whole corpus before and after: of 308 diagnostic/baseline manifests exactly ONE adjudication moves** (V3-EXQ-830 `vacuous_pass` -> `verified`); all 307 others are byte-identical.
+
+**INFRA-830-A -- IMPLEMENTED, MEASURED, WITHDRAWN (`ree-v3` `7b27b1aff8`, reverted by `eeb1eda69d`).** The proposed author-time lint was to WARN when a `criteria_non_degenerate` key matches no `criteria[].name`. Measured against the corpus, it does not work:
+
+| variant | scripts fired on | true positives |
+|---|---|---|
+| as specified (key resolves to nothing under the tolerant join) | **101** of ~1100 | 0 |
+| narrowed: also require some criterion tagged `load_bearing:false` | **23** | 0 |
+| narrowed further: also require apparent 1:1 intent (equal key/name counts) | **8** | 0 |
+
+**The premise was wrong.** `criteria_non_degenerate` keys legitimately name things that are *not criteria at all* -- `preconditions_met`, `enough_divergent_seeds`, `noise_verified_lifting`, `gate_a_occupancy`, `crf_matured`. That is exactly what the indexer's own docstring says the block is: *"a key in criteria_non_degenerate is a NON-DEGENERACY ASSERTION"*. There is no key-to-criterion correspondence convention, so a lint demanding one flags a dominant, legitimate pattern. Decisively, **no variant would have caught V3-EXQ-830 itself**, because after INFRA-830-B all four of 830's keys resolve. A lint with zero true positives and 8-101 false ones is worse than nothing: it trains readers to ignore validator output.
+
+**So the correct scope of this defect is narrower than the autopsy first framed it.** 830 was not an author violating a convention -- it was the *indexer's* exclusion being keyed on exact equality when the surrounding namespace is free-form. Section 2c's "latent defect class, an author who abbreviates can defeat it again" now reads as: the tolerant join absorbs the abbreviation case, and the residue (a key naming a non-criterion) is not a defect. The remaining sharp edge is narrow and worth knowing rather than linting: a key that resolves *today* by prefixing exactly one name will silently stop resolving if a sibling criterion is later added whose name shares that prefix, since the match becomes ambiguous and the exclusion falls back to flagging. That fails safe (toward flagging), which is the correct direction.
 
 ### 8c. Explicitly NOT recommended
 

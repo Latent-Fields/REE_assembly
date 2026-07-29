@@ -140,20 +140,26 @@
       "id": "INFRA-830-A",
       "locus": "ree-v3/validate_experiments.py",
       "kind": "author-time lint",
-      "description": "WARN when an interpretation.criteria_non_degenerate key matches no interpretation.criteria[].name. Prevents new manifests acquiring the key-mismatch defect that defeats the V3-EXQ-783 load_bearing:false exclusion. No retroactive re-scoring.",
+      "description": "WARN when an interpretation.criteria_non_degenerate key matches no interpretation.criteria[].name. Prevents new manifests acquiring the key-mismatch defect that defeats the V3-EXQ-783 load_bearing:false exclusion.",
       "confirmed_by_user": true,
-      "applied_by_this_skill": false
+      "status": "WITHDRAWN -- implemented, measured against the corpus, reverted",
+      "implemented_commit": "ree-v3 7b27b1aff8",
+      "reverted_commit": "ree-v3 eeb1eda69d",
+      "withdrawal_basis": "The premise was wrong: criteria_non_degenerate keys legitimately name things that are NOT criteria (preconditions_met, enough_divergent_seeds, noise_verified_lifting, gate_a_occupancy, crf_matured), which is exactly what the indexer docstring says the block is -- 'a key in criteria_non_degenerate is a NON-DEGENERACY ASSERTION'. There is no key-to-criterion correspondence convention to enforce. Measured fire rates over ~1100 experiment scripts: 101 as specified; 23 when additionally requiring some criterion tagged load_bearing:false; 8 when additionally requiring apparent 1:1 intent (equal key/name counts). Zero true positives in every variant, and NO variant would have caught V3-EXQ-830 itself, because after INFRA-830-B all four of its keys resolve. A lint with no true positives and 8-101 false ones trains readers to ignore validator output.",
+      "residual_sharp_edge": "Not lintable, but worth knowing: a key that resolves today by prefixing exactly one name will silently stop resolving if a sibling criterion is later added sharing that prefix, since the match becomes ambiguous. That fails safe -- toward FLAGGING -- which is the correct direction."
     },
     {
       "id": "INFRA-830-B",
       "locus": "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py",
       "kind": "adjudication fix",
-      "description": "Make the non_load_bearing exclusion in _compute_adjudication tolerate the short-key/long-name relationship: a criteria_non_degenerate key that is a prefix of exactly ONE criteria[].name inherits that criterion's load_bearing tag. Must be conservative -- match only on an unambiguous single prefix hit, never a fuzzy match -- so existing adjudications are unchanged except where the join was genuinely missed.",
+      "description": "Make the non_load_bearing exclusion in _compute_adjudication tolerate the short-key/long-name relationship: a criteria_non_degenerate key that is a prefix of exactly ONE criteria[].name on an underscore boundary inherits that criterion's load_bearing tag. Exact match always wins; 0 candidates (unmatched) or >=2 (ambiguous) inherit nothing, so ambiguity resolves toward FLAGGING.",
       "confirmed_by_user": true,
-      "applied_by_this_skill": false,
-      "corpus_impact": "1 of 159 diagnostic/baseline manifests carrying both blocks (V3-EXQ-830 only)."
+      "status": "LANDED",
+      "landed_commit": "REE_assembly 7e97f3f5a7 (on origin/master; cherry-picked from local c53f0788a2 via a throwaway worktree, because the shared checkout was too dirty with other sessions' work to pull --rebase safely)",
+      "corpus_impact": "Verified before and after across all 308 diagnostic/baseline manifests: exactly ONE adjudication moves (v3_exq_830_... vacuous_pass -> verified). All 307 others byte-identical; verified 129/unverified 127/precondition_unmet 46 unchanged, vacuous_pass 6 -> 5."
     }
   ],
+  "scope_correction_2026-07-29": "Sec.2c originally framed this as a latent defect class an abbreviating author could re-trigger. The INFRA-830-A measurement corrects that: the tolerant join absorbs the abbreviation case, and the residue (a key naming a non-criterion) is not a defect at all. 830 was not an author violating a convention -- it was the indexer's exclusion being keyed on exact equality when the surrounding namespace is free-form.",
   "explicitly_not_recommended": [
     "re-queue of V3-EXQ-830 -- its instrument worked (coverage 1.000) and its reading is sound",
     "claim demotion -- nothing was tested and found wanting",
