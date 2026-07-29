@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_baseline_informativeness",
+  "entry_id": "2026-07-29_mech_475_value_baseline_variance_reduction_tucker2018",
+  "timestamp_utc": "2026-07-29T06:40:07Z",
+  "claim_ids_tested": ["MECH-475"],
+  "source": {
+    "title": "The Mirage of Action-Dependent Baselines in Reinforcement Learning",
+    "authors": ["George Tucker", "Surya Bhupatiraju", "Shixiang Gu", "Richard E. Turner", "Zoubin Ghahramani", "Sergey Levine"],
+    "year": 2018,
+    "venue": "ICML 2018",
+    "doi": "10.48550/arXiv.1802.10031",
+    "url": "https://arxiv.org/abs/1802.10031"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Decomposes the variance of the policy-gradient estimator and shows empirically that the STATE-DEPENDENT VALUE BASELINE is the load-bearing variance reducer -- fancier action-dependent baselines add ~nothing beyond it in standard benchmarks, and reported gains traced to implementation artifacts. This extends Sutton 2000 (already on file) from 'a baseline reduces variance' to 'the state-value baseline is WHERE the reduction comes from', which is the formal counterpart of MECH-475: if that state-value baseline is uninformative/flat, the variance it should have removed stays in the advantage. Confidence 0.6 -- the paper is ABOUT action-dependent baselines being a mirage, so it evidences the primacy of the state-value baseline indirectly rather than testing an uninformative baseline head-on.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's positive result is a NEGATIVE one about action-dependent baselines; it does not directly manipulate baseline INFORMATIVENESS and measure competence, so it grounds the variance mechanism theoretically rather than demonstrating the degradation empirically.",
+    "Its benchmarks are dense-reward continuous control where a well-fit state-value baseline is achievable; it says nothing about regimes (like REE's) where the critic is flat ON THE POLICY'S OWN STATE DISTRIBUTION, which is a harder failure than a merely imperfect fit."
+  ],
+  "tags": ["mech_475", "value_baseline", "variance_reduction", "policy_gradient", "advantage_estimation"],
+  "mapping": {
+    "source_claim_statement": "A variance decomposition of the policy-gradient estimator shows that learned state-action-dependent baselines do not actually reduce variance beyond a state-dependent (value) baseline on common benchmarks; previously reported gains were traced to implementation artifacts. The state-dependent value baseline is the component that does the variance reduction.",
+    "ree_translation": "MECH-475 says REE's value baseline is uninformative on the policy's own state distribution, so the advantage carries variance rather than signal and more gradient means more drift. Tucker formalises the other side of that coin: it is precisely the STATE-VALUE BASELINE that is responsible for removing that variance from the policy gradient. If the baseline is flat/uninformative (REE's measured std(V)/std(G)=0.041), the variance it is supposed to subtract remains -- exactly the high-variance advantage MECH-475 posits. This upgrades the theoretical anchor from Sutton 2000 ('baselines reduce variance') to a quantified account of which baseline does it and how much.",
+    "mapping_caveat": "The paper's headline is a debunking of ACTION-dependent baselines, not a direct test of an uninformative STATE-value baseline; it supports MECH-475's variance mechanism by establishing the state-value baseline's primacy, not by demonstrating degradation from flattening it. It also assumes a regime where a good state-value baseline is fittable, unlike REE's on-policy-distribution flatness.",
+    "source_context": "Policy-gradient RL variance analysis on continuous-control benchmarks; theoretical decomposition plus reproduction of prior action-dependent-baseline results and audit of their code."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Rigorous, well-cited variance analysis, same domain so low transfer_risk. mapping_fidelity 0.55 because it evidences the state-value baseline's variance-reducing PRIMACY (the mechanism MECH-475 relies on) indirectly, via a debunking of action-dependent baselines, rather than by manipulating informativeness directly."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_baseline_informativeness",
+  "entry_id": "2026-07-29_mech_475_action_specific_rpe_dorsomedial_stalnaker2012",
+  "timestamp_utc": "2026-07-29T06:40:07Z",
+  "claim_ids_tested": ["MECH-475"],
+  "source": {
+    "title": "Reward prediction error signaling in posterior dorsomedial striatum is action specific",
+    "authors": ["Thomas A. Stalnaker", "Gwendolyn G. Calhoon", "Masaaki Ogawa", "Matthew R. Roesch", "Geoffrey Schoenbaum"],
+    "year": 2012,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0832-12.2012"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Single-unit rat evidence that RPE-like teaching signals in posterior dorsomedial striatum (pDMS) are ACTION-SPECIFIC -- unlike midbrain dopamine RPEs, which are not. This localises the INFORMATIVE action-critic teaching signal that REE's actor-critic pathway would need, and shows it is a distinct, action-addressed channel whose absence would specifically impair action-value updating. Confidence 0.58: the population is small (10% of pDMS fast-firing neurons), the species is rodent, and the link to active competence LOSS is inferential -- the paper shows the signal's existence and specificity, not the consequence of removing it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The action-specific RPE population was only ~10% of pDMS fast-firing neurons (19/196) -- a thin substrate, so arguments that its uninformativeness dominates behaviour must be careful about how much of the action-value teaching signal it actually carries.",
+    "Midbrain dopamine RPEs are explicitly NOT action-specific; if REE's critic teaching signal is modelled on a global DA-like RPE rather than this pDMS action-addressed signal, the biological analog for an informative action-critic is mis-specified -- a design caveat, not support."
+  ],
+  "tags": ["mech_475", "reward_prediction_error", "dorsomedial_striatum", "action_specific", "critic_teaching_signal"],
+  "mapping": {
+    "source_claim_statement": "In rats whose action-reward predictions were repeatedly violated, a subpopulation of fast-firing neurons in posterior dorsomedial striatum (19/196, ~10%) showed RPE-like activity -- phasic increases to unexpected reward, decreases to unexpected omission -- that, unlike midbrain dopamine RPEs, was ACTION-SPECIFIC (tied to the animal's anti-preferred action), providing a mechanism to update action-specific representations.",
+    "ree_translation": "MECH-475 says REE's critic is uninformative on the policy's own state distribution, so the action-value advantage carries variance not signal. This paper identifies the biological teaching signal that a WELL-FORMED action-critic uses -- an action-specific RPE in dorsomedial striatum -- distinct from the global, non-action-specific dopamine RPE. It reinforces the Samejima/Rothenhoefer resolution: the informative critic REE lacks is an action-addressed signal in dorsal striatum, and a flat/global critic is precisely the failure mode where such action-specific credit is absent.",
+    "mapping_caveat": "Rodent single-unit correlational data; the action-specific RPE population is small and the paper demonstrates the signal's EXISTENCE and specificity, not that its loss causes competence to fall below control. The causal/destructive step for MECH-475 is carried by the lesion and computational entries; this entry grounds the LOCUS and FORM of the informative teaching signal only.",
+    "source_context": "Extracellular recording of fast-firing and phasically-firing neurons (n=1076) in posterior dorsomedial and dorsolateral striatum of rats during repeated violation of action-reward predictions."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Solid J Neurosci single-unit study; mapping_fidelity 0.55 (locus/form of the teaching signal, not the destructive consequence); transfer_risk 0.5 for rodent -> REE. Complements Samejima on the same locus question from the RPE/teaching-signal side."
+  }
+}

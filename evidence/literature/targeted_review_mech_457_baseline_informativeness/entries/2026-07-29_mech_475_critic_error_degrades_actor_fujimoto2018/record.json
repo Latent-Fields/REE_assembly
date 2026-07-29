@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_baseline_informativeness",
+  "entry_id": "2026-07-29_mech_475_critic_error_degrades_actor_fujimoto2018",
+  "timestamp_utc": "2026-07-29T06:40:07Z",
+  "claim_ids_tested": ["MECH-475"],
+  "source": {
+    "title": "Addressing Function Approximation Error in Actor-Critic Methods",
+    "authors": ["Scott Fujimoto", "Herke van Hoof", "David Meger"],
+    "year": 2018,
+    "venue": "ICML 2018",
+    "doi": "10.48550/arXiv.1802.09477",
+    "url": "https://arxiv.org/abs/1802.09477"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.66,
+  "confidence_rationale": "Directly demonstrates the claim's causal STRUCTURE in the same domain (deep actor-critic RL): critic function-approximation error propagates into the actor, producing a WORSE policy, and correcting the critic (twin clipped critics + delayed policy updates + target smoothing) reverses it, outperforming the prior state of the art in every environment tested. This is the computational analog of REE's V3-EXQ-788 result (a distributional critic RETAINS 1.839 competence where the scalar critic degrades) -- fix-the-critic-flips-the-sign. Confidence 0.66, not higher, because TD3's specific failure mode is OVERESTIMATION BIAS (a directional error), whereas MECH-475's is UNINFORMATIVENESS/FLATNESS (a variance error); the two are cousins, not identical.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "TD3's diagnosed pathology is critic OVERESTIMATION (biased-high value), not the FLAT/low-variance critic MECH-475 measured (std(V)/std(G)=0.041); an intervention that fixes overestimation need not fix uninformativeness, so the corrective mechanism does not transfer part-for-part -- only the structural claim 'bad critic actively degrades actor, fixing critic reverses it' transfers.",
+    "The reversal was shown on continuous-control gym benchmarks with dense reward; REE's regime is sparse-ish foraging with a critic that is flat on the policy's own state distribution, so the magnitude of achievable reversal is not licensed by this paper."
+  ],
+  "tags": ["mech_475", "actor_critic", "critic_error", "overestimation", "value_function", "td3"],
+  "mapping": {
+    "source_claim_statement": "In actor-critic RL, function-approximation error in the critic leads to overestimated value estimates that accumulate and push the actor toward suboptimal policies; limiting this error with clipped double critics, delayed policy updates, and target policy smoothing improves performance over the state of the art in every OpenAI gym task tested.",
+    "ree_translation": "MECH-475 asserts that a poorly-formed critic does not merely fail to help but ACTIVELY DEGRADES the actor -- more optimisation pressure yields lower competence than the control. Fujimoto is the clearest computational statement of that causal structure: critic error is not inert, it propagates into a worse policy, and making the critic well-formed reverses the sign of the outcome. This is the general-domain counterpart of REE's positive control (788: distributional critic retains competence; scalar critic degrades), supporting the claim's core mechanism that baseline/critic quality is causal for whether optimisation helps or harms.",
+    "mapping_caveat": "TD3 targets a DIFFERENT critic pathology -- overestimation bias -- than MECH-475's uninformative/flat baseline. Both are 'the critic is wrong so the actor gets worse', but the specific corrective (min of twin critics) addresses bias, not flatness. This entry supports the STRUCTURAL prediction (critic error is destructive and reversible) and the DIRECTION of REE's proposed fix, NOT the identity of the mechanism or the magnitude of reversal to expect in REE's falsifier.",
+    "source_context": "Deep continuous-control RL on OpenAI gym (MuJoCo) benchmarks; deterministic policy gradient actor-critic with function approximation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.35,
+    "notes": "Highly-cited ICML paper, strong empirical result, same domain (actor-critic RL) so transfer_risk low. mapping_fidelity 0.6: the structural claim transfers cleanly; the specific error mode (bias vs uninformativeness) does not, which is stated as the load-bearing caveat."
+  }
+}

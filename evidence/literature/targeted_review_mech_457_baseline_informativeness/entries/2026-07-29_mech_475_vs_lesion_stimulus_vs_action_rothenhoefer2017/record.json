@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_baseline_informativeness",
+  "entry_id": "2026-07-29_mech_475_vs_lesion_stimulus_vs_action_rothenhoefer2017",
+  "timestamp_utc": "2026-07-29T06:40:07Z",
+  "claim_ids_tested": ["MECH-475"],
+  "source": {
+    "title": "Effects of Ventral Striatum Lesions on Stimulus-Based versus Action-Based Reinforcement Learning",
+    "authors": ["Kathryn M. Rothenhoefer", "Vincent D. Costa", "Ramon Bartolo", "Raquel Vicario-Feliciano", "Elisabeth A. Murray", "Bruno B. Averbeck"],
+    "year": 2017,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.0631-17.2017"
+  },
+  "evidence_class": "fmri_lesion",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "High source quality (primate excitotoxic lesion + RL/Bayesian modelling on an interleaved stimulus/action bandit) but the mapping cuts both ways. SUPPORTS the claim's degradation SIGNATURE -- VS-lesioned monkeys were more influenced by negative feedback and had LOWER choice consistency, an unbaselined/noisy-value signature, not a plateau. DIVERGES on LOCUS -- the deficit was specific to STIMULUS-value learning and left ACTION-value learning intact, so this paper alone does not license 'silence the critic -> action learning degrades'. Confidence held at 0.62 because the locus divergence is exactly what the next two entries (Samejima 2005, Stalnaker 2012) resolve, not what this paper settles.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The VS deficit was specific to learning the value of STIMULI; discrimination between ACTIONS of different value remained intact -- so a ventral-striatal critic lesion is the WRONG biological analog for REE's action-selection foraging DV, and citing VS lesions as 'silent critic degrades action competence' would be a locus error.",
+    "VS-lesion monkeys defaulted to an action-based choice strategy under a stimulus-value deficit -- i.e. a compromised value channel produced a STRATEGY SHIFT, not uniform degradation, a confound REE's terminal-competence readouts would not distinguish from a floor."
+  ],
+  "tags": ["mech_475", "ventral_striatum", "stimulus_vs_action_value", "critic_lesion", "reinforcement_learning"],
+  "mapping": {
+    "source_claim_statement": "Ventral striatum lesions in rhesus macaques cause a specific deficit in learning the value of stimuli but not actions; in stimulus-based RL the lesioned animals were more influenced by negative feedback and had lower choice consistency, and defaulted to an action-based strategy.",
+    "ree_translation": "REE asserts (MECH-475) that an UNINFORMATIVE value critic on the actor's own state distribution yields an advantage carrying variance not signal, so added optimisation actively DEGRADES rather than plateaus. This paper supplies the biological shape of value-channel compromise -- degraded choice consistency and over-weighting of negative feedback, not a plateau -- which matches the predicted degradation signature. But it also constrains the mapping: the relevant critic for REE's ACTION-selection foraging DV cannot be the VS/stimulus-value site, because VS lesions leave action-value learning intact.",
+    "mapping_caveat": "The species and task differ (macaque two-arm bandit vs REE 5x5 foraging field), and, decisively, VS is the stimulus-value critic -- action-value learning survives its lesion. This entry therefore SUPPORTS the degradation-not-plateau shape while REDIRECTING the locus: REE's foraging DV must be treated as action-like (see Samejima 2005), and the biological analog of REE's flat critic is the dorsal-striatal action-value/RPE channel, not the VS.",
+    "source_context": "Rhesus macaques with bilateral excitotoxic VS lesions vs unoperated controls on a two-arm bandit with randomly interleaved stimulus-based and action-based RL blocks; RL and Bayesian model fits of learning rate, choice consistency, and strategy."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Strong primate lesion evidence; mapping_fidelity held down by the stimulus-vs-action locus divergence, transfer_risk moderate for macaque-bandit -> REE-foraging. The divergence is a feature -- the claim's own notes commissioned this lit-pull to resolve exactly it."
+  }
+}
