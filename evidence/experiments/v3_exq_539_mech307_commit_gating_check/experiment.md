@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3` at `2026-07-27T05:36:04.616233Z` signatures: none
+- `v3_exq_539_mech307_commit_gating_check_20260508T185404Z_v3` at `2026-05-08T18:54:04Z` signatures: none
 
 Recurring signatures:
 

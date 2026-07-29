@@ -12,8 +12,8 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_266_q020_valence_geometry_pair_20260410T034439Z_v3` at `2026-07-27T05:36:04.032894Z` signatures: none
-- `v3_exq_266_q020_valence_geometry_pair_20260410T023257Z_v3` at `2026-07-27T05:36:04.032462Z` signatures: none
+- `v3_exq_266_q020_valence_geometry_pair_20260410T034439Z_v3` at `2026-04-10T03:44:39Z` signatures: none
+- `v3_exq_266_q020_valence_geometry_pair_20260410T023257Z_v3` at `2026-04-10T02:32:57Z` signatures: none
 
 Recurring signatures:
 

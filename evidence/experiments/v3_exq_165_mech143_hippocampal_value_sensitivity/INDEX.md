@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_165_mech143_hippocampal_value_sensitivity
 
-Generated: `2026-07-27T05:36:32.471458Z`
+Generated: `2026-07-29T06:44:13.663160Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -9,5 +9,5 @@ Generated: `2026-07-27T05:36:32.471458Z`
 
 | run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
 |---|---|---|---|---|---|---|---|
-| `v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3` | `2026-07-27T05:36:03.659961Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/summary.md) / [`manifest`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/manifest.json) / [`metrics`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/metrics.json) |
-| `v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3` | `2026-07-27T05:36:03.659653Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/summary.md) / [`manifest`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/manifest.json) / [`metrics`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/metrics.json) |
+| `v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3` | `` | PASS | - | - | - | - | [`summary`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/summary.md) / [`manifest`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/manifest.json) / [`metrics`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_f3319520_v3/metrics.json) |
+| `v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3` | `` | PASS | - | - | - | - | [`summary`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/summary.md) / [`manifest`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/manifest.json) / [`metrics`](runs/v3_exq_165_mech143_hippocampal_value_sensitivity_d2d314a9_v3/metrics.json) |

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_429_inv044_bayesian_prior_before_posterior
 
-Generated: `2026-07-27T05:36:32.471458Z`
+Generated: `2026-07-29T06:44:13.663160Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -11,4 +11,3 @@ Generated: `2026-07-27T05:36:32.471458Z`
 |---|---|---|---|---|---|---|---|
 | `v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3` | `2026-04-19T07:58:04Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3/summary.md) / [`manifest`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3/manifest.json) / [`metrics`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260419T075804Z_v3/metrics.json) |
 | `v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3` | `2026-04-18T07:58:24Z` | PASS | - | - | - | - | [`summary`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3/summary.md) / [`manifest`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3/manifest.json) / [`metrics`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260418T075824Z_v3/metrics.json) |
-| `v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3` | `2026-04-15T14:33:40Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3/summary.md) / [`manifest`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3/manifest.json) / [`metrics`](runs/v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3/metrics.json) |

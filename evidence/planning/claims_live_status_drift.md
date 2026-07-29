@@ -1,12 +1,12 @@
 # Claims live_status Drift Report
 
-Generated: 2026-07-26T15:40:00Z
+Generated: 2026-07-28T17:46:36Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 939
+Claims in registry: 940
 
 ## Reading drift -- HARD (10)
 
@@ -40,7 +40,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 
 _None._
 
-## Event-provenance drift -- SOFT (57)
+## Event-provenance drift -- SOFT (68)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -49,13 +49,21 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | ARC-003 | `decision:ARC-003@2026-02-25T16:56:17.901452Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-804` |
 | ARC-005 | `_none_` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` |
 | ARC-007 | `decision:ARC-007@2026-03-16T18:20:19.360735Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-800` |
-| ARC-016 | `v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-805` |
+| ARC-016 | `v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-396a` |
 | ARC-018 | `decision:ARC-018@2026-03-16T18:20:19.361124Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-801` |
 | MECH-048 | `_none_` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-799` |
+| ARC-024 | `decision:ARC-024@2026-03-19T20:35:00Z` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` |
+| MECH-102 | `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` | `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` |
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `decision:Q-020@2026-07-25T16:55:22.930722Z` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` |
-| SD-004 | `_none_` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-817` |
+| MECH-093 | `failure_autopsy_EXQ-539-540_MECH307_2026-05-17#V3-EXQ-540f` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-396a` |
+| SD-003 | `failure_autopsy_zworld-integration-cluster_2026-06-06#V3-EXQ-145` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` |
+| SD-004 | `_none_` | `failure_autopsy_batch-822a-826-817a-827_2026-07-26#V3-EXQ-817a` |
+| SD-010 | `_none_` | `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` |
 | MECH-140 | `failure_autopsy_V3-EXQ-710_2026-07-03` | `failure_autopsy_V3-EXQ-710_2026-07-20` |
+| MECH-153 | `decision:MECH-153@2026-04-04T08:57:00.483957Z` | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` |
+| INV-041 | `decision:INV-041@2026-06-10T16:18:22Z` | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` |
+| MECH-163 | `v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3` | `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-786` |
 | INV-047 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-168 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-169 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
@@ -63,10 +71,13 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | INV-088 | `failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-819` |
 | SD-024 | `_none_` | `decision:SD-024@2026-07-26T15:35:35.089092Z` |
 | SD-025 | `failure_autopsy_V3-EXQ-767a_2026-07-17` | `failure_autopsy_V3-EXQ-767a_2026-07-17` |
+| MECH-244 | `_none_` | `failure_autopsy_batch-822a-826-817a-827_2026-07-26#V3-EXQ-826` |
 | MECH-245 | `_none_` | `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` |
 | SD-032a | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
 | MECH-266 | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
+| MECH-288 | `decision:MECH-288@2026-07-14T20:19:21.367028Z` | `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` |
 | SD-049 | `failure_autopsy_V3-EXQ-538a_2026-07-10` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` |
+| ARC-062 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` |
 | MECH-314 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
 | MECH-314a | `failure_autopsy_batch9_2026-06-12#V3-EXQ-590b` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
 | MECH-314b | `failure_autopsy_V3-EXQ-604c_2026-07-20` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
@@ -83,9 +94,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-358 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
 | SD-068 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | SD-076 | `failure_autopsy_V3-EXQ-794_2026-07-22` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-794a` |
-| SD-078 | `v3_exq_806_sd078_centered_rule_field_context_key_20260725T191042Z_v3` | `failure_autopsy_816c-822_2026-07-26#V3-EXQ-822` |
+| SD-078 | `v3_exq_806_sd078_centered_rule_field_context_key_20260725T191042Z_v3` | `failure_autopsy_batch-822a-826-817a-827_2026-07-26#V3-EXQ-822a` |
 | SD-079 | `v3_exq_823_sd079_ghost_goal_retrieval_consumer_20260726T075327Z_v3` | `v3_exq_823_sd079_ghost_goal_retrieval_consumer_20260726T075327Z_v3` |
-| SD-080 | `_none_` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-817` |
+| SD-080 | `_none_` | `failure_autopsy_batch-822a-826-817a-827_2026-07-26#V3-EXQ-817a` |
 | MECH-439 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-711-713_2026-07-20#V3-EXQ-713` |
 | MECH-440 | `failure_autopsy_V3-EXQ-708a_2026-07-22` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-708b` |
 | MECH-448 | `failure_autopsy_V3-EXQ-689i_2026-07-24` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-699b` |
@@ -95,16 +106,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | ARC-110 | `failure_autopsy_V3-EXQ-707c_2026-07-25#V3-EXQ-707c` | `failure_autopsy_V3-EXQ-707c_2026-07-25` |
 | MECH-457 | `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22#V3-EXQ-742b` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-819` |
 | MECH-459 | `failure_autopsy_MECH-457-gov-fanout-1-cluster-780-781-782_2026-07-18#V3-EXQ-782` | `failure_autopsy_V3-EXQ-782_2026-07-20` |
-| MECH-463 | `failure_autopsy_mech463-exogenous-inertness_2026-07-20` | `failure_autopsy_mech463-exogenous-inertness_2026-07-20#V3-EXQ-785b` |
-| Q-081 | `_none_` | `decision:Q-081@2026-07-26T15:35:34.741714Z` |
-| MECH-466 | `_none_` | `decision:MECH-466@2026-07-26T15:35:34.678027Z` |
-| INV-091 | `_none_` | `decision:INV-091@2026-07-26T15:35:34.371476Z` |
-| ARC-112 | `_none_` | `decision:ARC-112@2026-07-26T15:35:34.308685Z` |
-| Q-082 | `_none_` | `decision:Q-082@2026-07-26T15:35:34.898138Z` |
-| Q-084 | `_none_` | `decision:Q-084@2026-07-26T15:35:34.975552Z` |
-| MECH-477 | `failure_autopsy_V3-EXQ-811_2026-07-24` | `failure_autopsy_V3-EXQ-811_2026-07-24` |
+| ... | | (+8 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (918 of 939)
+## Never reviewed (no `last_reviewed`) -- INFO (919 of 940)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

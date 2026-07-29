@@ -1807,7 +1807,7 @@
       "SD-012",
       "SD-016"
     ],
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "invariant_type": "emergent",
     "pending_substrate_reconfirmation": true,
     "status": "candidate",
@@ -4359,7 +4359,7 @@
   },
   "MECH-231": {
     "assembly_state": "mature",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "latent_stack.e2_short_horizon_efference_copy",
     "title": "E2 operates as a short-horizon efference-copy forward model on z_self; its prediction accuracy degrades faster than E1's across multi-step horizons, consistent with a cerebellar 1-step transition predictor.",
@@ -4471,7 +4471,7 @@
   },
   "MECH-245": {
     "assembly_state": "remaining",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "psychiatric.hallucination_generative_dominance",
     "title": "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding.",
@@ -5200,7 +5200,7 @@
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "policy.decomposition_via_event_segmenter",
-    "title": "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition with depth cap 3-4 (Badre & D'Esposito 2009; Koechlin & Summerfield 2007). Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged).",
+    "title": "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition; depth cap 3 is an ENGINEERING choice, not a literature-derived constant (provenance corrected 2026-07-27 -- see evidence_quality_note). The MULTI-LEVEL commitment is ARC-070's R3 verdict (Badre & D'Esposito 2009) and STANDS; that source never supported a level COUNT, and Badre & Nee 2018 (Badre's own re-appraisal) finds the evidence supports neither a unitary model of lateral frontal function nor a unidimensional abstraction gradient, so there is no single ordered axis along which to cap. The cap rests instead on tractability + operator symmetry (mirrors ARC-071's chunk_max_depth so the inverse operations stay symmetric; open Q-claim on hard-vs-soft). Magnitude prior only, with an explicit grain caveat: Koechlin 2003 resolves a 3-level lateral-PFC cascade (4 with Koechlin & Summerfield 2007 frontopolar branching), but at ANATOMICAL grain -- heterogeneous, anatomically fixed control levels, NOT homogeneous recursion depth of one operator re-applying to its own output. Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged).",
     "type": "mechanism_hypothesis"
   },
   "MECH-322": {
@@ -5213,18 +5213,20 @@
   },
   "MECH-323": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "policy.composition.chunk_accumulator_formation",
-    "title": "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution; chunk-size budget 2-5 elements per level). Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution).",
+    "title": "policy_composition_chunk_accumulator -- striatum/DLS-analog formation operator that builds chunk candidates from sequences of policy primitives repeatedly executed together with consistent outcomes. First child mechanism for ARC-071 (the maintenance operator MECH-324 is registered separately). Encodes the lit-pull R1 verdict (repetition + outcome consistency as primary trigger, evaluative-gate upstream, V_s-positive secondary) + R2 verdict partial (striatum-analog formation substrate; vmPFC/IL maintenance substrate handled by MECH-324) + R4 verdict (chunked primitive carries initiation-set + termination-condition fields per Sutton 1999 options structure) + R5 verdict (gradual hysteresis with F_low formation < F_high dissolution -- the RELATION is literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), the VALUES F_low=0.15 / F_high=0.45 are uncalibrated engineering defaults with NO literature support, awaiting child-MECH calibration; INITIAL chunk-size budget 2-5 elements per level, licensed by Sakai 2003 at MOTOR grain only and NOT a stable architectural constant -- Ramkumar 2016 shows chunk length grows with practice under a compute/efficiency trade-off, Bo & Seidler 2009 shows it tracks visuospatial working-memory capacity and declines with age, so the ceiling should be exposed as growable and ideally DERIVED from the agent's deliberation/rollout budget rather than configured independently; see the 2026-07-27 provenance correction in evidence_quality_note). Dissolution is SUPPRESSION WITH RETENTION, not erasure (2026-07-27 structural correction, registered on MECH-324): a previously-dissolved sequence re-forms at the REDUCED bar R_reacq = R_min * f_reacq rather than at R_min from scratch, so the MECH-323 trigger is state-dependent on the chunk library; and the initiation_set field becomes load-bearing for the renewal falsifier, which is expressible only if dissolution is scoped to the same context granularity formation uses. Two write paths: default MECH-094 strict (hypothesis_tag=False real executions only); sleep-replay carve-out under MECH-322 conditions (replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution).",
     "type": "mechanism_hypothesis"
   },
   "MECH-324": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-083",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "policy.composition.chunk_maintenance_dissolution",
-    "title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes).",
+    "title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes).",
     "type": "mechanism_hypothesis"
   },
   "MECH-325": {

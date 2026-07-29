@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_825_mech245_generative_dominance_deafferentation
 
-Generated: `2026-07-28T06:59:31.367751Z`
+Generated: `2026-07-29T06:44:13.663160Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

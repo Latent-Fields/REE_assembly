@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_514_sd049_phase_2_behavioural_validation_20260504T100649Z_v3` at `2026-07-27T05:36:04.540427Z` signatures: none
+- `v3_exq_514_sd049_phase_2_behavioural_validation_20260504T100649Z_v3` at `2026-05-04T10:06:49Z` signatures: none
 
 Recurring signatures:
 

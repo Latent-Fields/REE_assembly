@@ -13,7 +13,6 @@
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
 - `v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260621T114153Z_v3` at `2026-06-21T11:41:53Z` signatures: none
-- `v3_exq_696_sd033b_mech263_ofc_outcome_prediction_ceiling_retest_20260620T212930Z_v3` at `2026-06-20T21:29:30Z` signatures: none
 
 Recurring signatures:
 

@@ -9,47 +9,61 @@ Source plan: `evidence/planning/loveability_ethical_agency_v5_plan.md`
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-2`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-3`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-4`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-5`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-6`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 
 ## `loveability_ethical_agency_v5:LOVE-7`
 
 - `2026-03-19T19:52Z` [decision] `decision:ARC-024@2026-03-19T19:52:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L95`](../../../../evidence/decisions/decision_log.v1.jsonl#L95) :: decision demote_to_candidate (applied)
 - `2026-03-19T19:54Z` [decision] `decision:ARC-024@2026-03-19T19:54:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L96`](../../../../evidence/decisions/decision_log.v1.jsonl#L96) :: decision hold_candidate_resolve_conflict (applied)
 - `2026-03-19T20:30Z` [decision] `decision:ARC-024@2026-03-19T20:30:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L97`](../../../../evidence/decisions/decision_log.v1.jsonl#L97) :: decision retain_ree_split_claim (applied)
-- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied) **<- live head**
+- `2026-03-19T20:35Z` [decision] `decision:ARC-024@2026-03-19T20:35:00Z` -> [`evidence/decisions/decision_log.v1.jsonl#L98`](../../../../evidence/decisions/decision_log.v1.jsonl#L98) :: decision demote_to_candidate (applied)
+- `2026-07-26T17:33Z` [autopsy] `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` -> [`evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-032-family_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment **<- live head**
+- `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
 

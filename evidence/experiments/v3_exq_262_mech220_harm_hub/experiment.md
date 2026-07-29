@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_262_mech220_harm_hub_20260408T231100Z_v3` at `2026-07-27T05:36:04.028524Z` signatures: none
+- `v3_exq_262_mech220_harm_hub_20260408T231100Z_v3` at `2026-04-08T23:11:00Z` signatures: none
 
 Recurring signatures:
 

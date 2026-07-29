@@ -1,10 +1,5 @@
 
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-Recent failure runs:
-- `v3_exq_429_inv044_bayesian_prior_before_posterior_20260415T143340Z_v3` at `2026-04-15T14:33:40Z` signatures: none
-
-Recurring signatures:
-
-Suggested design TODOs:
+No recent FAIL runs. Keep monitoring key stop metrics.
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->

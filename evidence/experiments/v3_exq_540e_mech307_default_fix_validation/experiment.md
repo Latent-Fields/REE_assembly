@@ -12,7 +12,7 @@
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
 Recent failure runs:
-- `v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3` at `2026-07-27T05:36:04.619765Z` signatures: none
+- `v3_exq_540e_mech307_default_fix_validation_20260512T085927Z_v3` at `2026-05-12T08:59:27Z` signatures: none
 
 Recurring signatures:
 

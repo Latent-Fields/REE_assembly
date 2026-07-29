@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -44,10 +44,10 @@ closure_plan:
       status: partial
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -90,10 +90,10 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -127,10 +127,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -148,10 +148,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -168,10 +168,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -186,10 +186,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -204,10 +204,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -222,10 +222,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -241,10 +241,10 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -283,10 +283,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:
@@ -308,10 +308,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
-        next: "routing=implement-substrate"
+        as_of: "2026-07-27"
+        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
+        verdict: "unchanged/measurement_gap"
+        next: "routing=governance-annotation (no re-adjudication)"
         brake: "fired"
         needs_review: false
       join:

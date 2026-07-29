@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-07-28T07:00:37Z`  
+Generated: `2026-07-29T07:17:09Z`  
 Last review: `2026-07-26T15:34:37Z`  
-Pending: **18** item(s) -- 5 PASS, 13 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
+Pending: **21** item(s) -- 7 PASS, 14 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 3 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
@@ -21,6 +21,7 @@ Pending: **18** item(s) -- 5 PASS, 13 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke),
 | `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | 2026-07-27T18:09 | SD-078, SD-082 | — |
 | `v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3` | 2026-07-27T20:14 | MECH-466 | — |
 | `v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3` | 2026-07-27T20:37 | INV-091 | — |
+| `v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3` | 2026-07-29T00:23 | ARC-071, MECH-323 | — |
 
 ## PASS (verify & close)
 
@@ -31,6 +32,8 @@ Pending: **18** item(s) -- 5 PASS, 13 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke),
 | `v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3` | 2026-07-27T00:50 | INV-088, MECH-457 |
 | `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | 2026-07-27T20:49 | (no claim tags) |
 | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` | 2026-07-27T21:45 | INV-041, MECH-153 |
+| `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` | 2026-07-28T20:14 | MECH-068 |
+| `v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3` | 2026-07-28T20:45 | ARC-071, MECH-323, MECH-324 |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -40,6 +43,7 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 |--------|--------|------------------|--------------|
 | `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 | `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | PASS | slow_never_fires_on_rollout | **vacuous_pass** |
+| `v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ---
 
