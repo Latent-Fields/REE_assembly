@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-07-25T19:02:21Z",
+  "last_updated_utc": "2026-07-29T16:50:00Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -679,6 +679,21 @@
       "candidate_stale": [],
       "candidate_stale_note": "No evidence de-weighted -- default False. NOTE for governance (not a staleness action): any prior/future measurement of MECH-339's composite cue taken with goal_cue_centering=False was measuring a context channel identically zero by arithmetic -- such a result cannot weigh against MECH-339 and should read non_contributory if one exists. All KEEP.",
       "validation_experiment": "V3-EXQ-807"
+    },
+    {
+      "substrate": "SD-083",
+      "landed_utc": "2026-07-29T00:00:00Z",
+      "code_landed_utc": "2026-07-29T16:50:00Z",
+      "code_landed_commit": "ree-v3 42ab95f688",
+      "description": "consolidation.offline_policy_consolidation_window. Offline, trace-selective (Fisher-weighted EWC), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (lineage RNDModule) policy-consolidation window in the mech457 retention TESTBED (experiments/_lib/mech457_offline_consolidation.py: OfflineEWCAnchor + consolidate_offline_window), run between install_bc_prior and the RL refinement. BootstrapExplorerConfig.use_offline_consolidation default False = byte-identical OFF. Builds protection without retraining (post_bc invariant to interval), so INTERVAL is orthogonal to DOSE. Unblocks MECH-476 arms V3-EXQ-836b (INTERVAL) + 836c (NOVELTY).",
+      "mechanism_changing": false,
+      "mechanism_changing_note": "Additive no-op-default mechanism. Does NOT change what the existing retention arms (788 critic / 789 aux / 792 KL anchor / 836 dose) measure -- those tested orthogonal ONLINE axes with the window OFF. No prior MECH-476 evidence is made stale.",
+      "dependent_claims": [
+        "MECH-476"
+      ],
+      "candidate_stale": [],
+      "candidate_stale_note": "KEEP-all. SD-083 is a new no-op-default testbed mechanism; the prior retention evidence tested online axes orthogonal to the offline window and remains valid. No MARK/REVALIDATE needed.",
+      "validation_experiment": "V3-EXQ-836b (INTERVAL; N=0 control arm is the embedded ON/OFF ablation) + V3-EXQ-836c (NOVELTY); contract test_sd083_offline_consolidation.py 12/12"
     }
   ]
 }

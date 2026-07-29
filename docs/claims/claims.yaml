@@ -61959,6 +61959,26 @@
     - MECH-460  # behavioural-prior-side lever; already names KL-to-a-frozen-own-snapshot as the literature's anti-forgetting object
     - MECH-475  # sibling child: the uninformative baseline is the leading candidate ROOT of the erosion this claim characterises
   location: docs/architecture/competence_bootstrap_mechanisms.md#8-mech-476----competence-retention-dissociable-from-acquisition
+  implementation_note: >
+    SD-083 offline policy-consolidation window LANDED 2026-07-29 (ree-v3; /implement-substrate,
+    session beautiful-elbakyan-245a58). Unblocks the two blocked_substrate arms of the falsifier
+    above: the A->B offline INTERVAL arm (V3-EXQ-836b) and the Moncada-2007 NOVELTY-tagging arm
+    (V3-EXQ-836c). The DOSE arm (V3-EXQ-836) was already queued. Substrate:
+    experiments/_lib/mech457_offline_consolidation.py (OfflineEWCAnchor +
+    consolidate_offline_window) -- an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick
+    2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (the
+    lineage RNDModule, the MECH-441 principle) window run BETWEEN install_bc_prior and the RL
+    refinement. It BUILDS PROTECTION and does NOT retrain (theta unchanged -> post_bc invariant to
+    the interval), so INTERVAL and DOSE are orthogonal axes. DISTINCT from the ONLINE global
+    MECH-475 KL anchor -- that distinction is this claim's distinctive content (ii offline
+    interval, iii trace selectivity; the Walker-2003 divergence). Config
+    BootstrapExplorerConfig.use_offline_consolidation default False (byte-identical OFF; 12/12
+    SD-083 contracts + 71/71 sibling retention contracts green on a cloud worker). SD doc:
+    docs/architecture/sd_083_offline_policy_consolidation_window.md; substrate claim SD-083.
+    v3_pending UNCHANGED -- this lands the SUBSTRATE, not the evidence; MECH-476 stays candidate/
+    v3_pending until 836b/836c score. Testbed-first per user 2026-07-29: IF supported, the
+    cognifold port into the ONE SD-017 sleep loop (unifying with MECH-441 novelty + MECH-204) is a
+    registered follow-on gated on the evidence.
   functional_restatement: >
     Registered 2026-07-22 by /claim-synthesis as a child of the MECH-457 decomposition
     (evidence/planning/claim_synthesis_MECH-457_2026-07-22.md, user-approved per-child).
@@ -62481,3 +62501,39 @@
     crf_cue_centering stays the swept variable). Acceptance for 822a: on_prop_delta_mean >=
     0.001 with an ON>OFF contrast. SD-082 unblocks the SD-078 downstream-consumer test that
     holds SD-078 at candidate_substrate_landed; it does not itself promote SD-078.
+- id: SD-083
+  title: "consolidation.offline_policy_consolidation_window: an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick 2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (Moncada 2007) policy-consolidation window in the mech457 retention TESTBED, run BETWEEN BC install and RL refinement. Unblocks MECH-476's two blocked_substrate falsifier arms: the A->B offline INTERVAL arm (V3-EXQ-836b) and the behavioural-tagging NOVELTY arm (V3-EXQ-836c). DISTINCT from the ONLINE global MECH-475 KL anchor -- offline vs online, trace-selective per-parameter vs global, interval-dependent vs constructed-at-entry, novelty-gated -- which is exactly the MECH-476 content (ii offline interval, iii trace selectivity) the global anchor cannot express (the Walker-2003 divergence). BUILDS PROTECTION without retraining, so post_bc is invariant to the interval and the INTERVAL axis is orthogonal to the DOSE axis."
+  claim_type: design_decision
+  subject: consolidation.offline_policy_consolidation_window
+  polarity: asserts
+  status: candidate_substrate_landed
+  live_status:
+    reading: candidate_substrate_landed
+    as_of: 2026-07-29
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-07-29"
+  depends_on: [MECH-476, MECH-475, MECH-441, SD-017]
+  evidence: []
+  location: docs/architecture/sd_083_offline_policy_consolidation_window.md
+  implementation_note: >
+    IMPLEMENTED 2026-07-29 (ree-v3; /implement-substrate session beautiful-elbakyan-245a58).
+    TESTBED locus -- experiments/_lib/mech457_offline_consolidation.py (OfflineEWCAnchor +
+    consolidate_offline_window), alongside the sibling PolicyKLAnchor / MECH-475, NOT ree_core/:
+    a MECH-476 falsifier INSTRUMENT, not a cognifold faculty. Config
+    BootstrapExplorerConfig.use_offline_consolidation (default False = byte-identical OFF) +
+    offline_window_steps / offline_capture_tau / offline_capture_max / offline_ewc_max_coef /
+    offline_fisher_samples / offline_novelty_pairing, threaded through reference_config and
+    train_off_arm in baselines/mech457_retention.py; applied as a per-update parameter-space
+    penalty coef*sum_i F_i (theta_i-theta*_i)^2 in train_a2c (main AND credit-replay updates).
+    Fisher of the policy log-likelihood -> value-head-only params get ~0 weight, so the penalty
+    respects the same locus as the KL anchor (the value estimator stays with MECH-459). RNG-neutral
+    (snapshot/restore around the window). Contract
+    tests/contracts/test_sd083_offline_consolidation.py 12/12; sibling retention contracts 71/71
+    green on a cloud worker. NOT YET VALIDATED by experiment: V3-EXQ-836b (INTERVAL) and
+    V3-EXQ-836c (NOVELTY) exercise it and can move MECH-476 toward supported/weakened; 836b's N=0
+    control arm is the embedded ON/OFF ablation. Cognifold-port follow-on (IF MECH-476 supported):
+    port offline trace-selective novelty-gated policy consolidation into the ONE SD-017 sleep loop,
+    unifying with MECH-441 novelty + MECH-204. MECH-094 N/A (no simulated memory writes); phased
+    training N/A (raw_view, no encoder head).

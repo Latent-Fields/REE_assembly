@@ -657,6 +657,33 @@ made in the same session as this plan registration.
 
 Append-only. Every architectural choice + every deviation pause / resume.
 
+### 2026-07-29 - SD-083 offline policy-consolidation window landed in the TESTBED (MECH-476); cognifold port to SD-017 is a registered follow-on
+
+MECH-476 (competence_retention_dissociable_from_acquisition) cross-links here as
+the eventual home for an offline policy-consolidation mechanism. Recording the
+split so a sleep-focused session does not re-scope it:
+
+**What landed (NOT in this plan's substrate).** SD-083 -- an OFFLINE,
+trace-selective (Fisher-weighted EWC), interval-accumulated, novelty-gated
+policy-consolidation window -- landed 2026-07-29 (ree-v3 42ab95f688) in the
+**mech457 retention TESTBED** (`experiments/_lib/mech457_offline_consolidation.py`),
+NOT in the cognifold sleep loop. It consolidates the testbed's actor-critic
+`RepAgent` policy, which the `ree_core/sleep/` cluster never touches (that cluster
+acts on E1/E2/E3 latents / world-model / self-model only -- verified 2026-07-29).
+It exists to run MECH-476's two blocked_substrate falsifier arms (V3-EXQ-836b
+INTERVAL, 836c NOVELTY) as instruments. SD doc:
+`docs/architecture/sd_083_offline_policy_consolidation_window.md`.
+
+**Why it is NOT here yet, and the exact trigger for when it should be.** This is
+the Walker-2003 divergence MECH-476 names: the cognifold's protection is
+awake/online/undifferentiated (no offline, trace-selective, policy-level
+consolidation). Building that into the ONE SD-017 sleep loop -- unified with
+MECH-441 novelty and MECH-204 -- is the registered cognifold PORT, deliberately
+gated on MECH-476 coming back SUPPORTED (probe-before-build; user decision
+2026-07-29, testbed-first). **Resume condition for a sleep-substrate GAP on this:
+836b and/or 836c score SUPPORTED.** Until then there is nothing to build here; do
+not open a sleep GAP for it pre-emptively.
+
 ### 2026-07-20 - Phase 7 RESUMED from V4 deferral; write-site corrected score -> precision
 
 Two decisions, recorded together because the second is only reachable via the
