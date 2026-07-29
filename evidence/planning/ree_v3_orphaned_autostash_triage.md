@@ -1,9 +1,18 @@
 # ree-v3 orphaned `autostash` stash triage
 
-**Triaged:** 2026-07-28T05:21Z (session `dazzling-solomon-8a0090`)
 **Repo:** `/Users/dgolden/REE_Working/ree-v3`
-**Trunk at triage time:** `origin/main` = `04435e0` (`docs: nightly /update-docs 2026-07-28`)
-**Entries triaged:** 5 (all labelled `autostash`)
+**Entries triaged:** 6 (all labelled `autostash`), across **two rounds**:
+
+| Round | When | Session | Trunk at triage time | Entries |
+|---|---|---|---|---|
+| 1 | 2026-07-28T05:21Z | `dazzling-solomon-8a0090` | `origin/main` = `04435e0` (`docs: nightly /update-docs 2026-07-28`) | 5 |
+| 2 | 2026-07-29T17:13Z | `cranky-blackburn-d11b32` | `origin/main` = `42ab95f` (`SD-083: offline policy-consolidation window`) | 1 |
+
+**The stash list was cleared to empty at the end of round 1 and was non-empty again the next
+day** -- which is the honest summary of what this defect does. Round 2 exists because the
+same runner autostash path produced a fresh entry on 2026-07-29, and because round 1's
+three-test method turned out to have a blind spot that would have mis-graded it (see
+**Method**, test 4).
 
 ---
 
@@ -34,11 +43,13 @@ behind it.
 | 2 | 2026-07-24 13:46 | `64a31b95be` | SD-070 P0a / substrate-hash under-inclusion fix | **ALREADY-LANDED (proven)** |
 | 3 | 2026-07-22 20:53 | `a9e01fd99c` | ARC-071/MECH-323 (810) + SD-078/SD-079 (806/807) + ARC-063 | ALREADY-LANDED (superseded) |
 | 4 | 2026-07-20 02:19 | `87404723f6` | z_world encoder-guard fanout + ARC-108/ARC-110 pack_writer migration | ALREADY-LANDED (superseded) |
+| 5 | 2026-07-29 17:13 | `936a598dff` | SD-054 `--strict` backlog clear (2 drivers) + INFRA-830-A `criteria_key_correspondence` lint | **INTENTIONALLY-DEAD (proven)** |
 
-**No entry is GENUINELY-ORPHANED.** Every one of the five carries work that reached
-`origin/main` by another route. Nothing needs restoring, and nothing needs flagging as lost.
+**No entry is GENUINELY-ORPHANED.** Every one of the six carries work that reached
+`origin/main` by another route, or was deliberately rejected there. Nothing needs restoring,
+and nothing needs flagging as lost.
 
-The two verdict grades differ only in strength of proof:
+The three verdict grades differ in strength of proof and in *what* they prove:
 
 - **proven** -- every hunk in the stash reverse-applies cleanly against `origin/main`
   (`git apply --cached -R --check` into a temp index seeded from `origin/main`), i.e. the
@@ -49,12 +60,19 @@ The two verdict grades differ only in strength of proof:
   experiment, that experiment has since run and has an evidence manifest. The textual
   residual is comment prose, an earlier draft of a file main has since restructured, a
   DB-authoritative queue snapshot, or a regenerable derived artifact.
+- **intentionally-dead** -- the content is **not** on the tip and never will be, because it
+  landed in an *ancestral* commit that was subsequently **reverted on the record**. Proof is
+  line-exact containment in that ancestor (test 4), plus the revert commit's own stated
+  reasoning. This grade says something the other two do not: the work was not merely
+  overtaken, it was **evaluated and rejected**, so restoring it would re-land something trunk
+  deliberately removed.
 
 ---
 
 ## Method
 
-Three tests, weakest to strongest, run per stash per file:
+Four tests, weakest to strongest, run per stash per file. Tests 1-3 compare against the
+**tip**; test 4 is what you run when all three of them fail:
 
 1. **Blob identity** -- `git rev-parse 'stash@{N}:<path>'` vs `git rev-parse 'origin/main:<path>'`.
 2. **Hunk containment** -- `git diff 'stash@{N}^' 'stash@{N}' -- <path> | git apply --cached -R --check -`
@@ -63,11 +81,64 @@ Three tests, weakest to strongest, run per stash per file:
 3. **Symbol containment** -- every `def`/`class` name and every dataclass field defined in
    the stashed file must exist in `origin/main`'s version. Catches the case where main has
    moved textually but is a strict functional superset.
+4. **Ancestor containment** -- for every line the stash blob *adds* over the tip, is that
+   line present verbatim in some commit **reachable from `origin/main`**? Run this when
+   tests 1-3 have all failed, *before* concluding the entry is orphaned.
 
 Test 2 is **conservative in one direction only**: a clean reverse-apply is proof of
 containment, but a failure is *not* proof of loss -- it fires whenever main's context lines
 have moved, which is the normal case for a five-to-eight-day-old stash. That asymmetry is
 why test 3 exists, and why the "superseded" grade is not simply "unclear".
+
+### Why test 4 exists (added round 2, 2026-07-29)
+
+**Tests 1-3 all evaluate against the tip, so all three fail on content that landed and was
+then reverted -- and that failure reads exactly like "genuinely orphaned".** It is the
+opposite: reverted content is the *most* firmly disposed-of content there is, because
+someone looked at it on trunk and took it back out. A triage that stops after test 3 will
+recover and re-land work that trunk deliberately rejected, which is worse than doing nothing.
+
+Confirmed on entry 5 below: `validate_experiments.py` failed blob identity (`fbd40181a4` vs
+tip `d8a711b5d1`), and its 98 added lines are **98/98 present verbatim** in `7b27b1a`, a
+permanent ancestor of `origin/main`, which `eeb1eda` reverted four minutes after it landed.
+
+**How to run it.** The stash's own commit timestamp is the strong locator -- an autostash is
+taken from a working tree mid-edit, so the commit that finished that work is usually within
+minutes of it, not days:
+
+```bash
+cd /Users/dgolden/REE_Working/ree-v3
+git log -1 --format=%ci 'stash@{N}'                       # when the tree was parked
+git log --oneline --since=<that time -1h> -- <path>       # candidate finishing commits
+git diff 'origin/main:<path>' 'stash@{N}:<path>'          # what the stash adds over the tip
+# then, per candidate: are ALL those added lines in it?
+cand=$(mktemp); git show <candidate>:<path> > "$cand"
+git diff 'origin/main:<path>' 'stash@{N}:<path>' | grep '^+[^+]' | \
+  while IFS= read -r l; do grep -qxF -- "${l#+}" "$cand" || echo "ABSENT: ${l#+}"; done
+```
+
+Zero `ABSENT` lines is the proof. Then confirm the candidate is genuinely reachable --
+`git merge-base --is-ancestor <candidate> origin/main` -- since a commit that only ever
+existed on a dropped branch is not a safe home for the content.
+
+**`stash@{N}` may be substituted with a `stash-archive/*` tag throughout**, which is how this
+recipe was verified after entry 5 had already been dropped (`ABSENT count: 0`, candidate
+reachable). That matters: once an entry is dropped, the tag is the only handle, so a triage
+method that only worked on live stash refs could never be re-checked. Prefer the tag even
+while the entry is live -- it is a fixed reference, whereas `stash@{0}` moves under you every
+time the runner ticks.
+
+**Two things to check before grading INTENTIONALLY-DEAD, both of which entry 5 exhibited:**
+
+- **Read the revert's commit message and cite it.** A revert is evidence of a decision, and
+  the decision's *reasoning* is what distinguishes "rejected" from "backed out to unblock a
+  release and will return". Only the former is safe to drop.
+- **Check the direction of containment.** The stash may be a strict *subset* of the ancestor
+  (an earlier draft) rather than equal to it. That strengthens the verdict -- there is
+  nothing in the stash the ancestor lacks -- but it also means the stash blob may be
+  **internally broken** and must never be applied. Compare both ways:
+  `git diff <ancestor>:<path> 'stash@{N}:<path>'`, and read the added-line count as well as
+  the removed one.
 
 ---
 
@@ -185,12 +256,59 @@ why test 3 exists, and why the "superseded" grade is not simply "unclear".
     (different scope), but the loss is zero: rerun `/understand ree-v3/`. This is the only
     real content difference anywhere in the five entries, and it is not work.
 
+### stash@{0} (round 2) -- 2026-07-29 17:13 -- `936a598dff` -- SD-054 backlog + INFRA-830-A lint -- INTENTIONALLY-DEAD (proven)
+
+3 files, +414/-4. Found by `audit_stashes.py` -- i.e. by the round-1 "coverage gap" fix
+below, working as intended, on its first live catch of a new entry.
+
+- **Blob identity: 2/3 byte-identical to `origin/main`.**
+  `experiments/v3_exq_603e_q045_mech313_mech260_scaffolded_sd054.py` (`0e2ba9ac88`) and
+  `experiments/v3_exq_622_goal_stream_staged_sd054.py` (`58c1fb38b5`) both landed as
+  `55a8fc2742` ("SD-054 drivers: clear the pre-existing `--strict` validator backlog").
+- **`validate_experiments.py` DIFFERS**: stash `fbd40181a4`, tip `d8a711b5d1`. Tests 1-3 all
+  fail on it. This is the file that motivated test 4.
+- **Ancestor containment: 98/98 added lines present verbatim in `7b27b1a`**
+  ("validate_experiments: `criteria_key_correspondence` lint"), which
+  `git merge-base --is-ancestor 7b27b1a origin/main` confirms is reachable.
+- **Reverted on the record by `eeb1eda`**, four minutes after `7b27b1a` landed: *"it encodes
+  a convention that does not exist"*. Its measurements: **101** of ~1100 experiment scripts
+  fire as specified, **23** under the narrowest useful variant, **8** requiring apparent 1:1
+  intent -- **zero true positives in every variant**, and no variant would have caught
+  V3-EXQ-830 itself once the indexer-side prefix-tolerant join landed (REE_assembly
+  `30b997a313` + follow-up). `criteria_non_degenerate` keys legitimately name non-criteria
+  (`preconditions_met`, `enough_divergent_seeds`, `gate_a_occupancy`), which is what that
+  block *is*. So this is a rejection on evidence, not a temporary backout.
+- **The stash is a strict SUBSET of `7b27b1a`, and is broken.** Against the ancestor it adds
+  2 lines (both re-flows of pre-lint lines) and removes 18: the `CHECK_NAMES` registration,
+  the `criteria_key_warnings` declaration, and the report block. It therefore *uses*
+  `criteria_key_warnings` at its line 4940 while never declaring it, and omits
+  `criteria_key_correspondence` from `CHECK_NAMES`. **Never apply this blob.**
+- **Timing settles it.** The autostash was taken at `17:13:27 +0100`; `7b27b1a` was committed
+  **17 seconds later** at `17:13:44 +0100`. The runner caught a mid-edit snapshot of work its
+  author finished and committed immediately afterwards -- the clearest possible illustration
+  of why the stash timestamp is the right locator for test 4.
+- **Circumstance worth recording:** this entry was produced during the 2026-07-29 ree-v3
+  rebase-abort loop (WORKSPACE_STATE 2026-07-29T16:45Z), which had already escalated to a
+  detached HEAD. `mech-244-experiment-84dce1` archive-tagged it **before** its ref surgery
+  and deliberately left it in place rather than drop it mid-repair -- the right call, and the
+  reason it was still available to grade properly the next hour.
+- **Correction to that session's containment note:** it recorded `validate_experiments.py` as
+  matching `origin/main`. It does not (blobs above). Its *conclusion* -- safe to let go --
+  was right; its stated *reason* was not, and the distinction is exactly what test 4 is for.
+- The session that authored the lint (`cranky-blackburn-d11b32`, WORKSPACE_STATE
+  2026-07-29T17:22Z) had reported these edits as swept and **"unrecoverable"** because the
+  stash list read empty at the time. They were recoverable throughout; the loss report was
+  wrong, harmlessly, since `7b27b1a` already carried a superset.
+
 ---
 
 ## Actions taken
 
-**All five dropped. The ree-v3 stash list is now EMPTY.** Every one was archive-tagged first
-(see below), so no content was destroyed.
+**All six dropped. The ree-v3 stash list is EMPTY as of 2026-07-29T17:13Z** (re-verified:
+`git stash list` returns 0 entries). Every one was archive-tagged first (see below), so no
+content was destroyed.
+
+### Round 1 (2026-07-28) -- five entries
 
 Dropped in two passes, deliberately:
 
@@ -212,18 +330,56 @@ Nothing was restored. Per CLAUDE.md remedy (b), a judgement-call restore onto a 
 is worse than leaving the entry alone -- and here the judgement call does not even arise,
 since main is ahead of all five.
 
+### Round 2 (2026-07-29) -- one entry
+
+`936a598dff4775d1ca2342caf11541b4f2216ef8` dropped as **pass 1** -- mechanically proven, so
+no permission was sought, consistent with the split above. The proof is line-exact
+containment in an ancestor (test 4) rather than identity with the tip, which is a *stronger*
+result than round 1's pass-1 grade, not a weaker one: 2 of 3 blobs were byte-identical to
+`origin/main` and the third was 98/98 contained in `7b27b1a`.
+
+Sequence, in the order it must be done:
+
+1. `mech-244-experiment-84dce1` had already tagged it `stash-archive/20260729-936a598` during
+   the rebase-loop repair and left it in place. **Re-verified the tag resolved** before doing
+   anything else -- an inherited tag is not evidence until you check it.
+2. **Re-checked `stash@{0}` was still `936a598dff` at drop time.** Non-negotiable here: the
+   runner autostashes every tick, so `stash@{0}` is a *moving* reference. Drop by verified
+   sha, never by position taken on trust from an earlier reading.
+3. Dropped, then **re-verified after the drop** that all three files and the `fbd40181a4`
+   blob still resolve through the tag.
+
+A duplicate 8-character tag created in this round was deleted, leaving one tag per object.
+**No edit was made to `validate_experiments.py`** -- `task_claim.py open` returned exit 3 on
+it (`keen-elion-70debb` held the earlier claim for unrelated `dead_z_goal_stream` work), and
+the verdict required no write to it, so the claim was re-scoped to `ree-v3/.git/refs`.
+
+### Archive tags
+
 **Every dropped entry was archived as a local tag before being let go**, following the
 convention established 2026-07-18 (session `fervent-tereshkova-2f1c69`, WORKSPACE_STATE
-2026-07-18T17:39Z) for the 58-stash fleet clear. `ree-v3` now carries six such tags -- the
-five below plus `stash-archive/20260714-32c6fd21` from that earlier sweep:
+2026-07-18T17:39Z) for the 58-stash fleet clear. `ree-v3` now carries **eight** such tags
+(verified `git tag -l 'stash-archive/*'`, 2026-07-29T17:13Z):
 
 ```
+stash-archive/20260729-936a598   -> 936a598dff4775d1ca2342caf11541b4f2216ef8   ( 3 files)
+stash-archive/20260729-50c3ea0   -> 50c3ea076042e583a8288a1d3d8652d18a057b43   ( 2 files)
 stash-archive/20260727-604e24f0  -> 604e24f0c2c92da8e52cb790c7313cdb30c1986f   ( 9 files)
 stash-archive/20260727-66f3356e  -> 66f3356e916c7dee4c60f888a0cdbf1008c06204   ( 4 files)
 stash-archive/20260724-64a31b95  -> 64a31b95be5bbf09f700d9e65ab9a62584c12138   ( 3 files)
 stash-archive/20260722-a9e01fd9  -> a9e01fd99cf31e10d7b6db998d2a6be7b6aa0e18   (20 files)
 stash-archive/20260720-87404723  -> 87404723f6dfe86d40a50e6320b039567d2b7dcd   (23 files)
+stash-archive/20260714-32c6fd21  -> 32c6fd21b6c3f87d5a51606f911331a0576dd17a   ( 1 file )
 ```
+
+`20260714-32c6fd21` predates this document (the earlier fleet sweep). `20260729-50c3ea0` was
+tagged by `gracious-snyder-aa4b35` on 2026-07-29 for the SD-054 driver work it recovered and
+re-applied as a patch (`55a8fc2742`); it is **not** an entry triaged here, and it holds the
+same two driver files as entry 5's contained pair.
+
+**The short-sha component is 8 characters by convention** -- `20260729-50c3ea0` and
+`20260729-936a598` are 7 and are the drift, not the pattern. Match the 8-char form for new
+tags; do not rename the existing ones.
 
 File counts were re-verified through the tags *after* the drops (`git stash show --name-only
 <tag>`), which is the check that actually proves the content survived the drop rather than
@@ -231,10 +387,10 @@ merely that a tag exists.
 
 The tags keep the commits reachable, so the content **cannot be garbage-collected**:
 `git stash apply stash-archive/<tag>` or `git show <tag>:<path>` restores it. They are
-**LOCAL-ONLY and deliberately never pushed** (verified `git ls-remote --tags origin
-'stash-archive/*'` = 0). List with `git tag -l 'stash-archive/*'` -- ree-v3 now has three,
-including `stash-archive/20260714-32c6fd21` from the earlier sweep. **Do not bulk-delete
-these tags**; deleting them is the one action that would actually destroy the content.
+**LOCAL-ONLY and deliberately never pushed** (re-verified 2026-07-29: `git ls-remote --tags
+origin 'stash-archive/*'` = 0). List with `git tag -l 'stash-archive/*'`. **Do not
+bulk-delete these tags**; deleting them is the one action that would actually destroy the
+content.
 
 A plain `git stash drop` leaves the commit reachable only until `git gc` prunes it, so the
 raw SHAs recorded in the verdict table above are a weaker handle than the tags. Tag first,
@@ -242,7 +398,30 @@ then drop.
 
 ---
 
-## Coverage gap (reported, not built)
+## Coverage gap (round 1: reported, not built -- BOTH SINCE BUILT, see the round-2 status below)
+
+> **Status as of 2026-07-29 (round 2).** Both candidate fixes named at the end of this
+> section were built within a day of round 1, and the gap described below is **closed in
+> code**. The text is kept because it is the diagnosis the fixes were built against.
+>
+> - **(b) built first, as recommended** -- `scripts/audit_stashes.py`
+>   (`REE_Working 4cc9cb9c35`, "report ANY non-empty stash list, not a bloat threshold"),
+>   wired into the Session Startup Protocol step 7 and `/session-land` Phase 2d. Extended
+>   2026-07-29 (`0396f02514`) to also catch a repeating rebase-abort loop, the hidden
+>   `<git-dir>/rebase-merge/autostash` an in-flight rebase parks outside `git stash list`,
+>   and a stuck detached HEAD. **It found entry 5** -- the first live catch of a new entry,
+>   within an hour rather than the eight days that motivated it.
+> - **(a) built too** -- ree-v3 `4a22888` (2026-07-28T22:10), "extend the claim-aware
+>   autostash skip to the ree-v3 pull": `_active_claim_on_ree_v3_code` now gates the pull at
+>   `experiment_runner.py:1126` and logs `git pull ree-v3: SKIPPED`, with contracts in
+>   `tests/contracts/test_ree_v3_pull_claim_guard.py`.
+>
+> **One caveat, and it is why entry 5 still happened.** A long-lived runner process predates
+> the guard and does not have it: the Mac runner at the time of entry 5 was `r4377 87c3328
+> 2026-07-27`, started before `4a22888` landed, with **zero** `SKIPPED` lines in its entire
+> log (WORKSPACE_STATE 2026-07-29T17:03Z). **Restarting the runner is what activates (a)**,
+> and per CLAUDE.md that is the user's call. Until then (b) is the only live protection --
+> which is a good argument for having built the detector first.
 
 `ree-v3` substrate paths have **no** claim-aware autostash protection, and there is **no**
 audit that surfaces a growing stash list to a session.
@@ -268,8 +447,9 @@ audit that surfaces a growing stash list to a session.
      the opposite: *one* entry holding a session's live work. A threshold tuned for 191 is
      structurally incapable of catching 1.
 
-Two candidate fixes, both `complicated (buildable)` -- neither built here, and the second is
-the one that actually addresses the confirmed failure:
+Two candidate fixes, both `complicated (buildable)` -- **neither built in round 1; both built
+by 2026-07-29, see the status box at the top of this section** -- and the second is the one
+that actually addresses the confirmed failure:
 
 - **(a) Extend the claim-aware skip to ree-v3.** Generalise `_active_claim_on_evidence_dir`
   to take a repo + prefix set, and gate the ree-v3 pull on an active claim covering
@@ -285,3 +465,12 @@ the one that actually addresses the confirmed failure:
 
 Recommend (b) first: it is strictly detection, has no interaction with the runner's git
 path, and the confirmed failure mode is *silence*, not the stash itself.
+
+**Round-2 verdict on that recommendation: it held.** (b) shipped first, and it is what caught
+entry 5 -- while (a), which shipped a day later, was inert on the live runner because the
+process predated it. A detector that works on every session beat a preventer that only works
+after a restart. Note the residual asymmetry, though: (b) tells you a stash exists, it does
+not tell you it is *yours*. Entry 5's own author had already concluded the work was lost
+before the audit surfaced it, so **detection still depends on a session recognising its own
+filenames in the report** -- which is exactly what the audit's output text asks the reader to
+do, and exactly what did not happen here.
