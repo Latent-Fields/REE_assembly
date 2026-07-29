@@ -2102,7 +2102,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-215-proposal-for-q-085 && claude --resume 804a1e9a-ebb4-4c37-b3c3-efd5201ef46f",
       "task_claim_session_id": "igw-auto-igw-215-proposal-for-q-085-20260729T074001Z",
       "assigned_at": "2026-07-29T07:39:44Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-29T08:27:19Z",
+      "completion_summary": "marked EVB-0477/Q-085 blocked_substrate: committed-macro grain dose axis not ready (V3-EXQ-834 substrate_not_ready_requeue); rides MECH-163 falsifier, standalone experiment forbidden by claim",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-0477/Q-085 blocked_substrate: committed-macro grain dose axis not ready (V3-EXQ-834 substrate_not_ready_requeue); rides MECH-163 falsifier, standalone experiment forbidden by claim"
     }
   ],
   "dispositions": [
@@ -2792,6 +2796,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-28T22:19:40Z",
       "re_eligible_after": "2026-07-30T22:19:27Z"
+    },
+    {
+      "stable_hash": "4abad7338f12",
+      "igw_id_at_disposition": "IGW-20260729-215",
+      "owner_exq": null,
+      "claim_ids": [
+        "Q-085"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for Q-085",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-29T08:27:24Z",
+      "re_eligible_after": "2026-07-31T08:27:24Z"
     }
   ]
 }
