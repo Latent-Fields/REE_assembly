@@ -1,0 +1,38 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_mech321_midexec_probe_no_run_needed_20260729T070712Z",
+  "generated_utc": "2026-07-29T07:07:12Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Would enabling use_decomposition_scale_resolved_probe_midexec (ree-v3 aaf5caac26) change MECH-321's measured slow-scale boundary-fire fraction on the 816 harness, i.e. is a follow-on run with both probe flags ON warranted?",
+  "claim_ids": [
+    "MECH-321",
+    "MECH-288",
+    "ARC-070"
+  ],
+  "decisive_readout": "on_midexec_dilution_frac",
+  "source_run_ids": [
+    "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3": "6b5f1090fa2aeddb94462b685b6419d101c6fa9377d39236b8195962022d7ce2"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "decision": "no_experiment_queued",
+    "branch": "slow_never_fires_on_rollout",
+    "on_n_evaluated_midexec": 0,
+    "on_n_evaluated_precommit": 11423,
+    "on_midexec_dilution_frac": 0.0,
+    "on_slow_frac_naive": 0.0,
+    "on_slow_frac_precommit_corrected": 0.0,
+    "cells_with_zero_midexec": "10/10 (5 seeds x 2 arms)",
+    "conclusion": "use_decomposition_scale_resolved_probe_midexec is a structural no-op on the 816 harness: the mid-execution hook never executes, so the flag has no tick to affect and cannot move the slow fraction. Naive and precommit-corrected slow fractions are already identical (both 0.0), so the correction the flag would enable is empty. The null stands."
+  },
+  "method_note": "Read on_n_evaluated_midexec / on_midexec_dilution_frac from V3-EXQ-830's manifest metrics and its 10 per_seed_rows. All 10 cells report decomp_n_evaluated_midexec=0 while decomp_n_evaluated_precommit ranges 1862-2618, so the counter is being read correctly and the mid-execution phase simply never occurs. Confirmed the counter is live and not inert: policy_decomposition.py:534 increments it whenever evaluate() is called with hypothesis_tag=False, and tests/contracts/test_mech321_scale_resolved_boundary.py asserts decomp_n_evaluated_midexec>=1 with an explicit anti-vacuity guard. That contract reaches the hook only by hand-injecting a committed trajectory (fake_traj.metadata source=arc071_chunk, _committed_step_idx=1, forced beta_gate.elevate()), so it proves the hook works when its preconditions hold, not that they arise naturally. In V3-EXQ-830 they never did.",
+  "verdict": "non_contributory",
+  "notes": "Executes the section 5b decision table of evidence/planning/mech321_decomposition_scale_scoping_spike_2026-07-27.md. 830 self-routed interpretation.label=slow_never_fires_on_rollout with both arm gates green (instrumentation_coverage 1.0; zgoal_present_frac 0.87; zgoal_norm_std 0.070 vs a 1e-4 floor), so the slow scale had a live, varying z_goal stream on 87 pct of 2393 sweeps and still fired zero times across 5 seeds. Per the spike table that reading closes the design question and retires the 5c scale-differentiated-decomposition sketch. The midexec dilution the user's decision rule asked about first is exactly zero, which is the smallest possible value of the quantity that would have argued for a re-run. NOT a statement about the observation stream, where the slow scale is separately contracted, and does not weaken MECH-288. Separately notable and NOT covered by this reanalysis: the mid-execution hook (MECH-321 R4 second phase) has never executed in any real experiment on this harness, so that half of MECH-321's functional restatement remains unmeasured -- surfaced as follow-on, not actioned here.",
+  "caveat": ""
+}

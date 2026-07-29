@@ -10,6 +10,12 @@ heterogeneity half (a specific missing fact, obtainable by a named instrument) a
 
 **Changes no claim status, confidence, live_status or v3_pending.** Recommendation only.
 
+**STATUS 2026-07-29 -- both halves CLOSED.** The heterogeneity half's named probe ran as
+**V3-EXQ-830** and returned `slow_never_fires_on_rollout` (row 2 of the 5b decision table):
+answer **(a)** stands, the design question is closed, and the 5c extension sketch is
+**retired**. No follow-on experiment was queued -- see the resolution note in section 5b for
+why the mid-execution re-run was specifically declined (`midexec_dilution_frac = 0.0`).
+
 ---
 
 ## Verdict in one paragraph
@@ -229,7 +235,61 @@ in advance: `z_goal` is an *integrator* (`config.py:1572`), so it may simply not
 single short rollout. If so, that is itself the answer -- distinct scales require distinct
 timescales, and a rollout may be too short to have two.
 
-### 5c. If the probe is positive -- what (b) should and should not be
+#### RESOLVED 2026-07-29 -- the probe ran, and the middle row is what came back
+
+**V3-EXQ-830** (`v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3`,
+PASS / `non_contributory`, substrate `6b5f1090fa`) self-routed
+`interpretation.label = slow_never_fires_on_rollout` -- **row 2 of the table above**. Per that
+row: **(a) stands, the design question is CLOSED, and the 5c sketch below is RETIRED.**
+
+The reading is load-bearing rather than starved, which is the thing worth checking about a
+null. Both arm gates were green: instrumentation coverage 1.0, `zgoal_present_frac` 0.870,
+and -- the gate that matters, because it asserts the same statistic the slow BOCPD detector
+routes on -- `zgoal_norm_std` 0.070 against a 1e-4 floor. So the slow scale had a live,
+*varying* z_goal stream on 87% of 2393 sweeps and still fired **zero** times across 5 seeds.
+The anticipated mechanism in the paragraph above is exactly what was observed: z_goal moves
+across sweeps but not informatively within one, so the rollout is too short to carry two
+timescales. ARM_PROBE_OFF and ARM_PROBE_ON were behaviourally identical
+(`n_seeds_action_seq_differs = 0`, identical net harm) -- the expected consequence of a slow
+scale that never reaches `boundary.fired`, not evidence the manipulation failed to apply.
+
+**No follow-on experiment was queued, and specifically the mid-execution run was not.** The
+open question was whether the mid-execution asymmetry named in `follow_on_named_not_done` had
+diluted the slow fraction enough to make the null an artifact. It had not, by the largest
+possible margin: `decomp_n_evaluated_midexec = 0` in **all 10 cells** (5 seeds x 2 arms) while
+`decomp_n_evaluated_precommit` ran 1862-2618, so `midexec_dilution_frac = 0.0` and the naive
+and precommit-corrected slow fractions are already identical (both 0.0). The mid-execution
+hook never executes on this harness, so `use_decomposition_scale_resolved_probe_midexec`
+(ree-v3 `aaf5caac26`) has no tick to act on -- it is a structural no-op here, and a run with
+it ON would reproduce this manifest. Recorded as a GOV-REUSE-1 reanalysis rather than compute:
+`reanalysis_mech321_midexec_probe_no_run_needed_20260729T070712Z`.
+
+The counter was checked for inertness before the null was accepted, since a dead counter and
+a never-taken branch both read 0. It is live: `policy_decomposition.py:534` increments it on
+every `evaluate(hypothesis_tag=False)`, and
+`tests/contracts/test_mech321_scale_resolved_boundary.py` asserts `>= 1` behind an explicit
+anti-vacuity guard. That contract reaches the hook only by hand-injecting a committed
+trajectory (`source=arc071_chunk`, `_committed_step_idx=1`, forced `beta_gate.elevate()`), so
+it establishes that the hook works when its preconditions hold -- not that they ever arise
+naturally. In 830 they never did.
+
+**Scope.** Says nothing about the *observation* stream, where the slow scale is separately
+contracted, and does not weaken MECH-288. Changes no claim status, confidence, `live_status`
+or `v3_pending`; MECH-321 remains `candidate` / `v3_pending`.
+
+**Left open, and not the same question:** MECH-321's R4 *second phase* (the mid-execution
+re-evaluation) has now never executed in any real experiment on any harness -- 830 establishes
+this as a fact about the 816 harness rather than a suspicion. That half of MECH-321's
+functional restatement is therefore unmeasured, and the `_midexec` flag is correct,
+contract-covered and unexercised. Closing the heterogeneity question does not close that one.
+
+### 5c. If the probe is positive -- what (b) should and should not be -- RETIRED 2026-07-29
+
+> **RETIRED.** The probe ran and came back negative (see the resolution note in 5b above):
+> the slow scale never fires on the rollout stream, so there is no scale heterogeneity on the
+> imagination stream for a scale-differentiated extension to be built on. Registering (b) is
+> not merely premature now -- it is unsupported. Kept below as a record of the shape that was
+> considered, not as pending work.
 
 **Should not** be a new ARC-level commitment inventing a fresh operator set. The operators
 already exist as MECH-288 scales; inventing parallel ones would duplicate substrate and
