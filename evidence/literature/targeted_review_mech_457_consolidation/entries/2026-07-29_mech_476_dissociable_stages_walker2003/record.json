@@ -1,0 +1,50 @@
+{
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "source": {
+    "title": "Dissociable stages of human memory consolidation and reconsolidation.",
+    "authors": [
+      "Matthew P Walker",
+      "Tiffany Brakefield",
+      "J Allan Hobson",
+      "Robert Stickgold"
+    ],
+    "year": 2003,
+    "venue": "Nature",
+    "doi": "10.1038/nature01930"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Supports the abstract dissociation MECH-476 asserts (acquisition, consolidation, and reconsolidation are separable stages with distinct substrate requirements) and independently corroborates the interference-resistance definition. But it simultaneously localises biological consolidation to SLEEP and shows reactivation returns a memory to a labile state -- both of which REE lacks. It is therefore the clearest single marker of the known AWAKE/ONLINE/UNDIFFERENTIATED-vs-sleep/replay divergence, which is why it is filed as mixed rather than supports.",
+  "failure_signatures": [
+    "The consolidation that matters here is time-in-SLEEP, not merely elapsed clock time -- overnight sleep produced consolidation that equivalent waking time did not. REE's demonstrated protection pathways (distributional critic, KL anchor) are awake/online and have no sleep or replay analog, so a REE interval effect driven purely by offline STEPS is not the same object Walker measured, and a null REE interval effect does not falsify the biological process.",
+    "Waking reactivation turned a previously consolidated memory back into a labile, interference-susceptible state (reconsolidation). REE has no reactivation-gated labile window, so its retention dynamics may be strictly monotone where biology's are cyclic -- a structural mismatch the claim should not paper over."
+  ],
+  "tags": [
+    "mech_476",
+    "consolidation",
+    "reconsolidation",
+    "sleep",
+    "dissociable_stages",
+    "divergence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Human motor-skill (finger-tapping) memory passes through at least three dissociable post-acquisition stages. Wake and sleep make distinct contributions to consolidation, and waking reactivation of a consolidated memory returns it to a labile state that then requires reconsolidation.",
+    "ree_translation": "Supports MECH-476's core structural assertion that acquisition and retention are separable capabilities served by distinct processes -- Walker shows the post-acquisition timeline is itself multi-stage, not a single strengthening. But it pins the biological consolidation stage to sleep and adds a reactivation-labile stage REE does not have, making it the reference for the divergence MECH-476 records: REE's protection is awake, online, and trace-undifferentiated.",
+    "mapping_caveat": "Do not read Walker as licensing a REE offline-INTERVAL effect. His interval that mattered was time-asleep, not time-elapsed; equivalent waking time did not consolidate. REE's offline 'interval' is idle/offline optimisation steps with no sleep-stage structure, so a positive REE interval effect would be a WEAKER, mechanism-divergent analog, and a negative one would not contradict Walker. The reconsolidation finding has no current REE analog at all.",
+    "source_context": "Healthy adult humans; sequential finger-tapping motor skill; overnight sleep vs equivalent waking retention intervals; reactivation-then-interference manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "High-quality Nature study, robust and much-replicated. But its central mechanistic content (sleep-dependence, reactivation-lability) is exactly what REE lacks, so mapping_fidelity and transfer_risk both pull confidence down. Filed mixed and at 0.6 because its value is dual: it corroborates the dissociation framing while defining the boundary of the transfer."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_consolidation",
+  "entry_id": "2026-07-29_mech_476_dissociable_stages_walker2003",
+  "timestamp_utc": "2026-07-29T06:39:53Z",
+  "summary_path": "summary.md"
+}

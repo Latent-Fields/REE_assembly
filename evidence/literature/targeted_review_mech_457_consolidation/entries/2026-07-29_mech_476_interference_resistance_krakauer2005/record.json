@@ -1,0 +1,50 @@
+{
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "source": {
+    "title": "Adaptation to visuomotor transformations: consolidation, interference, and forgetting.",
+    "authors": [
+      "John W Krakauer",
+      "Claude Ghez",
+      "M Felice Ghilardi"
+    ],
+    "year": 2005,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.4218-04.2005"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "Direct empirical instantiation of the exact A->B->A assay MECH-476's falsifier proposes, in humans, showing resistance-to-interference grows with BOTH elapsed interval (24 h vs 5 min) AND doubled initial training (dose). This validates the assay and the two levers the falsifier varies; it does not test REE's substrate, so mapping fidelity to REE is design-level not mechanism-level, and it carries a methodological warning (anterograde interference / washout) the REE experiment must honour.",
+  "failure_signatures": [
+    "Without washout blocks removing anterograde interference, a counter-rotation interfered even at a 24 h interval -- i.e. apparent 'no consolidation' can be a retrieval-competition artefact rather than a true absence of a consolidation process. The REE A->B->A design must remove analogous anterograde effects (measure retained A cleanly) or a null result is uninterpretable.",
+    "Visuomotor rotation, unlike force-field or sequence learning, did NOT consolidate over time under the naive design -- consolidation is task/representation-specific, so a null in one REE competence-band does not generalise across substrates."
+  ],
+  "tags": [
+    "mech_476",
+    "consolidation",
+    "retrograde_interference",
+    "motor_adaptation",
+    "dose",
+    "interval",
+    "design_source"
+  ],
+  "mapping": {
+    "source_claim_statement": "Consolidation is operationally defined as resistance to retrograde interference (interference by task B on the initial learning of task A). Rotation learning becomes resistant to a 5-min counter-rotation both when the interval to B is extended to 24 h (with anterograde effects removed by washout) and when the amount of initial training is doubled.",
+    "ree_translation": "The claim MECH-476 adopts this exact operational definition: retention (consolidation) is a PROCESS whose signature is interference-resistance that grows with install DOSE (BC episodes, analogous to doubled training) and A->B INTERVAL (offline steps, analogous to 5 min vs 24 h). SUPPORTED-vs-WEAKENED in REE is decided by whether REE's retained-fraction trajectory shows the same monotone dependence Krakauer measured behaviourally.",
+    "mapping_caveat": "This is a design template, not a mechanism transfer. Krakauer studied human explicit/implicit visuomotor adaptation with declarative and cerebellar components; REE is a BC->RL agent with a value estimator and a KL update-constraint. The prediction that dose and interval matter transfers; the physiological mechanism does not. Critically, Krakauer's own result shows the assay can FALSELY report no-consolidation if anterograde retrieval interference is not washed out -- the REE implementation inherits that confound and must control it, or an invariance result cannot be read as WEAKENED.",
+    "source_context": "Healthy adult humans; screen-cursor 30-degree visuomotor rotation adaptation; A->B->A paradigm with counter-rotation as interfering task B; RCT."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Canonical, well-replicated RCT and the literal design source cited in MECH-476's what_would_answer. Source quality weighted heavily. Mapping fidelity high at the design level (the assay is exactly what the falsifier runs), lower at the mechanism level; transfer risk moderate (human motor adaptation -> RL competence retention). Confidence set above the component mean because the paper's load-bearing role here is to license the ASSAY, which it does decisively."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_consolidation",
+  "entry_id": "2026-07-29_mech_476_interference_resistance_krakauer2005",
+  "timestamp_utc": "2026-07-29T06:39:53Z",
+  "summary_path": "summary.md"
+}

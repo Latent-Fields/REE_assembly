@@ -1,0 +1,48 @@
+{
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "source": {
+    "title": "Induction of long-term memory by exposure to novelty requires protein synthesis: evidence for a behavioral tagging.",
+    "authors": [
+      "Diego Moncada",
+      "Haydee Viola"
+    ],
+    "year": 2007,
+    "venue": "The Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1083-07.2007"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides the specific empirical prediction MECH-476's third arm is built on: a weak training episode that would only yield short-term memory is consolidated into long-term memory when a novelty exposure occurs close in time. That is the exact discriminator between a consolidation PROCESS and a mere regulariser, because a regulariser has no reason to respond to an unrelated novelty exposure. Confidence held below the design-source paper because the mechanism (dopaminergic PRP capture, protein synthesis) is biologically specific and REE's RND novelty drive is only a functional analog.",
+  "failure_signatures": [
+    "The novelty effect required activation of dopamine D1/D5 receptors and newly synthesised proteins in dorsal hippocampus, and depended on temporal proximity between the weak trace and the novelty exposure. REE's RND novelty drive is a reward-shaping signal, not a protein-synthesis-gated capture process, so a null result in the REE novelty-paired arm may reflect an absent capture MECHANISM rather than an absent tag -- it cannot by itself falsify behavioural tagging as a target.",
+    "Behavioural tagging depends on the WEAK trace actually setting a tag; if the sub-threshold BC install sets no learnable trace at all (the install-did-not-take case), the arm is uninformative and must self-route substrate_not_ready_requeue rather than return a novelty-paired null."
+  ],
+  "tags": [
+    "mech_476",
+    "behavioral_tagging",
+    "synaptic_tagging_capture",
+    "novelty",
+    "rnd",
+    "third_arm"
+  ],
+  "mapping": {
+    "source_claim_statement": "Weak inhibitory-avoidance training that induces only short-term memory can be consolidated into long-term memory if the animal explores a novel (but not a familiar) environment close in time to training. The effect depends on D1/D5 dopamine receptor activation and de novo protein synthesis in the dorsal hippocampus -- a behavioural analog of synaptic tagging and capture.",
+    "ree_translation": "This is the direct source for MECH-476's third arm: pair a SUB-THRESHOLD BC dose with a novelty episode (REE's landed RND drive) inside the consolidation window. Behavioural tagging predicts the weak install becomes durable ONLY in the novelty-paired condition. Because a regulariser cannot explain why an unrelated novelty exposure would rescue a weak trace, a positive result here is the sharpest available discrimination between 'consolidation process' and 'concurrent regulariser'.",
+    "mapping_caveat": "The capture mechanism is dopaminergic protein synthesis of plasticity-related products with strict temporal contiguity; REE's RND novelty signal is an exploration bonus, not a PRP-synthesis gate. The functional prediction (weak trace + nearby novelty -> durability) transfers as a behavioural signature, but the underlying capture machinery does not, so a REE null is mechanism-ambiguous and must not be read as falsifying tagging outright.",
+    "source_context": "Male Wistar rats; one-trial inhibitory avoidance (weak training); open-field novelty exposure; D1/D5 antagonist and protein-synthesis-inhibitor controls; dorsal hippocampus."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Foundational, well-controlled demonstration of behavioural tagging with pharmacological specificity. Mapping fidelity moderate: the behavioural prediction transfers cleanly and is cheap to run in REE (the RND drive is already landed), but the capture mechanism is dopaminergic protein synthesis with no REE counterpart. Transfer risk moderate-high (rodent hippocampal one-trial avoidance -> RL foraging install). Confidence 0.68."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_consolidation",
+  "entry_id": "2026-07-29_mech_476_behavioral_tagging_moncada2007",
+  "timestamp_utc": "2026-07-29T06:39:53Z",
+  "summary_path": "summary.md"
+}

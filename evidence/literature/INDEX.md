@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-07-29T06:08:18.215999Z`
+Generated: `2026-07-29T06:44:13.663160Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -250,6 +250,8 @@ Generated: `2026-07-29T06:08:18.215999Z`
 | `targeted_review_mech_423_integration_prerequisites` | [`2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/record.json) | 6 | [`summary`](targeted_review_mech_423_integration_prerequisites/entries/2026-06-12_mech_423_negative_transfer_gradient_surgery_yu2020/summary.md) |
 | `targeted_review_mech_454` | [`2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019`](targeted_review_mech_454/entries/2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019/record.json) | 5 | [`summary`](targeted_review_mech_454/entries/2026-06-24_mech_454_stepwise_relative_reachability_krakovna2019/summary.md) |
 | `targeted_review_mech_456` | [`2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023`](targeted_review_mech_456/entries/2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023/record.json) | 5 | [`summary`](targeted_review_mech_456/entries/2026-07-11_mech_456_serial_dependence_metaanalysis_manassi2023/summary.md) |
+| `targeted_review_mech_457_baseline_informativeness` | [`2026-07-29_mech_475_vs_lesion_stimulus_vs_action_rothenhoefer2017`](targeted_review_mech_457_baseline_informativeness/entries/2026-07-29_mech_475_vs_lesion_stimulus_vs_action_rothenhoefer2017/record.json) | 5 | [`summary`](targeted_review_mech_457_baseline_informativeness/entries/2026-07-29_mech_475_vs_lesion_stimulus_vs_action_rothenhoefer2017/summary.md) |
+| `targeted_review_mech_457_consolidation` | [`2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024`](targeted_review_mech_457_consolidation/entries/2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024/record.json) | 5 | [`summary`](targeted_review_mech_457_consolidation/entries/2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024/summary.md) |
 | `targeted_review_mech_459` | [`2026-07-19_mech_459_percentile_return_norm_hafner2023`](targeted_review_mech_459/entries/2026-07-19_mech_459_percentile_return_norm_hafner2023/record.json) | 3 | [`summary`](targeted_review_mech_459/entries/2026-07-19_mech_459_percentile_return_norm_hafner2023/summary.md) |
 | `targeted_review_mech_466` | [`2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022`](targeted_review_mech_466/entries/2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022/record.json) | 2 | [`summary`](targeted_review_mech_466/entries/2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |

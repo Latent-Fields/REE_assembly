@@ -1,0 +1,60 @@
+{
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "source": {
+    "title": "Overcoming catastrophic forgetting in neural networks.",
+    "authors": [
+      "James Kirkpatrick",
+      "Razvan Pascanu",
+      "Neil Rabinowitz",
+      "Joel Veness",
+      "Guillaume Desjardins",
+      "Andrei A Rusu",
+      "Kieran Milan",
+      "John Quan",
+      "Tiago Ramalho",
+      "Agnieszka Grabska-Barwinska",
+      "Demis Hassabis",
+      "Claudia Clopath",
+      "Dharshan Kumaran",
+      "Raia Hadsell"
+    ],
+    "year": 2017,
+    "venue": "Proceedings of the National Academy of Sciences",
+    "doi": "10.1073/pnas.1611835114"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The ML instantiation that closes the loop from the biology to REE's actual substrate. EWC is a per-PARAMETER, Fisher-importance-weighted quadratic penalty toward a previous optimum -- a computationally realised, trace-selective analog of exactly the global KL anchor REE currently uses. It demonstrates, in neural networks, that selective (importance-weighted) protection retains prior competence markedly better than an undifferentiated constraint, and that the retention lever is the UPDATE CONSTRAINT, not continued demonstration -- both central to MECH-476. Confidence held at 0.72 by the supervised-sequential-task setting and EWC's own known limitations.",
+  "failure_signatures": [
+    "EWC's importance weights are computed at task boundaries from the diagonal Fisher information; it presupposes identifiable tasks and a stationary previous optimum. REE's BC->RL erosion is a single continuing task with a shifting objective, so a naive port of EWC may have no well-defined 'previous task' to anchor per-parameter importance to -- the selectivity mechanism is not free to REE even though the concept transfers.",
+    "The diagonal-Fisher approximation ignores parameter interactions and is known to degrade over long task sequences; so even the ML trace-selective solution is imperfect, and adopting it in REE would trade a global-KL crudeness for a different, approximation-bound one rather than reproducing STC's synapse-exact selectivity."
+  ],
+  "tags": [
+    "mech_476",
+    "elastic_weight_consolidation",
+    "catastrophic_forgetting",
+    "trace_selectivity",
+    "update_constraint",
+    "continual_learning"
+  ],
+  "mapping": {
+    "source_claim_statement": "Catastrophic forgetting in neural networks can be mitigated by Elastic Weight Consolidation: a quadratic penalty that anchors each parameter to its previous-task value with a stiffness proportional to that parameter's importance, estimated by the diagonal of the Fisher information matrix. Important weights are held rigid while unimportant ones stay plastic, letting the network retain prior tasks while learning new ones.",
+    "ree_translation": "EWC is the computational bridge between STC's synapse-specific consolidation and REE's substrate. REE's landed retention lever -- a GLOBAL KL anchor to the installed snapshot -- is the undifferentiated limit of EWC (uniform stiffness across all parameters). EWC shows that making the stiffness trace-selective (Fisher-weighted) retains prior competence far better while preserving plasticity where it is cheap. This directly instantiates MECH-476's claims that (i) retention is supplied by the UPDATE CONSTRAINT not by continued demonstration, and (ii) trace-selective protection is a strictly richer, buildable target than a single global coefficient.",
+    "mapping_caveat": "EWC assumes discrete tasks with identifiable boundaries and a stationary previous optimum from which to compute importance; REE's BC-install-then-RL-erode is one continuing task with a moving objective and no clean task boundary. The concept (importance-weighted, per-parameter, update-side consolidation) transfers as a design target, but a literal EWC port is non-trivial in REE and its diagonal-Fisher approximation is itself imperfect -- so this supports the claim's DIRECTION (trace-selective, constraint-supplied retention is real and superior) without implying REE can adopt EWC unchanged.",
+    "source_context": "Supervised sequential-task continual learning (permuted MNIST, sequential classification) and Atari RL with DQN; neural networks; task-boundary-gated importance estimation."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Landmark, heavily-cited PNAS paper and the canonical trace-selective-consolidation result in ML. Mapping fidelity high on the concept -- it is REE's own kind of object (a neural-net update constraint) rather than a biological analog, so the global-vs-selective contrast is exact -- but lowered by the task-boundary assumption REE's single-task erosion violates. Transfer risk lower than the biological entries because domain is ML-to-ML. Confidence 0.72."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_consolidation",
+  "entry_id": "2026-07-29_mech_476_elastic_weight_consolidation_kirkpatrick2017",
+  "timestamp_utc": "2026-07-29T06:39:53Z",
+  "summary_path": "summary.md"
+}

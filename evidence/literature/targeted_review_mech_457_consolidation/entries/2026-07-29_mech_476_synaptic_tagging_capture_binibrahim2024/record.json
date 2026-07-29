@@ -1,0 +1,49 @@
+{
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "source": {
+    "title": "Synapses tagged, memories kept: synaptic tagging and capture hypothesis in brain health and disease.",
+    "authors": [
+      "Mohammad Zaki Bin Ibrahim",
+      "Zijun Wang",
+      "Sreedharan Sajikumar"
+    ],
+    "year": 2024,
+    "venue": "Philosophical Transactions of the Royal Society B",
+    "doi": "10.1098/rstb.2023.0237"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "The current authoritative review of synaptic tagging and capture, which grounds MECH-476's TRACE-SELECTIVITY content: consolidation in biology is synapse-specific -- a tag is set at particular synapses and captures plasticity-related products locally -- and tag-setting and PRP-synthesis are separable operations. This is exactly the property a single GLOBAL KL coefficient cannot express (which traces are protected). Supports the claim's distinctive assertion while defining the target REE lacks. Held to 0.64 because it is a conceptual review, not a direct test, and the mapping is to the GAP the claim names rather than to a REE result.",
+  "failure_signatures": [
+    "Biological protection is synapse- and trace-SPECIFIC: the tag localises capture to the potentiated synapses, so unrelated memories are not indiscriminately shielded. REE's KL anchor is a global divergence penalty over the whole policy/value parameterisation and cannot select WHICH competence traces to protect -- so even a SUPPORTED interval/dose result would leave REE with a structurally cruder consolidation than the biology, and trace-selectivity remains an unbuilt target.",
+    "Tag-setting and plasticity-related-product synthesis are separable, and either can fail independently. A REE mechanism that conflates 'mark this trace' with 'supply the resource to stabilise it' (as a single global coefficient does) cannot reproduce the dissociations STC documents, so mapping any single REE lever onto 'consolidation' overstates the correspondence."
+  ],
+  "tags": [
+    "mech_476",
+    "synaptic_tagging_capture",
+    "trace_selectivity",
+    "global_vs_local",
+    "kl_anchor",
+    "divergence"
+  ],
+  "mapping": {
+    "source_claim_statement": "Synaptic tagging and capture (STC) explains cellular consolidation as a synapse-specific, protein-synthesis-dependent process: an induced synapse sets a local 'tag' that captures diffusible plasticity-related products (PRPs), so late-phase plasticity is conferred selectively on tagged synapses. Tag-setting and PRP-synthesis are separable, neuromodulation gates PRP availability, and the framework has behavioural correlates and in-silico models.",
+    "ree_translation": "Grounds MECH-476's trace-selectivity content (recorded in the V3-EXQ-792 autopsy section 3): the biology protects SPECIFIC traces via local tags, whereas REE's landed protection -- a global KL anchor to the installed snapshot -- applies one undifferentiated coefficient across the whole parameterisation and cannot express which competence traces to keep. STC is the reference for what trace-selective consolidation would have to look like, and therefore for how far REE's current mechanism falls short even when it works.",
+    "mapping_caveat": "STC is a cellular/synaptic hypothesis about hippocampal and cortical plasticity; REE has no synapses, tags, or diffusible PRPs. The correspondence is conceptual -- local/selective vs global/undifferentiated protection -- not mechanistic. This entry supports the claim by naming the GAP precisely, not by supplying evidence that REE has (or could easily acquire) trace-selective consolidation; that remains an unbuilt target.",
+    "source_context": "Review; rodent hippocampal slice electrophysiology and behaviour, neuromodulatory gating of PRP synthesis, computational STC models; brain-health/disease framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Authoritative, current (2024) review from a leading STC group -- high source quality for a conceptual anchor. Mapping fidelity moderate: it maps precisely onto the trace-selectivity gap MECH-476 names but is a hypothesis review rather than a direct measurement, and the substrate is synaptic with no REE counterpart. Confidence 0.64, reflecting that its role is to define the target and the divergence, not to move REE's evidence needle up or down on a specific result."
+  },
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_457_consolidation",
+  "entry_id": "2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024",
+  "timestamp_utc": "2026-07-29T06:39:53Z",
+  "summary_path": "summary.md"
+}
