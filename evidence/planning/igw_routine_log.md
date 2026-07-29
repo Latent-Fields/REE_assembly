@@ -1209,3 +1209,4 @@ One line per hourly tick. ASCII only.
 2026-07-28T22:19:40Z GC keep igw-212-proposal-for-mech-217 (ledger IGW-20260728-212 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-07-28T22:19:18Z STAGE IGW-20260728-192 skill=/implement-substrate prio=25 worktree=igw-192-substrate-ready-mech-217 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-07-29T04:38:03Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-29T05:38:39Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
