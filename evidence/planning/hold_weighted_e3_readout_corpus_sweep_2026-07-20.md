@@ -167,3 +167,34 @@ rewritten. This document records findings only.
   survive a DV repair: 689d's matched-noise control, 707/707a's `A1_LOOPS ≡ ARM_DROP_LIMBIC`, and
   710's `A0_OFF ≡ A2_ABLATED`. All three are the 699 sec 11.6 tell — *two nominally independent
   readouts agreeing exactly is a defect signature, not a validation.*
+
+---
+
+## 7. Addendum 2026-07-29 — V3-EXQ-603e (not in the 150; adjudicated separately)
+
+`v3_exq_603e_q045_mech313_mech260_scaffolded_sd054.py` fires form 2 at `:575` but does **not**
+appear anywhere in this sweep — a worked instance of the §6 "150 is a lower bound" caveat, and a
+trap for anyone who greps this file and reads zero hits as "clean". Adjudicated in
+[`failure_autopsy_V3-EXQ-603e_hold_weighted_entropy_dv_2026-07-29.md`](failure_autopsy_V3-EXQ-603e_hold_weighted_entropy_dv_2026-07-29.md)
+(session `silly-mayer-a60957`).
+
+**Verdict DISQUALIFYING**, on both exclusions at once: the DV is an entropy, *and* the arms differ
+in hold structure (`measured_steps` spans 4060 → 12054). De-weighting moves it **1.8–5.3×** on
+ARM_0/1/4 versus **~1%** on ARM_2/3 — the differential is structural, because entropy is non-linear
+in the minority probability as `p → 0` and the arms differ ~200× in minority rarity. Acceptance
+criterion **C3** (`e1 > e0`, no margin, landed `true` on a 0.0012-nat margin) is decided inside
+that band and reverses under de-weighting; C1/C2/FP2 and the FAIL verdict are robust.
+
+**No re-scoring owed** — the run is already `non_contributory` / `substrate_ceiling` with Q-045,
+MECH-313 and MECH-260 all `pending_retest_after_substrate`. Consistent with §5: no manifest edited.
+
+Two findings there are **not** hold-weighting and survive a DV repair — worth carrying into the
+same triage vocabulary as the §6 vacuity signatures:
+
+- **The DV is anti-correlated with its own construct.** ARM_2/ARM_3 carry the highest action
+  entropy (≈ ln 2, a near-exact 2-cycle from MECH-260's recency penalty) and
+  `position_entropy = 0.0` — one grid cell for the whole measurement. The DV is maximised by an
+  in-place oscillation.
+- **Unit mismatch in the run's own guard.** `dacc.record_action` is unreachable on held steps, so
+  dACC memory is in fresh selections (8), while `FIFO_WARMUP_STEPS = 75` is in env steps. The
+  FIFO-warmup gate compares incommensurable units and certifies a ring that never filled once.
