@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-29T16:13:02Z",
+  "last_tick_utc": "2026-07-29T16:28:08Z",
   "state": "running",
   "current_exq": "V3-EXQ-833",
   "current_exq_started_utc": "2026-07-27T23:39:56.019916+00:00",
@@ -9,21 +9,16 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 49 / ARM_STRICT",
-    "runs_done": 27,
+    "run_label": "Seed 50 / ARM_STRICT",
+    "runs_done": 28,
     "runs_total": 40,
-    "episodes_done": 130,
+    "episodes_done": 30,
     "episodes_total": 170,
-    "overall_pct": 69.4
+    "overall_pct": 70.4
   },
-  "seconds_elapsed": 145987,
-  "seconds_remaining": 32395,
+  "seconds_elapsed": 146893,
+  "seconds_remaining": 31304,
   "recent_lines": [
-    "Seed 53 Condition ARM_LEGACY",
-    "[train] stage0 ARM_LEGACY seed=53 ep 20/170 z_goal_peak=0.4136",
-    "[train] stage0b ARM_LEGACY seed=53 ep 30/170",
-    "[train] p0 ARM_LEGACY seed=53 ep 130/170 mean_len=194.4 rv=0.00013",
-    "[train] hazard ARM_LEGACY seed=53 ep 170/170 mean_len=92.9 median_last=103.0 auc=0.465 contact_term=0.575 survival_gate=pass harm_range=0.2352 goal_w=1.000 e1_gc=True goal_live=True",
     "verdict: PASS seed=53 arm=ARM_LEGACY mean_surv=92.9 z0peak=0.4136 harm_range=0.2352",
     "Seed 54 Condition ARM_LEGACY",
     "[train] stage0 ARM_LEGACY seed=54 ep 20/170 z_goal_peak=0.3730",
@@ -118,7 +113,12 @@
     "Seed 49 Condition ARM_STRICT",
     "[train] stage0 ARM_STRICT seed=49 ep 20/170 z_goal_peak=0.4176",
     "[train] stage0b ARM_STRICT seed=49 ep 30/170",
-    "[train] p0 ARM_STRICT seed=49 ep 130/170 mean_len=198.1 rv=0.00001"
+    "[train] p0 ARM_STRICT seed=49 ep 130/170 mean_len=198.1 rv=0.00001",
+    "[train] hazard ARM_STRICT seed=49 ep 170/170 mean_len=109.2 median_last=6.0 auc=0.546 contact_term=0.500 survival_gate=FAIL harm_range=0.0225 goal_w=0.000 e1_gc=False goal_live=False",
+    "verdict: PASS seed=49 arm=ARM_STRICT mean_surv=109.2 z0peak=0.4176 harm_range=0.0225",
+    "Seed 50 Condition ARM_STRICT",
+    "[train] stage0 ARM_STRICT seed=50 ep 20/170 z_goal_peak=0.4581",
+    "[train] stage0b ARM_STRICT seed=50 ep 30/170"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
