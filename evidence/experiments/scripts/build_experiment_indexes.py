@@ -372,6 +372,19 @@ def _compute_adjudication(interpretation: Any, status: str,
                              absent or a key has no matching entry, so the
                              hundreds of pre-convention manifests that expose no
                              load_bearing tag keep their present adjudication.
+                             That key-to-name join is PREFIX-TOLERANT: an exact
+                             match always wins, and failing that a key inherits a
+                             criterion's tag only when it prefixes exactly ONE
+                             name on an underscore boundary. Keying it on exact
+                             equality alone let the 783 exclusion be silently
+                             defeated by an author spelling one criterion two
+                             ways -- short key in criteria_non_degenerate{}, long
+                             name in criteria[] -- which is how V3-EXQ-830 drew a
+                             spurious vacuous_pass despite passing its own
+                             load-bearing criterion (failure_autopsy_V3-EXQ-830_
+                             2026-07-29.md Sec.2). Ambiguous (>=2 candidates) and
+                             unmatched keys inherit nothing, so ambiguity resolves
+                             toward FLAGGING and no existing adjudication moves.
       - "verified"        -- declared structure(s) present and all checks hold.
 
     The (3a)/(3b) author-free checks run AHEAD of the legacy author-trusted
@@ -453,14 +466,51 @@ def _compute_adjudication(interpretation: Any, status: str,
     # C2_event_selectivity -- see failure_autopsy_V3-EXQ-783_2026-07-18.md Sec.2).
     # Absent criteria[] / unmatched keys are untouched, so legacy manifests that
     # expose no load_bearing tag keep their present adjudication.
-    non_load_bearing = set()
+    #
+    # THE JOIN IS PREFIX-TOLERANT, because keying it on exact string equality let
+    # the 783 exclusion be silently defeated by an author who spells the same
+    # criterion two ways -- a SHORT key in criteria_non_degenerate{} and a LONG
+    # name in criteria[]. V3-EXQ-830 shipped keys {C_DECIDABLE, C_SLOW_FIRES,
+    # C_DISSOCIABLE, C_CONTROL} against names {C_DECIDABLE_instrument_returned_a
+    # _reading, C_SLOW_FIRES_on_rollout, C_DISSOCIABLE_low_cofire_distinct
+    # _positions, C_CONTROL_slow_silent_with_flag_off}: NO key matched any name,
+    # so nothing was excluded and C_DISSOCIABLE:false (a criterion its author had
+    # explicitly tagged load_bearing:false, and which is degenerate for the
+    # correct reason -- dissociability is unmeasurable when the slow scale never
+    # fires) produced a spurious vacuous_pass on a run whose load-bearing
+    # criterion passed. Same OUTCOME class as 783, different ROUTE: there the
+    # exclusion was absent, here it is present but its join key mismatched.
+    # See failure_autopsy_V3-EXQ-830_2026-07-29.md Sec.2.
+    #
+    # CONSERVATIVE BY CONSTRUCTION -- a false HIT here would suppress a real
+    # vacuity flag, so the resolution never guesses:
+    #   * an EXACT name match always wins (identical to the pre-2026-07-29
+    #     behaviour, so every existing adjudication is preserved);
+    #   * failing that, a key inherits a criterion's tag ONLY if it prefixes
+    #     exactly ONE name AND does so on an underscore boundary (key + "_"),
+    #     so C_DISSOCIABLE matches C_DISSOCIABLE_low_cofire... but never
+    #     C_DISSOCIABLEXYZ;
+    #   * 0 candidates (unmatched) or >= 2 (ambiguous) inherit NOTHING and are
+    #     left exactly as before -- ambiguity is resolved toward flagging.
+    # Only the short-key/long-name direction is tolerated; a key LONGER than its
+    # name is not the observed shape and stays unmatched.
+    by_name: dict = {}
     _criteria = interp.get("criteria")
     if isinstance(_criteria, list):
         for c in _criteria:
-            if isinstance(c, dict) and c.get("load_bearing") is False:
-                name = c.get("name")
-                if isinstance(name, str):
-                    non_load_bearing.add(name)
+            if isinstance(c, dict) and isinstance(c.get("name"), str):
+                by_name[c["name"]] = c.get("load_bearing")
+
+    def _load_bearing_for(key: str) -> Any:
+        if key in by_name:
+            return by_name[key]
+        candidates = [n for n in by_name if n.startswith(key + "_")]
+        if len(candidates) == 1:
+            return by_name[candidates[0]]
+        return None
+
+    non_load_bearing = {k for k in (str(x) for x in crit.keys())
+                        if _load_bearing_for(k) is False}
     degeneracy_assertions = [v for k, v in crit.items()
                              if not str(k).endswith("_branch")
                              and str(k) not in non_load_bearing]
