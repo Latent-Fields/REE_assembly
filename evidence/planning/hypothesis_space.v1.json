@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-29T20:33:11Z",
+  "generated_at": "2026-07-29T22:03:36Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,99 +31,99 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 33,
-      "total_initial": 61,
-      "total_initial_at_registration": 43,
+      "total_surviving": 36,
+      "total_initial": 64,
+      "total_initial_at_registration": 46,
       "total_fanout_added": 18,
       "total_resolved_out": 27,
-      "reduction_pct_vs_current": 44.3,
-      "net_narrowing_pct": 23.3,
+      "reduction_pct_vs_current": 42.2,
+      "net_narrowing_pct": 21.7,
       "convergence_classes": {
         "narrowing": 5,
-        "static": 4,
+        "static": 5,
         "circling": 3,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "33 alive against 43 originally enumerated, and against 61 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 13
+      "honest_pair_note": "36 alive against 46 originally enumerated, and against 64 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 14
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 7,
-      "open_questions": 13
+      "open_questions": 14
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 60,
+      "surviving": 63,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 58,
+      "surviving": 61,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 54,
+      "surviving": 57,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 53,
+      "surviving": 56,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 50,
+      "surviving": 53,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-18",
-      "surviving": 44,
+      "surviving": 47,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-19",
-      "surviving": 40,
+      "surviving": 43,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-20",
-      "surviving": 39,
+      "surviving": 42,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-24",
-      "surviving": 38,
+      "surviving": 41,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-25",
-      "surviving": 37,
+      "surviving": 40,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-27",
-      "surviving": 35,
+      "surviving": 38,
       "closure_pct": 76.2,
       "build_pct": 81.9
     },
     {
       "date": "2026-07-29",
-      "surviving": 33,
+      "surviving": 36,
       "closure_pct": 76.2,
       "build_pct": 81.9
     }
@@ -2005,6 +2005,87 @@
         "live_gate": null,
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "q081-cross-stream-shared-organisation",
+      "title": "Does configured multi-rate execution produce genuinely SHARED cross-stream organisation (Q-081 Outcome A) rather than merely wired-but-independent streams (Outcome B)?",
+      "short_title": "Q-081 cross-stream shared organisation",
+      "claims": [
+        "Q-081"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-reach-per-region-vs",
+          "label": "use_per_region_vs=True grants the recording manipulation reach to operating_mode so RV(z_world, operating_mode) can move",
+          "desc": "The 824a substrate hypothesis: enabling use_per_region_vs=True (reach path apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3 -> operating_mode, agent.py:4686-4692) would let the cross-stream manipulation perturb the measured pair. Tested end-to-end by V3-EXQ-838 (both use_anchor_sets and use_per_region_vs on, plus a temporal recording-ablation family) -- RV stayed bit-identical across all 5 seeds. REFUTED as a fix; state left alive because 838 is non_degenerate:false (a precondition-unmet run narrows the solution space but does not clear the elimination bar).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-838"
+          ],
+          "basis": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H1-build-reach",
+          "label": "operating_mode CAN be made reachable via a mechanism not yet tried (use_per_region_vs already refuted)",
+          "desc": "Build-reach leg (GOV-FANOUT-1 H1): some untried lever -- a per-region VS shaping variant or a direct operating_mode write path -- makes operating_mode co-vary with the cross-stream recording manipulation, so RV(z_world, operating_mode) becomes measurable. Adjudicated by a cheap low-episode reach pre-flight probe (pending queue).",
+          "axis": "substrate",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered, not yet run. Awaiting a cheap empirical per-pair reach pre-flight probe.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-reframe-pair",
+          "label": "operating_mode is architecturally NOT downstream of these manipulations; RV(z_world, operating_mode) is the wrong DV and Q-081 must reframe onto a confirmed-reachable pair",
+          "desc": "Reframe leg (GOV-FANOUT-1 H2): three runs (824 spatial removal, 824a, 838 temporal ablation) hit bit-identical degeneracy on the identical pair, evidence the measured pair -- not the manipulation -- is the problem. If a reach scan finds no lever that moves operating_mode, reframe Q-081's DV onto a pair both members of which are empirically reachable. Adjudicated by the same cheap reach pre-flight (pending queue).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered, not yet run. Selected if the reach pre-flight finds no lever that moves operating_mode.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is Q-081 Outcome A (genuinely shared cross-stream organisation) or Outcome B (wired-but-independent streams) -- and, upstream of that, can the chosen DV pair be measured at all?",
+        "distance_phrase": "NOT decidable. The measured pair is unreachable by every manipulation lever tried across 824/824a/838; use_per_region_vs=True is refuted as the fix. Next step is a cheap reach pre-flight discriminating H1 (build reach) from H2 (reframe pair), not another full run.",
+        "live_gate": "Blocked on reachability: RV(z_world, operating_mode) has not moved under any lever tried (824 use_invalidation_trigger, 824a use_anchor_sets, 838 use_per_region_vs + temporal ablations). A cheap empirical per-pair reach pre-flight must find a lever that moves operating_mode (-> H1 build) or confirm none does (-> H2 reframe) before Outcome A/B can be scored.",
+        "observation_bottleneck": "RV(z_world, operating_mode) is bit-identical across arms under all levers tried -- the DV never moves, so Q-081 Outcome A vs B cannot be scored. Any new leg must gate a full run on a cheap empirical per-pair reach assertion (at least one arm moves rv_primary on the SPECIFIC measured pair), never a blanket reach flag."
+      }
     }
   ],
   "momentum": [
@@ -2607,6 +2688,20 @@
       "moved": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732).",
       "resolved_utc": "2026-06-07T19:30:29Z",
       "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-838",
+      "all_runs": [
+        "V3-EXQ-838"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "q081-cross-stream-shared-organisation",
+      "claims": [
+        "Q-081"
+      ],
+      "moved": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+      "resolved_utc": null,
+      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-779b",

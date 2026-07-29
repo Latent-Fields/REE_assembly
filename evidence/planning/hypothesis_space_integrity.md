@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-07-29T20:33:26Z
+Generated: 2026-07-29T22:04:14Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **13** open question(s) across **11** time-series snapshot(s). **0** flag(s) raised, **23** advisory note(s), **12** git-witnessed pre-registration(s), **3** unverifiable, **1** fan-out recurrence overlay(s).
+Audited **14** open question(s) across **11** time-series snapshot(s). **0** flag(s) raised, **23** advisory note(s), **15** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -58,7 +58,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-07-22 -> 2026-07-24: total_initial grew by 1, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 1 leg(s)) -- advisory, not a violation.
 - time series 2026-07-25 -> 2026-07-26: total_initial grew by 5, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 5 leg(s)) -- advisory, not a violation.
 - time series 2026-07-26 -> 2026-07-28: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
-- time series 2026-07-28 -> 2026-07-29: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
+- time series 2026-07-28 -> 2026-07-29: total_initial grew by 9, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 9 leg(s)) -- advisory, not a violation.
 
 ## Fan-out recurrence (ACTIONABLE, 1) -- N >= 3 portfolios on one question
 
@@ -70,7 +70,7 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 - `competence_floor`: 5 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 20, 3 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 6; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `failure_autopsy_batch-793a-817-819_2026-07-26.json`, `failure_autopsy_mech476-mech475-cluster_2026-07-29.json`, `mech457_retention_portfolio_2026-07-18.md`
 
-## Pre-registration provenance (12 witnessed, 3 unverifiable)
+## Pre-registration provenance (15 witnessed, 0 unverifiable)
 
 _`pre_registered_utc` is SELF-REPORTED and written into the registry after the fact, so the pre <= resolved invariant is trivially satisfiable by back-dating -- no audit reading only the registry can detect that. A fan-out leg whose adjudicating run had ALREADY RESOLVED when it was added therefore clears only on **git-witnessed** provenance: its `pre_registration_source` artifact (or its own registry entry) must have been durably committed before the run resolved. The honest case self-clears with no human adjudication; a back-dated one cannot manufacture a commit._
 
@@ -85,15 +85,12 @@ _`pre_registered_utc` is SELF-REPORTED and written into the registry after the f
 - `competence_floor`/`H-retention-consolidation`: `mech457_retention_portfolio_2026-07-18.md` committed 2026-07-18 <= resolution 2026-07-22
 - `competence_floor`/`H-retention-auxiliary-decay`: `mech457_retention_portfolio_2026-07-18.md` committed 2026-07-18 <= resolution 2026-07-20
 - `competence_floor`/`H-consummation-binding`: `mech457_retention_portfolio_2026-07-18.md` committed 2026-07-18 <= resolution 2026-07-25
+- `competence_floor`/`H-mech475-baseline-reversal`: `failure_autopsy_mech476-mech475-cluster_2026-07-29.json` committed 2026-07-29 <= resolution 2026-07-29
+- `competence_floor`/`H-mech476-dose-response`: `failure_autopsy_mech476-mech475-cluster_2026-07-29.json` committed 2026-07-29 <= resolution 2026-07-29
+- `competence_floor`/`H-mech476-novelty-tagging`: `failure_autopsy_mech476-mech475-cluster_2026-07-29.json` committed 2026-07-29 <= resolution 2026-07-29
 - `conversion_ceiling_root`/`H-objective-misspecification`: `failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json` committed 2026-07-22 <= resolution 2026-07-24
 - `conversion_ceiling_root`/`H-observation-interface`: `failure_autopsy_backlog_2026-07-24.json` committed 2026-07-24 <= resolution 2026-07-24
 - `arousal-variance-amplifier`/`H-arousal-channel-agnostic`: `failure_autopsy_V3-EXQ-785_2026-07-19.json` committed 2026-07-19 <= resolution 2026-07-19
-
-**Unverifiable (quiet -- not a violation, but not evidence either).** No git history was available to check these (uncommitted leg, wholesale file rewrite, or git unavailable). Commit the leg and name a `pre_registration_source` so it self-clears next cycle:
-
-- `competence_floor`/`H-mech475-baseline-reversal`: pre-registration could not be checked against git (no git history for this leg). Not a violation -- but it is also not evidence. Commit the leg (and name a `pre_registration_source`) so it self-clears.
-- `competence_floor`/`H-mech476-dose-response`: pre-registration could not be checked against git (no git history for this leg). Not a violation -- but it is also not evidence. Commit the leg (and name a `pre_registration_source`) so it self-clears.
-- `competence_floor`/`H-mech476-novelty-tagging`: pre-registration could not be checked against git (no git history for this leg). Not a violation -- but it is also not evidence. Commit the leg (and name a `pre_registration_source`) so it self-clears.
 
 ---
 

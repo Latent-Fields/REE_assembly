@@ -1,0 +1,91 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-29T21:57:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "chain": ["v3_exq_824_q081_shared_organisation_landmark_removal_20260726T165630Z_v3", "v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3", "v3_exq_838_q081_cross_stream_recording_20260729T173347Z_v3"],
+  "targets": [
+    {
+      "run_id": "v3_exq_838_q081_cross_stream_recording_20260729T173347Z_v3",
+      "queue_id": "V3-EXQ-838",
+      "claim_ids": ["Q-081"],
+      "experiment_purpose": "evidence",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_verdict": "Partially correct as a hypothesis. The substrate genuinely did not carry the signal, and the script pre-declared this outcome as informative-not-false-negative. But 'requeue after substrate' is under-specified: 838 tested the one concrete substrate fix (use_per_region_vs=True) that 824a recommended and it FAILED, so the run does not license another same-pair requeue -- it refutes the known fix and forces a cheap empirical per-pair reach pre-flight + a build-vs-reframe discrimination.",
+      "failed_criterion": "precondition",
+      "failed_criterion_detail": "arm_statistics_not_degenerately_bit_identical: measured 0.0 (0/5 valid seeds non-bit-identical) vs threshold 1.0; yoked_arms_preserved_by_construction_fraction: 0.0 vs 0.6. All four arms produced bit-identical RV(z_world,operating_mode) at every seed (mean_delta=0.0, sd_delta=0.0) DESPITE the reach-check passing (landmark_arm_behavioural_reach=1.0) and use_per_region_vs=True enabled.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "n/a",
+        "prerequisites": "partial",
+        "implementation": "partial",
+        "environment": "adequate",
+        "measurement": "misleading",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "cross-timescale connectome coordination (structure-destroying/scrambled-control paradigm, Chang/Nastase/Hasson 2022; surrogate-null construction, Lancaster et al. 2018)",
+        "dependencies": ["a manipulation whose reach is empirically verified against the SPECIFIC measured pair (z_world, operating_mode), not a blanket flag"],
+        "is_formal_import": false,
+        "divergence": "n/a -- defect is REE-internal (the measured pair is unreachable by available levers), not a biology/architecture mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "Q-081": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-838 (2026-07-29) is Q-081's third consecutive bit-identical-arms result on RV(z_world, operating_mode) and is non_contributory: it enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) plus a structurally different manipulation family (temporal recording ablation: IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS), yet all four arms produced bit-identical rv at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0) (failure_autopsy_v3-exq-838_2026-07-29). This refutes the 824a substrate hypothesis: use_per_region_vs=True does NOT grant operating_mode reach. Q-081 Outcome A vs B remains unadjudicable; the measured pair appears unreachable by every lever tried across 824/824a/838. Next step is a cheap empirical per-pair reach pre-flight, not another full run; a Q081-REACH-CHECK-PAIR-SPECIFIC substrate need should be created/tracked with this refutation recorded.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "Q081-REACH-CHECK-PAIR-SPECIFIC",
+        "title": "q081 reach: empirically verify manipulation reach to the SPECIFIC measured pair (z_world, operating_mode) before any full run; use_per_region_vs=True is refuted as sufficient",
+        "implementation_hint": "824a recommended 'add use_per_region_vs=True and re-verify'. 838 did exactly that (plus a second, temporal manipulation family) and RV(z_world, operating_mode) stayed bit-identical across all 5 seeds. The use_per_region_vs reach path (apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3 -> operating_mode, agent.py:4686-4692) does not carry variance to operating_mode. Do NOT flip another blanket flag: build a cheap low-episode pre-flight reach probe that asserts at least one arm moves rv_primary on the SPECIFIC measured pair, and gate any full run on it. If no lever moves operating_mode, the DV pair itself must be reframed onto a confirmed-reachable pair (H2).",
+        "unblocks_claims": ["Q-081", "INV-091"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_838_q081_cross_stream_recording_20260729T173347Z_v3",
+          "experiment_type": "v3_exq_838_q081_cross_stream_recording",
+          "metric": "arm_statistics_not_degenerately_bit_identical: 0 of 5 valid seeds non-bit-identical, DESPITE use_anchor_sets=True AND use_per_region_vs=True AND landmark_arm_behavioural_reach=1.0",
+          "target": "at least 1 valid seed produces a non-bit-identical rv_primary between INTACT and at least one manipulation arm on the measured pair"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "not_fired_reason": "Q-081's chain (824, 824a, 838) is all measurement_test_design_defect, not substrate_ceiling; R3 counts only substrate_ceiling so the formal brake does not fire. BUT this is the third consecutive same-shape (bit-identical) failure and 838 already tested the best-known fix -- routing REFUSES another blind full re-run of the same pair (spirit of the brake at the test-design level; same precedent 824a's autopsy flagged)."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": ["H1: operating_mode CAN be made reachable via a mechanism not yet tried (use_per_region_vs already refuted)", "H2: operating_mode is architecturally NOT downstream of these manipulations; RV(z_world, operating_mode) is the wrong DV and Q-081 must reframe onto a confirmed-reachable pair"],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "substrate", "sketch": "cheap low-episode reach scan across untried levers (per-region VS shaping variants / direct operating_mode write path) asserting at least one arm moves rv_primary on the measured pair"},
+          {"hypothesis": "H2", "axis": "measurement", "sketch": "cheap reach scan over candidate DV pairs to find one both members of which are empirically reachable by the recording manipulation; reframe Q-081's DV onto it"}
+        ],
+        "note": "GOV-FANOUT-1: a single cheap empirical reach pre-flight discriminates H1 from H2 (a lever that moves operating_mode -> H1 build; none does -> H2 reframe). Run the pre-flight BEFORE any full multi-seed run -- 838 already spent ~83 min re-establishing a bit-identical result. Do NOT power-bump the braked full design."
+      },
+      "learning_extracted": [
+        "use_per_region_vs=True is refuted as the operating_mode reach fix: it was enabled end-to-end in 838 and RV(z_world, operating_mode) stayed bit-identical across all 5 seeds.",
+        "Two structurally different manipulation families (824 spatial landmark removal, 838 temporal recording ablation) hit the identical bit-identical degeneracy on the identical pair -- strong evidence the measured pair, not any one manipulation, is the problem.",
+        "The recommended Q081-REACH-CHECK-PAIR-SPECIFIC substrate entry was never written to substrate_queue.json (governance has not swept the 824a sweep autopsy); 838 shows any such entry must be an empirical per-pair pre-flight, not a blanket flag-flip.",
+        "Cost discipline: 838 ran ~83 min (elapsed_seconds ~4986) to re-establish a bit-identical result; the arm_statistics_not_degenerately_bit_identical precondition already exists and should gate a cheap pre-flight, not a full run."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_applied": {
+    "question_created": "q081-cross-stream-shared-organisation",
+    "pre_registered_hids": ["H1-build-reach", "H2-reframe-pair"],
+    "resolved_hids": [],
+    "recorded_alive_with_run": ["H-reach-per-region-vs"],
+    "note": "838 is non_degenerate:false (precondition-unmet), so the refuted reach approach is recorded with resolving_run 838 but left state=alive per the Step 9b mapping table -- an uninformative run narrows the solution space (surfaces an observation bottleneck for Dimension 4) but does not clear the elimination bar."
+  }
+}
