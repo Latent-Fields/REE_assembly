@@ -14037,12 +14037,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_085",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
-      ]
+      ],
+      "gated_at_utc": "2026-07-29T08:19:30Z",
+      "gated_by_session": "igw-215-proposal-for-q-085",
+      "gating_reason": "blocked_substrate (2026-07-29, session igw-215-proposal-for-q-085). Q-085 asks whether committed-macro GRAIN (MECH-323 chunk_max_size x chunk_max_depth) is a CONTROLLABILITY parameter. The claim's own what_would_answer EXPLICITLY forbids a standalone experiment: the answer IS the dose-response arm of the MECH-163 hierarchical-vs-flat falsifier (same run, ZERO extra compute). That dose axis requires (gate a) the ARC-071 chunk accumulator to actually form/commit chunks -- the gate V3-EXQ-810 FAILED -- and (gate b) REALISED mean committed-chunk length to DIFFER across the chunk_max_size {2,3,5} dose conditions. As of 2026-07-29 gate a is met in ISOLATION (V3-EXQ-810a PASS 2026-07-28: accumulator fires, max_formed_chunk_length=5) but the DOSE axis is confirmed NOT ready: V3-EXQ-834 budget-coupled-ceilings (2026-07-29T00:23Z) self-routed substrate_not_ready_requeue with the non-vacuity gate RED in EVERY budget arm (chunks_formed / depth_gain_evaluable failed; realised size grew in only 0.4 of arms, depth in 0.4), so realised committed-chunk length does NOT yet differentiate across budget settings. The MECH-163 falsifier the dose arm rides most recently FAILED no_differential_recruitment (V3-EXQ-786b 2026-07-24). Queuing a separate Q-085 experiment is forbidden by the claim and would only re-derive the 834 readiness failure (a vacuous result, not a verdict).",
+      "release_condition": "A budget-coupled-ceilings run (V3-EXQ-834 successor) passes its non-vacuity gate -- chunks form AND REALISED mean committed-chunk length differentiates across chunk_max_size {2,3,5} -- AND the MECH-163 hierarchical-vs-flat falsifier (786-lineage) reaches a scorable dose-response run. Q-085 then resolves for ZERO additional compute from that same falsifier's dose statistic: RESOLVED-YES if post-devaluation policy persistence rises MONOTONICALLY with realised mean committed-chunk length; RESOLVED-NO if flat while chunks demonstrably form/select/commit at differing realised lengths. Do NOT queue a standalone Q-085 experiment."
     },
     {
       "acceptance_checks": [
