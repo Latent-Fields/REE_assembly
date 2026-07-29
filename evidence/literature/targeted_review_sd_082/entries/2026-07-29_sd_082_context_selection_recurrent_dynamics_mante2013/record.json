@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_082",
+  "entry_id": "2026-07-29_sd_082_context_selection_recurrent_dynamics_mante2013",
+  "timestamp_utc": "2026-07-29T06:04:05Z",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "source": {
+    "title": "Context-dependent computation by recurrent dynamics in prefrontal cortex",
+    "authors": [
+      "Valerio Mante",
+      "David Sussillo",
+      "Krishna V Shenoy",
+      "William T Newsome"
+    ],
+    "year": 2013,
+    "venue": "Nature",
+    "doi": "10.1038/nature12742",
+    "url": "https://doi.org/10.1038/nature12742"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "mixed",
+  "confidence": 0.66,
+  "confidence_rationale": "Canonical, heavily replicated result from a top venue, and it speaks to both halves of SD-082 -- but in opposite directions, which is why the direction is mixed rather than supports. It corroborates the premise (a context/rule signal is a small displacement riding on a much larger shared representation, and is not gated out at the input) while undercutting the sufficiency of the remedy (in cortex, context is converted into differential action by recurrent dynamics over time, not by a static affine read-out). Held at 0.66 because the task -- two-modality perceptual discrimination in macaque -- is a long way from a learned pool of sixteen live rules biasing action candidates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Irrelevant evidence is not suppressed at the input: both the relevant and the irrelevant sensory signals remain robustly represented in the prefrontal population, and selection occurs downstream in the recurrent dynamics. An architecture that assumes the rule signal arrives pre-separated, or that a single read-out layer can do the separating, is assuming away the part cortex actually solves dynamically.",
+    "The context signal itself is a comparatively small displacement of the population state relative to the dominant condition-shared and time-varying structure, so its behavioural leverage is not proportional to its magnitude in the raw response."
+  ],
+  "tags": [
+    "sd-082",
+    "sd_082",
+    "context",
+    "rule_selection",
+    "prefrontal",
+    "recurrent_dynamics"
+  ],
+  "mapping": {
+    "source_claim_statement": "Macaques flexibly selected and integrated one of two noisy sensory features (motion or colour) according to a contextual cue. Prefrontal population activity showed that both features remained represented regardless of relevance; selection and integration turned out to be two aspects of one dynamical process unfolding in the same circuit, reproduced by a trained recurrent network in which context reorients the population's integration axis rather than gating the input.",
+    "ree_translation": "For SD-082 this reads on two axes. It corroborates the diagnosis: a context/rule variable can be present, behaviourally decisive, and yet be a small component of the population state, so a read-out that does not isolate it will miss it -- which is what the SD-033a head does under the SD-008 cone. It also constrains the remedy: SD-082 installs a feedforward, gradient-trainable affine head with a soft bound, whereas Mante et al. find the biological solution to the same problem is a recurrent selection process that acts over the course of a decision. If REE's rule-to-action conversion genuinely needs that, mean subtraction plus scaled-tanh makes the propagation measurable without making it correct.",
+    "mapping_caveat": "The 'context' here is a binary cue selecting between two sensory modalities in a perceptual decision, whereas SD-078's rule_state is a learned pool of up to sixteen live rules feeding a per-candidate action bias -- a different object at a different level of abstraction. The 'weakens' half is therefore an argument from architectural analogy, not a measurement against SD-082: nothing in this paper shows that a feedforward demixed read-out FAILS at REE's task, only that cortex solves its own version differently. Treat it as a reason to instrument SD-082's head for saturation and path-dependence, not as a prediction that 822a will null.",
+    "source_context": "Macaque (rhesus) prefrontal cortex, multi-electrode single-unit population recordings during a context-dependent motion/colour discrimination task, plus a trained recurrent neural network model fitted to reproduce the population dynamics."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.58,
+    "transfer_risk": 0.45,
+    "notes": "Source quality is about as high as this literature goes. Mapping fidelity is the weak link and is what pulls the aggregate down well below the source score: the supporting half maps cleanly (small context signal on a large shared representation), the weakening half maps only by analogy (recurrent-vs-feedforward), and those two halves do not deserve equal weight. Transfer risk is the highest of the SD-082 set because the task structure is furthest from REE's."
+  }
+}

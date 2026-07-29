@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_082",
+  "entry_id": "2026-07-29_sd_082_divisive_normalization_canonical_carandini2012",
+  "timestamp_utc": "2026-07-29T06:04:05Z",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "source": {
+    "title": "Normalization as a canonical neural computation",
+    "authors": [
+      "Matteo Carandini",
+      "David J Heeger"
+    ],
+    "year": 2012,
+    "venue": "Nature Reviews Neuroscience",
+    "doi": "10.1038/nrn3136",
+    "url": "https://doi.org/10.1038/nrn3136"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Authoritative review establishing that removing a pooled common drive is a canonical cortical operation, present across areas, modalities and species -- which is real biological warrant for SD-082's design instinct on BOTH of its changes (strip the common mode; bound the output without a hard rail). Scored below 0.6 because of a specific and non-trivial operator mismatch: the canonical computation is DIVISIVE and SD-082 implements SUBTRACTIVE mean removal, and a review cannot be evidence for a form it does not describe.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Without normalisation, a strong shared drive saturates responses and destroys the differential pattern across a population -- the same end state as SD-082's hard clamp railing every candidate to a common value.",
+    "Divisive gain control bounds responses while preserving relative differences; a bound implemented instead as a hard rail discards both the differences and the local gradient in its flat region."
+  ],
+  "tags": [
+    "sd-082",
+    "sd_082",
+    "normalization",
+    "gain_control",
+    "common_mode",
+    "saturation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Normalisation -- dividing a neuron's response by a common factor that pools the activity of a surrounding population -- recurs across brain regions, sensory modalities and species, and is invoked to explain contrast responses in V1, odour coding, attentional modulation, value encoding and multisensory integration. It is therefore proposed as a canonical neural computation rather than a modality-specific trick.",
+    "ree_translation": "SD-082 makes two changes to the SD-033a bias head: subtract the shared component across candidates before the read-out, and replace the hard output clamp with a scaled tanh. Carandini and Heeger supply a biological rationale for both at once, because normalisation does both jobs in one operation -- it discounts the pooled common drive AND bounds the response smoothly, so a population under strong shared input stays inside its dynamic range without its differential structure being flattened.",
+    "mapping_caveat": "The operator is not the same one. Canonical normalisation is DIVISIVE (response over pooled activity); SD-082 implements SUBTRACTIVE mean removal followed by an independent tanh bound. Division rescales gain and preserves ratios; subtraction preserves absolute differences. Under the SD-008 cone, where the common component is large and the residual differences are small, both would rescue the differential signal -- but this review is not evidence for the subtractive form specifically, and if the informative structure in REE's candidate summaries turns out to be multiplicative in the common magnitude, subtraction is the wrong choice and would show up as scale-dependent bias behaviour. Additionally this is a review, contributing synthesis rather than a new measurement.",
+    "source_context": "Review spanning primary visual cortex, olfactory system, auditory and multisensory areas, and value/attention literatures, across invertebrate and mammalian preparations. No prefrontal rule-selection data specifically, and no artificial-agent work."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high for a review -- it is the standard reference and the phenomenon is broadly replicated. Mapping fidelity is deliberately held at 0.50 by the divisive-versus-subtractive mismatch, which is the single most load-bearing caveat in this entry and the reason the aggregate lands below both of the other SD-082 entries despite comparable source quality."
+  }
+}

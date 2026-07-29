@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_085",
+  "entry_id": "2026-07-29_q_085_start_stop_bracketing_jin2010",
+  "timestamp_utc": "2026-07-29T06:04:05Z",
+  "claim_ids_tested": [
+    "Q-085"
+  ],
+  "source": {
+    "title": "Start/stop signals emerge in nigrostriatal circuits during sequence learning",
+    "authors": [
+      "Xin Jin",
+      "Rui M Costa"
+    ],
+    "year": 2010,
+    "venue": "Nature",
+    "doi": "10.1038/nature09263",
+    "url": "https://doi.org/10.1038/nature09263"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Strong, causally-supported evidence (recording plus genetic disruption) that a learned action sequence acquires explicitly signalled boundaries, which is the structural premise Q-085 rests on: if boundaries are what the circuit represents, boundaries are where control can be applied. The specific result that start/stop activity did NOT reflect action value is an independent echo of the V3 substrate finding that none of the five release mechanisms reads whether the committed outcome is still valuable. Held at 0.64 because the study never tests devaluation or mid-sequence intervention, so it evidences the boundary structure and not the controllability consequence.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Start/stop activity emerged only WITH sequence learning -- boundaries are a learned property of a consolidated sequence, not a fixed property of the task. An agent whose chunks have not yet crystallised has no boundary structure to measure, which is the readiness failure V3-EXQ-810 hit on two of three seeds.",
+    "The bracketing signals did not reflect interval timing, movement speed, or action value. A sequence-boundary signal being value-blind means the representation that governs commitment carries no information about whether the committed outcome is still worth having.",
+    "Disrupting striatal circuit function abolished the development of start/stop activity AND selectively impaired sequence learning, so boundary signalling and sequence acquisition are not separable -- one cannot ablate the boundary structure while leaving chunk formation intact as a control."
+  ],
+  "tags": [
+    "q-085",
+    "q_085",
+    "action_sequence",
+    "chunking",
+    "start_stop",
+    "nigrostriatal",
+    "commitment",
+    "mech-323"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mice learning a self-paced operant sequence developed nigrostriatal activity that specifically signalled the initiation or the termination of each action sequence. This start/stop activity emerged over the course of sequence learning, was specific to particular actions, and was not accounted for by interval timing, movement speed or action value. Genetically altering striatal circuit function disrupted the development of start/stop activity and selectively impaired sequence learning.",
+    "ree_translation": "Q-085 claims that committed-macro grain sets an intervention interval nothing in MECH-323 measures. Jin and Costa supply the structural half of that picture in a real circuit: a learned sequence becomes a bracketed unit with explicitly represented start and stop points, and those brackets are what the circuit addresses. The value-blindness of the bracketing signal maps onto the substrate finding motivating Q-085 -- that all five V3 mid-commitment release mechanisms (MECH-091, MECH-342, rung-6 natural-commit with SD-033e, MECH-321/ARC-070, SD-034) trigger on threat, readiness, foregone-alternative proximity, prediction failure and closure, and none reads whether the committed outcome is still valuable.",
+    "mapping_caveat": "That start/stop activity does not encode action value is not evidence that no other circuit can interrupt a sequence on value grounds -- Jin and Costa ran no devaluation test, and Ostlund et al. 2009 demonstrably show intact animals withholding a whole chunk when its outcome is devalued. So this entry supports 'sequence boundaries exist, are learned, and are value-blind', NOT 'mid-sequence value intervention is impossible'. Reading it as the latter would overstate it in exactly the direction Q-085 is predisposed to. It also offers no dose-response: sequences were short and length was not manipulated, so nothing here speaks to whether the uncorrectable interval scales with grain.",
+    "source_context": "Male C57BL/6 mice, self-paced operant lever-press sequence task; in-vivo electrophysiological recording in nigrostriatal circuits (striatum and substantia nigra) plus genetic manipulation of striatal NMDA-receptor function."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: Nature, recording plus a causal genetic manipulation, and the finding has held up as a reference result for sequence bracketing. Mapping fidelity is the limiter -- the paper establishes boundary structure and value-blindness of the bracket signal, which is Q-085's premise, but never probes the controllability consequence that Q-085 is actually asking about. Transfer risk moderate: mouse nigrostriatal circuitry versus a V3 agent whose commitment machinery is a beta gate and an explicit release set, with no striatal analogue."
+  }
+}

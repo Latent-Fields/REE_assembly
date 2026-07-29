@@ -1,0 +1,57 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_082",
+  "entry_id": "2026-07-29_sd_082_condition_independent_variance_kobak2016",
+  "timestamp_utc": "2026-07-29T06:04:05Z",
+  "claim_ids_tested": [
+    "SD-082"
+  ],
+  "source": {
+    "title": "Demixed principal component analysis of neural population data",
+    "authors": [
+      "Dmitry Kobak",
+      "Wieland Brendel",
+      "Christos Constantinidis",
+      "Claudia E Feierstein",
+      "Adam Kepecs",
+      "Zachary F Mainen",
+      "Xue-Lian Qi",
+      "Ranulfo Romo",
+      "Naoshige Uchida",
+      "Christian K Machens"
+    ],
+    "year": 2016,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.10989",
+    "url": "https://doi.org/10.7554/eLife.10989"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "High source quality (eLife, four independent single-unit datasets spanning rat and macaque, prefrontal and orbitofrontal), and the specific finding SD-082 needs -- that a condition-independent component absorbs a large share of population variance and swamps the task-relevant components unless it is explicitly removed -- is exactly the failure SD-082 diagnoses in the SD-033a bias head. Held below 0.8 because dPCA is an analyst's decomposition, not a circuit mechanism: the paper establishes that the common mode exists and dominates, not that any downstream neural read-out subtracts it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A task variable can be robustly and differentially encoded in a population while being invisible in any read-out taken from the raw population response, because a condition-independent component of much larger magnitude dominates the signal. Measuring the differentiation upstream (as V3-EXQ-822 did with on_rule_state_diff 0.644) therefore does not license the inference that the differentiation is available downstream.",
+    "Standard PCA -- and, by the same logic, any variance-ranked or magnitude-ranked summary of candidate states -- returns components that mix the common mode with the task-relevant signal, so the leading components are not the informative ones."
+  ],
+  "tags": [
+    "sd-082",
+    "sd_082",
+    "common_mode",
+    "population_geometry",
+    "prefrontal",
+    "readout"
+  ],
+  "mapping": {
+    "source_claim_statement": "In prefrontal and orbitofrontal populations across four datasets, a large fraction of explained variance is condition-independent -- activity that varies with time within a trial but is identical across all task conditions -- while stimulus, decision and interaction components are individually small; demixing (dPCA) is required to expose the task-dependent components, which standard PCA mixes together.",
+    "ree_translation": "SD-082 asserts that the SD-033a per-candidate bias head fails to propagate the SD-078 differentiated rule_state because it reads raw z_world candidate summaries in which a common mode dominates -- under the SD-008 ~0.98-cosine cone every candidate summary is nearly the same vector -- so rule_state's contribution is erased before the head sees it. Kobak et al. supply the general form of that failure in recorded cortex, and SD-082's per-tick subtraction of the mean summary across candidates is the in-model analogue of dPCA's condition-independent marginalisation.",
+    "mapping_caveat": "Two distinct gaps. (1) dPCA is a post-hoc analysis performed by an experimenter who knows the task design; the paper makes no claim that neural circuits implement the demixing, so it warrants SD-082's DIAGNOSIS far more than SD-082's REMEDY. (2) The marginalisation axis differs: dPCA averages over task conditions and time within a trial, whereas SD-082 subtracts the mean across CANDIDATES within a single tick. Both remove a shared component, but the equivalence is an analogy, not an identity, and nothing here bounds how much of REE's candidate-wise common mode is genuinely uninformative rather than carrying state the head should use.",
+    "source_context": "Single-unit population recordings reanalysed across four datasets: macaque prefrontal cortex (visuospatial working memory; somatosensory frequency discrimination), macaque PFC during a delayed task, and rat orbitofrontal cortex during an olfactory discrimination task. No REE-like agent, no action-bias read-out."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Source quality is high and largely uncontested -- dPCA is a widely adopted method and the datasets are independent. Mapping fidelity is the binding constraint: the paper evidences the existence and dominance of a common mode in high-dimensional neural state, which is SD-082's premise, but not the specific corrective operator SD-082 installs. Transfer risk is moderate rather than low because REE's candidate summaries are a model-internal construct with no measured counterpart in these recordings."
+  }
+}

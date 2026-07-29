@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_085",
+  "entry_id": "2026-07-29_q_085_sequence_level_devaluation_ostlund2009",
+  "timestamp_utc": "2026-07-29T06:04:05Z",
+  "claim_ids_tested": [
+    "Q-085"
+  ],
+  "source": {
+    "title": "Evidence of action sequence chunking in goal-directed instrumental conditioning and its dependence on the dorsomedial prefrontal cortex",
+    "authors": [
+      "Sean B Ostlund",
+      "Neil E Winterbauer",
+      "Bernard W Balleine"
+    ],
+    "year": 2009,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.1176-09.2009",
+    "url": "https://doi.org/10.1523/JNEUROSCI.1176-09.2009"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.72,
+  "confidence_rationale": "The most direct empirical evidence available for Q-085's central premise -- that the grain of the represented action unit sets the grain at which outcome-value information can act -- established by a clean double dissociation (sham rats reorganised at sequence level, dmPFC-lesioned rats at element level). Direction is mixed rather than supports because the same result cuts against the naive reading of Q-085's RESOLVED-YES criterion: the chunked animals were fully devaluation-SENSITIVE at the sequence boundary. Capped at 0.72 because sequences were two presses, so the study contributes nothing to the monotonic dose-response over chunk length that Q-085 actually tests.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Chunking did not abolish outcome sensitivity -- it relocated it to the sequence boundary. Sham rats withheld the entire sequence whose outcome had been devalued. A design that makes the devaluation fully knowable BEFORE chunk onset can therefore find flat persistence across chunk lengths while the grain-as-controllability hypothesis is true, because the animal (or agent) simply declines to commit.",
+    "The lesion manipulates the CAPACITY to chunk, not chunk SIZE. A chunk-versus-no-chunk contrast cannot distinguish a monotonic dose-response in realised length from a threshold effect at any length greater than one.",
+    "When sequence-level representation was disrupted, control did not disappear but shifted to the terminal response specifically -- the element closest to the outcome -- rather than distributing across elements. Element-wise credit assignment is not the null case for losing a chunk."
+  ],
+  "tags": [
+    "q-085",
+    "q_085",
+    "chunking",
+    "devaluation",
+    "action_sequence",
+    "controllability",
+    "dmpfc",
+    "mech-323",
+    "mech-163"
+  ],
+  "mapping": {
+    "source_claim_statement": "Rats trained on a bidirectional heterogeneous chain task, in which the identity of the reward depended on the ORDER of two lever presses, learned to represent the ordered pair as a unit. Sham-lesioned rats withheld performance of a whole sequence when its associated outcome was devalued or its contingency degraded. Rats with cell-body lesions of dorsomedial prefrontal cortex failed to reorganise at sequence level and instead withheld only the terminal response of the sequence that had earned the devalued outcome, indicating they represented the elements as distinct behavioural units.",
+    "ree_translation": "Q-085 asks whether committed-macro grain (MECH-323's chunk_max_size x chunk_max_depth) is a controllability parameter -- whether it silently sets the interval over which the planner cannot intervene. Ostlund et al. give the premise direct empirical support in an animal: the unit of representation IS the unit at which outcome-value revaluation expressed itself, and changing the represented grain (by lesion) changed the grain of behavioural adjustment. That is the same coupling Q-085 says MECH-323 registers as a formation parameter with no owner on the consumer side.",
+    "mapping_caveat": "The transfer is premise-level, not criterion-level, and the difference matters for the V3-EXQ-810/MECH-163 design. Ostlund's chunked animals had a choice point BEFORE each sequence and at that point were fully devaluation-sensitive; what chunking removed was WITHIN-sequence adjustment, not adjustment as such. Translated into V3, post-devaluation persistence should rise with realised committed-chunk length only to the extent that the value change becomes knowable AFTER the beta gate commits. If the devaluation is fully knowable at chunk onset, a long macro need not read as more insensitive and the experiment can return a flat dose-response while the hypothesis is true. This is a distinct confound from the mid-commitment-release confound Q-085 already pre-registers, and it belongs in the same pre-registration. Beyond that: rat lesion study, two-press sequences (no length axis at all), and REE contains no model-free machinery, so the dmPFC lesion has no substrate counterpart.",
+    "source_context": "Female Long-Evans rats; excitotoxic (NMDA) cell-body lesions of dorsomedial prefrontal cortex centred on medial agranular cortex versus sham; concurrent bidirectional heterogeneous chain task; outcome-devaluation and contingency-degradation probe tests."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "Strong design -- lesion versus sham with two independent probes (devaluation and contingency degradation) converging on the same conclusion, from the group that defined this paradigm. Mapping fidelity is good on the premise and deliberately not higher, because the study contains no chunk-length manipulation and therefore cannot speak to the monotonicity that Q-085's RESOLVED-YES criterion turns on. Transfer risk is moderate-to-high: rodent lesion versus an artificial agent with no model-free controller, and the lesion removes chunking capacity rather than tuning grain."
+  }
+}
