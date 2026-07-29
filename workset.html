@@ -304,6 +304,7 @@
     background: #d4a72c22; color: #e3b341;
   }
   #pending-chips .pc-row .pc-status.status-withdrawn { background: #8b949e22; color: var(--muted); }
+  #pending-chips .pc-row .pc-status.status-done { background: #2ea04326; color: #56d364; }
   #pending-chips .pc-row .pc-title { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #pending-chips .pc-row .pc-session { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #pending-chips .pc-row .pc-when { color: var(--muted); font-family: ui-monospace, monospace; }
@@ -523,7 +524,7 @@ function renderChips() {
   const sorted = CHIPS.items.slice().sort((a, b) =>
     (b.spawned_at || '').localeCompare(a.spawned_at || ''));
   list.innerHTML = sorted.map(ch => {
-    const statusCls = ch.status === 'withdrawn' ? ' status-withdrawn' : '';
+    const statusCls = (ch.status === 'withdrawn' || ch.status === 'done') ? ' status-' + ch.status : '';
     const titleTip = (ch.tldr || ch.prompt || '').replace(/"/g, '&quot;');
     return '<div class="pc-row">' +
       '<span class="pc-status' + statusCls + '">' + escapeHtml(ch.status || '?') + '</span>' +
