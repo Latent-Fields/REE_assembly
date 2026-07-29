@@ -1211,3 +1211,4 @@ One line per hourly tick. ASCII only.
 2026-07-29T04:38:03Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-29T05:38:39Z skip IGW-20260729-213: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-29T06:39:19Z no eligible item (skipped 242): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
+2026-07-29T07:39:44Z SPAWN IGW-20260729-215 skill=/queue-experiment prio=40 uuid=804a1e9a-ebb4-4c37-b3c3-efd5201ef46f pid=27823 worktree=igw-215-proposal-for-q-085
