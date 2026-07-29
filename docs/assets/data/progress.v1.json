@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-28T17:45:20Z",
+  "generated_at": "2026-07-29T22:46:43Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 126,
-      "built_modules": 103,
-      "fraction_built": 0.8175,
+      "total_modules": 127,
+      "built_modules": 104,
+      "fraction_built": 0.8189,
       "state_counts": {
         "proposed": 23,
-        "implemented": 73,
+        "implemented": 74,
         "implemented_pending_validation": 17,
         "validated": 13
       },
-      "build_proof_gap": 90,
-      "build_proof_gap_note": "103 modules built, 90 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 91,
+      "build_proof_gap_note": "104 modules built, 91 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,94 +31,101 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 28,
-      "total_initial": 53,
-      "total_initial_at_registration": 40,
-      "total_fanout_added": 13,
-      "total_resolved_out": 24,
-      "reduction_pct_vs_current": 45.3,
-      "net_narrowing_pct": 30.0,
+      "total_surviving": 36,
+      "total_initial": 64,
+      "total_initial_at_registration": 46,
+      "total_fanout_added": 18,
+      "total_resolved_out": 27,
+      "reduction_pct_vs_current": 42.2,
+      "net_narrowing_pct": 21.7,
       "convergence_classes": {
+        "narrowing": 5,
         "static": 5,
-        "narrowing": 4,
-        "circling": 3
+        "circling": 3,
+        "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "28 alive against 40 originally enumerated, and against 53 including 13 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 12
+      "honest_pair_note": "36 alive against 46 originally enumerated, and against 64 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 14
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 6,
-      "open_questions": 12
+      "ready": 7,
+      "open_questions": 14
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 52,
+      "surviving": 63,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 50,
+      "surviving": 61,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 46,
+      "surviving": 57,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 45,
+      "surviving": 56,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 42,
+      "surviving": 53,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-18",
-      "surviving": 36,
+      "surviving": 47,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-19",
-      "surviving": 32,
+      "surviving": 43,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-20",
-      "surviving": 31,
+      "surviving": 42,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-24",
-      "surviving": 30,
+      "surviving": 41,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-25",
-      "surviving": 29,
+      "surviving": 40,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
-      "date": "2026-07-28",
-      "surviving": 28,
+      "date": "2026-07-27",
+      "surviving": 38,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
+    },
+    {
+      "date": "2026-07-29",
+      "surviving": 36,
+      "closure_pct": 76.2,
+      "build_pct": 81.9
     }
   ],
   "questions": [
@@ -131,9 +138,9 @@
         "INV-088"
       ],
       "is_hero": true,
-      "initial_frozen_count": 17,
+      "initial_frozen_count": 20,
       "initial_frozen_count_at_registration": 7,
-      "fanout_added": 10,
+      "fanout_added": 13,
       "fanout_growth_events": [
         {
           "recorded_utc": "2026-07-18T04:49:14Z",
@@ -180,17 +187,46 @@
           ],
           "delta": 1,
           "note": "V3-EXQ-819 competence_floor R4 instrument-validity leg (D12). Re-opens the representation question with a CORRECTED instrument: the 780 autopsy proved the prior representation-axis eliminations (H-rep) ran on a frozen random projection; R4 tests whether a prediction-trained z_world confers a competence advantage. Pre-registered ALIVE -- 819 vacated by the worst-seed non-vacuity gate (measurement_test_design_defect), awaits scored 819a. Labelled axis=instrumentation (not representation) -- instrument-validity, not circling."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T14:17:38Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech475-baseline-reversal"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech475-baseline-reversal (MECH-475 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T09:24:49Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech476-dose-response"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech476-dose-response (MECH-476 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
+        },
+        {
+          "recorded_utc": "2026-07-29T20:23:19Z",
+          "pre_registered_utc": "2026-07-29T18:19:56Z",
+          "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+          "added_hids": [
+            "H-mech476-novelty-tagging"
+          ],
+          "delta": 1,
+          "note": "/failure-autopsy same-cycle Mode B registration+resolution of H-mech476-novelty-tagging (MECH-476 falsifier leg, first autopsy on that claim). Not a GOV-FANOUT-1 discrimination portfolio (single leg, no rival hypothesis set opened) -- labelled per the general same-cycle registration case Step 9b Mode B describes."
         }
       ],
       "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
-      "net_narrowing_ratio": 0.7143,
-      "bits_removed_vs_registration": 1.81,
+      "net_narrowing_ratio": 0.4286,
+      "bits_removed_vs_registration": 0.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
-          "process",
           "representation",
           "world"
         ],
@@ -326,16 +362,88 @@
               "representation",
               "world"
             ]
+          },
+          {
+            "recorded_utc": "2026-07-29T20:23:19Z",
+            "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-mech475-baseline-reversal",
+                "family": "process"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-mech475-baseline-reversal",
+                "family": "process"
+              }
+            ],
+            "families_already_dead": [
+              "constitution",
+              "instrumentation",
+              "process",
+              "representation",
+              "world"
+            ]
+          },
+          {
+            "recorded_utc": "2026-07-29T20:23:19Z",
+            "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-mech476-dose-response",
+                "family": "process"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-mech476-dose-response",
+                "family": "process"
+              }
+            ],
+            "families_already_dead": [
+              "constitution",
+              "instrumentation",
+              "process",
+              "representation",
+              "world"
+            ]
+          },
+          {
+            "recorded_utc": "2026-07-29T20:23:19Z",
+            "fanout_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
+            "event_class": "circling",
+            "added": [
+              {
+                "hid": "H-mech476-novelty-tagging",
+                "family": "process"
+              }
+            ],
+            "re_entered": [
+              {
+                "hid": "H-mech476-novelty-tagging",
+                "family": "process"
+              }
+            ],
+            "families_already_dead": [
+              "constitution",
+              "instrumentation",
+              "process",
+              "representation",
+              "world"
+            ]
           }
         ]
       },
-      "surviving": 2,
-      "alive": 1,
-      "resolved_out": 13,
+      "surviving": 4,
+      "alive": 3,
+      "resolved_out": 14,
       "confirmed": 3,
-      "reduction_numerator": 13,
-      "reduction_ratio": 0.7647,
-      "bits_removed": 3.09,
+      "reduction_numerator": 14,
+      "reduction_ratio": 0.7,
+      "bits_removed": 2.32,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -595,6 +703,45 @@
             "V3-EXQ-819a"
           ],
           "basis": "V3-EXQ-819 attempted this leg and the encoder DID train (3/3 seeds, delta 0.277-0.333; 780 fault fixed), showing a directional advantage (trained AUC 0.90 vs random 0.46, asymmetric install 2/3 vs 0/3, mean paired +0.442). But the run was VACATED (non_degenerate=false) by a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate -- a measurement_test_design_defect. Leg stays ALIVE; awaits a scored V3-EXQ-819a with the gate reconciled. Observation bottleneck: worst-seed post_bc_install_took floor vacates instrument-validity runs at n=3.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech475-baseline-reversal",
+          "label": "an informative (distributional) value baseline reverses/flattens the destructive competence-below-control inversion",
+          "desc": "MECH-475's decisive REVERSAL test: substitute a distributional critic for the scalar one on the named destructive instances (capacity/V3-EXQ-769, approach/V3-EXQ-781, metabolic/V3-EXQ-771), holding the rest of the build byte-identical, and ask whether the treatment-below-control inversion reverses or flattens in >=2/3 families. Anti-alias vs H-retention-critic: that leg tests whether the critic swap RETAINS an installed competent policy under ordinary RL refinement; this leg tests whether it REVERSES an actively DESTRUCTIVE manipulation on an uninstalled/in-training policy.",
+          "axis": "algorithm",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-837"
+          ],
+          "basis": "V3-EXQ-837 (FAIL, non_degenerate, 2/2 scorable families capacity+approach both readiness- and phenomenon-reproduction-gated green; metabolic correctly self-excluded on its own unmet control-competence guard): the distributional critic's treatment-below-control inversion (15.13/14.90) is 3.4x LARGER than the scalar critic's (4.45/4.44) in both scorable families, reverses_or_flattens=false on all 6 scorable seeds. The informative baseline does not reverse or flatten the destructive effect -- it worsens it. ELIMINATES H-mech475-baseline-reversal; per MECH-475's own text this outcome shape means the claim is WITHDRAWN, not narrowed.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech476-dose-response",
+          "label": "competence retention is a dose-dependent consolidation process (over-training deepens the trace)",
+          "desc": "MECH-476 DOSE arm (Krakauer 2005 over-training paradigm ported): BC-install at 300/600/900 episodes, then identical unconstrained RL refinement; DV is retained_fraction TRAJECTORY. SUPPORTED if retained_fraction_mean is monotone non-decreasing in dose and grows by >= the discrimination margin; WEAKENED if invariant to dose.",
+          "axis": "curriculum",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-836"
+          ],
+          "basis": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech476-novelty-tagging",
+          "label": "a temporally-close novelty exposure consolidates an otherwise sub-threshold (weak) install via behavioural tagging",
+          "desc": "MECH-476 NOVELTY arm (Moncada & Viola 2007 behavioural-tagging paradigm ported): fixed weak BC install (150 episodes, deliberately sub-threshold), then an offline novelty-paired vs novelty-unpaired consolidation window (SD-083 OfflineEWCAnchor, novelty-gated capture). SUPPORTED if the novelty-paired arm retains a larger fraction than unpaired.",
+          "axis": "drive",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-836c"
+          ],
+          "basis": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -1624,28 +1771,59 @@
         "MECH-321"
       ],
       "is_hero": false,
-      "initial_frozen_count": 4,
+      "initial_frozen_count": 6,
       "initial_frozen_count_at_registration": 4,
-      "fanout_added": 0,
-      "fanout_growth_events": [],
-      "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "fanout_added": 2,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-07-28T21:11:09Z",
+          "pre_registered_utc": "2026-07-28T21:11:09Z",
+          "fanout_source": "failure_autopsy_2026-07-28-sweep.json",
+          "added_hids": [
+            "H-representation-axis",
+            "H-algorithm-axis"
+          ],
+          "delta": 2,
+          "note": "GOV-FANOUT-1: three consecutive environment-axis attempts (816, 816b, 816d) converged within noise of each other (~0.0086-0.0087), independently confirmed by 830's 'slow never fires' finding. Fanning out to representation and algorithm axes rather than a fourth environment escalation."
+        }
+      ],
+      "fanout_growth_note": "This question has now accumulated fan-out growth after 3 same-axis (environment) attempts failed to converge -- the campaign has not yet converged; read the growth as a non-convergence signal, not just added coverage.",
+      "net_narrowing_ratio": -0.5,
+      "bits_removed_vs_registration": -0.58,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
+        "convergence_class": "scattering",
+        "reason": "legs added across families but no family has been closed out",
         "families_closed": [],
         "families_touched": [],
         "families_fresh": [
           "instrumentation",
           "process",
+          "representation",
           "world"
         ],
         "unclassified_axes": [],
-        "growth_events": []
+        "growth_events": [
+          {
+            "recorded_utc": "2026-07-28T21:11:09Z",
+            "fanout_source": "failure_autopsy_2026-07-28-sweep.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-representation-axis",
+                "family": "representation"
+              },
+              {
+                "hid": "H-algorithm-axis",
+                "family": "process"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": []
+          }
+        ]
       },
-      "surviving": 4,
-      "alive": 4,
+      "surviving": 6,
+      "alive": 6,
       "resolved_out": 0,
       "confirmed": 0,
       "reduction_numerator": 0,
@@ -1660,9 +1838,10 @@
           "axis": "policy",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-816"
+            "V3-EXQ-816",
+            "V3-EXQ-830"
           ],
-          "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+          "basis": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive. V3-EXQ-830 (2026-07-27, independent scale-heterogeneity diagnostic) confirms the identical observation bottleneck from a different angle: the 'slow' pathway fired zero times in 2393 sweeps across both arms, and ON/OFF arms produced bit-identical behaviour. Two independent probes now converge on the same environment-uncertainty ceiling (per failure_autopsy_2026-07-28-sweep.json). Still non-eliminating; hypothesis stays alive.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1686,9 +1865,10 @@
           "axis": "environment",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-816b"
+            "V3-EXQ-816b",
+            "V3-EXQ-816d"
           ],
-          "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
+          "basis": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
           "children": [],
           "met_elimination_bar": false
         },
@@ -1704,6 +1884,28 @@
           "basis": "pre-registered fan-out leg (GOV-FANOUT-1). Probe P-B: add a forward-PE / per-region-PE comparator trigger alongside the V_s trigger and record where each fires. Null: forward-PE heterogeneity present (PE-trigger fires) while V_s heterogeneity absent (V_s-trigger silent) -> decoupled -> reframe (candidate /claim-synthesis on MECH-321 trigger operationalization).",
           "children": [],
           "met_elimination_bar": false
+        },
+        {
+          "hid": "H-representation-axis",
+          "label": "forward-PE as currently computed is too coarse-grained to register the environment's actual uncertainty",
+          "desc": "a finer-grained or differently-normalized forward-PE readout would discriminate even at the SAME environment harshness that 816/816b/816d already tested",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "pre-registered fan-out leg (GOV-FANOUT-1, per failure_autopsy_2026-07-28-sweep.json). Probe: recompute forward-PE at finer temporal/spatial granularity or with a different normalization on the SAME 816d environment configuration, and check whether the resulting value clears the 0.01 discrimination floor without any further environment harshening.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-algorithm-axis",
+          "label": "the R1 V_s-drop trigger's 0.01 discrimination floor is itself miscalibrated",
+          "desc": "the floor is an engineering choice (per ARC-070's own registration, not literature-derived) and should be lowered rather than the environment pushed further",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "pre-registered fan-out leg (GOV-FANOUT-1, per failure_autopsy_2026-07-28-sweep.json). Probe: re-run 816d's environment config with the R1 V_s-drop trigger threshold lowered (e.g. to 0.005-0.008) and check whether the decomposition mechanism now engages meaningfully, explicitly scoped as a threshold-calibration question, not a claim revision.",
+          "children": [],
+          "met_elimination_bar": false
         }
       ],
       "decision": {
@@ -1714,13 +1916,229 @@
         "live_gate": null,
         "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised"
       }
+    },
+    {
+      "qid": "decomposition_scale_heterogeneity",
+      "title": "Do MECH-288's fast (PE/z-score over z_world+z_self) and slow (BOCPD over z_goal) scales fire at dissociable positions on the ROLLOUT (imagination) stream, once the slow scale is given its stream?",
+      "short_title": "Decomposition scale heterogeneity",
+      "claims": [
+        "MECH-321",
+        "MECH-288",
+        "ARC-070"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": "Registered and fully resolved in one cycle from a genuinely pre-registered 3-row decision table (the 2026-07-27 scoping spike, committed before V3-EXQ-830 resolved). 3 -> 1 narrowing with no growth events. Not a non-convergence signal.",
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 2 fully closed",
+        "families_closed": [
+          "process",
+          "representation"
+        ],
+        "families_touched": [
+          "process"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 2,
+      "confirmed": 1,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.6667,
+      "bits_removed": 1.58,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-scales-dissociable-on-rollout",
+          "label": "the fast and slow scales fire at dissociable rollout positions (low cofire, distinct positions)",
+          "desc": "REE's substrate exhibits heterogeneous distinct-scale segmentation on the imagination stream: fast/PE boundaries re-segment at fine grain while slow/goal-BOCPD boundaries mark a coarser structure, at distinct sweep positions",
+          "axis": "arbitration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "ELIMINATED. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. With zero slow fires there are no distinct positions to dissociate: on_slow_position_hist is all-zero while on_fast_position_hist is populated (847/0/300/0/53/7/119/61). Discriminating non_contributory against PASSING reference bands, not a starved run.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-slow-fires-only-with-fast",
+          "label": "the slow scale fires only coincidently with the fast scale (two detectors, one signal)",
+          "desc": "the apparent scale heterogeneity is nominal at this grain: both detectors respond to the same underlying signal, so slow fires are a subset of fast fires rather than an independent channel",
+          "axis": "arbitration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "ELIMINATED by the same evidence. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The slow scale fired zero times in total (on_n_sweeps_cofire=0, cofire_frac_of_slow=0.0), so it does not fire coincidently with fast either -- the 'two detectors, one signal' reading requires slow fires to exist.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-slow-never-fires-on-rollout",
+          "label": "z_goal does not vary informatively WITHIN a rollout; one effective scale on the imagination stream",
+          "desc": "z_goal is an integrator, so it drifts ACROSS agent ticks but does not move enough WITHIN a single short rollout for the BOCPD detector to find a change-point -- distinct scales require distinct timescales, and a rollout may be too short to carry two",
+          "axis": "representation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "CONFIRMED -- 830's self-routed reading, and the spike named this outcome in advance. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The across-sweep variance is exactly what makes the within-rollout null interpretable: the stream is present and moving between sweeps yet yields no change-point inside one. met_elimination_bar False because confirming one member of a mutually-exclusive outcome set is not itself an elimination event. SCOPE: says nothing about the OBSERVATION stream, where the slow scale is separately contracted, and does NOT weaken MECH-288.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Should MECH-321 be extended to scale-differentiated decomposition (the spike's option (b) / section 5c), in which fast/PE boundaries re-segment at fine grain and slow/goal-BOCPD boundaries trigger a coarser response?",
+        "distance_phrase": "Decidable now on the ROLLOUT stream: answer is NO -- one effective scale, so option (a) stands and the 5c extension sketch is retired (spike section 5b closed 2026-07-29). A separate, still-open question is whether the OBSERVATION stream carries two scales; that was never in this question's scope.",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "q081-cross-stream-shared-organisation",
+      "title": "Does configured multi-rate execution produce genuinely SHARED cross-stream organisation (Q-081 Outcome A) rather than merely wired-but-independent streams (Outcome B)?",
+      "short_title": "Q-081 cross-stream shared organisation",
+      "claims": [
+        "Q-081"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "constitution",
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-reach-per-region-vs",
+          "label": "use_per_region_vs=True grants the recording manipulation reach to operating_mode so RV(z_world, operating_mode) can move",
+          "desc": "The 824a substrate hypothesis: enabling use_per_region_vs=True (reach path apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3 -> operating_mode, agent.py:4686-4692) would let the cross-stream manipulation perturb the measured pair. Tested end-to-end by V3-EXQ-838 (both use_anchor_sets and use_per_region_vs on, plus a temporal recording-ablation family) -- RV stayed bit-identical across all 5 seeds. REFUTED as a fix; state left alive because 838 is non_degenerate:false (a precondition-unmet run narrows the solution space but does not clear the elimination bar).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-838"
+          ],
+          "basis": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H1-build-reach",
+          "label": "operating_mode CAN be made reachable via a mechanism not yet tried (use_per_region_vs already refuted)",
+          "desc": "Build-reach leg (GOV-FANOUT-1 H1): some untried lever -- a per-region VS shaping variant or a direct operating_mode write path -- makes operating_mode co-vary with the cross-stream recording manipulation, so RV(z_world, operating_mode) becomes measurable. Adjudicated by a cheap low-episode reach pre-flight probe (pending queue).",
+          "axis": "substrate",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered, not yet run. Awaiting a cheap empirical per-pair reach pre-flight probe.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-reframe-pair",
+          "label": "operating_mode is architecturally NOT downstream of these manipulations; RV(z_world, operating_mode) is the wrong DV and Q-081 must reframe onto a confirmed-reachable pair",
+          "desc": "Reframe leg (GOV-FANOUT-1 H2): three runs (824 spatial removal, 824a, 838 temporal ablation) hit bit-identical degeneracy on the identical pair, evidence the measured pair -- not the manipulation -- is the problem. If a reach scan finds no lever that moves operating_mode, reframe Q-081's DV onto a pair both members of which are empirically reachable. Adjudicated by the same cheap reach pre-flight (pending queue).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Pre-registered, not yet run. Selected if the reach pre-flight finds no lever that moves operating_mode.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is Q-081 Outcome A (genuinely shared cross-stream organisation) or Outcome B (wired-but-independent streams) -- and, upstream of that, can the chosen DV pair be measured at all?",
+        "distance_phrase": "NOT decidable. The measured pair is unreachable by every manipulation lever tried across 824/824a/838; use_per_region_vs=True is refuted as the fix. Next step is a cheap reach pre-flight discriminating H1 (build reach) from H2 (reframe pair), not another full run.",
+        "live_gate": "Blocked on reachability: RV(z_world, operating_mode) has not moved under any lever tried (824 use_invalidation_trigger, 824a use_anchor_sets, 838 use_per_region_vs + temporal ablations). A cheap empirical per-pair reach pre-flight must find a lever that moves operating_mode (-> H1 build) or confirm none does (-> H2 reframe) before Outcome A/B can be scored.",
+        "observation_bottleneck": "RV(z_world, operating_mode) is bit-identical across arms under all levers tried -- the DV never moves, so Q-081 Outcome A vs B cannot be scored. Any new leg must gate a full run on a cheap empirical per-pair reach assertion (at least one arm moves rv_primary on the SPECIFIC measured pair), never a blanket reach flag."
+      }
     }
   ],
   "momentum": [
     {
-      "run": "V3-EXQ-816b",
+      "run": "V3-EXQ-836c",
       "all_runs": [
-        "V3-EXQ-816b"
+        "V3-EXQ-836c"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
+      "resolved_utc": "2026-07-29T18:19:56Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-837",
+      "all_runs": [
+        "V3-EXQ-837"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-837 (FAIL, non_degenerate, 2/2 scorable families capacity+approach both readiness- and phenomenon-reproduction-gated green; metabolic correctly self-excluded on its own unmet control-competence guard): the distributional critic's treatment-below-control inversion (15.13/14.90) is 3.4x LARGER than the scalar critic's (4.45/4.44) in both scorable families, reverses_or_flattens=false on all 6 scorable seeds. The informative baseline does not reverse or flatten the destructive effect -- it worsens it. ELIMINATES H-mech475-baseline-reversal; per MECH-475's own text this outcome shape means the claim is WITHDRAWN, not narrowed.",
+      "resolved_utc": "2026-07-29T14:17:38Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-836",
+      "all_runs": [
+        "V3-EXQ-836"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
+      "resolved_utc": "2026-07-29T09:24:49Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-816d",
+      "all_runs": [
+        "V3-EXQ-816b",
+        "V3-EXQ-816d"
       ],
       "momentum_class": "hypothesis_narrowed",
       "qid": "policy_decomposition_discrimination",
@@ -1728,7 +2146,7 @@
         "ARC-070",
         "MECH-321"
       ],
-      "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json.",
+      "moved": "V3-EXQ-816b (env_drift_interval->3, world_rule_shift interval=24/depth=1): forward-PE rose 0.005->0.0086, short of the 0.01 discrimination floor, so zero low-V_s steps were produced. Informative-but-non-eliminating: direction correct, dose insufficient. Does not meet the elimination bar (met_elimination_bar requires an adjudicated eliminating direction); hypothesis stays alive pending a stronger-dose retest per failure_autopsy_V3-EXQ-816b_2026-07-26.json. THIRD dose escalation (V3-EXQ-816d, harshened_env_v2, 2026-07-26): off_pe_mean_worst=0.00867, within 0.0007 of 816b's 0.0086 -- diminishing returns confirm this axis is likely saturated. Still non-eliminating (met_elimination_bar stays false); see the new fanout legs below rather than a fourth same-axis escalation (per failure_autopsy_2026-07-28-sweep.json).",
       "resolved_utc": "2026-07-26T12:32:16Z",
       "evidence_direction": "non_contributory"
     },
@@ -1748,9 +2166,10 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-816",
+      "run": "V3-EXQ-830",
       "all_runs": [
-        "V3-EXQ-816"
+        "V3-EXQ-816",
+        "V3-EXQ-830"
       ],
       "momentum_class": "underpowered",
       "qid": "policy_decomposition_discrimination",
@@ -1758,7 +2177,7 @@
         "ARC-070",
         "MECH-321"
       ],
-      "moved": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive.",
+      "moved": "816 ran with 0 low-V_s steps (worst ARM_1 cell, threshold 5): the discrimination-enabling precondition vs_heterogeneity_low_vs_steps_present was unmet, so C_MAIN was never evaluable (n_paired_seeds=0). Positive controls passed (OFF forward-PE varies+bounded; decomp fired frac 1.0) but the R1 trigger never fired -- an uninformative starved run that narrows NOTHING. It surfaces an OBSERVATION BOTTLENECK (Dimension 4); the hypothesis stays alive. V3-EXQ-830 (2026-07-27, independent scale-heterogeneity diagnostic) confirms the identical observation bottleneck from a different angle: the 'slow' pathway fired zero times in 2393 sweeps across both arms, and ON/OFF arms produced bit-identical behaviour. Two independent probes now converge on the same environment-uncertainty ceiling (per failure_autopsy_2026-07-28-sweep.json). Still non-eliminating; hypothesis stays alive.",
       "resolved_utc": "2026-07-25T21:47:51Z",
       "evidence_direction": "non_contributory"
     },
@@ -2269,6 +2688,20 @@
       "moved": "Load-bearing C1 (c1_parent_delta_on_vs_off = 0.402505 vs margin 0.03) with the ARM_OFF negative control passing and c1_non_degenerate true; 3/3 seeds move the same direction. Novelty carries the ENTIRE parent effect: ARM_NOVELTY_OFF collapses exactly onto ARM_OFF on every trajectory quantity, so ablating novelty is behaviourally identical to ablating all structured curiosity. Confirmed, not eliminated, so met_elimination_bar is false. Robust to the D3 intra-run substrate divergence: C1's seed-42 comparison is fully substrate-matched (ARM_OFF/42 and ARM_ALL_ON/42 both on f80bc236) with the largest delta of the three seeds (0.732).",
       "resolved_utc": "2026-06-07T19:30:29Z",
       "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-838",
+      "all_runs": [
+        "V3-EXQ-838"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "q081-cross-stream-shared-organisation",
+      "claims": [
+        "Q-081"
+      ],
+      "moved": "V3-EXQ-838 enabled BOTH use_anchor_sets=True and use_per_region_vs=True (the exact 824a-recommended fix) and applied a structurally different manipulation family (IEI_PERMUTE/CIRCULAR_SHIFT/SUPPRESS); all four arms produced bit-identical RV(z_world, operating_mode) at every one of 5 seeds (mean_delta=0.0, sd_delta=0.0) with the reach-check passing (landmark_arm_behavioural_reach=1.0). use_per_region_vs=True is REFUTED as sufficient to grant operating_mode reach. State remains alive (not eliminated) because the run is non_degenerate:false -- it narrows the solution space (the use_per_region_vs approach is out) and surfaces an observation bottleneck, but does not clear the elimination bar for any Q-081 Outcome-A/B hypothesis.",
+      "resolved_utc": null,
+      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-779b",

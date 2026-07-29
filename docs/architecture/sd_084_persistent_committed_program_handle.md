@@ -1,8 +1,13 @@
+---
+status: candidate_substrate_landed
+status_asof: 2026-07-29
+status_claim: SD-084
+---
+
 # SD-084: e3.persistent_committed_program_handle
 
 **Claim ID:** SD-084
 **Subject:** e3.persistent_committed_program_handle
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-29
 **Depends on:** MECH-321, ARC-070, ARC-071, MECH-288
 **Blocks:** any measurement of MECH-321's R4 mid-execution phase

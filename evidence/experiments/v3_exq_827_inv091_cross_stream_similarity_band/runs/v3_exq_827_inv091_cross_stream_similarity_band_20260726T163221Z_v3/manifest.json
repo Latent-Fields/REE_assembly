@@ -23,7 +23,7 @@
     "INV-091"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -47,5 +47,7 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "ef2fbc1a45563bf77da4ebb4da48e0270c7955b41e7352667661e37f76200c54"
+  "substrate_hash": "ef2fbc1a45563bf77da4ebb4da48e0270c7955b41e7352667661e37f76200c54",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "Failed its own pre-registered non-degeneracy guard: _force_lockstep() collapsing tick rates changes tick-count/sampling density, confounding the comparison. Superseded by 827a's phase-sync redesign."
 }

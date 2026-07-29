@@ -23,7 +23,7 @@
     "MECH-476"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -98,5 +98,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "2e47f3134bc0130911b8fcbdcc74eadf7dc5a8f35935282eeb1b709585f38cbc"
+  "substrate_hash": "2e47f3134bc0130911b8fcbdcc74eadf7dc5a8f35935282eeb1b709585f38cbc",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "Self-routed non_monotone_dose_response but the verdict rests on a fixed 0.15 effect-size margin not scaled to observed per-arm noise (dose_bc300 SEM 0.150) and fails a leave-one-out check on its most extreme seed. Non_contributory, not mixed."
 }

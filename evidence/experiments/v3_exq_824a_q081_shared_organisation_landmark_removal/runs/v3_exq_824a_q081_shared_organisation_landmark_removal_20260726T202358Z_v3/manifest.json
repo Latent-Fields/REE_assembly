@@ -23,7 +23,7 @@
     "Q-081"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -98,5 +98,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "b606802efb7693783ba11bcfc5ec27095cb6eab87a023488df842f622cc04fca"
+  "substrate_hash": "b606802efb7693783ba11bcfc5ec27095cb6eab87a023488df842f622cc04fca",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "use_anchor_sets fix makes the reach-check itself pass (landmark_arm_behavioural_reach=1.0) yet rv_primary stays bit-identical across all 5 seeds -- the reach-check confirms SOME causal path to z_world, not reach to the SPECIFIC measured pair. See Q081-REACH-CHECK-PAIR-SPECIFIC."
 }

@@ -24,10 +24,10 @@
     "SD-082"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "SD-078": "unknown",
-    "SD-082": "unknown"
+    "SD-078": "non_contributory",
+    "SD-082": "non_contributory"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
@@ -112,5 +112,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "7c8b689ae01ce3b262c2a3ac02ceb8aaf6fa121f94a0857e3e93a3b81c5788e3"
+  "substrate_hash": "7c8b689ae01ce3b262c2a3ac02ceb8aaf6fa121f94a0857e3e93a3b81c5788e3",
+  "epistemic_category": "competence_implementation_gap",
+  "evidence_direction_note": "precondition_unmet was a false alarm on the two NEW per-tick diagnostics only; the four unconditional phase-boundary weight-norm snapshots show head_untrained -- REINFORCE never updates rule_bias_head's last linear layer. Root cause for SD-082's still-zero propagation. See SD-082 substrate amend."
 }

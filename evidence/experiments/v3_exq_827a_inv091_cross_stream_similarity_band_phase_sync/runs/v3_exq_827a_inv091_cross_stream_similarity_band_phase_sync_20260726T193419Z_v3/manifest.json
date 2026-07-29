@@ -23,7 +23,7 @@
     "INV-091"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -47,5 +47,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9"
+  "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+  "epistemic_category": "standard",
+  "evidence_direction_note": "Phase-sync redesign genuinely fixed 827's tick-rate confound; both load-bearing criteria (C1, C2) fail cleanly with real non-degenerate data -- no Goldilocks-band effect. Surrogate-null validation could not be checked (run too short); see INV091-NULL-VALIDATION-RUN-LENGTH."
 }

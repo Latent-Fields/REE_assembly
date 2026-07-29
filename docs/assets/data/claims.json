@@ -274,7 +274,7 @@
     "assembly_state": "mature",
     "assembly_status": "built",
     "awaiting": "SD-048",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "harm_stream.sensory_discriminative_forward_model",
     "title": "SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s(z_harm_s, action) -> z_harm_s_next operating within the sensory-discriminative harm stream.",
@@ -2381,6 +2381,8 @@
   },
   "INV-091": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "Q081-REACH-CHECK-PAIR-SPECIFIC",
     "emergent_from": [
       "ARC-025",
       "MECH-063",
@@ -2967,7 +2969,7 @@
   },
   "MECH-068": {
     "assembly_state": "remaining",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "representation.consolidation_selectivity",
     "title": "Consolidation selectivity lives in the consolidation operator, not in E1 feature basis.",
@@ -4239,6 +4241,8 @@
   },
   "MECH-217": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "MECH-217",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "goal.replay_wanting_spread",
@@ -5213,6 +5217,8 @@
   },
   "MECH-323": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
     "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "policy.composition.chunk_accumulator_formation",
@@ -6483,9 +6489,9 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-475": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "parked",
     "epistemic_stance": "believed",
-    "status": "candidate",
+    "status": "retired",
     "subject": "f_dominance_conversion_ceiling.baseline_informativeness",
     "title": "uninformative_value_baseline_makes_optimisation_iatrogenic. In REE's MECH-457 actor-critic pathway the value baseline is UNINFORMATIVE on the policy's own state distribution, so the advantage carries variance rather than signal and ADDED OPTIMISATION PRESSURE IS IATROGENIC: policy capacity, training budget, an earned intrinsic approach drive, environmental reward-coupling and post-installation RL refinement each drive competence BELOW THEIR OWN CONTROLS rather than plateauing beneath a ceiling, and the magnitude of the loss tracks baseline uninformativeness rather than the identity of the intervention. Measured mechanism: V3-EXQ-782 R-(b) reads the shared CTRL critic at std(V)/std(G) = 0.041 against a 0.25 collapse threshold and a pre-reward-vs-far separation ratio of 0.016 against a 0.25 floor -- an unbaselined high-variance advantage. A ceiling plateaus; this does not.",
     "type": "mechanism_hypothesis",
@@ -7241,6 +7247,8 @@
   },
   "Q-081": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "Q081-REACH-CHECK-PAIR-SPECIFIC",
     "epistemic_stance": "asked",
     "status": "candidate",
     "subject": "architecture.cross_stream_shared_organisation",
@@ -8116,6 +8124,22 @@
     "status": "candidate_substrate_landed",
     "subject": "pfc.lateral_pfc.common_mode_invariant_trained_rule_to_action_readout",
     "title": "pfc.lateral_pfc.rule_selection_action_consumer: a common-mode-invariant, gradient-trainable read-out mapping the SD-078 differentiated rule_state to the SD-033a per-candidate action bias. V3-EXQ-822 found the differentiated rule pool (on_rule_state_diff 0.644, max_live 16) was behaviourally SILENT -- propagation to the action bias was exactly 0.0 on both arms. Root cause: the SD-033a bias head reads RAW common-mode-dominated z_world summaries and hard-clamps its output, so under the SD-008 ~0.98-cosine cone every candidate saturates to the same rail (rule_state's contribution erased) and the clamp's flat region zeros the REINFORCE gradient (head untrainable). Fix: subtract the common mode from the head's candidate-summary input (as SD-078 does upstream) and replace the hard clamp with a scaled-tanh soft bound. ree_core policy change, bit-identical by default.",
+    "type": "design_decision"
+  },
+  "SD-083": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate_substrate_landed",
+    "subject": "consolidation.offline_policy_consolidation_window",
+    "title": "consolidation.offline_policy_consolidation_window: an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick 2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (Moncada 2007) policy-consolidation window in the mech457 retention TESTBED, run BETWEEN BC install and RL refinement. Unblocks MECH-476's two blocked_substrate falsifier arms: the A->B offline INTERVAL arm (V3-EXQ-836b) and the behavioural-tagging NOVELTY arm (V3-EXQ-836c). DISTINCT from the ONLINE global MECH-475 KL anchor -- offline vs online, trace-selective per-parameter vs global, interval-dependent vs constructed-at-entry, novelty-gated -- which is exactly the MECH-476 content (ii offline interval, iii trace selectivity) the global anchor cannot express (the Walker-2003 divergence). BUILDS PROTECTION without retraining, so post_bc is invariant to the interval and the INTERVAL axis is orthogonal to the DOSE axis.",
+    "type": "design_decision"
+  },
+  "SD-084": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate_substrate_landed",
+    "subject": "e3.persistent_committed_program_handle",
+    "title": "e3.persistent_committed_program_handle: a committed-program handle on E3Selector that SURVIVES post_action_update's unconditional per-tick teardown of _committed_trajectory, so MECH-321's R4 MID-EXECUTION decomposition hook -- which re-evaluates the REMAINING unexecuted content of an already-committed chunk and therefore inherently needs a CROSS-TICK handle -- becomes reachable under the standard select_action -> update_residue driver loop for the first time. Mirrors the existing _closure_committed_trajectory precedent, built for exactly this reason. Liveness is an INVARIANT (reaped whenever the beta gate is not elevated), not a list of clear sites: agent.py has ten beta_gate.release() sites and only five clear _committed_trajectory, the rest being backstopped by the very teardown this handle removes.",
     "type": "design_decision"
   },
   "SENT-0": {

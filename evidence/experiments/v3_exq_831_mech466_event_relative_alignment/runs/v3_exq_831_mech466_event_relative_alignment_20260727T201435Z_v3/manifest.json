@@ -92,5 +92,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25"
+  "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25",
+  "epistemic_category": "standard",
+  "evidence_direction_note": "First test of MECH-466 (waking-only scope): event-locked coordination does not exceed clock-locked (delta=-0.091 vs 0.171 floor); all four non-degeneracy preconditions clear cleanly. Clean weakens on the waking-only version. Sleep-engagement (use_sleep_loop=True) follow-up recommended before the full claim is adequately tested."
 }

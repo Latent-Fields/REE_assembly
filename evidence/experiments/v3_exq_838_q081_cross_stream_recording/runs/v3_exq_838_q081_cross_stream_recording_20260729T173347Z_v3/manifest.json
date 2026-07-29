@@ -23,7 +23,7 @@
     "Q-081"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -110,5 +110,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "ae03f074fd764098e56c3a5f7eae37f6ca5fca6b087f439343dee4f2cd7fcbdf"
+  "substrate_hash": "ae03f074fd764098e56c3a5f7eae37f6ca5fca6b087f439343dee4f2cd7fcbdf",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "Third consecutive bit-identical-arms result on RV(z_world, operating_mode). Enabled BOTH use_anchor_sets=True and use_per_region_vs=True (824a's recommended fix) plus a distinct temporal-manipulation family -- still bit-identical across all 5 seeds, refuting use_per_region_vs as the reach fix. See Q081-REACH-CHECK-PAIR-SPECIFIC."
 }

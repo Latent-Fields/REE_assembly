@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_768a_arc057_da_curiosity_interaction_spike_margin
 
-Generated: `2026-07-29T06:44:13.663160Z`
+Generated: `2026-07-29T23:49:56.484593Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

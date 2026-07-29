@@ -85,5 +85,7 @@
   },
   "machine": "ree-worker-1",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "d06e25747a417f257c737e451b8e6962bc11105bb69e1d78004e9ff9e01b138a"
+  "substrate_hash": "d06e25747a417f257c737e451b8e6962bc11105bb69e1d78004e9ff9e01b138a",
+  "epistemic_category": "standard",
+  "evidence_direction_note": "E1-tick-bug fix over 826 confirms the fix works (pe_precision_manipulation_took now passes) -- first non-buggy readiness read for MECH-244. Two readiness gates still fail despite 240000 E1 ticks; MECH-244 remains untested (exp_conf=0.0)."
 }

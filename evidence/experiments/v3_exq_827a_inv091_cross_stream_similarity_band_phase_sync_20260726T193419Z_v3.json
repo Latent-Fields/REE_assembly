@@ -1,1 +1,3103 @@
-{"run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3", "experiment_type": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync", "architecture_epoch": "ree_hybrid_guardrails_v1", "claim_ids": ["INV-091"], "experiment_purpose": "evidence", "outcome": "FAIL", "evidence_direction": "unknown", "evidence_class": "experimental", "timestamp_utc": "20260726T193419Z", "queue_id": "V3-EXQ-827a", "seeds": [11, 23, 37], "arms": ["intact", "decouple", "lockstep"], "similarity_pairs": [["z_world", "z_self"], ["z_world", "operating_mode"], ["e1_hidden", "e3_commitment"], ["z_world", "z_goal"]], "thresholds": {"similarity_move_floor": 0.02, "composite_margin": 0.15, "base_max_lag_ticks": 8}, "per_arm_cross_stream_similarity": {"intact": 0.22320822775307247, "decouple": 0.22431262517202286, "lockstep": 0.323666035510231}, "per_arm_cross_stream_similarity_raw_ticks8_lockstep_only": {"lockstep": 0.323666035510231}, "per_arm_anti_collapse": {"intact": 0.7694805361782958, "decouple": 0.7670926382388409, "lockstep": 0.7731749890181986}, "per_arm_task_reward": {"intact": -0.6221281136025985, "decouple": -0.5493556174486875, "lockstep": -0.5387809447894494}, "per_arm_composite": {"intact": -0.21163405033864788, "decouple": -0.09337953634894765, "lockstep": -0.02542509370827924}, "criteria": [{"name": "C1_similarity_moves_as_designed", "load_bearing": true, "passed": false}, {"name": "C2_intact_composite_beats_both_extremes", "load_bearing": true, "passed": false}], "criteria_non_degenerate": {"C1_similarity_moves_as_designed": true, "C2_intact_composite_beats_both_extremes": true}, "monotonic_direction": "none", "null_validation": {"checked": false, "reason": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 322.0 steps (safety 2.0 x tau_max 161.0 steps) but 1099 steps only supports 137.4-step blocks at 8 blocks minimum. Need at least 2576 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, "surrogate_p_values": {"intact": [{"seed_index": 0, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 322.0 steps (safety 2.0 x tau_max 161.0 steps) but 1099 steps only supports 137.4-step blocks at 8 blocks minimum. Need at least 2576 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 1, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 258.0 steps (safety 2.0 x tau_max 26.0 steps) but 258 steps only supports 32.2-step blocks at 8 blocks minimum. Need at least 2064 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 2, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}], "decouple": [{"seed_index": 0, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 328.0 steps (safety 2.0 x tau_max 164.0 steps) but 1150 steps only supports 143.8-step blocks at 8 blocks minimum. Need at least 2624 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 1, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 258.0 steps (safety 2.0 x tau_max 27.0 steps) but 258 steps only supports 32.2-step blocks at 8 blocks minimum. Need at least 2064 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 2, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}], "lockstep": [{"seed_index": 0, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 330.0 steps (safety 2.0 x tau_max 165.0 steps) but 1157 steps only supports 144.6-step blocks at 8 blocks minimum. Need at least 2640 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 1, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 293.0 steps (safety 2.0 x tau_max 26.0 steps) but 293 steps only supports 36.6-step blocks at 8 blocks minimum. Need at least 2344 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}, {"seed_index": 2, "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."}]}, "interpretation": {"label": "substrate_not_ready_requeue", "note": "C1 (non-degeneracy) failed: the manipulation did not move the cross-stream similarity statistic measurably in the pre-registered direction (decouple=0.2243, intact=0.2232, lockstep=0.3237 [real-time-matched lag window; raw ticks=8 lockstep reading was 0.3237]; degeneracy_reason=''). Per INV-091's own non-degeneracy guard, the series tested nothing. Not a verdict on INV-091. V3-EXQ-827a redesign note: lockstep's clock manipulation now collapses to E3's own native rate (never exceeding any stream's intact sampling density) and its similarity readout uses a lag window matched to intact's real-time span per pair; see module docstring for the full V3-EXQ-827 root-cause trace."}, "arm_results": [{"arm_id": "intact", "seed": 11, "mean_episode_reward": -0.9136846647411586, "cross_stream_similarity": 0.1760788523802531, "anti_collapse": 0.7749023299612541, "episode_rewards": [-0.749291, -1.068849, -1.301237, -0.738301, -0.778075, 0.201705, -0.935464, -1.375238, -1.315407, -1.076688], "n_steps": 1099, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "3310afc57febbf17737a3bc3c0d6910db8e2a257371b0d6b0024d1bfb25b97c4", "bytes": 1527335, "filename": "3310afc57febbf17737a3bc3c0d6910db8e2a257371b0d6b0024d1bfb25b97c4.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1099, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1099, 1], "dtype": "float32"}, "boundary_events": {"shape": [1099, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1099, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1099, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1099, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1099, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1099, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1099, 1], "dtype": "float32"}, "offline_mode": {"shape": [1099, 1], "dtype": "float32"}, "operating_mode": {"shape": [1099, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1099, 1], "dtype": "float32"}, "z_beta": {"shape": [1099, 64], "dtype": "float32"}, "z_delta": {"shape": [1099, 32], "dtype": "float32"}, "z_goal": {"shape": [1099, 32], "dtype": "float32"}, "z_harm": {"shape": [1099, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1099, 16], "dtype": "float32"}, "z_self": {"shape": [1099, 32], "dtype": "float32"}, "z_theta": {"shape": [1099, 32], "dtype": "float32"}, "z_world": {"shape": [1099, 32], "dtype": "float32"}, "clock": {"shape": [1099, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [35168], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1100], "dtype": "int64"}, "extra__reward": {"shape": [1099], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed11_v3", "n_steps": 1099, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "159470cd487c33c7d6f7a479038120c3d953c1f2456b1cf8c0da579f69628084", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 11, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}}, {"arm_id": "intact", "seed": 23, "mean_episode_reward": -1.1346581716686486, "cross_stream_similarity": 0.1967124350160162, "anti_collapse": 0.5763568282383829, "episode_rewards": [-1.32381, -0.387245, -1.086258, -1.28, -1.085, -1.36, -1.145778, -1.071548, -1.306944, -1.3], "n_steps": 258, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "d5afa33444581851e4eb115921fd1a4cec30d0337f23783297ea47c4207ecbce", "bytes": 393297, "filename": "d5afa33444581851e4eb115921fd1a4cec30d0337f23783297ea47c4207ecbce.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [258, 4], "dtype": "float32"}, "beta_elevated": {"shape": [258, 1], "dtype": "float32"}, "boundary_events": {"shape": [258, 2], "dtype": "float32"}, "broadcast_events": {"shape": [258, 2], "dtype": "float32"}, "e1_hidden": {"shape": [258, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [258, 1], "dtype": "float32"}, "e3_commitment": {"shape": [258, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [258, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [258, 1], "dtype": "float32"}, "offline_mode": {"shape": [258, 1], "dtype": "float32"}, "operating_mode": {"shape": [258, 6], "dtype": "float32"}, "sleep_phase": {"shape": [258, 1], "dtype": "float32"}, "z_beta": {"shape": [258, 64], "dtype": "float32"}, "z_delta": {"shape": [258, 32], "dtype": "float32"}, "z_goal": {"shape": [258, 32], "dtype": "float32"}, "z_harm": {"shape": [258, 32], "dtype": "float32"}, "z_harm_a": {"shape": [258, 16], "dtype": "float32"}, "z_self": {"shape": [258, 32], "dtype": "float32"}, "z_theta": {"shape": [258, 32], "dtype": "float32"}, "z_world": {"shape": [258, 32], "dtype": "float32"}, "clock": {"shape": [258, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [8256], "dtype": "float32"}, "e3_scores__offsets": {"shape": [259], "dtype": "int64"}, "extra__reward": {"shape": [258], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed23_v3", "n_steps": 258, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "482277bd4f7e3cec8ed5942ad0d106e4693b06568165ac2d8fff6a93e66c9bf3", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 23, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}}, {"arm_id": "intact", "seed": 37, "mean_episode_reward": 0.18195849560201166, "cross_stream_similarity": 0.2968333958629481, "anti_collapse": 0.9571824503352504, "episode_rewards": [0.143002, 0.483891, -0.208095, 0.309429, 0.674926, 0.193724, 0.1895, 0.210954, -0.096508, -0.081237], "n_steps": 1500, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "f365ff6ddf92f26f2c46ee2c67202c2b31378fd26508c07354092b0e4bef3a77", "bytes": 1972984, "filename": "f365ff6ddf92f26f2c46ee2c67202c2b31378fd26508c07354092b0e4bef3a77.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1500, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1500, 1], "dtype": "float32"}, "boundary_events": {"shape": [1500, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1500, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1500, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1500, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1500, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1500, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1500, 1], "dtype": "float32"}, "offline_mode": {"shape": [1500, 1], "dtype": "float32"}, "operating_mode": {"shape": [1500, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1500, 1], "dtype": "float32"}, "z_beta": {"shape": [1500, 64], "dtype": "float32"}, "z_delta": {"shape": [1500, 32], "dtype": "float32"}, "z_goal": {"shape": [1500, 32], "dtype": "float32"}, "z_harm": {"shape": [1500, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1500, 16], "dtype": "float32"}, "z_self": {"shape": [1500, 32], "dtype": "float32"}, "z_theta": {"shape": [1500, 32], "dtype": "float32"}, "z_world": {"shape": [1500, 32], "dtype": "float32"}, "clock": {"shape": [1500, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [48000], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1501], "dtype": "int64"}, "extra__reward": {"shape": [1500], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed37_v3", "n_steps": 1500, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "a446af1dfc3b791bdb564e92e2be640c0c5a4b5ff6014d23e2744cbede6908f6", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 37, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": true, "reuse_ineligible_reasons": [], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}}, {"arm_id": "decouple", "seed": 11, "mean_episode_reward": -0.7122701452970506, "cross_stream_similarity": 0.19787739714263275, "anti_collapse": 0.7669304632648306, "episode_rewards": [-0.768105, -0.95714, -1.009802, -1.352392, -1.098492, -1.069578, 0.24175, -1.210833, -0.164357, 0.266247], "n_steps": 1150, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "e8394590a37964ff601eefcf014e93aa8e46c88a6e2eb6a6e85b807a7043041e", "bytes": 1586196, "filename": "e8394590a37964ff601eefcf014e93aa8e46c88a6e2eb6a6e85b807a7043041e.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1150, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1150, 1], "dtype": "float32"}, "boundary_events": {"shape": [1150, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1150, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1150, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1150, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1150, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1150, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1150, 1], "dtype": "float32"}, "offline_mode": {"shape": [1150, 1], "dtype": "float32"}, "operating_mode": {"shape": [1150, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1150, 1], "dtype": "float32"}, "z_beta": {"shape": [1150, 64], "dtype": "float32"}, "z_delta": {"shape": [1150, 32], "dtype": "float32"}, "z_goal": {"shape": [1150, 32], "dtype": "float32"}, "z_harm": {"shape": [1150, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1150, 16], "dtype": "float32"}, "z_self": {"shape": [1150, 32], "dtype": "float32"}, "z_theta": {"shape": [1150, 32], "dtype": "float32"}, "z_world": {"shape": [1150, 32], "dtype": "float32"}, "clock": {"shape": [1150, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [36800], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1151], "dtype": "int64"}, "extra__reward": {"shape": [1150], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed11_v3", "n_steps": 1150, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "f3079b65555d21bd5c00e26a2193c32ffc8801f97e0b4d5229cdf2de5923e28d", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 11, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_warmed_agent_across_arms"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "behavioural_reach": {"use_event_segmenter": true, "consumers": {"use_invalidation_trigger": true, "use_anchor_sets": true, "use_per_region_vs": false, "use_staleness_accumulator": false}, "live_consumers": ["use_invalidation_trigger", "use_anchor_sets"], "has_behavioural_reach": true}, "preservation_report": {"arm_id": "q081_landmark_iei_permute", "mode": "iei_permute", "is_primary": true, "is_lesion": false, "is_intact": false, "n_episodes": 10, "count_match_all": false, "iei_multiset_match_all": false, "posterior_multiset_match_all": false, "scale_mix_match_all": false, "donor_missing_episodes": [], "preserved_by_construction": false, "mean_true_emitted_alignment": 0.0209330489029659, "n_boundaries_true_total": 67, "n_boundaries_emitted_total": 67, "episodes": [{"episode_index": 0, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 13, "n_boundaries_donor": 11, "n_boundaries_emitted": 11, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.08665633854684311}, {"episode_index": 1, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 7, "n_boundaries_emitted": 7, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.03160697706205066}, {"episode_index": 2, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 4, "n_boundaries_donor": 2, "n_boundaries_emitted": 2, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.019241446072101133}, {"episode_index": 3, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 7, "n_boundaries_donor": 6, "n_boundaries_emitted": 6, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.045162230233094625}, {"episode_index": 4, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 13, "n_boundaries_emitted": 7, "donor_present": true, "count_match": false, "iei_multiset_match": false, "posterior_multiset_match": false, "scale_mix_match": false, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.031606977062050554}, {"episode_index": 5, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 4, "n_boundaries_donor": 6, "n_boundaries_emitted": 3, "donor_present": true, "count_match": false, "iei_multiset_match": false, "posterior_multiset_match": false, "scale_mix_match": false, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.27192764911220785}, {"episode_index": 6, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 9, "n_boundaries_donor": 10, "n_boundaries_emitted": 10, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.045014913660634516}, {"episode_index": 7, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 5, "n_boundaries_donor": 6, "n_boundaries_emitted": 5, "donor_present": true, "count_match": false, "iei_multiset_match": false, "posterior_multiset_match": false, "scale_mix_match": false, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.03448275862068934}, {"episode_index": 8, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 12, "n_boundaries_donor": 5, "n_boundaries_emitted": 5, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.08213785172900956}, {"episode_index": 9, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 7, "n_boundaries_donor": 11, "n_boundaries_emitted": 11, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.059006802124636513}], "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."}, "input_statistics_divergence": {"metrics": {"state_visitation_js": 0.19856865308236257, "action_distribution_js": 0.0021660660912437846, "harm_rate_abs": 0.0402223365114531, "episode_length_rel": 0.04640582347588711}, "thresholds": {"state_visitation_js": 0.1, "action_distribution_js": 0.1, "harm_rate_abs": 0.02, "episode_length_rel": 0.1}, "breaches": ["state_visitation_js", "harm_rate_abs"], "not_measured": ["reward_rate_abs", "obs_channel_mean_std"], "input_statistics_preserved": false, "verdict_note": "CONFOUNDED -- the arm moved the input distribution; a vanished statistic is not attributable to landmark removal."}}, {"arm_id": "decouple", "seed": 23, "mean_episode_reward": -1.1346581716686486, "cross_stream_similarity": 0.21001585750703966, "anti_collapse": 0.5763568282383829, "episode_rewards": [-1.32381, -0.387245, -1.086258, -1.28, -1.085, -1.36, -1.145778, -1.071548, -1.306944, -1.3], "n_steps": 258, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "0c61926a1f7d666c1f6f1fac6fa35d7817e616e33754168393d83319be61be56", "bytes": 393087, "filename": "0c61926a1f7d666c1f6f1fac6fa35d7817e616e33754168393d83319be61be56.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [258, 4], "dtype": "float32"}, "beta_elevated": {"shape": [258, 1], "dtype": "float32"}, "boundary_events": {"shape": [258, 2], "dtype": "float32"}, "broadcast_events": {"shape": [258, 2], "dtype": "float32"}, "e1_hidden": {"shape": [258, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [258, 1], "dtype": "float32"}, "e3_commitment": {"shape": [258, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [258, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [258, 1], "dtype": "float32"}, "offline_mode": {"shape": [258, 1], "dtype": "float32"}, "operating_mode": {"shape": [258, 6], "dtype": "float32"}, "sleep_phase": {"shape": [258, 1], "dtype": "float32"}, "z_beta": {"shape": [258, 64], "dtype": "float32"}, "z_delta": {"shape": [258, 32], "dtype": "float32"}, "z_goal": {"shape": [258, 32], "dtype": "float32"}, "z_harm": {"shape": [258, 32], "dtype": "float32"}, "z_harm_a": {"shape": [258, 16], "dtype": "float32"}, "z_self": {"shape": [258, 32], "dtype": "float32"}, "z_theta": {"shape": [258, 32], "dtype": "float32"}, "z_world": {"shape": [258, 32], "dtype": "float32"}, "clock": {"shape": [258, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [8256], "dtype": "float32"}, "e3_scores__offsets": {"shape": [259], "dtype": "int64"}, "extra__reward": {"shape": [258], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed23_v3", "n_steps": 258, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "7643b0b72befea3050bd0d898f3d0417c13de97ee892dc1d01d6e7deb07e31d1", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 23, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_warmed_agent_across_arms"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "behavioural_reach": {"use_event_segmenter": true, "consumers": {"use_invalidation_trigger": true, "use_anchor_sets": true, "use_per_region_vs": false, "use_staleness_accumulator": false}, "live_consumers": ["use_invalidation_trigger", "use_anchor_sets"], "has_behavioural_reach": true}, "preservation_report": {"arm_id": "q081_landmark_iei_permute", "mode": "iei_permute", "is_primary": true, "is_lesion": false, "is_intact": false, "n_episodes": 10, "count_match_all": true, "iei_multiset_match_all": true, "posterior_multiset_match_all": true, "scale_mix_match_all": true, "donor_missing_episodes": [], "preserved_by_construction": true, "mean_true_emitted_alignment": 0.3812971134399707, "n_boundaries_true_total": 8, "n_boundaries_emitted_total": 8, "episodes": [{"episode_index": 0, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 0, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}, {"episode_index": 1, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 0, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}, {"episode_index": 2, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 1, "n_boundaries_donor": 1, "n_boundaries_emitted": 1, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 1.0000000000000002}, {"episode_index": 3, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 0, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}, {"episode_index": 4, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 1, "n_boundaries_donor": 1, "n_boundaries_emitted": 1, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 1.0000000000000002}, {"episode_index": 5, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.319727891156462}, {"episode_index": 6, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 2, "n_boundaries_donor": 2, "n_boundaries_emitted": 2, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.49324324324324487}, {"episode_index": 7, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 0, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}, {"episode_index": 8, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 1, "n_boundaries_donor": 1, "n_boundaries_emitted": 1, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 1.0}, {"episode_index": 9, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 0, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}], "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."}, "input_statistics_divergence": {"metrics": {"state_visitation_js": 0.0, "action_distribution_js": 0.0, "harm_rate_abs": 0.0, "episode_length_rel": 0.0}, "thresholds": {"state_visitation_js": 0.1, "action_distribution_js": 0.1, "harm_rate_abs": 0.02, "episode_length_rel": 0.1}, "breaches": [], "not_measured": ["reward_rate_abs", "obs_channel_mean_std"], "input_statistics_preserved": true, "verdict_note": "Input statistics preserved within pre-registered bounds."}}, {"arm_id": "decouple", "seed": 37, "mean_episode_reward": 0.19886146461963647, "cross_stream_similarity": 0.26504462086639613, "anti_collapse": 0.9579906232133093, "episode_rewards": [-0.211284, 0.154777, 0.239626, 0.338, 0.622451, 0.193764, 0.618071, 0.210954, -0.096508, -0.081237], "n_steps": 1500, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "8470fc3cdd5f9d3d0c97a078a43a93b0e59e8f4d131aa524058160f849dfbab9", "bytes": 1979292, "filename": "8470fc3cdd5f9d3d0c97a078a43a93b0e59e8f4d131aa524058160f849dfbab9.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1500, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1500, 1], "dtype": "float32"}, "boundary_events": {"shape": [1500, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1500, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1500, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1500, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1500, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1500, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1500, 1], "dtype": "float32"}, "offline_mode": {"shape": [1500, 1], "dtype": "float32"}, "operating_mode": {"shape": [1500, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1500, 1], "dtype": "float32"}, "z_beta": {"shape": [1500, 64], "dtype": "float32"}, "z_delta": {"shape": [1500, 32], "dtype": "float32"}, "z_goal": {"shape": [1500, 32], "dtype": "float32"}, "z_harm": {"shape": [1500, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1500, 16], "dtype": "float32"}, "z_self": {"shape": [1500, 32], "dtype": "float32"}, "z_theta": {"shape": [1500, 32], "dtype": "float32"}, "z_world": {"shape": [1500, 32], "dtype": "float32"}, "clock": {"shape": [1500, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [48000], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1501], "dtype": "int64"}, "extra__reward": {"shape": [1500], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed37_v3", "n_steps": 1500, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "ce5adf817fe62875ab91a54613ff7cf3aa0046a1b6c9c64167703d01fd739241", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 37, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["shared_warmed_agent_across_arms"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "behavioural_reach": {"use_event_segmenter": true, "consumers": {"use_invalidation_trigger": true, "use_anchor_sets": true, "use_per_region_vs": false, "use_staleness_accumulator": false}, "live_consumers": ["use_invalidation_trigger", "use_anchor_sets"], "has_behavioural_reach": true}, "preservation_report": {"arm_id": "q081_landmark_iei_permute", "mode": "iei_permute", "is_primary": true, "is_lesion": false, "is_intact": false, "n_episodes": 10, "count_match_all": true, "iei_multiset_match_all": true, "posterior_multiset_match_all": true, "scale_mix_match_all": true, "donor_missing_episodes": [], "preserved_by_construction": true, "mean_true_emitted_alignment": 0.24495550942822303, "n_boundaries_true_total": 40, "n_boundaries_emitted_total": 30, "episodes": [{"episode_index": 0, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 8, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.178017248729078}, {"episode_index": 1, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 4, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.023645882531496312}, {"episode_index": 2, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 7, "n_boundaries_emitted": 7, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.03160697706205067}, {"episode_index": 3, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 1, "n_boundaries_emitted": 1, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": -0.011703313150272104}, {"episode_index": 4, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 6, "n_boundaries_donor": 0, "n_boundaries_emitted": 0, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.0}, {"episode_index": 5, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.319727891156462}, {"episode_index": 6, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.31972789115646283}, {"episode_index": 7, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 5, "n_boundaries_donor": 5, "n_boundaries_emitted": 5, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.3793103448275846}, {"episode_index": 8, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 3, "n_boundaries_donor": 3, "n_boundaries_emitted": 3, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.31972789115646183}, {"episode_index": 9, "mode": "iei_permute", "n_steps": 150, "n_boundaries_true": 2, "n_boundaries_donor": 2, "n_boundaries_emitted": 2, "donor_present": true, "count_match": true, "iei_multiset_match": true, "posterior_multiset_match": true, "scale_mix_match": true, "n_flushed_at_episode_end": 0, "true_emitted_alignment": 0.9999999999999999}], "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."}, "input_statistics_divergence": {"metrics": {"state_visitation_js": 0.07073144288866008, "action_distribution_js": 0.0012661148404876019, "harm_rate_abs": 0.0013333333333333391, "episode_length_rel": 0.0}, "thresholds": {"state_visitation_js": 0.1, "action_distribution_js": 0.1, "harm_rate_abs": 0.02, "episode_length_rel": 0.1}, "breaches": [], "not_measured": ["reward_rate_abs", "obs_channel_mean_std"], "input_statistics_preserved": true, "verdict_note": "Input statistics preserved within pre-registered bounds."}}, {"arm_id": "lockstep", "seed": 11, "mean_episode_reward": -0.5803504721969367, "cross_stream_similarity": 0.27450838983007936, "anti_collapse": 0.789362127598276, "episode_rewards": [0.103436, -1.295, -1.260357, -0.780159, -0.586333, 0.093493, -0.405397, -0.535893, -0.299627, -0.837668], "n_steps": 1157, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "91f62a45f042a1d71f38e2b29c4843aefb2fdd1e7eb1f27c1c381c06d9d9dc2d", "bytes": 1259848, "filename": "91f62a45f042a1d71f38e2b29c4843aefb2fdd1e7eb1f27c1c381c06d9d9dc2d.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1157, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1157, 1], "dtype": "float32"}, "boundary_events": {"shape": [1157, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1157, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1157, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1157, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1157, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1157, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1157, 1], "dtype": "float32"}, "offline_mode": {"shape": [1157, 1], "dtype": "float32"}, "operating_mode": {"shape": [1157, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1157, 1], "dtype": "float32"}, "z_beta": {"shape": [1157, 64], "dtype": "float32"}, "z_delta": {"shape": [1157, 32], "dtype": "float32"}, "z_goal": {"shape": [1157, 32], "dtype": "float32"}, "z_harm": {"shape": [1157, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1157, 16], "dtype": "float32"}, "z_self": {"shape": [1157, 32], "dtype": "float32"}, "z_theta": {"shape": [1157, 32], "dtype": "float32"}, "z_world": {"shape": [1157, 32], "dtype": "float32"}, "clock": {"shape": [1157, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [37024], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1158], "dtype": "int64"}, "extra__reward": {"shape": [1157], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed11_v3", "n_steps": 1157, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "cb005d9c320e837776a71e1bbd8910b6d501c25e9058c02ebb4a12481f47bca7", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 11, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["lockstep_lag_window_matched_to_intact_arrays"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "cross_stream_similarity_raw_ticks8": 0.27450838983007936, "lag_window_matching": {"z_world|z_self": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|operating_mode": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "e1_hidden|e3_commitment": {"max_lag_ticks_used": 1, "lockstep_coarse_period_measured": 10.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|z_goal": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}}}, {"arm_id": "lockstep", "seed": 23, "mean_episode_reward": -1.1150834806114436, "cross_stream_similarity": 0.36415831404264426, "anti_collapse": 0.5738855965887013, "episode_rewards": [-1.339885, -1.392063, -1.25, -1.28, -1.001905, -0.750931, -0.928426, -1.053503, -0.910939, -1.243182], "n_steps": 293, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "5dd4e39b5f1fdea8d6ee56be4ef6948883e8bd596b25e5a52eb218893cbfcda3", "bytes": 316133, "filename": "5dd4e39b5f1fdea8d6ee56be4ef6948883e8bd596b25e5a52eb218893cbfcda3.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [293, 4], "dtype": "float32"}, "beta_elevated": {"shape": [293, 1], "dtype": "float32"}, "boundary_events": {"shape": [293, 2], "dtype": "float32"}, "broadcast_events": {"shape": [293, 2], "dtype": "float32"}, "e1_hidden": {"shape": [293, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [293, 1], "dtype": "float32"}, "e3_commitment": {"shape": [293, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [293, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [293, 1], "dtype": "float32"}, "offline_mode": {"shape": [293, 1], "dtype": "float32"}, "operating_mode": {"shape": [293, 6], "dtype": "float32"}, "sleep_phase": {"shape": [293, 1], "dtype": "float32"}, "z_beta": {"shape": [293, 64], "dtype": "float32"}, "z_delta": {"shape": [293, 32], "dtype": "float32"}, "z_goal": {"shape": [293, 32], "dtype": "float32"}, "z_harm": {"shape": [293, 32], "dtype": "float32"}, "z_harm_a": {"shape": [293, 16], "dtype": "float32"}, "z_self": {"shape": [293, 32], "dtype": "float32"}, "z_theta": {"shape": [293, 32], "dtype": "float32"}, "z_world": {"shape": [293, 32], "dtype": "float32"}, "clock": {"shape": [293, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [9376], "dtype": "float32"}, "e3_scores__offsets": {"shape": [294], "dtype": "int64"}, "extra__reward": {"shape": [293], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed23_v3", "n_steps": 293, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "723240991e781b4d69033e43b65abf4b86a0b24da9178206fc3b149d218abebb", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 23, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["lockstep_lag_window_matched_to_intact_arrays"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "cross_stream_similarity_raw_ticks8": 0.36415831404264426, "lag_window_matching": {"z_world|z_self": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|operating_mode": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "e1_hidden|e3_commitment": {"max_lag_ticks_used": 1, "lockstep_coarse_period_measured": 10.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|z_goal": {"max_lag_ticks_used": 7, "lockstep_coarse_period_measured": 293.0, "intact_coarse_period_measured": 258.0, "target_real_steps": 2064.0}}}, {"arm_id": "lockstep", "seed": 37, "mean_episode_reward": 0.079091118440032, "cross_stream_similarity": 0.3323314026579693, "anti_collapse": 0.9562772428676183, "episode_rewards": [0.023095, 0.272604, 0.23034, 0.340381, 0.63459, 0.198883, -0.712619, -0.170357, 0.13975, -0.165758], "n_steps": 1500, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "96810c37825bea939f4d0c1920e9c7d162f77f4010a6ccbe605efe75e7e591d6", "bytes": 1524398, "filename": "96810c37825bea939f4d0c1920e9c7d162f77f4010a6ccbe605efe75e7e591d6.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [1500, 4], "dtype": "float32"}, "beta_elevated": {"shape": [1500, 1], "dtype": "float32"}, "boundary_events": {"shape": [1500, 2], "dtype": "float32"}, "broadcast_events": {"shape": [1500, 2], "dtype": "float32"}, "e1_hidden": {"shape": [1500, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [1500, 1], "dtype": "float32"}, "e3_commitment": {"shape": [1500, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [1500, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [1500, 1], "dtype": "float32"}, "offline_mode": {"shape": [1500, 1], "dtype": "float32"}, "operating_mode": {"shape": [1500, 6], "dtype": "float32"}, "sleep_phase": {"shape": [1500, 1], "dtype": "float32"}, "z_beta": {"shape": [1500, 64], "dtype": "float32"}, "z_delta": {"shape": [1500, 32], "dtype": "float32"}, "z_goal": {"shape": [1500, 32], "dtype": "float32"}, "z_harm": {"shape": [1500, 32], "dtype": "float32"}, "z_harm_a": {"shape": [1500, 16], "dtype": "float32"}, "z_self": {"shape": [1500, 32], "dtype": "float32"}, "z_theta": {"shape": [1500, 32], "dtype": "float32"}, "z_world": {"shape": [1500, 32], "dtype": "float32"}, "clock": {"shape": [1500, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [48000], "dtype": "float32"}, "e3_scores__offsets": {"shape": [1501], "dtype": "int64"}, "extra__reward": {"shape": [1500], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed37_v3", "n_steps": 1500, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "arm_fingerprint": {"schema": "arm_fp/v1", "arm_fingerprint": "4fcf379bc1afbb2141633ac8b784a84491ef975871666707c7d128b3ec0577ba", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_n_files": 159, "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "torch_version": "2.12.0+cpu", "regime": "A", "seed": 37, "config_slice_declared": true, "substrate_scope_declared": false, "substrate_scope": null, "reuse_eligible": false, "reuse_ineligible_reasons": ["lockstep_lag_window_matched_to_intact_arrays"], "driver_script_in_substrate_hash": false, "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722", "substrate_identity_source": "process_snapshot", "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"}, "cross_stream_similarity_raw_ticks8": 0.3323314026579693, "lag_window_matching": {"z_world|z_self": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|operating_mode": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 10.0, "intact_coarse_period_measured": 10.0, "target_real_steps": 80.0}, "e1_hidden|e3_commitment": {"max_lag_ticks_used": 1, "lockstep_coarse_period_measured": 10.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}, "z_world|z_goal": {"max_lag_ticks_used": 8, "lockstep_coarse_period_measured": 1.0, "intact_coarse_period_measured": 1.0, "target_real_steps": 8.0}}}], "aggregates": {"per_level": {"intact": {"cross_stream_similarity_mean": 0.22320822775307247, "anti_collapse_mean": 0.7694805361782958, "task_reward_mean": -0.6221281136025985, "composite_mean": -0.21163405033864788}, "decouple": {"cross_stream_similarity_mean": 0.22431262517202286, "anti_collapse_mean": 0.7670926382388409, "task_reward_mean": -0.5493556174486875, "composite_mean": -0.09337953634894765}, "lockstep": {"cross_stream_similarity_mean": 0.323666035510231, "anti_collapse_mean": 0.7731749890181986, "task_reward_mean": -0.5387809447894494, "composite_mean": -0.02542509370827924}}}, "dose_key": "cross_stream_similarity_mean", "supersedes": "V3-EXQ-827", "non_degenerate": true, "degeneracy_reason": "", "degenerate_metrics": {}, "recording_schema": "rec/v1", "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9", "substrate_stable_across_run": true, "dose_levels_separable": true, "machine": "ree-cloud-2", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "elapsed_seconds": 3520.707306498, "config": {"env_kwargs": {"size": 10, "num_hazards": 1, "num_resources": 5, "harm_history_len": 10}, "q081_profile": {"use_harm_stream": true, "use_affective_harm_stream": true, "use_salience_coordinator": true, "use_event_segmenter": true, "use_invalidation_trigger": true, "use_tpj_comparator": true, "use_sleep_loop": true, "z_goal_enabled": true}, "alpha_world": 0.9, "use_anchor_sets": true, "warmup_episodes": 40, "eval_episodes": 10, "steps_per_episode": 150, "similarity_pairs": [["z_world", "z_self"], ["z_world", "operating_mode"], ["e1_hidden", "e3_commitment"], ["z_world", "z_goal"]], "thresholds": {"similarity_move_floor": 0.02, "composite_margin": 0.15, "base_max_lag_ticks": 8}}}
+{
+  "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3",
+  "experiment_type": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "claim_ids": [
+    "INV-091"
+  ],
+  "experiment_purpose": "evidence",
+  "outcome": "FAIL",
+  "evidence_direction": "non_contributory",
+  "evidence_class": "experimental",
+  "timestamp_utc": "20260726T193419Z",
+  "queue_id": "V3-EXQ-827a",
+  "seeds": [
+    11,
+    23,
+    37
+  ],
+  "arms": [
+    "intact",
+    "decouple",
+    "lockstep"
+  ],
+  "similarity_pairs": [
+    [
+      "z_world",
+      "z_self"
+    ],
+    [
+      "z_world",
+      "operating_mode"
+    ],
+    [
+      "e1_hidden",
+      "e3_commitment"
+    ],
+    [
+      "z_world",
+      "z_goal"
+    ]
+  ],
+  "thresholds": {
+    "similarity_move_floor": 0.02,
+    "composite_margin": 0.15,
+    "base_max_lag_ticks": 8
+  },
+  "per_arm_cross_stream_similarity": {
+    "intact": 0.22320822775307247,
+    "decouple": 0.22431262517202286,
+    "lockstep": 0.323666035510231
+  },
+  "per_arm_cross_stream_similarity_raw_ticks8_lockstep_only": {
+    "lockstep": 0.323666035510231
+  },
+  "per_arm_anti_collapse": {
+    "intact": 0.7694805361782958,
+    "decouple": 0.7670926382388409,
+    "lockstep": 0.7731749890181986
+  },
+  "per_arm_task_reward": {
+    "intact": -0.6221281136025985,
+    "decouple": -0.5493556174486875,
+    "lockstep": -0.5387809447894494
+  },
+  "per_arm_composite": {
+    "intact": -0.21163405033864788,
+    "decouple": -0.09337953634894765,
+    "lockstep": -0.02542509370827924
+  },
+  "criteria": [
+    {
+      "name": "C1_similarity_moves_as_designed",
+      "load_bearing": true,
+      "passed": false
+    },
+    {
+      "name": "C2_intact_composite_beats_both_extremes",
+      "load_bearing": true,
+      "passed": false
+    }
+  ],
+  "criteria_non_degenerate": {
+    "C1_similarity_moves_as_designed": true,
+    "C2_intact_composite_beats_both_extremes": true
+  },
+  "monotonic_direction": "none",
+  "null_validation": {
+    "checked": false,
+    "reason": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 322.0 steps (safety 2.0 x tau_max 161.0 steps) but 1099 steps only supports 137.4-step blocks at 8 blocks minimum. Need at least 2576 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+  },
+  "surrogate_p_values": {
+    "intact": [
+      {
+        "seed_index": 0,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 322.0 steps (safety 2.0 x tau_max 161.0 steps) but 1099 steps only supports 137.4-step blocks at 8 blocks minimum. Need at least 2576 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 1,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 258.0 steps (safety 2.0 x tau_max 26.0 steps) but 258 steps only supports 32.2-step blocks at 8 blocks minimum. Need at least 2064 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 2,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      }
+    ],
+    "decouple": [
+      {
+        "seed_index": 0,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 328.0 steps (safety 2.0 x tau_max 164.0 steps) but 1150 steps only supports 143.8-step blocks at 8 blocks minimum. Need at least 2624 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 1,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 258.0 steps (safety 2.0 x tau_max 27.0 steps) but 258 steps only supports 32.2-step blocks at 8 blocks minimum. Need at least 2064 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 2,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      }
+    ],
+    "lockstep": [
+      {
+        "seed_index": 0,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 330.0 steps (safety 2.0 x tau_max 165.0 steps) but 1157 steps only supports 144.6-step blocks at 8 blocks minimum. Need at least 2640 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 1,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 293.0 steps (safety 2.0 x tau_max 26.0 steps) but 293 steps only supports 36.6-step blocks at 8 blocks minimum. Need at least 2344 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      },
+      {
+        "seed_index": 2,
+        "error": "run too short for a valid constrained-realisation surrogate: the slowest stream needs blocks of at least 356.0 steps (safety 2.0 x tau_max 178.0 steps) but 1500 steps only supports 187.5-step blocks at 8 blocks minimum. Need at least 2848 steps. Refusing rather than shortening the blocks, which would silently break the within-stream autocorrelation the null must preserve."
+      }
+    ]
+  },
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "note": "C1 (non-degeneracy) failed: the manipulation did not move the cross-stream similarity statistic measurably in the pre-registered direction (decouple=0.2243, intact=0.2232, lockstep=0.3237 [real-time-matched lag window; raw ticks=8 lockstep reading was 0.3237]; degeneracy_reason=''). Per INV-091's own non-degeneracy guard, the series tested nothing. Not a verdict on INV-091. V3-EXQ-827a redesign note: lockstep's clock manipulation now collapses to E3's own native rate (never exceeding any stream's intact sampling density) and its similarity readout uses a lag window matched to intact's real-time span per pair; see module docstring for the full V3-EXQ-827 root-cause trace."
+  },
+  "arm_results": [
+    {
+      "arm_id": "intact",
+      "seed": 11,
+      "mean_episode_reward": -0.9136846647411586,
+      "cross_stream_similarity": 0.1760788523802531,
+      "anti_collapse": 0.7749023299612541,
+      "episode_rewards": [
+        -0.749291,
+        -1.068849,
+        -1.301237,
+        -0.738301,
+        -0.778075,
+        0.201705,
+        -0.935464,
+        -1.375238,
+        -1.315407,
+        -1.076688
+      ],
+      "n_steps": 1099,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "3310afc57febbf17737a3bc3c0d6910db8e2a257371b0d6b0024d1bfb25b97c4",
+        "bytes": 1527335,
+        "filename": "3310afc57febbf17737a3bc3c0d6910db8e2a257371b0d6b0024d1bfb25b97c4.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1099,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1099,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1099,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1099,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1099,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1099,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1099,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1099,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1099,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1099,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1099,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              35168
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1100
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1099
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed11_v3",
+        "n_steps": 1099,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "159470cd487c33c7d6f7a479038120c3d953c1f2456b1cf8c0da579f69628084",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      }
+    },
+    {
+      "arm_id": "intact",
+      "seed": 23,
+      "mean_episode_reward": -1.1346581716686486,
+      "cross_stream_similarity": 0.1967124350160162,
+      "anti_collapse": 0.5763568282383829,
+      "episode_rewards": [
+        -1.32381,
+        -0.387245,
+        -1.086258,
+        -1.28,
+        -1.085,
+        -1.36,
+        -1.145778,
+        -1.071548,
+        -1.306944,
+        -1.3
+      ],
+      "n_steps": 258,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "d5afa33444581851e4eb115921fd1a4cec30d0337f23783297ea47c4207ecbce",
+        "bytes": 393297,
+        "filename": "d5afa33444581851e4eb115921fd1a4cec30d0337f23783297ea47c4207ecbce.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              258,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              258,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              258,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              258,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              258,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              258,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              258,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              258,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              258,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              8256
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              259
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              258
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed23_v3",
+        "n_steps": 258,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "482277bd4f7e3cec8ed5942ad0d106e4693b06568165ac2d8fff6a93e66c9bf3",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 23,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      }
+    },
+    {
+      "arm_id": "intact",
+      "seed": 37,
+      "mean_episode_reward": 0.18195849560201166,
+      "cross_stream_similarity": 0.2968333958629481,
+      "anti_collapse": 0.9571824503352504,
+      "episode_rewards": [
+        0.143002,
+        0.483891,
+        -0.208095,
+        0.309429,
+        0.674926,
+        0.193724,
+        0.1895,
+        0.210954,
+        -0.096508,
+        -0.081237
+      ],
+      "n_steps": 1500,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "f365ff6ddf92f26f2c46ee2c67202c2b31378fd26508c07354092b0e4bef3a77",
+        "bytes": 1972984,
+        "filename": "f365ff6ddf92f26f2c46ee2c67202c2b31378fd26508c07354092b0e4bef3a77.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1500,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1500,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1500,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1500,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1500,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1500,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1500,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              48000
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1501
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1500
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_intact_seed37_v3",
+        "n_steps": 1500,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "a446af1dfc3b791bdb564e92e2be640c0c5a4b5ff6014d23e2744cbede6908f6",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 37,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": true,
+        "reuse_ineligible_reasons": [],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      }
+    },
+    {
+      "arm_id": "decouple",
+      "seed": 11,
+      "mean_episode_reward": -0.7122701452970506,
+      "cross_stream_similarity": 0.19787739714263275,
+      "anti_collapse": 0.7669304632648306,
+      "episode_rewards": [
+        -0.768105,
+        -0.95714,
+        -1.009802,
+        -1.352392,
+        -1.098492,
+        -1.069578,
+        0.24175,
+        -1.210833,
+        -0.164357,
+        0.266247
+      ],
+      "n_steps": 1150,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "e8394590a37964ff601eefcf014e93aa8e46c88a6e2eb6a6e85b807a7043041e",
+        "bytes": 1586196,
+        "filename": "e8394590a37964ff601eefcf014e93aa8e46c88a6e2eb6a6e85b807a7043041e.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1150,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1150,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1150,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1150,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1150,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1150,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1150,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1150,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1150,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              36800
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1151
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1150
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed11_v3",
+        "n_steps": 1150,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "f3079b65555d21bd5c00e26a2193c32ffc8801f97e0b4d5229cdf2de5923e28d",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_warmed_agent_across_arms"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "behavioural_reach": {
+        "use_event_segmenter": true,
+        "consumers": {
+          "use_invalidation_trigger": true,
+          "use_anchor_sets": true,
+          "use_per_region_vs": false,
+          "use_staleness_accumulator": false
+        },
+        "live_consumers": [
+          "use_invalidation_trigger",
+          "use_anchor_sets"
+        ],
+        "has_behavioural_reach": true
+      },
+      "preservation_report": {
+        "arm_id": "q081_landmark_iei_permute",
+        "mode": "iei_permute",
+        "is_primary": true,
+        "is_lesion": false,
+        "is_intact": false,
+        "n_episodes": 10,
+        "count_match_all": false,
+        "iei_multiset_match_all": false,
+        "posterior_multiset_match_all": false,
+        "scale_mix_match_all": false,
+        "donor_missing_episodes": [],
+        "preserved_by_construction": false,
+        "mean_true_emitted_alignment": 0.0209330489029659,
+        "n_boundaries_true_total": 67,
+        "n_boundaries_emitted_total": 67,
+        "episodes": [
+          {
+            "episode_index": 0,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 13,
+            "n_boundaries_donor": 11,
+            "n_boundaries_emitted": 11,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.08665633854684311
+          },
+          {
+            "episode_index": 1,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 7,
+            "n_boundaries_emitted": 7,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.03160697706205066
+          },
+          {
+            "episode_index": 2,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 4,
+            "n_boundaries_donor": 2,
+            "n_boundaries_emitted": 2,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.019241446072101133
+          },
+          {
+            "episode_index": 3,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 7,
+            "n_boundaries_donor": 6,
+            "n_boundaries_emitted": 6,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.045162230233094625
+          },
+          {
+            "episode_index": 4,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 13,
+            "n_boundaries_emitted": 7,
+            "donor_present": true,
+            "count_match": false,
+            "iei_multiset_match": false,
+            "posterior_multiset_match": false,
+            "scale_mix_match": false,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.031606977062050554
+          },
+          {
+            "episode_index": 5,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 4,
+            "n_boundaries_donor": 6,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": false,
+            "iei_multiset_match": false,
+            "posterior_multiset_match": false,
+            "scale_mix_match": false,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.27192764911220785
+          },
+          {
+            "episode_index": 6,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 9,
+            "n_boundaries_donor": 10,
+            "n_boundaries_emitted": 10,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.045014913660634516
+          },
+          {
+            "episode_index": 7,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 5,
+            "n_boundaries_donor": 6,
+            "n_boundaries_emitted": 5,
+            "donor_present": true,
+            "count_match": false,
+            "iei_multiset_match": false,
+            "posterior_multiset_match": false,
+            "scale_mix_match": false,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.03448275862068934
+          },
+          {
+            "episode_index": 8,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 12,
+            "n_boundaries_donor": 5,
+            "n_boundaries_emitted": 5,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.08213785172900956
+          },
+          {
+            "episode_index": 9,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 7,
+            "n_boundaries_donor": 11,
+            "n_boundaries_emitted": 11,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.059006802124636513
+          }
+        ],
+        "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."
+      },
+      "input_statistics_divergence": {
+        "metrics": {
+          "state_visitation_js": 0.19856865308236257,
+          "action_distribution_js": 0.0021660660912437846,
+          "harm_rate_abs": 0.0402223365114531,
+          "episode_length_rel": 0.04640582347588711
+        },
+        "thresholds": {
+          "state_visitation_js": 0.1,
+          "action_distribution_js": 0.1,
+          "harm_rate_abs": 0.02,
+          "episode_length_rel": 0.1
+        },
+        "breaches": [
+          "state_visitation_js",
+          "harm_rate_abs"
+        ],
+        "not_measured": [
+          "reward_rate_abs",
+          "obs_channel_mean_std"
+        ],
+        "input_statistics_preserved": false,
+        "verdict_note": "CONFOUNDED -- the arm moved the input distribution; a vanished statistic is not attributable to landmark removal."
+      }
+    },
+    {
+      "arm_id": "decouple",
+      "seed": 23,
+      "mean_episode_reward": -1.1346581716686486,
+      "cross_stream_similarity": 0.21001585750703966,
+      "anti_collapse": 0.5763568282383829,
+      "episode_rewards": [
+        -1.32381,
+        -0.387245,
+        -1.086258,
+        -1.28,
+        -1.085,
+        -1.36,
+        -1.145778,
+        -1.071548,
+        -1.306944,
+        -1.3
+      ],
+      "n_steps": 258,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "0c61926a1f7d666c1f6f1fac6fa35d7817e616e33754168393d83319be61be56",
+        "bytes": 393087,
+        "filename": "0c61926a1f7d666c1f6f1fac6fa35d7817e616e33754168393d83319be61be56.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              258,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              258,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              258,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              258,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              258,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              258,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              258,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              258,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              258,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              258,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              258,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              8256
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              259
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              258
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed23_v3",
+        "n_steps": 258,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "7643b0b72befea3050bd0d898f3d0417c13de97ee892dc1d01d6e7deb07e31d1",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 23,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_warmed_agent_across_arms"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "behavioural_reach": {
+        "use_event_segmenter": true,
+        "consumers": {
+          "use_invalidation_trigger": true,
+          "use_anchor_sets": true,
+          "use_per_region_vs": false,
+          "use_staleness_accumulator": false
+        },
+        "live_consumers": [
+          "use_invalidation_trigger",
+          "use_anchor_sets"
+        ],
+        "has_behavioural_reach": true
+      },
+      "preservation_report": {
+        "arm_id": "q081_landmark_iei_permute",
+        "mode": "iei_permute",
+        "is_primary": true,
+        "is_lesion": false,
+        "is_intact": false,
+        "n_episodes": 10,
+        "count_match_all": true,
+        "iei_multiset_match_all": true,
+        "posterior_multiset_match_all": true,
+        "scale_mix_match_all": true,
+        "donor_missing_episodes": [],
+        "preserved_by_construction": true,
+        "mean_true_emitted_alignment": 0.3812971134399707,
+        "n_boundaries_true_total": 8,
+        "n_boundaries_emitted_total": 8,
+        "episodes": [
+          {
+            "episode_index": 0,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 0,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          },
+          {
+            "episode_index": 1,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 0,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          },
+          {
+            "episode_index": 2,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 1,
+            "n_boundaries_donor": 1,
+            "n_boundaries_emitted": 1,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 1.0000000000000002
+          },
+          {
+            "episode_index": 3,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 0,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          },
+          {
+            "episode_index": 4,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 1,
+            "n_boundaries_donor": 1,
+            "n_boundaries_emitted": 1,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 1.0000000000000002
+          },
+          {
+            "episode_index": 5,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.319727891156462
+          },
+          {
+            "episode_index": 6,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 2,
+            "n_boundaries_donor": 2,
+            "n_boundaries_emitted": 2,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.49324324324324487
+          },
+          {
+            "episode_index": 7,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 0,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          },
+          {
+            "episode_index": 8,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 1,
+            "n_boundaries_donor": 1,
+            "n_boundaries_emitted": 1,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 1.0
+          },
+          {
+            "episode_index": 9,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 0,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          }
+        ],
+        "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."
+      },
+      "input_statistics_divergence": {
+        "metrics": {
+          "state_visitation_js": 0.0,
+          "action_distribution_js": 0.0,
+          "harm_rate_abs": 0.0,
+          "episode_length_rel": 0.0
+        },
+        "thresholds": {
+          "state_visitation_js": 0.1,
+          "action_distribution_js": 0.1,
+          "harm_rate_abs": 0.02,
+          "episode_length_rel": 0.1
+        },
+        "breaches": [],
+        "not_measured": [
+          "reward_rate_abs",
+          "obs_channel_mean_std"
+        ],
+        "input_statistics_preserved": true,
+        "verdict_note": "Input statistics preserved within pre-registered bounds."
+      }
+    },
+    {
+      "arm_id": "decouple",
+      "seed": 37,
+      "mean_episode_reward": 0.19886146461963647,
+      "cross_stream_similarity": 0.26504462086639613,
+      "anti_collapse": 0.9579906232133093,
+      "episode_rewards": [
+        -0.211284,
+        0.154777,
+        0.239626,
+        0.338,
+        0.622451,
+        0.193764,
+        0.618071,
+        0.210954,
+        -0.096508,
+        -0.081237
+      ],
+      "n_steps": 1500,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "8470fc3cdd5f9d3d0c97a078a43a93b0e59e8f4d131aa524058160f849dfbab9",
+        "bytes": 1979292,
+        "filename": "8470fc3cdd5f9d3d0c97a078a43a93b0e59e8f4d131aa524058160f849dfbab9.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1500,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1500,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1500,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1500,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1500,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1500,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1500,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              48000
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1501
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1500
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_decouple_seed37_v3",
+        "n_steps": 1500,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "ce5adf817fe62875ab91a54613ff7cf3aa0046a1b6c9c64167703d01fd739241",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 37,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "shared_warmed_agent_across_arms"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "behavioural_reach": {
+        "use_event_segmenter": true,
+        "consumers": {
+          "use_invalidation_trigger": true,
+          "use_anchor_sets": true,
+          "use_per_region_vs": false,
+          "use_staleness_accumulator": false
+        },
+        "live_consumers": [
+          "use_invalidation_trigger",
+          "use_anchor_sets"
+        ],
+        "has_behavioural_reach": true
+      },
+      "preservation_report": {
+        "arm_id": "q081_landmark_iei_permute",
+        "mode": "iei_permute",
+        "is_primary": true,
+        "is_lesion": false,
+        "is_intact": false,
+        "n_episodes": 10,
+        "count_match_all": true,
+        "iei_multiset_match_all": true,
+        "posterior_multiset_match_all": true,
+        "scale_mix_match_all": true,
+        "donor_missing_episodes": [],
+        "preserved_by_construction": true,
+        "mean_true_emitted_alignment": 0.24495550942822303,
+        "n_boundaries_true_total": 40,
+        "n_boundaries_emitted_total": 30,
+        "episodes": [
+          {
+            "episode_index": 0,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 8,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.178017248729078
+          },
+          {
+            "episode_index": 1,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 4,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.023645882531496312
+          },
+          {
+            "episode_index": 2,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 7,
+            "n_boundaries_emitted": 7,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.03160697706205067
+          },
+          {
+            "episode_index": 3,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 1,
+            "n_boundaries_emitted": 1,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": -0.011703313150272104
+          },
+          {
+            "episode_index": 4,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 6,
+            "n_boundaries_donor": 0,
+            "n_boundaries_emitted": 0,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.0
+          },
+          {
+            "episode_index": 5,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.319727891156462
+          },
+          {
+            "episode_index": 6,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.31972789115646283
+          },
+          {
+            "episode_index": 7,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 5,
+            "n_boundaries_donor": 5,
+            "n_boundaries_emitted": 5,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.3793103448275846
+          },
+          {
+            "episode_index": 8,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 3,
+            "n_boundaries_donor": 3,
+            "n_boundaries_emitted": 3,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.31972789115646183
+          },
+          {
+            "episode_index": 9,
+            "mode": "iei_permute",
+            "n_steps": 150,
+            "n_boundaries_true": 2,
+            "n_boundaries_donor": 2,
+            "n_boundaries_emitted": 2,
+            "donor_present": true,
+            "count_match": true,
+            "iei_multiset_match": true,
+            "posterior_multiset_match": true,
+            "scale_mix_match": true,
+            "n_flushed_at_episode_end": 0,
+            "true_emitted_alignment": 0.9999999999999999
+          }
+        ],
+        "note": "Level 1 only: preservation AT THE INTERVENTION SITE. Environmental input statistics are Level 2 and require the paired intact arm via input_statistics_divergence()."
+      },
+      "input_statistics_divergence": {
+        "metrics": {
+          "state_visitation_js": 0.07073144288866008,
+          "action_distribution_js": 0.0012661148404876019,
+          "harm_rate_abs": 0.0013333333333333391,
+          "episode_length_rel": 0.0
+        },
+        "thresholds": {
+          "state_visitation_js": 0.1,
+          "action_distribution_js": 0.1,
+          "harm_rate_abs": 0.02,
+          "episode_length_rel": 0.1
+        },
+        "breaches": [],
+        "not_measured": [
+          "reward_rate_abs",
+          "obs_channel_mean_std"
+        ],
+        "input_statistics_preserved": true,
+        "verdict_note": "Input statistics preserved within pre-registered bounds."
+      }
+    },
+    {
+      "arm_id": "lockstep",
+      "seed": 11,
+      "mean_episode_reward": -0.5803504721969367,
+      "cross_stream_similarity": 0.27450838983007936,
+      "anti_collapse": 0.789362127598276,
+      "episode_rewards": [
+        0.103436,
+        -1.295,
+        -1.260357,
+        -0.780159,
+        -0.586333,
+        0.093493,
+        -0.405397,
+        -0.535893,
+        -0.299627,
+        -0.837668
+      ],
+      "n_steps": 1157,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "91f62a45f042a1d71f38e2b29c4843aefb2fdd1e7eb1f27c1c381c06d9d9dc2d",
+        "bytes": 1259848,
+        "filename": "91f62a45f042a1d71f38e2b29c4843aefb2fdd1e7eb1f27c1c381c06d9d9dc2d.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1157,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1157,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1157,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1157,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1157,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1157,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1157,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1157,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1157,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1157,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1157,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              37024
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1158
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1157
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed11_v3",
+        "n_steps": 1157,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "cb005d9c320e837776a71e1bbd8910b6d501c25e9058c02ebb4a12481f47bca7",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 11,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "lockstep_lag_window_matched_to_intact_arrays"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "cross_stream_similarity_raw_ticks8": 0.27450838983007936,
+      "lag_window_matching": {
+        "z_world|z_self": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|operating_mode": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "e1_hidden|e3_commitment": {
+          "max_lag_ticks_used": 1,
+          "lockstep_coarse_period_measured": 10.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|z_goal": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        }
+      }
+    },
+    {
+      "arm_id": "lockstep",
+      "seed": 23,
+      "mean_episode_reward": -1.1150834806114436,
+      "cross_stream_similarity": 0.36415831404264426,
+      "anti_collapse": 0.5738855965887013,
+      "episode_rewards": [
+        -1.339885,
+        -1.392063,
+        -1.25,
+        -1.28,
+        -1.001905,
+        -0.750931,
+        -0.928426,
+        -1.053503,
+        -0.910939,
+        -1.243182
+      ],
+      "n_steps": 293,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "5dd4e39b5f1fdea8d6ee56be4ef6948883e8bd596b25e5a52eb218893cbfcda3",
+        "bytes": 316133,
+        "filename": "5dd4e39b5f1fdea8d6ee56be4ef6948883e8bd596b25e5a52eb218893cbfcda3.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              293,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              293,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              293,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              293,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              293,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              293,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              293,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              293,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              293,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              293,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              293,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              9376
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              294
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              293
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed23_v3",
+        "n_steps": 293,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "723240991e781b4d69033e43b65abf4b86a0b24da9178206fc3b149d218abebb",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 23,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "lockstep_lag_window_matched_to_intact_arrays"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "cross_stream_similarity_raw_ticks8": 0.36415831404264426,
+      "lag_window_matching": {
+        "z_world|z_self": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|operating_mode": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "e1_hidden|e3_commitment": {
+          "max_lag_ticks_used": 1,
+          "lockstep_coarse_period_measured": 10.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|z_goal": {
+          "max_lag_ticks_used": 7,
+          "lockstep_coarse_period_measured": 293.0,
+          "intact_coarse_period_measured": 258.0,
+          "target_real_steps": 2064.0
+        }
+      }
+    },
+    {
+      "arm_id": "lockstep",
+      "seed": 37,
+      "mean_episode_reward": 0.079091118440032,
+      "cross_stream_similarity": 0.3323314026579693,
+      "anti_collapse": 0.9562772428676183,
+      "episode_rewards": [
+        0.023095,
+        0.272604,
+        0.23034,
+        0.340381,
+        0.63459,
+        0.198883,
+        -0.712619,
+        -0.170357,
+        0.13975,
+        -0.165758
+      ],
+      "n_steps": 1500,
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "96810c37825bea939f4d0c1920e9c7d162f77f4010a6ccbe605efe75e7e591d6",
+        "bytes": 1524398,
+        "filename": "96810c37825bea939f4d0c1920e9c7d162f77f4010a6ccbe605efe75e7e591d6.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              1500,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              1500,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              1500,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              1500,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              1500,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              1500,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              1500,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              1500,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              1500,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              1500,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              48000
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              1501
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              1500
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_lockstep_seed37_v3",
+        "n_steps": 1500,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "arm_fingerprint": {
+        "schema": "arm_fp/v1",
+        "arm_fingerprint": "4fcf379bc1afbb2141633ac8b784a84491ef975871666707c7d128b3ec0577ba",
+        "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+        "substrate_n_files": 159,
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "torch_version": "2.12.0+cpu",
+        "regime": "A",
+        "seed": 37,
+        "config_slice_declared": true,
+        "substrate_scope_declared": false,
+        "substrate_scope": null,
+        "reuse_eligible": false,
+        "reuse_ineligible_reasons": [
+          "lockstep_lag_window_matched_to_intact_arrays"
+        ],
+        "driver_script_in_substrate_hash": false,
+        "driver_script_hash": "d907dd6c00d3aa1a7bffd9b32d9fe822928b840a7a8a4fab923fb256760dd722",
+        "substrate_identity_source": "process_snapshot",
+        "substrate_identity_resolved_at": "2026-07-26T18:57:26Z"
+      },
+      "cross_stream_similarity_raw_ticks8": 0.3323314026579693,
+      "lag_window_matching": {
+        "z_world|z_self": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|operating_mode": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 10.0,
+          "intact_coarse_period_measured": 10.0,
+          "target_real_steps": 80.0
+        },
+        "e1_hidden|e3_commitment": {
+          "max_lag_ticks_used": 1,
+          "lockstep_coarse_period_measured": 10.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        },
+        "z_world|z_goal": {
+          "max_lag_ticks_used": 8,
+          "lockstep_coarse_period_measured": 1.0,
+          "intact_coarse_period_measured": 1.0,
+          "target_real_steps": 8.0
+        }
+      }
+    }
+  ],
+  "aggregates": {
+    "per_level": {
+      "intact": {
+        "cross_stream_similarity_mean": 0.22320822775307247,
+        "anti_collapse_mean": 0.7694805361782958,
+        "task_reward_mean": -0.6221281136025985,
+        "composite_mean": -0.21163405033864788
+      },
+      "decouple": {
+        "cross_stream_similarity_mean": 0.22431262517202286,
+        "anti_collapse_mean": 0.7670926382388409,
+        "task_reward_mean": -0.5493556174486875,
+        "composite_mean": -0.09337953634894765
+      },
+      "lockstep": {
+        "cross_stream_similarity_mean": 0.323666035510231,
+        "anti_collapse_mean": 0.7731749890181986,
+        "task_reward_mean": -0.5387809447894494,
+        "composite_mean": -0.02542509370827924
+      }
+    }
+  },
+  "dose_key": "cross_stream_similarity_mean",
+  "supersedes": "V3-EXQ-827",
+  "non_degenerate": true,
+  "degeneracy_reason": "",
+  "degenerate_metrics": {},
+  "recording_schema": "rec/v1",
+  "substrate_hash": "f49a3c172734f310f60f6ddf8612d7fd094e97624f38b981d2c44edbc0b9f1e9",
+  "substrate_stable_across_run": true,
+  "dose_levels_separable": true,
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "elapsed_seconds": 3520.707306498,
+  "config": {
+    "env_kwargs": {
+      "size": 10,
+      "num_hazards": 1,
+      "num_resources": 5,
+      "harm_history_len": 10
+    },
+    "q081_profile": {
+      "use_harm_stream": true,
+      "use_affective_harm_stream": true,
+      "use_salience_coordinator": true,
+      "use_event_segmenter": true,
+      "use_invalidation_trigger": true,
+      "use_tpj_comparator": true,
+      "use_sleep_loop": true,
+      "z_goal_enabled": true
+    },
+    "alpha_world": 0.9,
+    "use_anchor_sets": true,
+    "warmup_episodes": 40,
+    "eval_episodes": 10,
+    "steps_per_episode": 150,
+    "similarity_pairs": [
+      [
+        "z_world",
+        "z_self"
+      ],
+      [
+        "z_world",
+        "operating_mode"
+      ],
+      [
+        "e1_hidden",
+        "e3_commitment"
+      ],
+      [
+        "z_world",
+        "z_goal"
+      ]
+    ],
+    "thresholds": {
+      "similarity_move_floor": 0.02,
+      "composite_margin": 0.15,
+      "base_max_lag_ticks": 8
+    }
+  },
+  "epistemic_category": "standard",
+  "evidence_direction_note": "Phase-sync redesign genuinely fixed 827's tick-rate confound; both load-bearing criteria (C1, C2) fail cleanly with real non-degenerate data -- no Goldilocks-band effect. Surrogate-null validation could not be checked (run too short); see INV091-NULL-VALIDATION-RUN-LENGTH."
+}

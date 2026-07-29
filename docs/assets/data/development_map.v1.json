@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-07-28T17:45:20Z",
+  "generated_at": "2026-07-29T22:46:43Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -19,8 +19,8 @@
           "MECH-457",
           "INV-088"
         ],
-        "surviving": 2,
-        "initial": 17,
+        "surviving": 4,
+        "initial": 20,
         "convergence": "circling",
         "is_hero": true
       },
@@ -125,6 +125,19 @@
         "is_hero": false
       },
       {
+        "id": "decomposition_scale_heterogeneity",
+        "title": "Decomposition scale heterogeneity",
+        "claims": [
+          "MECH-321",
+          "MECH-288",
+          "ARC-070"
+        ],
+        "surviving": 1,
+        "initial": 3,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
         "id": "inv088_diversity_readout",
         "title": "INV-088 diversity readout",
         "claims": [
@@ -142,8 +155,19 @@
           "ARC-070",
           "MECH-321"
         ],
-        "surviving": 4,
-        "initial": 4,
+        "surviving": 6,
+        "initial": 6,
+        "convergence": "scattering",
+        "is_hero": false
+      },
+      {
+        "id": "q081-cross-stream-shared-organisation",
+        "title": "Q-081 cross-stream shared organisation",
+        "claims": [
+          "Q-081"
+        ],
+        "surviving": 3,
+        "initial": 3,
         "convergence": "static",
         "is_hero": false
       },
@@ -164,7 +188,7 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "103 / 126",
+      "value": "104 / 127",
       "detail": "modules recorded as built"
     },
     {
@@ -174,12 +198,12 @@
     },
     {
       "label": "Narrow",
-      "value": "28 / 40",
+      "value": "36 / 46",
       "detail": "rival explanations still standing"
     },
     {
       "label": "Decide",
-      "value": "6",
+      "value": "7",
       "detail": "design choices currently recorded as ready"
     }
   ],
@@ -1120,13 +1144,13 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 183,
+      "total": 181,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 11,
-          "more_count": 1,
+          "count": 12,
+          "more_count": 2,
           "nodes": [
             {
               "id": "SD-005",
@@ -1385,8 +1409,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 166,
-          "more_count": 156,
+          "count": 163,
+          "more_count": 153,
           "nodes": [
             {
               "id": "ARC-049",
@@ -1566,13 +1590,13 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 223,
+      "total": 227,
       "buckets": [
         {
           "key": "active",
           "label": "Active / under review",
-          "count": 56,
-          "more_count": 46,
+          "count": 57,
+          "more_count": 47,
           "nodes": [
             {
               "id": "SD-012",
@@ -1811,7 +1835,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 19,
+              "incoming_dependencies": 20,
               "depends_on": [
                 "MECH-092",
                 "ARC-038",
@@ -1930,8 +1954,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 154,
-          "more_count": 144,
+          "count": 157,
+          "more_count": 147,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2322,15 +2346,16 @@
     }
   ],
   "record_counts": {
-    "active": 180,
+    "active": 182,
     "closed": 46,
     "planned": 714
   },
   "archive": {
-    "snapshot_count": 84,
-    "latest": "2026-07-28",
+    "snapshot_count": 85,
+    "latest": "2026-07-29",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-07-29",
       "2026-07-28",
       "2026-07-27",
       "2026-07-26",
@@ -2339,8 +2364,7 @@
       "2026-07-21",
       "2026-07-20",
       "2026-07-19",
-      "2026-07-18",
-      "2026-07-17"
+      "2026-07-18"
     ]
   }
 }

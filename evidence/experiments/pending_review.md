@@ -1,49 +1,31 @@
 # Pending Experiment Review
 
-Generated: `2026-07-29T07:17:09Z`  
-Last review: `2026-07-26T15:34:37Z`  
-Pending: **21** item(s) -- 7 PASS, 14 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 3 diagnostic self-route(s) flagged for adjudication
-
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_822a_sd078_rule_selection_consumer_20260726T145526Z_v3` | 2026-07-26T14:55 | SD-078 | — |
-| `v3_exq_826_mech244_precision_weighting_self_sealing_20260726T152827Z_v3` | 2026-07-26T15:28 | MECH-244 | — |
-| `v3_exq_817a_sd080_worldeffect_grounding_falsifier_20260726T153154Z_v3` | 2026-07-26T15:31 | SD-004, SD-080 | — |
-| `v3_exq_827_inv091_cross_stream_similarity_band_20260726T163221Z_v3` | 2026-07-26T16:32 | INV-091 | — |
-| `v3_exq_824_q081_shared_organisation_landmark_removal_20260726T165630Z_v3` | 2026-07-26T16:56 | Q-081 | — |
-| `v3_exq_816d_mech321_policy_decomposition_harshened_env_v2_20260726T185006Z_v3` | 2026-07-26T18:50 | (no claim tags) | — |
-| `v3_exq_827a_inv091_cross_stream_similarity_band_phase_sync_20260726T193419Z_v3` | 2026-07-26T19:34 | INV-091 | — |
-| `v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3` | 2026-07-26T20:23 | Q-081 | — |
-| `v3_exq_826a_mech244_precision_weighting_self_sealing_20260727T141840Z_v3` | 2026-07-27T14:18 | MECH-244 | — |
-| `v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3` | 2026-07-27T17:05 | MECH-323, MECH-324 | — |
-| `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | 2026-07-27T18:09 | SD-078, SD-082 | — |
-| `v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3` | 2026-07-27T20:14 | MECH-466 | — |
-| `v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3` | 2026-07-27T20:37 | INV-091 | — |
-| `v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3` | 2026-07-29T00:23 | ARC-071, MECH-323 | — |
+Generated: `2026-07-29T23:50:32Z`  
+Last review: `2026-07-29T23:24:03Z`  
+Pending: **4** item(s) -- 4 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` | 2026-07-26T15:21 | MECH-245 |
-| `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` | 2026-07-26T18:02 | ARC-024, MECH-102, SD-003 |
 | `v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3` | 2026-07-27T00:50 | INV-088, MECH-457 |
-| `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | 2026-07-27T20:49 | (no claim tags) |
-| `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` | 2026-07-27T21:45 | INV-041, MECH-153 |
-| `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` | 2026-07-28T20:14 | MECH-068 |
 | `v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3` | 2026-07-28T20:45 | ARC-071, MECH-323, MECH-324 |
+| `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3` | 2026-07-29T12:58 | (no claim tags) |
+| `v3_exq_839_sd084_midexec_reachability_20260729T220727Z_v3` | 2026-07-29T22:07 | (no claim tags) |
 
-## Diagnostic adjudication required (self-route unverified)
+## Dead z_goal stream (interpret before trusting a z_goal readout)
 
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
+**This is a record, not a gate.** No claim status, confidence or `v3_pending` changes on account of it, and the runs below are scored exactly as they would be otherwise. It is here so the condition is seen at review time instead of only by whoever opens the raw manifest.
 
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
-| `v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3` | PASS | slow_never_fires_on_rollout | **vacuous_pass** |
-| `v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+Each run below reports `z_goal_stream.writer_defect: true`: the agent was stepped, but `REEAgent.update_z_goal` -- the **sole** z_goal writer in the substrate -- was never called. z_goal therefore sat at zero-init for the whole run, `GoalState.is_active()` returned False throughout, and every consumer received `current_z_goal=None` on every tick: the E3 goal term, MECH-293 ghost probes, MECH-288's slow BOCPD scale, MECH-189 super-ordinal anchors, the SD-057 incentive bank, the MECH-295 liking->approach bridge and the frontopolar counterfactual read all silently no-opped. Nothing raises. The usual cause is a driver that hand-rolls its inner loop and omits the call (V3-EXQ-626, whose five criteria were all keyed on a z_goal that never left zero; V3-EXQ-830, caught only because its readiness gate happened to name an ad-hoc `zgoal_present_frac`).
+
+**A result that does not read z_goal is unaffected** -- V3-EXQ-816's harness carries no defect for its own question. Judge each run by whether its criteria depend on a live z_goal; if they do, the run measured something other than what it claimed to.
+
+**`active_frac` is NOT the signal and must not be read as one.** A zero fraction is legitimate and common -- a goal-OFF parity arm, a negative control (V3-EXQ-626b's ARM_NO_BENEFIT), and a correctly-wired run whose `GoalState` benefit gate never opened because the agent met no resource all read 0.0 correctly. `writer_calls == 0` is what separates the defect from those, and it is the only thing flagged here. A run with **no** `z_goal_stream` block is UNMEASURED, not zero, and never appears below -- which is almost the whole historical corpus (the runtime backstop landed in ree-v3 `d6d1da96d9`, 2026-07-27). Full interpretation rules: ree-v3 `experiments/_lib/z_goal_stream.py`.
+
+| Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
+|--------|--------|-------|--------------|-------------|-----------|
+| `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3` | PASS | 133200 | **0** | 0.000 | live |
 
 ---
 

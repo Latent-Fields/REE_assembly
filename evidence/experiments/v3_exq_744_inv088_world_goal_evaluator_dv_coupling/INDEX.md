@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_744_inv088_world_goal_evaluator_dv_coupling
 
-Generated: `2026-07-29T06:44:13.663160Z`
+Generated: `2026-07-29T23:49:56.484593Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

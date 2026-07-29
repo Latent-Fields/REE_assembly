@@ -23,7 +23,7 @@
     "Q-081"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "weakens",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -89,5 +89,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "04bdcb1ca4644163143cd74dfcd3927dfd81ea2ba5dd35018ea4fc81adcd0a91"
+  "substrate_hash": "04bdcb1ca4644163143cd74dfcd3927dfd81ea2ba5dd35018ea4fc81adcd0a91",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "Self-routed wired_gates_only_landmark_invariant (weakens) but the only enabled consumer flag (use_invalidation_trigger) has no causal reach to z_world/operating_mode in this codebase (source-trace confirmed). Non_contributory, not weakens."
 }

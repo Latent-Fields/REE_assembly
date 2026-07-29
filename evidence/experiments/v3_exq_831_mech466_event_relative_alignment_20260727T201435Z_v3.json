@@ -1,1 +1,1468 @@
-{"run_id": "v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3", "experiment_type": "v3_exq_831_mech466_event_relative_alignment", "queue_id": "V3-EXQ-831", "claim_ids": ["MECH-466"], "experiment_purpose": "evidence", "architecture_epoch": "ree_hybrid_guardrails_v1", "timestamp_utc": "20260727T201435Z", "outcome": "FAIL", "evidence_direction": "weakens", "non_degenerate": true, "degeneracy_reason": null, "interpretation": {"label": "clock_relative_not_exceeded", "summary": "Outcome not-E: event-minus-clock RV delta mean=-0.0912 did not clear the effective floor 0.1713 across 3 valid seeds. Coordination is no tighter around events than around arbitrary clock points -- the boundary stream reads as a detector, not the federation's coordination substrate. Informative FAIL (weakens), not a null result, per the project's non-standard-directions convention.", "preconditions": [{"name": "boundary_rate_non_degenerate_band", "description": "Claim-mandated non-degeneracy guard: the mean boundary-pulse rate (fraction of env steps carrying a boundary onset) must lie strictly inside the band -- neither floor-pinned (segmenter silent, no event grammar to test) nor ceiling-pinned (a boundary every step makes event-relative == clock-relative by construction).", "measured": 0.0377865972570829, "threshold_low": 0.001, "threshold_high": 0.6, "comparator_low": ">=", "comparator_high": "<=", "direction": "interval", "control": "q081 profile enables hippocampal.use_event_segmenter (MECH-288)", "met": true}, {"name": "boundary_non_degenerate_seed_fraction", "description": "Fraction of seeds whose own boundary rate is inside the band; a single well-placed mean must not mask per-seed pinning.", "measured": 1.0, "threshold": 0.6, "direction": "lower", "control": null, "met": true}, {"name": "sufficient_union_events_seed_fraction", "description": "Fraction of seeds with >= 6 distinct union event onsets (boundary + commitment + mode-switch + offline), so peri-event pooling is not starved.", "measured": 1.0, "threshold": 0.6, "direction": "lower", "control": null, "met": true}, {"name": "sufficient_valid_seeds_for_delta_sd", "description": "At least 2 seeds must clear every precondition (non-degenerate boundary rate, valid matched pools, finite RVs) to compute an SD of the event-minus-clock delta.", "measured": 3.0, "threshold": 2.0, "direction": "lower", "control": null, "met": true}], "criteria_non_degenerate": {"C_event_relative_beats_clock_relative": true}, "scope_note": "WAKING event grammar only (use_sleep_loop=False). Offline/sleep-phase transitions -- the fifth landmark class in MECH-466 -- are recorded as an available-but-empty event type this iteration and deferred to a lettered follow-up with the sleep loop enabled. Sibling of V3-EXQ-824, which deferred this Outcome E."}, "criteria": [{"name": "C_event_relative_beats_clock_relative", "load_bearing": true, "passed": false, "measured": -0.09121562298256342, "threshold": 0.17126838737797104, "note": "effective_floor = max(1.5 * sd_delta=0.1142, 0.03) = 0.1713; the project convention is to scale noise on the SD of the DELTA between the two indexings, never the SD of either alone."}], "elapsed_seconds": 2026.1280682086945, "per_seed_results": [{"seed": 0, "p0_stats": {"warmup_harm_events": 132, "warmup_total_harm": 22.22880969643592}, "p1_stats": {"harm_events": 131, "reward_events": 3, "n_steps": 294, "episode_lengths": [6, 6, 6, 6, 45, 60, 7, 24, 6, 6, 6, 34, 6, 15, 6, 10, 6, 18, 6, 15]}, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "3b408c263c8e7f3da186552ac6cd3ad66d9aaf5ff93bc66d6d1aa82a828a8a67", "bytes": 438570, "filename": "3b408c263c8e7f3da186552ac6cd3ad66d9aaf5ff93bc66d6d1aa82a828a8a67.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [294, 4], "dtype": "float32"}, "beta_elevated": {"shape": [294, 1], "dtype": "float32"}, "boundary_events": {"shape": [294, 2], "dtype": "float32"}, "broadcast_events": {"shape": [294, 2], "dtype": "float32"}, "e1_hidden": {"shape": [294, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [294, 1], "dtype": "float32"}, "e3_commitment": {"shape": [294, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [294, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [294, 1], "dtype": "float32"}, "offline_mode": {"shape": [294, 1], "dtype": "float32"}, "operating_mode": {"shape": [294, 6], "dtype": "float32"}, "sleep_phase": {"shape": [294, 1], "dtype": "float32"}, "z_beta": {"shape": [294, 64], "dtype": "float32"}, "z_delta": {"shape": [294, 32], "dtype": "float32"}, "z_goal": {"shape": [294, 32], "dtype": "float32"}, "z_harm": {"shape": [294, 32], "dtype": "float32"}, "z_harm_a": {"shape": [294, 16], "dtype": "float32"}, "z_self": {"shape": [294, 32], "dtype": "float32"}, "z_theta": {"shape": [294, 32], "dtype": "float32"}, "z_world": {"shape": [294, 32], "dtype": "float32"}, "clock": {"shape": [294, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [9408], "dtype": "float32"}, "e3_scores__offsets": {"shape": [295], "dtype": "int64"}, "extra__reward": {"shape": [294], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_831_mech466_event_relative_alignment_seed0", "n_steps": 294, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "analysis": {"seed": 0, "n_steps": 294, "boundary_rate": 0.006802721088435374, "event_type_counts": {"boundary": 2, "commitment": 19, "mode_switch": 0, "offline": 0}, "n_union_events": 21, "operating_mode_tick_period": 1.0, "rv_event": 0.1907357441411118, "rv_clock": 0.15011468486342833, "delta": 0.040621059277683474, "n_event_anchors": 21, "n_clock_anchors": 21, "n_event_pool": 67, "n_clock_pool": 67, "n_matched_pool": 67, "valid": true, "invalid_reason": null, "surrogate_p_value": 0.21}}, {"seed": 1, "p0_stats": {"warmup_harm_events": 169, "warmup_total_harm": 25.06476202607154}, "p1_stats": {"harm_events": 174, "reward_events": 17, "n_steps": 621, "episode_lengths": [16, 51, 21, 31, 28, 24, 13, 40, 27, 35, 28, 53, 25, 12, 32, 20, 37, 21, 41, 66]}, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "76bb5172d50cf1692f9d5de55b0fb962cc16fb5a070ee12c3f3aff755af3499e", "bytes": 852607, "filename": "76bb5172d50cf1692f9d5de55b0fb962cc16fb5a070ee12c3f3aff755af3499e.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [621, 4], "dtype": "float32"}, "beta_elevated": {"shape": [621, 1], "dtype": "float32"}, "boundary_events": {"shape": [621, 2], "dtype": "float32"}, "broadcast_events": {"shape": [621, 2], "dtype": "float32"}, "e1_hidden": {"shape": [621, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [621, 1], "dtype": "float32"}, "e3_commitment": {"shape": [621, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [621, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [621, 1], "dtype": "float32"}, "offline_mode": {"shape": [621, 1], "dtype": "float32"}, "operating_mode": {"shape": [621, 6], "dtype": "float32"}, "sleep_phase": {"shape": [621, 1], "dtype": "float32"}, "z_beta": {"shape": [621, 64], "dtype": "float32"}, "z_delta": {"shape": [621, 32], "dtype": "float32"}, "z_goal": {"shape": [621, 32], "dtype": "float32"}, "z_harm": {"shape": [621, 32], "dtype": "float32"}, "z_harm_a": {"shape": [621, 16], "dtype": "float32"}, "z_self": {"shape": [621, 32], "dtype": "float32"}, "z_theta": {"shape": [621, 32], "dtype": "float32"}, "z_world": {"shape": [621, 32], "dtype": "float32"}, "clock": {"shape": [621, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [19872], "dtype": "float32"}, "e3_scores__offsets": {"shape": [622], "dtype": "int64"}, "extra__reward": {"shape": [621], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_831_mech466_event_relative_alignment_seed1", "n_steps": 621, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "analysis": {"seed": 1, "n_steps": 621, "boundary_rate": 0.033816425120772944, "event_type_counts": {"boundary": 21, "commitment": 0, "mode_switch": 0, "offline": 0}, "n_union_events": 21, "operating_mode_tick_period": 1.0, "rv_event": 0.14759305657636998, "rv_clock": 0.3036575331780791, "delta": -0.1560644766017091, "n_event_anchors": 21, "n_clock_anchors": 21, "n_event_pool": 108, "n_clock_pool": 92, "n_matched_pool": 92, "valid": true, "invalid_reason": null, "surrogate_p_value": 0.455}}, {"seed": 2, "p0_stats": {"warmup_harm_events": 140, "warmup_total_harm": 19.14880962371826}, "p1_stats": {"harm_events": 119, "reward_events": 28, "n_steps": 3150, "episode_lengths": [67, 200, 200, 200, 126, 92, 162, 200, 43, 200, 200, 200, 200, 200, 14, 159, 200, 107, 200, 180]}, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "c7c82866499affc1a681ca12908a2415b96680e269c50833a1ea1b6224fbf572", "bytes": 3962978, "filename": "c7c82866499affc1a681ca12908a2415b96680e269c50833a1ea1b6224fbf572.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [3150, 4], "dtype": "float32"}, "beta_elevated": {"shape": [3150, 1], "dtype": "float32"}, "boundary_events": {"shape": [3150, 2], "dtype": "float32"}, "broadcast_events": {"shape": [3150, 2], "dtype": "float32"}, "e1_hidden": {"shape": [3150, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [3150, 1], "dtype": "float32"}, "e3_commitment": {"shape": [3150, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [3150, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [3150, 1], "dtype": "float32"}, "offline_mode": {"shape": [3150, 1], "dtype": "float32"}, "operating_mode": {"shape": [3150, 6], "dtype": "float32"}, "sleep_phase": {"shape": [3150, 1], "dtype": "float32"}, "z_beta": {"shape": [3150, 64], "dtype": "float32"}, "z_delta": {"shape": [3150, 32], "dtype": "float32"}, "z_goal": {"shape": [3150, 32], "dtype": "float32"}, "z_harm": {"shape": [3150, 32], "dtype": "float32"}, "z_harm_a": {"shape": [3150, 16], "dtype": "float32"}, "z_self": {"shape": [3150, 32], "dtype": "float32"}, "z_theta": {"shape": [3150, 32], "dtype": "float32"}, "z_world": {"shape": [3150, 32], "dtype": "float32"}, "clock": {"shape": [3150, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [100800], "dtype": "float32"}, "e3_scores__offsets": {"shape": [3151], "dtype": "int64"}, "extra__reward": {"shape": [3150], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_831_mech466_event_relative_alignment_seed2", "n_steps": 3150, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "analysis": {"seed": 2, "n_steps": 3150, "boundary_rate": 0.04825396825396826, "event_type_counts": {"boundary": 152, "commitment": 301, "mode_switch": 0, "offline": 0}, "n_union_events": 446, "operating_mode_tick_period": 9.0, "rv_event": 0.211943475883975, "rv_clock": 0.3701469275076396, "delta": -0.15820345162366461, "n_event_anchors": 349, "n_clock_anchors": 9, "n_event_pool": 450, "n_clock_pool": 24, "n_matched_pool": 24, "valid": true, "invalid_reason": null, "surrogate_p_value": 0.455}}, {"seed": 3, "p0_stats": {"warmup_harm_events": 153, "warmup_total_harm": 23.49726207852363}, "p1_stats": {"harm_events": 120, "reward_events": 16, "n_steps": 2391, "episode_lengths": [200, 3, 124, 143, 200, 200, 31, 90, 200, 88, 144, 78, 200, 179, 67, 29, 22, 200, 179, 14]}, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "a945b1ca8f755dc8223b06fdcca064f5924999f69a98c1c875df6dfc840906c7", "bytes": 3018978, "filename": "a945b1ca8f755dc8223b06fdcca064f5924999f69a98c1c875df6dfc840906c7.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [2391, 4], "dtype": "float32"}, "beta_elevated": {"shape": [2391, 1], "dtype": "float32"}, "boundary_events": {"shape": [2391, 2], "dtype": "float32"}, "broadcast_events": {"shape": [2391, 2], "dtype": "float32"}, "e1_hidden": {"shape": [2391, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [2391, 1], "dtype": "float32"}, "e3_commitment": {"shape": [2391, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [2391, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [2391, 1], "dtype": "float32"}, "offline_mode": {"shape": [2391, 1], "dtype": "float32"}, "operating_mode": {"shape": [2391, 6], "dtype": "float32"}, "sleep_phase": {"shape": [2391, 1], "dtype": "float32"}, "z_beta": {"shape": [2391, 64], "dtype": "float32"}, "z_delta": {"shape": [2391, 32], "dtype": "float32"}, "z_goal": {"shape": [2391, 32], "dtype": "float32"}, "z_harm": {"shape": [2391, 32], "dtype": "float32"}, "z_harm_a": {"shape": [2391, 16], "dtype": "float32"}, "z_self": {"shape": [2391, 32], "dtype": "float32"}, "z_theta": {"shape": [2391, 32], "dtype": "float32"}, "z_world": {"shape": [2391, 32], "dtype": "float32"}, "clock": {"shape": [2391, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [76512], "dtype": "float32"}, "e3_scores__offsets": {"shape": [2392], "dtype": "int64"}, "extra__reward": {"shape": [2391], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_831_mech466_event_relative_alignment_seed3", "n_steps": 2391, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "analysis": {"seed": 3, "n_steps": 2391, "boundary_rate": 0.060225846925972396, "event_type_counts": {"boundary": 144, "commitment": 259, "mode_switch": 0, "offline": 0}, "n_union_events": 390, "operating_mode_tick_period": 9.0, "rv_event": NaN, "rv_clock": NaN, "delta": NaN, "n_event_anchors": 300, "n_clock_anchors": 2, "n_event_pool": 369, "n_clock_pool": 5, "n_matched_pool": 5, "valid": false, "invalid_reason": "insufficient_matched_pool", "surrogate_p_value": NaN}}, {"seed": 4, "p0_stats": {"warmup_harm_events": 39, "warmup_total_harm": 10.030000048875806}, "p1_stats": {"harm_events": 38, "reward_events": 18, "n_steps": 3615, "episode_lengths": [200, 200, 200, 200, 200, 2, 200, 200, 200, 200, 200, 200, 200, 200, 13, 200, 200, 200, 200, 200]}, "trace_pointer": {"pointer_schema": "trace_ptr/v1", "sha256": "4dac45b9d3148bb53a2a2f095fb20a3e857075107e7b86202aa4477d8eb97ad5", "bytes": 4381461, "filename": "4dac45b9d3148bb53a2a2f095fb20a3e857075107e7b86202aa4477d8eb97ad5.npz", "root_hint": "/home/ree/REE_Working/ree-v3/traces", "machine": "ree-cloud-2", "storage": "machine_local_content_addressed", "n_streams": 65, "streams": {"agent_scalars": {"shape": [3615, 4], "dtype": "float32"}, "beta_elevated": {"shape": [3615, 1], "dtype": "float32"}, "boundary_events": {"shape": [3615, 2], "dtype": "float32"}, "broadcast_events": {"shape": [3615, 2], "dtype": "float32"}, "e1_hidden": {"shape": [3615, 256], "dtype": "float32"}, "e2_self_pe": {"shape": [3615, 1], "dtype": "float32"}, "e3_commitment": {"shape": [3615, 5], "dtype": "float32"}, "e3_n_candidates": {"shape": [3615, 1], "dtype": "float32"}, "hippocampal_proposals": {"shape": [3615, 1], "dtype": "float32"}, "offline_mode": {"shape": [3615, 1], "dtype": "float32"}, "operating_mode": {"shape": [3615, 6], "dtype": "float32"}, "sleep_phase": {"shape": [3615, 1], "dtype": "float32"}, "z_beta": {"shape": [3615, 64], "dtype": "float32"}, "z_delta": {"shape": [3615, 32], "dtype": "float32"}, "z_goal": {"shape": [3615, 32], "dtype": "float32"}, "z_harm": {"shape": [3615, 32], "dtype": "float32"}, "z_harm_a": {"shape": [3615, 16], "dtype": "float32"}, "z_self": {"shape": [3615, 32], "dtype": "float32"}, "z_theta": {"shape": [3615, 32], "dtype": "float32"}, "z_world": {"shape": [3615, 32], "dtype": "float32"}, "clock": {"shape": [3615, 9], "dtype": "float32"}, "e3_scores__values": {"shape": [115680], "dtype": "float32"}, "e3_scores__offsets": {"shape": [3616], "dtype": "int64"}, "extra__reward": {"shape": [3615], "dtype": "float32"}}, "trace_schema": "stream_trace/v1", "run_id": "v3_exq_831_mech466_event_relative_alignment_seed4", "n_steps": 3615, "stream_names": ["agent_scalars", "beta_elevated", "boundary_events", "broadcast_events", "e1_hidden", "e2_self_pe", "e3_commitment", "e3_n_candidates", "hippocampal_proposals", "offline_mode", "operating_mode", "sleep_phase", "z_beta", "z_delta", "z_goal", "z_harm", "z_harm_a", "z_self", "z_theta", "z_world"]}, "analysis": {"seed": 4, "n_steps": 3615, "boundary_rate": 0.03983402489626556, "event_type_counts": {"boundary": 144, "commitment": 404, "mode_switch": 0, "offline": 0}, "n_union_events": 533, "operating_mode_tick_period": 9.0, "rv_event": NaN, "rv_clock": NaN, "delta": NaN, "n_event_anchors": 413, "n_clock_anchors": 3, "n_event_pool": 435, "n_clock_pool": 6, "n_matched_pool": 6, "valid": false, "invalid_reason": "insufficient_matched_pool", "surrogate_p_value": NaN}}], "delta_summary": {"valid_seeds": [0, 1, 2], "excluded_seeds": {"3": "insufficient_matched_pool", "4": "insufficient_matched_pool"}, "mean_delta": -0.09121562298256342, "sd_delta": 0.11417892491864735, "effective_floor": 0.17126838737797104, "mean_boundary_rate": 0.0377865972570829, "rv_event_all_seeds": [0.1907357441411118, 0.14759305657636998, 0.211943475883975, NaN, NaN], "rv_clock_all_seeds": [0.15011468486342833, 0.3036575331780791, 0.3701469275076396, NaN, NaN], "delta_all_seeds": [0.040621059277683474, -0.1560644766017091, -0.15820345162366461, NaN, NaN], "surrogate_p_all_seeds": [0.21, 0.455, 0.455, NaN, NaN]}, "primary_pair": ["z_world", "operating_mode"], "method_note": "RV_event vs RV_clock are the SAME multivariate RV coefficient computed on two indexings of ONE recorded trace, read on the operating_mode (E3) fresh tick grid to avoid the sampling trap. Event anchors = union of waking landmark onsets (MECH-288 boundary pulses, beta commitment-gate rising edge, salience mode_switch_trigger). Clock anchors = matched-count coarse-grid ticks disjoint from event neighbourhoods. Pools matched to a common n; windows episode-bounded. Secondary circular-shift surrogate tests event-locking specifically.", "recording_schema": "rec/v1", "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25", "substrate_stable_across_run": true, "machine": "ree-cloud-2", "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu", "config": {"seeds": [0, 1, 2, 3, 4], "world_dim": 32, "self_dim": 32, "alpha_world": 0.9, "env_size": 6, "warmup_episodes": 20, "rec_episodes": 20, "steps_per_episode": 200, "primary_pair": ["z_world", "operating_mode"], "w_ticks": 3, "boundary_rate_floor": 0.001, "boundary_rate_ceil": 0.6, "min_event_anchors": 6, "min_pool_samples": 16, "surr_shifts": 199, "effect_size_k": 1.5, "effect_size_abs_floor": 0.03, "use_sleep_loop": false}, "seeds": [0, 1, 2, 3, 4]}
+{
+  "run_id": "v3_exq_831_mech466_event_relative_alignment_20260727T201435Z_v3",
+  "experiment_type": "v3_exq_831_mech466_event_relative_alignment",
+  "queue_id": "V3-EXQ-831",
+  "claim_ids": [
+    "MECH-466"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260727T201435Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "non_degenerate": true,
+  "degeneracy_reason": null,
+  "interpretation": {
+    "label": "clock_relative_not_exceeded",
+    "summary": "Outcome not-E: event-minus-clock RV delta mean=-0.0912 did not clear the effective floor 0.1713 across 3 valid seeds. Coordination is no tighter around events than around arbitrary clock points -- the boundary stream reads as a detector, not the federation's coordination substrate. Informative FAIL (weakens), not a null result, per the project's non-standard-directions convention.",
+    "preconditions": [
+      {
+        "name": "boundary_rate_non_degenerate_band",
+        "description": "Claim-mandated non-degeneracy guard: the mean boundary-pulse rate (fraction of env steps carrying a boundary onset) must lie strictly inside the band -- neither floor-pinned (segmenter silent, no event grammar to test) nor ceiling-pinned (a boundary every step makes event-relative == clock-relative by construction).",
+        "measured": 0.0377865972570829,
+        "threshold_low": 0.001,
+        "threshold_high": 0.6,
+        "comparator_low": ">=",
+        "comparator_high": "<=",
+        "direction": "interval",
+        "control": "q081 profile enables hippocampal.use_event_segmenter (MECH-288)",
+        "met": true
+      },
+      {
+        "name": "boundary_non_degenerate_seed_fraction",
+        "description": "Fraction of seeds whose own boundary rate is inside the band; a single well-placed mean must not mask per-seed pinning.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      },
+      {
+        "name": "sufficient_union_events_seed_fraction",
+        "description": "Fraction of seeds with >= 6 distinct union event onsets (boundary + commitment + mode-switch + offline), so peri-event pooling is not starved.",
+        "measured": 1.0,
+        "threshold": 0.6,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      },
+      {
+        "name": "sufficient_valid_seeds_for_delta_sd",
+        "description": "At least 2 seeds must clear every precondition (non-degenerate boundary rate, valid matched pools, finite RVs) to compute an SD of the event-minus-clock delta.",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": null,
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_event_relative_beats_clock_relative": true
+    },
+    "scope_note": "WAKING event grammar only (use_sleep_loop=False). Offline/sleep-phase transitions -- the fifth landmark class in MECH-466 -- are recorded as an available-but-empty event type this iteration and deferred to a lettered follow-up with the sleep loop enabled. Sibling of V3-EXQ-824, which deferred this Outcome E."
+  },
+  "criteria": [
+    {
+      "name": "C_event_relative_beats_clock_relative",
+      "load_bearing": true,
+      "passed": false,
+      "measured": -0.09121562298256342,
+      "threshold": 0.17126838737797104,
+      "note": "effective_floor = max(1.5 * sd_delta=0.1142, 0.03) = 0.1713; the project convention is to scale noise on the SD of the DELTA between the two indexings, never the SD of either alone."
+    }
+  ],
+  "elapsed_seconds": 2026.1280682086945,
+  "per_seed_results": [
+    {
+      "seed": 0,
+      "p0_stats": {
+        "warmup_harm_events": 132,
+        "warmup_total_harm": 22.22880969643592
+      },
+      "p1_stats": {
+        "harm_events": 131,
+        "reward_events": 3,
+        "n_steps": 294,
+        "episode_lengths": [
+          6,
+          6,
+          6,
+          6,
+          45,
+          60,
+          7,
+          24,
+          6,
+          6,
+          6,
+          34,
+          6,
+          15,
+          6,
+          10,
+          6,
+          18,
+          6,
+          15
+        ]
+      },
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "3b408c263c8e7f3da186552ac6cd3ad66d9aaf5ff93bc66d6d1aa82a828a8a67",
+        "bytes": 438570,
+        "filename": "3b408c263c8e7f3da186552ac6cd3ad66d9aaf5ff93bc66d6d1aa82a828a8a67.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              294,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              294,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              294,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              294,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              294,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              294,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              294,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              294,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              294,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              294,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              294,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              9408
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              295
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              294
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_831_mech466_event_relative_alignment_seed0",
+        "n_steps": 294,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "analysis": {
+        "seed": 0,
+        "n_steps": 294,
+        "boundary_rate": 0.006802721088435374,
+        "event_type_counts": {
+          "boundary": 2,
+          "commitment": 19,
+          "mode_switch": 0,
+          "offline": 0
+        },
+        "n_union_events": 21,
+        "operating_mode_tick_period": 1.0,
+        "rv_event": 0.1907357441411118,
+        "rv_clock": 0.15011468486342833,
+        "delta": 0.040621059277683474,
+        "n_event_anchors": 21,
+        "n_clock_anchors": 21,
+        "n_event_pool": 67,
+        "n_clock_pool": 67,
+        "n_matched_pool": 67,
+        "valid": true,
+        "invalid_reason": null,
+        "surrogate_p_value": 0.21
+      }
+    },
+    {
+      "seed": 1,
+      "p0_stats": {
+        "warmup_harm_events": 169,
+        "warmup_total_harm": 25.06476202607154
+      },
+      "p1_stats": {
+        "harm_events": 174,
+        "reward_events": 17,
+        "n_steps": 621,
+        "episode_lengths": [
+          16,
+          51,
+          21,
+          31,
+          28,
+          24,
+          13,
+          40,
+          27,
+          35,
+          28,
+          53,
+          25,
+          12,
+          32,
+          20,
+          37,
+          21,
+          41,
+          66
+        ]
+      },
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "76bb5172d50cf1692f9d5de55b0fb962cc16fb5a070ee12c3f3aff755af3499e",
+        "bytes": 852607,
+        "filename": "76bb5172d50cf1692f9d5de55b0fb962cc16fb5a070ee12c3f3aff755af3499e.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              621,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              621,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              621,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              621,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              621,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              621,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              621,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              621,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              621,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              621,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              621,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              19872
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              622
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              621
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_831_mech466_event_relative_alignment_seed1",
+        "n_steps": 621,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "analysis": {
+        "seed": 1,
+        "n_steps": 621,
+        "boundary_rate": 0.033816425120772944,
+        "event_type_counts": {
+          "boundary": 21,
+          "commitment": 0,
+          "mode_switch": 0,
+          "offline": 0
+        },
+        "n_union_events": 21,
+        "operating_mode_tick_period": 1.0,
+        "rv_event": 0.14759305657636998,
+        "rv_clock": 0.3036575331780791,
+        "delta": -0.1560644766017091,
+        "n_event_anchors": 21,
+        "n_clock_anchors": 21,
+        "n_event_pool": 108,
+        "n_clock_pool": 92,
+        "n_matched_pool": 92,
+        "valid": true,
+        "invalid_reason": null,
+        "surrogate_p_value": 0.455
+      }
+    },
+    {
+      "seed": 2,
+      "p0_stats": {
+        "warmup_harm_events": 140,
+        "warmup_total_harm": 19.14880962371826
+      },
+      "p1_stats": {
+        "harm_events": 119,
+        "reward_events": 28,
+        "n_steps": 3150,
+        "episode_lengths": [
+          67,
+          200,
+          200,
+          200,
+          126,
+          92,
+          162,
+          200,
+          43,
+          200,
+          200,
+          200,
+          200,
+          200,
+          14,
+          159,
+          200,
+          107,
+          200,
+          180
+        ]
+      },
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "c7c82866499affc1a681ca12908a2415b96680e269c50833a1ea1b6224fbf572",
+        "bytes": 3962978,
+        "filename": "c7c82866499affc1a681ca12908a2415b96680e269c50833a1ea1b6224fbf572.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              3150,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              3150,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              3150,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              3150,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              3150,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              3150,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              3150,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              3150,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              3150,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              3150,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              3150,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              100800
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              3151
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              3150
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_831_mech466_event_relative_alignment_seed2",
+        "n_steps": 3150,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "analysis": {
+        "seed": 2,
+        "n_steps": 3150,
+        "boundary_rate": 0.04825396825396826,
+        "event_type_counts": {
+          "boundary": 152,
+          "commitment": 301,
+          "mode_switch": 0,
+          "offline": 0
+        },
+        "n_union_events": 446,
+        "operating_mode_tick_period": 9.0,
+        "rv_event": 0.211943475883975,
+        "rv_clock": 0.3701469275076396,
+        "delta": -0.15820345162366461,
+        "n_event_anchors": 349,
+        "n_clock_anchors": 9,
+        "n_event_pool": 450,
+        "n_clock_pool": 24,
+        "n_matched_pool": 24,
+        "valid": true,
+        "invalid_reason": null,
+        "surrogate_p_value": 0.455
+      }
+    },
+    {
+      "seed": 3,
+      "p0_stats": {
+        "warmup_harm_events": 153,
+        "warmup_total_harm": 23.49726207852363
+      },
+      "p1_stats": {
+        "harm_events": 120,
+        "reward_events": 16,
+        "n_steps": 2391,
+        "episode_lengths": [
+          200,
+          3,
+          124,
+          143,
+          200,
+          200,
+          31,
+          90,
+          200,
+          88,
+          144,
+          78,
+          200,
+          179,
+          67,
+          29,
+          22,
+          200,
+          179,
+          14
+        ]
+      },
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "a945b1ca8f755dc8223b06fdcca064f5924999f69a98c1c875df6dfc840906c7",
+        "bytes": 3018978,
+        "filename": "a945b1ca8f755dc8223b06fdcca064f5924999f69a98c1c875df6dfc840906c7.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              2391,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              2391,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              2391,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              2391,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              2391,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              2391,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              2391,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              2391,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              2391,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              2391,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              2391,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              76512
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              2392
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              2391
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_831_mech466_event_relative_alignment_seed3",
+        "n_steps": 2391,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "analysis": {
+        "seed": 3,
+        "n_steps": 2391,
+        "boundary_rate": 0.060225846925972396,
+        "event_type_counts": {
+          "boundary": 144,
+          "commitment": 259,
+          "mode_switch": 0,
+          "offline": 0
+        },
+        "n_union_events": 390,
+        "operating_mode_tick_period": 9.0,
+        "rv_event": NaN,
+        "rv_clock": NaN,
+        "delta": NaN,
+        "n_event_anchors": 300,
+        "n_clock_anchors": 2,
+        "n_event_pool": 369,
+        "n_clock_pool": 5,
+        "n_matched_pool": 5,
+        "valid": false,
+        "invalid_reason": "insufficient_matched_pool",
+        "surrogate_p_value": NaN
+      }
+    },
+    {
+      "seed": 4,
+      "p0_stats": {
+        "warmup_harm_events": 39,
+        "warmup_total_harm": 10.030000048875806
+      },
+      "p1_stats": {
+        "harm_events": 38,
+        "reward_events": 18,
+        "n_steps": 3615,
+        "episode_lengths": [
+          200,
+          200,
+          200,
+          200,
+          200,
+          2,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          200,
+          13,
+          200,
+          200,
+          200,
+          200,
+          200
+        ]
+      },
+      "trace_pointer": {
+        "pointer_schema": "trace_ptr/v1",
+        "sha256": "4dac45b9d3148bb53a2a2f095fb20a3e857075107e7b86202aa4477d8eb97ad5",
+        "bytes": 4381461,
+        "filename": "4dac45b9d3148bb53a2a2f095fb20a3e857075107e7b86202aa4477d8eb97ad5.npz",
+        "root_hint": "/home/ree/REE_Working/ree-v3/traces",
+        "machine": "ree-cloud-2",
+        "storage": "machine_local_content_addressed",
+        "n_streams": 65,
+        "streams": {
+          "agent_scalars": {
+            "shape": [
+              3615,
+              4
+            ],
+            "dtype": "float32"
+          },
+          "beta_elevated": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "boundary_events": {
+            "shape": [
+              3615,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "broadcast_events": {
+            "shape": [
+              3615,
+              2
+            ],
+            "dtype": "float32"
+          },
+          "e1_hidden": {
+            "shape": [
+              3615,
+              256
+            ],
+            "dtype": "float32"
+          },
+          "e2_self_pe": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "e3_commitment": {
+            "shape": [
+              3615,
+              5
+            ],
+            "dtype": "float32"
+          },
+          "e3_n_candidates": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "hippocampal_proposals": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "offline_mode": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "operating_mode": {
+            "shape": [
+              3615,
+              6
+            ],
+            "dtype": "float32"
+          },
+          "sleep_phase": {
+            "shape": [
+              3615,
+              1
+            ],
+            "dtype": "float32"
+          },
+          "z_beta": {
+            "shape": [
+              3615,
+              64
+            ],
+            "dtype": "float32"
+          },
+          "z_delta": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_goal": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_harm_a": {
+            "shape": [
+              3615,
+              16
+            ],
+            "dtype": "float32"
+          },
+          "z_self": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_theta": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "z_world": {
+            "shape": [
+              3615,
+              32
+            ],
+            "dtype": "float32"
+          },
+          "clock": {
+            "shape": [
+              3615,
+              9
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__values": {
+            "shape": [
+              115680
+            ],
+            "dtype": "float32"
+          },
+          "e3_scores__offsets": {
+            "shape": [
+              3616
+            ],
+            "dtype": "int64"
+          },
+          "extra__reward": {
+            "shape": [
+              3615
+            ],
+            "dtype": "float32"
+          }
+        },
+        "trace_schema": "stream_trace/v1",
+        "run_id": "v3_exq_831_mech466_event_relative_alignment_seed4",
+        "n_steps": 3615,
+        "stream_names": [
+          "agent_scalars",
+          "beta_elevated",
+          "boundary_events",
+          "broadcast_events",
+          "e1_hidden",
+          "e2_self_pe",
+          "e3_commitment",
+          "e3_n_candidates",
+          "hippocampal_proposals",
+          "offline_mode",
+          "operating_mode",
+          "sleep_phase",
+          "z_beta",
+          "z_delta",
+          "z_goal",
+          "z_harm",
+          "z_harm_a",
+          "z_self",
+          "z_theta",
+          "z_world"
+        ]
+      },
+      "analysis": {
+        "seed": 4,
+        "n_steps": 3615,
+        "boundary_rate": 0.03983402489626556,
+        "event_type_counts": {
+          "boundary": 144,
+          "commitment": 404,
+          "mode_switch": 0,
+          "offline": 0
+        },
+        "n_union_events": 533,
+        "operating_mode_tick_period": 9.0,
+        "rv_event": NaN,
+        "rv_clock": NaN,
+        "delta": NaN,
+        "n_event_anchors": 413,
+        "n_clock_anchors": 3,
+        "n_event_pool": 435,
+        "n_clock_pool": 6,
+        "n_matched_pool": 6,
+        "valid": false,
+        "invalid_reason": "insufficient_matched_pool",
+        "surrogate_p_value": NaN
+      }
+    }
+  ],
+  "delta_summary": {
+    "valid_seeds": [
+      0,
+      1,
+      2
+    ],
+    "excluded_seeds": {
+      "3": "insufficient_matched_pool",
+      "4": "insufficient_matched_pool"
+    },
+    "mean_delta": -0.09121562298256342,
+    "sd_delta": 0.11417892491864735,
+    "effective_floor": 0.17126838737797104,
+    "mean_boundary_rate": 0.0377865972570829,
+    "rv_event_all_seeds": [
+      0.1907357441411118,
+      0.14759305657636998,
+      0.211943475883975,
+      NaN,
+      NaN
+    ],
+    "rv_clock_all_seeds": [
+      0.15011468486342833,
+      0.3036575331780791,
+      0.3701469275076396,
+      NaN,
+      NaN
+    ],
+    "delta_all_seeds": [
+      0.040621059277683474,
+      -0.1560644766017091,
+      -0.15820345162366461,
+      NaN,
+      NaN
+    ],
+    "surrogate_p_all_seeds": [
+      0.21,
+      0.455,
+      0.455,
+      NaN,
+      NaN
+    ]
+  },
+  "primary_pair": [
+    "z_world",
+    "operating_mode"
+  ],
+  "method_note": "RV_event vs RV_clock are the SAME multivariate RV coefficient computed on two indexings of ONE recorded trace, read on the operating_mode (E3) fresh tick grid to avoid the sampling trap. Event anchors = union of waking landmark onsets (MECH-288 boundary pulses, beta commitment-gate rising edge, salience mode_switch_trigger). Clock anchors = matched-count coarse-grid ticks disjoint from event neighbourhoods. Pools matched to a common n; windows episode-bounded. Secondary circular-shift surrogate tests event-locking specifically.",
+  "recording_schema": "rec/v1",
+  "substrate_hash": "a2520a588a0c1a485b14acb64283d043c80364d2888ee3893614c9d79c5d6a25",
+  "substrate_stable_across_run": true,
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "config": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "world_dim": 32,
+    "self_dim": 32,
+    "alpha_world": 0.9,
+    "env_size": 6,
+    "warmup_episodes": 20,
+    "rec_episodes": 20,
+    "steps_per_episode": 200,
+    "primary_pair": [
+      "z_world",
+      "operating_mode"
+    ],
+    "w_ticks": 3,
+    "boundary_rate_floor": 0.001,
+    "boundary_rate_ceil": 0.6,
+    "min_event_anchors": 6,
+    "min_pool_samples": 16,
+    "surr_shifts": 199,
+    "effect_size_k": 1.5,
+    "effect_size_abs_floor": 0.03,
+    "use_sleep_loop": false
+  },
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "epistemic_category": "standard",
+  "evidence_direction_note": "First test of MECH-466 (waking-only scope): event-locked coordination does not exceed clock-locked (delta=-0.091 vs 0.171 floor); all four non-degeneracy preconditions clear cleanly. Clean weakens on the waking-only version. Sleep-engagement (use_sleep_loop=True) follow-up recommended before the full claim is adequately tested."
+}

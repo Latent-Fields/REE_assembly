@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "igw-212-proposal-for-mech-217",
-  "last_updated_utc": "2026-07-28T21:26:00Z",
+  "last_updated_utc": "2026-07-29T23:24:03Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6168,7 +6168,7 @@
       "added_session": "gracious-villani-1d1ac4",
       "implemented_session": "gracious-villani-1d1ac4",
       "implemented_utc": "2026-07-26T13:27:50Z",
-      "last_seen_session": "xenodochial-cartwright-aaa6ff",
+      "last_seen_session": "sweet-williams-f30676",
       "priority": 2,
       "ready": false,
       "design_doc": "docs/architecture/sd_082_rule_selection_action_consumer.md",
@@ -6191,6 +6191,12 @@
           "experiment_type": "v3_exq_822a_sd078_rule_selection_consumer",
           "metric": "on_prop_delta_mean = off_prop_delta_mean = exactly 0.0 (readiness_prop_nonvac: false) with SD-082 correctly engaged (lateral_pfc_rule_readout_consumer=True, lateral_pfc_train_rule_bias_head=True) and a strong, non-degenerate upstream chain (on_rule_state_diff_mean 0.644, on_rule_active_p2 0.882, zworld_common_mode_cone_present 0.963, on_pool_differentiated 3.0) -- the SECOND consecutive identical failure of readiness gate (d) propagation_non_vacuity (V3-EXQ-822 failed the same gate before SD-082 existed). Autopsy: failure_autopsy_batch-822a-826-817a-827_2026-07-26.md Section 2 (confirmed, user-adjudicated).",
           "target": "on_prop_delta_mean >= 0.001 (readiness_prop_nonvac) with an ON>OFF propagation contrast"
+        },
+        {
+          "run_id": "v3_exq_822b_sd082_head_internals_diagnostic_20260727T180919Z_v3",
+          "experiment_type": "v3_exq_822b_sd082_head_internals_diagnostic",
+          "metric": "on_last_layer_weight_delta_init_to_p1_mean = 0.0 (unconditional weight-norm read, both 822a and 822b) -- REINFORCE never updates rule_bias_head's last linear layer",
+          "target": "non-zero last-layer weight delta from init to post-P1, sufficient to move on_prop_delta_mean above the 1e-3 propagation_non_vacuity floor"
         }
       ],
       "amend_note_2026_07_27_head_internals_instrumentation": "Routed by the confirmed failure_autopsy_batch-822a-826-817a-827_2026-07-26 (Section 2, 'Routing -- implement-substrate, amend SD-082'). Root cause of the still-zero 822a propagation is UNVERIFIED (this was itself the recording gap): SD-082's fix touches compute_bias's candidate-summary centering + the scaled-tanh output bound + the last-Linear readout_init_scale rescale, but rule_bias_head's FIRST Linear+ReLU layer is untouched by SD-082 and always uses standard random init -- leading hypothesis is a dead-ReLU / magnitude-insensitivity point there absorbing the rule_state signal before it reaches the instrumented last layer, plausible if rule_state's raw magnitude is small relative to the (now-centered) world-summary component in the concatenated input, but the 822a manifest carried NO head-internals diagnostics to confirm or rule this out. Re-derive brake did NOT formally fire (R3 counts only substrate_ceiling readings; this is competence_implementation_gap), but two consecutive identical-gate failures argue for this substrate amend over a third blind re-queue letter, per the autopsy's own judgment.",
@@ -6256,6 +6262,86 @@
       "what_is_NOT_owed": "Not a new reverse-replay engine (MECH-165 reverse_replay + diverse_replay + exploration buffer already exist). Not the waking path (MECH-290 backward_credit_sweep already covers BetaGate-release credit on the committed trajectory). Not a behavioural navigation/commitment layer -- the validation is a measurement-only residue readout.",
       "do_not_conflate": "MECH-217 (OFFLINE, SWS reverse replay, path-specific, backward-spreading) is distinct from MECH-216 (WAKING schema-conditioning, feature-specific, forward-looking; BUILT+tested 263a/263b/332/332a) and from MECH-290 (WAKING backward_credit_sweep at BetaGate release on the committed trajectory). Testing either sibling is NOT evidence for MECH-217.",
       "origin": "IGW-20260728-212 / EVB-0349; proposal flipped blocked_substrate 2026-07-28 (REE_assembly 24e51b2efa)."
+    },
+    {
+      "sd_id": "Q081-REACH-CHECK-PAIR-SPECIFIC",
+      "title": "q081 reach: empirically verify manipulation reach to the SPECIFIC measured pair (z_world, operating_mode) before any full run; use_per_region_vs=True is refuted as sufficient",
+      "node_class": "complex (probe-gated)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "Q-081",
+        "INV-091"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_824a_q081_shared_organisation_landmark_removal_20260726T202358Z_v3",
+          "experiment_type": "v3_exq_824a_q081_shared_organisation_landmark_removal",
+          "metric": "arm_statistics_not_degenerately_bit_identical: 0 of 5 valid seeds non-bit-identical, despite landmark_arm_behavioural_reach=1.0 (reach-check MET)",
+          "target": "at least 1 of the valid seeds produces a non-bit-identical rv_primary between ON and REMOVED arms"
+        },
+        {
+          "run_id": "v3_exq_838_q081_cross_stream_recording_20260729T173347Z_v3",
+          "experiment_type": "v3_exq_838_q081_cross_stream_recording",
+          "metric": "arm_statistics_not_degenerately_bit_identical: 0 of 5 valid seeds non-bit-identical, DESPITE use_anchor_sets=True AND use_per_region_vs=True AND landmark_arm_behavioural_reach=1.0",
+          "target": "at least 1 valid seed produces a non-bit-identical rv_primary between INTACT and at least one manipulation arm on the measured pair"
+        }
+      ],
+      "implementation_hint": "824a recommended 'add use_per_region_vs=True and re-verify'. 838 did exactly that (plus a second, temporal manipulation family) and RV(z_world, operating_mode) stayed bit-identical across all 5 seeds. The use_per_region_vs reach path (apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3 -> operating_mode, agent.py:4686-4692) does not carry variance to operating_mode. Do NOT flip another blanket flag: build a cheap low-episode pre-flight reach probe that asserts at least one arm moves rv_primary on the SPECIFIC measured pair, and gate any full run on it. If no lever moves operating_mode, the DV pair itself must be reframed onto a confirmed-reachable pair (H2).",
+      "priority": 2,
+      "added_session": "sweet-williams-f30676",
+      "last_seen_session": "sweet-williams-f30676"
+    },
+    {
+      "sd_id": "INV091-NULL-VALIDATION-RUN-LENGTH",
+      "title": "INV-091 driver family: bump default episode/step budget so the surrogate-null validation actually clears",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "INV-091"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3",
+          "experiment_type": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations",
+          "metric": "null_validation.checked=false for all 6 arms, needing 2464-2848 steps vs 1500 run",
+          "target": "null_validation.checked=true for at least the intact and peak-composite arms"
+        }
+      ],
+      "implementation_hint": "All three INV-091 runs to date (827, 827a, 828) have needed roughly 2-2.8x more steps than were run for the constrained-realisation surrogate null to validate at all. Bump the default run length for this driver family to >=2848 steps as a standing default so future runs both compare arms AND establish significance against chance.",
+      "priority": 3,
+      "added_session": "sweet-williams-f30676",
+      "last_seen_session": "sweet-williams-f30676"
+    },
+    {
+      "sd_id": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
+      "title": "MECH-324 chunk-maintenance: decouple the crystallisation-counter reset from raw sliding-window contamination so f_reacq has causal effect on reacquisition timing",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-324",
+        "MECH-323"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_829_mech324_rapid_reacquisition_falsifier_20260727T170539Z_v3",
+          "experiment_type": "v3_exq_829_mech324_rapid_reacquisition_falsifier",
+          "metric": "median_r_reacq flat at 90.0 (W=100) / 28.0 (W=30) across all four tested f_reacq values",
+          "target": "median_r_reacq scales measurably with f_reacq at fixed W, per the claim's own falsifiable prediction"
+        }
+      ],
+      "implementation_hint": "829's pre-registered authoring probe and confirmed result both show r_reacq is flat across all tested f_reacq values (1.0, 0.5, 0.25, 0.1) and depends only on window length W -- the reduced repetition bar is inert by construction. The crystallisation-counter's dependence on the sliding-window variance clearing the dissolution episode's own contamination should be decoupled from (or made to properly respect) the reduced repetition threshold f_reacq is meant to encode.",
+      "priority": 2,
+      "added_session": "sweet-williams-f30676",
+      "last_seen_session": "sweet-williams-f30676"
     }
   ],
   "schema_version": "substrate_queue/v2"

@@ -361,5 +361,7 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882"
+  "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "precondition_unmet (chunks_formed) traced to a gate-strictness mismatch (readiness evaluated at worst-cell/100%, scoring criteria use seed_pass_fraction=0.6): 4/5 seeds formed chunks robustly. Not a substrate defect -- V3-EXQ-810a already validated the mechanism on the identical substrate build. Gate-logic fix only, no substrate action."
 }

@@ -85,5 +85,7 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "3cb8cb9f81750be907a7822a0cf5befca3847737339f32dc671c92a09f41d196"
+  "substrate_hash": "3cb8cb9f81750be907a7822a0cf5befca3847737339f32dc671c92a09f41d196",
+  "epistemic_category": "measurement_gap",
+  "evidence_direction_note": "E1 never received a training gradient -- the script's random-action rollout never calls agent.act*(), so compute_prediction_loss() never engages. No interpretable signal on MECH-244."
 }

@@ -3846,6 +3846,14 @@
   source:
     - docs/architecture/compact_consolidation_principle.md
     - evidence/literature/visual_cortex_compact_models/entries/2026-02-26_cowley_2023_compact_v4/record.json
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-835 supports; PASS, all criteria clean]: first experimental test.
+    Consolidation-selectivity ablation on the E3 candidate-selection operator: the load-bearing
+    operator_selection_authority_flip_rate criterion passes well above floor (0.697 vs a 0.05
+    threshold), with both non-degeneracy preconditions clearing cleanly (channel range 0.349 >>
+    0.0001 floor; mean candidate count 32.0 >> the 2.0 structural floor). Supports the claim that
+    selectivity lives in the consolidation operator's selection authority, not in the E1 feature
+    basis. Stays candidate.
 # Demoted 2026-02-26 — accepted governance recommendation. Evidence 4:4 split (conflict_ratio 1.0,
 # confidence 0.503). Insufficient signal to hold as active question. Needs discriminative experiment.
 - id: Q-012
@@ -4666,6 +4674,15 @@
     as provisional (architecturally necessary, EXQ-028/029 support world-gradient structure).
     Behavioral capability-expansion prediction split to ARC-026 (candidate, v3). Conflict
     evidence in ARC-024 experiment pool reflects ARC-026's scope, not ARC-024 proper.
+
+    [2026-07-29 governance, V3-EXQ-032d supports; PASS 5/5, superseding V3-EXQ-032b]: bug-fix
+    re-run correcting 032b (which never called agent._e1_tick()/record_transition(), so its E1/E2
+    training buffers never reached the length-2 floor those losses require and its PASS reflected
+    an untrained E1/E2/encoder stack). 032d adds the two missing calls and changes nothing else --
+    world_forward R2 0.9462, energy-escalation ladder confirmed (causal_sig contact 0.0024 >
+    approach 0.0061 [sign gradient] > none -0.047), all 5 criteria pass. V3-EXQ-032b marked
+    superseded. Confirms the world-gradient structure this claim's philosophical layer asserts,
+    now on a genuinely-trained substrate. Stays provisional.
   notes: >
     Because the world exists (INV-027) and the self exists (INV-026), death
     is the asymptotic limit of the harm manifold — the world can end the self,
@@ -5105,6 +5122,21 @@
     applied, the live_status.evidence anchor above should be revisited since it would
     leave MECH-102 with zero remaining supports entries among its scored experimental
     evidence.
+
+    [2026-07-29 governance, GOV-APPLY-1 (unapplied confirmed-autopsy recommendations)]: applied
+    both the 032-family and 059c-533 autopsies flagged above as pending. V3-EXQ-032b and
+    V3-EXQ-059c both reclassified non_contributory/competence_implementation_gap (same
+    E1/E2-self tick-omission defect as V3-EXQ-826); V3-EXQ-032/032c FAIL verdicts unchanged,
+    notes extended with the same causal mechanism. This DOES leave MECH-102 with zero remaining
+    supports among its historical scored evidence -- BUT V3-EXQ-032d (2026-07-26), a corrected
+    re-run of 032b that adds the missing agent._e1_tick()/record_transition() calls and changes
+    nothing else, independently PASSED 5/5 (world_forward R2 0.9462, causal_sig escalation ladder
+    confirmed on a genuinely-trained substrate) -- supersedes 032b and supplies a fresh supports
+    entry on the corrected substrate. live_status.evidence anchor NOT moved to 032d in this edit
+    (that run tests the world-gradient/energy-escalation layer shared with ARC-024/SD-003, not
+    specifically the violence-as-terminal-error-correction behavioural claim this entry's
+    substrate_conditional/V5 gate concerns) -- flagged for a future session to judge whether 032d's
+    scope actually bears on MECH-102's specific claim or only on its shared ARC-024/SD-003 tagging.
   heterogeneity_note: "Genuine scientific contradiction: the conflict reflects irreducible philosophical disagreement about when violence is justified as last resort and an operationalisation ceiling (current substrate has 2-3 coping channels rather than the multi-channel hierarchy the claim requires); the structural claim is separable from the normative question and held at substrate_ceiling pending V4 multi-agent substrate."
 
 # Three-gate BG gating architecture — registered 2026-02-27
@@ -8492,6 +8524,12 @@
     confirms ARC-033 forward model sound. Dry-run predecessors (T142339Z, T143459Z) marked
     superseded. SD-003 adjudication pending a re-run with event-density controls that guarantee
     a minimum agent_caused_hazard count per seed.
+
+    [2026-07-29 governance, V3-EXQ-032d supports (also MECH-102/ARC-024)]: PASS 5/5, corrected
+    re-run of V3-EXQ-032b (which never trained its perceptual encoder -- see MECH-102). Adds to
+    the historical evidence chain per this claim's own supersession_note convention (superseded
+    2026-04-18 by MECH-256/SD-029; new V3 evidence accrues to SD-029, not reactivating SD-003).
+    No status change.
   depends_on: [SD-005, SD-007, SD-008, MECH-071, SD-011, ARC-033, SD-013]
   location: docs/architecture/sd_003_experiment_design.md
 
@@ -8537,6 +8575,16 @@
     representational change (M5/M6 thresholds not met, high seed variance) so grounding_took=false gated
     the load-bearing behavioural criterion before it could run -> non_contributory, does NOT weaken SD-004's
     behavioural claim (EXQ-114 stands). Re-queue 817a with a stronger grounding objective is recommended.
+    [2026-07-29 governance, V3-EXQ-817a weakens (SD-004 only; SD-080: non_contributory);
+    failure_autopsy_batch-822a-826-817a-827_2026-07-26, confirmed]: 817a's redesigned objective DID achieve
+    a consequence-structured, state-dependent O this time (r2 0.98->0.72, clean paired + shuffled controls),
+    resolving 817's competence_implementation_gap. But grounding this representation produced NO behavioural
+    benefit (harm_rate flat/nominally worse vs frozen baseline) -- weakening SD-004's specific stated
+    rationale that this compressed representation drives measurably better long-horizon planning/harm-
+    avoidance. Does NOT weaken SD-004's core behavioural claim (EXQ-114's 99.2% harm reduction under
+    MAP_NAV stands) -- the planner-side coupling from representation quality to action choice is a
+    separate, still-open question. SD-004 STAYS implemented (status unchanged; rationale-only weakening,
+    same treatment as the 2026-07-25 V3-EXQ-809 finding above).
   depends_on: [SD-005]
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
   cross_reference_note: >
@@ -13313,6 +13361,17 @@
     either pathway. A first-principles analysis of the attribution pipeline's expected
     mathematical functions is needed before redesigning the test. Status: needs_redesign
     (pipeline mathematical analysis required).
+
+    [2026-07-29 governance, V3-EXQ-832 supports; PASS, load-bearing criterion clean]: C1
+    (childhood_exposure_necessary, load_bearing) passes -- the childhood (balanced/forced)
+    exposure regime differentiates ContextMemory while the avoidance-shaped regime does not,
+    despite identical supervised labeling. C2 (labeling_beyond_exposure, non-load-bearing) also
+    passes. Confirms committed exposure is a necessary prerequisite for differentiation, not
+    merely the supervised-labeling objective this claim's earlier evidence chain investigated --
+    resolves the "insufficient supervision" ambiguity carried since EXQ-187a/211/239 by isolating
+    the EXPOSURE-REGIME axis as load-bearing rather than only the supervision-strength axis. Also
+    supports INV-041 (see that entry). Note for the pending_user promotion/demotion agenda: this
+    is the first evidence since the 2026-04-04 hold_candidate_resolve_conflict decision.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
 
@@ -13403,8 +13462,17 @@
     update information flows to maintain viability. ARC-042 is both a neurodevelopmental
     claim and a software engineering constraint -- and the productive tension between
     these framings is itself informative for the project.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-832 supports; PASS, load-bearing criterion clean]: C1
+    (childhood_exposure_necessary, load_bearing) passes -- the childhood (balanced/forced)
+    exposure regime differentiates ContextMemory while the avoidance-shaped regime does not,
+    despite identical supervised labeling. Directly confirms this claim's core assertion: the
+    committed-exposure regime is the necessary developmental prerequisite, independent of the
+    supervised-labeling axis MECH-153 investigates separately. First V3 evidence since the
+    2026-06-10 hold_pending_v3_substrate decision. Stays candidate.
   evidence:
     - run_id: v3_exq_181b_sd016_context_separation_fix_20260331T131040Z_v3
+    - run_id: v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3
 
 # --- 2026-04-02 Thought Intake: April 1st thoughts ---
 
@@ -23851,6 +23919,16 @@
     maintenance; individual patients may have contributions from all three pathways.
     Registered 2026-04-16: pathways B and C added based on clinical input from Daniel
     Golden (consultant psychiatrist); registered as MECH-246, MECH-247.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-826 + V3-EXQ-826a non_contributory; failure_autopsy_batch-822a-826-817a-827_2026-07-26
+    + failure_autopsy_2026-07-28-sweep, both confirmed]: first two experimental tests, both non_contributory.
+    826 (2026-07-26, first test): E1 never received a training gradient at all -- the script's random-action
+    rollout never calls agent.act*(), so compute_prediction_loss() never engages; no interpretable signal.
+    826a (2026-07-27, E1-tick-bug fix over 826): confirms the fix works -- pe_precision_manipulation_took now
+    passes (2.06 vs 1.5 floor), E1 genuinely trains. This is the first non-buggy readiness read for MECH-244.
+    Two readiness gates still fail (phase-A convergence ratio 0.152 vs 0.25 floor; regime-change
+    disconfirmation 0.966 vs 1.15 floor) despite 240000 E1 ticks. MECH-244 remains untested (exp_conf=0.0).
+    Stays candidate; no direction yet.
 
 - id: MECH-245
   title: "Hallucination is a generative-model dominance failure where top-down predictions produce percepts without corresponding bottom-up sensory grounding."
@@ -23890,6 +23968,14 @@
     during REM may involve compound failure: MECH-094 notes that hallucinatory content
     during REM can accumulate in the residue field if the simulation/real mechanisms are
     compromised -- this is a confabulation+hallucination compound failure.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-825 supports; PASS, all criteria clean]: first experimental test.
+    A GRU forward model stand-in for E1/E2's top-down generative pathway, trained on synthetic
+    momentum z_world dynamics then rolled through a grounding phase followed by a deafferentation
+    window feeding the real E3TrajectorySelector's bottom-up-mismatch-check pathway with the
+    generative model's own predictions rather than ground truth. All three criteria pass at 3/3
+    seeds: C1 (confidence collapse), C2 (divergence magnitude), C3 (manipulation validity). Supports
+    the generative-model-dominance mechanism. Stays candidate.
 
 # Registered 2026-04-16 -- Papez circuit lit-pull discussion
 # Source: clinical input from Daniel Golden (consultant psychiatrist) + discussion of
@@ -42102,6 +42188,18 @@
     revisit candidates are (a) E2 forward-model disagreement as
     primary trigger instead of V_s, (b) parallel-but-coupled
     architecture replacing the bidirectional-substrate commitment.
+
+    [2026-07-29 governance, GOV-DIAG-1 diagnostic-chain recurrence]: check_diagnostic_chain_recurrence.py
+    flags a 5-hit pure-diagnostic (claim_ids=[]) no-verdict chain on this claim: V3-EXQ-816b -> 816c ->
+    816d -> 830 (830 counted via two bears_on tokens). Every run in the chain returned a verdict-free
+    "environment axis saturated" / "substrate not ready" reading rather than a discrimination -- three
+    consecutive env-axis harshening attempts (816, 816b, 816d) converged on forward-PE ~0.0086-0.0087,
+    each falling short of the 0.01 discrimination floor by roughly the same margin. Per GOV-DIAG-1 this
+    is a MIS-POSED-question signal, not an under-powered one: refuse a fourth same-question env-harshening
+    letter. The chain's own diagnosis (V3-EXQ-830's autopsy) already points at (a) E2 forward-model
+    disagreement replacing V_s as trigger, or (b) redesigning the discriminating STATISTIC rather than
+    escalating environment harshness again -- a future session should re-pose the operationalization along
+    one of those axes rather than queuing 816e. Not chipped (GOV-DIAG-1 routing is governance-owned).
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-322
@@ -42985,6 +43083,17 @@
     claim instead of re-deriving it. Governance had separately
     recorded the 829 result on MECH-324 (REE_assembly fbae929063)
     without touching the scale/threshold inconsistency.]
+
+    [2026-07-29 governance, V3-EXQ-829 supports (MECH-323 only; see MECH-324 for the mixed
+    verdict on the maintenance operator) + V3-EXQ-834 unknown/no-op; failure_autopsy_2026-07-28-sweep
+    + failure_autopsy_V3-EXQ-822b-834_2026-07-29, both confirmed]: 829 supports MECH-323's core
+    formation/retention structure directly -- C3 (retention-vs-erasure discriminator) held cleanly:
+    with the dormant-state flag OFF all 12/12 dissolved cells stayed dead, ON they revived. 834's
+    precondition_unmet (chunks_formed) was traced to a gate-strictness mismatch, not a substrate
+    defect: 4/5 seeds formed chunks robustly (8-44 each), comfortably clearing this run's own
+    seed_pass_fraction=0.6 tolerance -- V3-EXQ-810a already validated the underlying accumulator
+    mechanism on the identical substrate build. No substrate action from 834 (gate-logic fix in
+    the driver script only). Stays candidate; v3_pending unchanged.
   notes: >
     MECH-323 is the FORMATION half of ARC-071's two-operator
     machinery. MECH-324 (registered separately) is the
@@ -43153,6 +43262,7 @@
     needs_review: false
   implementation_phase: v3
   v3_pending: true
+  pending_retest_after_substrate: true
   registered_utc: "2026-05-11"
   depends_on:
     - ARC-071     # parent architectural commitment (composition direction)
@@ -43880,6 +43990,19 @@
     Earlier or concurrent ARC-071 work that assumed a unit-scale
     outcome signal should be re-read in this light before its
     dissolution-side results are relied on.]
+
+    [2026-07-29 governance, V3-EXQ-829 weakens; failure_autopsy_2026-07-28-sweep, confirmed]:
+    adjudicating the FAIL recorded above. Confirms MECH-324's core retention structure (C3 held
+    cleanly) but falsifies the SPECIFIC rapid-reacquisition rate prediction: median r_reacq 90 vs
+    predicted ~5, flat across all tested f_reacq values {1.0, 0.5, 0.25, 0.1} -- the reduced-
+    repetition lever the correction introduced had no measurable effect on the DV it was built to
+    move. The autopsy's leading hypothesis (offered as diagnosis, not re-litigated here): revival
+    is rate-limited by the variance-window flushing (r_reacq/W ~= 0.908 +/- 0.029 across the sweep,
+    tracking W not R_min or f_reacq), making f_reacq inert by construction rather than wrong in
+    value. New substrate entry MECH324-REACQ-WINDOW-GATING-DECOUPLE created (decouple the
+    crystallisation-counter reset from raw sliding-window contamination). Weakens the specific rate
+    claim; does not weaken the retention-vs-erasure structure (see MECH-323, supports). Stays
+    candidate; v3_pending unchanged; pending_retest_after_substrate noted via the new substrate entry.
   notes: >
     MECH-324 is the MAINTENANCE half of ARC-071's two-operator
     machinery. MECH-323 (registered 2026-05-11 earlier today)
@@ -52206,6 +52329,16 @@
     behaviour could not be exercised); does NOT weaken SD-078. pending_retest_after_substrate. Substrate gap
     already actioned: SD-082 (rule-selection action-bias consumer) built same-day (ree-v3 d4f758082d) and
     V3-EXQ-822a queued to validate it.
+
+    [2026-07-29 governance, V3-EXQ-822a + V3-EXQ-822b non_contributory; failure_autopsy_batch-822a-826-817a-827_2026-07-26
+    + failure_autopsy_2026-07-28-sweep, both confirmed]: SD-082's validation run (822a) reproduced the identical
+    structural-zero propagation (on/off_prop_delta_mean 0.0) despite SD-082's centering+soft-tanh fix correctly
+    engaged and a strong, non-degenerate upstream signal (on_rule_state_diff_mean 0.644) -- second consecutive
+    identical failure of the same readiness gate. The follow-on head-internals diagnostic (822b) traced the
+    actual cause: REINFORCE never updates rule_bias_head's last linear layer (unconditional weight-norm read
+    shows head_untrained across both runs). Both non_contributory, not weakening SD-078 -- the gap is in SD-082's
+    consumer wiring, not SD-078's rule-pool differentiation. SD-082 substrate entry amended with both failure
+    records; still candidate_substrate_landed, still pending_retest_after_substrate.
   claim_level: architectural
   pending_retest_after_substrate: true
   registered_utc: "2026-07-22"
@@ -52366,6 +52499,17 @@
     never evaluated -> non_contributory for both SD-080 and SD-004. SD-080's frozen-random-projection
     defect stands as confirmed by V3-EXQ-809; 817 adds no new direction on it. Re-queue 817a with a
     stronger grounding objective (e.g. contrastive consequence loss) and recalibrated M5/M6 thresholds.
+
+    [2026-07-29 governance, V3-EXQ-817a mixed (SD-080: non_contributory, SD-004: weakens);
+    failure_autopsy_batch-822a-826-817a-827_2026-07-26, confirmed]: 817a's redesigned grounding objective
+    succeeded representationally (r2 0.98->0.72, clean paired + shuffled controls, content-vs-traffic
+    discriminated) -- resolving 817's competence_implementation_gap and confirming the OBJECTIVE, not the
+    substrate, was the prior blocker. But grounding this representation produced NO behavioural benefit
+    (harm_rate flat/nominally worse across frozen/grounded/shuffled arms). SD-080 stays non_contributory:
+    this is a correctness-not-capability finding about a bespoke, newly-added training path, not evidence
+    that an existing REE path already grounds O -- SD-080's "zero gradient from every REE path" framing
+    about the DEFAULT substrate is not falsified. (SD-004's specific efficiency rationale is weakened --
+    see SD-004.) Stays candidate.
   functional_restatement: >
     Scoping spike 2026-07-22 (session epic-burnell-995d28). Four measurements, all on the
     live substrate: 99.5% of action-object variance is explained by the action label
@@ -60568,6 +60712,21 @@
     DO NOT MERGE.
     NOT on the V3 critical path. The raw thought is explicit that it does not justify
     changing it. First move is the telemetry audit; no experiment proposal minted.
+  pending_retest_after_substrate: true
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-824 + V3-EXQ-824a + V3-EXQ-838, all non_contributory;
+    failure_autopsy_V3-EXQ-824_2026-07-26 + failure_autopsy_2026-07-28-sweep + failure_autopsy_v3-exq-838_2026-07-29,
+    all confirmed]: three consecutive bit-identical-arms results on RV(z_world, operating_mode), each fixing the
+    prior run's diagnosed gap and each still failing. 824 (2026-07-26) self-routed weakens but is
+    non_contributory: the only enabled consumer flag (use_invalidation_trigger) has no causal reach to
+    z_world/operating_mode (source-trace confirmed). 824a (2026-07-26, use_anchor_sets fix): the reach-check
+    itself now passes (landmark_arm_behavioural_reach=1.0) yet rv_primary is still bit-identical across all 5
+    seeds -- the reach-check confirms SOME causal path to z_world, not reach to the SPECIFIC measured pair.
+    838 (2026-07-29, use_per_region_vs=True fix + a distinct temporal-manipulation family): still bit-identical
+    across all 5 seeds, refuting use_per_region_vs as sufficient. New substrate entry
+    Q081-REACH-CHECK-PAIR-SPECIFIC created (a cheap pre-flight reach probe gating any future full run on the
+    SPECIFIC measured pair, not a blanket flag check). Stays candidate; no direction toward the underlying
+    question yet -- three consecutive measurement-defect results, not evidence for or against shared organisation.
 
 - id: MECH-466
   title: "Event-relative coordination exceeds clock-relative coordination: cross-stream alignment measured around event boundaries, commitment onset, interruption, completion and offline transitions is stronger than alignment by wall-clock timestep. If so, the boundary stream is the coordination substrate for the whole federation, not merely a detector with a consumer."
@@ -60612,6 +60771,17 @@
     recoverable from logs. This is the FIRST candidate in cluster A that could be
     queued, and only after that audit. No experiment proposal minted here for that
     reason.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-831 weakens; failure_autopsy_2026-07-28-sweep, confirmed]: first
+    experimental test of MECH-466 (waking-only scope). Event-locked coordination does not exceed
+    clock-locked coordination (delta=-0.091 vs a 0.171 floor), with all four non-degeneracy preconditions
+    clearing cleanly across 3/3 valid seeds. Clean, self-consistent weakens on the waking-only version of
+    the claim -- no further diagnostic work needed. Note for the record: the deferred sleep-phase-transition
+    landmark class (Outcome E) is explicitly out of scope here (use_sleep_loop=False), and per 829's
+    independent finding (offline sleep-replay consolidation as a candidate load-bearing mechanism for
+    MECH-324's rapid-reacquisition prediction), sleep engagement looks increasingly likely to matter across
+    this claim family -- a lettered follow-up with use_sleep_loop=True is worth prioritising before MECH-466's
+    full (waking+sleep) claim can be considered adequately tested. Stays candidate.
 
 - id: INV-091
   title: "Integration and protected non-equivalence are JOINTLY necessary: cross-stream similarity has a viable band. Too little shared organisation is fragmentation; too much is representational collapse. An adequate architecture must satisfy both constraints at once, with a measurable quantity in between -- not merely satisfy each on a separate axis."
@@ -60667,6 +60837,21 @@
     invariant_type emergent (emergent_from the five per-axis guards it binds together),
     so it IS subject to substrate reconfirmation -- unlike a universal invariant.
     Gated behind the Q-081 telemetry audit like the rest of cluster A.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-827 non_contributory + V3-EXQ-827a non_contributory + V3-EXQ-828 weakens;
+    failure_autopsy_batch-822a-826-817a-827_2026-07-26 + failure_autopsy_2026-07-28-sweep, both confirmed]:
+    three runs of the ablation-series falsifier. 827 (2026-07-26) failed its own pre-registered non-degeneracy
+    guard: _force_lockstep() collapsed e1/e2/e3 tick rates to 1, confounding tick-count/sampling-density with
+    the manipulation -- non_contributory. 827a (2026-07-26, phase-sync redesign fixing the tick-rate confound):
+    genuinely fixed, real non-degenerate data on both load-bearing criteria, both FAIL cleanly (decouple ~=
+    intact < lockstep, no clean effect) -- non_contributory, standard. 828 (2026-07-27, remaining-ablations
+    sweep, 6 arms): intact does not distinguish itself as behaviourally optimal -- residue_off has the best
+    composite reward, intact sits statistically mid-pack. Directly weakens the Goldilocks-band prediction.
+    Surrogate-null validation was never checked in any of the three (each needed 2-2.8x more steps than run);
+    per Q-081's own precedent and user confirmation, the ablation-contrast is treated as the sufficient
+    discriminator and the null-validation gap is recorded as a standing design note, not a blocker to the
+    weakens verdict. New substrate entry INV091-NULL-VALIDATION-RUN-LENGTH created (bump default run length
+    to >=2848 steps for this driver family). Stays candidate.
 
 - id: ARC-112
   title: "REE is a FEDERATION / heterarchy of asynchronous, partially independent cognitive streams coordinated by shared organisational constraints -- neither a monolith nor a collection of independent modules. Successful integration preserves functionally necessary differences among streams rather than making their dynamics identical."
@@ -61825,11 +62010,15 @@
   claim_type: mechanism_hypothesis
   subject: f_dominance_conversion_ceiling.baseline_informativeness
   polarity: asserts
-  status: candidate
+  status: retired
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-22
+    reading: retired
+    as_of: 2026-07-29
     needs_review: false
+    evidence:
+      from: "v3_exq_837_mech475_distributional_critic_iatrogenic_falsifier_20260729T141738Z_v3"
+      as_of: 2026-07-29
+      verdict: "weakens -- WITHDRAWN per the claim's own pre-registered falsifier (what_would_answer (a)): distributional critic substituted for scalar on 2/3 named destructive instances (capacity/769, approach/781), destructive treatment-below-control inversion got 3.4x WORSE not better on all 6 scorable seeds, every readiness/positive-control gate green."
   implementation_phase: v3
   v3_pending: true
   generation: v3
@@ -61934,6 +62123,22 @@
     evidence/planning/claim_synthesis_MECH-457_2026-07-22.md.
     PROMOTES NOTHING. Registered as candidate/v3_pending. No hypothesis-space fan-out growth
     event is created by this registration -- see the synthesis document section 6.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-837 weakens -> RETIRED; failure_autopsy_mech476-mech475-cluster_2026-07-29,
+    confirmed]: V3-EXQ-837 is this claim's own decisive, pre-registered reversal test (what_would_answer
+    (a)): substituting a distributional critic for the scalar one on 2 of the 3 named destructive
+    instances (capacity/V3-EXQ-769, approach/V3-EXQ-781; metabolic/V3-EXQ-771 correctly self-excluded,
+    its own control never cleared the competence floor). Result: the destructive treatment-below-control
+    inversion did NOT reverse or flatten in either scorable family -- it got 3.4x WORSE under the
+    informative baseline (dist_inversion 15.1/14.9 vs scalar_inversion 4.5/4.4, reverses_or_flattens=false
+    on all 6 scorable seeds), with every readiness/positive-control gate green. Per the claim's own
+    pre-registered text this means the destructiveness is NOT the baseline's doing, and per the WEAKENED
+    branch of what_would_answer the claim does not degrade into a narrower version -- the whole content
+    was the causal attribution, so it is WITHDRAWN. Status floored candidate -> retired (not rejected --
+    the mechanism the claim named was real and independently established; only this claim's specific
+    causal attribution of it to baseline informativeness is falsified). MECH-476/MECH-460 (which cite
+    MECH-475 in depends_on) lean on the independently-established destructiveness phenomenon, not on
+    MECH-475's specific causal attribution -- unaffected by this retirement. No substrate action.
 
 - id: MECH-476
   title: "competence_retention_dissociable_from_acquisition. ACQUIRING competence and RETAINING it are dissociable capabilities with separate substrate requirements: REE has the first and lacks the second. Behavioural cloning installs foraging competence at 20.933 on raw_view (3/3 seeds took) and 32.72 on z_world, and unconstrained RL refinement then ERODES it to 11.667 -- while a distributional critic (V3-EXQ-788, retains 1.839) and a KL anchor to the installed snapshot (V3-EXQ-792, retains 0.778 vs 0.525 unconstrained, still plastic) each preserve it. Retention is supplied by properties of the VALUE ESTIMATOR and the UPDATE CONSTRAINT, NOT by continued demonstration (V3-EXQ-789 eliminates the imitation-auxiliary schedule axis at every setting). COROLLARY, and the claim's distinctive testable content: consolidation is properly defined as RESISTANCE TO RETROGRADE INTERFERENCE (Krakauer 2005), hence dependent on install DOSE and elapsed offline INTERVAL -- neither of which REE has ever varied."
@@ -62068,6 +62273,24 @@
     PROMOTES NOTHING. Registered as candidate/v3_pending. Creates no hypothesis-space fan-out
     growth event -- H-retention-critic and H-retention-consolidation already exist as legs on
     qid competence_floor.
+  evidence_quality_note: |
+    [2026-07-29 governance, V3-EXQ-836 + V3-EXQ-836b + V3-EXQ-836c, all non_contributory;
+    failure_autopsy_mech476-mech475-cluster_2026-07-29 + failure_autopsy_v3-exq-836b_2026-07-29,
+    both confirmed]: all three falsifier arms returned, all three non_contributory (not the mixed/
+    reversed/non-monotone readings each self-routed) -- a shared measurement-methodology defect, not
+    evidence toward or against the dose x interval x novelty falsifier. 836 (DOSE arm) self-routed
+    non_monotone_dose_response, but rests on a fixed 0.15 effect-size margin not scaled to observed
+    per-arm noise (dose_bc300 SEM 0.150 vs the 0.301/0.136 between-arm deltas it is read from) and
+    fails a leave-one-out check on its single most extreme seed. 836b (INTERVAL arm) self-routed
+    non_monotone_interval_response, but the retained-fraction interval axis is non-monotone only via
+    the n900 drop; every between-arm delta sits inside the per-arm SEM against the same fixed 0.15
+    margin. 836c (NOVELTY arm) self-routed reversed_novelty_effect, but the entire reversal is
+    attributable to one outlier seed in the unpaired arm; removing it flips the sign to a small
+    paired-favouring delta well inside the margin. All three routed to /queue-experiment under a
+    noise-scaled discrimination rule (per the effect-size-gate convention: scale on the SD of the
+    delta plus an absolute floor, not a fixed margin). Retention still dissociated from acquisition
+    per the prior evidence (V3-EXQ-788, V3-EXQ-792); the dose/interval/novelty falsifier itself
+    remains untested. Stays candidate; v3_pending unchanged.
 - id: MECH-477
   title: "dual_system_uncertainty_arbitration. Differential recruitment between the habit and the hippocampally-planned goal-directed pathways is produced by an explicit ARBITRATION element that reads the two pathways' relative uncertainty/reliability and reallocates control accordingly -- NOT by the mere presence of two pathways. Two pathways WITHOUT an arbitrator produce a FLAT recruitment response regardless of context novelty. Registered 2026-07-22 as the control-allocation mechanism MECH-163 presupposed but never named; MECH-163 conflated ARCHITECTURE (two pathways exist) with DYNAMICS (control shifts between them with novelty, uncertainty and practice)."
   claim_type: mechanism_hypothesis
@@ -62501,6 +62724,17 @@
     crf_cue_centering stays the swept variable). Acceptance for 822a: on_prop_delta_mean >=
     0.001 with an ON>OFF contrast. SD-082 unblocks the SD-078 downstream-consumer test that
     holds SD-078 at candidate_substrate_landed; it does not itself promote SD-078.
+
+    [2026-07-29 governance, V3-EXQ-822a + V3-EXQ-822b non_contributory; failure_autopsy_batch-822a-826-817a-827_2026-07-26
+    + failure_autopsy_2026-07-28-sweep, both confirmed]: 822a (the validation run) reproduced the exact same
+    structural-zero propagation (on/off_prop_delta_mean 0.0) despite the fix correctly engaged and a strong
+    upstream signal (on_rule_state_diff_mean 0.644) -- acceptance criterion (on_prop_delta_mean >= 0.001 with
+    ON>OFF contrast) not met. The follow-on head-internals diagnostic (822b) traced the cause: unconditional
+    weight-norm snapshots show REINFORCE never updates rule_bias_head's LAST linear layer across both runs --
+    SD-082's centering+soft-tanh fix touches compute_bias's input/output shaping but not that layer's own
+    trainability. Substrate_queue.json amended with both failure records (already carried 822's original entry).
+    SD-082 stays candidate_substrate_landed / ready=false pending a further fix to the head's last-layer update
+    path; not itself falsified, still unvalidated.
 - id: SD-083
   title: "consolidation.offline_policy_consolidation_window: an OFFLINE, trace-selective (Fisher-weighted EWC, Kirkpatrick 2017), interval-accumulated (capture c(N)=capture_max*(1-exp(-N/tau))), novelty-gated (Moncada 2007) policy-consolidation window in the mech457 retention TESTBED, run BETWEEN BC install and RL refinement. Unblocks MECH-476's two blocked_substrate falsifier arms: the A->B offline INTERVAL arm (V3-EXQ-836b) and the behavioural-tagging NOVELTY arm (V3-EXQ-836c). DISTINCT from the ONLINE global MECH-475 KL anchor -- offline vs online, trace-selective per-parameter vs global, interval-dependent vs constructed-at-entry, novelty-gated -- which is exactly the MECH-476 content (ii offline interval, iii trace selectivity) the global anchor cannot express (the Walker-2003 divergence). BUILDS PROTECTION without retraining, so post_bc is invariant to the interval and the INTERVAL axis is orthogonal to the DOSE axis."
   claim_type: design_decision

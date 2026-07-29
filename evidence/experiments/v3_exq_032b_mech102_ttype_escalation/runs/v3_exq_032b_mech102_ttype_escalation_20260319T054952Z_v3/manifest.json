@@ -25,7 +25,7 @@
     "SD-003"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "supports",
+  "evidence_direction": "non_contributory",
   "producer_capabilities": {
     "sd005_split_latent": true,
     "sd004_action_objects": true,
@@ -45,5 +45,7 @@
     "MECH-102": "supports",
     "ARC-024": "supports",
     "SD-003": "supports"
-  }
+  },
+  "evidence_direction_note": "SUPERSEDED (2026-07-26, failure-autopsy V3-EXQ-032-family, confirmed): V3-EXQ-032b's standard_params optimizer (body_obs_encoder, world_obs_encoder, latent_stack, E1, most of E3) never received a gradient for the entire run -- agent.sense() was called instead of act*()/no _e1_tick() call, and record_transition() was never called, so compute_prediction_loss()/compute_e2_loss() were structurally pinned to their zero-gradient stubs (identical mechanism to the V3-EXQ-826 finding). Only world_forward and harm_eval_head trained, via separate script-local buffers, atop a perceptual embedding (z_world) frozen at random init. The measured causal_sig escalation ladder is real but reflects downstream-head discriminability on frozen random features, not the intended trained perception->attribution pipeline. Superseded by V3-EXQ-032d (2026-07-26), the corrected re-run, now supports MECH-102/ARC-024/SD-003 on the genuinely-trained substrate. Applied /governance 2026-07-29.",
+  "epistemic_category": "competence_implementation_gap"
 }

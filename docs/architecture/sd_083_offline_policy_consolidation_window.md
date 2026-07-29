@@ -1,8 +1,13 @@
+---
+status: candidate_substrate_landed
+status_asof: 2026-07-29
+status_claim: SD-083
+---
+
 # SD-083: sleep.offline_policy_consolidation_window
 
 **Claim ID:** SD-083
 **Subject:** consolidation.offline_policy_window (trace-selective, interval-accumulated, novelty-gated)
-**Status:** IMPLEMENTED
 **Registered:** 2026-07-29
 **Depends on:** MECH-475 (mech457_policy_kl_anchor -- the sibling ONLINE anchor this reuses the snapshot pattern from), MECH-441 (RND novelty drive -- PRINCIPLE reused; the lineage's own RNDModule is the instantiation), the mech457 bootstrap-explorer testbed (RepAgent / train_bootstrap_explorer / train_a2c)
 **Blocks:** MECH-476 INTERVAL arm (V3-EXQ-836b) and NOVELTY arm (V3-EXQ-836c) -- the two `blocked_substrate` legs of the MECH-476 three-arm retrograde-interference falsifier

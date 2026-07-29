@@ -23,7 +23,7 @@
     "MECH-476"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "mixed",
+  "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -111,5 +111,7 @@
   },
   "machine": "ree-worker-3",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "b29a5f04da70f390a594188c11a3d702ccf5593878711ea1b071143d9ae62edb"
+  "substrate_hash": "b29a5f04da70f390a594188c11a3d702ccf5593878711ea1b071143d9ae62edb",
+  "epistemic_category": "measurement_test_design_defect",
+  "evidence_direction_note": "Self-routed non_monotone_interval_response but is non_contributory, not mixed: the retained-fraction interval axis is non-monotone only via the n900 drop; every between-arm delta sits inside the per-arm SEM against a fixed, non-noise-scaled 0.15 margin."
 }
