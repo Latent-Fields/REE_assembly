@@ -1239,3 +1239,5 @@ One line per hourly tick. ASCII only.
 2026-07-29T16:19:37Z GC removed worktree igw-215-proposal-for-q-085 (removed; branch deleted)
 2026-07-29T16:28:18Z skip IGW-20260729-216: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-29T16:25:58Z skip IGW-20260729-216: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-07-29T17:29:15Z no eligible item (skipped 243): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
+2026-07-29T18:33:03Z no eligible item (skipped 243): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
