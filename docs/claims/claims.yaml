@@ -62585,7 +62585,26 @@
     ALSO makes use_decomposition_scale_resolved_probe_midexec (ree-v3 aaf5caac26) REACHABLE rather
     than merely unexercised -- it is correct and contract-covered but modified a dict inside a
     block that never ran, and must not be read as validated by V3-EXQ-830.
-    NOT YET VALIDATED by experiment: a mid-execution experiment becomes POSSIBLE only now.
+    VALIDATION EXPERIMENT QUEUED 2026-07-29: V3-EXQ-839
+    (experiments/v3_exq_839_sd084_midexec_reachability.py, ree-v3 b1a896fb1e; DIAGNOSTIC,
+    claim_ids=[] so it weights nothing). Acceptance criterion taken verbatim from
+    failure_autopsy_V3-EXQ-830_2026-07-29.md failure_record_entry.target:
+    decomp_n_evaluated_midexec > 0 on a standard select_action -> update_residue loop with no
+    hand-injected preconditions. 2 arms (handle OFF vs ON) x 6 seeds in TWO pre-registered tiers --
+    ATTRIBUTABLE (3,47,71,89), which commit multi-action programs and fire the hook when ON, and
+    NEGATIVE CONTROL (23,53), which commit none while pre-commit decomposition stays live, so the
+    DV must be zero in both arms and the arms bit-identical. That second tier is what makes the run
+    DEMONSTRATE attributability rather than assert it: a zero DV can never be confused between
+    "SD-084 failed" and "this seed never committed a multi-action program" (the latter self-routes
+    substrate_not_ready_requeue, never a substrate verdict). Pre-queue --seed-scan over ten seeds
+    (darwin-arm64, seeded env) measured OFF midexec = 0 on ALL TEN, including seed 47 which commits
+    30 multi-action programs, and ON midexec 14-29 on exactly the four attributable seeds; seed 47
+    is the cleanest cell, with OFF and ON identical in multi-action commits (30), total commits (72)
+    and precommit (343) so the ONLY difference is whether the hook could see the program. The run
+    also records the BEHAVIOURAL delta (action-sequence divergence, committed-run length, harm) that
+    the NOT-A-PURE-DIAGNOSTIC note above predicts, as non-gating payload for a successor evidence
+    experiment -- this run adjudicates REACHABILITY only. Result NOT YET IN: nothing here may be
+    read as validated until V3-EXQ-839 lands a manifest.
     NO claim status, confidence, live_status or v3_pending value was changed by this landing --
     MECH-321 remains candidate / v3_pending; this build makes its R4 half MEASURABLE, and
     measurement is what governance acts on. MECH-094 N/A (waking path, no simulated memory
