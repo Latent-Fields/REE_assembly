@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-29T21:30:00Z",
+  "last_tick_utc": "2026-07-29T21:45:06Z",
   "state": "running",
   "current_exq": "V3-EXQ-687a",
   "current_exq_started_utc": "2026-07-29T18:21:24.703846+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / ARM_3_both_on",
     "runs_done": 3,
     "runs_total": 12,
-    "episodes_done": 20,
+    "episodes_done": 170,
     "episodes_total": 220,
-    "overall_pct": 25.8
+    "overall_pct": 31.4
   },
-  "seconds_elapsed": 11316,
-  "seconds_remaining": 28417,
+  "seconds_elapsed": 12222,
+  "seconds_remaining": 26242,
   "recent_lines": [
     "Seed 42 Condition ARM_0_both_off",
     "[train] stage0 ARM_0_both_off seed=42 ep 20/220 z_goal_peak=0.4834",
@@ -47,7 +47,9 @@
     "[P2 eval] arm=ARM_2_mech260_only seed=42 eval_ep 30 of 30 fresh=252 committed=0",
     "verdict: PASS seed=42 arm=ARM_2_mech260_only precommit_H=3.2241 committed_H=0.0000 pos_H=2.2460 fresh=252 tonic_lift=0.0000 dacc_supp=0.0",
     "Seed 42 Condition ARM_3_both_on",
-    "[train] stage0 ARM_3_both_on seed=42 ep 20/220 z_goal_peak=0.4640"
+    "[train] stage0 ARM_3_both_on seed=42 ep 20/220 z_goal_peak=0.4640",
+    "[train] p0 ARM_3_both_on seed=42 ep 130/220 mean_len=190.4",
+    "[train] hazard ARM_3_both_on seed=42 ep 170/220 mean_len=59.9 survival_gate=pass"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
