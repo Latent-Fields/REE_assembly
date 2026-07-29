@@ -1,0 +1,173 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-29T07:16:51Z",
+  "scope": "single",
+  "status": "confirmed",
+  "session_id": "cranky-blackburn-d11b32",
+  "targets": [
+    {
+      "run_id": "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3",
+      "queue_id": "V3-EXQ-830",
+      "claim_ids": [],
+      "bears_on": ["MECH-321", "MECH-288", "ARC-070"],
+      "self_route_label": "slow_never_fires_on_rollout",
+      "indexer_adjudication_flag": "vacuous_pass",
+      "adjudication_verdict": "false_positive",
+      "adjudication_verdict_basis": "criteria_non_degenerate{} uses short keys (C_DISSOCIABLE) while interpretation.criteria[].name uses long names (C_DISSOCIABLE_low_cofire_distinct_positions). build_experiment_indexes._compute_adjudication builds its non_load_bearing exclusion set from criteria[].name and tests `str(k) not in non_load_bearing` against the short keys, so nothing is ever excluded and the legacy vacuity check trips on C_DISSOCIABLE:false -- a criterion the author explicitly tagged load_bearing:false. Verified by direct execution: as-shipped -> vacuous_pass; with keys renamed to match criteria[].name -> verified. The load-bearing criterion (C_DECIDABLE_instrument_returned_a_reading) passed and is non-degenerate. Same outcome class as V3-EXQ-783, different route (783 = exclusion absent; 830 = exclusion present but join key mismatched).",
+      "failed_criterion": "none -- negative control (C_CONTROL) and load-bearing decidability criterion (C_DECIDABLE) both passed; the two failing criteria are the CONTENT of the pre-registered null",
+      "recording_provenance": {
+        "always_core_complete": true,
+        "missing_fields": [],
+        "recording_gap": false,
+        "caveat": "substrate_stable_across_run:false -- two distinct per-cell substrate hashes observed mid-run (drift resolved 18:37:23Z and 19:50:09Z during a run ending 20:49:30Z) from concurrent ree-v3 landings. Does NOT undermine the readings: decisive counters uniform across all 10 cells and both hashes; arms produced bit-identical position histograms and identical net_harm_per_step."
+      },
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (R4 mid-execution half untested)",
+        "biological_reference": "clear",
+        "prerequisites": "missing",
+        "implementation": "partial -- symbol without functional role",
+        "environment": "adequate (not the cause)",
+        "measurement": "adequate",
+        "integration": "coupled but inconsistent",
+        "scale": "not implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Within-action-sequence monitoring and abort: SMA / pre-SMA and dorsomedial frontal contribution to ongoing-action monitoring, with the basal-ganglia stop pathway providing the abort. Canonical behavioural demonstration is interrupting a reach mid-flight when the target moves.",
+        "dependencies": [
+          "a PERSISTENT representation of the committed motor program that outlives the moment of commitment -- the thing monitoring acts upon",
+          "a stop/abort pathway able to release the commitment",
+          "an error/mismatch signal computed against the remaining program"
+        ],
+        "is_formal_import": false,
+        "divergence": "Not a biology divergence. REE implements the MONITOR (the mid-execution hook, correctly written, flagged and contract-covered) but not the PERSISTENT PROGRAM REPRESENTATION it must act on: _committed_trajectory is destroyed at the end of every tick by post_action_update. This is a missing-dependency signature, not evidence against the claim -- the mechanism has never had the substrate it needs to express itself.",
+        "lit_status": "absent"
+      },
+      "midexec_unreachability_scope": {
+        "question": "why has MECH-321's R4 mid-execution hook never fired?",
+        "verdict": "structurally unreachable under the standard driver loop -- NOT harness-, environment-, or commitment-config-dependent",
+        "binding_gate": "gate (4): e3._committed_trajectory is not None",
+        "mechanism": "E3Selector.post_action_update's LAST statement is an unconditional `self._committed_trajectory = None` (e3_selector.py:3874, def at 3595, next def at 3877). REEAgent.update_residue calls it (agent.py:8599) and the 816-family driver -- which V3-EXQ-830 inherits verbatim -- calls update_residue on every step (line 293), immediately after select_action (line 290). The hook (agent.py:5501, inside select_action def 5252) requires a trajectory committed on a PREVIOUS tick, since it re-evaluates the REMAINING unexecuted content. Every previous tick ends by destroying it.",
+        "cannot_be_set_within_same_call": "The sole setter is E3Selector.select at e3_selector.py:3499 under `if committed:`. Both in-select_action e3.select() call sites (agent.py:7513, 8520) are AFTER the hook at 5501, and the other selection path _e3_tick is invoked at 5151, outside select_action. Two conditional release sites (agent.py:5435, 5493) also clear the handle before the hook.",
+        "substrate_self_documentation": "e3_selector.py:345 states the property directly -- _committed_trajectory is 'set ONLY under the F-driven `if committed:` path and torn down every tick by post_action_update'.",
+        "gates_confirmed_satisfiable": [
+          "(5) metadata sources genuinely emitted: hippocampal/module.py:889 (mech321_decomposed), :1041 (arc071_chunk)",
+          "(6) seeded_chunk_sequence [0,1,2] would leave 3 then 2 remaining actions, both above the >1 floor",
+          "(1)/(3) all required flags True in the 830 config"
+        ],
+        "evidence_lines": [
+          "unconditional teardown is the final statement of post_action_update (e3_selector.py:3874)",
+          "update_residue calls it every step (agent.py:8599); driver calls update_residue every step (816d line 293)",
+          "hook (5501) precedes every in-select_action e3.select() call (7513, 8520), the sole setter",
+          "_e3_tick, the other selection path, is called at 5151, outside select_action",
+          "empirically decomp_n_evaluated_midexec = 0 in all 10 cells against 1862-2618 pre-commit evaluations",
+          "tests/contracts/test_mech321_scale_resolved_boundary.py reaches the hook ONLY by hand-injecting fake_traj.metadata, _committed_step_idx=1 and a forced beta_gate.elevate(), behind an explicit anti-vacuity guard"
+        ],
+        "consequences": [
+          "830's midexec_dilution_frac = 0.0 is correct and STRUCTURAL, not a small sample -- this STRENGTHENS the 2026-07-29 closure of the scoping spike's section 5b rather than qualifying it",
+          "use_decomposition_scale_resolved_probe_midexec (ree-v3 aaf5caac26) is not merely unexercised but UNREACHABLE -- correct, contract-covered and inert; must not be read as validated by 830",
+          "the fix pattern already exists in-substrate: _closure_committed_trajectory was built precisely because _committed_trajectory is torn down every tick, and its docstring says so explicitly"
+        ],
+        "debt_class": "complicated (buildable)"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_note": "Deliberately NOT substrate_ceiling. Nothing was tested and found wanting -- the R4 mechanism was never reachable. A ceiling reading would inflate the re-derive brake against MECH-321 for a mechanism that has never once run.",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-321": "competence_implementation_gap",
+        "MECH-288": "standard",
+        "ARC-070": "standard"
+      },
+      "recommended_epistemic_category_per_claim_note": "MECH-288 and ARC-070 are peripheral here. 830 exercised ARC-070's decomposition machinery successfully pre-commit (214-322 decompositions per cell) and says nothing about MECH-288's OBSERVATION stream, where the slow scale is separately contracted. Only MECH-321 carries the implementation gap.",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-321": "non_contributory",
+        "MECH-288": "non_contributory",
+        "ARC-070": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-830 (2026-07-27, diagnostic, PASS/non_contributory) exercised MECH-321's R1 pre-commitment decomposition at scale (11423 evaluations, 2393 sweeps, 5 seeds) and returned the pre-registered null slow_never_fires_on_rollout: with a live, varying z_goal stream present on 87% of sweeps (zgoal_norm_std 0.070 vs a 1e-4 floor) the MECH-288 slow BOCPD scale fired zero times on the rollout stream. The run's vacuous_pass adjudication flag was investigated and adjudicated a FALSE POSITIVE (failure_autopsy_V3-EXQ-830_2026-07-29): it is caused by criteria_non_degenerate keys being spelled shorter than the matching criteria[].name, defeating the V3-EXQ-783 load_bearing:false exclusion; corrected key spelling adjudicates verified. Separately, the same run establishes that MECH-321's R4 MID-EXECUTION phase has NEVER executed and is structurally unreachable under the standard driver loop -- E3Selector.post_action_update unconditionally clears _committed_trajectory every step (e3_selector.py:3874) while the hook requires cross-tick persistence (agent.py:5519, gate 4). MECH-321's R4 half is therefore UNTESTED, not unsupported; no ceiling reading applies. Retest after the persistent-commit-handle substrate lands.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "persistent-committed-program-handle",
+        "title": "Persistent committed-program handle so MECH-321's R4 mid-execution decomposition hook is reachable",
+        "implementation_hint": "E3Selector.post_action_update unconditionally clears _committed_trajectory as its last statement (e3_selector.py:3874), so the cross-tick mid-execution hook at agent.py:5519 (gate 4) can never see a committed trajectory. Build a persistent committed-program handle mirroring the existing _closure_committed_trajectory precedent -- set on commit entry, cleared on principled release / closure fire / episode reset, NOT cleared by post_action_update -- and point gate (4) at it. Default-off behind a flag so the OFF path stays bit-identical. NOT a pure diagnostic change: a reachable mid-execution hook can newly reach boundary.fired and RELEASE the commit latch, aborting the remaining macro.",
+        "unblocks_claims": ["MECH-321"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3",
+          "experiment_type": "v3_exq_830_mech321_scale_resolved_rollout_boundary",
+          "metric": "decomp_n_evaluated_midexec = 0 in all 10 cells (5 seeds x 2 arms), against decomp_n_evaluated_precommit 1862-2618 per cell",
+          "target": "decomp_n_evaluated_midexec > 0 on a standard select_action -> update_residue driver loop, without hand-injected preconditions"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "literal_count_meets_threshold": false,
+        "prior_substrate_ceiling_autopsies": [],
+        "counts_by_claim": {"MECH-321": 0, "MECH-288": 0, "ARC-070": 0},
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "persistent-committed-program-handle",
+        "note": "Brake does not fire (0 prior ceiling hits under the R1-R3 convention for all three claims). Routing to implement-substrate here is driven by the diagnosis, not by the brake."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "cluster_targets": 2,
+        "cluster_files": 1,
+        "tagging_targets": [
+          "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26 | v3_exq_816_mech321_policy_decomposition_discriminative_20260725T214751Z_v3",
+          "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26 | v3_exq_820_mech321_policy_decomposition_bottleneck_arm2_20260725T203453Z_v3"
+        ],
+        "alignment_distribution": {"intact": 2},
+        "routing": null,
+        "note": "NO target reads weakened (alignment distribution intact=2). Per the standing rule this is measurement or implementation debt, not granularity debt, regardless of count. No /claim-synthesis handoff."
+      },
+      "learning_extracted": [
+        "MECH-321's R4 mid-execution phase has never executed in any experiment and is structurally unreachable under the standard select_action -> update_residue loop: post_action_update unconditionally destroys _committed_trajectory every step while the hook requires cross-tick persistence.",
+        "A load_bearing exclusion keyed on exact string equality can be silently defeated by an author using two spellings for one criterion. The V3-EXQ-783 fix is correct but under-specified about its join key; nothing validates that criteria_non_degenerate keys correspond to criteria[].name.",
+        "A contract that reaches its target only via hand-injected preconditions proves reachability-in-principle, never reachability-in-practice. The anti-vacuity guard in test_mech321_scale_resolved_boundary.py is correct and still could not catch this -- it asserts the hook was reached GIVEN the injected state.",
+        "Phase-split counters earn their keep: decomp_n_evaluated_{precommit,midexec} were added to BOUND a dilution and instead exposed that an entire declared mechanism phase never runs.",
+        "A flag added to close a measurement asymmetry can be unreachable for the same reason the asymmetry was invisible -- use_decomposition_scale_resolved_probe_midexec modifies a dict inside a block that never executes.",
+        "830's zero mid-execution dilution is structural, which STRENGTHENS rather than qualifies the 2026-07-29 closure of the scoping spike's section 5b."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "infrastructure_recommendations": [
+    {
+      "id": "INFRA-830-A",
+      "locus": "ree-v3/validate_experiments.py",
+      "kind": "author-time lint",
+      "description": "WARN when an interpretation.criteria_non_degenerate key matches no interpretation.criteria[].name. Prevents new manifests acquiring the key-mismatch defect that defeats the V3-EXQ-783 load_bearing:false exclusion. No retroactive re-scoring.",
+      "confirmed_by_user": true,
+      "applied_by_this_skill": false
+    },
+    {
+      "id": "INFRA-830-B",
+      "locus": "REE_assembly/evidence/experiments/scripts/build_experiment_indexes.py",
+      "kind": "adjudication fix",
+      "description": "Make the non_load_bearing exclusion in _compute_adjudication tolerate the short-key/long-name relationship: a criteria_non_degenerate key that is a prefix of exactly ONE criteria[].name inherits that criterion's load_bearing tag. Must be conservative -- match only on an unambiguous single prefix hit, never a fuzzy match -- so existing adjudications are unchanged except where the join was genuinely missed.",
+      "confirmed_by_user": true,
+      "applied_by_this_skill": false,
+      "corpus_impact": "1 of 159 diagnostic/baseline manifests carrying both blocks (V3-EXQ-830 only)."
+    }
+  ],
+  "explicitly_not_recommended": [
+    "re-queue of V3-EXQ-830 -- its instrument worked (coverage 1.000) and its reading is sound",
+    "claim demotion -- nothing was tested and found wanting",
+    "a substrate_ceiling reading, and therefore any re-derive-brake increment against MECH-321",
+    "a GOV-FANOUT-1 portfolio -- the bottleneck routes to a single unambiguous build, the stated exemption",
+    "any change to claim status, confidence, live_status or v3_pending"
+  ],
+  "hypothesis_space_ledger_delta": {
+    "fanout_recommendation_emitted": false,
+    "new_questions": ["decomposition_scale_heterogeneity"],
+    "hypotheses_pre_registered": 3,
+    "hypotheses_resolved": 3,
+    "resolution_summary": {"eliminated": 2, "confirmed": 1},
+    "note": "830 does not adjudicate a leg of the existing policy_decomposition_discrimination question (whose six hypotheses concern whether R1 reduces forward-PE and is dissociable from R5). It answers the scale-heterogeneity question frozen by the 2026-07-27 scoping spike's section 5b three-row decision table. Registered as a NEW question -- invariant 6's sanctioned growth path -- rather than as fan-out growth on an already-adjudicated question, which would have required a git witness this autopsy (written after the run resolved) cannot honestly supply."
+  },
+  "cluster_pattern": null
+}

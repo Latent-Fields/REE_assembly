@@ -1970,6 +1970,111 @@
         "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable"
       },
       "fanout_growth_note": "This question has now accumulated fan-out growth after 3 same-axis (environment) attempts failed to converge -- the campaign has not yet converged; read the growth as a non-convergence signal, not just added coverage."
+    },
+    {
+      "qid": "decomposition_scale_heterogeneity",
+      "title": "Do MECH-288's fast (PE/z-score over z_world+z_self) and slow (BOCPD over z_goal) scales fire at dissociable positions on the ROLLOUT (imagination) stream, once the slow scale is given its stream?",
+      "short_title": "Decomposition scale heterogeneity",
+      "claims": [
+        "MECH-321",
+        "MECH-288",
+        "ARC-070"
+      ],
+      "registered_utc": "2026-07-29T07:40:53Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-830_2026-07-29.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-scales-dissociable-on-rollout",
+          "label": "the fast and slow scales fire at dissociable rollout positions (low cofire, distinct positions)",
+          "desc": "REE's substrate exhibits heterogeneous distinct-scale segmentation on the imagination stream: fast/PE boundaries re-segment at fine grain while slow/goal-BOCPD boundaries mark a coarser structure, at distinct sweep positions",
+          "axis": "arbitration",
+          "pre_registered_utc": "2026-07-27T00:00:00Z",
+          "pre_registration_source": "mech321_decomposition_scale_scoping_spike_2026-07-27.md section 5b decision table (row 1)",
+          "adjudicating_runs": [
+            "V3-EXQ-830"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-830"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "slow_never_fires_on_rollout",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-27T20:49:27Z",
+            "basis": "ELIMINATED. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. With zero slow fires there are no distinct positions to dissociate: on_slow_position_hist is all-zero while on_fast_position_hist is populated (847/0/300/0/53/7/119/61). Discriminating non_contributory against PASSING reference bands, not a starved run."
+          }
+        },
+        {
+          "hid": "H-slow-fires-only-with-fast",
+          "label": "the slow scale fires only coincidently with the fast scale (two detectors, one signal)",
+          "desc": "the apparent scale heterogeneity is nominal at this grain: both detectors respond to the same underlying signal, so slow fires are a subset of fast fires rather than an independent channel",
+          "axis": "arbitration",
+          "pre_registered_utc": "2026-07-27T00:00:00Z",
+          "pre_registration_source": "mech321_decomposition_scale_scoping_spike_2026-07-27.md section 5b decision table (row 3)",
+          "adjudicating_runs": [
+            "V3-EXQ-830"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-830"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "slow_never_fires_on_rollout",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-07-27T20:49:27Z",
+            "basis": "ELIMINATED by the same evidence. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The slow scale fired zero times in total (on_n_sweeps_cofire=0, cofire_frac_of_slow=0.0), so it does not fire coincidently with fast either -- the 'two detectors, one signal' reading requires slow fires to exist."
+          }
+        },
+        {
+          "hid": "H-slow-never-fires-on-rollout",
+          "label": "z_goal does not vary informatively WITHIN a rollout; one effective scale on the imagination stream",
+          "desc": "z_goal is an integrator, so it drifts ACROSS agent ticks but does not move enough WITHIN a single short rollout for the BOCPD detector to find a change-point -- distinct scales require distinct timescales, and a rollout may be too short to carry two",
+          "axis": "representation",
+          "pre_registered_utc": "2026-07-27T00:00:00Z",
+          "pre_registration_source": "mech321_decomposition_scale_scoping_spike_2026-07-27.md section 5b decision table (row 2), named in advance as a genuine possibility",
+          "adjudicating_runs": [
+            "V3-EXQ-830"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-830"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "slow_never_fires_on_rollout",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-07-27T20:49:27Z",
+            "basis": "CONFIRMED -- 830's self-routed reading, and the spike named this outcome in advance. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The across-sweep variance is exactly what makes the within-rollout null interpretable: the stream is present and moving between sweeps yet yields no change-point inside one. met_elimination_bar False because confirming one member of a mutually-exclusive outcome set is not itself an elimination event. SCOPE: says nothing about the OBSERVATION stream, where the slow scale is separately contracted, and does NOT weaken MECH-288."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Should MECH-321 be extended to scale-differentiated decomposition (the spike's option (b) / section 5c), in which fast/PE boundaries re-segment at fine grain and slow/goal-BOCPD boundaries trigger a coarser response?",
+        "live_gate": null,
+        "decidable": true,
+        "observation_bottleneck": null,
+        "decision_log_ref": null,
+        "distance_phrase": "Decidable now on the ROLLOUT stream: answer is NO -- one effective scale, so option (a) stands and the 5c extension sketch is retired (spike section 5b closed 2026-07-29). A separate, still-open question is whether the OBSERVATION stream carries two scales; that was never in this question's scope."
+      },
+      "fanout_growth_note": "Registered and fully resolved in one cycle from a genuinely pre-registered 3-row decision table (the 2026-07-27 scoping spike, committed before V3-EXQ-830 resolved). 3 -> 1 narrowing with no growth events. Not a non-convergence signal."
     }
   ]
 }

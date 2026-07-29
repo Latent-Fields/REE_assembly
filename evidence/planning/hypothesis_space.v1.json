@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-28T21:11:48Z",
+  "generated_at": "2026-07-29T07:40:57Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 126,
-      "built_modules": 103,
-      "fraction_built": 0.8175,
+      "total_modules": 127,
+      "built_modules": 104,
+      "fraction_built": 0.8189,
       "state_counts": {
         "proposed": 23,
-        "implemented": 73,
+        "implemented": 74,
         "implemented_pending_validation": 17,
         "validated": 13
       },
-      "build_proof_gap": 90,
-      "build_proof_gap_note": "103 modules built, 90 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 91,
+      "build_proof_gap_note": "104 modules built, 91 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,95 +31,101 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 30,
-      "total_initial": 55,
-      "total_initial_at_registration": 40,
+      "total_surviving": 31,
+      "total_initial": 58,
+      "total_initial_at_registration": 43,
       "total_fanout_added": 15,
-      "total_resolved_out": 24,
-      "reduction_pct_vs_current": 43.6,
-      "net_narrowing_pct": 25.0,
+      "total_resolved_out": 26,
+      "reduction_pct_vs_current": 44.8,
+      "net_narrowing_pct": 27.9,
       "convergence_classes": {
-        "narrowing": 4,
+        "narrowing": 5,
         "static": 4,
         "circling": 3,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "30 alive against 40 originally enumerated, and against 55 including 15 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 12
+      "honest_pair_note": "31 alive against 43 originally enumerated, and against 58 including 15 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 13
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 6,
-      "open_questions": 12
+      "ready": 7,
+      "open_questions": 13
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 54,
+      "surviving": 57,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 52,
+      "surviving": 55,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 48,
+      "surviving": 51,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 47,
+      "surviving": 50,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 44,
+      "surviving": 47,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-18",
-      "surviving": 38,
+      "surviving": 41,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-19",
-      "surviving": 34,
+      "surviving": 37,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-20",
-      "surviving": 33,
+      "surviving": 36,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-24",
-      "surviving": 32,
+      "surviving": 35,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-25",
-      "surviving": 31,
+      "surviving": 34,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
     },
     {
-      "date": "2026-07-28",
-      "surviving": 30,
+      "date": "2026-07-27",
+      "surviving": 32,
       "closure_pct": 76.2,
-      "build_pct": 81.8
+      "build_pct": 81.9
+    },
+    {
+      "date": "2026-07-29",
+      "surviving": 31,
+      "closure_pct": 76.2,
+      "build_pct": 81.9
     }
   ],
   "questions": [
@@ -1769,6 +1775,95 @@
         "distance_phrase": "needs an env/measure-window (or trigger operationalization) producing low-V_s states with forward-PE still meaningful, before R1's behavioural effect is even measurable",
         "live_gate": null,
         "observation_bottleneck": "the env+trained-substrate never produced low-V_s (prediction-uncertainty) states in the measure window; 816/820 both ran with 0 low-V_s steps, so the R1 V_s-drop trigger's discriminating condition was never exercised"
+      }
+    },
+    {
+      "qid": "decomposition_scale_heterogeneity",
+      "title": "Do MECH-288's fast (PE/z-score over z_world+z_self) and slow (BOCPD over z_goal) scales fire at dissociable positions on the ROLLOUT (imagination) stream, once the slow scale is given its stream?",
+      "short_title": "Decomposition scale heterogeneity",
+      "claims": [
+        "MECH-321",
+        "MECH-288",
+        "ARC-070"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": "Registered and fully resolved in one cycle from a genuinely pre-registered 3-row decision table (the 2026-07-27 scoping spike, committed before V3-EXQ-830 resolved). 3 -> 1 narrowing with no growth events. Not a non-convergence signal.",
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 2 fully closed",
+        "families_closed": [
+          "process",
+          "representation"
+        ],
+        "families_touched": [
+          "process"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 2,
+      "confirmed": 1,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.6667,
+      "bits_removed": 1.58,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-scales-dissociable-on-rollout",
+          "label": "the fast and slow scales fire at dissociable rollout positions (low cofire, distinct positions)",
+          "desc": "REE's substrate exhibits heterogeneous distinct-scale segmentation on the imagination stream: fast/PE boundaries re-segment at fine grain while slow/goal-BOCPD boundaries mark a coarser structure, at distinct sweep positions",
+          "axis": "arbitration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "ELIMINATED. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. With zero slow fires there are no distinct positions to dissociate: on_slow_position_hist is all-zero while on_fast_position_hist is populated (847/0/300/0/53/7/119/61). Discriminating non_contributory against PASSING reference bands, not a starved run.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-slow-fires-only-with-fast",
+          "label": "the slow scale fires only coincidently with the fast scale (two detectors, one signal)",
+          "desc": "the apparent scale heterogeneity is nominal at this grain: both detectors respond to the same underlying signal, so slow fires are a subset of fast fires rather than an independent channel",
+          "axis": "arbitration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "ELIMINATED by the same evidence. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The slow scale fired zero times in total (on_n_sweeps_cofire=0, cofire_frac_of_slow=0.0), so it does not fire coincidently with fast either -- the 'two detectors, one signal' reading requires slow fires to exist.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-slow-never-fires-on-rollout",
+          "label": "z_goal does not vary informatively WITHIN a rollout; one effective scale on the imagination stream",
+          "desc": "z_goal is an integrator, so it drifts ACROSS agent ticks but does not move enough WITHIN a single short rollout for the BOCPD detector to find a change-point -- distinct scales require distinct timescales, and a rollout may be too short to carry two",
+          "axis": "representation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-830"
+          ],
+          "basis": "CONFIRMED -- 830's self-routed reading, and the spike named this outcome in advance. V3-EXQ-830 (2393 sweeps, 5 seeds, both arms) recorded on_n_sweeps_with_slow=0, on_n_seeds_with_slow=0 and on_n_sweeps_cofire=0 with the slow scale's stream demonstrably LIVE and VARYING (on_zgoal_present_frac 0.870; zgoal_norm_std 0.070 vs a 1e-4 readiness floor -- the same statistic the BOCPD detector routes on). Control arm slow fires = 0 as designed (C_CONTROL passed); C_SLOW_FIRES non-degenerate; instrumentation coverage 1.000. The across-sweep variance is exactly what makes the within-rollout null interpretable: the stream is present and moving between sweeps yet yields no change-point inside one. met_elimination_bar False because confirming one member of a mutually-exclusive outcome set is not itself an elimination event. SCOPE: says nothing about the OBSERVATION stream, where the slow scale is separately contracted, and does NOT weaken MECH-288.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Should MECH-321 be extended to scale-differentiated decomposition (the spike's option (b) / section 5c), in which fast/PE boundaries re-segment at fine grain and slow/goal-BOCPD boundaries trigger a coarser response?",
+        "distance_phrase": "Decidable now on the ROLLOUT stream: answer is NO -- one effective scale, so option (a) stands and the 5c extension sketch is retired (spike section 5b closed 2026-07-29). A separate, still-open question is whether the OBSERVATION stream carries two scales; that was never in this question's scope.",
+        "live_gate": null,
+        "observation_bottleneck": null
       }
     }
   ],
