@@ -174,7 +174,7 @@ a grader. Check the claims file before grading any Mac untracked file as a findi
   `git grep -h -o -E <pattern> <rev> -- <paths>` for tokens both run in-process and
   complete in seconds.
 
-## Residual gap -- **PARTLY CLOSED 2026-07-30T17:34Z**
+## Residual gap -- **CLOSED 2026-07-30 (working-tree half 17:34Z, stash half 18:09Z)**
 
 ~~Unchanged from the working-tree half: `runner_git_health.py`'s `FLEET` dict still has no
 `DLAPTOP-4` entry, so **the Mac is graded only by manual one-offs like this pair of
@@ -185,19 +185,61 @@ exercise.
 (session `elastic-merkle-e0cca8`, chip `chip-20260730-githealth-local-mac-target`) -- so
 the **working-tree** half of this pair is repeatable: `runner_git_health.py --host mac`.
 
-**Read the split carefully, because the two halves closed unequally.** That probe reports
-the Mac's `git stash list` COUNT (and names `runner-prepull-untracked` entries
-specifically), which is a pointer, not a grade. **It does not open a stash, does not
-compare identifier sets, and therefore would NOT have produced this document.** Orphaned
-**autostash containment on the Mac is still `scripts/audit_stashes.py` plus a human**, and
-`audit_stashes.py` likewise reports non-empty stash lists without grading their contents.
-So: nothing automated will notice the next Mac autostash orphan *is stranded* -- only that
-one exists, which is the trigger for a triage like this one.
+~~**Read the split carefully, because the two halves closed unequally.**~~ **The stash half
+is now closed too, 2026-07-30T18:09Z** (session `quirky-mayer-ee5ad2`, chip
+`chip-20260730-mac-autostash-content-grading`). `runner_git_health.py` still only reports
+the stash COUNT -- that part is unchanged and is a pointer, not a grade -- but
+**`scripts/audit_stashes.py` now grades each entry's CONTENT**, so a session no longer has
+to hand-triage an orphan to find out whether it holds unlanded work.
 
-The observation that made this document's grading work is the reason the gap does not close
-by itself: **byte comparison is useless here** (1131 of 1131 paths differ, because a regen
-moves timestamps and ordering), so containment has to be graded on **identifier sets**, and
-which identifiers matter is per-artifact. That is a judgement the probe does not make.
+Every entry carries a `grade:` line: **CONTAINED / NOT CONTAINED / HAND-AUTHORED /
+UNGRADEABLE**, computed by identifier-set containment against origin. It is on by default
+(`--no-grade` opts out), never mutates anything, and still exits 0. The design and its
+rationale live in the `CONTAINMENT GRADING` block of the script; the pins are
+`scripts/test_audit_stashes_containment.py` (27 tests, time-independent, real `git stash`
+in a tempdir).
+
+**This document's own method is what it automates**, and the three archive tags above are
+its end-to-end validation: replayed through the grader, all three come back **CONTAINED**
+in ~1s each, with `n_identical == 0` -- i.e. the verdict is reached *despite* total byte
+divergence, which is the case a byte comparison gets exactly backwards.
+
+**Building it against these real entries found four false-positive classes that grading by
+this document's table alone would have produced.** Recording them because the table above
+reads as more settled than it is:
+
+1. **IGW item `id` is not an identifier.** The table grades item ids and reports 0 absent --
+   true only because the grading ran the SAME DAY. Ids are dated slot labels
+   (`IGW-20260729-001`), regenerated wholesale each tick, so a day later **all 241** read as
+   absent in all three entries. `stable_hash` is the content identity and produced zero
+   misses. Grade on `stable_hash` only.
+2. **An IGW `stable_hash` absence is advisory, not load-bearing.** One day on, 5 items had
+   completed and dropped out. Treating that as NOT CONTAINED would redden every
+   `REE_assembly` entry older than a day. Arm fingerprints are deliberately kept
+   load-bearing -- a dropped fingerprint is a lost reusable arm.
+3. **A run can be dropped from `claim_evidence.v1.json` while its pack sits on origin.**
+   Grading run ids only against the registries reported **1021** spurious absences on the
+   2026-07-27 tags, all of them V1/V2-era runs with complete packs on origin. The reference
+   set now includes origin's `runs/<run_id>/` directory names and `review_tracker.json`.
+4. **The run-id token shape missed a whole generation.** The V1/V2 form
+   (`2026-02-13T224000Z_commit-dual-error-channels_seed11`) matched nothing, so that
+   generation was invisible to the sweep.
+
+**One real strand surfaced, and it is NOT from this document's three entries.** The
+2026-07-27 archive tags (`stash-archive/20260727-07a5621a` and `-95b7594f`) carry
+`claim_evidence` entries for two V3-EXQ-825 runs --
+`v3_exq_825_mech245_generative_dominance_deafferentation_20260726T151207Z_v3` and
+`...T151439Z_v3` -- that appear **nowhere on `origin/master`**. Not triaged here (out of
+this chip's scope, and the entries are already archive-tagged, so nothing is at risk); it is
+a worked example of the tool doing the job it was built for on its first replay.
+
+**What has NOT changed:** which identifiers matter is still a per-artifact judgement, and
+the classifier is a deliberately minimal **allowlist** of the current governance regen.
+Replaying the older tags (2026-06-17 .. 2026-07-09) grades them HAND-AUTHORED on
+superseded-era derived paths -- the safe direction, and the same replays correctly surfaced
+genuinely hand-authored content (`build_experiment_indexes.py`,
+`docs/architecture/effort_dissociation_env.md`) in those same entries. Extending the
+allowlist requires naming the generator that writes the path.
 
 Two things from this document DID land in the probe, both from the section above on the
 `ree-v3` untracked file:
