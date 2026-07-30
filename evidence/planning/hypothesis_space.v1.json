@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-30T06:47:25Z",
+  "generated_at": "2026-07-30T18:41:50Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -465,9 +465,10 @@
           "state": "eliminated",
           "evidence_runs": [
             "V3-EXQ-747",
-            "V3-EXQ-749"
+            "V3-EXQ-749",
+            "V3-EXQ-748a"
           ],
-          "basis": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed).",
+          "basis": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed). RECONFIRMED 2026-07-30 (V3-EXQ-748a, failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30): dense-teacher/z_world-BC arm re-run under the validated zworld_p0-trained instrument, C_any_zworld_dense_arm_clears_floor_at_D3 passed. Elimination stands.",
           "children": [],
           "met_elimination_bar": true
         },
@@ -2632,10 +2633,11 @@
       "evidence_direction": "non_contributory"
     },
     {
-      "run": "V3-EXQ-749",
+      "run": "V3-EXQ-748a",
       "all_runs": [
         "V3-EXQ-747",
-        "V3-EXQ-749"
+        "V3-EXQ-749",
+        "V3-EXQ-748a"
       ],
       "momentum_class": "ruled_out",
       "qid": "competence_floor",
@@ -2643,7 +2645,7 @@
         "MECH-457",
         "INV-088"
       ],
-      "moved": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed).",
+      "moved": "raw 5x5 + sparse still fails AND the z_world/dense-teacher control clears the task -- representation is not the wall (adjudicated weakens, control passed). RECONFIRMED 2026-07-30 (V3-EXQ-748a, failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30): dense-teacher/z_world-BC arm re-run under the validated zworld_p0-trained instrument, C_any_zworld_dense_arm_clears_floor_at_D3 passed. Elimination stands.",
       "resolved_utc": "2026-07-13T00:00:00Z",
       "evidence_direction": "weakens"
     },
