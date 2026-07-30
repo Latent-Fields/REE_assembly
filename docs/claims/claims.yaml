@@ -20431,6 +20431,25 @@
     Distinguishable from MECH-216: MECH-217 wanting is path-specific (concentrated
     along previously traversed routes), MECH-216 wanting is schema-specific (concentrated
     at feature-activating positions regardless of prior path).
+  implementation_note: >
+    IMPLEMENTED 2026-07-30 (IGW-20260729-195). HippocampalModule.
+    spread_reverse_replay_wanting() (ree_core/hippocampal/module.py), called
+    from REEAgent.run_rem_attribution_pass() (agent.py) for each reverse-
+    replayed trajectory generated during the SD-017 REM pass -- NOT inside
+    the shared reverse_replay()/diverse_replay() methods as originally
+    sketched above, because those are also invoked by the WAKING quiescent
+    replay path (MECH-092, agent.py _do_replay()) whenever mode="auto" rolls
+    "reverse"; writing there would leak the offline effect into waking
+    replay, which is documented to produce no residue. Config:
+    HippocampalConfig.use_offline_wanting_spread (default False),
+    offline_wanting_spread_gamma (default 0.9, matches this claim's decay
+    schedule), offline_wanting_spread_gain (default 0.1, an added
+    numerical-stability guard not in the original claim text -- bounds the
+    write to a fraction of the terminus value rather than a 1:1 copy, and
+    the terminus itself is never self-written, so repeated REM cycles
+    cannot compound the read value into a feedback loop). Backward
+    compatible: disabled by default. Validation experiment EXP-0301 /
+    EVB-0349 queued. See ree-v3/CLAUDE.md MECH-217 entry for full data flow.
   registered: "2026-04-08"
   depends_on: [MECH-165, SD-014, INV-065]
 
