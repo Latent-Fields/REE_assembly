@@ -117,10 +117,16 @@ for r in REE_assembly ree-v3; do
   skew=$(git status --porcelain 2>/dev/null | grep -cE '^( D|D )' | tr -d ' ')
   gclog=$([ -f .git/gc.log ] && echo 1 || echo 0)
   stashes=$(git stash list 2>/dev/null | wc -l | tr -d ' ')
+  # Prepull entries specifically: residue of the orphaned-stash leak fixed
+  # 2026-07-30 (experiment_runner.git_pull popped from only 3 of 5 exit
+  # paths). These are the ones that have actually held irreplaceable run
+  # manifests, so they are worth calling out by name rather than folding
+  # into the generic stash count.
+  prepull=$(git stash list --format='%gs' 2>/dev/null | grep -c 'runner-prepull-untracked' | tr -d ' ')
   branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
   behind=$(git rev-list --count HEAD..@{u} 2>/dev/null || echo -1)
   first=$(git ls-files -u 2>/dev/null | awk '{print $4}' | sort -u | head -1)
-  echo "$r|branch=$branch|unmerged=$unmerged|behind=$behind|skew=$skew|gclog=$gclog|stashes=$stashes|first=$first"
+  echo "$r|branch=$branch|unmerged=$unmerged|behind=$behind|skew=$skew|gclog=$gclog|stashes=$stashes|prepull=$prepull|first=$first"
 done
 '''
 
@@ -184,8 +190,22 @@ def classify(d):
         if status == "OK":
             status = "BEHIND"
         reasons.append(f"{behind} commits behind upstream")
-    if _int("stashes") > 0:
-        reasons.append(f"{_int('stashes')} stash entry(ies) -- may strand evidence; inspect before dropping")
+    if _int("prepull") > 0:
+        # Named separately from the generic stash count because these have a
+        # known provenance and a known remedy. Two of ree-cloud-3's 13 held
+        # the only surviving copy of a completed run (V3-EXQ-707c / ARC-110,
+        # 40.9 hours of compute). The runner reaps these itself from
+        # 2026-07-30 on, so a NON-ZERO count now means either a worker still
+        # running pre-fix code, or entries whose pop keeps colliding -- both
+        # need a human, neither is self-healing.
+        reasons.append(
+            f"{_int('prepull')} runner-prepull-untracked stash entry(ies) -- "
+            f"orphaned-stash leak residue; these have held the ONLY copy of "
+            f"completed runs. Inspect with `git stash show -p <ref>` and "
+            f"recover before dropping ANY of them")
+    other = _int("stashes") - _int("prepull")
+    if other > 0:
+        reasons.append(f"{other} other stash entry(ies) -- may strand evidence; inspect before dropping")
     return status, reasons
 
 
@@ -216,6 +236,16 @@ def selftest():
         ("gc disabled only", "GC-BLOCKED",
          dict(branch="master", unmerged="0", behind="3", skew="0", gclog="1",
               stashes="0", first="")),
+        # ree-cloud-3 as found 2026-07-29: 13 orphaned PREPULL entries, plus
+        # the gc.log that the same leak's churn produced (~6 unreachable
+        # objects per 62s tick -> 20,326 loose objects / 84 MiB tripped git's
+        # unreachable-object guard, and gc.log's mere presence then disables
+        # automatic gc indefinitely). Like any stash, the entries themselves
+        # must REPORT without failing the fleet -- the GC-BLOCKED verdict here
+        # comes from gc.log, not from them.
+        ("ree-cloud-3 as found 2026-07-29 (prepull-stash leak)", "GC-BLOCKED",
+         dict(branch="master", unmerged="0", behind="4", skew="0", gclog="1",
+              stashes="13", prepull="13", first="")),
         ("missing checkout", "MISSING", dict(missing="1")),
     ]
     failed = 0
@@ -234,6 +264,24 @@ def selftest():
         failed += 1
     else:
         print("  [PASS] stranded stash reported without failing the fleet")
+    # prepull entries must be named as such -- the generic count is what let
+    # 13 of them sit unexamined on cloud-3 while two held irreplaceable runs.
+    _, reasons = classify(cases[5][2])
+    if not any("runner-prepull-untracked" in r for r in reasons):
+        print("  [FAIL] prepull stash entries were not called out by name")
+        failed += 1
+    elif any("other stash entry" in r for r in reasons):
+        print("  [FAIL] prepull entries were double-counted as 'other' stashes")
+        failed += 1
+    else:
+        print("  [PASS] prepull stash entries named, not double-counted")
+    # ...and a plain stash list must NOT be mislabelled as prepull residue.
+    _, reasons = classify(cases[3][2])
+    if any("runner-prepull-untracked" in r for r in reasons):
+        print("  [FAIL] non-prepull stashes reported as prepull residue")
+        failed += 1
+    else:
+        print("  [PASS] non-prepull stashes not mislabelled")
     print()
     print("selftest: %d case(s) FAILED" % failed if failed else "selftest: all cases pass")
     return 1 if failed else 0
