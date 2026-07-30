@@ -2220,7 +2220,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-214-proposal-for-mech-203 && claude --resume 36205e60-0f11-44cb-891b-61e3dcb4c3bc",
       "task_claim_session_id": "igw-auto-igw-214-proposal-for-mech-203-20260730T185554Z",
       "assigned_at": "2026-07-30T18:55:10Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-30T19:58:15Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-07-30T19:58:25Z"
     }
   ],
   "dispositions": [
@@ -2938,6 +2942,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-30T06:45:22Z",
       "re_eligible_after": "2026-08-01T06:45:22Z"
+    },
+    {
+      "stable_hash": "1b7d2a6eeea6",
+      "igw_id_at_disposition": "IGW-20260730-214",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-203"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-203",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-30T19:58:24Z",
+      "re_eligible_after": "2026-08-01T19:58:15Z"
     }
   ]
 }
