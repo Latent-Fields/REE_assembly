@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_673_mech171_vicious_cycle_sleep_disruption
 
-Generated: `2026-07-29T23:49:56.484593Z`
+Generated: `2026-07-30T01:48:18.583269Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
@@ -13,5 +13,6 @@ Generated: `2026-07-29T23:49:56.484593Z`
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3` | `20260612T033246Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T033246Z_v3/metrics.json) |
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3` | `2026-06-12T03:22:33Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T032233Z_v3/metrics.json) |
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3` | `20260612T010234Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T010234Z_v3/metrics.json) |
+| `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3` | `20260612T005615Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3/metrics.json) |
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T230231Z_v3` | `2026-06-11T23:02:31Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T230231Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T230231Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T230231Z_v3/metrics.json) |
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T224744Z_v3` | `20260611T224744Z` | **FAIL** | - | - | - | - | [`summary`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T224744Z_v3/summary.md) / [`manifest`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T224744Z_v3/manifest.json) / [`metrics`](runs/v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260611T224744Z_v3/metrics.json) |

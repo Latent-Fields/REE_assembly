@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_496_mech292_ghost_goal_bank_validation
 
-Generated: `2026-07-29T23:49:56.484593Z`
+Generated: `2026-07-30T01:48:18.583269Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

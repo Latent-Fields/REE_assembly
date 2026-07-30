@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_461b_mech090_sd033a_delayed_reward_persistence_behavioural
 
-Generated: `2026-07-29T23:49:56.484593Z`
+Generated: `2026-07-30T01:48:18.583269Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

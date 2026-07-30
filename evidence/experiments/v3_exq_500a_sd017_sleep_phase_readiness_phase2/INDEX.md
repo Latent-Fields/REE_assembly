@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_500a_sd017_sleep_phase_readiness_phase2
 
-Generated: `2026-07-29T23:49:56.484593Z`
+Generated: `2026-07-30T01:48:18.583269Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

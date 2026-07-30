@@ -11,5 +11,10 @@
 ## Design implications
 
 <!-- AUTO-DESIGN-IMPLICATIONS:START -->
-No recent FAIL runs. Keep monitoring key stop metrics.
+Recent failure runs:
+- `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3` at `2026-07-30T01:06:51Z` signatures: none
+
+Recurring signatures:
+
+Suggested design TODOs:
 <!-- AUTO-DESIGN-IMPLICATIONS:END -->
