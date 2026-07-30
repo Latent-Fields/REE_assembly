@@ -1250,3 +1250,7 @@ One line per hourly tick. ASCII only.
 2026-07-30T01:39:36Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
 2026-07-30T06:39:04Z SPAWN IGW-20260730-214 skill=/queue-experiment prio=40 uuid=00c5af14-b3bd-4ba9-a5e1-2e3170d4163d pid=20790 worktree=igw-214-proposal-for-sd-014
 2026-07-30T06:45:22Z auto-defer IGW-20260730-214 hash=305a31591360 for 48h (complete)
+2026-07-30T07:41:23Z GC removed worktree igw-214-proposal-for-sd-014 (removed; branch deleted)
+2026-07-30T07:40:45Z GC sweep removed 1 orphan worktree(s), kept 10
+2026-07-30T07:45:49Z reconcile-release hash=305a31591360 (IGW-20260730-214 -> completed)
+2026-07-30T07:40:45Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
