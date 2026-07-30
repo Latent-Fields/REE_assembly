@@ -187,10 +187,23 @@ unreachable host is reported as UNREACHABLE, not as healthy and not as broken.
 The probe is READ-ONLY on every target: it never writes, stashes, drops, pulls
 or resets, and never touches a running experiment. The ONE exception is
 deliberate and local-only: a local target is `git fetch`ed first (`--no-fetch`
-to skip), because a worker pulls every ~60s and so has fresh remote-tracking
-refs while the Mac's can be days old, and grading against a stale `origin/master`
-manufactures strands out of content that landed yesterday. A fetch updates
-remote-tracking refs only -- not HEAD, not the index, not the working tree.
+to skip), because a RUNNING worker pulls every ~60s while the Mac has no such
+loop and its refs can be days old. A fetch updates remote-tracking refs only --
+not HEAD, not the index, not the working tree.
+
+EVERY FINDING IS RELATIVE TO THE REF THE BOX CAN SEE, and that ref is not
+always current. "A worker pulls every ~60s" holds only while it is RUNNING: a
+powered-off or wedged box keeps whatever ref it had, and anything that landed
+since then reads as stranded. Confirmed 2026-07-30T17:41Z -- a just-woken
+ree-cloud-4 reported `v3_exq_614_..._20260529T191318Z_v3` as a stranded
+manifest against an `origin/master` NINE HOURS old, while that run sat on the
+real origin/master in both flat and pack form, recovered earlier the same day.
+So the graded ref's age is measured on each box and printed beside any finding
+older than REF_STALE_WARN. The workers are deliberately NOT fetched -- that
+would be a write to a box that may be mid-experiment, against the promise
+above, and the runner's own `pull --rebase --autostash` is already contending
+for those refs. Labelling the staleness is the honest fix; silently grading
+against a stale ref is not.
 
 SCOPE. This is the working-tree / untracked half. Stash containment is
 `REE_Working/scripts/audit_stashes.py`, which already covers the Mac's two
@@ -276,6 +289,13 @@ REPOS = tuple(REPO_REFS)
 # WEDGED / SKEW / GC-BLOCKED are structural and are never threshold-based.
 BEHIND_WARN = 50
 
+# Hours after which the GRADED REF is called out beside any finding it could
+# explain. A running worker pulls every ~60s, so its ref is minutes old; two
+# hours therefore only ever fires on a box that was powered off or wedged --
+# which is exactly when a "stranded" manifest is most likely to be a landed one
+# the box has not seen yet. See classify() for the confirmed incident.
+REF_STALE_WARN = 2.0
+
 # Probe script. Emits one "repo|k=v|..." line per repo. Kept POSIX-sh simple
 # and read-only: it must never mutate any target's tree. `$REE_BASE` and
 # `$REE_REPOS` are prepended by shell_probe() from the TARGET RECORD -- they
@@ -314,7 +334,7 @@ done
 #
 # READ-ONLY. Every git call here is status / ls-tree / show.
 UNTRACKED_PY = r'''
-import json, os, re, subprocess, sys
+import json, os, re, subprocess, sys, time
 
 MAX_FINDINGS = 25
 MAX_BYTES = 8 * 1024 * 1024
@@ -550,6 +570,25 @@ def grade_ignored(root, ref, idx):
             "beyond_cap": beyond_cap, "findings": findings}
 
 
+def ref_age_hours(root, ref):
+    """Age of the graded ref, computed on the box that holds it.
+
+    Everything here is graded against `ref`, so a STALE ref manufactures
+    strands out of content that landed after it. The age is computed locally
+    (both `git log` and the clock are on the same box) so cross-machine clock
+    skew cannot distort it, and it is returned as a NUMBER so the reporting
+    side stays time-independent and testable.
+
+    Returns None when it cannot be determined -- absence is reported, never
+    silently treated as fresh.
+    """
+    txt = git(root, "log", "-1", "--format=%ct", ref)
+    try:
+        return round((time.time() - int((txt or "").strip())) / 3600.0, 2)
+    except Exception:
+        return None
+
+
 def grade_repo(root, ref, do_ignored=False):
     st = git(root, "status", "--porcelain", "-uall", "-z")
     if st is None:
@@ -594,7 +633,8 @@ def grade_repo(root, ref, do_ignored=False):
 
     out = {"untracked": len(untracked), "ignored": ignored,
            "findings": findings, "truncated": truncated, "notes": notes,
-           "no_counterpart_other_paths": other_paths}
+           "no_counterpart_other_paths": other_paths,
+           "ref": ref, "ref_age_hours": ref_age_hours(root, ref)}
     if do_ignored:
         out["gitignored"] = grade_ignored(root, ref, idx)
     return out
@@ -1033,6 +1073,25 @@ def classify(d):
                 f"{u['transient']} finding(s) present in the first pass and GONE "
                 f"in the re-check -- transient, not reported as strands")
         strand = u.get("findings") or []
+        # A STALE graded ref is the one thing that can turn a landed run into
+        # an apparent strand, so it is stated HERE, immediately above the
+        # findings it would explain -- not buried in --json. Confirmed
+        # 2026-07-30T17:41Z: a just-woken ree-cloud-4 reported
+        # v3_exq_614_..._20260529T191318Z_v3 as stranded against an
+        # origin/master 9 hours old; the run was on the real origin/master in
+        # BOTH flat and pack form, recovered earlier the same day.
+        age = u.get("ref_age_hours")
+        if strand and age is None:
+            reasons.append(
+                f"NOTE: could not date {u.get('ref', 'the graded ref')} -- a "
+                f"stale ref would make landed runs look stranded")
+        elif strand and isinstance(age, (int, float)) and age > REF_STALE_WARN:
+            reasons.append(
+                f"CHECK THE REF FIRST: {u.get('ref', 'the graded ref')} on this "
+                f"box is {age:.1f}h old (a running worker pulls every ~60s, so "
+                f"this box was probably powered off). Anything that landed since "
+                f"then reads as stranded. Re-check each run_id against the REAL "
+                f"origin before triaging")
         if strand:
             n = len(strand) + int(u.get("truncated") or 0)
             reasons.append(
@@ -1222,6 +1281,49 @@ def selftest():
     else:
         print("  [PASS] claim-covered / dry-run / transient all REPORT and "
               "none is promoted to a strand")
+
+    # A STALE graded ref must be called out beside the findings it could
+    # explain -- recorded from ree-cloud-4, 2026-07-30T17:41Z, whose 9h-old
+    # origin/master made an already-recovered run look stranded. The age is a
+    # NUMBER supplied by the grader, so this case is time-independent.
+    def _with_ref(age):
+        return dict(branch="master", unmerged="0", behind="0", skew="0",
+                    gclog="0", stashes="0", first="", untracked=dict(
+                        untracked=1, ignored=0, truncated=0, notes={},
+                        ref="origin/master", ref_age_hours=age,
+                        findings=[dict(
+                            path="evidence/experiments/v3_exq_614_x_v3.json.bak.20260530",
+                            run_id="v3_exq_614_x_v3", outcome="FAIL",
+                            elapsed_seconds=1.0, bytes=10)]))
+    stale = " ".join(classify(_with_ref(9.1))[1])
+    fresh = " ".join(classify(_with_ref(0.02))[1])
+    undated = " ".join(classify(_with_ref(None))[1])
+    if "CHECK THE REF FIRST" not in stale or "9.1h" not in stale:
+        print(f"  [FAIL] a 9.1h-stale graded ref was not called out: {stale}")
+        failed += 1
+    elif "STRANDED" not in stale:
+        print("  [FAIL] a stale ref suppressed the finding instead of "
+              "labelling it -- it might still be real")
+        failed += 1
+    elif "CHECK THE REF FIRST" in fresh:
+        print("  [FAIL] a fresh ref produced the stale-ref caveat")
+        failed += 1
+    elif "could not date" not in undated:
+        print("  [FAIL] an undatable ref was treated as fresh")
+        failed += 1
+    else:
+        print("  [PASS] stale graded ref is labelled beside the finding, a "
+              "fresh one is silent, an undatable one is reported")
+    # ...and the caveat must never appear on a box with nothing to explain.
+    if any("CHECK THE REF" in r for r in classify(dict(
+            branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+            stashes="0", first="", untracked=dict(
+                untracked=3, ignored=0, truncated=0, notes={}, findings=[],
+                ref="origin/master", ref_age_hours=48.0)))[1]):
+        print("  [FAIL] stale-ref caveat printed with no findings to explain")
+        failed += 1
+    else:
+        print("  [PASS] stale-ref caveat is silent when there is no finding")
 
     failed += _selftest_grader()
     failed += _selftest_local_target()
