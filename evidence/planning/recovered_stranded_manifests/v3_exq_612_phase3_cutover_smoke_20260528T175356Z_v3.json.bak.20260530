@@ -1,0 +1,74 @@
+{
+  "experiment_type": "v3_exq_612_phase3_cutover_smoke",
+  "run_id": "v3_exq_612_phase3_cutover_smoke_20260528T175356Z_v3",
+  "claim_ids": [],
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "seed": 612,
+  "n_episodes": 20,
+  "steps_per_episode": 100,
+  "total_steps": 228,
+  "per_ep_steps": [
+    12,
+    11,
+    12,
+    11,
+    12,
+    13,
+    8,
+    11,
+    12,
+    9,
+    12,
+    11,
+    12,
+    11,
+    12,
+    11,
+    12,
+    11,
+    12,
+    13
+  ],
+  "per_ep_terminal_reasons": [
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done",
+    "done"
+  ],
+  "elapsed_seconds": 0.146,
+  "result": "PASS",
+  "criteria": {
+    "C1_min_episodes": {
+      "expected": ">= 20",
+      "got": 20,
+      "pass": true
+    },
+    "C2_min_total_steps": {
+      "expected": ">= 50",
+      "got": 228,
+      "pass": true
+    },
+    "C3_manifest_written": {
+      "expected": "manifest path exists post-run",
+      "got": "set after write",
+      "pass": true
+    }
+  },
+  "purpose": "Phase 3 cutover end-to-end smoke; drives the claim->result->writer->queue-writer cycle."
+}
