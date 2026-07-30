@@ -1256,3 +1256,4 @@ One line per hourly tick. ASCII only.
 2026-07-30T07:40:45Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
 2026-07-30T08:47:34Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
 2026-07-30T09:49:05Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
+2026-07-30T10:49:45Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
