@@ -2173,7 +2173,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-214-proposal-for-sd-014 && claude --resume 00c5af14-b3bd-4ba9-a5e1-2e3170d4163d",
       "task_claim_session_id": "igw-auto-igw-214-proposal-for-sd-014-20260730T063945Z",
       "assigned_at": "2026-07-30T06:39:04Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-07-30T06:45:22Z",
+      "completion_summary": "marked EVB-0245 (SD-014) blocked_substrate: node valence vector + surprise-write unbuilt; w/l dissociation family all non_contributory (REE_assembly cc98f8e47a)",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "marked EVB-0245 (SD-014) blocked_substrate: node valence vector + surprise-write unbuilt; w/l dissociation family all non_contributory (REE_assembly cc98f8e47a)"
     }
   ],
   "dispositions": [
@@ -2877,6 +2881,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-07-29T08:27:24Z",
       "re_eligible_after": "2026-07-31T08:27:24Z"
+    },
+    {
+      "stable_hash": "305a31591360",
+      "igw_id_at_disposition": "IGW-20260730-214",
+      "owner_exq": null,
+      "claim_ids": [
+        "SD-014"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for SD-014",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-07-30T06:45:22Z",
+      "re_eligible_after": "2026-08-01T06:45:22Z"
     }
   ]
 }
