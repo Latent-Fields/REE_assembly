@@ -143,3 +143,10 @@ Not examined here (different chip, different tool): the Mac's **git stash list**
 containment is `scripts/audit_stashes.py`; the cloud-2 write-up's central point is that
 stash grading and working-tree grading are different checks, and this exercise is the
 working-tree half only.
+
+**CLOSED 2026-07-30T07:52Z** -- the stash half is
+[`README_DLAPTOP-4_stash_2026-07-30.md`](README_DLAPTOP-4_stash_2026-07-30.md) (chip
+`chip-20260730-dlaptop4-stash-triage`, session `nostalgic-yalow-da4b15`). Also **CLEAN**:
+3 `autostash` entries, all derive-only governance/IGW regen output, all identifier sets a
+strict subset of `origin/master`; archived as `stash-archive/20260730-*` and dropped. Read
+the two together for the full Mac grade.
