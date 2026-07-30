@@ -2197,6 +2197,29 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-213-proposal-for-mech-044 && claude --resume 6711cfe4-1a98-42b2-a75e-ae540bd335f9",
       "task_claim_session_id": "igw-auto-igw-213-proposal-for-mech-044-20260730T175353Z",
       "assigned_at": "2026-07-30T17:53:33Z",
+      "status": "completed_resumable",
+      "reaped_at": "2026-07-30T18:55:40Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0333 -> blocked_substrate (triage landed)"
+    },
+    {
+      "igw_id": "IGW-20260730-214",
+      "stable_hash": "1b7d2a6eeea6",
+      "skill": "/queue-experiment",
+      "lane": "experiment",
+      "priority": 40,
+      "claim_ids": [
+        "MECH-203"
+      ],
+      "owner_exq": null,
+      "title": "Proposal for MECH-203",
+      "worktree": ".claude/worktrees/igw-214-proposal-for-mech-203",
+      "branch": "claude/igw-214-proposal-for-mech-203",
+      "session_uuid": "36205e60-0f11-44cb-891b-61e3dcb4c3bc",
+      "pid": 13457,
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-214-proposal-for-mech-203 && claude --resume 36205e60-0f11-44cb-891b-61e3dcb4c3bc",
+      "task_claim_session_id": "igw-auto-igw-214-proposal-for-mech-203-20260730T185554Z",
+      "assigned_at": "2026-07-30T18:55:10Z",
       "status": "spawned"
     }
   ],
@@ -2307,7 +2330,7 @@
     },
     {
       "stable_hash": "f0c3b9b9e6d8",
-      "igw_id_at_disposition": "IGW-20260618-182",
+      "igw_id_at_disposition": "IGW-20260730-213",
       "owner_exq": null,
       "claim_ids": [
         "MECH-044"
@@ -2316,8 +2339,8 @@
       "title": "Proposal EXP-0151 (MECH-044)",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-06-18T07:08:16Z",
-      "re_eligible_after": "2026-06-20T07:08:08Z"
+      "noted_at": "2026-07-30T18:55:51Z",
+      "re_eligible_after": "2026-08-01T18:55:40Z"
     },
     {
       "stable_hash": "1839fabde877",
