@@ -241,6 +241,18 @@ echo "--- Step 3c-quater: Closure-map dangling-link check (warn-only) ---"
 # gate. Promote to blocking once the closure frontmatter is stable.
 "$PYTHON" scripts/check_closure_links.py || true
 
+echo "--- Step 3c-quinquies: Plan Status-table vs frontmatter sync (warn-only) ---"
+# Flags a plan whose markdown "Status table" row disagrees with its own YAML
+# frontmatter node: missing/orphan row, status mismatch, or a row 'Last updated'
+# OLDER than the node's. The drift is one-directional by construction -- THIS
+# step (and every other governance step) writes governance_<date> keys into the
+# node record and bumps last_updated, and nothing obliges anyone to touch the
+# parallel markdown table, which is nonetheless what each plan labels "the resume
+# primitive" and what a cold-start session reads first. Measured 2026-07-29: six
+# plans described completed work as outstanding, node record current in all six.
+# Reconcile the ROW, never the node. Warn-only (--exit-nonzero to gate).
+"$PYTHON" scripts/check_plan_status_table_sync.py --quiet-notes || true
+
 echo "--- Step 3c-pre-heal: Self-heal status-plane drift (SHP-3; re-stamp in place, NO commit) ---"
 # status_history_plane:SHP-3. Closes the SHP-3 automation gap: check_closure_drift's
 # status-plane section only REPORTED drift (a collapsed node whose stored two-plane
