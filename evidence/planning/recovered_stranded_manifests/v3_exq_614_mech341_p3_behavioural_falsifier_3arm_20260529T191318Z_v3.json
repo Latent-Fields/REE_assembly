@@ -1,0 +1,395 @@
+{
+  "run_id": "v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3",
+  "experiment_type": "v3_exq_614_mech341_p3_behavioural_falsifier_3arm",
+  "queue_id": "V3-EXQ-614",
+  "claim_ids": [
+    "MECH-341",
+    "ARC-065"
+  ],
+  "experiment_purpose": "evidence",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "20260529T191318Z",
+  "outcome": "FAIL",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-341": "weakens",
+    "ARC-065": "weakens"
+  },
+  "evidence_direction_note": "experiment_purpose=evidence; Phase P3 behavioural falsifier per behavioral_diversity_isolation_plan.md R2.c rule. interpretation_label=FAIL_no_criterion_routes_to_diagnose_errors. C1 (B_only Rung-1)=False, C2 (B necessity)=False, C3 (ALL_ON Rung-1)=True. Per-claim direction follows the interpretation grid; see manifest.result.interpretation_grid for the full mapping.",
+  "dry_run": false,
+  "env_kwargs": {
+    "size": 12,
+    "num_hazards": 4,
+    "num_resources": 5,
+    "hazard_harm": 0.05,
+    "env_drift_interval": 5,
+    "env_drift_prob": 0.1,
+    "proximity_harm_scale": 0.1,
+    "proximity_benefit_scale": 0.05,
+    "proximity_approach_threshold": 0.2,
+    "hazard_field_decay": 0.5,
+    "resource_respawn_on_consume": true,
+    "toroidal": false,
+    "harm_history_len": 10,
+    "reef_enabled": true,
+    "n_reef_patches": 3,
+    "reef_patch_radius": 2,
+    "hazard_food_attraction": 0.7,
+    "reef_bipartite_layout": true,
+    "reef_bipartite_axis": "horizontal",
+    "reef_bipartite_agent_band_radius": 1
+  },
+  "config_summary": {
+    "vs_stack": "minimal (use_per_stream_vs + use_vs_rollout_gating)",
+    "mech341_sub_flavours": "both (entropy_bonus + stratified_select)",
+    "mech341_entropy_bias_scale": 2.0,
+    "z_goal_enabled": true,
+    "drive_weight": 2.0,
+    "alpha_world": 0.9,
+    "reef_enabled": true,
+    "reef_bipartite_layout": true
+  },
+  "result": {
+    "outcome": "FAIL",
+    "overall_direction": "weakens",
+    "evidence_direction_per_claim": {
+      "MECH-341": "weakens",
+      "ARC-065": "weakens"
+    },
+    "interpretation_label": "FAIL_no_criterion_routes_to_diagnose_errors",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_arms": 3,
+    "total_seeds_attempted": 9,
+    "total_seeds_completed": 9,
+    "p0_episodes": 30,
+    "p1_episodes": 60,
+    "steps_per_episode": 200,
+    "decision_rule_thresholds": {
+      "rung1_entropy_threshold": 0.3,
+      "rung1_min_classes": 2,
+      "necessity_entropy_delta": 0.1,
+      "min_seeds_per_arm_for_pass": 2,
+      "pre_ge2_frac_gate": 0.5,
+      "mech341_entropy_bias_scale": 2.0,
+      "vs_snapshot_refresh_threshold": 0.5,
+      "vs_e1_threshold": 0.4
+    },
+    "acceptance_criteria": {
+      "C1_R2c_b_only_rung1": false,
+      "C2_b_necessity_delta": false,
+      "C2_entropy_delta_value": 0.054043,
+      "C3_all_on_rung1": true
+    },
+    "interpretation_grid": {
+      "PASS_C1_C2_C3": "MECH-341 supports + load-bearing; ARC-065 supports. Route to /governance for MECH-341 promotion + Phase P4 11-arm matrix on downstream env.",
+      "PASS_C1_only": "MECH-341 R2.c provisional promotion candidate (B can drive diversity without A=SP-CEM). ARC-065 mixed -- distributed pathway commitment partially decoupled from proposer layer. Route to /governance + R_X.b A-vs-B partial-redundancy follow-up.",
+      "PASS_C2_C3_only": "MECH-341 contributes to the full stack but not sufficient in isolation. ARC-065 supports (distributed pathway necessary). Route to /governance with MECH-341 supports + Q-054 entropy_bias_scale calibration sweep before Phase P4.",
+      "FAIL_no_criterion": "MECH-341 weakens at the behavioural layer. ARC-065 weakens at the B layer specifically. Route to /diagnose-errors on e3_selector + MECH-341 integration; pre-register Q-054 entropy_bias_scale sweep + revisit stratified_temperature."
+    },
+    "arms": [
+      {
+        "arm_id": "ARM_0_B_only",
+        "label": "B_only_mech341_isolated",
+        "substrate_axes": {
+          "A_sp_cem": false,
+          "B_mech341": true,
+          "C_noise_floor": false,
+          "D_vs": false
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_0_B_only",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 5805,
+            "n_p1_ticks": 11806,
+            "n_p1_logged": 11806,
+            "n_p1_pre_ge2": 0,
+            "n_p1_pre_eq1": 11806,
+            "frac_pre_ge2": 0.0,
+            "mean_top2_class_gap": null,
+            "selected_classes_p1_counts": {
+              "0": 11806
+            },
+            "committed_classes_p1_counts": {
+              "0": 11806
+            },
+            "n_unique_selected_classes": 1,
+            "selected_class_entropy_nats": 0.0,
+            "committed_class_entropy_nats": 0.0,
+            "seed_passes_rung1": false,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_0_B_only",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 5807,
+            "n_p1_ticks": 11423,
+            "n_p1_logged": 11423,
+            "n_p1_pre_ge2": 0,
+            "n_p1_pre_eq1": 11423,
+            "frac_pre_ge2": 0.0,
+            "mean_top2_class_gap": null,
+            "selected_classes_p1_counts": {
+              "2": 11423
+            },
+            "committed_classes_p1_counts": {
+              "2": 11423
+            },
+            "n_unique_selected_classes": 1,
+            "selected_class_entropy_nats": 0.0,
+            "committed_class_entropy_nats": 0.0,
+            "seed_passes_rung1": false,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_0_B_only",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 180,
+            "n_p1_ticks": 358,
+            "n_p1_logged": 358,
+            "n_p1_pre_ge2": 0,
+            "n_p1_pre_eq1": 358,
+            "frac_pre_ge2": 0.0,
+            "mean_top2_class_gap": null,
+            "selected_classes_p1_counts": {
+              "4": 358
+            },
+            "committed_classes_p1_counts": {
+              "4": 358
+            },
+            "n_unique_selected_classes": 1,
+            "selected_class_entropy_nats": 0.0,
+            "committed_class_entropy_nats": 0.0,
+            "seed_passes_rung1": false,
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "n_seeds_rung1_pass": 0,
+          "majority_rung1_pass": false,
+          "mean_selected_class_entropy_nats": 0.0,
+          "mean_n_unique_selected_classes": 1.0
+        }
+      },
+      {
+        "arm_id": "ARM_1_ablate_B",
+        "label": "ablate_B_a_c_d_on_b_off",
+        "substrate_axes": {
+          "A_sp_cem": true,
+          "B_mech341": false,
+          "C_noise_floor": true,
+          "D_vs": true
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_1_ablate_B",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 793,
+            "n_p1_ticks": 1739,
+            "n_p1_logged": 1739,
+            "n_p1_pre_ge2": 1739,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.384544,
+            "selected_classes_p1_counts": {
+              "0": 954,
+              "1": 99,
+              "2": 50,
+              "3": 636
+            },
+            "committed_classes_p1_counts": {
+              "0": 769,
+              "1": 175,
+              "2": 121,
+              "3": 674
+            },
+            "n_unique_selected_classes": 4,
+            "selected_class_entropy_nats": 0.962447,
+            "committed_class_entropy_nats": 1.144723,
+            "seed_passes_rung1": true,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_1_ablate_B",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 5271,
+            "n_p1_ticks": 10009,
+            "n_p1_logged": 10009,
+            "n_p1_pre_ge2": 10009,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.271524,
+            "selected_classes_p1_counts": {
+              "1": 1100,
+              "2": 8909
+            },
+            "committed_classes_p1_counts": {
+              "1": 3716,
+              "2": 6293
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.346308,
+            "committed_class_entropy_nats": 0.659626,
+            "seed_passes_rung1": true,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_1_ablate_B",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 224,
+            "n_p1_ticks": 395,
+            "n_p1_logged": 395,
+            "n_p1_pre_ge2": 395,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.507873,
+            "selected_classes_p1_counts": {
+              "2": 30,
+              "4": 365
+            },
+            "committed_classes_p1_counts": {
+              "0": 18,
+              "2": 28,
+              "4": 349
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.268763,
+            "committed_class_entropy_nats": 0.43775,
+            "seed_passes_rung1": false,
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "n_seeds_rung1_pass": 2,
+          "majority_rung1_pass": true,
+          "mean_selected_class_entropy_nats": 0.525839,
+          "mean_n_unique_selected_classes": 2.666667
+        }
+      },
+      {
+        "arm_id": "ARM_2_ALL_ON",
+        "label": "all_on_a_b_c_d",
+        "substrate_axes": {
+          "A_sp_cem": true,
+          "B_mech341": true,
+          "C_noise_floor": true,
+          "D_vs": true
+        },
+        "per_seed_results": [
+          {
+            "arm_id": "ARM_2_ALL_ON",
+            "seed": 42,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 736,
+            "n_p1_ticks": 1673,
+            "n_p1_logged": 1673,
+            "n_p1_pre_ge2": 1673,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.392602,
+            "selected_classes_p1_counts": {
+              "0": 821,
+              "1": 191,
+              "2": 51,
+              "3": 602,
+              "4": 8
+            },
+            "committed_classes_p1_counts": {
+              "0": 801,
+              "1": 161,
+              "2": 160,
+              "3": 543,
+              "4": 8
+            },
+            "n_unique_selected_classes": 5,
+            "selected_class_entropy_nats": 1.096828,
+            "committed_class_entropy_nats": 1.19316,
+            "seed_passes_rung1": true,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_2_ALL_ON",
+            "seed": 43,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 5272,
+            "n_p1_ticks": 10329,
+            "n_p1_logged": 10329,
+            "n_p1_pre_ge2": 10329,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 0.256435,
+            "selected_classes_p1_counts": {
+              "1": 1157,
+              "2": 9172
+            },
+            "committed_classes_p1_counts": {
+              "1": 4451,
+              "2": 5869,
+              "4": 9
+            },
+            "n_unique_selected_classes": 2,
+            "selected_class_entropy_nats": 0.350707,
+            "committed_class_entropy_nats": 0.690092,
+            "seed_passes_rung1": true,
+            "error_note": null
+          },
+          {
+            "arm_id": "ARM_2_ALL_ON",
+            "seed": 44,
+            "p0_episodes_run": 30,
+            "p1_episodes_run": 60,
+            "n_p0_ticks": 225,
+            "n_p1_ticks": 459,
+            "n_p1_logged": 459,
+            "n_p1_pre_ge2": 459,
+            "n_p1_pre_eq1": 0,
+            "frac_pre_ge2": 1.0,
+            "mean_top2_class_gap": 1.425343,
+            "selected_classes_p1_counts": {
+              "0": 8,
+              "2": 24,
+              "4": 427
+            },
+            "committed_classes_p1_counts": {
+              "0": 49,
+              "2": 87,
+              "4": 323
+            },
+            "n_unique_selected_classes": 3,
+            "selected_class_entropy_nats": 0.29211,
+            "committed_class_entropy_nats": 0.801349,
+            "seed_passes_rung1": false,
+            "error_note": null
+          }
+        ],
+        "cross_seed_interpretation": {
+          "n_seeds_completed": 3,
+          "n_seeds_rung1_pass": 2,
+          "majority_rung1_pass": true,
+          "mean_selected_class_entropy_nats": 0.579882,
+          "mean_n_unique_selected_classes": 3.333333
+        }
+      }
+    ]
+  }
+}
