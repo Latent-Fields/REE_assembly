@@ -435,7 +435,11 @@ def load_local(root, rel):
 def grade_path(root, ref, rel, idx):
     """Decide ONE working-tree path against origin.
 
-    Returns ``("clear", None)``, ``("finding", {...})`` or ``("note", tag)``.
+    Returns ``("clear", None)``, ``("finding", {...})``, ``("divergent",
+    {...})`` or ``("note", tag)``. `finding` is "this run exists nowhere on
+    origin"; `divergent` is "it does, but not as this content" -- kept apart
+    because the remedy differs and because the strand text asserts, truthfully,
+    that a strand has NO counterpart at any path.
 
     Factored out of grade_repo's loop on 2026-07-30 so the --ignored bucket
     grades by exactly the same rules rather than by a second, drifting copy --
@@ -473,9 +477,29 @@ def grade_path(root, ref, rel, idx):
 
     # 1) Run-manifest grading. A run whose id is on origin ANYWHERE -- flat
     #    `<run_id>.json` or pack `.../runs/<run_id>/manifest.json` -- is not
-    #    stranded, whatever the local copy happens to be called.
+    #    stranded, whatever the local copy happens to be called. Note the index
+    #    is built from a whole-tree `ls-tree -r`, so this also clears a copy
+    #    parked outside the live evidence paths (the recovery procedure files
+    #    them under evidence/planning/recovered_stranded_manifests/, deliberately
+    #    outside evidence/experiments/ so the indexer cannot score them).
+    #
+    #    Membership is NOT sufficient to clear. Matching the run_id and then
+    #    returning without reading either file cannot distinguish "already
+    #    landed" from "landed as something else" -- and the second is the
+    #    worse case, since two divergent manifests for one run_id is the
+    #    phantom-completion / partial-write shape. Verify content first.
     if run_id and (run_id in idx["flat_runs"] or run_id in idx["pack_runs"]):
-        return "clear", None
+        cands = idx.get("runpaths", {}).get(run_id, ())
+        if origin_match(root, ref, doc, raw, cands) is not False:
+            return "clear", None
+        return "divergent", {
+            "path": rel,
+            "run_id": run_id,
+            "outcome": str(doc.get("outcome"))[:40],
+            "elapsed_seconds": doc.get("elapsed_seconds"),
+            "bytes": len(raw or ""),
+            "origin_paths": list(cands)[:MAX_CANDIDATES],
+        }
 
     # 2) Basename grading, on the name AND on the de-.bak'd stem.
     cands = list(idx["byname"].get(base, ()))
@@ -513,22 +537,60 @@ def grade_path(root, ref, rel, idx):
 
 
 def build_index(tree):
-    """Origin-side lookup tables: basename -> paths, and the two run-id sets."""
+    """Origin-side lookup tables: basename -> paths, and the two run-id sets.
+
+    `runpaths` (run_id -> the origin paths that carry it) exists so step 1 of
+    grade_path can COMPARE CONTENT before clearing. The two sets alone answer
+    "does this run_id exist on origin", which is not the same question as "is
+    the local copy the same run".
+    """
     byname = {}
     flat_runs = set()
     pack_runs = set()
+    runpaths = {}
     for p in tree:
         b = p.rsplit("/", 1)[-1]
         byname.setdefault(b, []).append(p)
         if b.endswith(".json"):
             flat_runs.add(b[:-5])
+            runpaths.setdefault(b[:-5], []).append(p)
         i = p.find("/runs/")
         if i != -1:
             rest = p[i + 6:]
             j = rest.find("/")
             if j > 0:
                 pack_runs.add(rest[:j])
-    return {"byname": byname, "flat_runs": flat_runs, "pack_runs": pack_runs}
+                runpaths.setdefault(rest[:j], []).append(p)
+    return {"byname": byname, "flat_runs": flat_runs, "pack_runs": pack_runs,
+            "runpaths": runpaths}
+
+
+def origin_match(root, ref, doc, raw, paths):
+    """Tri-state: True some candidate matches, False all differ, None unknown.
+
+    None is the fail-SAFE value and is treated as a match by every caller: an
+    unreadable or unparseable candidate is not evidence of divergence, and this
+    module's usefulness rests entirely on not manufacturing findings it cannot
+    stand over (module docstring; the BYDESIGN and --dry-run suppressions exist
+    for the same reason).
+
+    Uses is_superset, not a byte compare, for the same reason step 2 does --
+    the phase3 writer injects fields, so origin is routinely a strict superset
+    of a semantically identical local file.
+    """
+    decided = False
+    for p in list(paths)[:MAX_CANDIDATES]:
+        blob = git(root, "show", "%s:%s" % (ref, p))
+        if blob is None:
+            continue
+        odoc = as_json(blob)
+        if doc is not None and odoc is not None:
+            decided = True
+            if is_superset(odoc, doc):
+                return True
+        elif raw is not None and blob == raw:
+            return True
+    return False if decided else None
 
 
 def grade_ignored(root, ref, idx):
@@ -552,6 +614,7 @@ def grade_ignored(root, ref, idx):
         return {"error": "git status --ignored failed"}
     entries = [e[3:] for e in st.split("\0") if e[:3] == "!! "]
     findings = []
+    divergent = []
     dirs = 0
     scanned = 0
     beyond_cap = 0
@@ -566,8 +629,14 @@ def grade_ignored(root, ref, idx):
         kind, payload = grade_path(root, ref, rel, idx)
         if kind == "finding" and len(findings) < MAX_FINDINGS:
             findings.append(payload)
+        # Carried rather than dropped: this bucket exists BECAUSE `*.bak` made
+        # a whole class invisible, so silently discarding a second class here
+        # would repeat the defect it was built to fix.
+        elif kind == "divergent" and len(divergent) < MAX_FINDINGS:
+            divergent.append(payload)
     return {"entries": len(entries), "files_graded": scanned, "dirs_skipped": dirs,
-            "beyond_cap": beyond_cap, "findings": findings}
+            "beyond_cap": beyond_cap, "findings": findings,
+            "divergent": divergent}
 
 
 def ref_age_hours(root, ref):
@@ -604,6 +673,7 @@ def grade_repo(root, ref, do_ignored=False):
     idx = build_index(tree)
 
     findings = []
+    divergent = []
     notes = {}
     other_paths = []
     ignored = 0
@@ -614,6 +684,10 @@ def grade_repo(root, ref, do_ignored=False):
             continue
         if kind == "ignored":
             ignored += 1
+            continue
+        if kind == "divergent":
+            if len(divergent) < MAX_FINDINGS:
+                divergent.append(payload)
             continue
         if kind == "finding":
             if len(findings) >= MAX_FINDINGS:
@@ -632,7 +706,8 @@ def grade_repo(root, ref, do_ignored=False):
             other_paths.append(rel)
 
     out = {"untracked": len(untracked), "ignored": ignored,
-           "findings": findings, "truncated": truncated, "notes": notes,
+           "findings": findings, "divergent": divergent,
+           "truncated": truncated, "notes": notes,
            "no_counterpart_other_paths": other_paths,
            "ref": ref, "ref_age_hours": ref_age_hours(root, ref)}
     if do_ignored:
@@ -1111,6 +1186,28 @@ def classify(d):
                 reasons.append(
                     f"    (+{u['truncated']} beyond the report cap -- use --json)")
 
+        # DIVERGENT: the run_id IS on origin, but not carrying this content.
+        # Reported separately from a strand because the remedy is the opposite:
+        # a strand needs recovering, this needs ADJUDICATING -- one of the two
+        # copies is wrong and which one is not knowable from here. Until
+        # 2026-07-30 this cleared silently on run_id membership alone, so the
+        # one case that most wants a human read produced no output at all.
+        div = u.get("divergent") or []
+        if div:
+            reasons.append(
+                f"{len(div)} untracked run manifest(s) whose run_id IS on origin "
+                f"but with DIFFERENT content -- not a strand and not a duplicate. "
+                f"Two divergent manifests for one run_id is the phantom-completion "
+                f"/ partial-write shape. Diff both before deleting EITHER; do not "
+                f"assume the origin copy is the good one")
+            for f in div[:5]:
+                op = (f.get("origin_paths") or ["?"])[0]
+                reasons.append(
+                    f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
+                    f"-- {f.get('path', '?')} vs origin {op}")
+            if len(div) > 5:
+                reasons.append(f"    ... and {len(div) - 5} more (use --json)")
+
         # GITIGNORED bucket (--ignored). Separate and lower-severity on
         # purpose: an ignored path is ignored deliberately, so the prior is
         # much weaker than for an untracked one. But `*.bak` being ignored in
@@ -1128,6 +1225,16 @@ def classify(d):
                     f"untracked file (the path is ignored on purpose), but a "
                     f"gitignored manifest is invisible to every other check")
                 for f in gf[:3]:
+                    reasons.append(
+                        f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
+                        f"-- {f.get('path', '?')}")
+            gd = g.get("divergent") or []
+            if gd:
+                reasons.append(
+                    f"{len(gd)} run manifest(s) in GITIGNORED path(s) whose "
+                    f"run_id is on origin with DIFFERENT content -- adjudicate, "
+                    f"do not delete on the assumption it is a stale backup")
+                for f in gd[:3]:
                     reasons.append(
                         f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
                         f"-- {f.get('path', '?')}")
@@ -1387,6 +1494,12 @@ def _selftest_grader():
         #     clear at the run_id step, so without these the superset and
         #     byte-compare branches would never run in this test.
         write("evidence/experiments/summary_index.json", {"a": 1, "b": 2})
+        # (d) a recovered manifest PARKED outside the live evidence paths --
+        #     the real recovery procedure files these under evidence/planning/
+        #     recovered_stranded_manifests/ so the indexer cannot score them.
+        #     Graded via case 6b below.
+        write("evidence/planning/recovered_stranded_manifests/parked_run_v3.json",
+              flat("parked_run_v3"), compact=True)
         os.makedirs(os.path.join(root, "docs"), exist_ok=True)
         with open(os.path.join(root, "docs", "notes.txt"), "w") as fh:
             fh.write("plain text\n")
@@ -1440,6 +1553,23 @@ def _selftest_grader():
                "manifest_path": "evidence/experiments/signal_run_v3.json",
                "pid": 1234, "schema_version": 1, "script": "x.py",
                "emitted_at": "2026-07-30T00:00:00Z"})
+        #  6. DIVERGENT: run_id IS on origin (`kept_run_v3`, committed above)
+        #     but this copy DISAGREES on a value rather than merely omitting
+        #     writer-injected keys. Until 2026-07-30 step 1 cleared on run_id
+        #     membership alone, so this -- the phantom-completion /
+        #     partial-write shape -- produced no output whatsoever. Case 1 is
+        #     the paired control: same run_id, genuinely a subset, still clear.
+        write("evidence/experiments/kept_run_v3.json.bak.divergent",
+              dict(kept, outcome="FAIL", elapsed_seconds=999.0))
+        #  6b. and the parked-recovery shape the 2026-07-30 chip was raised
+        #      for: a manifest whose ONLY origin copy sits outside the live
+        #      evidence paths, under evidence/planning/recovered_stranded_
+        #      manifests/ (committed above). It must CLEAR -- the index is
+        #      whole-tree -- and it is pinned here because a future narrowing
+        #      of build_index to evidence/experiments/ would silently re-strand
+        #      every already-recovered run.
+        write("evidence/experiments/oldexp/parked_run_v3.json.bak.20260530",
+              flat("parked_run_v3"))
 
         r = subprocess.run(
             [sys.executable, "-", tmp, "REE_assembly:HEAD"],
@@ -1480,6 +1610,31 @@ def _selftest_grader():
             bad += 1
         else:
             print("  [PASS] grader: build churn ignored outright")
+        # The three branches of the run_id step, asserted together because each
+        # is the other two's control: same-run_id-subset CLEARS (case 1),
+        # same-run_id-different-value is DIVERGENT (case 6), and a run whose
+        # only origin copy is PARKED outside evidence/experiments/ also CLEARS
+        # (case 6b). Asserting divergence alone would pass a grader that had
+        # simply stopped clearing on run_id at all.
+        dids = sorted(f["run_id"] for f in got.get("divergent", []))
+        if dids != ["kept_run_v3"]:
+            print(f"  [FAIL] divergent {dids} != ['kept_run_v3'] -- a same-"
+                  f"run_id manifest with DIFFERENT content was cleared "
+                  f"silently, or a subset/parked copy was wrongly flagged")
+            bad += 1
+        else:
+            print("  [PASS] grader: same run_id + different content is "
+                  "DIVERGENT, while the writer-superset copy and a copy parked "
+                  "in recovered_stranded_manifests/ both still clear")
+        dpaths = [p for f in got.get("divergent", [])
+                  for p in (f.get("origin_paths") or [])]
+        if dpaths != ["evidence/experiments/kept_run_v3.json"]:
+            print(f"  [FAIL] divergent origin_paths {dpaths} -- the finding "
+                  f"must name the origin copy it disagrees with, or it is not "
+                  f"triageable")
+            bad += 1
+        else:
+            print("  [PASS] grader: divergent finding names its origin copy")
         bad += _selftest_ignored_bucket(tmp, root)
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
@@ -2022,6 +2177,7 @@ def main():
     report = {}
     bad = False
     stranded = 0
+    divergent = 0
     graded = 0
     gitignored_hits = 0
     for name, t in sorted(targets.items()):
@@ -2049,9 +2205,11 @@ def main():
                 graded += int(u.get("untracked") or 0)
                 stranded += len(u.get("findings") or [])
                 stranded += int(u.get("truncated") or 0)
+                divergent += len(u.get("divergent") or [])
                 g = u.get("gitignored")
                 if isinstance(g, dict):
                     gitignored_hits += len(g.get("findings") or [])
+                    divergent += len(g.get("divergent") or [])
             report[name]["repos"][repo] = {
                 "status": status, "reasons": reasons, "raw": d,
             }
@@ -2095,7 +2253,8 @@ def main():
               "manifests would not be visible in this run")
     else:
         print(f"untracked grading: {graded} untracked path(s) graded against "
-              f"origin, {stranded} stranded run manifest(s)")
+              f"origin, {stranded} stranded run manifest(s), "
+              f"{divergent} same-run_id-different-content")
     if args.ignored:
         print(f"gitignored grading: {gitignored_hits} run manifest(s) found in "
               f"gitignored path(s) (ignored DIRECTORIES are not descended into)")
