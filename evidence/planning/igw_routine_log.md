@@ -1264,3 +1264,4 @@ One line per hourly tick. ASCII only.
 2026-07-30T15:52:40Z skip IGW-20260730-214: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-30T16:53:06Z skip IGW-20260730-214: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-07-30T18:55:51Z GC keep igw-213-proposal-for-mech-044 (ledger IGW-20260730-213 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
+2026-07-30T18:55:10Z SPAWN IGW-20260730-214 skill=/queue-experiment prio=40 uuid=36205e60-0f11-44cb-891b-61e3dcb4c3bc pid=13457 worktree=igw-214-proposal-for-mech-203
