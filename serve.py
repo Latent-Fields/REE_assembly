@@ -1742,6 +1742,15 @@ CLOSURE_KNOWN_PLANS = [
     "language_affect_adaptor_v6_plan.md",
     "abstract_relational_reasoning_v6_plan.md",
     "language_trust_deception_institutions_v6_plan.md",
+    # Clinical lane (generation: clinical; excluded from the V3 closure % like
+    # every other non-v3 lane). Psychiatric failure modes are CLINICAL objects,
+    # not a version: a single syndrome's claims are spread across generations by
+    # construction (catatonia subtype II = SD-036 v3 + MECH-214/215 v4), so
+    # filing the programme by generation splits every syndrome in half. It is
+    # also not `governance` (that is the SENT-*/GOV-* ethics perimeter), not
+    # `process` (infrastructure owning no science), and not `deferred` (nothing
+    # here is parked by commitment -- it is untested, which is the opposite).
+    "psychiatric_failure_modes_plan.md",
     # Deferred-by-commitment parking lot (generation: deferred; excluded from
     # every generation %; nodes carry reversal triggers)
     "deferred_by_commitment_plan.md",
