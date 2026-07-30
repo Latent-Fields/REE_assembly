@@ -170,10 +170,32 @@ verified as a true replicate pair.** Measured 2026-07-30: **5 of 747** flat mani
 `evidence/experiments/` carry any substrate-commit field
 (`v3_exq_792`, `792a`, `819`, `819a`, `830`). The other 742 do not.
 
-This episode is the cost of that gap, and it cost real work twice over: a substrate retune
-7 h before a run was invisible in the manifest, so a bit-identical-driver re-run was recorded
-and reasoned about as a scientific replicate for two months, then investigated as suspected
-substrate nondeterminism. Both were avoidable by one recorded SHA.
+**What this episode actually cost — stated precisely, because an earlier draft of this
+section overstated it as "two months of false conclusions" and that is wrong.** The two-month
+figure (2026-05-30 -> 2026-07-30) is the interval during which the 614 manifest was **lost**.
+For all of it, no comparison was possible and **no decision rested on one**. The false
+assertion in the 614a docstring — *"the science is identical; only the pipeline bug was the
+difference"* — was false from the day it was written, but **inert**: 614a's PASS is valid at
+λ=0.5 and MECH-341's disposition was never wrong. Nothing needs revisiting in that window.
+
+The real cost was **~45 minutes across two sessions, both on 2026-07-30**: 614 was recovered
+at 07:26Z (`05ebef9e40`), the nondeterminism hypothesis was formed and chipped, and it was
+falsified by 08:10Z.
+
+**The severity is the near-miss, not the elapsed time.** The recovery write-up concluded that
+MECH-341's load-bearing PASS *"rests entirely on an arm that a bit-identical re-run did not
+reproduce"*. Carried into a governance cycle, that would have destabilised MECH-341 and
+ARC-065 — ARC-065 has been `stable` since 2026-06-17 (`23dffdee90`) — on a reproducibility
+failure that does not exist. It was caught because the recovery session flagged its own
+hypothesis as uninvestigated and chipped it rather than acting on it.
+
+**And the argument for fixing this does not depend on the elapsed time at all.** 742 manifests
+carry no substrate SHA, so the same failure mode is available to any future run-pair
+comparison. This instance was *unusually* easy to catch: the evidence had visibly been lost,
+which is itself a signal that something irregular happened. The dangerous case is two
+manifests both present from the start, no lost-evidence hint, and a "bit-identical driver"
+assertion that nobody thinks to doubt — where the wrong conclusion gets acted on instead of
+chipped. One recorded SHA reduces the whole class to a `git diff`.
 
 Two distinct sub-defects, both worth fixing:
 
