@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_772_mech457_dense_credit_forage_discrimination
 
-Generated: `2026-07-30T01:48:18.583269Z`
+Generated: `2026-07-30T06:41:15.631506Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

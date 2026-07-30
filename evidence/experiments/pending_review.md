@@ -1,14 +1,15 @@
 # Pending Experiment Review
 
-Generated: `2026-07-30T01:51:30Z`  
+Generated: `2026-07-30T06:34:21Z`  
 Last review: `2026-07-29T23:24:03Z`  
-Pending: **7** item(s) -- 4 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 2 run(s) with a DEAD z_goal stream
+Pending: **9** item(s) -- 5 PASS, 4 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 2 run(s) with a DEAD z_goal stream
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
 | `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3` | 2026-07-30T01:06 | (no claim tags) | — |
+| `v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3` | 2026-07-30T05:08 | MECH-260, MECH-313, Q-045 | — |
 | `v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3` | 20260612T005615Z | MECH-171 | — |
 | `v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3` | 20260722T041239Z | ARC-110 | — |
 
@@ -20,6 +21,7 @@ Pending: **7** item(s) -- 4 PASS, 3 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0
 | `v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3` | 2026-07-28T20:45 | ARC-071, MECH-323, MECH-324 |
 | `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3` | 2026-07-29T12:58 | (no claim tags) |
 | `v3_exq_839_sd084_midexec_reachability_20260729T220727Z_v3` | 2026-07-29T22:07 | (no claim tags) |
+| `v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3` | 2026-07-30T06:07 | (no claim tags) |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -28,6 +30,7 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
 | `v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ## Dead z_goal stream (interpret before trusting a z_goal readout)
 

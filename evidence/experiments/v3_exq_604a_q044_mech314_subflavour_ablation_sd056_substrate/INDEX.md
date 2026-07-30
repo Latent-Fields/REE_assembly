@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_604a_q044_mech314_subflavour_ablation_sd056_substrate
 
-Generated: `2026-07-30T01:48:18.583269Z`
+Generated: `2026-07-30T06:41:15.631506Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
