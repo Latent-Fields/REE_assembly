@@ -1,0 +1,189 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_833_stageh_strict_goal_isolation_dv",
+  "run_id": "v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-30T06:07:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "goal_term_behaviourally_inert_in_stageh_within_stated_precision",
+    "preconditions": [
+      {
+        "name": "ARM_LEGACY::z_goal_formation_frac",
+        "precondition": "z_goal_formation_frac",
+        "arm": "ARM_LEGACY",
+        "kind": "readiness",
+        "description": "Fraction of seeds whose Stage-0 z_goal peak clears the 0.4 formation gate. With no z_goal, goal_state.is_active() is False, the E3 goal term is skipped outright, and the ON/OFF comparison is vacuous.",
+        "control": "Stage-0 forced-benefit nursery is the goal-formation positive control; 603q recorded 0.497/0.430/0.369 on this exact substrate.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.85,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "ARM_LEGACY::harm_landscape_discriminative_frac",
+        "precondition": "harm_landscape_discriminative_frac",
+        "arm": "ARM_LEGACY",
+        "kind": "readiness",
+        "description": "Fraction of seeds whose post-Stage-H harm_eval_range clears 0.02. Without a discriminative harm landscape the E3 harm cost is a random constant and survival is unreachable at any budget.",
+        "control": "603i flat landscape ~0.002 (negative reference); 603k/603q trained landscape 0.13-0.40 (positive reference).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "ARM_LEGACY::survival_above_floor",
+        "precondition": "survival_above_floor",
+        "arm": "ARM_LEGACY",
+        "kind": "readiness",
+        "description": "Arm mean Stage-H episode length in steps. Below the floor the agent dies almost immediately every episode and there is no learned avoidance for the goal term to modulate.",
+        "control": "603q base arm mean survival 37.7 steps of 200.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 58.2975,
+        "threshold": 8.0,
+        "met": true
+      },
+      {
+        "name": "ARM_LEGACY::goal_term_live_in_stageh_frac",
+        "precondition": "goal_term_live_in_stageh_frac",
+        "arm": "ARM_LEGACY",
+        "kind": "readiness",
+        "description": "Fraction of seeds where, at Stage-H exit, e3.goal_weight > 0 AND goal_state.is_active(). Manipulation-liveness on the CONTROL arm: the term being removed must actually have been present.",
+        "control": "REEConfig.from_dims sets goal_weight to 1.0 and Stage-0 seeds z_goal, so this is the documented live state.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT::z_goal_formation_frac",
+        "precondition": "z_goal_formation_frac",
+        "arm": "ARM_STRICT",
+        "kind": "readiness",
+        "description": "Fraction of seeds whose Stage-0 z_goal peak clears the 0.4 formation gate. With no z_goal, goal_state.is_active() is False, the E3 goal term is skipped outright, and the ON/OFF comparison is vacuous.",
+        "control": "Stage-0 forced-benefit nursery is the goal-formation positive control; 603q recorded 0.497/0.430/0.369 on this exact substrate.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT::harm_landscape_discriminative_frac",
+        "precondition": "harm_landscape_discriminative_frac",
+        "arm": "ARM_STRICT",
+        "kind": "readiness",
+        "description": "Fraction of seeds whose post-Stage-H harm_eval_range clears 0.02. Without a discriminative harm landscape the E3 harm cost is a random constant and survival is unreachable at any budget.",
+        "control": "603i flat landscape ~0.002 (negative reference); 603k/603q trained landscape 0.13-0.40 (positive reference).",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9,
+        "threshold": 0.6666666666666666,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT::survival_above_floor",
+        "precondition": "survival_above_floor",
+        "arm": "ARM_STRICT",
+        "kind": "readiness",
+        "description": "Arm mean Stage-H episode length in steps. Below the floor the agent dies almost immediately every episode and there is no learned avoidance for the goal term to modulate.",
+        "control": "603q base arm mean survival 37.7 steps of 200.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 62.785000000000004,
+        "threshold": 8.0,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT::strict_isolation_applied_frac",
+        "precondition": "strict_isolation_applied_frac",
+        "arm": "ARM_STRICT",
+        "kind": "readiness",
+        "description": "Fraction of seeds where, at Stage-H exit, e3.goal_weight == 0.0 AND e1_goal_conditioned is False. Confirms the knob genuinely bit rather than silently no-op'ing.",
+        "control": "_enter_strict_goal_isolation writes both fields at every freeze site; the LEGACY arm is the negative control for the same read.",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "C1a_legacy_arm_gate_green": true,
+      "C1b_strict_arm_gate_green": true,
+      "C2_sufficient_usable_pairs": true,
+      "C3_answer_reached": true
+    },
+    "criteria": [
+      {
+        "name": "C1a_legacy_arm_gate_green",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C1b_strict_arm_gate_green",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_sufficient_usable_pairs",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_answer_reached",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "reading": {
+      "goal_term_behaviourally_load_bearing_in_stageh": "The goal term measurably changes learned Stage-H avoidance. The scaffold's isolation gap is consequential, not merely a wording imprecision; work needing goal-free Stage-H must set scaffold_strict_goal_isolation=True.",
+      "goal_term_behaviourally_inert_in_stageh_within_stated_precision": "The 38% argmin-flip does NOT translate into changed learned avoidance, ruling out effects above the pre-registered 25.0 steps. This DISCHARGES the isolation worry and is why the outcome is PASS -- an informative null, not a failed run.",
+      "underpowered_null_more_seeds_required": "No effect met the gate AND the interval is too wide to license the null. Not a substrate verdict: re-queue with more seeds.",
+      "substrate_not_ready_requeue": "A readiness precondition failed -- most likely z_goal did not form (making the goal term inert and the comparison vacuous) or the harm landscape stayed flat."
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc"
+}
