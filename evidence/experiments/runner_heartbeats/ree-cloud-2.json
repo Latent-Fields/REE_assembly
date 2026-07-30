@@ -1,43 +1,46 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-07-30T17:54:58Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-810b",
-  "current_exq_started_utc": "2026-07-30T17:30:49.881631+00:00",
-  "current_title": "ARC-071/MECH-323 seed-202 narrow-repertoire diagnostic (V3-EXQ-810a residual, /failure-autopsy 2026-07-30)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 606 / ARM_FULL",
-    "runs_done": 2,
-    "runs_total": 3,
-    "episodes_done": 60,
-    "episodes_total": 120,
-    "overall_pct": 83.3
-  },
-  "seconds_elapsed": 1447,
-  "seconds_remaining": 242,
-  "recent_lines": [
-    "Seed 202 Condition ARM_FULL",
-    "[train] chunk seed=202 arm=ARM_FULL ep 30/120 formed=0 cryst=0 symbols/ep=10",
-    "[train] chunk seed=202 arm=ARM_FULL ep 60/120 formed=0 cryst=0 symbols/ep=8",
-    "[train] chunk seed=202 arm=ARM_FULL ep 90/120 formed=0 cryst=0 symbols/ep=10",
-    "[train] chunk seed=202 arm=ARM_FULL ep 120/120 formed=0 cryst=0 symbols/ep=10",
-    "verdict: PASS",
-    "Seed 303 Condition ARM_FULL",
-    "[train] chunk seed=303 arm=ARM_FULL ep 30/120 formed=6 cryst=6 symbols/ep=10",
-    "[train] chunk seed=303 arm=ARM_FULL ep 60/120 formed=6 cryst=6 symbols/ep=9",
-    "[train] chunk seed=303 arm=ARM_FULL ep 90/120 formed=6 cryst=6 symbols/ep=9",
-    "[train] chunk seed=303 arm=ARM_FULL ep 120/120 formed=6 cryst=6 symbols/ep=10",
-    "verdict: PASS",
-    "Seed 606 Condition ARM_FULL",
-    "[train] chunk seed=606 arm=ARM_FULL ep 30/120 formed=3 cryst=1 symbols/ep=17",
-    "[train] chunk seed=606 arm=ARM_FULL ep 60/120 formed=7 cryst=4 symbols/ep=20"
+  "last_tick_utc": "2026-07-30T17:59:37Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 1,
+  "queue_id_at_head": "V3-EXQ-841",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-032d",
+      "result": "PASS",
+      "completed_at": "2026-07-26T18:03:00.011446+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-810a",
+      "result": "PASS",
+      "completed_at": "2026-07-28T20:45:35.650756+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-748a",
+      "result": "PASS",
+      "completed_at": "2026-07-30T12:05:16.411506+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-842",
+      "result": "PASS",
+      "completed_at": "2026-07-30T17:30:47.487856+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-810b",
+      "result": "PASS",
+      "completed_at": "2026-07-30T17:59:35.536277+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 837,
   "runner_version": "r4542 9057a1e 2026-07-30",
   "gpu": {

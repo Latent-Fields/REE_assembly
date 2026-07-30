@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-30T17:54:58Z",
+  "last_tick_utc": "2026-07-30T18:00:12Z",
   "state": "running",
   "current_exq": "V3-EXQ-841",
   "current_exq_started_utc": "2026-07-30T17:08:58.285373+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 303 / A_OFF",
-    "runs_done": 2,
+    "run_label": "Seed 404 / A_OFF",
+    "runs_done": 3,
     "runs_total": 48,
-    "episodes_done": 90,
+    "episodes_done": 0,
     "episodes_total": 120,
-    "overall_pct": 5.7
+    "overall_pct": 6.2
   },
-  "seconds_elapsed": 2760,
-  "seconds_remaining": 52300,
+  "seconds_elapsed": 3074,
+  "seconds_remaining": 43828,
   "recent_lines": [
     "Seed 101 Condition A_OFF",
     "[train] chunk A_OFF seed=101 ep 30/120 formed=0 cryst=0 symbols/ep=0",
@@ -40,7 +40,13 @@
     "Seed 303 Condition A_OFF",
     "[train] chunk A_OFF seed=303 ep 30/120 formed=0 cryst=0 symbols/ep=0",
     "[train] chunk A_OFF seed=303 ep 60/120 formed=0 cryst=0 symbols/ep=0",
-    "[train] chunk A_OFF seed=303 ep 90/120 formed=0 cryst=0 symbols/ep=0"
+    "[train] chunk A_OFF seed=303 ep 90/120 formed=0 cryst=0 symbols/ep=0",
+    "[train] chunk A_OFF seed=303 ep 120/120 formed=0 cryst=0 symbols/ep=0",
+    "[probe] A_OFF seed=303 episode 10 of 30 records=720",
+    "[probe] A_OFF seed=303 episode 20 of 30 records=1440",
+    "[probe] A_OFF seed=303 episode 30 of 30 records=2160",
+    "verdict: PASS",
+    "Seed 404 Condition A_OFF"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
