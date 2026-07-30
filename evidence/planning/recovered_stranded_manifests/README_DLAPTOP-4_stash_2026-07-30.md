@@ -270,6 +270,14 @@ intended)` line rather than dropping it silently. Replaying the two tags now yie
 run-level findings (the 3 residual are arm fingerprints, deliberately load-bearing), in the
 same ~1.2s.
 
+**The sweep is now CLOSED, not merely this case.** Replaying **all 66** `stash-archive/*`
+tags in `REE_assembly` after the fix gives **0 run-level absences across the whole set** (8
+dry-run suppressions, all of them the 4+4 on these two tags; the only remaining `missing`
+entries anywhere are arm fingerprints). So the answer to "is any experimental evidence
+stranded in the stash archive" is **no**, and that is now a measured statement over every
+tag rather than an inference from three of them. Re-measure after adding tags; the replay is
+~1.2s per tag.
+
 Two things that fix got wrong first and are now pinned:
 
 - **Probe the entry's TREE, not its changed-path list.** A stash entry lists only what it
