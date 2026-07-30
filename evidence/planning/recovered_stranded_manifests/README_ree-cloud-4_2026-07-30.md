@@ -131,6 +131,28 @@ the Mac holds no copy.
 
 ## The reproducibility finding -- the actual result of this triage
 
+> **RESOLVED 2026-07-30, same day, by session `great-hopper-1d7b24` (chip
+> `chip-20260730-arm2-allon-nonreproducibility`): the nondeterminism hypothesis below is
+> FALSIFIED, and the open admission decision below is TAKEN. See
+> [`RESOLVED_arm2_allon_nonreproducibility_2026-07-30.md`](RESOLVED_arm2_allon_nonreproducibility_2026-07-30.md)
+> (REE_assembly `95a6021fb1`, `ec44fc414b`).**
+>
+> `ARM_2_ALL_ON` did not fail to reproduce. `ree-v3 a45ca7f` (2026-05-29T23:41:55Z) raised
+> `e3_diversity_entropy_lambda` **0.05 -> 0.5** *between the two runs* -- 4h28m after 614
+> finished, and 7h before the 614a driver was even authored (`ree-v3 c90ee9f`). **614 and
+> 614a are not a replicate pair**; the FAIL -> PASS flip is the intended effect of that
+> retune. The arm-localisation reasoning below is correct and its conclusion is explained
+> without nondeterminism: MECH-341 is inert in `ARM_0` (A off -> pool collapses to one
+> first-action class -> `apply_entropy_bonus` returns zeros *before* lambda is read) and not
+> built in `ARM_1` (B off), so `ARM_2` is the **only** arm in which MECH-341 is live and
+> therefore the only arm lambda can touch.
+>
+> Why the `config_summary` check below could not catch it: the driver pins
+> `entropy_bias_scale` (recorded, unchanged) but **not** `entropy_lambda`, which is absent
+> from `config_summary` entirely. **No reproducibility probe was queued** -- the hypothesis
+> was closed documentarily at zero compute cost.
+
+
 `V3-EXQ-614a` is **not an amended experiment**. Its own driver docstring states:
 
 > "Bit-identical script body to V3-EXQ-614; only EXPERIMENT_TYPE / QUEUE_ID / SUPERSEDES
@@ -189,7 +211,20 @@ reproducibility probe; both are chipped, neither is taken here.**
 
 ---
 
-## Open decision -- NOT taken by this session
+## Open decision -- TAKEN 2026-07-30 (see the RESOLVED banner above)
+
+> **ADMITTED with `evidence_direction: "superseded"`** (REE_assembly `ec44fc414b`), flat +
+> `runs/<run_id>/manifest.json`. Measured fully inert: MECH-341 and ARC-065 `claim_evidence`
+> field-for-field identical, `conflict_ratio` 0.0 -> 0.0, gap-register and
+> promotion/demotion rows identical, `pending_review` unchanged at 9. The reasoning below is
+> sound and was followed, with one refinement: `superseded_by_substrate` (+ `weakens`) was
+> **rejected** despite being the semantically apt field, because it leaves
+> `evidence_direction: weakens` and the gap register does not honour `scoring_excluded` --
+> it would have minted both claims' first-ever conflict (MECH-341 0.0 -> 0.286). Recorded
+> as `superseded_by_substrate: MECH-341@2026-05-29` *alongside* `superseded` instead.
+
+### Original framing (retained)
+
 
 **Whether to admit the 614 manifest as evidence is a governance decision.** The file is
 parked here, **outside `evidence/experiments/`**, precisely so the indexer
