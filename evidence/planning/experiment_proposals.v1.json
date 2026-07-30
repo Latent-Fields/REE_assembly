@@ -11477,12 +11477,21 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "v3_exq_493_mech295_liking_bridge_validation",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_by": [
+        "hippocampal_node_valence_vector",
+        "surprise_write_pipeline",
+        "object_bound_incentive_salience",
+        "drive_wanting_coupling"
+      ],
+      "gating_reason": "blocked_substrate (IGW-20260730-214, session igw-214-proposal-for-sd-014, 2026-07-30). SD-014's core mechanism is unbuilt AND every adjacent measurement path is a documented substrate ceiling, so a fresh run can only re-derive the known conversion/dissociation ceiling (vacuous FAIL). Three independent blocks: (1) NODE-VALENCE-VECTOR ABSENT -- no per-hippocampal-node 4-component vector V=[w,l,h,s] exists in ree_core (grep of ree_core/hippocampal/ finds no per-node wanting/liking/surprise storage; only a residue-field VALENCE_WANTING channel via residue_field.evaluate_valence, which is field-level not node-level). (2) REPLAY-GATE HALF BLOCKED -- V3-EXQ-432 (the SD-014 replay-gate prioritization test) already ran and is non_contributory: n_surprise_writes_d2=0 across all seeds; surprise signal does not propagate to the replay gate. The surprise-write substrate is not operational, so priority(node)=dot(V,d) cannot be exercised. (3) APPROACH-BEHAVIOUR HALF BLOCKED -- the EXP-0098 w/l dissociation DV needs object-bound incentive salience + drive-scaled wanting. The whole family (V3-EXQ-514k/l/n/p/q/r, MECH-229/MECH-295/SD-049) is a wall of non_contributory reclassifications; the drive-coupled dissociation criterion returned EXACTLY 0.0 (WL_drive==WL_nodrive) on all guard-passing seeds (514q), autopsied as missing object-bound incentive-salience substrate + SP-CEM (GAP-2) confound. The suggested_experiment_type (v3_exq_493 liking bridge) is MECH-295, not the SD-014 node/replay mechanism. This is /implement-substrate work (build the node valence vector + surprise-write path), not /queue-experiment work.",
+      "release_condition": "A per-hippocampal-node valence vector V=[w,l,h,s] is written incrementally per visit in ree_core/hippocampal, AND the surprise-write path propagates to the replay gate (n_surprise_writes > 0 in a smoke run, unblocking the V3-EXQ-432 replay-gate design), AND an object-bound incentive-salience / drive->wanting coupling substrate produces a non-zero drive-coupled dissociation (WL_drive != WL_nodrive) -- i.e. the 514-family substrate_ceiling is lifted. Retest under a NEW queue id then (432 is burned). Prefer a commitment-free measurement-only diagnostic first.",
+      "blocked_note": "SD-014 node valence vector + surprise-write unbuilt; w/l dissociation family (514k-r) all non_contributory; drive-coupled dissoc == 0.0. Build via /implement-substrate, do not re-queue."
     },
     {
       "acceptance_checks": [
