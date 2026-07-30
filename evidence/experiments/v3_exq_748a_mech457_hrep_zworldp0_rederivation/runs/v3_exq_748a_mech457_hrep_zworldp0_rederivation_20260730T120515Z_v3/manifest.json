@@ -1,0 +1,105 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_748a_mech457_hrep_zworldp0_rederivation",
+  "run_id": "v3_exq_748a_mech457_hrep_zworldp0_rederivation_20260730T120515Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-30T12:05:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-457"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "MECH-457": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "hrep_elimination_confirmed_under_trained_instrument",
+    "preconditions": [
+      {
+        "name": "local_view_greedy_clears_floor_at_d3",
+        "kind": "readiness",
+        "description": "LocalViewGreedyPolicy reading the SAME 5x5 resource_field_view forages >= the 1.0 competence floor at D3 -- the positive control that the env is solvable from the local view (same statistic the verdict criterion routes on). Below-floor means the substrate/env is not ready, NOT that the actor-critic failed.",
+        "control": "local_view_greedy foraging_competence @D3 (738 denominator; 48.05 in 742)",
+        "measured": 48.05,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "greedy_oracle_clears_floor_at_d3",
+        "kind": "readiness",
+        "description": "Env is floor-achievable with global info (achievability anchor).",
+        "control": "greedy_oracle foraging_competence @D3 vs the 1.0 floor",
+        "measured": 57.2,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "zworld_world_encoder_trained",
+        "kind": "readiness",
+        "description": "P0 warmup moved at least one split_encoder.world_encoder tensor, i.e. z_world is a prediction-trained encoder rather than a frozen random projection",
+        "control": "the P0 warmup itself, on the arm's own training env at the arm's own p0 episode count -- the phase whose stated job is to train the world model",
+        "measured": 0.2771739363670349,
+        "threshold": 0.0,
+        "direction": "lower",
+        "comparator": ">",
+        "met": true,
+        "n_world_encoder_tensors": 4,
+        "n_world_encoder_changed": 4,
+        "n_latent_stack_tensors": 61,
+        "n_latent_stack_changed": 7,
+        "p0_episodes": 200,
+        "guard_checked": true,
+        "diagnosis_doc": "REE_assembly/evidence/planning/zworld_bc_install_failure_V3-EXQ-780_2026-07-19.md",
+        "context": "V3-EXQ-748a treatment cells (ac_zworld_shaped_rl + ac_zworld_bc)"
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C_any_zworld_dense_arm_clears_floor_at_D3",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "local_view_clears_floor_at_d3": true,
+      "oracle_clears_floor_at_d3": true,
+      "zworld_encoder_trained_worst_cell": true,
+      "zworld_dense_vs_anchor_foraging_spread": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fa1f816cb4f17aee93d40f06c2a5a763e3d0461c5f6995cad205b5cc85164aca"
+}
