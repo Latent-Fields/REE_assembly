@@ -9,6 +9,8 @@
   "architecture_epoch": "ree_hybrid_guardrails_v1",
   "status": "FAIL",
   "evidence_direction": "weakens",
+  "non_degenerate": false,
+  "degeneracy_reason": "All arms identical (NO_DESCENDING==WITH_DESCENDING on resource_rate, harm_rate, committed_traversals and eval_episodes for every seed 42/7/13; 12 comparisons) with committed_traversals==0 throughout. The manipulation is inert at the substrate: the driver gates on agent.e3._committed_trajectory read at the TOP of each step, but E3Selector.post_action_update() unconditionally clears that handle inside agent.select_action(), so the gate is never True at the read site; and the write target agent._current_latent.z_harm has ZERO read sites in ree_core/agent.py at the run's substrate (ree-v3 c4d6021c28). Neither claim was measured: C1/C2/C3 test SD-021 only, and the SD-011 'supports' is an unconditional hardcode in the driver (v3_exq_261_sd021_descending_pain_mod.py:289), not a criterion outcome.",
   "evidence_direction_per_claim": {
     "SD-021": "weakens",
     "SD-011": "supports"

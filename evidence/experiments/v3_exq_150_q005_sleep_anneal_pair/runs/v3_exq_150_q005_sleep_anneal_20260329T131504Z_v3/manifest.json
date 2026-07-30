@@ -24,6 +24,8 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "superseded",
+  "non_degenerate": false,
+  "degeneracy_reason": "All arms identical (NO_ANNEAL==ANNEAL==RESET on mean_harm_post_sleep, final_contrast and anneal_contrast_after_sleep -- the three criterion-bearing per-seed metrics -- for both seeds 42/123; 6 comparisons). Action selection is random.randint in every condition (v3_exq_150_q005_sleep_anneal_pair.py:268,303), so all three arms execute one shared seeded random walk and the sleep operator cannot reach the harm DV. Recorded precisely: the nested phase_results residue values (mean_residue_at_harm / mean_residue_elsewhere) DO differ across arms, so the sleep op did reach the residue field -- the degeneracy is on the criterion metrics, not on the residue field itself.",
   "evidence_direction_note": "Sleep not implemented in V3; post-training phase simulation not representative of genuine sleep annealing. Superseded 2026-03-29 governance review.",
   "producer_capabilities": {
     "sd005_split_latent": true,

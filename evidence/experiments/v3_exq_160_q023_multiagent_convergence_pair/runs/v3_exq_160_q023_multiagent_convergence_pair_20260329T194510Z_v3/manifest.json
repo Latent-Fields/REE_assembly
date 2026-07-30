@@ -24,6 +24,8 @@
   ],
   "evidence_class": "simulation",
   "evidence_direction": "superseded",
+  "non_degenerate": false,
+  "degeneracy_reason": "All arms identical (SYMMETRIC_COUPLING==MECH127_COUNTERFACTUAL==ASYMMETRIC_COUPLING on every per-seed metric in cells[condition] and summary_table[condition], both seeds 42/123; 28 comparisons), and stronger than arm-invariance: every harm-derived metric is identically 0.0 with n_harm_events_final==0 over 20000 measurement steps -- a zero-variance DV. Cause: the policy's only gradient is the entropy bonus, computed on DETACHED z_world/z_self (v3_exq_160_q023_multiagent_convergence_pair.py:419,424), so harm_eval_loss never reaches the policy and it remains a maximum-entropy random walk in all arms.",
   "evidence_direction_note": "Implementation gap: policy receives gradient only from entropy bonus (ENT_BONUS=5e-3); z_world/z_self detached before policy forward pass so harm_eval_loss does not reach policy. Policy converges to maximum-entropy random walk (action_entropy=ln(5)=1.6094). Single-agent harm avoidance not yet working; multiagent convergence question premature. Scientific question untestable. Gated on single-agent harm-avoidance working first.",
   "producer_capabilities": {
     "sd005_split_latent": true,

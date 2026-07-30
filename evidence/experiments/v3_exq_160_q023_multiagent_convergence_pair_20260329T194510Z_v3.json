@@ -43,6 +43,8 @@
   "outcome": "FAIL",
   "evidence_class": "experimental",
   "evidence_direction": "mixed",
+  "non_degenerate": false,
+  "degeneracy_reason": "All arms identical (SYMMETRIC_COUPLING==MECH127_COUNTERFACTUAL==ASYMMETRIC_COUPLING on every per-seed metric in cells[condition] and summary_table[condition], both seeds 42/123; 28 comparisons), and stronger than arm-invariance: every harm-derived metric is identically 0.0 with n_harm_events_final==0 over 20000 measurement steps -- a zero-variance DV. Cause: the policy's only gradient is the entropy bonus, computed on DETACHED z_world/z_self (v3_exq_160_q023_multiagent_convergence_pair.py:419,424), so harm_eval_loss never reaches the policy and it remains a maximum-entropy random walk in all arms.",
   "summary": "Outcome=FAIL. Q-023: Multiagent REE ethical convergence under three coupling regimes. SYMMETRIC_COUPLING (base REE, ordinal potential game candidate), MECH127_COUNTERFACTUAL (other-cost-aversion, breaks standard potential game symmetry), ASYMMETRIC_COUPLING (A has other-cost-aversion, B does not). C1 SYMMETRIC converges (harm < 0.035): True. C2 MECH127 converges: True. C3 parity |MECH127-SYMMETRIC| <= 0.015: True. C4 SYMMETRIC var_slope < 0 (stabilising): False. C5 harm events sufficient: False. C6 MECH127 other-cost active: False. PASS => both base REE and MECH-127 counterfactual converge to ethical attractors; pseudo-potential extension viable; ARC-034 asymmetry effect observed. PARTIAL_MECH127_DIVERGES => MECH-127 counterfactual coupling introduces instability; standard potential game extension insufficient. PARTIAL_ALL_FAIL => neither converges at this scale (increase training). FAIL => insufficient data.",
   "cells": [
     {
