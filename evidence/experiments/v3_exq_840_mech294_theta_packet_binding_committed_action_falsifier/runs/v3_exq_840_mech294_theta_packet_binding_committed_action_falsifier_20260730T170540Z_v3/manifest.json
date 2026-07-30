@@ -1,0 +1,90 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier",
+  "run_id": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-30T17:05:40Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-294"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-294": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ARM_0_OFF::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_0_OFF",
+        "kind": "readiness",
+        "description": "Routed coherence range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability). Applies to all arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1000000.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "interpretation.preconditions carries the GREEN arm(s) only (ARM_0_OFF). The RED arm(s) (ARM_1_JOINT, ARM_2_ALT, ARM_3_SHUF) are carried in full at top level under per_arm_gate.red, and their criteria are marked load_bearing:false + criteria_non_degenerate:false. The indexer's _compute_adjudication reads interpretation.preconditions FLAT and ARM-BLIND and returns precondition_unmet for the WHOLE RUN on the first unmet entry, so including a scored-out arm's failure here would re-vacate the green arm at adjudication time.",
+    "criteria": [
+      {
+        "name": "C1_joint_committed_dist_differs_from_alternation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_joint_committed_dist_differs_from_shuffled",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_joint_committed_dist_differs_from_alternation": false,
+      "C2_joint_committed_dist_differs_from_shuffled": false
+    },
+    "routing": {
+      "joint_binding_behaviourally_load_bearing": "PASS/supports -> substrate-side joint-vs-alternation falsification passed; governance may weigh lifting the 2026-04-26 hold on the joint clause",
+      "multi_content_present_joint_not_isolated": "FAIL/mixed -> do NOT promote joint clause; refine to a genuinely conjunctive readout (memo S7.3)",
+      "joint_indistinguishable_from_alternation": "FAIL/weakens -> /failure-autopsy (wiring vs over-specification); joint clause not promotable, hold stands",
+      "substrate_not_ready_requeue": "FAIL/non_contributory + non_degenerate=false -> re-queue at higher P0 budget or fix diversity/route wiring; do NOT weaken"
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "09b76d16b71a3a54a7d4144d9b682a945ebf8b6950d93db4c23d538e84a206ef"
+}
