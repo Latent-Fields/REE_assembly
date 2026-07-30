@@ -1,0 +1,72 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-30T06:31:32Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_839_sd084_midexec_reachability_20260729T220727Z_v3",
+      "queue_id": "V3-EXQ-839",
+      "claim_ids": [],
+      "bears_on": ["SD-084", "MECH-321", "ARC-070", "ARC-071", "MECH-288"],
+      "failed_criterion": null,
+      "outcome": "PASS",
+      "self_route_label": "midexec_reachable_handle_validated",
+      "why_autopsied_despite_pass": "manifest evidence_direction=non_contributory with claim_ids=[] is itself a diagnosis-pending signal per skill Step 1; SD-084's implementation_note stated the reachability result was unconfirmed pending this run, and governance flagged this as a decide-to-build-routing PASS needing autopsy confirmation before the downstream MECH-321 R4 unblock decision is trusted",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "not_applicable",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled_verified",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not_applicable -- infrastructure reachability question, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "none",
+        "lit_status": "not_applicable"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-839 confirmed (failure_autopsy_V3-EXQ-839_2026-07-30): mid-execution reachability validated cleanly (415 evaluations ON, 0 OFF, negative-control tier held bit-identically). No defect found; routing recommends a successor MECH-321 R4 evidence experiment (new EXQ, claim_ids=[MECH-321]) testing the behavioural/task effect of the now-reachable hook, using this run's behavioural_delta block as the design template.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-084",
+        "note": "SD-084 is already substrate-landed (candidate_substrate_landed); this run confirms its readiness rather than surfacing a new substrate gap. No new substrate_queue entry needed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "SD-084's cross-tick persistent handle makes MECH-321's R4 mid-execution mechanism reachable exactly as designed: 415 mid-execution evaluations across the attributable seed tier (3,47,71,89), zero in the OFF arm, zero in both arms on the negative-control tier (23,53).",
+        "The pre-registered attributable/negative-control seed tiering plus existential per-arm readiness gate correctly separated 'the handle doesn't work' from 'this seed never tested it' -- 2 of 6 seeds per arm never committed a multi-action program and their zeros are correctly attributed to no-test-occurred, not substrate failure.",
+        "Reachability (decomp_n_evaluated_midexec) and actual re-decomposition (decomp_n_decomposed_midexec) are measurably distinct: seed 47 fires the hook 134 times without ever deciding to decompose (no boundary fired on those evaluations), a legitimate outcome of the mechanism's own logic.",
+        "MECH-321 R4 has a reachability floor cleared but zero evidence on whether the behavioural effect (commit-latch release aborting a multi-action macro) is beneficial or harmful -- C4 (behavioural divergence) is explicitly non-load-bearing; this run adjudicates reachability only."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "interactive_gate": {
+    "conducted": true,
+    "method": "AskUserQuestion",
+    "date_utc": "2026-07-30T06:31:32Z",
+    "user_confirmed_clean_pass": true,
+    "user_confirmed_successor_routing": true,
+    "notes": "User confirmed both the clean-PASS reading (no defects found) and the recommendation to route a successor MECH-321 R4 evidence experiment via /queue-experiment, using this run's behavioural_delta block as the design template per the driver's own docstring note."
+  }
+}
