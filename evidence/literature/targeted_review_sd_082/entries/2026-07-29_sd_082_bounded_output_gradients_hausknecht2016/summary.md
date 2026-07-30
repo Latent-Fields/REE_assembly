@@ -4,6 +4,44 @@
 **Direction:** mixed · **Confidence:** 0.74
 **Source:** ICLR 2016; preprint [arXiv:1511.04143](https://arxiv.org/abs/1511.04143)
 
+## CORRECTION appended 2026-07-30 — the actual cause was found, and it is not saturation
+
+**Read this before acting on anything below.** This entry was written on 2026-07-29 framing
+tanh saturation as the live risk to SD-082(ii), and recommending saturation instrumentation for
+V3-EXQ-822a. Both were **already answered** when it was written, and the author had not found it:
+
+- **V3-EXQ-822a had already run** (2026-07-26, `ree-cloud-2`) with
+  `lateral_pfc_rule_readout_consumer=true` and `lateral_pfc_train_rule_bias_head=true` both ON,
+  and returned `on_prop_delta_mean` = `off_prop_delta_mean` = exactly `0.0` — the acceptance
+  criterion (`>= 0.001` with ON>OFF) not met, against a strong upstream signal
+  (`on_rule_state_diff_mean` 0.644).
+- **V3-EXQ-822b's head-internals diagnostic then traced the cause**, and it is neither of this
+  paper's two failure modes as applied here: unconditional weight-norm snapshots show
+  **REINFORCE never updates `rule_bias_head`'s LAST linear layer** across both runs. SD-082's
+  centering and soft-tanh change the *shaping* of `compute_bias`'s input and output but not that
+  layer's own trainability.
+- Adjudicated by `failure_autopsy_batch-822a-826-817a-827_2026-07-26` +
+  `failure_autopsy_2026-07-28-sweep`, applied by governance `5517e49f03`. SD-082 is held
+  `candidate_substrate_landed` / `ready=false` pending a fix to the last-layer update path;
+  **not falsified, still unvalidated**. Follow-on is tracked in `substrate_queue.json`.
+
+**What this means for how to use this paper.** The *saturation* half of it (their squashing-gradients
+condition) is **not** the diagnosed mechanism here and should not be chased — a saturating bound
+cannot explain a layer that receives no update at all. The *other* half is now the more relevant
+one, and more relevant than originally judged: their **zeroing-gradients** condition failed because
+the gradient did not reach the parameter, which is structurally the same shape as `head_untrained`.
+Their **inverting gradients** remains a pre-identified alternative for the bound, but it addresses
+the bound, so it is **not** a candidate fix for the last-layer update path either. The genuinely
+transferable lesson is the one their zeroing arm teaches: *verify that the gradient actually arrives
+at the parameter you believe you are training* — which is precisely what 822b's weight-norm
+snapshots did, and what SD-082's original verification (a head grad-norm of ~6.1 measured in
+isolation) did not establish for the last layer in the real driver.
+
+The `evidence_direction` stays `mixed` and the confidence stays 0.74: the paper's corroboration of
+the clamp's dead-gradient diagnosis is unaffected, and its counter-evidence against tanh-as-sufficient
+is still a true statement about the literature. Only the *predicted failure mode* was wrong, and the
+original text is left intact below rather than rewritten, so the misprediction stays auditable.
+
 ## What the paper did
 
 Hausknecht and Stone were training a DDPG-family actor-critic on RoboCup Half Field Offense, where
