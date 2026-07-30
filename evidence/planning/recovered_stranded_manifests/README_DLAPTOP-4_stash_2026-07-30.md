@@ -174,12 +174,42 @@ a grader. Check the claims file before grading any Mac untracked file as a findi
   `git grep -h -o -E <pattern> <rev> -- <paths>` for tokens both run in-process and
   complete in seconds.
 
-## Residual gap
+## Residual gap -- **PARTLY CLOSED 2026-07-30T17:34Z**
 
-Unchanged from the working-tree half: `runner_git_health.py`'s `FLEET` dict still has no
+~~Unchanged from the working-tree half: `runner_git_health.py`'s `FLEET` dict still has no
 `DLAPTOP-4` entry, so **the Mac is graded only by manual one-offs like this pair of
-documents.** With all four boxes now swept, the series is complete as a point-in-time
-exercise; nothing automated will notice the next Mac autostash orphan. The heartbeat's
-claim-aware skip (`evidence/` + `docs/claims/`) is the preventive control, and it is
-adoption-dependent -- it only fires when the session registered its claim *before* opening
-the file.
+documents.**~~ With all four boxes now swept, the series is complete as a point-in-time
+exercise.
+
+`DLAPTOP-4` is now a first-class `runner_git_health.py` target, probed in-process
+(session `elastic-merkle-e0cca8`, chip `chip-20260730-githealth-local-mac-target`) -- so
+the **working-tree** half of this pair is repeatable: `runner_git_health.py --host mac`.
+
+**Read the split carefully, because the two halves closed unequally.** That probe reports
+the Mac's `git stash list` COUNT (and names `runner-prepull-untracked` entries
+specifically), which is a pointer, not a grade. **It does not open a stash, does not
+compare identifier sets, and therefore would NOT have produced this document.** Orphaned
+**autostash containment on the Mac is still `scripts/audit_stashes.py` plus a human**, and
+`audit_stashes.py` likewise reports non-empty stash lists without grading their contents.
+So: nothing automated will notice the next Mac autostash orphan *is stranded* -- only that
+one exists, which is the trigger for a triage like this one.
+
+The observation that made this document's grading work is the reason the gap does not close
+by itself: **byte comparison is useless here** (1131 of 1131 paths differ, because a regen
+moves timestamps and ordering), so containment has to be graded on **identifier sets**, and
+which identifiers matter is per-artifact. That is a judgement the probe does not make.
+
+Two things from this document DID land in the probe, both from the section above on the
+`ree-v3` untracked file:
+
+- **`TASK_CLAIMS.json` is the discriminator, not git state.** An untracked path covered by
+  an ACTIVE claim now grades as a note naming the owning session. This document's
+  `runner-prestart-pull.sh` -- untracked, absent from `origin/main`, absent from all
+  history, and live work under claim `friendly-antonelli-b0f414` -- is the selftest's
+  worked case.
+- **Never `git checkout -- .` on this tree.** The probe is strictly read-only, and its
+  stranded-manifest ACTION block now says so explicitly for the multi-session box.
+
+The heartbeat's claim-aware skip (`evidence/` + `docs/claims/`) remains the preventive
+control, and it is adoption-dependent -- it only fires when the session registered its
+claim *before* opening the file.

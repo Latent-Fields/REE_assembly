@@ -130,14 +130,38 @@ Graded here anyway, as the most direct available check on this machine's runner 
 
 ---
 
-## Residual gap (not closed by this exercise)
+## Residual gap (not closed by this exercise) -- **CLOSED 2026-07-30T17:34Z**
 
-`runner_git_health.py`'s `FLEET` dict still contains only `ree-cloud-1..4`. **The Mac has
+~~`runner_git_health.py`'s `FLEET` dict still contains only `ree-cloud-1..4`. **The Mac has
 no entry, so it is still not graded on any automated pass** -- this document is a manual
-one-off. Adding a local target would need the probe to handle a non-ssh, non-`REE_Working_runner`
-path layout, which is a real change rather than a dict entry, and was out of scope for a
-grade-only chip. Anyone re-triaging the Mac should start from this file rather than from
-scratch.
+one-off.~~ Adding a local target needed the probe to handle a non-ssh,
+non-`REE_Working_runner` path layout, which is a real change rather than a dict entry, and
+was out of scope for a grade-only chip.
+
+**Now done** (session `elastic-merkle-e0cca8`, chip
+`chip-20260730-githealth-local-mac-target`). `DLAPTOP-4` is an ordinary `FLEET` target,
+probed in-process against `/Users/dgolden/REE_Working` -- `runner_git_health.py --host mac`,
+or just the default whole-fleet run. The path layout and the transport both ride on a
+`Target` record, so nothing branches on the machine name.
+
+**All three "carry forward" items above were implemented, and this document is what they
+were implemented from:**
+
+| item above | what landed |
+|---|---|
+| 1. transient `_dry_` false positive | graded as a NOTE on **both** signals (`_dry_` filename prefix and `dry_run: true` in the doc), plus an automatic **re-check**: a multi-session target is graded twice when the first pass finds anything, and only findings surviving both are reported. The write-up's "re-run once before acting" is now the tool's behaviour, not the reader's job. |
+| 2. `*.bak` gitignored -> grader blind | `--ignored` grades gitignored **files** into a separate, lower-severity bucket. Ignored **directories** are counted, not descended into (`.claude/` alone is ~50 worktrees). Verified live: 37 ignored files graded in `REE_assembly`, 34 in `ree-v3`, 0 findings -- reproducing this document's by-hand result automatically. |
+| 3. `_runner_signals/` would fire ~40 spurious findings | already in `BYDESIGN` (landed with the cloud-4 grade); now covered by a selftest case using the exact run_id-bearing shape. |
+
+And the fourth thing this document found, which turned out to be the load-bearing one:
+**`TASK_CLAIMS.json` is the discriminator git does not have.** Both the V3-EXQ-748a note
+here and `runner-prestart-pull.sh` in the stash half were untracked, absent from origin,
+and live work. A finding covered by an ACTIVE claim is now reported as a note **naming the
+owning session**, never as a strand.
+
+Coverage is asserted by `runner_git_health.py --selftest` (38 cases, no ssh, no network,
+time-independent), including a real local probe against a throwaway repo that records every
+subprocess argv and fails if any of them is `ssh`.
 
 Not examined here (different chip, different tool): the Mac's **git stash list**. Stash
 containment is `scripts/audit_stashes.py`; the cloud-2 write-up's central point is that

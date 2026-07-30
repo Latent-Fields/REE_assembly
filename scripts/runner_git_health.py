@@ -107,6 +107,28 @@ Three things this grading has to get right, all learned from that file:
   * STRIP BACKUP SUFFIXES (`.bak.<date>`, `.bak.phantom-clean`) and re-check
     the stem. That is precisely what made the 490h file findable.
 
+ONE CAVEAT ON A WORKER, distinct from the Mac's noise classes below: a manifest
+reaches origin via the coordinator spool (`POST /result` -> phase3_git_writer),
+which takes on the order of a minute or more. A run that finished seconds ago
+therefore grades as stranded and is not. Observed live 2026-07-30T17:32Z on
+ree-cloud-2: `v3_exq_842_..._20260730T173047Z_v3`, PASS, ~85 seconds old at
+probe time.
+
+THE DISCRIMINATOR IS THE COORDINATOR DB, and it is the exact inverse of the
+phantom-completion signature. An IN-FLIGHT manifest has a `results` row with
+`received_at` set and `committed_at` NULL -- the spool has it, the git writer
+has not landed it yet, and it will land on its own:
+
+    SELECT queue_id, outcome, received_at, committed_at
+      FROM results WHERE queue_id LIKE '%<id>%';
+
+A genuine STRAND is `experiments.status = completed` with ZERO rows in
+`results` -- nothing ever reached the spool, so nothing will ever land. Check
+that before triaging any worker finding whose run_id timestamp is within a few
+minutes of the probe. The Mac's automatic re-check does not close this window
+(a second pass seconds later is still inside it) and a sleep would make the
+probe unchainable -- re-run the probe, or query the DB.
+
 And the thing it must NOT do: fire on ordinary runner churn. A probe that
 false-positives on normal worker state gets ignored -- the failure mode
 `audit_vendored_copies.py`'s NOTE-vs-finding split exists to avoid. So a path
@@ -116,6 +138,45 @@ exist anywhere on origin/master -- verified 2026-07-30) and
 `runner_status/*.bak.*` is transient telemetry; both are NOTEs, counted and
 carried in --json, never printed as findings.
 
+THE LOCAL MAC IS A TARGET TOO (added 2026-07-30)
+------------------------------------------------
+`FLEET` carried only `ree-cloud-1..4` until 2026-07-30, so DLAPTOP-4 was graded
+only by hand. Both halves of the Mac's manual grade close on the same sentence:
+nothing automated will notice its next stranded manifest or orphaned autostash.
+`DLAPTOP-4` is now an ordinary target, probed IN-PROCESS (no ssh) against
+`/Users/dgolden/REE_Working`.
+
+But the Mac is not a worker with a different address, and treating it as one
+produces a probe nobody can use. ~18 concurrent Claude sessions hold live
+uncommitted work in that checkout, so THE GIT STATE CANNOT DISTINGUISH A STRAND
+FROM LIVE WORK. Three discriminators, all learned from the manual grades:
+
+  claims     `TASK_CLAIMS.json` is the discriminator git does not have. An
+             untracked path covered by an ACTIVE claim is another session's
+             in-flight work and grades as a NOTE, never a finding. Worked
+             example: `ree-v3/coordinator/deploy/runner-prestart-pull.sh` was
+             untracked, absent from origin/main AND absent from all history --
+             a finding by every git-visible test -- and was committed minutes
+             later by claim `friendly-antonelli-b0f414`.
+  dry-run    `pack_writer.write_flat_manifest` prefixes `_dry_` and sets
+             `dry_run: true` when smoking a driver. That residue is manifest-
+             shaped, is NOT evidence, and self-clears. It produced the one
+             false positive of the 2026-07-30 grade
+             (`_dry_v3_exq_748a_..._v3.json`, FAIL, 17.4s), gone by the re-run.
+  re-check   a multi_session target is graded TWICE when the first pass finds
+             anything, and only findings that survive both are reported. The
+             rest are counted as `transient`. This is the write-up's "re-run
+             once before acting on any finding whose timestamp is minutes old",
+             made automatic instead of advisory.
+
+Plus one blind spot the Mac exposed: `*.bak` is gitignored in REE_assembly
+(`.gitignore:13`), and git reports ignored paths as `!! `, never `?? ` -- so the
+untracked pass cannot see a plain-`.bak` file at all. `--ignored` grades that
+class into a SEPARATE, lower-severity bucket. The blind spot is narrower than it
+looks and that is why the cloud finds still worked: `*.bak` matches only names
+ENDING in `.bak`, so `foo.json.bak.20260530` -- the actual stranded class --
+stays plainly visible as `?? `.
+
 Exit status is 1 if any machine is WEDGED / SKEWED / gc-blocked, so this can
 gate a scheduled check. Stranded manifests and stashes REPORT without changing
 the exit status -- like the stash signal they are a "look at this now" flag for
@@ -123,14 +184,26 @@ a human, not a fault in the checkout, and this script chains. Power state is
 NOT inferred -- `hcloud server list` is the authority (CLAUDE.md); an
 unreachable host is reported as UNREACHABLE, not as healthy and not as broken.
 
-The whole probe is READ-ONLY on the worker: it never writes, stashes, drops,
-pulls or resets, and never touches a running experiment.
+The probe is READ-ONLY on every target: it never writes, stashes, drops, pulls
+or resets, and never touches a running experiment. The ONE exception is
+deliberate and local-only: a local target is `git fetch`ed first (`--no-fetch`
+to skip), because a worker pulls every ~60s and so has fresh remote-tracking
+refs while the Mac's can be days old, and grading against a stale `origin/master`
+manufactures strands out of content that landed yesterday. A fetch updates
+remote-tracking refs only -- not HEAD, not the index, not the working tree.
+
+SCOPE. This is the working-tree / untracked half. Stash containment is
+`REE_Working/scripts/audit_stashes.py`, which already covers the Mac's two
+repos and is step 7 of the Session Startup Protocol. The `stashes` / `prepull`
+counts here are a pointer to it, not a substitute for it.
 
 USAGE
 -----
-    python3 scripts/runner_git_health.py                # whole fleet
+    python3 scripts/runner_git_health.py                # whole fleet + the Mac
     python3 scripts/runner_git_health.py --host ree-cloud-2
+    python3 scripts/runner_git_health.py --host mac     # DLAPTOP-4, no ssh
     python3 scripts/runner_git_health.py --json
+    python3 scripts/runner_git_health.py --ignored      # + gitignored bucket
     python3 scripts/runner_git_health.py --no-untracked # skip the heavier pass
     python3 scripts/runner_git_health.py --selftest     # no ssh, no network
 """
@@ -141,17 +214,52 @@ import json
 import os
 import subprocess
 import sys
+from collections import namedtuple
 
-# Affinity name -> ip. Mirrors the table in CLAUDE.md ("Workers may need
+# One TARGET record per box. This was `{name: (ip, role)}` with the path layout
+# hardcoded into PROBE and into build_probe's grader argv; that is exactly what
+# kept the Mac ungradeable, because the Mac differs from a worker in BOTH
+# dimensions -- no ssh hop, and a different checkout root. Carrying `base` and
+# `ip` on the record means neither dimension needs a per-call-site branch: the
+# only place transport is decided is probe()'s two-line dispatch.
+#
+#   name          affinity / hostname, as used by --host and by the heartbeats
+#   role          display label only
+#   base          directory CONTAINING the repo checkouts (base/REE_assembly, ...)
+#   ip            ssh host, or None for a target probed in-process
+#   multi_session True when many writers share the checkout -- see below
+Target = namedtuple("Target", "name role base ip multi_session")
+
+REMOTE_BASE = "/home/ree/REE_Working"
+LOCAL_BASE = "/Users/dgolden/REE_Working"
+
+# Affinity name -> record. Mirrors the table in CLAUDE.md ("Workers may need
 # waking"). ree-cloud-1 is the HUB (coordinator + sync_daemon); it is probed
 # read-only like any other, but never act on it without care -- its writers are
 # the coordination-data plane for the whole fleet.
+#
+# DLAPTOP-4 is the Mac. It was absent from this table until 2026-07-30, so it
+# was the one box in the fleet graded ONLY by manual one-off write-ups
+# (evidence/planning/recovered_stranded_manifests/README_DLAPTOP-4_2026-07-30.md
+# and README_DLAPTOP-4_stash_2026-07-30.md, whose closing sections both name
+# this gap). Nothing automated would have noticed its next stranded manifest.
 FLEET = {
-    "ree-cloud-1": ("91.98.130.117", "hub"),
-    "ree-cloud-2": ("116.203.216.181", "worker"),
-    "ree-cloud-3": ("46.62.170.133", "worker"),
-    "ree-cloud-4": ("91.99.68.94", "worker"),
+    "ree-cloud-1": Target("ree-cloud-1", "hub", REMOTE_BASE, "91.98.130.117", False),
+    "ree-cloud-2": Target("ree-cloud-2", "worker", REMOTE_BASE, "116.203.216.181", False),
+    "ree-cloud-3": Target("ree-cloud-3", "worker", REMOTE_BASE, "46.62.170.133", False),
+    "ree-cloud-4": Target("ree-cloud-4", "worker", REMOTE_BASE, "91.99.68.94", False),
+    "DLAPTOP-4": Target("DLAPTOP-4", "local", LOCAL_BASE, None, True),
 }
+
+# `--host mac` / `--host local` / `--host dlaptop-4` all mean the Mac. Matching
+# is case-insensitive on top of this, because the hostname is spelled
+# `DLAPTOP-4` in heartbeats and `DLAPTOP-4.local` by the OS.
+HOST_ALIASES = {"mac": "DLAPTOP-4", "local": "DLAPTOP-4",
+                "dlaptop-4.local": "DLAPTOP-4"}
+
+# Where the shared claim registry lives. Read-only, and only consulted for a
+# multi_session target -- see claims_for_target().
+CLAIMS_PATH = os.path.join(LOCAL_BASE, "TASK_CLAIMS.json")
 
 # Upstream ref per repo -- what an untracked file is graded AGAINST. These are
 # the default branches from CLAUDE.md's push table, not `@{u}`, because a
@@ -162,7 +270,6 @@ REPO_REFS = {
     "ree-v3": "origin/main",
 }
 REPOS = tuple(REPO_REFS)
-REMOTE_BASE = "/home/ree/REE_Working"
 
 # A worker pulls every ~60s, so a healthy checkout is within a handful of
 # commits of origin. This threshold only drives the advisory BEHIND label --
@@ -170,10 +277,13 @@ REMOTE_BASE = "/home/ree/REE_Working"
 BEHIND_WARN = 50
 
 # Probe script. Emits one "repo|k=v|..." line per repo. Kept POSIX-sh simple
-# and read-only: it must never mutate a worker's tree.
+# and read-only: it must never mutate any target's tree. `$REE_BASE` and
+# `$REE_REPOS` are prepended by shell_probe() from the TARGET RECORD -- they
+# were hardcoded to /home/ree/REE_Working until 2026-07-30, which is what made
+# a local target impossible to express.
 PROBE = r'''
-for r in REE_assembly ree-v3; do
-  d=/home/ree/REE_Working/$r
+for r in $REE_REPOS; do
+  d=$REE_BASE/$r
   if [ ! -d "$d/.git" ]; then echo "$r|missing=1"; continue; fi
   cd "$d" || { echo "$r|missing=1"; continue; }
   unmerged=$(git ls-files -u 2>/dev/null | awk '{print $4}' | sort -u | wc -l | tr -d ' ')
@@ -210,6 +320,10 @@ MAX_FINDINGS = 25
 MAX_BYTES = 8 * 1024 * 1024
 MAX_CANDIDATES = 8
 MAX_OTHER_PATHS = 10
+# Ignored entries are only reachable via --ignored and are bounded separately:
+# the bucket exists to catch a manifest hiding behind a *.bak-style rule, not to
+# enumerate a tree. Anything past the cap is counted, never silently dropped.
+MAX_IGNORED_SCAN = 500
 
 # By-design-local paths. Verified 2026-07-30 against origin/master: ZERO
 # *_per_tick.jsonl blobs exist there, so their absence from origin is the
@@ -239,6 +353,17 @@ CHURN = re.compile(
 # ".bak.20260530", ".bak.phantom-clean", plain ".bak". Greedy, so the LAST
 # ".bak" splits -- stripping this is what made the 490h manifest findable.
 BAK = re.compile(r"^(.*)\.bak(?:\..*)?$")
+
+# --dry-run smoke residue. TWO independent signals, both set by
+# ree-v3 experiments/pack_writer.py:520 / :341 under `dry_run`: the filename
+# gets a `_dry_` prefix and the manifest doc gets `dry_run: true`. Either is
+# sufficient; both are checked because a driver can write its own manifest.
+# A dry-run manifest is by CONSTRUCTION not evidence (one seed, toy episodes --
+# see experiment_protocol._relocate_dry_run_manifest), so it is a note whatever
+# its duration. The sub-20s `elapsed_seconds` of the 2026-07-30 false positive
+# is corroborating, not the discriminator: keying on it would have to guess a
+# threshold, and a slow smoke is still a smoke.
+DRY_PREFIX = "_dry_"
 
 
 def git(cwd, *args):
@@ -272,19 +397,103 @@ def is_superset(origin, local):
     return True
 
 
-def grade_repo(root, ref):
-    st = git(root, "status", "--porcelain", "-uall", "-z")
-    if st is None:
-        return {"error": "git status failed"}
-    untracked = [e[3:] for e in st.split("\0") if e[:3] == "?? "]
+def load_local(root, rel):
+    """(raw_text, parsed_doc) for one working-tree path. Never raises."""
+    full = os.path.join(root, rel)
+    raw = None
+    doc = None
+    try:
+        if os.path.isfile(full) and os.path.getsize(full) <= MAX_BYTES:
+            with open(full, "rb") as fh:
+                raw = fh.read().decode("utf-8", "replace")
+            doc = as_json(raw)
+    except Exception:
+        pass
+    return raw, doc
 
-    tree_txt = git(root, "ls-tree", "-r", "--name-only", "-z", ref)
-    if tree_txt is None:
-        # No such ref (detached / never fetched). Say so rather than declaring
-        # every untracked path stranded against a tree we could not read.
-        return {"error": "ref not readable: " + ref, "untracked": len(untracked)}
-    tree = [p for p in tree_txt.split("\0") if p]
 
+def grade_path(root, ref, rel, idx):
+    """Decide ONE working-tree path against origin.
+
+    Returns ``("clear", None)``, ``("finding", {...})`` or ``("note", tag)``.
+
+    Factored out of grade_repo's loop on 2026-07-30 so the --ignored bucket
+    grades by exactly the same rules rather than by a second, drifting copy --
+    a gitignored manifest is the same loss as an untracked one, and a bucket
+    that graded it more loosely would be worse than not having it.
+    """
+    if CHURN.search(rel):
+        return "ignored", None
+    base = rel.rsplit("/", 1)[-1]
+    m = BAK.match(base)
+    stem = m.group(1) if m else None
+
+    raw, doc = load_local(root, rel)
+
+    run_id = ""
+    if isinstance(doc, dict) and doc.get("run_id") and doc.get("outcome"):
+        run_id = str(doc["run_id"])
+
+    # 0) A BYDESIGN path is NEVER graded as a run manifest, however
+    #    manifest-shaped it looks. Dropping run_id here (rather than
+    #    relying on the tag scan at the bottom) is what actually
+    #    suppresses it: the finding branch below fires FIRST, so a
+    #    _runner_signals/*.json -- run_id + outcome, but only a POINTER to
+    #    a manifest -- would otherwise never reach that scan.
+    forced = ""
+    if run_id:
+        for rx, name in BYDESIGN:
+            if rx.search(rel):
+                run_id, forced = "", name
+                break
+    # 0b) ...and neither is --dry-run smoke residue, on either signal.
+    if run_id and (base.startswith(DRY_PREFIX)
+                   or (isinstance(doc, dict) and doc.get("dry_run") is True)):
+        run_id, forced = "", "dry_run"
+
+    # 1) Run-manifest grading. A run whose id is on origin ANYWHERE -- flat
+    #    `<run_id>.json` or pack `.../runs/<run_id>/manifest.json` -- is not
+    #    stranded, whatever the local copy happens to be called.
+    if run_id and (run_id in idx["flat_runs"] or run_id in idx["pack_runs"]):
+        return "clear", None
+
+    # 2) Basename grading, on the name AND on the de-.bak'd stem.
+    cands = list(idx["byname"].get(base, ()))
+    if stem:
+        cands += idx["byname"].get(stem, ())
+    for p in cands[:MAX_CANDIDATES]:
+        blob = git(root, "show", "%s:%s" % (ref, p))
+        if blob is None:
+            continue
+        odoc = as_json(blob)
+        if doc is not None and odoc is not None:
+            if is_superset(odoc, doc):
+                return "clear", None
+        elif raw is not None and blob == raw:
+            return "clear", None
+
+    # FINDING only for a real run manifest with no counterpart anywhere.
+    if run_id:
+        return "finding", {
+            "path": rel,
+            "run_id": run_id,
+            "outcome": str(doc.get("outcome"))[:40],
+            "elapsed_seconds": doc.get("elapsed_seconds"),
+            "bytes": len(raw or ""),
+        }
+
+    tag = forced
+    if not tag:
+        tag = "no_counterpart_other"
+        for rx, name in BYDESIGN:
+            if rx.search(rel):
+                tag = name
+                break
+    return "note", tag
+
+
+def build_index(tree):
+    """Origin-side lookup tables: basename -> paths, and the two run-id sets."""
     byname = {}
     flat_runs = set()
     pack_runs = set()
@@ -299,6 +508,61 @@ def grade_repo(root, ref):
             j = rest.find("/")
             if j > 0:
                 pack_runs.add(rest[:j])
+    return {"byname": byname, "flat_runs": flat_runs, "pack_runs": pack_runs}
+
+
+def grade_ignored(root, ref, idx):
+    """Grade GITIGNORED paths into a separate, lower-severity bucket.
+
+    Why this exists: the untracked pass takes only `?? ` entries, and git
+    reports an ignored path as `!! `. `REE_assembly/.gitignore:13` is `*.bak`,
+    so EVERY plain-`.bak` file is invisible to that pass in this repo. The
+    2026-07-30 Mac grade had to enumerate the 47-file ignored set by hand to
+    say anything about the class; it found no run manifests, but "graded once,
+    by hand" is not coverage.
+
+    Deliberately does NOT descend into an ignored DIRECTORY. git collapses one
+    to a single `dir/` entry, and on the Mac `.claude/` alone is ~50 worktrees.
+    The motivating rule is a FILE pattern, so file-level is the honest scope --
+    and the directories skipped are counted and reported rather than implied
+    covered.
+    """
+    st = git(root, "status", "--porcelain", "-uall", "--ignored=matching", "-z")
+    if st is None:
+        return {"error": "git status --ignored failed"}
+    entries = [e[3:] for e in st.split("\0") if e[:3] == "!! "]
+    findings = []
+    dirs = 0
+    scanned = 0
+    beyond_cap = 0
+    for rel in entries:
+        if rel.endswith("/"):
+            dirs += 1
+            continue
+        if scanned >= MAX_IGNORED_SCAN:
+            beyond_cap += 1
+            continue
+        scanned += 1
+        kind, payload = grade_path(root, ref, rel, idx)
+        if kind == "finding" and len(findings) < MAX_FINDINGS:
+            findings.append(payload)
+    return {"entries": len(entries), "files_graded": scanned, "dirs_skipped": dirs,
+            "beyond_cap": beyond_cap, "findings": findings}
+
+
+def grade_repo(root, ref, do_ignored=False):
+    st = git(root, "status", "--porcelain", "-uall", "-z")
+    if st is None:
+        return {"error": "git status failed"}
+    untracked = [e[3:] for e in st.split("\0") if e[:3] == "?? "]
+
+    tree_txt = git(root, "ls-tree", "-r", "--name-only", "-z", ref)
+    if tree_txt is None:
+        # No such ref (detached / never fetched). Say so rather than declaring
+        # every untracked path stranded against a tree we could not read.
+        return {"error": "ref not readable: " + ref, "untracked": len(untracked)}
+    tree = [p for p in tree_txt.split("\0") if p]
+    idx = build_index(tree)
 
     findings = []
     notes = {}
@@ -306,109 +570,48 @@ def grade_repo(root, ref):
     ignored = 0
     truncated = 0
     for rel in untracked:
-        if CHURN.search(rel):
+        kind, payload = grade_path(root, ref, rel, idx)
+        if kind == "clear":
+            continue
+        if kind == "ignored":
             ignored += 1
             continue
-        base = rel.rsplit("/", 1)[-1]
-        m = BAK.match(base)
-        stem = m.group(1) if m else None
-
-        full = os.path.join(root, rel)
-        raw = None
-        doc = None
-        try:
-            if os.path.isfile(full) and os.path.getsize(full) <= MAX_BYTES:
-                with open(full, "rb") as fh:
-                    raw = fh.read().decode("utf-8", "replace")
-                doc = as_json(raw)
-        except Exception:
-            pass
-
-        run_id = ""
-        if isinstance(doc, dict) and doc.get("run_id") and doc.get("outcome"):
-            run_id = str(doc["run_id"])
-
-        # 0) A BYDESIGN path is NEVER graded as a run manifest, however
-        #    manifest-shaped it looks. Dropping run_id here (rather than
-        #    relying on the BYDESIGN tag loop at the bottom) is what actually
-        #    suppresses it: the finding branch below fires FIRST, so a
-        #    _runner_signals/*.json -- run_id + outcome, but only a POINTER to
-        #    a manifest -- would otherwise never reach that loop.
-        if run_id:
-            for rx, _name in BYDESIGN:
-                if rx.search(rel):
-                    run_id = ""
-                    break
-
-        # 1) Run-manifest grading. A run whose id is on origin ANYWHERE -- flat
-        #    `<run_id>.json` or pack `.../runs/<run_id>/manifest.json` -- is not
-        #    stranded, whatever the local copy happens to be called.
-        if run_id and (run_id in flat_runs or run_id in pack_runs):
-            continue
-
-        # 2) Basename grading, on the name AND on the de-.bak'd stem.
-        cands = list(byname.get(base, ()))
-        if stem:
-            cands += byname.get(stem, ())
-        matched = False
-        for p in cands[:MAX_CANDIDATES]:
-            blob = git(root, "show", "%s:%s" % (ref, p))
-            if blob is None:
-                continue
-            odoc = as_json(blob)
-            if doc is not None and odoc is not None:
-                if is_superset(odoc, doc):
-                    matched = True
-                    break
-            elif raw is not None and blob == raw:
-                matched = True
-                break
-        if matched:
-            continue
-
-        # FINDING only for a real run manifest with no counterpart anywhere.
-        if run_id:
+        if kind == "finding":
             if len(findings) >= MAX_FINDINGS:
                 truncated += 1
                 continue
-            findings.append({
-                "path": rel,
-                "run_id": run_id,
-                "outcome": str(doc.get("outcome"))[:40],
-                "elapsed_seconds": doc.get("elapsed_seconds"),
-                "bytes": len(raw or ""),
-            })
+            findings.append(payload)
             continue
-
-        tag = "no_counterpart_other"
-        for rx, name in BYDESIGN:
-            if rx.search(rel):
-                tag = name
-                break
-        notes[tag] = notes.get(tag, 0) + 1
+        notes[payload] = notes.get(payload, 0) + 1
         # NAME the un-attributable ones (bounded). They stay NOTES -- not run
         # manifests, so not the loss class this fires on -- but a bare count is
         # not triageable, and the first live run turned up two planning docs
         # (evidence/planning/sd037_consumer_input_distributions_*.md on
         # ree-cloud-4) absent from origin. Carried in --json only, so the
         # default output's noise budget is unchanged.
-        if tag == "no_counterpart_other" and len(other_paths) < MAX_OTHER_PATHS:
+        if payload == "no_counterpart_other" and len(other_paths) < MAX_OTHER_PATHS:
             other_paths.append(rel)
 
-    return {"untracked": len(untracked), "ignored": ignored,
-            "findings": findings, "truncated": truncated, "notes": notes,
-            "no_counterpart_other_paths": other_paths}
+    out = {"untracked": len(untracked), "ignored": ignored,
+           "findings": findings, "truncated": truncated, "notes": notes,
+           "no_counterpart_other_paths": other_paths}
+    if do_ignored:
+        out["gitignored"] = grade_ignored(root, ref, idx)
+    return out
 
 
 def main():
-    base = sys.argv[1]
+    argv = sys.argv[1:]
+    do_ignored = "--ignored" in argv
+    rest = [a for a in argv if not a.startswith("--")]
+    base = rest[0]
     out = {}
-    for spec in sys.argv[2:]:
+    for spec in rest[1:]:
         repo, _, ref = spec.partition(":")
         root = os.path.join(base, repo)
         if not os.path.isdir(os.path.join(root, ".git")):
             continue
-        out[repo] = grade_repo(root, ref)
+        out[repo] = grade_repo(root, ref, do_ignored=do_ignored)
     sys.stdout.write("UNTRACKED_JSON " + json.dumps(out, sort_keys=True) + "\n")
 
 
@@ -418,41 +621,42 @@ main()
 UNTRACKED_MARKER = "UNTRACKED_JSON "
 
 
-def build_probe(untracked=True):
+def grader_specs():
+    return [f"{r}:{ref}" for r, ref in sorted(REPO_REFS.items())]
+
+
+def shell_probe(base):
+    """PROBE with its base and repo list bound from the target record."""
+    return (f"REE_BASE={base}\nREE_REPOS='{' '.join(REPOS)}'\n" + PROBE)
+
+
+def build_probe(base, untracked=True, ignored=False):
     """Assemble the remote script. One ssh, one `sh -s`, read-only throughout.
 
     The grader is base64'd rather than heredoc'd: the script itself arrives on
     the worker's stdin, and a heredoc would then have to be read from that same
     stream. base64 keeps it a single argument with no quoting hazards.
+
+    Used only for an SSH target. A local target runs the two pieces directly
+    (see _probe_local) rather than round-tripping through base64 -- macOS's BSD
+    `base64` historically spells decode `-D`, not `-d`, so reusing this form
+    locally would work on the workers and fail on the one box it was added for.
     """
     if not untracked:
-        return PROBE
+        return shell_probe(base)
     blob = base64.b64encode(UNTRACKED_PY.encode("utf-8")).decode("ascii")
-    specs = " ".join(f"{r}:{ref}" for r, ref in sorted(REPO_REFS.items()))
+    args = " ".join(grader_specs()) + (" --ignored" if ignored else "")
     return (
-        PROBE
-        + f"printf '%s' '{blob}' | base64 -d | python3 - {REMOTE_BASE} {specs}\n"
+        shell_probe(base)
+        + f"printf '%s' '{blob}' | base64 -d | python3 - {base} {args}\n"
     )
 
 
-def probe(ip, timeout=180, untracked=True):
-    """Run the probe on one host. Returns (repos_dict, error_or_None)."""
-    try:
-        r = subprocess.run(
-            ["ssh", "-o", "ConnectTimeout=15", "-o", "BatchMode=yes",
-             f"ree@{ip}", "sh -s"],
-            input=build_probe(untracked), capture_output=True, text=True,
-            timeout=timeout,
-        )
-    except subprocess.TimeoutExpired:
-        return None, "probe timed out"
-    except Exception as exc:                      # pragma: no cover - defensive
-        return None, f"probe failed: {exc}"
-    if r.returncode != 0:
-        return None, (r.stderr or "").strip().splitlines()[-1] if r.stderr else "ssh failed"
+def parse_probe_output(stdout):
+    """Split the probe's stdout into (per-repo dict, grader dict)."""
     out = {}
     graded = {}
-    for line in r.stdout.splitlines():
+    for line in stdout.splitlines():
         if line.startswith(UNTRACKED_MARKER):
             try:
                 graded = json.loads(line[len(UNTRACKED_MARKER):])
@@ -468,10 +672,278 @@ def probe(ip, timeout=180, untracked=True):
                 k, _, v = kv.partition("=")
                 d[k] = v
         out[parts[0]] = d
+    return out, graded
+
+
+def _attach(out, graded):
     for repo, info in (graded or {}).items():
         if repo in out and isinstance(info, dict):
             out[repo]["untracked"] = info
-    return out, None
+    return out
+
+
+def probe(target, timeout=180, untracked=True, ignored=False, fetch=True,
+          recheck=True):
+    """Probe one target. Returns (repos_dict, error_or_None).
+
+    Transport is decided HERE and nowhere else: a target with no `ip` is graded
+    in-process. Every other difference between the Mac and a worker rides on
+    the record (`base`, `multi_session`).
+    """
+    if target.ip is None:
+        return _probe_local(target, timeout, untracked, ignored, fetch, recheck)
+    return _probe_ssh(target, timeout, untracked, ignored)
+
+
+def _probe_ssh(target, timeout, untracked, ignored):
+    try:
+        r = subprocess.run(
+            ["ssh", "-o", "ConnectTimeout=15", "-o", "BatchMode=yes",
+             f"ree@{target.ip}", "sh -s"],
+            input=build_probe(target.base, untracked, ignored),
+            capture_output=True, text=True, timeout=timeout,
+        )
+    except subprocess.TimeoutExpired:
+        return None, "probe timed out"
+    except Exception as exc:                      # pragma: no cover - defensive
+        return None, f"probe failed: {exc}"
+    if r.returncode != 0:
+        return None, (r.stderr or "").strip().splitlines()[-1] if r.stderr else "ssh failed"
+    out, graded = parse_probe_output(r.stdout)
+    return _attach(out, graded), None
+
+
+def _fetch_local(base, timeout=120):
+    """Refresh remote-tracking refs. The one non-read-only step, local only.
+
+    A worker pulls every ~60s, so its `origin/master` is current by
+    construction. The Mac's can be days stale, and every untracked path is
+    graded AGAINST that ref -- a stale ref reports content that landed
+    yesterday as stranded. Updates remote-tracking refs only: not HEAD, not the
+    index, not the working tree, so it is safe beside ~18 live sessions.
+
+    Returns a list of human-readable failures; a failure is reported, never
+    fatal (offline is normal, and a stale-ref grade is still worth having as
+    long as its staleness is stated).
+    """
+    problems = []
+    for repo, ref in sorted(REPO_REFS.items()):
+        root = os.path.join(base, repo)
+        if not os.path.isdir(os.path.join(root, ".git")):
+            continue
+        remote, _, branch = ref.partition("/")
+        try:
+            r = subprocess.run(["git", "-C", root, "fetch", "-q", remote, branch],
+                               capture_output=True, text=True, timeout=timeout)
+            if r.returncode != 0:
+                tail = (r.stderr or "").strip().splitlines()
+                problems.append(f"{repo}: {tail[-1] if tail else 'fetch failed'}")
+        except Exception as exc:
+            problems.append(f"{repo}: fetch failed ({exc})")
+    return problems
+
+
+def _run_grader_local(base, ignored, timeout):
+    """Execute UNTRACKED_PY in-process-adjacent -- same source, no ssh, no base64."""
+    args = [sys.executable, "-", base] + grader_specs()
+    if ignored:
+        args.append("--ignored")
+    r = subprocess.run(args, input=UNTRACKED_PY, capture_output=True,
+                       text=True, timeout=timeout)
+    _, graded = parse_probe_output(r.stdout)
+    return graded
+
+
+def _probe_local(target, timeout, untracked, ignored, fetch, recheck):
+    if not os.path.isdir(target.base):
+        return None, f"local base not found: {target.base}"
+    fetch_problems = _fetch_local(target.base) if fetch else []
+    try:
+        r = subprocess.run(["sh", "-s"], input=shell_probe(target.base),
+                           capture_output=True, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        return None, "probe timed out"
+    except Exception as exc:                      # pragma: no cover - defensive
+        return None, f"probe failed: {exc}"
+    out, _ = parse_probe_output(r.stdout)
+    if not out:
+        tail = (r.stderr or "").strip().splitlines()
+        return None, tail[-1] if tail else "local probe produced no output"
+
+    graded = {}
+    if untracked:
+        try:
+            graded = _run_grader_local(target.base, ignored, timeout)
+        except Exception as exc:                  # pragma: no cover - defensive
+            graded = {name: {"error": f"grader failed: {exc}"} for name in REPOS}
+        if recheck and target.multi_session:
+            graded = _recheck(target, graded, ignored, timeout)
+
+    # Record fetch outcome PER REPO. A fetch that failed for ree-v3 says
+    # nothing about REE_assembly's refs, and marking both stale would push a
+    # reader toward discounting a real finding.
+    failed = {p.split(":", 1)[0]: p.split(":", 1)[1].strip()
+              for p in fetch_problems}
+    for repo, info in (graded or {}).items():
+        if not isinstance(info, dict):
+            continue
+        if repo in failed:
+            info["fetch_error"] = failed[repo]
+        elif fetch:
+            info["fetched"] = True
+    return _attach(out, graded), None
+
+
+def _recheck(target, graded, ignored, timeout):
+    """Re-grade once and keep only findings that SURVIVE both passes.
+
+    A multi_session checkout produces manifest-shaped files that exist for
+    seconds: the 2026-07-30 Mac grade's single finding was a live driver's
+    --dry-run output, gone by the next run. The write-up's conclusion was
+    "re-run once before acting on any finding whose timestamp is minutes old";
+    this makes that automatic rather than a thing the reader has to remember.
+
+    Only runs when the first pass found something, so a clean box pays nothing.
+    A finding that vanished is not silently dropped -- it is counted as
+    `transient` and reported as a note.
+    """
+    if not any(isinstance(v, dict) and v.get("findings") for v in graded.values()):
+        return graded
+    try:
+        second = _run_grader_local(target.base, ignored, timeout)
+    except Exception:                             # pragma: no cover - defensive
+        return graded
+    for repo, info in graded.items():
+        if not isinstance(info, dict) or not info.get("findings"):
+            continue
+        still = {f.get("path") for f in (second.get(repo, {}) or {}).get("findings", [])}
+        kept = [f for f in info["findings"] if f.get("path") in still]
+        gone = len(info["findings"]) - len(kept)
+        if gone:
+            info["transient"] = gone
+            info.setdefault("notes", {})["transient"] = gone
+        info["findings"] = kept
+        info["rechecked"] = True
+    return graded
+
+
+# --- TASK_CLAIMS cross-check -------------------------------------------------
+# On a multi_session checkout, git state alone CANNOT tell a strand from live
+# work: an untracked file absent from origin at every path and absent from all
+# history is the signature of both. TASK_CLAIMS.json is the discriminator.
+#
+# Deliberately NOT an import of REE_Working/scripts/task_claim.py. That is a
+# different repo, present only on the Mac; a cross-repo sys.path import works
+# here and breaks on the hub and the workers, which is precisely the failure
+# CLAUDE.md's vendored-copy rule exists to prevent. The matching below mirrors
+# task_claim.normalise_resource ("./a/b/" -> "a/b") and its directory-
+# containment test; if that semantics ever changes, this is the copy to update.
+
+
+def normalise_resource(res):
+    if not isinstance(res, str):
+        return ""
+    return res.strip().lstrip("./").rstrip("/")
+
+
+def load_active_claims(path=CLAIMS_PATH):
+    """Active claims as [(session_id, claimed_at, [resources])]. Fails open."""
+    try:
+        with open(path, "r") as fh:
+            data = json.load(fh)
+    except Exception:
+        return []
+    out = []
+    for c in (data or {}).get("claims", []):
+        if not isinstance(c, dict) or c.get("status") != "active":
+            continue
+        res = [normalise_resource(r) for r in (c.get("resources") or [])]
+        out.append((str(c.get("session_id") or "?"),
+                    str(c.get("claimed_at") or "?"),
+                    [r for r in res if r]))
+    return out
+
+
+def claim_covering(claims, repo, rel):
+    """The first active claim whose resources cover `<repo>/<rel>`, or None.
+
+    Containment is one-directional: a claim on a directory covers files under
+    it. A claim on `ree-v3/experiments` must NOT cover
+    `ree-v3/experiments_old/x.json`, which is why the test is on `res + "/"`
+    and not on a bare string prefix.
+
+    Age is NOT filtered. A stale-but-active claim on an untracked file is still
+    far better evidence of live work than git has, and the consequence of a
+    match is only note-instead-of-finding with the claim NAMED -- the reader
+    can judge a 9-hour-old claim for themselves, which they cannot do if the
+    path is presented as a strand with no attribution.
+    """
+    key = f"{repo}/{rel}"
+    for sid, at, resources in claims:
+        for res in resources:
+            if key == res or key.startswith(res + "/"):
+                return {"session_id": sid, "claimed_at": at, "resource": res}
+    return None
+
+
+def apply_claims(graded, claims):
+    """Downgrade claim-covered findings to notes, in place."""
+    if not claims:
+        return graded
+    for repo, info in (graded or {}).items():
+        if not isinstance(info, dict):
+            continue
+        kept, covered = [], []
+        for f in info.get("findings") or []:
+            c = claim_covering(claims, repo, f.get("path", ""))
+            if c:
+                d = dict(f)
+                d["claim"] = c
+                covered.append(d)
+            else:
+                kept.append(f)
+        if covered:
+            info["findings"] = kept
+            info["claim_covered"] = covered
+            info.setdefault("notes", {})["claim_covered"] = len(covered)
+        # ...and the same for the named `no_counterpart_other` paths, so an
+        # in-flight planning doc or script is attributed rather than left as an
+        # anonymous "absent from origin" line for someone to chase.
+        other = info.get("no_counterpart_other_paths") or []
+        attributed = {}
+        for rel in other:
+            c = claim_covering(claims, repo, rel)
+            if c:
+                attributed[rel] = c["session_id"]
+        if attributed:
+            info["no_counterpart_other_claimed"] = attributed
+    return graded
+
+
+def claims_for_target(target, enabled=True):
+    """Claims apply only to the checkout the registry actually describes."""
+    if not enabled or not target.multi_session:
+        return []
+    return load_active_claims()
+
+
+def resolve_hosts(hosts):
+    """Selected targets, or None when a name matched nothing.
+
+    Case-insensitive, plus HOST_ALIASES, because the Mac answers to three
+    spellings (`DLAPTOP-4` in the heartbeats, `DLAPTOP-4.local` from the OS,
+    and "the mac" in every write-up that describes it).
+    """
+    if not hosts:
+        return dict(FLEET)
+    lower = {k.lower(): k for k in FLEET}
+    out = {}
+    for h in hosts:
+        key = h.strip().lower()
+        key = HOST_ALIASES.get(key, lower.get(key, ""))
+        if key in FLEET:
+            out[key] = FLEET[key]
+    return out or None
 
 
 def classify(d):
@@ -531,6 +1003,35 @@ def classify(d):
     if isinstance(u, dict):
         if u.get("error"):
             reasons.append(f"untracked grading unavailable -- {u['error']}")
+        if u.get("fetch_error"):
+            reasons.append(
+                f"remote-tracking refs NOT refreshed -- {u['fetch_error']}; "
+                f"graded against a possibly stale origin ref, so a 'stranded' "
+                f"path here may simply have landed since the last fetch")
+        # Claim-covered paths, dry-run residue and transients are all reported
+        # BELOW findings and never as findings. Each is a case where the git
+        # state looks exactly like a strand and is not one -- see the module
+        # docstring. Naming them is what keeps the probe usable on a box with
+        # ~18 concurrent sessions instead of being ignored as noisy.
+        covered = u.get("claim_covered") or []
+        if covered:
+            reasons.append(
+                f"{len(covered)} untracked run manifest(s) covered by an ACTIVE "
+                f"TASK_CLAIMS entry -- live work, NOT a strand; do not touch")
+            for f in covered[:3]:
+                c = f.get("claim") or {}
+                reasons.append(
+                    f"    {f.get('run_id', '?')} -- {f.get('path', '?')} "
+                    f"(claim {c.get('session_id', '?')} on {c.get('resource', '?')})")
+        notes = u.get("notes") or {}
+        if notes.get("dry_run"):
+            reasons.append(
+                f"{notes['dry_run']} --dry-run smoke manifest(s) present "
+                f"(_dry_ prefix / dry_run:true) -- not evidence, self-clearing")
+        if u.get("transient"):
+            reasons.append(
+                f"{u['transient']} finding(s) present in the first pass and GONE "
+                f"in the re-check -- transient, not reported as strands")
         strand = u.get("findings") or []
         if strand:
             n = len(strand) + int(u.get("truncated") or 0)
@@ -550,6 +1051,31 @@ def classify(d):
             if u.get("truncated"):
                 reasons.append(
                     f"    (+{u['truncated']} beyond the report cap -- use --json)")
+
+        # GITIGNORED bucket (--ignored). Separate and lower-severity on
+        # purpose: an ignored path is ignored deliberately, so the prior is
+        # much weaker than for an untracked one. But `*.bak` being ignored in
+        # REE_assembly is exactly why this class was never machine-graded, and
+        # a run manifest is a run manifest wherever it sits.
+        g = u.get("gitignored")
+        if isinstance(g, dict):
+            if g.get("error"):
+                reasons.append(f"gitignored grading unavailable -- {g['error']}")
+            gf = g.get("findings") or []
+            if gf:
+                reasons.append(
+                    f"{len(gf)} run manifest(s) in GITIGNORED path(s) with no "
+                    f"counterpart on origin -- lower severity than a stranded "
+                    f"untracked file (the path is ignored on purpose), but a "
+                    f"gitignored manifest is invisible to every other check")
+                for f in gf[:3]:
+                    reasons.append(
+                        f"    {f.get('run_id', '?')} [{f.get('outcome', '?')}] "
+                        f"-- {f.get('path', '?')}")
+            if g.get("beyond_cap"):
+                reasons.append(
+                    f"    ({g['beyond_cap']} ignored file(s) beyond the scan cap "
+                    f"were NOT graded)")
     return status, reasons
 
 
@@ -668,7 +1194,40 @@ def selftest():
     else:
         print("  [PASS] ordinary untracked churn is silent (notes are --json only)")
 
+    # ...and the local-target note classes must all be visible without ever
+    # being promoted to a strand. Recorded from the 2026-07-30 Mac grade: one
+    # transient _dry_ finding, one claim-covered in-flight file.
+    status, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=dict(
+            untracked=2, ignored=0, truncated=0, findings=[], transient=1,
+            notes={"dry_run": 1, "transient": 1},
+            claim_covered=[dict(path="coordinator/deploy/x.sh",
+                                run_id="live_v3", outcome="FAIL",
+                                claim={"session_id": "friendly-antonelli-b0f414",
+                                       "claimed_at": "2026-07-30T07:45:37Z",
+                                       "resource": "ree-v3/coordinator/deploy"})],
+            gitignored=dict(entries=47, files_graded=19, dirs_skipped=28,
+                            beyond_cap=0, findings=[]))))
+    blob = " ".join(reasons)
+    if status != "OK":
+        print(f"  [FAIL] Mac note classes changed the status to {status}")
+        failed += 1
+    elif "STRANDED" in blob:
+        print("  [FAIL] a note class was reported as a stranded manifest")
+        failed += 1
+    elif not all(k in blob for k in ("ACTIVE", "dry-run", "re-check")):
+        print(f"  [FAIL] a note class went unreported: {reasons}")
+        failed += 1
+    else:
+        print("  [PASS] claim-covered / dry-run / transient all REPORT and "
+              "none is promoted to a strand")
+
     failed += _selftest_grader()
+    failed += _selftest_local_target()
+    failed += _selftest_claims()
+    failed += _selftest_recheck_and_host_resolution()
+    failed += _selftest_fetch_is_local_only()
     print()
     print("selftest: %d case(s) FAILED" % failed if failed else "selftest: all cases pass")
     return 1 if failed else 0
@@ -758,6 +1317,15 @@ def _selftest_grader():
         os.makedirs(os.path.join(root, "__pycache__"), exist_ok=True)
         with open(os.path.join(root, "__pycache__", "z.pyc"), "wb") as fh:
             fh.write(b"\x00\x01")
+        #  4b. --dry-run smoke residue, BOTH signals, each on its own file so a
+        #      single check cannot cover for the other. These are manifest-
+        #      shaped and absent from origin -- a finding by every other test.
+        #      The `_dry_`-prefixed one is the exact shape of the 2026-07-30
+        #      Mac false positive.
+        write("evidence/experiments/_dry_smoke_run_v3.json",
+              flat("smoke_run_v3", outcome="FAIL"))
+        write("evidence/experiments/otherexp/plainnamed_run_v3.json",
+              dict(flat("plainnamed_run_v3", outcome="FAIL"), dry_run=True))
         #  5. runner EXIT SIGNAL: carries run_id + outcome, so it grades as a
         #     stranded manifest unless BYDESIGN suppresses it BEFORE the
         #     manifest test. Its run_id is deliberately one that exists
@@ -790,24 +1358,27 @@ def _selftest_grader():
         else:
             print("  [PASS] grader: stranded .bak found; superset, pack-form "
                   "and churn all correctly cleared")
-        # notes must be EXACTLY the per_tick one: any 'no_counterpart_other'
-        # here means the basename / stem / superset / byte-compare clearing
-        # failed for a file that plainly does exist on origin.
-        want_notes = {"per_tick": 1, "runner_signals": 1}
+        # notes must be EXACTLY these: any 'no_counterpart_other' here means
+        # the basename / stem / superset / byte-compare clearing failed for a
+        # file that plainly does exist on origin. dry_run is 2 -- one per
+        # signal (filename prefix, and the doc flag) -- so a regression that
+        # kept only one of the two shows up as a count, not as a silent pass.
+        want_notes = {"per_tick": 1, "runner_signals": 1, "dry_run": 2}
         if got.get("notes") != want_notes:
             print(f"  [FAIL] notes {got.get('notes')} != {want_notes} "
                   f"-- a file present on origin was not cleared, or a "
                   f"by-design path was mis-graded")
             bad += 1
         else:
-            print("  [PASS] grader: _per_tick.jsonl and a run_id-bearing "
-                  "_runner_signals/ exit signal are NOTES, not findings; "
-                  "superset + byte-compare clearing verified")
+            print("  [PASS] grader: _per_tick.jsonl, a run_id-bearing "
+                  "_runner_signals/ exit signal and BOTH --dry-run signals "
+                  "are NOTES, not findings; superset + byte-compare verified")
         if got.get("ignored") != 1:
             print(f"  [FAIL] __pycache__ churn not ignored: {got.get('ignored')}")
             bad += 1
         else:
             print("  [PASS] grader: build churn ignored outright")
+        bad += _selftest_ignored_bucket(tmp, root)
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
         print(f"  [FAIL] grader selftest errored: {exc}")
@@ -816,40 +1387,554 @@ def _selftest_grader():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _selftest_ignored_bucket(tmp, root):
+    """The --ignored bucket, on the exact rule that hid the class: `*.bak`.
+
+    Reuses the repo built by _selftest_grader. Pins three things:
+      * a plain-.bak run manifest is INVISIBLE to the untracked pass (this is
+        the blind spot, asserted as a fact rather than assumed),
+      * --ignored finds it, in a SEPARATE bucket (never in `findings`, which
+        would silently raise the severity of a deliberately-ignored path),
+      * an ignored DIRECTORY is counted, not descended into. On the Mac that
+        is `.claude/` = ~50 worktrees; a bucket that walked it would be the
+        "probe nobody runs" outcome the module docstring warns about.
+    """
+    def write(rel, obj):
+        p = os.path.join(root, rel)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, "w") as fh:
+            json.dump(obj, fh)
+
+    # `*.bak` is REE_assembly/.gitignore:13 verbatim. `hidden_dir/` stands in
+    # for `.claude/`.
+    with open(os.path.join(root, ".gitignore"), "w") as fh:
+        fh.write("*.bak\nhidden_dir/\n")
+    subprocess.run(("git", "add", ".gitignore"), cwd=root, check=True,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(("git", "commit", "-q", "-m", "ignore"), cwd=root, check=True,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    write("evidence/experiments/hidden_run_v3.json.bak",
+          {"run_id": "hidden_run_v3", "outcome": "FAIL", "elapsed_seconds": 99.0})
+    write("hidden_dir/deep/another_run_v3.json",
+          {"run_id": "another_run_v3", "outcome": "FAIL"})
+
+    def run_grader(*extra):
+        r = subprocess.run(
+            [sys.executable, "-", tmp, "REE_assembly:HEAD"] + list(extra),
+            input=UNTRACKED_PY, capture_output=True, text=True, timeout=120)
+        line = [x for x in r.stdout.splitlines() if x.startswith(UNTRACKED_MARKER)]
+        if not line:
+            return None
+        return json.loads(line[0][len(UNTRACKED_MARKER):]).get("REE_assembly", {})
+
+    bad = 0
+    plain = run_grader()
+    if plain is None:
+        print("  [FAIL] grader emitted no result for the ignored-bucket case")
+        return 1
+    if any(f["run_id"] == "hidden_run_v3" for f in plain.get("findings", [])):
+        print("  [FAIL] a gitignored .bak appeared in the UNTRACKED findings")
+        bad += 1
+    elif "gitignored" in plain:
+        print("  [FAIL] the gitignored bucket ran without --ignored")
+        bad += 1
+    else:
+        print("  [PASS] grader: a gitignored *.bak manifest is invisible to "
+              "the untracked pass (the documented blind spot, asserted)")
+
+    ign = run_grader("--ignored")
+    g = (ign or {}).get("gitignored") or {}
+    hits = sorted(f["run_id"] for f in g.get("findings", []))
+    if hits != ["hidden_run_v3"]:
+        print(f"  [FAIL] --ignored bucket findings {hits} != ['hidden_run_v3']")
+        bad += 1
+    elif any(f["run_id"] == "hidden_run_v3" for f in ign.get("findings", [])):
+        print("  [FAIL] the gitignored hit was promoted into `findings`")
+        bad += 1
+    elif g.get("dirs_skipped") != 1:
+        print(f"  [FAIL] ignored directory not counted as skipped: {g}")
+        bad += 1
+    elif any(f["run_id"] == "another_run_v3" for f in g.get("findings", [])):
+        print("  [FAIL] the bucket descended into an ignored DIRECTORY")
+        bad += 1
+    else:
+        print("  [PASS] grader: --ignored finds it in a SEPARATE bucket, and "
+              "ignored directories are counted, not walked")
+    return bad
+
+
+def _selftest_local_target():
+    """The local (Mac) target: path layout from the record, and NO ssh.
+
+    Two things this must prove, because both were structurally impossible
+    before 2026-07-30 and a regression to either silently un-grades the Mac:
+
+      1. the checkout root comes from the TARGET RECORD -- the probe text for
+         the Mac must not contain a worker path, and vice versa;
+      2. probing a local target never shells out to ssh. Asserted by recording
+         every subprocess argv for the duration of a REAL local probe against a
+         throwaway repo, not by reading the dispatch and trusting it.
+    """
+    import shutil
+    import tempfile
+
+    bad = 0
+    mac = FLEET.get("DLAPTOP-4")
+    if mac is None or mac.ip is not None:
+        print("  [FAIL] no local (ip-less) DLAPTOP-4 target in FLEET")
+        return 1
+    if mac.base != LOCAL_BASE or not mac.multi_session:
+        print(f"  [FAIL] DLAPTOP-4 record wrong: {mac}")
+        bad += 1
+    else:
+        print("  [PASS] local target: DLAPTOP-4 present, ip-less, multi_session")
+
+    worker = FLEET["ree-cloud-2"]
+    mac_probe = build_probe(mac.base)
+    w_probe = build_probe(worker.base)
+    if LOCAL_BASE not in mac_probe or REMOTE_BASE in mac_probe:
+        print("  [FAIL] the Mac's probe does not carry the Mac's base path")
+        bad += 1
+    elif REMOTE_BASE not in w_probe or LOCAL_BASE in w_probe:
+        print("  [FAIL] the worker's probe does not carry the worker base path")
+        bad += 1
+    else:
+        print("  [PASS] local target: checkout root comes from the record, "
+              "not from a hardcoded path")
+
+    # 2. a real local probe, with every subprocess argv recorded.
+    calls = []
+    real_run = subprocess.run
+
+    class _Recorder(object):
+        def __getattr__(self, k):
+            return getattr(subprocess, k)
+
+        def run(self, args, **kw):
+            calls.append(list(args) if isinstance(args, (list, tuple)) else [args])
+            return real_run(args, **kw)
+
+    tmp = tempfile.mkdtemp(prefix="rgh-local-")
+    saved = globals()["subprocess"]
+    try:
+        root = os.path.join(tmp, "REE_assembly")
+        os.makedirs(os.path.join(root, "evidence", "experiments"))
+        for a in (("init", "-q"), ("config", "user.email", "s@l"),
+                  ("config", "user.name", "s")):
+            real_run(("git",) + a, cwd=root, check=True,
+                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        with open(os.path.join(root, "README.md"), "w") as fh:
+            fh.write("x\n")
+        real_run(("git", "add", "-A"), cwd=root, check=True,
+                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        real_run(("git", "commit", "-q", "-m", "base"), cwd=root, check=True,
+                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # The grader reads REPO_REFS' ref (origin/master), not @{u} -- so the
+        # ref has to EXIST for this to grade anything. Without it grade_repo
+        # returns "ref not readable" and reports no findings at all, which is
+        # correct behaviour (better than declaring every path stranded against
+        # a tree it could not read) but would make this case vacuous.
+        real_run(("git", "update-ref", "refs/remotes/origin/master", "HEAD"),
+                 cwd=root, check=True,
+                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        # One genuine strand, so this exercises the WHOLE local chain --
+        # shell probe, grader, merge, classify -- rather than only proving a
+        # clean tree stays quiet. A transport that silently dropped the
+        # grader's findings would otherwise pass every case above.
+        with open(os.path.join(root, "evidence", "experiments",
+                               "lost_v3.json"), "w") as fh:
+            json.dump({"run_id": "lost_v3", "outcome": "FAIL",
+                       "elapsed_seconds": 5661.46}, fh)
+
+        local = Target("selftest-local", "local", tmp, None, True)
+        globals()["subprocess"] = _Recorder()
+        # fetch OFF: there is no remote here, and the point of the case is the
+        # transport, not the refresh (which _selftest_fetch_is_local_only pins).
+        repos, err = probe(local, timeout=120, untracked=True, fetch=False)
+    finally:
+        globals()["subprocess"] = saved
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    if err:
+        print(f"  [FAIL] local probe errored: {err}")
+        return bad + 1
+    sshed = [c for c in calls if c and str(c[0]).endswith("ssh")]
+    if sshed:
+        print(f"  [FAIL] local probe shelled out to ssh: {sshed[0]}")
+        bad += 1
+    elif not calls:
+        print("  [FAIL] local probe ran no subprocess at all")
+        bad += 1
+    else:
+        print(f"  [PASS] local target: probed in-process, 0 ssh invocations "
+              f"across {len(calls)} subprocess call(s)")
+
+    d = (repos or {}).get("REE_assembly")
+    if not isinstance(d, dict):
+        print(f"  [FAIL] local probe returned no REE_assembly row: {repos}")
+        return bad + 1
+    if d.get("unmerged") != "0" or d.get("missing") == "1":
+        print(f"  [FAIL] local probe mis-read a clean checkout: {d}")
+        bad += 1
+    elif not isinstance(d.get("untracked"), dict) or d["untracked"].get("error"):
+        print(f"  [FAIL] local probe did not attach a usable grader result: {d}")
+        bad += 1
+    else:
+        print("  [PASS] local target: shell probe and grader both ran and "
+              "their results merged on the same repo row")
+        found = [f.get("run_id") for f in (d["untracked"].get("findings") or [])]
+        status, reasons = classify(d)
+        blob = " ".join(reasons)
+        if found != ["lost_v3"]:
+            print(f"  [FAIL] local probe lost the strand: findings {found}")
+            bad += 1
+        elif "lost_v3" not in blob or "STRANDED" not in blob:
+            print(f"  [FAIL] the strand did not reach the report: {reasons}")
+            bad += 1
+        elif status != "OK":
+            print(f"  [FAIL] a strand changed the checkout status to {status}")
+            bad += 1
+        elif not d["untracked"].get("rechecked"):
+            print("  [FAIL] a multi_session target was not re-checked")
+            bad += 1
+        else:
+            print("  [PASS] local target: a real strand survives the re-check "
+                  "and reaches the report END TO END, without failing the box")
+    # ree-v3 is absent from this base -- it must be reported missing, not
+    # silently dropped, or a Mac with a deleted checkout would grade 'clean'.
+    if (repos or {}).get("ree-v3", {}).get("missing") != "1":
+        print("  [FAIL] an absent repo was not reported as missing")
+        bad += 1
+    else:
+        print("  [PASS] local target: an absent repo is MISSING, not skipped")
+    return bad
+
+
+def _selftest_claims():
+    """TASK_CLAIMS cross-check: live work must not grade as a strand.
+
+    Case 1 is the real one. `ree-v3/coordinator/deploy/runner-prestart-pull.sh`
+    was untracked, absent from origin/main and absent from ALL history on
+    2026-07-30 -- a finding by every git-visible test -- and was in-flight work
+    under claim `friendly-antonelli-b0f414`, committed minutes later. On this
+    box git CANNOT make that call; the claims file is the only discriminator.
+    """
+    import tempfile
+
+    claims_doc = {
+        "schema_version": "v1",
+        "stale_after_hours": 6,
+        "claims": [
+            {"session_id": "friendly-antonelli-b0f414",
+             "claimed_at": "2026-07-30T07:45:37Z", "status": "active",
+             "resources": ["ree-v3/experiment_runner.py",
+                           "ree-v3/coordinator/deploy"]},
+            {"session_id": "quirky-mayer-ee5ad2",
+             "claimed_at": "2026-07-30T06:54:47Z", "status": "active",
+             "resources": ["./ree-v3/experiments/"]},
+            {"session_id": "closed-session-aaaaaa",
+             "claimed_at": "2026-07-29T00:00:00Z", "status": "done",
+             "resources": ["REE_assembly/evidence/experiments"]},
+        ],
+    }
+    fd, path = tempfile.mkstemp(prefix="rgh-claims-", suffix=".json")
+    with os.fdopen(fd, "w") as fh:
+        json.dump(claims_doc, fh)
+    try:
+        claims = load_active_claims(path)
+    finally:
+        os.unlink(path)
+
+    bad = 0
+    if len(claims) != 2:
+        print(f"  [FAIL] a non-active claim was loaded: {claims}")
+        bad += 1
+    else:
+        print("  [PASS] claims: only ACTIVE entries shield; a `done` one does not")
+
+    checks = [
+        # (repo, path, expected covering session or None, what it pins)
+        ("ree-v3", "coordinator/deploy/runner-prestart-pull.sh",
+         "friendly-antonelli-b0f414", "directory claim covers a file under it"),
+        ("ree-v3", "experiments/v3_exq_748a_mech457_hrep_zworldp0_rederivation.py",
+         "quirky-mayer-ee5ad2", "'./x/' normalises to 'x' before matching"),
+        ("ree-v3", "experiment_runner.py", "friendly-antonelli-b0f414",
+         "exact file claim"),
+        # the trap: a bare string prefix would match this, and it is a
+        # DIFFERENT directory. Every finding under a sibling dir would be
+        # silently downgraded and never looked at again.
+        ("ree-v3", "coordinator/deploy_old/x.json", None,
+         "a sibling directory is NOT covered"),
+        ("ree-v3", "experiment_runner.py.bak", None,
+         "a longer filename sharing a prefix is NOT covered"),
+        # scoped to the right repo: same relative path, wrong repo.
+        ("REE_assembly", "experiment_runner.py", None,
+         "matching is repo-qualified"),
+        ("REE_assembly", "evidence/experiments/x_v3.json", None,
+         "a `done` claim's resource does not cover anything"),
+    ]
+    for repo, rel, want, what in checks:
+        got = claim_covering(claims, repo, rel)
+        sid = got["session_id"] if got else None
+        if sid != want:
+            print(f"  [FAIL] claims: {repo}/{rel} -> {sid}, want {want} ({what})")
+            bad += 1
+    if not bad:
+        print(f"  [PASS] claims: all {len(checks)} containment cases correct "
+              f"(incl. sibling-directory and prefix traps)")
+
+    # ...and the downgrade itself: finding -> claim_covered, never both.
+    graded = {"ree-v3": {"untracked": 2, "findings": [
+        {"path": "coordinator/deploy/runner-prestart-pull.sh",
+         "run_id": "live_run_v3", "outcome": "FAIL"},
+        {"path": "evidence/orphan_run_v3.json",
+         "run_id": "orphan_run_v3", "outcome": "FAIL"},
+    ], "notes": {}}}
+    apply_claims(graded, claims)
+    info = graded["ree-v3"]
+    left = [f["run_id"] for f in info["findings"]]
+    cov = [f["run_id"] for f in info.get("claim_covered", [])]
+    if left != ["orphan_run_v3"] or cov != ["live_run_v3"]:
+        print(f"  [FAIL] claims: downgrade wrong -- findings {left}, covered {cov}")
+        bad += 1
+    elif info["claim_covered"][0]["claim"]["session_id"] != "friendly-antonelli-b0f414":
+        print("  [FAIL] claims: the covered finding does not NAME its claim")
+        bad += 1
+    else:
+        print("  [PASS] claims: a claim-covered manifest becomes a NOTE naming "
+              "its session; an unclaimed one stays a FINDING")
+
+    # a claim-covered path must NOT read as a strand in the printed report...
+    status, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=info))
+    blob = " ".join(reasons)
+    if status != "OK":
+        print(f"  [FAIL] claims: claim-covered path changed status to {status}")
+        bad += 1
+    elif "friendly-antonelli-b0f414" not in blob:
+        print("  [FAIL] claims: the covering session is not named in the report")
+        bad += 1
+    elif "orphan_run_v3" not in blob or "STRANDED" not in blob:
+        print("  [FAIL] claims: the genuine strand stopped being reported")
+        bad += 1
+    else:
+        print("  [PASS] claims: report names the covering session AND still "
+              "reports the genuine strand beside it")
+
+    # ...and claims must be scoped to the box the registry describes: a worker
+    # has its own checkout, so the Mac's claims say nothing about it.
+    if claims_for_target(FLEET["ree-cloud-2"]):
+        print("  [FAIL] claims applied to a remote worker")
+        bad += 1
+    elif claims_for_target(FLEET["DLAPTOP-4"], enabled=False):
+        print("  [FAIL] --no-claims did not disable the cross-check")
+        bad += 1
+    else:
+        print("  [PASS] claims: applied to the multi-session local target only")
+
+    # fail-open: an unreadable registry must never turn into an exception or
+    # into 'everything is claimed'.
+    if load_active_claims("/nonexistent/TASK_CLAIMS.json") != []:
+        print("  [FAIL] claims: a missing registry did not fail open")
+        bad += 1
+    else:
+        print("  [PASS] claims: a missing/unreadable registry fails open")
+    return bad
+
+
+def _selftest_recheck_and_host_resolution():
+    """The re-check intersection, and --host alias resolution."""
+    bad = 0
+    calls = []
+
+    def fake_grader(base, ignored, timeout):
+        calls.append(base)
+        # second pass: the _dry_-shaped transient is gone, the real one stays.
+        return {"REE_assembly": {"findings": [
+            {"path": "evidence/real_v3.json", "run_id": "real_v3"}]}}
+
+    graded = {"REE_assembly": {"findings": [
+        {"path": "evidence/real_v3.json", "run_id": "real_v3"},
+        {"path": "evidence/_dry_x_v3.json", "run_id": "x_v3"},
+    ]}}
+    saved = globals()["_run_grader_local"]
+    globals()["_run_grader_local"] = fake_grader
+    try:
+        out = _recheck(FLEET["DLAPTOP-4"], graded, False, 60)
+        clean = _recheck(FLEET["DLAPTOP-4"], {"REE_assembly": {"findings": []}},
+                         False, 60)
+    finally:
+        globals()["_run_grader_local"] = saved
+
+    info = out["REE_assembly"]
+    if [f["run_id"] for f in info["findings"]] != ["real_v3"]:
+        print(f"  [FAIL] recheck kept the wrong findings: {info['findings']}")
+        bad += 1
+    elif info.get("transient") != 1:
+        print(f"  [FAIL] the vanished finding was not counted: {info}")
+        bad += 1
+    elif len(calls) != 1:
+        print(f"  [FAIL] recheck ran {len(calls)} extra pass(es), want 1")
+        bad += 1
+    elif clean["REE_assembly"].get("rechecked"):
+        print("  [FAIL] recheck ran a second pass on a clean first pass")
+        bad += 1
+    else:
+        print("  [PASS] recheck: only findings surviving BOTH passes are "
+              "reported, vanished ones are counted, a clean pass costs nothing")
+
+    for spelling in ("mac", "MAC", "local", "DLAPTOP-4", "dlaptop-4",
+                     "dlaptop-4.local"):
+        got = resolve_hosts([spelling])
+        if list(got or {}) != ["DLAPTOP-4"]:
+            print(f"  [FAIL] --host {spelling} -> {list(got or {})}")
+            bad += 1
+            break
+    else:
+        print("  [PASS] --host: every spelling of the Mac resolves to DLAPTOP-4")
+    if resolve_hosts(["nope"]) is not None:
+        print("  [FAIL] --host: an unknown name did not report as unknown")
+        bad += 1
+    elif len(resolve_hosts(None)) != len(FLEET):
+        print("  [FAIL] --host: the default no longer selects the whole fleet")
+        bad += 1
+    else:
+        print("  [PASS] --host: unknown names rejected, default is whole fleet")
+    return bad
+
+
+def _selftest_fetch_is_local_only():
+    """`git fetch` must run for a local target and NEVER for a worker.
+
+    The fetch is the one write-ish step in the whole probe. A regression that
+    let it run over ssh would be a network write to a box that may be
+    mid-experiment, against the promise in the module docstring.
+    """
+    bad = 0
+    fetched = []
+    saved = globals()["_fetch_local"]
+    globals()["_fetch_local"] = lambda base, timeout=120: fetched.append(base) or []
+    real_run = subprocess.run
+    saved_sub = globals()["subprocess"]
+
+    class _Blocked(object):
+        def __getattr__(self, k):
+            return getattr(saved_sub, k)
+
+        def run(self, args, **kw):
+            if args and str(args[0]).endswith("ssh"):
+                # do not actually reach the network from a selftest
+                raise AssertionError("ssh attempted")
+            return real_run(args, **kw)
+
+    try:
+        globals()["subprocess"] = _Blocked()
+        probe(FLEET["ree-cloud-2"], timeout=1, untracked=False)
+    except AssertionError:
+        pass                                       # expected: ssh was attempted
+    except Exception:
+        pass                                       # any other failure is fine here
+    finally:
+        globals()["subprocess"] = saved_sub
+        globals()["_fetch_local"] = saved
+
+    if fetched:
+        print(f"  [FAIL] fetch ran for a REMOTE target: {fetched}")
+        bad += 1
+    else:
+        print("  [PASS] fetch: never runs for an ssh target")
+
+    fetched = []
+    globals()["_fetch_local"] = lambda base, timeout=120: fetched.append(base) or []
+    try:
+        probe(Target("t", "local", "/nonexistent-base", None, True))
+        if fetched:
+            print("  [FAIL] fetch ran against a base that does not exist")
+            bad += 1
+        else:
+            print("  [PASS] fetch: skipped when the local base is absent")
+        here = Target("t", "local", os.path.dirname(os.path.abspath(__file__)),
+                      None, True)
+        probe(here, timeout=30, untracked=False, fetch=False)
+        if fetched:
+            print("  [FAIL] --no-fetch did not disable the fetch")
+            bad += 1
+        else:
+            print("  [PASS] fetch: --no-fetch disables it")
+        # ...and the positive: a local target IS fetched by default. Without
+        # this the whole suite would pass with the fetch deleted, and the Mac
+        # would grade against whatever origin/master it last happened to see.
+        probe(here, timeout=30, untracked=False)
+        if fetched != [here.base]:
+            print(f"  [FAIL] fetch did not run for a local target: {fetched}")
+            bad += 1
+        else:
+            print("  [PASS] fetch: runs by default for a local target")
+    finally:
+        globals()["_fetch_local"] = saved
+    return bad
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Probe fleet workers for wedged / skewed / gc-blocked git checkouts.")
     ap.add_argument("--host", action="append",
-                    help="limit to this affinity name (repeatable), e.g. ree-cloud-2")
+                    help="limit to this target (repeatable), e.g. ree-cloud-2; "
+                         "'mac' / 'local' resolve to DLAPTOP-4")
     ap.add_argument("--json", action="store_true", help="emit JSON")
     ap.add_argument("--no-untracked", action="store_true",
                     help="skip grading untracked working-tree files against "
                          "origin (faster, but blind to the 2026-07-30 "
                          "stranded-manifest class -- see module docstring)")
+    ap.add_argument("--ignored", action="store_true",
+                    help="also grade GITIGNORED files into a separate, "
+                         "lower-severity bucket (*.bak is ignored in "
+                         "REE_assembly, so that class is otherwise unexamined)")
+    ap.add_argument("--no-fetch", action="store_true",
+                    help="do not refresh remote-tracking refs on a LOCAL "
+                         "target first (a stale origin ref manufactures "
+                         "strands out of content that already landed)")
+    ap.add_argument("--no-recheck", action="store_true",
+                    help="do not re-grade a multi-session target to drop "
+                         "findings that vanish between passes")
+    ap.add_argument("--no-claims", action="store_true",
+                    help="do not cross-check findings against active "
+                         "TASK_CLAIMS entries (they are what distinguishes a "
+                         "strand from another session's live work)")
     ap.add_argument("--selftest", action="store_true",
-                    help="assert classify() and the untracked grader against "
+                    help="assert classify(), the untracked grader, local "
+                         "target resolution and the claim cross-check against "
                          "recorded real states (no ssh, no network)")
     args = ap.parse_args()
 
     if args.selftest:
         return selftest()
 
-    targets = {k: v for k, v in FLEET.items()
-               if not args.host or k in args.host}
-    if not targets:
-        print(f"no such host; known: {', '.join(sorted(FLEET))}")
+    targets = resolve_hosts(args.host)
+    if targets is None:
+        print(f"no such host; known: {', '.join(sorted(FLEET))} "
+              f"(aliases: {', '.join(sorted(HOST_ALIASES))})")
         return 2
 
     report = {}
     bad = False
     stranded = 0
     graded = 0
-    for name, (ip, role) in sorted(targets.items()):
-        repos, err = probe(ip, untracked=not args.no_untracked)
+    gitignored_hits = 0
+    for name, t in sorted(targets.items()):
+        repos, err = probe(t, untracked=not args.no_untracked,
+                           ignored=args.ignored, fetch=not args.no_fetch,
+                           recheck=not args.no_recheck)
         if err:
-            report[name] = {"role": role, "ip": ip, "error": err}
+            report[name] = {"role": t.role, "ip": t.ip, "base": t.base,
+                            "error": err}
             continue
-        report[name] = {"role": role, "ip": ip, "repos": {}}
+        claims = claims_for_target(t, enabled=not args.no_claims)
+        apply_claims({r: repos[r].get("untracked") for r in repos
+                      if isinstance(repos[r].get("untracked"), dict)}, claims)
+        report[name] = {"role": t.role, "ip": t.ip, "base": t.base,
+                        "repos": {}}
         for repo in REPOS:
             d = repos.get(repo)
             if d is None:
@@ -862,6 +1947,9 @@ def main():
                 graded += int(u.get("untracked") or 0)
                 stranded += len(u.get("findings") or [])
                 stranded += int(u.get("truncated") or 0)
+                g = u.get("gitignored")
+                if isinstance(g, dict):
+                    gitignored_hits += len(g.get("findings") or [])
             report[name]["repos"][repo] = {
                 "status": status, "reasons": reasons, "raw": d,
             }
@@ -878,9 +1966,15 @@ def main():
         if "error" in e:
             # UNREACHABLE is deliberately NOT a failure: workers are powered
             # off routinely by the cloud-scaler. `hcloud server list` is the
-            # authority on power state.
+            # authority on power state. A LOCAL target cannot be "powered off",
+            # so the power-state hint would be actively misleading there -- an
+            # unreachable local base means the path is wrong or the checkout is
+            # gone, which is worth acting on immediately.
             print(f"  {tag:26s} UNREACHABLE -- {e['error']}")
-            print(f"  {'':26s}   (may simply be powered off; check `hcloud server list`)")
+            if e.get("ip") is None:
+                print(f"  {'':26s}   (local target: check {e.get('base', '?')} exists)")
+            else:
+                print(f"  {'':26s}   (may simply be powered off; check `hcloud server list`)")
             continue
         for repo, r in e["repos"].items():
             print(f"  {tag:26s} {repo:14s} {r['status']}")
@@ -900,6 +1994,13 @@ def main():
     else:
         print(f"untracked grading: {graded} untracked path(s) graded against "
               f"origin, {stranded} stranded run manifest(s)")
+    if args.ignored:
+        print(f"gitignored grading: {gitignored_hits} run manifest(s) found in "
+              f"gitignored path(s) (ignored DIRECTORIES are not descended into)")
+    else:
+        print("gitignored grading: SKIPPED (pass --ignored) -- *.bak is "
+              "gitignored in REE_assembly, so plain-.bak files are not visible "
+              "to the untracked pass")
     if bad:
         print()
         print("ACTION: at least one checkout is WEDGED / SKEWED / gc-blocked.")
@@ -913,16 +2014,29 @@ def main():
         print("All probed checkouts structurally clean.")
     if stranded:
         print()
-        print("ACTION: a worker is holding run manifest(s) that exist NOWHERE")
+        print("ACTION: a box is holding run manifest(s) that exist NOWHERE")
         print("  on origin. Under Phase 3 a completed experiment reaches origin")
         print("  via the coordinator spool, so a manifest that never got there")
-        print("  is lost the moment that worker is reset, cleaned, gc'd or")
-        print("  destroyed -- and the checkout looks perfectly healthy.")
+        print("  is lost the moment that checkout is reset, cleaned, gc'd or")
+        print("  destroyed -- and it looks perfectly healthy.")
         print("  Recover FIRST (scp the file off; the coordinator DB signature")
         print("  is experiments.status=completed with ZERO rows in results),")
         print("  then land it. Worked example:")
         print("  evidence/planning/recovered_stranded_manifests/")
         print("    README_ree-cloud-2_2026-07-30.md")
+        # Only when a MULTI-SESSION box actually holds one -- the hint is about
+        # how to act on a finding there, and printing it for a worker's strand
+        # would tell the reader their finding was claim-checked when it was not.
+        if any(n in FLEET and FLEET[n].multi_session
+               and any((r["raw"].get("untracked") or {}).get("findings")
+                       for r in (e.get("repos") or {}).values())
+               for n, e in report.items()):
+            print()
+            print("  On DLAPTOP-4 specifically: a finding here has ALREADY been")
+            print("  checked against active TASK_CLAIMS and re-graded once. If")
+            print("  it survived both, treat it as real -- but still confirm no")
+            print("  session opened a claim in between, and NEVER `git checkout")
+            print("  -- .` on that tree (other sessions' live work).")
     return 1 if bad else 0
 
 
