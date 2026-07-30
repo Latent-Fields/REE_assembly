@@ -1,0 +1,70 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-30T06:49:10Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3",
+      "queue_id": "V3-EXQ-798a",
+      "claim_ids": [],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "not_applicable",
+        "biological_reference": "present_at_claim_level_not_this_run",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate_now_demonstrated",
+        "measurement": "adequate",
+        "integration": "isolated_arm_symmetric",
+        "scale": "adequate_for_purpose"
+      },
+      "biological_reference": {
+        "closest_mechanism": "novelty-driven hippocampal replay / slow-wave-activity upregulation (Wilson & McNaughton 1994; Tononi & Cirelli 2003; Stickgold et al 2001; Louie & Wilson 2001) -- cited on MECH-180 itself, not touched by this run",
+        "dependencies": ["SD-MEL-CONSUMER (link ii, built+proven V3-EXQ-718a)"],
+        "is_formal_import": false,
+        "divergence": "none -- this run validates engineering infrastructure (a graded, learnable novelty producer), not a biological claim",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "SD-MEL-PRODUCER test-bed VALIDATED 2026-07-29 (confirmed failure_autopsy_V3-EXQ-798a_2026-07-30; V3-EXQ-798a PASS, producer_validated_graded_learnable, claim_ids=[] by design). The environment now demonstrably produces a graded, above-reference, and genuinely learnable (re-learnable) waking MEL load, cleanly separated from a matched noise control (anchor decay 0.283 vs floor 0.15; control decay 0.0042 vs ceiling 0.10; noise-control worst-seed ratio 1.25x >= 1.0 fair). This licenses (does not itself constitute) a SEPARATE, still-gated MECH-180 ecological end-to-end run using this environment as the novelty knob. v3_pending STAYS; pending_retest_after_substrate STAYS until that ecological run scores. PROMOTES/DEMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-MEL-PRODUCER",
+        "note": "Already built and landed 2026-07-21 (ree-v3 10e287ad30). No substrate_queue.json entry exists or is needed by design. Recommend instead a plain doc update: docs/architecture/sd_mel_producer.md Status PENDING -> VALIDATED (V3-EXQ-798a, 2026-07-29), and a MECH-180 claims.yaml live_status/ceiling_routing_note update per recommended_evidence_quality_note above."
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "Not applicable to this target -- claim_ids=[]. MECH-180's brake fired at 3 (677/718/718a) and was already released for the SD-MEL-PRODUCER BUILD on 2026-07-21 per claims.yaml ceiling_routing_note. 798a is that build's validation run, not a new same-question re-queue against 677/718/718a's ecological question -- not a brake violation."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "SD-MEL-PRODUCER (periodic action->displacement re-permutation) produces a graded, above-reference, and genuinely learnable (re-learnable, hence reducible) waking prediction-error load, cleanly separable from a matched noise control on real margins -- unlike the env_drift-based predecessor knob (677/718/718a), which only added irreducible sampling noise.",
+        "All three concrete C4-measurement defects in V3-EXQ-798 (unreachable top bin by construction, under-elevated noise control, a routing gap asserting an unmeasured verdict) were fixed with design-time, pre-registered, mechanically-asserted proofs (_assert_quartile_reachability) rather than post-hoc tuning.",
+        "A long-running (~12.6h) shared-checkout experiment can legitimately show substrate_stable_across_run=False purely from process-snapshot drift (other work landing on ree-v3/main mid-run) with per_cell_hashes_disagree=False -- this is a reuse-safety signal (arm_reuse correctly refuses to serve such a run's cells as a baseline arm), not a run-validity defect, and should be interpreted as such rather than as a red flag."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "verification_notes": {
+    "dry_run_gate": "check_dry_run_citations.py: 0 dry cited, 1 clean. Top-level dry_run field is None.",
+    "recording_gate": "validate_recording.py --paths <manifest>: OK, 0 always-core gaps.",
+    "z_goal_stream_independent_verification": "Re-derived from source, not taken on the docstring's word: e3_selector.py:1207 gates the E3 goal term on goal_state.is_active(); agent.py gates E1 goal-conditioning on the same predicate (e.g. line 4875); agent.update_residue (producer of the DV e3_prediction_error) has no goal reference. z_goal_stream block confirms writer_calls=0, active_frac=0.0, writer_defect=true -- goal_state.is_active() was False throughout, so both gated paths were inert identically across all 6 arms (_make_agent takes only env dims). Cannot confound C1-C4.",
+    "substrate_stability_caveat": "substrate_stable_across_run=False, per_cell_hashes_disagree=False, process_snapshot_drift shows on-disk hash at manifest-stamp time differs from process-start hash -- expected for a ~12.6h shared-checkout run; reuse-safety signal only, per experiments/_lib/manifest_core.py's own documented semantics.",
+    "granularity_debt_check": "granularity_debt_cluster.py MECH-180: 3 prior targets (677/718/718a), alignment distribution unclear x3, no target reads weakened -- trigger does NOT fire.",
+    "queue_entry_check": "V3-EXQ-798a removed from experiment_queue.json on completion (PASS), consistent with queue-completion convention; git log -S confirms it was queued and landed."
+  },
+  "gate": {
+    "method": "AskUserQuestion",
+    "presented_utc": "2026-07-30T06:49Z (same session, prior to artifact write)",
+    "user_response": "Confirm as read (Recommended) -- PASS reading and routing accepted as-is."
+  }
+}
