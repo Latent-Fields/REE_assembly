@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-30T06:47:38Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3",
+      "queue_id": "V3-EXQ-810a",
+      "claim_ids": ["ARC-071", "MECH-323", "MECH-324"],
+      "failed_criterion": null,
+      "self_route_label": "chunk_accumulator_fires",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Striatal (DLS) chunking of repeated action sequences into single behavioural units, with IL/vmPFC maintenance (Graybiel 1998/2008 trigger + onset; Yin & Knowlton 2006 formation locus; Smith & Graybiel 2013 optogenetic causal evidence for maintenance)",
+        "dependencies": ["MECH-094", "MECH-322", "SD-014", "SD-039", "MECH-269", "ARC-069", "MECH-163", "INV-037", "INV-038"],
+        "is_formal_import": false,
+        "divergence": "none -- direct biological translation, no formal-definition substitution",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {
+        "ARC-071": "supports",
+        "MECH-323": "supports",
+        "MECH-324": "supports"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-810a self-report CONFIRMED by independent re-derivation from raw per-seed data (2026-07-30 autopsy). Readiness preconditions non-vacuous: worst-seed margins 2.4x-7.0x their floors on all three preconditions (harm-fraction 2.7x, outcome-spread 7.0x, symbols-per-trial 2.4x). C1 (load-bearing) clears 7/8 seeds (0.875) against a pre-registered 0.75 bar, verified directly from per-seed chunk_acc_n_formed rows. C7 credit-rule separation is 5x (2385.0 vs 478.625 credit events), not marginal. Recording complete (validate_recording.py: 0 always-core gaps). Correctly excluded from claim-confidence scoring via scoring_excluded=diagnostic_probe (build_experiment_indexes.py) despite self-reporting supports -- this run tests the MECH-323/MECH-324 formation+maintenance mechanism under a realistic full-loop workload, not ARC-071's headline behavioural-benefit prediction (use_chunk_proposal_injection=False throughout, explicitly disclaimed in the driver docstring). One caveat, non-blocking: ARM_FULL seed 202 formed zero chunks despite its own readiness preconditions holding at 7x/2.7x their floors -- a genuine single-seed behavioural non-formation under full-margin readiness, does not threaten the aggregate PASS, routed to a targeted follow-up probe rather than absorbed silently.",
+      "recording_provenance": {
+        "recording_schema": "rec/v1",
+        "substrate_hash": "12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882",
+        "machine": "ree-cloud-2",
+        "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+        "elapsed_seconds": 13191.761943489,
+        "always_core_gaps": 0,
+        "validated_via": "ree-v3/validate_recording.py"
+      },
+      "scoring_pipeline_check": {
+        "adjudication_in_index": "verified",
+        "scoring_excluded": "diagnostic_probe",
+        "note": "Pipeline already correctly excludes experiment_purpose=diagnostic runs from claim-confidence scoring; the self-reported supports direction is descriptive/routing metadata, not a scored contribution. No correction owed to the index or claims.yaml."
+      },
+      "downstream_citation_check": {
+        "citing_artifact": "failure_autopsy_V3-EXQ-822b-834_2026-07-29.json",
+        "citing_target_run_id": "v3_exq_834_arc071_mech323_budget_coupled_ceilings_20260729T002336Z_v3",
+        "claim": "V3-EXQ-810a already validated the chunk-accumulator readiness fix on the identical substrate_hash",
+        "verified": true,
+        "verification_method": "Direct substrate_hash comparison of both manifests: both equal 12dc9bfda051930e4b090e18fe9c375b3174a7991b7622a6f24debc9c0170882",
+        "note": "Citation was accurate and appropriately hedged even before this autopsy existed -- the citing artifact's own re_derive_brake.not_fired_reason already lists 'V3-EXQ-810a (PASS, no autopsy target)' and does not rely on 810a alone (834 carries its own independent corroborating majority-seed data on the same substrate). This autopsy retroactively confirms the fact being cited."
+      },
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "No substrate gap -- the ARC-071 chunk-accumulator substrate is confirmed ready under a realistic full-loop, hazard-bearing workload. 810's starvation diagnosis (competence_implementation_gap) is confirmed corrected."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "Not applicable -- this target is a confirmed PASS, not a substrate_ceiling/non_contributory FAIL. Prior V3-EXQ-810 autopsy (failure_autopsy_backlog_2026-07-24) recommended_epistemic_category=competence_implementation_gap, not substrate_ceiling, so count under R1-R3 convention is 0 regardless."
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "checked_via": "granularity_debt_cluster.py",
+        "tagging_targets": {
+          "ARC-071": ["failure_autopsy_V3-EXQ-822b-834_2026-07-29 (unclear)", "failure_autopsy_backlog_2026-07-24 (unclear)"],
+          "MECH-323": ["failure_autopsy_V3-EXQ-822b-834_2026-07-29 (unclear)", "failure_autopsy_2026-07-28-sweep target (strengthened)", "failure_autopsy_backlog_2026-07-24 (unclear)"],
+          "MECH-324": ["failure_autopsy_2026-07-28-sweep target (mixed: strengthened/weakened on f_reacq)", "failure_autopsy_backlog_2026-07-24 (unclear)"]
+        },
+        "alignment_distribution_note": "No target across any of the three claims reads a `weakened` alignment attributable to THIS run's own diagnosis. MECH-324's one mixed/weakened component belongs to a pre-existing, separately-autopsied rapid-reacquisition falsifier target, not to 810a. Trigger does not fire."
+      },
+      "fanout_recommendation": null,
+      "hypothesis_space_step_9b": {
+        "applicable": false,
+        "reason": "No pre-registered questions/hypotheses in hypothesis_space_registry.v1.json name ARC-071/MECH-323/MECH-324 (checked directly). This autopsy is not a GOV-FANOUT-1 discrimination portfolio -- single-target readiness confirmation, no live_hypotheses, no legs to resolve. Skipped cleanly per Step 9b's own applicability rule; registry file also had an active contending claim from a concurrent autopsy session (V3-EXQ-819a) at claim-open time, which was avoided rather than raced since it was not needed."
+      },
+      "learning_extracted": [
+        "Existing dependency STRENGTHENED: 810's starvation diagnosis (autopsy-confirmed competence_implementation_gap, not substrate_ceiling) correctly predicted that repairing the three starvation causes would let MECH-323/MECH-324 fire; 810a confirms this, robustly, across 7/8 seeds with non-vacuous readiness margins.",
+        "The experiment_purpose=diagnostic + scoring_excluded=diagnostic_probe pipeline machinery correctly prevents this readiness confirmation from inflating claim confidence for ARC-071's untested behavioural-benefit clause, despite the manifest self-reporting evidence_direction=supports.",
+        "Seed 202's zero-formation-despite-ample-readiness-margin is a genuine, reportable residual behavioural-variability signal, distinct from readiness -- not load-bearing against the aggregate PASS but worth a targeted follow-up rather than silent absorption into the 7/8 pass fraction."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "step8_gate": {
+    "user_selected_option": "Confirm but flag seed-202 for a future targeted probe",
+    "resolved_utc": "2026-07-30T06:50:09Z"
+  },
+  "chip_ref": "chip-20260730-autopsy-810a"
+}
