@@ -266,7 +266,14 @@ def build_runpack_docs(data: dict, experiment_type: str):
     # arm-fingerprint reuse key (linux-x86_64-py3.10 binding). Conditional add:
     # only emit a key when the flat carries a non-empty value, so legacy flat
     # manifests without provenance produce byte-identical output.
-    for _prov in ("machine", "machine_class", "substrate_hash"):
+    # `substrate_commit` (2026-07-30) rides the same list: it is the DIAGNOSIS half
+    # of the provenance pair, useless if it dies at the flat manifest. substrate_hash
+    # proves two runs executed different substrate but is opaque; substrate_commit
+    # names the commit so the difference reduces to a `git diff` (the V3-EXQ-614 vs
+    # 614a case, where a lambda retune between the runs flipped a verdict FAIL ->
+    # PASS while every recorded field looked identical). A dict value is non-empty
+    # under the same str().strip() test, so it needs no special-casing here.
+    for _prov in ("machine", "machine_class", "substrate_hash", "substrate_commit"):
         _val = data.get(_prov)
         if _val is not None and str(_val).strip() != "":
             manifest[_prov] = _val
