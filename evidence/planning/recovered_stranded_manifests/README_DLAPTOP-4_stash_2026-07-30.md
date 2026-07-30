@@ -206,7 +206,9 @@ divergence, which is the case a byte comparison gets exactly backwards.
 
 **Building it against these real entries found four false-positive classes that grading by
 this document's table alone would have produced.** Recording them because the table above
-reads as more settled than it is:
+reads as more settled than it is. **A fifth was found the same day by triaging the tool's
+own first finding, and it is written up below** -- the count is a running tally, not a
+closed list:
 
 1. **IGW item `id` is not an identifier.** The table grades item ids and reports 0 absent --
    true only because the grading ran the SAME DAY. Ids are dated slot labels
@@ -225,13 +227,62 @@ reads as more settled than it is:
    (`2026-02-13T224000Z_commit-dual-error-channels_seed11`) matched nothing, so that
    generation was invisible to the sweep.
 
-**One real strand surfaced, and it is NOT from this document's three entries.** The
-2026-07-27 archive tags (`stash-archive/20260727-07a5621a` and `-95b7594f`) carry
+~~**One real strand surfaced, and it is NOT from this document's three entries.**~~
+**TRIAGED 2026-07-30T18:23Z (session `relaxed-montalcini-eb02e1`, chip
+`chip-20260730-exq825-stranded-stash-runs`): NOT a strand. It is false-positive class 5,
+and the grader has been taught it.** Nothing was ever lost and nothing needed recovering.
+
+The 2026-07-27 archive tags (`stash-archive/20260727-07a5621a` and `-95b7594f`) do carry
 `claim_evidence` entries for two V3-EXQ-825 runs --
 `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T151207Z_v3` and
-`...T151439Z_v3` -- that appear **nowhere on `origin/master`**. Not triaged here (out of
-this chip's scope, and the entries are already archive-tagged, so nothing is at risk); it is
-a worked example of the tool doing the job it was built for on its first replay.
+`...T151439Z_v3` -- that appear nowhere on `origin/master`. **They are `--dry-run` smokes,
+and their absence is the INTENDED end state.** Both were produced on `DLAPTOP-5.local` with
+`dry_run: true`, 1 seed (`eval_seeds: [0]`) and truncated windows (`t0=8`, `t1=6` against
+the real run's `50`/`30`), which is exactly the smoke the queue entry's own note
+pre-declares: *"--dry-run smoke PASS (crash-free, writes manifest+sentinel; FAIL outcome
+expected under truncated smoke windows)"*. Both graded FAIL / `weakens`.
+
+**Chain of custody, end to end.** `de0c34a3cb` (2026-07-26) committed both smokes' packs to
+`master`; `cb7298c1c4` (2026-07-28) made the pack converter and the indexer refuse smokes
+and **deleted this pair outright, packs AND flat manifests**, its message naming the same
+two runs as confirmed MECH-245 contamination; `5189800eea` regenerated the index the same
+morning, dropping 22 dry-run entries and moving MECH-245 `fail_runs` 2 -> 0 and
+`experimental_confidence` 0.571 -> 0.771. The stash tags were taken 2026-07-27, i.e.
+*between* the two -- which is the entire reason they still hold content `master` has since
+correctly purged.
+
+**V3-EXQ-825 itself ran once and PASSED.** The coordinator DB (authoritative; the manifest
+scan is structurally blind here) holds exactly one `results` row for the queue id -- `PASS`,
+received `2026-07-26T15:21:04Z`, committed `15:23:25Z` -- and the `experiments` row is
+`status=completed`, `removal_reason=PASS`. That is run
+`...T152102Z_v3`, executed on `ree-worker-3` (`linux-x86_64`), and it is on `origin/master`
+with a full `runs/<run_id>/` pack. **Neither stranded id has a DB row at all**, so this is
+also not a phantom completion -- a phantom is a DB `completed` row with no
+manifest; here it is the mirror image, manifests with no DB row, because a `--dry-run` never
+reports a result to the coordinator.
+
+**Class 5: a deliberately-purged artifact reads as an absence.** The grader asks "is this
+identifier on origin", which cannot distinguish *lost* from *correctly deleted* -- so it
+reported the fix as the loss. `scripts/audit_stashes.py` now suppresses any run id the
+entry's own tree marks `dry_run: true` at `evidence/experiments/_dry_<run_id>.json`, in
+**both** the struct pass and the token sweep, and prints a `dry-run smoke (absence is
+intended)` line rather than dropping it silently. Replaying the two tags now yields **0**
+run-level findings (the 3 residual are arm fingerprints, deliberately load-bearing), in the
+same ~1.2s.
+
+Two things that fix got wrong first and are now pinned:
+
+- **Probe the entry's TREE, not its changed-path list.** A stash entry lists only what it
+  MODIFIED, and here the `_dry_` manifests were already committed at the stash's base and
+  untouched by it -- present in `git ls-tree` of the entry, absent from `entry_files`. The
+  first implementation scanned the changed paths and suppressed nothing at all.
+- **Never trust the `_dry_` filename alone.** The blob must actually say `dry_run: true`.
+  This matters because of the coupling `cb7298c1c4` flagged: the flat manifest is the ONLY
+  carrier of the flag, since the pack it produced has no `dry_run` field.
+
+Pins: `scripts/test_audit_stashes_containment.py` (35 tests, was 27), including both traps
+above, a negative control where a `_dry_`-named file with `dry_run: false` suppresses
+nothing, and one asserting an arm fingerprint is never suppressed.
 
 **What has NOT changed:** which identifiers matter is still a per-artifact judgement, and
 the classifier is a deliberately minimal **allowlist** of the current governance regen.
