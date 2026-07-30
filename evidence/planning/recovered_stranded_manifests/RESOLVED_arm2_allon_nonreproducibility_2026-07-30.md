@@ -242,6 +242,56 @@ worker's file** as the provenance original, exactly as the 707c/673 precedent di
 required)** — correct and intended, same as the precedent. **`review_tracker.json` was
 deliberately NOT touched**: marking runs reviewed is `/governance` Step 5's call.
 
-### Measured effect on the corpus
+### Measured effect on the corpus — the admission is fully inert
 
-See the "Measured" section appended below after the index rebuild.
+Isolated by the precedent's method: rebuild with the two files **held aside**, hash-manifest
+`evidence/` + `docs/`, restore, rebuild again, diff. (`now`-dependent churn is excluded by
+comparing the same two artefacts across the pair, not against HEAD — 1141 files carry a
+`Generated:` timestamp that rewrites on every run regardless.)
+
+Corpus counts: `Indexed 1610 -> 1611 run(s)` across `1122 -> 1123 experiment type(s)`,
+`FAIL 994 -> 995`. Literature entries, backlog items and proposals all unchanged
+(2033 / 379 / 427).
+
+**`claim_evidence.v1.json` for MECH-341 and ARC-065 is field-for-field IDENTICAL** —
+`experimental_confidence`, `literature_confidence`, `overall_confidence`, `direction_counts`,
+`entries_total`, `runs_total`, `exp_posterior`, `evidence_quadrant`, `source_counts`,
+`recent_targeted_batches`: **all unchanged**. `conflict_ratio` **0.0 -> 0.0** on both.
+
+Not merely un-scored — **the run contributes to no per-claim statistic at all**. `entries_total`
+does not even increment (MECH-341 stays 6, ARC-065 stays 56), because a run-level
+`superseded` is excluded from the per-claim summary rather than counted-then-discounted. The
+entry *is* present and correctly linked in the top-level `entries` list for both claims, with
+`scoring_excluded: "superseded"`, `evidence_level: "C"`, and it is **not** in `unlinked_runs`.
+
+Also verified unchanged for both claims, by diffing their rows against committed `HEAD`:
+
+- `evidence/planning/ARCHITECTURE_GAP_REGISTER.md` — **identical**. This is the check that
+  matters most, because it is the artefact the `scoring_excluded` leak damages, and it is
+  where the precedent's ARC-110 admission moved `conflict_ratio` 1.0 -> 0.8.
+- `evidence/experiments/promotion_demotion_recommendations.md` — **identical**.
+- `evidence/experiments/pending_review.md` — 614 does **not** appear, and `Pending: 9` is
+  unchanged (the only delta is the `Generated:` timestamp). This differs from the 707c/673
+  precedent, where the admitted runs *did* land in `pending_review` under FAIL (action
+  required): those were admitted with scored/`non_contributory` directions, whereas a
+  `superseded` direction is excluded here too. Nothing is owed to `/governance` Step 5 as a
+  result, and `review_tracker.json` was correctly left untouched.
+
+**The counterfactual, measured rather than argued.** Both claims sit at `weakens: 0` in the
+baseline (MECH-341 `supports: 6`, ARC-065 `supports: 49, mixed: 7`). Admitting as-emitted
+`weakens` would therefore have taken `conflict_ratio` from **0.0 -> 0.286** on MECH-341
+(`2x min(6,1)/7`) and **0.0 -> 0.04** on ARC-065 — the first conflict either claim has ever
+recorded, minted out of a substrate configuration that no longer exists. That is the harm the
+`superseded` treatment avoids, and it is why `superseded_by_substrate` alone would have been
+the wrong choice despite being the semantically apt field.
+
+### One caveat on the commit that carries this
+
+The index rebuild also absorbed **pre-existing drift**: the derived artefacts were stale
+relative to `HEAD` before this session touched them, so the landing commit rewrites ~1141
+files. Inspected before committing — it is **`Generated:` timestamp churn only** (the
+`claim_probe_*/INDEX.md` set, `decision_state.v1.json`, `pending_review.md` headers); no other
+session's substantive derived content is swept. `docs/claims/claims.yaml` was dirty with
+another session's live MECH-217 work throughout and was **deliberately excluded** from the
+commit. The precedent commit `37f1af866f` has the same 1143-file footprint, so this is the
+established shape of an admit-plus-regen landing, not an anomaly.

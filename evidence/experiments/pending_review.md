@@ -1,6 +1,6 @@
 # Pending Experiment Review
 
-Generated: `2026-07-30T06:34:21Z`  
+Generated: `2026-07-30T06:41:48Z`  
 Last review: `2026-07-29T23:24:03Z`  
 Pending: **9** item(s) -- 5 PASS, 4 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication; 2 run(s) with a DEAD z_goal stream
 

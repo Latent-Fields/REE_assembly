@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_452a_mech257_dual_function_e2_reef
 
-Generated: `2026-07-30T06:41:15.631506Z`
+Generated: `2026-07-30T07:58:48.772984Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
