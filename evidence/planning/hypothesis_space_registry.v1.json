@@ -628,16 +628,18 @@
       "V3-EXQ-819a"
      ],
      "resolution": {
-      "state": "alive",
-      "resolving_runs": [],
-      "evidence_direction": "pending",
-      "epistemic_category": null,
-      "self_route_label": "zworld_advantage_grid_nondiscriminative",
-      "control_passed": false,
-      "non_degenerate": null,
+      "state": "confirmed",
+      "resolving_runs": [
+       "V3-EXQ-819a"
+      ],
+      "evidence_direction": "supports",
+      "epistemic_category": "standard",
+      "self_route_label": "zworld_prediction_training_confers_advantage",
+      "control_passed": true,
+      "non_degenerate": true,
       "met_elimination_bar": false,
-      "resolved_utc": null,
-      "basis": "V3-EXQ-819 attempted this leg and the encoder DID train (3/3 seeds, delta 0.277-0.333; 780 fault fixed), showing a directional advantage (trained AUC 0.90 vs random 0.46, asymmetric install 2/3 vs 0/3, mean paired +0.442). But the run was VACATED (non_degenerate=false) by a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate -- a measurement_test_design_defect. Leg stays ALIVE; awaits a scored V3-EXQ-819a with the gate reconciled. Observation bottleneck: worst-seed post_bc_install_took floor vacates instrument-validity runs at n=3."
+      "resolved_utc": "2026-07-27T00:50:12Z",
+      "basis": "V3-EXQ-819a (819's gate/router reconciliation: post_bc_install_took now scores strict-majority install fraction, matching the router's own predicate; seeds 3->6) is non_degenerate:true with no adjudication flag. C_zworld_training_confers_competence_advantage passed: mean paired AUC delta +0.626 vs a 0.3 margin, 4/6 seeds clear it (42/43/45/46), n_seeds_harm=0. Confirmed (control_passed via local_view_greedy/greedy_oracle/zworld_world_encoder_trained anchors; met_elimination_bar false per the state-mapping table -- supports+control_passed, not an elimination/split). Failure autopsy (2026-07-30, confirmed) separately checked and ruled out reopening H-rep: H-rep's control (V3-EXQ-748) used cotrain_encoder=True, structurally distinct from the zworld_p0 detached-warmup mechanism V3-EXQ-780 found broken -- H-rep's eliminated state stands. One low-severity, not-fully-closure-verified substrate-hash provenance caveat recorded in the autopsy (zworld_random_proj control arm ran on a different git substrate_hash than the trained arm mid-run); does not affect this resolution."
      }
     },
     {

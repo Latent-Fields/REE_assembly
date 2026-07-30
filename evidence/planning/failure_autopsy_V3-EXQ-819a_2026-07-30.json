@@ -1,0 +1,74 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-30T06:44:02Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3",
+      "queue_id": "V3-EXQ-819a",
+      "claim_ids": ["MECH-457", "INV-088"],
+      "failed_criterion": null,
+      "self_route_label": "zworld_prediction_training_confers_advantage",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate (one unresolved-but-low-severity substrate-hash provenance caveat, see notes)",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "predictive/structured sensory representation learning (predictive coding) shaping downstream competence, vs. an untrained random projection of equal dimensionality",
+        "dependencies": ["SD-070 zworld_p0 P0a encoder warmup"],
+        "is_formal_import": false,
+        "divergence": "none -- confirms an uncontroversial, biologically-expected direction (trained representations beat random ones); this is an instrument-validity check, not a novel biological claim",
+        "lit_status": "not applicable -- instrument-validity diagnostic, not a claim-content test"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-457": "supports",
+        "INV-088": "supports"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-819a (2026-07-27, confirmed autopsy 2026-07-30) is an instrument-validity diagnostic, not direct claim evidence (scoring_excluded: diagnostic_probe): it confirms a prediction-trained z_world beats a frozen random projection on installed foraging competence (paired AUC delta +0.626, 4/6 seeds clear a 0.3 margin, non-degenerate). This resolves the H-zworld-trained-instrument hypothesis-space leg but promotes/demotes nothing on MECH-457/INV-088; the campaign's pre-780 z_world legs (run on the broken frozen-projection instrument) remain flagged for separate re-interpretation, not retroactively reweighted here.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The 819->819a gate/router reconciliation (post_bc_install_took scored on strict-majority install fraction, identical to the router's own predicate) worked: 819a is non_degenerate:true with no adjudication flag, where 819 had been vacated by a worst-seed scoring defect that contradicted the router's own reading.",
+        "Prediction-trained z_world confers a real, decisive competence advantage over a frozen random projection of the same dimensionality (mean paired AUC delta +0.626 vs a 0.3 margin, 4/6 seeds, n_seeds_harm=0) -- H-zworld-trained-instrument resolves to confirmed.",
+        "H-rep's 2026-07-13 elimination draws its z_world control from V3-EXQ-748, which used cotrain_encoder=True -- a structurally different, genuinely-training mechanism from the detached zworld_p0 P0a-warmup family V3-EXQ-780 found broken (frozen random projection). Verified directly against the 748 driver script, not inferred. H-rep is NOT confounded by the 780 defect and its eliminated state stands.",
+        "The run's zworld_random_proj control arm executed on a different git substrate_hash than the trained arm (substrate_stable_across_run: false) during the 12.8h wall-clock run. Investigated against ree-v3 origin history for the run's start window: no ree_core/**/experiments/_lib/** commit was found in the window, only coordination-data queue snapshots and an unrelated new driver file (also outside _SUBSTRATE_GLOBS). Same shape as the confirmed V3-EXQ-782 false-positive precedent, but NOT independently verified to full closure-restricted certainty (782's own method was not re-run here). Recorded as a low-severity, non-blocking caveat.",
+        "PROMOTES/DEMOTES NOTHING is correct: this run is scoring_excluded=diagnostic_probe, so the indexer's generic PASS-defaults-to-supports fallback (claim_evidence.v1.json entries) is cosmetic and does not move either claim's confidence aggregate."
+      ],
+      "routing": "governance-registry-resolution",
+      "substrate_stability_note": {
+        "substrate_stable_across_run": false,
+        "affected_arm": "zworld_random_proj (control)",
+        "distinct_substrate_hashes": 2,
+        "investigation_performed": "searched ree-v3 origin history for commits between the run's two process-snapshot resolution timestamps (2026-07-26T12:02:14Z, 2026-07-26T13:01:33Z); found 3 phase3-queue snapshot commits (experiment_queue.json only, not in _SUBSTRATE_GLOBS) and 1 new-driver-file commit (V3-EXQ-817a, also not in _SUBSTRATE_GLOBS); no ree_core/**/experiments/_lib/** commit found in-window",
+        "precedent": "failure_autopsy_V3-EXQ-782_2026-07-20.md (confirmed false positive, same shape: glob wider than execution closure)",
+        "verification_status": "not fully closure-restricted verified -- flagged for future recompute if this leg's confirmed status is ever contested",
+        "severity": "low",
+        "affects_routing": false
+      },
+      "h_rep_precaution": {
+        "checked": true,
+        "finding": "H-rep unconfounded -- control (V3-EXQ-748) used cotrain_encoder=True, structurally distinct from the zworld_p0 detached-warmup mechanism V3-EXQ-780 found broken",
+        "user_directed_followup": "user chose 'Also flag H-rep for re-derivation' at the Step 8 gate despite the structural finding; routed as a low-priority precautionary /queue-experiment spike (modernized 748-equivalent under the validated zworld_p0-trained encoder), not a reopening of H-rep's eliminated state in the registry"
+      }
+    }
+  ],
+  "cluster_pattern": null
+}

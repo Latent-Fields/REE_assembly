@@ -1,17 +1,17 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-29T22:46:43Z",
+  "generated_at": "2026-07-30T06:47:25Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 127,
+      "total_modules": 130,
       "built_modules": 104,
-      "fraction_built": 0.8189,
+      "fraction_built": 0.8,
       "state_counts": {
-        "proposed": 23,
+        "proposed": 26,
         "implemented": 74,
         "implemented_pending_validation": 17,
         "validated": 13
@@ -31,13 +31,13 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 36,
+      "total_surviving": 35,
       "total_initial": 64,
       "total_initial_at_registration": 46,
       "total_fanout_added": 18,
       "total_resolved_out": 27,
       "reduction_pct_vs_current": 42.2,
-      "net_narrowing_pct": 21.7,
+      "net_narrowing_pct": 23.9,
       "convergence_classes": {
         "narrowing": 5,
         "static": 5,
@@ -45,7 +45,7 @@
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "36 alive against 46 originally enumerated, and against 64 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "35 alive against 46 originally enumerated, and against 64 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 14
     },
     "decide": {
@@ -59,73 +59,79 @@
       "date": "2026-07-11",
       "surviving": 63,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-13",
       "surviving": 61,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-15",
       "surviving": 57,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-16",
       "surviving": 56,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-17",
       "surviving": 53,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-18",
       "surviving": 47,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-19",
       "surviving": 43,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-20",
       "surviving": 42,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-24",
       "surviving": 41,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-25",
       "surviving": 40,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-27",
       "surviving": 38,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
     },
     {
       "date": "2026-07-29",
-      "surviving": 36,
+      "surviving": 37,
       "closure_pct": 76.2,
-      "build_pct": 81.9
+      "build_pct": 80.0
+    },
+    {
+      "date": "2026-07-30",
+      "surviving": 35,
+      "closure_pct": 76.2,
+      "build_pct": 80.0
     }
   ],
   "questions": [
@@ -220,13 +226,14 @@
         }
       ],
       "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
-      "net_narrowing_ratio": 0.4286,
-      "bits_removed_vs_registration": 0.81,
+      "net_narrowing_ratio": 0.5714,
+      "bits_removed_vs_registration": 1.22,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
+          "instrumentation",
           "representation",
           "world"
         ],
@@ -437,13 +444,13 @@
           }
         ]
       },
-      "surviving": 4,
-      "alive": 3,
+      "surviving": 3,
+      "alive": 2,
       "resolved_out": 14,
-      "confirmed": 3,
+      "confirmed": 4,
       "reduction_numerator": 14,
       "reduction_ratio": 0.7,
-      "bits_removed": 2.32,
+      "bits_removed": 2.74,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -697,12 +704,11 @@
           "label": "prediction-trained z_world confers a competence advantage over a random projection",
           "desc": "Instrument-validity leg (R4/D12): does a PREDICTION-TRAINED z_world beat a FROZEN RANDOM-PROJECTION z_world on installed foraging competence? Re-validates whether the representation-axis eliminations (H-rep, 747/749) hold now that the encoder actually trains -- V3-EXQ-780 proved every prior z_world arm used a frozen random projection, so the earlier eliminations may have been run on a broken instrument.",
           "axis": "instrumentation",
-          "state": "alive",
+          "state": "confirmed",
           "evidence_runs": [
-            "V3-EXQ-819",
             "V3-EXQ-819a"
           ],
-          "basis": "V3-EXQ-819 attempted this leg and the encoder DID train (3/3 seeds, delta 0.277-0.333; 780 fault fixed), showing a directional advantage (trained AUC 0.90 vs random 0.46, asymmetric install 2/3 vs 0/3, mean paired +0.442). But the run was VACATED (non_degenerate=false) by a worst-seed non-vacuity gate that contradicts its own strict-majority routing predicate -- a measurement_test_design_defect. Leg stays ALIVE; awaits a scored V3-EXQ-819a with the gate reconciled. Observation bottleneck: worst-seed post_bc_install_took floor vacates instrument-validity runs at n=3.",
+          "basis": "V3-EXQ-819a (819's gate/router reconciliation: post_bc_install_took now scores strict-majority install fraction, matching the router's own predicate; seeds 3->6) is non_degenerate:true with no adjudication flag. C_zworld_training_confers_competence_advantage passed: mean paired AUC delta +0.626 vs a 0.3 margin, 4/6 seeds clear it (42/43/45/46), n_seeds_harm=0. Confirmed (control_passed via local_view_greedy/greedy_oracle/zworld_world_encoder_trained anchors; met_elimination_bar false per the state-mapping table -- supports+control_passed, not an elimination/split). Failure autopsy (2026-07-30, confirmed) separately checked and ruled out reopening H-rep: H-rep's control (V3-EXQ-748) used cotrain_encoder=True, structurally distinct from the zworld_p0 detached-warmup mechanism V3-EXQ-780 found broken -- H-rep's eliminated state stands. One low-severity, not-fully-closure-verified substrate-hash provenance caveat recorded in the autopsy (zworld_random_proj control arm ran on a different git substrate_hash than the trained arm mid-run); does not affect this resolution.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -2133,6 +2139,21 @@
       "moved": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
       "resolved_utc": "2026-07-29T09:24:49Z",
       "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-819a",
+      "all_runs": [
+        "V3-EXQ-819a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "V3-EXQ-819a (819's gate/router reconciliation: post_bc_install_took now scores strict-majority install fraction, matching the router's own predicate; seeds 3->6) is non_degenerate:true with no adjudication flag. C_zworld_training_confers_competence_advantage passed: mean paired AUC delta +0.626 vs a 0.3 margin, 4/6 seeds clear it (42/43/45/46), n_seeds_harm=0. Confirmed (control_passed via local_view_greedy/greedy_oracle/zworld_world_encoder_trained anchors; met_elimination_bar false per the state-mapping table -- supports+control_passed, not an elimination/split). Failure autopsy (2026-07-30, confirmed) separately checked and ruled out reopening H-rep: H-rep's control (V3-EXQ-748) used cotrain_encoder=True, structurally distinct from the zworld_p0 detached-warmup mechanism V3-EXQ-780 found broken -- H-rep's eliminated state stands. One low-severity, not-fully-closure-verified substrate-hash provenance caveat recorded in the autopsy (zworld_random_proj control arm ran on a different git substrate_hash than the trained arm mid-run); does not affect this resolution.",
+      "resolved_utc": "2026-07-27T00:50:12Z",
+      "evidence_direction": "supports"
     },
     {
       "run": "V3-EXQ-816d",
