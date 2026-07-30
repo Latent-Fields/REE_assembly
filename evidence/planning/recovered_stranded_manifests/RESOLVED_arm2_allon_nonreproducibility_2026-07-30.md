@@ -285,13 +285,40 @@ recorded, minted out of a substrate configuration that no longer exists. That is
 `superseded` treatment avoids, and it is why `superseded_by_substrate` alone would have been
 the wrong choice despite being the semantically apt field.
 
-### One caveat on the commit that carries this
+### What else the landing commit carries, and who owns it
 
-The index rebuild also absorbed **pre-existing drift**: the derived artefacts were stale
-relative to `HEAD` before this session touched them, so the landing commit rewrites ~1141
-files. Inspected before committing — it is **`Generated:` timestamp churn only** (the
-`claim_probe_*/INDEX.md` set, `decision_state.v1.json`, `pending_review.md` headers); no other
-session's substantive derived content is swept. `docs/claims/claims.yaml` was dirty with
-another session's live MECH-217 work throughout and was **deliberately excluded** from the
-commit. The precedent commit `37f1af866f` has the same 1143-file footprint, so this is the
-established shape of an admit-plus-regen landing, not an anomaly.
+The landing commit `ec44fc414b` rewrites **1145 files**. Only **4** of them are attributable to
+the admitted run (its flat manifest, its pack `manifest.json`, and the new experiment-type
+`INDEX.md` + `experiment.md`) — that is the hold-aside result above. The other ~1141 are the
+**full index rebuild's own output**, and they are this session's, not swept from anyone else:
+`architecture_gap_register.v1.json`, `evidence_backlog.v1.json` and the rest were **clean in
+the working tree before the first regen** (only `docs/claims/claims.yaml` and
+`decision_state.v1.json` were dirty at session start).
+
+**Correction to an earlier characterisation in this document:** those ~1141 files were first
+described here as pre-existing drift that was "`Generated:` timestamp churn only". Both halves
+were wrong. They are not pre-existing (they were clean), and the churn is not only timestamps.
+Inspected properly, all of it is **`now`-derived regeneration**:
+
+- `generated_at_utc` on every derived artefact, and the `Generated:` header on the ~1130
+  `claim_probe_*/INDEX.md` and per-experiment `INDEX.md` files.
+- `decision_deadline_utc` = `now + 3d` across ~20 gap-register items and ~38 backlog items,
+  **including the `next_action` prose that embeds that timestamp** — which is why the delta
+  summary reports `signals` / `next_action` / `adjudication_context` changes that look
+  substantive and are not.
+- `inter_governance_workset.v1.json` rolled its date-keyed item ids from `IGW-20260729-*` to
+  `IGW-20260730-*` (675 old / 665 new), i.e. the daily workset regenerated for today. It was
+  a day stale.
+
+No hand-authored content was clobbered. `igw_routine_ledger.json` and `igw_assignments.json`
+are **not** in the commit, so the IGW ledger and its agent tracking are intact — only the
+derived candidate workset rolled. `docs/claims/claims.yaml` carried another session's live
+MECH-217 work throughout and was **deliberately excluded**; it is still dirty and uncommitted,
+as it should be.
+
+Worth knowing for next time: `--index-only` would have produced the +1 entry and the
+`claim_evidence.v1.json` measurement **without** rewriting the planning artefacts (its help
+text says exactly that). The full run was used deliberately, because the load-bearing check
+here was the `ARCHITECTURE_GAP_REGISTER.md` `conflict_ratio` row, which `--index-only` skips.
+The precedent commit `37f1af866f` has the same 1143-file footprint, so this is the established
+shape of an admit-plus-regen landing rather than an anomaly.
