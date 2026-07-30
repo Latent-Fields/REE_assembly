@@ -253,6 +253,23 @@ echo "--- Step 3c-quinquies: Plan Status-table vs frontmatter sync (warn-only) -
 # Reconcile the ROW, never the node. Warn-only (--exit-nonzero to gate).
 "$PYTHON" scripts/check_plan_status_table_sync.py --quiet-notes || true
 
+echo "--- Step 3c-sexies: Manifest degeneracy annotation vs its own arm data (warn-only) ---"
+# Cross-checks each manifest's arm-degeneracy ANNOTATION against the per-seed arm
+# DATA in the SAME file -- the one thing no other check does, because every other
+# consumer trusts the annotation. Two directions: arms bit-identical on every
+# comparable metric yet unflagged (the confirmed 2026-07-30 V3-EXQ-673 MECH-171
+# incident, eabe9c453b: three manifests asserted in prose that their arms differed
+# while per_seed_comparisons showed ARM_A==ARM_B==ARM_C on every metric for every
+# seed -- introduced 2026-07-20, survived ten days, caught only because a human
+# read the note beside the numbers); and non_degenerate:false set on an
+# arm-identity justification the data contradicts, which de-weights real evidence.
+# Scoring-harmless in that instance only because `degenerate` and
+# `non_contributory` are both scoring_excluded -- the same error on a scored
+# direction mints a scored entry out of a vacuous run. Detection only: a finding
+# needs a /failure-autopsy adjudication of WHY the arms collapsed, never a
+# mass-set of the flag. Warn-only (--exit-nonzero to gate).
+"$PYTHON" scripts/check_manifest_degeneracy_consistency.py --quiet-notes || true
+
 echo "--- Step 3c-pre-heal: Self-heal status-plane drift (SHP-3; re-stamp in place, NO commit) ---"
 # status_history_plane:SHP-3. Closes the SHP-3 automation gap: check_closure_drift's
 # status-plane section only REPORTED drift (a collapsed node whose stored two-plane
