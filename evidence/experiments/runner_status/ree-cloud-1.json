@@ -2,22 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 4043988,
   "runner_started_at": "2026-07-20T05:23:11.094414+00:00",
-  "last_updated": "2026-07-27T00:50:13.340877+00:00",
+  "last_updated": "2026-07-30T06:07:02.186140+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-816b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-321 policy_decomposition P-A (env axis): harshened env -> low-V_s production + region-V_s distribution recording",
-      "description": "",
-      "estimated_minutes": 80.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3526,6 +3514,48 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 46082.0
+    },
+    {
+      "queue_id": "V3-EXQ-826a",
+      "backlog_id": "EVB-0121",
+      "claim_id": "MECH-244",
+      "title": "MECH-244: precision-weighted PE suppression -> self-sealing world model (CORRECTED -- E1 now ticked)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome=FAIL direction=non_contributory label=substrate_not_ready_requeue | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-826a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-826a.json",
+      "started_at": "2026-07-27T06:00:20.316184+00:00",
+      "completed_at": "2026-07-27T14:18:40.968437+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_826a_mech244_precision_weighting_self_sealing_20260727T141840Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 29900.7
+    },
+    {
+      "queue_id": "V3-EXQ-828",
+      "backlog_id": "EVB-0459",
+      "claim_id": "INV-091",
+      "title": "INV-091: cross-stream similarity BAND falsifier, remaining 5 ablations (event broadcasts / mode conditioning / residue feedback / randomised rates / harm-stream collapse)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: PASS | outcome: FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-828 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-828.json",
+      "started_at": "2026-07-27T14:20:44.555611+00:00",
+      "completed_at": "2026-07-27T20:37:05.357631+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations_20260727T203704Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 22580.8
+    },
+    {
+      "queue_id": "V3-EXQ-833",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Stage-H STRICT goal isolation: does silencing the E3 goal term change LEARNED avoidance?",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS seed=61 arm=ARM_STRICT mean_surv=64.3 z0peak=0.4503 harm_range=0.1116 | Done. outcome=PASS label=goal_term_behaviourally_inert_in_stageh_within_stated_precision n_pairs=20 mean_delta=4.49 ci95_half=9.38 | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-833 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-833.json",
+      "started_at": "2026-07-27T23:39:56.019916+00:00",
+      "completed_at": "2026-07-30T06:07:02.184534+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 196026.2
     }
   ]
 }
