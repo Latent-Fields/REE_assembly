@@ -1,0 +1,625 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_687a_mech313_committed_authority_dissociation",
+  "run_id": "v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-30T05:08:50Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-045",
+    "MECH-313",
+    "MECH-260"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "Q-045": "non_contributory",
+    "MECH-313": "non_contributory",
+    "MECH-260": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "note": "No noise-floor arm cleared its precondition gate, so no reading about tonic authority is possible. NOT a substrate verdict.",
+    "preconditions": [
+      {
+        "name": "ARM_0_both_off::conversion_stack_routes_range",
+        "precondition": "conversion_stack_routes_range",
+        "arm": "ARM_0_both_off",
+        "kind": "readiness",
+        "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+        "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.024246592,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_0_both_off::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "ARM_0_both_off",
+        "kind": "readiness",
+        "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+        "control": "fresh-selection counter over the frozen-policy P2 phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 241.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "ARM_0_both_off::committed_sufficiency",
+        "precondition": "committed_sufficiency",
+        "arm": "ARM_0_both_off",
+        "kind": "readiness",
+        "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+        "control": "count of fresh selections with last_score_diagnostics['committed']",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 50.0,
+        "met": false
+      },
+      {
+        "name": "ARM_1_mech313_only::conversion_stack_routes_range",
+        "precondition": "conversion_stack_routes_range",
+        "arm": "ARM_1_mech313_only",
+        "kind": "readiness",
+        "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+        "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.017570089,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_1_mech313_only::tonic_lever_fires",
+        "precondition": "tonic_lever_fires",
+        "arm": "ARM_1_mech313_only",
+        "kind": "readiness",
+        "description": "MECH-313 positive control: the noise floor lifts the effective softmax temperature above baseline. Measured by calling noise_floor.compute_effective_temperature() directly, so it does not depend on diagnostic plumbing. Below floor => the lever never fired and NO reading about its authority is possible.",
+        "control": "direct compute_effective_temperature(baseline_temperature=1.0)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_1_mech313_only::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "ARM_1_mech313_only",
+        "kind": "readiness",
+        "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+        "control": "fresh-selection counter over the frozen-policy P2 phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 250.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_mech313_only::committed_sufficiency",
+        "precondition": "committed_sufficiency",
+        "arm": "ARM_1_mech313_only",
+        "kind": "readiness",
+        "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+        "control": "count of fresh selections with last_score_diagnostics['committed']",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 50.0,
+        "met": false
+      },
+      {
+        "name": "ARM_2_mech260_only::conversion_stack_routes_range",
+        "precondition": "conversion_stack_routes_range",
+        "arm": "ARM_2_mech260_only",
+        "kind": "readiness",
+        "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+        "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.01790868,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_2_mech260_only::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "ARM_2_mech260_only",
+        "kind": "readiness",
+        "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+        "control": "fresh-selection counter over the frozen-policy P2 phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 184.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "ARM_2_mech260_only::committed_sufficiency",
+        "precondition": "committed_sufficiency",
+        "arm": "ARM_2_mech260_only",
+        "kind": "readiness",
+        "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+        "control": "count of fresh selections with last_score_diagnostics['committed']",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 50.0,
+        "met": false
+      },
+      {
+        "name": "ARM_2_mech260_only::dacc_fifo_full",
+        "precondition": "dacc_fifo_full",
+        "arm": "ARM_2_mech260_only",
+        "kind": "readiness",
+        "description": "MECH-260 non-vacuity: the dACC anti-recency ring actually filled, measured in FRESH SELECTIONS (requirement 5). An unfilled ring cannot produce suppression, so a zero-suppression reading would be uninterpretable.",
+        "control": "dacc_history_len_max over the measured phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 8.0,
+        "met": false
+      },
+      {
+        "name": "ARM_3_both_on::conversion_stack_routes_range",
+        "precondition": "conversion_stack_routes_range",
+        "arm": "ARM_3_both_on",
+        "kind": "readiness",
+        "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+        "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.008108778,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_3_both_on::tonic_lever_fires",
+        "precondition": "tonic_lever_fires",
+        "arm": "ARM_3_both_on",
+        "kind": "readiness",
+        "description": "MECH-313 positive control: the noise floor lifts the effective softmax temperature above baseline. Measured by calling noise_floor.compute_effective_temperature() directly, so it does not depend on diagnostic plumbing. Below floor => the lever never fired and NO reading about its authority is possible.",
+        "control": "direct compute_effective_temperature(baseline_temperature=1.0)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_3_both_on::fresh_select_sufficiency",
+        "precondition": "fresh_select_sufficiency",
+        "arm": "ARM_3_both_on",
+        "kind": "readiness",
+        "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+        "control": "fresh-selection counter over the frozen-policy P2 phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 239.0,
+        "threshold": 100.0,
+        "met": true
+      },
+      {
+        "name": "ARM_3_both_on::committed_sufficiency",
+        "precondition": "committed_sufficiency",
+        "arm": "ARM_3_both_on",
+        "kind": "readiness",
+        "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+        "control": "count of fresh selections with last_score_diagnostics['committed']",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 50.0,
+        "met": false
+      },
+      {
+        "name": "ARM_3_both_on::dacc_fifo_full",
+        "precondition": "dacc_fifo_full",
+        "arm": "ARM_3_both_on",
+        "kind": "readiness",
+        "description": "MECH-260 non-vacuity: the dACC anti-recency ring actually filled, measured in FRESH SELECTIONS (requirement 5). An unfilled ring cannot produce suppression, so a zero-suppression reading would be uninterpretable.",
+        "control": "dacc_history_len_max over the measured phase",
+        "direction": "lower",
+        "applies": true,
+        "measured": 8.0,
+        "threshold": 8.0,
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": false,
+      "C2": false,
+      "C4": false,
+      "C3": false,
+      "C1b": false,
+      "C2b": false
+    },
+    "criteria": [
+      {
+        "name": "C1_precommit_responds_to_tonic",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C2_committed_responds_to_tonic",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C3_dacc_operative_with_stack_armed",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C4_behavioural_coverage_nondegenerate",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "per_arm_gate": {
+      "green_arms": [],
+      "red_arms": [
+        "ARM_0_both_off",
+        "ARM_1_mech313_only",
+        "ARM_2_mech260_only",
+        "ARM_3_both_on"
+      ],
+      "structurally_vacuous_arms": [],
+      "vacuity_reason_by_arm": {},
+      "all_green": false,
+      "any_green": false,
+      "failed_preconditions_by_arm": {
+        "ARM_0_both_off": [
+          "committed_sufficiency"
+        ],
+        "ARM_1_mech313_only": [
+          "committed_sufficiency"
+        ],
+        "ARM_2_mech260_only": [
+          "committed_sufficiency",
+          "dacc_fifo_full"
+        ],
+        "ARM_3_both_on": [
+          "committed_sufficiency",
+          "dacc_fifo_full"
+        ]
+      },
+      "preconditions_scope_note": "No arm passed its gate, so every precondition is carried in interpretation.preconditions and the whole run is vacuous.",
+      "green": [],
+      "red": [
+        {
+          "arm": "ARM_0_both_off",
+          "gate_green": false,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [
+            "committed_sufficiency"
+          ],
+          "preconditions": [
+            {
+              "name": "ARM_0_both_off::conversion_stack_routes_range",
+              "precondition": "conversion_stack_routes_range",
+              "arm": "ARM_0_both_off",
+              "kind": "readiness",
+              "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+              "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.024246592,
+              "threshold": 1e-06,
+              "met": true
+            },
+            {
+              "name": "ARM_0_both_off::fresh_select_sufficiency",
+              "precondition": "fresh_select_sufficiency",
+              "arm": "ARM_0_both_off",
+              "kind": "readiness",
+              "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+              "control": "fresh-selection counter over the frozen-policy P2 phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 241.0,
+              "threshold": 100.0,
+              "met": true
+            },
+            {
+              "name": "ARM_0_both_off::committed_sufficiency",
+              "precondition": "committed_sufficiency",
+              "arm": "ARM_0_both_off",
+              "kind": "readiness",
+              "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+              "control": "count of fresh selections with last_score_diagnostics['committed']",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.0,
+              "threshold": 50.0,
+              "met": false
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "ARM_0_both_off::tonic_lever_fires",
+              "precondition": "tonic_lever_fires",
+              "arm": "ARM_0_both_off",
+              "applies": false,
+              "reason": "not meaningful for this regime (no applies_note given)"
+            },
+            {
+              "name": "ARM_0_both_off::dacc_fifo_full",
+              "precondition": "dacc_fifo_full",
+              "arm": "ARM_0_both_off",
+              "applies": false,
+              "reason": "not meaningful for this regime (no applies_note given)"
+            }
+          ]
+        },
+        {
+          "arm": "ARM_1_mech313_only",
+          "gate_green": false,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [
+            "committed_sufficiency"
+          ],
+          "preconditions": [
+            {
+              "name": "ARM_1_mech313_only::conversion_stack_routes_range",
+              "precondition": "conversion_stack_routes_range",
+              "arm": "ARM_1_mech313_only",
+              "kind": "readiness",
+              "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+              "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.017570089,
+              "threshold": 1e-06,
+              "met": true
+            },
+            {
+              "name": "ARM_1_mech313_only::tonic_lever_fires",
+              "precondition": "tonic_lever_fires",
+              "arm": "ARM_1_mech313_only",
+              "kind": "readiness",
+              "description": "MECH-313 positive control: the noise floor lifts the effective softmax temperature above baseline. Measured by calling noise_floor.compute_effective_temperature() directly, so it does not depend on diagnostic plumbing. Below floor => the lever never fired and NO reading about its authority is possible.",
+              "control": "direct compute_effective_temperature(baseline_temperature=1.0)",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.5,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_1_mech313_only::fresh_select_sufficiency",
+              "precondition": "fresh_select_sufficiency",
+              "arm": "ARM_1_mech313_only",
+              "kind": "readiness",
+              "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+              "control": "fresh-selection counter over the frozen-policy P2 phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 250.0,
+              "threshold": 100.0,
+              "met": true
+            },
+            {
+              "name": "ARM_1_mech313_only::committed_sufficiency",
+              "precondition": "committed_sufficiency",
+              "arm": "ARM_1_mech313_only",
+              "kind": "readiness",
+              "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+              "control": "count of fresh selections with last_score_diagnostics['committed']",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.0,
+              "threshold": 50.0,
+              "met": false
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "ARM_1_mech313_only::dacc_fifo_full",
+              "precondition": "dacc_fifo_full",
+              "arm": "ARM_1_mech313_only",
+              "applies": false,
+              "reason": "not meaningful for this regime (no applies_note given)"
+            }
+          ]
+        },
+        {
+          "arm": "ARM_2_mech260_only",
+          "gate_green": false,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [
+            "committed_sufficiency",
+            "dacc_fifo_full"
+          ],
+          "preconditions": [
+            {
+              "name": "ARM_2_mech260_only::conversion_stack_routes_range",
+              "precondition": "conversion_stack_routes_range",
+              "arm": "ARM_2_mech260_only",
+              "kind": "readiness",
+              "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+              "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.01790868,
+              "threshold": 1e-06,
+              "met": true
+            },
+            {
+              "name": "ARM_2_mech260_only::fresh_select_sufficiency",
+              "precondition": "fresh_select_sufficiency",
+              "arm": "ARM_2_mech260_only",
+              "kind": "readiness",
+              "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+              "control": "fresh-selection counter over the frozen-policy P2 phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 184.0,
+              "threshold": 100.0,
+              "met": true
+            },
+            {
+              "name": "ARM_2_mech260_only::committed_sufficiency",
+              "precondition": "committed_sufficiency",
+              "arm": "ARM_2_mech260_only",
+              "kind": "readiness",
+              "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+              "control": "count of fresh selections with last_score_diagnostics['committed']",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.0,
+              "threshold": 50.0,
+              "met": false
+            },
+            {
+              "name": "ARM_2_mech260_only::dacc_fifo_full",
+              "precondition": "dacc_fifo_full",
+              "arm": "ARM_2_mech260_only",
+              "kind": "readiness",
+              "description": "MECH-260 non-vacuity: the dACC anti-recency ring actually filled, measured in FRESH SELECTIONS (requirement 5). An unfilled ring cannot produce suppression, so a zero-suppression reading would be uninterpretable.",
+              "control": "dacc_history_len_max over the measured phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 8.0,
+              "threshold": 8.0,
+              "met": false
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "ARM_2_mech260_only::tonic_lever_fires",
+              "precondition": "tonic_lever_fires",
+              "arm": "ARM_2_mech260_only",
+              "applies": false,
+              "reason": "not meaningful for this regime (no applies_note given)"
+            }
+          ]
+        },
+        {
+          "arm": "ARM_3_both_on",
+          "gate_green": false,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [
+            "committed_sufficiency",
+            "dacc_fifo_full"
+          ],
+          "preconditions": [
+            {
+              "name": "ARM_3_both_on::conversion_stack_routes_range",
+              "precondition": "conversion_stack_routes_range",
+              "arm": "ARM_3_both_on",
+              "kind": "readiness",
+              "description": "GAP-A conversion stack live: the routed cross-candidate range (modulatory_channel_route_range) clears its floor. This is the SAME statistic the within-shortlist argmin consumes -- not a magnitude proxy for it (the V3-EXQ-643 same-statistic rule).",
+              "control": "frozen-policy P2 ticks with >=2 candidates and the stack armed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.008108778,
+              "threshold": 1e-06,
+              "met": true
+            },
+            {
+              "name": "ARM_3_both_on::tonic_lever_fires",
+              "precondition": "tonic_lever_fires",
+              "arm": "ARM_3_both_on",
+              "kind": "readiness",
+              "description": "MECH-313 positive control: the noise floor lifts the effective softmax temperature above baseline. Measured by calling noise_floor.compute_effective_temperature() directly, so it does not depend on diagnostic plumbing. Below floor => the lever never fired and NO reading about its authority is possible.",
+              "control": "direct compute_effective_temperature(baseline_temperature=1.0)",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.5,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_3_both_on::fresh_select_sufficiency",
+              "precondition": "fresh_select_sufficiency",
+              "arm": "ARM_3_both_on",
+              "kind": "readiness",
+              "description": "Enough GENUINE selections for an entropy to have an n. The env-step count is not the denominator -- E3 cadence 10 (driven to [5,20] by MECH-093) means ~90-95% of env steps replicate a prior commitment.",
+              "control": "fresh-selection counter over the frozen-policy P2 phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 239.0,
+              "threshold": 100.0,
+              "met": true
+            },
+            {
+              "name": "ARM_3_both_on::committed_sufficiency",
+              "precondition": "committed_sufficiency",
+              "arm": "ARM_3_both_on",
+              "kind": "readiness",
+              "description": "NON-VACUITY GUARD ON THE LOAD-BEARING CRITERION. C2 compares committed_action_entropy across arms, so its DENOMINATOR is the count of COMMITTED fresh selections -- not env steps and not fresh selections. An agent that never commits yields a C2 computed over an empty histogram, which would read as 'tonic has no committed authority' for the wrong reason (nothing was committed) rather than the right one (the argmin is temperature-invariant). Below floor => substrate_not_ready_requeue, NOT an authority verdict.",
+              "control": "count of fresh selections with last_score_diagnostics['committed']",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.0,
+              "threshold": 50.0,
+              "met": false
+            },
+            {
+              "name": "ARM_3_both_on::dacc_fifo_full",
+              "precondition": "dacc_fifo_full",
+              "arm": "ARM_3_both_on",
+              "kind": "readiness",
+              "description": "MECH-260 non-vacuity: the dACC anti-recency ring actually filled, measured in FRESH SELECTIONS (requirement 5). An unfilled ring cannot produce suppression, so a zero-suppression reading would be uninterpretable.",
+              "control": "dacc_history_len_max over the measured phase",
+              "direction": "lower",
+              "applies": true,
+              "measured": 8.0,
+              "threshold": 8.0,
+              "met": false
+            }
+          ],
+          "scoped_out": []
+        }
+      ]
+    },
+    "dv_symmetry_declaration": {
+      "ARM_1_mech313_only": "committed_action_entropy: manipulation IS invariant (uniform temperature = monotone rescaling; argmin order-preserving) -- this is the HYPOTHESIS UNDER TEST, measured not assumed. precommit_entropy: NOT invariant (softmax is temperature-scaled by construction) -- the positive control.",
+      "ARM_3_both_on": "As ARM_1, replicated in the presence of dACC.",
+      "ARM_2_mech260_only": "dACC suppression is a PER-CANDIDATE additive penalty (count(c in history)/len), not a broadcast scalar, so it is NOT invariant under the committed argmin. Measurable.",
+      "ARM_0_both_off": "No manipulation; the reference arm."
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "17d74ad85e51630c5d8e5fb84eaa1bba71068287dfcaa19fc8153ce180c423f2"
+}
