@@ -11739,12 +11739,19 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "v3_exq_688_mech044_hippocampal_relational_binding",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "blocked_by": [
+        "z_world_relational_differentiation"
+      ],
+      "blocked_note": "Corrected successor V3-EXQ-688a already ran (2026-06-19) and HONESTLY self-routed substrate_not_ready_requeue: non-vacuity guard z_world_relational_discriminative measured 0.20 vs floor 1.0 -- z_world is dominated by absolute position and does not discriminate entity-pair spatial RELATIONS (z_world under-differentiation / monostrategy ceiling). 688a's own docstring states a fair PASS requires a future TRAINED relational encoder that does not yet exist. Re-running v3_exq_688 (EVB-0466 suggested_experiment_type) re-derives this non_contributory self-route. Not another /queue-experiment letter.",
+      "gated_on": "z_world_relational_differentiation",
+      "gating_reason": "MECH-044's relational-binding diagnostic requires the representation the hippocampal anchor/boundary layer snapshots (z_world) to encode entity-pair spatial relations discriminatively. On the current substrate (random-init encoder, synthetic obs) z_world encodes absolute position, not relation (Fisher ratio 0.20 vs 1.0 floor, V3-EXQ-688a). Testing MECH-044 further only re-derives the z_world under-differentiation ceiling.",
+      "release_condition": "A representation that clears the z_world_relational_discriminative floor (Fisher ratio >= 1.0 on structured relational obs) -- via /implement-substrate for z_world relational differentiation OR a documented relational encoder-warmup phase. NB: whether a trained encoder can clear this floor is itself uncertain, and 688a (never autopsied) may also warrant a /failure-autopsy to adjudicate whether the G3 gate should read the hippocampal representation rather than raw z_world."
     },
     {
       "acceptance_checks": [
