@@ -1246,3 +1246,4 @@ One line per hourly tick. ASCII only.
 2026-07-29T21:36:21Z no eligible item (skipped 243): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
 2026-07-29T22:36:56Z no eligible item (skipped 243): IGW-20260729-001:skill /governance not allowed; IGW-20260729-002:skill /governance not allowed; IGW-20260729-003:skill /governance not allowed
 2026-07-29T23:37:28Z STAGE IGW-20260729-196 skill=/implement-substrate prio=25 worktree=igw-196-substrate-ready-q081-reach-check (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
+2026-07-30T00:38:31Z STAGE IGW-20260730-192 skill=/implement-substrate prio=25 worktree=igw-192-substrate-ready-inv091-null-vali (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
