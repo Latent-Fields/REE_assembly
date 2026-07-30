@@ -217,11 +217,21 @@ MAX_OTHER_PATHS = 10
 # are transient telemetry, materialised on origin only by the phase3 writers.
 # These become NOTES, never findings -- see the module docstring on why a
 # probe that false-positives on ordinary runner churn gets ignored.
+#
+# _runner_signals/<QUEUE_ID>.json is the entry that is NOT merely noise-
+# suppression: those files carry BOTH `run_id` and `outcome`, so the manifest
+# test below grades them as run manifests. They are runner EXIT SIGNALS that
+# POINT at a manifest via `manifest_path` -- never the manifest itself. On the
+# Mac the directory is .gitignore'd (so inert), but anywhere it is untracked
+# rather than ignored the grader emits up to MAX_FINDINGS spurious findings
+# plus a truncated tail. Confirmed 2026-07-30 (DLAPTOP-4, 40 files); write-up
+# in evidence/planning/recovered_stranded_manifests/README_DLAPTOP-4_2026-07-30.md.
 BYDESIGN = (
     (re.compile(r"_per_tick\.jsonl$"), "per_tick"),
     (re.compile(r"(^|/)runner_status/"), "runner_status"),
     (re.compile(r"(^|/)runner_commands/"), "runner_commands"),
     (re.compile(r"(^|/)runner_heartbeats/"), "runner_heartbeats"),
+    (re.compile(r"(^|/)_runner_signals/"), "runner_signals"),
 )
 CHURN = re.compile(
     r"(^|/)(__pycache__|\.mypy_cache|\.pytest_cache|node_modules|\.venv)(/|$)"
@@ -317,6 +327,18 @@ def grade_repo(root, ref):
         run_id = ""
         if isinstance(doc, dict) and doc.get("run_id") and doc.get("outcome"):
             run_id = str(doc["run_id"])
+
+        # 0) A BYDESIGN path is NEVER graded as a run manifest, however
+        #    manifest-shaped it looks. Dropping run_id here (rather than
+        #    relying on the BYDESIGN tag loop at the bottom) is what actually
+        #    suppresses it: the finding branch below fires FIRST, so a
+        #    _runner_signals/*.json -- run_id + outcome, but only a POINTER to
+        #    a manifest -- would otherwise never reach that loop.
+        if run_id:
+            for rx, _name in BYDESIGN:
+                if rx.search(rel):
+                    run_id = ""
+                    break
 
         # 1) Run-manifest grading. A run whose id is on origin ANYWHERE -- flat
         #    `<run_id>.json` or pack `.../runs/<run_id>/manifest.json` -- is not
@@ -736,6 +758,18 @@ def _selftest_grader():
         os.makedirs(os.path.join(root, "__pycache__"), exist_ok=True)
         with open(os.path.join(root, "__pycache__", "z.pyc"), "wb") as fh:
             fh.write(b"\x00\x01")
+        #  5. runner EXIT SIGNAL: carries run_id + outcome, so it grades as a
+        #     stranded manifest unless BYDESIGN suppresses it BEFORE the
+        #     manifest test. Its run_id is deliberately one that exists
+        #     nowhere on origin -- exactly the shape that fired 40 spurious
+        #     findings on DLAPTOP-4 on 2026-07-30. Note case 3's lost_run_v3
+        #     is the control: same shape, ordinary path, still a finding.
+        write("evidence/experiments/_runner_signals/V3-EXQ-999.json",
+              {"queue_id": "V3-EXQ-999", "run_id": "signal_run_v3",
+               "outcome": "FAIL", "exit_reason": "clean",
+               "manifest_path": "evidence/experiments/signal_run_v3.json",
+               "pid": 1234, "schema_version": 1, "script": "x.py",
+               "emitted_at": "2026-07-30T00:00:00Z"})
 
         r = subprocess.run(
             [sys.executable, "-", tmp, "REE_assembly:HEAD"],
@@ -759,12 +793,15 @@ def _selftest_grader():
         # notes must be EXACTLY the per_tick one: any 'no_counterpart_other'
         # here means the basename / stem / superset / byte-compare clearing
         # failed for a file that plainly does exist on origin.
-        if got.get("notes") != {"per_tick": 1}:
-            print(f"  [FAIL] notes {got.get('notes')} != {{'per_tick': 1}} "
-                  f"-- a file present on origin was not cleared")
+        want_notes = {"per_tick": 1, "runner_signals": 1}
+        if got.get("notes") != want_notes:
+            print(f"  [FAIL] notes {got.get('notes')} != {want_notes} "
+                  f"-- a file present on origin was not cleared, or a "
+                  f"by-design path was mis-graded")
             bad += 1
         else:
-            print("  [PASS] grader: _per_tick.jsonl is a NOTE, not a finding; "
+            print("  [PASS] grader: _per_tick.jsonl and a run_id-bearing "
+                  "_runner_signals/ exit signal are NOTES, not findings; "
                   "superset + byte-compare clearing verified")
         if got.get("ignored") != 1:
             print(f"  [FAIL] __pycache__ churn not ignored: {got.get('ignored')}")
