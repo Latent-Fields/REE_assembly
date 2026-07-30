@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_842_mech217_offline_wanting_spread_readiness",
+  "run_id": "v3_exq_842_mech217_offline_wanting_spread_readiness_20260730T173047Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-30T17:30:47Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-217"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mech217_offline_spread_readiness_verified",
+    "preconditions": [
+      {
+        "name": "exploration_buffer_populated",
+        "description": "MECH-165 exploration buffer holds >= 2 trajectories at run end",
+        "measured": 6,
+        "threshold": 2,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "reverse_replay_fired",
+        "description": "at least one MECH-165 reverse rollout fired across the run",
+        "measured": 20.0,
+        "threshold": 1,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0_off_no_writes": true,
+      "C1_on_near_exceeds_off": true,
+      "C2_decay_with_distance": true,
+      "C3_control_below_near": true
+    },
+    "criteria": [
+      {
+        "name": "C0_off_arm_zero_writes",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C1_on_near_exceeds_off_1p5x",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_on_near_exceeds_on_far",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_control_below_near",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "mean_on_near_wanting": 17.048430548773872,
+    "mean_off_near_wanting": 0.9981061551305984,
+    "mean_on_far_wanting": 4.236164013544719,
+    "mean_on_control_wanting": 0.4634947677453359,
+    "overall_pass": true
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "efa9578629f2dce7615155b64d8726642436cfca98eb65dce545db881474994c"
+}
