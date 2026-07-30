@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable",
+  "run_id": "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-30T01:06:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "world_model_converged_frozen_probe",
+        "description": "recon-only P0 base converges on the FIXED frozen probe battery on at least SEED_PASS_FRAC of seeds (readiness R2)",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "control": "fraction of seeds whose stable-base P0 conv_rel_drop clears MIN_REL_CONV_DROP; same seed-fraction statistic `met` tests",
+        "met": true
+      },
+      {
+        "name": "frozen_pe_responds_to_shock",
+        "description": "on the converged frozen base, PE rises under a max-novelty shock (readiness R1) -- the instrument can move at all",
+        "measured": 0.22314961568365754,
+        "threshold": 0.25,
+        "direction": "lower",
+        "control": "SHOCK_DRIFT positive control vs STABLE_DRIFT, ready seeds. This is also the SAME KIND of relative-PE-reduction statistic C4's decay_frac routes on, measured on a positive control",
+        "met": false
+      },
+      {
+        "name": "learnability_quartiles_populated",
+        "description": "the first and last cycle quartiles both carry enough samples for the C4 decay comparison to be readable, on every cell of the anchor/control pair. THIS IS THE 798 DEFECT: there its top bin held 0 samples by construction",
+        "measured": 225.0,
+        "threshold": 5.0,
+        "direction": "lower",
+        "control": "worst cell of ARM_1_LOW and ARM_4_NOISE_LO over quartile 0 and quartile 3",
+        "offending_cell": "ARM_1_LOW|seed42",
+        "met": true
+      },
+      {
+        "name": "noise_control_at_least_as_elevated",
+        "description": "the selected negative control's MEL is at least the anchor's on EVERY seed, so the C4 decay comparison is fair-or-conservative rather than won by the graded arm simply having more PE. 798 failed this at sigma 0.05",
+        "measured": 1.2465964525277888,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "ARM_4_NOISE_LO mel / ARM_1_LOW mel, worst seed",
+        "offending_cell": "ARM_4_NOISE_LO|seed456",
+        "met": true
+      },
+      {
+        "name": "cycle_quartiles_reachable_by_construction",
+        "description": "design-time proof that every quartile is non-empty on every shift-enabled arm: the counter cycles 0..interval-1, so N_BINS quartiles are all reachable when interval >= N_BINS. Asserted from the pre-registered ARMS table before any compute is spent",
+        "measured": 10.0,
+        "threshold": 8.0,
+        "direction": "lower",
+        "control": "minimum world_rule_shift_interval over shift-enabled arms",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true,
+      "C2": true,
+      "C3": true,
+      "C4": true
+    }
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "40460396a9f362039b6d4c0055fd32b763b195731c26e63bb041c5d6d91c97bc"
+}
