@@ -1248,3 +1248,4 @@ One line per hourly tick. ASCII only.
 2026-07-29T23:37:28Z STAGE IGW-20260729-196 skill=/implement-substrate prio=25 worktree=igw-196-substrate-ready-q081-reach-check (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-07-30T00:38:31Z STAGE IGW-20260730-192 skill=/implement-substrate prio=25 worktree=igw-192-substrate-ready-inv091-null-vali (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-07-30T01:39:36Z no eligible item (skipped 241): IGW-20260730-001:skill /governance not allowed; IGW-20260730-002:skill /governance not allowed; IGW-20260730-003:skill /governance not allowed
+2026-07-30T06:39:04Z SPAWN IGW-20260730-214 skill=/queue-experiment prio=40 uuid=00c5af14-b3bd-4ba9-a5e1-2e3170d4163d pid=20790 worktree=igw-214-proposal-for-sd-014
