@@ -209,3 +209,62 @@ before every `select_action` and emit `n_latched_ticks` (the ~9x pseudo-replicat
 - Templates: `v3_exq_654j_arc062_gapb_rule_apprehension_nogo_behavioural_falsifier.py`,
   `v3_exq_791a_channel_routing_cross_class_magnitude_replication.py`.
 - Method: GOV-FANOUT-1 (`docs/claims/claims.yaml`); `/queue-experiment` SKILL Step 2.5b.
+
+---
+
+## Erratum (2026-07-31, `/queue-experiment` build session for Leg P-A, chip
+`chip-20260729-arc062-pa-route-gatedpolicy`) -- **Leg P-A's premise is factually
+wrong; NOT queued.**
+
+Leg P-A (Section 2) claims that setting `modulatory_channel_route_source=
+"gated_policy"` routes **"the rule-apprehension channel's OWN per-candidate
+range"** -- i.e. the SAME channel `use_candidate_rule_field` (the swept
+variable) differentiates via `LateralPFCAnalog.compute_bias` / the
+`CandidateRuleField`. **This is not what the code does.**
+
+CODE-CONFIRMED (ree-v3, checked at build time):
+- `modulatory_channel_route_source == "gated_policy"` routes `_bdc_gp`
+  (`ree_core/agent.py:7414`), which is the output of `self.gated_policy(...)`
+  -- the **ARC-062 Phase-1 `GatedPolicy` module**
+  (`ree_core/policy/gated_policy.py`), NOT `LateralPFCAnalog`.
+- `GatedPolicy`'s own module docstring is explicit: *"There is no connection
+  to SD-033a LateralPFCAnalog in Phase 1 -- that wiring is Phase 3 ... This
+  module has NO internal state buffer (no EMA, no rule_state)."*
+  (`ree_core/policy/gated_policy.py` lines ~48-92). Its forward-pass inputs
+  are `z_world`, `z_self`, `z_harm_a`, per-candidate feature summaries, and
+  first-action one-hots -- none of which is `rule_state` or any
+  `CandidateRuleField` output.
+- The rule-apprehension bias P-A's swept variable (`use_candidate_rule_field`)
+  actually varies is `LateralPFCAnalog.compute_bias`'s output, separately
+  stashed as `_bdc_lpfc` (`ree_core/agent.py:6557`) -- and
+  `modulatory_channel_route_source` has **no `"lateral_pfc"` / `"lpfc"`
+  option**. The full valid-source list (`ree_core/agent.py:7405-7418` and
+  `ree-v3/CLAUDE.md` line ~10728) is exactly `cand_world_summary` /
+  `curiosity` / `gated_policy` / `mech295` / `coherence` -- the CRF/lateral_pfc
+  channel is not among the routable sources.
+
+CONSEQUENCE: because `GatedPolicy`'s bias does not depend on
+`use_candidate_rule_field` at all, routing `"gated_policy"` as a matched
+constant on both arms would add an **unrelated, equally-present-on-both-arms**
+bias term. It would not make the swept CRF channel's range "reach" the
+committed argmax as H1 claims -- the CRF-differentiated signal still reaches
+the committed action **only** via the pre-existing `_bdc_lpfc` ->
+`dacc_score_bias` summation path that 654j already used, unchanged. Queuing
+P-A as literally specified would not test H1; it would silently retest
+654j's own mechanism with cosmetic config noise added.
+
+**Correct path (not performed here -- out of `/queue-experiment` scope):**
+add a `modulatory_channel_route_source == "lateral_pfc"` (or `"lpfc"`)
+branch identity-routing `_bdc_lpfc`, mirroring the existing `"gated_policy"` /
+`"curiosity"` / `"mech295"` / `"coherence"` identity-routed branches
+(`ree_core/agent.py:7412-7418`). This is a small, well-scoped substrate
+addition (`complicated (buildable)`, not `complex (probe-gated)`) -- route
+`/implement-substrate`, then re-author Leg P-A against the corrected source
+name. Until then Leg P-A as designed here is **not buildable as specified**
+and should not be queued. Chip `chip-20260729-arc062-pa-route-gatedpolicy`
+resolved without queuing; a follow-on chip was spawned for the substrate
+addition + design correction.
+
+Legs P-B/P-C/P-D are unaffected by this finding (none of them depend on
+`modulatory_channel_route_source="gated_policy"` routing the rule-apprehension
+channel).
