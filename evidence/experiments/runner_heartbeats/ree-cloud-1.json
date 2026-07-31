@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-07-31T19:16:31Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-841",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-822",
-      "result": "FAIL",
-      "completed_at": "2026-07-26T11:21:53.334185+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-819a",
-      "result": "PASS",
-      "completed_at": "2026-07-27T00:50:13.339541+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-826a",
-      "result": "FAIL",
-      "completed_at": "2026-07-27T14:18:40.968437+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-828",
-      "result": "FAIL",
-      "completed_at": "2026-07-27T20:37:05.357631+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-833",
-      "result": "PASS",
-      "completed_at": "2026-07-30T06:07:02.184534+00:00"
-    }
+  "last_tick_utc": "2026-07-31T19:23:40Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-844",
+  "current_exq_started_utc": "2026-07-31T19:23:00.303419+00:00",
+  "current_title": "MECH-321 R4 mid-execution: does the abort hook improve task/harm outcome?",
+  "current_claim_id": "MECH-321",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 3 / ARM_HANDLE_OFF",
+    "runs_done": 0,
+    "runs_total": 12,
+    "episodes_done": 0,
+    "episodes_total": 12,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 40,
+  "seconds_remaining": 2100,
+  "recent_lines": [
+    "reuse_refused: fingerprint_not_in_index (seed=3 fp=3c5fb47a205d)",
+    "Seed 3 Condition ARM_HANDLE_OFF"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r4556 f75897f 2026-07-31 (running r4554 65f371c)",
+  "runner_version": "r4557 933d89c 2026-07-31 (running r4554 65f371c)",
   "gpu": {
     "available": false
   },
