@@ -187,6 +187,22 @@ NOTHING; the 485-lineage behavioural retest (NEW letter, supersedes 485l) is gat
 behind this build. See `ree-v3/CLAUDE.md` "SD-033b GAP-8 DECOUPLE" and
 `evidence/planning/failure_autopsy_V3-EXQ-485l_2026-06-22.md`.
 
+**GAP-8-affordability: reusable trained-head cache (2026-07-31, chip-20260730-ofc-deval-affordable).**
+The heads above emit zero bias until deliberately trained, and training requires
+gradient tracking through the live agent loop -- measured at ~2 s/step against
+~0.9 s/step no-grad (`experiments/_lib/baselines/arc071_chunking.py`), which is
+why the claims.yaml-named devaluation route (`V3-EXQ-485g/i/k/m`) has repeatedly
+been substituted for a policy-independent workaround in practice (most recently
+V3-EXQ-841). `experiments/_lib/ofc_head_cache.py` (new) plus
+`OFCAnalog.head_state_dict()`/`load_head_state_dict()` (additive) let a caller pay
+the training cost once per (substrate, config_slice, seed) -- keyed via the same
+content-hash discipline `arm_fingerprint.py` uses -- and reuse the result,
+including across a grid's dose arms if the caller's `config_slice` deliberately
+omits the dose axis (sound because `compute_bias`/`compute_devaluation_bias` read
+only `state_code` + candidate summaries, never chunking/dose config). This is
+infra only: no training protocol, no default change, no claims.yaml write. See
+`ree-v3/CLAUDE.md` "SD-033b GAP-8-affordability".
+
 ### D2. Outcome-pool weight defaults active (0.5) but harm_dim defaults zero
 
 **Chosen:** outcome_pool_weight defaults to 0.5 (architectural shape preserved)
