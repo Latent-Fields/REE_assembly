@@ -1281,3 +1281,8 @@ One line per hourly tick. ASCII only.
 2026-07-31T19:36:56Z auto-defer IGW-20260730-192 hash=9c3664f2d187 for 48h (complete)
 2026-07-31T19:36:57Z complete IGW-20260730-192 staged->completed outcome=NO_OP: Implemented INV091-NULL-VALIDATION-RUN-LENGTH: ree-v3 experiments/_lib/inv091_dr
 2026-07-31T19:37:22Z auto-defer IGW-20260729-196 hash=0b814b2b0ea9 for 48h (complete)
+2026-07-31T20:20:51Z GC removed worktree igw-192-substrate-ready-inv091-null-vali (removed; branch deleted)
+2026-07-31T20:20:55Z GC removed worktree igw-196-substrate-ready-q081-reach-check (removed; branch deleted)
+2026-07-31T20:20:49Z GC sweep removed 2 orphan worktree(s), kept 9
+2026-07-31T20:21:08Z reconcile-release hash=0b814b2b0ea9 (IGW-20260729-196 -> completed)
+2026-07-31T20:20:49Z no eligible item (skipped 245): IGW-20260731-001:skill /governance not allowed; IGW-20260731-200:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-; IGW-20260731-202:status=blocked blocked_by=ready_blocked_by: V3-EXQ-603l scored 4-arm escape-affordance-bridge behavioural validation must clear G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY before ready=True. Both non-vacuity readiness prereqs are now GREEN: relief ha; SD-058 [no-substrate-entry]: SD-058; MECH-357 [no-substrate-entry]: MECH-357 (+2 more)

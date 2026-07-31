@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-07-31T19:39:03Z",
+  "generated_at": "2026-07-31T20:21:08Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5288,6 +5288,30 @@
         "priority": 25,
         "claim_ids": [
           "ARC-005"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260731T202108Z-0b814b2b-claude_local",
+      "stable_hash": "0b814b2b0ea9",
+      "igw_id_at_assign": "IGW-20260731-197",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-07-31T20:21:08Z",
+      "released_at": "2026-07-31T20:21:08Z",
+      "released_by": "igw_routine_tick_reconcile",
+      "released_reason": "reconcile: ledger entry IGW-20260729-196 is terminal (completed); release() never fired on the transition tick",
+      "released_event_for": "asn-20260731T192853Z-0b814b2b-claude_local",
+      "note": null,
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: Q081-REACH-CHECK-PAIR-SPECIFIC",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "Q-081",
+          "INV-091"
         ]
       }
     }
