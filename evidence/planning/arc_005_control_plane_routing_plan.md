@@ -4,41 +4,47 @@ closure_plan:
   generation: v3
   title: "ARC-005 Control-Plane Routing (does the plane route, and which channel carries it)"
   registered: 2026-07-22
-  last_updated: 2026-07-22
+  last_updated: 2026-07-31
   scope_claims: [ARC-005]
   sibling_plans: [perceptual_adaptors_v4_plan.md, inference_belief_state_v4_plan.md]
   roadmap_note: >
     TWO-NODE VALIDATION LADDER for the registry's highest fan-in claim.
-    GAP-A asks whether the control plane has ANY causal authority over precision
-    and mode occupancy, dissociable from content (owner V3-EXQ-802, queued).
-    GAP-B asks WHICH of the four implemented channels carries that authority --
-    it is strictly downstream of GAP-A and is currently UNOWNED, which is the
+    GAP-A asked whether the control plane has ANY causal authority over precision
+    and mode occupancy, dissociable from content (owner V3-EXQ-802). 802 LANDED
+    2026-07-22T21:21:25Z (outcome FAIL, evidence_direction mixed, interpretation
+    label control_plane_routing_weak) and was reviewed + adjudicated by governance
+    2026-07-25 (989ac1bca0: "Directions for ... 802 ... already carried on their
+    manifests" -- no claims.yaml edit; ARC-005 stays status active). GAP-A is now
+    DONE. GAP-B asks WHICH of the four implemented channels carries the authority
+    802 found -- it is strictly downstream of GAP-A and was UNOWNED, which is the
     reason this doc exists. Registered by a /queue-experiment session that was
     spawned to author GAP-B and correctly STOPPED at its start-time gate because
-    802 had not yet run.
+    802 had not yet run. RECONCILED 2026-07-31 (chip-20260731-arc005-802-reconcile):
+    the doc had gone stale after 802 landed and was reviewed -- see the GAP-A
+    reconcile_2026_07_31 note and GAP-B's re-scoped design_sketch below.
   nodes:
     - id: "arc_005_control_plane_routing:GAP-A"
       title: "Does the control plane route at all? Channel-vs-content double dissociation over precision and mode occupancy"
       phase: 0
-      status: in-progress
+      status: done
       severity: load-bearing
       owner_exq: "V3-EXQ-802"
       unblocks_claims: [ARC-005]
       depends_on: []
-      last_updated: 2026-07-22
-      resume_condition: "V3-EXQ-802 is queued in ree-v3/experiment_queue.json (status pending, priority 47, machine_affinity any, 6 conditions x 5 seeds, est 360 min) and has NOT run -- no manifest exists in REE_assembly/evidence/experiments/ (flat or runs/<run_id>/ pack) as of 2026-07-22T03:28Z. Node closes when 802 lands a manifest AND is adjudicated. Script: ree-v3/experiments/v3_exq_802_arc005_control_plane_routing_double_dissociation.py (ree-v3 main fd8b309050). Design: all four control-plane channels moved TOGETHER along a 3-level ladder (L0/L1/L2) x 2 content sets on a fixed arena; the proposal's 2x2 is the {L0,L2}x{A,B} sub-grid, and L1 exists because the acceptance check requires monotonicity, which two levels cannot show. DVs: E3 precision readout + mode-occupancy distribution. Lineage mint: exq802_arc005_control_plane, every cell emitted with include_driver_script_in_hash=False, so this run IS the cross-driver-reusable baseline mint."
+      last_updated: 2026-07-31
+      completion_note: "V3-EXQ-802 landed 2026-07-22T21:21:25Z (all 6 arms green, 30/30 cells, non_degenerate=true). outcome FAIL, overall_pass false, evidence_direction mixed, interpretation.label control_plane_routing_weak. Read: MODE-OCCUPANCY dissociation is CLEAN and strong -- C1 PASS with d_channel_mean=1.0 (TV distance, channel manipulation moves argmax mode end-to-end: internal_planning at L0 -> external_task at L2, both content sets) vs d_content_mean=0.0 (content has ZERO effect on occupancy), delta 1.0 against an 0.8-SD-of-delta gate + 0.15 absolute floor -- occupancy is dissociably ROUTED by the channel, not read out from content. C3 PASS (10/10 units): identical channel settings reproduce the same argmax regime across both content sets. C2 monotonicity FAILED on ALL 10 units (0/10 satisfied) -- not because occupancy failed to track channel level (rho_external_task_occupancy 0.866-1.0 per unit, essentially monotonic) but because log10_precision_mean is BIT-IDENTICAL across L0/L1/L2 for matching (content,seed) pairs (e.g. content-A seed-0: 2.21044122 at ALL THREE channel levels; confirmed same pattern seeds 1-4 and content B) -- rho_log10_precision=0.0 by construction, a degenerate/undefined rank correlation, not a weak one. So: the claim's what_would_answer PASS bar (monotonic shift in BOTH DVs + occupancy-vs-content margin + reproducibility) is not met, and the FAIL/mixed label is correct -- but the finding is NOT a clean null result nor a single confounded corner: mode-occupancy routing is unambiguously demonstrated (refutes 'readout, not router' for occupancy specifically) while the continuous precision readout shows literally zero measured response to any of the four channels in this design, contradicting the pre-registered dv_symmetry_declaration's expectation that these channels are not precision-invariant. Reviewed + adjudicated by governance 2026-07-25 (REE_assembly 989ac1bca0, 'governance 2026-07-25: apply backlog-autopsy dispositions'): 802 was NOT among the two items held for /failure-autopsy that cycle (707c, 809); its direction is 'already carried on their manifest' -- no claims.yaml edit, ARC-005 stays status active. review_tracker.json: reviewed_run_ids + discussed_experiment_dirs both true for this run_id. No failure_autopsy_V3-EXQ-802*.md/json exists and none is indicated -- this is not a self_route/needs_review diagnostic flag case. Node closes here; GAP-B (below) is the live follow-on, re-scoped 2026-07-31 to the DV this run actually showed signal on."
     - id: "arc_005_control_plane_routing:GAP-B"
-      title: "Which channel carries it? Per-channel leave-one-out ablation grid (UNOWNED -- nothing re-derives this)"
+      title: "Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occupancy after 802"
       phase: 1
-      status: blocked
+      status: open
       severity: load-bearing
       owner_exq: null
       unblocks_claims: [ARC-005]
       depends_on: ["arc_005_control_plane_routing:GAP-A"]
-      blocked_by: ["V3-EXQ-802 has not run -- per-channel attribution is only meaningful once the plane is shown to route at all"]
-      last_updated: 2026-07-22
-      resume_condition: "RESUME WHEN V3-EXQ-802 LANDS A MANIFEST. Nothing re-derives this node: it is /queue-experiment work, which has no standing worklist, and 802's completion triggers nothing that re-raises it. Authoring route: /queue-experiment (mandatory skill path -- do NOT hand-write into ree-v3/experiments/ or the queue). Pick the next free EXQ id AT WRITE TIME (several parallel sessions collided in the 800s: 802 ARC-005, 804 ARC-003, 805 ARC-016)."
-      design_sketch: "Leave-one-out at the L2 (fully perturbed) setting on content set A: ARM_ALL_ON plus four ARM_<channel>_OFF arms that each return EXACTLY ONE channel to its L0 value, contrasted against ARM_ALL_OFF (= L0). Per-channel authority = the DROP in the channel-vs-L0 effect when that channel alone is returned to baseline. REUSE: ree-v3/experiments/_lib/baselines/exq802_arc005_control_plane.py (verified exports: CHANNEL_LEVELS=[0.0,0.5,1.0], channel_settings(level), agent_kwargs(level), content_env_kwargs(content,seed), off_path_config_slice(), cell_config_slice(level,content), arm_id(level,content)); cite reuse_baseline_from: <802 run_id> with include_driver_script_in_hash=False so the L0 cells are REUSED rather than re-run. This is a refinable sketch, not a fixed design."
+      last_updated: 2026-07-31
+      reconcile_2026_07_31: "V3-EXQ-802 landed (see GAP-A completion_note) and unblocks this node -- the 'blocked' status and blocked_by/resume_condition below are STALE and superseded. RE-SCOPE (not a straight replay of the original design_sketch): 802 showed strong, clean channel-vs-content dissociation on MODE OCCUPANCY (C1 PASS, d_channel=1.0 vs d_content=0.0) but LITERALLY ZERO measured response of log10_precision_mean to channel_level across all 10 (content,seed) units (bit-identical to 8 decimals at every level -- confirmed by direct read of arm_results, not inferred from C2's rho=0.0 alone). Building a leave-one-out contrast on the PRECISION DV as originally sketched would therefore measure a difference of two constant (non-responsive) terms -- exactly the ARITHMETIC-IDENTITY failure class the mandatory_design_check below already anticipated for channels 2 and 4-mu specifically, now empirically true of ALL FOUR channels' effect on this readout in this harness. GAP-B's per-channel attribution should therefore run on the MODE-OCCUPANCY DV only (where 802 demonstrated genuine signal to attribute) and scope the precision DV OUT of GAP-B's scoring a priori (non_contributory / substrate_ceiling on any precision-side arm, per mandatory_design_check -- never 'mixed', since nothing would be measured there either). Separately flagged (not GAP-B's job to diagnose): whether the precision-DV bit-identity is a genuine substrate null or a metric-wiring defect in the harness is an open question worth its own check -- see chip note in WORKSPACE_STATE.md. Authoring route unchanged: /queue-experiment (mandatory skill path), next free EXQ id AT WRITE TIME."
+      resume_condition_SUPERSEDED: "(2026-07-22, kept for history) RESUME WHEN V3-EXQ-802 LANDS A MANIFEST. Nothing re-derives this node: it is /queue-experiment work, which has no standing worklist, and 802's completion triggers nothing that re-raises it. Authoring route: /queue-experiment (mandatory skill path -- do NOT hand-write into ree-v3/experiments/ or the queue). Pick the next free EXQ id AT WRITE TIME (several parallel sessions collided in the 800s: 802 ARC-005, 804 ARC-003, 805 ARC-016)."
+      design_sketch: "RE-SCOPED 2026-07-31 (see reconcile note): leave-one-out at the L2 (fully perturbed) setting on content set A, scored on MODE-OCCUPANCY ONLY: ARM_ALL_ON plus four ARM_<channel>_OFF arms that each return EXACTLY ONE channel to its L0 value, contrasted against ARM_ALL_OFF (= L0). Per-channel occupancy authority = the DROP in the channel-vs-L0 occupancy effect (TV distance / argmax-mode shift) when that channel alone is returned to baseline. The precision DV is NOT scored per-channel in this design (802 showed no baseline precision effect to attribute from) -- may still be RECORDED per the generous-recording convention, but any precision-side criterion must be pre-declared non_contributory/substrate_ceiling, not scored as a finding. REUSE: ree-v3/experiments/_lib/baselines/exq802_arc005_control_plane.py (verified exports: CHANNEL_LEVELS=[0.0,0.5,1.0], channel_settings(level), agent_kwargs(level), content_env_kwargs(content,seed), off_path_config_slice(), cell_config_slice(level,content), arm_id(level,content)); cite reuse_baseline_from: <802 run_id> with include_driver_script_in_hash=False so the L0 cells are REUSED rather than re-run. This is a refinable sketch, not a fixed design."
       channels: "The four implemented control-plane channels, with the readiness-probe expectation that channels 3 and 4 carry most of the OCCUPANCY authority (600-tick probe -- an EXPECTATION to test, not an established finding): (1) 5-HT rigidity via serotonin gain_min/gain_max -> mainly PRECISION; (2) phasic-burst gain via phasic_burst_temp_delta -> mainly PRECISION, and it is an E3 SOFTMAX TEMPERATURE hence ARGMAX-INVARIANT; (3) mode prior via salience_external_task_bias -> DIRECT occupancy authority (per-mode logit shift); (4) pcc_stability mu via pcc_stability_baseline -> occupancy via the MECH-259 switch-threshold leg, while its MECH-048 mu leg is a softmax temperature and is ARGMAX-INVARIANT."
       mandatory_design_check: "DV-SYMMETRY, per the /queue-experiment rule -- do NOT skip. State per arm the symmetry group of that arm's DV and confirm the manipulation is NOT invariant under it. Channels 2 and 4-mu are BOTH pure softmax temperatures, so an arm ablating only one of them is at real risk of being ARGMAX-INVARIANT and therefore producing a delta that is an ARITHMETIC IDENTITY rather than a measurement. Such an arm must be scoped OUT of scoring and routed non_contributory under substrate_ceiling -- NEVER 'mixed'. This is exactly the V3-EXQ-604c failure class."
       substrate_notes: "Carried over from 802, ALL identical in every arm: (a) use_dacc=True AND use_aic_analog=True are REQUIRED -- with both off the SalienceCoordinator's salience_aggregate is identically 0, argmax is always external_task, and the discrete mode can NEVER switch (occupancy would be single-mode by configuration, not by substrate); (b) phasic_burst_signal_source='instantaneous_pe' with phasic_burst_baseline_continuity='carry' is REQUIRED or channel 2 fires zero events and is inert; (c) 5-HT must be set at the channel OUTPUT (cfg.serotonin.gain_min == gain_max) because harm suppression crushes any tonic baseline to ~0 within tens of steps; (d) NON-DEGENERACY gates on the DESIGN-level 'n_distinct_argmax_modes_across_design >= 2', NOT a per-arm 'arm occupies >= 2 modes' -- 802 measured that the per-arm form VACATES the strongest instance of the effect under test (every corner arm single-mode while the channel manipulation moved the mode end-to-end, TV 1.0, and content moved it not at all, TV 0.0). Keep within-arm multi-modality as a NON-GATING diagnostic."
@@ -47,61 +53,79 @@ closure_plan:
 
 # ARC-005 -- Control-Plane Routing (Plan of Record)
 
-**Created:** 2026-07-22 &nbsp;|&nbsp; **Status:** GAP-A in-progress (V3-EXQ-802 queued, not yet run) — GAP-B blocked and **unowned**.
+**Created:** 2026-07-22 &nbsp;|&nbsp; **Reconciled:** 2026-07-31 &nbsp;|&nbsp; **Status:** GAP-A
+**done** (V3-EXQ-802 landed FAIL/mixed, reviewed + adjudicated by governance 2026-07-25, no
+claims.yaml change) — GAP-B **open and unowned**, re-scoped to mode-occupancy attribution only.
 
 ## Why this doc exists
 
 ARC-005 ("Control plane routes precision and modes") has the **highest fan-in in the claims
 registry — 88 reverse dependencies** — on `exp_conf 0.0` with **zero** experimental entries.
-Its entire support is literature (`lit_conf 0.783`). V3-EXQ-802 is the first experiment of any
-kind against it.
+Its entire support is literature (`lit_conf 0.783`). V3-EXQ-802 was the first experiment of any
+kind against it, and landed 2026-07-22T21:21:25Z.
 
-The validation splits cleanly into two questions, and only the first has an owner:
+The validation splits cleanly into two questions:
 
 | Node | Question | Owner | Status |
 |---|---|---|---|
-| GAP-A | Does the plane route **at all**, dissociably from content? | V3-EXQ-802 (queued) | in-progress |
-| GAP-B | **Which channel** carries that authority? | **none** | blocked on GAP-A |
+| GAP-A | Does the plane route **at all**, dissociably from content? | V3-EXQ-802 (landed) | **done** |
+| GAP-B | **Which channel** carries that authority (occupancy only — see re-scope below)? | **none** | **open, unowned** |
 
-## The ownership gap this doc closes
+## GAP-A's result, in brief (full detail in the node's `completion_note`)
+
+802's mode-occupancy dissociation was clean and strong (C1 PASS, channel TV=1.0 vs content
+TV=0.0) and reproducible across content sets (C3 PASS, 10/10). Its continuous precision readout
+showed **zero measured response to any of the four channels** — `log10_precision_mean` was
+bit-identical across all three channel levels for every (content, seed) pair — so C2
+monotonicity failed by construction, not by a weak/noisy signal. `outcome: FAIL`,
+`evidence_direction: mixed`, `interpretation.label: control_plane_routing_weak`. Governance
+reviewed this 2026-07-25 (`REE_assembly` `989ac1bca0`) and made no claims.yaml change; ARC-005
+stays `status: active`.
+
+## The ownership gap this doc closes (history)
 
 A `/queue-experiment` session was spawned on 2026-07-22 to author GAP-B. It **correctly stopped
-at its start-time gate**: V3-EXQ-802 is still `status: "pending"` in
-`ree-v3/experiment_queue.json` and has landed no manifest, so the per-channel design could not
-be written. That is the right outcome — but it left the GAP-B specification living only in a
-session transcript.
+at its start-time gate**: V3-EXQ-802 was still `status: "pending"` with no landed manifest, so
+the per-channel design could not be written. That was the right outcome — but it left the
+GAP-B specification living only in a session transcript, and nothing re-derives it (it is
+`/queue-experiment` work, unlike `/governance`/`/failure-autopsy` which re-derive their own
+worklists). This node is that record. It went **stale** after 802 actually landed and was
+reviewed (2026-07-22 through 2026-07-25) — this doc was not reconciled with that until
+2026-07-31 (chip `chip-20260731-arc005-802-reconcile`), which is the edit you are reading now.
 
-**Nothing re-derives GAP-B.** It is `/queue-experiment` work, which has no standing worklist
-(unlike `/governance` and `/failure-autopsy`, which re-derive their own queues every cycle), and
-802's completion fires no trigger that re-raises it. This node is that record.
-
-## Why GAP-B must wait for GAP-A, not run beside it
+## Why GAP-B waited for GAP-A, and why it is now re-scoped rather than run as originally sketched
 
 The leave-one-out design measures *the drop in the channel-vs-L0 effect when one channel is
-returned to baseline*. Three things fail if 802 has not run:
+returned to baseline*. Three things would have failed had GAP-B been designed before 802 ran:
 
-1. **If 802 returns FAIL** — the plane has no measurable authority — then every per-channel drop
-   is a difference of two nulls, and the follow-up would report four arithmetic identities as
-   channel attributions.
-2. **The baseline cells cannot be reused.** `reuse_baseline_from: <802 run_id>` needs a run_id
-   that does not exist yet, so every L0 cell would have to be re-run at full cost.
-3. **The argmax-invariance risk cannot be checked**, only asserted. Channels 2 and 4-mu are both
-   softmax temperatures; whether their ablation arms are degenerate is answerable against 802's
-   measured diagnostics, not against the 600-tick readiness probe.
+1. **802 returned FAIL** on the joint monotonicity bar — but the mode-occupancy half of that FAIL
+   is a strong, clean dissociation, not a null; only the precision half is a genuine (bit-exact)
+   null. A leave-one-out contrast on precision would measure a difference of two constant terms
+   — an arithmetic identity, exactly the class `mandatory_design_check` already warns about for
+   channels 2/4-mu specifically, now empirically confirmed for **all four channels** on this DV.
+   **GAP-B is therefore scoped to mode-occupancy attribution only** (see the re-scoped
+   `design_sketch` above) — this is the one substantive change 802's landing made to the design,
+   not just an unblock.
+2. **The baseline cells can now be reused**: `reuse_baseline_from: v3_exq_802_arc005_control_plane_routing_double_dissociation_20260722T212125Z_v3`
+   is live via `ree-v3/experiments/_lib/baselines/exq802_arc005_control_plane.py`.
+3. **The argmax-invariance risk is now checkable against real diagnostics**, not just asserted —
+   802's `custom_information.dv_symmetry_declaration` and per-arm `realised_channel_state` /
+   `mode_prior_diagnostics` give the actual per-channel behaviour to design the ablation against.
 
 ## Resume procedure
 
 ```bash
-# 1. Has GAP-A landed?
+# 1. GAP-A has landed and been reviewed -- confirmed 2026-07-31:
 grep -l v3_exq_802 /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/*.json
-ls -d /Users/dgolden/REE_Working/REE_assembly/evidence/experiments/runs/*802* 2>/dev/null
-# 2. If yes, read the verdict + channel diagnostics before designing GAP-B.
+python3 -c "import json; d=json.load(open('/Users/dgolden/REE_Working/REE_assembly/evidence/experiments/review_tracker.json')); rid='v3_exq_802_arc005_control_plane_routing_double_dissociation_20260722T212125Z_v3'; print(rid in d['reviewed_run_ids'], rid in d['discussed_experiment_dirs'])"
+# 2. Read GAP-A's completion_note above for the verdict + channel diagnostics before designing GAP-B.
 # 3. Author via the skill -- /queue-experiment. Never hand-write the script or queue entry.
 ```
 
-Then work the GAP-B frontmatter fields in order: `design_sketch` (refine, don't take as fixed),
-`channels`, `mandatory_design_check` (the DV-symmetry rule — the V3-EXQ-604c failure class),
-`substrate_notes` (all four carry over from 802 unchanged).
+Then work the GAP-B frontmatter fields in order: `design_sketch` (RE-SCOPED to occupancy-only,
+refine further as needed, don't take as fixed), `channels`, `mandatory_design_check` (the
+DV-symmetry rule — the V3-EXQ-604c failure class, now with an empirical precedent from 802 for
+why it matters), `substrate_notes` (all four carry over from 802 unchanged).
 
 ## Scope
 
