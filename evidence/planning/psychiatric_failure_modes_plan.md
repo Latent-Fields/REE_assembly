@@ -69,8 +69,66 @@ closure_plan:
         scope_claims: ["SD-036", "MECH-279"]
       unblocks_claims: [SD-036]
       depends_on: []
-      last_updated: 2026-07-30
-      completion_note: "INVERTED PAIR -- the consumer is validated, the regulator it
+      last_updated: 2026-07-31
+      completion_note: "NOT BUILDABLE AS PRE-REGISTERED -- observables 1-3 are blocked
+        on a substrate defect measured 2026-07-31 (session elated-germain-9aff71), and
+        the 'Buildable now' line at the end of this note is SUPERSEDED: the knobs exist
+        but have NO TEMPORAL AUTHORITY over 2 of the 3 registered streams. SD-036's
+        design (sd_036_gabaergic_decay_regulator.md, Mechanism 1) is autoregressive --
+        z_s(t+1) = z_s(t) * exp(-tau_s * gaba_tone). The wiring is not, for the harm
+        streams: latent/stack.py:1468 sets z_harm = harm_encoder(harm_obs) and :1485
+        sets z_harm_a = affective_harm_encoder(...), both PURE FEEDFORWARD from the
+        current observation with no prev_state term -- unlike z_world/z_self/z_beta,
+        which DO blend with prev_state at :1447-1459. agent.py:4170 ticks the regulator
+        on new_latent AFTER that encode, so for z_harm/z_harm_a the decay is a one-step
+        constant rescale that is DISCARDED when the next sense() re-encodes. z_s(t+1)
+        is not a function of z_s(t) at all for those two streams.
+        MEASURED, replaying ONE identical recorded observation sequence into agents
+        differing only in gaba_tone (60 steps, seed 0, 471-lineage env): peak-normalised
+        trajectory max-deviation vs tone=1.0 is <= 2.0e-07 for z_harm and <= 1.4e-07 for
+        z_harm_a across tone in {0.0, 0.3, 1.0, 2.0} -- i.e. the trajectory SHAPE is
+        bit-identical and only the scale moves, by exactly exp(-tau*delta_tone)
+        (z_harm tone=0.0 ratio 1.05127107 vs exp(0.05)=1.0512711; tone=2.0 ratio
+        0.95122942 vs exp(-0.05)=0.9512294; z_harm_a 1.02020133 / 0.98019867 vs
+        exp(+-0.02)=1.020201/0.980199 -- 8 significant figures). tone=0.0 is bit-equal
+        to decay-OFF. z_beta, which IS recurrent, behaves differently and correctly:
+        peak-normalised max-dev 2.0e-02 to 2.9e-02 (5 orders of magnitude larger) and a
+        raw ratio 1.0958 that does NOT reduce to a single-tick exp(0.03)=1.03045, so
+        the decay genuinely compounds there.
+        CONSEQUENCES for the pre-registered observables. #1 (471 lock resolution) is
+        unbuildable: the lock is z_harm_norm pinned by a sustained ENVIRONMENT harm
+        observation, and a constant per-tick rescale moves it from ~0.7 to ~0.666 and
+        pins it there -- it cannot return to baseline. #2 (the gaba_tone dose-response,
+        the registered falsifier) is STRUCTURALLY VACUOUS on the harm streams: any
+        scale-free recovery DV (fraction-of-peak recovery time, half-life, and
+        specifically harm_norm_sustain_ratio = mean/peak in _lib/goal_pipeline_tier1.py,
+        the DV this experiment was expected to reuse) is EXACTLY invariant to gaba_tone
+        because the constant cancels -- measured null, not a small effect. A
+        fixed-ABSOLUTE-threshold DV would instead show a clean monotone dose-response,
+        but as the trivial rescale rather than a decay-rate change: a confident-but-wrong
+        confirmation, and the reason this must not be queued as designed. #3 (the
+        multi-stream cluster at tone 0.3) would fire, but for the wrong reason in 2 of 3
+        streams -- only z_beta responds genuinely -- so it cannot discriminate
+        regulator-layer from per-stream decay, which is its entire purpose.
+        WHY THIS SURVIVED TO NOW: tests/contracts/test_sd_036_gabaergic_decay.py
+        exercises decay only against a synthetic `_Latent()` stand-in re-ticked in place
+        (C5/C6/C7), where compounding holds trivially. No test steps a real REEAgent
+        through sense() and asserts z_harm decays across ticks, so the gap between the
+        autoregressive design and the feedforward wiring was never observable.
+        MECH-279 IS NOT UNDERMINED: agent.py:8049-8061 passes gaba_tone to
+        PAGFreezeGate.tick() as a direct SCALAR (exit_threshold = theta_freeze *
+        gaba_tone), never through the decay path, so V3-EXQ-776's PASS stands.
+        ROUTE: `complicated (buildable)` -> /implement-substrate on SD-036, giving
+        z_harm/z_harm_a persistent decay state across ticks (the natural form is the
+        prev_state blend z_beta already has at stack.py:1458). No config knob exists for
+        this -- grep for alpha_harm / harm_ema / harm_recur returns nothing -- so it is a
+        build, not a flag flip. Re-queue observables 1-3 only AFTER that lands; the
+        experiment design itself (2 trained agents per seed, decay-OFF vs decay-ON, then
+        set_gaba_tone() sweep over {0.3,0.5,1.0,1.5,2.0} on the trained ON agent, with
+        use_pag_freeze_gate held OFF to de-confound from MECH-279) is sound and should be
+        reused as-is once the substrate can express a decay rate.
+        PRIOR CONTEXT (unchanged) -- INVERTED PAIR: the consumer is validated, the
+        regulator it
         depends_on has never been tested. MECH-279 (PAG freeze gate) is `provisional`,
         promoted 2026-07-18 on V3-EXQ-776 PASS (3 signatures x 5/5 seeds),
         confirmed_established, exp_conf 0.746. SD-036 (the cross-stream decay regulator,
