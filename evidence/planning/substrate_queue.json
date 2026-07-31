@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "igw-212-proposal-for-mech-217",
-  "last_updated_utc": "2026-07-30T19:16:11Z",
+  "last_updated_utc": "2026-07-31T18:56:51Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6300,7 +6300,7 @@
       "sd_id": "INV091-NULL-VALIDATION-RUN-LENGTH",
       "title": "INV-091 driver family: bump default episode/step budget so the surrogate-null validation actually clears",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6318,7 +6318,12 @@
       "implementation_hint": "All three INV-091 runs to date (827, 827a, 828) have needed roughly 2-2.8x more steps than were run for the constrained-realisation surrogate null to validate at all. Bump the default run length for this driver family to >=2848 steps as a standing default so future runs both compare arms AND establish significance against chance.",
       "priority": 3,
       "added_session": "sweet-williams-f30676",
-      "last_seen_session": "sweet-williams-f30676"
+      "last_seen_session": "sweet-williams-f30676",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-07-31T18:56:51Z",
+      "implemented_session": "igw-192-substrate-ready-inv091-null-vali",
+      "implementation_note_update": "IMPLEMENTED 2026-07-31 (IGW-20260730-192): new ree-v3/experiments/_lib/inv091_driver_defaults.py provides the standing default eval-phase budget for the INV-091 cross-stream-similarity-band driver family (EVAL_EPISODES 10 -> 24, STEPS_PER_EPISODE unchanged at 150 -> 3600 eval-phase steps total, 26% margin over the worst recorded post-phase-sync-fix deficit, 2848 steps from V3-EXQ-828). 827's 12000-step reading was excluded from the sizing basis -- it was driven by the pre-phase-sync-fix lockstep clock-collapse bug 827a's redesign already corrected, not a property of a correctly-built driver. No ree_core/ or q081_surrogate.py change (the null-validation THRESHOLD is untouched -- only the caller's run length is bumped to clear it); no already-run experiment's recorded result is affected. Smoke-tested: module imports clean, self-asserts its own floor at import time, 5 new contract tests in tests/contracts/test_inv091_null_validation_run_length.py (positive check, warmup/step-length-unchanged check, negative-control against the original undersized 1500-step config, module-self-check-fires-on-regression, documented-import-path check) all pass alongside the existing test_q081_surrogate_null.py + test_q081_landmark_removal.py (66 passed). Follow-on (chipped, not done in this session): queue the next INV-091 driver-family successor experiment via /queue-experiment importing these constants, so the null actually validates on its next run.",
+      "validation_experiment": null
     },
     {
       "sd_id": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
@@ -6349,8 +6354,8 @@
       "sd_id": "mech294_coherence_magnitude_strengthening",
       "title": "Strengthen per-candidate co-binding coherence magnitude so a real (non-smoke) run clears route_range supra-floor on the JOINT arm",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
+      "status": "diagnosis_corrected_no_substrate_defect__joint_route_range_supra_floor_precondition_WAS_MET_measured_0p063841_vs_floor_0p01_6x_headroom__the_precondition_that_actually_failed_on_all_3_red_arms_is_adequate_committed_window_sample_worst_cell_ticks_JOINT_27_ALT_6_SHUF_92_vs_floor_200__driven_by_per_seed_early_episode_done_termination_variance_seed45_and_seed49_terminate_almost_every_P1_episode_near_tick_20_across_ALL_arms_including_ARM_0_OFF__not_specific_to_packet_ON_coherence_routing__see_diagnosis_correction",
+      "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -6367,7 +6372,15 @@
       "implementation_hint": "compose_per_candidate_coherence currently produces enough signal for tests/contracts/test_mech294_per_candidate_coherence.py at smoke scale but not for a full V3-EXQ-840-scale run to clear the route-range readiness floor. Either strengthen the coherence signal magnitude or audit whether the floor itself is miscalibrated relative to a real run's achievable range.",
       "priority": 2,
       "added_session": "great-hopper-1d7b24",
-      "last_seen_session": "great-hopper-1d7b24"
+      "last_seen_session": "great-hopper-1d7b24",
+      "diagnosis_correction": {
+        "corrected_by_session": "confident-morse-af47a8",
+        "corrected_utc": "2026-07-31T19:05:02Z",
+        "source": "chip-20260731-mech294-coherence-strengthening (/implement-substrate diagnosis, per governance chip from great-hopper-1d7b24 cycle 2026-07-30/31)",
+        "finding": "The failure_autopsy recommendation and this queue entry's own metric/target ('ARM_1_JOINT routed cross-candidate range... supra-floor') mischaracterize the V3-EXQ-840 run's actual gating data. Read from the flat manifest (evidence/experiments/v3_exq_840_..._20260730T170540Z_v3.json) per_arm_gate.red: the ARM_1_JOINT::joint_route_range_supra_floor precondition MET (measured=0.063841, threshold=0.01, direction=lower -> met=measured>threshold=True; ~6.4x the floor, not sub-floor). Cross-checked against experiments/_lib/precondition_gate.py PreconditionSpec.met_for() to confirm direction semantics. The precondition that actually failed and put all three packet-ON arms red is 'adequate_committed_window_sample' (worst-cell n_p1_ticks_past_window: JOINT=27, ALT=6, SHUF=92, vs threshold=200). Per-cell data (per_arm_gate...recorded_preconditions.per_cell) shows this tracks specific SEEDS (45, 49) that terminate almost every P1 episode near tick 20 (just past MEASURE_AFTER_TICK=20 of STEPS_PER_EPISODE=200) -- and the SAME seeds show depressed ticks in ARM_0_OFF too (seed45 OFF=92, seed49 OFF=167, both well under the 3600 ceiling other seeds hit), which rules out packet-ON coherence routing as the cause. This is per-seed environment/agent-health termination variance (env config num_hazards=0 but env_core causal_grid_world.py:2892 done = agent_health<=0 or steps>=500; STEPS_PER_EPISODE=200 per episode, so episodes ending via health depletion are the only plausible early-done route given no hazards) starving the committed-window sample for those seeds, not a coherence-magnitude deficiency in compose_per_candidate_coherence.",
+        "conclusion": "No ree_core substrate change is warranted. compose_per_candidate_coherence and the route-range readiness floor (0.01) are both working as designed and were not the cause of the FAIL. Recommend NOT building a coherence-strengthening flag -- there is nothing to strengthen. The real defect is experiment-design robustness: the measurement window (P1_MEASUREMENT_EPISODES x (STEPS_PER_EPISODE-MEASURE_AFTER_TICK)) has no tolerance for seeds whose episodes terminate early on nearly every attempt, so the worst-cell 'all()' quantifier on adequate_committed_window_sample can fail even when the mechanism under test is functioning correctly.",
+        "recommended_next_step": "Route via /queue-experiment (FAIL, not ERROR, so /diagnose-errors does not apply per CLAUDE.md) to design V3-EXQ-840b: widen the measurement window's robustness to per-seed early termination -- candidates include increasing STEPS_PER_EPISODE and/or P1_MEASUREMENT_EPISODES so death-prone seeds accumulate more post-window attempts, or diagnosing whether seeds 45/49 reveal a genuine agent_health-depletion dynamic worth investigating on its own. Also recommend a /failure-autopsy or /governance session reconcile the confirmed autopsy artifact (evidence/planning/failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30.json, target run_id v3_exq_840_..., recommended_evidence_quality_note) against this corrected reading -- its 'sub-floor cross-candidate range' claim does not match the run's own per_arm_gate data."
+      }
     }
   ],
   "schema_version": "substrate_queue/v2"
