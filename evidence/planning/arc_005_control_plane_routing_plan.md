@@ -36,12 +36,13 @@ closure_plan:
     - id: "arc_005_control_plane_routing:GAP-B"
       title: "Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occupancy after 802"
       phase: 1
-      status: open
+      status: in-progress
       severity: load-bearing
-      owner_exq: null
+      owner_exq: "V3-EXQ-846"
       unblocks_claims: [ARC-005]
       depends_on: ["arc_005_control_plane_routing:GAP-A"]
       last_updated: 2026-07-31
+      queued_2026_07_31: "V3-EXQ-846 authored + queued via /queue-experiment (agent-executed, same chip chip-20260731-arc005-802-reconcile). Script ree-v3/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution.py, pushed ree-v3 main 964569c2ca, coordinator POST /queue/add applied=true, confirmed present in /queue/active. Design as re-scoped below: 6 arms x 5 seeds, content set A only (ARM_ALL_ON, 4x ARM_<channel>_OFF leave-one-out, ARM_ALL_OFF), scored on mode-occupancy TV-distance authority-drop only; precision recorded but out of scope for scoring. DV-symmetry declared per arm (all 5 non-baseline arms confirmed not argmax-invariant). Reuse attempted for BOTH ARM_ALL_ON and ARM_ALL_OFF against 802's mint (include_driver_script_in_hash=False) -- refused cleanly (fingerprint_not_in_index: 19 ree_core commits landed since 802, busting the whole-tree substrate_hash), so all 30 cells run fresh; this is the correct, safe refusal, not a design defect. Smoke PASS (12 cells), validate_experiments --strict 0 findings, validate_recording --strict OK. Node stays in-progress until 846 lands a manifest and is adjudicated."
       reconcile_2026_07_31: "V3-EXQ-802 landed (see GAP-A completion_note) and unblocks this node -- the 'blocked' status and blocked_by/resume_condition below are STALE and superseded. RE-SCOPE (not a straight replay of the original design_sketch): 802 showed strong, clean channel-vs-content dissociation on MODE OCCUPANCY (C1 PASS, d_channel=1.0 vs d_content=0.0) but LITERALLY ZERO measured response of log10_precision_mean to channel_level across all 10 (content,seed) units (bit-identical to 8 decimals at every level -- confirmed by direct read of arm_results, not inferred from C2's rho=0.0 alone). Building a leave-one-out contrast on the PRECISION DV as originally sketched would therefore measure a difference of two constant (non-responsive) terms -- exactly the ARITHMETIC-IDENTITY failure class the mandatory_design_check below already anticipated for channels 2 and 4-mu specifically, now empirically true of ALL FOUR channels' effect on this readout in this harness. GAP-B's per-channel attribution should therefore run on the MODE-OCCUPANCY DV only (where 802 demonstrated genuine signal to attribute) and scope the precision DV OUT of GAP-B's scoring a priori (non_contributory / substrate_ceiling on any precision-side arm, per mandatory_design_check -- never 'mixed', since nothing would be measured there either). Separately flagged (not GAP-B's job to diagnose): whether the precision-DV bit-identity is a genuine substrate null or a metric-wiring defect in the harness is an open question worth its own check -- see chip note in WORKSPACE_STATE.md. Authoring route unchanged: /queue-experiment (mandatory skill path), next free EXQ id AT WRITE TIME."
       resume_condition_SUPERSEDED: "(2026-07-22, kept for history) RESUME WHEN V3-EXQ-802 LANDS A MANIFEST. Nothing re-derives this node: it is /queue-experiment work, which has no standing worklist, and 802's completion triggers nothing that re-raises it. Authoring route: /queue-experiment (mandatory skill path -- do NOT hand-write into ree-v3/experiments/ or the queue). Pick the next free EXQ id AT WRITE TIME (several parallel sessions collided in the 800s: 802 ARC-005, 804 ARC-003, 805 ARC-016)."
       design_sketch: "RE-SCOPED 2026-07-31 (see reconcile note): leave-one-out at the L2 (fully perturbed) setting on content set A, scored on MODE-OCCUPANCY ONLY: ARM_ALL_ON plus four ARM_<channel>_OFF arms that each return EXACTLY ONE channel to its L0 value, contrasted against ARM_ALL_OFF (= L0). Per-channel occupancy authority = the DROP in the channel-vs-L0 occupancy effect (TV distance / argmax-mode shift) when that channel alone is returned to baseline. The precision DV is NOT scored per-channel in this design (802 showed no baseline precision effect to attribute from) -- may still be RECORDED per the generous-recording convention, but any precision-side criterion must be pre-declared non_contributory/substrate_ceiling, not scored as a finding. REUSE: ree-v3/experiments/_lib/baselines/exq802_arc005_control_plane.py (verified exports: CHANNEL_LEVELS=[0.0,0.5,1.0], channel_settings(level), agent_kwargs(level), content_env_kwargs(content,seed), off_path_config_slice(), cell_config_slice(level,content), arm_id(level,content)); cite reuse_baseline_from: <802 run_id> with include_driver_script_in_hash=False so the L0 cells are REUSED rather than re-run. This is a refinable sketch, not a fixed design."
@@ -53,9 +54,10 @@ closure_plan:
 
 # ARC-005 -- Control-Plane Routing (Plan of Record)
 
-**Created:** 2026-07-22 &nbsp;|&nbsp; **Reconciled:** 2026-07-31 &nbsp;|&nbsp; **Status:** GAP-A
-**done** (V3-EXQ-802 landed FAIL/mixed, reviewed + adjudicated by governance 2026-07-25, no
-claims.yaml change) — GAP-B **open and unowned**, re-scoped to mode-occupancy attribution only.
+**Created:** 2026-07-22 &nbsp;|&nbsp; **Reconciled + GAP-B queued:** 2026-07-31 &nbsp;|&nbsp;
+**Status:** GAP-A **done** (V3-EXQ-802 landed FAIL/mixed, reviewed + adjudicated by governance
+2026-07-25, no claims.yaml change) — GAP-B **in-progress** (V3-EXQ-846 queued, re-scoped to
+mode-occupancy attribution only).
 
 ## Why this doc exists
 
@@ -69,7 +71,7 @@ The validation splits cleanly into two questions:
 | Node | Question | Owner | Status |
 |---|---|---|---|
 | GAP-A | Does the plane route **at all**, dissociably from content? | V3-EXQ-802 (landed) | **done** |
-| GAP-B | **Which channel** carries that authority (occupancy only — see re-scope below)? | **none** | **open, unowned** |
+| GAP-B | **Which channel** carries that authority (occupancy only — see re-scope below)? | V3-EXQ-846 (queued) | **in-progress** |
 
 ## GAP-A's result, in brief (full detail in the node's `completion_note`)
 
