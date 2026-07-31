@@ -2,7 +2,7 @@
 
 **Claim ID:** SD-MEL-PRODUCER
 **Subject:** environment.non_converging_world_rule_shift
-**Status:** PENDING
+**Status:** VALIDATED (V3-EXQ-798a, 2026-07-29; confirmed failure_autopsy_V3-EXQ-798a_2026-07-30)
 **Registered:** 2026-07-21
 **Depends on:** (none unresolved)
 **Blocks:** MECH-180 link (i), INV-050 ecological end-to-end demonstration

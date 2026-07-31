@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_737_ree_latent_policy_head_competence_probe
 
-Generated: `2026-07-30T07:58:48.772984Z`
+Generated: `2026-07-30T19:43:03.389968Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

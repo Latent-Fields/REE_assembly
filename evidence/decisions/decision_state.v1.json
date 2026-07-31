@@ -766,13 +766,13 @@
       "timestamp_utc": "2026-03-29T21:16:41.368222Z"
     },
     "MECH-095": {
-      "actor": "governance/confident-cerf-0d41be",
-      "decision_needed": "Internal-inconsistency reconciliation: promoted status 'active' carrying epistemic_category substrate_ceiling (GOV-CEIL-1 floors ceilings to candidate)",
+      "actor": "user",
+      "decision_needed": "Literature conflict noted; claim stays gated pending upstream probe/substrate",
       "decision_status": "applied",
-      "rationale": "Adjudication (b): the substrate_ceiling tag is correct and current (2026-05-02 thin-world diagnosis holds; 7 successor attempts all weakens/mixed; mapped to design owner SD-047 multi-source environmental dynamics), NOT stale. The 2026-03-25 promotion to active was legitimate at the time (EXQ-047k PASS 5/5 + lit_conf=0.907) but predates both the 2026-05-02 ceiling diagnosis and GOV-CEIL-1 (2026-07-09). GOV-CEIL-1 floors substrate_ceiling claims to candidate: a ceiling held at promoted standing is exactly the hypothesis-never-loses asymmetry it closes. Demoted active -> candidate; epistemic_category stays substrate_ceiling (n_ceiling_hits=0 so this is a flooring, not the N>=3 co-equal-null exhaustion). SD-047 landed (implemented) but the owed retest never ran, so there is still zero positive discrimination on the richer substrate; pending_retest_after_substrate set true. PROMOTES NOTHING.",
-      "recommendation": "demote_to_candidate",
-      "selected_option": "Demote active -> candidate; keep substrate_ceiling; flag pending_retest (option b)",
-      "timestamp_utc": "2026-07-11T12:41:01Z"
+      "rationale": "Governance review 2026-07-30: no new signal this cycle to shift the call (no experimental result touches MECH-095). SD-047 design owner already landed/implemented; the owed retest experiment has not been queued yet. Hold acknowledged, no status change.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Acknowledge conflict, no status change (claim remains gated pending the probe/substrate)",
+      "timestamp_utc": "2026-07-30T19:42:18.004238Z"
     },
     "MECH-096": {
       "actor": "user",
@@ -974,12 +974,12 @@
     },
     "MECH-163": {
       "actor": "user",
-      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_needed": "Conflict resolution before promotion",
       "decision_status": "applied",
-      "rationale": "Hold at candidate: implementation_phase=v3 with no V3 runs yet. Lit-only confidence (0.695) is not sufficient to promote without experimental validation.",
-      "recommendation": "hold_pending_v3_substrate",
-      "selected_option": "Wait for V3 substrate implementation (correct path)",
-      "timestamp_utc": "2026-04-03T22:00:00Z"
+      "rationale": "Governance review 2026-07-30: no new signal this cycle to shift the call (no experimental result touches MECH-163). conflict_ratio=0.375, lit-only conf historically insufficient to promote. Hold acknowledged, no status change.",
+      "recommendation": "hold_candidate_resolve_conflict",
+      "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
+      "timestamp_utc": "2026-07-30T19:42:18.041787Z"
     },
     "MECH-165": {
       "actor": "user",
@@ -2169,6 +2169,15 @@
       "selected_option": "Keep candidate and run conflict-resolution experiments (most balanced)",
       "timestamp_utc": "2026-07-26T15:35:34.975552Z"
     },
+    "Q-085": {
+      "actor": "user",
+      "decision_needed": "Hold -- V3 substrate required before meaningful evidence can be collected",
+      "decision_status": "applied",
+      "rationale": "Governance review 2026-07-30: no new signal this cycle to shift the call (no experimental result touches Q-085). implementation_phase=v3, zero V3 runs yet. Hold acknowledged, no status change.",
+      "recommendation": "hold_pending_v3_substrate",
+      "selected_option": "Wait for V3 substrate implementation (correct path)",
+      "timestamp_utc": "2026-07-30T19:42:18.081672Z"
+    },
     "SD-008": {
       "actor": "user",
       "decision_needed": "Promotion review: provisional -> stable",
@@ -2467,7 +2476,7 @@
       "timestamp_utc": "2026-05-31T08:30:00Z"
     }
   },
-  "generated_at_utc": "2026-07-30T07:58:48.772984Z",
+  "generated_at_utc": "2026-07-30T19:43:03.389968Z",
   "schema_version": "decision_state/v1",
   "source": "evidence/decisions/decision_log.v1.jsonl"
 }

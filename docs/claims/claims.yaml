@@ -16852,12 +16852,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending/substrate_ceiling
-    as_of: 2026-07-20
+    as_of: 2026-07-30
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-718a_2026-07-08
-      as_of: 2026-07-08
-      verdict: "non_contributory/measurement_gap (environment / test-bed producer gap; NOT substrate_ceiling at the consumer, NOT falsification). Governance may leave INV-050 stored epistemic_category=substrate_ceiling untouched (conservative, as in the 718 cycle); the note carries the environment-producer-gap framing regardless."
+      from: failure_autopsy_V3-EXQ-798a_2026-07-30
+      as_of: 2026-07-30
+      verdict: "non_contributory/standard -- SD-MEL-PRODUCER test-bed VALIDATED (V3-EXQ-798a PASS, claim_ids=[] by design). The environment now demonstrably produces a graded, above-reference, and genuinely learnable waking MEL load, cleanly separated from a matched noise control. Licenses (does not itself constitute) the still-gated MECH-180 ecological end-to-end run. PROMOTES/DEMOTES NOTHING; v3_pending and pending_retest_after_substrate both STAY until that ecological run scores."
   v3_pending: true
   epistemic_category: substrate_ceiling
   ceiling_decision: deferred
@@ -16892,6 +16892,14 @@
     5 INV-050 counted autopsies) was released for the BUILD only, on the Step 2.5b(1)
     substrate-built condition -- it still REFUSES a 673/718-family same-question
     re-queue.
+    VALIDATED 2026-07-30 (confirmed failure_autopsy_V3-EXQ-798a_2026-07-30): V3-EXQ-798a scored
+    PASS (producer_validated_graded_learnable) -- anchor decay 0.283 vs floor 0.15; noise-control
+    decay 0.0042 vs ceiling 0.10; noise-control worst-seed fairness ratio 1.25x >= 1.0. The
+    test-bed itself is now validated; docs/architecture/sd_mel_producer.md Status updated
+    PENDING -> VALIDATED. This licenses (does not itself constitute) a still-gated MECH-180
+    ecological end-to-end run using the environment as the novelty knob -- flagged for
+    /queue-experiment. v3_pending and pending_retest_after_substrate both STAY until that run
+    scores. PROMOTES/DEMOTES NOTHING.
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 unflagged_recurrence discrimination (2026-07-16, session
     gifted-kilby-8e2491). Audit flagged 3 no-verdict claim-keyed autopsy hits with 3
@@ -19481,6 +19489,19 @@
     shared thesis that encoder quality alone does not confer competent action. Re-queue 819a reconciling
     the non-vacuity gate to the routing predicate is recommended; this is orthogonal to the open
     GOV-FANOUT-1 discrimination above.
+
+    [2026-07-30 governance, confirmed failure_autopsy_V3-EXQ-819a_2026-07-30 (the reconciled re-queue of
+    819 recommended immediately above)]: V3-EXQ-819a resolves the non-vacuity/routing-predicate mismatch
+    on a corrected gate-fix instrument -- a prediction-trained z_world beats a frozen-random projection on
+    installed foraging competence (paired AUC delta +0.626, 4/6 seeds clear a 0.3 margin, non-degenerate).
+    This is an instrument-validity diagnostic (claim_ids scoring-excluded) resolving the
+    H-zworld-trained-instrument hypothesis-space leg -- it PROMOTES/DEMOTES NOTHING on INV-088 directly,
+    but it PARTIALLY clears the antecedent leg this claim shares with MECH-457: the pre-780 z_world
+    instrument-validity concern that clouded the campaign's earlier legs is now resolved for the
+    trained-vs-random axis specifically. The COUPLING leg (744a WEAKENS, real-but-weak/high-variance)
+    remains untouched and the GOV-FANOUT-1 H-bc-prior vs H-approach-primitive discrimination stays open.
+    See the conversion_ceiling_campaign:GENERATION closure-node reconciliation (Step 5b, same cycle) for
+    the upstream_block_reason update this licenses.
   subject: development.maturational_sequence
   description: >
     Child (i) of INV-064 (world/goal leg). E3's goal and world-feature evaluation
@@ -20396,12 +20417,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-07-30
     needs_review: false
     evidence:
-      from: "decision:MECH-217@2026-06-18T05:15:01.224110Z"
-      as_of: 2026-06-18
-      verdict: hold_pending_v3_substrate/applied
+      from: failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30
+      as_of: 2026-07-30
+      verdict: supports/standard -- V3-EXQ-842 offline wanting-spread readiness verified (clean unflagged PASS)
   subject: goal.replay_wanting_spread
   implementation_phase: v3
   description: >
@@ -20450,6 +20471,10 @@
     cannot compound the read value into a feedback loop). Backward
     compatible: disabled by default. Validation experiment EXP-0301 /
     EVB-0349 queued. See ree-v3/CLAUDE.md MECH-217 entry for full data flow.
+
+    2026-07-30 (governance-apply, confirmed failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail):
+    V3-EXQ-842 (the queued EVB-0349 validation) ran clean -- supports/standard, unflagged PASS,
+    offline wanting-spread readiness verified against the just-landed substrate above.
   registered: "2026-04-08"
   depends_on: [MECH-165, SD-014, INV-065]
 
@@ -25976,6 +26001,15 @@
     suppressed). pending_retest_after_substrate UNCHANGED.
     Single-paper evidence. Lower confidence than the other MECH claims
     in this cluster. See SD-032 parent.
+
+    2026-07-30 (governance-apply, failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail
+    CONFIRMED): V3-EXQ-687a (committed-authority dissociation, 4-arm) -- all arms failed
+    committed_sufficiency at the absolute floor (0.0/50.0), not a discrimination result;
+    re-derive brake exempt. non_contributory/competence_implementation_gap (epistemic_category
+    stays standard). MECH-260 is now gated on the same MECH-457 competence-floor substrate as
+    the rest of the committed-behaviour campaign (Q-045/MECH-313 co-tagged) -- not
+    independently re-queueable until that substrate clears. pending_retest_after_substrate
+    UNCHANGED (true).
 
     [2026-06-17 autopsy V3-EXQ-460e]: 460e (SD-034 closure-control-plane behavioural,
     supersedes 460d) RAN terminal FAIL/non_contributory and self-routed
@@ -32192,6 +32226,18 @@
     readout substrate_ceiling cluster (shared with ARC-065, ARC-062, MECH-309).
     epistemic_category set substrate_ceiling + pending_retest_after_substrate=true.
     No promotion / no weakening; the 2026-04-26 hold stands.
+
+    [2026-07-30 governance / confirmed failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail]:
+    V3-EXQ-840 (first MECH-294 behavioural-evidence run, routing the per-candidate co-binding coherence
+    via modulatory_channel_route_source="coherence" through the now-built modulatory-bias-selection-authority)
+    FAIL / non_contributory / measurement_test_design_defect -- NOT a new substrate_ceiling hit. The
+    readiness safeguard asserts the SAME statistic (route_range) the load-bearing criteria depend on, and
+    correctly caught a sub-floor cross-candidate range on ARM_1_JOINT at real-run scale (the contract-test
+    suite only exercises smoke scale). MECH-294 stays candidate/v3_pending/substrate_ceiling; this run is
+    NOT counted toward the GOV-CEIL-1 hit total. substrate_queue.json CREATE: sd_id
+    mech294_coherence_magnitude_strengthening (strengthen per-candidate co-binding coherence magnitude, or
+    audit the readiness-floor calibration, before re-running the same falsifier). pending_retest_after_substrate
+    UNCHANGED (true).
   location: docs/architecture/control_plane_heartbeat.md
 
 - id: MECH-269b
@@ -37598,6 +37644,13 @@
     validation deferred to Q-045 4-arm ablation (MECH-313 OFF / 313
     only / 260 only / both ON) on V3-EXQ-543b/c successors AFTER this
     substrate is in.
+
+    2026-07-30 (governance-apply, failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail
+    CONFIRMED): V3-EXQ-687a -- all 4 arms failed committed_sufficiency at the absolute floor, not a
+    discrimination result; re-derive brake exempt. non_contributory/competence_implementation_gap
+    (epistemic_category stays standard). Gated on the same MECH-457 competence-floor substrate as the
+    rest of the committed-behaviour campaign (MECH-260/Q-045 co-tagged) -- not independently
+    re-queueable until that substrate clears.
   location: docs/architecture/mech_313_stochastic_noise_floor.md
 
 - id: MECH-314
@@ -38690,6 +38743,13 @@
     substrate_queue status amend_pending -> amend_implemented_pending_validation.
 
     [2026-06-03 governance / cluster autopsy failure_autopsy_V3-EXQ-603e-626a-622_2026-06-03] V3-EXQ-603e re-tagged non_contributory: goal-pipeline wiring closed+verified (update_z_goal AMEND deb24cc; contract test_c6_stage0_positive_control confirms z_goal forms under forced input) but z_goal_norm_peak=0.0 on ALL 15 cells ecologically at restored budget -- downstream of TWO coupled prerequisites: survival/foraging-competence (2/3 seeds never competent) + benefit-input starvation (P2 hazard_food_attraction=0.7). Discovered developmental prerequisite (goal reps require reward-contact history; Berridge), NOT a falsification: claim never under fair test (effective N=1). stays substrate_ceiling/pending_retest_after_substrate; substrate_queue AMEND 'scaffolded_sd054_onboarding' then re-issue 603e->603f. EXQ-445h remains sole valid MECH-260 support.
+
+    2026-07-30 (governance-apply, failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail
+    CONFIRMED): V3-EXQ-687a -- all 4 arms failed committed_sufficiency at the absolute floor, not a
+    discrimination result; re-derive brake exempt. non_contributory/competence_implementation_gap.
+    Q-045 is now gated on the same MECH-457 competence-floor substrate as the rest of the
+    committed-behaviour campaign (MECH-260/MECH-313 co-tagged) -- not independently re-queueable
+    until that substrate clears. Stays open/substrate_ceiling.
 
   epistemic_category: substrate_ceiling
   ceiling_decision: deferred
@@ -40925,12 +40985,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-07-30
     needs_review: false
     evidence:
-      from: "decision:ARC-071@2026-05-16T19:08:31Z"
-      as_of: 2026-05-16
-      verdict: hold_pending_v3_substrate/applied
+      from: failure_autopsy_V3-EXQ-810a_2026-07-30
+      as_of: 2026-07-30
+      verdict: supports/standard -- chunk-accumulator readiness confirmed (see MECH-323/MECH-324 for detail)
   implementation_phase: v3
   v3_pending: true
   claim_level: architectural
@@ -41196,6 +41256,13 @@
     become un-selectable from the proposal pool? The two have
     different behavioural signatures and the lit is not
     decisive.
+
+    2026-07-30 (governance-apply, confirmed failure_autopsy_V3-EXQ-810a_2026-07-30 +
+    batch-687a-707c-840-748a-833-842-810b-673-614-798afail): V3-EXQ-810a (chunk-accumulator
+    readiness, independently re-derived from raw per-seed data) and its seed-202
+    narrow-repertoire follow-up V3-EXQ-810b both supports/standard. Readiness preconditions
+    non-vacuous (worst-seed margins 2.4x-7.0x floors); load-bearing C1 clears 7/8 seeds vs a
+    pre-registered 0.75 bar; C7 credit-rule separation 5x. Detail on MECH-323/MECH-324.
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: ARC-072
@@ -42219,6 +42286,18 @@
     disagreement replacing V_s as trigger, or (b) redesigning the discriminating STATISTIC rather than
     escalating environment harshness again -- a future session should re-pose the operationalization along
     one of those axes rather than queuing 816e. Not chipped (GOV-DIAG-1 routing is governance-owned).
+
+    [2026-07-30 governance, GOV-DIAG-1 recurrence count UPDATE]: check_diagnostic_chain_recurrence.py
+    now counts 6 hits on this chain (V3-EXQ-839's mid-execution reachability diagnostic joined via a
+    shared bears_on token). This is NOT a repeat of the mis-posed environment-harshening pattern the
+    2026-07-29 note refused -- 839 probes a DIFFERENT axis (reachability of the mid-exec hook, not
+    forward-PE discrimination floor) and reached a clean verdict (validated, 415/0 clean split), not
+    another verdict-free saturation reading. Its confirmed autopsy recommends a MECH-321 R4 EVIDENCE
+    successor (claim_ids=[MECH-321], behavioural/task effect of the now-reachable hook) -- exactly the
+    "redesign the discriminating statistic" response the 2026-07-29 note already called for, not a
+    fourth same-question diagnostic letter. Chipped this cycle (governance-owned per CLAUDE.md
+    2026-07-30 rule: an autopsy's own routing is chipped by governance once ratified, not by the
+    autopsy session itself).
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-322
@@ -43169,6 +43248,15 @@
     here because it bleeds into ARC-070 / MECH-321 territory
     (segmentation, not concatenation). Cross-link to MECH-321
     rather than separate ARC-071 child mechanism.
+
+    2026-07-30 (governance-apply, confirmed failure_autopsy_V3-EXQ-810a_2026-07-30 +
+    batch-687a-707c-840-748a-833-842-810b-673-614-798afail): V3-EXQ-810a supports/standard --
+    chunk-accumulator readiness independently re-derived from raw per-seed data (worst-seed
+    margins 2.4x-7.0x floors on all three preconditions; load-bearing C1 clears 7/8 seeds vs
+    the pre-registered 0.75 bar, verified directly from per-seed chunk_acc_n_formed rows; C7
+    credit-rule separation 5x, 2385.0 vs 478.625 credit events, not marginal). V3-EXQ-810b
+    (seed-202 narrow-repertoire follow-up, same family) also supports/standard, clean PASS on
+    both load-bearing criteria. Stays candidate/v3_pending.
   location: docs/architecture/policy_primitive_granularity.md
 
 - id: MECH-324
@@ -44022,6 +44110,13 @@
     crystallisation-counter reset from raw sliding-window contamination). Weakens the specific rate
     claim; does not weaken the retention-vs-erasure structure (see MECH-323, supports). Stays
     candidate; v3_pending unchanged; pending_retest_after_substrate noted via the new substrate entry.
+
+    [2026-07-30 governance, V3-EXQ-810a supports; confirmed failure_autopsy_V3-EXQ-810a_2026-07-30]:
+    chunk-accumulator readiness (shared MECH-323/MECH-324 preconditions) independently re-derived
+    from raw per-seed data -- worst-seed margins 2.4x-7.0x floors, C7 credit-rule separation 5x. This
+    is a readiness/formation-side result, distinct from the 829 rate-specific weakens above; both
+    stand (readiness confirmed, the specific rapid-reacquisition rate prediction falsified). Stays
+    candidate.
   notes: >
     MECH-324 is the MAINTENANCE half of ARC-071's two-operator
     machinery. MECH-323 (registered 2026-05-11 earlier today)
@@ -58551,6 +58646,12 @@
     ARC-110 stays candidate / substrate_conditional / implementation_phase=v3. Category standard
     (NOT substrate_ceiling for this run). Applied /governance 2026-07-25 (session
     angry-ardinghelli-d99740-gov, user-approved). pending_retest_after_substrate.
+    V3-EXQ-707c SECOND RUN (20260722T041239Z, distinct from the 20260723T151429Z run scored above;
+    same queue letter, two separate executions) -- confirmed failure_autopsy_batch-687a-707c-840-
+    748a-833-842-810b-673-614-798afail_2026-07-30: weakens/standard, EXTENDS rather than contradicts
+    the 707c disposition immediately above (loops vary but no conversion-ceiling-intrinsic effect).
+    Does not add a second distinct weakens reading or change status/category. Applied /governance
+    2026-07-30.
   pending_retest_after_substrate: true   # SET 2026-06-29 (707b NARROW autopsy): re-test A1_LOOPS COUPLED with dopamine-gated cross-loop arbitration plasticity (MECH-448/449/ARC-107) once that arbitration-LEARNING substrate is built -- a redesign testing a DIFFERENT mechanism (new EXQ, different claim_ids), NOT a same-claim re-letter. Not queued now.
   implementation_note: >
     SUBSTRATE BUILT 2026-06-27 via /implement-substrate (full scope; PROMOTES NOTHING --
@@ -59627,6 +59728,19 @@
     families were closed, then part of what the discriminator reads as circling may be a
     family closed on a DEFECT rather than on evidence. Check that before treating the
     closure list as settled; the resolution is owed to sd_zworld_warmup_optimizer_group.
+
+    [2026-07-30 governance / confirmed failure_autopsy_V3-EXQ-819a_2026-07-30 +
+    failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30]: the
+    "representation family closed on a defect" concern raised immediately above is now
+    RESOLVED. V3-EXQ-819a (instrument-validity diagnostic, claim_ids scoring-excluded) confirms
+    a prediction-trained z_world beats a frozen-random projection on installed foraging
+    competence (paired AUC delta +0.626, 4/6 seeds clear a 0.3 margin, non-degenerate) --
+    resolving the H-zworld-trained-instrument hypothesis-space leg. V3-EXQ-748a then re-ran
+    748's dense-teacher/z_world-BC arm under this now-validated zworld_p0-trained instrument:
+    H-rep's 2026-07-13 elimination HOLDS (supports) -- the earlier elimination was NOT an
+    artefact of the frozen-random-projection defect. Neither run promotes or demotes MECH-457;
+    both are instrument-validity/confirmatory. The "representation" family in the GOV-FROZEN-1
+    fan-out reading above stays validly closed.
   location: evidence/literature/targeted_review_actor_critic_action_learning/
 
 - id: MECH-458

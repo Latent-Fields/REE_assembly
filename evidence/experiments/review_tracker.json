@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-07-29T23:24:03Z",
+  "last_review_utc": "2026-07-30T19:16:11Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1005,7 +1005,20 @@
     "v3_exq_836b_mech476_interval_dependent_consolidation",
     "v3_exq_836c_mech476_novelty_tagging_consolidation",
     "v3_exq_837_mech475_distributional_critic_iatrogenic_falsifier",
-    "v3_exq_838_q081_cross_stream_recording"
+    "v3_exq_838_q081_cross_stream_recording",
+    "v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix",
+    "v3_exq_810a_arc071_chunk_accumulator_readiness",
+    "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable",
+    "v3_exq_839_sd084_midexec_reachability",
+    "v3_exq_833_stageh_strict_goal_isolation_dv",
+    "v3_exq_748a_mech457_hrep_zworldp0_rederivation",
+    "v3_exq_842_mech217_offline_wanting_spread_readiness",
+    "v3_exq_810b_arc071_mech323_seed202_narrow_repertoire_probe",
+    "v3_exq_687a_mech313_committed_authority_dissociation",
+    "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier",
+    "v3_exq_614_mech341_p3_behavioural_falsifier_3arm",
+    "v3_exq_673_mech171_vicious_cycle_sleep_disruption",
+    "v3_exq_707c_arc110_loop_segregation_c2_release_repair"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3666,7 +3679,21 @@
     "v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3",
     "v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3",
     "v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3",
-    "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3"
+    "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3",
+    "v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3",
+    "v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3",
+    "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3",
+    "v3_exq_839_sd084_midexec_reachability_20260729T220727Z_v3",
+    "v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3",
+    "v3_exq_748a_mech457_hrep_zworldp0_rederivation_20260730T120515Z_v3",
+    "v3_exq_842_mech217_offline_wanting_spread_readiness_20260730T173047Z_v3",
+    "v3_exq_810b_arc071_mech323_seed202_narrow_repertoire_probe_20260730T175935Z_v3",
+    "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3",
+    "v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3",
+    "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3",
+    "v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3",
+    "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3",
+    "v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5708,6 +5735,27 @@
         "v3_exq_830_mech321_scale_resolved_rollout_boundary_20260727T204927Z_v3"
       ],
       "note": "Governance cycle 2026-07-29. All 19 FAIL items applied from 7 confirmed failure-autopsy artifacts (batch-822a-826-817a-827, V3-EXQ-824, 2026-07-28-sweep, V3-EXQ-822b-834, mech476-mech475-cluster, v3-exq-836b, v3-exq-838). Key dispositions: MECH-475 RETIRED (V3-EXQ-837, decisive pre-registered falsifier reversed 3.4x in the wrong direction, every gate green -- WITHDRAWN per the claim's own what_would_answer). SD-004 weakens / SD-080 non_contributory (V3-EXQ-817a, split per-claim). MECH-323 supports / MECH-324 weakens (V3-EXQ-829, mixed, split per-claim). INV-091 weakens (V3-EXQ-828) + non_contributory x2 (827, 827a). MECH-466 weakens (V3-EXQ-831, first test). MECH-476 non_contributory x3 (836, 836b, 836c -- shared fixed-margin measurement defect, not evidence against). SD-078/SD-082 non_contributory x2 (822a, 822b -- amended SD-082 substrate entry with root cause). Q-081 non_contributory x3 (824, 824a, 838 -- created Q081-REACH-CHECK-PAIR-SPECIFIC substrate entry, merged 824a+838 recommendations). MECH-244 non_contributory x2 (826, 826a). ARC-071/MECH-323 unknown/no-op (834 -- gate-strictness bug, not substrate). MECH-321/ARC-070 (816d) non_contributory -- also flagged GOV-DIAG-1 recurrence (5-hit pure-diagnostic chain 816b/816c/816d/830, re-operationalization routing note added to MECH-321). 5 clean PASS evidence items applied: V3-EXQ-825 supports MECH-245; V3-EXQ-032d supports MECH-102/ARC-024/SD-003 (superseding V3-EXQ-032b, which was itself reclassified non_contributory per the confirmed 032-family autopsy -- also closed the GOV-APPLY-1 gap on V3-EXQ-059c/032/032c from the same and a sibling autopsy); V3-EXQ-832 supports INV-041/MECH-153; V3-EXQ-835 supports MECH-068; V3-EXQ-830 marked reviewed (no claim tags; decision already recorded in the cranky-blackburn-d11b32 session 2026-07-29). 4 decision-routing diagnostic PASSes (819a, 810a, 798a, 839) left pending per user Route B (memory-pressure session; no confirmed/in-flight autopsy) -- reported, not chipped. substrate_queue.json: 1 amend (SD-082 + 822b), 3 creates (Q081-REACH-CHECK-PAIR-SPECIFIC merged from 824a+838, INV091-NULL-VALIDATION-RUN-LENGTH, MECH324-REACQ-WINDOW-GATING-DECOUPLE). Standing scans clean post-edit: check_dry_run_citations 0 hits, check_unapplied_autopsy_recommendations 0 ACTIONABLE, check_substrate_ceiling_audit 0 ACTIONABLE."
+    },
+    {
+      "utc": "2026-07-30T19:16:11Z",
+      "session": "great-hopper-1d7b24 (/governance cycle 2026-07-30)",
+      "reviewed": [
+        "v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix_20260727T005012Z_v3",
+        "v3_exq_810a_arc071_chunk_accumulator_readiness_20260728T204535Z_v3",
+        "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3",
+        "v3_exq_839_sd084_midexec_reachability_20260729T220727Z_v3",
+        "v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3",
+        "v3_exq_748a_mech457_hrep_zworldp0_rederivation_20260730T120515Z_v3",
+        "v3_exq_842_mech217_offline_wanting_spread_readiness_20260730T173047Z_v3",
+        "v3_exq_810b_arc071_mech323_seed202_narrow_repertoire_probe_20260730T175935Z_v3",
+        "v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260730T010651Z_v3",
+        "v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3",
+        "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3",
+        "v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3",
+        "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3",
+        "v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3"
+      ],
+      "note": "Governance cycle 2026-07-30 (great-hopper-1d7b24). All 14 pending_review.md items (8 PASS, 6 FAIL) applied from 6 confirmed failure-autopsy artifacts already landed this same worktree earlier the same day: failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30 (10 targets) plus 4 standalone confirmed artifacts (V3-EXQ-798a, V3-EXQ-810a, V3-EXQ-819a, V3-EXQ-839) that had been left pending since the 2026-07-29 cycle's Route B. Key dispositions: MECH-260/MECH-313/Q-045 non_contributory/competence_implementation_gap (V3-EXQ-687a, all 4 arms failed committed_sufficiency at the absolute floor -- gated on the MECH-457 competence-floor substrate, not independently re-queueable). MECH-294 non_contributory/measurement_test_design_defect (V3-EXQ-840, readiness gate correctly caught sub-floor JOINT-arm coherence at real-run scale, NOT a new substrate_ceiling hit) -- substrate_queue.json CREATE mech294_coherence_magnitude_strengthening. ARC-110 weakens/standard (V3-EXQ-707c second run, 20260722T041239Z, distinct from the already-applied 20260723T151429Z run -- extends, does not contradict, the existing 707c disposition). MECH-341/ARC-065 superseded (V3-EXQ-614, recovered from stash, disposition already existed) and MECH-171 non_contributory/out_of_domain (V3-EXQ-673, recovered from stash, disposition already existed) -- both administrative closures, never bookkept. Clean supports/standard: ARC-071/MECH-323/MECH-324 (V3-EXQ-810a/810b, chunk-accumulator readiness), MECH-457 (V3-EXQ-748a, H-rep elimination HOLDS under corrected zworld_p0 instrument), MECH-457/INV-088 (V3-EXQ-819a, instrument-validity diagnostic, z_world-trained beats frozen-random +0.626 AUC -- resolves H-zworld-trained-instrument leg, licenses the GENERATION closure-node partial-clear), MECH-217 (V3-EXQ-842, offline wanting-spread readiness verified). Clean non_contributory, no claims: V3-EXQ-833 (StageH diagnostic, goal term inert), V3-EXQ-798a-FAIL (narrowly-missed precondition, repeat of already-answered question), V3-EXQ-798a-PASS (SD-MEL-PRODUCER test-bed VALIDATED -- docs/architecture/sd_mel_producer.md Status PENDING->VALIDATED, substrate_queue.json SD-MEL-PRODUCER status implemented/ready=true; licenses a still-gated MECH-180 ecological end-to-end run, chipped), V3-EXQ-839 (SD-084 mid-execution reachability validated cleanly; licenses a MECH-321 R4 successor evidence experiment, chipped). Promotion/demotion agenda: 3 pending_user re-flags (MECH-095, MECH-163, Q-085) reconfirmed hold_candidate_resolve_conflict/hold_pending_v3_substrate, no status change, no new evidence this cycle. Standing scans clean post-edit."
     }
   ]
 }

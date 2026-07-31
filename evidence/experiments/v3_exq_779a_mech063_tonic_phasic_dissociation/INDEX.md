@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_779a_mech063_tonic_phasic_dissociation
 
-Generated: `2026-07-30T07:58:48.772984Z`
+Generated: `2026-07-30T19:43:03.389968Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-29T22:46:41Z
+Generated: 2026-07-30T19:17:11Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -71,7 +71,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=governance-annotation (no re-adjudication) | exhausted |  | 2026-07-06 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | exhausted |  | 2026-07-06 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=governance-annotation (no re-adjudication) | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=governance-annotation (no re-adjudication) | ran_exhausted_for_substrate |  |  |
