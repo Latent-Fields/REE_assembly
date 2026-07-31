@@ -2160,8 +2160,8 @@
       "status": "completed",
       "completed_at": "2026-07-31T19:36:56Z",
       "completion_summary": "Implemented INV091-NULL-VALIDATION-RUN-LENGTH: ree-v3 experiments/_lib/inv091_driver_defaults.py bumps the driver-family default eval budget (EVAL_EPISODES 10->24) so the surrogate null clears; substrate_queue.json + claims.yaml marked implemented",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "CORRECTED 2026-07-31 (known AUTO-outcome worktree misfile -- AUTO scores commits on the WORKTREE branch, but per the Session Land Protocol real work lands on the work repos, not the umbrella worktree branch; see memory igw-complete-auto-outcome-misfiles-worktree-sessions). Actual landing: ree-v3 main 99249a1ad9 (experiments/_lib/inv091_driver_defaults.py + tests/contracts/test_inv091_null_validation_run_length.py, pushed origin/main) and REE_assembly master 638395936b (substrate_queue.json sd_id INV091-NULL-VALIDATION-RUN-LENGTH status->implemented + claims.yaml INV-091 evidence_quality_note, pushed origin/master)."
     },
     {
       "igw_id": "IGW-20260730-214",
