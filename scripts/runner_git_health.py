@@ -205,6 +205,23 @@ above, and the runner's own `pull --rebase --autostash` is already contending
 for those refs. Labelling the staleness is the honest fix; silently grading
 against a stale ref is not.
 
+LABELLING IS NOT THE SAME AS RESOLVING, and for the v3_exq_614 shape it did
+not have to stop there (added 2026-07-31). A fresher ref exists without
+fetching the worker: the Mac's OWN checkout tracks the same origin, and this
+script already fetches it (remote-tracking refs only) before every local
+self-grade. So a worker's STRANDED finding is cross-checked, before it is
+finalised, against `build_parent_index()` -- a fresh `flat_runs`/`pack_runs`
+set built from the PARENT (Mac) checkout's own `REPO_REFS` ref, after running
+`_fetch_local` on it. A run_id present there in either flat or pack form is
+downgraded from a finding to a `parent_cleared` note rather than reported as a
+false-positive strand -- exactly the v3_exq_614 case: STRANDED against
+ree-cloud-4's own nine-hour-old ref, present on the REAL origin/master (both
+forms) the whole time. This reads ONLY the Mac's own checkout -- never the
+worker -- so the read-only promise toward workers is unaffected; the one
+non-read-only step anywhere in this file is still the local `git fetch`
+documented above. Fails open: an unbuilt or repo-absent parent index leaves
+every finding exactly as before (`crosscheck_stranded_against_parent`).
+
 SCOPE. This is primarily the working-tree / untracked half. Full stash
 containment grading (arbitrary stash content, not only prepull entries; hunk
 reverse-apply; symbol-level containment) is
@@ -886,6 +903,13 @@ def grade_repo(root, ref, do_ignored=False):
 def main():
     argv = sys.argv[1:]
     do_ignored = "--ignored" in argv
+    # --index-only: emit just the origin-side run_id index (flat_runs /
+    # pack_runs from build_index) instead of a full grade_repo() pass. Added
+    # so the PARENT (Mac) checkout can hand its own fresh index back to the
+    # top-level driver for cross-checking a WORKER's STRANDED finding --
+    # reusing build_index() itself rather than a second, drifting copy of the
+    # flat/pack membership test grade_path's step 1 already applies.
+    index_only = "--index-only" in argv
     rest = [a for a in argv if not a.startswith("--")]
     base = rest[0]
     out = {}
@@ -894,7 +918,17 @@ def main():
         root = os.path.join(base, repo)
         if not os.path.isdir(os.path.join(root, ".git")):
             continue
-        out[repo] = grade_repo(root, ref, do_ignored=do_ignored)
+        if index_only:
+            tree_txt = git(root, "ls-tree", "-r", "--name-only", "-z", ref)
+            if tree_txt is None:
+                out[repo] = {"error": "ref not readable: " + ref}
+                continue
+            tree = [p for p in tree_txt.split("\0") if p]
+            idx = build_index(tree)
+            out[repo] = {"flat_runs": sorted(idx["flat_runs"]),
+                         "pack_runs": sorted(idx["pack_runs"])}
+        else:
+            out[repo] = grade_repo(root, ref, do_ignored=do_ignored)
     sys.stdout.write("UNTRACKED_JSON " + json.dumps(out, sort_keys=True) + "\n")
 
 
@@ -1034,6 +1068,113 @@ def _run_grader_local(base, ignored, timeout):
     r = subprocess.run(args, input=UNTRACKED_PY, capture_output=True,
                        text=True, timeout=timeout)
     _, graded = parse_probe_output(r.stdout)
+    return graded
+
+
+def _run_index_local(base, timeout):
+    """UNTRACKED_PY's --index-only mode against `base` -- no ssh, no base64.
+
+    Returns ``{repo: {"flat_runs": [...], "pack_runs": [...]}}``, or an entry
+    missing / shaped as ``{"error": ...}`` for a repo whose ref could not be
+    read. Reuses build_index() from the exact source the fleet-wide grader
+    runs (see UNTRACKED_PY main()'s --index-only branch) rather than a
+    second, drifting copy of the run_id-extraction logic.
+    """
+    args = [sys.executable, "-", base] + grader_specs() + ["--index-only"]
+    r = subprocess.run(args, input=UNTRACKED_PY, capture_output=True,
+                       text=True, timeout=timeout)
+    _, idx = parse_probe_output(r.stdout)
+    return idx
+
+
+def build_parent_index(base=LOCAL_BASE, fetch=True, timeout=120):
+    """Fresh origin-side run_id index for the PARENT (Mac) checkout at `base`.
+
+    Exists to cross-check a WORKER's STRANDED finding against a ref newer
+    than the worker's own -- see the module docstring's "LABELLING IS NOT THE
+    SAME AS RESOLVING" paragraph and the confirmed 2026-07-30T17:41Z
+    ree-cloud-4/v3_exq_614 incident it names. The Mac's checkout tracks the
+    same origin as every worker, and unlike a worker it is fetched (remote-
+    tracking refs only, via `_fetch_local` -- no HEAD/index/worktree write)
+    before grading, specifically so its own ref is not itself stale.
+
+    Read-only toward the PARENT: `_fetch_local` is the one non-read-only step
+    (documented in the module docstring), and `_run_index_local` only runs
+    `git ls-tree` against the fetched ref. Never touches a WORKER -- the
+    read-only promise toward those is unaffected; this function only ever
+    opens `base` (the Mac's own checkout).
+
+    Fails OPEN: returns `{}` (not None, not an exception) when the parent
+    checkout is absent, unfetchable, or the grader subprocess errors, so a
+    caller finding no entry for a repo just leaves that repo's findings
+    exactly as graded -- same "absence is reported, never treated as
+    informative" contract as `ref_age_hours`.
+    """
+    if not os.path.isdir(base):
+        return {}
+    if fetch:
+        _fetch_local(base, timeout=timeout)
+    try:
+        idx = _run_index_local(base, timeout)
+    except Exception:
+        return {}
+    return idx if isinstance(idx, dict) else {}
+
+
+def crosscheck_stranded_against_parent(graded, parent_index):
+    """Downgrade a STRANDED finding to a `parent_cleared` note when the
+    PARENT (Mac) checkout's own fresh index shows the run_id on origin.
+
+    `graded` is `{repo: untracked_dict}` -- the same shape `apply_claims`
+    mutates in place, and this runs the same way: findings whose run_id
+    appears in `parent_index[repo]["flat_runs"]` or `["pack_runs"]` move from
+    `info["findings"]` to `info["parent_cleared"]`, tagged with which form
+    cleared them.
+
+    Deliberately does NOT re-verify CONTENT the way `grade_path`'s
+    `origin_match` does. The worker's actual file bytes never cross the wire
+    -- only the finding's summary fields (run_id / outcome / elapsed_seconds
+    / bytes) do -- so there is nothing to diff against here. Presence of the
+    run_id in the parent's fresh flat/pack sets is exactly the fact the
+    confirmed incident turned on (v3_exq_614 sat on the real origin/master
+    "in both flat and pack form"), and is exactly what CLEARS a run_id in
+    grade_path's own step 1 before content is even considered. A downgrade
+    here reads as "look again, cleared against a fresher ref" -- not a claim
+    the two copies are byte-identical; a worker's ref being merely OLDER,
+    never divergent, is what the "EVERY FINDING IS RELATIVE TO THE REF THE
+    BOX CAN SEE" paragraph documents as the actual failure mode.
+
+    Fails OPEN, per-repo: a missing/malformed `parent_index[repo]` (no
+    parent checkout, that repo absent there, ls-tree failed) leaves every
+    finding for that repo untouched -- the existing conservative STRANDED
+    text stands exactly as before this cross-check existed.
+    """
+    if not parent_index:
+        return graded
+    for repo, info in (graded or {}).items():
+        if not isinstance(info, dict):
+            continue
+        pidx = parent_index.get(repo)
+        if not isinstance(pidx, dict):
+            continue
+        flat = set(pidx.get("flat_runs") or ())
+        pack = set(pidx.get("pack_runs") or ())
+        findings = info.get("findings") or []
+        if not findings:
+            continue
+        kept, cleared = [], []
+        for f in findings:
+            rid = f.get("run_id")
+            if rid and (rid in flat or rid in pack):
+                d = dict(f)
+                d["parent_form"] = "flat" if rid in flat else "pack"
+                cleared.append(d)
+            else:
+                kept.append(f)
+        if cleared:
+            info["findings"] = kept
+            info["parent_cleared"] = cleared
+            info.setdefault("notes", {})["parent_cleared"] = len(cleared)
     return graded
 
 
@@ -1353,6 +1494,23 @@ def classify(d):
                 reasons.append(
                     f"    {f.get('run_id', '?')} -- {f.get('path', '?')} "
                     f"(claim {c.get('session_id', '?')} on {c.get('resource', '?')})")
+        # PARENT-CLEARED: this box's own ref said stranded; the Mac's fresher
+        # ref (fetched fresh every run, per the module docstring) says the
+        # run_id is on origin after all -- the v3_exq_614 shape. Reported
+        # beside claim_covered, for the same reason: it looks exactly like a
+        # strand and is not one, so it is named rather than silently dropped.
+        pcleared = u.get("parent_cleared") or []
+        if pcleared:
+            reasons.append(
+                f"{len(pcleared)} untracked run manifest(s) CLEARED against the "
+                f"PARENT (Mac) checkout's own freshly-fetched {u.get('ref', 'origin')} "
+                f"index -- present there in flat or pack form, so NOT a strand; "
+                f"this box's own graded ref was likely just stale, and this "
+                f"already resolves it -- no further action needed")
+            for f in pcleared[:3]:
+                reasons.append(
+                    f"    {f.get('run_id', '?')} -- {f.get('path', '?')} "
+                    f"(present on the parent's origin as {f.get('parent_form', '?')})")
         notes = u.get("notes") or {}
         if notes.get("dry_run"):
             reasons.append(
@@ -1647,10 +1805,68 @@ def selftest():
     else:
         print("  [PASS] stale-ref caveat is silent when there is no finding")
 
+    # A parent-cleared finding must read as CLEARED, not as a strand, and
+    # must not resurrect the CHECK THE REF FIRST caveat -- that caveat exists
+    # to tell a human to go verify a stale ref; a parent_cleared entry IS that
+    # verification, already done. Recorded from the exact confirmed shape:
+    # ree-cloud-4, 2026-07-30T17:41Z, v3_exq_614 stranded against a 9.1h-old
+    # ref, present on the real origin/master in flat form.
+    status, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=dict(
+            untracked=1, ignored=0, truncated=0, notes={},
+            ref="origin/master", ref_age_hours=9.1, findings=[],
+            parent_cleared=[dict(
+                path="evidence/experiments/v3_exq_614_x_v3.json.bak.20260530",
+                run_id="v3_exq_614_x_v3", outcome="FAIL",
+                parent_form="flat")])))
+    blob = " ".join(reasons)
+    if status != "OK":
+        print(f"  [FAIL] a parent-cleared finding changed status to {status}")
+        failed += 1
+    elif "STRANDED" in blob:
+        print("  [FAIL] a parent-cleared finding was still reported as STRANDED")
+        failed += 1
+    elif "CHECK THE REF FIRST" in blob:
+        print("  [FAIL] CHECK THE REF FIRST fired with nothing left to check "
+              "(the parent cross-check already resolved it)")
+        failed += 1
+    elif "v3_exq_614_x_v3" not in blob or "CLEARED" not in blob:
+        print(f"  [FAIL] parent-cleared finding not reported: {reasons}")
+        failed += 1
+    else:
+        print("  [PASS] parent-cleared finding reads as CLEARED (names the "
+              "run_id and form), not as STRANDED, and does not re-trigger "
+              "CHECK THE REF FIRST")
+    # ...and a parent-cleared entry must coexist with a genuine survivor:
+    # clearing one finding must never hide another that the parent index
+    # does NOT vouch for.
+    _, reasons = classify(dict(
+        branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+        stashes="0", first="", untracked=dict(
+            untracked=2, ignored=0, truncated=0, notes={},
+            findings=[dict(path="evidence/experiments/real_strand_v3.json",
+                           run_id="real_strand_v3", outcome="FAIL")],
+            parent_cleared=[dict(
+                path="evidence/experiments/v3_exq_614_x_v3.json.bak.20260530",
+                run_id="v3_exq_614_x_v3", outcome="FAIL",
+                parent_form="pack")])))
+    blob = " ".join(reasons)
+    if "real_strand_v3" not in blob or "STRANDED" not in blob:
+        print("  [FAIL] a genuine strand was hidden beside a parent-cleared one")
+        failed += 1
+    elif "v3_exq_614_x_v3" not in blob:
+        print("  [FAIL] the parent-cleared entry vanished beside a real strand")
+        failed += 1
+    else:
+        print("  [PASS] a parent-cleared entry and a genuine strand are both "
+              "reported, independently")
+
     failed += _selftest_grader()
     failed += _selftest_prepull_grading()
     failed += _selftest_local_target()
     failed += _selftest_claims()
+    failed += _selftest_parent_crosscheck()
     failed += _selftest_recheck_and_host_resolution()
     failed += _selftest_fetch_is_local_only()
     print()
@@ -2348,6 +2564,171 @@ def _selftest_claims():
     return bad
 
 
+def _selftest_parent_crosscheck():
+    """The v3_exq_614 false-positive fix: a WORKER's STRANDED finding cleared
+    against the PARENT (Mac) checkout's own fresh index.
+
+    Two layers, mirroring the split the rest of this file already uses
+    (classify() vs the real grader): the downgrade logic
+    (crosscheck_stranded_against_parent) is asserted against hand-built
+    dicts first, then build_parent_index() is asserted END TO END against a
+    REAL temp git repo -- a parent-index builder that has only ever run
+    against a dict is exactly as unverified as a grader that has only ever
+    seen a healthy tree (see _selftest_grader's docstring).
+    """
+    bad = 0
+
+    # 1. The downgrade itself: flat match, pack match, and a genuinely absent
+    #    run_id that must stay a finding.
+    graded = {"REE_assembly": {"findings": [
+        {"path": "evidence/experiments/flat_v3.json.bak.20260530",
+         "run_id": "flat_v3", "outcome": "FAIL"},
+        {"path": "evidence/experiments/pack_v3.json.bak.20260530",
+         "run_id": "pack_v3", "outcome": "FAIL"},
+        {"path": "evidence/experiments/genuinely_lost_v3.json.bak.20260530",
+         "run_id": "genuinely_lost_v3", "outcome": "FAIL"},
+    ], "notes": {}}}
+    parent_index = {"REE_assembly": {"flat_runs": ["flat_v3"],
+                                     "pack_runs": ["pack_v3"]}}
+    crosscheck_stranded_against_parent(graded, parent_index)
+    info = graded["REE_assembly"]
+    left = sorted(f["run_id"] for f in info["findings"])
+    cleared = {f["run_id"]: f["parent_form"]
+               for f in info.get("parent_cleared", [])}
+    if left != ["genuinely_lost_v3"]:
+        print(f"  [FAIL] parent crosscheck: findings left {left}, want only "
+              f"the genuine strand")
+        bad += 1
+    elif cleared != {"flat_v3": "flat", "pack_v3": "pack"}:
+        print(f"  [FAIL] parent crosscheck: cleared {cleared}, want "
+              f"flat_v3=flat pack_v3=pack")
+        bad += 1
+    elif info["notes"].get("parent_cleared") != 2:
+        print(f"  [FAIL] parent crosscheck: notes count wrong: {info['notes']}")
+        bad += 1
+    else:
+        print("  [PASS] parent crosscheck: flat- and pack-form matches both "
+              "clear, a genuinely absent run_id stays a finding")
+
+    # fail-open: a repo missing from the parent index, or an empty index
+    # outright, must leave every finding exactly as graded.
+    graded2 = {"REE_assembly": {"findings": [
+        {"path": "evidence/experiments/x_v3.json.bak", "run_id": "x_v3",
+         "outcome": "FAIL"}], "notes": {}}}
+    crosscheck_stranded_against_parent(graded2, {"ree-v3": {"flat_runs": ["x_v3"]}})
+    left2 = [f["run_id"] for f in graded2["REE_assembly"]["findings"]]
+    if graded2["REE_assembly"].get("parent_cleared") or left2 != ["x_v3"]:
+        print("  [FAIL] parent crosscheck: a repo absent from the parent "
+              "index was not left untouched")
+        bad += 1
+    else:
+        print("  [PASS] parent crosscheck: repo absent from the parent "
+              "index fails open (findings untouched)")
+    graded3 = {"REE_assembly": {"findings": [
+        {"path": "evidence/experiments/y_v3.json.bak", "run_id": "y_v3",
+         "outcome": "FAIL"}], "notes": {}}}
+    crosscheck_stranded_against_parent(graded3, {})
+    left3 = [f["run_id"] for f in graded3["REE_assembly"]["findings"]]
+    if graded3["REE_assembly"].get("parent_cleared") or left3 != ["y_v3"]:
+        print("  [FAIL] parent crosscheck: an empty parent index did not "
+              "fail open")
+        bad += 1
+    else:
+        print("  [PASS] parent crosscheck: an empty parent index fails open")
+
+    # 2. build_parent_index() end to end, against a REAL temp git repo -- the
+    #    v3_exq_614 shape exactly: a run committed in BOTH flat and pack
+    #    form, so its run_id lands in both flat_runs and pack_runs.
+    import shutil
+    import tempfile
+
+    tmp = tempfile.mkdtemp(prefix="rgh-parentidx-")
+    try:
+        root = os.path.join(tmp, "REE_assembly")
+        os.makedirs(os.path.join(root, "evidence", "experiments", "someexp",
+                                 "runs", "v3_exq_614_x_v3"))
+
+        def run(*args):
+            subprocess.run(("git",) + args, cwd=root, check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        run("init", "-q")
+        run("config", "user.email", "selftest@local")
+        run("config", "user.name", "selftest")
+        manifest = {"run_id": "v3_exq_614_x_v3", "outcome": "FAIL"}
+        with open(os.path.join(root, "evidence", "experiments",
+                               "v3_exq_614_x_v3.json"), "w") as fh:
+            json.dump(manifest, fh)
+        with open(os.path.join(root, "evidence", "experiments", "someexp",
+                               "runs", "v3_exq_614_x_v3", "manifest.json"),
+                 "w") as fh:
+            json.dump(manifest, fh)
+        run("add", "-A")
+        run("commit", "-q", "-m", "base")
+        # No real remote in this throwaway repo -- point origin/master at
+        # HEAD directly, exactly as _selftest_local_target does, and build
+        # WITHOUT fetching (there is nothing to fetch from).
+        run("update-ref", "refs/remotes/origin/master", "HEAD")
+
+        idx = build_parent_index(base=tmp, fetch=False)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+    ri = idx.get("REE_assembly", {})
+    if "v3_exq_614_x_v3" not in (ri.get("flat_runs") or []):
+        print(f"  [FAIL] build_parent_index: flat_runs missing the run: {ri}")
+        bad += 1
+    elif "v3_exq_614_x_v3" not in (ri.get("pack_runs") or []):
+        print(f"  [FAIL] build_parent_index: pack_runs missing the run: {ri}")
+        bad += 1
+    else:
+        print("  [PASS] build_parent_index: a real committed run reaches "
+              "both flat_runs and pack_runs via a real ls-tree + "
+              "build_index pass")
+
+    # ...and END TO END: the exact confirmed incident, wired through both
+    # layers -- a worker's STRANDED finding for v3_exq_614, cleared by the
+    # parent index just built from a REAL repo, not a hand-built dict.
+    worker_graded = {"REE_assembly": {"findings": [
+        {"path": ("evidence/experiments/v3_exq_614_x_v3"
+                  "_20260529T191318Z_v3.json.bak.20260530"),
+         "run_id": "v3_exq_614_x_v3", "outcome": "FAIL"}], "notes": {}}}
+    crosscheck_stranded_against_parent(worker_graded, idx)
+    info = worker_graded["REE_assembly"]
+    if info["findings"] or not info.get("parent_cleared"):
+        print(f"  [FAIL] the confirmed v3_exq_614 shape did not clear end "
+              f"to end: {info}")
+        bad += 1
+    else:
+        status, reasons = classify(dict(
+            branch="master", unmerged="0", behind="0", skew="0", gclog="0",
+            stashes="0", first="",
+            untracked=dict(untracked=1, ignored=0, truncated=0,
+                           notes=info["notes"], ref="origin/master",
+                           ref_age_hours=9.1, findings=info["findings"],
+                           parent_cleared=info["parent_cleared"])))
+        blob = " ".join(reasons)
+        if status != "OK" or "STRANDED" in blob or "v3_exq_614_x_v3" not in blob:
+            print(f"  [FAIL] end-to-end confirmed shape did not reach the "
+                  f"report cleanly: status={status} reasons={reasons}")
+            bad += 1
+        else:
+            print("  [PASS] END TO END: a worker's STRANDED v3_exq_614-"
+                  "shaped finding is cleared by a REAL parent index and "
+                  "reaches the report as CLEARED, not STRANDED")
+
+    # fail-open at the build layer: a nonexistent base must return {}, never
+    # raise, so a caller can always treat the result as "no cross-check
+    # available" rather than crashing the whole probe over it.
+    if build_parent_index(base="/nonexistent-rgh-parent-base", fetch=False) != {}:
+        print("  [FAIL] build_parent_index did not fail open on a missing base")
+        bad += 1
+    else:
+        print("  [PASS] build_parent_index: a missing parent base fails "
+              "open ({})")
+    return bad
+
+
 def _selftest_recheck_and_host_resolution():
     """The re-check intersection, and --host alias resolution."""
     bad = 0
@@ -2507,6 +2888,13 @@ def main():
                     help="do not cross-check findings against active "
                          "TASK_CLAIMS entries (they are what distinguishes a "
                          "strand from another session's live work)")
+    ap.add_argument("--no-parent-crosscheck", action="store_true",
+                    help="do not cross-check a WORKER's STRANDED finding "
+                         "against the PARENT (Mac) checkout's own freshly-"
+                         "fetched index (this is what clears the v3_exq_614 "
+                         "false-positive shape -- see module docstring); "
+                         "never touches a worker, only re-reads the Mac's own "
+                         "checkout")
     ap.add_argument("--selftest", action="store_true",
                     help="assert classify(), the untracked grader, local "
                          "target resolution and the claim cross-check against "
@@ -2528,6 +2916,14 @@ def main():
     divergent = 0
     graded = 0
     gitignored_hits = 0
+    # Built at most once per run, lazily -- only once a WORKER target (t.ip is
+    # not None) actually needs it, so a Mac-only invocation (`--host mac`)
+    # never pays for it. Shared across every worker target in this run: the
+    # parent's own ref does not change target-to-target, and a second
+    # `_fetch_local` per worker would be redundant network/subprocess cost
+    # for no additional freshness. See build_parent_index() / the module
+    # docstring's "LABELLING IS NOT THE SAME AS RESOLVING" paragraph.
+    parent_index = None
     for name, t in sorted(targets.items()):
         repos, err = probe(t, untracked=not args.no_untracked,
                            ignored=args.ignored, fetch=not args.no_fetch,
@@ -2539,6 +2935,18 @@ def main():
         claims = claims_for_target(t, enabled=not args.no_claims)
         apply_claims({r: repos[r].get("untracked") for r in repos
                       if isinstance(repos[r].get("untracked"), dict)}, claims)
+        # Parent-index cross-check: WORKER targets only (t.ip is not None).
+        # The Mac's own findings are already graded against this exact ref
+        # (freshly fetched by _probe_local), so cross-checking them against
+        # themselves would be a no-op at best.
+        if (t.ip is not None and not args.no_untracked
+                and not args.no_parent_crosscheck):
+            if parent_index is None:
+                parent_index = build_parent_index(fetch=not args.no_fetch)
+            crosscheck_stranded_against_parent(
+                {r: repos[r].get("untracked") for r in repos
+                 if isinstance(repos[r].get("untracked"), dict)},
+                parent_index)
         report[name] = {"role": t.role, "ip": t.ip, "base": t.base,
                         "repos": {}}
         for repo in REPOS:
