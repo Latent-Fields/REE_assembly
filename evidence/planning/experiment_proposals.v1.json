@@ -3257,6 +3257,11 @@
         "Result links to claim_ids_tested and updates matrix direction counts."
       ],
       "backlog_id": "EVB-0445",
+      "blocked_by": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "blocked_note": "IGW-20260731-212 /queue-experiment Step 2.5b re-derive-brake check (2026-07-31): INV-089 (narrowed 2026-07-16 to the CEILING reading, harm_eval_z_harm quality <= f(z_harm differentiation)) carries 3 non_contributory-family autopsies (746b, 746c, and the failure_autopsy_INV-089-INV-090-wellposedness_2026-07-16 reframe), >= RE_DERIVE_BRAKE_THRESHOLD(2) -- brake FIRES. That reframe found the ceiling-form envelope test ANALYTICALLY VACUOUS under the current instrumentation (harm_eval quality and the same-budget z_harm decodability ceiling are literally the same measurement -- a same-capacity MLP decode of the target from frozen z_harm -- so harm_eval<=ceiling holds by construction). The only constructive unblock is a distinct, non-flat, EXPERIENCED harm-evaluation target (evaluator objective != representational-decodability probe); the only in-substrate candidate (realized-harm Y) is flat, so this needs an environment with graded experienced harm AND a policy that commits to harm-relevant action -- the same committed-action/conversion (F-dominance, MECH-439) ceiling that blocks the behavioural program, itself parked behind MECH-457 (action-learning substrate, status candidate/v3_pending as of 2026-07-25 per substrate_queue.json f_dominance_conversion_ceiling implementation_log) and INV-088 (world/goal evaluator-bound sibling claim, status candidate/pending_substrate_reconfirmation as of 2026-07-20). Neither is built/validated yet. Per skill routing: NOT /queue-experiment (brake refuses a same-claim same-granularity re-queue); the correct route when the upstream substrate lands is /implement-substrate on the distinct-evaluation-target build, but the 2026-07-16 autopsy itself did not recommend creating a substrate_queue entry now (doubly blocked + thin near-term warrant). No script written, no queue entry added. INV-089 stays provisional on V3-EXQ-743's single-pathway positive control; claims.yaml pending_retest_after_substrate correctly remains true (unresolved, not cleared).",
       "claim_id": "INV-089",
       "decision_deadline_utc": "",
       "decision_required_outcomes": [],
@@ -3279,7 +3284,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "v3_exq_743_inv089_harm_evaluator_z_harm_bounded",
       "target_repo": "ree-v3",
       "why_now": [
