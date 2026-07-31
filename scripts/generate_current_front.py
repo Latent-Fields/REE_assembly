@@ -87,14 +87,38 @@ def derive():
     f["closure_generated"] = _search(r"^Generated:\s*(\S+)", closure, default=None,
                                      flags=re.MULTILINE)
 
+    # --- the gate: Recommendation 1 (the decided next step) --------------------
+    # Anchor to the '## Recommendations' section so we get the DECISION, not the
+    # first numbered list on the page (the 'genuinely hard part' enumeration).
+    # Computed BEFORE headline/live-path below because both of those fall back to
+    # this block's text when insights_report.md carries no separate campaign
+    # section (e.g. the "clean state, nothing survives the four gates" format).
+    rec_block = _search(r"(## Recommendations.*?)(?:\n## |\Z)", insights, default="",
+                        flags=re.DOTALL)
+    gate = _search(r"^1\.\s+\*\*([^*]+)\*\*", rec_block, default=None, flags=re.MULTILINE)
+    if not gate:
+        # fall back to item-1 lead text even if not bold-wrapped
+        gate = _search(r"^1\.\s+(.+?)(?:\.\s|\.\n|\n)", rec_block, default=None,
+                       flags=re.MULTILINE)
+    if not gate:
+        gate = "(could not derive the gate -- see insights_report.md Recommendations)"
+        needs_review = True
+    f["gate"] = gate.rstrip(".")
+
     # --- the one-line front headline ------------------------------------------
     # The '### The live front is ...' heading in insights_report.md is the single
-    # most-important-front one-liner. Fallback: the live-campaign section heading.
+    # most-important-front one-liner. Fallback 1: the live-campaign section
+    # heading. Fallback 2: the '**Gate check result: ...**' bold summary line
+    # /insights emits under Recommendations when there is no live campaign at all
+    # (a genuinely clean, fully-routed snapshot) -- this is real content, not
+    # drift, so it must not read as "could not derive".
     headline = _search(r"^###\s+(The live front[^\n]+)$", insights, default=None,
                        flags=re.MULTILINE)
     if not headline:
         headline = _search(r"^##\s+(The live campaign[^\n]+)$", insights, default=None,
                            flags=re.MULTILINE)
+    if not headline:
+        headline = _search(r"\*\*(Gate check result:[^*]+)\*\*", rec_block, default=None)
     if not headline:
         headline = "(could not derive front headline -- see insights_report.md)"
         needs_review = True
@@ -102,7 +126,11 @@ def derive():
 
     # --- live path: the lead diagnostic + the rest of the campaign fan-out -----
     # The '## The live campaign' table marks one row '(lead)'. Collect every
-    # V3-EXQ id in that table, lead first.
+    # V3-EXQ id in that table, lead first. Fallback: no campaign table exists in
+    # the "clean state" report format -- reuse the already-derived `gate` text
+    # (Recommendation item 1), which names the specific EXQ ids still in flight
+    # (e.g. already-queued re-tests) even when there is no separate campaign
+    # section to point at.
     campaign_block = _search(r"(## The live campaign.*?)(?:\n## |\Z)", insights,
                              default="", flags=re.DOTALL)
     lead = _search(r"\|\s*\*\*(V3-EXQ-\d+[a-z]?)\*\*[^|]*\|\s*\*\*\d+\s*\(lead\)\*\*",
@@ -115,25 +143,18 @@ def derive():
     if lead and lead in all_exq:
         all_exq.remove(lead)
         all_exq.insert(0, lead)
+    fallback_live_path = False
+    if not all_exq:
+        for m in re.finditer(r"(V3-EXQ-\d+[a-z]?)", gate):
+            eid = m.group(1)
+            if eid not in all_exq:
+                all_exq.append(eid)
+        fallback_live_path = bool(all_exq)
     f["lead_exq"] = lead
     f["live_path_exqs"] = all_exq[:4]  # keep it short
+    f["live_path_is_fallback"] = fallback_live_path
     if not all_exq:
         needs_review = True
-
-    # --- the gate: Recommendation 1 (the decided next step) --------------------
-    # Anchor to the '## Recommendations' section so we get the DECISION, not the
-    # first numbered list on the page (the 'genuinely hard part' enumeration).
-    rec_block = _search(r"(## Recommendations.*?)(?:\n## |\Z)", insights, default="",
-                        flags=re.DOTALL)
-    gate = _search(r"^1\.\s+\*\*([^*]+)\*\*", rec_block, default=None, flags=re.MULTILINE)
-    if not gate:
-        # fall back to item-1 lead text even if not bold-wrapped
-        gate = _search(r"^1\.\s+(.+?)(?:\.\s|\.\n|\n)", rec_block, default=None,
-                       flags=re.MULTILINE)
-    if not gate:
-        gate = "(could not derive the gate -- see insights_report.md Recommendations)"
-        needs_review = True
-    f["gate"] = gate.rstrip(".")
 
     # --- buildable-now item ----------------------------------------------------
     # "Ready & not-yet-implemented (buildable now): **MECH-090** (P2 -- ...)."
@@ -209,7 +230,11 @@ def render(f, needs_review, now):
         path = ", ".join(f["live_path_exqs"])
         if f["lead_exq"]:
             path = path.replace(f["lead_exq"], f["lead_exq"] + " (lead)", 1)
-        lines.append("- **Live path:** %s" % path)
+        if f.get("live_path_is_fallback"):
+            lines.append("- **Live path (from the gate text; no separate live-campaign "
+                         "section this snapshot):** %s" % path)
+        else:
+            lines.append("- **Live path:** %s" % path)
     else:
         lines.append("- **Live path:** (could not derive -- see insights_report.md)")
     lines.append("- **The gate:** %s" % f["gate"])
