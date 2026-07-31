@@ -1,0 +1,126 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-07-31T20:30:41Z",
+  "scope": "single",
+  "status": "awaiting_human_confirmation",
+  "staging_mode": true,
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_841_mech163_q085_grain_dose_response_20260731T080537Z_v3",
+      "queue_id": "V3-EXQ-841",
+      "claim_ids": ["MECH-163", "Q-085"],
+      "failed_criterion": "readiness_precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "self_route_independently_verified": true,
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear_not_exercised",
+        "biological_reference": "clear",
+        "prerequisites": "partially_present",
+        "implementation": "partial",
+        "environment": "likely_inadequate_for_this_dv",
+        "measurement": "possibly_implicated",
+        "integration": "isolated_but_uncoupled",
+        "scale": "not_implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Dezfouli & Balleine 2013 single goal-directed process selecting between individual actions and consolidated action-sequence chunks, executed atomically once selected; Jin & Costa 2010 on consolidation-dependent sequence boundaries",
+        "dependencies": ["ARC-071 (composition/transition mechanism)", "MECH-323 (chunk accumulator/crystallisation)", "MECH-477 (arbitrator)"],
+        "is_formal_import": false,
+        "divergence": "None asserted -- substrate architecture already matches the reference account per MECH-163's 2026-07-27 restatement (E3: REE already instantiates the hierarchical account of habit). The finding is an implementation-completeness gap (commit persistence not demonstrated), not a biology divergence.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-163": "non_contributory",
+        "Q-085": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-07-31 (V3-EXQ-841, non_contributory, both A_HIER_*/A_FLAT legs; failure_autopsy_V3-EXQ-841_2026-07-31). Run correctly self-routed substrate_not_ready_requeue (non_degenerate=false, all 6 arms RED at the readiness-gate layer) -- NOT a test of either claim. Independent re-derivation surfaced a genuinely novel, decisive substrate finding: wherever the ARC-071 chunk-injection pathway (use_chunk_proposal_injection=True) is live-tested for the first time (810a explicitly ran with injection OFF; 834 never cleared formation), the realised committed-chunk length pins at EXACTLY 1 step in 100% of 32 chunking cells that registered any commitment at all, independent of the configured chunk_max_size dose (2/3/5) -- categorically falsifying Q-085's own pre-registered gate (b) as currently wired/measured. Two live hypotheses (commit-latch wiring vs experiment readout artifact) are not yet discriminated. A second, independent readiness failure (zero pre-devaluation resource contacts in the non-chunking A_OFF/A_FLAT control arms, 0/16 cells; z_goal inactive across the entire 48-cell grid) blocks even the FLAT baseline this design needs. pending_retest_after_substrate: true for both claims at this grain/architecture question. Routed /implement-substrate (recommended_substrate_queue_entry, action=create) with a fanout_recommendation to discriminate the H1/H2 split before any re-queue.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "arc071_chunk_commit_latch_persistence",
+        "title": "ARC-071/MECH-323 chunk-injection commit-latch: verify/repair multi-step persistence under live selection (use_chunk_proposal_injection=True)",
+        "implementation_hint": "V3-EXQ-841 is the first live test of use_chunk_proposal_injection=True combined with a continued multi-episode StepHarness run (train_mode=False, single long-lived agent across formation+probe). In 100% of 32 chunking cells that registered any commitment, realised committed length pinned at exactly 1 step regardless of configured chunk_max_size (2/3/5) -- committed_arc071_chunks == total probe step count (2160 = 30 episodes x 72 steps) with n_segments_uninterrupted=0 throughout. Two live hypotheses need discrimination before a fix: H1 (ree_core wiring) -- the MECH-090 commit latch's step-index advance / re-deliberation suppression does not hold across ticks in this harness configuration; select_action re-evaluates and re-commits from scratch every tick. H2 (experiment readout) -- the internal commitment state persists correctly but this experiment's own _committed_chunk_state()/_segment_commitments() read path (agent.e3._committed_trajectory, agent._committed_step_idx, or the metadata['source']=='arc071_chunk' check) misreads it as resetting every tick. Relevant code: ree_core/hippocampal/module.py:1856 (_build_chunk_candidates, injection), ree_core/policy/policy_chunking.py (note_real_execution/selectable_chunks, crystallisation_min=5), ree_core/agent.py:1373 (set_chunk_source) and the MECH-090 commit-latch/select_action step-advance logic (not yet independently instrumented). SECONDARY, bundle into the same investigation: A_OFF/A_FLAT (non-chunking) control arms registered ZERO pre-devaluation resource contacts in 16/16 cells and z_goal was inactive (ticks_active=0, goal_state_present=false) in all 48 cells of the run -- the inherited arc071_chunking.py baseline (validated by 810a for chunk-ACCUMULATION readiness only) may not carry an active resource-seeking drive adequate for a devaluation-persistence DV that requires reliable resource contact within a bounded probe window.",
+        "unblocks_claims": ["MECH-163", "Q-085"],
+        "depends_on_unresolved": ["ARC-071", "MECH-323"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_841_mech163_q085_grain_dose_response_20260731T080537Z_v3",
+          "experiment_type": "v3_exq_841_mech163_q085_grain_dose_response",
+          "metric": "realised_mean_committed_length pinned at exactly 1.0 in 100% of 32 chunking cells with any commitment (committed_arc071_chunks>0), independent of chunk_max_size in {2,3,5}; committed_arc071_chunks equalled the full probe step count (2160) in most such cells with n_segments_uninterrupted=0",
+          "target": "realised committed length should approach the configured chunk_max_size (or at minimum exceed 1 step with measurable variance across dose conditions) for gate (b) of Q-085's own pre-registered design to be satisfiable"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "granularity_debt_cluster.py MECH-163: 6 prior targets, categories measurement_test_design_defect/standard only, no substrate_ceiling. Q-085: 0 prior targets. Brake does not fire for either claim; this target's own recommended_epistemic_category is competence_implementation_gap, not substrate_ceiling, so it does not itself contribute a ceiling hit."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: ree_core wiring -- the MECH-090 commit latch's step-index advance / re-deliberation suppression does not hold across ticks in this harness configuration (train_mode=False + use_chunk_proposal_injection=True + StepHarness spanning formation+probe on one long-lived agent); select_action re-evaluates and re-commits from scratch every tick regardless of an existing commitment.",
+          "H2: experiment/measurement readout artifact -- the true internal commitment state persists correctly across ticks, but this experiment's own _committed_chunk_state()/_segment_commitments() read path (agent.e3._committed_trajectory or agent._committed_step_idx, or the metadata['source']=='arc071_chunk' check) does not correctly observe it, producing an artefactual 'new commitment every step' reading."
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "instrumentation", "sketch": "Directly instrument agent._committed_step_idx and the commit-latch's re-deliberation-suppression branch tick-by-tick inside select_action, on the two seeds (A_HIER_S2 101, 505) where the effect reproduces cleanly with the smallest chunk size; confirm whether the internal step counter itself ever exceeds 0 before a fresh commit overwrites it."},
+          {"hypothesis": "H2", "axis": "measurement", "sketch": "Independently read the committed trajectory's identity (object id or a monotonic commit-generation counter) at each tick from OUTSIDE _committed_chunk_state()'s existing read path, and compare against what _committed_chunk_state() reports for the same tick; a mismatch isolates the readout as the artifact rather than the substrate."}
+        ],
+        "note": "GOV-FANOUT-1: two axes (instrumentation of the real latch vs an independent readout of the same state) rather than one more full 6-arm x8-seed re-run of V3-EXQ-841's design, which would reproduce the same ambiguity at full cost. Whichever hypothesis is confirmed determines whether the fix is ree_core (H1, implement-substrate) or the experiment script's measurement code (H2, queue-experiment redesign of the read path only, no substrate change)."
+      },
+      "learning_extracted": [
+        "Novel substrate finding: the ARC-071/MECH-323 chunk-injection-to-commit-latch-persistence pathway (use_chunk_proposal_injection=True under a continued no_grad StepHarness run) has now been live-tested for the first time and shows realised committed length pinned at exactly 1 step in 100% of 32 cells with any commitment, independent of configured chunk_max_size (2/3/5) -- directly falsifying Q-085's own pre-registered gate (b) as currently wired/measured.",
+        "Chunk formation/crystallisation itself is dose-dependent in the expected direction (larger chunk_max_size forms more reliably across seeds: 4/8, 7/8, 7/8, 7/8 seeds for S2/S3/S5/FLATCHUNK_S5 respectively) -- the accumulator side of the mechanism behaves sensibly in isolation.",
+        "The devaluation-persistence DV as currently harnessed gets zero resource contact in the non-chunking control arms (A_OFF/A_FLAT, 0/16 cells) -- independent of the chunking question, and blocks the FLAT baseline MECH-163 needs regardless of how the chunk-commitment finding resolves.",
+        "z_goal is completely inactive (0 active ticks) across the entire 48-cell grid -- consistent with the resource-contact finding and worth checking directly: does the inherited arc071_chunking.py baseline enable any goal-directed resource-seeking drive at all, or is its behaviour driven entirely by incidental exploration/hazard-avoidance?",
+        "claim_ids correctly excludes ARC-071 and MECH-323 (exercised as preconditions, not hypotheses under test) -- verified against the script's own stated rationale; no correction needed."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": {
+    "note": "STAGING MODE: hypothesis_space_registry.v1.json was NOT written by this session. The blocks below are the intended Mode-A pre-registration for the fanout_recommendation's H1/H2 split, for a confirming interactive session or the next /governance walk to apply per skill Step 9b.",
+    "question_candidate": {
+      "qid": "arc071-commit-latch-persistence",
+      "title": "Does the MECH-090 commit latch actually hold an injected ARC-071 chunk atomically for more than one tick, or does the experiment's own readout misreport a persisting commitment as resetting every step?",
+      "short_title": "ARC-071 commit-latch persistence: wiring vs readout",
+      "claims": ["MECH-163", "Q-085"],
+      "fanout_sources": ["failure_autopsy_V3-EXQ-841_2026-07-31.json"],
+      "is_hero": false,
+      "initial_frozen_count_proposed": 2,
+      "hypotheses_proposed": [
+        {
+          "hid": "H-commitlatch-wiring",
+          "label": "H1: commit-latch wiring defect",
+          "desc": "The step-index advance / re-deliberation suppression in select_action does not hold across ticks under train_mode=False + use_chunk_proposal_injection=True + a continued StepHarness run; a genuinely new commitment is issued every tick.",
+          "axis": "instrumentation",
+          "basis": "realised_mean_committed_length pinned at exactly 1.0 in 100% of 32 cells with any commitment, independent of chunk_max_size in {2,3,5}; committed_arc071_chunks == full probe step count with n_segments_uninterrupted=0 throughout -- consistent with a latch that never actually holds.",
+          "adjudicating_runs_pending": true,
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        },
+        {
+          "hid": "H-commitlatch-readout-artifact",
+          "label": "H2: experiment readout artifact",
+          "desc": "The internal commitment state persists correctly across ticks, but _committed_chunk_state()/_segment_commitments()'s read path does not correctly observe it, producing an artefactual reset-every-tick reading.",
+          "axis": "measurement",
+          "basis": "Same evidence as H1 -- the two hypotheses are not yet discriminated by this run; both are consistent with the observed exact-1.0-or-0.0 realised-length signature.",
+          "adjudicating_runs_pending": true,
+          "resolution": {"state": "alive", "resolving_runs": [], "evidence_direction": "pending", "resolved_utc": null, "control_passed": false, "non_degenerate": null, "met_elimination_bar": false}
+        }
+      ],
+      "decision_proposed": {
+        "decision_question": "Is the ARC-071 chunk-injection commit-latch persistence pathway a genuine ree_core defect (route implement-substrate) or an experiment-script measurement defect (route queue-experiment redesign of the readout only)?",
+        "live_gate": "requires the H1/H2 discriminating probe (fanout_recommendation.suggested_probes) to run",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one targeted instrumentation probe away from discrimination"
+      }
+    }
+  }
+}
