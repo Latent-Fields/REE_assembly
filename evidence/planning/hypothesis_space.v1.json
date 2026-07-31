@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-31T23:33:52Z",
+  "generated_at": "2026-07-31T23:48:51Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,26 +31,26 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 37,
+      "total_surviving": 36,
       "total_initial": 66,
       "total_initial_at_registration": 48,
       "total_fanout_added": 18,
-      "total_resolved_out": 27,
-      "reduction_pct_vs_current": 40.9,
-      "net_narrowing_pct": 22.9,
+      "total_resolved_out": 28,
+      "reduction_pct_vs_current": 42.4,
+      "net_narrowing_pct": 25.0,
       "convergence_classes": {
-        "static": 6,
-        "narrowing": 5,
+        "narrowing": 6,
+        "static": 5,
         "circling": 3,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "37 alive against 48 originally enumerated, and against 66 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "36 alive against 48 originally enumerated, and against 66 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 15
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 7,
+      "ready": 8,
       "open_questions": 15
     }
   },
@@ -129,7 +129,7 @@
     },
     {
       "date": "2026-07-31",
-      "surviving": 37,
+      "surviving": 36,
       "closure_pct": 77.6,
       "build_pct": 80.3
     }
@@ -2108,36 +2108,44 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
           "instrumentation"
         ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 2,
-      "alive": 2,
-      "resolved_out": 0,
-      "confirmed": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
-      "synthesis": null,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": {
+        "surviving_label": "H1 confirmed (ree_core commit-latch wiring gap); H2 refuted (readout is faithful)",
+        "text": "H1 (ree_core wiring defect) CONFIRMED via direct instrumentation; H2 (readout artifact) REFUTED (0/160 mismatches between the experiment's read function and ground-truth attribute reads). Root cause: agent.py's between-E3-tick stepping branch never consults the SD-084 persistent trajectory handle (unlike the MECH-321 hook, which already does), so _committed_step_idx never advances past its first post-commit value; compounded by E3 unconditionally re-deliberating and re-committing a fresh trajectory object on every E3 tick with no already-committed short-circuit. Fix is two-part (agent.py fallback + arc071_chunking.py baseline flag) plus one open, undiagnosed question (should E3 skip re-selection when already committed) -- routed to /implement-substrate (substrate_queue.json arc071_chunk_commit_latch_persistence, diagnosis_correction field) rather than applied this session, because ree_core/agent.py was under an active claim by a concurrent session's merge at diagnosis time.",
+        "under_test": null
+      },
       "hypotheses": [
         {
           "hid": "H-commitlatch-wiring",
           "label": "H1: commit-latch wiring defect",
           "desc": "The step-index advance / re-deliberation suppression in select_action does not hold across ticks under train_mode=False + use_chunk_proposal_injection=True + a continued StepHarness run; a genuinely new commitment is issued every tick.",
           "axis": "instrumentation",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "realised_mean_committed_length pinned at exactly 1.0 in 100% of 32 cells with any commitment, independent of chunk_max_size in {2,3,5}; committed_arc071_chunks == full probe step count with n_segments_uninterrupted=0 throughout -- consistent with a latch that never actually holds. Pre-registered, not yet adjudicated.",
+          "state": "confirmed",
+          "evidence_runs": [
+            "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+          ],
+          "basis": "Direct instrumentation (seeds 101/505, A_HIER_S2, forced guaranteed-selectable 3-step chunk + forced commit) shows agent._committed_step_idx never advances past 1 across 80 ticks / 8-10 E3 re-deliberation cycles per seed, and a BRAND NEW trajectory object (distinct id()) is installed on every single E3 tick despite the identical candidate being re-selected -- confirming the commit-latch does not hold across ticks in this configuration. Root cause: agent.py's between-E3-tick stepping branch never falls back to e3._persistent_committed_trajectory (unlike the MECH-321 hook), so the step-index-advance increment is never reached; compounded by no re-selection short-circuit on E3 ticks. control_passed: true (the forced-commit / guaranteed-candidate manipulation check unambiguously isolates the mechanism); non_degenerate: true (160 real ticks exercised, 18 real E3 re-deliberation cycles observed). met_elimination_bar left false -- this maps to 'supports', not an elimination target; see evidence/planning/diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md for the full trace.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -2146,24 +2154,41 @@
           "label": "H2: experiment readout artifact",
           "desc": "The internal commitment state persists correctly across ticks, but _committed_chunk_state()/_segment_commitments()'s read path does not correctly observe it, producing an artefactual reset-every-tick reading.",
           "axis": "measurement",
-          "state": "alive",
-          "evidence_runs": [],
-          "basis": "Same evidence as H1 -- the two hypotheses are not yet discriminated by V3-EXQ-841; both are consistent with the observed exact-1.0-or-0.0 realised-length signature. Pre-registered, not yet adjudicated.",
+          "state": "eliminated",
+          "evidence_runs": [
+            "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+          ],
+          "basis": "_committed_chunk_state() (the experiment's own read function) was directly compared against ground-truth attribute reads (e3._committed_trajectory, e3._persistent_committed_trajectory, agent._committed_step_idx read independently, outside the read path) at every one of 160 ticks across seeds 101/505 -- 0 genuine mismatches. The readout faithfully reports the real, broken substrate state; there is no genuinely-persisting commitment for it to misreport. H2 is refuted.",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         }
       ],
       "decision": {
-        "readiness_state": "discriminative_ready",
-        "evidence_decile": 7,
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
         "decision_question": "Is the ARC-071 chunk-injection commit-latch persistence pathway a genuine ree_core defect (route implement-substrate) or an experiment-script measurement defect (route queue-experiment redesign of the readout only)?",
-        "distance_phrase": "one targeted instrumentation probe away from discrimination",
+        "distance_phrase": "DECIDED: H1 confirmed, H2 refuted. Distance to CLOSED is now implementation (agent.py fallback + arc071_chunking.py flag), not further discrimination.",
         "live_gate": "requires the H1/H2 discriminating probe (fanout_recommendation.suggested_probes) to run",
         "observation_bottleneck": null
       }
     }
   ],
   "momentum": [
+    {
+      "run": "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md",
+      "all_runs": [
+        "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "arc071-commit-latch-persistence",
+      "claims": [
+        "MECH-163",
+        "Q-085"
+      ],
+      "moved": "Direct instrumentation (seeds 101/505, A_HIER_S2, forced guaranteed-selectable 3-step chunk + forced commit) shows agent._committed_step_idx never advances past 1 across 80 ticks / 8-10 E3 re-deliberation cycles per seed, and a BRAND NEW trajectory object (distinct id()) is installed on every single E3 tick despite the identical candidate being re-selected -- confirming the commit-latch does not hold across ticks in this configuration. Root cause: agent.py's between-E3-tick stepping branch never falls back to e3._persistent_committed_trajectory (unlike the MECH-321 hook), so the step-index-advance increment is never reached; compounded by no re-selection short-circuit on E3 ticks. control_passed: true (the forced-commit / guaranteed-candidate manipulation check unambiguously isolates the mechanism); non_degenerate: true (160 real ticks exercised, 18 real E3 re-deliberation cycles observed). met_elimination_bar left false -- this maps to 'supports', not an elimination target; see evidence/planning/diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md for the full trace.",
+      "resolved_utc": "2026-07-31T23:46:08Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-836c",
       "all_runs": [
