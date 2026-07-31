@@ -60860,6 +60860,15 @@
     Q081-REACH-CHECK-PAIR-SPECIFIC created (a cheap pre-flight reach probe gating any future full run on the
     SPECIFIC measured pair, not a blanket flag check). Stays candidate; no direction toward the underlying
     question yet -- three consecutive measurement-defect results, not evidence for or against shared organisation.
+    [2026-07-31, IGW-20260729-196] Q081-REACH-CHECK-PAIR-SPECIFIC BUILT: ree-v3/experiments/_lib/
+    q081_pair_reach_check.py, an experiment-layer (no ree_core change) empirical reach probe -- diffs
+    agent.salience._input_signals (the closed precursor set operating_mode is a deterministic function of)
+    between an INTACT and the PRIMARY manipulation arm over a short untrained rollout, with a non-degeneracy
+    guard (an untrained event segmenter fires boundary events sparsely; a zero-boundary rollout is reported
+    degenerate, not "no reach"). Manual runs at non-degenerate defaults (seeds 0, 1) reproduced 824a/838's
+    finding again (has_pair_specific_reach=False); a future driver should call this probe before any further
+    full recording run rather than repeat 824/824a/838's cost to re-discover the same non_contributory result.
+    See substrate_queue.json sd_id Q081-REACH-CHECK-PAIR-SPECIFIC for the full implementation note.
 
 - id: MECH-466
   title: "Event-relative coordination exceeds clock-relative coordination: cross-stream alignment measured around event boundaries, commitment onset, interruption, completion and offline transitions is stronger than alignment by wall-clock timestep. If so, the boundary stream is the coordination substrate for the whole federation, not merely a detector with a consumer."
@@ -60985,6 +60994,14 @@
     discriminator and the null-validation gap is recorded as a standing design note, not a blocker to the
     weakens verdict. New substrate entry INV091-NULL-VALIDATION-RUN-LENGTH created (bump default run length
     to >=2848 steps for this driver family). Stays candidate.
+    [2026-07-31, IGW-20260730-192]: INV091-NULL-VALIDATION-RUN-LENGTH IMPLEMENTED --
+    ree-v3/experiments/_lib/inv091_driver_defaults.py provides a standing default eval-phase
+    budget (EVAL_EPISODES 10 -> 24, 3600 eval-phase steps, 26% margin over the 2848-step
+    worst-case deficit from V3-EXQ-828) for any future successor driver in this family. This
+    does not re-score 827/827a/828 or change the weakens verdict above -- it only means the
+    NEXT run of this driver family can clear its own null-validation guard. No experiment
+    queued yet in this session (out of scope; a /queue-experiment follow-on is chipped).
+    Stays candidate.
 
 - id: ARC-112
   title: "REE is a FEDERATION / heterarchy of asynchronous, partially independent cognitive streams coordinated by shared organisational constraints -- neither a monolith nor a collection of independent modules. Successful integration preserves functionally necessary differences among streams rather than making their dynamics identical."

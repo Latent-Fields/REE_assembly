@@ -6269,7 +6269,7 @@
       "sd_id": "Q081-REACH-CHECK-PAIR-SPECIFIC",
       "title": "q081 reach: empirically verify manipulation reach to the SPECIFIC measured pair (z_world, operating_mode) before any full run; use_per_region_vs=True is refuted as sufficient",
       "node_class": "complex (probe-gated)",
-      "status": "pending_implementation",
+      "status": "implemented",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6294,7 +6294,12 @@
       "implementation_hint": "824a recommended 'add use_per_region_vs=True and re-verify'. 838 did exactly that (plus a second, temporal manipulation family) and RV(z_world, operating_mode) stayed bit-identical across all 5 seeds. The use_per_region_vs reach path (apply_invalidation_broadcasts_to_regions -> vs_rollout_gate -> E3 -> operating_mode, agent.py:4686-4692) does not carry variance to operating_mode. Do NOT flip another blanket flag: build a cheap low-episode pre-flight reach probe that asserts at least one arm moves rv_primary on the SPECIFIC measured pair, and gate any full run on it. If no lever moves operating_mode, the DV pair itself must be reframed onto a confirmed-reachable pair (H2).",
       "priority": 2,
       "added_session": "sweet-williams-f30676",
-      "last_seen_session": "sweet-williams-f30676"
+      "last_seen_session": "sweet-williams-f30676",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-07-31T19:25:00Z",
+      "implemented_session": "igw-auto-igw-196-substrate-ready-q081-reach-check-20260729T233754Z",
+      "implementation_note_update": "IMPLEMENTED 2026-07-31 (IGW-20260729-196). New EXPERIMENT-LAYER module ree-v3/experiments/_lib/q081_pair_reach_check.py (no ree_core change, no new REEConfig knob -- same discipline as q081_landmark_removal.py/q081_surrogate.py): reads agent.salience._input_signals (the closed set of named values SalienceCoordinator.tick() computes operating_mode from) at every tick for an INTACT vs the PRIMARY_MODE=iei_permute manipulation arm, over a SHORT untrained rollout, and diffs them -- necessary-and-sufficient precursor check, cheaper than waiting for an RV statistic on the softmax OUTPUT across a full multi-seed recording run. Matched-arm construction (copy.deepcopy of one seeded agent, reset_all_rng(seed) before each arm) was REQUIRED after an early version produced a false-positive 'reach' from uncontrolled global torch RNG state ordering between arms, not the manipulation -- fixed and verified (see module docstring). NON-DEGENERACY GUARD added after empirical measurement showed an untrained event segmenter fires boundary events sparsely and with high seed variance (0 boundaries in 1200 untrained ticks at one seed, 76-120 at others, same config): a rollout with zero true boundary events is reported is_degenerate=True (raises when strict) rather than a misleading 'no reach' verdict. Manual run at the module's own non-degenerate defaults (n_episodes=3, steps_per_episode=400, env_size=6): seeds 0 and 1 cleared the guard (76 and 120 true boundary events) and BOTH reproduced V3-EXQ-824a/838's confirmed finding (has_pair_specific_reach=False, i.e. use_per_region_vs's reach path does not carry variance into any named salience signal either, consistent with the full 5-seed trained result); seed 2 came back degenerate (0 boundary events), correctly flagged rather than misreported. Smoke-tested: 15 contract tests in tests/contracts/test_q081_pair_reach_check.py (pure-logic detector-fires / detector-does-not-false-positive / tolerance / episode-alignment / length-mismatch-raises tests with fakes, a live REEAgent/env smoke test, and a live degeneracy-guard-raises test) all pass in ~7.5s. A future Q-081 driver should call run_pair_specific_reach_probe(...) or assert_pair_specific_reach(..., strict=True) BEFORE committing to a full multi-seed recording run: if it raises (non-degenerate, no reach), a full run would reproduce the same non_contributory result -- do not run it; find a different manipulation lever with confirmed causal reach to a named salience signal, or reframe the measured pair onto a confirmed-reachable one (H2). Follow-on (not done in this session, per scope discipline): the H2 reframing search itself, if a future session wants to pursue it.",
+      "validation_experiment": null
     },
     {
       "sd_id": "INV091-NULL-VALIDATION-RUN-LENGTH",
