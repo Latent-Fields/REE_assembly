@@ -27,21 +27,37 @@
         "integration": "isolated",
         "scale": "adequate"
       },
-      "biological_reference": {"closest_mechanism": "n/a", "dependencies": [], "is_formal_import": false, "divergence": "n/a", "lit_status": "absent"},
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "Self-route substrate_not_ready_requeue confirmed: single narrowly-missed precondition (frozen_pe_responds_to_shock 0.223 vs 0.25) on a repeat run of a stochastic shock-response probe; environment question already answered by the same-day PASS sibling. No action.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
-      "learning_extracted": ["Borderline gate on frozen_pe_responds_to_shock is measurement variance, not an environment defect -- consider widening the margin if this gate recurs."],
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "Borderline gate on frozen_pe_responds_to_shock is measurement variance, not an environment defect -- consider widening the margin if this gate recurs."
+      ],
       "routing": "queue-experiment"
     },
     {
       "run_id": "v3_exq_687a_mech313_committed_authority_dissociation_20260730T050850Z_v3",
       "queue_id": "V3-EXQ-687a",
-      "claim_ids": ["Q-045", "MECH-313", "MECH-260"],
+      "claim_ids": [
+        "Q-045",
+        "MECH-313",
+        "MECH-260"
+      ],
       "failed_criterion": "precondition_unmet",
       "four_layer_diagnosis": {
         "claim_alignment": "unclear -- no arm reached committed behaviour, so the claim never got to express itself",
@@ -53,11 +69,22 @@
         "integration": "coupled but unstable",
         "scale": "likely insufficient (competence floor)"
       },
-      "biological_reference": {"closest_mechanism": "LC-NE tonic noise floor / dACC anti-recency", "dependencies": ["intact committed-action generation"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "biological_reference": {
+        "closest_mechanism": "LC-NE tonic noise floor / dACC anti-recency",
+        "dependencies": [
+          "intact committed-action generation"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "competence_implementation_gap",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-687a (2026-07-30): re-derive brake exempt -- all 4 arms failed committed_sufficiency at the absolute floor (0.0/50.0), not a discrimination result. Q-045 is now gated on the same MECH-457 competence-floor substrate as the rest of the committed-behaviour campaign, not independently re-queueable until that substrate clears.",
-      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": "mech457_competence_bootstrap_explorer"},
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "mech457_competence_bootstrap_explorer"
+      },
       "pending_retest_after_substrate": true,
       "narrow_supports_flag": false,
       "re_derive_brake": {
@@ -77,7 +104,9 @@
     {
       "run_id": "v3_exq_707c_arc110_loop_segregation_c2_release_repair_20260722T041239Z_v3",
       "queue_id": "V3-EXQ-707c",
-      "claim_ids": ["ARC-110"],
+      "claim_ids": [
+        "ARC-110"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "weakened (narrowed further, consistent with existing 707b weakens/NARROW disposition)",
@@ -89,21 +118,45 @@
         "integration": "coupled",
         "scale": "adequate"
       },
-      "biological_reference": {"closest_mechanism": "parallel segregated cortico-striatal-thalamic loops (motor/cognitive/motivational)", "dependencies": ["ARC-107", "ARC-106", "MECH-439"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "biological_reference": {
+        "closest_mechanism": "parallel segregated cortico-striatal-thalamic loops (motor/cognitive/motivational)",
+        "dependencies": [
+          "ARC-107",
+          "ARC-106",
+          "MECH-439"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "weakens",
       "recommended_evidence_quality_note": "V3-EXQ-707c (2026-07-30) continues the 707b weakens/NARROW disposition (user-approved 2026-06-29): loops vary but no conversion-ceiling-intrinsic effect. Extends, does not contradict, the existing note.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": true,
-      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-709_2026-07-03", "failure_autopsy_V3-EXQ-711-713_2026-07-20"], "refused_requeue": false},
-      "learning_extracted": ["The 3 confirmed ARC-110 ceiling hits (709/711/713) belong to a different sub-thread (learned cross-loop arbitration) than the loop-segregation C2-release lineage (707/707a/707b/707c) -- no re-derive-brake conflict."],
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_V3-EXQ-709_2026-07-03",
+          "failure_autopsy_V3-EXQ-711-713_2026-07-20"
+        ],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "The 3 confirmed ARC-110 ceiling hits (709/711/713) belong to a different sub-thread (learned cross-loop arbitration) than the loop-segregation C2-release lineage (707/707a/707b/707c) -- no re-derive-brake conflict."
+      ],
       "routing": "governance-demotion"
     },
     {
       "run_id": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3",
       "queue_id": "V3-EXQ-840",
-      "claim_ids": ["MECH-294"],
+      "claim_ids": [
+        "MECH-294"
+      ],
       "failed_criterion": "discrimination",
       "four_layer_diagnosis": {
         "claim_alignment": "unclear -- readiness gate caught a measurement-magnitude gap before the claim could be tested",
@@ -115,25 +168,62 @@
         "integration": "partially coupled",
         "scale": "likely insufficient (coherence magnitude)"
       },
-      "biological_reference": {"closest_mechanism": "theta-burst packet joint content binding (Kay 2020 parsimonious architecture as the rival)", "dependencies": ["MECH-089", "MECH-091", "MECH-269", "MECH-269b"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "biological_reference": {
+        "closest_mechanism": "theta-burst packet joint content binding (Kay 2020 parsimonious architecture as the rival)",
+        "dependencies": [
+          "MECH-089",
+          "MECH-091",
+          "MECH-269",
+          "MECH-269b"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "measurement_test_design_defect",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-840 (2026-07-30): readiness safeguard (asserting the SAME statistic -- route_range -- the load-bearing criteria depend on) correctly caught a sub-floor cross-candidate range on ARM_1_JOINT in a real run, despite the contract-test suite passing at smoke scale. Not a claim result -- MECH-294 stays candidate/v3_pending. Recommend strengthening per-candidate coherence magnitude (or auditing the readiness floor calibration) before re-running the same falsifier.",
-      "recommended_substrate_queue_entry": {"action": "create", "sd_id_suggested": "mech294_coherence_magnitude_strengthening", "title": "Strengthen per-candidate co-binding coherence magnitude so a real (non-smoke) run clears route_range supra-floor on the JOINT arm", "implementation_hint": "compose_per_candidate_coherence currently produces enough signal for tests/contracts/test_mech294_per_candidate_coherence.py at smoke scale but not for a full V3-EXQ-840-scale run to clear the route-range readiness floor. Either strengthen the coherence signal magnitude or audit whether the floor itself is miscalibrated relative to a real run's achievable range.", "unblocks_claims": ["MECH-294"], "depends_on_unresolved": [], "priority_suggested": 2, "failure_record_entry": {"run_id": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3", "experiment_type": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier", "metric": "ARM_1_JOINT routed cross-candidate range", "target": "supra-floor, matching the route-range readiness threshold"}}
-      ,
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mech294_coherence_magnitude_strengthening",
+        "title": "Strengthen per-candidate co-binding coherence magnitude so a real (non-smoke) run clears route_range supra-floor on the JOINT arm",
+        "implementation_hint": "compose_per_candidate_coherence currently produces enough signal for tests/contracts/test_mech294_per_candidate_coherence.py at smoke scale but not for a full V3-EXQ-840-scale run to clear the route-range readiness floor. Either strengthen the coherence signal magnitude or audit whether the floor itself is miscalibrated relative to a real run's achievable range.",
+        "unblocks_claims": [
+          "MECH-294"
+        ],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3",
+          "experiment_type": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier",
+          "metric": "ARM_1_JOINT routed cross-candidate range",
+          "target": "supra-floor, matching the route-range readiness threshold"
+        }
+      },
       "pending_retest_after_substrate": true,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": ["failure_autopsy_569f-661-654a_2026-06-10"], "refused_requeue": false},
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [
+          "failure_autopsy_569f-661-654a_2026-06-10"
+        ],
+        "refused_requeue": false
+      },
       "learning_extracted": [
         "This is the first evidence-grade (not readiness-diagnostic) test of MECH-294's joint-binding claim -- both prior substrate blocks (scalar-coherence rank-invariance, route-range readiness) are now cleared, but a third, magnitude-level gap remains.",
         "The readiness-gate design (asserting the same statistic the criteria route on) is exactly what caught the analogous 661 defect earlier -- it worked as designed here too."
       ],
-      "routing": "implement-substrate"
+      "routing": "implement-substrate",
+      "amended_utc": "2026-07-31T19:16:05Z",
+      "amendment_note": "CORRECTION (governance reconciliation, 2026-07-31): this target's recommended_evidence_quality_note, four_layer_diagnosis.implementation, biological_reference (implicitly), learning_extracted, and recommended_substrate_queue_entry.failure_record_entry were derived from a MISREADING of the run's own per_arm_gate data. The claim 'correctly caught a sub-floor cross-candidate range on ARM_1_JOINT' is FACTUALLY WRONG. VERIFIED (session confident-morse-af47a8, chip-20260731-mech294-coherence-strengthening, 2026-07-31T19:05:02Z; cross-checked against ree-v3/experiments/_lib/precondition_gate.py PreconditionSpec.met_for() for direction semantics) against REE_assembly/evidence/experiments/v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier_20260730T170540Z_v3.json per_arm_gate.red: ARM_1_JOINT::joint_route_range_supra_floor precondition MET (measured=0.063841, threshold=0.01, direction=lower -> met=True; ~6.4x headroom, NOT sub-floor). The precondition that actually failed on all 3 red arms (ARM_1_JOINT, ARM_2_ALT, ARM_3_SHUF) is adequate_committed_window_sample (worst-cell n_p1_ticks_past_window: JOINT=27, ALT=6, SHUF=92, vs threshold=200), driven by per-seed early P1-episode termination (seeds 45 and 49 also depress ticks in ARM_0_OFF -- OFF=92/167 respectively, well under other seeds' ceiling -- ruling out packet-ON coherence routing as the cause). No compose_per_candidate_coherence magnitude deficiency and no route-range-floor miscalibration exist. The substrate_queue.json entry this target's recommended_substrate_queue_entry produced (sd_id mech294_coherence_magnitude_strengthening) has been marked ready:false with its own diagnosis_correction field by the same session (REE_assembly master f6090a8777) and MUST NOT be built as originally specified. CORRECTED ROUTING: queue-experiment (a same-question redesign, NOT implement-substrate) -- V3-EXQ-840b should widen the measurement window's robustness to per-seed early termination (increase STEPS_PER_EPISODE and/or P1_MEASUREMENT_EPISODES, or investigate whether seeds 45/49 reveal a genuine agent_health-depletion dynamic worth its own study), separately chipped as chip-20260731-840b-committed-window-robustness -- do not duplicate. recommended_evidence_direction (non_contributory) and recommended_epistemic_category (measurement_test_design_defect) are RE-DERIVED and CONFIRMED UNCHANGED: the manifest's own interpretation.label=substrate_not_ready_requeue routing table maps FAIL/non_contributory+non_degenerate=false regardless of which precondition tripped it, and the corrected root cause (a measurement window with no tolerance for per-seed early termination) is, by category, still a test-design defect -- just a different one than originally stated, so no promotion/demotion of MECH-294 follows either way. re_derive_brake.fired stays false (unaffected -- this was never a substrate_ceiling hit under either the original or corrected reading). Do NOT read the original recommended_evidence_quality_note, four_layer_diagnosis.implementation, or learning_extracted[0] as accurate; they are superseded by this note but left unedited for provenance. See REE_assembly/evidence/planning/substrate_queue.json sd_id mech294_coherence_magnitude_strengthening.diagnosis_correction and claims.yaml MECH-294 evidence_quality_note [2026-07-31 correction] for the full trail."
     },
     {
       "run_id": "v3_exq_748a_mech457_hrep_zworldp0_rederivation_20260730T120515Z_v3",
       "queue_id": "V3-EXQ-748a",
-      "claim_ids": ["MECH-457"],
+      "claim_ids": [
+        "MECH-457"
+      ],
       "failed_criterion": "none (PASS)",
       "four_layer_diagnosis": {
         "claim_alignment": "strengthened (reconfirms an existing elimination)",
@@ -145,21 +235,39 @@
         "integration": "coupled",
         "scale": "adequate"
       },
-      "biological_reference": {"closest_mechanism": "dorsal-striatal RPE-driven actor-critic substrate", "dependencies": ["SD-056", "MECH-229"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "biological_reference": {
+        "closest_mechanism": "dorsal-striatal RPE-driven actor-critic substrate",
+        "dependencies": [
+          "SD-056",
+          "MECH-229"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "supports",
       "recommended_evidence_quality_note": "V3-EXQ-748a (2026-07-30) is the confirmatory spike the 819a autopsy recommended: re-running 748's dense-teacher/z_world-BC arm under the now-validated zworld_p0-trained instrument. H-rep's 2026-07-13 elimination (originally read off an older cotrain=True encoder) HOLDS under the corrected instrument -- no reopening.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
-      "learning_extracted": ["Confirmatory hardening runs (recommended by a prior autopsy, not a re-derive-brake case) are a distinct, legitimate class from same-claim re-queues -- this one closed the loop 819a's autopsy explicitly left open."],
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "Confirmatory hardening runs (recommended by a prior autopsy, not a re-derive-brake case) are a distinct, legitimate class from same-claim re-queues -- this one closed the loop 819a's autopsy explicitly left open."
+      ],
       "routing": "governance-registry-resolution"
     },
     {
       "run_id": "v3_exq_810b_arc071_mech323_seed202_narrow_repertoire_probe_20260730T175935Z_v3",
       "queue_id": "V3-EXQ-810b",
-      "claim_ids": ["ARC-071", "MECH-323"],
+      "claim_ids": [
+        "ARC-071",
+        "MECH-323"
+      ],
       "failed_criterion": "none (PASS)",
       "four_layer_diagnosis": {
         "claim_alignment": "strengthened",
@@ -171,14 +279,27 @@
         "integration": "coupled",
         "scale": "adequate"
       },
-      "biological_reference": {"closest_mechanism": "striatal/DLS chunk-formation operator", "dependencies": ["ARC-071", "MECH-322"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "biological_reference": {
+        "closest_mechanism": "striatal/DLS chunk-formation operator",
+        "dependencies": [
+          "ARC-071",
+          "MECH-322"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "supports",
       "recommended_evidence_quality_note": "V3-EXQ-810b (2026-07-30): seed-202 narrow-repertoire follow-up to the already-confirmed 810a, same family, clean PASS on both load-bearing criteria.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
+      "re_derive_brake": {
+        "fired": false
+      },
       "learning_extracted": [],
       "routing": "queue-experiment"
     },
@@ -187,66 +308,158 @@
       "queue_id": "V3-EXQ-833",
       "claim_ids": [],
       "failed_criterion": "none (PASS)",
-      "four_layer_diagnosis": {"claim_alignment": "n/a (no claim_ids)", "biological_reference": "n/a", "prerequisites": "present", "implementation": "complete", "environment": "adequate", "measurement": "adequate", "integration": "isolated", "scale": "adequate"},
-      "biological_reference": {"closest_mechanism": "n/a", "dependencies": [], "is_formal_import": false, "divergence": "n/a", "lit_status": "absent"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (no claim_ids)",
+        "biological_reference": "n/a",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "isolated",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "Clean unflagged StageH diagnostic PASS -- goal term behaviourally inert within stated precision. No action.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
+      "re_derive_brake": {
+        "fired": false
+      },
       "learning_extracted": [],
       "routing": "queue-experiment"
     },
     {
       "run_id": "v3_exq_842_mech217_offline_wanting_spread_readiness_20260730T173047Z_v3",
       "queue_id": "V3-EXQ-842",
-      "claim_ids": ["MECH-217"],
+      "claim_ids": [
+        "MECH-217"
+      ],
       "failed_criterion": "none (PASS)",
-      "four_layer_diagnosis": {"claim_alignment": "strengthened", "biological_reference": "present", "prerequisites": "present", "implementation": "complete", "environment": "adequate", "measurement": "adequate", "integration": "coupled", "scale": "adequate"},
-      "biological_reference": {"closest_mechanism": "temporal wanting propagation", "dependencies": ["MECH-165", "SD-014"], "is_formal_import": false, "divergence": "n/a", "lit_status": "present"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "present",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "temporal wanting propagation",
+        "dependencies": [
+          "MECH-165",
+          "SD-014"
+        ],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "supports",
       "recommended_evidence_quality_note": "Clean unflagged PASS -- offline wanting-spread readiness verified. No action.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
+      "re_derive_brake": {
+        "fired": false
+      },
       "learning_extracted": [],
       "routing": "queue-experiment"
     },
     {
       "run_id": "v3_exq_673_mech171_vicious_cycle_sleep_disruption_20260612T005615Z_v3",
       "queue_id": "V3-EXQ-673",
-      "claim_ids": ["MECH-171"],
+      "claim_ids": [
+        "MECH-171"
+      ],
       "failed_criterion": "degenerate",
-      "four_layer_diagnosis": {"claim_alignment": "out_of_domain (per batch9)", "biological_reference": "absent (formal clinical-staging import, not instantiated)", "prerequisites": "n/a", "implementation": "n/a", "environment": "too sparse (clinical AD multi-year staging not instantiable in a 300-episode grid-world)", "measurement": "degenerate (all arms identical, late_pred_loss=0)", "integration": "n/a", "scale": "n/a"},
-      "biological_reference": {"closest_mechanism": "n/a -- formal clinical staging import", "dependencies": ["MECH-168", "INV-046"], "is_formal_import": true, "divergence": "clinical multi-year staged progression has no grid-world analog at this scale", "lit_status": "present"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "out_of_domain (per batch9)",
+        "biological_reference": "absent (formal clinical-staging import, not instantiated)",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "too sparse (clinical AD multi-year staging not instantiable in a 300-episode grid-world)",
+        "measurement": "degenerate (all arms identical, late_pred_loss=0)",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- formal clinical staging import",
+        "dependencies": [
+          "MECH-168",
+          "INV-046"
+        ],
+        "is_formal_import": true,
+        "divergence": "clinical multi-year staged progression has no grid-world analog at this scale",
+        "lit_status": "present"
+      },
       "recommended_epistemic_category": "out_of_domain",
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-673 (vicious-cycle sleep disruption, 2026-06-11, recovered from stash 2026-07-29): degenerate (all arms identical, late_pred_loss=0; 3 untracked reruns under one EXQ). MECH-171 asserts clinical-Alzheimer's staged progression (multi-year vicious cycle, critical intervention window, schema-scaffold collapse) not faithfully instantiable in a 300-episode grid-world. epistemic_category: out_of_domain (parallel to MECH-172).",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
-      "learning_extracted": ["This disposition already existed (failure_autopsy_batch9_2026-06-12) but was never applied to claims.yaml -- pure bookkeeping gap, not a new finding.", "Recovered from an orphaned ree-cloud-3 runner-prepull-untracked stash -- confirms the autostash-orphan hazard CLAUDE.md documents is not hypothetical."],
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "This disposition already existed (failure_autopsy_batch9_2026-06-12) but was never applied to claims.yaml -- pure bookkeeping gap, not a new finding.",
+        "Recovered from an orphaned ree-cloud-3 runner-prepull-untracked stash -- confirms the autostash-orphan hazard CLAUDE.md documents is not hypothetical."
+      ],
       "routing": "governance-demotion"
     },
     {
       "run_id": "v3_exq_614_mech341_p3_behavioural_falsifier_3arm_20260529T191318Z_v3",
       "queue_id": "V3-EXQ-614",
-      "claim_ids": ["MECH-341", "ARC-065"],
+      "claim_ids": [
+        "MECH-341",
+        "ARC-065"
+      ],
       "failed_criterion": "superseded_by_substrate",
-      "four_layer_diagnosis": {"claim_alignment": "n/a (superseded, not scored)", "biological_reference": "n/a", "prerequisites": "n/a", "implementation": "n/a", "environment": "n/a", "measurement": "n/a", "integration": "n/a", "scale": "n/a"},
-      "biological_reference": {"closest_mechanism": "n/a", "dependencies": [], "is_formal_import": false, "divergence": "n/a", "lit_status": "absent"},
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (superseded, not scored)",
+        "biological_reference": "n/a",
+        "prerequisites": "n/a",
+        "implementation": "n/a",
+        "environment": "n/a",
+        "measurement": "n/a",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
       "recommended_epistemic_category": "standard",
       "recommended_evidence_direction": "superseded",
       "recommended_evidence_quality_note": "Already correctly marked evidence_direction=superseded (ADMITTED 2026-07-30, recovered from an ree-cloud-4 untracked .bak): E3 diversity mechanism changed ~1 hour after this run (ree-v3 a45ca7f). Confirmed via 5 already-reviewed lettered successors (614a-614e); 614e itself carries a confirmed substrate_ceiling reading. MECH-341 confidence untouched. Mark reviewed, no new autopsy owed.",
-      "recommended_substrate_queue_entry": {"action": "none"},
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
       "pending_retest_after_substrate": false,
       "narrow_supports_flag": false,
-      "re_derive_brake": {"fired": false},
+      "re_derive_brake": {
+        "fired": false
+      },
       "learning_extracted": [],
       "routing": "governance-registry-resolution"
     }
@@ -255,6 +468,12 @@
     "shape": "not a single convergent shape -- this batch spans a genuine mix: 2 administrative stash-recovery closures (673, 614), 4 already-confirmed-elsewhere PASSes, 1 competence-floor absolute-floor failure (687a) structurally distinct from its claims' existing discrimination-ceiling demotions, 1 measurement-magnitude gap caught by a well-designed readiness gate (840), 1 confirmatory reconfirmation (748a), 2 clean unflagged closes (810b family, 833, 842), and 1 narrow-continuation weakens (707c).",
     "is_independent_bugs": true,
     "structural_property": "The one cross-cutting theme is NOT a substrate defect: two of fourteen items (673, 614) reached pending_review only because they were recovered from orphaned stashes long after their real dispositions were already decided -- a coordination/bookkeeping gap, not a science gap.",
-    "readings": ["administrative_backlog", "competence_floor_cross_contamination", "readiness_gate_working_as_designed"]
-  }
+    "readings": [
+      "administrative_backlog",
+      "competence_floor_cross_contamination",
+      "readiness_gate_working_as_designed"
+    ]
+  },
+  "amended_utc": "2026-07-31T19:16:05Z",
+  "amendment_note": "Amendment scoped to the V3-EXQ-840 / MECH-294 target only (see that target's own amended_utc/amendment_note) -- no other target in this batch is affected. The original recommendation misread which precondition failed on the run's red arms; corrected by session elated-germain-9aff71 (chip-20260731-840-autopsy-reconcile) following an independent diagnosis correction by chip-20260731-mech294-coherence-strengthening."
 }
