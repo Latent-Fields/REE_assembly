@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-07-31T20:21:08Z",
+  "generated_at": "2026-07-31T20:25:00Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5313,6 +5313,26 @@
           "Q-081",
           "INV-091"
         ]
+      }
+    },
+    {
+      "event_id": "asn-20260731T202500Z-085c3522-claude_local",
+      "stable_hash": "085c3522a523",
+      "igw_id_at_assign": "IGW-20260731-001",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "manual_ui",
+      "assigned_at": "2026-07-31T20:25:00Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": null,
+      "item_snapshot": {
+        "skill": "/governance",
+        "title": "Complete governance review (1 pending)",
+        "lane": "governance",
+        "priority": 1,
+        "claim_ids": []
       }
     }
   ]
