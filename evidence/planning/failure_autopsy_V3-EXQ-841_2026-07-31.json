@@ -2,7 +2,13 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-07-31T20:30:41Z",
   "scope": "single",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
+  "confirmation": {
+    "confirmed_utc": "2026-07-31T23:32:48Z",
+    "confirmed_by": "direct interactive user confirmation of the draft AS DRAFTED (not a full /governance walk)",
+    "confirming_session": "quirky-mayer-ee5ad2",
+    "note": "Staging-mode draft confirmed interactively per the skill's staging-mode section: recommended_evidence_direction_per_claim applied to claims.yaml (MECH-163, Q-085), recommended_substrate_queue_entry (arc071_chunk_commit_latch_persistence) added to substrate_queue.json, and hypothesis_space_ledger_pending applied to hypothesis_space_registry.v1.json (Mode A pre-registration of the H1/H2 split, qid arc071-commit-latch-persistence)."
+  },
   "staging_mode": true,
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],

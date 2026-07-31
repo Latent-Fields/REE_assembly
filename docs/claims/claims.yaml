@@ -14584,6 +14584,30 @@
     last_arbitration.w_planned and is invariant to length once w is controlled. BLOCKED on V3-EXQ-810
     (see ARC-071 / MECH-323). Full design, gates and confounders in the proposal doc section 4.
 
+    2026-07-31 (V3-EXQ-841, non_contributory, both A_HIER_*/A_FLAT legs;
+    failure_autopsy_V3-EXQ-841_2026-07-31). Run correctly self-routed
+    substrate_not_ready_requeue (non_degenerate=false, all 6 arms RED at the
+    readiness-gate layer) -- NOT a test of either claim. Independent re-derivation
+    surfaced a genuinely novel, decisive substrate finding: wherever the ARC-071
+    chunk-injection pathway (use_chunk_proposal_injection=True) is live-tested for
+    the first time (810a explicitly ran with injection OFF; 834 never cleared
+    formation), the realised committed-chunk length pins at EXACTLY 1 step in 100%
+    of 32 chunking cells that registered any commitment at all, independent of the
+    configured chunk_max_size dose (2/3/5) -- categorically falsifying Q-085's own
+    pre-registered gate (b) as currently wired/measured. Two live hypotheses
+    (commit-latch wiring vs experiment readout artifact) are not yet discriminated.
+    A second, independent readiness failure (zero pre-devaluation resource contacts
+    in the non-chunking A_OFF/A_FLAT control arms, 0/16 cells; z_goal inactive
+    across the entire 48-cell grid) blocks even the FLAT baseline this design
+    needs. pending_retest_after_substrate: true for both claims at this
+    grain/architecture question. Routed /implement-substrate
+    (recommended_substrate_queue_entry, action=create, sd_id
+    arc071_chunk_commit_latch_persistence) with a fanout_recommendation to
+    discriminate the H1/H2 split before any re-queue. Confirmed 2026-07-31 via
+    direct interactive user confirmation (session quirky-mayer-ee5ad2); H1/H2
+    pre-registered in hypothesis_space_registry.v1.json under qid
+    arc071-commit-latch-persistence.
+
 - id: MECH-164
   title: "Axiom V (love as coordination-preserving trajectory selection) is instantiated by
     agent-indexed terrain inference with self-like gradient weighting: the system infers
@@ -61711,6 +61735,29 @@
     top-level macro LONGER THAN A TYPICAL EPISODE (V3-EXQ-810 ran at 24 steps/episode). At
     default settings the insensitivity window is bounded by episode length, not by the
     budget.
+
+    2026-07-31 (V3-EXQ-841, non_contributory; failure_autopsy_V3-EXQ-841_2026-07-31). Run
+    correctly self-routed substrate_not_ready_requeue (non_degenerate=false, all 6 arms RED
+    at the readiness-gate layer) -- NOT a test of this question. Independent re-derivation
+    surfaced a genuinely novel, decisive substrate finding: wherever the ARC-071
+    chunk-injection pathway (use_chunk_proposal_injection=True) is live-tested for the first
+    time (810a explicitly ran with injection OFF; 834 never cleared formation), the realised
+    committed-chunk length pins at EXACTLY 1 step in 100% of 32 chunking cells that
+    registered any commitment at all, independent of the configured chunk_max_size dose
+    (2/3/5) -- categorically falsifying this question's own pre-registered gate (b)
+    ("REALISED mean committed-chunk length must DIFFER across the dose conditions") as
+    currently wired/measured. Two live hypotheses (commit-latch wiring vs experiment readout
+    artifact) are not yet discriminated. A second, independent readiness failure (zero
+    pre-devaluation resource contacts in the non-chunking A_OFF/A_FLAT control arms, 0/16
+    cells; z_goal inactive across the entire 48-cell grid) blocks even the FLAT baseline
+    this design needs. pending_retest_after_substrate: true -- this question should not be
+    re-queued at the same grain/architecture question until this pathway is fixed (H1) or
+    shown to already work correctly with the readout repaired (H2). Routed
+    /implement-substrate (recommended_substrate_queue_entry, action=create, sd_id
+    arc071_chunk_commit_latch_persistence) with a fanout_recommendation to discriminate the
+    H1/H2 split before any re-queue. Confirmed 2026-07-31 via direct interactive user
+    confirmation (session quirky-mayer-ee5ad2); H1/H2 pre-registered in
+    hypothesis_space_registry.v1.json under qid arc071-commit-latch-persistence.
   notes: >
     REGISTERED 2026-07-27 by /claim-synthesis on MECH-163 (proposal
     evidence/planning/claim_synthesis_MECH-163_2026-07-27.md, user-approved per-item).

@@ -1,8 +1,16 @@
 # Failure Autopsy — V3-EXQ-841 (MECH-163 hierarchical-vs-flat falsifier + Q-085 grain dose-response)
 
-**Mode: STAGING (headless subagent).** This artifact is a DRAFT awaiting human/`/governance`
-confirmation. No claims.yaml, review_tracker, or hypothesis_space_registry writes were made.
-Interactive Step 8 (AskUserQuestion) was skipped per staging-mode instructions.
+**Mode: STAGING (headless subagent), CONFIRMED 2026-07-31T23:32:48Z.** This artifact was
+generated as a DRAFT awaiting human confirmation; Interactive Step 8 (AskUserQuestion) was
+skipped per staging-mode instructions at generation time. It was subsequently **confirmed via
+direct interactive user confirmation of the disposition AS DRAFTED** (session
+`quirky-mayer-ee5ad2`) — the legitimate alternative path to a full `/governance` walk per the
+skill's own staging-mode design. On confirmation: `recommended_evidence_direction_per_claim`
+was applied to `claims.yaml` (MECH-163, Q-085, both `non_contributory`), the
+`recommended_substrate_queue_entry` (`arc071_chunk_commit_latch_persistence`) was added to
+`substrate_queue.json`, and `hypothesis_space_ledger_pending` was applied to
+`hypothesis_space_registry.v1.json` (Mode A pre-registration, qid
+`arc071-commit-latch-persistence`, both H1/H2 legs `alive`/`pending`).
 
 - run_id: `v3_exq_841_mech163_q085_grain_dose_response_20260731T080537Z_v3`
 - queue_id: `V3-EXQ-841`
@@ -289,9 +297,17 @@ or the next `/governance` walk to apply.
 
 ## 9. Status
 
-`awaiting_human_confirmation`. No `/governance`-owned file was modified by this session.
-Follow-on (the H1/H2 diagnostic probe, and any Q-085/MECH-163 re-queue) is reported here
-and in the JSON `routing` field, and is deliberately **not** `spawn_task`-chipped from this
-autopsy's own routing per the standing rule (a confirmed autopsy's routing is a proposal;
-`/governance` chips it once ratified) — doubly so here since this artifact is itself only a
-staged draft, one step further from ratification than an interactively-confirmed autopsy.
+`confirmed` (2026-07-31T23:32:48Z, session `quirky-mayer-ee5ad2`, direct interactive user
+confirmation of the draft AS DRAFTED — no revisions to routing, epistemic category, or
+evidence direction were made at confirmation). Applied in the same session: `claims.yaml`
+(MECH-163, Q-085 `evidence_quality_note`, both `non_contributory`), `substrate_queue.json`
+(`arc071_chunk_commit_latch_persistence`, action=create), and
+`hypothesis_space_registry.v1.json` (qid `arc071-commit-latch-persistence`, Mode A
+pre-registration of H1/H2, both legs `alive`/`pending` — neither hypothesis is resolved by
+this confirmation itself). Having just applied the ratified disposition, this same session
+acts as the ratifying authority for the routing's own follow-on (the H1/H2 diagnostic
+probe) and proceeds to build and run it directly, per CLAUDE.md Session Land Protocol step
+6 ("`/governance` is the one that chips it, once ratified" — this session performing the
+ratification is the qualifying event). Any Q-085/MECH-163 re-queue at the same grain
+question remains blocked (`pending_retest_after_substrate: true`) until the H1/H2
+discrimination resolves and, if H1, the substrate fix lands.

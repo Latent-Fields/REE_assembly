@@ -2293,6 +2293,75 @@
         "distance_phrase": "NOT decidable. The measured pair is unreachable by every manipulation lever tried across 824/824a/838; use_per_region_vs=True is refuted as the fix. Next step is a cheap reach pre-flight discriminating H1 (build reach) from H2 (reframe pair), not another full run.",
         "observation_bottleneck": "RV(z_world, operating_mode) is bit-identical across arms under all levers tried -- the DV never moves, so Q-081 Outcome A vs B cannot be scored. Any new leg must gate a full run on a cheap empirical per-pair reach assertion (at least one arm moves rv_primary on the SPECIFIC measured pair), never a blanket reach flag."
       }
+    },
+    {
+      "qid": "arc071-commit-latch-persistence",
+      "title": "Does the MECH-090 commit latch actually hold an injected ARC-071 chunk atomically for more than one tick, or does the experiment's own readout misreport a persisting commitment as resetting every step?",
+      "short_title": "ARC-071 commit-latch persistence: wiring vs readout",
+      "claims": [
+        "MECH-163",
+        "Q-085"
+      ],
+      "registered_utc": "2026-07-31T23:32:48Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-841_2026-07-31.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-commitlatch-wiring",
+          "label": "H1: commit-latch wiring defect",
+          "desc": "The step-index advance / re-deliberation suppression in select_action does not hold across ticks under train_mode=False + use_chunk_proposal_injection=True + a continued StepHarness run; a genuinely new commitment is issued every tick.",
+          "axis": "instrumentation",
+          "pre_registered_utc": "2026-07-31T23:32:48Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-841_2026-07-31.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "realised_mean_committed_length pinned at exactly 1.0 in 100% of 32 cells with any commitment, independent of chunk_max_size in {2,3,5}; committed_arc071_chunks == full probe step count with n_segments_uninterrupted=0 throughout -- consistent with a latch that never actually holds. Pre-registered, not yet adjudicated."
+          }
+        },
+        {
+          "hid": "H-commitlatch-readout-artifact",
+          "label": "H2: experiment readout artifact",
+          "desc": "The internal commitment state persists correctly across ticks, but _committed_chunk_state()/_segment_commitments()'s read path does not correctly observe it, producing an artefactual reset-every-tick reading.",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-07-31T23:32:48Z",
+          "pre_registration_source": "failure_autopsy_V3-EXQ-841_2026-07-31.json",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Same evidence as H1 -- the two hypotheses are not yet discriminated by V3-EXQ-841; both are consistent with the observed exact-1.0-or-0.0 realised-length signature. Pre-registered, not yet adjudicated."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is the ARC-071 chunk-injection commit-latch persistence pathway a genuine ree_core defect (route implement-substrate) or an experiment-script measurement defect (route queue-experiment redesign of the readout only)?",
+        "live_gate": "requires the H1/H2 discriminating probe (fanout_recommendation.suggested_probes) to run",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "one targeted instrumentation probe away from discrimination"
+      }
     }
   ]
 }

@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "igw-212-proposal-for-mech-217",
-  "last_updated_utc": "2026-07-31T21:18:55Z",
+  "last_seen_session": "quirky-mayer-ee5ad2",
+  "last_updated_utc": "2026-07-31T23:32:48Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6390,6 +6390,35 @@
         "conclusion": "No ree_core substrate change is warranted. compose_per_candidate_coherence and the route-range readiness floor (0.01) are both working as designed and were not the cause of the FAIL. Recommend NOT building a coherence-strengthening flag -- there is nothing to strengthen. The real defect is experiment-design robustness: the measurement window (P1_MEASUREMENT_EPISODES x (STEPS_PER_EPISODE-MEASURE_AFTER_TICK)) has no tolerance for seeds whose episodes terminate early on nearly every attempt, so the worst-cell 'all()' quantifier on adequate_committed_window_sample can fail even when the mechanism under test is functioning correctly.",
         "recommended_next_step": "Route via /queue-experiment (FAIL, not ERROR, so /diagnose-errors does not apply per CLAUDE.md) to design V3-EXQ-840b: widen the measurement window's robustness to per-seed early termination -- candidates include increasing STEPS_PER_EPISODE and/or P1_MEASUREMENT_EPISODES so death-prone seeds accumulate more post-window attempts, or diagnosing whether seeds 45/49 reveal a genuine agent_health-depletion dynamic worth investigating on its own. Also recommend a /failure-autopsy or /governance session reconcile the confirmed autopsy artifact (evidence/planning/failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30.json, target run_id v3_exq_840_..., recommended_evidence_quality_note) against this corrected reading -- its 'sub-floor cross-candidate range' claim does not match the run's own per_arm_gate data."
       }
+    },
+    {
+      "sd_id": "arc071_chunk_commit_latch_persistence",
+      "title": "ARC-071/MECH-323 chunk-injection commit-latch: verify/repair multi-step persistence under live selection (use_chunk_proposal_injection=True)",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed_pending_h1_h2_discrimination_probe",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "ARC-071",
+        "MECH-323"
+      ],
+      "unblocks_claims": [
+        "MECH-163",
+        "Q-085"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_841_mech163_q085_grain_dose_response_20260731T080537Z_v3",
+          "experiment_type": "v3_exq_841_mech163_q085_grain_dose_response",
+          "metric": "realised_mean_committed_length pinned at exactly 1.0 in 100% of 32 chunking cells with any commitment (committed_arc071_chunks>0), independent of chunk_max_size in {2,3,5}; committed_arc071_chunks equalled the full probe step count (2160) in most such cells with n_segments_uninterrupted=0",
+          "target": "realised committed length should approach the configured chunk_max_size (or at minimum exceed 1 step with measurable variance across dose conditions) for gate (b) of Q-085's own pre-registered design to be satisfiable"
+        }
+      ],
+      "implementation_hint": "V3-EXQ-841 is the first live test of use_chunk_proposal_injection=True combined with a continued multi-episode StepHarness run (train_mode=False, single long-lived agent across formation+probe). In 100% of 32 chunking cells that registered any commitment, realised committed length pinned at exactly 1 step regardless of configured chunk_max_size (2/3/5) -- committed_arc071_chunks == total probe step count (2160 = 30 episodes x 72 steps) with n_segments_uninterrupted=0 throughout. Two live hypotheses need discrimination before a fix: H1 (ree_core wiring) -- the MECH-090 commit latch's step-index advance / re-deliberation suppression does not hold across ticks in this harness configuration; select_action re-evaluates and re-commits from scratch every tick. H2 (experiment readout) -- the internal commitment state persists correctly but this experiment's own _committed_chunk_state()/_segment_commitments() read path (agent.e3._committed_trajectory, agent._committed_step_idx, or the metadata['source']=='arc071_chunk' check) misreads it as resetting every tick. Relevant code: ree_core/hippocampal/module.py:1856 (_build_chunk_candidates, injection), ree_core/policy/policy_chunking.py (note_real_execution/selectable_chunks, crystallisation_min=5), ree_core/agent.py:1373 (set_chunk_source) and the MECH-090 commit-latch/select_action step-advance logic (not yet independently instrumented). SECONDARY, bundle into the same investigation: A_OFF/A_FLAT (non-chunking) control arms registered ZERO pre-devaluation resource contacts in 16/16 cells and z_goal was inactive (ticks_active=0, goal_state_present=false) in all 48 cells of the run -- the inherited arc071_chunking.py baseline (validated by 810a for chunk-ACCUMULATION readiness only) may not carry an active resource-seeking drive adequate for a devaluation-persistence DV that requires reliable resource contact within a bounded probe window.",
+      "priority": 2,
+      "added_session": "quirky-mayer-ee5ad2",
+      "last_seen_session": "quirky-mayer-ee5ad2",
+      "source_autopsy": "failure_autopsy_V3-EXQ-841_2026-07-31.json"
     }
   ],
   "schema_version": "substrate_queue/v2"
