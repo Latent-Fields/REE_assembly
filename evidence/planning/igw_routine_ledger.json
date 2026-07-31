@@ -2133,8 +2133,8 @@
       "status": "completed",
       "completed_at": "2026-07-31T19:37:22Z",
       "completion_summary": "Built ree-v3/experiments/_lib/q081_pair_reach_check.py: empirical pair-specific reach probe for Q-081, non-degeneracy guard added; reproduces V3-EXQ-824a/838's no-reach finding cheaply",
-      "outcome": "NO_OP",
-      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker"
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "MANUALLY CORRECTED 2026-07-31T19:40Z (session igw-auto-igw-196-substrate-ready-q081-reach-check-20260729T233754Z): the initial `complete --outcome AUTO` call mis-classified this NO_OP because its heuristic only scores commits on the WORKTREE's OWN branch, and this session's actual work landed cross-repo (matches [memory] reference-igw-complete-auto-outcome-misfiles-worktree-sessions). Real landings: ree-v3 origin/main b4c5276 (new experiments/_lib/q081_pair_reach_check.py + tests/contracts/test_q081_pair_reach_check.py, 15 contracts passing), REE_assembly origin/master cc2d752774 (substrate_queue.json Q081-REACH-CHECK-PAIR-SPECIFIC marked implemented + claims.yaml Q-081 build note)."
     },
     {
       "igw_id": "IGW-20260730-192",
