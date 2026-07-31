@@ -10341,7 +10341,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_inv_056",
       "target_repo": "ree-v3",
       "why_now": [
@@ -10350,7 +10350,12 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "INV-055",
+        "INV-041"
+      ],
+      "blocked_note": "IGW-20260731-214 /queue-experiment Step 2.5 substrate-readiness check (2026-07-31): INV-056 (selective neoteny -- substrate-specific developmental hardening) depends_on ARC-019, INV-041, INV-055, MECH-158, ARC-010, SD-014. Verified each: SD-014 (hippocampal 4-component valence vector) is IMPLEMENTED 2026-04-04 (ree-v3/CLAUDE.md); ARC-010 (social mirror modelling) is status=active; MECH-158 (love-exclusion ethical-collapse failure mode) carries no substrate gate, it is a conceptual/motivational-failure-mode claim. But INV-055 (pre-childhood infant-stage necessity) carries pending_substrate_reconfirmation=true and epistemic_category=substrate_conditional, explicitly gated (claims.yaml governance_2026_06_10 note) on the infant-curriculum substrate closure node infant_substrate:GAP-14, which is STILL status=blocked_pending_substrate as of its most recent governance note (closure_status.md / infant_substrate_plan.md, 2026-07-21): the residual (c-1) exploration-strength-collapse leg was re-pointed off the retired modulatory-bias-selection-authority gate onto the still-open behavioural-competence wall (V3-EXQ-724 competence_deficit_diffuse / MECH-457 cold-start competence-floor thread), i.e. the InfantCurriculumScheduler cannot reliably progress an agent through the infant->child->adult developmental stages the curriculum machinery needs. INV-041 (childhood-phase architectural necessity) also carries pending_substrate_reconfirmation=true and implementation_phase=v3, unconfirmed since its 2026-06-10 decision log entry. ARC-019 (staged curriculum) exists only as an experiment-harness scheduler (ree-v3/experiments/infant_curriculum.py, explicitly documented as NOT a ree_core substrate scheduler), not a production developmental-stage mechanism that could host an adult-phase hardening manipulation. There is also no existing ree_core hardening/plasticity-decay primitive for the non-goal substrate classes INV-056 names (social cognition / epistemic-ethical); the one closest analog, MECH-189 SuperOrdinalGoalMemory.write_enabled (child->adult write-freeze, docstring cites 'selective neoteny' and INV-041/055/056 directly), covers only the goal-representation substrate and is itself default-OFF, unvalidated (MECH-189 stays candidate/confidence 0.0). Since a genuine INV-056 test requires a working developmental-stage transition to define 'adulthood' at which hardening begins, and that transition substrate (infant_substrate:GAP-14, itself a dependency of a direct depends_on claim, INV-055) is not yet built, this item is blocked_substrate rather than proposed. No script written, no queue entry added. Prior attempt on this same claim (IGW-20260728-211) resulted in outcome=NO_OP (a foreign TASK_CLAIMS entry, no actual design work) -- this is a fresh, independent determination, not a duplicate finding. Correct route once infant_substrate:GAP-14 clears: re-run /queue-experiment on INV-056, designing a discriminative multi-arm probe that compares uniform hardening vs substrate-specific (goal/social/epistemic-ethical retained-plastic) hardening schedules across a post-adult-transition novel-context perturbation battery, using MECH-189's write_enabled freeze as the goal-representation arm and extending an analogous freeze/LR-decay knob to ARC-010 mirror-modelling parameters and the SD-014 valence-vector / residue-field update rate for the social and epistemic-ethical arms respectively."
     },
     {
       "acceptance_checks": [
