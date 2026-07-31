@@ -411,3 +411,74 @@ standing `competence_floor` re-posing thread), so spawning a duplicate chip
 here would race an already-owned worklist item rather than add new coverage.
 
 Legs P-A/P-B/P-D are unaffected by this finding.
+
+---
+
+## P-D resolution (2026-07-31, `/queue-experiment` build session for Leg P-D,
+chip `chip-20260729-arc062-pd-context-modeswitch`) -- **premise HELD (unlike
+P-A/P-B); QUEUED as `V3-EXQ-847`.**
+
+Section 2's P-D design line reads "P-A's matched stack + gated_policy
+routing." Per P-A's erratum above, that routing claim is factually wrong
+(`modulatory_channel_route_source="gated_policy"` does not route the
+rule-apprehension/CRF channel -- it identity-routes the unrelated
+`GatedPolicy` module output). This build session independently verified
+P-D's OWN premise rather than taking the doc's text at face value (per the
+sibling-chip instruction), and it holds:
+
+**CODE-CONFIRMED (ree-v3, this session):**
+- SD-054 reef/open bipartite geometry is a real, already-live substrate
+  primitive (`ree_core/environment/causal_grid_world.py`), already present
+  unchanged in `v3_exq_654j`'s own `ENV_KWARGS`.
+- `_is_reef_half(env)` + `_tv_distance(counts_a, counts_b)` -- the exact
+  partition-and-divergence machinery P-D needs -- already exist and are
+  proven live in `experiments/v3_exq_690_q054_arc062_diversity_floor_sweep.py`
+  (`tv_reef_forage` per seed-arm), ported verbatim into the new script.
+- V3-EXQ-690's own manifest confirms the partition is non-degenerate on this
+  exact env config for seeds 42/43 (n_reef_ticks/n_forage_ticks both clear a
+  10-tick floor) while seed 44 recorded `n_reef_ticks=0` under 690's
+  *different* (noise-temperature-swept) policy -- the documented "690 R3"
+  environmental-degeneracy lesson, not a P-D-specific finding.
+- **GOV-REUSE-1 check:** V3-EXQ-690 reports the identical `tv_reef_forage`
+  statistic per seed-arm, but its swept variable is
+  `noise_floor_min_temperature`, never `use_candidate_rule_field` -- a
+  different manipulation, so 690's manifest cannot answer H4. No other
+  manifest or queue entry combines the reef/open partition with the CRF
+  ON/OFF sweep. Not recoverable by reanalysis; proceeded to a new run.
+
+**CONSEQUENCE:** unlike P-A (false premise, not queued) and P-B (missing
+knob, routed to `/implement-substrate`), P-D's design is buildable as
+specified -- MINUS the gated_policy routing addition, which this build
+omitted entirely (a matched-constant bias term with no bearing on a
+paired-by-seed ARM_ON-vs-ARM_OFF comparison; P-A's erratum already states
+"P-D unaffected... does not depend on gated_policy routing mattering", and
+this build makes that concrete by never wiring the route). The script is
+otherwise a straight adaptation of the already-run `v3_exq_654j` matched
+stack (MECH-448 demotion + MECH-449 active No-Go both kept as matched-stack
+constants; swept variable `use_candidate_rule_field` unchanged) plus a new
+context-partitioned readout (`tv_context_divergence`, paired-by-seed
+ARM_ON-vs-ARM_OFF lift) layered on the same P2 measurement window, with a new
+C1g readiness precondition (context partition adequate on a majority of
+seeds, both arms) guarding the seed-44-style degeneracy before any H4
+reading is drawn.
+
+Code review also applied the fanout doc's own Section 2 preamble mandate
+(clear the E3 diagnostics latch before every `select_action` + emit
+`n_latched_ticks`) to the inherited MECH-448/449 diagnostics reads -- this
+clears two `validate_experiments.py` advisory WARNs (stale-e3-diagnostics,
+hold-weighted-readout) that the unmodified `v3_exq_654j` template still
+carries uncorrected; does not affect the primary DV, which reads the
+committed action directly rather than the latched diagnostics dict.
+
+**Queued** as `V3-EXQ-847` (`experiments/
+v3_exq_847_arc062_pd_context_modeswitch_committed_class_divergence.py`,
+`claim_ids: []`, `experiment_purpose: "diagnostic"`, brake-exempt,
+`machine_affinity: "any"`), `ree-v3` commit `4057be48fe`, confirmed present
+in the coordinator's `/queue/active`. `validate_experiments.py --strict`:
+OK (1 pre-existing advisory anchor-reachability WARN, also present on the
+unmodified 654j template -- inherited, not new). `--dry-run`: both arms
+complete, manifest written and cleaned up, no crash; C1/C1g correctly read
+`False` on the tiny dry-run dose (expected -- 2 P2 episodes cannot clear the
+readiness floors, matching 654j's own dry-run behaviour).
+
+Legs P-A/P-B/P-C are unaffected by this finding.
