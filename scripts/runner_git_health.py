@@ -205,10 +205,23 @@ above, and the runner's own `pull --rebase --autostash` is already contending
 for those refs. Labelling the staleness is the honest fix; silently grading
 against a stale ref is not.
 
-SCOPE. This is the working-tree / untracked half. Stash containment is
-`REE_Working/scripts/audit_stashes.py`, which already covers the Mac's two
-repos and is step 7 of the Session Startup Protocol. The `stashes` / `prepull`
-counts here are a pointer to it, not a substitute for it.
+SCOPE. This is primarily the working-tree / untracked half. Full stash
+containment grading (arbitrary stash content, not only prepull entries; hunk
+reverse-apply; symbol-level containment) is
+`REE_Working/scripts/audit_stashes.py`, which is step 7 of the Session
+Startup Protocol -- but it runs LOCAL `git` only and covers just the Mac's two
+repos. `runner-prepull-untracked` entries specifically (added 2026-07-31) ARE
+graded here, fleet-wide, via `grade_prepull_stashes` in the worker-side
+`UNTRACKED_PY` grader (containment against the worktree file or `upstream`,
+same predicate ree-v3's own reaper uses -- see grade_prepull_stashes'
+docstring). That is deliberately the ONE stash class graded here: it is the
+one class with a known provenance (the 2026-07-18 orphaned-autostash leak)
+and a known remedy, it is small in practice (a handful of entries), and it is
+the class this file's own history shows has actually held irreplaceable
+evidence (cloud-3, V3-EXQ-673 and V3-EXQ-707c/ARC-110). The generic `stashes`
+count remains a bare count and a pointer to `audit_stashes.py` for a Mac
+session -- that tool's fuller grading is not reproduced here, and nothing
+plays its role for a remote worker.
 
 USAGE
 -----
@@ -344,6 +357,14 @@ MAX_OTHER_PATHS = 10
 # the bucket exists to catch a manifest hiding behind a *.bak-style rule, not to
 # enumerate a tree. Anything past the cap is counted, never silently dropped.
 MAX_IGNORED_SCAN = 500
+# Prepull stash grading (added for the containment report -- see
+# grade_prepull_stashes below). A prepull entry has historically held 1-3
+# files; these bound a pathological box without ever silently dropping a
+# path -- anything past the cap is counted (`beyond_scan_cap`) and the entry
+# fails CLOSED to "at_risk", never silently cleared.
+MAX_PREPULL_ENTRIES = 50
+MAX_PREPULL_PATHS = 25
+PREPULL_LABEL = "runner-prepull-untracked"
 
 # By-design-local paths. Verified 2026-07-30 against origin/master: ZERO
 # *_per_tick.jsonl blobs exist there, so their absence from origin is the
@@ -658,6 +679,152 @@ def ref_age_hours(root, ref):
         return None
 
 
+def _stash_list_entries(root):
+    """[(ref, subject), ...] for every stash entry, newest first. Never raises.
+
+    %gs is the reflog SUBJECT, e.g. "On master: runner-prepull-untracked" --
+    the same substring the shell probe's PROBE script greps for, so the two
+    counts agree by construction.
+    """
+    out = git(root, "stash", "list", "--format=%gd\x1f%gs")
+    if out is None:
+        return []
+    entries = []
+    for line in out.splitlines():
+        parts = line.split("\x1f")
+        if len(parts) != 2:
+            continue
+        entries.append((parts[0], parts[1]))
+    return entries
+
+
+def _stash_untracked_paths(root, stash_ref):
+    """Repo-relative paths held in a `-u` stash's untracked THIRD-PARENT commit.
+
+    A stash made with --include-untracked stores the untracked files in a
+    THIRD parent commit, `<stash_ref>^3` -- invisible to `git stash show`,
+    which reports only the tracked diff. Since a runner-prepull-untracked
+    stash holds nothing BUT untracked files, `^3` is the only place its
+    content is reachable. Mirrors ree-v3 experiment_runner.py's
+    `_stash_untracked_paths` (4028f06) -- same shape, ported rather than
+    imported because this repo has no cross-repo import path onto ree-v3 (the
+    vendored-copy rule in CLAUDE.md: it works on the Mac and breaks on a
+    worker that never cloned ree-v3 at that path).
+
+    Returns None (not []) when `^3` cannot be enumerated at all -- e.g. a
+    stash taken WITHOUT --include-untracked, which the label alone cannot
+    rule out. That distinguishes "not a -u stash" from "a -u stash with
+    nothing in it", and the caller reports the two differently.
+    """
+    out = git(root, "ls-tree", "-r", "--name-only", "%s^3" % stash_ref)
+    if out is None:
+        return None
+    return [ln for ln in out.splitlines() if ln]
+
+
+def _path_contained(root, stash_ref, upstream, rel):
+    """Is `rel`'s stashed content (`<stash_ref>^3:<rel>`) PROVABLY already
+    carried by the worktree file at that path, or by `upstream`?
+
+    Two places are checked, either sufficient -- the worktree file is what a
+    real collision lands on, `upstream` is what the fleet actually reads.
+    CONTAINMENT, not equality, same predicate as `is_superset` /
+    ree-v3's `_json_content_contained`: a governance-reviewed landed copy
+    adds a reviewer note / changed `evidence_direction` on top of what the
+    worker wrote, so an equality test would leave every reviewed run's entry
+    graded at_risk forever. Fails CLOSED: unreadable stash content, or no
+    match anywhere, is NOT contained.
+    """
+    stashed = git(root, "show", "%s^3:%s" % (stash_ref, rel))
+    if stashed is None:
+        return False
+    stashed_doc = as_json(stashed)
+
+    full = os.path.join(root, rel)
+    try:
+        if os.path.isfile(full):
+            with open(full, "rb") as fh:
+                local_raw = fh.read().decode("utf-8", "replace")
+            if local_raw == stashed:
+                return True
+            local_doc = as_json(local_raw)
+            if (stashed_doc is not None and local_doc is not None
+                    and is_superset(local_doc, stashed_doc)):
+                return True
+    except Exception:
+        pass
+
+    up = git(root, "show", "%s:%s" % (upstream, rel))
+    if up is not None:
+        if up == stashed:
+            return True
+        up_doc = as_json(up)
+        if (stashed_doc is not None and up_doc is not None
+                and is_superset(up_doc, stashed_doc)):
+            return True
+    return False
+
+
+def grade_prepull_stashes(root, upstream):
+    """GRADE each runner-prepull-untracked stash entry for containment.
+
+    Replaces a bare count with a per-entry verdict: "redundant" (every path
+    is provably already carried by the worktree or by `upstream`, so the
+    entry is a safe retirement candidate) vs "at_risk" (at least one path is
+    proven nowhere else, so it may be the ONLY copy). This is the read-only,
+    fleet-wide counterpart to the ree-v3 runner's own reaper
+    (experiment_runner.py, commit 4028f06 "retire a collided prepull stash
+    entry whose content already landed"), which acts on the identical
+    predicate but only on the box it is running on and only at pop time. No
+    equivalent runs on a powered-off or pre-fix worker, which is exactly the
+    box this probe is for.
+
+    REPORTING ONLY. Never pops, drops, archives, or otherwise mutates a
+    stash -- this module's whole contract is read-only (module docstring).
+    """
+    entries = [(r, s) for r, s in _stash_list_entries(root) if PREPULL_LABEL in s]
+    truncated_entries = max(0, len(entries) - MAX_PREPULL_ENTRIES)
+    graded = []
+    for stash_ref, _subject in entries[:MAX_PREPULL_ENTRIES]:
+        paths = _stash_untracked_paths(root, stash_ref)
+        if paths is None:
+            graded.append({"ref": stash_ref, "verdict": "unreadable",
+                           "reason": "could not enumerate %s^3" % stash_ref})
+            continue
+        if not paths:
+            graded.append({"ref": stash_ref, "verdict": "unreadable",
+                           "reason": "no untracked (^3) parent -- not a "
+                                     "--include-untracked stash"})
+            continue
+        scanned = paths[:MAX_PREPULL_PATHS]
+        beyond = len(paths) - len(scanned)
+        unproven = [rel for rel in scanned
+                    if _path_contained(root, stash_ref, upstream, rel) is not True]
+        entry = {"ref": stash_ref, "paths": len(paths)}
+        # Any path beyond the scan cap is UNPROVEN by construction -- fail
+        # closed rather than clear an entry on the strength of paths it never
+        # actually checked.
+        redundant = not unproven and beyond == 0
+        entry["verdict"] = "redundant" if redundant else "at_risk"
+        if unproven:
+            entry["unproven_paths"] = unproven[:MAX_CANDIDATES]
+        if beyond:
+            entry["beyond_scan_cap"] = beyond
+        graded.append(entry)
+
+    out = {
+        "count": len(entries),
+        "graded_count": len(graded),
+        "redundant": sum(1 for g in graded if g["verdict"] == "redundant"),
+        "at_risk": sum(1 for g in graded if g["verdict"] == "at_risk"),
+        "unreadable": sum(1 for g in graded if g["verdict"] == "unreadable"),
+        "entries": graded,
+    }
+    if truncated_entries:
+        out["truncated_entries"] = truncated_entries
+    return out
+
+
 def grade_repo(root, ref, do_ignored=False):
     st = git(root, "status", "--porcelain", "-uall", "-z")
     if st is None:
@@ -709,7 +876,8 @@ def grade_repo(root, ref, do_ignored=False):
            "findings": findings, "divergent": divergent,
            "truncated": truncated, "notes": notes,
            "no_counterpart_other_paths": other_paths,
-           "ref": ref, "ref_age_hours": ref_age_hours(root, ref)}
+           "ref": ref, "ref_age_hours": ref_age_hours(root, ref),
+           "prepull": grade_prepull_stashes(root, ref)}
     if do_ignored:
         out["gitignored"] = grade_ignored(root, ref, idx)
     return out
@@ -1097,14 +1265,61 @@ def classify(d):
         # known provenance and a known remedy. Two of ree-cloud-3's 13 held
         # the only surviving copy of a completed run (V3-EXQ-707c / ARC-110,
         # 40.9 hours of compute). The runner reaps these itself from
-        # 2026-07-30 on, so a NON-ZERO count now means either a worker still
-        # running pre-fix code, or entries whose pop keeps colliding -- both
+        # 2026-07-30 on (ree-v3 4028f06), so a NON-ZERO count now means either
+        # a worker still running pre-fix code, or entries whose pop keeps
+        # colliding on content the reaper could NOT prove redundant -- both
         # need a human, neither is self-healing.
-        reasons.append(
-            f"{_int('prepull')} runner-prepull-untracked stash entry(ies) -- "
-            f"orphaned-stash leak residue; these have held the ONLY copy of "
-            f"completed runs. Inspect with `git stash show -p <ref>` and "
-            f"recover before dropping ANY of them")
+        #
+        # GRADED, not a bare count, whenever the untracked pass ran (it holds
+        # the per-entry containment verdict -- see grade_prepull_stashes).
+        # This replaces the single blanket "treat every one as the ONLY copy"
+        # warning: a redundant entry (content already lands via the worktree
+        # or origin -- e.g. a governance-reviewed manifest, a strict superset
+        # of what the stash holds) is a retirement candidate, not a loss risk,
+        # and burying that inside an undifferentiated count is what let 13
+        # entries on ree-cloud-3 sit unexamined while two of them were the
+        # real thing. An at_risk entry keeps the original, conservative
+        # wording. Falls back to the old blanket text when detailed grading
+        # was not run at all (--no-untracked, or the untracked pass errored
+        # for this repo) -- absence of a verdict is never treated as "safe".
+        u0 = d.get("untracked")
+        pg = u0.get("prepull") if isinstance(u0, dict) else None
+        if isinstance(pg, dict) and pg.get("count", 0) > 0:
+            reasons.append(
+                f"{pg['count']} runner-prepull-untracked stash entry(ies) "
+                f"GRADED: {pg.get('redundant', 0)} redundant (content already "
+                f"carried by the worktree or origin -- safe retirement "
+                f"candidate(s)), {pg.get('at_risk', 0)} at-risk (hold content "
+                f"proven nowhere else -- DO NOT drop), "
+                f"{pg.get('unreadable', 0)} unreadable (could not enumerate "
+                f"or verify -- treat as at-risk)")
+            for e in pg.get("entries", []):
+                if e.get("verdict") == "redundant":
+                    continue
+                up = e.get("unproven_paths") or []
+                bits = []
+                if up:
+                    bits.append("unproven: " + ", ".join(up[:3])
+                                + (" ..." if len(up) > 3 else ""))
+                if e.get("beyond_scan_cap"):
+                    bits.append(f"+{e['beyond_scan_cap']} path(s) beyond scan cap")
+                if e.get("reason"):
+                    bits.append(e["reason"])
+                reasons.append(
+                    f"    {e.get('ref', '?')} {e.get('verdict', '?').upper()}"
+                    + (f" -- {'; '.join(bits)}" if bits else ""))
+            if pg.get("truncated_entries"):
+                reasons.append(
+                    f"    (+{pg['truncated_entries']} more prepull entries "
+                    f"beyond the grading cap -- use --json)")
+        else:
+            reasons.append(
+                f"{_int('prepull')} runner-prepull-untracked stash entry(ies) -- "
+                f"orphaned-stash leak residue; detailed containment grading "
+                f"unavailable for this repo (run with untracked grading "
+                f"enabled). Treat as holding the ONLY copy of completed runs "
+                f"until graded. Inspect with `git stash show -p <ref>` and "
+                f"recover before dropping ANY of them")
     other = _int("stashes") - _int("prepull")
     if other > 0:
         reasons.append(f"{other} other stash entry(ies) -- may strand evidence; inspect before dropping")
@@ -1433,6 +1648,7 @@ def selftest():
         print("  [PASS] stale-ref caveat is silent when there is no finding")
 
     failed += _selftest_grader()
+    failed += _selftest_prepull_grading()
     failed += _selftest_local_target()
     failed += _selftest_claims()
     failed += _selftest_recheck_and_host_resolution()
@@ -1639,6 +1855,138 @@ def _selftest_grader():
         return bad
     except Exception as exc:                      # pragma: no cover - defensive
         print(f"  [FAIL] grader selftest errored: {exc}")
+        return 1
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _selftest_prepull_grading():
+    """GRADE each runner-prepull-untracked stash entry -- the containment
+    report this chip added. Runs the REAL grader source (UNTRACKED_PY)
+    against a throwaway repo carrying real `git stash push --include-
+    untracked` entries, not hand-written dicts, for the same reason
+    `_selftest_grader` does: the predicate under test is exactly the one that
+    left 13 prepull entries on ree-cloud-3 unexamined behind a bare count,
+    and a grader that has only ever seen fixtures it was designed around is
+    unverified.
+
+    Three entries, three outcomes:
+      redundant   stashed content is a STRICT SUBSET of what the worktree
+                  file now holds -- the shape a governance-reviewed landed
+                  manifest takes (extra `queue_id` / reviewer fields on top
+                  of what the worker wrote). Must grade "redundant", not
+                  merely "byte-identical", or every reviewed run is
+                  unretirable forever (module docstring / CLAUDE.md).
+      at_risk     stashed content exists NOWHERE else -- not on disk, not on
+                  origin. The genuine orphan shape; must stay named as
+                  at-risk with its unproven path, never silently cleared.
+      (excluded)  an ordinary, non-prepull stash must not be swept into the
+                  graded set at all -- the label match is substring-exact.
+    """
+    import shutil
+    import tempfile
+
+    tmp = tempfile.mkdtemp(prefix="rgh-prepull-selftest-")
+    try:
+        root = os.path.join(tmp, "REE_assembly")
+        os.makedirs(os.path.join(root, "evidence", "experiments"))
+
+        def run(*args):
+            subprocess.run(("git",) + args, cwd=root, check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+        def write(rel, text):
+            p = os.path.join(root, rel)
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w") as fh:
+                fh.write(text)
+
+        run("init", "-q")
+        run("config", "user.email", "selftest@local")
+        run("config", "user.name", "selftest")
+        write("README.md", "base\n")
+        run("add", "-A")
+        run("commit", "-q", "-m", "base")
+
+        redundant_rel = "evidence/experiments/redundant_run_v3.json"
+        atrisk_rel = "evidence/experiments/atrisk_run_v3.json"
+        stashed_content = json.dumps(
+            {"run_id": "redundant_run_v3", "outcome": "PASS"})
+        # The landed copy is a SUPERSET, not a byte match -- the reviewed-
+        # manifest shape the containment predicate exists for.
+        landed_content = json.dumps(
+            {"run_id": "redundant_run_v3", "outcome": "PASS",
+             "queue_id": "V3-EXQ-001", "machine": "ree-cloud-2",
+             "evidence_direction_note": "reviewed"})
+
+        # Entry 1: stash it, then land a SUPERSET back into the worktree AND
+        # commit it -- the shape of a collided pop whose content already
+        # reached origin by another route. Committing (rather than leaving it
+        # untracked) is deliberate: `git stash push --include-untracked`
+        # sweeps up EVERY untracked path, not just the one just written, so an
+        # untracked "landed" file here would get re-swept into entry 2's
+        # stash below and silently vanish from the worktree before grading.
+        write(redundant_rel, stashed_content)
+        run("stash", "push", "--include-untracked", "-m",
+            "runner-prepull-untracked")
+        write(redundant_rel, landed_content)
+        run("add", "-A")
+        run("commit", "-q", "-m", "landed")
+
+        # Entry 2: stash it and never recreate it anywhere -- the real
+        # orphan shape (cloud-3's V3-EXQ-707c / ARC-110).
+        write(atrisk_rel, json.dumps(
+            {"run_id": "atrisk_run_v3", "outcome": "FAIL"}))
+        run("stash", "push", "--include-untracked", "-m",
+            "runner-prepull-untracked")
+
+        # An ordinary stash, unrelated label -- must NOT be swept in.
+        write("evidence/experiments/unrelated.json", "{}")
+        run("stash", "push", "--include-untracked", "-m", "unrelated churn")
+
+        r = subprocess.run(
+            [sys.executable, "-", tmp, "REE_assembly:HEAD"],
+            input=UNTRACKED_PY, capture_output=True, text=True, timeout=120)
+        line = [x for x in r.stdout.splitlines()
+                if x.startswith(UNTRACKED_MARKER)]
+        if not line:
+            print("  [FAIL] prepull grader emitted no result (%s)"
+                  % (r.stderr or "").strip()[-300:])
+            return 1
+        got = json.loads(line[0][len(UNTRACKED_MARKER):]).get("REE_assembly", {})
+        pg = got.get("prepull") or {}
+
+        bad = 0
+        if pg.get("count") != 2:
+            print(f"  [FAIL] prepull count {pg.get('count')} != 2 -- the "
+                  f"unrelated stash leaked in, or a real entry was missed")
+            bad += 1
+        else:
+            print("  [PASS] prepull grader: exactly the 2 "
+                  "runner-prepull-untracked entries counted, the unrelated "
+                  "stash excluded by label")
+
+        verdicts = [e.get("verdict") for e in pg.get("entries", [])]
+        if sorted(verdicts) != ["at_risk", "redundant"]:
+            print(f"  [FAIL] prepull verdicts {verdicts} -- want exactly one "
+                  f"redundant and one at_risk")
+            bad += 1
+        else:
+            print("  [PASS] prepull grader: superset-landed entry graded "
+                  "redundant, orphaned entry graded at_risk")
+
+        at_risk = next((e for e in pg.get("entries", [])
+                        if e.get("verdict") == "at_risk"), {})
+        if atrisk_rel not in (at_risk.get("unproven_paths") or []):
+            print(f"  [FAIL] at-risk entry did not name its unproven path: "
+                  f"{at_risk}")
+            bad += 1
+        else:
+            print("  [PASS] prepull grader: at-risk entry names its "
+                  "unproven path")
+        return bad
+    except Exception as exc:                      # pragma: no cover - defensive
+        print(f"  [FAIL] prepull grading selftest errored: {exc}")
         return 1
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
