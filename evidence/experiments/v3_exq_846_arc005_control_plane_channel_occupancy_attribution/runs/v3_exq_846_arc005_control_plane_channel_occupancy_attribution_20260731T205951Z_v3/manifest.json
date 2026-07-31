@@ -1,0 +1,281 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_846_arc005_control_plane_channel_occupancy_attribution",
+  "run_id": "v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-07-31T20:59:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-005"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "channel_occupancy_authority_attributed",
+    "preconditions": [
+      {
+        "name": "ARM_ALL_ON::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_ALL_ON",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_ALL_ON::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_ALL_ON",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "ARM_5HT_OFF::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_5HT_OFF",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_5HT_OFF::channel_ablation_component_delta",
+        "precondition": "channel_ablation_component_delta",
+        "arm": "ARM_5HT_OFF",
+        "kind": "readiness",
+        "description": "normalised delta of the ABLATED channel's own realised setting vs ARM_ALL_ON, isolated to that channel's component of the state vector",
+        "control": "ARM_ALL_ON (same-content, all channels at L2)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_5HT_OFF::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_5HT_OFF",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PHASIC_OFF::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_PHASIC_OFF",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_PHASIC_OFF::channel_ablation_component_delta",
+        "precondition": "channel_ablation_component_delta",
+        "arm": "ARM_PHASIC_OFF",
+        "kind": "readiness",
+        "description": "normalised delta of the ABLATED channel's own realised setting vs ARM_ALL_ON, isolated to that channel's component of the state vector",
+        "control": "ARM_ALL_ON (same-content, all channels at L2)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_PHASIC_OFF::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_PHASIC_OFF",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "ARM_MODEPRIOR_OFF::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_MODEPRIOR_OFF",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_MODEPRIOR_OFF::channel_ablation_component_delta",
+        "precondition": "channel_ablation_component_delta",
+        "arm": "ARM_MODEPRIOR_OFF",
+        "kind": "readiness",
+        "description": "normalised delta of the ABLATED channel's own realised setting vs ARM_ALL_ON, isolated to that channel's component of the state vector",
+        "control": "ARM_ALL_ON (same-content, all channels at L2)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_MODEPRIOR_OFF::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_MODEPRIOR_OFF",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "ARM_PCC_OFF::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_PCC_OFF",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_PCC_OFF::channel_ablation_component_delta",
+        "precondition": "channel_ablation_component_delta",
+        "arm": "ARM_PCC_OFF",
+        "kind": "readiness",
+        "description": "normalised delta of the ABLATED channel's own realised setting vs ARM_ALL_ON, isolated to that channel's component of the state vector",
+        "control": "ARM_ALL_ON (same-content, all channels at L2)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.9999999999999999,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_PCC_OFF::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_PCC_OFF",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "ARM_ALL_OFF::n_distinct_argmax_modes_across_design",
+        "precondition": "n_distinct_argmax_modes_across_design",
+        "arm": "ARM_ALL_OFF",
+        "kind": "readiness",
+        "description": "distinct argmax-occupancy modes over ALL cells of the design -- the run is vacuous only if every cell sits in the same mode",
+        "control": "the full 6-arm x seeds grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0,
+        "threshold": 1.5,
+        "met": true
+      },
+      {
+        "name": "ARM_ALL_OFF::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "ARM_ALL_OFF",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks (worst cell of the arm)",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 223.0,
+        "threshold": 150.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "C1_5HT_attribution": true,
+      "C1_PHASIC_attribution": true,
+      "C1_MODEPRIOR_attribution": true,
+      "C1_PCC_attribution": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ed785c4167a8e2693b82879e59d53cd4cf5e5983aa5b35beff293fc4aaf322fe",
+  "substrate_commit": {
+    "commit": "f84b63749d87dc709903ec151b9bc87096a93400",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 30,
+    "goal_state_present": false
+  }
+}
