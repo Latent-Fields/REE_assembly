@@ -184,7 +184,7 @@
       "recommended_evidence_direction": "non_contributory",
       "recommended_evidence_quality_note": "V3-EXQ-840 (2026-07-30): readiness safeguard (asserting the SAME statistic -- route_range -- the load-bearing criteria depend on) correctly caught a sub-floor cross-candidate range on ARM_1_JOINT in a real run, despite the contract-test suite passing at smoke scale. Not a claim result -- MECH-294 stays candidate/v3_pending. Recommend strengthening per-candidate coherence magnitude (or auditing the readiness floor calibration) before re-running the same falsifier.",
       "recommended_substrate_queue_entry": {
-        "action": "create",
+        "action": "none",
         "sd_id_suggested": "mech294_coherence_magnitude_strengthening",
         "title": "Strengthen per-candidate co-binding coherence magnitude so a real (non-smoke) run clears route_range supra-floor on the JOINT arm",
         "implementation_hint": "compose_per_candidate_coherence currently produces enough signal for tests/contracts/test_mech294_per_candidate_coherence.py at smoke scale but not for a full V3-EXQ-840-scale run to clear the route-range readiness floor. Either strengthen the coherence signal magnitude or audit whether the floor itself is miscalibrated relative to a real run's achievable range.",
@@ -198,7 +198,8 @@
           "experiment_type": "v3_exq_840_mech294_theta_packet_binding_committed_action_falsifier",
           "metric": "ARM_1_JOINT routed cross-candidate range",
           "target": "supra-floor, matching the route-range readiness threshold"
-        }
+        },
+        "action_correction_note": "CORRECTED 2026-07-31 (session stoic-mcnulty-3defb0): action changed from the original \"create\" to \"none\". The amendment_note above (2026-07-31T19:16:05Z, session confident-morse-af47a8) already established the corrected root cause is a measurement-window defect (per-seed early episode termination via self-contamination), not a coherence-magnitude substrate gap -- and the substrate_queue.json entry this field originally produced (sd_id mech294_coherence_magnitude_strengthening) carries its own diagnosis_correction confirming no substrate build is owed; it must NOT be built as originally specified. Leaving action=\"create\" here caused ree-v3/validate_queue.py _autopsy_counts_toward_brake() to read owes_build=True and count this target toward MECH-294's re-derive-brake tally despite its own recommended_epistemic_category already being measurement_test_design_defect (the RE_DERIVE_INSTRUMENT_CATEGORY_MARKERS short-circuit at (2) is only reached when owes_build is False) -- forcing V3-EXQ-840b's queue entry to carry a manual WARN-exemption note instead of the automated check reflecting the corrected state. This is the same false-positive pattern the validator's own MECH-448 precedent documents (689d/689d-D3/699, action=\"none\"). The other fields this run's amendment_note named (recommended_evidence_quality_note, four_layer_diagnosis.implementation, learning_extracted, failure_record_entry) are left unedited per that note's stated provenance policy -- only this action field is corrected, since it is what drives the automated brake count and was not among the fields that note declared preserved. Verified: ree-v3/validate_queue.py reports 0 re-derive-brake WARN for MECH-294 with this change in place (previously 1 WARN citing this target). Corrected re-run: V3-EXQ-840b (ree-v3 commit 69eec06bc6, 2026-07-31, supersedes V3-EXQ-840). See REE_assembly/evidence/planning/substrate_queue.json sd_id mech294_coherence_magnitude_strengthening.diagnosis_correction for the full trail."
       },
       "pending_retest_after_substrate": true,
       "narrow_supports_flag": false,
