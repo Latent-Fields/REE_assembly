@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-07-31T19:49:48Z",
+  "last_tick_utc": "2026-07-31T20:09:56Z",
   "state": "running",
   "current_exq": "V3-EXQ-845",
   "current_exq_started_utc": "2026-07-31T19:44:35.349032+00:00",
@@ -9,20 +9,32 @@
   "current_claim_id": "MECH-180",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_0_NONE_ON",
-    "runs_done": 0,
+    "run_label": "Seed 42 / ARM_1_LOW_ON",
+    "runs_done": 1,
     "runs_total": 15,
     "episodes_done": 21,
     "episodes_total": 75,
-    "overall_pct": 1.9
+    "overall_pct": 8.5
   },
-  "seconds_elapsed": 313,
-  "seconds_remaining": 8312,
+  "seconds_elapsed": 1521,
+  "seconds_remaining": 16121,
   "recent_lines": [
     "Seed 42 Condition ARM_0_NONE_ON",
     "[train] ARM_0_NONE_ON seed=42 ep 1/75",
     "[train] ARM_0_NONE_ON seed=42 ep 11/75",
-    "[train] ARM_0_NONE_ON seed=42 ep 21/75"
+    "[train] ARM_0_NONE_ON seed=42 ep 21/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 31/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 41/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 51/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 61/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 71/75",
+    "[train] ARM_0_NONE_ON seed=42 ep 75/75",
+    "ARM_0_NONE_ON seed=42: conv_drop=0.967 ref=1.712e-05 mel=1.515e-05 factor=0.885 cum_sws=27 mean_div=0.3273 cum_rem=54",
+    "verdict: PASS",
+    "Seed 42 Condition ARM_1_LOW_ON",
+    "[train] ARM_1_LOW_ON seed=42 ep 1/75",
+    "[train] ARM_1_LOW_ON seed=42 ep 11/75",
+    "[train] ARM_1_LOW_ON seed=42 ep 21/75"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
