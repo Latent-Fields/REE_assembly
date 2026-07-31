@@ -337,3 +337,77 @@ spawned to scope and build the `f_weight` config lever via
 Legs P-A/P-C/P-D are unaffected by this finding (P-C/P-D do not touch F's
 weight in the score at all; P-A's blocker is the separate `lateral_pfc` route
 source gap above).
+
+---
+
+## P-C STOP-CHECK resolution (2026-07-31, `/queue-experiment` build session
+for Leg P-C, chip `chip-20260729-arc062-pc-policy-learning-discriminator`) --
+**the discriminator already ran (twice), is confounded/terminal, and the H1/H2
+question it targets is already resolved by later evidence. Not queued.**
+
+Section 2's own mandatory stop-check asked the P-C build session to search
+`REE_assembly/evidence/experiments/` and `git -C ree-v3 log -S
+policy_learning_discriminator` before authoring anything, and to cite+route
+rather than re-queue if a landed run is found. This is that check.
+
+**ID-CONFIRMED:** the autopsy's suggested id (~V3-EXQ-727) was never used for
+this discriminator -- V3-EXQ-727 landed as `capability_yardstick_calibration`
+(2026-07-09), an unrelated WS-3 item. The actual `policy_learning_discriminator`
+scripts are `V3-EXQ-732` (`ree-v3` `1ab745d`, 2026-07-10) and its power-fixed
+follow-up `V3-EXQ-732a` (`ree-v3` `613caab`, 2026-07-10) -- both matching the
+autopsy section 7 spec's B0/B1/B2 arm design and DV
+(`mean_resources_per_episode` vs the 1.0 floor) exactly.
+
+**Already run, and TERMINAL:**
+- `V3-EXQ-732` self-routed `H2_observation_interface_unlearnable`
+  (`b1_clears_floor: false`, `b2_clears_floor: false`).
+- `V3-EXQ-732a` (power bump) hit `substrate_not_ready_requeue`: its
+  learner-adequacy readiness gate referenced the **privileged global oracle**
+  as the competence denominator while the learner sees only a 5x5 local view
+  -- the same observability confound documented in
+  `failure_autopsy_V3-EXQ-732a_2026-07-10` and memory
+  `reference-competence-floor-observability-confound`. That autopsy declared
+  the 719a->724->732->732a chain **terminal** and the H1/H2 read
+  **UNRESOLVED** by this design, and the pre-registered same-question power
+  bump **V3-EXQ-732b was explicitly REFUSED** by the re-derive brake.
+- Re-queuing the literal B0/B1/B2 spec here would therefore re-run a design
+  already known to be confounded and already terminated by its own autopsy --
+  exactly the re-derive loop `/queue-experiment` Step 2.5b exists to stop
+  (`claim_ids=[]` on this diagnostic zeroes the claim-keyed counter, but the
+  autopsy-stream recurrence brake still fired; see chip `task_11019ac9` /
+  memory `reference-governance-pipeline-derive-only`).
+
+**Superseded, not merely blocked:** the underlying scientific question (is
+the bottleneck the policy-learning mechanism, H1, or the observation/latent
+interface, H2?) has since been **definitively answered by a different, later,
+cleaner design** -- `V3-EXQ-813` (survival-zeroed PPO probe, 2026-07-24),
+which removed the reward-objective confound the 732 chain never controlled
+for and used the same corrected local-view-vs-global-oracle readiness gate
+732a's autopsy demanded. Per `hypothesis_space_registry.v1.json`:
+`H-policy-learning` -> **`state: "eliminated"`**
+(`resolving_runs: [V3-EXQ-737b, V3-EXQ-742a, V3-EXQ-813]`,
+`resolved_utc: 2026-07-24T14:33:33Z`, basis: "PPO on raw observations CLEARS
+the D3 hazard-free floor (9.033 >> 1.0) while PPO on the REE latent does not
+(0.5), under the identical W3_survival_zeroed objective... the policy-learning
+stage is NOT the bottleneck"; a self-routed `substrate_not_ready` on an unmet
+manipulation-check was overridden per user-confirmed judgment, per
+`failure_autopsy_backlog_2026-07-24`). `H-observation-interface` is now the
+surviving live root, corroborated by the SD-070-encoder-warmup 734 re-run
+(REE all-ON recovers at no difficulty rung; vanilla PPO recovers at D2).
+
+**CONSEQUENCE:** ARC-062's H3 (competence / action-learning) is **not** an
+open question needing Leg P-C's B0/B1/B2 discriminator -- it is already
+resolved, by evidence more recent and less confounded than what P-C would
+produce. H3 routes to whatever build `H-observation-interface` implies
+(representation / observation-encoding, `conversion_ceiling_root`,
+MECH-457-tagged), not to another policy-vs-vanilla-RL discriminator.
+
+**Not queued.** No follow-on `/queue-experiment` or `/implement-substrate`
+chip spawned from this resolution -- `H-observation-interface` is already the
+tracked live frontier in `hypothesis_space_registry.v1.json` /
+`competence_floor_reposing_2026-07-25.md` (R4: prediction-trained vs
+random-projection `z_world`, routed as registry delta D12, owned by the
+standing `competence_floor` re-posing thread), so spawning a duplicate chip
+here would race an already-owned worklist item rather than add new coverage.
+
+Legs P-A/P-B/P-D are unaffected by this finding.
