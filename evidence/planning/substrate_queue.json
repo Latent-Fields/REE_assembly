@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "igw-212-proposal-for-mech-217",
-  "last_updated_utc": "2026-07-31T18:56:51Z",
+  "last_updated_utc": "2026-07-31T21:18:55Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -1579,13 +1579,14 @@
       "priority": 2,
       "ready": false,
       "sd_id": "MECH-269b-followup-B",
-      "status": "proposed",
+      "status": "superseded_by_MECH-269b-followup-A_vetoed_by_governing_doc_verdict3",
       "title": "Phase 2 T2: forward-predictor V_s routing for MECH-269 per-stream verisimilitude",
       "unblocks_claims": [
         "MECH-269b",
         "Q-040b",
         "Q-040 (broad)"
-      ]
+      ],
+      "status_note": "2026-07-31 (implement-substrate dry-run pilot, session stoic-mcnulty-3defb0). This entry's own cited design_doc (docs/architecture/v_s_invalidation_runtime.md, Verdict 3 of the 2026-04-22 foundation lit-pull fold-in, reconfirmed in the doc's 2026-04-24 status log -- THREE DAYS before this substrate_queue entry was added) states verbatim: 'Per-stream forward predictors should NOT be added in Phase 2.' That is an explicit architectural veto against the exact mechanism this entry proposes (routing z_world/z_harm_s V_s through per-stream forward predictors). The sibling entry MECH-269b-followup-A (staleness-corrected V_s in VsRolloutGate.gate(), explicitly framed there as 'alternative to Phase 2 T2') was implemented 2026-04-29 and substrate-validated 2026-05-21 (V3-EXQ-601 PASS) -- confirmed via both this file's own -A entry (implementation_status: implemented) and claims.yaml MECH-269b. The 'Phase 2 T2' task label in this entry does not resolve to any task numbering in the cited design doc (558 lines, no T1-T4 scheme) -- likely mislabeled or sourced elsewhere. Do not implement as specified. If per-stream forward predictors are ever warranted despite the biological argument in Verdict 3, that is a lit-pull / architecture-revision decision, not a build to schedule from this entry."
     },
     {
       "added_session": "diagnose-errors-2026-04-27T14:42",
