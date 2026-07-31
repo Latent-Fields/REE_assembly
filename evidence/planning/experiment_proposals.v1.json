@@ -87,14 +87,18 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_744_inv088_world_goal_evaluator_dv_coupling",
       "target_repo": "ree-v3",
       "why_now": [
         "active_conflict",
         "directional_conflict_alert",
         "mandatory_decision_checkpoint"
-      ]
+      ],
+      "executed_by": "V3-EXQ-744a",
+      "executed_queue_id": "V3-EXQ-744a",
+      "executed_utc": "2026-07-12T14:40:28Z",
+      "executed_note": "2026-07-31 (queue-experiment dry-run pilot, session stoic-mcnulty-3defb0, GOV-REUSE-1 check). This proposal's own suggested_experiment_type (v3_exq_744_inv088_world_goal_evaluator_dv_coupling) already ran as V3-EXQ-744 (2026-07-12, inconclusive) and its 8-seed re-estimate V3-EXQ-744a (2026-07-12, evidence_direction=weakens, real substrate_hash) -- claims.yaml calls 744a the 'FIRST WEIGHTED entry for INV-088' (mean_delta_r2=0.130 fails the 0.15 floor + 2xSD gate, C2 monotone rho=0.69: real-but-weak, high-variance, not a clean threshold effect). Every governance note since (2026-07-18, 07-26, 07-30) explicitly carries this reading forward untouched and reroutes further INV-088 reconfirmation to the separate MECH-457 competence portfolio (H-bc-prior/H-approach-primitive) rather than a re-run of this experiment type. No script was drafted. If a genuinely new variance-reduction iteration (744b) is wanted ahead of the 2026-08-03 decision deadline, that is a fresh human/governance scoping call, not a re-run under this backlog entry."
     },
     {
       "acceptance_checks": [
@@ -1521,13 +1525,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "v3_exq_610a_inv074_crystallization_necessity",
       "target_repo": "ree-v3",
       "why_now": [
         "directional_conflict_alert",
         "low_exp_conf"
-      ]
+      ],
+      "blocked_by": "V3-EXQ-655",
+      "gating_reason": "2026-07-31 (queue-experiment dry-run pilot, session stoic-mcnulty-3defb0, GOV-REUSE-1 check). This proposal's suggested_experiment_type (v3_exq_610a_inv074_crystallization_necessity) targets a question already settled at V3-EXQ-655 (2026-06-13, confirmed failure_autopsy_V3-EXQ-655_2026-06-13, user-adjudicated 'STOP the 610 cascade / accept substrate_ceiling'). The re-derive brake independently trips at count=3 (610a, 610f, 655) with no named upstream substrate fix on the roadmap. claims.yaml's own live_status (as_of 2026-07-11) still cites 655 as governing evidence; MECH-333 remains v3_pending/substrate_conditional, and IGW experiment-surfacing is explicitly suppressed for it pending the open-phase gating mechanism being built. No script was drafted. Re-open only if that upstream substrate mechanism lands."
     },
     {
       "acceptance_checks": [
