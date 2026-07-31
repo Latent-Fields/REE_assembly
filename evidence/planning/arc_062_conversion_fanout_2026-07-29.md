@@ -268,3 +268,72 @@ addition + design correction.
 Legs P-B/P-C/P-D are unaffected by this finding (none of them depend on
 `modulatory_channel_route_source="gated_policy"` routing the rule-apprehension
 channel).
+
+---
+
+## P-B buildability resolution (2026-07-31, `/queue-experiment` build session
+for Leg P-B, chip `chip-20260729-arc062-pb-fdominance`) -- **direct F-weight
+attenuation knob CONFIRMED ABSENT; not queued.**
+
+Section 2's own buildability caveat asked the P-B build session to check
+`ree_core/predictors/e3_selector.py` / `ree_core/utils/config.py` for a
+direct F-weight/F-admission (MECH-090) attenuation lever, distinct from
+MECH-448/449, before authoring. This is that check -- it is a resolution of
+an open question the design correctly flagged, not a premise error (unlike
+P-A's erratum above).
+
+CODE-CONFIRMED (ree-v3, checked at build time):
+
+- `E3TrajectorySelector.score_trajectory` (`e3_selector.py:1118-1261`) computes
+  `score = f + lambda_eff * m + self.config.rho_residue * phi`, then
+  optionally subtracts/adds `benefit_weight * b`, `goal_weight * g`,
+  `pe_confidence_weight * pen`, `self_viability_weight * sv_pen`. `f =
+  self.compute_reality_cost(trajectory)` enters with an **implicit
+  coefficient of 1.0** -- every other term in the sum has a dedicated
+  `*_weight` config field that can be dialed down; F does not. There is no
+  `f_weight`, `reality_cost_weight`, or any other config field anywhere in
+  `e3_selector.py` / `config.py` that scales F's contribution to the score
+  itself.
+- MECH-090 (`docs/architecture/mech_090_commit_entry_predicate.md`,
+  `HeartbeatConfig.use_commit_readiness_gate` /
+  `commit_readiness_floor` in `beta_gate.py`) is **not** a scoring-weight
+  lever at all -- it gates whether BetaGate *elevates into* committed mode
+  based on the post-hoc score margin (top1 vs top2), after the committed
+  argmin has already been decided. It cannot attenuate F's role in
+  *choosing* the argmin; it only conditions whether the choice, once made,
+  is allowed to propagate. Re-reading the prompt's "F-weight/MECH-090
+  attenuation" as two candidate levers for the same idea, MECH-090 does not
+  qualify.
+- The two attenuation-shaped levers that DO exist near F are both excluded
+  by design: MECH-448/449 (`e3_selector.py:1449-1686`,
+  `_f_eligibility_envelope` / `_go_nogo_eligibility_gate`) act on
+  **eligibility** (which candidates survive to compete), not on F's weight
+  in the score itself -- and 654i/654j already armed them as matched
+  constants and still failed C2, which is exactly why the prompt excludes
+  them. `use_natural_commit_urgency_release` +
+  `natural_commit_gap_entry_sensitivity` (`config.py:3630-3662`) is the
+  **duration face** (how long a commit is held, explicitly documented as
+  "PARALLEL to the selection-face MECH-448") -- it does not touch which
+  candidate wins the argmin either.
+
+CONSEQUENCE: no config knob exists today that lets P-B "hold the routed
+rule-apprehension channel ON and sweep the F weight / F-admission directly in
+the committed argmin" as specified. Per Section 2's own caveat, **P-B is
+`complicated (buildable)`, not `complex (probe-gated)`** -- the missing piece
+is a literal `f_weight: float = 1.0` (no-op default) coefficient on the `f`
+term in `score_trajectory`, analogous in shape to `benefit_weight` /
+`goal_weight` / `rho_residue`, threaded through `REEConfig` the same way. This
+is architecturally different from MECH-448 (eligibility) and the duration-face
+levers, and touches the single most heavily-used scoring path in the
+substrate (every E3 selection call), so it is not a "just add a field and
+default it to 1.0" drive-by change -- it needs its own SD doc, phased design
+review, and backward-compat smoke test per `/implement-substrate` Steps 1-5,
+not a rushed inline build here.
+
+**Not queued.** A follow-on chip (`chip-20260731-arc062-pb-fweight-knob`) was
+spawned to scope and build the `f_weight` config lever via
+`/implement-substrate`; Leg P-B should be re-authored against it once landed.
+
+Legs P-A/P-C/P-D are unaffected by this finding (P-C/P-D do not touch F's
+weight in the score at all; P-A's blocker is the separate `lateral_pfc` route
+source gap above).
