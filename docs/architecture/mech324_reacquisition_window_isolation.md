@@ -6,14 +6,16 @@
 **Subject:** `policy.composition.chunk_maintenance_dissolution` -- rapid-reacquisition
 sub-mechanism only. Not a new architectural decision; this is a bugfix design for
 already-built substrate.
-**Status:** PENDING (design only -- no `ree_core` edits made; see the HARD CONSTRAINT
-note at the end of this doc)
+**Status:** IMPLEMENTED 2026-07-31 (ree-v3 `7747a01c94`, human-confirmed after the
+design pass below; see ree-v3/CLAUDE.md's MECH-324 reacquisition-window-isolation
+entry for the full implementation record)
 **Registered:** 2026-07-31
 **Depends on:** none (patches existing MECH-324 code; both switches it touches,
 `use_chunk_maintenance` and `use_chunk_dissolution_retention`, are already built and
 already default OFF)
-**Blocks:** re-validation of the MECH-324 rapid-reacquisition relapse falsifier
-(V3-EXQ-829 successor); no other claim is gated on this fix.
+**Blocks:** re-validation of the MECH-324 rapid-reacquisition relapse falsifier --
+V3-EXQ-829a queued (supersedes V3-EXQ-829), not yet run; no other claim is gated on
+this fix.
 
 This is a **targeted bugfix note**, not a brand-new SD doc, per the judgement call
 offered in the IGW task brief: the base substrate (`ChunkAccumulator` / `ChunkLibrary`
@@ -446,11 +448,21 @@ explicitly Step 8 / `/queue-experiment` work and is NOT performed here.
 
 ---
 
-## HARD CONSTRAINT NOTE
+## HARD CONSTRAINT NOTE (historical -- Steps 1-3 pass)
 
-This document was produced by a headless, non-interactive `/implement-substrate`
-design pass (IGW-20260731-196). Per `scripts/igw_routine_tick.py`
-`REQUIRES_HUMAN_SKILLS = {"/implement-substrate"}`, no `ree_core/` code was written or
-modified, no smoke test was run, and no experiment was queued. This doc is Steps 1-3
-only (gather spec, map codebase, design). Implementation (Step 4 onward) requires a
-human to review this plan and explicitly confirm before any code is written.
+This document was originally produced by a headless, non-interactive
+`/implement-substrate` design pass (IGW-20260731-196). Per `scripts/igw_routine_tick.py`
+`REQUIRES_HUMAN_SKILLS = {"/implement-substrate"}`, that pass stopped at Steps 1-3
+(gather spec, map codebase, design) -- no `ree_core/` code was written, no smoke test
+was run, no experiment was queued -- and reported the plan above for human review.
+
+**Implementation (Step 4 onward) subsequently confirmed and completed 2026-07-31**
+in the same session, after explicit user confirmation ("yes implement it"): the code
+changes in Section 3d landed verbatim in `ree_core/policy/policy_chunking.py` /
+`ree_core/utils/config.py` / `ree_core/agent.py` (ree-v3 `7747a01c94`), the 5 contract
+tests described in Section "Validation" were written and confirmed green (plus the
+full `tests/contracts` suite, 3085 passed locally), and validation experiment
+V3-EXQ-829a was queued (supersedes V3-EXQ-829, not yet run). See ree-v3/CLAUDE.md's
+MECH-324 reacquisition-window-isolation entry for the authoritative implementation
+record, and `claims.yaml`'s MECH-324 `implementation_note` for the claims-governance
+note.

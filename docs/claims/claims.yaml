@@ -43358,6 +43358,26 @@
     readiness gap rather than MECH-324. Evidence therefore attaches to the OPERATOR, not to
     chunk-driven behaviour. Falsifiers (b) renewal and (c) resurgence remain unbuildable per the
     NOT IMPLEMENTED paragraph above.
+    REACQUISITION-WINDOW ISOLATION FIX IMPLEMENTED 2026-07-31 (IGW-20260731-196; ree-v3
+    7747a01c94; design doc REE_assembly/docs/architecture/mech324_reacquisition_window_isolation.md).
+    ROOT CAUSE CONFIRMED: the revival gate's variance/mean readout (the two UNCHANGED MECH-323
+    gates the paragraph above describes) came from accumulator._tally[key], the sequence's
+    WHOLE-LIFETIME sliding window -- and that bucket is, BY CONSTRUCTION, saturated with the
+    contaminating high-variance stream at the exact moment dissolution completes (reaching
+    DISSOLVED requires dissolve_trials of that stream on that same key). This is precisely the
+    LIKELY READING two paragraphs above, now confirmed as the mechanism rather than a hypothesis.
+    FIX: new sub-switch REEConfig.use_reacquisition_window_isolation (default False, nested under
+    use_chunk_dissolution_retention, same loud-precondition convention). True routes the revival
+    gate through ChunkedPrimitive.reacquisition_outcomes -- a dedicated per-chunk window
+    populated ONLY from real executions since the most recent dissolution -- instead of the
+    contaminated whole-lifetime tally. Backward compatible: bit-identical when False. Confirmed
+    by 5 new contract tests reproducing the bug via REAL dissolution (not the existing suite's
+    _dissolve() shortcut, which never touches the tally and so never exercised this path) and
+    confirming the fix (reformed-after == the reduced bar instead of == window_trials).
+    v3_pending and status are AGAIN LEFT UNCHANGED: this is a substrate fix responding to a
+    diagnosed FAIL, not new evidence -- the rapid-reacquisition claim itself still needs a fresh
+    experimental result under the corrected substrate before any disposition changes. Validation
+    experiment V3-EXQ-829a queued (supersedes V3-EXQ-829), not yet run.
   title: "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.chunk_maintenance_dissolution
