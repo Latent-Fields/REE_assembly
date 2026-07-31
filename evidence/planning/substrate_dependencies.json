@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-07-29T16:50:00Z",
+  "last_updated_utc": "2026-07-31T21:23:48Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -694,6 +694,24 @@
       "candidate_stale": [],
       "candidate_stale_note": "KEEP-all. SD-083 is a new no-op-default testbed mechanism; the prior retention evidence tested online axes orthogonal to the offline window and remains valid. No MARK/REVALIDATE needed.",
       "validation_experiment": "V3-EXQ-836b (INTERVAL; N=0 control arm is the embedded ON/OFF ablation) + V3-EXQ-836c (NOVELTY); contract test_sd083_offline_consolidation.py 12/12"
+    },
+    {
+      "substrate": "SD-036",
+      "landed_utc": "2026-07-31T21:23:48Z",
+      "code_landed_utc": "2026-07-31T21:23:48Z",
+      "code_landed_commit": "ree-v3 (harm-stream decay recurrence)",
+      "description": "latent.gaba_harm_state_recurrence. Gives the SD-036 GABAergic decay regulator TEMPORAL authority over z_harm (SD-010) and z_harm_a (SD-011), which it did not have from its 2026-04-22 implementation until now. LatentStack.encode() produced both harm streams as PURE FEEDFORWARD encodes of the current observation, so the regulator's per-tick rescale was overwritten on the next tick and z_s(t+1) was not a function of z_s(t) at all -- the regulator degenerated to a one-step constant rescale, which every scale-free DV (including the registered falsifier's harm_norm_sustain_ratio) is exactly invariant to. z_beta was never affected (it already blends with prev_state), and that contrast is what localised the defect. Fix: a prev_state blend in encode(), z_s(t) = alpha_s*encode(obs_t) + (1-alpha_s)*z_s_decayed(t-1), composing with the regulator's rescale into a leaky integrator with pole (1-alpha_s)*exp(-tau_s*gaba_tone), so gaba_tone moves the trajectory SHAPE and not just its scale. The decay arithmetic stays in the regulator. Gated by REEConfig.use_gabaergic_decay (default False), mirrored onto config.latent by REEAgent.__init__. Contracts: tests/contracts/test_sd_036_gabaergic_decay.py C11-C16 -- the first SD-036 tests to step a real REEAgent through sense(), which is why the defect survived three months.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "MECHANISM-CHANGING for any run with use_gabaergic_decay=True that drives sense(): peak-normalised trajectory max-deviation vs tone=1.0 went from <=2.0e-07 to 1.3e-02..1.8e-02 (z_harm) and to 5.0e-02..7.1e-02 (z_harm_a). NOT mechanism-changing with the flag off -- the full latent trajectory is BIT-IDENTICAL to the pre-change substrate (max|diff| = 0.000e+00 on z_harm, z_harm_a and z_beta over a 60-step replay tape, measured against a detached worktree at the pre-change commit). Also not mechanism-changing for runs that enable the flag but never call sense(): those consume gaba_tone only as a scalar.",
+      "dependent_claims": [
+        "SD-036",
+        "MECH-279",
+        "SD-037",
+        "MECH-280",
+        "MECH-369"
+      ],
+      "candidate_stale": [],
+      "candidate_stale_note": "KEEP-ALL, on audit rather than by default. 22 experiment scripts enable use_gabaergic_decay; 16 have evidence entries. Of those, the 10 that drive sense() (475, 483, 483a, 483b, 490, 490b, 490c, 490e, 490f, 601) have EVERY experimental entry ALREADY scoring_excluded (superseded 15 / diagnostic_probe 12 / non_contributory 8), so there is nothing weighting confidence to de-weight. Exactly 2 live scoring entries come from flag-enabling runs -- v3_exq_490j (MECH-295, weakens) and v3_exq_776 (MECH-279, supports) -- and BOTH are immune: neither calls sense() or encode(). 776 drives agent.pag_freeze_gate.tick() directly with prescribed z_harm_a scalars and reads gaba_tone off the regulator as a scalar (exit_threshold = theta_freeze * gaba_tone), a path this landing does not touch. Verified empirically rather than by inspection alone: 776 re-run against the modified substrate still returns PASS on all three signatures (S1 commit-law, S2 hysteresis, S3 gaba-tone exit). SD-036 itself has ZERO genuine experimental entries (exp_conf 0.0, quadrant plausible_unproven), so it has no prior evidence to stale. Caveat carried forward: scoring_excluded entries are confidence-neutral but still move the gap register."
     }
   ]
 }

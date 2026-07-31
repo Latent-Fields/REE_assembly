@@ -67,6 +67,51 @@ per-stream concern. Initial coverage:
 | `z_beta` (precision weight, MECH-090) | Bistable gate must be able to relax | 0.03 (~30-step half-life) |
 | Drive accumulator (SD-012, conditional) | Open question — see Open design questions | n/a (pending) |
 
+> **Implementation note (2026-07-31): how the recurrence is actually realised,
+> and why the mechanism above is not implemented literally.**
+>
+> The formula is autoregressive, so the stream must be STATEFUL. From the
+> original 2026-04-22 implementation until 2026-07-31 it was not, for the two
+> harm streams: `LatentStack.encode()` produced `z_harm` and `z_harm_a` as pure
+> feedforward encodes of the current observation, so the regulator's per-tick
+> rescale was overwritten on the next tick and `z_s(t+1)` was not a function of
+> `z_s(t)` at all. `z_beta` was unaffected — it already blends with `prev_state`.
+> Consequence: the regulator degenerated to a **one-step constant rescale**, and
+> every scale-free DV — including `harm_norm_sustain_ratio` (= mean/peak), the
+> DV of the registered dose-response falsifier in "Predicted observables" #2 —
+> was **exactly invariant** to `gaba_tone`. Measured spread over the whole
+> {0.3, 0.5, 1.0, 1.5, 2.0} sweep: **8.6e-08**. Observables 1–3 were all
+> unbuildable; see the status log entry for the full measurement.
+>
+> The fix gives the streams state via a `prev_state` blend in `encode()` —
+> `z_s(t) = alpha_s * encode(obs_t) + (1 - alpha_s) * z_s_decayed(t-1)` —
+> which composes with the regulator's end-of-tick rescale into a leaky
+> integrator with pole `(1 - alpha_s) * exp(-tau_s * gaba_tone)`. The decay
+> arithmetic **stays in the regulator**; `encode()` supplies only the
+> recurrence, so the architectural commitment below ("multi-target regulation
+> lives at the regulator, not in each target") is preserved.
+>
+> **The literal "suspend decay when input exceeds threshold, else decay" switch
+> was NOT implemented, because it presumes an event-like input that this
+> substrate does not have.** `harm_obs` is a dense, continuously-present field
+> view (hazard field + resource field + exposure). Measured over 60 steps in
+> the 471-lineage environment, `||harm_obs||` ranged **2.32 to 5.21 and was
+> never zero** — there is no "absence of input" tick to switch on. A hard
+> switch would either never fire (low threshold) or permanently starve the
+> stream of input (high threshold). The regulator's `input_threshold_*` gate
+> remains as the soft form of the same idea, defaulting to off.
+>
+> **A caveat on the origin exemplar, which this work did not resolve.**
+> `harm_encoder(zeros)` has norm **0.462** and `affective_harm_encoder(zeros,
+> zeros)` **0.332**. So the "`z_harm_norm` pinned at ~0.7 despite zero harm
+> input" of the V3-EXQ-471 exemplar is substantially an **encoder floor
+> response to the ambient hazard field**, not purely the missing decay this
+> document attributes it to. Decay toward zero fights that floor to an
+> equilibrium rather than returning the stream to baseline, so observable #1
+> as worded ("mode flip by ~t=50 when `z_harm_norm` decays below threshold")
+> may still not be achievable at default `tau`/`alpha`. Raised for governance;
+> deliberately **not** acted on in the implementing session.
+
 ### 2. GABAergic tone as global multiplier
 
 `gaba_tone(t)` is a slow-varying scalar in `[0, 2]` representing tonic inhibitory level.
@@ -240,3 +285,40 @@ Substrate hooks required:
   GABAergic decay as the missing regulator; agreement that catatonia subtype II is
   architecturally distinct from MECH-202B commit-gate paralysis.
 - Registration in `claims.yaml` follows in same session.
+- **2026-07-31** — Harm-stream decay **recurrence** implemented (ree-v3
+  `LatentStack.encode()` + `LatentStackConfig`). Until this landed the decay
+  regulator had **no temporal authority over `z_harm` (SD-010) or `z_harm_a`
+  (SD-011)**, which made the entire pre-registered observable set unbuildable.
+  Method: one identical recorded observation tape (60 steps, seed 0,
+  471-lineage env) replayed into agents differing only in `gaba_tone`.
+  Peak-normalised trajectory max-deviation vs `tone=1.0`:
+
+  | stream | pre-fix | post-fix | raw ratio at tone=0.0 (pre-fix) | expected if pure rescale |
+  |---|---|---|---|---|
+  | `z_harm` | <= 2.0e-07 (bit-identical) | 1.3e-02 .. 1.8e-02 | 1.05127107 | `exp(0.05)` = 1.0512711 |
+  | `z_harm_a` | <= 1.4e-07 (bit-identical) | 5.0e-02 .. 7.1e-02 | 1.02020133 | `exp(0.02)` = 1.0202013 |
+  | `z_beta` | 2.0e-02 .. 2.9e-02 | unchanged | 1.09578768 | 1.03045 — does NOT match, already compounded |
+
+  The harm-stream match to a single-tick `exp(-tau * delta_tone)` was exact to
+  8 significant figures; `z_beta` was the contrast that localised the defect.
+  `harm_norm_sustain_ratio` spread across the registered `gaba_tone` sweep went
+  from **8.6e-08** (structurally vacuous) to **1.4e-03** (`z_harm`) and
+  **1.0e-01** (`z_harm_a`, monotone decreasing in tone).
+  Backward compatibility verified **differentially**: with
+  `use_gabaergic_decay=False` the full latent trajectory is bit-identical to
+  the pre-change substrate (max|diff| = 0.000e+00). Note `gaba_tone=0.0` with
+  the master switch ON is **no longer** equivalent to the switch being off —
+  decay is suspended but the recurrence is not, so use
+  `use_gabaergic_decay=False` for the legacy arm and
+  `gaba_recurrence_z_harm_s/_a=False` to isolate decay from recurrence.
+  Contracts: `ree-v3/tests/contracts/test_sd_036_gabaergic_decay.py` C11–C16,
+  which step a real `REEAgent` through `sense()` — the thing no SD-036 test did
+  before, and the reason the defect survived three months. Verified to fail
+  against the pre-change substrate.
+  Implementation detail and the two caveats it raises (the literal
+  suspend-on-input switch; the encoder-floor reading of the origin exemplar)
+  are in the "Implementation note" under **Mechanism 1** above.
+  No validation experiment was queued by that session — the experiment design
+  is recorded in the CATATONIA-II `completion_note` in
+  `evidence/planning/psychiatric_failure_modes_plan.md` and is owned by a
+  separate `/queue-experiment` task.
