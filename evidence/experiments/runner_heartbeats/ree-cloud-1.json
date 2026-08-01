@@ -1,48 +1,34 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-01T15:50:31Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 2,
-  "queue_id_at_head": "V3-EXQ-847",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-833",
-      "result": "PASS",
-      "completed_at": "2026-07-30T06:07:02.184534+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-854",
-      "result": "PASS",
-      "completed_at": "2026-08-01T06:25:04.338504+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-829a",
-      "result": "PASS",
-      "completed_at": "2026-08-01T06:25:10.619955+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-857",
-      "result": "FAIL",
-      "completed_at": "2026-08-01T13:47:58.100942+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-860",
-      "result": "FAIL",
-      "completed_at": "2026-08-01T15:34:21.281685+00:00"
-    }
+  "last_tick_utc": "2026-08-01T18:31:43Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-862",
+  "current_exq_started_utc": "2026-08-01T18:21:38.041769+00:00",
+  "current_title": "Q-040c dACC PE-weight delta correlation, config fix + pre-flight smoke gate (supersedes V3-EXQ-475b)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 42 / ARM_vs_off",
+    "runs_done": 0,
+    "runs_total": 6,
+    "episodes_done": 10,
+    "episodes_total": 60,
+    "overall_pct": 2.8
+  },
+  "seconds_elapsed": 606,
+  "seconds_remaining": 7067,
+  "recent_lines": [
+    "[train] preflight_dacc_check ep 3/4",
+    "[preflight] dACC engagement check: n_dacc_fires=20 over 20 pilot eval steps",
+    "Seed 42 Condition ARM_vs_off",
+    "[train] seed=42 arm=ARM_vs_off ep 10/60"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r4641 333c851 2026-08-01 (running r4632 f35b841)",
+  "runner_version": "r4642 18ded81 2026-08-01 (running r4632 f35b841)",
   "gpu": {
     "available": false
   },
