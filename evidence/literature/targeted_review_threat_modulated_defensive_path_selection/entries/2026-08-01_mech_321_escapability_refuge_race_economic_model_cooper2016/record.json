@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_escapability_refuge_race_economic_model_cooper2016",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Fleeing to refuge: Escape decisions in the race for life.",
+    "authors": ["Cooper WE"],
+    "year": 2016,
+    "venue": "Journal of Theoretical Biology",
+    "doi": "10.1016/j.jtbi.2016.06.023",
+    "pmid": "27343624"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Directly grounds ESCAPABILITY (not just raw threat magnitude) as a distinct, quantitatively modeled feature governing defensive-response strength, with a specific and testable functional form (sigmoidal in one variable). Confidence held at moderate because it is a theoretical/geometric model built to explain ecological flight-initiation-distance data, not a REE-specific or neural-circuit study -- the transfer to REE's abstract redecomposition step is the least direct of the mechanistic entries in this pull.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's harm-valence-weighted selection step uses `z_harm_a`/threat_scale ALONE as the sole input, with no notion of how likely the chosen candidate tile is to actually SUCCEED at avoiding/reducing harm (an escapability-like quantity), it would omit a feature this model shows is jointly necessary with raw threat magnitude to predict real escape decisions -- magnitude and escapability are shown here to interact, not to be substitutable for each other.",
+    "This model predicts specifically SIGMOIDAL (not linear) scaling of escape response as a function of one escapability-relevant variable (angle between prey's and predator's paths to refuge) -- a further concrete argument against a purely linear graded-weighting functional form, independent of the threshold-vs-graded argument made by the neuroscience entries in this pull."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "escapability", "flight_initiation_distance", "economic_escape_theory", "cooper", "graded_functional_form"],
+  "mapping": {
+    "source_claim_statement": "Classical economic escape theory predicts flight initiation distance (FID -- how far away a predator is when a prey begins to flee) increases as predation risk increases, but most empirical and prior theoretical work considered risk factors individually. This paper presents a geometric model predicting the JOINT effect of several risk factors on the outcome of a race between predator and prey to the prey's refuge: FID increases as the prey's distance to refuge increases, as predator attack speed increases, and as the prey's position forces it to flee more directly TOWARD (rather than away from) the predator to reach refuge. The model's most notable specific prediction is that FID increases SIGMOIDALLY (not linearly) as the angle between the predator's and prey's respective paths to refuge increases.",
+    "ree_translation": "This paper grounds the second sub-question the design task asked for -- WHICH features of a threat (beyond raw magnitude) modulate selection -- for the specific feature of ESCAPABILITY. It shows escapability is not reducible to threat magnitude: it is a joint function of geometric/structural variables (distance to safety, relative speed, path angle) that must be evaluated ALONGSIDE the raw danger level. For REE, this is a direct argument that a harm-valence-weighted selection step built on `z_harm_a`/`threat_scale` alone is architecturally incomplete relative to the biological target -- a full implementation should also incorporate some REE-side analog of 'how likely is this candidate tile to actually reach a safe/low-harm completion' (plausibly derivable from z_world reachability or the tile's own predicted trajectory), not harm magnitude in isolation. The sigmoidal (not linear) functional form for one escapability-relevant variable is also independent evidence against a purely linear graded-weighting design, reinforcing the design recommendation (in this pull's SYNTHESIS.md) for a non-linear, regime-sensitive functional form.",
+    "mapping_caveat": "This is a THEORETICAL/geometric model built to explain and extend ecological flight-initiation-distance data (mostly lizards, birds, small mammals in the underlying empirical literature it builds on) -- it is not a neural-circuit or REE-specific study, and its 'escapability' variables (distance to refuge, relative speed, path angle) are literal spatial-navigation quantities with no direct REE equivalent (REE's redecomposition operates over abstract policy tiles, not literal 2D geometry). The transfer to REE is at the level of 'escapability is a distinct, jointly-necessary, non-linearly-related feature', not a specific functional form REE could import verbatim.",
+    "source_context": "Theoretical/mathematical biology, Journal of Theoretical Biology; geometric extension of classical economic escape theory (Ydenberg & Dill 1986), building on and citing broad empirical flight-initiation-distance literature across taxa."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Well-regarded theoretical-biology model extending a canonical framework (Ydenberg & Dill 1986), with broad citation support in the empirical ecology literature. Mapping fidelity moderate: strongly grounds the 'escapability is a distinct necessary feature' claim conceptually, but its specific geometric variables have no literal REE equivalent, and it is the least neuroscience-grounded entry in this pull."
+  }
+}

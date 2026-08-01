@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_sustained_threat_predictability_fanselow2022",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Negative valence systems: sustained threat and the predatory imminence continuum.",
+    "authors": ["Fanselow MS"],
+    "year": 2022,
+    "venue": "Emerging Topics in Life Sciences",
+    "doi": "10.1042/ETLS20220003",
+    "pmid": "36286244"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Directly addresses which THREAT FEATURE (predictability, not just proximity/magnitude) modulates which defensive circuit engages and for how long -- the second sub-question this lit-pull was commissioned to ground. Confidence held at moderate because the paper's strongest claims concern the BST/hippocampus and a pathological/sustained-threat regime, one step removed from the core selection-among-surviving-tiles question, but it is directly relevant to whether REE's harm-valence signal should carry a predictability/confidence companion.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's future harm-valence channel treats all sources of z_harm_a identically regardless of how predictable/learnable the harm-predicting cue was, that would miss this paper's central mechanistic claim: predictability (not just magnitude) is what recruits a DIFFERENT circuit (BST vs. amygdala/CeA) and governs whether defensive engagement is bounded (acute threat) or become pathologically unbounded (sustained threat) -- i.e. predictability is not incidental context, it changes WHICH mechanism handles the selection.",
+    "If a harm-valence-weighted selection step, once built, never disengages once triggered (i.e. it keeps biasing every subsequent redecomposition toward maximally-defensive tiles even after the harm-predicting condition resolves), that is architecturally the analog of this paper's 'sustained threat' pathology -- a state where the continuum becomes 'distorted' and defensive behavior intrudes into contexts where other adaptive behavior should occur. This is a concrete failure mode implementers should test for."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "predatory_imminence_continuum", "fanselow", "predictability", "bnst", "sustained_threat"],
+  "mapping": {
+    "source_claim_statement": "RDoC's Sustained Threat construct does not map cleanly onto the PIC's pre-encounter/post-encounter dichotomy. Early work suggested the bed nucleus of the stria terminalis (BST) becomes engaged when fear responding needs to be SUSTAINED, but follow-up work instead shows the BST becomes critical specifically when the threat-predicting stimuli are DIFFICULT TO LEARN ABOUT -- i.e. when aversive outcomes are difficult to accurately PREDICT. The BST and hippocampus function to expand the range of conditions that can trigger post-encounter (Acute Threat) defense when predictive cues are poor. 'Sustained threat' is reframed not as a fourth PIC mode but as a state where the predatory-imminence continuum itself becomes DISTORTED -- defensive behavior intrudes into times/contexts when the organism should be doing other adaptive things -- and this distortion is caused by chronic stress degrading the normal imminence-to-mode mapping.",
+    "ree_translation": "This is the clearest available grounding for the design question's second half: WHICH FEATURES of a threat (beyond raw magnitude/proximity) should modulate the selection rule. This paper argues predictability of the harm-predicting cue is a first-class feature that recruits a functionally different mechanism (BST/hippocampus rather than amygdala/CeA alone) and changes the SCOPE of conditions that trigger defensive engagement. For REE, this suggests `z_harm_a`/`threat_scale` alone (a scalar magnitude) may be an incomplete input to a future, more refined selection step -- a predictability/confidence-like companion signal (how reliably has this harm-predicting pattern been associated with actual harm) could plausibly need to modulate the WIDTH or persistence of any threshold-gated regime, not just its trigger point. It also supplies a concrete failure mode to test for once the selection step is built: a version that never disengages (keeps biasing toward maximally-defensive tiles indefinitely) is architecturally the 'sustained threat' pathology this paper describes, and should be an explicit acceptance-criterion negative control.",
+    "mapping_caveat": "This paper's primary evidence base is BST/hippocampal lesion and pharmacology work in rodents plus a stress-and-anxiety-disorder framing in humans -- it is one architectural layer away from the specific redecomposition-selection junction MECH-321 needs (BST/hippocampus modulate WHETHER post-encounter defense triggers at all, not directly WHICH re-tiling gets chosen once triggered). The predictability-as-modulating-feature claim transfers at the conceptual level; REE has no direct analog of BST-mediated threat-predictability learning to map onto quantitatively.",
+    "source_context": "Theoretical review, rodent BST/hippocampal lesion and stress literature plus RDoC/anxiety-disorder framing; senior-author (Fanselow) synthesis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Strong, authoritative source. Mapping fidelity moderate: highly relevant to the 'which threat features matter' sub-question but one architectural step removed from the specific tile-selection junction, and REE lacks a direct BST/predictability analog to calibrate against. Included primarily to ground the predictability dimension and the sustained-threat failure-mode caution."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_synaptic_threshold_escape_decision_evans2018",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "A synaptic threshold mechanism for computing escape decisions.",
+    "authors": ["Evans DA", "Stempel AV", "Vale R", "Ruehle S", "Lefler Y", "Branco T"],
+    "year": 2018,
+    "venue": "Nature",
+    "doi": "10.1038/s41586-018-0244-6",
+    "pmid": "29925954"
+  },
+  "evidence_class": "electrophysiology_single_unit",
+  "evidence_direction": "supports",
+  "confidence": 0.87,
+  "confidence_rationale": "The single most mechanistically concrete source in this pull -- a causally-validated (optogenetics + calcium imaging + synaptic physiology), quantitatively fit (drift-diffusion / threshold-crossing model) circuit account of exactly the graded-input-to-discrete-decision question the design task needs answered, in a top venue. Confidence not higher because the paradigm is a single binary decision (escape vs. not) with a single fixed target (shelter), which is a simplification relative to REE's multi-candidate tile-selection problem.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "This paper's model requires that a graded, continuously-varying upstream saliency/magnitude signal (mSC activity, scaling with stimulus contrast) exists SEPARATELY from the discrete decision output (dPAG threshold-crossing). If REE's design collapses `z_harm_a`/threat_scale directly into a binary decompose/keep-style gate with no continuously-graded intermediate quantity retained, it would be missing the dual-coding structure (graded input, graded vigor output, but thresholded categorical choice) this paper's data support.",
+    "Removing the decision-threshold node (dPAG inactivation) did not simply eliminate defensive behavior -- it SWITCHED the animal's response to a DIFFERENT discrete default (freezing), at fast, threat-still-detected reaction times. A REE implementation whose 'threshold not crossed' branch silently does nothing (rather than falling back to a well-defined default behavior, e.g. the current harm-blind additive recombination) would not match this fallback-to-a-different-discrete-default structure.",
+    "Escape probability, reaction time, AND vigour (speed) all scaled continuously and monotonically with stimulus saliency in this data. If a REE selection step's chosen-tile MAGNITUDE/aggressiveness parameter does not scale continuously with z_harm_a even after the categorical choice is made, that would miss half of this paper's dual-coding finding."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "branco", "escape_decision", "periaqueductal_gray", "superior_colliculus", "drift_diffusion", "threshold", "graded_vigor"],
+  "mapping": {
+    "source_claim_statement": "In mice presented with innately aversive overhead looming/expanding-spot threats of varying visual contrast (a saliency manipulation), the probability, reaction time, and vigour (escape speed) of shelter-directed escape all scaled continuously and monotonically with stimulus saliency, well described by a drift-diffusion model that integrates a noisy threat-level variable over time and implements the escape DECISION as a threshold-crossing process. Circuit dissection showed the medial superior colliculus (mSC) represents graded threat saliency (its activity level predicts escape), while the dorsal periaqueductal gray (dPAG) specifically encodes the binary CHOICE to escape and controls escape vigour, via a weak, unreliable but essential monosynaptic mSC->dPAG connection that itself constitutes the synaptic threshold. Critically, when the dPAG (the decision node) was inactivated, animals did not simply fail to respond -- they SWITCHED to freezing instead, at fast reaction times, showing the threat was still detected but the decisive escape choice specifically required the thresholded dPAG computation; inactivating the mSC (the saliency-representation node) instead degraded threat detection itself (slower, less frequent, lower-vigour responses across the board).",
+    "ree_translation": "This is the most directly actionable functional-form candidate in this pull. It provides a concrete, causally-validated, dual-coding architecture that a REE implementation could closely mirror: (1) a GRADED upstream signal (REE's `z_harm_a`/BLA `threat_scale`, analogous to mSC saliency) that (2) drives a THRESHOLD-CROSSING categorical decision (analogous to dPAG's binary escape choice -- in REE's case, something like 'does the harm signal license overriding the normal structural score to force a specific low-harm re-tiling, or not'), while (3) the SAME graded signal separately and continuously scales the MAGNITUDE/vigour of whichever choice is made (in REE's case, plausibly the strength of the harm-penalty term applied to the chosen tile's score, or an urgency-like parameter). The freeze-as-fallback finding is also directly relevant to `_apply_policy_decomposition`'s current behavior: the existing harm-blind additive recombination of all surviving tiles is architecturally analogous to the 'default' response when no thresholded override fires -- which is a reasonable design (a real fallback exists) as long as the future harm-valence-weighted step's threshold-crossing case is added ON TOP of it rather than replacing it, mirroring how dPAG inactivation reveals freezing as a genuine, separately-computed default rather than an absence of response.",
+    "mapping_caveat": "The empirical paradigm is a SINGLE binary decision (escape to one fixed shelter, vs. not) driven by a single scalar saliency dimension -- it does not test choice AMONG MULTIPLE candidate escape routes or targets, which is closer to REE's actual selection problem (choosing among several surviving decomposed tiles). The paper's threshold mechanism explains WHETHER to escape and how vigorously, not WHICH of several options to escape via -- so it grounds the graded-vs-threshold half of the design question very directly, but the multi-candidate RANKING half is better informed by the escapability/economic-model entries elsewhere in this pull (Cooper 2016). Mouse-only; the specific mSC/dPAG circuitry has no literal REE analog, the mapping is at the level of computational architecture (graded-in, thresholded-choice-plus-graded-vigor-out).",
+    "source_context": "Mouse, freely-behaving, calcium imaging + optogenetic/chemogenetic circuit dissection + whole-cell electrophysiology of the mSC-dPAG synapse, with a fitted drift-diffusion behavioral model; Nature, high-impact primary mechanistic study."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.3,
+    "notes": "Exceptionally strong primary evidence: causal circuit manipulation, quantitative behavioral modeling, and cellular-level synaptic mechanism all converge on the same account. Mapping fidelity high for the graded-input/thresholded-decision/graded-vigor dual-coding structure specifically; transfer risk kept moderate rather than low because the paradigm is single-target escape, not multi-candidate ranking, and the specific circuitry has no REE analog beyond computational architecture."
+  }
+}

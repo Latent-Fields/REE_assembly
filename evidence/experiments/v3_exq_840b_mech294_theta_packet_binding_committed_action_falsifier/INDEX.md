@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_840b_mech294_theta_packet_binding_committed_action_falsifier
 
-Generated: `2026-08-01T17:17:45.084231Z`
+Generated: `2026-08-01T18:26:55.014724Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

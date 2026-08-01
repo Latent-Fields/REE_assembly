@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_848_arc005_precision_only_decoupled_ladder
 
-Generated: `2026-08-01T17:17:45.084231Z`
+Generated: `2026-08-01T18:26:55.014724Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_modelfree_modelbased_defensive_circuits_mobbs2020",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Space, Time, and Fear: Survival Computations along Defensive Circuits.",
+    "authors": ["Mobbs D", "Headley DB", "Ding W", "Dayan P"],
+    "year": 2020,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2019.12.016",
+    "pmid": "32029360"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.83,
+  "confidence_rationale": "The single highest-mapping-fidelity source in this pull: it recasts threat-imminence-modulated defense explicitly in the model-free (MF) vs. model-based (MB) computational vocabulary REE's own architecture is built in, co-authored by Peter Dayan (a foundational figure in exactly that computational framework). Confidence not higher because it is a review/theoretical synthesis rather than new primary data, and its MF/MB framing is itself a modeling choice rather than a directly measured biological quantity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's redecomposition step, once given a harm-valence signal, is architected to perform MORE expensive/exhaustive candidate-tile search as z_harm_a rises (i.e. treats high harm as a cue to deliberate more), that would be the OPPOSITE of this paper's central claim -- proximal/high-imminence threat should narrow the decision and state space and favor fast, reflexive, model-free-like selection, not expand deliberation.",
+    "If REE never restricts or narrows the candidate re-tiling set as a function of z_harm_a (search space stays the same size regardless of imminence), that would miss the paper's core proposed mechanism for how proximal threat is handled computationally -- state-space and action-space REDUCTION is the mechanism, not just faster scoring of an unchanged space."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "mobbs", "dayan", "model_free", "model_based", "defensive_circuit", "computational"],
+  "mapping": {
+    "source_claim_statement": "Decisions to avoid or escape threats occur at different spatiotemporal scales, supported by different computations and neural circuits. At the extreme of proximal threat, defense is handled by a limited repertoire of reflexive, myopic actions -- reflecting REDUCED decision and state spaces and model-free (MF) computational architectures (fast, cached, habitual). At the extreme of distal threat, increased information processing is possible, supported by model-based (MB) operations -- affective prospection, replay, and planning, using a full model of the environment. MF and MB computations are often intertwined rather than strictly separate, and under conditions of safety the foundations for effective FUTURE reactive (MF) execution can be laid down through MB instruction of MF control (i.e. planning now to react well later). These computations are proposed to be associated with distinct population codes within a distributed defensive circuit whose overall goal is to determine and realize the best policy.",
+    "ree_translation": "This is the highest-fidelity mapping in the pull because it is written in essentially the same computational vocabulary as REE's own architecture. REE's hippocampal policy-decomposition/redecomposition step IS a model-based operation (it plans/re-tiles using a world model), and MECH-321's abort-and-redecompose mechanism is triggered when a committed macro (a cached, MF-like execution) becomes unreliable. This paper's central claim -- that PROXIMAL/high-imminence threat should narrow the decision and state space and favor fast, reduced-repertoire, model-free-like responding, while DISTAL/low-imminence threat affords full model-based deliberation -- gives a concrete, REE-native functional-form candidate: the harm-valence-weighted selection step should not simply reweight scores across an unchanged candidate set as z_harm_a rises; it should also PRUNE/RESTRICT the candidate re-tiling set as imminence/magnitude increases, converging toward a small, fast, low-deliberation choice near the high end (mirroring MF-like reflexive narrowing) while permitting fuller, more exploratory scoring among many candidates when z_harm_a is low (mirroring MB-like deliberation). This directly operationalizes the 'threshold/switch' finding from Mobbs 2007 in this pull's terms as a change in EFFECTIVE SEARCH-SPACE SIZE, not merely a change in which score wins.",
+    "mapping_caveat": "This is a theoretical/computational review proposing an interpretive framework (MF vs. MB along defensive circuits), not a set of new empirical measurements -- its explanatory power depends on how well the underlying primary literature (much of it cited elsewhere in this pull) actually supports the MF/MB dissociation, and reasonable alternative computational framings exist. The MF/MB vocabulary maps cleanly onto REE's own architecture, which raises mapping fidelity but is also worth flagging as a reason this paper may feel MORE directly applicable to REE than a framework-agnostic reader would judge it to be -- the terms were chosen by REE's own architecture's family of ideas (Dayan is a co-originator of the MF/MB RL distinction), so some of the apparent fit is because the vocabulary was built for exactly this kind of system.",
+    "source_context": "Theoretical review, Trends in Cognitive Sciences, co-authored by Dean Mobbs (human affective neuroscience) and Peter Dayan (computational/model-based-vs-model-free reinforcement learning theory)."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.88,
+    "transfer_risk": 0.3,
+    "notes": "Highest mapping fidelity in the pull precisely because it is framed in REE's own computational vocabulary (MF/MB), co-authored by one of that framework's originators. Confidence capped below 0.85 because it is a review/synthesis, not new data, and because the MF/MB framing's apparent fit to REE is partly an artifact of shared vocabulary rather than independent biological confirmation -- flagged explicitly in the mapping_caveat."
+  }
+}

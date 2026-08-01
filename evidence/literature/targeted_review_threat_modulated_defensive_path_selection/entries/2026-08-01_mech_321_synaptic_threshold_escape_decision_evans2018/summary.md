@@ -1,0 +1,23 @@
+# Evans, Stempel, Vale, Ruehle, Lefler & Branco 2018 -- A synaptic threshold mechanism for computing escape decisions
+
+**Source**: Evans DA, Stempel AV, Vale R, Ruehle S, Lefler Y, Branco T (2018). *Nature* 558(7711):590-594. [DOI 10.1038/s41586-018-0244-6](https://doi.org/10.1038/s41586-018-0244-6). PMID 29925954, PMC6235113.
+
+## What the paper did
+
+This is the most mechanistically concrete paper in the pull. The Branco lab presented mice with an innately aversive overhead looming/expanding-spot stimulus while varying its visual contrast to manipulate perceived threat saliency, then combined behavioral modeling with causal circuit dissection (optogenetic and chemogenetic inactivation, calcium imaging, and whole-cell recording of the relevant synapse) to ask how a graded threat signal gets converted into a discrete escape-or-not decision.
+
+## Key findings relevant to the claim
+
+Escape probability, reaction time, and vigour (running speed) all scaled continuously and monotonically with stimulus contrast/saliency, and the whole pattern was well captured by a drift-diffusion model that accumulates a noisy threat-level variable over time and triggers escape when it crosses a threshold. Circuit dissection located the two halves of this computation: the medial superior colliculus (mSC) represents the graded saliency of the threat (its population activity level predicts escape), while the dorsal periaqueductal gray (dPAG) specifically encodes the discrete CHOICE to escape and controls escape vigour — connected by a weak, unreliable, but functionally essential monosynaptic mSC-to-dPAG synapse that itself implements the threshold. Inactivating dPAG did not abolish defensive behavior; it switched animals to freezing instead, at fast reaction times consistent with the threat still being detected — the decisive escape computation specifically requires the thresholded dPAG step, and freezing is a separate, well-defined fallback rather than an absence of response. Inactivating mSC instead degraded threat DETECTION itself (slower, less frequent, lower-vigour responses across the board).
+
+## How this translates to REE
+
+This is the most directly actionable functional-form candidate this pull found. It offers a concrete, causally-validated, dual-coding architecture: a graded upstream signal (the natural REE analog is `z_harm_a`/BLA `threat_scale`, playing the role of mSC saliency) drives a threshold-crossing CATEGORICAL decision (the REE analog would be something like "does the harm signal license overriding ordinary structural scoring to force a specific low-harm re-tiling, or not" — playing the role of dPAG's binary escape choice), while the SAME graded signal separately and continuously scales the MAGNITUDE of whichever choice is made (in REE terms, plausibly the strength of a harm-penalty term applied to the chosen tile, or an urgency-like weighting). The freeze-as-fallback finding is also directly relevant to `_apply_policy_decomposition`'s CURRENT behavior: its existing harm-blind additive recombination of all surviving tiles is architecturally analogous to the biological default that persists when no thresholded override fires. This paper argues that is a reasonable thing to KEEP, provided the future harm-valence-weighted threshold-crossing case is added on top of it as an override, rather than as a wholesale replacement — mirroring how dPAG inactivation reveals freezing as a genuinely separate, well-computed default, not a degraded absence of response.
+
+## Limitations and caveats
+
+The empirical paradigm is a single binary decision (escape to one fixed shelter, or not) driven by one scalar saliency dimension — it does not test choice AMONG several candidate escape routes or targets, which is closer to REE's actual selection problem (choosing among multiple surviving decomposed policy tiles). So this paper grounds the graded-input/thresholded-decision/graded-vigor half of the design question very directly, but the multi-candidate RANKING half needs the escapability/economic-model literature elsewhere in this pull (Cooper 2016) as a complement. It is mouse-only, and the specific mSC/dPAG circuitry has no literal REE architectural analog — the transfer is at the level of computational structure, not a component-for-component substrate mapping.
+
+## Confidence reasoning
+
+Exceptionally strong primary evidence: causal, multi-level (behavioral, circuit, synaptic) convergence on the same account, in a top venue. Confidence 0.87, with mapping fidelity high for the specific dual-coding functional form and transfer risk held at moderate rather than low because of the single-target-only paradigm and the absence of a literal REE circuit analog.

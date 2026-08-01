@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_pic_empirical_mode_assessment_hoffman2022",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Anxiety, fear, panic: An approach to assessing the defensive behavior system across the predatory imminence continuum.",
+    "authors": ["Hoffman AN", "Trott JM", "Makridis A", "Fanselow MS"],
+    "year": 2022,
+    "venue": "Learning & Behavior",
+    "doi": "10.3758/s13420-021-00509-x",
+    "pmid": "35112315"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "Direct empirical (not just theoretical) test of the PIC mode structure in mice, with a dedicated behavioral battery per mode. High mapping fidelity to the design question's 'is it categorical' sub-question because it operationalizes and dissociates the three modes empirically rather than asserting the structure theoretically. Confidence held below 0.8 because it is a stress-manipulation study (acute footshock) rather than a direct manipulation of threat imminence per se, and it is rodent-only.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If a future REE Phase-2 falsifier for the harm-weighted selection step found that a SINGLE behavioral/selection metric fully captured variance across all harm-magnitude regimes with no dissociation between low- and high-magnitude regimes, that would run counter to this paper's finding that anxiety-like, fear-like, and panic-like measures are separately dissociable and differentially recruited.",
+    "This paper's own stress manipulation increased all three modes' expression together rather than sharpening the distinction between them -- a caution that a single global 'stress'/'harm' scalar in REE could plausibly inflate response magnitude uniformly without necessarily sharpening mode SELECTIVITY, which is a distinct thing a selection-step redesign needs to get right."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "predatory_imminence_continuum", "fanselow", "anxiety_fear_panic", "defensive_mode", "mouse"],
+  "mapping": {
+    "source_claim_statement": "Antipredator defensive behaviors matched to the PIC's three defense modes (pre-encounter/anxiety-like, post-encounter/fear-like, circa-strike/panic-like) are operationalized and measured with a dedicated behavioral battery in mice (open-field velocity for anxiety-like; freezing to a single footshock cue for fear-like; startle/activity-burst reactivity to white noise for panic-like). Following a significant acute stressor (unsignaled footshock series), mice showed increased expression of ALL THREE modes -- increased anxiety-like behavior (reduced open-field velocity), increased fear-like behavior (more freezing), and increased panic-like behavior (more robust circa-strike-like startle response) -- demonstrating the three modes are dissociable, independently measurable, and can each be modulated (in this case, all upregulated together by stress) rather than being a single undifferentiated fear response.",
+    "ree_translation": "This paper is the empirical demonstration that PIC's three defense modes are not merely a theoretical convenience -- they are behaviorally dissociable, each independently measurable, and can be probed separately. For REE's redecomposition-selection design, this is evidence that a harm-valence-weighted selection step which reproduces qualitatively different candidate-tile-selection PATTERNS at different z_harm_a magnitudes (not just a uniformly scaled response) would be the more biologically faithful target -- and, notably, that stress/chronic-elevated-harm-baseline conditions can shift ALL modes together (a caution for how REE might implement a 'harm baseline' or running average alongside the instantaneous z_harm_a signal).",
+    "mapping_caveat": "The manipulation here is acute STRESS (a series of unsignaled footshocks), not a direct, trial-by-trial manipulation of predator proximity/imminence -- so this paper demonstrates that the three modes are separately measurable and jointly stress-sensitive, but does not itself show a graded imminence-to-mode mapping (that evidence comes from the PIC theoretical/review entries and from Mobbs et al. 2007 in this same pull). Rodent-only; translation to REE's abstract z_harm_a scalar is by structural analogy, not direct calibration.",
+    "source_context": "Empirical behavioral neuroscience, C57BL/6-derivative mice, acute unsignaled-footshock stress manipulation, open-field + fear-conditioning + acoustic-startle battery."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.4,
+    "notes": "Solid, well-controlled behavioral study from the originating PIC lab. Mapping fidelity is good for the 'modes are real and dissociable' sub-claim, weaker for the specific imminence-to-mode gradient (which this study does not directly manipulate). Transfer risk moderate: mouse defensive behavior to a REE abstract harm-valence scalar is an analogy, not a quantitative transfer."
+  }
+}

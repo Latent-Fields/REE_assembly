@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_pic_mode_transition_timing_fanselow2019",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Timing and the transition between modes in the defensive behavior system.",
+    "authors": ["Fanselow MS", "Hoffman AN", "Zhuravka I"],
+    "year": 2019,
+    "venue": "Behavioural Processes",
+    "doi": "10.1016/j.beproc.2019.103890",
+    "pmid": "31254627"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Directly on point for the threshold/switch-vs-graded question -- it is specifically ABOUT what triggers a transition between PIC modes -- but the result is more nuanced than a clean single-variable threshold rule (both tested CS durations produced freezing, contrary to the a priori prediction), so it is coded mixed rather than supports. Rat-only, Pavlovian-fear-conditioning paradigm rather than direct predator/spatial-imminence manipulation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper's central a priori prediction -- that short CS duration would provoke circa-strike-like activity bursts while long CS duration would provoke post-encounter-like freezing -- was NOT confirmed; both durations produced freezing, with freezing actually GREATER for the short CS. A REE selection-rule design that assumes a simple single-variable (e.g. purely duration- or purely magnitude-triggered) threshold for regime transition should treat this as a caution: transition triggers in the real system are not always where the most obvious a priori variable predicts.",
+    "Sudden CHANGE in stimulation (e.g. shock delivered while already in a freezing/post-encounter state) reliably triggered an immediate transition to circa-strike/activity-burst behavior -- i.e., what looks like the more reliable transition trigger in this data is a rate-of-change / surprise signal on top of the ongoing state, not the absolute magnitude alone. If REE's redecomposition step's threshold gate is built purely on the instantaneous absolute value of z_harm_a and never responds to a sudden CHANGE (a harm-analog of MECH-288's predictive-surprise signal), it may miss the transition trigger this paper's data more directly support."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "predatory_imminence_continuum", "fanselow", "mode_transition", "threshold", "rat"],
+  "mapping": {
+    "source_claim_statement": "Testing whether Pavlovian CS-US interval/duration governs which PIC mode's conditional response is expressed (by analogy to appetitive behavior systems, where short CS-US intervals favor terminal/consummatory modes and long intervals favor initial/appetitive modes), the authors found that BOTH short (10s) and long (3min) CS durations produced freezing (post-encounter mode), not the predicted dissociation into circa-strike-like activity bursts for the short CS -- with freezing actually somewhat GREATER for the short CS. They argue this reflects a fundamental asymmetry between appetitive and defensive behavior systems: appetitive systems are selected to move TOWARD terminal (consummatory) modes as the CS shortens, whereas the defensive system is selected to move AWAY from the terminal (circa-strike) mode where possible, since a predator encounter is far more costly to mistime than a missed meal. Separately, they found that a SUDDEN CHANGE in stimulation (e.g. shock delivered mid-freezing) reliably and immediately triggers a transition to circa-strike/activity-burst behavior.",
+    "ree_translation": "This is the most direct existing test of what triggers a PIC MODE TRANSITION -- exactly the threshold/switch mechanism SD-hazard-aware-policy-decomposition's design question needs grounded. Two findings are load-bearing for REE: (1) the transition rule is NOT simply 'more time/more signal pushes toward the more extreme mode' -- the defensive system is asymmetric relative to appetitive systems and biased to avoid entering the terminal (circa-strike) mode unless forced; a REE selection-rule design should not assume a naive monotonic 'more harm signal always pushes toward the most drastic re-tiling' without also allowing a genuinely different logic at the top end. (2) A SUDDEN CHANGE in threat state, not just its absolute level, is the more reliable trigger for an immediate mode transition -- directly relevant because MECH-321's OWN trigger (MECH-288) is already a predictive-surprise/change-point detector on z_world/z_self/z_goal; this paper suggests that if a harm-analog surprise/change signal (rather than only the absolute z_harm_a level) were added to the threshold gate, it would better match the biological transition trigger.",
+    "mapping_caveat": "This is a classical-conditioning paradigm (CS-US interval) in rats, not a direct spatial/temporal predator-imminence manipulation -- the analogy to REE's harm-valence-weighted tile selection is at the level of 'what variable triggers a categorical behavioral transition', not a quantitative timing calibration. The central a priori hypothesis of the paper was disconfirmed, which is itself informative (biology is messier than a clean threshold-on-one-variable story) but weakens how directly this can be read as 'supporting' any single specific functional form.",
+    "source_context": "Pavlovian fear-conditioning, Long-Evans rats, CS duration manipulation (10s vs 3min) plus a shock-during-freezing manipulation."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Well-controlled primary study from the originating PIC lab, directly targeting the transition-trigger question. Confidence moderated because the primary hypothesis was disconfirmed (informative but complicates a clean 'supports' read) and because the paradigm (CS-US timing) is one step removed from spatial/harm-magnitude imminence. The sudden-change-triggers-transition finding is the most directly actionable result for REE's threshold-gate design."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_498_ocd_layer1_closure_threshold_sweep
 
-Generated: `2026-08-01T17:17:45.084231Z`
+Generated: `2026-08-01T18:26:55.014724Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

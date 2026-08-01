@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_prefrontal_pag_imminence_shift_mobbs2007",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "When fear is near: threat imminence elicits prefrontal-periaqueductal gray shifts in humans.",
+    "authors": ["Mobbs D", "Petrovic P", "Marchant JL", "Hassabis D", "Weiskopf N", "Seymour B", "Dolan RJ", "Frith CD"],
+    "year": 2007,
+    "venue": "Science",
+    "doi": "10.1126/science.1144298",
+    "pmid": "17717184"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.88,
+  "confidence_rationale": "The single strongest, most-cited direct demonstration of a genuinely CATEGORICAL (not merely quantitatively scaled) shift in the neural control of defensive behavior as a function of threat imminence in humans, from a top venue with a well-validated active-avoidance paradigm. High mapping fidelity because it directly measures a switch in which system dominates control as a function of the same variable REE's design question is about (imminence). Confidence not higher because human fMRI activation shifts are correlational and the paradigm (virtual-maze pursuit) is an analog of, not identical to, REE's tile-selection junction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's harm-valence-weighted selection step, once built, shows a smooth, unbroken linear relationship between z_harm_a magnitude and candidate-tile preference with no inflection or regime change anywhere in the tested range, that would be at odds with this paper's central finding of a genuine SHIFT (steepest change concentrated near a proximity boundary, not a flat linear ramp) in which computation dominates control.",
+    "This paper found the imminence-driven shift toward PAG dominance was steepest when a HIGH degree of pain (harm magnitude) was anticipated -- i.e. the categorical-shift effect itself scales with harm severity, not just proximity alone. A REE selection rule that treats imminence/proximity and harm-magnitude as fully separable, non-interacting inputs would miss this interaction."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "mobbs", "threat_imminence", "periaqueductal_gray", "prefrontal_cortex", "human_fmri", "categorical_shift"],
+  "mapping": {
+    "source_claim_statement": "Using an active-avoidance fMRI paradigm in which volunteers were chased through a virtual maze by a predator capable of capturing and 'shocking' them, brain activity SHIFTED as the virtual predator drew closer: control moved from the ventromedial prefrontal cortex (vmPFC, dominant when the threat was distant) to the periaqueductal gray (PAG, dominant when the threat was close and contact imminent). This shift showed maximal expression when a high degree of pain was anticipated (i.e. the categorical shift itself scaled with expected harm magnitude), and imminence-driven PAG activity correlated with increased subjective dread and decreased confidence of escape.",
+    "ree_translation": "This is the most direct available evidence that biological defensive systems implement a genuine REGIME CHANGE -- which computational system is 'in control' literally switches -- as threat imminence crosses some effective boundary, rather than a single system smoothly interpolating its output across the whole range. This is the strongest single piece of support in this pull for the 'threshold/switch' half of the design question's central choice (vs. pure smooth/graded weighting), and it is directly analogous in structure to what SD-hazard-aware-policy-decomposition's selection step would need: REE's redecomposition currently has ONE mechanism (structural decompose/keep test, harm-blind) regardless of z_harm_a; this paper's finding argues for a design where the SELECTION LOGIC ITSELF changes character (e.g. from 'weighted scoring among many candidates' to 'restrict to the single lowest-harm candidate') as z_harm_a crosses a high-imminence boundary -- not merely a continuously reweighted score. The finding that the shift is steepest under high anticipated pain also argues that harm MAGNITUDE and proximity/imminence should be allowed to interact multiplicatively in a REE functional form, not treated as independent additive terms.",
+    "mapping_caveat": "This is a correlational human fMRI study of WHOLE-BRAIN regional activation dominance during active virtual-predator avoidance, not a direct measurement of which candidate SUB-PLAN gets selected among several structurally-decomposed options -- REE's redecomposition junction has no literal vmPFC/PAG analog. The paradigm is also artificial (virtual maze, mild anticipated pain as the harm proxy) rather than real physical threat, a standard and acknowledged limitation of human fear-imaging work. The mapping to REE is at the level of 'defensive control undergoes a genuine regime change with imminence', not a specific quantitative boundary value.",
+    "source_context": "Human fMRI, healthy adult volunteers, active-avoidance virtual-maze-pursuit paradigm with a robotic predator and mild electrical pain as the harm outcome; published in Science, highly cited foundational paper for the imminence-neuroscience literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Top-tier venue, well-designed paradigm, foundational and extensively replicated/cited finding (this is the canonical citation the Mobbs 2020 and Fanselow reviews in this pull both build on). Mapping fidelity high for the categorical-shift claim specifically; transfer risk moderate because REE's redecomposition junction is structurally different from whole-brain regional control shifts, and the harm proxy (anticipated mild pain) is a simplification of real threat."
+  }
+}

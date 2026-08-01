@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_threat_modulated_defensive_path_selection",
+  "entry_id": "2026-08-01_mech_321_predatory_imminence_continuum_negative_valence_fanselow2024",
+  "timestamp_utc": "2026-08-01T18:17:24Z",
+  "claim_ids_tested": ["MECH-321"],
+  "source": {
+    "title": "Fear, defense, and emotion: A neuroethological understanding of the negative valence research domain criteria.",
+    "authors": ["Fanselow MS", "Hoffman AN"],
+    "year": 2024,
+    "venue": "American Psychologist",
+    "doi": "10.1037/amp0001354",
+    "pmid": "38695781"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.85,
+  "confidence_rationale": "Current (2024), authoritative statement of the Predatory Imminence Continuum (PIC) by its originating lab, explicitly mapped onto NIMH RDoC negative valence constructs. High source quality (senior-author synthesis of a 40-year research program) and high mapping fidelity to the design question (the PIC's mode structure is exactly the kind of threat-graded behavioral-category framework SD-hazard-aware-policy-decomposition needs to ground its selection rule). Not the top confidence score because it is a review/synthesis rather than new primary data.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's redecomposition selection step, once built, produces a single continuously-varying blend across all harm magnitudes with no qualitative change in candidate-preference pattern near high imminence, that would be inconsistent with PIC's core claim that defense is organized into qualitatively distinct MODES (not a single continuous response curve) -- the functional form should reproduce at least a coarse mode-like structure, not pure linear blending.",
+    "If defensive-mode-like behavior in REE never changes as a function of anything resembling proximity/imminence (i.e. the same tile-selection pattern regardless of z_harm_a magnitude), that would indicate the harm-valence signal is not functionally connected to selection at all -- the specific gap this lit-pull was commissioned to help close."
+  ],
+  "tags": ["mech_321", "sd_hazard_aware_policy_decomposition", "predatory_imminence_continuum", "fanselow", "rdoc_negative_valence", "defensive_mode", "amygdala"],
+  "mapping": {
+    "source_claim_statement": "The Predatory Imminence Continuum (PIC) organizes antipredator defensive behavior into distinct MODES that vary along the psychological/spatiotemporal closeness of a predatory threat (pre-encounter, post-encounter, circa-strike), corresponding to increasing negative-valence intensity (roughly: anxiety, fear, panic). PIC modes correspond closely to RDoC's Potential Threat and Acute Threat negative-valence constructs. Amygdala activity is causally implicated in both the subjective emotional state and the defensive behavior across this continuum.",
+    "ree_translation": "This is the primary theoretical scaffold for SD-hazard-aware-policy-decomposition's design question: real defensive systems do not pick a response as a pure linear function of threat magnitude, they organize responses into a small number of qualitatively distinct MODES keyed to imminence, with mode identity itself doing much of the selection work. For REE's `_apply_policy_decomposition`, this argues against a purely continuous, single-scalar harm-weighting of candidate re-tilings and toward a selection rule that is sensitive to which REGIME (something like distal/pre-encounter vs proximal/circa-strike) the current `z_harm_a`/`threat_scale` reading falls into, in addition to any graded weighting within a regime.",
+    "mapping_caveat": "PIC is a description of WHOLE-ORGANISM response-mode selection (freeze/flee/fight/vigilance), not a description of how a re-planning/redecomposition subsystem selects among candidate sub-plans. The mapping to REE's specific junction (choosing among surviving policy tiles after a mid-execution abort) is by analogy -- REE has no direct architectural equivalent of 'defensive mode' yet, and building one is exactly the substrate work this lit-pull is meant to inform, not something already validated in REE.",
+    "source_context": "Theoretical/synthesis review spanning rodent defensive-behavior neuroscience and human RDoC negative-valence research; senior-author (Fanselow) statement of PIC as of 2024."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "High-quality, current, authoritative theoretical synthesis. Mapping fidelity moderate-high: the PIC's core claim (mode-organized, imminence-graded defense) is directly what the design question needs, but transfer risk is non-trivial because REE has no existing 'defensive mode' construct to map onto -- this paper grounds the CONCEPT, not a REE-specific implementation detail."
+  }
+}
