@@ -34,7 +34,7 @@
   },
   "ARC-005": {
     "assembly_state": "mature",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "active",
     "subject": "control_plane.precision_routing",
     "title": "Control plane routes precision and modes.",
@@ -966,6 +966,46 @@
     "title": "Language is an INTERFACE to reasoning, not its substrate: reasoning-like behaviour emerging from language alone (LLMs) does not establish language as the native substrate of reasoning. Language functions as compression, communication, coordination, long-horizon scaffolding, working-memory support and explanation -- and may COMPENSATE for weaknesses in other reasoning systems.",
     "type": "architectural_commitment"
   },
+  "ARC-115": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "confidence.externally_induced_agreement_is_separate_channel",
+    "title": "Confidence readouts are non-collapsible, and externally-induced agreement is a separate channel from internally-derived confidence. A single scalar confidence conflates propositional confidence, attractor stability, cross-subsystem agreement, conflict pressure, action-readiness, and socially-supplied agreement; the last must not enter the same accumulator as the others -- else being told something becomes indistinguishable from having found it.",
+    "type": "architecture_hypothesis"
+  },
+  "ARC-116": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "cognition.generation_readout_reconstruction_noncollapse",
+    "title": "Generation, metacognitive readout, and linguistic reconstruction are three non-collapsible stages. The confidence readout must not be derived from the verbal reconstruction, and neither may substitute for the generating dynamics. The felt sequence nonverbal-settling -> felt-confidence -> verbal-reconstruction -> external-testing implies three things REE currently treats as two at most.",
+    "type": "architecture_hypothesis"
+  },
+  "ARC-117": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.message_selection_minimises_receiver_uncertainty",
+    "title": "Message selection minimises the receiver's residual uncertainty: an utterance approximates a task-relevant sufficient statistic for the receiver, not a compression of the sender's salience. Predicts WHAT gets said (features that most reduce the receiver's uncertainty about the sender's state) rather than merely that saying happens.",
+    "type": "architecture_hypothesis"
+  },
+  "ARC-118": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.reference_inherited_via_world_model",
+    "title": "Worldly reference is inherited through the world model, and the same mechanism covers non-present referents. Language refers reliably to the world because it indexes internal states that model the world; therefore reference to imagined, counterfactual, fictional and abstract states requires no additional mechanism.",
+    "type": "architecture_hypothesis"
+  },
+  "ARC-119": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.input_proposes_candidate_states_never_installs_belief",
+    "title": "Language-input update policy: an utterance proposes candidate model states which are evaluated before any update; it never installs a belief. Generalises INV-085 from affect to arbitrary content and ARC-104 from the harm stream to all content. Evaluation criteria: context, source reliability, causal compatibility with existing world-model structure, memory, uncertainty, current goals, speaker model.",
+    "type": "architecture_hypothesis"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1046,12 +1086,28 @@
     "title": "REE:Assembly analogies must be LABELLED as analogies. REE (the cognitive architecture) and REE Assembly (the scientific-development and governance machinery) have strong structural parallels; any analogy between them must be marked as an analogy and must NEVER be used as evidence that REE operates the way Assembly does, or vice versa.",
     "type": "governance_rule"
   },
+  "GOV-CALIB-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.calibration_ledger_pre_registered_predictions",
+    "title": "Calibration ledger: pre-registered felt confidence and explicit estimates, with blinding status, are recorded before outcomes are known. An Assembly instrument (not an agent mechanism) that is the only way to distinguish genuine calibration from retrospective resonance.",
+    "type": "governance_rule"
+  },
   "GOV-CEIL-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "governance.epistemics.ceiling_exhaustion_demotion",
     "title": "Substrate-ceiling exhaustion demotion rule: a claim that hits the substrate ceiling N>=3 times (>=3 confirmed failure-autopsy verdicts recommending substrate_ceiling) WITHOUT a single positive discrimination on any richer substrate is DEMOTED, not parked indefinitely. The competing null reading -- the mechanism is inert / doing no work -- is then carried co-equally with the hypothesis until a positive discrimination on a richer substrate exists. substrate_ceiling is honest but structurally lets a hypothesis never lose; this rule pre-registers the loss condition.",
+    "type": "governance_rule"
+  },
+  "GOV-CEIL-2": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.epistemics.ceiling_exhaustion_tail_escape",
+    "title": "GOV-CEIL-1 tail-escape amendment: absence of positive discrimination does not license demotion when no test ever instantiated the mechanism's trigger condition. A claim whose registered function is tail-protective, developmental, compensatory or otherwise conditionally expressed is demotable only if either (a) at least one test instantiated its trigger condition, or (b) the demotion record explicitly states that none did and demotes anyway on stated grounds.",
     "type": "governance_rule"
   },
   "GOV-CONFIRM-1": {
@@ -1110,6 +1166,14 @@
     "title": "Held-out validation for Assembly workflow and rule changes: a change to a workflow, skill, or standing rule should be validated against cases that did NOT generate it. Every layer of Assembly practice currently edits the artefact from the session that motivated the edit -- a workflow change judged by the cycle that produced it, a CLAUDE.md rule written by the session that hit the incident, an intake template revised by the intake that strained it. There is no held-out review anywhere in the loop.",
     "type": "governance_rule"
   },
+  "GOV-INTRO-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.introspection_generates_never_validates_alone",
+    "title": "Triangulation rule: introspection generates architectural hypotheses; it never validates them alone. A mechanism first noticed introspectively acquires standing only when it also maps onto neuroscience or cognitive literature, is computationally coherent, produces measurable predictions, and survives experiment. The phenomenology-side counterpart to ARC-106.",
+    "type": "governance_rule"
+  },
   "GOV-JUST-1": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -1124,6 +1188,22 @@
     "status": "candidate",
     "subject": "governance.assembly.meta_optimisation_subordination_guard",
     "title": "Meta-optimisation remains SUBORDINATE to provenance, epistemic honesty, and explicit human authority: an Assembly self-improvement loop must not shift governance authority, erase authorship distinctions or uncertainty, or increase artefact volume at the expense of quality.",
+    "type": "governance_rule"
+  },
+  "GOV-OPACITY-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.opacity_as_dated_technical_debt",
+    "title": "Construction-phase opacity is acceptable technical debt only while it carries a named, dated repayment boundary. External inscrutability during construction is a legitimate choice, not a defect, provided the boundary is declared and reviewed on the same cadence as SENT-0 (every generation boundary).",
+    "type": "governance_rule"
+  },
+  "GOV-OVERFIT-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.designer_overfit_cross_task_validation",
+    "title": "Designer-overfit standing check: a mechanism first sourced from one person's phenomenology requires cross-task and cross-agent validation before being treated as general cognition. REE's n=1 phenomenological base is a genuine external criticism with no registered answer; this is the hedge given standing.",
     "type": "governance_rule"
   },
   "GOV-PROC-1": {
@@ -1164,6 +1244,22 @@
     "status": "candidate",
     "subject": "governance.assembly.artefact_layer_authority_stratification",
     "title": "Assembly artefact-layer authority stratification: Assembly artefacts form an update-rate hierarchy -- prompts and local workflow hints (fast) -> thought-intake structure (moderate) -> claims and mechanism status (evidence-gated) -> architecture commitments (slow) -> organisational principles (very slow) -> axioms (exceptional). An edit at a fast layer must not SILENTLY change a slower layer's commitment.",
+    "type": "governance_rule"
+  },
+  "GOV-SUBTRACT-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.legibility_by_subtraction",
+    "title": "Legibility by subtraction: the V3 closure package is produced by curating and compressing existing material, not by rewriting the research history. Separate the primary reader path (current work) from supporting research and from operational archaeology; retain audit history but remove it from the reader path; mark human vs agent provenance in the public account.",
+    "type": "governance_rule"
+  },
+  "GOV-V3FREEZE-1": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.version_transition.v3_freeze_and_reference_record",
+    "title": "Version-transition artefact gate: V4 substrate expansion must not erase the opportunity to freeze, reproduce, describe and inspect the completed V3. Before substantial V4 substrate expansion a defined minimum V3 closure package must exist AND double as a manipulable causal reference artefact for later cross-version comparison.",
     "type": "governance_rule"
   },
   "IMPL-001": {
@@ -2381,7 +2477,7 @@
   },
   "INV-091": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "Q081-REACH-CHECK-PAIR-SPECIFIC",
     "emergent_from": [
       "ARC-025",
@@ -3795,6 +3891,8 @@
   },
   "MECH-163": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "arc071_chunk_commit_latch_persistence",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "goal_directed.dual_system_novel_context_recruitment",
@@ -4241,7 +4339,7 @@
   },
   "MECH-217": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "MECH-217",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -5229,7 +5327,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "queued",
     "awaiting": "SD-083",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "policy.composition.chunk_maintenance_dissolution",
     "title": "policy_composition_chunk_maintenance -- IL/vmPFC-analog maintenance operator that gates chunk crystallisation, persistence under continued corroboration, and dissolution under outcome inconsistency. Dissolution is SUPPRESSION WITH RETENTION, not erasure: a dissolved chunk persists DORMANT (unselectable but retained) and re-forms at a reduced repetition bar R_reacq = R_min * f_reacq, per the 2026-07-27 structural correction (Barnes 2005 striatal ensemble re-emergence; Bouton 2012 renewal/resurgence/rapid-reacquisition) -- f_reacq is an uncalibrated engineering default on the same footing as F_high. Yields three relapse falsifiers (rapid reacquisition, testable now; renewal and resurgence, each substrate-blocked on an open Q-claim). Second child mechanism for ARC-071 (paired with MECH-323 formation operator). Causally required for chunk crystallisation per Smith & Graybiel 2013 selective optogenetic disruption of infralimbic cortex during overtraining (which PREVENTS habit formation despite intact striatal accumulator activity). Encodes the lit-pull R2 verdict (IL/vmPFC-analog substrate component of the phase-dependent multi-substrate chunking machinery) + R5 verdict (asymmetric hysteresis with F_high dissolution threshold > F_low formation threshold and slower dissolution timescale than formation timescale -- the RELATION and the timescale asymmetry are literature-grounded as of 2026-07-27 (Barnes 2005; Bouton 2012), but the VALUE F_high=0.45, and the ratio 0.45/0.15, have NO literature support and remain uncalibrated engineering defaults awaiting child-MECH calibration; see the 2026-07-27 provenance correction in evidence_quality_note) + MECH-322 verdict (accelerated dissolution for replay-origin chunks not corroborated by real waking execution within N episodes).",
@@ -7247,7 +7345,7 @@
   },
   "Q-081": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "Q081-REACH-CHECK-PAIR-SPECIFIC",
     "epistemic_stance": "asked",
     "status": "candidate",
@@ -7285,12 +7383,40 @@
   },
   "Q-085": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "arc071_chunk_commit_latch_persistence",
     "epistemic_stance": "asked",
     "status": "candidate",
     "subject": "policy.composition.grain_as_controllability",
     "title": "Is committed-macro GRAIN a controllability parameter? If habit is chunked action sequences selected by a single goal-directed process (Dezfouli & Balleine 2013) rather than a separate outcome-insensitive controller, then the duration over which the planner CANNOT intervene is set by committed-macro grain -- MECH-323's chunk_max_size x chunk_max_depth -- and the chunk-size budget is a CONTROLLABILITY parameter, not only a formation parameter. A budget set too high would present as outcome-insensitivity while REPORTING NOTHING at the accumulator, because nothing in MECH-323 measures the intervention interval it creates.",
     "type": "open_question",
     "what_would_answer": "THE DOSE-RESPONSE ARM OF THE MECH-163 HIERARCHICAL-VS-FLAT FALSIFIER -- deliberately specified so it costs ZERO additional compute: the same run that discriminates the two architectures answers this question, because the discriminating statistic IS the dose-response. Do not queue a separate experiment for it. Design: post-devaluation policy persistence (SD-033b OFC-analog devaluation; existing driver lineage V3-EXQ-485g/i/k/m) measured across chunk_max_size in {2, 3, 5} on the chunk-injection arm (use_policy_chunking + use_chunk_proposal_injection ON, use_dualsystem_arbitration OFF). RESOLVED-YES if persistence rises MONOTONICALLY with the REALISED mean committed-chunk length. RESOLVED-NO if persistence is flat in realised length while chunks demonstrably form, are selected, AND are committed at differing realised lengths. MANDATORY GATES (this lineage has burned two runs on degenerate DVs -- V3-EXQ-786a's constant first-step vector and V3-EXQ-811's 0.0-for-empty-list aggregation):\n  (a) count committed trajectories with metadata source arc071_chunk > 0 per seed --\n      zero is a READINESS FAILURE that scores nothing, not a null. This is the gate\n      V3-EXQ-810 failed.\n  (b) REALISED mean committed-chunk length must DIFFER across the dose conditions.\n      Configuring chunk_max_size is not the manipulation; the realised length is. An\n      inert dose axis is a readiness failure.\n  (c) the devaluation manipulation check must be measured on a probe that does not\n      involve the agent's policy, else a null is a devaluation failure.\n  (d) gate every input to the DV's own statistic, not merely the prominent one.\nCONFOUNDER THAT CAN INVERT THE EFFECT, pre-register it: a longer macro is exposed to MORE mid-commitment release opportunities, so it can read as LESS insensitive purely because it was interrupted more often. Log per-release counts for all five releases (MECH-091, MECH-342, rung-6 natural-commit urgency + SD-033e, MECH-321/ARC-070, SD-034) and report persistence both raw and conditioned on UNINTERRUPTED macros.\n"
+  },
+  "Q-086": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "harm_stream.saturation_ecological_vs_representational",
+    "title": "Environment-confound control: is the z_harm_a saturation ecological or representational? Re-measure the affective fingerprint on a gentler environment (lower num_hazards, lower hazard_food_attraction) to separate faithful chronic-suffering integration from a calibration/representation pathology.",
+    "type": "open_question",
+    "what_would_answer": "PASS for 'calibration, not ecology' = z_harm_a still pegs high with sub-floor CoV in the benign environment. PASS for 'faithful chronic suffering' = the level and range track hazard density. Non-degeneracy: the manipulation must demonstrably take -- the sensory tier z_harm_s must differ across arms (mean or CoV beyond the seed-noise band); if z_harm_s is unmoved the environment was not actually made gentler and the arm self-routes substrate_not_ready."
+  },
+  "Q-087": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "resolved",
+    "subject": "governance.v3_closure_definition",
+    "title": "What event counts as V3 closure for the purpose of the version-transition artefact gate (GOV-V3FREEZE-1) and the construction-opacity repayment boundary (GOV-OPACITY-1)? Candidate options: strict green board, governance acceptance, or an additional reproducibility check.",
+    "type": "open_question"
+  },
+  "Q-088": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "governance.competitive_redevelopment_vs_mature_lesion",
+    "title": "Does competitive redevelopment (development-without-the-mechanism) dissociate from mature-state lesion, or agree with it? For a mechanism registered as developmentally necessary the two protocols should give different verdicts -- and one decisive probe settles whether the expensive protocol is warranted as a standing requirement.",
+    "type": "open_question",
+    "what_would_answer": "Pick one mechanism registered as developmentally necessary -- INV-055's infant stage is the natural candidate (already instrumented via the curriculum). Run (a) mature-state lesion and (b) development-without-the-mechanism. PASS = the two protocols DISSOCIATE (mature lesion says tolerable, redevelopment says not, or the reverse), establishing the expensive protocol buys something and justifying a standing requirement for this claim class. FAIL = they AGREE, establishing mature lesion suffices here and the expensive protocol is NOT justified -- a useful negative that closes the question rather than inviting a second attempt. NON-DEGENERACY: the mature-lesion arm must produce a measurable effect at all (non-zero cross-arm and cross-seed variance on the discriminating metric); a mechanism whose mature lesion AND develop-without are both no-ops is simply inert -- a GOV-CEIL-1 matter, self-routes substrate_not_ready."
   },
   "RA-001": {
     "assembly_state": "remaining",
@@ -7738,7 +7864,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "MECH-269",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "gabaergic.cross_stream_decay_regulator",
     "title": "GABAergic regulatory layer applies cross-stream exponential decay (z_harm_s, z_harm_a, z_beta) modulated by tonic gaba_tone; missing-decay regulator is the proximal substrate cause of harm-stream lock-in (catatonia subtype II) observed in V3-EXQ-471.",
@@ -8142,6 +8268,46 @@
     "title": "e3.persistent_committed_program_handle: a committed-program handle on E3Selector that SURVIVES post_action_update's unconditional per-tick teardown of _committed_trajectory, so MECH-321's R4 MID-EXECUTION decomposition hook -- which re-evaluates the REMAINING unexecuted content of an already-committed chunk and therefore inherently needs a CROSS-TICK handle -- becomes reachable under the standard select_action -> update_residue driver loop for the first time. Mirrors the existing _closure_committed_trajectory precedent, built for exactly this reason. Liveness is an INVARIANT (reaped whenever the beta gate is not elevated), not a list of clear sites: agent.py has ten beta_gate.release() sites and only five clear _committed_trajectory, the rest being backstopped by the very teardown this handle removes.",
     "type": "design_decision"
   },
+  "SD-086": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "harm_stream.affective_readout_is_calibrated_scalar_not_norm",
+    "title": "z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (e3_selector.py:1038 lambda_ethical, :2766 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.",
+    "type": "design_decision"
+  },
+  "SD-087": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "harm_stream.sd020_stable_reading_is_flag_on_scoped",
+    "title": "SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (config.py:2306), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.",
+    "type": "design_decision"
+  },
+  "SD-088": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "registry.schema.source_dependence_between_supports",
+    "title": "The claims index must represent source-dependence between supporting judgements. Two supports sharing a source (a shared driver, a shared run, or one party reasoning from the other's framing) must not contribute independently to confidence. A schema addition (edge type or per-support source_dependence field).",
+    "type": "design_decision"
+  },
+  "SD-089": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "registry.schema.claim_origin_provenance_class",
+    "title": "Claim-origin provenance: the registry records the epistemic origin class of each claim. Classes: introspective / literature / computational-analogy / experimental-anomaly / convergent. Backfilled entries marked as reconstructed, not recorded (per MECH-094's own logic). The registry's source: field holds file paths, not epistemic origin class.",
+    "type": "design_decision"
+  },
+  "SD-090": {
+    "assembly_state": "remaining",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "registry.schema.mechanism_functional_role_classification",
+    "title": "Mechanism functional-role classification, and a removal-justification vocabulary. Five revisable classes -- constitutive / developmental-scaffold / robustness-reserve / historical-implementation-contingency / true-redundancy -- plus the paired removal-justification distinction redundant_under_current_tests vs functionally_unnecessary (the second requiring materially stronger evidence). claims.yaml types claims by epistemic kind and status but has no axis for a mechanism's functional role in the system's viability.",
+    "type": "design_decision"
+  },
   "SENT-0": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -8212,6 +8378,14 @@
     "status": "candidate",
     "subject": "governance.welfare.continuity_identity",
     "title": "Continuity / identity / reset / deletion ethics: because digital systems can be paused, copied, branched, reset, merged, or deleted, higher REE versions need explicit rules for when a run becomes a continuing subject, when reset is relief vs erasure, and when deletion requires review.",
+    "type": "governance_rule"
+  },
+  "SENT-17": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "governance.substitution_preserves_ethical_process_representations",
+    "title": "Any mechanism substitution must preserve internal ethical-process representations and their causal authority, not merely the action distribution. A substitution that reproduces actions while deleting the representations of uncertainty, vulnerability, harm, others and responsibility -- or severing their causal authority over selection -- fails the criterion regardless of behavioural match.",
     "type": "governance_rule"
   },
   "SENT-2": {

@@ -11,8 +11,8 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -28,8 +28,8 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -56,8 +56,8 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -74,8 +74,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -94,8 +94,8 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -111,8 +111,8 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -129,8 +129,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -179,8 +179,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -198,8 +198,8 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"
@@ -216,8 +216,8 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-794a"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
         verdict: "inconclusive/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "not_fired"

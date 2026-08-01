@@ -23,6 +23,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-2`
 
@@ -43,6 +44,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-3`
 
@@ -63,6 +65,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-4`
 
@@ -83,6 +86,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-5`
 
@@ -103,6 +107,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-6`
 
@@ -123,6 +128,7 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 
 ## `multi_agent_ecology_v5:MAE-7`
 
@@ -143,4 +149,5 @@ Source plan: `evidence/planning/multi_agent_ecology_v5_plan.md`
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy non_contributory/competence_implementation_gap routing=queue-experiment
 - `2026-07-26T17:40Z` [autopsy] `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` -> [`evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-059c-533_2026-07-26.json) :: autopsy does_not_support/measurement_test_design_defect routing=governance-demotion **<- live head**
 - `2026-07-26T18:02Z` [manifest] `v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3` -> [`evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json`](../../../../evidence/experiments/v3_exq_032d_mech102_ttype_escalation_fixed_20260726T180259Z_v3.json) :: PASS manifest supports
+- `2026-07-30T19:42Z` [decision] `decision:MECH-095@2026-07-30T19:42:18.004238Z` -> [`evidence/decisions/decision_log.v1.jsonl#L402`](../../../../evidence/decisions/decision_log.v1.jsonl#L402) :: decision hold_candidate_resolve_conflict (applied)
 

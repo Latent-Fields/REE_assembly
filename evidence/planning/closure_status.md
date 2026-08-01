@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-07-30T19:17:11Z
+Generated: 2026-08-01T12:27:18Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **76.2%** across 82 non-deferred nodes in 13 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **25** nodes.
+- Weighted progress: **77.6%** across 83 non-deferred nodes in 13 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **24** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
 - Deferred (not required for v3 closure): 13 nodes.
-- Done: 57 nodes.
-- Status tally: assembling=10  blocked=10  blocked_pending_substrate=2  deferred=13  done=57  in_progress=8  open=2  partial=2  upstream_blocked=1
+- Done: 59 nodes.
+- Status tally: assembling=10  blocked=9  blocked_pending_substrate=2  deferred=13  done=59  in_progress=8  open=2  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -22,10 +22,10 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `conversion_ceiling_campaign_plan.md` | Conversion-Ceiling Campaign (prong-map / parallel multi-face) | 7 | 0% | assembling:7 | 2026-07-10 |
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
-| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 2 | 25% | blocked:1 in_progress:1 | 2026-07-22 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-07-10 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 79% | assembling:1 deferred:3 done:5 in_progress:2 partial:1 | 2026-07-10 |
+| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 80% | done:2 in_progress:1 | 2026-07-31 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 87% | assembling:1 deferred:2 done:7 in_progress:2 | 2026-07-10 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 10 | 90% | deferred:1 done:8 upstream_blocked:1 | 2026-07-07 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-05-30 |
@@ -33,14 +33,13 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
 
-## Remaining work to close v3 (25)
+## Remaining work to close v3 (24)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A` | Does the control plane route at all? Channel-vs-content double dissociation over | in_progress | 0 | load-bearing | V3-EXQ-802 | V3-EXQ-802 is queued in ree-v3/experiment_queue.json (status pending, priority 47, machine | 2026-07-22 |
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | Which channel carries it? Per-channel leave-one-out ablation grid (UNOWNED -- no | blocked | 1 | load-bearing |  | RESUME WHEN V3-EXQ-802 LANDS A MANIFEST. Nothing re-derives this node: it is /queue-experi | 2026-07-22 |
+| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to  | in_progress | 1 | load-bearing | V3-EXQ-846 | depends_on: arc_005_control_plane_routing:GAP-A | 2026-07-31 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-23 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
 | self_attribution_plan.md | `self_attribution:GAP-2` | SD-029 / MECH-256 retest under full substrate stack | blocked | 2 | high | TBD | RE-ADJUDICATED 2026-06-09 (gap-A substrate re-read). The 2026-05-16 gate ('retest unblocka | 2026-06-23 |
@@ -100,8 +99,10 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (57)
+## Done (59)
 
+- `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A` -- Does the control plane route at all? Channel-vs-content double dissociation over precision
+- `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A-precision-diagnostic` -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, no
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-D` -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias
@@ -170,6 +171,7 @@ These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps a
 
 Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V4/V5 have no experiments yet, so their nodes carry no `owner_exq` and do not count toward the V3 closure percentage. Each node's gate is the V3-era prerequisite that must land first.
 
+- **CLINICAL**: 28.2% across 11 non-deferred nodes in 1 plan(s).
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
@@ -401,6 +403,10 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | epistemic_overlay_plan.md | `PHASE-2` | Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, ad | in_progress | high |  | 2026-07-12 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-3` | Staged corpus migration backlog (step 3): route the 1,028-script corpu | done | high |  | 2026-07-13 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.3` | Harden the manifest-writer lint to a commit gate | done | high |  | 2026-07-13 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:MOTIVATIONAL-TAXONOMY` | 2x2 motivational state taxonomy + three-stage pipeline (depression / G | partial | high |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:CATATONIA-II` | Catatonia subtype II: harm-stream lock-in (SD-036 decay regulator, MEC | partial | high |  | 2026-08-01 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:OCD-THREE-LAYER` | OCD as a three-layer architectural failure | partial | high |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:FRAME-TAG` | Frame-tag failure modes: derealization, delusion, commitment-gate (dev | open | high |  | 2026-07-30 |
 | meta | ree_ai_design_critique_plan.md | `WS-2` | Ceiling-claim demotion rule (new GOV-* pre-registered falsification/de | open | high |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-3` | Capability-eval yardstick (minimal benchmark independent of any REE cl | done | high |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-12` | Similarity / dehumanization failure mode (sufficiently-like-me gates c | done | high |  | 2026-07-09 |
@@ -412,6 +418,11 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | meta | assembly_vs_closure_plan.md | `MOVE-4` | Assembly/maturity portfolio view (the missing broad-overview altitude) | done | medium |  | 2026-06-21 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-2` | pack_writer field-coverage survey (step 2) | done | medium |  | 2026-07-12 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | done | medium |  | 2026-07-15 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:PTSD-HYPERAROUSAL-INSOMNIA` | Hyperarousal insomnia and schema-repair starvation (PTSD chronicity) | partial | medium |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:DREAM-PHENOMENOLOGY` | Dream phenomenology as diagnostic and treatment-response marker | partial | medium |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:SEROTONERGIC-CROSS-STATE` | Serotonergic cross-state architecture (replay salience tagging, REM-ga | in_progress | medium |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:SELF-MODEL-DEGRADATION` | Self-model failure modes: E1 schema poverty vs E2 capacity degradation | open | medium |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:PHARMACOLOGICAL-PREDICTIONS` | Pharmacological predictions registry + receptor-subtype resolution lay | tracked | medium | depends_on: clinical_failure_modes:CATATONIA-II, clinical_failure_modes:SEROTONERGIC-CROSS | 2026-07-30 |
 | meta | ree_ai_design_critique_plan.md | `WS-4` | Formal-ancestor mapping (top ~30 load-bearing MECH/ARC to nearest form | done | medium |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-5` | Active-inference bridge (precision / epistemic value / exploration mat | done | medium |  | 2026-07-09 |
 | meta | ree_ai_design_critique_plan.md | `WS-6` | Bitter-Lesson rebuttal (why scale + search won't eat this structure) | done | medium |  | 2026-07-09 |
@@ -424,5 +435,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-8` | Biology grounding completion (self-as-object body-ownership, agency/fo | done | medium | Shares object_representation_v4:OBJ-6 L4 self-as-object pull (Gallagher/Botvinick) -- this | 2026-06-14 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.1` | Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_p | parked | low |  | 2026-07-15 |
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.2` | Carry the always-core through sync into the pack (substrate_hash/confi | parked_indefinite | low |  | 2026-07-15 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:NARCOLEPSY-CATAPLEXY` | Narcolepsy and cataplexy: bilateral orexin-loss failure | open | low |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:PROPOSAL-ENTROPY` | Difficulty-gated proposal entropy: stuck-state cognition (working hypo | open | low |  | 2026-07-30 |
 | v4 | self_model_v4_plan.md | `self_model_v4:SELF-9` | Own-future-option uncertainty: does REE need an explicit self-model of | assembling | low | what_would_answer: build MECH-454 WITHOUT a self-future-model and test in a setting where  | 2026-06-24 |
 

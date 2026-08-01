@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_625e_sd037_axis_b_phase1b_joint_composite_recalibrated
 
-Generated: `2026-07-30T19:43:03.389968Z`
+Generated: `2026-08-01T12:26:47.761068Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

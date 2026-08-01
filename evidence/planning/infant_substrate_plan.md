@@ -11,13 +11,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -29,13 +28,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -47,13 +45,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -65,13 +62,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -83,13 +79,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -101,13 +96,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -119,13 +113,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -137,13 +130,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -155,13 +147,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -173,13 +164,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -191,13 +181,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -215,13 +204,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -237,13 +225,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -256,13 +243,12 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -285,13 +271,12 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["ARC-046", "f_dominance_conversion_ceiling", "infant_substrate:GAP-14", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -316,13 +301,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
@@ -335,13 +319,12 @@ closure_plan:
       status: done
       severity: governance
       live:
-        as_of: "2026-07-20"
-        from: "failure_autopsy_V3-EXQ-604c_2026-07-20"
-        verdict: "mixed/substrate_ceiling"
+        as_of: "2026-07-30"
+        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_autopsy_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["INV-055", "INV-073", "ARC-046", "ARC-065", "DEV-NEED-001", "DEV-NEED-002", "DEV-NEED-003", "DEV-NEED-004", "DEV-NEED-005", "DEV-NEED-006", "DEV-NEED-007", "DEV-NEED-008", "MECH-189", "MECH-313", "MECH-314"]
