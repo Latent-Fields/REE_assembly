@@ -1,0 +1,100 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_cell": {
+      "ARM_INFL_LO_steps200": {
+        "steps_per_ep": 200,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": -0.008332025904674908,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      },
+      "ARM_INFL_HI_steps200": {
+        "steps_per_ep": 200,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": -0.0015402526905165799,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      },
+      "ARM_INFL_LO_steps500": {
+        "steps_per_ep": 500,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": -0.008332025904674908,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      },
+      "ARM_INFL_HI_steps500": {
+        "steps_per_ep": 500,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": -0.0015402526905165799,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      },
+      "ARM_INFL_LO_steps1000": {
+        "steps_per_ep": 1000,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": -0.008332025904674908,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      },
+      "ARM_INFL_HI_steps1000": {
+        "steps_per_ep": 1000,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": -0.0015402526905165799,
+        "diff_final_sign": "negative",
+        "any_seed_sign_flip": true,
+        "n_seeds": 2
+      }
+    },
+    "per_arm_bracket": {
+      "ARM_INFL_LO": {
+        "steps_per_ep_swept": [
+          200,
+          500,
+          1000
+        ],
+        "diff_final_by_steps": {
+          "200": -0.008332025904674908,
+          "500": -0.008332025904674908,
+          "1000": -0.008332025904674908
+        },
+        "sign_sequence": [
+          "negative",
+          "negative",
+          "negative"
+        ],
+        "crossover_bracket_steps_per_ep": null
+      },
+      "ARM_INFL_HI": {
+        "steps_per_ep_swept": [
+          200,
+          500,
+          1000
+        ],
+        "diff_final_by_steps": {
+          "200": -0.0015402526905165799,
+          "500": -0.0015402526905165799,
+          "1000": -0.0015402526905165799
+        },
+        "sign_sequence": [
+          "negative",
+          "negative",
+          "negative"
+        ],
+        "crossover_bracket_steps_per_ep": null
+      }
+    },
+    "readiness_ok": true
+  }
+}
