@@ -1,8 +1,30 @@
 # Scoping note: a standing audit for skill-improvement candidates
 
-Status: **scoping complete; sweep run; recurrence confirmed; standing-audit implementation
-chipped.** Registered 2026-08-01, updated same day after the sweep (see below). No TASK_CLAIMS
-entry needed to read this; open one against this path before editing it.
+Status: **standing audit BUILT (chip-20260801-skill-audit-standing-scan, 2026-08-02).**
+`REE_assembly/scripts/check_skill_improvement_recurrence.py` (GOV-SKILL-1) implements the pattern
+scoped below: pointer-based incremental self-flagged-repeat scan over `learning_extracted[]` +
+`review_tracker.json` prose, threshold-gated (N=2 independent files, OR a single entry citing >=2
+distinct run ids, OR a strong self-flag phrase -- design decision 1), cheap token-overlap
+clustering, an already-codified check against the live `SKILL.md` corpus, propose-only output
+(never auto-edits a skill -- design decision 3), plus an opt-in `--check-dormancy` pass covering
+both the pruning counterpart (design decision 4) and the effectiveness-feedback hook (design
+decision 5) via `git log -S` first-introduction dates. Wired into `governance.sh` Step 3j
+(warn-only, `|| true`, matching the GOV-GRAN-1/GOV-CAT-1/GOV-DIAG-1/GOV-APPLY-1/GOV-DRY-1
+pattern). Tests: `REE_assembly/scripts/test_check_skill_improvement_recurrence.py` (53, all
+passing, including a live-corpus smoke test and a `TestCalibrationIncidents` class that pins the
+clustering/already-codified calibration against the exact false-merge/false-match incidents found
+while tuning it against the real corpus). Dry run against the then-current 303-file corpus
+correctly re-identified 3 of the 5 patterns folded into skills on 2026-08-01 (commit `95fdc06`) as
+already-codified (not re-surfaced as fresh candidates), and surfaced 5 new, previously-uncodified
+candidates for human review (V3-EXQ-603m, 614c, 629, 719a, 828a) -- none auto-applied. Not done in
+this chip: a governance/SKILL.md "Key rules" doc bullet mirroring the other GOV-*-1 entries (that
+file lives in the umbrella `REE_Working` repo, out of this chip's REE_assembly-only scope) and a
+bold-marker extractor for governance's own Step 2b sub-item (its checklist growth is not reachable
+by the header-scoped dormancy extractor built here -- see the module's
+`MONITORED_CHECKLIST_SECTIONS` comment). Prior status: scoping complete; sweep run; recurrence
+confirmed; standing-audit implementation chipped. Registered 2026-08-01, updated same day after
+the sweep (see below). No TASK_CLAIMS entry needed to read this; open one against this path
+before editing it.
 
 ## Origin
 
