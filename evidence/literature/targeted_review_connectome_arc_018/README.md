@@ -6,7 +6,7 @@
 **Status at time of review:** active, adjudicated (retain_ree)
 
 **Date created:** 2026-03-29
-**Number of entries:** 5
+**Number of entries:** 6
 
 ---
 
@@ -21,6 +21,7 @@ Sources were selected to triangulate the claim from multiple angles:
 - **Olafsdottir, Carpenter & Barry (2017)** -- dynamic switch between planning-mode and consolidation-mode replay. Best evidence for the dual-mode operation (rollout before, update after) ARC-018 requires.
 - **Momennejad, Otto, Daw & Norman (2018)** -- human fMRI showing offline replay predicts replanning in abstract sequential decisions. Extends the mechanism beyond spatial coordinates toward action-sequence representations.
 - **Dolan & Dayan (2013)** -- theoretical review establishing hippocampus as the substrate for model-based planning and flexible value updating. Conceptual scaffolding for the viability-map claim.
+- **Lin, Yang, Zhao, Pezzulo & Maass (2026)** -- computational GCML model combining cognitive maps, stochastic sampling, compositional coding, and a state-difference-to-action inverse model. Best formal analogue for how map-guided randomness can generate diverse but goal-directed imagined trajectories.
 
 ---
 
@@ -33,6 +34,7 @@ Sources were selected to triangulate the claim from multiple angles:
 | 2026-03-29_arc_018_awake_replay_switch_olafsdottir2017 | Olafsdottir et al. 2017, Neuron | supports | 0.78 |
 | 2026-03-29_arc_018_offline_replay_planning_momennejad2018 | Momennejad et al. 2018, eLife | supports | 0.72 |
 | 2026-03-29_arc_018_goals_habits_dolan2013 | Dolan & Dayan 2013, Neuron | supports | 0.68 |
+| 2026-08-01_arc_018_gcml_cognitive_map_sampling_lin2026 | Lin et al. 2026, Nat Mach Intell | mixed | 0.67 |
 
 ---
 
@@ -43,3 +45,5 @@ The biological literature clearly and consistently supports the rollout-generati
 The specific V3 claims -- E2 action-object indexing and E3 harm/goal error as the update signal -- are not directly tested by any of these papers. The Momennejad et al. human data (abstract sequential task) and the Mattar & Daw utility framework are the closest analogues. The critical gap is the harm-signal component: all studies reviewed here use reward-based or uncertainty-based (unsigned PE) signals, not explicit harm signals. Whether hippocampal viability mapping operates equivalently for harm-loaded action sequences is supported by the framework (Dolan & Dayan) but not directly demonstrated.
 
 This is not a weakness of ARC-018 -- it is a precise statement of what V3 experiments need to test.
+
+**2026-08-01 update:** Lin et al. (2026) strengthens the formal/computational bridge without changing the biological verdict. It shows that a cognitive map plus a state-difference-to-action inverse model plus stochastic virtual action selection can produce goal-directed imagined trajectories across spatial, abstract graph, and compositional task spaces. This confirms that REE's map-guided stochastic rollout direction is a live computational family, but it does not settle ARC-018's REE-specific gaps: action-object indexing, live E2 fidelity, and harm/goal error updating remain empirical obligations.

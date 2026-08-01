@@ -1,0 +1,59 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_arc_018",
+  "entry_id": "2026-08-01_arc_018_gcml_cognitive_map_sampling_lin2026",
+  "timestamp_utc": "2026-08-01T23:44:52Z",
+  "claim_ids_tested": [
+    "ARC-018"
+  ],
+  "source": {
+    "title": "Neural sampling from cognitive maps enables goal-directed imagination and planning",
+    "authors": [
+      "Hui Lin",
+      "Yukun Yang",
+      "Rong Zhao",
+      "Giovanni Pezzulo",
+      "Wolfgang Maass"
+    ],
+    "year": 2026,
+    "venue": "Nature Machine Intelligence",
+    "doi": "10.1038/s42256-026-01254-4",
+    "preprint_doi": "10.1101/2025.05.14.654027",
+    "code_repository": "https://github.com/LH-cbicr/GCML",
+    "zenodo": "10.5281/zenodo.19370442",
+    "secondary_trigger": "https://neurosciencenews.com/brain-inspired-ai-cognitive-maps-31145/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.67,
+  "confidence_rationale": "Strong formal analogue for ARC-018: a learned cognitive map plus a state-difference-to-action inverse model plus stochastic virtual action selection generates goal-directed imagined trajectories, including spatial rerouting, abstract graph paths, and compositional silhouette decomposition. Marked mixed rather than supports because it is a simulation/model paper, not direct biological evidence, and because it leaves ARC-018's REE-specific gaps untouched: E2 action-object indexing, live E2 fidelity, and harm/goal error updating.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE's cognitive-map substrate lacks any reliable state-difference-to-action inverse readout, it will miss the core GCML mechanism that turns a map into goal-directed imagined action sequences.",
+    "If stochastic proposal generation is unconstrained by map geometry, it is not the GCML/Pfeiffer-style mechanism; useful randomness should remain goal-directed and self-correcting rather than pure trajectory noise.",
+    "If a future ARC-018 validation treats this paper as direct biological support, it overclaims; the source only supports formal plausibility and benchmark behavior."
+  ],
+  "tags": [
+    "arc_018",
+    "hippocampal_rollout",
+    "cognitive_map",
+    "stochastic_sampling",
+    "goal_directed_imagination",
+    "inverse_model",
+    "arc_065",
+    "q_074",
+    "gcml"
+  ],
+  "mapping": {
+    "source_claim_statement": "A generative cognitive map learner using learned forward structure, a state-difference-to-action inverse model, stochastic virtual action selection, and compositional coding can sample goal-directed imagined trajectories in spatial, abstract-graph, and compositional task spaces with low replanning cost.",
+    "ree_translation": "ARC-018's hippocampal rollout loop should be read as a map-guided stochastic proposal generator, not brute-force search. The strongest transferable form is: current/goal difference in the map -> inverse action readout -> internally predicted next state -> repeat, with controlled noise producing a diverse but goal-directed candidate set.",
+    "mapping_caveat": "GCML is an engineered model inspired by hippocampal/grid-cell evidence. It does not prove the biological hippocampus uses this exact algorithm, and it does not validate REE's E2 action-object coordinate or harm-specific viability map. It is therefore a formal/computational bridge, not scored biological confirmation.",
+    "source_context": "Open-access Nature Machine Intelligence article; code repository LH-cbicr/GCML contains notebooks for grid-cell, abstract-graph, and tiling benchmarks; Zenodo software citation in the paper."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.45,
+    "notes": "High-quality model paper with code and broad benchmark coverage. Mapping fidelity is high at the algorithmic-form level but capped because ARC-018's controversial parts are REE-specific: action-object map coordinates and harm/goal error updates."
+  }
+}
