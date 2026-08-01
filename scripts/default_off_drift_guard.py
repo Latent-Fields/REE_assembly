@@ -97,9 +97,79 @@ CLAIM_ID_RE = re.compile(r"\b(?:SD|MECH|ARC|INV|Q|GAP)-\d+[a-z]?\b")
 _ID_ONLY_RE = re.compile(r"(?:SD|MECH|ARC|INV|Q|GAP)-\d+[a-z]?")
 _ID_SEP_RE = re.compile(r"[\s/,+&]+")
 
-# One pass over the corpus captures every `name = True` / `"name": True` /
-# `name=True` site; the report's per-knob grep recipe generalised.
-ENABLE_RE = re.compile(r"""([A-Za-z_][A-Za-z0-9_]*)["']?[ \t]*[:=][ \t]*True\b""")
+# Enablement is judged by AST, not by a `= True` grep, and this matters for
+# correctness of the load-bearing discriminator. All in-scope knobs default to a FALSY
+# value (False / 0 / 0.0), so an ENABLEMENT is any assignment of a TRUTHY / non-zero
+# value -- regardless of bool vs numeric. A `= True`-only scan (the source report's own
+# recipe) is blind to two whole classes and manufactures false drift:
+#
+#   * NUMERIC knobs set by value -- `goal_weight` (MECH-117) defaults 0.0 and is set
+#     non-zero in hundreds of corpus files; `harm_history_len` (SD-011) likewise. A
+#     `= True` scan calls both zero-enablement drift.
+#   * VARIABLE / module-constant RHS -- `override_pfc_eta_gain": ARM3_OVERRIDE_PFC_ETA_GAIN`
+#     where `ARM3_OVERRIDE_PFC_ETA_GAIN = 1.0` (SD-035), or `use_offline_wanting_spread=
+#     use_spread`. A literal scan misses these; resolving module-level constants recovers
+#     them, and an unresolved RHS (`reafference_action_dim=env.action_dim`) is counted as
+#     an UNRESOLVED enablement that suppresses a false FAIL rather than being read as off.
+#
+# The three outcomes per assignment site: ON (truthy/non-zero literal, or a Name that
+# resolves through module constants to truthy/non-zero), OFF (falsy/zero -- an explicit
+# `=0.0` or `=False`, or an OFF-arm constant, is NOT an enablement), and UNRESOLVED (a
+# Name/attribute/expression we cannot evaluate -- almost never zero in practice).
+
+_UNRESOLVED = object()
+
+
+def _literal_value(node):
+    """Python value of a literal AST node (incl. `-1`), else _UNRESOLVED."""
+    if isinstance(node, ast.Constant):
+        return node.value
+    if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.USub, ast.UAdd)):
+        inner = _literal_value(node.operand)
+        if isinstance(inner, (int, float)) and not isinstance(inner, bool):
+            return -inner if isinstance(node.op, ast.USub) else inner
+    return _UNRESOLVED
+
+
+def _module_constants(tree):
+    """Top-level `NAME = <literal>` bindings, for resolving a knob's variable RHS."""
+    env = {}
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            targets, val = node.targets, node.value
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            targets, val = [node.target], node.value
+        else:
+            continue
+        lit = _literal_value(val)
+        if lit is _UNRESOLVED:
+            continue
+        for t in targets:
+            if isinstance(t, ast.Name):
+                env[t.id] = lit
+    return env
+
+
+def _classify_rhs(node, env):
+    """'on' | 'off' | 'unresolved' for an assignment's right-hand side.
+
+    'on' = a truthy / non-zero value (an enablement, since every in-scope knob defaults
+    falsy). 'off' = an explicit falsy/zero value (NOT an enablement). 'unresolved' = a
+    value we cannot evaluate.
+    """
+    lit = _literal_value(node)
+    if lit is _UNRESOLVED:
+        if isinstance(node, ast.Name) and node.id in env:
+            lit = env[node.id]
+        else:
+            return "unresolved"
+    if isinstance(lit, bool):
+        return "on" if lit else "off"
+    if isinstance(lit, (int, float)):
+        return "on" if lit != 0 else "off"
+    if lit is None:
+        return "off"
+    return "unresolved"
 
 # --------------------------------------------------------------------------- #
 # Allowlist -- verified benign 2026-07-21. Do not extend without a written        #
@@ -136,8 +206,10 @@ class Knob:
     owner: str            # dataclass that declares it
     default: str          # rendered default ("False" / "0" / "0.0")
     claim_ids: dict = field(default_factory=dict)   # claim id -> "decl" | "mention"
-    exp_files: int = 0
-    test_files: int = 0
+    exp_files: int = 0       # experiment files with a confirmed ON site
+    test_files: int = 0      # test files with a confirmed ON site
+    exp_unresolved: int = 0  # experiment files whose only sites are UNRESOLVED
+    test_unresolved: int = 0
 
 
 @dataclass
@@ -152,10 +224,16 @@ class Row:
 
     @property
     def gating(self) -> bool:
-        """A finding the guard fails on."""
+        """A finding the guard fails on: a settled claim whose knob has ZERO confirmed
+        experiment enablements AND no unresolved experiment sites that might be one.
+
+        The `exp_unresolved == 0` clause is what stops a false FAIL on a knob that IS
+        enabled but via an RHS the scanner cannot evaluate (`knob=env.action_dim`).
+        """
         return (
             self.status in GATING_STATUS
             and self.knob.exp_files == 0
+            and self.knob.exp_unresolved == 0
             and self.claim_id not in ALLOWLIST_CLAIMS
             and self.knob.name not in ALLOWLIST_KNOBS
         )
@@ -303,24 +381,63 @@ def evidence_of(claim):
 # --------------------------------------------------------------------------- #
 
 
+def _file_knob_sites(tree, knob_names, env):
+    """Map knob name -> set of verdicts ({'on','off','unresolved'}) seen in one file.
+
+    Enabling assignments appear as keyword args (`REEConfig(knob=...)`,
+    `from_dims(knob=...)`), string-keyed dict entries (`{"knob": ...}`), and plain
+    Name/Attribute assignments (`knob = ...`, `cfg.knob = ...`).
+    """
+    sites = {}
+
+    def note(name, node):
+        if name in knob_names:
+            sites.setdefault(name, set()).add(_classify_rhs(node, env))
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.keyword) and node.arg:
+            note(node.arg, node.value)
+        elif isinstance(node, ast.Dict):
+            for k, v in zip(node.keys, node.values):
+                if isinstance(k, ast.Constant) and isinstance(k.value, str):
+                    note(k.value, v)
+        elif isinstance(node, ast.Assign):
+            for t in node.targets:
+                nm = t.id if isinstance(t, ast.Name) else getattr(t, "attr", None)
+                if nm:
+                    note(nm, node.value)
+        elif isinstance(node, ast.AnnAssign) and node.value is not None:
+            nm = getattr(node.target, "id", None) or getattr(node.target, "attr", None)
+            if nm:
+                note(nm, node.value)
+    return sites
+
+
 def count_enablements(roots, knob_names):
-    """Files under each root that set any knob `= True`. One pass over the corpus."""
-    counts = {root_label: {} for root_label, _ in roots}
+    """Per root, count files that ENABLE each knob. One AST pass over the corpus.
+
+    Returns {label: {knob: {"on": n_files, "unresolved": n_files}}}. A file is counted
+    ON if it has any confirmed truthy/non-zero site; else UNRESOLVED if its only sites
+    are unevaluable; a file whose sites are all OFF (explicit `=False` / `=0.0`, incl.
+    OFF-arm constants) is not counted for that knob at all.
+    """
+    counts = {label: {} for label, _ in roots}
     for label, root in roots:
         if not root.exists():
             continue
         for path in sorted(root.rglob("*.py")):
             try:
                 text = path.read_text(encoding="utf-8", errors="replace")
-            except OSError:
+                tree = ast.parse(text)
+            except (OSError, SyntaxError):
                 continue
-            seen = set()
-            for m in ENABLE_RE.finditer(text):
-                name = m.group(1)
-                if name in knob_names:
-                    seen.add(name)
-            for name in seen:
-                counts[label][name] = counts[label].get(name, 0) + 1
+            env = _module_constants(tree)
+            for name, verdicts in _file_knob_sites(tree, knob_names, env).items():
+                bucket = counts[label].setdefault(name, {"on": 0, "unresolved": 0})
+                if "on" in verdicts:
+                    bucket["on"] += 1
+                elif "unresolved" in verdicts:
+                    bucket["unresolved"] += 1
     return counts
 
 
@@ -405,11 +522,14 @@ def render(rows, knobs, claims, args, out):
     n_default_off = len(knobs)
     n_with_claim = sum(1 for k in knobs.values() if k.claim_ids)
     gating = [r for r in rows if r.gating]
+    # "suppressed" = would gate on the zero-confirmed-enablement rule, but is held off
+    # ONLY by the allowlist (not by unresolved sites -- those aren't a benign hold).
     suppressed = [
         r
         for r in rows
         if r.status in GATING_STATUS
         and r.knob.exp_files == 0
+        and r.knob.exp_unresolved == 0
         and not r.gating
     ]
 
@@ -446,15 +566,37 @@ def render(rows, knobs, claims, args, out):
     )
 
     w("## Table\n\n")
+    w(
+        "`exp`/`test` show confirmed-ON files; a `+N?` suffix is files whose only site "
+        "is an UNRESOLVED RHS (a variable the scanner could not evaluate) -- possible "
+        "enablements that suppress a FAIL.\n\n"
+    )
     w("| Claim | Status | attr | Knob | Default | config.py:line | exp | test | inertness | Evidence run |\n")
     w("|---|---|---|---|---|---|---|---|---|---|\n")
+
+    def cell(on, unresolved):
+        s = ("**%d**" % on) if on == 0 else str(on)
+        if unresolved:
+            s += " (+%d?)" % unresolved
+        return s
+
     for r in rows:
-        mark = " **<-- FAIL**" if r.gating else (" (allowlisted)" if r.status in GATING_STATUS and r.knob.exp_files == 0 else "")
+        if r.gating:
+            mark = " **<-- FAIL**"
+        elif (
+            r.status in GATING_STATUS
+            and r.knob.exp_files == 0
+            and r.knob.exp_unresolved == 0
+            and (r.claim_id in ALLOWLIST_CLAIMS or r.knob.name in ALLOWLIST_KNOBS)
+        ):
+            mark = " (allowlisted)"
+        else:
+            mark = ""
         ev = r.evidence_from
         if r.evidence_verdict:
             ev = "%s (`%s`)" % (ev, r.evidence_verdict)
         w(
-            "| %s | `%s` | %s | `%s` | `%s` | %d | %s | %d | %s | %s%s |\n"
+            "| %s | `%s` | %s | `%s` | `%s` | %d | %s | %s | %s | %s%s |\n"
             % (
                 r.claim_id,
                 r.status,
@@ -462,8 +604,8 @@ def render(rows, knobs, claims, args, out):
                 r.knob.name,
                 r.knob.default,
                 r.knob.lineno,
-                ("**%d**" % r.knob.exp_files) if r.knob.exp_files == 0 else str(r.knob.exp_files),
-                r.knob.test_files,
+                cell(r.knob.exp_files, r.knob.exp_unresolved),
+                cell(r.knob.test_files, r.knob.test_unresolved),
                 r.inertness,
                 ev,
                 mark,
@@ -565,8 +707,12 @@ def main(argv=None):
     ]
     counts = count_enablements(roots, set(knobs))
     for name, knob in knobs.items():
-        knob.exp_files = counts["exp"].get(name, 0)
-        knob.test_files = counts["test"].get(name, 0)
+        exp = counts["exp"].get(name, {"on": 0, "unresolved": 0})
+        test = counts["test"].get(name, {"on": 0, "unresolved": 0})
+        knob.exp_files = exp["on"]
+        knob.test_files = test["on"]
+        knob.exp_unresolved = exp["unresolved"]
+        knob.test_unresolved = test["unresolved"]
 
     known_inert, mentioned = inertness_index(args.base / "ree-v3/tests/test_flag_inertness.py")
     rows = build_rows(knobs, claims, known_inert, mentioned)
@@ -595,6 +741,8 @@ def main(argv=None):
                     "owner_dataclass": r.knob.owner,
                     "exp_files": r.knob.exp_files,
                     "test_files": r.knob.test_files,
+                    "exp_unresolved": r.knob.exp_unresolved,
+                    "test_unresolved": r.knob.test_unresolved,
                     "inertness": r.inertness,
                     "evidence_from": r.evidence_from,
                     "evidence_verdict": r.evidence_verdict,
