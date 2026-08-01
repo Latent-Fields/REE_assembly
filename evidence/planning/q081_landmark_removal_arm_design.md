@@ -283,3 +283,29 @@ It does not weaken the arm-matched-construction argument above (arms are expecte
 action sequence once the manipulation takes effect — that's the point of the experiment), and it
 is orthogonal to the confirmed bug this section documents. Flagged here rather than chased, since
 it's a reproducibility question, not one that touches any recorded finding's validity.
+
+**Addendum (2026-08-01, same session): corpus-wide audit + permanent guard landed.** The user
+asked whether this bug pattern was fixed corpus-wide, not just in one function. A source-level
+AST audit of every `experiments/*.py` driver found the same shape (agent constructed before
+torch's global RNG is ever seeded, within one function's own local flow) in a further 14 scripts
+beyond the four above — 18 total, including a second family this audit had not previously
+touched, INV-091 (`v3_exq_827`/`827a`/`828`/`828a`), which shares the identical shared-P0-
+template-plus-`arm_cell` shape as Q-081 and is therefore immaterial to its own findings for the
+same reason argued above (arm-matched via `copy.deepcopy`). The other 10
+(`v3_exq_108`/`418j`/`418k`/`615`/`635`/`688`/`785`/`785a`/`787`/`804`/`805`) were flagged but
+NOT individually re-adjudicated by this audit — that triage is unowned follow-on work, tagged in
+the lint's own pinned test.
+
+None of the 18 landed scripts were retro-edited (a completed run's pre-registered emission is
+not rewritten, per this project's standing convention for every other WARN-only corpus lint).
+Instead, two structural guards now exist for all FUTURE work:
+
+- `experiments/_lib/arm_fingerprint.seeded_construct(seed, factory)` — calls `reset_all_rng(seed)`
+  then `factory()`, making correct order a property of the call shape rather than of getting a
+  multi-line sequence right by hand.
+- `validate_experiments.agent_construction_before_seed_lint` (`--checks agent_seed_order`) — a
+  WARN-only static lint, wired into the shared corpus-scan fixture
+  (`tests/contracts/conftest.py`) with a pinned backlog count of 18
+  (`tests/contracts/test_agent_construction_seed_order_lint.py`). It fires only on the
+  unambiguous Tier-1 shape (a real seed call exists in the same function, just too late) — it
+  does not attempt to prove general reproducibility, and a clean result is not proof of it.
