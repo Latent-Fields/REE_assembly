@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "confident-franklin-c8e403",
-  "last_updated_utc": "2026-08-01T21:50:27Z",
+  "last_seen_session": "igw-loop-199",
+  "last_updated_utc": "2026-08-01T22:47:23Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6520,11 +6520,11 @@
     },
     {
       "sd_id": "arc005_dacc_adapter_goal_proximity_training",
-      "title": "Train dacc_adapter on non-degenerate goal_proximity values (ARC-005 channel-1 precision authority)",
+      "title": "Fix dacc_goal_readout wiring gap + add per-candidate-set calibration normalize to DACCtoE3Adapter's L7 goal-readout term (ARC-005 channel-1)",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented",
       "ready": true,
-      "design_doc": null,
+      "design_doc": "REE_assembly/docs/architecture/sd_057_object_bound_incentive_salience.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "ARC-005"
@@ -6537,10 +6537,15 @@
           "target": "dacc_adapter response to goal_proximity within ~1-2 orders of magnitude of other score_bias components, so channel 1 (5-HT rigidity) can carry a detectable precision-monotonicity signal"
         }
       ],
-      "implementation_hint": "The SD-057 L7 dACC-consume bug (reading the collapsed proposer starting state) was fixed in the same session that produced V3-EXQ-848, so goal_proximity now reaches dacc_adapter as a genuine, non-degenerate signal for the first time -- but the adapter itself has never been trained on non-degenerate values of this input, so its response is still ~1e-8. Needs a training pass (or a warm-start / calibration step) so the adapter's weights actually respond to the now-live signal at a comparable scale to the other score_bias components. Verify with the same C_precision_monotonicity criterion V3-EXQ-848 used (Spearman rho over the precision ladder).",
+      "implementation_hint": "SUPERSEDED framing (was a category error -- DACCtoE3Adapter has no nn.Parameter, nothing to train). Probe (2026-08-01, direct instrumentation of REEAgent.select_action on V3-EXQ-848's own driver config) found TWO independent, non-training gaps instead of one: (1) V3-EXQ-848's driver never set dacc_goal_readout_weight (stayed at its 0.0 default), so channel 1 contributed exactly 0.0 in that run; (2) raw goal_proximity is NOT floor-pinned (measured 0.3-0.8 with genuine per-candidate spread ~0.003-0.03) -- the small relative spread is a units/calibration mismatch (z_goal's small operating norm vs the larger e2_world_forward candidate-summary norm), the same mechanism MECH-295's approach-cue bridge would face on the identical goal_proximity() call, not an untrained consumer. Landed: DACCConfig.dacc_goal_readout_normalize (no-op default False) per-candidate-set min-max rescale before the existing weight multiply. See ree-v3/CLAUDE.md 'SD-057 L7 AMEND: dacc_goal_readout calibration fix' and REE_assembly/docs/architecture/sd_057_object_bound_incentive_salience.md (L7 AMEND bullet) for full detail.",
       "priority": 2,
       "added_session": "session-startup-checklist-28b0bd",
-      "last_seen_session": "session-startup-checklist-28b0bd"
+      "last_seen_session": "igw-loop-199",
+      "implementation_status": "implemented",
+      "implemented_session": "igw-loop-199",
+      "implemented_utc": "2026-08-01T22:47:23Z",
+      "validation_experiment": null,
+      "validation_note": "Not queued as part of this landing (out of scope for the delegating task). Recommended follow-on: successor to V3-EXQ-848 setting both dacc_goal_readout_weight=0.5 and dacc_goal_readout_normalize=True, via /queue-experiment."
     },
     {
       "sd_id": "MECH122-SENSORY-GATING-OFFLINE-PROTECTION",

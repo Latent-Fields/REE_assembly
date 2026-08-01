@@ -110,6 +110,47 @@ Both no-op-default, bit-identical OFF, no trained parameters (no phased training
   (0.0; DACCConfig). Biology: Balleine & O'Doherty 2010 (approach_commit should be
   goal-conditioned). MECH-094: waking action selection only.
 
+  - **L7 AMEND -- `arc005_dacc_adapter_goal_proximity_training` calibration fix
+    (IGW-20260801-199, 2026-08-01).** V3-EXQ-848 (the first run to exercise L7's
+    `candidate_summary_source="e2_world_forward"` fix from the same 2026-07-31
+    diagnosis session) found `dacc_adapter`'s goal-readout response was still
+    negligible relative to the other score_bias channels. Two separate, independent
+    gaps, not one:
+    (1) **wiring gap**: `dacc_goal_readout_weight` stays at its 0.0 default unless a
+    caller sets it, and V3-EXQ-848's own driver never did -- so the goal-readout term
+    contributed exactly 0.0 in that run, on top of whatever else was wrong.
+    (2) **calibration gap, confirmed by direct instrumentation** (not by re-running
+    the throwaway diagnosis-session probe, which was never committed and did not
+    reproduce under the live driver's own settings): `GoalState.goal_proximity()` is
+    bounded `[0,1]` by construction and is NOT floor-pinned near zero -- instrumenting
+    `REEAgent.select_action` on V3-EXQ-848's exact per-cell config (seed=1, level=1.0,
+    content=A) showed raw proximity values in the range 0.3-0.8 with genuine
+    per-candidate-set spread of ~0.003-0.03. The spread is small relative to the
+    nominal `[0,1]` range because `z_goal`'s operating norm (~0.08 in the probed cell;
+    exactly 0.0, i.e. `goal_state.is_active()==False`, for the entire episode in at
+    least one other cell -- reward never clears `benefit_threshold` there) is
+    calibrated independently of, and typically much smaller than, the `[0.6, 1.5]`-ish
+    operating norm of the `e2_world_forward` candidate summaries it is compared
+    against -- so the MSE-sum distance is dominated by `||z_world||^2`, a units
+    mismatch, not a broken or "untrained" consumer (`DACCtoE3Adapter` has no
+    `nn.Parameter` anywhere -- there is nothing to train). The same
+    `goal_state.goal_proximity(_candidate_world_summaries(...))` call already backs
+    MECH-295's `compute_approach_cue_score_bias` (agent.py ~6794/6810), so this is a
+    general property of the `e2_world_forward`-summary path, not dACC-specific.
+    **Fix**: new `dacc_goal_readout_normalize` flag (`DACCConfig` / `REEConfig`,
+    default `False`, no-op) rescales `candidate_goal_proximity` to the candidate
+    set's own `[0,1]` range via min-max BEFORE the `dacc_goal_readout_weight`
+    multiply (agent.py, immediately after the existing `goal_proximity()` call at the
+    L7 site), so score_bias reflects the set's relative proximity spread -- what
+    actually matters for influencing an argmin -- rather than its calibration-diluted
+    absolute magnitude. A near-flat candidate set (max-min <= 1e-9) is left
+    unrescaled rather than divided by ~zero. Bit-identical when the flag is off (the
+    only default-changing action is a future validation experiment's driver setting
+    both `dacc_goal_readout_weight` and this flag, mirroring V3-EXQ-637's
+    `dacc_goal_readout_weight=0.5` precedent). No new validation experiment was
+    queued as part of landing this substrate change (out of this session's scope);
+    a successor to V3-EXQ-848 exercising both flags is recommended follow-on work.
+
 - **MECH-436 `drive.wanting_drive_state_modulation`** (drive-coupling leg, split
   from MECH-229 on 2026-06-16 via `/claim-synthesis`). The finer claim that wanting
   is not only dissociable from liking (MECH-229 leg a, established by V3-EXQ-514o)
