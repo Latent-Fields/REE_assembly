@@ -1,0 +1,247 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_840b_mech294_theta_packet_binding_committed_action_falsifier",
+  "run_id": "v3_exq_840b_mech294_theta_packet_binding_committed_action_falsifier_20260801T120516Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T12:05:16Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-294"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-294": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "joint_indistinguishable_from_alternation",
+    "preconditions": [
+      {
+        "name": "ARM_0_OFF::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_0_OFF",
+        "kind": "readiness",
+        "description": "Routed coherence range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability). Applies to all arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_JOINT::joint_route_range_supra_floor",
+        "precondition": "joint_route_range_supra_floor",
+        "arm": "ARM_1_JOINT",
+        "kind": "readiness",
+        "description": "JOINT routed per-candidate coherence cross-candidate RANGE (modulatory_channel_route_range on the coherence source, pre-rescale) clears the floor on >= MIN_SEEDS_FOR_PASS seeds. This is the SAME-STATISTIC safeguard (skill 643 rule): C1/C2 gate on a RANK readout (committed-class TV), which is invariant under a broadcast additive constant -- exactly the 661 scalar-coherence null. A committed-TV difference is a claim result ONLY IF the routed coherence is a genuine supra-floor cross-candidate RANGE, not a rescale-invisible scalar. measured is the MIN_SEEDS_FOR_PASS-th largest per-seed route_range_mean (order statistic matching the count quantifier). Below floor => the manipulation cannot move committed behaviour => substrate_not_ready_requeue, NEVER a substrate verdict.",
+        "control": "JOINT: all four V_s-gated streams co-bound -> compose_per_candidate_coherence full cross-candidate range; 2026-06-19 smoke measured JOINT range 0.1 vs a 0.01 floor (~10x headroom)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.06306,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_1_JOINT::adequate_fresh_selection_sample",
+        "precondition": "adequate_fresh_selection_sample",
+        "arm": "ARM_1_JOINT",
+        "kind": "readiness",
+        "description": "JOINT recorded >= FRESH_SELECT_FLOOR genuine E3 select() calls on the CORRECTED denominator (diagnostics cleared before every select_action, so a latched tick contributes NO row) on >= MIN_SEEDS_FOR_PASS seeds, so the route_range readiness estimate is real and not ~9x pseudo-replicated. Floor 3600/beta_rate_max_steps=20 = 180, the MECH-093-modulated worst-case cadence. measured is the MIN_SEEDS_FOR_PASS-th largest per-seed n_fresh_select (order statistic matching the count quantifier).",
+        "control": "nominal window P1*(steps-measure_after)=3600 ticks at the MECH-093 worst-case cadence beta_rate_max_steps=20 -> 180 selections",
+        "direction": "lower",
+        "applies": true,
+        "measured": 400.0,
+        "threshold": 180.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_JOINT::candidate_first_action_diversity_supra_floor",
+        "precondition": "candidate_first_action_diversity_supra_floor",
+        "arm": "ARM_1_JOINT",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell's mean number of distinct candidate first-action classes > 1.0. The per-candidate coherence gate RANKS candidates by their co-bound action alignment; if the SP-CEM proposer emits a single first-action class the gate has nothing to rank and the committed-TV readout cannot move regardless of binding mode (memo honest-limitation: 'the validation must guard candidate first-action diversity'). This is the positive control that the routed statistic CAN be non-degenerate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "SP-CEM with support_preserving_min_first_action_classes=2 stratifies elites to keep >= 2 first-action classes in the candidate pool",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0022,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_JOINT::adequate_committed_window_sample",
+        "precondition": "adequate_committed_window_sample",
+        "arm": "ARM_1_JOINT",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell recorded >= COMMITTED_WINDOW_FLOOR committed actions in the measurement window (n_p1_ticks_past_window). This is the C1/C2 DV denominator (the HELD action is the committed behaviour across latched ticks, so the committed-class histogram is a per-env-step behavioural readout). A cell with too few committed observations gives an under-powered TV estimate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "nominal window 3600 env steps; early-`done` truncation reduces it, so a per-cell floor guards the TV estimate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3600.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "ARM_1_JOINT::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_1_JOINT",
+        "kind": "readiness",
+        "description": "Routed coherence range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability). Applies to all arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.191417,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_2_ALT::candidate_first_action_diversity_supra_floor",
+        "precondition": "candidate_first_action_diversity_supra_floor",
+        "arm": "ARM_2_ALT",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell's mean number of distinct candidate first-action classes > 1.0. The per-candidate coherence gate RANKS candidates by their co-bound action alignment; if the SP-CEM proposer emits a single first-action class the gate has nothing to rank and the committed-TV readout cannot move regardless of binding mode (memo honest-limitation: 'the validation must guard candidate first-action diversity'). This is the positive control that the routed statistic CAN be non-degenerate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "SP-CEM with support_preserving_min_first_action_classes=2 stratifies elites to keep >= 2 first-action classes in the candidate pool",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0022,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_2_ALT::adequate_committed_window_sample",
+        "precondition": "adequate_committed_window_sample",
+        "arm": "ARM_2_ALT",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell recorded >= COMMITTED_WINDOW_FLOOR committed actions in the measurement window (n_p1_ticks_past_window). This is the C1/C2 DV denominator (the HELD action is the committed behaviour across latched ticks, so the committed-class histogram is a per-env-step behavioural readout). A cell with too few committed observations gives an under-powered TV estimate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "nominal window 3600 env steps; early-`done` truncation reduces it, so a per-cell floor guards the TV estimate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3600.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "ARM_2_ALT::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_2_ALT",
+        "kind": "readiness",
+        "description": "Routed coherence range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability). Applies to all arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.182889,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_3_SHUF::candidate_first_action_diversity_supra_floor",
+        "precondition": "candidate_first_action_diversity_supra_floor",
+        "arm": "ARM_3_SHUF",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell's mean number of distinct candidate first-action classes > 1.0. The per-candidate coherence gate RANKS candidates by their co-bound action alignment; if the SP-CEM proposer emits a single first-action class the gate has nothing to rank and the committed-TV readout cannot move regardless of binding mode (memo honest-limitation: 'the validation must guard candidate first-action diversity'). This is the positive control that the routed statistic CAN be non-degenerate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "SP-CEM with support_preserving_min_first_action_classes=2 stratifies elites to keep >= 2 first-action classes in the candidate pool",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.0022,
+        "threshold": 1.0,
+        "met": true
+      },
+      {
+        "name": "ARM_3_SHUF::adequate_committed_window_sample",
+        "precondition": "adequate_committed_window_sample",
+        "arm": "ARM_3_SHUF",
+        "kind": "readiness",
+        "description": "Worst packet-ON cell recorded >= COMMITTED_WINDOW_FLOOR committed actions in the measurement window (n_p1_ticks_past_window). This is the C1/C2 DV denominator (the HELD action is the committed behaviour across latched ticks, so the committed-class histogram is a per-env-step behavioural readout). A cell with too few committed observations gives an under-powered TV estimate. measured is the WORST cell (all(...) quantifier), offending cell named.",
+        "control": "nominal window 3600 env steps; early-`done` truncation reduces it, so a per-cell floor guards the TV estimate",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3600.0,
+        "threshold": 200.0,
+        "met": true
+      },
+      {
+        "name": "ARM_3_SHUF::routed_range_bounded",
+        "precondition": "routed_range_bounded",
+        "arm": "ARM_3_SHUF",
+        "kind": "readiness",
+        "description": "Routed coherence range stayed finite and below the 643a explosion ceiling (SD-056 online training numerical stability). Applies to all arms -- a blown-up range is a stability failure wherever it appears.",
+        "control": "max route_range across this arm's cells",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1000000.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria": [
+      {
+        "name": "C1_joint_committed_dist_differs_from_alternation",
+        "load_bearing": true,
+        "passed": false
+      },
+      {
+        "name": "C2_joint_committed_dist_differs_from_shuffled",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_joint_committed_dist_differs_from_alternation": true,
+      "C2_joint_committed_dist_differs_from_shuffled": true
+    },
+    "routing": {
+      "joint_binding_behaviourally_load_bearing": "PASS/supports -> substrate-side joint-vs-alternation falsification passed; governance may weigh lifting the 2026-04-26 hold on the joint clause",
+      "multi_content_present_joint_not_isolated": "FAIL/mixed -> do NOT promote joint clause; refine to a genuinely conjunctive readout (memo S7.3)",
+      "joint_indistinguishable_from_alternation": "FAIL/weakens -> /failure-autopsy (wiring vs over-specification); joint clause not promotable, hold stands",
+      "substrate_not_ready_requeue": "FAIL/non_contributory + non_degenerate=false -> re-queue at higher P0 budget or fix diversity/route wiring; do NOT weaken"
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "c295cce654febd38e91ecf848d83507d4b988e39903ae3c28a95d9c0cf75366b",
+  "substrate_commit": {
+    "commit": "bbb25d2cadfbed5fa79431c8a38510657fdbbd50",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 640000,
+    "ticks_active": 0,
+    "writer_calls": 640000,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 40,
+    "goal_state_present": true
+  }
+}
