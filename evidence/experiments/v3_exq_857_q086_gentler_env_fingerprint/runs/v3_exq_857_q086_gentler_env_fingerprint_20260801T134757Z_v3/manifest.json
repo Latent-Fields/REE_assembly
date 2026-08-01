@@ -1,0 +1,120 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_857_q086_gentler_env_fingerprint",
+  "run_id": "v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T13:47:57Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-086"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "arm_harsh_summary": {
+      "arm_id": "ARM_HARSH",
+      "mean_cov_z_harm_a": 0.007056573416787146,
+      "mean_level_z_harm_a": 6.1455064719407915,
+      "mean_level_z_harm_s": 0.45864812396673854,
+      "per_seed_z_harm_s": [
+        0.30762466139781736,
+        0.6474511443540968,
+        0.4208685661483015
+      ],
+      "min_eval_steps": 58,
+      "n_seeds": 3
+    },
+    "arm_gentle_summary": {
+      "arm_id": "ARM_GENTLE",
+      "mean_cov_z_harm_a": 0.03354639160950065,
+      "mean_level_z_harm_a": 6.705124698810074,
+      "mean_level_z_harm_s": 0.38666387742266206,
+      "per_seed_z_harm_s": [
+        0.21214652609419482,
+        0.6489879775047303,
+        0.2988571286690612
+      ],
+      "min_eval_steps": 125,
+      "n_seeds": 3
+    },
+    "preconditions": [
+      {
+        "name": "gentle_env_manipulation_took_z_harm_s_differs",
+        "description": "cross-arm |delta mean z_harm_s| as an SNR against pooled cross-seed SD must exceed Z_HARM_S_SNR_K",
+        "measured": 0.42193705099117423,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ARM_HARSH vs ARM_GENTLE differ only in num_hazards/hazard_food_attraction; a real gentling must move the sensory harm tier z_harm_s beyond seed noise",
+        "met": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "z_harm_s_manipulation_took": false,
+      "sufficient_eval_steps_both_arms": false
+    },
+    "criteria": [
+      {
+        "name": "z_harm_s_manipulation_took",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "discrimination": {
+      "gentle_saturated_sub_floor_cov": true,
+      "level_tracks_hazard_density": false,
+      "cov_tracks_hazard_density": false,
+      "calibration_pathology_representational": false,
+      "faithful_chronic_suffering_ecological": false
+    },
+    "note": "Diagnostic confound control. Once the gentler-env manipulation is confirmed to have moved the sensory tier z_harm_s (readiness precondition), the z_harm_a readout partitions cleanly: a still-saturated, still-high-level gentle arm => representational/calibration pathology; a level/range that tracks hazard density => faithful chronic suffering. Self-routes substrate_not_ready_requeue if z_harm_s did not move. Scoped to raw-warmup agents."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "690c1ccd29756988521395dda420698f16177930f025959c5893a1175ba7706d",
+  "substrate_commit": {
+    "commit": "e6f5619b87fd38f7cd41013c1e36ad3d34e29b43",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 21312,
+    "ticks_active": 0,
+    "writer_calls": 21312,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
