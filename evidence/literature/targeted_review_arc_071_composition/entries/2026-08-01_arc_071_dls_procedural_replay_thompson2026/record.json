@@ -1,0 +1,65 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_071_composition",
+  "entry_id": "2026-08-01_arc_071_dls_procedural_replay_thompson2026",
+  "timestamp_utc": "2026-08-01T23:33:30Z",
+  "claim_ids_tested": ["ARC-071", "MECH-322", "MECH-323"],
+  "source": {
+    "title": "Replay of procedural memory is independent of the hippocampus",
+    "authors": [
+      "Emmett J. Thompson",
+      "Lars B. Rollik",
+      "Benjamin Waked",
+      "Georgina Mills",
+      "Sthitapranjya Pati",
+      "Jasvin Kaur",
+      "Ben Geva",
+      "Haoyu Li",
+      "Rodrigo Carrasco-Davis",
+      "Tom George",
+      "Clementine Domine",
+      "William Dorrell",
+      "Marcus Stephenson-Jones"
+    ],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02362-5",
+    "url": "https://www.nature.com/articles/s41593-026-02362-5",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42493550/",
+    "data_url": "https://doi.org/10.5281/zenodo.20055819",
+    "code_url": "https://github.com/StephensonJonesLab/Thompson_et_al_2026/tree/V1.02",
+    "license": "CC-BY-4.0"
+  },
+  "evidence_class": "rodent_neuropixels_lesion_replay_behavior",
+  "evidence_direction": "supports",
+  "confidence": 0.84,
+  "confidence_rationale": "Strong direct support for the ARC-071/MECH-322 procedural-replay boundary. The paper demonstrates DLS task-sequence replay during sleep, links replay content to later procedural performance improvement, shows DLS offline plasticity is required for consolidation, and shows replay features persist after large bilateral hippocampal lesions. This strengthens the existing MECH-322 carve-out beyond Albouy 2013's human fMRI hippocampal-striatal coupling by adding rodent DLS replay and hippocampal-lesion evidence. Confidence is not higher because the paper does not selectively disrupt DLS replay itself, and the task is motor-procedural rather than REE cognitive/rule chunking.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Any REE wording that treats hippocampal replay as the universal source or orchestrator of all offline replay should be narrowed. Procedural/chunk replay can be striatal and hippocampus-independent.",
+    "MECH-322's sleep-replay carve-out remains necessary: biology permits replay-origin procedural consolidation, but REE still needs replay_origin audit flags and corroboration deadlines because biological replay is not an alignment or safety guarantee.",
+    "A MECH-322 validation should measure replay-origin chunk formation and next-block performance/latency improvement, but should not assume hippocampal replay is the sole causal driver."
+  ],
+  "tags": [
+    "arc-071",
+    "mech-322",
+    "mech-323",
+    "procedural_memory",
+    "dorsolateral_striatum",
+    "sleep_replay",
+    "hippocampal_lesion",
+    "policy_chunking"
+  ],
+  "mapping": {
+    "source_claim_statement": "Dorsolateral striatal neural sequences linked to a learned multistep procedural task replay during post-task sleep; replay content predicts next-day performance improvement; the task and replay features persist after complete bilateral hippocampal lesions.",
+    "ree_translation": "ARC-071 policy chunks should be treated as procedural/DLS-like objects with their own offline replay-consolidation route. MECH-322's sleep-only, value-conditioned, replay_origin-audited chunking path is biologically well motivated: sleep replay can consolidate procedural sequences independently of hippocampal orchestration. MECH-323's DLS-analog formation locus is also strengthened, because the replayed sequences are recorded in the same procedural striatal substrate required for the learned sequence.",
+    "mapping_caveat": "The source does not directly prove causal replay necessity because selective striatal replay disruption remains future work. It also does not refute hippocampal replay for episodic/spatial/schema consolidation; it only rejects hippocampus-as-universal-orchestrator for this procedural task.",
+    "source_context": "Mice learned a multistep nose-poke procedural sequence; DLS lesions, DLS AP5, Neuropixel recordings, PP-Seq replay detection, and bilateral hippocampal lesions were used to dissociate DLS procedural replay from hippocampal replay."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.86,
+    "transfer_risk": 0.22,
+    "notes": "Nature Neuroscience open-access primary study with data and code. Mapping is direct for procedural motor-sequence replay and MECH-322's sleep-replay path; transfer risk remains for non-motor cognitive chunks and for causal attribution to replay rather than other DLS offline processing."
+  }
+}

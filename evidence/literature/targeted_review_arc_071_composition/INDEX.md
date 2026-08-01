@@ -2,7 +2,7 @@
 
 **Pull commissioned:** 2026-05-10 from the policy_primitive_granularity architectural family registration session.
 **Companion pull (deferred):** ARC-070 decomposition-on-prediction-failure (sibling slot under ARC-069 parent).
-**Date:** 2026-05-10. **Entries:** 9.
+**Date:** 2026-05-10. **Entries:** 10. **Updated:** 2026-08-01 with Thompson et al. 2026 procedural DLS replay.
 
 ## Entries
 
@@ -17,6 +17,7 @@
 | 2026-05-10_arc_071_hierarchical_options_botvinick2009 | Botvinick, Niv, Barto, "Hierarchically organized behavior" | 2009 | R4 chunks-of-chunks recursion | supports | 0.72 |
 | 2026-05-10_arc_071_options_framework_sutton1999 | Sutton, Precup, Singh, "Between MDPs and semi-MDPs: Options framework" | 1999 | R4 formal analog, options structure | supports | 0.72 |
 | 2026-05-10_arc_071_sleep_replay_motor_consolidation_albouy2013 | Albouy, King, Maquet, Doyon, "Hippocampus and striatum: sleep-related motor consolidation" | 2013 | R6 SAFETY-CRITICAL (MECH-094 gating) | weakens | 0.78 |
+| 2026-08-01_arc_071_dls_procedural_replay_thompson2026 | Thompson, Rollik, Waked et al., "Replay of procedural memory is independent of the hippocampus" | 2026 | R6 / MECH-322 direct procedural replay; hippocampus-universal-orchestrator boundary | supports | 0.84 |
 
 ## Verdict-by-verdict source mapping
 
@@ -27,6 +28,6 @@
 | R3 LOAD-BEARING transition mechanism for MECH-163 | Yin & Knowlton 2006, Smith & Graybiel 2013 | Graybiel 2008 |
 | R4 chunks-of-chunks recursion | Botvinick / Niv / Barto 2009, Sutton / Precup / Singh 1999 | -- |
 | R5 outcome-consistency threshold + chunk dissolution | Smith & Graybiel 2013, Sakai 2003 | Graybiel 2008 |
-| R6 SAFETY-CRITICAL real-vs-imagined chunking write path | Albouy 2013 | Smith & Graybiel 2013 |
+| R6 SAFETY-CRITICAL real-vs-imagined chunking write path | Albouy 2013, Thompson et al. 2026 | Smith & Graybiel 2013 |
 
 See `synthesis.md` for adjudicated verdicts and lit_conf computation.
