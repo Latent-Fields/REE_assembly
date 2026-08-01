@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T18:17:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3",
+      "queue_id": "V3-EXQ-860",
+      "claim_ids": ["SD-076"],
+      "failed_criterion": "precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear per the formal gate (non_degenerate=false), but the closure-fraction comparison is a robust, gate-independent fact that is highly informative regardless",
+        "biological_reference": "not load-bearing for this diagnostic; see the already-complete lit-pull (e84240108d) for H3's biological read",
+        "prerequisites": "present -- rv_live and f1_recalib_engaged both pass cleanly in both arms, and (new this run) dose_levels_separated ALSO now passes (0.00013 > 0.0001) for the first time in this lineage",
+        "implementation": "complete -- this is EXACTLY the confound-corrected redesign recommended by the V3-EXQ-853 autopsy: N_TRAIN_EPS held at 794a's original 30 (F1 firing count unchanged, decoupling H1's axis), STEPS_PER_EP raised 200->1000 (5x) to match 853's own total exposure (30000 waking steps) via a clean single axis",
+        "environment": "adequate -- same env family throughout the 794a/850/853/860 lineage",
+        "measurement": "TWO DISTINCT FINDINGS, of different character: (1) the closure-fraction comparison (rv_final vs 794a vs smoke) is unaffected by the failed precondition and is highly informative: closure LO=2.9%, HI=2.5%, dramatically LESS than 853's own (confounded) 12-22% closure at the same total exposure. (2) the inflation_lowers_rv precondition failed WRONG-SIGNED in both arms (measured -2.76e-4 LO, -1.46e-4 HI vs threshold +1e-4) -- a qualitatively NEW failure shape not seen in 850 or 853 (both of which were small-POSITIVE-but-sub-threshold, never negative). This is a genuinely new, undiagnosed puzzle distinct from the closure-fraction finding.",
+        "integration": "coupled -- F1 recalibration is confirmed live and unchanged in firing count (30, matching 794a exactly) from this run to 794a, isolating STEPS_PER_EP as the sole difference",
+        "scale": "the manipulated exposure (STEPS_PER_EP 200->1000, 5x) is the confound-corrected version of 853's exposure increase, at matched total training-step budget (30000 both ways)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing for this diagnostic",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not assessed",
+        "lit_status": "present -- see the already-complete /lit-pull e84240108d for H3's biological read, referenced in the sibling V3-EXQ-853 autopsy"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-860 (GOV-FANOUT-1 H2 leg, REDESIGNED per failure_autopsy_V3-EXQ-853_2026-08-01 Section 6 to remove the N_TRAIN_EPS/F1-firing-count confound): holds N_TRAIN_EPS at 794a's original 30 (F1 fires exactly 30 times, matching 794a and the sibling H1 leg exactly) and instead raises STEPS_PER_EP 200->1000 (5x), reaching the SAME total exposure (30000 waking steps) as 853's own 5x N_TRAIN_EPS change but via a clean single axis. RESULT, decisive for the EVB-0454 decision: with the confound properly removed, closure toward the smoke's target is essentially ZERO (LO 2.9%, HI 2.5%) -- dramatically LESS than 853's own confounded 12-22% closure at the SAME total exposure. This is a clean, controlled elimination: since the only difference between 853 and 860 is which axis absorbed the 5x exposure increase (episode COUNT, which also multiplies F1-firing count, vs episode LENGTH, which does not), and removing the F1-firing-count confound collapses the closure almost to nothing, this STRONGLY indicates 853's partial closure was driven by the increased F1-recalibration firing count (H1's axis), NOT by raw exposure duration (H2's axis). H2 (insufficient training exposure) is therefore WEAKENED more strongly and more cleanly by this controlled comparison than by 853 alone, and by elimination this further STRENGTHENS H1 (F1-interaction damping) as the better-supported explanation of 794a's gap. SEPARATELY, and NOT to be conflated with the above: the inflation_lowers_rv precondition failed WRONG-SIGNED in both arms (LO -2.76e-4, HI -1.46e-4) -- inflated rv ended up ABOVE the substrate's own live un-inflated counterfactual, the opposite of 850/853's small-positive-but-sub-threshold readings. This is a genuinely NEW, undiagnosed failure shape (small in magnitude, but qualitatively different in sign) that formally triggers the run's own non_degenerate=false / substrate_not_ready_requeue self-route. This sign-flip does NOT undermine the closure-fraction finding above (a simple three-point magnitude comparison unaffected by the sign of a different precondition), but it IS a distinct puzzle worth its own instrumented follow-up (e.g. logging the rv/wci_symmetric_rv_ref trajectory WITHIN the now-5x-longer episode, not just at its end, to find where/when the crossover occurs) before this exact design is reused for a scored (non-diagnostic) run. RECOMMEND: (1) treat the closure-fraction finding as decision-relevant for EVB-0454 -- it is a materially stronger weakening of H2 than 853 alone provided; (2) mark V3-EXQ-853 evidence_direction as superseded (853 is the confounded predecessor this run was built to correct, per the recorded `supersedes` field) rather than continuing to co-weight it alongside this cleaner result; (3) commission a small follow-up diagnostic on the wrong-signed inflation_lowers_rv puzzle, separate from and not blocking the H2 disposition. Time-sensitive: EVB-0454's SD-076 decision deadline is 2026-08-03T20:50:36Z.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": "failure_autopsy_V3-EXQ-853_2026-08-01", "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A properly confound-decoupled comparison (matched total exposure, F1-firing count held fixed) collapsed 853's partial closure (12-22%) to near-zero (2.5-2.9%) -- strong, clean evidence that F1-firing count (H1's axis), not raw exposure duration (H2's axis), was responsible for 853's partial signal.",
+        "The readiness gate's own non_degenerate=false exclusion (from the unrelated wrong-signed inflation_lowers_rv precondition) does not invalidate the closure-fraction comparison, which is a simple three-point magnitude fact independent of that specific precondition's sign -- a good example of extracting the informative signal from a formally-vacuous run rather than discarding it wholesale.",
+        "A precondition failing WRONG-SIGNED (not just sub-threshold) at a materially different parameter regime (5x longer episodes) is worth flagging as a structurally distinct puzzle from prior sub-threshold-but-correctly-signed failures in the same lineage -- conflating the two would obscure a potentially interesting substrate property (something about longer within-episode horizons changes the sign relationship between the inflated and counterfactual EMAs).",
+        "This is a strong worked example of the GOV-FANOUT-1 principle: a properly-redesigned single-axis probe, even when it fails its own OWN readiness gate for an unrelated reason, can still decisively answer the discrimination question it was built for."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "time_sensitive_note": {
+    "deadline": "EVB-0454 SD-076 decision deadline 2026-08-03T20:50:36Z",
+    "status_as_of_this_autopsy": "H1 alive/partial (V3-EXQ-850). H2 alive but now MORE STRONGLY weakened (V3-EXQ-853 confounded 12-22% closure -> V3-EXQ-860 decoupled 2.5-2.9% closure). H3 alive/weakened by lit-pull (e84240108d, complete). H1 is now the best-supported of the three by process of elimination, though still not confirmed.",
+    "source": "failure_autopsy_V3-EXQ-853_2026-08-01.json time_sensitive_note"
+  },
+  "hypothesis_space_update": {
+    "mode": "B_resolve",
+    "note": "Adds V3-EXQ-860 to H2's resolving_runs and strengthens its basis text with the decoupled-comparison finding; updates the question's decision block to reflect H1's now-relatively-stronger position. Registry qid mech204-sd076-calibration-loop-drift-source-exposure-gap."
+  },
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Confirmed: score H2 as more strongly weakens; recommend /governance mark V3-EXQ-853 superseded; chip the wrong-signed inflation_lowers_rv diagnostic now (chip-20260801-860-sign-flip-diagnostic) despite deadline pressure, since it doesn't block the EVB-0454 decision."
+  }
+}

@@ -2424,12 +2424,14 @@
           "basis": "Same full-loop-vs-smoke magnitude gap as H1; exposure duration is the other structural difference between the isolated smoke and the full behavioural run.",
           "pre_registered_utc": "2026-07-31T21:53:02Z",
           "adjudicating_runs": [
-            "V3-EXQ-853"
+            "V3-EXQ-853",
+            "V3-EXQ-860"
           ],
           "resolution": {
             "state": "alive",
             "resolving_runs": [
-              "V3-EXQ-853"
+              "V3-EXQ-853",
+              "V3-EXQ-860"
             ],
             "evidence_direction": "weakens",
             "epistemic_category": "measurement_test_design_defect",
@@ -2437,8 +2439,8 @@
             "control_passed": true,
             "non_degenerate": false,
             "met_elimination_bar": false,
-            "resolved_utc": "2026-08-01T12:54:47Z",
-            "basis": "5x-extended-exposure INFL-only re-run (V3-EXQ-853, N_TRAIN_EPS 30->150): dose_levels_separated and inflation_lowers_rv preconditions BOTH failed (LO/HI rv differ by 2.48e-05, below the 1e-04 floor), so C1/C2's quantitative gap-closure criteria (0.217/0.122 closure, short of the 0.30 support floor) cannot be scored as a clean confirmation. More informative than a bare gate failure: dose separation SHRANK relative to 794a's own shorter-training run (0.000128 -> 0.0000248, ~5x smaller) rather than growing as H2 predicts. Traced to a design confound -- N_TRAIN_EPS jointly controls total waking exposure (H2's manipulated axis) AND total F1/REM recalibration firings (K=1 fires every episode), so more 'exposure' also means more F1-damping cycles, and the observed shrinkage is more consistent with H1 (F1 interaction) than H2. Recommend a redesign varying STEPS_PER_EP instead of N_TRAIN_EPS to decouple the two axes. See failure_autopsy_V3-EXQ-853_2026-08-01."
+            "resolved_utc": "2026-08-01T18:17:37Z",
+            "basis": "STRENGTHENED 2026-08-01 by V3-EXQ-860, a confound-corrected redesign of the V3-EXQ-853 probe: holds N_TRAIN_EPS fixed at 794a's original 30 (F1/REM recalibration firing count UNCHANGED from 794a, decoupling H1's axis) and instead raises STEPS_PER_EP 200->1000 (5x), reaching the SAME total exposure (30000 waking steps) as 853's own 5x N_TRAIN_EPS change via a single clean axis. RESULT: closure toward the smoke's target collapsed from 853's confounded 12-22% down to 2.5-2.9% once F1-firing count was held fixed. Since the only design difference between 853 and 860 is which axis absorbed the 5x exposure increase (episode count, which also multiplies F1 firings, vs episode length, which does not), this is a clean controlled comparison directly implicating F1-firing count (H1's axis), not raw exposure duration (H2's axis), as the driver of 853's partial signal. H2 is therefore weakened more strongly and more cleanly than by 853 alone. 860 ALSO failed inflation_lowers_rv, but WRONG-SIGNED (negative in both arms, vs 850/853's small-positive-but-sub-threshold readings) -- a separate, new, undiagnosed puzzle (see failure_autopsy_V3-EXQ-860_2026-08-01) that does not undermine the closure-fraction finding above, since that comparison does not depend on this precondition's sign. state stays alive per GOV-FROZEN-1's elimination bar (non_degenerate=false), but H2 is now the most clearly weakened of the three hypotheses. User-confirmed 2026-08-01: recommend /governance mark V3-EXQ-853's own evidence_direction as superseded by this cleaner result."
           }
         },
         {
@@ -2466,11 +2468,11 @@
       "synthesis": null,
       "decision": {
         "decision_question": "Which of H1 (F1-interaction damping), H2 (insufficient training exposure), or H3 (wrong mechanism form) explains why V3-EXQ-794a's full behavioural loop reached only about half the rv reduction the SD-076 headroom repair's own validation smoke demonstrated is achievable at this error scale -- and does the answer support retain_ree, hybridize, or retire_ree_claim for SD-076 under EVB-0454?",
-        "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, partial signal, not confirmed/eliminated. H2 probed 2026-08-01 (V3-EXQ-853): alive, weakened -- dose separation shrank (not grew) with 5x more exposure, and the design is confounded (N_TRAIN_EPS moves both exposure and F1-firing count). H3 resolved via lit-pull 2026-08-01 (e84240108d): alive, weakened by the best-controlled human calibration literature, not eliminated. All three hypotheses now have partial/weakening signal with none confirmed or eliminated -- EVB-0454 decision needs human synthesis across all three, not a clean single-hypothesis winner.",
+        "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, partial signal, not confirmed/eliminated. H2 probed twice 2026-08-01 (V3-EXQ-853, then confound-corrected V3-EXQ-860): alive but now MORE STRONGLY weakened -- the decoupled comparison collapsed 853's 12-22% closure to 2.5-2.9%, cleanly implicating H1's axis (F1-firing count) rather than H2's (exposure duration) as the driver of 853's original partial signal. H3 resolved via lit-pull 2026-08-01 (e84240108d): alive, weakened by the best-controlled human calibration literature, not eliminated. H1 is now the best-supported of the three by process of elimination, though still not formally confirmed.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "all three legs now have a first data point (2 experimental, 1 literature); none met the elimination/confirmation bar; a redesigned H2 probe (decoupled exposure/F1-firing axes) is the next queueable step, but unlikely to land before the 2026-08-03T20:50:36Z deadline.",
-        "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline is now very close: H1/H2 both partial/inconclusive and H3's lit-pull, while complete, only weakens rather than eliminates. Governance will likely need to decide under genuine residual uncertainty across all three hypotheses rather than waiting for a clean resolution."
+        "distance_phrase": "H2 is now clearly the weakest-supported hypothesis after a clean controlled comparison; H1 remains the most likely explanation by elimination but still lacks its own confirming evidence beyond the original partial signal; a separate small diagnostic on V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle is chipped but not expected to resolve before the 2026-08-03T20:50:36Z deadline.",
+        "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline is now very close. Governance will need to decide with H1 relatively favored by elimination but not independently confirmed, H2 clearly weakened, and H3 weakened-not-eliminated by literature."
       },
       "registration_note": "Question and its 3 hypotheses were originally pre-registered by V3-EXQ-794a's autopsy (2026-07-31T21:53:02Z, hypothesis_space_ledger_pending, mode A_pre_register_only) but never applied to this live registry until now -- applied by failure_autopsy_V3-EXQ-850_2026-08-01, which also resolves H1 in the same edit. registered_utc reflects when this question entry actually entered the tracked file; per-hypothesis pre_registered_utc values preserve 794a's original 2026-07-31T21:53:02Z timestamp."
     }

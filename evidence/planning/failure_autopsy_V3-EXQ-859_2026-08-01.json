@@ -1,0 +1,54 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T18:17:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3",
+      "queue_id": "V3-EXQ-859",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "self_route_label": "mixed_partial_result_needs_full_replication",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[] by design; this is a pure routing diagnostic for GOV-FANOUT-1 Leg P-A follow-on and the suspended V3-EXQ-858 allocation",
+        "biological_reference": "not load-bearing",
+        "prerequisites": "present -- p2_fresh_select_sample_adequate_both_arms passed (220 vs 100 floor)",
+        "implementation": "correctly built to the chip's own spec: same seeds (42/43/44) as V3-EXQ-851, short budget (~45min), tracking only MECH-448/449 preconditions",
+        "environment": "same env family as V3-EXQ-851 and V3-EXQ-654j",
+        "measurement": "clean but NEGATIVE result: MECH-448 is ALIVE in BOTH arms (3/3 seeds, lateral_pfc AND none), MECH-449 is DEAD in BOTH arms (0/3 seeds, both route_source values). Neither mechanism discriminates between route_source values at all (criteria_non_degenerate: mech448_ablation_discriminates=false, mech449_ablation_discriminates=false)",
+        "integration": "the SHORT-BUDGET version of this ablation does not reproduce V3-EXQ-851's own finding (MECH-448 dead specifically under lateral_pfc in the FULL ~7.7-hour design) -- here MECH-448 is alive under lateral_pfc at short budget, raising the live possibility that the suppression seen in 851 is a training-duration-dependent effect that only emerges over a longer run, not something a short probe can detect",
+        "scale": "insufficient to answer the causal question this chip was built to answer -- a short probe cannot distinguish 'route_source has no effect' from 'route_source's effect only emerges with more training time'"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing -- control-plane wiring diagnostic",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-859 (targeted short-budget diagnostic, per chip-20260801-arc062-851-diagnostic, isolating whether modulatory_channel_route_source causes V3-EXQ-851's MECH-448/449 collapse): SAME seeds as 851 (42/43/44), ablating route_source ('lateral_pfc' vs 'none') at a short ~45min budget, tracking only MECH-448/449 engagement. Result: NEITHER mechanism discriminates by route_source -- MECH-448 is alive in BOTH arms (3/3 seeds each), MECH-449 is dead in BOTH arms (0/3 seeds each). This does NOT reproduce 851's own finding (MECH-448 specifically dead under lateral_pfc, alive under the analogous route in 654j) -- at short budget, MECH-448 is alive regardless of route_source, and MECH-449 is dead regardless of route_source. Two readings are live and NOT distinguished by this run: (a) route_source genuinely has no causal effect on MECH-448/449, and 851's finding has some OTHER explanation entirely (making 851's own diagnosis wrong); or (b) route_source's suppressive effect on MECH-448 is training-duration-dependent and only emerges over a longer run, which this short probe cannot detect by construction. claim_ids=[] correctly -- this run cannot support or weaken MECH-309/ARC-062 either way. Self-route (mixed_partial_result_needs_full_replication) is well-calibrated and should stand: the honest read is inconclusive, not a discrimination in either direction. The suspended V3-EXQ-858 allocation (ARC-062 Leg P-B, which presupposes MECH-448/449 are active under the lateral_pfc-routed matched-stack config) should REMAIN SUSPENDED -- this run neither confirms nor refutes that presupposition. Recommend a full-training-budget version of THIS SAME ablation (lateral_pfc vs none, same seeds, full duration matching 851's ~7.7h) as the only design that can actually discriminate reading (a) from (b), while flagging the compute cost tradeoff for governance to weigh given V3-EXQ-858 is already sitting suspended on this exact question.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A cheap short-budget probe designed to isolate a causal factor found in a full-length run can fail to reproduce the original finding at all -- this is itself informative (the effect may be training-duration-dependent) but does NOT mean the original finding was spurious. Scaling down duration is not always a safe cost-reduction for reproducing a training-dynamics-dependent effect.",
+        "MECH-449 being dead in BOTH arms of this short probe (matching its deadness in 851's full run) suggests MECH-449's suppression is NOT route_source-dependent at all -- it may need more training exposure to engage regardless of routing, a distinct question from MECH-448's route-dependent-looking collapse.",
+        "A suspended downstream allocation (V3-EXQ-858) that presupposes a config property should stay suspended when a diagnostic returns genuinely inconclusive, rather than being unblocked on an ambiguous result.",
+        "The self-route's own honest 'needs_full_replication' label, rather than forcing a false discrimination either way, is the correct calibration here -- concur rather than push toward a stronger reading than the data supports."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Confirmed: chip the full-training-budget (~7.7h) replication now (chip-20260801-859-full-replication) rather than deferring the compute-cost judgment call to /governance, given V3-EXQ-858 is already sitting suspended on this exact question."
+  }
+}
