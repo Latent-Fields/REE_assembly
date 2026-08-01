@@ -14,10 +14,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -29,10 +29,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -44,10 +44,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -59,10 +59,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -74,10 +74,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -90,10 +90,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -110,10 +110,10 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-07-27"
-        from: "failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)"
-        verdict: "unchanged/measurement_gap"
-        next: "routing=governance-annotation (no re-adjudication)"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:

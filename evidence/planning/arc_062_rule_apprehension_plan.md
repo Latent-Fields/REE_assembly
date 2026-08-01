@@ -3,7 +3,7 @@ closure_plan:
   id: arc_062_rule_apprehension
   title: "Rule Apprehension"
   registered: 2026-05-09
-  last_updated: 2026-07-10
+  last_updated: 2026-08-01
   scope_claims: [MECH-309, ARC-062, ARC-063, ARC-064, ARC-065, ARC-077, MECH-337, MECH-338, MECH-312, MECH-312a, MECH-312b, MECH-312c, MECH-312d, MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-316, MECH-317, MECH-318, MECH-319, Q-043, Q-044, Q-045, SD-054, SD-029, MECH-269]
   sibling_plans: [commitment_closure, sleep_substrate, sd033_governance, goal_pipeline, self_attribution, behavioral_diversity_isolation, conversion_ceiling_campaign]
   nodes:
@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -31,10 +31,10 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -47,7 +47,8 @@ closure_plan:
       blocked_by: []
       governance_2026_07_07: "V3-EXQ-714 (confirmed failure_autopsy_V3-EXQ-714_2026-07-07; governance-apply) RECONFIRMS this node's ceiling: the FULLSTACK selection+valuation composite aborted at C1 readiness (GAP-A consumed-summary divergence 0.004 + OFC devalued-range 0.0007 starved at FULL P0=200; C2 never scored), non_contributory for ARC-062/MECH-309. Re-derive brake FIRED (20th ARC-062 / 19th MECH-309); fullstack re-queue REFUSED; route /implement-substrate f_dominance_conversion_ceiling GAP-A-divergence-survival face. Status stays in-progress (no change) -- acknowledgement of the 2026-07-07 evidence only."
       reconcile_2026_07_09: "COMPETENCE-WALL REFRAME ABSORBED (closure-drift stale-since reconcile; plan-frontmatter only, NO claims.yaml/queue change). failure_autopsy_V3-EXQ-719a_2026-07-08 (confirmed, governance-applied REE_assembly master 07acd6ad29; reclassified ARC-062/MECH-309) reframes this node's ceiling: the conversion-ceiling dissociation diagnostic gave the FIRST direct competence measurement of the integrated all-ON agent (forages 0.065/0.0/0.455 resources/ep, below the 1.0 floor on 0/3 seeds; MI above the shuffle null 3/3 but marginal committed entropy moderate-to-high = diffuse state-blind commitment, NOT literal monomodal collapse). This reframes the whole 654h/485i/625e/460h/460i downstream-behavioural-retest wall -- and 714's C1 readiness abort -- as ONE root: a behavioural-COMPETENCE / training-regime ceiling (thin P1 = 90-ep bias-head-only REINFORCE on a frozen encoder; all-ON mechanism interference a live alternative), NOT another selection lever (MECH-448/449 built + selection-face lifted on GAP-A). GAP-B closes only on a C2 committed-class-entropy PASS, which now requires the all-ON agent to competently commit FIRST. Live path = the brake-EXEMPT V3-EXQ-724 competence-localization diagnostic (running), then /implement-substrate on the localized competence gap. Re-derive brake FIRED (21st ARC-062 / 20th MECH-309); a same-claim behavioural re-test (654-letter, 722, 719b) is REFUSED. Status stays in-progress; ARC-062/MECH-309 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate -- UNWEAKENED. Acknowledgement of the 2026-07-08 evidence only."
-      last_updated: 2026-07-09
+      last_updated: 2026-08-01
+      governance_2026_08_01: "Closure-drift stale-since-review acknowledgement (governance cycle 2026-08-01, session-startup-checklist-28b0bd). Flagged because confirmed failure_autopsy_V3-EXQ-851_2026-08-01 reclassified ARC-062/MECH-309. V3-EXQ-851 (GOV-FANOUT-1 Leg P-A erratum-fix retest, modulatory_channel_route_source corrected 'gated_policy' -> 'lateral_pfc') FAILed non_contributory -- MECH-448/449 flip from robustly-live (654j) to completely dead under IDENTICAL seeds, a deterministic result whose causal path is not yet identified; user explicitly declined to accept the substrate_not_ready_requeue self-route at face value. Does NOT change GAP-B: no H1 verdict was possible from this run, so the MECH-439 F-dominance conversion ceiling this node already waits on is UNCHANGED. ARC-062/MECH-309 stay candidate/substrate_ceiling/v3_pending/pending_retest_after_substrate. Routed /queue-experiment for a cheap targeted diagnostic (lateral_pfc vs none, same seeds, tracking MECH-448/449 directly) before another ~7.7-hour full run. Status stays in-progress; last_updated bumped to acknowledge."
       governance_2026_06_23: "CROSS-PLAN EDGE RECONCILE (session closure-map-enhance-20260623T043407Z; plan-frontmatter only, NO claims.yaml/queue change). GAP-B's actual closure gate -- the MECH-439 F-dominance conversion ceiling -- is named ~12x in this node's owner/governance prose ('the selection-authority CONVERSION coupling (MECH-439 F-dominance live root)', '654i PASS would also close behavioral_diversity_isolation:GAP-I') but carried ZERO map edges to where that root is tracked. Added cross_plan_link to behavioral_diversity_isolation:GAP-I (the F-dominance root-tracking parent; 654i/654j were its downstream confirmers) and conversion_ceiling_campaign:FULLSTACK (the co-armed full-stack arm that is the corrected route after the 18th/19th re-derive brake refused further GAP-B eligibility letters). behavioral_diversity_isolation + conversion_ceiling_campaign added to sibling_plans. No status/owner change -- GAP-B stays in-progress (closes on a C2 PASS, which the FULLSTACK arm now owns)."
       governance_2026_06_21_654i_repoint: "OWNER REPOINTED 654h -> 654i (plan-doc drift reconcile, session plandoc-arc062-gapb-654i-repoint-20260621T1849Z; NO claim-scoring move). V3-EXQ-654h -- the GAP-B committed-class-entropy falsifier on the MECH-448 demotion-enabled selector -- RAN FAIL/non_contributory 2026-06-21T17:57Z (ree-cloud-3) and was autopsied (failure_autopsy_V3-EXQ-654h_2026-06-21, status=confirmed). Five of six self-route gates passed but the MECH-448 non-degeneracy gate FAILED (f_eligibility_excluded_count==0): the 689d-validated absolute envelope floor (0.30) admitted every candidate on the arc_062 bank's SPREAD/non-divergent F pool -> all-admit fallback -> ARM_ON==ARM_OFF structural no-op, so the demotion lever never engaged and the C2 DV never ran through a demoted selector. Identical signature to V3-EXQ-485i (same lever, OFC bank); NOT a MECH-309/ARC-062 weakens. The re-queue gate cleared (failure_autopsy_V3-EXQ-485j: MECH-448 demotion generalises off GAP-A for 654's discrimination/committed-diversity family). V3-EXQ-654i (queued ree-v3 main; supersedes 654h) is now the live owner -- it adds 485j-style per-(arm,seed) envelope-floor calibration so the demotion lever genuinely excludes (excluded_count>0) on the spread arc_062 F pool, and scores a fired-but-non-converting outcome as a genuine weakens (not another silent no-op requeue). owner_exq lead repointed 654h -> 654i; 654h folded into [HISTORY] (654g->654h->654i lineage preserved). Status STAYS in-progress -- a queued successor does not close the gap (GAP-B closes only on a 654i PASS C2 committed-class entropy lift). PROMOTES NOTHING -- MECH-309/ARC-062/ARC-063 stay candidate / substrate_ceiling / v3_pending / pending_retest_after_substrate; MECH-439 unchanged. last_updated stays 2026-06-21."
       governance_2026_06_20_690_ack: "ACK (no status change). failure_autopsy_V3-EXQ-690_2026-06-20 (confirmed; ARC-062 diversity-floor sweep) is the 4th channel to corroborate the MECH-439 F-dominance conversion ceiling that GAP-B already waits on -- a FOURTH inert lever (MECH-313 noise-floor selection-softmax temperature) after the CRF / OFC / dACC channels. 690's signature is BETWEEN-ARM lever-inertness (byte-identical per-seed metrics across a 0.30->2.75 temperature sweep): a selection-softmax temperature floor is architecturally incapable of moving the deterministic committed argmin over F-dominated scores (lever-target mismatch). ARC-062 stays candidate/substrate_ceiling/v3_pending/pending_retest_after_substrate, UNCHANGED; GAP-B status/owner/resume UNCHANGED (still gated on the 689a F-rebalance keystone, NOT on any 654-specific or temperature lever). Bumped last_updated to acknowledge the autopsy."
@@ -77,10 +78,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -96,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -116,10 +117,10 @@ closure_plan:
       status: deferred
       severity: medium
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -133,10 +134,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -150,10 +151,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -168,10 +169,10 @@ closure_plan:
       status: partial
       severity: medium
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -199,10 +200,10 @@ closure_plan:
       status: blocked_pending_substrate
       severity: medium
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -218,10 +219,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -236,10 +237,10 @@ closure_plan:
       status: blocked
       severity: low
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -253,10 +254,10 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -274,10 +275,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-30"
-        from: "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a"
-        verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        as_of: "2026-08-01"
+        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
+        verdict: "non_contributory/measurement_test_design_defect"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:

@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-01T12:27:33Z
+Generated: 2026-08-01T13:56:37Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -48,14 +48,14 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 
 _None._
 
-## Event-provenance drift -- SOFT (84)
+## Event-provenance drift -- SOFT (86)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
 | claim | stored evidence.from | re-projected from |
 |-------|----------------------|-------------------|
 | ARC-003 | `decision:ARC-003@2026-02-25T16:56:17.901452Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-804` |
-| ARC-005 | `_none_` | `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` |
+| ARC-005 | `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` | `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` |
 | ARC-007 | `decision:ARC-007@2026-03-16T18:20:19.360735Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-800` |
 | ARC-016 | `v3_exq_818_arc016_eval_derived_noise_precision_sweep_20260725T185821Z_v3` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-396a` |
 | ARC-018 | `decision:ARC-018@2026-03-16T18:20:19.361124Z` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-801` |
@@ -83,6 +83,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-217 | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-842` |
 | SD-024 | `_none_` | `decision:SD-024@2026-07-26T15:35:35.089092Z` |
 | SD-025 | `failure_autopsy_V3-EXQ-767a_2026-07-17` | `failure_autopsy_V3-EXQ-767a_2026-07-17` |
+| Q-040 | `decision:Q-040@2026-05-08T22:34:09Z` | `failure_autopsy_V3-EXQ-475b_2026-08-01` |
 | MECH-244 | `_none_` | `failure_autopsy_2026-07-28-sweep#V3-EXQ-826a` |
 | MECH-245 | `_none_` | `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` |
 | SD-032a | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
@@ -90,9 +91,10 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-266 | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
 | SD-036 | `decision:SD-036@2026-04-25T15:42:09.107896Z` | `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` |
 | MECH-288 | `decision:MECH-288@2026-07-14T20:19:21.367028Z` | `failure_autopsy_V3-EXQ-839_2026-07-30` |
-| MECH-294 | `failure_autopsy_569f-661-654a_2026-06-10#V3-EXQ-661` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-840` |
+| MECH-294 | `failure_autopsy_569f-661-654a_2026-06-10#V3-EXQ-661` | `failure_autopsy_V3-EXQ-840b_2026-08-01` |
 | SD-049 | `failure_autopsy_V3-EXQ-538a_2026-07-10` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` |
-| ARC-062 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` |
+| MECH-309 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-851_2026-08-01` |
+| ARC-062 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-851_2026-08-01` |
 | ARC-065 | `failure_autopsy_V3-EXQ-569h_2026-06-16` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-614` |
 | MECH-313 | `failure_autopsy_V3-EXQ-687_2026-06-18` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a` |
 | MECH-314 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
@@ -112,9 +114,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | SD-059 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
 | MECH-358 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
 | SD-068 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
-| SD-076 | `failure_autopsy_V3-EXQ-794_2026-07-22` | `failure_autopsy_V3-EXQ-850_2026-08-01` |
-| SD-078 | `v3_exq_806_sd078_centered_rule_field_context_key_20260725T191042Z_v3` | `failure_autopsy_2026-07-28-sweep#V3-EXQ-822b` |
-| ... | | (+24 more) |
+| ... | | (+26 more) |
 
 ## Never reviewed (no `last_reviewed`) -- INFO (942 of 963)
 

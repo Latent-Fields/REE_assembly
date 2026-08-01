@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "frosty-satoshi-2e7cbc",
-  "last_updated_utc": "2026-08-01T00:28:24Z",
+  "last_updated_utc": "2026-08-01T13:52:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6310,7 +6310,7 @@
       "title": "INV-091 driver family: bump default episode/step budget so the surrogate-null validation actually clears",
       "node_class": "complicated (buildable)",
       "status": "implemented",
-      "ready": true,
+      "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
@@ -6322,16 +6322,22 @@
           "experiment_type": "v3_exq_828_inv091_cross_stream_similarity_band_remaining_ablations",
           "metric": "null_validation.checked=false for all 6 arms, needing 2464-2848 steps vs 1500 run",
           "target": "null_validation.checked=true for at least the intact and peak-composite arms"
+        },
+        {
+          "run_id": "v3_exq_828a_inv091_cross_stream_similarity_band_null_validated_20260801T073417Z_v3",
+          "experiment_type": "v3_exq_828a_inv091_cross_stream_similarity_band_null_validated",
+          "metric": "null_validation.checked=false again post-fix -- surrogate needed ~14,648 worst-case steps vs the 3600-step budget the IGW-20260730-192 fix supplied",
+          "target": "null_validation.checked=true for at least the intact and peak-composite arms, with headroom over a per-seed-variable tau_max rather than a single static margin"
         }
       ],
       "implementation_hint": "All three INV-091 runs to date (827, 827a, 828) have needed roughly 2-2.8x more steps than were run for the constrained-realisation surrogate null to validate at all. Bump the default run length for this driver family to >=2848 steps as a standing default so future runs both compare arms AND establish significance against chance.",
       "priority": 3,
       "added_session": "sweet-williams-f30676",
-      "last_seen_session": "sweet-williams-f30676",
+      "last_seen_session": "session-startup-checklist-28b0bd",
       "implementation_status": "implemented",
       "implemented_utc": "2026-07-31T18:56:51Z",
       "implemented_session": "igw-192-substrate-ready-inv091-null-vali",
-      "implementation_note_update": "IMPLEMENTED 2026-07-31 (IGW-20260730-192): new ree-v3/experiments/_lib/inv091_driver_defaults.py provides the standing default eval-phase budget for the INV-091 cross-stream-similarity-band driver family (EVAL_EPISODES 10 -> 24, STEPS_PER_EPISODE unchanged at 150 -> 3600 eval-phase steps total, 26% margin over the worst recorded post-phase-sync-fix deficit, 2848 steps from V3-EXQ-828). 827's 12000-step reading was excluded from the sizing basis -- it was driven by the pre-phase-sync-fix lockstep clock-collapse bug 827a's redesign already corrected, not a property of a correctly-built driver. No ree_core/ or q081_surrogate.py change (the null-validation THRESHOLD is untouched -- only the caller's run length is bumped to clear it); no already-run experiment's recorded result is affected. Smoke-tested: module imports clean, self-asserts its own floor at import time, 5 new contract tests in tests/contracts/test_inv091_null_validation_run_length.py (positive check, warmup/step-length-unchanged check, negative-control against the original undersized 1500-step config, module-self-check-fires-on-regression, documented-import-path check) all pass alongside the existing test_q081_surrogate_null.py + test_q081_landmark_removal.py (66 passed). Follow-on (chipped, not done in this session): queue the next INV-091 driver-family successor experiment via /queue-experiment importing these constants, so the null actually validates on its next run.",
+      "implementation_note_update": "IMPLEMENTED 2026-07-31 (IGW-20260730-192): new ree-v3/experiments/_lib/inv091_driver_defaults.py provides the standing default eval-phase budget for the INV-091 cross-stream-similarity-band driver family (EVAL_EPISODES 10 -> 24, STEPS_PER_EPISODE unchanged at 150 -> 3600 eval-phase steps total, 26% margin over the worst recorded post-phase-sync-fix deficit, 2848 steps from V3-EXQ-828). 827's 12000-step reading was excluded from the sizing basis -- it was driven by the pre-phase-sync-fix lockstep clock-collapse bug 827a's redesign already corrected, not a property of a correctly-built driver. No ree_core/ or q081_surrogate.py change (the null-validation THRESHOLD is untouched -- only the caller's run length is bumped to clear it); no already-run experiment's recorded result is affected. Smoke-tested: module imports clean, self-asserts its own floor at import time, 5 new contract tests in tests/contracts/test_inv091_null_validation_run_length.py (positive check, warmup/step-length-unchanged check, negative-control against the original undersized 1500-step config, module-self-check-fires-on-regression, documented-import-path check) all pass alongside the existing test_q081_surrogate_null.py + test_q081_landmark_removal.py (66 passed). Follow-on (chipped, not done in this session): queue the next INV-091 driver-family successor experiment via /queue-experiment importing these constants, so the null actually validates on its next run. AMENDED 2026-08-01 (confirmed failure_autopsy_V3-EXQ-828a_2026-08-01): the 2026-07-31 fix undershot by roughly 5x -- 828a's actual worst-case seed/stream needed ~14,648 steps, not the 2848-step deficit the fix was sized against. This is the SECOND consecutive miscalibration of the same run-length estimate; a static margin computed from one run's worst case does not generalize across seeds/runs (tau_max is genuinely variable). Recommend either 3-5x headroom over the newly observed 14,648-step worst case, or (better) a per-run dynamic pilot pass that measures actual tau_max before committing to a fixed eval-phase budget. ready=false until re-implemented; do not re-queue a third guess-and-bump.",
       "validation_experiment": null
     },
     {
@@ -6466,6 +6472,30 @@
         "conclusion": "Real substrate defect, not aleatoric. Confirmed at a chunk size already in practical use (chunk_max_size=5, A_HIER_S5) and worsening at larger, plausible successor-experiment sizes (8, 15). Converts this entry from complex (probe-gated) to complicated (buildable): the fix this entry already named (an 'already committed to this exact unexpired program, skip re-selection' short-circuit in select_action's E3-tick branch) is confirmed necessary, not merely hypothetical. Scope correction: reason about MECH-091 phase-reset interaction first, not primarily the MECH-093 adaptive-floor interpolation this entry originally named -- the short-circuit must not swallow a genuine MECH-091 acute-threat release.",
         "recommended_next_step": "/implement-substrate scoped follow-on (NOT done this session): design and land an \"already committed to an unexpired arc071_chunk program, skip re-selection\" short-circuit in select_action's E3-tick branch (ree-v3/ree_core/agent.py), checking e3._persistent_committed_trajectory is non-None, still arc071_chunk-sourced, and _committed_step_idx < chunk_length-1 before falling through to full E3 deliberation. Needs its own design review of interaction surface with the MECH-091 urgency-interrupt release (must still fire on genuine acute z_harm spikes) and the natural-commit latch-hold machinery adjacent to it in agent.py -- per this entry's own prior note, this is architecturally significant, not a small mirror-an-existing-pattern diff. Validate with a contract test mirroring the probe's classification (committed_step_idx reaching chunk_length-1 before the next E3-tick reselection, at chunk_max_size=5 and =15) plus a regression check that MECH-091 release still fires under forced high z_harm_a."
       }
+    },
+    {
+      "sd_id": "SD-hazard-aware-policy-decomposition",
+      "title": "Harm-valence-weighted selection in mid-execution policy redecomposition",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-321"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+          "experiment_type": "v3_exq_844_mech321_r4_midexec_task_effect",
+          "metric": "C1_TASK_OUTCOME_IMPROVES measured -0.003262 vs threshold >0.0",
+          "target": "load-bearing harm-reduction criterion, currently structurally unreachable -- no selection step exists to bias"
+        }
+      ],
+      "implementation_hint": "Extend SD-039's AnchorGoalPayload/build_goal_payload with a signed harm-valence field sourced from z_harm_a/BLA threat_scale (a VALENCE_HARM_DISCRIMINATIVE residue-field channel already exists elsewhere but is not captured here). Build an actual ranked-selection step in _apply_policy_decomposition (ree_core/hippocampal/module.py:896-983) -- currently absent; all surviving tiles are additively recombined with no choice among them. Prerequisite: commission a targeted /lit-pull on threat-modulated defensive path-selection (e.g. Fanselow's predatory-imminence continuum, or comparable graded-defensive-response literature) before fixing the exact functional form, per biology-before-formal-definitions.",
+      "priority": 2,
+      "added_session": "session-startup-checklist-28b0bd",
+      "last_seen_session": "session-startup-checklist-28b0bd"
     }
   ],
   "schema_version": "substrate_queue/v2"
