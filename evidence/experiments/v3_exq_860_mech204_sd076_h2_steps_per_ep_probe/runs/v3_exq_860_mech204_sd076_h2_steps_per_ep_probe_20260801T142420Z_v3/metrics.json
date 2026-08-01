@@ -1,0 +1,50 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_overconfidence_score": {
+      "ARM_INFL_LO": -0.04054295807440159,
+      "ARM_INFL_HI": -0.021911269871550915
+    },
+    "arm_calibration_ratio": {
+      "ARM_INFL_LO": 1.0422764685355494,
+      "ARM_INFL_HI": 1.0226283426541152
+    },
+    "arm_true_error_ref": {
+      "ARM_INFL_LO": 0.003706073502551301,
+      "ARM_INFL_HI": 0.003706073502551301
+    },
+    "arm_rv_final": {
+      "ARM_INFL_LO": 0.003955732819706304,
+      "ARM_INFL_HI": 0.0038256687818516363
+    },
+    "per_level": {
+      "LO": {
+        "asymmetry": 0.6,
+        "infl_arm": "ARM_INFL_LO",
+        "rv_final": 0.003955732819706304,
+        "rv_final_794a": 0.003997733405264173,
+        "rv_final_smoke": 0.0025377,
+        "rv_final_853_confounded": 0.0036801948616908275,
+        "closure_fraction": 0.02876686615966135,
+        "closes_meaningfully": false,
+        "plateaus": true,
+        "n_seeds_overconfident": 0,
+        "infl_score": -0.04054295807440159
+      },
+      "HI": {
+        "asymmetry": 0.8,
+        "infl_arm": "ARM_INFL_HI",
+        "rv_final": 0.0038256687818516363,
+        "rv_final_794a": 0.003870367272153275,
+        "rv_final_smoke": 0.0021031,
+        "rv_final_853_confounded": 0.0036554310790144306,
+        "closure_fraction": 0.02529243369463707,
+        "closes_meaningfully": false,
+        "plateaus": true,
+        "n_seeds_overconfident": 0,
+        "infl_score": -0.021911269871550915
+      }
+    },
+    "readiness_ok": false
+  }
+}
