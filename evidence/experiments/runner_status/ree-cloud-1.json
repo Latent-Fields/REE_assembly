@@ -1,11 +1,122 @@
 {
   "schema_version": "v1",
-  "runner_pid": 4043988,
-  "runner_started_at": "2026-07-20T05:23:11.094414+00:00",
-  "last_updated": "2026-07-30T06:07:02.186140+00:00",
+  "runner_pid": 3973580,
+  "runner_started_at": "2026-08-01T01:35:30.127632+00:00",
+  "last_updated": "2026-08-01T06:25:10.621544+00:00",
   "idle": false,
   "current": null,
-  "queue": [],
+  "queue": [
+    {
+      "queue_id": "V3-EXQ-853",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GOV-FANOUT-1 H2: does 5x training exposure (N_TRAIN_EPS 30->150) close the V3-EXQ-794a full-loop-vs-repair-smoke rv_final gap? (single-axis INFL-only re-run of 794a, F1 held ON)",
+      "description": "",
+      "estimated_minutes": 120.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-475b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-040.c: is dACC behavioural-adjustment magnitude proportional to V_s precision-modulated forward-PE under MECH-269b=ON? (475a-conditions successor)",
+      "description": "",
+      "estimated_minutes": 144.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-851",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-A (H1: selection-authority coupling gap) -- lateral_pfc route source (corrects the design doc's gated_policy erratum)",
+      "description": "",
+      "estimated_minutes": 280.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-840b",
+      "backlog_id": "",
+      "claim_id": "MECH-294",
+      "title": "MECH-294 behavioural falsifier re-run (measurement-window fix): contaminated_harm=0.0 closes self-contamination confound that starved V3-EXQ-840",
+      "description": "",
+      "estimated_minutes": 426.7,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-828a",
+      "backlog_id": "",
+      "claim_id": "INV-091",
+      "title": "INV-091: cross-stream similarity BAND falsifier, null-validated re-run of V3-EXQ-828 (same 6-arm design, eval budget 10->24 episodes)",
+      "description": "",
+      "estimated_minutes": 16.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-836d",
+      "backlog_id": "",
+      "claim_id": "MECH-476",
+      "title": "MECH-476 NOVELTY falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836c)",
+      "description": "",
+      "estimated_minutes": 8000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-836e",
+      "backlog_id": "",
+      "claim_id": "MECH-476",
+      "title": "MECH-476 INTERVAL falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836b)",
+      "description": "",
+      "estimated_minutes": 16000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-847",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-D (H4 diagnostic): context-conditioned (reef vs open) committed-class TV-divergence, ARM_ON vs ARM_OFF",
+      "description": "",
+      "estimated_minutes": 280.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-848",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-005 precision-only decoupled ladder: does the control plane route PRECISION, isolated from channels 3/4's occupancy-only authority? (successor to V3-EXQ-802)",
+      "description": "",
+      "estimated_minutes": 8000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-852",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-085 substrate-readiness diagnostic: E3Config.f_weight reachable and correct through the full agent pipeline (ARC-062 GOV-FANOUT-1 Leg P-B prerequisite, NOT Leg P-B itself)",
+      "description": "",
+      "estimated_minutes": 1.6,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    }
+  ],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3556,6 +3667,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_833_stageh_strict_goal_isolation_dv_20260730T060701Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 196026.2
+    },
+    {
+      "queue_id": "V3-EXQ-854",
+      "backlog_id": "",
+      "claim_id": "SD-036",
+      "title": "SD-036 GABAergic decay regulator: gaba_tone dose-response validation",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-854 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-854.json",
+      "started_at": "2026-08-01T01:35:30.142055+00:00",
+      "completed_at": "2026-08-01T06:25:04.338504+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 17374.2
+    },
+    {
+      "queue_id": "V3-EXQ-829a",
+      "backlog_id": "",
+      "claim_id": "MECH-324",
+      "title": "MECH-324 rapid-reacquisition falsifier RE-RUN: reacquisition-window isolation fix (supersedes 829)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-829a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-829a.json",
+      "started_at": "2026-08-01T06:25:06.321326+00:00",
+      "completed_at": "2026-08-01T06:25:10.619955+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix_20260801T062510Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 4.3
     }
   ]
 }

@@ -1,19 +1,30 @@
 {
   "schema_version": "v1",
   "runner_pid": 11574,
-  "runner_started_at": "2026-07-31T20:07:49.494835+00:00",
-  "last_updated": "2026-07-31T20:59:51.856979+00:00",
+  "runner_started_at": "2026-08-01T00:07:48.767571+00:00",
+  "last_updated": "2026-08-01T00:59:35.150886+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-845",
+      "queue_id": "V3-EXQ-853",
       "backlog_id": "",
-      "claim_id": "MECH-180",
-      "title": "MECH-180 ecological end-to-end: SD-MEL-PRODUCER novelty (world_rule_shift, VALIDATED) -> measured waking MEL -> SWS-write / spindle-density / hippocampal-replay-rate dose-response via the live SD-MEL-CONSUMER SleepLoopManager path",
+      "claim_id": "",
+      "title": "GOV-FANOUT-1 H2: does 5x training exposure (N_TRAIN_EPS 30->150) close the V3-EXQ-794a full-loop-vs-repair-smoke rv_final gap? (single-axis INFL-only re-run of 794a, F1 held ON)",
       "description": "",
-      "estimated_minutes": 150.0,
-      "status": "claimed",
+      "estimated_minutes": 120.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-475b",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-040.c: is dACC behavioural-adjustment magnitude proportional to V_s precision-modulated forward-PE under MECH-269b=ON? (475a-conditions successor)",
+      "description": "",
+      "estimated_minutes": 144.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -29,23 +40,45 @@
       "ree_version": "v3"
     },
     {
+      "queue_id": "V3-EXQ-851",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-A (H1: selection-authority coupling gap) -- lateral_pfc route source (corrects the design doc's gated_policy erratum)",
+      "description": "",
+      "estimated_minutes": 280.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
       "queue_id": "V3-EXQ-840b",
       "backlog_id": "",
       "claim_id": "MECH-294",
       "title": "MECH-294 behavioural falsifier re-run (measurement-window fix): contaminated_harm=0.0 closes self-contamination confound that starved V3-EXQ-840",
       "description": "",
       "estimated_minutes": 426.7,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-828a",
+      "backlog_id": "",
+      "claim_id": "INV-091",
+      "title": "INV-091: cross-stream similarity BAND falsifier, null-validated re-run of V3-EXQ-828 (same 6-arm design, eval budget 10->24 episodes)",
+      "description": "",
+      "estimated_minutes": 16.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-836a",
+      "queue_id": "V3-EXQ-829a",
       "backlog_id": "",
-      "claim_id": "MECH-476",
-      "title": "MECH-476 DOSE-axis consolidation falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836)",
+      "claim_id": "MECH-324",
+      "title": "MECH-324 rapid-reacquisition falsifier RE-RUN: reacquisition-window isolation fix (supersedes 829)",
       "description": "",
-      "estimated_minutes": 12000.0,
+      "estimated_minutes": 15120.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -57,6 +90,50 @@
       "title": "MECH-476 NOVELTY falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836c)",
       "description": "",
       "estimated_minutes": 8000.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-836e",
+      "backlog_id": "",
+      "claim_id": "MECH-476",
+      "title": "MECH-476 INTERVAL falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836b)",
+      "description": "",
+      "estimated_minutes": 16000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-847",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-D (H4 diagnostic): context-conditioned (reef vs open) committed-class TV-divergence, ARM_ON vs ARM_OFF",
+      "description": "",
+      "estimated_minutes": 280.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-848",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-005 precision-only decoupled ladder: does the control plane route PRECISION, isolated from channels 3/4's occupancy-only authority? (successor to V3-EXQ-802)",
+      "description": "",
+      "estimated_minutes": 8000.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-852",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-085 substrate-readiness diagnostic: E3Config.f_weight reachable and correct through the full agent pipeline (ARC-062 GOV-FANOUT-1 Leg P-B prerequisite, NOT Leg P-B itself)",
+      "description": "",
+      "estimated_minutes": 1.6,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -3206,6 +3283,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 3122.3
+    },
+    {
+      "queue_id": "V3-EXQ-850",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "GOV-FANOUT-1 H1: does F1/REM precision recalibration damp SD-076 drift before eval? (single-axis INFL-only re-run of 794a, F1 disabled)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C2_HI_h1_f1_damping_confirmed: FAIL (load-bearing) | C_MONO_dose_response_direction: PASS | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-850 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-850.json",
+      "started_at": "2026-08-01T00:07:48.780020+00:00",
+      "completed_at": "2026-08-01T00:48:23.719072+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_850_mech204_sd076_h1_f1_damping_probe/v3_exq_850_mech204_sd076_h1_f1_damping_probe_20260801T000749Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2434.9
+    },
+    {
+      "queue_id": "V3-EXQ-849",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-081 cheap reach pre-flight SCAN: does any lever (iei_permute replication, or untried jitter) give the cross-stream recording manipulation precursor-level reach to operating_mode? H1/H2 discriminator, follow-on of V3-EXQ-838 autopsy",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_849_q081_reach_preflight_scan] label=q081_reach_preflight_no_lever_found outcome=PASS n_non_degenerate=9 n_reach_cells=0 elapsed=669.8s | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-849 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-849.json",
+      "started_at": "2026-08-01T00:48:24.976289+00:00",
+      "completed_at": "2026-08-01T00:59:35.150096+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_849_q081_reach_preflight_scan_20260801T005934Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 670.2
     }
   ]
 }
