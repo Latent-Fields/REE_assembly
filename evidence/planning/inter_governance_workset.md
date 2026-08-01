@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-01T18:19:08Z`
+Generated: `2026-08-01T19:38:59Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,12 +9,14 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **247** (ready 29, in_flight 0, blocked 149)
-- By generation: clinical 11, meta 4, process 4, v3 88, v4 77, v5 38, v6 25
+- Items: **245** (ready 30, in_flight 0, blocked 147)
+- By generation: clinical 11, meta 4, process 4, v3 86, v4 77, v5 38, v6 25
 - Pending review: **2**
-- Queue pending (unclaimed): **0**
+- Queue pending (unclaimed): **2**
 
-- Live EXQs: V3-EXQ-847, V3-EXQ-858
+- Live EXQs: V3-EXQ-847, V3-EXQ-858, V3-EXQ-861, V3-EXQ-862
+
+- Auto-absorbed retests (queued, suppressed from workset): MECH-180 -> V3-EXQ-861
 
 ## Work packages
 
@@ -207,30 +209,6 @@ Instructions:
 
 </details>
 
-### IGW-20260801-218 -- Implement substrate: INV091-NULL-VALIDATION-RUN-LENGTH (unblocks INV-091)
-
-- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
-- **Blocked by:** ready=false (no ready_blocked_by detail)
-- **Why now:** substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of INV-091. See blocked_by.
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260801-218
-Title: Implement substrate: INV091-NULL-VALIDATION-RUN-LENGTH (unblocks INV-091)
-Lane: substrate | Skill: /implement-substrate
-Status: blocked
-Claims: INV-091
-Blocked by: ready=false (no ready_blocked_by detail)
-Why now: substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of INV-091. See blocked_by.
-
-Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
 ### IGW-20260801-092 -- Inferred state must not collapse to perceived observation (invariant)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 25 | **Generation:** v4
@@ -382,7 +360,7 @@ Instructions:
 ### IGW-20260801-197 -- Substrate ready: MECH324-REACQ-WINDOW-GATING-DECOUPLE
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
-- **Why now:** 829's pre-registered authoring probe and confirmed result both show r_reacq is flat across all tested f_reacq values (1.0, 0.5, 0.25, 0.1) and depends only on window length W -- the reduced repetition
+- **Why now:** LIKELY ALREADY LANDED, verify before building: session clever-fermat-ea60a4 implemented+landed this exact fix today (ree-v3 7747a01c94, REE_assembly 1c69d0ca82) but the substrate_queue.json sd_id=MECH324-REACQ-WINDOW-GATING-DECOUPLE entry was never flipped to implemented (still pending_implementation/ready:true as of this regen). Check ree-v3 CLAUDE.md for the landed use_chunk_dissolution_retention sub-flag before re-implementing.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -395,7 +373,8 @@ Claims: MECH-324, MECH-323
 Why now: 829's pre-registered authoring probe and confirmed result both show r_reacq is flat across all tested f_reacq values (1.0, 0.5, 0.25, 0.1) and depends only on window length W -- the reduced repetition
 
 Instructions:
-- Use /implement-substrate for the SD/MECH named in title.
+- VERIFY FIRST: check ree-v3/CLAUDE.md and git log for the reacquisition-window-isolation fix (clever-fermat-ea60a4, 2026-07-31/08-01) before starting -- it may already be landed and only substrate_queue.json needs its status flipped to implemented.
+- If genuinely unimplemented, use /implement-substrate for the SD/MECH named in title.
 - Workset: http://localhost:8000/workset
 ```
 
@@ -670,9 +649,8 @@ Instructions:
 
 ### IGW-20260801-217 -- Retest after substrate: INV-091
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** INV091-NULL-VALIDATION-RUN-LENGTH [implemented]
-- **Why now:** Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28 | **Generation:** v3
+- **Why now:** claims.yaml pending_retest_after_substrate=true.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
@@ -680,10 +658,9 @@ Instructions:
 REE inter-governance work item: IGW-20260801-217
 Title: Retest after substrate: INV-091
 Lane: experiment | Skill: /queue-experiment
-Status: blocked
+Status: ready
 Claims: INV-091
-Blocked by: INV091-NULL-VALIDATION-RUN-LENGTH [implemented]
-Why now: Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
+Why now: claims.yaml pending_retest_after_substrate=true.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -1141,7 +1118,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-200 -- Queue depth low (0 pending)
+### IGW-20260801-200 -- Queue depth low (2 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1150,7 +1127,7 @@ Instructions:
 
 ```
 REE inter-governance work item: IGW-20260801-200
-Title: Queue depth low (0 pending)
+Title: Queue depth low (2 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -2645,6 +2622,30 @@ Instructions:
 
 </details>
 
+### IGW-20260801-218 -- Proposal for Q-086
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260801-218
+Title: Proposal for Q-086
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: Q-086
+Proposal backlog id (stable): EVB-0481
+Why now: insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
 ### IGW-20260801-219 -- Proposal for Q-086
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
@@ -2669,63 +2670,15 @@ Instructions:
 
 </details>
 
-### IGW-20260801-220 -- Proposal for Q-086
+### IGW-20260801-220 -- Proposal for INV-034
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
+- **Why now:** low_exp_conf
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
 REE inter-governance work item: IGW-20260801-220
-Title: Proposal for Q-086
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: Q-086
-Proposal backlog id (stable): EVB-0481
-Why now: insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260801-221 -- Proposal for MECH-203
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** low_exp_conf
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260801-221
-Title: Proposal for MECH-203
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-203
-Proposal backlog id (stable): EVB-0157
-Why now: low_exp_conf
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260801-222 -- Proposal for INV-034
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** low_exp_conf
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260801-222
 Title: Proposal for INV-034
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -2741,7 +2694,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-223 -- Proposal for MECH-166
+### IGW-20260801-221 -- Proposal for MECH-166
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
 - **Why now:** low_exp_conf
@@ -2749,13 +2702,37 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-223
+REE inter-governance work item: IGW-20260801-221
 Title: Proposal for MECH-166
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: MECH-166
 Proposal backlog id (stable): EVB-0475
 Why now: low_exp_conf
+
+Instructions:
+- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
+- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260801-222 -- Proposal for MECH-123
+
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** insufficient_experimental_replication; low_exp_conf
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260801-222
+Title: Proposal for MECH-123
+Lane: experiment | Skill: /queue-experiment
+Status: ready
+Claims: MECH-123
+Proposal backlog id (stable): EVB-0139
+Why now: insufficient_experimental_replication; low_exp_conf
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5236,7 +5213,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-224 -- Confirm evidence: MECH-203 (lit 0.88, exp ~0)
+### IGW-20260801-223 -- Confirm evidence: MECH-166 (lit 0.88, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.88, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5244,30 +5221,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-224
-Title: Confirm evidence: MECH-203 (lit 0.88, exp ~0)
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-203
-Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.88, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260801-225 -- Confirm evidence: MECH-166 (lit 0.88, exp ~0)
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
-- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.88, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260801-225
+REE inter-governance work item: IGW-20260801-223
 Title: Confirm evidence: MECH-166 (lit 0.88, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5282,7 +5236,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-226 -- Confirm evidence: MECH-122 (lit 0.87, exp ~0)
+### IGW-20260801-224 -- Confirm evidence: MECH-122 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5290,7 +5244,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-226
+REE inter-governance work item: IGW-20260801-224
 Title: Confirm evidence: MECH-122 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5305,15 +5259,15 @@ Instructions:
 
 </details>
 
-### IGW-20260801-227 -- Confirm evidence: MECH-292 (lit 0.87, exp ~0)
+### IGW-20260801-225 -- Confirm evidence: MECH-292 (lit 0.87, exp ~0)
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-227
+REE inter-governance work item: IGW-20260801-225
 Title: Confirm evidence: MECH-292 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5328,7 +5282,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-228 -- Confirm evidence: MECH-267 (lit 0.87, exp ~0)
+### IGW-20260801-226 -- Confirm evidence: MECH-267 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5336,7 +5290,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-228
+REE inter-governance work item: IGW-20260801-226
 Title: Confirm evidence: MECH-267 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5351,7 +5305,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-229 -- Confirm evidence: MECH-293 (lit 0.87, exp ~0)
+### IGW-20260801-227 -- Confirm evidence: MECH-293 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5359,7 +5313,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-229
+REE inter-governance work item: IGW-20260801-227
 Title: Confirm evidence: MECH-293 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5374,7 +5328,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-230 -- Confirm evidence: SD-014 (lit 0.87, exp ~0)
+### IGW-20260801-228 -- Confirm evidence: SD-014 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5382,7 +5336,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-230
+REE inter-governance work item: IGW-20260801-228
 Title: Confirm evidence: SD-014 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5397,7 +5351,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-231 -- Confirm evidence: MECH-191 (lit 0.87, exp ~0)
+### IGW-20260801-229 -- Confirm evidence: MECH-191 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5405,7 +5359,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-231
+REE inter-governance work item: IGW-20260801-229
 Title: Confirm evidence: MECH-191 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5420,7 +5374,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-232 -- Confirm evidence: MECH-074 (lit 0.86, exp ~0)
+### IGW-20260801-230 -- Confirm evidence: MECH-074 (lit 0.86, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.86, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5428,7 +5382,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-232
+REE inter-governance work item: IGW-20260801-230
 Title: Confirm evidence: MECH-074 (lit 0.86, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5443,7 +5397,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-233 -- Confirm evidence: SD-039 (lit 0.86, exp ~0)
+### IGW-20260801-231 -- Confirm evidence: SD-039 (lit 0.86, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.86, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5451,7 +5405,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-233
+REE inter-governance work item: IGW-20260801-231
 Title: Confirm evidence: SD-039 (lit 0.86, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5466,7 +5420,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-234 -- Confirm evidence: MECH-269 (lit 0.85, exp ~0)
+### IGW-20260801-232 -- Confirm evidence: MECH-269 (lit 0.85, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.85, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5474,7 +5428,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-234
+REE inter-governance work item: IGW-20260801-232
 Title: Confirm evidence: MECH-269 (lit 0.85, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5489,7 +5443,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-235 -- Confirm evidence: INV-064 (lit 0.84, exp ~0)
+### IGW-20260801-233 -- Confirm evidence: INV-064 (lit 0.84, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.84, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5497,7 +5451,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-235
+REE inter-governance work item: IGW-20260801-233
 Title: Confirm evidence: INV-064 (lit 0.84, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5512,7 +5466,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-236 -- Confirm evidence: MECH-282 (lit 0.83, exp ~0)
+### IGW-20260801-234 -- Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.83, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5520,7 +5474,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-236
+REE inter-governance work item: IGW-20260801-234
 Title: Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5535,7 +5489,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-237 -- Confirm evidence: MECH-286 (lit 0.82, exp ~0)
+### IGW-20260801-235 -- Confirm evidence: MECH-286 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.82, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5543,7 +5497,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-237
+REE inter-governance work item: IGW-20260801-235
 Title: Confirm evidence: MECH-286 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5558,7 +5512,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-238 -- Confirm evidence: MECH-074d (lit 0.81, exp ~0)
+### IGW-20260801-236 -- Confirm evidence: MECH-074d (lit 0.81, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.81, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5566,7 +5520,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-238
+REE inter-governance work item: IGW-20260801-236
 Title: Confirm evidence: MECH-074d (lit 0.81, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5581,7 +5535,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-239 -- Confirm evidence: MECH-338 (lit 0.79, exp ~0)
+### IGW-20260801-237 -- Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.79, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5589,7 +5543,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-239
+REE inter-governance work item: IGW-20260801-237
 Title: Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5604,7 +5558,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-240 -- Confirm evidence: MECH-232 (lit 0.78, exp ~0)
+### IGW-20260801-238 -- Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.78, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5612,7 +5566,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-240
+REE inter-governance work item: IGW-20260801-238
 Title: Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5627,7 +5581,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-241 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
+### IGW-20260801-239 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5635,7 +5589,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-241
+REE inter-governance work item: IGW-20260801-239
 Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5650,7 +5604,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-242 -- Confirm evidence: MECH-074c (lit 0.76, exp ~0)
+### IGW-20260801-240 -- Confirm evidence: MECH-074c (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5658,7 +5612,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-242
+REE inter-governance work item: IGW-20260801-240
 Title: Confirm evidence: MECH-074c (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5673,7 +5627,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-243 -- Confirm evidence: SD-009 (lit 0.73, exp ~0)
+### IGW-20260801-241 -- Confirm evidence: SD-009 (lit 0.73, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.73, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5681,7 +5635,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-243
+REE inter-governance work item: IGW-20260801-241
 Title: Confirm evidence: SD-009 (lit 0.73, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5696,7 +5650,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-244 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
+### IGW-20260801-242 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5704,7 +5658,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-244
+REE inter-governance work item: IGW-20260801-242
 Title: Confirm evidence: SD-024 (lit 0.70, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5719,7 +5673,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-245 -- Confirm evidence: MECH-217 (lit 0.70, exp ~0)
+### IGW-20260801-243 -- Confirm evidence: MECH-217 (lit 0.70, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5727,7 +5681,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-245
+REE inter-governance work item: IGW-20260801-243
 Title: Confirm evidence: MECH-217 (lit 0.70, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5742,7 +5696,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-246 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
+### IGW-20260801-244 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.69, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5750,7 +5704,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-246
+REE inter-governance work item: IGW-20260801-244
 Title: Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5765,7 +5719,7 @@ Instructions:
 
 </details>
 
-### IGW-20260801-247 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
+### IGW-20260801-245 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.68, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5773,7 +5727,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260801-247
+REE inter-governance work item: IGW-20260801-245
 Title: Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
