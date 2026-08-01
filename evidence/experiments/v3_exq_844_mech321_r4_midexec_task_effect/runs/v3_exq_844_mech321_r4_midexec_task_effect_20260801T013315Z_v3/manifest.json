@@ -1,0 +1,180 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_844_mech321_r4_midexec_task_effect",
+  "run_id": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T01:33:15Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "midexec_decomposition_does_not_reduce_harm",
+    "preconditions": [
+      {
+        "name": "ARM_HANDLE_OFF::multi_action_commits_present",
+        "precondition": "multi_action_commits_present",
+        "arm": "ARM_HANDLE_OFF",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM committed a MULTI-ACTION program. Gate (6) of the mid-execution conjunction requires len(remaining) > 1 -- carried over from V3-EXQ-839's identical precondition. EXISTENTIAL, both arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 139.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_OFF::decomposition_precommit_live",
+        "precondition": "decomposition_precommit_live",
+        "arm": "ARM_HANDLE_OFF",
+        "kind": "readiness",
+        "description": "Pre-commit decomposition evaluated at least once (V3-EXQ-830's known-reachable phase) -- a zero means the decomposition machinery is not running at all, a config error rather than a finding about this run's question.",
+        "control": "BEST cell of this arm (positive control)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1724.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_OFF::off_forward_pe_varies",
+        "precondition": "off_forward_pe_varies",
+        "arm": "ARM_HANDLE_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: committed-trajectory forward PE must have non-zero variance across the whole run (world_forward learned something informative) -- else the DV is a degenerate constant and any ON-vs-OFF delta would be noise, not signal. Mirrors V3-EXQ-816's P3.",
+        "control": "WORST OFF-arm cell (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.3049017738894466e-06,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_OFF::off_forward_pe_bounded",
+        "precondition": "off_forward_pe_bounded",
+        "arm": "ARM_HANDLE_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: forward PE must be bounded (no explosion / divergence in the online forward model).",
+        "control": "WORST OFF-arm cell (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.006763479134921605,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_ON::multi_action_commits_present",
+        "precondition": "multi_action_commits_present",
+        "arm": "ARM_HANDLE_ON",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM committed a MULTI-ACTION program. Gate (6) of the mid-execution conjunction requires len(remaining) > 1 -- carried over from V3-EXQ-839's identical precondition. EXISTENTIAL, both arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 139.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_ON::decomposition_precommit_live",
+        "precondition": "decomposition_precommit_live",
+        "arm": "ARM_HANDLE_ON",
+        "kind": "readiness",
+        "description": "Pre-commit decomposition evaluated at least once (V3-EXQ-830's known-reachable phase) -- a zero means the decomposition machinery is not running at all, a config error rather than a finding about this run's question.",
+        "control": "BEST cell of this arm (positive control)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1724.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_HANDLE_ON::midexec_decomposition_occurs",
+        "precondition": "midexec_decomposition_occurs",
+        "arm": "ARM_HANDLE_ON",
+        "kind": "readiness",
+        "description": "At least one ON-arm cell shows decomp_n_decomposed_midexec > 0 THIS run. Reachability (V3-EXQ-839's C1) is necessary but NOT sufficient for a task-outcome test: a seed can evaluate the hook without ever deciding to decompose (839's seed 47), which produces no divergence to measure. EXISTENTIAL, ON arm only -- OFF structurally cannot decompose by design, that is the negative control, not a readiness failure.",
+        "control": "BEST ON-arm cell (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 77.0,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_TASK_OUTCOME_IMPROVES",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.0032616389872131522,
+        "threshold": 0.0,
+        "statement": "On seeds where mid-execution decomposition actually fired (decomp_n_decomposed_midexec > 0), the paired post-divergence-window mean harm signal, restricted to FRESH e3-selection ticks (hold-weighting confound removed -- see module docstring), is LESS negative (less harmful) in ARM_HANDLE_ON than ARM_HANDLE_OFF, by an effect exceeding 1.0 x SE over >= 2 paired seeds."
+      },
+      {
+        "name": "C2_FORWARD_PE_CORROBORATES",
+        "load_bearing": false,
+        "passed": true,
+        "measured": 0.00024711270941709117,
+        "threshold": 0.0,
+        "statement": "Mechanistic corroboration (fresh-selection-restricted): post-divergence-window forward-prediction error is also lower in ON than OFF, consistent with the causal story (abort a stale macro -> lower forward-PE -> lower harm). Non-load-bearing: harm is the task-outcome DV this claim actually asks about. See summary.all_tick_harm_delta_mean for the hold-weighted (realised, full-window) corroboration."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_TASK_OUTCOME_IMPROVES": true,
+      "C2_FORWARD_PE_CORROBORATES": true
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "3ad9562b0b7f1232a28ec480743b818ddd7e664e34284bd4c244bece9f412f0f",
+  "substrate_commit": {
+    "commit": "ad1f2a4271ae22dd7a35486535dfa58f519d3879",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 8640,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 12,
+    "goal_state_present": false
+  }
+}
