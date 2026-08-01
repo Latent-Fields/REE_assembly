@@ -1,0 +1,78 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_025",
+  "entry_id": "2026-08-01_sd_025_mouse_ofc_information_value_bussell2026",
+  "timestamp_utc": "2026-08-01T23:53:28Z",
+  "claim_ids_tested": [
+    "SD-025",
+    "MECH-111",
+    "MECH-314b"
+  ],
+  "source": {
+    "title": "Representations of the intrinsic value of information in mouse orbitofrontal cortex",
+    "authors": [
+      "Jennifer J. Bussell",
+      "Ryan P. Badman",
+      "David Marton",
+      "Ethan S. Bromberg-Martin",
+      "L. F. Abbott",
+      "Kanaka Rajan",
+      "Richard Axel"
+    ],
+    "year": 2026,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/s41593-026-02377-y",
+    "preprint_doi": "10.1101/2023.10.13.562291",
+    "pubmed_preprint": "39416043",
+    "pmcid_preprint": "PMC11482914",
+    "url": "https://doi.org/10.1038/s41593-026-02377-y",
+    "code_repository": "https://github.com/jjbussell/Bussell2026InfoValue",
+    "data_repositories": [
+      "10.5281/zenodo.20450673",
+      "10.5281/zenodo.20452041",
+      "10.5281/zenodo.20466860",
+      "10.5281/zenodo.20470580",
+      "10.5281/zenodo.20470622",
+      "10.5281/zenodo.20477351",
+      "10.5281/zenodo.20479276",
+      "10.5281/zenodo.20480778",
+      "10.25452/figshare.plus.32582997"
+    ],
+    "secondary_trigger": "https://neurosciencenews.com/ofc-curiosity-information-value-neuroscience-31156/"
+  },
+  "evidence_class": "mouse_behavior_calcium_imaging",
+  "evidence_direction": "supports",
+  "confidence": 0.71,
+  "confidence_rationale": "Strong support for the high-level SD-025 design premise: information can be intrinsically valued, traded against water reward, and represented in a decision-value circuit separately from extrinsic reward value. Held at 0.71 because the paper is OFC information-value behavior/calcium imaging, not a hippocampal density-following or online trajectory-planning experiment; it supports the drive primitive more than SD-025's specific CEM density proxy. Secondary support for MECH-111 and MECH-314b is conceptual, not enough to update their implementation state.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "If REE collapses information value into ordinary reward/water value, it misses the source's central dissociation between intrinsic information value and extrinsic reward value.",
+    "If SD-025 is read as directly validated by this source, it overclaims: Bussell et al. do not test hippocampal representational density, familiarity discounting, or CEM trajectory scoring.",
+    "If MECH-314b remains a broadcast scalar across candidates, this paper cannot rescue it; the source motivates a separable information-value axis, but REE still needs a per-candidate uncertainty/information readout to affect action selection."
+  ],
+  "tags": [
+    "sd-025",
+    "mech-111",
+    "mech-314b",
+    "curiosity",
+    "information_value",
+    "information_seeking",
+    "orbitofrontal_cortex",
+    "intrinsic_motivation",
+    "uncertainty_resolution",
+    "mouse_behavior",
+    "calcium_imaging"
+  ],
+  "mapping": {
+    "source_claim_statement": "Mice choose advance information about uncertain water outcomes even when it carries no instrumental reward advantage and even when it costs water; mouse OFC population activity contains separable representations of predicted/received information value and water reward value, and the information-value representation scales with delay and emerges with learning.",
+    "ree_translation": "SD-025's core design decision -- an extrinsic-reward-independent information-seeking drive can bias action selection -- is biologically plausible. The strongest transfer is the separable information-value axis: REE should preserve information value as its own drive/score component rather than folding it into ordinary reward.",
+    "mapping_caveat": "The source is not evidence for SD-025's specific density-of-RBF-centers proxy, its hippocampal placement, or its familiarity EMA. It is also not a direct MECH-314b implementation result because the REE substrate still lacks a per-candidate uncertainty/information-value readout.",
+    "source_context": "Open-access Nature Neuroscience mouse odor-choice task with behavior, microendoscope OFC calcium imaging, latent variable/decoding analyses, delay and learning manipulations, source data, Zenodo/Figshare datasets, and GitHub analysis code."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.64,
+    "transfer_risk": 0.38,
+    "notes": "High-quality primary empirical source with task manipulations and open data/code. Mapping fidelity moderate: excellent for intrinsic information value and OFC separability, weaker for SD-025's hippocampal density proxy and online planning locus."
+  }
+}
