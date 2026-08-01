@@ -471,6 +471,34 @@ echo "--- Step 3i: Dry-run adjudication leak (GOV-DRY-1, warn-only) ---"
 # it recommends is governance's. --strict for a blocking CI gate.
 "$PYTHON" scripts/check_dry_run_adjudication_leak.py || true
 
+echo "--- Step 3j: Skill-improvement recurrence audit (GOV-SKILL-1, warn-only) ---"
+# The SEVENTH sibling, and the first that audits the SKILLS themselves rather
+# than the claims registry. The others ask what a set of verdicts MEANS
+# (3e/3f/3g), whether the verdict was RECORDED (GOV-CAT-1), whether it was
+# APPLIED (3h), or whether it rests on evidence that DOES NOT EXIST (GOV-DRY-1).
+# This one asks whether a non-outcome LESSON (a reusable code bug, a
+# methodology caveat, a schema-legibility gap -- roughly half of every
+# autopsy's `learning_extracted[]`, per the 2026-08-01 scoping session) keeps
+# recurring across independent autopsies/review cycles without ever being
+# folded into a skill checklist. Standing counterpart to the same session's
+# two REACTIVE, single-incident additions (`/queue-experiment` Step 3.5,
+# `/governance` Step 2b) -- see
+# evidence/planning/skill_improvement_audit_scoping_2026-08-01.md.
+#
+# Self-flagged-repeat keyword/regex detection over `learning_extracted[]` +
+# review_tracker.json prose (recurring/twice/same signature/PROCESS
+# recurrence/third instance/etc), clustered by a cheap token-overlap
+# heuristic, threshold-gated (>=2 independent files, OR a single entry citing
+# >=2 distinct run ids, OR a strong self-flag phrase -- see the module
+# docstring "design decisions" for the full calibration). NEVER auto-edits a
+# SKILL.md -- read-only over the corpus, its only writes are its own pointer
+# state (incremental-scan bookkeeping) and an optional markdown proposal a
+# human reviews. Pointer-based incremental (only re-parses autopsy files whose
+# mtime changed since the last sweep) with cross-run accumulation, so
+# threshold counting stays correct across separate invocations. Read-only;
+# promotes/demotes nothing; --strict for a blocking CI gate.
+"$PYTHON" scripts/check_skill_improvement_recurrence.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 

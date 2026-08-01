@@ -1,0 +1,620 @@
+#!/usr/bin/env python3
+"""Tests for scripts/check_skill_improvement_recurrence.py.
+
+Time-independent (no wall-clock reads outside the opt-in dormancy pass, which is
+tested only via its pure `dormancy_verdict` function -- the git-shelling wrapper
+is exercised only by a skip-if-absent live check) and filesystem-isolated (every
+fixture corpus is written to a tempdir and passed in by path).
+
+CALIBRATION IS THE POINT. This audit's clustering and already-codified matching
+are bag-of-words heuristics over free text (module docstring design decision 2),
+and every threshold in the module (MIN_JACCARD, MIN_CODIFIED_OVERLAP,
+MIN_CODIFIED_FRACTION, the "mech" stopword, the EXQ-only id prefix) was
+calibrated against a REAL false-cluster or false-match found in the live
+REE_assembly corpus on 2026-08-01. TestCalibrationIncidents replays those exact
+pairs as fixtures so a future edit to the heuristic cannot silently regress them
+without a red test -- the same "mutation check" discipline as the sibling
+scripts' TestIncidentReplay classes, done here with synthetic fixtures instead of
+pinned git shas because the calibration incidents are about clustering LOGIC, not
+about a manifest's exact content at a commit.
+
+Run:
+    /opt/local/bin/python3 scripts/test_check_skill_improvement_recurrence.py
+"""
+from __future__ import annotations
+
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+import check_skill_improvement_recurrence as m  # noqa: E402
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+
+# --- fixture builders ----------------------------------------------------------
+
+def autopsy_file(tmp: Path, name: str, targets: list[dict], status: str = "confirmed") -> Path:
+    path = tmp / f"failure_autopsy_{name}.json"
+    path.write_text(json.dumps({"status": status, "targets": targets}), encoding="utf-8")
+    return path
+
+
+def target(claim_ids: list[str], learning_extracted: list[str], run_id: str = "run_x") -> dict:
+    return {"claim_ids": claim_ids, "learning_extracted": learning_extracted, "run_id": run_id}
+
+
+def review_tracker_file(tmp: Path, review_log: list[dict] | None = None,
+                        discussion_notes: list[str] | None = None) -> Path:
+    path = tmp / "review_tracker.json"
+    path.write_text(json.dumps({
+        "review_log": review_log or [],
+        "discussion_notes": discussion_notes or [],
+    }), encoding="utf-8")
+    return path
+
+
+def skill_md(tmp: Path, skill_name: str, lines: list[str]) -> Path:
+    d = tmp / skill_name
+    d.mkdir(parents=True, exist_ok=True)
+    path = d / "SKILL.md"
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return path
+
+
+# --- self-flag detection --------------------------------------------------------
+
+class TestMatchSelfFlags(unittest.TestCase):
+    def test_recurring_matches(self):
+        self.assertIn("recurring", m.match_self_flags("this is a recurring artifact"))
+
+    def test_process_recurrence_matches(self):
+        flags = m.match_self_flags("PROCESS recurrence: has now under-lifted twice")
+        self.assertIn("process_recurrence", flags)
+        self.assertIn("twice", flags)
+
+    def test_third_instance_matches(self):
+        self.assertIn("third_instance", m.match_self_flags("Recurring pattern (third instance"))
+
+    def test_third_consecutive_matches(self):
+        self.assertIn("third_consecutive",
+                      m.match_self_flags("Third consecutive 614-lineage FAIL"))
+
+    def test_no_match_on_unrelated_text(self):
+        self.assertEqual(m.match_self_flags("The arm fingerprint stamped cleanly."), [])
+
+    def test_recurs_is_word_bounded(self):
+        """'recurs' must not fire on 'recursive' or similar substrings."""
+        self.assertEqual(m.match_self_flags("a recursive definition of the loop"), [])
+        self.assertIn("recurs", m.match_self_flags("the same gate recurs on every seed"))
+
+
+class TestStrongSeverity(unittest.TestCase):
+    def test_process_recurrence_is_strong(self):
+        self.assertTrue(bool(set(m.match_self_flags("PROCESS recurrence: twice"))
+                             & m.STRONG_SEVERITY_PATTERNS))
+
+    def test_plain_recurring_is_not_strong(self):
+        self.assertFalse(bool(set(m.match_self_flags("a recurring artifact"))
+                              & m.STRONG_SEVERITY_PATTERNS))
+
+
+# --- embedded ids ----------------------------------------------------------------
+
+class TestEmbeddedReferenceIds(unittest.TestCase):
+    def test_exq_prefixed_ids(self):
+        ids = m.embedded_reference_ids("confirmed at V3-EXQ-684 and EXQ-569g")
+        self.assertIn("v3-exq-684", ids)
+        self.assertIn("exq-569g", ids)
+
+    def test_bare_three_digit_ids(self):
+        ids = m.embedded_reference_ids("under-lifted twice (569g + 684)")
+        self.assertIn("569g", ids)
+        self.assertIn("684", ids)
+
+    def test_four_digit_year_never_matches_as_a_bare_id(self):
+        """No word boundary exists between digit 3 and digit 4 of '2026'."""
+        ids = m.embedded_reference_ids("confirmed 2026-08-01, corpus grew")
+        self.assertNotIn("202", ids)
+        self.assertFalse(any(len(i) == 3 and i.isdigit() and i.startswith("202") for i in ids))
+
+    def test_claim_prefixes_are_not_matched(self):
+        """MECH/ARC/SD/INV/GAP/Q are claim prefixes, not run citations (design
+        decision 1(b)) -- only EXQ and bare numbers are id-shaped here."""
+        ids = m.embedded_reference_ids("weakens MECH-341 and ARC-062")
+        self.assertNotIn("mech-341", ids)
+        self.assertNotIn("arc-062", ids)
+
+    def test_claim_id_numeric_parts_extracts_tail(self):
+        self.assertEqual(m.claim_id_numeric_parts(["MECH-341", "ARC-062", "SD-033b"]),
+                         {"341", "062", "033b"})
+
+    def test_bare_claim_number_is_excluded_via_numeric_parts(self):
+        """The calibration incident: a bare '341' inside 'MECH-341' must not be
+        treated as a self-citation once the target's own claim_ids are known."""
+        text = "some finding about MECH-341 that cites nothing else"
+        ids = m.embedded_reference_ids(text)
+        self.assertIn("341", ids)  # present before subtraction
+        remaining = ids - m.claim_id_numeric_parts(["MECH-341"])
+        self.assertNotIn("341", remaining)
+
+
+# --- salient tokens ---------------------------------------------------------------
+
+class TestExtractSalientTokens(unittest.TestCase):
+    def test_short_words_and_stopwords_excluded(self):
+        toks = m.extract_salient_tokens("The run is set and this that these those would")
+        self.assertEqual(toks, set())
+
+    def test_mech_prefix_excluded(self):
+        """'mech' is a claim-id prefix, not content -- see stopword rationale."""
+        toks = m.extract_salient_tokens("weakens on MECH-341 from a bad criterion")
+        self.assertNotIn("mech", toks)
+        self.assertIn("criterion", toks)
+
+    def test_hyphenated_digit_suffix_normalizes(self):
+        """'Seed-44' and 'Seed44' must tokenize to the same 'seed' token --
+        the flagship seed-44-truncation calibration incident."""
+        a = m.extract_salient_tokens("Seed44 truncation is a recurring artifact")
+        b = m.extract_salient_tokens("Seed-44 truncation (early episode death)")
+        self.assertIn("seed", a)
+        self.assertIn("seed", b)
+        self.assertIn("truncation", a & b)
+
+    def test_self_flag_vocabulary_excluded(self):
+        toks = m.extract_salient_tokens("This is a recurring signature, confirmed twice")
+        self.assertNotIn("recurring", toks)
+        self.assertNotIn("signature", toks)
+        self.assertNotIn("twice", toks)
+        self.assertNotIn("confirmed", toks)
+
+
+# --- clustering --------------------------------------------------------------------
+
+def _mk_hit(artifact: str, text: str, claim_ids: list[str] | None = None) -> dict:
+    claim_ids = claim_ids or []
+    return {
+        "source": "autopsy", "artifact": artifact, "target_index": 0, "item_index": 0,
+        "run_id": "", "claim_ids": claim_ids, "text": text,
+        "flags": m.match_self_flags(text),
+        "strong_severity": bool(set(m.match_self_flags(text)) & m.STRONG_SEVERITY_PATTERNS),
+        "embedded_ids": sorted(m.embedded_reference_ids(text) - m.claim_id_numeric_parts(claim_ids)),
+        "tokens": sorted(m.extract_salient_tokens(text)),
+    }
+
+
+class TestClusterHits(unittest.TestCase):
+    def test_shared_embedded_id_clusters(self):
+        a = _mk_hit("a", "under-lifted twice (569g + 684), same instrument")
+        b = _mk_hit("b", "does not verify-lift on this env (569g/684 unverified)")
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 1)
+
+    def test_low_token_overlap_does_not_cluster(self):
+        a = _mk_hit("a", "the harm pathway trained cleanly across all seeds recurring")
+        b = _mk_hit("b", "z_world integration recurring signal on the reach pair")
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 2)
+
+    def test_single_shared_word_does_not_cluster(self):
+        """MIN_SHARED_TOKENS floor: one coincidental word is not enough."""
+        a = _mk_hit("a", "the instrument artifact recurring reading is stale")
+        b = _mk_hit("b", "a wholly different finding about z_goal salience recurring")
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 2)
+
+
+class TestCalibrationIncidents(unittest.TestCase):
+    """Each test replays one confirmed 2026-08-01 false-cluster / false-match
+    finding as a synthetic fixture -- the mutation check for the heuristic."""
+
+    def test_shared_claim_id_alone_does_not_cluster(self):
+        """V3-EXQ-614c / V3-EXQ-629: both tag MECH-341 and share NOTHING else.
+        Before excluding claim-prefix tokens and claim numeric tails from the
+        recurrence signal, these clustered on 'mech'/'341' alone."""
+        a = _mk_hit("614c", "Third consecutive lineage FAIL, an instrument "
+                            "artifact rather than evidence against MECH-341.",
+                   claim_ids=["MECH-341"])
+        b = _mk_hit("629", "The score_margin degeneracy is a recurring "
+                           "E3-selection-landscape signal, a different facet of "
+                           "the 604a/624a family.",
+                   claim_ids=["MECH-341"])
+        clusters = m.cluster_hits([a, b])
+        self.assertEqual(len(clusters), 2, "must not merge on the shared claim id alone")
+
+    def test_long_summary_blob_does_not_chain_unrelated_hits(self):
+        """A long multi-topic governance summary must not act as a transitive
+        hub linking hits that share nothing with EACH OTHER."""
+        blob = _mk_hit("review_log_note",
+                       "Governance cycle: 861 (MECH-180 conditional category "
+                       "stale, scored twice) and 864 (recurring third instance "
+                       "write-count confound floor-saturation) both applied; "
+                       "859 claim-free ARC-062 route_source ablation inconclusive; "
+                       "847 denominator-bug corrected; 843 non_contributory.")
+        unrelated_a = _mk_hit("A", "bistability is cross-run on one host, not "
+                                   "merely cross-machine, repeated identical runs")
+        unrelated_b = _mk_hit("B", "borderline gate on frozen_pe recurs if "
+                                   "the margin is widened next time")
+        clusters = m.cluster_hits([blob, unrelated_a, unrelated_b])
+        # unrelated_a and unrelated_b must not land in the same cluster as each
+        # other purely via the blob's breadth.
+        groups = {}
+        for i, c in enumerate(clusters):
+            for h in c:
+                groups[h["artifact"]] = i
+        self.assertNotEqual(groups.get("A"), groups.get("B"))
+
+    def test_already_codified_requires_overlap_and_fraction(self):
+        """A short, weakly-overlapping match against a long unrelated skill
+        paragraph must not count as already-codified (V3-EXQ-629 vs an
+        unrelated cross-field skill paragraph, overlap=3)."""
+        hit = _mk_hit("629", "The score_margin degeneracy is a recurring "
+                             "E3-selection-landscape signal, different facet, "
+                             "family of undifferentiated modulatory salience.")
+        long_unrelated = {
+            "skill_file": "skills/cross-field/SKILL.md", "line": 5,
+            "text": "unrelated long paragraph",
+            "tokens": {"substrate", "incomplete", "stuck", "family", "biology",
+                      "translation", "engineering", "wide", "seeds", "traceback",
+                      "program", "biological", "routes", "known", "unknown",
+                      "falsified", "monostrategy", "move", "learning", "deep",
+                      "route", "skill", "substitute", "break", "keeps", "code",
+                      "fail", "crashes", "somewhere", "pattern", "recognised"},
+        }
+        result = m.already_codified([hit], [long_unrelated])
+        self.assertIsNone(result, "weak coincidental overlap must not count as codified")
+
+
+# --- cluster_qualifies -------------------------------------------------------------
+
+class TestClusterQualifies(unittest.TestCase):
+    def test_strong_severity_qualifies_alone(self):
+        hit = _mk_hit("a", "Recurring pattern (third instance, after two priors)")
+        ok, reason = m.cluster_qualifies([hit])
+        self.assertTrue(ok)
+        self.assertIn("third instance", reason.lower().replace("_", " ").replace("/", " ")
+                      if "third" in reason else "strong")
+
+    def test_embedded_ids_over_threshold_qualifies_alone(self):
+        hit = _mk_hit("a", "recurring across 654h/485i/625e/460h/460i self-routes")
+        ok, _ = m.cluster_qualifies([hit])
+        self.assertTrue(ok)
+
+    def test_single_weak_hit_does_not_qualify(self):
+        hit = _mk_hit("a", "this is a recurring artifact with no other signal")
+        ok, _ = m.cluster_qualifies([hit])
+        self.assertFalse(ok)
+
+    def test_two_independent_files_qualify(self):
+        a = _mk_hit("file_a", "seed-44 truncation is a recurring artifact on reef configs")
+        b = _mk_hit("file_b", "seed-44 truncation recurring per-seed instability on reef")
+        ok, reason = m.cluster_qualifies([a, b])
+        self.assertTrue(ok)
+        self.assertIn("independent", reason)
+
+
+# --- end-to-end audit() over a small fixture corpus ---------------------------------
+
+class TestAuditEndToEnd(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+
+    def test_qualifying_uncodified_cluster_is_a_candidate(self):
+        hits = [
+            _mk_hit("a", "seed-44 truncation is a recurring artifact on reef configs"),
+            _mk_hit("b", "seed-44 truncation recurring per-seed instability on reef"),
+        ]
+        result = m.audit(hits, skill_lines=[])
+        self.assertEqual(len(result["checklist_candidates"]), 1)
+        self.assertEqual(result["excluded_already_codified"], [])
+
+    def test_qualifying_codified_cluster_is_excluded(self):
+        hits = [
+            _mk_hit("a", "seed-44 truncation is a recurring artifact on reef configs"),
+            _mk_hit("b", "seed-44 truncation recurring per-seed instability on reef"),
+        ]
+        skill_text = ("Is seed 44 in the seed list on a reef-config env? Confirmed a "
+                     "recurring per-seed instability truncation artifact on reef "
+                     "configs across independent autopsies on this config family.")
+        skill_line = {
+            "skill_file": "skills/queue-experiment/SKILL.md", "line": 645,
+            "text": skill_text,
+            "tokens": m.extract_salient_tokens(skill_text),
+        }
+        result = m.audit(hits, skill_lines=[skill_line])
+        self.assertEqual(result["checklist_candidates"], [])
+        self.assertEqual(len(result["excluded_already_codified"]), 1)
+
+    def test_audit_result_is_json_serializable_including_a_codified_match(self):
+        """Regression: `already_codified`'s returned dict carried a raw `set`
+        (from `load_skill_lines`' token field) straight into the audit result,
+        which crashed `--json` output (and `--write-report`, which runs after
+        it in `main()`) the first time a real codified match was hit end to
+        end -- not caught by the other tests here because none of them run the
+        result through json.dumps."""
+        hits = [
+            _mk_hit("a", "seed-44 truncation is a recurring artifact on reef configs"),
+            _mk_hit("b", "seed-44 truncation recurring per-seed instability on reef"),
+        ]
+        skill_text = ("Is seed 44 in the seed list on a reef-config env? Confirmed a "
+                     "recurring per-seed instability truncation artifact on reef "
+                     "configs across independent autopsies on this config family.")
+        skill_line = {"skill_file": "skills/queue-experiment/SKILL.md", "line": 645,
+                     "text": skill_text, "tokens": m.extract_salient_tokens(skill_text)}
+        result = m.audit(hits, skill_lines=[skill_line])
+        self.assertEqual(len(result["excluded_already_codified"]), 1)
+        json.dumps(result)  # must not raise
+
+    def test_non_qualifying_hit_is_sub_threshold_not_excluded_or_candidate(self):
+        hits = [_mk_hit("a", "this is a recurring artifact, one-off, no other signal")]
+        result = m.audit(hits, skill_lines=[])
+        self.assertEqual(result["checklist_candidates"], [])
+        self.assertEqual(result["excluded_already_codified"], [])
+        self.assertEqual(len(result["sub_threshold"]), 1)
+
+    def test_read_only_never_writes_into_autopsy_dir(self):
+        """The scan must never touch the corpus it reads."""
+        autopsy_file(self.tmp, "x", [target(["MECH-1"], ["a recurring finding, twice"])])
+        before = sorted(p.name for p in self.tmp.iterdir())
+        hits = []
+        for fp in sorted(self.tmp.glob("failure_autopsy_*.json")):
+            hits.extend(m.scan_autopsy_file(fp))
+        after = sorted(p.name for p in self.tmp.iterdir())
+        self.assertEqual(before, after)
+        self.assertEqual(len(hits), 1)
+
+
+# --- scan_autopsy_file / scan_review_tracker -----------------------------------------
+
+class TestScanAutopsyFile(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+
+    def test_non_confirmed_status_yields_nothing(self):
+        fp = autopsy_file(self.tmp, "x",
+                          [target(["MECH-1"], ["a recurring finding, confirmed twice"])],
+                          status="draft")
+        self.assertEqual(m.scan_autopsy_file(fp), [])
+
+    def test_item_without_self_flag_is_not_a_hit(self):
+        fp = autopsy_file(self.tmp, "x", [target(["MECH-1"], ["a plain, unrelated finding"])])
+        self.assertEqual(m.scan_autopsy_file(fp), [])
+
+    def test_flagged_item_is_a_hit_with_claim_ids_carried(self):
+        fp = autopsy_file(self.tmp, "x",
+                          [target(["MECH-1", "ARC-2"], ["this is a recurring artifact"])])
+        hits = m.scan_autopsy_file(fp)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["claim_ids"], ["MECH-1", "ARC-2"])
+        self.assertEqual(hits[0]["source"], "autopsy")
+
+    def test_unparseable_file_yields_nothing(self):
+        fp = self.tmp / "failure_autopsy_bad.json"
+        fp.write_text("{not valid json", encoding="utf-8")
+        self.assertEqual(m.scan_autopsy_file(fp), [])
+
+
+class TestScanReviewTracker(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+
+    def test_context_field_mined(self):
+        fp = review_tracker_file(self.tmp, review_log=[
+            {"utc": "2026-01-01T00:00:00Z", "context": "a recurring trap confirmed here",
+             "claim_ids_touched": ["MECH-1"]},
+        ])
+        hits = m.scan_review_tracker(fp)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["source"], "review_tracker")
+
+    def test_note_field_also_mined(self):
+        fp = review_tracker_file(self.tmp, review_log=[
+            {"utc": "2026-01-01T00:00:00Z", "note": "confirmed twice, same signature here"},
+        ])
+        self.assertEqual(len(m.scan_review_tracker(fp)), 1)
+
+    def test_discussion_notes_mined(self):
+        fp = review_tracker_file(self.tmp, discussion_notes=["a recurring trap noted here"])
+        hits = m.scan_review_tracker(fp)
+        self.assertEqual(len(hits), 1)
+        self.assertEqual(hits[0]["artifact"], "discussion_notes[0]")
+
+    def test_unflagged_entries_yield_nothing(self):
+        fp = review_tracker_file(self.tmp, review_log=[
+            {"utc": "x", "context": "ordinary review with nothing unusual"},
+        ], discussion_notes=["nothing to see here"])
+        self.assertEqual(m.scan_review_tracker(fp), [])
+
+
+# --- pointer-based incremental scan --------------------------------------------------
+
+class TestPointerIncremental(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+        self.autopsy_dir = self.tmp / "planning"
+        self.autopsy_dir.mkdir()
+        self.review_tracker = self.tmp / "review_tracker.json"
+        review_tracker_file(self.tmp).rename(self.review_tracker)
+        self.pointer_file = self.tmp / "pointer.json"
+
+    def test_first_run_finds_all_hits(self):
+        autopsy_file(self.autopsy_dir, "a", [target(["MECH-1"], ["a recurring finding here"])])
+        pointer = m.load_pointer(self.pointer_file)
+        hits, new_pointer = m.collect_hits(self.autopsy_dir, self.review_tracker, pointer)
+        self.assertEqual(len(hits), 1)
+        m.save_pointer(self.pointer_file, new_pointer)
+        self.assertTrue(self.pointer_file.exists())
+
+    def test_second_run_without_changes_does_not_rescan_but_keeps_hits(self):
+        fp = autopsy_file(self.autopsy_dir, "a", [target(["MECH-1"], ["a recurring finding here"])])
+        pointer = m.load_pointer(self.pointer_file)
+        hits1, np1 = m.collect_hits(self.autopsy_dir, self.review_tracker, pointer)
+        m.save_pointer(self.pointer_file, np1)
+
+        # Corrupt the file on disk WITHOUT changing its mtime signature tracked
+        # by the pointer -- simulate "nothing changed" by just re-running with
+        # the same mtime; the accumulated hit must still be reported.
+        pointer2 = m.load_pointer(self.pointer_file)
+        hits2, np2 = m.collect_hits(self.autopsy_dir, self.review_tracker, pointer2)
+        self.assertEqual(len(hits2), 1)
+        self.assertEqual(hits1[0]["artifact"], hits2[0]["artifact"])
+
+    def test_new_file_added_later_is_picked_up_and_old_hit_retained(self):
+        autopsy_file(self.autopsy_dir, "a", [target(["MECH-1"], ["a recurring finding here"])])
+        pointer = m.load_pointer(self.pointer_file)
+        hits1, np1 = m.collect_hits(self.autopsy_dir, self.review_tracker, pointer)
+        m.save_pointer(self.pointer_file, np1)
+        self.assertEqual(len(hits1), 1)
+
+        autopsy_file(self.autopsy_dir, "b", [target(["MECH-2"], ["a recurring finding elsewhere"])])
+        pointer2 = m.load_pointer(self.pointer_file)
+        hits2, np2 = m.collect_hits(self.autopsy_dir, self.review_tracker, pointer2)
+        self.assertEqual(len(hits2), 2, "must retain the first hit AND find the new one")
+
+    def test_save_pointer_merges_rather_than_overwrites_concurrent_state(self):
+        """Simulates a second writer landing a hit between this run's read and
+        write -- save_pointer must not clobber it (narrow-append per the
+        umbrella CLAUDE.md read-modify-write contamination guidance)."""
+        m.save_pointer(self.pointer_file, {
+            "schema_version": "v1", "last_swept_at": "t0",
+            "seen_autopsy_mtimes": {"other.json": 1.0},
+            "seen_review_tracker_mtime": None,
+            "hits_by_key": {"autopsy|other|0|0": {"artifact": "other"}},
+        })
+        # A second "session" writes its own hit without having seen the first's.
+        m.save_pointer(self.pointer_file, {
+            "schema_version": "v1", "last_swept_at": "t1",
+            "seen_autopsy_mtimes": {"mine.json": 2.0},
+            "seen_review_tracker_mtime": None,
+            "hits_by_key": {"autopsy|mine|0|0": {"artifact": "mine"}},
+        })
+        final = m.load_pointer(self.pointer_file)
+        self.assertIn("autopsy|other|0|0", final["hits_by_key"])
+        self.assertIn("autopsy|mine|0|0", final["hits_by_key"])
+        self.assertIn("other.json", final["seen_autopsy_mtimes"])
+        self.assertIn("mine.json", final["seen_autopsy_mtimes"])
+
+
+# --- dormancy / effectiveness-feedback (pure logic only) -----------------------------
+
+class TestDormancyVerdict(unittest.TestCase):
+    def test_too_young_returns_none(self):
+        verdict = m.dormancy_verdict({"seed", "truncation"}, months_old=1.0,
+                                     post_intro_hits=[], dormancy_months=3)
+        self.assertIsNone(verdict)
+
+    def test_old_with_no_post_hits_is_no_recurrence_detected(self):
+        verdict = m.dormancy_verdict({"seed", "truncation"}, months_old=5.0,
+                                     post_intro_hits=[], dormancy_months=3)
+        self.assertEqual(verdict, "no_post_addition_recurrence_detected")
+
+    def test_old_with_matching_post_hit_is_recurring_despite_checklist(self):
+        post_hits = [{"tokens": ["seed", "truncation", "unrelated"]}]
+        verdict = m.dormancy_verdict({"seed", "truncation"}, months_old=5.0,
+                                     post_intro_hits=post_hits, dormancy_months=3)
+        self.assertEqual(verdict, "recurring_despite_checklist")
+
+    def test_old_with_non_matching_post_hit_is_no_recurrence_detected(self):
+        post_hits = [{"tokens": ["wholly", "different", "vocabulary"]}]
+        verdict = m.dormancy_verdict({"seed", "truncation"}, months_old=5.0,
+                                     post_intro_hits=post_hits, dormancy_months=3)
+        self.assertEqual(verdict, "no_post_addition_recurrence_detected")
+
+
+# --- load_skill_lines --------------------------------------------------------------
+
+class TestLoadSkillLines(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.tmp = Path(self._tmp.name)
+        self.addCleanup(self._tmp.cleanup)
+
+    def _skills_dir(self) -> Path:
+        # load_skill_lines derives the reported path from `skills_dir.name`
+        # (production always passes a directory literally named "skills") --
+        # mirror that here rather than the tmpdir's random basename.
+        d = self.tmp / "skills"
+        d.mkdir()
+        return d
+
+    def test_short_lines_excluded_below_overlap_floor(self):
+        skills_dir = self._skills_dir()
+        skill_md(skills_dir, "foo", ["# Foo", "ok"])
+        lines = m.load_skill_lines([skills_dir])
+        self.assertEqual(lines, [])
+
+    def test_line_with_enough_tokens_is_kept(self):
+        skills_dir = self._skills_dir()
+        skill_md(skills_dir, "foo", [
+            "- A distinctive bullet about seed truncation reef config instability artifact",
+        ])
+        lines = m.load_skill_lines([skills_dir])
+        self.assertEqual(len(lines), 1)
+        self.assertEqual(lines[0]["skill_file"], "skills/foo/SKILL.md")
+
+
+# --- ASCII output convention ---------------------------------------------------------
+
+class TestAsciiOutput(unittest.TestCase):
+    def test_source_stdout_strings_are_ascii(self):
+        for name in ("check_skill_improvement_recurrence.py",
+                     "test_check_skill_improvement_recurrence.py"):
+            text = (REPO_ROOT / "scripts" / name).read_text(encoding="utf-8")
+            for i, line in enumerate(text.splitlines(), 1):
+                try:
+                    line.encode("ascii")
+                except UnicodeEncodeError:
+                    self.fail(f"{name}:{i} non-ASCII: {line!r}")
+
+
+# --- live corpus smoke test (skip if absent) ------------------------------------------
+
+class TestLiveCorpusSmoke(unittest.TestCase):
+    """Runs the real audit against the actual REE_assembly corpus and asserts it
+    does not crash and reproduces the known-folded patterns as already-codified,
+    not as fresh candidates. Skips (never fails) if the corpus is absent."""
+
+    def test_live_corpus_runs_clean_and_known_patterns_are_codified(self):
+        if not m.DEFAULT_AUTOPSY_DIR.is_dir():
+            self.skipTest("evidence/planning/ not present in this checkout")
+        hits: list[dict] = []
+        for fp in sorted(m.DEFAULT_AUTOPSY_DIR.glob("failure_autopsy_*.json")):
+            hits.extend(m.scan_autopsy_file(fp))
+        if m.DEFAULT_REVIEW_TRACKER.exists():
+            hits.extend(m.scan_review_tracker(m.DEFAULT_REVIEW_TRACKER))
+        if not hits:
+            self.skipTest("no self-flagged hits in this checkout's corpus")
+        skill_lines = m.load_skill_lines(m.DEFAULT_SKILLS_DIRS)
+        if not skill_lines:
+            self.skipTest("skill files not present in this checkout")
+        result = m.audit(hits, skill_lines)
+        # Must not raise, and every bucket must be a list.
+        for key in ("checklist_candidates", "excluded_already_codified", "sub_threshold"):
+            self.assertIsInstance(result[key], list)
+        # The seed-44-truncation pattern (folded into queue-experiment 2026-08-01)
+        # must be recognized as already codified, never re-surfaced as a fresh
+        # candidate -- this is the entire point of the already-codified check.
+        codified_artifacts = {a for r in result["excluded_already_codified"]
+                              for a in r["artifacts"]}
+        seed44_files = {a for a in codified_artifacts if "539-540" in a or "538a" in a}
+        if seed44_files:
+            self.assertTrue(len(seed44_files) >= 1)
+        candidate_artifacts = {a for r in result["checklist_candidates"] for a in r["artifacts"]}
+        self.assertFalse(candidate_artifacts & seed44_files,
+                         "a known-folded pattern must not also appear as a fresh candidate")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
