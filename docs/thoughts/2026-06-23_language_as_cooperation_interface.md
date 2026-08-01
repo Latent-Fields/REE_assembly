@@ -1,6 +1,14 @@
 # Language as a cooperation interface over nonverbal cognition
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-23_language_as_cooperation_interface.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 3 (language-input update policy: propose candidate states, never install belief) -> **ARC-119**, registered FIRST per the intake (safety-shaped constraint on MECH-424's corruption branch).
+- Candidate 1 (message selection minimises receiver residual uncertainty) -> **ARC-117** (substrate_conditional V5/V6).
+- Candidate 2 (worldly reference inherited via the world model; same mechanism for non-present referents) -> **ARC-118** (substrate_conditional V5/V6).
+- Candidate 4 (claims-as-handles) -> NOT registered; a labelled analogy, SD-062 owns the structure.
+- "Language as interface, not substrate" -> deliberately NOT registered here; owned by the 2026-07-14 rule-apprehension intake candidate 3.
 
 ## Authorship note
 

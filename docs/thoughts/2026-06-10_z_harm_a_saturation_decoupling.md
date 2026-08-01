@@ -6,7 +6,16 @@
 
 ## Status
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 1 -> **SD-086** (z_harm_a functional readout must be a calibrated scalar, not the latent norm).
+- Candidate 2 -> **SD-087** (SD-020's stable reading is flag-on-scoped, not default-trained agents), plus a `default_off_scope_note` annotation on **SD-020**.
+- Candidate 3 -> **Q-086** (environment-confound control: ecological vs representational saturation).
+- Candidate 4 -> `readout_precondition_note` annotations on **SD-050** and **MECH-302** (registered as a precondition, not an independent claim, per the intake).
+- Candidate 5 -> scope tag (raw-warmup / curriculum-conditional) carried on SD-086/SD-087/Q-086, not a standalone claim.
+The two confound/flag experiments (SD-087 OFF-vs-ON, Q-086 gentler-environment) are queue-experiment follow-on, to run via /queue-experiment.
 
 Trigger: surfaced by the V3-EXQ-664 affective fishtank showcase (2026-06-10). Watching the replay, the "suffering" channel reads pegged-high essentially all the time. Quantifying it exposed something more specific than "high": the affective stream is saturated AND mis-signed relative to safety. This is the embodied-visualisation value-add (cf. `feedback_whimsy_visualization` — the viz surfaced a representational pathology faster than the scalar metrics did).
 

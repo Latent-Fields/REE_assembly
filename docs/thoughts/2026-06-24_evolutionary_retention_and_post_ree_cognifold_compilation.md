@@ -1,6 +1,15 @@
 # Evolutionary retention and post-REE cognifold compilation
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 1 (GOV-CEIL-1 tail-escape amendment, asymmetry preserved) -> **GOV-CEIL-2**, plus an `amended_by_note` annotation on **GOV-CEIL-1**.
+- Candidate 2 (mechanism functional-role classification + removal-justification vocabulary) -> **SD-090** (registry-schema; supplies GOV-CEIL-2's precondition).
+- Candidate 3 (competitive redevelopment vs mature lesion, one decisive probe) -> **Q-088** (queue-experiment follow-on after GOV-CEIL-2/SD-090 report).
+- Candidate 4 (substitution must preserve internal ethical-process representations + causal authority) -> **SENT-17**.
+- Candidate 5 (reference-cognifold record) -> folded into **GOV-V3FREEZE-1** (registered JOINTLY with the 2026-06-21 intake's candidate 1, one gate with two rationales).
+- Candidate 6 (finish an overbuilt V3) -> NOT registered; a stance/scoping note that endorses current practice.
 
 ## Authorship note
 

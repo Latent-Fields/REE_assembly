@@ -1,23 +1,18 @@
 # Thought Sweep Report
 
-Generated: `2026-07-22T00:56:15.561859Z`
+Generated: `2026-08-01T01:26:31.941072Z`
 
 | metric | count |
 |---|---|
-| total thought files | 166 |
-| processed | 159 |
-| unprocessed | 7 |
+| total thought files | 167 |
+| processed | 165 |
+| unprocessed | 2 |
 | processed missing `Processed in` links | 2 |
 
 ## Unprocessed Queue
 
-- `2026-06-10` `2026-06-10_z_harm_a_saturation_decoupling.md` (status=`unprocessed`)
-- `2026-06-21` `2026-06-21_v3_closure_as_external_legibility_boundary.md` (status=`unprocessed`)
-- `2026-06-23` `2026-06-23_cross_system_resonance_and_inference_calibration.md` (status=`unprocessed`)
-- `2026-06-23` `2026-06-23_introspection_as_architectural_evidence_for_ree.md` (status=`unprocessed`)
-- `2026-06-23` `2026-06-23_language_as_cooperation_interface.md` (status=`unprocessed`)
 - `2026-06-23` `2026-06-23_language_as_cooperation_interface_to_nonverbal_cognition.md` (status=`unprocessed`)
-- `2026-06-24` `2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md` (status=`unprocessed`)
+- `2026-07-30` `2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md` (status=`unprocessed`)
 
 ## Processed Missing Links
 
@@ -151,6 +146,7 @@ Generated: `2026-07-22T00:56:15.561859Z`
 - `2026-06-08_Trainable_Releif_and_Safety.md` (5 link(s) in `Processed in`)
 - `2026-06-08_emotion_as_anti_collapse_architecture.md` (2 link(s) in `Processed in`)
 - `2026-06-08_play_private_speech_externalised_dmn.md` (8 link(s) in `Processed in`)
+- `2026-06-10_z_harm_a_saturation_decoupling.md` (6 link(s) in `Processed in`)
 - `2026-06-12_cognifold_cross_pollination_and_language_stream.md` (1 link(s) in `Processed in`)
 - `2026-06-12_histaminergic_retrieval_accessibility_gating.md` (1 link(s) in `Processed in`)
 - `2026-06-18_creation_ethics_necessary_suffering.md` (1 link(s) in `Processed in`)
@@ -174,7 +170,12 @@ Generated: `2026-07-22T00:56:15.561859Z`
 - `2026-06-20_dynamic_latent_scale_inference_field_research_map.md` (1 link(s) in `Processed in`)
 - `2026-06-20_latent_information_fields_graphs_as_projections.md` (1 link(s) in `Processed in`)
 - `2026-06-20_structured_uncertainty_layer_for_ree_agent_design.md` (1 link(s) in `Processed in`)
+- `2026-06-21_v3_closure_as_external_legibility_boundary.md` (6 link(s) in `Processed in`)
 - `2026-06-22_v3_exq_700_failure_interpretation_and_loop_decomposition.md` (1 link(s) in `Processed in`)
+- `2026-06-23_cross_system_resonance_and_inference_calibration.md` (5 link(s) in `Processed in`)
+- `2026-06-23_introspection_as_architectural_evidence_for_ree.md` (5 link(s) in `Processed in`)
+- `2026-06-23_language_as_cooperation_interface.md` (6 link(s) in `Processed in`)
+- `2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md` (7 link(s) in `Processed in`)
 - `2026-06-25_continuity_branching_and_substrate_migration.md` (0 link(s) in `Processed in`)
 - `2026-07-09_residue_as_care_marker_and_mood_regulation.md` (0 link(s) in `Processed in`)
 - `2026-07-12_goal_relevance_salience_and_distractor_suppression.md` (3 link(s) in `Processed in`)

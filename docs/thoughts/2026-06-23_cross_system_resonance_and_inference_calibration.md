@@ -1,6 +1,13 @@
 # Cross-system resonance and inference calibration between human and AI reasoning
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-23_cross_system_resonance_and_inference_calibration.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 1 (externally-induced agreement is a separate confidence channel) -> **ARC-115** (architecture_hypothesis, substrate_conditional V5; kept a peer of EXT-001, not merged).
+- Candidate 2 (calibration ledger) -> **GOV-CALIB-1** (Assembly instrument).
+- Candidate 3 (source-dependence between supporting judgements) -> **SD-088** (registry-schema).
+- Candidate 4 (human-AI agreement != independent replication) -> NOT registered; already owned by INV-077.
 
 ## Authorship note
 

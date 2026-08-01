@@ -1,6 +1,13 @@
 # Introspection as architectural evidence and hypothesis generation for REE
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 2 (claim-origin provenance field) -> **SD-089**, registered FIRST per the intake ordering (candidates 1 and 4 are unauditable without it).
+- Candidate 1 (triangulation rule: introspection generates, never validates alone) -> **GOV-INTRO-1** (depends on SD-089; schema_not_ready until it lands).
+- Candidate 3 (generation / metacognitive-readout / linguistic-reconstruction non-collapse) -> **ARC-116** (substrate_conditional V5; same non-collapse family as ARC-115).
+- Candidate 4 (designer-overfit standing check) -> **GOV-OVERFIT-1** (currently vacuous: V3 has effectively one task family).
 
 ## Authorship note
 

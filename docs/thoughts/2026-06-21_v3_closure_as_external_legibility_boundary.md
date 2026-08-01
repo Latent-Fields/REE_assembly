@@ -1,6 +1,14 @@
 # V3 closure as the boundary for external legibility
 
-Status: unprocessed
+Status: processed
+
+Processed in:
+- registered 2026-08-01 (REE_assembly origin/master 58ab5d11db) by session cool-sutherland-623d3f, from the intake `evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md` written 2026-07-21 by confident-pare-9273f1.
+- Candidate 4 (what event counts as V3 closure) -> **Q-087**, RESOLVED = **governance acceptance** (user decision 2026-08-01, recorded with rationale).
+- Candidate 1 (version-transition artefact gate) -> **GOV-V3FREEZE-1**, registered JOINTLY with the 2026-06-24 intake's candidate 5 (reference-cognifold record) as one gate with two rationales, per the cross-link.
+- Candidate 2 (opacity as dated technical debt) -> **GOV-OPACITY-1**.
+- Candidate 3 (legibility by subtraction) -> **GOV-SUBTRACT-1**.
+- Candidate 5 (flagship-demonstration selection) -> deliberately NOT registered (a selection to make at package-build time, not a proposition to hold).
 
 ## Source thought
 
