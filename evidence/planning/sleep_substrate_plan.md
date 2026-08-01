@@ -297,7 +297,7 @@ Wired and behaving correctly:
 
 | Component | Location | Status |
 |---|---|---|
-| MECH-203 tonic 5-HT + benefit-salience tagging | `ree-v3/ree_core/neuromodulation/serotonin.py` | EXQ-255/256 PASS; adequate |
+| MECH-203 tonic 5-HT + benefit-salience tagging | `ree-v3/ree_core/neuromodulation/serotonin.py` | code present, SerotoninModule/ResidueField/HippocampalModule wiring correctly reached in principle, but never end-to-end validated: EXQ-255/256 were invalidated by an `env.step()` return-order bug (n_benefit_samples=0), and the 2026-08-01 redesign V3-EXQ-843 was invalidated by zero harm exposure (low-density hazard layout + the agent's own competent policy routes around all harm contact). MECH-203 has never had a valid test (see `failure_autopsy_V3-EXQ-843_2026-08-01`). This "EXQ-255/256 PASS; adequate" reading was stale and is corrected here 2026-08-01. |
 | MECH-205 surprise-gated replay | `ree-v3/ree_core/agent.py` `update_residue` | EXQ-258b PASS; stable |
 | MECH-120 SHY normalisation wired into `enter_sws_mode` | `ree-v3/ree_core/predictors/e1_deep.py` | EXQ-245a wired |
 | SD-017 SWS-analog `run_sws_schema_pass` | `ree-v3/ree_core/agent.py:4027` | code present, never validated end-to-end |

@@ -23,9 +23,10 @@
     "SD-076"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_note": "[2026-08-01 governance, confirmed failure_autopsy_V3-EXQ-864_2026-08-01] Root cause code-verified: CausalGridWorldV3's own episode-termination condition (agent_health<=0 or steps>=500, causal_grid_world.py:2892) fires (~8-11 ticks/episode observed) far short of any of the swept steps_per_ep values (200/500/1000), so the sweep never actually varied real exposure -- diff_final is bit-identical across the sweep in both arms/seeds. The 'no crossover in range' finding is uninformative; V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle remains genuinely UNRESOLVED. Non-blocking for EVB-0454 per V3-EXQ-860's own routing. Routed /queue-experiment for a redesign decoupling steps_per_ep from environment termination.",
   "evidence_direction_per_claim": {
-    "SD-076": "unknown"
+    "SD-076": "non_contributory"
   },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {

@@ -10611,7 +10611,10 @@
     in humans (Walker 2004). In REE, spindle density is a proxy for consolidation
     efficiency -- more spindle bursts per offline cycle = more episodic content
     transferred to E1. This provides a potential diagnostic metric in V4.
-    Registered 2026-03-23. V4 scope.
+    Registered 2026-03-23. V4 scope. [STALE as of 2026-08-01 -- see evidence_quality_note:
+    sleep (MECH-120/121/122/180 cluster) was pulled into V3 as necessary; implementation_phase: v3
+    below is and always was the correct field. This "V4 scope" sentence is registration-era prose
+    that was never updated when the scope moved, not the authoritative phase.]
   evidence_quality_note: >
     EXQ-246 PASS x2 (2026-04-05): two V3 proxy spindle coordination runs. Both
     reclassified to inconclusive (governance 2026-04-07 for first run, 2026-04-08
@@ -10619,9 +10622,25 @@
     conditions produced identical metrics in all 3 seeds in both runs (harm rates,
     harm discrimination, harm_eval values all identical). Phase 3 spindle proxy
     (ThetaBuffer consolidation_summary written back to ContextMemory) had zero
-    measurable effect. V3 proxy too weak to produce signal for this V4-scope mechanism.
+    measurable effect. V3 proxy too weak to produce signal for this mechanism.
     Promoted to provisional 2026-04-09: pipeline recommendation accepted (conf=0.769,
-    zero conflict, 2 exp + 1 lit supports). Provisional pending V4 implementation.
+    zero conflict, 2 exp + 1 lit supports). Provisional pending implementation.
+
+    [2026-08-01 governance, confirmed failure_autopsy_V3-EXQ-861_2026-08-01]: PHASE-LABEL
+    CORRECTION, not a scope change -- MECH-122's implementation_phase: v3 field was already
+    correct; this claim's own registration-era "V4 scope" / "V4-scope mechanism" / "pending V4
+    implementation" prose (notes + the two phrases above, now corrected) was the stale artifact.
+    Per feedback_phase_label_follows_dependency: MECH-180 (v3_pending, live V3 governance activity
+    this cycle) lists MECH-122 directly in depends_on, and the V3-EXQ-861 autopsy found MECH-122's
+    CONTENT-PACKAGING half (ThetaBuffer.consolidation_summary()/set_consolidation_mode(),
+    ree_core/latent/theta_buffer.py:146,159) directly implicated in explaining why MECH-180's
+    spindle_density DV fails to track novelty while its other two DVs succeed -- MECH-122 is a real,
+    live V3 dependency, not a deferred V4 feature. Two DISTINCT substrate_queue entries now exist for
+    MECH-122's two halves: MECH122-SENSORY-GATING-OFFLINE-PROTECTION (added same day, session
+    igw-loop-mech122-gap, complex (probe-gated) -- not yet established as load-bearing given the
+    current strictly-sequential wake/sleep harness design) and MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION
+    (added this session, complicated (buildable) -- the ThetaBuffer methods already exist, unwired).
+    PROMOTES/DEMOTES NOTHING (status stays provisional).
 
 - id: MECH-123
   title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
@@ -16628,7 +16647,7 @@
   emergent_from:
     - SD-017
   pending_substrate_reconfirmation: true
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   ceiling_decision: deferred
   ceiling_routing_note: >
     MAPPED / UN-DEFERRED 2026-07-07 (user override of the 2026-06-14 + 2026-06-30 deferral
@@ -16662,6 +16681,10 @@
     terminal validated result. Both the build's validation and the eventual ecological
     run must keep the 718a lesson: DV-monotone-in-measured-MEL is near-tautological on
     a functional consumer, so the producer must be validated with the consumer ABSENT.
+    RESOLVED 2026-08-01 (confirmed failure_autopsy_V3-EXQ-861_2026-08-01, cross-validating
+    failure_autopsy_V3-EXQ-845_2026-08-01): the ecological end-to-end run named above has now
+    scored, twice. epistemic_category GRADUATED substrate_ceiling -> standard -- see
+    evidence_quality_note RESOLVED entry for the full result.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer now exists: ree_core/sleep/mel_consumer.py (MELConsumer) reads accumulated
@@ -16681,13 +16704,13 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/substrate_ceiling
-    as_of: 2026-07-11
+    reading: candidate
+    as_of: 2026-08-01
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-718a_2026-07-08
-      as_of: 2026-07-08
-      verdict: "non_contributory/measurement_gap (environment / test-bed producer gap; NOT substrate_ceiling at the consumer, NOT falsification). Governance may leave INV-050 stored epistemic_category=substrate_ceiling untouched (conservative, as in the 718 cycle); the note carries the environment-producer-gap framing regardless."
+      from: failure_autopsy_V3-EXQ-861_2026-08-01
+      as_of: 2026-08-01
+      verdict: "mixed/standard -- epistemic_category GRADUATED substrate_ceiling -> standard (reconciled alongside sibling MECH-180 in the same governance pass). The ecological end-to-end run (V3-EXQ-845, cross-validated by the deconfounded V3-EXQ-861) has now scored: sws_power and replay_rate track measured MEL correctly in 2/3 seeds each, the first positive ecological signal for this invariant's third drive."
   evidence_quality_note: |
     V3-EXQ-701 (INV-050 MEL-measurability diagnostic, no-sleep; confirmed failure_autopsy_V3-EXQ-701_2026-06-23)
     -> non_contributory, NOT a verdict on INV-050 (diagnostic, scoring-excluded; status UNCHANGED). 701 tested only
@@ -16760,8 +16783,15 @@
     capability as SD-MEL-CONSUMER's terminal validated result; RE-PARK the ecological end-to-end demonstration
     (off the V3 critical path; environment-blocked). No new substrate build owed now; if un-parked, a graded-MEL
     environment/test-bed (non-converging world) is the entry point, not another letter.
+    RESOLVED 2026-08-01 (confirmed failure_autopsy_V3-EXQ-861_2026-08-01, cross-validating failure_autopsy_V3-EXQ-845_2026-08-01,
+    both /governance-applied in the same pass as sibling MECH-180): the RE-PARK above is superseded -- SD-MEL-PRODUCER
+    (the environment-blocked link) was built and validated 2026-07-21/29 (V3-EXQ-798a), and the ecological end-to-end
+    run has now scored twice. sws_power and replay_rate (this invariant's directly-relevant DVs) pass 2/3 seeds each
+    under both runs. epistemic_category GRADUATED substrate_ceiling -> standard. The remaining gap (MECH-180's
+    spindle_density DV specifically) is a NEW, narrower, MECH-122-content-packaging dependency gap -- see MECH-180's
+    evidence_quality_note -- not a reason to keep this invariant itself parked at substrate_ceiling.
   pending_retest_after_substrate: true
-  pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent."
+  pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent. SUPERSEDED 2026-08-01: the deferred substrate (SD-MEL-PRODUCER) landed and validated 2026-07-21/29; epistemic_category is now standard (see evidence_quality_note RESOLVED entry). pending_retest_after_substrate STAYS true, now pointed at the narrower MECH-122 content-packaging gap tracked on sibling MECH-180."
   depends_on:
     - INV-049
     - INV-044
@@ -16912,15 +16942,15 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate/v3_pending/substrate_ceiling
-    as_of: 2026-07-30
+    reading: candidate/v3_pending
+    as_of: 2026-08-01
     needs_review: false
     evidence:
-      from: failure_autopsy_V3-EXQ-798a_2026-07-30
-      as_of: 2026-07-30
-      verdict: "non_contributory/standard -- SD-MEL-PRODUCER test-bed VALIDATED (V3-EXQ-798a PASS, claim_ids=[] by design). The environment now demonstrably produces a graded, above-reference, and genuinely learnable waking MEL load, cleanly separated from a matched noise control. Licenses (does not itself constitute) the still-gated MECH-180 ecological end-to-end run. PROMOTES/DEMOTES NOTHING; v3_pending and pending_retest_after_substrate both STAY until that ecological run scores."
+      from: failure_autopsy_V3-EXQ-861_2026-08-01
+      as_of: 2026-08-01
+      verdict: "mixed/standard -- epistemic_category GRADUATED substrate_ceiling -> standard. The ecological end-to-end run has now scored TWICE (V3-EXQ-845, then the write-count-deconfounded V3-EXQ-861): sws_power and replay_rate pass 2/3 seeds each under both runs, cross-validating genuine partial support; spindle_density fails 0/3 seeds under BOTH the confounded and deconfounded statistic, now explained (not merely unresolved) by a discovered dependency gap -- see evidence_quality_note. The 798a-sourced note's own condition ('STAY until that ecological run scores') is met."
   v3_pending: true
-  epistemic_category: substrate_ceiling
+  epistemic_category: standard
   ceiling_decision: deferred
   ceiling_routing_note: >
     Environment-producer gap RE-PARKED 2026-07-08 by user disposition (off the V3
@@ -16961,6 +16991,13 @@
     ecological end-to-end run using the environment as the novelty knob -- flagged for
     /queue-experiment. v3_pending and pending_retest_after_substrate both STAY until that run
     scores. PROMOTES/DEMOTES NOTHING.
+    RESOLVED 2026-08-01 (confirmed failure_autopsy_V3-EXQ-861_2026-08-01, cross-validating
+    failure_autopsy_V3-EXQ-845_2026-08-01): the ecological end-to-end run has now scored, twice.
+    epistemic_category GRADUATED substrate_ceiling -> standard (see live_status + evidence_quality_note).
+    NOT a full clearance: pending_retest_after_substrate STAYS, now tied to a newly-identified
+    MECH-122 content-packaging substrate gap (new substrate_queue entry
+    MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION) rather than to the previously-blocking
+    SD-MEL-PRODUCER environment gap, which is closed.
   granularity_debt_recurrence_note: >
     GOV-GRAN-1 P1 unflagged_recurrence discrimination (2026-07-16, session
     gifted-kilby-8e2491). Audit flagged 3 no-verdict claim-keyed autopsy hits with 3
@@ -17048,6 +17085,34 @@
     with sibling INV-050's shared GOV-GRAN-1 metabolization (granularity_debt_recurrence_note) and
     that reconciliation needs its own deliberate pass rather than a side-effect of this note.
     PROMOTES/DEMOTES NOTHING.
+
+    [2026-08-01 governance, confirmed failure_autopsy_V3-EXQ-861_2026-08-01]: this IS the
+    deliberate reconciliation pass flagged above (INV-050 reconciled in the same session/commit).
+    V3-EXQ-861 is the write-count-deconfounded redesign of V3-EXQ-845's third DV
+    (sws_slot_diversity -> mean_sws_new_slot_diversity, diversity among ONLY the ContextMemory
+    slots touched per cycle, not the whole 16-slot bank). Result: sws_power and replay_rate again
+    pass 2/3 seeds, cross-validating 845 under a corrected methodology; spindle_density again fails
+    0/3 seeds under the DECONFOUNDED statistic, ruling out 845's write-count artifact as the
+    explanation. Biological-reference triage (prompted by a user domain question about sleep-spindle
+    sensory gating): spindle_density's closest biological reference is thalamocortical spindle
+    CONTENT PACKAGING (Yang2018/Ngo2020/Staresina2015, evidence/literature/targeted_review_connectome_mech_122/),
+    which maps to MECH-122's content-packaging half. That half exists in ree_core as an unwired V3
+    code stub (ThetaBuffer.consolidation_summary()/set_consolidation_mode(),
+    ree_core/latent/theta_buffer.py:146,159) never called from run_sws_schema_pass()/force_cycle() --
+    a genuine, previously-undischarged DEPENDENCY GAP, not a claim falsification. This is a discovered
+    prerequisite, not a demotion: DV1/DV2 evidence stands independently and STRENGTHENS the claim
+    overall (2/3 DVs now cross-validated under two different measurement designs); DV3 is
+    pending_retest_after_substrate on the new MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION substrate_queue
+    entry (complicated (buildable) -- the mechanism exists, it needs wiring, not discovery).
+    epistemic_category GRADUATED substrate_ceiling -> standard (see live_status; the 798a-conditioned
+    "STAY until that ecological run scores" has now been met twice). MECH-122's own
+    implementation_phase: v3 field is CORRECT (per feedback_phase_label_follows_dependency and explicit
+    user confirmation this session) -- its registration-era "V4 scope" prose is the stale artifact,
+    corrected on the MECH-122 entry itself in this same pass. NOT weakened overall (2/3 DVs strengthen;
+    3rd DV explained, not falsified). Re-derive brake / granularity-debt trigger: both checked via
+    scripts/granularity_debt_cluster.py MECH-180 -- neither fires (1 substrate_ceiling hit under R1-R3,
+    no target reads weakened). PROMOTES/DEMOTES NOTHING (status stays candidate/v3_pending; v3_pending
+    STAYS -- the MECH-122 substrate work is itself V3 scope, still pending).
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)
@@ -18550,9 +18615,31 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-08-01
     needs_review: false
+    evidence:
+      from: failure_autopsy_V3-EXQ-843_2026-08-01
+      as_of: 2026-08-01
+      verdict: "non_contributory/measurement_test_design_defect -- third consecutive invalid test; claim never fairly tested"
   implementation_phase: v3
+  epistemic_category: standard
+  evidence_quality_note: >
+    [2026-08-01 governance, confirmed failure_autopsy_V3-EXQ-843_2026-08-01]: V3-EXQ-843
+    (SWS replay-salience dose-response redesign) is the THIRD consecutive invalid MECH-203 test.
+    Admissibility (C3) failed on all 3 seeds -- n_harm_states=0 across up to 4800 visited states
+    per seed -- because the waking rollout is driven by the agent's own (successfully
+    hazard-avoiding) trained policy through a low-density hazard layout (3 hazards, 5% harm
+    density, 10x10 grid), which structurally routes around all harm contact. Environment/protocol
+    design gap (the agent's own competence prevents the exposure the design needs), NOT evidence
+    against the claim: the SWS replay-selection machinery itself (SerotoninModule drive_state,
+    ResidueField valence, HippocampalModule _select_valence_weighted_start) is correctly wired and
+    was never reached. MECH-203 has NEVER had a valid test: V3-EXQ-255/256 were invalidated by an
+    env.step() return-order bug (n_benefit_samples=0); this redesign is invalidated by zero harm
+    exposure. sleep_substrate_plan.md's existing "EXQ-255/256 PASS; adequate" note is stale and is
+    corrected in the same pass. Route: /queue-experiment (843b) forcing harm exposure (e.g. a
+    denser hazard layout or an exploration-forced rollout phase, not the agent's own competent
+    policy). NOT weakened (claim never fairly tested); NOT cleared. PROMOTES/DEMOTES NOTHING;
+    MECH-203 stays candidate.
   depends_on:
     - MECH-186
     - MECH-121
@@ -18618,11 +18705,35 @@
     1994/2007 and Boardman 2024 both nudge away from acute-regime drift; Jones 2006 offers
     partial counter-support that a real drift phenomenon exists at all. NET: genuine three-way
     residual uncertainty, no clean winner -- H1 alive-with-partial-signal, H2 weakens itself, H3
-    weakened. EVB-0454's SD-076 decision deadline is 2026-08-03T20:50:36Z; this synthesis is
-    recorded so the deadline can be met with the full picture, but does NOT itself decide it.
-    PROMOTES/DEMOTES NOTHING; SD-076 and MECH-204 both stay candidate/v3_pending. Routed:
-    /queue-experiment for a redesigned H2 probe varying STEPS_PER_EP (not requeued this session
-    given the tight timeline); no further /lit-pull needed (H3's is complete).
+    weakened. EVB-0454's SD-076 decision deadline was cited here as 2026-08-03T20:50:36Z (a
+    snapshot from an earlier governance cycle). CORRECTED 2026-08-01 (root-caused this session,
+    full detail on SD-076's own evidence_quality_note): `decision_deadline_utc` in
+    experiment_proposals.v1.json is COMPUTED as `generated_at_dt + 72h` on every regeneration
+    while the conflict stays unresolved, not a frozen deadline -- there is no discrepancy to
+    reconcile, only a rolling value that keeps re-arming. Do not treat any cited timestamp as a
+    hard deadline. This synthesis is recorded so the underlying conflict can be resolved on its
+    own merits, not on a clock. PROMOTES/DEMOTES NOTHING; SD-076 and MECH-204 both stay
+    candidate/v3_pending. Routed: /queue-experiment for a redesigned H2 probe varying STEPS_PER_EP
+    (not requeued this session given the tight timeline); no further /lit-pull needed (H3's is
+    complete).
+
+    [2026-08-01 governance continued, confirmed failure_autopsy_V3-EXQ-860_2026-08-01 +
+    failure_autopsy_V3-EXQ-864_2026-08-01]: the redesigned H2 probe flagged above as "not requeued
+    this session" HAS now run, as V3-EXQ-860 (STEPS_PER_EP 200->1000, N_TRAIN_EPS held at 794a's
+    original 30 to remove the F1-firing-count confound 853 carried). Result: closure toward the
+    smoke target collapses to ~0% (LO 2.9%, HI 2.5%) vs 853's confounded 12-22% at the same total
+    exposure -- a clean controlled elimination. H2 (insufficient exposure) is WEAKENED more strongly
+    than 853 alone showed; by elimination this STRENGTHENS H1 (F1-interaction damping) as the
+    better-supported explanation. Full detail on SD-076's own evidence_quality_note, not duplicated
+    here. SEPARATELY, 860 also surfaced a new, undiagnosed wrong-signed inflation_lowers_rv puzzle;
+    V3-EXQ-864 (commissioned to instrument it) found the puzzle remains UNRESOLVED -- its
+    steps_per_ep sweep never actually varied real exposure because CausalGridWorldV3's own
+    episode-termination condition fires far short of any swept value (test-design defect,
+    non-blocking, non_contributory). Net: H2 is now the weakest-supported of the three hypotheses;
+    H1 is the leading candidate by elimination; H3 stays weakened-not-eliminated. This moves the
+    EVB-0454 decision toward a leading candidate but does not singlehandedly resolve
+    retain/hybridize/retire -- left open this cycle per user instruction. PROMOTES/DEMOTES NOTHING;
+    MECH-204 stays candidate/v3_pending.
   epistemic_category: standard
   what_would_answer: |
     MECH-204 states a MECHANISM but has never stated its own falsification
@@ -41958,6 +42069,31 @@
     _apply_policy_decomposition, currently absent). Design phase needs a /lit-pull commission first
     (threat-modulated defensive path-selection literature, e.g. Fanselow's predatory-imminence
     continuum) before implementation specifics are fixed, per biology-before-formal-definitions.
+    [2026-08-01, SD-hazard-aware-policy-decomposition IMPLEMENTED (chip-20260801-hazard-aware-decomp-build):
+    the commissioned lit-pull landed first (targeted_review_threat_modulated_defensive_path_selection,
+    9 entries -- Fanselow PIC x4, Mobbs 2007/2020, Evans 2018, Cooper 2016, Blanchard & Blanchard 1989;
+    verdict Form B, two-stage regime-sensitive), then the substrate: PolicyDecomposition.harm_bias
+    (Stage 1, graded, composed into REEAgent.select_action's existing score_bias chain via new
+    Trajectory.metadata["decomposition_harm_bias"], ARC-007 value-flat) + .select_harm_aware_leaves
+    (Stage 2, categorical override among a withheld chunk's own leaf tiles at high w(z_harm_a), a
+    pool-admission decision in _apply_policy_decomposition rather than an oversized score_bias).
+    harm_penalty is read per candidate leaf from the residue field's VALENCE_HARM_DISCRIMINATIVE
+    channel (SD-014) on the leaf's OWN predicted world_states, NOT via an AnchorGoalPayload/SD-039
+    extension as the routing note above suggested as one option -- AnchorGoalPayload is scoped to
+    hippocampal anchors, not policy-decomposition candidates, so the direct residue-field read
+    (mirroring build_goal_payload's own VALENCE_WANTING pattern) is architecturally cleaner; see
+    the SD doc's Architecture Context for the full reasoning. Default OFF / bit-identical (full
+    pre-existing 32-test contract suite passes unmodified); 11 new contract tests C18-C24 in the
+    same file. This closes the STRUCTURAL gap V3-EXQ-844 identified (no harm signal reaches the
+    redecomposition step, no ranking among re-tilings) but does NOT itself constitute new
+    experimental evidence for MECH-321 -- v3_pending STAYS. Escapability (Cooper 2016) and
+    predictability/certainty (Fanselow 2022 BST; Blanchard & Blanchard 1989) are lit-pull-confirmed
+    secondary gaps, deliberately deferred, not built here. Follow-on, chipped rather than queued in
+    this session (substrate build only, per scope discipline): a MECH-321 behavioural-effect
+    validation experiment measuring whether harm-aware selection improves V3-EXQ-844's C1
+    task-outcome statistic, ON vs OFF, at matched abort rates, via /queue-experiment. See
+    REE_assembly/docs/architecture/sd_hazard_aware_policy_decomposition.md and
+    evidence/planning/substrate_queue.json sd_id SD-hazard-aware-policy-decomposition.]
   title: "policy_decomposition_via_event_segmenter (rollout-side consumer of MECH-288 boundary pulses; re-segments the rollout proposal stream at finer grain when a chunk's region shows low V_s / boundary fires on the imagined trajectory). First child mechanism for ARC-070. Bidirectional extension of MECH-288 substrate (R2 lit-pull verdict 2026-05-10): MECH-288 already detects boundaries on whatever latent + PE streams it consumes; MECH-321 wires the rollout / imagination input stream into MECH-288 and consumes the resulting boundary pulses at the policy-primitive layer to decompose chunked primitives into finer-grain sub-elements. PE-driven primary trigger (V_s drop on chunk's region per Zacks 2007 / Schapiro 2017); bottleneck-state framing is a separate consolidation-phase mechanism, not the primary trigger. Recursive multi-level decomposition; depth cap 3 is an ENGINEERING choice, not a literature-derived constant (provenance corrected 2026-07-27 -- see evidence_quality_note). The MULTI-LEVEL commitment is ARC-070's R3 verdict (Badre & D'Esposito 2009) and STANDS; that source never supported a level COUNT, and Badre & Nee 2018 (Badre's own re-appraisal) finds the evidence supports neither a unitary model of lateral frontal function nor a unidimensional abstraction gradient, so there is no single ordered axis along which to cap. The cap rests instead on tractability + operator symmetry (mirrors ARC-071's chunk_max_depth so the inverse operations stay symmetric; open Q-claim on hard-vs-soft). Magnitude prior only, with an explicit grain caveat: Koechlin 2003 resolves a 3-level lateral-PFC cascade (4 with Koechlin & Summerfield 2007 frontopolar branching), but at ANATOMICAL grain -- heterogeneous, anatomically fixed control levels, NOT homogeneous recursion depth of one operator re-applying to its own output. Both pre-commit and mid-execution phases supported via the same mechanism, with downstream effects gated by MECH-094 hypothesis_tag (rollout fires under hypothesis_tag=True write nothing; observation / execution fires under hypothesis_tag=False enable the existing observation-side consumer chain unchanged)."
   claim_type: mechanism_hypothesis
   subject: policy.decomposition_via_event_segmenter
@@ -52520,7 +52656,42 @@
     separation shrinks with more training exposure, opposite H2's prediction, confirmed
     failure_autopsy_V3-EXQ-853_2026-08-01); H3's /lit-pull (commit e84240108d) weakens but does
     not eliminate H3. No clean winner -- genuine three-way residual uncertainty. EVB-0454's
-    decision deadline is 2026-08-03T20:50:36Z. PROMOTES/DEMOTES NOTHING; SD-076 stays candidate.
+    decision deadline was cited here as 2026-08-03T20:50:36Z (a snapshot from an earlier
+    governance cycle). CORRECTED 2026-08-01 (V3-EXQ-864's autopsy, root-caused this session):
+    this is NOT a discrepancy between two fixed deadlines -- `decision_deadline_utc` in
+    experiment_proposals.v1.json is COMPUTED, not frozen: build_experiment_indexes.py sets it to
+    `generated_at_dt + 72h` (mandatory_decision_deadline_hours) on EVERY regeneration, for as long
+    as the underlying conflict stays unresolved. So it perpetually reads "~3 days from whenever
+    governance last ran," not a real fixed commitment -- every past citation captured a snapshot
+    of that rolling value, not a discrepancy to reconcile. Do NOT treat any cited
+    decision_deadline_utc as a hard external deadline; the real constraint is "resolve the
+    conflict," and the field will keep re-arming at +72h until that happens. Worth a design review
+    (a rolling deadline can never be missed), flagged here rather than fixed unilaterally.
+    PROMOTES/DEMOTES NOTHING; SD-076 stays candidate.
+
+    [2026-08-01 governance continued, confirmed failure_autopsy_V3-EXQ-860_2026-08-01 +
+    failure_autopsy_V3-EXQ-864_2026-08-01]: V3-EXQ-860 (H2 leg, redesigned to hold N_TRAIN_EPS at
+    794a's original 30 -- removing the F1-firing-count confound 853 carried -- and instead raise
+    STEPS_PER_EP 200->1000 for the same 5x total exposure via episode LENGTH rather than episode
+    COUNT). Result, decisive for the H1-vs-H2 question: closure toward the smoke target collapses
+    to ~0% (LO 2.9%, HI 2.5%) vs 853's own confounded 12-22% at the same total exposure -- a clean
+    controlled elimination showing 853's partial closure was driven by increased F1-firing count
+    (H1's axis), NOT raw exposure duration (H2's axis). H2 WEAKENS more strongly and cleanly than
+    853 alone showed; H1 (F1-interaction damping) is correspondingly STRENGTHENED by elimination.
+    V3-EXQ-853's evidence_direction is marked superseded (860 is its confound-corrected successor
+    per 860's own supersedes field) -- see that manifest. SEPARATELY: 860 also found its own
+    inflation_lowers_rv readiness precondition wrong-signed (a new, undiagnosed puzzle, distinct
+    from the H1/H2 finding above and not undermining it), which V3-EXQ-864 was commissioned to
+    instrument. V3-EXQ-864 found the wrong-signed puzzle remains UNRESOLVED: its steps_per_ep sweep
+    never actually varied real exposure, because CausalGridWorldV3's own episode-termination
+    condition (agent_health<=0 or steps>=500, causal_grid_world.py:2892) fires (~8-11 ticks/episode
+    observed) far short of any swept value -- a test-design defect (non_contributory), not new
+    evidence, non-blocking for EVB-0454 per 860's own routing. Net effect on the three-way residual
+    uncertainty: H2 is now clearly the weakest-supported of the three explanations; H1 is the
+    leading candidate by elimination; H3 (lit-pull) stays weakened-not-eliminated as before. This
+    moves the EVB-0454 decision toward a leading candidate but does not singlehandedly resolve
+    retain/hybridize/retire -- that call is deliberately left open this cycle per user instruction.
+    PROMOTES/DEMOTES NOTHING; SD-076 stays candidate.
   implementation_phase: v3
   claim_level: architectural
   registered_utc: "2026-07-20"

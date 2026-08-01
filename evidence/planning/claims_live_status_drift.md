@@ -1,6 +1,6 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-01T17:18:14Z
+Generated: 2026-08-01T21:10:29Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
@@ -49,7 +49,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 
 _None._
 
-## Event-provenance drift -- SOFT (88)
+## Event-provenance drift -- SOFT (89)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -79,6 +79,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-169 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-171 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-673` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-673` |
 | MECH-180 | `failure_autopsy_V3-EXQ-798a_2026-07-30` | `failure_autopsy_V3-EXQ-845_2026-08-01` |
+| MECH-203 | `_none_` | `failure_autopsy_V3-EXQ-843_2026-08-01` |
 | MECH-204 | `failure_autopsy_V3-EXQ-794_2026-07-22` | `failure_autopsy_V3-EXQ-850_2026-08-01` |
 | INV-088 | `failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754` | `failure_autopsy_V3-EXQ-819a_2026-07-30` |
 | MECH-217 | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-842` |
@@ -114,8 +115,7 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | Q-054 | `failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616` | `failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616` |
 | SD-059 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
 | MECH-358 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
-| SD-068 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
-| ... | | (+28 more) |
+| ... | | (+29 more) |
 
 ## Never reviewed (no `last_reviewed`) -- INFO (942 of 963)
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_699b_pcomp_demotion_x_gonogo_fresh_select
 
-Generated: `2026-08-01T18:26:55.014724Z`
+Generated: `2026-08-01T21:09:57.681848Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

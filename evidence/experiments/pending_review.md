@@ -1,29 +1,10 @@
 # Pending Experiment Review
 
-Generated: `2026-08-01T17:17:51Z`  
-Last review: `2026-08-01T17:12:25Z`  
-Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-08-01T22:12:19Z`  
+Last review: `2026-08-01T21:50:27Z`  
+Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-## FAIL (action required)
-
-| Run ID | Timestamp | Claims | Failure signatures |
-|--------|-----------|--------|--------------------|
-| `v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3` | 2026-08-01T15:34 | SD-076 | — |
-
-## PASS (verify & close)
-
-| Run ID | Timestamp | Claims |
-|--------|-----------|--------|
-| `v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3` | 2026-08-01T15:15 | (no claim tags) |
-
-## Diagnostic adjudication required (self-route unverified)
-
-These diagnostic/baseline runs carry a self-routed `interpretation.label`, but the indexer flagged it as untrustworthy: `precondition_unmet` (a declared precondition's `met` is false -- the self-route's premise did not hold) or `vacuous_pass` (an overall PASS rests on a degenerate criterion). The label must NOT drive a governance action (clear `v3_pending` / mint-or-AMEND `substrate_queue` / close-or-route a thought-intake) until adjudicated -- run `/failure-autopsy` on the run (it accepts a flagged PASS target too). See evidence/planning/proposal_diagnostic_adjudication_gate_2026-06-06.md.
-
-| Run ID | Status | Self-route label | Adjudication |
-|--------|--------|------------------|--------------|
-| `v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3` | PASS | mixed_partial_result_needs_full_replication | **vacuous_pass** |
-| `v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+All experiments reviewed. Nothing pending.
 
 ---
 

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_850_mech204_sd076_h1_f1_damping_probe
 
-Generated: `2026-08-01T18:26:55.014724Z`
+Generated: `2026-08-01T21:09:57.681848Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

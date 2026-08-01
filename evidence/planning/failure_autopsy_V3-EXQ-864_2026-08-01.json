@@ -56,7 +56,7 @@
       "learning_extracted": [
         "Recurring pattern (third instance, after 845's write-count confound and 794's floor-saturation defect): a driver's nominal sweep parameter fails to actually vary the measured quantity because of an unaccounted environment-level constraint -- here CausalGridWorldV3's own termination condition (agent_health<=0 or steps>=500) silently overrides the driver's steps_per_ep exposure manipulation.",
         "V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle remains genuinely unresolved -- this diagnostic did not test the manipulation it was designed to test.",
-        "Deadline discrepancy found: experiment_proposals.v1.json EVB-0454 decision_deadline_utc (2026-08-04T21:09:57Z) disagrees with claims.yaml/860-autopsy/864-docstring citations (2026-08-03T20:50:36Z) by ~24h."
+        "CORRECTED (addendum, governance apply): the apparent ~24h deadline discrepancy is not real -- experiment_proposals.v1.json's decision_deadline_utc is COMPUTED as generated_at_dt + 72h on every regeneration (build_experiment_indexes.py:5107-5111), not frozen, so every cited timestamp was a snapshot of a rolling value, not a fixed commitment to reconcile."
       ],
       "routing": "queue-experiment"
     }

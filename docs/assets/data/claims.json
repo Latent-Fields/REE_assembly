@@ -1999,7 +1999,7 @@
     "type": "invariant"
   },
   "INV-050": {
-    "assembly_state": "enriching",
+    "assembly_state": "remaining",
     "assembly_status": "built",
     "awaiting": "SD-MEL-CONSUMER",
     "emergent_from": [
@@ -3555,6 +3555,8 @@
   },
   "MECH-122": {
     "assembly_state": "mature",
+    "assembly_status": "queued",
+    "awaiting": "MECH122-SENSORY-GATING-OFFLINE-PROTECTION",
     "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "sleep.spindles_packaging_gating",
@@ -4035,7 +4037,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-180": {
-    "assembly_state": "enriching",
+    "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-MEL-CONSUMER",
     "epistemic_stance": "believed",
@@ -5301,7 +5303,7 @@
   },
   "MECH-321": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-hazard-aware-policy-decomposition",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -5319,7 +5321,7 @@
   },
   "MECH-323": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
     "epistemic_stance": "shown",
     "status": "candidate",
@@ -5329,8 +5331,8 @@
   },
   "MECH-324": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
-    "awaiting": "SD-083",
+    "assembly_status": "built",
+    "awaiting": "MECH324-REACQ-WINDOW-GATING-DECOUPLE",
     "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "policy.composition.chunk_maintenance_dissolution",

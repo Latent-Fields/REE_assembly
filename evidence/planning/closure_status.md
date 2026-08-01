@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-01T17:18:03Z
+Generated: 2026-08-01T21:10:18Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -420,7 +420,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | pack_writer_single_writer_migration_plan.md | `STEP-7.4` | elapsed_seconds retrofit for the migrated batch (tools/retrofit_elapse | done | medium |  | 2026-07-15 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:PTSD-HYPERAROUSAL-INSOMNIA` | Hyperarousal insomnia and schema-repair starvation (PTSD chronicity) | partial | medium |  | 2026-07-30 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:DREAM-PHENOMENOLOGY` | Dream phenomenology as diagnostic and treatment-response marker | partial | medium |  | 2026-07-30 |
-| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:SEROTONERGIC-CROSS-STATE` | Serotonergic cross-state architecture (replay salience tagging, REM-ga | in_progress | medium |  | 2026-07-30 |
+| clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:SEROTONERGIC-CROSS-STATE` | Serotonergic cross-state architecture (replay salience tagging, REM-ga | in_progress | medium |  | 2026-08-01 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:SELF-MODEL-DEGRADATION` | Self-model failure modes: E1 schema poverty vs E2 capacity degradation | open | medium |  | 2026-07-30 |
 | clinical | psychiatric_failure_modes_plan.md | `clinical_failure_modes:PHARMACOLOGICAL-PREDICTIONS` | Pharmacological predictions registry + receptor-subtype resolution lay | tracked | medium | depends_on: clinical_failure_modes:CATATONIA-II, clinical_failure_modes:SEROTONERGIC-CROSS | 2026-07-30 |
 | meta | ree_ai_design_critique_plan.md | `WS-4` | Formal-ancestor mapping (top ~30 load-bearing MECH/ARC to nearest form | done | medium |  | 2026-07-09 |

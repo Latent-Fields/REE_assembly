@@ -23,7 +23,8 @@
     "MECH-180"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "mixed",
+  "evidence_direction_note": "[2026-08-01 governance, confirmed failure_autopsy_V3-EXQ-861_2026-08-01] sws_power and replay_rate pass 2/3 seeds each under the write-count-deconfounded methodology, cross-validating V3-EXQ-845's partial support. spindle_density fails 0/3 seeds under BOTH the confounded and deconfounded statistic, now explained (not merely unresolved) by a discovered MECH-122 content-packaging dependency gap (unwired V3 code stub, ThetaBuffer.consolidation_summary()) rather than a measurement artifact. Self-route mel_control_degenerate reflects the binary C2 control gate collapsing on the still-failing 3rd DV; DV1/DV2 evidence stands independently. See MECH-180 evidence_quality_note for the full biological-reference triage.",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {

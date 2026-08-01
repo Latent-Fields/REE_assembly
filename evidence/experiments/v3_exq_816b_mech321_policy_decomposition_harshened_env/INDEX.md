@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_816b_mech321_policy_decomposition_harshened_env
 
-Generated: `2026-08-01T18:26:55.014724Z`
+Generated: `2026-08-01T21:09:57.681848Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

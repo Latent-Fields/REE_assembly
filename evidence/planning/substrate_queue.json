@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "confident-franklin-c8e403",
-  "last_updated_utc": "2026-08-01T19:52:58Z",
+  "last_updated_utc": "2026-08-01T21:50:27Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6558,6 +6558,31 @@
       "priority": 3,
       "added_session": "igw-loop-mech122-gap",
       "last_seen_session": "igw-loop-mech122-gap"
+    },
+    {
+      "sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+      "title": "MECH-122 content-packaging half: wire ThetaBuffer.consolidation_summary()/set_consolidation_mode() (existing V3 code, currently unwired) into run_sws_schema_pass()/force_cycle() so SWS writes to ContextMemory carry a spindle-analog content-selection signal proportional to novelty/MEL",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-180",
+        "MECH-122"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3",
+          "experiment_type": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity",
+          "metric": "mean_sws_new_slot_diversity (spindle_density DV) fails monotone+spread criterion at 0/3 seeds, and fails ON-HIGH>OFF-HIGH control, even under the write-count-deconfounded statistic",
+          "target": "spindle_density DV must pass on >=2/3 seeds (monotone non-decreasing across 4 ON arms sorted by measured MEL, +/-0.05 slack, >=15% relative spread) once content-packaging selection is wired in"
+        }
+      ],
+      "implementation_hint": "ThetaBuffer.consolidation_summary() and set_consolidation_mode() (ree_core/latent/theta_buffer.py:146,159) already implement a V3 proxy for spindle-mediated content packaging but are never called from the sleep pipeline (run_sws_schema_pass()/force_cycle() in ree_core/agent.py write sampled prototype vectors via plain EMA-blend with no selection step). Wiring this in is the direct candidate explanation for why V3-EXQ-845/861's spindle_density DV (mean_sws_new_slot_diversity / whole-bank cosine diversity) fails to track novelty/MEL while sws_power and replay_rate (which don't depend on content selection) succeed. Distinct from the sibling MECH122-SENSORY-GATING-OFFLINE-PROTECTION entry above (added same day, session igw-loop-mech122-gap), which covers the OTHER half of MECH-122 (blocking external sensory input during offline windows) and was separately found not-yet-established as load-bearing given the current strictly-sequential (non-interleaved) wake/sleep harness design. This entry's content-packaging half IS directly implicated by a real V3 experimental result (V3-EXQ-861 DV3) and existing code (unwired, not absent), so node_class is complicated (buildable), not complex (probe-gated). MECH-122's implementation_phase: v3 field is correct (its own registration-era 'V4 scope' prose was the stale artifact, corrected in claims.yaml the same session per feedback_phase_label_follows_dependency).",
+      "priority": 1,
+      "added_session": "nostalgic-chatelet-c25a78",
+      "last_seen_session": "nostalgic-chatelet-c25a78"
     }
   ],
   "schema_version": "substrate_queue/v2"
