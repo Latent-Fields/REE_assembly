@@ -225,14 +225,17 @@ closure_plan:
         scope_claims: ["MECH-203", "MECH-204"]
       unblocks_claims: [MECH-203]
       depends_on: []
-      last_updated: 2026-07-30
+      last_updated: 2026-08-01
       completion_note: "The only node in this lane with live in-flight work, which is why
         it is in_progress rather than open. MECH-204 has 5 experimental entries but 1 PASS
-        / 4 FAIL (exp_conf 0.506) -- being actively probed and mostly failing. MECH-203
-        has ZERO experimental entries and an auto-spawned IGW /queue-experiment assignment
-        open against it (IGW-20260730-214, claimed 2026-07-30T18:55Z). The doc's framing
-        is that MECH-186/187/188 are 'incomplete without their sleep-state counterparts',
-        so this node and MOTIVATIONAL-TAXONOMY fail or close together."
+        / 4 FAIL (exp_conf 0.506) -- being actively probed and mostly failing. MECH-203's
+        prior IGW auto-spawn (IGW-20260730-214) was abandoned mid-work and closed
+        2026-08-01; a separate session finished the script and it is now queued as
+        V3-EXQ-843 (ree-v3 main 1d9d451aee, SWS replay-selection dose-response over tonic
+        5-HT; backing proposal EVB-0157 marked executed), coordinator-confirmed live in
+        /queue/active but not yet run. The doc's framing is that MECH-186/187/188 are
+        'incomplete without their sleep-state counterparts', so this node and
+        MOTIVATIONAL-TAXONOMY fail or close together."
     - id: "clinical_failure_modes:FRAME-TAG"
       title: "Frame-tag failure modes: derealization, delusion, commitment-gate (developmental etiology)"
       status: open
