@@ -1,107 +1,19 @@
 {
   "schema_version": "v1",
-  "runner_pid": 11574,
-  "runner_started_at": "2026-08-01T00:07:48.767571+00:00",
-  "last_updated": "2026-08-01T00:59:35.150886+00:00",
+  "runner_pid": 837,
+  "runner_started_at": "2026-08-01T14:40:45.965923+00:00",
+  "last_updated": "2026-08-01T15:15:25.441353+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-853",
+      "queue_id": "V3-EXQ-860",
       "backlog_id": "",
       "claim_id": "",
-      "title": "GOV-FANOUT-1 H2: does 5x training exposure (N_TRAIN_EPS 30->150) close the V3-EXQ-794a full-loop-vs-repair-smoke rv_final gap? (single-axis INFL-only re-run of 794a, F1 held ON)",
+      "title": "GOV-FANOUT-1 H2 REDESIGN: STEPS_PER_EP exposure sweep decoupled from F1-firing count (replaces confounded V3-EXQ-853)",
       "description": "",
-      "estimated_minutes": 120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-475b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "Q-040.c: is dACC behavioural-adjustment magnitude proportional to V_s precision-modulated forward-PE under MECH-269b=ON? (475a-conditions successor)",
-      "description": "",
-      "estimated_minutes": 144.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-844",
-      "backlog_id": "",
-      "claim_id": "MECH-321",
-      "title": "MECH-321 R4 mid-execution: does the abort hook improve task/harm outcome?",
-      "description": "",
-      "estimated_minutes": 19.2,
+      "estimated_minutes": 24.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-851",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062 GOV-FANOUT-1 Leg P-A (H1: selection-authority coupling gap) -- lateral_pfc route source (corrects the design doc's gated_policy erratum)",
-      "description": "",
-      "estimated_minutes": 280.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-840b",
-      "backlog_id": "",
-      "claim_id": "MECH-294",
-      "title": "MECH-294 behavioural falsifier re-run (measurement-window fix): contaminated_harm=0.0 closes self-contamination confound that starved V3-EXQ-840",
-      "description": "",
-      "estimated_minutes": 426.7,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-828a",
-      "backlog_id": "",
-      "claim_id": "INV-091",
-      "title": "INV-091: cross-stream similarity BAND falsifier, null-validated re-run of V3-EXQ-828 (same 6-arm design, eval budget 10->24 episodes)",
-      "description": "",
-      "estimated_minutes": 16.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-829a",
-      "backlog_id": "",
-      "claim_id": "MECH-324",
-      "title": "MECH-324 rapid-reacquisition falsifier RE-RUN: reacquisition-window isolation fix (supersedes 829)",
-      "description": "",
-      "estimated_minutes": 15120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-836d",
-      "backlog_id": "",
-      "claim_id": "MECH-476",
-      "title": "MECH-476 NOVELTY falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836c)",
-      "description": "",
-      "estimated_minutes": 8000.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-836e",
-      "backlog_id": "",
-      "claim_id": "MECH-476",
-      "title": "MECH-476 INTERVAL falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836b)",
-      "description": "",
-      "estimated_minutes": 16000.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -112,29 +24,18 @@
       "title": "ARC-062 GOV-FANOUT-1 Leg P-D (H4 diagnostic): context-conditioned (reef vs open) committed-class TV-divergence, ARM_ON vs ARM_OFF",
       "description": "",
       "estimated_minutes": 280.0,
-      "status": "pending",
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-848",
+      "queue_id": "V3-EXQ-858",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ARC-005 precision-only decoupled ladder: does the control plane route PRECISION, isolated from channels 3/4's occupancy-only authority? (successor to V3-EXQ-802)",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-B (H2: F-dominance) -- f_weight attenuation ladder, committed-class entropy",
       "description": "",
-      "estimated_minutes": 8000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-852",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-085 substrate-readiness diagnostic: E3Config.f_weight reachable and correct through the full agent pipeline (ARC-062 GOV-FANOUT-1 Leg P-B prerequisite, NOT Leg P-B itself)",
-      "description": "",
-      "estimated_minutes": 1.6,
-      "status": "pending",
+      "estimated_minutes": 560.0,
+      "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3311,6 +3212,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_849_q081_reach_preflight_scan_20260801T005934Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 670.2
+    },
+    {
+      "queue_id": "V3-EXQ-859",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062/MECH-309 diagnostic: lateral_pfc route_source vs none ablation, MECH-448/449 engagement",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS label=mixed_partial_result_needs_full_replication lpfc_engaged=False none_engaged=False | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-859 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-859.json",
+      "started_at": "2026-08-01T14:40:45.982767+00:00",
+      "completed_at": "2026-08-01T15:15:25.440583+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 2078.6
     }
   ]
 }
