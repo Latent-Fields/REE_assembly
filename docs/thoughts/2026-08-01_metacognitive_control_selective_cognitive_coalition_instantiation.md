@@ -1,7 +1,8 @@
 ---
 title: Metacognitive Control as Selective Cognitive Coalition Instantiation
 date: 2026-08-01
-status: candidate_thought_intake
+status: processed
+processed_utc: 2026-08-02
 scope: Metacognitive monitoring, control-demand formation, network topology control, and coalition enactment
 related_claims:
   - ARC-005
@@ -10,6 +11,9 @@ related_claims:
   - MECH-039
   - MECH-063
   - SD-076
+processed_in:
+  - docs/claims/claims.yaml#SD-091
+  - docs/claims/claims.yaml#MECH-481
 ---
 
 # Metacognitive Control as Selective Cognitive Coalition Instantiation
@@ -17,6 +21,17 @@ related_claims:
 ## Intake status
 
 Candidate architectural refinement and literature-pull seed. The biological correspondence is functional and hypothesis-generating, not a literal anatomical mapping.
+
+Status: processed 2026-08-02
+
+Processed in:
+- docs/claims/claims.yaml#SD-091 (coalition/topology control as a distinct control-plane output axis)
+- docs/claims/claims.yaml#MECH-481 (selective cognitive coalition instantiation mechanism, instantiates SD-091)
+
+Both registered `epistemic_category: substrate_conditional` -- the coalition-control module does not exist
+in ree_core yet (this thought explicitly frames it as a "Proposed architectural addition"). No EXP proposal
+minted; next step is `/implement-substrate` for a minimal coalition-control primitive, then `/queue-experiment`
+for MECH-481's 4-arm falsifier.
 
 ## Core thought
 

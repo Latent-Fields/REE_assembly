@@ -1100,11 +1100,11 @@
         "MECH-287 broadcast invalidation trigger wired (pending; online arm implementation landed with attribution_weight integration but trigger emission module is separate)"
       ],
       "objective": "Test the MECH-285 Q4 coupling (SYNTHESIS 2026-04-24 verdict 2): sleep-phase replay priority should scale proportionally (not threshold-gated) with integrated waking staleness. A waking session with high trigger-event load on region R should produce higher sleep replay event count over R than a matched low-load session, with effect size approximately monotonic in the difference in staleness[R] at sleep-mode entry.",
-      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli — e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation — would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
+      "design": "Two-arm matched-seed discriminative pair on a gridworld variant with a designated schema region R (e.g., a distinctive sub-corridor or room) that can be subjected to invalidating events without changing reward topology. Arm A (high trigger load): during waking, induce ~8-12 MECH-287 trigger events over region R (engineered schema-violation stimuli \u2014 e.g., predicted landmark absent, predicted contingency flipped); Arm B (low trigger load): identical task and trajectory but MECH-287 trigger threshold set high so ~0-2 triggers fire. Matched seeds, matched total step count, matched reward exposure. Both arms then transition to sleep-mode with the same offline-duration budget. Primary outcome: count(SWR-equivalent replay events over region R) during first offline bout, reported as a ratio A/B and as a per-seed delta. Secondary: correlation across seeds between delta-staleness at sleep-entry and delta-replay-count. Pre-registered threshold: arm-A-vs-arm-B replay-count-over-R ratio >= 1.5 (one-sided, distinct seeds, >= 4 seed pairs). FAIL-route: ratio <= 1.2 OR non-monotonic per-seed correlation \u2014 would refute the proportional-coupling verdict and reopen the threshold-gated hypothesis.",
       "claims_tested": [
         "MECH-285"
       ],
-      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate — the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
+      "notes": "Q4 coupling experiment from docs/architecture/v_s_invalidation_runtime.md 'Predicted observables' #4 and 'Open design questions' Q4 (now resolved by SYNTHESIS 2026-04-24 but confirmable in-substrate). Gated pending MECH-285 offline-arm substrate \u2014 the experiment cannot run until the sleep-phase sampler is implemented. Candidate script name: v3_exq_NNN_waking_load_to_sleep_priority.py. Synthesis reference: evidence/literature/targeted_review_mech285_sleep_replay_seed/SYNTHESIS.md verdicts 2 and 4 (proportional coupling; dissociable from salience). Salience-arm nulling not required for the primary test but could be added as a third arm to confirm dissociability.",
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null
@@ -1848,6 +1848,32 @@
         "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE TASK MIX MUST ACTUALLY DISSOCIATE THE REGIMES -- at least two regimes winning on different sub-tasks in the FIXED-ARM baseline, verified at step 0 before the selecting arm runs. Additionally the selector must be observed to actually SWITCH regime (non-degenerate selection distribution); a selector pinned to one regime is a fixed arm wearing a different label."
       ],
       "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 4, narrow form). The BROAD form (menu extended with imitation + language-mediated scaffolding) is substrate-blocked and is noted in MECH-474's claim notes but NOT registered as testable -- do not silently widen the menu when authoring the driver. Sequence after EXP-0399, which is the cluster's cheapest and first probe. NOT on the V3 critical path."
+    },
+    {
+      "proposal_id": "EXP-0413",
+      "claim_id": "MECH-480",
+      "related_claims": [
+        "MECH-480",
+        "SD-032b",
+        "MECH-258",
+        "MECH-260"
+      ],
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "status": "proposed",
+      "registered_utc": "2026-08-02",
+      "dispatch_mode": "multi_arm_ablation",
+      "estimated_minutes": 180,
+      "machine_affinity": "any",
+      "objective": "Test whether SD-032b's dACC-analog output conflates two separable channels -- strategy authority (does accumulated action-outcome evidence retain control) and execution gain (how strongly the persisting policy is expressed) -- as MECH-480 proposes from an ACC/LOFC causal-dissociation paper. Deliberately uses a logit-margin/confidence execution-strength DV rather than action-class entropy, so the test does NOT require committed-action diversity and is not blocked by the F-dominance/committed-action floor-lock that has stalled MECH-260's own c2 retest (see MECH-260 notes, GOV-CEIL-1).",
+      "design": "Two-arm ablation on an existing REE task with a reward-contingency change mid-episode (reuse an existing SD-032b/MECH-445-series env if one already has a contingency-switch phase; otherwise the smallest addition to the current fishtank_viz-style env that adds one). Arm A (dacc_weight=0, SD-032b OFF): baseline. Arm B (dacc_weight>0, SD-032b ON, as currently configured): dACC-analog active. PRIMARY DVs per arm, per seed: (i) outcome-sensitivity -- does the agent's trajectory selection shift toward the newly-favoured option within N ticks of the contingency change (an authority metric); (ii) execution strength -- softmax logit margin / selection confidence of the committed action at steady state (a gain metric, NOT action-class entropy). STEP 0, MANDATORY: confirm execution strength (logit margin) shows non-zero cross-arm and cross-seed variance in Arm A before treating any cross-arm comparison as a verdict -- if it is pinned near ceiling/floor in both arms, self-route substrate_not_ready_requeue.",
+      "acceptance_checks": [
+        "PASS / MECH-480 supported (dissociation): outcome-sensitivity is significantly worse in Arm A than Arm B, while execution strength (logit margin) does NOT differ significantly between arms -- the two vary independently, supporting a distinct execution-gain channel not currently captured by SD-032b's single adjustment-magnitude output.",
+        "FAIL / MECH-480 not supported (no dissociation): outcome-sensitivity and execution strength move together (both degrade in Arm A, or neither differs) at matched effect size -- fold this claim back into SD-032b; no separate execution-gain channel is warranted by this test.",
+        "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): execution-strength (logit margin) must show non-zero cross-arm/cross-seed variance in Arm A; a metric pinned at ceiling or floor regardless of arm cannot discriminate the two readings above."
+      ],
+      "notes": "Minted by thought-digestion registration 2026-08-02 from docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md via MECH-480. Uses SD-032b's existing dacc_weight config flag -- no new substrate needed. Source paper cited in the raw intake only as 'a recent Nature Communications paper'; exact citation not yet pulled (flag for /lit-pull before finalizing the driver's docstring citation). Author via /queue-experiment per the mandatory skill path; do not write the driver directly from this proposal."
     }
   ]
 }

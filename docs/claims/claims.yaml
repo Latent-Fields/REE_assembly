@@ -64237,3 +64237,205 @@
   - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
   functional_restatement: 'behavioural imitation != functional equivalence != ethical-process equivalence. Behavioural equivalence is insufficient. PASS = a substitution passes only when BOTH a behavioural-equivalence check AND an internal-invariant check clear; the internal check requires the named representations to be present AND to remain causally load-bearing (ablating them still changes behaviour in the substituted system). FAIL = behavioural match accepted alone. DECIDABILITY PRECONDITION (the binding constraint, recorded as the rule''s dependency): the internal invariants must be instrumented and logged; if the ethical-process representations are not observable in the run record the criterion is unmeasurable and reports instrumentation_not_ready rather than PASS. Binds at V4+ (mechanism substitution / compilation is a V4+ activity).'
   notes: 'Reaped from the 2026-06-24 evolutionary-retention intake (candidate 4), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Natural home beside the SENT-* block: INV-077 keeps typed signal classes non-collapsible at the EVIDENCE layer, the SENT-* block gates welfare at the RELEASE layer; nothing stated that a substitution must preserve internal ethical-process representations WITH their causal authority intact -- a safety-relevant gap. Composes with GOV-V3FREEZE-1 (the reference record is what makes the internal-invariant check possible).'
+
+- id: MECH-480
+  title: "LOFC-analog execution-gain channel is dissociable from dACC-analog (SD-032b) strategy authority: how strongly a persisting policy is expressed should be modeled as a control channel distinct from whether the policy retains behavioural-adjustment authority."
+  claim_type: mechanism_hypothesis
+  subject: cingulate.lofc_execution_gain_dissociation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-02'
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: standard
+  claim_level: mechanistic
+  registered_utc: '2026-08-02'
+  depends_on:
+    - SD-032b   # dACC-analog: the strategy-authority channel this claim dissociates from
+    - MECH-258  # precision-weighted pain PE feeding SD-032b's authority signal
+    - MECH-260  # anti-recency/monostrategy suppression -- this claim reframes MECH-260 as one manifestation of a broader authority-vs-execution split
+  related_claims:
+    - SD-032
+    - ARC-107
+  source:
+    - docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md
+  functional_restatement: >
+    A causal-dissociation study (source paper, exact citation not yet pulled -- flagged for a /lit-pull
+    follow-up) separates ACC-dependent maintenance of goal-directed behavioural control from LOFC-to-central-striatal
+    control of habitual execution strength. Translated to REE: SD-032b (dACC-analog) already computes strategy
+    authority -- whether accumulated action-outcome evidence retains control over the policy (MECH-258
+    precision-weighted PE, MECH-260 anti-recency bias). This claim adds a distinct LOFC-analog execution-gain
+    channel: a control signal for HOW STRONGLY a persisting policy is expressed (analogous to action-selection
+    confidence / logit margin), computed and modifiable independently of whether the policy retains decision
+    authority.
+    Decomposition (from the source paper): (1) strategy authority -- does accumulated action-outcome evidence
+    retain control? (SD-032b / MECH-258); (2) policy persistence -- does the behavioural mapping continue?;
+    (3) execution gain -- how strongly is the policy expressed? (NEW, this claim).
+    Falsifiable: if ablating SD-032b's adjustment-magnitude output degrades both outcome-sensitivity and
+    execution strength in lockstep under every manipulation tried, the two are not separably implemented in
+    REE's current substrate and this claim collapses into SD-032b -- no distinct execution-gain channel is
+    warranted.
+  what_would_answer: >
+    Ablate SD-032b's adjustment-magnitude output (dacc_weight=0 vs >0, an existing config flag -- no new
+    substrate needed) while leaving action selection and E3 scoring otherwise intact. Measure (i)
+    outcome-sensitivity: does the agent correctly re-weight toward a newly-favoured trajectory after a
+    reward-contingency change (an authority metric), and (ii) execution strength: the logit margin / softmax
+    confidence of the committed action (a gain metric that deliberately does NOT require committed-action
+    diversity, avoiding the F-dominance/committed-action floor-lock that blocks MECH-260's entropy-based c2
+    tests -- see MECH-260 notes). PASS (supports dissociation): outcome-sensitivity degrades under ablation
+    while execution strength is statistically unchanged -- the two vary independently. FAIL (does not
+    support): both degrade together at matched effect size under every ablation tried -- fold this claim back
+    into SD-032b. NON-DEGENERACY: execution-strength (logit margin) must show non-zero cross-arm/cross-seed
+    variance in the OFF-ablation baseline; if it is pinned near a ceiling or floor regardless of arm, the run
+    is substrate_not_ready, not a verdict.
+  location: docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md
+  notes: >
+    Registered 2026-08-02 from docs/thoughts/2026-07-30_acc_lofc_strategy_authority_vs_execution_gain.md
+    (raw thought added bf3ad78751 on 2026-07-30). Source cited only as "a recent Nature Communications
+    paper" in the raw intake -- exact citation not yet pulled; flagged for a /lit-pull follow-up rather than
+    blocking registration on it. This claim's falsifier is deliberately designed NOT to require
+    committed-action diversity (unlike MECH-260's c2 entropy DV), so it need not wait on the ARC-107/MECH-439
+    conversion-ceiling resolution that currently gates SD-032b/MECH-260 retesting. Mint: EXP-0413 in
+    manual_proposals.v1.json.
+
+- id: SD-091
+  title: "Control plane must produce a coalition/topology control output -- a temporary functional interaction graph specifying which subsystems are recruited and how they communicate -- distinct from and complementary to parametric modulation (precision, gain, threshold, horizon)."
+  claim_type: design_decision
+  subject: control_plane.coalition_topology_control
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-02'
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  registered_utc: '2026-08-02'
+  depends_on:
+    - ARC-005   # control plane routes precision and modes -- the existing parametric-modulation substrate this claim adds a second axis alongside
+    - MECH-004  # signal-to-knob wiring map -- coalition control needs an analogous graph-wiring map
+    - MECH-019  # modes shape cognition, not discrete choices -- coalition instantiation is proposed as mode-adjacent but graph-valued rather than scalar
+    - MECH-039  # modes as stable regions in control-channel space -- coalition control adds a topology dimension to that space
+    - MECH-063  # orthogonal tonic/phasic axes -- coalition control is proposed as a further orthogonal axis, not a collapse into one scalar
+    - SD-076    # waking confidence inflation -- one of the typed-discrepancy sources coalition instantiation would need to consume
+  related_claims:
+    - MECH-481
+  source:
+    - docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+  functional_restatement: >
+    Claustrum research (Krimmel et al Network Instantiation in Cognitive Control account; human claustral
+    imaging across working memory, task switching, Stroop; cortico-claustro-cortical circuit studies)
+    motivates a computational (not anatomical) distinction between control PARAMETERS (precision, gain,
+    learning rate, commitment threshold, rollout horizon, candidate count, replay, interruptibility, veto
+    threshold -- already substantially represented in REE) and control TOPOLOGY (which subsystems are
+    recruited into coordinated interaction, which pathways open/attenuate, which systems decouple, how long
+    the configuration persists). REE's control plane currently produces only the former. This claim asserts
+    the architecture needs an explicit second output: a temporary functional interaction graph G_t (alongside
+    existing mode M_t and parameter theta_t outputs), with its own persistence/completion/dissolution
+    conditions Gamma_t. The specific typed-demand -> graph-instantiation mechanism is registered separately
+    as MECH-481; this claim commits only to the architectural necessity of the graph-valued output existing
+    at all.
+    Falsifiable: if REE's existing parametric-modulation substrate (precision/gain/threshold tuning alone,
+    without any subsystem-recruitment machinery) proves sufficient to reproduce the type-selective corrective
+    behaviours the source thought predicts (targeted resampling on perceptual doubt, provenance reconstruction
+    on memory doubt, longer-horizon comparison on ethical conflict), the second output axis is unnecessary
+    over-specification -- see MECH-481's falsifier for the operative test.
+  what_would_answer: >
+    See MECH-481 for the operative falsifier (a 4-arm ablation distinguishing monitoring-only /
+    parametric-only / untyped-coalition / typed-coalition conditions). This claim is refuted at the
+    architectural level if the parametric-only arm matches the typed-coalition arm on type-selective
+    corrective performance -- i.e. if coalition/topology control does no discriminative work beyond what
+    existing parametric modulation already provides.
+  location: docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+  notes: >
+    Registered 2026-08-02 from docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+    (thought-intake same day, be080ed259). epistemic_category substrate_conditional: the coalition/topology
+    control output does not exist in ree_core today (the source thought frames it explicitly as a "Proposed
+    architectural addition"), so this is registration-before-build in the same pattern SD-032 used
+    (registered 2026-04-19, SD-032b implemented same day as the first buildable subdivision). No EXP proposal
+    minted yet -- nothing exists to ablate until an /implement-substrate pass lands a minimal coalition-control
+    module. Biological mapping explicitly provisional per the source thought's own guardrails (does not claim
+    the claustrum computes metacognition, only that it plausibly contributes to the enactment side).
+
+- id: MECH-481
+  title: "Selective cognitive coalition instantiation: the control plane converts typed control demands (e.g. PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, SOCIAL_MODEL_CHECK) into temporary functional interaction graphs over E1/E2/hippocampal/reality-coherence/social/language/affective/E3 systems, recruiting only the subsystems relevant to the discrepancy type."
+  claim_type: mechanism_hypothesis
+  subject: control_plane.typed_coalition_instantiation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-02'
+    needs_review: false
+  implementation_phase: v3
+  v3_pending: true
+  epistemic_category: substrate_conditional
+  claim_level: mechanistic
+  registered_utc: '2026-08-02'
+  instantiates: SD-091
+  depends_on:
+    - SD-091
+    - MECH-019
+    - MECH-063
+  related_claims:
+    - ARC-005
+    - MECH-004
+    - SD-076
+  source:
+    - docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+  functional_restatement: >
+    Proposed sequence: (1) Monitor -- derive typed uncertainty/error/conflict/incoherence signals; (2)
+    Classify -- determine what kind of epistemic or practical deficiency exists; (3) Request -- generate a
+    structured control demand from a candidate taxonomy (SENSORY_RESAMPLE, PROVENANCE_CHECK,
+    COUNTERFACTUAL_EXPANSION, CROSS_HORIZON_RECONCILIATION, SOCIAL_MODEL_CHECK, INVARIANT_CONFLICT_REVIEW,
+    ACTION_OUTCOME_RECALIBRATION, LANGUAGE_EXPLICITATION, COMMITMENT_REOPEN, SAFE_DEFER); (4) Instantiate --
+    assemble the relevant cognitive coalition (participating modules, enabled/attenuated pathways,
+    channel-specific gain, temporal coordination, persistence/completion/dissolution/escalation conditions);
+    (5) Operate -- perform the corrective processing (resampling, retrieval, simulation, comparison,
+    verification); (6) Reassess -- evaluate whether the discrepancy resolved; (7) Dissolve, sustain, or
+    escalate. Coalition instantiation does not determine representational content, compute reward, select the
+    final trajectory, or grant authority to protected stores -- it enacts a bounded processing configuration
+    requested by upstream control evaluation (guardrail, preserves typed authority / invariant / commit-boundary
+    constraints per SD-034 etc).
+    Falsifiable: per the source thought's own falsification programme, scenarios 1-4 -- see what_would_answer.
+  what_would_answer: >
+    Four-arm ablation on a task battery deliberately constructed to contain at least two distinct discrepancy
+    types (e.g. a perceptual-doubt trial requiring resampling and a provenance-doubt trial requiring source
+    reconstruction) at matched base difficulty. Arm 1 (monitoring-only): agent registers a typed
+    low-confidence/conflict signal but the processing configuration never changes. Arm 2 (parametric-only):
+    agent may adjust precision/commitment threshold on a typed signal but cannot recruit additional
+    subsystems. Arm 3 (untyped coalition): agent may recruit arbitrary additional subsystems but all
+    discrepancy types collapse into one undifferentiated REFLECT trigger (no typing). Arm 4 (typed coalition,
+    the mechanism under test): discrepancy type is matched to a coalition template that recruits only the
+    relevant subsystems. PASS (supports): Arm 4 shows selective improvement concentrated in the matched
+    problem class (e.g. provenance-doubt trials improve on the provenance-coalition, not on perceptual-doubt
+    trials) at lower computational cost than Arm 3, and Arms 1-3 each show their predicted deficit signature
+    (1: accurate confidence but no behavioural improvement; 2: generic caution/deferral without resolving
+    type-specific uncertainty; 3: costly over-recruitment / interference / unstable switching). FAIL
+    (does not support): Arm 4 does not outperform Arm 3 on the matched problem class (typing does no
+    discriminative work beyond raw recruitment), or Arm 2 alone matches Arm 4 (coalition/topology control adds
+    nothing beyond existing parametric modulation). NON-DEGENERACY: the underlying typed discrepancy signals
+    (confidence/provenance/coherence-conflict) must show non-zero cross-trial-type variance in Arm 1's
+    baseline; if the agent cannot distinguish discrepancy types at all, the typing manipulation in Arms 3 vs 4
+    is vacuous and the run is substrate_not_ready, not a verdict. A fifth check (coalition persistence --
+    premature dissolution vs over-long engagement, scenario 5 in the source thought) is a follow-on
+    refinement, not part of this claim's primary falsifier -- register separately if Arm 4 passes.
+  location: docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+  notes: >
+    Registered 2026-08-02 from docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md
+    (thought-intake same day, be080ed259). epistemic_category substrate_conditional, same reasoning as SD-091:
+    no coalition-control module exists in ree_core yet. Guardrails from the source thought carried forward
+    verbatim as implementation constraints (not to be dropped when this is eventually built): do not claim the
+    claustrum is the seat of consciousness/metacognition; do not collapse coalition control into global
+    broadcasting; do not grant a central router unrestricted representational or governance authority; preserve
+    typed authority/invariant/commit-boundary constraints; treat persistence and dissolution as load-bearing
+    (indiscriminate coalition maintenance risks rumination/control capture); keep coalition instantiation
+    distinguishable from attention, global arousal, E3 trajectory selection, mode classification, confidence
+    computation, working memory, and conscious access. Literature-pull targets named in the source thought
+    (claustrum/network-instantiation account, claustro-cortical connectivity, metacognitive monitoring vs
+    control, confidence-guided strategy switching) are a natural /lit-pull follow-on, not performed here.

@@ -34,7 +34,7 @@
   },
   "ARC-005": {
     "assembly_state": "mature",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "arc005_dacc_adapter_goal_proximity_training",
     "epistemic_stance": "shown",
     "status": "active",
@@ -6637,6 +6637,24 @@
     "type": "mechanism_hypothesis",
     "what_would_answer": "GATED on the V4 multi-agent substrate. SUPPORTED if a planned-arm agent reduces a SECOND agent's integrated z_harm_a relative to a greedy-arm agent on >= 2/3 seeds, WITH ITS OWN RESOURCE ACQUISITION MATCHED -- the matching is load-bearing, otherwise the effect is confounded by the planned agent simply being better at everything. REFUTED if planned and greedy arms are indistinguishable on the other agent's integrated harm, with both arms demonstrably able to PERCEIVE the other agent (mandatory manipulation check; without it a null is a perception failure, not a planning failure).\n"
   },
+  "MECH-480": {
+    "assembly_state": "gated_v3",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "cingulate.lofc_execution_gain_dissociation",
+    "title": "LOFC-analog execution-gain channel is dissociable from dACC-analog (SD-032b) strategy authority: how strongly a persisting policy is expressed should be modeled as a control channel distinct from whether the policy retains behavioural-adjustment authority.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "Ablate SD-032b's adjustment-magnitude output (dacc_weight=0 vs >0, an existing config flag -- no new substrate needed) while leaving action selection and E3 scoring otherwise intact. Measure (i) outcome-sensitivity: does the agent correctly re-weight toward a newly-favoured trajectory after a reward-contingency change (an authority metric), and (ii) execution strength: the logit margin / softmax confidence of the committed action (a gain metric that deliberately does NOT require committed-action diversity, avoiding the F-dominance/committed-action floor-lock that blocks MECH-260's entropy-based c2 tests -- see MECH-260 notes). PASS (supports dissociation): outcome-sensitivity degrades under ablation while execution strength is statistically unchanged -- the two vary independently. FAIL (does not support): both degrade together at matched effect size under every ablation tried -- fold this claim back into SD-032b. NON-DEGENERACY: execution-strength (logit margin) must show non-zero cross-arm/cross-seed variance in the OFF-ablation baseline; if it is pinned near a ceiling or floor regardless of arm, the run is substrate_not_ready, not a verdict.\n"
+  },
+  "MECH-481": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.typed_coalition_instantiation",
+    "title": "Selective cognitive coalition instantiation: the control plane converts typed control demands (e.g. PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, SOCIAL_MODEL_CHECK) into temporary functional interaction graphs over E1/E2/hippocampal/reality-coherence/social/language/affective/E3 systems, recruiting only the subsystems relevant to the discrepancy type.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "Four-arm ablation on a task battery deliberately constructed to contain at least two distinct discrepancy types (e.g. a perceptual-doubt trial requiring resampling and a provenance-doubt trial requiring source reconstruction) at matched base difficulty. Arm 1 (monitoring-only): agent registers a typed low-confidence/conflict signal but the processing configuration never changes. Arm 2 (parametric-only): agent may adjust precision/commitment threshold on a typed signal but cannot recruit additional subsystems. Arm 3 (untyped coalition): agent may recruit arbitrary additional subsystems but all discrepancy types collapse into one undifferentiated REFLECT trigger (no typing). Arm 4 (typed coalition, the mechanism under test): discrepancy type is matched to a coalition template that recruits only the relevant subsystems. PASS (supports): Arm 4 shows selective improvement concentrated in the matched problem class (e.g. provenance-doubt trials improve on the provenance-coalition, not on perceptual-doubt trials) at lower computational cost than Arm 3, and Arms 1-3 each show their predicted deficit signature (1: accurate confidence but no behavioural improvement; 2: generic caution/deferral without resolving type-specific uncertainty; 3: costly over-recruitment / interference / unstable switching). FAIL (does not support): Arm 4 does not outperform Arm 3 on the matched problem class (typing does no discriminative work beyond raw recruitment), or Arm 2 alone matches Arm 4 (coalition/topology control adds nothing beyond existing parametric modulation). NON-DEGENERACY: the underlying typed discrepancy signals (confidence/provenance/coherence-conflict) must show non-zero cross-trial-type variance in Arm 1's baseline; if the agent cannot distinguish discrepancy types at all, the typing manipulation in Arms 3 vs 4 is vacuous and the run is substrate_not_ready, not a verdict. A fifth check (coalition persistence -- premature dissolution vs over-long engagement, scenario 5 in the source thought) is a follow-on refinement, not part of this claim's primary falsifier -- register separately if Arm 4 passes.\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -8313,6 +8331,15 @@
     "subject": "registry.schema.mechanism_functional_role_classification",
     "title": "Mechanism functional-role classification, and a removal-justification vocabulary. Five revisable classes -- constitutive / developmental-scaffold / robustness-reserve / historical-implementation-contingency / true-redundancy -- plus the paired removal-justification distinction redundant_under_current_tests vs functionally_unnecessary (the second requiring materially stronger evidence). claims.yaml types claims by epistemic kind and status but has no axis for a mechanism's functional role in the system's viability.",
     "type": "design_decision"
+  },
+  "SD-091": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "control_plane.coalition_topology_control",
+    "title": "Control plane must produce a coalition/topology control output -- a temporary functional interaction graph specifying which subsystems are recruited and how they communicate -- distinct from and complementary to parametric modulation (precision, gain, threshold, horizon).",
+    "type": "design_decision",
+    "what_would_answer": "See MECH-481 for the operative falsifier (a 4-arm ablation distinguishing monitoring-only / parametric-only / untyped-coalition / typed-coalition conditions). This claim is refuted at the architectural level if the parametric-only arm matches the typed-coalition arm on type-selective corrective performance -- i.e. if coalition/topology control does no discriminative work beyond what existing parametric modulation already provides.\n"
   },
   "SENT-0": {
     "assembly_state": "remaining",
