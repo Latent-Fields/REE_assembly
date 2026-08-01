@@ -1,0 +1,123 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_836e_mech476_interval_dependent_consolidation_redesign",
+  "run_id": "v3_exq_836e_mech476_interval_dependent_consolidation_redesign_20260801T124230Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T12:42:30Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "retention_invariant_to_interval_no_process",
+    "preconditions": [
+      {
+        "name": "window_n0::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "window_n0",
+        "kind": "readiness",
+        "description": "A strict majority of this interval arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling arm.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "window_n150::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "window_n150",
+        "kind": "readiness",
+        "description": "A strict majority of this interval arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling arm.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "window_n400::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "window_n400",
+        "kind": "readiness",
+        "description": "A strict majority of this interval arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling arm.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "window_n900::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "window_n900",
+        "kind": "readiness",
+        "description": "A strict majority of this interval arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling arm.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "retained_fraction_measured": true
+    },
+    "criteria": [
+      {
+        "name": "resistance_grows_with_interval",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 0.010623,
+        "threshold": 0.893042,
+        "note": "effective_interval_margin = max(1.5 * sd_delta=0.595361, 0.05); sd_delta is the SD of the per-seed paired (max_N - min_N) retained_fraction delta. Replaces V3-EXQ-836b's fixed 0.15 literal per the project effect-size-gate convention."
+      }
+    ]
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "cc9d8c93bff50b980537ca896edf0bd9baafeeeedb83f8cd8eb459ce126fb37c",
+  "substrate_commit": {
+    "commit": "f35b841b9fd590b4abb3bbd7b8e2a8e226419b0d",
+    "dirty": false,
+    "branch": "main"
+  }
+}

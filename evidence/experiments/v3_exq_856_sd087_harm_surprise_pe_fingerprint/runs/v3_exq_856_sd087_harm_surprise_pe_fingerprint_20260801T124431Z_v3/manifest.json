@@ -1,0 +1,93 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_856_sd087_harm_surprise_pe_fingerprint",
+  "run_id": "v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T12:44:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-087"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd087_falsified_signature_survives_flag_flip",
+    "arm_off_summary": {
+      "arm_id": "ARM_OFF",
+      "mean_cov_z_harm_a": 0.007056573416787146,
+      "mean_harm_obs_ema": 0.0,
+      "n_seeds": 3,
+      "n_seeds_signature": 2,
+      "arm_signature_present": true
+    },
+    "arm_on_summary": {
+      "arm_id": "ARM_ON",
+      "mean_cov_z_harm_a": 0.007421291856951504,
+      "mean_harm_obs_ema": 0.02451834834096278,
+      "n_seeds": 3,
+      "n_seeds_signature": 2,
+      "arm_signature_present": true
+    },
+    "criteria": [
+      {
+        "name": "off_reproduces_664_signature",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "on_reduces_signature",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "note": "PASS (SD-087 upheld) = the 664 saturation-and-inversion signature (within-episode CoV(z_harm_a) < COV_FLOOR AND shelter>avoid mode ordering) is present in the default-off arm and materially reduced by the SD-020 PE-target flag. Self-routes substrate_not_ready_requeue if the PE branch is not differentiated between arms or the OFF arm does not reproduce the signature. Scoped to raw-warmup agents."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "690c1ccd29756988521395dda420698f16177930f025959c5893a1175ba7706d",
+  "substrate_commit": {
+    "commit": "f35b841b9fd590b4abb3bbd7b8e2a8e226419b0d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 10852,
+    "ticks_active": 0,
+    "writer_calls": 10852,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}
