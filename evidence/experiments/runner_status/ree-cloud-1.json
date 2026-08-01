@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 3973580,
   "runner_started_at": "2026-08-01T01:35:30.127632+00:00",
-  "last_updated": "2026-08-01T06:25:10.621544+00:00",
+  "last_updated": "2026-08-01T12:42:51.882890+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -73,17 +73,6 @@
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-836e",
-      "backlog_id": "",
-      "claim_id": "MECH-476",
-      "title": "MECH-476 INTERVAL falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836b)",
-      "description": "",
-      "estimated_minutes": 16000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
       "queue_id": "V3-EXQ-847",
       "backlog_id": "",
       "claim_id": "",
@@ -101,17 +90,6 @@
       "title": "ARC-005 precision-only decoupled ladder: does the control plane route PRECISION, isolated from channels 3/4's occupancy-only authority? (successor to V3-EXQ-802)",
       "description": "",
       "estimated_minutes": 8000.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-852",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "SD-085 substrate-readiness diagnostic: E3Config.f_weight reachable and correct through the full agent pipeline (ARC-062 GOV-FANOUT-1 Leg P-B prerequisite, NOT Leg P-B itself)",
-      "description": "",
-      "estimated_minutes": 1.6,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -3695,6 +3673,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_829a_mech324_rapid_reacquisition_window_isolation_fix_20260801T062510Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 4.3
+    },
+    {
+      "queue_id": "V3-EXQ-836e",
+      "backlog_id": "",
+      "claim_id": "MECH-476",
+      "title": "MECH-476 INTERVAL falsifier REDESIGN: noise-scaled margin + n=10 (supersedes 836b)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "outcome: FAIL label=retention_invariant_to_interval_no_process evidence=weakens non_degenerate=True scorable_arms=4 | leave_one_out: n_folds=10 stable=True full_sample_verdict=weakened | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-836e -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-836e.json",
+      "started_at": "2026-08-01T06:25:12.900300+00:00",
+      "completed_at": "2026-08-01T12:42:31.409882+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_836e_mech476_interval_dependent_consolidation_redesign_20260801T124230Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 22638.5
+    },
+    {
+      "queue_id": "V3-EXQ-852",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-085 substrate-readiness diagnostic: E3Config.f_weight reachable and correct through the full agent pipeline (ARC-062 GOV-FANOUT-1 Leg P-B prerequisite, NOT Leg P-B itself)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-852 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-852.json",
+      "started_at": "2026-08-01T12:42:33.189950+00:00",
+      "completed_at": "2026-08-01T12:42:51.882189+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_852_sd085_f_weight_substrate_readiness_20260801T124251Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 18.7
     }
   ]
 }
