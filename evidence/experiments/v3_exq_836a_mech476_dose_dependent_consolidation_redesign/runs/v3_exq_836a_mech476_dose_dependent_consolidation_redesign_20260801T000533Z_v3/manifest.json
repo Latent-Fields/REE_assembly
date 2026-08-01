@@ -1,0 +1,110 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_836a_mech476_dose_dependent_consolidation_redesign",
+  "run_id": "v3_exq_836a_mech476_dose_dependent_consolidation_redesign_20260801T000533Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T00:05:33Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "retention_invariant_to_dose_no_process",
+    "preconditions": [
+      {
+        "name": "dose_bc300::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "dose_bc300",
+        "kind": "readiness",
+        "description": "A strict majority of this dose arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling dose arm's valid result.",
+        "control": "fraction of seeds with install_took=True in this dose arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "dose_bc600::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "dose_bc600",
+        "kind": "readiness",
+        "description": "A strict majority of this dose arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling dose arm's valid result.",
+        "control": "fraction of seeds with install_took=True in this dose arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "dose_bc900::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "dose_bc900",
+        "kind": "readiness",
+        "description": "A strict majority of this dose arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). An install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF and never vacates a sibling dose arm's valid result.",
+        "control": "fraction of seeds with install_took=True in this dose arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "retained_fraction_measured": true
+    },
+    "criteria": [
+      {
+        "name": "resistance_grows_with_dose",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.199846,
+        "threshold": 0.716163,
+        "note": "effective_dose_margin = max(1.5 * sd_delta=0.477442, 0.05); sd_delta is the SD of the per-seed paired (max_dose - min_dose) retained_fraction delta. Replaces V3-EXQ-836's fixed 0.15 literal per the project effect-size-gate convention."
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f681da972c78e5acdd07f8d59017464695117238acbb1658257bc80d0975187a",
+  "substrate_commit": {
+    "commit": "35e89697ee2341a0275106b1ad089c6c8b31e1a7",
+    "dirty": false,
+    "branch": "main"
+  }
+}
