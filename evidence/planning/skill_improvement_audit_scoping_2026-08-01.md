@@ -1,7 +1,8 @@
 # Scoping note: a standing audit for skill-improvement candidates
 
-Status: **scoping only, not built.** Registered 2026-08-01. No TASK_CLAIMS entry needed to read
-this; open one against this path before editing it.
+Status: **scoping complete; sweep run; recurrence confirmed; standing-audit implementation
+chipped.** Registered 2026-08-01, updated same day after the sweep (see below). No TASK_CLAIMS
+entry needed to read this; open one against this path before editing it.
 
 ## Origin
 
@@ -98,7 +99,47 @@ above rules that out by design). Not a broadening of `/failure-autopsy` to run o
 prior conversation in this thread already reasoned through why that's the wrong shape — cost
 without matching the failure-diagnosis machinery to a PASS's actual needs).
 
-## Recommended next step, if this gets picked up
+## Sweep result (2026-08-01, same day)
+
+Ran the smallest reversible probe above, with one methodology change: rather than semantically
+clustering all 1458 `learning_extracted` items in the 296 confirmed autopsy files (too fuzzy for
+regex, too large to hand-read exhaustively), grepped for authors **self-flagging a repeat** in
+their own prose (`recurring`, `twice`, `same signature`, `PROCESS recurrence`, etc.). This is a
+lower bound — it only catches cases where the autopsy author happened to remember and cross-
+reference a prior one — but it is high-precision and cheap.
+
+**13 hits across 13 independent files.** Of those: 2 were claim-level ceiling recurrence already
+covered by `re_derive_brake`/GOV-GRAN-1; 1 was the canonical V3-EXQ-643 incident, which is a useful
+control — it's already codified in `queue-experiment/SKILL.md`, confirming the reactive path does
+work over time when someone follows through, not just in the same session that noticed it. The
+remaining **5 were genuinely uncodified, multi-instance (2-3x) process/methodology patterns**,
+checked by grepping both skill files for any prior mention and confirmed absent:
+
+| Pattern | Confirmed instances | Folded into |
+|---|---|---|
+| Seed-44 truncation is a recurring per-seed instability on reef-config envs | EXQ-539-540, V3-EXQ-538a (2x) | `queue-experiment` Step 3.5 |
+| Matched-noise-at-proposer is the wrong instrument for an F-dominated substrate | V3-EXQ-569g, 684, 700-cluster (3x, self-labeled "PROCESS recurrence") | `queue-experiment` Step 3.5 |
+| A DV bit-identical across dose/parameter levels is a saturation fingerprint, not a null | V3-EXQ-794, 845, 864 (3x, self-labeled "third instance") | `queue-experiment` Step 3.5 |
+| Clean FAIL against a clinical/out-of-domain claim tests the wrong layer, not the claim | V3-EXQ-698 ("a recurring trap") | `failure-autopsy` Step 3 |
+| A conditionally-stamped `epistemic_category` ("STAY until X scores") isn't auto-rechecked once X happens | V3-EXQ-861/MECH-180 — distinct from GOV-CAT-1 (missing category, not stale conditional) | `failure-autopsy` Step 5 |
+
+All 5 landed the same day, commit `95fdc06` (REE_Working). This resolves the open question from
+the "recommended next step" below: **recurrence is real and common enough**, even under a
+high-precision/low-recall detection method. A standing scan doing real semantic clustering (item 2
+under Open design decisions) would almost certainly find more than these 5 — this sweep only
+caught what authors happened to notice and name themselves.
+
+## Verdict and disposition
+
+Build the standing audit. The open design decisions above (recurrence threshold, detection
+mechanism, propose-not-auto-apply, pruning counterpart, effectiveness feedback loop) are the spec
+for it — none were resolved by the sweep, they still need deciding at implementation time, but the
+sweep answers the one question that would have made building it premature. Handed off as a chip
+rather than built inline in this session, per the propose-don't-improvise spirit of design decision
+3 — this scoping note itself was written and revised inline by a human-watched session, which is a
+different risk profile than a standing script running unattended.
+
+## Original recommended next step (superseded by the sweep above — kept for provenance)
 
 Smallest reversible probe: a one-off manual sweep (not a standing script yet) of all 294 confirmed
 `failure_autopsy_*.json` files' `learning_extracted[]`, clustered by finding type, to see whether
