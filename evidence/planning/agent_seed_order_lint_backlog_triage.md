@@ -4,6 +4,18 @@
 open follow-on from `q081_landmark_removal_arm_design.md` section 8 / addendum
 (2026-08-01): "the other 10 ... were NOT individually re-adjudicated by this audit."
 
+**Update, same day: the two precision gaps this triage found were FIXED, not left as
+documented-only.** The "Known lint limitations" section below was originally written
+before the fix landed; it is kept for the reasoning trail (why each fires the way it
+did, and why fixing was judged safe), but the lint itself now no longer fires on 7 of
+the 18 (418j, 418k, 785, 785a, 787, 804, 805) -- see "Precision fix landed" at the
+bottom. The corpus pin moved from 18 to 11 (`ree-v3`
+`tests/contracts/test_agent_construction_seed_order_lint.py`). Nothing in the
+per-script materiality table below changes: all 18 verdicts (IMMATERIAL /
+NEVER-RAN) stand exactly as adjudicated: only whether the LINT itself fires on the
+now-cleared 7 has changed, not whether the bug was ever real in them, nor whether it
+mattered.
+
 ## What this is
 
 `ree-v3` `validate_experiments.agent_construction_before_seed_lint` (`--checks
@@ -95,39 +107,72 @@ future reader does not conflate the two open questions on this one script.
 priority items and all cleared under (i)/(ii)/(iv) reasoning above -- see the per-row
 justification; none required a downgrade or a re-run recommendation on RNG grounds.
 
-## Known lint limitations found during this triage (not fixed here -- documented)
+## Known lint limitations found during this triage (historical -- FIXED same day, see below)
 
-Reasons (iii) and (iv) are genuine precision gaps in
+Reasons (iii) and (iv) were genuine precision gaps in
 `agent_construction_before_seed_lint`'s Tier-1, one-hop-only design (stated as a
 deliberate scope boundary in the lint's own docstring: "does NOT attempt... general
 [reproducibility]... interprocedural reproducibility... is out of scope by design"):
 
-1. **No branch-awareness.** The lint walks a function's whole direct statement flow
+1. **No branch-awareness.** The lint walked a function's whole direct statement flow
    without distinguishing an early-return `if args.dry_run: ...; return` block from
-   the function's main path, so an unseeded smoke-test-only construction fires
+   the function's main path, so an unseeded smoke-test-only construction fired
    identically to a real one (case iii, SD-016).
 2. **One-hop-only name resolution.** A "probe, discard, real-build-two-hops-away"
-   idiom (case iv) -- confirmed as a recurring cross-script author pattern in at
-   least 5 of the 18 (688, 785, 785a, 787, 804, 805) -- is invisible past the first
-   hop, so the lint flags the harmless discarded probe and never sees that the real,
-   scored construction is correctly ordered.
+   idiom (case iv) -- confirmed as a recurring cross-script author pattern in 5 of
+   the 18 (785, 785a, 787, 804, 805 -- NOT 688, see below) -- was invisible past the
+   first hop, so the lint flagged the harmless discarded probe and never saw that the
+   real, scored construction was correctly ordered.
 
-Both are ACCEPTABLE within the lint's stated scope (WARN-only, Tier-1, "a clean result
-is not proof of reproducibility; this only proves this specific defect is absent") and
-were not fixed as part of this triage -- fixing them is precision-improving lint
-engineering, not backlog adjudication, and the backlog itself is now provably harmless
-regardless of whether the lint's false-positive rate on it is 0% or 100%. Worth a
-follow-up if the (iv) idiom keeps recurring in new scripts and starts generating noise
-that gets ignored (the failure mode `audit_vendored_copies.py`'s NOTE-vs-finding split
-exists to stay ahead of) -- flagged, not actioned, here.
+Originally judged ACCEPTABLE-to-leave within the lint's stated WARN-only scope and
+recorded here rather than fixed. **Superseded the same day** -- see "Precision fix
+landed" below for why that judgment changed once the user asked for it explicitly:
+trusting a future fire without re-deriving this triage each time is worth more than
+the (real, but here judged small) engineering cost.
+
+## Precision fix landed (2026-08-01, same session)
+
+Both gaps above are fixed in `ree-v3` `validate_experiments.py` (commit lands with
+this doc's update), not merely documented:
+
+1. **Guard-clause isolation.** `_DirectFlowWalker.visit_If` now isolates any `if`
+   whose body unconditionally exits (`return`/`raise`/`continue`/`break` as its
+   last statement) into its own independently-checked scope, rather than merging
+   its calls into the surrounding flow. A guard-clause branch with NO seed
+   evidence of its own stays silent (Tier-1's existing "no local evidence" rule);
+   a guard-clause branch that itself has a genuine bug still fires (verified by a
+   dedicated negative-control test).
+2. **Discarded-probe subscript detection.** A ctor call whose result is
+   immediately subscripted (`_build(seed)[N]`) no longer counts as a
+   construction event when the extracted index is POSITIVELY CONFIRMED (by
+   tracing the callee's own `return <tuple>` statement for where its
+   `REEAgent(...)`-holding variable appears) to be something other than the
+   agent. Deliberately conservative: when the index or the callee's return
+   shape can't be resolved, the call still counts (verified by two dedicated
+   negative-control tests) -- a missed fire is judged worse than an occasional
+   benign one, for a lint whose whole purpose is evidence-integrity assurance.
+
+**Result: the corpus fire count dropped from 18 to 11.** Cleared: 418j, 418k (fix 1),
+785, 785a, 787, 804, 805 (fix 2). **688 was NOT cleared, and correctly so** -- its
+flagged construction (`test_agent = _build_agent(...)`) is a genuine unseeded build
+directly assigned to a name and used for a P0 readiness check, not a discarded,
+subscripted probe; it does not match either fixed pattern, and a dedicated negative-
+control test (`test_real_688_construction_bug_still_fires`) pins that it must keep
+firing. (The original draft of item 2 above listed 688 among the discard-pattern
+carriers -- that was inaccurate; corrected here once the fix's own real-corpus
+testing surfaced the discrepancy.)
+
+None of the 18 per-script MATERIALITY verdicts above change: fixing the lint's
+precision only changes whether the lint itself fires, not whether any of the 18
+scripts' bugs were real or whether they mattered to a reported finding -- both were
+already settled by the individual triage rows before this fix existed. Full test
+coverage: `tests/contracts/test_agent_construction_seed_order_lint.py` (32 tests --
+14 new: guard-clause isolation x3, discard-subscript detection x3, real-corpus
+witnesses for the 7 cleared files x1 batch + 688's negative control, plus the
+existing suite unchanged).
 
 ## Follow-on, unowned
 
-None of the 18 need action. The two genuinely open, unrelated threads surfaced
-incidentally during this triage:
 - MECH-135 (108)'s pre-existing multi-sense training confound (`evidence_direction_note`,
   2026-05-08) still recommends a StepHarness re-run to confirm direction -- unrelated to
   RNG seeding, not touched here.
-- The lint's two documented precision gaps (branch-awareness, one-hop resolution) are a
-  candidate for a future `agent_seed_order_lint` precision pass if the (iv) idiom
-  recurs enough to generate ignorable noise -- not urgent, no evidence of that yet.

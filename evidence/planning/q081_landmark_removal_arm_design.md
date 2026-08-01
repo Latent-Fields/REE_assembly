@@ -305,7 +305,21 @@ Instead, two structural guards now exist for all FUTURE work:
   multi-line sequence right by hand.
 - `validate_experiments.agent_construction_before_seed_lint` (`--checks agent_seed_order`) — a
   WARN-only static lint, wired into the shared corpus-scan fixture
-  (`tests/contracts/conftest.py`) with a pinned backlog count of 18
-  (`tests/contracts/test_agent_construction_seed_order_lint.py`). It fires only on the
-  unambiguous Tier-1 shape (a real seed call exists in the same function, just too late) — it
-  does not attempt to prove general reproducibility, and a clean result is not proof of it.
+  (`tests/contracts/conftest.py`). It fires only on the unambiguous Tier-1 shape (a real seed
+  call exists in the same function, just too late) — it does not attempt to prove general
+  reproducibility, and a clean result is not proof of it.
+
+**Second addendum (2026-08-01, same session): all 18 individually triaged, then the lint's own
+precision fixed.** All 18 flagged scripts were adjudicated individually against their landed
+manifests and comparison designs — full record in
+`evidence/planning/agent_seed_order_lint_backlog_triage.md`. **Every one is immaterial to its
+reported finding**, via one of four recurring reasons (shared-object/deepcopy design; effect
+margin swamping plausible init variance; unseeded construction confined to a `--dry-run`-only
+branch; a discarded probe construction while the real, scored agent is built two call-hops away
+inside a correctly-resetting `arm_cell`). The last two of those turned out to be genuine
+precision gaps in the lint itself, and were FIXED (not left as documented-only) the same day:
+guard-clause branches are now isolated into independently-checked scopes, and a ctor call whose
+result is immediately subscripted for a positively-confirmed non-agent tuple position no longer
+counts as a construction event (both changes deliberately conservative — never suppress when
+the precondition can't be verified). **Backlog pin is now 11** (was 18; 418j, 418k, 785, 785a,
+787, 804, 805 cleared — full reasoning in the triage doc).
