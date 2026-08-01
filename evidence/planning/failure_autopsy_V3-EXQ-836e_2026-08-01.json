@@ -1,0 +1,55 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T14:08:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_836e_mech476_interval_dependent_consolidation_redesign_20260801T124230Z_v3",
+      "queue_id": "V3-EXQ-836e",
+      "claim_ids": ["MECH-476"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "retention_invariant_to_interval_no_process",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- this is the third and final pre-registered falsifier leg (interval), tested fairly under the noise-scaled measurement fix that already resolved 836a/836d cleanly",
+        "biological_reference": "clear -- unchanged from the cluster autopsy (Krakauer, Ghez & Ghilardi 2005: consolidation-as-resistance-to-retrograde-interference is the source design for the A->B interval manipulation)",
+        "prerequisites": "present -- all 4 window arms (n0/n150/n400/n900) pass install_took_strict_majority at 100%",
+        "implementation": "complete -- noise-scaled effect-size gate (same convention as 836a/836d) correctly applied",
+        "environment": "adequate -- offline window length (0/150/400/900 steps) is a cleanly manipulable parameter",
+        "measurement": "now adequate (same fix as siblings) -- effective_interval_margin=0.893 (noise-scaled) vs mean_paired_delta=0.0106, an effect ~84x smaller than the margin needed to call it 'grows'",
+        "integration": "coupled -- offline consolidation window operates correctly between BC install and RL refinement, same substrate as 836a/836d",
+        "scale": "adequate -- 10 seeds per arm, matching the redesign convention; leave-one-out fully robust (10/10 folds read weakened)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Krakauer, Ghez & Ghilardi 2005 -- consolidation as resistance to retrograde interference, the canonical dose x interval design this leg directly implements",
+        "dependencies": ["MECH-457", "MECH-459", "MECH-460", "MECH-475"],
+        "is_formal_import": false,
+        "divergence": "none identified -- fair test of the biological prediction, not a translation gap (matches the cluster autopsy's own reading for the sibling legs)",
+        "lit_status": "present -- see failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md Section 3 for full citation grounding, unchanged here"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-836e (interval arm, supersedes V3-EXQ-836b, THIRD and final leg of the noise-scaled MECH-476 falsifier redesign): retained_fraction across window_steps [0, 150, 400, 900] = [0.712, 0.707, 0.860, 0.723] -- spread 0.153, non-monotone (peaks at n400, not growing with interval). mean_paired_delta=0.0106 vs effective_interval_margin=0.893 (noise-scaled, sd_delta=0.595) -- effect is ~84x smaller than the margin required to call retention interval-dependent. All 4 window arms readiness-gated 100% (install_took_strict_majority), non_degenerate=true. Leave-one-out: ALL 10/10 folds (dropping each seed 42-51 individually) read 'weakened' -- fully robust, matching 836d's own 10/10 result. Concur with self-route. **THIS COMPLETES THE THREE-LEG FALSIFIER**: dose (836a, weakens), novelty-tagging (836d, weakens, reversed direction), and now interval (836e, weakens) have ALL independently and robustly found retention invariant to their respective manipulated variable. The claim's OWN pre-registered `what_would_answer` text states explicitly: 'WEAKENED if retained fraction is INVARIANT to both [dose and interval] and tracks only the concurrent constraint coefficient -- there is then no consolidation process and this claim is withdrawn into MECH-459/460.' That condition is now fully satisfied by clean, well-powered, leave-one-out-robust evidence across all three arms, with biology (Krakauer 2005, Walker 2003, Moncada & Viola 2007) established as clear and the tests as fair (per the cluster autopsy's own four-layer diagnosis, unchanged). Recommend governance apply the claim's own pre-registered disposition: WITHDRAW MECH-476, folding its content into MECH-459/460 (return_scale_invariance_blocks_actor_bootstrap and transient_behavioral_prior_bootstrap respectively) as the pre-registration specifies. This is the highest-threshold demotion path (tested fairly + biology supports the mechanism + still fails, on all three independently-designed arms) and should go through the normal /governance interactive confirmation before being applied.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The interval leg (836e) reproduces the exact pattern of its siblings (836a, 836d): a clean, well-powered, leave-one-out-robust null after the noise-scaled effect-size gate fix, replacing the prior cycle's fixed-0.15-margin measurement defect.",
+        "All three pre-registered falsifier arms (dose, interval, novelty-tagging) now independently converge on the same finding -- retention is invariant to every manipulated variable the claim's own design named, satisfying the claim's own pre-registered WEAKENED/withdrawal condition in full.",
+        "This is a rare case where a claim's pre-registration names its own exact withdrawal criterion AND that criterion is now cleanly met by robust evidence across all three independent arms -- a strong candidate for applying the pre-registered disposition rather than open-ended re-litigation.",
+        "The claim's biological grounding was never in question (Krakauer 2005, Walker 2003, Moncada & Viola 2007 are all directly on-point) -- this is REE's fair implementation failing to find the predicted process, not a translation gap."
+      ],
+      "routing": "governance-demotion"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "The interval leg (836e) completes the same convergent pattern already established by 836a (dose) and 836d (novelty-tagging) in failure_autopsy_V3-EXQ-836-cluster_2026-08-01: all three legs independently find retention invariant to their manipulated variable, using the same noise-scaled measurement fix. Read together with that prior artifact rather than duplicating its cluster analysis.",
+    "is_independent_bugs": false,
+    "structural_property": "REE's retention mechanism (distributional critic + KL anchor, per V3-EXQ-788/792) provides a constant, dose/interval/novelty-independent protection level -- consistent with a regulariser, not a consolidation PROCESS as MECH-476 asserts.",
+    "readings": ["claim_pre_registered_withdrawal_condition_satisfied"]
+  }
+}

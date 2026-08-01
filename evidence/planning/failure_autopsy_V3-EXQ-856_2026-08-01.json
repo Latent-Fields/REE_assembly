@@ -1,0 +1,49 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T14:08:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3",
+      "queue_id": "V3-EXQ-856",
+      "claim_ids": ["SD-087"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "sd087_falsified_signature_survives_flag_flip",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- SD-087's own falsifier design, first-ever run for this claim, tested fairly",
+        "biological_reference": "not the load-bearing layer -- this is a substrate-internal wiring/scoping question (does the SD-020 PE-target flag explain the V3-EXQ-664 saturation-and-inversion signature), not a direct biology-translation claim",
+        "prerequisites": "present -- both arms readiness-gated (pe_differentiated=1.0: harm_obs_ema 0.0 OFF vs 0.0245 ON, confirming the manipulation genuinely took at the training-loss level)",
+        "implementation": "complete -- clean two-arm raw-warmup design, identical to 664 in the OFF arm to allow signature reproduction",
+        "environment": "adequate -- same env as the 664 fingerprint this is designed to re-run",
+        "measurement": "clean: off_reproduces_664_signature PASSED (2/3 seeds), on_reduces_signature FAILED (also 2/3 seeds) -- the two load-bearing criteria are cleanly differentiated, not a close call",
+        "integration": "coupled -- the PE branch demonstrably changes what z_harm_a is trained against (harm_obs_ema moves), yet the downstream CoV/inversion signature is essentially unchanged (0.00706 OFF vs 0.00742 ON, both far below the 0.05 saturation floor)",
+        "scale": "adequate for this question -- 3 seeds, clean signature reproduction in OFF arm at 2/3"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- substrate-internal question about which training-target flag explains an observed saturation artifact, not a direct biological translation",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-856 (first-ever evidence run for SD-087, 'SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents'): designed as SD-087's own falsifier -- PASS would require the harm_surprise_pe_enabled flag (SD-020's PE target), when flipped ON on an otherwise-664-identical raw-warmup agent, to reduce the 664 saturation-and-inversion signature (sub-floor CoV(z_harm_a) + shelter>avoid mode inversion) seen in the OFF arm. Result: OFF cleanly reproduces the 664 signature (2/3 seeds, confirming the baseline), but ON ALSO shows the signature (also 2/3 seeds) -- the flag flip does NOT fix it, despite the PE branch demonstrably engaging (harm_obs_ema moved from 0.0 to 0.0245, confirming the manipulation took at the training-loss level; this is not a substrate-not-ready case). Per the driver's own pre-registered outcome map, this FAILS SD-087's implicit stronger claim that the flag alone (applied post-hoc to a raw-warmup agent) explains and fixes the 664 signature; the defect is relocated to the encoder or environment, which the driver explicitly hands to Q-086/V3-EXQ-857 (see the companion autopsy failure_autopsy_V3-EXQ-857_2026-08-01, run the same day, which attempted exactly that follow-up but could not resolve it -- its own environment-manipulation check failed to move the sensory harm tier beyond seed noise). SD-087's narrower literal claim (SD-020's validation is scoped to flag-on and doesn't describe default agents) remains true as a scoping observation -- what this run weakens is the stronger implicit hypothesis that simply flipping the flag (without training the agent under it from the start) reproduces SD-020's validated benefit.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Confirming a training-target flag genuinely engages (harm_obs_ema differentiated cleanly) while the downstream behavioral signature it was hypothesized to fix stays unchanged is a clean, informative dissociation -- the manipulation 'took' but didn't produce the hypothesized effect, ruling out a substrate-not-ready explanation.",
+        "SD-087's narrower literal scoping claim (SD-020 validation doesn't describe default agents) is not falsified by this result -- what's falsified is the stronger implicit hypothesis that post-hoc flag-flipping alone reproduces the validated benefit. Worth keeping these two readings separate in the claim's evidence note.",
+        "The driver's own docstring correctly anticipated this outcome and pre-named the next diagnostic step (Q-086/857, environment hypothesis) -- a good example of a falsifier chain designed with its own contingency plan."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T14:08:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3",
+      "queue_id": "V3-EXQ-857",
+      "claim_ids": ["Q-086"],
+      "failed_criterion": "precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the readiness precondition failed, so no discrimination between the representational-pathology and faithful-ecological-suffering hypotheses was possible",
+        "biological_reference": "not load-bearing for this diagnostic",
+        "prerequisites": "n/a -- this run's OWN environment manipulation is what failed to take",
+        "implementation": "the manipulation (num_hazards 4->1, hazard_food_attraction 0.7->0.2) is substantively large on paper but did not translate into a measurably different sensory-harm signal",
+        "environment": "the env manipulation genuinely did not move z_harm_s beyond seed noise -- cross-arm SNR 0.42 vs required 2.0 (|delta|=0.072, seed_noise_sd=0.171). Per-seed z_harm_s values overlap heavily between arms (harsh: [0.308, 0.647, 0.421], gentle: [0.212, 0.649, 0.299]) -- the gentle arm's HIGHEST seed value nearly matches the harsh arm's highest",
+        "measurement": "likely a STATISTICAL POWER problem, not a design-logic problem: 3 seeds against seed-to-seed z_harm_s variance this large (SD=0.171 against a ~0.4 mean, ~42% CV) is a demanding bar for a 2-arm SNR>=2.0 gate. Also notable: min_eval_steps differs sharply between arms (harsh=58, gentle=125), suggesting some harsh-arm seeds' episodes end early (plausibly hazard-driven), which is itself a signal the env manipulation IS doing something, just not captured cleanly by the per-step z_harm_s average this precondition reads",
+        "integration": "n/a -- diagnosis is prior to any integration question",
+        "scale": "insufficient -- likely needs more seeds and/or a starker parameter gradient (e.g. num_hazards 4 vs 0) to clear the SNR floor given the observed noise level"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing for this diagnostic",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not assessed",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-857 (Q-086, environment-confound control for the V3-EXQ-664/856 z_harm_a saturation signature -- the driver's own designated follow-up to V3-EXQ-856's FAIL): precondition_unmet correctly flagged -- the num_hazards(4->1)/hazard_food_attraction(0.7->0.2) manipulation, though large on paper, did not move the sensory harm tier z_harm_s beyond seed noise (cross-arm SNR 0.42 vs the required 2.0 floor). This is likely a STATISTICAL POWER problem rather than a design-logic flaw: per-seed z_harm_s shows large between-seed variance (harsh [0.308, 0.647, 0.421], gentle [0.212, 0.649, 0.299]) relative to the modest cross-arm mean difference (0.072), and only 3 seeds were run. A secondary observation supports the manipulation doing SOMETHING even though the readiness gate didn't clear: min_eval_steps differs sharply between arms (harsh=58 vs gentle=125), suggesting harsher-arm episodes end earlier (plausibly hazard-driven mortality/truncation) -- a signal the per-step z_harm_s average may be diluting rather than capturing. Recommend a redesigned re-run with EITHER (a) more seeds (5-10) to gain power against the observed noise level, or (b) a starker environmental gradient (e.g. num_hazards 4 vs 0, or a larger hazard_food_attraction gap) to widen the expected cross-arm effect relative to the noise floor, or both. Until this readiness gate clears, the representational-pathology vs faithful-ecological-suffering discrimination Q-086 exists to make remains untested, and the 856/857 chain's shared question (what explains the 664 saturation-and-inversion signature) stays open on BOTH candidate explanations (PE-target flag: weakened by 856; environment: untested by 857).",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A large-on-paper parameter change (75% reduction in num_hazards, 71% reduction in hazard_food_attraction) can still fail to clear an SNR-based readiness gate if the underlying metric has high seed-to-seed variance -- 3 seeds is not automatically enough power just because the manipulated parameters look substantial.",
+        "The sharply different min_eval_steps between arms (58 vs 125) is a secondary, uncounted signal that the manipulation may be doing something real (episodes ending earlier under the harsh config) that the specific per-step z_harm_s average readout is not capturing -- worth instrumenting directly in a redesign (e.g. episode survival time as an explicit secondary DV).",
+        "The 856/857 diagnostic chain (PE-target hypothesis vs environment hypothesis for the 664 signature) has now run both legs without resolving the underlying question -- 856 weakened its hypothesis cleanly, 857 couldn't test its hypothesis at all. The 664 signature's explanation remains genuinely open."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

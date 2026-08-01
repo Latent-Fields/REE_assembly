@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T14:08:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3",
+      "queue_id": "V3-EXQ-848",
+      "claim_ids": ["ARC-005"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "precision_channel_authority_weak",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- a correctly-scoped successor to V3-EXQ-802's confounded design, decoupling channels 1+2 (precision-capable) from channels 3+4 (occupancy-only, correctly excluded a priori)",
+        "biological_reference": "not the load-bearing layer here -- this is a control-plane wiring/authority question about which channels causally reach E3's precision readout, already root-caused by a prior diagnosis session (chip-20260731-arc005-802-precision-anomaly)",
+        "prerequisites": "present -- readiness preconditions (precision_cross_seed_sd, n_salience_ticks, channel_state_delta_vs_L0) all pass across all 6 cells; a real substrate bug in channel 1 (SD-057 L7 dACC-consume reading a collapsed proposer state) was found and FIXED this session, and this is the first run to exercise the fix",
+        "implementation": "complete and CORRECTLY PRE-EXPLAINED -- the docstring pre-registers that channel 1's dacc_adapter is expected to still show negligible effect (~1e-8 vs ~0.87 scale) because it has never been trained on non-degenerate goal_proximity inputs (use_mech_consume was never ON before this run), and channel 2 is architecturally argmax-invariant under normal ~97%-committed operation",
+        "environment": "adequate -- same env family as 802, correctly scoped",
+        "measurement": "the per-unit criterion (|Spearman rho of log10-precision vs level| >= 0.6 over only 3 ladder levels, satisfied in >=7/10 units) is a COARSE, high-variance statistic at n=3 points per unit -- worth flagging for any future redesign, though the driver's own outcome map already correctly distinguishes a clean near-zero null from this run's noisier, scattered result rather than forcing a binary read",
+        "integration": "coupled -- channel 1's wiring fix landed and is exercised, but its downstream consumer (dacc_adapter) remains untrained on the corrected signal, a distinct and already-diagnosed gap",
+        "scale": "10 (content x seed) units is adequate for the pre-registered non-degeneracy checks, but likely UNDER-powered for cleanly distinguishing 'real weak monotonic effect' from 'noise producing high-magnitude 3-point correlations by chance' -- with only 3 discrete levels, Spearman rho takes few possible values and can swing to |rho|>=0.6 under pure per-unit noise alone"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not the load-bearing layer -- control-plane wiring/authority, not a direct biological translation question",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-848 (ARC-005 TRACK A, successor to V3-EXQ-802's confounded joint-4-channel ladder): decouples the ladder to vary ONLY channels 1 (5-HT rigidity) and 2 (phasic-burst temperature) -- the two channels architecturally capable of reaching E3's precision readout -- while holding channels 3/4 (occupancy-only) fixed at L0 defaults, correctly excluded a priori. Applies a genuine substrate fix for channel 1 (SD-057 L7 dACC-consume bug, reading a collapsed proposer state; FIXED this session) for its first honest test. Result: C_precision_monotonicity FAILS (4/10 units satisfied vs 7/10 required), and the result is NOT the pre-registered-as-expected clean near-zero null (802's own finding was bit-identical rho=0.0 across all units) -- per-unit rho scatters widely (-0.5 to 0.866), correctly self-routing 'mixed' (some real but sub-threshold trend) rather than 'non_contributory' (clean expected null) per the driver's own pre-registered outcome map. Concur with self-route. FLAG FOR FUTURE REDESIGN: the per-unit criterion uses only 3 ladder levels (L0/L1/L2), and Spearman rho over 3 points is a coarse statistic that can swing to |rho|>=0.6 under pure noise alone -- this run's scattered (not uniformly near-zero) result is consistent with EITHER a genuine weak/inconsistent effect OR pure noise at this resolution, and the two are not well-discriminated by a 3-point correlation. Both pre-registered mechanistic explanations for channel 1/2's expected weakness remain intact and unaffected by this result: channel 1's dacc_adapter is confirmed untrained on non-degenerate goal_proximity inputs (a genuine substrate/training gap, Track C in the driver's own docstring, not yet in substrate_queue.json), and channel 2 remains architecturally inert under ~97%-committed normal operation (Track B, an uncommitted-only regime test, not yet queued).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "arc005_dacc_adapter_goal_proximity_training",
+        "title": "Train dacc_adapter on non-degenerate use_mech_consume goal_proximity signals (ARC-005 Track C)",
+        "implementation_hint": "V3-EXQ-848 confirmed dacc_adapter's response to a genuine post-fix candidate_goal_proximity signal is ~1e-8 in scale, 4-7 orders of magnitude below the ~0.87 scale of other dACC score_bias components -- consistent with dacc_adapter never having been trained on non-degenerate values of this input (use_mech_consume has never been ON in any prior training run). Build a training regime (or online-training exposure) that lets dacc_adapter learn to respond to real goal_proximity variation, then re-run V3-EXQ-848's channel-1 axis to give it an honest post-training test.",
+        "unblocks_claims": ["ARC-005"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3",
+          "experiment_type": "v3_exq_848_arc005_precision_only_decoupled_ladder",
+          "metric": "dacc_adapter response magnitude to genuine goal_proximity input, ~1e-8 vs ~0.87 scale of other score_bias components",
+          "target": "response magnitude within 1-2 orders of magnitude of other score_bias components after training exposure"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A correctly-scoped successor that decouples a confounded joint-ladder design (802's 4-channel yoke) into only the mechanistically-relevant channels is a strong methodology pattern -- it converted an uninterpretable confound into a clean, mechanistically-grounded result.",
+        "A driver that pre-registers the mechanistic reasons a null is EXPECTED (untrained consumer, architectural argmax-invariance) makes a null result a confirmation rather than a surprise -- but this run's actual finding (noisy/scattered, not clean-zero) is subtly different from what was pre-registered, and that difference is itself worth noting rather than smoothing into the expected bucket.",
+        "A per-unit Spearman rho over only 3 ladder levels is a coarse, high-variance statistic -- future redesigns wanting a cleaner discrimination between 'weak real effect' and 'noise' should consider more ladder levels (5+) rather than more seeds at 3 levels.",
+        "The dacc_adapter undertraining gap (Track C) was diagnosed with a specific quantified magnitude (~1e-8 vs ~0.87) but had no substrate_queue.json entry -- now created."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}
