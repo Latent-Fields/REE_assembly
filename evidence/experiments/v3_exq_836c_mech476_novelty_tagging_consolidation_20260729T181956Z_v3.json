@@ -8,7 +8,7 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "timestamp_utc": "20260729T181956Z",
   "non_degenerate": true,
   "degeneracy_reason": "",
@@ -1791,5 +1791,9 @@
     47
   ],
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed reversed_novelty_effect but is non_contributory, not mixed: the entire reversal is attributable to one outlier seed in the unpaired arm; removing it flips the sign to a small paired-favouring delta well inside the 0.15 margin."
+  "evidence_direction_note": "[2026-08-01 governance] SUPERSEDED by V3-EXQ-836d (noise-scaled effect-size-gate redesign; this manifest's fixed-0.15-margin measurement was a defect, corrected in the successor). See failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md / failure_autopsy_V3-EXQ-836e_2026-08-01.md for the corrected finding (all three legs independently weakens, MECH-476 withdrawn).",
+  "supersession_state": {
+    "superseded_by": "V3-EXQ-836d",
+    "prior_evidence_direction": "non_contributory"
+  }
 }

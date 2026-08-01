@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "frosty-satoshi-2e7cbc",
-  "last_updated_utc": "2026-08-01T13:52:00Z",
+  "last_updated_utc": "2026-08-01T17:15:00Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6493,6 +6493,30 @@
         }
       ],
       "implementation_hint": "Extend SD-039's AnchorGoalPayload/build_goal_payload with a signed harm-valence field sourced from z_harm_a/BLA threat_scale (a VALENCE_HARM_DISCRIMINATIVE residue-field channel already exists elsewhere but is not captured here). Build an actual ranked-selection step in _apply_policy_decomposition (ree_core/hippocampal/module.py:896-983) -- currently absent; all surviving tiles are additively recombined with no choice among them. Prerequisite: commission a targeted /lit-pull on threat-modulated defensive path-selection (e.g. Fanselow's predatory-imminence continuum, or comparable graded-defensive-response literature) before fixing the exact functional form, per biology-before-formal-definitions.",
+      "priority": 2,
+      "added_session": "session-startup-checklist-28b0bd",
+      "last_seen_session": "session-startup-checklist-28b0bd"
+    },
+    {
+      "sd_id": "arc005_dacc_adapter_goal_proximity_training",
+      "title": "Train dacc_adapter on non-degenerate goal_proximity values (ARC-005 channel-1 precision authority)",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "ARC-005"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3",
+          "experiment_type": "v3_exq_848_arc005_precision_only_decoupled_ladder",
+          "metric": "dacc_adapter response to a genuine post-fix goal_proximity signal measured at ~1e-8, vs ~0.87 scale of other score_bias components (4-7 orders of magnitude off)",
+          "target": "dacc_adapter response to goal_proximity within ~1-2 orders of magnitude of other score_bias components, so channel 1 (5-HT rigidity) can carry a detectable precision-monotonicity signal"
+        }
+      ],
+      "implementation_hint": "The SD-057 L7 dACC-consume bug (reading the collapsed proposer starting state) was fixed in the same session that produced V3-EXQ-848, so goal_proximity now reaches dacc_adapter as a genuine, non-degenerate signal for the first time -- but the adapter itself has never been trained on non-degenerate values of this input, so its response is still ~1e-8. Needs a training pass (or a warm-start / calibration step) so the adapter's weights actually respond to the now-live signal at a comparable scale to the other score_bias components. Verify with the same C_precision_monotonicity criterion V3-EXQ-848 used (Spearman rho over the precision ladder).",
       "priority": 2,
       "added_session": "session-startup-checklist-28b0bd",
       "last_seen_session": "session-startup-checklist-28b0bd"

@@ -1,25 +1,20 @@
 # Pending Experiment Review
 
-Generated: `2026-08-01T13:56:13Z`  
-Last review: `2026-08-01T13:48:21Z`  
-Pending: **7** item(s) -- 1 PASS, 6 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-08-01T17:17:51Z`  
+Last review: `2026-08-01T17:12:25Z`  
+Pending: **2** item(s) -- 1 PASS, 1 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 2 diagnostic self-route(s) flagged for adjudication
 
 ## FAIL (action required)
 
 | Run ID | Timestamp | Claims | Failure signatures |
 |--------|-----------|--------|--------------------|
-| `v3_exq_836a_mech476_dose_dependent_consolidation_redesign_20260801T000533Z_v3` | 2026-08-01T00:05 | MECH-476 | — |
-| `v3_exq_836d_mech476_novelty_tagging_consolidation_redesign_20260801T030035Z_v3` | 2026-08-01T03:00 | MECH-476 | — |
-| `v3_exq_836e_mech476_interval_dependent_consolidation_redesign_20260801T124230Z_v3` | 2026-08-01T12:42 | MECH-476 | — |
-| `v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3` | 2026-08-01T12:44 | SD-087 | — |
-| `v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3` | 2026-08-01T13:47 | Q-086 | — |
-| `v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3` | 2026-08-01T13:48 | ARC-005 | — |
+| `v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3` | 2026-08-01T15:34 | SD-076 | — |
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_852_sd085_f_weight_substrate_readiness_20260801T124251Z_v3` | 2026-08-01T12:42 | (no claim tags) |
+| `v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3` | 2026-08-01T15:15 | (no claim tags) |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -27,7 +22,8 @@ These diagnostic/baseline runs carry a self-routed `interpretation.label`, but t
 
 | Run ID | Status | Self-route label | Adjudication |
 |--------|--------|------------------|--------------|
-| `v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
+| `v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3` | PASS | mixed_partial_result_needs_full_replication | **vacuous_pass** |
+| `v3_exq_860_mech204_sd076_h2_steps_per_ep_probe_20260801T142420Z_v3` | FAIL | substrate_not_ready_requeue | **precondition_unmet** |
 
 ---
 

@@ -23,7 +23,7 @@
     "MECH-476"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -113,5 +113,9 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "b29a5f04da70f390a594188c11a3d702ccf5593878711ea1b071143d9ae62edb",
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed non_monotone_interval_response but is non_contributory, not mixed: the retained-fraction interval axis is non-monotone only via the n900 drop; every between-arm delta sits inside the per-arm SEM against a fixed, non-noise-scaled 0.15 margin."
+  "evidence_direction_note": "[2026-08-01 governance] SUPERSEDED by V3-EXQ-836e (noise-scaled effect-size-gate redesign; this manifest's fixed-0.15-margin measurement was a defect, corrected in the successor). See failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md / failure_autopsy_V3-EXQ-836e_2026-08-01.md for the corrected finding (all three legs independently weakens, MECH-476 withdrawn).",
+  "supersession_state": {
+    "superseded_by": "V3-EXQ-836e",
+    "prior_evidence_direction": "non_contributory"
+  }
 }

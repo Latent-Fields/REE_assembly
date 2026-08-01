@@ -8,7 +8,7 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "timestamp_utc": "20260729T210911Z",
   "non_degenerate": true,
   "degeneracy_reason": "",
@@ -3442,5 +3442,9 @@
     47
   ],
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed non_monotone_interval_response but is non_contributory, not mixed: the retained-fraction interval axis is non-monotone only via the n900 drop; every between-arm delta sits inside the per-arm SEM against a fixed, non-noise-scaled 0.15 margin."
+  "evidence_direction_note": "[2026-08-01 governance] SUPERSEDED by V3-EXQ-836e (noise-scaled effect-size-gate redesign; this manifest's fixed-0.15-margin measurement was a defect, corrected in the successor). See failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md / failure_autopsy_V3-EXQ-836e_2026-08-01.md for the corrected finding (all three legs independently weakens, MECH-476 withdrawn).",
+  "supersession_state": {
+    "superseded_by": "V3-EXQ-836e",
+    "prior_evidence_direction": "non_contributory"
+  }
 }

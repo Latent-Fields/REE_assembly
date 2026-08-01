@@ -7,15 +7,18 @@ Source plan: `evidence/planning/arc_005_control_plane_routing_plan.md`
 ## `arc_005_control_plane_routing:GAP-A`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
-- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports **<- live head**
+- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
 
 ## `arc_005_control_plane_routing:GAP-B`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
-- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports **<- live head**
+- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
 
 ## `arc_005_control_plane_routing:GAP-A-precision-diagnostic`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
-- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports **<- live head**
+- `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
 

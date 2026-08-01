@@ -23,7 +23,7 @@
     "MECH-476"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "evidence_direction_per_claim": {},
   "experiment_purpose": "evidence",
   "producer_capabilities": {
@@ -87,5 +87,9 @@
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
   "substrate_hash": "e00cf3f6b545727225bf1ed453a6eabaa983edf4fa9b856a5d63f75d39d110fc",
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed reversed_novelty_effect but is non_contributory, not mixed: the entire reversal is attributable to one outlier seed in the unpaired arm; removing it flips the sign to a small paired-favouring delta well inside the 0.15 margin."
+  "evidence_direction_note": "[2026-08-01 governance] SUPERSEDED by V3-EXQ-836d (noise-scaled effect-size-gate redesign; this manifest's fixed-0.15-margin measurement was a defect, corrected in the successor). See failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md / failure_autopsy_V3-EXQ-836e_2026-08-01.md for the corrected finding (all three legs independently weakens, MECH-476 withdrawn).",
+  "supersession_state": {
+    "superseded_by": "V3-EXQ-836d",
+    "prior_evidence_direction": "non_contributory"
+  }
 }

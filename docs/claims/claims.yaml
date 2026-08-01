@@ -484,9 +484,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3
-      as_of: 2026-07-31
-      verdict: "supports (asymmetric) -- V3-EXQ-846, see evidence_quality_note"
+      from: v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3
+      as_of: 2026-08-01
+      verdict: "supports (846, occupancy) + mixed (848, precision) -- see evidence_quality_note"
   depends_on:
     - INV-008
     - INV-009
@@ -508,6 +508,24 @@
     governance walk 2026-08-01. The 3-of-4-channels-inert asymmetry is real and should inform any
     future per-channel claim about WHICH channels route authority (a narrower question than ARC-005
     itself asks). No status change (already active). PROMOTES/DEMOTES NOTHING.
+    [2026-08-01 governance, V3-EXQ-848, confirmed failure_autopsy_V3-EXQ-848_2026-08-01,
+    successor of V3-EXQ-802]: scoped successor decoupling the confounded joint-ladder design
+    (802) into precision-relevant channels only (1: 5-HT rigidity, 2: phasic-burst temperature;
+    channels 3/4 pre-registered as occupancy-only, correctly excluded). A real substrate bug in
+    channel 1 (SD-057 L7 dACC-consume reading the collapsed proposer starting state) was found
+    and fixed this session; this run is the first to exercise the fix. C_precision_monotonicity
+    (load-bearing, |Spearman rho| >= 0.60 required in >=7/10 units): only 4/10 satisfied. But the
+    per-unit rho values are SCATTERED (-0.5 to 0.866), not 802's own clean bit-identical rho=0.0
+    -- so evidence_direction is `mixed`, not non_contributory. Two pre-registered, already-
+    diagnosed mechanisms explain the weak result: channel 1's dacc_adapter has never been trained
+    on non-degenerate goal_proximity values (response ~1e-8 vs ~0.87 scale of other score_bias
+    components, 4-7 orders of magnitude off); channel 2 is architecturally argmax-invariant under
+    normal committed operation (~97% committed in a matched-RNG probe). With only 3 ladder levels
+    per unit, Spearman rho is a coarse statistic that cannot cleanly distinguish a weak real effect
+    from pure sampling noise -- a future redesign should add ladder levels, not just seeds. New
+    substrate gap quantified but not yet tracked: created substrate_queue.json entry
+    arc005_dacc_adapter_goal_proximity_training. Readiness clean across all 6 cells. No status
+    change (already active). PROMOTES/DEMOTES NOTHING.
   what_would_answer: |
     The falsifiable content is NOT "a control plane exists" (that is a design fact --
     we built one). It is that the control plane ROUTES: has causal authority over
@@ -60168,6 +60186,17 @@
     whole-glob hash is a disk-state recording artefact, not a change in executed code. The
     `weakens` reading STANDS unchanged and no confidence is re-weighted. Recorded so the flag
     does not resurface as unexplained doubt in a later sweep.
+
+    [2026-08-01 governance, MECH-476 WITHDRAWN, folded in here -- full detail on MECH-476's own
+    evidence_quality_note, not duplicated]: MECH-476's three pre-registered falsifier arms
+    (dose/836a, novelty-tagging/836d, interval/836e, all confirmed weakens) found retention
+    invariant to dose, interval, and novelty-pairing alike -- consistent with a constant
+    regulariser (this claim's return-scale-invariance / one-sided normalisation mechanism, plus
+    MECH-460's transient behavioural-prior bootstrap), not a dedicated consolidation process.
+    MECH-476's own pre-registration named this exact outcome as its withdrawal condition. This
+    claim (MECH-459) is UNCHANGED by the fold-in -- MECH-476 leaned on the independently-
+    established regulariser-based retention this claim already characterises; the withdrawal
+    adds no new obligation here, only removes a claim that would have duplicated it.
   notes: >
     SCOPE EXCLUSION -- the structural half is deliberately NOT in this claim. DreamerV3 also
     trains its actor ENTIRELY on imagined 15-step rollouts with lambda-returns, so gradient-signal
@@ -60402,6 +60431,16 @@
     REE's labels are free. THIRD: the AlphaStar extraction is from the hosted preprint plus
     secondary write-ups (Nature text paywalled), so its KL-coefficient specifics and any ablation
     claim are LOWER CONFIDENCE than the VPT / DQfD / JSRL material.
+
+    [2026-08-01 governance, MECH-476 WITHDRAWN, folded in here -- full detail on MECH-476's own
+    evidence_quality_note, not duplicated]: MECH-476's three pre-registered falsifier arms
+    (dose/836a, novelty-tagging/836d, interval/836e, all confirmed weakens) found retention
+    invariant to dose, interval, and novelty-pairing alike -- consistent with a transient
+    behavioural-prior bootstrap (this claim) plus a return-scale-invariance regulariser
+    (MECH-459), not a dedicated consolidation process. MECH-476's own pre-registration named
+    this exact outcome as its withdrawal condition. This claim (MECH-460) is UNCHANGED by the
+    fold-in -- MECH-476 leaned on the independently-established prior-transience mechanism this
+    claim already characterises; the withdrawal adds no new obligation here.
   notes: >
     COORDINATION -- INFORMS, DOES NOT DECIDE. This claim maps onto the H-bc-prior leg of the live
     GOV-FANOUT-1 discrimination (V3-EXQ-780 vs V3-EXQ-781 H-approach-primitive), pre-registered
@@ -62608,11 +62647,15 @@
   claim_type: mechanism_hypothesis
   subject: f_dominance_conversion_ceiling.acquisition_retention_dissociation
   polarity: asserts
-  status: candidate
+  status: retired
   live_status:
-    reading: candidate/v3_pending
-    as_of: 2026-07-22
+    reading: retired
+    as_of: 2026-08-01
     needs_review: false
+    evidence:
+      from: "failure_autopsy_V3-EXQ-836e_2026-08-01"
+      as_of: 2026-08-01
+      verdict: "weakens -- WITHDRAWN per the claim's own pre-registered falsifier (what_would_answer): all three arms (dose/V3-EXQ-836a, novelty-tagging/V3-EXQ-836d, interval/V3-EXQ-836e) independently confirm retention invariant to the manipulated variable, 2 of 3 leave-one-out robust at 10/10 seeds."
   implementation_phase: v3
   v3_pending: true
   generation: v3
@@ -62754,6 +62797,37 @@
     delta plus an absolute floor, not a fixed margin). Retention still dissociated from acquisition
     per the prior evidence (V3-EXQ-788, V3-EXQ-792); the dose/interval/novelty falsifier itself
     remains untested. Stays candidate; v3_pending unchanged.
+    [2026-08-01 governance, MECH-476 WITHDRAWN -- all three pre-registered falsifier arms now
+    complete under the noise-scaled redesign; confirmed failure_autopsy_V3-EXQ-836-cluster_2026-08-01
+    (836a dose, 836d novelty-tagging) + failure_autopsy_V3-EXQ-836e_2026-08-01 (interval, the
+    completing leg)]: 836a (dose) -- retained_fraction non-monotone across dose (0.712/0.430/0.512),
+    effect (-0.1998) well inside the noise-scaled margin (0.7162) for "grows." 836d (novelty-tagging,
+    the claim's own "sharpest discrimination" arm) -- paired retention LOWER than unpaired (0.834 vs
+    0.950), opposite Moncada & Viola's prediction, effect (-0.1161) inside margin (0.7818), 10/10
+    leave-one-out folds robust. 836e (interval) -- retained_fraction non-monotone across window_steps
+    0/150/400/900 (0.712/0.707/0.860/0.723), spread 0.153, effect (0.0106) ~84x inside the noise-scaled
+    margin (0.893), 10/10 leave-one-out folds robust. All three arms independently and robustly find
+    retention INVARIANT to the manipulated variable, using the SAME noise-scaled measurement fix that
+    replaced the 2026-07-29 cycle's fixed-0.15-margin defect (see the note above this one). Per this
+    claim's own pre-registered `what_would_answer` text: "WEAKENED if retained fraction is INVARIANT to
+    both [dose and interval] and tracks only the concurrent constraint coefficient -- there is then no
+    consolidation process and this claim is withdrawn into MECH-459/460." All three named conditions are
+    now met, by fair, well-instrumented tests directly exercising the SD-083 offline EWC-anchor
+    consolidation window this claim's substrate depends on. Per the claim's own `functional_restatement`:
+    "if the falsifier returns invariance to dose and interval, there is no consolidation PROCESS -- only
+    a regulariser -- and this claim is WITHDRAWN back into MECH-459/460 rather than kept as an umbrella."
+    STATUS: candidate -> retired (NOT rejected -- the underlying phenomenon this claim named, that REE's
+    two demonstrated protection pathways (distributional critic V3-EXQ-788, KL anchor V3-EXQ-792) are
+    awake/online/undifferentiated regularisers rather than a dose/interval/novelty-sensitive consolidation
+    process, is real and independently established; only this claim's specific hypothesis that a
+    consolidation PROCESS exists on top of that regularisation is falsified). MECH-459 (return-scale-
+    invariance / one-sided normalisation, the regulariser-mechanism explanation) and MECH-460 (transient
+    behavioural-prior bootstrap) already exist as registered claims and already depends_on-cite this
+    claim's sibling MECH-475 for the same reason -- MECH-476's content folds into them, not into a new
+    claim. v3_pending left UNCHANGED (the claim is retired, not merely gated) -- no further substrate
+    action owed; the SD-083 consolidation window itself remains landed and functioning, just not evidence
+    of a distinct consolidation PROCESS beyond what MECH-459/460 already describe. User-confirmed
+    2026-08-01 (governance walk, session-startup-checklist-28b0bd).
 - id: MECH-477
   title: "dual_system_uncertainty_arbitration. Differential recruitment between the habit and the hippocampally-planned goal-directed pathways is produced by an explicit ARBITRATION element that reads the two pathways' relative uncertainty/reliability and reallocates control accordingly -- NOT by the mere presence of two pathways. Two pathways WITHOUT an arbitrator produce a FLAT recruitment response regardless of context novelty. Registered 2026-07-22 as the control-allocation mechanism MECH-163 presupposed but never named; MECH-163 conflated ARCHITECTURE (two pathways exist) with DYNAMICS (control shifts between them with novelty, uncertainty and practice)."
   claim_type: mechanism_hypothesis
@@ -63350,6 +63424,10 @@
     reading: candidate
     as_of: '2026-08-01'
     needs_review: false
+    evidence:
+      from: v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3
+      as_of: 2026-08-01
+      verdict: "weakens -- see evidence_quality_note"
   implementation_phase: v3
   claim_level: governance
   registered_utc: '2026-08-01'
@@ -63367,6 +63445,8 @@
   non_degeneracy_precondition: The OFF arm must reproduce the original 664 signature before the ON arm means anything, and the two arms must differ on the training loss they actually optimise (assert the PE branch at agent.py:8636-8642 is entered). An ON arm that silently falls through to the EMA target tests nothing and self-routes substrate_not_ready.
   scope_note: Same raw-warmup curriculum-scope condition as SD-086 (intake candidate 5).
   notes: 'Reaped from the 2026-06-10 intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. This is a claim-status-vs-default drift finding of the same shape as reference_reeconfig_from_dims_silent_kwargs (a knob that exists but is not reached). SD-020 carries a default_off_scope_note pointing here. Highest-information first move: the one-flag two-arm run separating ''SD-020 was right and is simply not on'' from ''the pathology survives the fix''. Consider a standing default_off annotation audit across other claims (intake next-step 4).'
+  evidence_quality_note: >
+    [2026-08-01 governance, V3-EXQ-856, confirmed failure_autopsy_V3-EXQ-856_2026-08-01, first-ever evidence run for this claim]: SD-087's own pre-registered falsifier (two-arm harm_surprise_pe_enabled OFF/ON re-run of the V3-EXQ-664 affective fingerprint). off_reproduces_664_signature PASSES (2/3 seeds); on_reduces_signature FAILS -- the 664 saturation-and-inversion signature SURVIVES the flag flip even though the manipulation demonstrably took (mean_harm_obs_ema moved 0.0->0.0245; mean_cov_z_harm_a barely moved, both far below the 0.05 saturation floor). This does NOT falsify SD-087's literal, narrower claim (that SD-020's validation is scoped to a flag-on configuration and does not describe default agents) -- that remains true regardless. It DOES weaken the stronger, implicit causal hypothesis the falsifier was built to test: that simply flipping the flag on an already-trained agent reproduces SD-020's validated benefit. Relocates the explanation for the 664 signature toward either (a) the flag needing to be set from the START of training, or (b) a defect in the encoder/environment rather than this training-target choice -- handed to Q-086 (V3-EXQ-857, which could not itself discriminate; see Q-086's own note). weakens, scoped to the causal-flag-flip hypothesis. Stays candidate.
 - id: Q-086
   title: 'Environment-confound control: is the z_harm_a saturation ecological or representational? Re-measure the affective fingerprint on a gentler environment (lower num_hazards, lower hazard_food_attraction) to separate faithful chronic-suffering integration from a calibration/representation pathology.'
   claim_type: open_question
@@ -63377,6 +63457,10 @@
     reading: candidate
     as_of: '2026-08-01'
     needs_review: false
+    evidence:
+      from: v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3
+      as_of: 2026-08-01
+      verdict: "non_contributory (precondition_unmet) -- see evidence_quality_note"
   epistemic_category: answer_state
   implementation_phase: v3
   claim_level: architectural
@@ -63395,6 +63479,8 @@
   what_would_answer: 'PASS for ''calibration, not ecology'' = z_harm_a still pegs high with sub-floor CoV in the benign environment. PASS for ''faithful chronic suffering'' = the level and range track hazard density. Non-degeneracy: the manipulation must demonstrably take -- the sensory tier z_harm_s must differ across arms (mean or CoV beyond the seed-noise band); if z_harm_s is unmoved the environment was not actually made gentler and the arm self-routes substrate_not_ready.'
   scope_note: Same raw-warmup curriculum-scope condition as SD-086/SD-087 (intake candidate 5).
   notes: Reaped from the 2026-06-10 intake (candidate 3, the raw thought's own confound control), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Should run alongside or after SD-087's flag flip. Queue only via /queue-experiment (close relative of V3-EXQ-664).
+  evidence_quality_note: >
+    [2026-08-01 governance, V3-EXQ-857, confirmed failure_autopsy_V3-EXQ-857_2026-08-01, first-ever run, diagnostic self-route flagged precondition_unmet in pending_review.md]: the readiness precondition (gentle_env_manipulation_took_z_harm_s_differs) FAILED -- measured SNR 0.42 vs required >=2.0; the manipulation (num_hazards cut 75%, hazard_food_attraction cut 71%) did not move z_harm_s beyond seed-to-seed noise (delta 0.072 vs noise SD 0.171). Reads as a power problem (only 3 seeds against high per-seed variance), not a wrong hypothesis about what drives z_harm_s -- an uncounted secondary signal (min_eval_steps 58 harsh vs 125 gentle) suggests the harsh arm IS doing something (plausibly earlier hazard-driven episode termination) that the per-step z_harm_s average doesn't capture. non_contributory -- no discrimination was possible between the 'calibration, not ecology' and 'faithful chronic suffering' readings. Net result of the SD-087(V3-EXQ-856) -> Q-086(V3-EXQ-857) diagnostic chain: the underlying question (what explains the 664 saturation-and-inversion signature?) remains open on BOTH candidate explanations -- neither confirmed nor eliminated. Route: /queue-experiment a redesign with more seeds (5-10), a starker environmental gradient (e.g. num_hazards 4 vs 0), and episode-survival-time as an explicit secondary DV. Stays candidate.
 - id: Q-087
   title: 'What event counts as V3 closure for the purpose of the version-transition artefact gate (GOV-V3FREEZE-1) and the construction-opacity repayment boundary (GOV-OPACITY-1)? Candidate options: strict green board, governance acceptance, or an additional reproducibility check.'
   claim_type: open_question

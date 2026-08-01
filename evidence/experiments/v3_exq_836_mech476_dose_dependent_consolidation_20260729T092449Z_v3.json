@@ -8,7 +8,7 @@
   ],
   "experiment_purpose": "evidence",
   "outcome": "FAIL",
-  "evidence_direction": "non_contributory",
+  "evidence_direction": "superseded",
   "timestamp_utc": "20260729T092449Z",
   "non_degenerate": true,
   "degeneracy_reason": "",
@@ -2456,5 +2456,9 @@
     47
   ],
   "epistemic_category": "measurement_test_design_defect",
-  "evidence_direction_note": "Self-routed non_monotone_dose_response but the verdict rests on a fixed 0.15 effect-size margin not scaled to observed per-arm noise (dose_bc300 SEM 0.150) and fails a leave-one-out check on its most extreme seed. Non_contributory, not mixed."
+  "evidence_direction_note": "[2026-08-01 governance] SUPERSEDED by V3-EXQ-836a (noise-scaled effect-size-gate redesign; this manifest's fixed-0.15-margin measurement was a defect, corrected in the successor). See failure_autopsy_V3-EXQ-836-cluster_2026-08-01.md / failure_autopsy_V3-EXQ-836e_2026-08-01.md for the corrected finding (all three legs independently weakens, MECH-476 withdrawn).",
+  "supersession_state": {
+    "superseded_by": "V3-EXQ-836a",
+    "prior_evidence_direction": "non_contributory"
+  }
 }

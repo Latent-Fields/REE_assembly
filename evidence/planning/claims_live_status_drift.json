@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-08-01T13:56:37Z",
+  "generated_at": "2026-08-01T17:18:14Z",
   "counts": {
     "total": 963,
-    "reading_drift": 18,
+    "reading_drift": 19,
     "unstamped": 2,
     "needs_review": 0,
     "never_reviewed": 942,
-    "provenance_drift": 86
+    "provenance_drift": 88
   },
   "reading_drift": [
     {
@@ -67,6 +67,14 @@
     },
     {
       "claim": "MECH-475",
+      "stored_reading": "retired",
+      "derived_reading": "retired/v3_pending",
+      "diffs": [
+        "reading: stored='retired' derived='retired/v3_pending'"
+      ]
+    },
+    {
+      "claim": "MECH-476",
       "stored_reading": "retired",
       "derived_reading": "retired/v3_pending",
       "diffs": [
@@ -1117,8 +1125,8 @@
     },
     {
       "claim": "ARC-005",
-      "stored_from": "v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3",
-      "derived_from": "v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3"
+      "stored_from": "v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3",
+      "derived_from": "failure_autopsy_V3-EXQ-848_2026-08-01"
     },
     {
       "claim": "ARC-007",
@@ -1522,8 +1530,8 @@
     },
     {
       "claim": "MECH-476",
-      "stored_from": null,
-      "derived_from": "failure_autopsy_V3-EXQ-836-cluster_2026-08-01#V3-EXQ-836d"
+      "stored_from": "failure_autopsy_V3-EXQ-836e_2026-08-01",
+      "derived_from": "failure_autopsy_V3-EXQ-836e_2026-08-01"
     },
     {
       "claim": "MECH-477",
@@ -1539,6 +1547,16 @@
       "claim": "SD-084",
       "stored_from": null,
       "derived_from": "failure_autopsy_V3-EXQ-839_2026-07-30"
+    },
+    {
+      "claim": "SD-087",
+      "stored_from": "v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3",
+      "derived_from": "failure_autopsy_V3-EXQ-856_2026-08-01"
+    },
+    {
+      "claim": "Q-086",
+      "stored_from": "v3_exq_857_q086_gentler_env_fingerprint_20260801T134757Z_v3",
+      "derived_from": "failure_autopsy_V3-EXQ-857_2026-08-01"
     }
   ],
   "provenance_available": true
