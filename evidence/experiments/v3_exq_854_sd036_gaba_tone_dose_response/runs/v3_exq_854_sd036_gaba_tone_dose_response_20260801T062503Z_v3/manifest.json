@@ -1,0 +1,99 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_854_sd036_gaba_tone_dose_response",
+  "run_id": "v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-01T06:25:03Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-036"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sd036_dose_response_confirmed",
+    "preconditions": [
+      {
+        "name": "harm_a_sustain_ratio_tone_spread_control",
+        "description": "Spread of harm_a_sustain_ratio across the gaba_tone sweep on a fixed observation tape with fresh agents (positive control). This is the SAME statistic C1 routes on -- deliberately not a magnitude proxy.",
+        "control": "fixed 60-step observation tape, fresh ON agents per tone",
+        "measured": 0.09974554726688156,
+        "threshold": 0.001,
+        "direction": "lower",
+        "comparator": ">=",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_dose_response": true,
+      "C2_multi_stream_cluster": true,
+      "C3_on_vs_off_separation": true
+    },
+    "criteria": [
+      {
+        "name": "C1_dose_response",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_multi_stream_cluster",
+        "load_bearing": false,
+        "passed": false
+      },
+      {
+        "name": "C3_on_vs_off_separation",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "observable_1_note": "Observable #1 as literally worded (mode flip by ~t=50 on return to baseline) is NOT load-bearing here. harm_encoder(zeros) and affective_harm_encoder(zeros, zeros) have non-zero norm, so the V3-EXQ-471 lock is substantially an encoder FLOOR response to the ambient hazard field; decay reaches an equilibrium against that floor rather than returning to baseline. Measured floor is recorded in encoder_floor_summary. C3 is the floor-robust relative form."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "74a471330865a51fa7eb332b79ca55289a2d7bd6a570c6beb50c816ad86cda8a",
+  "substrate_commit": {
+    "commit": "e39cc54f1fdeb6bf6732f9d26d27bcd9904532f3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 40240,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
