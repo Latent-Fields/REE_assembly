@@ -1,0 +1,86 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_865_q081_zgoal_reach_preflight_scan",
+  "run_id": "v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-01T22:13:46Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "q081_zgoal_and_zharm_a_no_lever_found",
+    "summary": "Neither target shows precursor-level reach from this lever family. z_goal: 4 non-degenerate cell(s), 0 reach. z_harm_a: 8 non-degenerate cell(s), 0 reach. Combined with 824/824a/838/849's exhaustive null on the retired (z_world, operating_mode) pair, this is now evidence that this specific landmark-manipulation lever family does not reach ANY of the three cross-stream targets tried so far at the precursor level. Per the claim-synthesis doc's own escalation note: do NOT queue another config-lever probe on this lever family for Q-081 -- the next move (a direct write-path substrate build, or a different manipulation lever entirely) is a governance decision, out of scope for this probe.",
+    "preconditions": [
+      {
+        "name": "z_goal_at_least_one_non_degenerate_cell",
+        "description": "For target='z_goal': at least one (mode, seed) cell must clear BOTH non-degeneracy guards (boundary events AND target-stream activation -- see q081_pair_reach_check_stream.py module docstring) for that target's reading to be informative rather than vacuous.",
+        "measured": 4.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "z_harm_a_at_least_one_non_degenerate_cell",
+        "description": "For target='z_harm_a': at least one (mode, seed) cell must clear BOTH non-degeneracy guards (boundary events AND target-stream activation -- see q081_pair_reach_check_stream.py module docstring) for that target's reading to be informative rather than vacuous.",
+        "measured": 8.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "at_least_one_target_has_a_non_degenerate_cell",
+        "description": "Combined across whichever target leg(s) actually ran: if BOTH z_goal and z_harm_a came back fully degenerate (activation precondition never cleared, or no boundary events fired), this scan obtained no informative reading at all and must self-route substrate_not_ready_requeue rather than any reach verdict.",
+        "measured": 12.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_any_target_shows_precursor_reach": true
+    },
+    "does_not_adjudicate_note": "This probe answers only whether a lever gives the manipulation precursor-level reach to z_goal and/or z_harm_a. It does not adjudicate Q-081 Outcome A vs B."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "afa50a9cb3f4c43c9dd38c8ed6f6329b8cb53694c1a601a9d27a13cbbe59234a",
+  "substrate_commit": {
+    "commit": "373e5e8d3ce02de5848c48aba5603a9073e4143c",
+    "dirty": false,
+    "branch": "main"
+  }
+}
