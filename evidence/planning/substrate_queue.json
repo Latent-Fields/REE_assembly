@@ -6541,6 +6541,23 @@
       "priority": 2,
       "added_session": "session-startup-checklist-28b0bd",
       "last_seen_session": "session-startup-checklist-28b0bd"
+    },
+    {
+      "sd_id": "MECH122-SENSORY-GATING-OFFLINE-PROTECTION",
+      "title": "MECH-122 sensory-gating half: determine whether/how external sensory input needs to be blocked from reaching z_self/z_world encoders during SWS/REM offline consolidation windows",
+      "node_class": "complex (probe-gated)",
+      "status": "proposed",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-122"
+      ],
+      "failure_record": [],
+      "implementation_hint": "MECH-122 bundles two distinct mechanisms: content packaging (has a V3 proxy -- ThetaBuffer.consolidation_summary()/set_consolidation_mode(), ree_core/latent/theta_buffer.py -- never wired into the real sleep pipeline) and sensory gating (suppressing external sensory input during the consolidation window so waking observations cannot interrupt or contaminate it). Sensory gating has ZERO V3 code anywhere in ree_core -- no gate/gating/sensory/spindle-window mechanism of any kind (confirmed by targeted grep, IGW-20260801-226 drafting pass, 2026-08-01). This entry is deliberately node_class complex (probe-gated), not complicated (buildable): SleepLoopManager (ree_core/sleep/phase_manager.py) already runs sleep cycles at episode boundaries via notify_episode_end/run_sleep_cycle, strictly between env.step() calls, not interleaved with them -- so it is NOT YET ESTABLISHED whether waking observations can actually leak into z_self/z_world encoders during an active offline phase under the current architecture, or whether the episode-boundary design already satisfies the biological claim's protective intent by construction (in which case the gap is a missing regression test + claims.yaml documentation update, not new gating code). The probe owed before this can become complicated (buildable): trace whether any code path calls the waking-mode z_self/z_world encoding step while agent.sleep_state indicates an active SWS_ANALOG/REM_ANALOG phase, and if so, what would need to gate it. Was V4-scope in MECH-122's original 2026-03-23 registration notes; per 2026-08-01 governance correction, sleep (MECH-120/121/122/180 cluster) was pulled into V3 as necessary, so this entry is correctly V3-scoped despite the claim's own prose still reading V4 -- that prose is the stale artifact, not this entry's phase.",
+      "priority": 3,
+      "added_session": "igw-loop-mech122-gap",
+      "last_seen_session": "igw-loop-mech122-gap"
     }
   ],
   "schema_version": "substrate_queue/v2"
