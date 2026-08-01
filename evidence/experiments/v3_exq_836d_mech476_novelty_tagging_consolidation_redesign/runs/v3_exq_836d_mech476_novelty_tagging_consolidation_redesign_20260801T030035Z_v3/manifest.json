@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_836d_mech476_novelty_tagging_consolidation_redesign",
+  "run_id": "v3_exq_836d_mech476_novelty_tagging_consolidation_redesign_20260801T030035Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T03:00:35Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-476"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "retention_invariant_to_novelty_no_tagging",
+    "preconditions": [
+      {
+        "name": "novelty_paired::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "novelty_paired",
+        "kind": "readiness",
+        "description": "A strict majority of this arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). A weak install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "novelty_unpaired::install_took_strict_majority",
+        "precondition": "install_took_strict_majority",
+        "arm": "novelty_unpaired",
+        "kind": "readiness",
+        "description": "A strict majority of this arm's seeds installed above the competence floor (post_bc >= COMPETENCE_RESOURCE_FLOOR). A weak install that did not take is UNINFORMATIVE about retention; below this the arm reds ONLY ITSELF.",
+        "control": "fraction of seeds with install_took=True in this arm, vs 0.5",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.5,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "retained_fraction_measured": true
+    },
+    "criteria": [
+      {
+        "name": "paired_retains_more_than_unpaired",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.116118,
+        "threshold": 0.781809,
+        "note": "effective_novelty_margin = max(1.5 * sd_delta=0.521206, 0.05); sd_delta is the SD of the per-seed paired (paired - unpaired) retained_fraction delta. Replaces V3-EXQ-836c's fixed 0.15 literal per the project effect-size-gate convention."
+      }
+    ]
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8fc1fd38d2d02cbc735f18c58c60cd0235fd22076f1dd66fbab21f5e1a29d87c",
+  "substrate_commit": {
+    "commit": "d75601cf24bfa4eb378830607fc556491a7c7b39",
+    "dirty": false,
+    "branch": "main"
+  }
+}
