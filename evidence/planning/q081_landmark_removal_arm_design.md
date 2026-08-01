@@ -201,3 +201,85 @@ execution backlog, not discovery debt. Nothing here is `complex (probe-gated)`.
 The module is usable independently of the recorder: it consumes only the agent's hippocampal
 surface and returns plain dicts, so a driver can attach it as soon as there is something to
 record.
+
+## 8. Agent-weight RNG-seeding-timing bug — audited 2026-08-01, does NOT invalidate any recorded finding
+
+A side-investigation while building a positive-control regression test for
+`experiments/_lib/q081_pair_reach_check.py::run_pair_specific_reach_probe` found and fixed a
+genuine bug (ree-v3 `02c155c658`, `main`): the function built its agent template
+(`REEAgent(cfg)`, which randomly initialises every `torch.nn.Module` weight) **before**
+`reset_all_rng(seed)` ever ran — the reset happened later, inside `_collect_trace`, once per
+arm. So `seed` controlled the env and the intact-vs-manipulated arm match, but not the agent's
+*initial* weights, which depended on whatever torch's global RNG state happened to be at
+construction time in the process. Confirmed empirically: three back-to-back calls with
+identical kwargs returned three different boundary-event counts.
+
+**Source read (2026-08-01) confirmed the same pattern in all three full recording drivers** —
+`v3_exq_824_q081_shared_organisation_landmark_removal.py`,
+`v3_exq_824a_q081_shared_organisation_landmark_removal.py`, and
+`v3_exq_838_q081_cross_stream_recording.py` (the scripts behind the "no reach" results this
+section documents) — and in the reach-probe's own production caller,
+`v3_exq_849_q081_reach_preflight_scan.py`. None of the four ever calls `reset_all_rng` /
+`torch.manual_seed` / `np.random.seed` / `random.seed` before `agent_p0 = make_agent(env_p0)`
+(grep-confirmed zero hits in each file). None of the four scripts has been changed — this is a
+documentation-only note, per the reasoning below.
+
+**Why this does not invalidate 824 / 824a / 838 / 849, despite the shared bug class:**
+
+- **The arm comparison each finding is built on is unconfounded by construction, not by luck.**
+  Every one of the four scripts builds exactly ONE agent template per seed
+  (`agent_p0 = make_agent(env_p0)`, called once) and every arm/cell within that seed runs on
+  `copy.deepcopy(agent_p0)` with its own env re-instantiated from the SAME `seed`
+  (`v3_exq_838...:506-507`, `v3_exq_824...:487/515`, `v3_exq_824a...:528/556`,
+  `q081_pair_reach_check.py`'s own "MATCHED-ARM CONSTRUCTION" docstring). Whatever the agent's
+  initial weights happen to be for a given seed, INTACT and every manipulated arm at that seed
+  share them exactly. The bug changes WHICH weights a seed gets; it does not touch the sharing
+  that makes the arm-vs-arm comparison valid.
+- **824/824a/838's own results are the strongest confirmation of this.** All three report
+  *bit-identical* `rv_primary` across INTACT and every manipulated arm at every one of 5 seeds
+  (e.g. 838: `rv_intact == rv_iei_permute == rv_circular_shift == rv_suppress` to full float64
+  precision at each seed — `failure_autopsy_v3-exq-838_2026-07-29.md` §1). Bit-for-bit identity
+  across arms is only possible if the arms genuinely share initial weights; if construction-time
+  RNG state had leaked into a per-arm difference, the results could not have come out identical.
+- **The aggregate statistics don't need `seed` to be reproducible, only non-degenerate.**
+  824/824a/838's `adjudicate()` computes `mean_delta`/`sd_delta` across per-seed deltas
+  (`RV(INTACT) - RV(manipulated)`, arm-matched within each seed) purely as a within-run sample;
+  it never assumes rerunning "seed=2" reproduces the same agent. Since torch's global RNG state
+  differs across the sequential single-process loop over `SEEDS = [0,1,2,3,4]` regardless of the
+  bug (P0 training alone consumes a different number of draws each iteration), the 5 seeds still
+  supply legitimately varying draws for the variance estimate — they are just not the SPECIFIC
+  draws "seed=N" would reproduce on a second run. For 849, the discriminator is even less exposed:
+  `C1_any_lever_shows_precursor_reach` is an existence check ("did ANY of 10 (seed x lever) cells
+  show reach") — the bug means those 10 cells sampled 10 different uncontrolled weight draws
+  rather than 5 reproducible ones, which if anything makes the resulting "0 of 10" null *more*
+  robust (it rules out the null being an artefact of one particular initialisation), not less.
+- **Governance already treats 824/824a/838 as `non_contributory`
+  (`epistemic_category: measurement_test_design_defect`)** — see
+  `claims.yaml`'s Q-081 `evidence_quality_note` and the three failure-autopsy records
+  (`failure_autopsy_V3-EXQ-824_2026-07-26`, `failure_autopsy_2026-07-28-sweep`,
+  `failure_autopsy_v3-exq-838_2026-07-29`). None of them is claim-confidence load-bearing; they
+  are diagnostic evidence that the measured pair is unreachable by the levers tried, which the
+  bit-identical results support independent of the weight-seeding bug. 849 (`PASS`,
+  `evidence_direction: non_contributory`) is the same category.
+- **Reuse-fingerprint eligibility is unaffected**, because it was already closed off for an
+  unrelated reason: every arm cell across all four scripts is stamped
+  `p0_substrate_trained_outside_fingerprinted_cell_scope` in its `extra_ineligible_reasons`, so
+  none of them was ever eligible for cross-experiment weight reuse regardless of this bug.
+
+**What the bug DOES break, worth knowing for future debugging sessions:** exact
+reproducibility. Re-running any of these four scripts with the nominal same `seed` values will
+NOT regenerate the recorded numeric outputs (e.g. 838's `rv_intact = [0.15587, 0.15615, 0.19986,
+0.04763, 0.07453]`) — the initial agent weights depend on process-level torch RNG history, not
+on `seed` alone. Don't chase a "why can't I reproduce this exact number" thread on any of these
+four run IDs; it's expected, not a new defect.
+
+**Related, unaudited observation (not investigated further, does not change the conclusion
+above):** action selection during rollout is sometimes stochastic (`torch.multinomial`, 7 call
+sites in `ree_core/predictors/e3_selector.py`), also drawing from torch's global RNG, also never
+reset per-arm within a seed. This means the specific realised action *sequence* during an arm's
+rollout is not reproducible from `seed` either, beyond what env-seeding controls — a broader
+instance of the same "global torch RNG never explicitly seeded" pattern in these driver scripts.
+It does not weaken the arm-matched-construction argument above (arms are expected to diverge in
+action sequence once the manipulation takes effect — that's the point of the experiment), and it
+is orthogonal to the confirmed bug this section documents. Flagged here rather than chased, since
+it's a reproducibility question, not one that touches any recorded finding's validity.
