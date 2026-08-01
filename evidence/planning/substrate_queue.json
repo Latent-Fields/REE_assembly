@@ -6446,8 +6446,8 @@
     {
       "sd_id": "arc071_e3_reselection_on_committed_program",
       "title": "ARC-071/MECH-090: should E3 short-circuit re-selection on an E3 tick when already committed to an unexpired program?",
-      "node_class": "complex (probe-gated)",
-      "status": "surfaced_undiagnosed",
+      "node_class": "complicated (buildable)",
+      "status": "diagnosed_needs_fix",
       "ready": false,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6457,7 +6457,15 @@
       "priority": 3,
       "added_session": "frosty-satoshi-2e7cbc",
       "last_seen_session": "frosty-satoshi-2e7cbc",
-      "source_autopsy": "failure_autopsy_V3-EXQ-841_2026-07-31.json"
+      "source_autopsy": "failure_autopsy_V3-EXQ-841_2026-07-31.json",
+      "diagnosis": {
+        "diagnosed_by_session": "frosty-satoshi-2e7cbc",
+        "diagnosed_utc": "2026-08-01T13:45:38Z",
+        "source": "diagnostic_arc071_e3_reselection_probe_2026-08-01.md",
+        "finding": "REAL, non-trivial premature-reselection effect confirmed by a real (non-forced) rollout: CausalGridWorldV2 with hazards, StepHarness canonical loop, use_policy_chunking + use_chunk_proposal_injection + use_persistent_committed_program_handle=True (the just-landed fix), full 120-episode 810a-proven formation schedule, chunk_max_size in {2,3,5,8,15}, seeds {101,202}. Aggregate (both seeds) fraction of chunk-committed E3-tick decisions that cut a prior unexpired arc071_chunk commitment short (premature_reselection, i.e. _committed_step_idx < chunk_length-1 when a new trajectory object was force-installed): chunk_max_size=2 -> 0/1853 (0.0%); =3 -> 0/2123 (0.0%); =5 -> 346/939 (36.8%, one seed only -- the other seed registered zero chunk commitments this run, a torch-RNG-carryover artifact of sequential-cell seeding, not a null result); =8 -> 562/1356 (41.4%); =15 -> 1328/2411 (55.1%). chunk_max_size=5 is one of V3-EXQ-841's own three tested dose arms (A_HIER_S5), so this is not confined to untested sizes. Mechanism correction to this entry's own implementation_hint: the live e3_steps_per_tick floor observed across the whole 53,063-step run was 8 -- beta_rate_min_steps=5 was NEVER reached (z_beta norm topped out at 0.78 against a saturation point of 1.0) -- so the adaptive-floor mechanism this entry named is not what is firing. The dominant tick-cadence driver is instead MECH-091's unconditional clock.phase_reset() on every harm_signal<0 step (confirmed by reading agent.py's residue-update path), which forces an E3 tick independent of the periodic counter; even the periodic component alone (min observed 8) already sits below chunk_max_size for the 8/15 arms and below the 12-step chunk repeatedly cut short in the probe's representative trace. Full trace, per-cell table, and methodology (including a documented false start where an early version of the probe undercounted to a false 0.0-everywhere result because it never called agent.note_chunk_outcome(), so no chunk ever crystallised): evidence/planning/diagnostic_arc071_e3_reselection_probe_2026-08-01.md.",
+        "conclusion": "Real substrate defect, not aleatoric. Confirmed at a chunk size already in practical use (chunk_max_size=5, A_HIER_S5) and worsening at larger, plausible successor-experiment sizes (8, 15). Converts this entry from complex (probe-gated) to complicated (buildable): the fix this entry already named (an 'already committed to this exact unexpired program, skip re-selection' short-circuit in select_action's E3-tick branch) is confirmed necessary, not merely hypothetical. Scope correction: reason about MECH-091 phase-reset interaction first, not primarily the MECH-093 adaptive-floor interpolation this entry originally named -- the short-circuit must not swallow a genuine MECH-091 acute-threat release.",
+        "recommended_next_step": "/implement-substrate scoped follow-on (NOT done this session): design and land an \"already committed to an unexpired arc071_chunk program, skip re-selection\" short-circuit in select_action's E3-tick branch (ree-v3/ree_core/agent.py), checking e3._persistent_committed_trajectory is non-None, still arc071_chunk-sourced, and _committed_step_idx < chunk_length-1 before falling through to full E3 deliberation. Needs its own design review of interaction surface with the MECH-091 urgency-interrupt release (must still fire on genuine acute z_harm spikes) and the natural-commit latch-hold machinery adjacent to it in agent.py -- per this entry's own prior note, this is architecturally significant, not a small mirror-an-existing-pattern diff. Validate with a contract test mirroring the probe's classification (committed_step_idx reaching chunk_length-1 before the next E3-tick reselection, at chunk_max_size=5 and =15) plus a regression check that MECH-091 release still fires under forced high z_harm_a."
+      }
     }
   ],
   "schema_version": "substrate_queue/v2"
