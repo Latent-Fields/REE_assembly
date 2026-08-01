@@ -1,29 +1,51 @@
 {
   "schema_version": "v1",
-  "runner_pid": 744,
-  "runner_started_at": "2026-07-28T17:05:48.938317+00:00",
-  "last_updated": "2026-07-29T12:58:59.538848+00:00",
+  "runner_pid": 8993,
+  "runner_started_at": "2026-08-01T19:16:27.768928+00:00",
+  "last_updated": "2026-08-01T20:03:59.368771+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-833",
+      "queue_id": "V3-EXQ-861",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Stage-H STRICT goal isolation: does silencing the E3 goal term change LEARNED avoidance?",
+      "title": "MECH-180 redesign: write-count-decoupled sws_slot_diversity DV (supersedes V3-EXQ-845)",
       "description": "",
-      "estimated_minutes": 906.7,
+      "estimated_minutes": 150.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-810a",
+      "queue_id": "V3-EXQ-862",
       "backlog_id": "",
-      "claim_id": "ARC-071",
-      "title": "ARC-071 chunk-accumulator readiness, corrected: full agent loop + hazards, 72-step episodes, 8 seeds, credit-rule arm matrix",
+      "claim_id": "",
+      "title": "Q-040c dACC PE-weight delta correlation, config fix + pre-flight smoke gate (supersedes V3-EXQ-475b)",
       "description": "",
-      "estimated_minutes": 384.0,
+      "estimated_minutes": 48.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-858",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-B (H2: F-dominance) -- f_weight attenuation ladder, committed-class entropy",
+      "description": "",
+      "estimated_minutes": 560.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062/MECH-309 full-budget replication of V3-EXQ-859: lateral_pfc route_source vs none ablation, MECH-448/449 engagement (~7.7h)",
+      "description": "",
+      "estimated_minutes": 280.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -2137,6 +2159,34 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_798a_sdmelproducer_graded_nonconverging_world_c4readable_20260729T125858Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 45320.6
+    },
+    {
+      "queue_id": "V3-EXQ-843",
+      "backlog_id": "EVB-0157",
+      "claim_id": "",
+      "title": "MECH-203 SWS replay-selection dose-response over tonic 5-HT (serotonergic replay-salience tagging)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "C2 harm complement (all seeds)=False | VERDICT: FAIL  direction=non_contributory | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-843 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-843.json",
+      "started_at": "2026-08-01T19:16:27.981348+00:00",
+      "completed_at": "2026-08-01T19:53:01.070812+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_843_mech203_sws_replay_salience_dose_response_20260801T195300Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 2193.1
+    },
+    {
+      "queue_id": "V3-EXQ-864",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-076 diagnostic: wci_symmetric_rv_ref/rv within-episode trajectory crossover (V3-EXQ-860 Finding B follow-up)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C0_trajectory_data_usable: PASS (load-bearing) | C1_crossover_bracketed_in_swept_range: FAIL | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-864 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-864.json",
+      "started_at": "2026-08-01T19:53:02.861489+00:00",
+      "completed_at": "2026-08-01T20:03:59.367887+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic/v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 656.5
     }
   ]
 }
