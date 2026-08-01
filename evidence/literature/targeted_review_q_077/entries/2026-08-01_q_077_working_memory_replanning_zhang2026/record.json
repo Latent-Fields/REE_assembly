@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_077",
+  "entry_id": "2026-08-01_q_077_working_memory_replanning_zhang2026",
+  "timestamp_utc": "2026-08-01T23:40:30Z",
+  "claim_ids_tested": [
+    "Q-077"
+  ],
+  "source": {
+    "title": "Working memory constraints on replanning following distraction",
+    "authors": [
+      "Ziyao Zhang",
+      "Jarrod A. Lewis-Peacock"
+    ],
+    "year": 2026,
+    "venue": "Communications Psychology",
+    "doi": "10.1038/s44271-026-00497-6",
+    "data_and_code": "https://osf.io/6ac5m/files/osfstorage",
+    "secondary_trigger": "https://medicalxpress.com/news/2026-07-memory-rapidly-priorities-distractions.html"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly relevant behavioral task: a moving agent must resume hidden-target collection after an unexpected detour, with load 1/2/4 and observable reminder-based resampling. The source supports Q-077's active-focus/resource-like reading because post-distraction memory-based replanning is mainly first-item-limited, load-sensitive, and state-dependent. Marked mixed because it does not settle slot vs resource vs dynamic-field process models, and because it studies visual/spatial target memory in humans rather than REE goal-state machinery or neural substrate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A multi-slot GoalState whose slots remain equally active and equally action-controlling after a perturbation is biologically suspect; the source predicts a post-distraction priority shift toward the item nearest/relevant to the updated agent state.",
+    "If SD-046 is tested only by whether a goal token persists, it will miss the key failure mode: preserved goals can survive while post-distraction priority order is stale or only one item is actively manipulable.",
+    "A degradation curve alone may still underdetermine mechanism: the observed one-item active-focus limit is compatible with resource allocation or dynamic-field competition, not a pure verdict against every slot-based implementation."
+  ],
+  "tags": [
+    "q-077",
+    "working_memory",
+    "replanning",
+    "distraction",
+    "state_dependent_priority",
+    "resampling",
+    "active_focus",
+    "sd-046"
+  ],
+  "mapping": {
+    "source_claim_statement": "In a dynamic Snake-inspired task, humans reprioritize remembered targets after distraction according to the agent's updated position; this flexibility declines with higher memory load, and post-distraction reliance on memory is mostly limited to one immediate item before reminder-based resampling supports the rest of the plan.",
+    "ree_translation": "Q-077 should not ask only how many goal slots exist. It must separate maintained goal traces from the smaller currently-manipulable focus that receives state-dependent priority after hazards, interruptions, or beneficial detours. SD-046's future substrate should expose priority/fidelity allocation and resampling behavior, not just token persistence.",
+    "mapping_caveat": "The task uses visual/spatial targets in human participants and measures behavior, not REE's z_goal dynamics or a specific PFC/HPC/BG circuit. Transfer to goal maintenance is plausible because the task couples memory, navigation, distraction, and replanning, but it remains a design constraint rather than scored substrate evidence.",
+    "source_context": "Two behavioral experiments; 60 recruited, 50 analyzed after exclusions; Snake-inspired game; memory load 1/2/4; unexpected grape-collection distraction; reminder key reveals targets at point cost; published as an in-press open-access Communications Psychology article."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Source quality is good for behavioral evidence and unusually ecological for working-memory/replanning, but it is an in-press manuscript version and the critical REE mapping crosses from human visual target memory to artificial goal-state maintenance. Confidence is capped because no neural substrate is isolated and the authors themselves leave mid-action interruption unresolved."
+  }
+}
