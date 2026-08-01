@@ -61048,6 +61048,22 @@
     boundary broadcasts, hippocampal proposals, residue updates, offline phase markers.
     That spike is complicated (buildable). Only after it confirms the signals exist does
     anything become queueable.
+    MEASURED-PAIR REFRAME (2026-08-01, /claim-synthesis, see evidence_quality_note):
+    RV(z_world, operating_mode) is RETIRED as the operationalization -- four
+    manipulation families (824/824a/838/849) found zero reach from any config lever
+    to that pair, and salience_coordinator.py's operating_mode softmax is computed
+    from a closed named-scalar precursor set with no wired edge from z_world or any
+    landmark/boundary-derived quantity, so no config lever will ever reach it. The
+    current operationalization is RV(z_world, z_goal) [primary] / RV(z_world,
+    z_harm_a) [fallback] -- both cross-stream (goal-stream / affective-stream vs
+    world-model stream, preserving the heterogeneous-streams test), both confirmed
+    reachable from the SAME landmark-manipulation lever via a coded single-hop
+    vs_rollout_gate.gate_stream call (agent.py ~4895 for z_goal, side="e1",
+    gated on goal.e1_goal_conditioned default True; ~8267 for z_harm_a, side="e2").
+    Gate any full recording run on a pre-flight reach probe for the new pair first
+    (parallel build to q081_pair_reach_check.py, which is hardcoded to
+    operating_mode and does not generalise as-is), per the discipline
+    Q081-REACH-CHECK-PAIR-SPECIFIC established.
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3
@@ -61182,6 +61198,33 @@
     raises again, reframe the DV pair rather than repeat 824/824a/838's cost. Stays candidate;
     still no direction toward the underlying shared-organisation question -- four consecutive
     measurement-defect / no-reach results, not evidence for or against.
+
+    [2026-08-01, /claim-synthesis, evidence/planning/claim_synthesis_Q-081_2026-08-01.md]:
+    applied 849's own reframe recommendation. Discrimination-gate finding: this cluster is
+    test-design debt (an unreachable DV pair), not granularity debt -- Q-081 is NOT decomposed
+    into child claims. Mechanistic cause of the zero-reach run confirmed by reading
+    ree_core/cingulate/salience_coordinator.py: operating_mode's precursor set
+    (_input_signals: dacc_pe/dacc_foraging/dacc_difficulty/drive_level/is_offline/
+    pcc_stability/aic_salience/cea_fast_prime/cea_mode_prior/external_task_drive/
+    override_signal/pacc_autonomic) has no wired edge from z_world or landmark structure at
+    all -- the four runs were not underpowered, they were pointed at a pair with no causal
+    path in the substrate. Grepped every vs_rollout_gate consumer in agent.py to find what
+    the SAME manipulation lever (per_stream_vs / per_region_vs staleness) does confirmably
+    reach: no side="e3" gate exists anywhere (the substrate_queue implementation_hint's
+    hypothesised vs_rollout_gate -> E3 -> operating_mode chain does not exist as a literal
+    call path, which is independently why 838 found nothing), but side="e1" gate_stream on
+    z_goal (agent.py ~4895, gated on goal.e1_goal_conditioned default True) and side="e2"
+    gate_stream on z_harm_a (agent.py ~8267) are both confirmed single-hop causal paths from
+    the same staleness statistic, and both are genuinely different subsystems from z_world
+    (goal-stream / affective-stream), so both preserve the cross-stream-organisation test
+    Q-081 actually asks (unlike gating z_world itself, which would be a within-stream
+    tautology). what_would_answer updated to name RV(z_world, z_goal) primary /
+    RV(z_world, z_harm_a) fallback, retiring RV(z_world, operating_mode). Direct
+    operating_mode WRITE path stays untested and out of scope -- not needed yet, since a
+    confirmed-reachable route to the same question exists at far lower cost. Follow-on
+    (chipped separately, not built here): /queue-experiment to build a parallel pre-flight
+    reach probe for z_goal (q081_pair_reach_check.py is hardcoded to operating_mode and does
+    not generalise) before any full recording run.
 
 - id: MECH-466
   title: "Event-relative coordination exceeds clock-relative coordination: cross-stream alignment measured around event boundaries, commitment onset, interruption, completion and offline transitions is stronger than alignment by wall-clock timestep. If so, the boundary stream is the coordination substrate for the whole federation, not merely a detector with a consumer."
