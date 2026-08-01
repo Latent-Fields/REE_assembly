@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-31T23:48:51Z",
+  "generated_at": "2026-08-01T10:44:38Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 132,
-      "built_modules": 106,
-      "fraction_built": 0.803,
+      "total_modules": 133,
+      "built_modules": 107,
+      "fraction_built": 0.8045,
       "state_counts": {
         "proposed": 26,
         "implemented": 77,
         "implemented_pending_validation": 16,
-        "validated": 13
+        "validated": 14
       },
       "build_proof_gap": 93,
-      "build_proof_gap_note": "106 modules built, 93 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap_note": "107 modules built, 93 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,107 +31,114 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 36,
-      "total_initial": 66,
-      "total_initial_at_registration": 48,
+      "total_surviving": 39,
+      "total_initial": 69,
+      "total_initial_at_registration": 51,
       "total_fanout_added": 18,
       "total_resolved_out": 28,
-      "reduction_pct_vs_current": 42.4,
-      "net_narrowing_pct": 25.0,
+      "reduction_pct_vs_current": 40.6,
+      "net_narrowing_pct": 23.5,
       "convergence_classes": {
         "narrowing": 6,
         "static": 5,
         "circling": 3,
+        "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "36 alive against 48 originally enumerated, and against 66 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 15
+      "honest_pair_note": "39 alive against 51 originally enumerated, and against 69 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 16
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 8,
-      "open_questions": 15
+      "open_questions": 16
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 65,
+      "surviving": 68,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-13",
-      "surviving": 63,
+      "surviving": 66,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-15",
-      "surviving": 59,
+      "surviving": 62,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-16",
-      "surviving": 58,
+      "surviving": 61,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-17",
-      "surviving": 55,
+      "surviving": 58,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-18",
-      "surviving": 49,
+      "surviving": 52,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-19",
-      "surviving": 45,
+      "surviving": 48,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-20",
-      "surviving": 44,
+      "surviving": 47,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-24",
-      "surviving": 43,
+      "surviving": 46,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-25",
-      "surviving": 42,
+      "surviving": 45,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-27",
-      "surviving": 40,
+      "surviving": 43,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-29",
-      "surviving": 39,
+      "surviving": 42,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
     },
     {
       "date": "2026-07-31",
-      "surviving": 36,
+      "surviving": 41,
       "closure_pct": 77.6,
-      "build_pct": 80.3
+      "build_pct": 80.5
+    },
+    {
+      "date": "2026-08-01",
+      "surviving": 39,
+      "closure_pct": 77.6,
+      "build_pct": 80.5
     }
   ],
   "questions": [
@@ -2171,9 +2178,108 @@
         "live_gate": "requires the H1/H2 discriminating probe (fanout_recommendation.suggested_probes) to run",
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "title": "Does SD-076's asymmetric-EMA waking-confidence-inflation mechanism create absolute overconfidence expressible by MECH-204's broadcast correction, once the headroom-clamp defect is repaired?",
+      "short_title": "SD-076 drift-source magnitude gap (full-loop vs smoke)",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "indeterminate",
+        "reason": "1 axis label(s) not in the declared family map (world) -- extend `axis_families.map` to classify.",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [
+          "world"
+        ],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-f1-recalibration-damping",
+          "label": "F1/REM recalibration interaction damps SD-076 drift",
+          "desc": "rem_precision_recalibration_step=0.25, ON in every arm by design necessity, partially undoes SD-076's waking-induced rv drift before eval; the isolated smoke never exercises this loop.",
+          "axis": "integration",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-850"
+          ],
+          "basis": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-insufficient-training-exposure",
+          "label": "Training budget too short for full drift accumulation",
+          "desc": "N_TRAIN_EPS=30, K=1 single-fire sleep may be too short for the asymmetric EMA to accumulate as much drift as the smoke's own update sequence reached.",
+          "axis": "world",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not yet probed; proposed probe is an extended-N_TRAIN_EPS INFL-only re-run (see fanout_recommendation).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-wrong-mechanism-form",
+          "label": "Asymmetric-EMA is the wrong drift-source mechanism",
+          "desc": "The driver's own pre-registered fallback: if C1 fails at both LO and HI, a structurally different SD-076 mechanism (not asymmetric EMA) is owed.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Not eliminated; weakened by this autopsy's smoke-comparison finding but requires H1/H2 to be checked first, plus a /lit-pull on biologically-expected drift magnitude, before this can be adjudicated either way.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Which of H1 (F1-interaction damping), H2 (insufficient training exposure), or H3 (wrong mechanism form) explains why V3-EXQ-794a's full behavioural loop reached only about half the rv reduction the SD-076 headroom repair's own validation smoke demonstrated is achievable at this error scale -- and does the answer support retain_ree, hybridize, or retire_ree_claim for SD-076 under EVB-0454?",
+        "distance_phrase": "two cheap, parallel, single-axis diagnostic re-runs away from a first discrimination pass; a full EVB-0454 decision additionally needs the H3 lit-pull.",
+        "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, not eliminated, not confirmed -- a real but insufficient partial signal. H2 probe (V3-EXQ-853) not yet run. H3 still requires the /lit-pull commission, not yet started.",
+        "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline for SD-076 is close relative to the H1/H2 probe + review turnaround; flagging this timing risk for governance rather than resolving it here."
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-850",
+      "all_runs": [
+        "V3-EXQ-850"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "moved": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+      "resolved_utc": "2026-08-01T00:48:23Z",
+      "evidence_direction": "inconclusive"
+    },
     {
       "run": "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md",
       "all_runs": [

@@ -1,0 +1,63 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T10:37:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_850_mech204_sd076_h1_f1_damping_probe_20260801T000749Z_v3",
+      "queue_id": "V3-EXQ-850",
+      "claim_ids": ["MECH-204", "SD-076"],
+      "failed_criterion": "precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (diagnostic, correctly excluded from claim scoring)",
+        "biological_reference": "partial -- plausible sleep-recalibration analog, not load-bearing for a diagnostic",
+        "prerequisites": "present -- SD-076 headroom repair, MECH-204 F1 recalibration, sleep loop all landed and confirmed engaging",
+        "implementation": "complete -- F1 ablation confirmed to take effect at the code level",
+        "environment": "inadequate for the dose axis specifically -- asymmetry range 0.6-0.8 does not differentiate rv under F1-off",
+        "measurement": "gate mis-scoped for this probe's design -- dose_levels_separated blocks a between-run comparison that does not need within-run dose separation",
+        "integration": "coupled, working -- F1/SD-076 interaction is real and measurable (partial signal exists)",
+        "scale": "unclear -- not testable given the gate failure"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Sleep-dependent recalibration of metacognitive/perceptual confidence (general sleep-homeostasis literature; no specific citation pinned by the driver)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "Not assessed -- diagnostic run excluded from claim-weight scoring, biological triage is not the load-bearing layer here",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "inconclusive",
+      "recommended_evidence_quality_note": "V3-EXQ-850 (GOV-FANOUT-1 H1 leg of V3-EXQ-794a's 3-hypothesis portfolio): precondition_unmet correctly flagged and self-routed (dose_levels_separated fails by a wide margin -- LO/HI asymmetry doses produce near-identical rv even with F1 disabled, mirroring 794a's own apparent saturation). A real partial signal survives underneath: F1-off rv sits measurably below the F1-on reference in both arms, in H1's predicted direction, closing 14-23% of the full-loop-vs-smoke gap -- not sufficient to confirm H1, but rules out zero effect. H1 stays alive in the hypothesis space, weight partially shifted toward H2/H3. Recommend a requeue decoupling the dose-separation readiness check from H1's between-run F1-comparison. Time-sensitive: EVB-0454's SD-076 decision deadline is 2026-08-03T20:50:36Z; H2 (V3-EXQ-853) not yet run, H3 lit-pull not yet started.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "precondition_unmet is correctly raised -- dose_levels_separated genuinely fails, and the driver's own C1/C2 gap-closure criteria both correctly fail to confirm H1.",
+        "A real, small, directionally-consistent F1-damping signal exists underneath the failed gate (14-23% gap closure), ruling out zero F1 effect without confirming H1.",
+        "The readiness gate conflates two different questions: within-run dose differentiation (inherited from 794a's design) vs the between-run F1-on/off comparison H1 actually needs.",
+        "H1 is neither confirmed nor eliminated -- stays alive in the hypothesis space with weight partially shifted toward H2/H3."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "time_sensitive_note": {
+    "deadline": "EVB-0454 SD-076 decision deadline 2026-08-03T20:50:36Z",
+    "status_as_of_this_autopsy": "H1 resolved (alive, partial signal). H2 (V3-EXQ-853) not yet run. H3 lit-pull not yet started.",
+    "source": "failure_autopsy_V3-EXQ-794a_2026-07-31.json hypothesis_space_ledger_pending.question.decision.observation_bottleneck"
+  },
+  "hypothesis_space_update": {
+    "mode": "B_resolve_plus_apply_pending_A",
+    "note": "794a's Mode-A pre-registration (hypothesis_space_ledger_pending, status awaiting_human_confirmation) was never applied to the live registry. This autopsy applies it AND resolves H1 in the same edit -- see registry qid mech204-sd076-calibration-loop-drift-source-exposure-gap."
+  },
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Concur + recommend gate redesign"
+  }
+}

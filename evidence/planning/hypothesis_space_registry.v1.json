@@ -36,7 +36,8 @@
       "eval-dynamics": "world",
       "measurement": "instrumentation",
       "process": "process",
-      "instrumentation": "instrumentation"
+      "instrumentation": "instrumentation",
+      "integration": "process"
     },
     "_family_glosses": {
       "constitution": "what the agent is endowed with BEFORE learning starts (innate drives, seeded priors, substrate capacity)",
@@ -2374,6 +2375,96 @@
         "decision_log_ref": null,
         "distance_phrase": "DECIDED: H1 confirmed, H2 refuted. Distance to CLOSED is now implementation (agent.py fallback + arc071_chunking.py flag), not further discrimination."
       }
+    },
+    {
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "title": "Does SD-076's asymmetric-EMA waking-confidence-inflation mechanism create absolute overconfidence expressible by MECH-204's broadcast correction, once the headroom-clamp defect is repaired?",
+      "short_title": "SD-076 drift-source magnitude gap (full-loop vs smoke)",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "registered_utc": "2026-08-01T10:37:54Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-794a_2026-07-31.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "hypotheses": [
+        {
+          "hid": "H1-f1-recalibration-damping",
+          "label": "F1/REM recalibration interaction damps SD-076 drift",
+          "desc": "rem_precision_recalibration_step=0.25, ON in every arm by design necessity, partially undoes SD-076's waking-induced rv drift before eval; the isolated smoke never exercises this loop.",
+          "axis": "integration",
+          "basis": "Full-loop rv reduction from baseline is ~half the repair smoke's demonstrated reduction at the identical error scale; F1 recalibration is the one substrate component present in the full loop and absent from the smoke.",
+          "pre_registered_utc": "2026-07-31T21:53:02Z",
+          "adjudicating_runs": [
+            "V3-EXQ-850"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-850"
+            ],
+            "evidence_direction": "inconclusive",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "substrate_not_ready_requeue",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-01T00:48:23Z",
+            "basis": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01."
+          }
+        },
+        {
+          "hid": "H2-insufficient-training-exposure",
+          "label": "Training budget too short for full drift accumulation",
+          "desc": "N_TRAIN_EPS=30, K=1 single-fire sleep may be too short for the asymmetric EMA to accumulate as much drift as the smoke's own update sequence reached.",
+          "axis": "world",
+          "basis": "Same full-loop-vs-smoke magnitude gap as H1; exposure duration is the other structural difference between the isolated smoke and the full behavioural run.",
+          "pre_registered_utc": "2026-07-31T21:53:02Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Not yet probed; proposed probe is an extended-N_TRAIN_EPS INFL-only re-run (see fanout_recommendation)."
+          }
+        },
+        {
+          "hid": "H3-wrong-mechanism-form",
+          "label": "Asymmetric-EMA is the wrong drift-source mechanism",
+          "desc": "The driver's own pre-registered fallback: if C1 fails at both LO and HI, a structurally different SD-076 mechanism (not asymmetric EMA) is owed.",
+          "axis": "representation",
+          "basis": "Pre-registered in the driver docstring (v3_exq_794a_mech204_phase7_sd076_calibration_loop_2x2.py lines 108-111) as the intended read of a both-levels C1 failure. WEAKENED (not eliminated) by the smoke-comparison finding in this autopsy: the same mechanism form reaches the target regime in isolation at this scale, arguing against a pure mechanism-form defect -- but not ruled out until H1/H2 are checked.",
+          "pre_registered_utc": "2026-07-31T21:53:02Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "resolved_utc": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "basis": "Not eliminated; weakened by this autopsy's smoke-comparison finding but requires H1/H2 to be checked first, plus a /lit-pull on biologically-expected drift magnitude, before this can be adjudicated either way."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Which of H1 (F1-interaction damping), H2 (insufficient training exposure), or H3 (wrong mechanism form) explains why V3-EXQ-794a's full behavioural loop reached only about half the rv reduction the SD-076 headroom repair's own validation smoke demonstrated is achievable at this error scale -- and does the answer support retain_ree, hybridize, or retire_ree_claim for SD-076 under EVB-0454?",
+        "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, not eliminated, not confirmed -- a real but insufficient partial signal. H2 probe (V3-EXQ-853) not yet run. H3 still requires the /lit-pull commission, not yet started.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "two cheap, parallel, single-axis diagnostic re-runs away from a first discrimination pass; a full EVB-0454 decision additionally needs the H3 lit-pull.",
+        "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline for SD-076 is close relative to the H1/H2 probe + review turnaround; flagging this timing risk for governance rather than resolving it here."
+      },
+      "registration_note": "Question and its 3 hypotheses were originally pre-registered by V3-EXQ-794a's autopsy (2026-07-31T21:53:02Z, hypothesis_space_ledger_pending, mode A_pre_register_only) but never applied to this live registry until now -- applied by failure_autopsy_V3-EXQ-850_2026-08-01, which also resolves H1 in the same edit. registered_utc reflects when this question entry actually entered the tracked file; per-hypothesis pre_registered_utc values preserve 794a's original 2026-07-31T21:53:02Z timestamp."
     }
   ]
 }

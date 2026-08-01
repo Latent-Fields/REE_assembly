@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T10:37:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_845_mech180_ecological_novelty_sleep_consolidation_dose_response_20260731T235634Z_v3",
+      "queue_id": "V3-EXQ-845",
+      "claim_ids": ["MECH-180"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (partial) -- 2/3 predicted DVs track measured MEL correctly in 2/3 seeds, first end-to-end positive signal in this lineage",
+        "biological_reference": "clear -- Wilson & McNaughton 1994, Tononi & Cirelli 2003, Louie & Wilson 2001 predict all three DVs co-increase",
+        "prerequisites": "present -- SD-MEL-PRODUCER (VALIDATED 798a) and SD-MEL-CONSUMER (VALIDATED via injection 718a) both landed",
+        "implementation": "complete for amount DVs (sws_n_writes, rem_n_rollouts); confounded for diversity DV (sws_slot_diversity)",
+        "environment": "adequate -- SD-MEL-PRODUCER world_rule_shift validated genuinely learnable graded novelty",
+        "measurement": "under-instrumented for C1b/C2 -- sws_slot_diversity confounds consolidation amount with a write-count/small-fixed-capacity EMA artifact",
+        "integration": "coupled, working -- MEL consumer engages via real SleepLoopManager path; z_goal stream intentionally inert/arm-symmetric, reviewed non-issue",
+        "scale": "likely insufficient for the diversity DV specifically -- 16 fixed ContextMemory slots vs up to ~72 EMA writes per HIGH arm"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Novelty-driven targeted hippocampal replay + SWS depth scaling with prior learning load (Wilson & McNaughton 1994; Tononi & Cirelli 2003; Louie & Wilson 2001)",
+        "dependencies": ["INV-050", "MECH-121", "MECH-122", "MECH-120"],
+        "is_formal_import": false,
+        "divergence": "None identified -- biology predicts co-increase of SWS power, spindle density and replay rate together; the observed inversion of the spindle-density proxy is attributable to V3 measurement construction, not to a biology/mechanism divergence",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-845 (confirmed failure_autopsy_V3-EXQ-845_2026-08-01): the first ecological end-to-end test of MECH-180 (novelty->MEL, SD-MEL-PRODUCER, VALIDATED 798a; MEL->consolidation, SD-MEL-CONSUMER, VALIDATED via injection 718a) run TOGETHER for the first time in this lineage. Readiness fully met (both R1/R2 preconditions pass at 100%). Two of three predicted DVs (sws_n_writes, rem_n_rollouts) show clean, correctly-signed, monotone dose-response to measured MEL in 2/3 seeds and ON>OFF in 3/3 seeds -- genuine partial support, the first positive end-to-end signal this claim has produced. The third DV (sws_slot_diversity) inverts in all 3 seeds, traced to a specific measurement-construction defect: whole-bank cosine diversity over a fixed 16-slot EMA-blended ContextMemory mechanically anti-correlates with total write count (ree_core/agent.py:10194-10209), exactly the variable MEL manipulates. Because C2's control gate requires all three DVs to show ON>OFF, this single DV's inversion collapses the self-route to non_contributory despite 2/3 DVs being clean and positive. mixed, not non_contributory. v3_pending STAYS; route: /queue-experiment same-question letter (V3-EXQ-845a) to redesign sws_slot_diversity (normalize by write count, or restrict to newly-targeted slots). PROMOTES/DEMOTES NOTHING pending that redesign.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-677_2026-06-14", "failure_autopsy_V3-EXQ-718_2026-07-07", "failure_autopsy_V3-EXQ-718a_2026-07-08"],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The novelty->MEL->consolidation causal chain now works end-to-end for the first time in this lineage (2/3 amount DVs, 2/3 seeds).",
+        "The self-route's binary C2 gate (all 3 DVs must show ON>OFF) causes one confounded DV to mask 2/3 genuine positive support.",
+        "sws_slot_diversity, as currently computed, mechanically anti-correlates with write count due to fixed-16-slot EMA blending -- a measurement-construction defect, not a biology or mechanism failure.",
+        "This is NOT a repeat of 718a's mel_control_degenerate self-route despite the identical label string -- 718a failed because novelty itself was ungraded; this run's novelty->MEL link is confirmed live (R2 met), and the C2 failure here is entirely attributable to one DV's construction."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Mixed + redesign the DV"
+  }
+}

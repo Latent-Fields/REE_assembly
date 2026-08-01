@@ -1,0 +1,92 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T10:37:54Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_836a_mech476_dose_dependent_consolidation_redesign_20260801T000533Z_v3",
+      "queue_id": "V3-EXQ-836a",
+      "claim_ids": ["MECH-476"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- fair test under the claim's own pre-registered design, prior measurement defect fixed",
+        "biological_reference": "clear -- Krakauer 2005 consolidation-as-interference-resistance, source of the dose x interval design",
+        "prerequisites": "present -- SD-083 offline EWC-anchor consolidation window landed 2026-07-29",
+        "implementation": "complete -- readiness 100%, noise-scaled effect-size gate correctly implemented",
+        "environment": "adequate -- dose is a cleanly manipulable parameter",
+        "measurement": "now adequate -- noise-scaled margin fixes the prior cycle's fixed-0.15-margin defect",
+        "integration": "coupled -- offline consolidation window operates correctly between BC install and RL refinement",
+        "scale": "adequate -- n=10 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Krakauer, Ghez & Ghilardi 2005 (J Neurosci 25:473) -- consolidation defined as resistance to retrograde interference, emerging with elapsed time and with doubled initial training dose",
+        "dependencies": ["MECH-457", "MECH-459", "MECH-460", "MECH-475"],
+        "is_formal_import": false,
+        "divergence": "Known and already recorded on the claim (not new): REE's demonstrated protection pathways are awake/online/undifferentiated vs biology's sleep/replay-dependent trace selectivity; SD-083 is the substrate built to close that gap and is exercised here",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "836a (dose): retained_fraction DECREASES with more BC install dose (0.712->0.430->0.512, non-monotone), effect -0.1998 well inside the noise-scaled margin 0.7162 for growth. Readiness 100%, non_degenerate true. Part of a 2-of-3-leg cluster (with 836d) both weakening; claim-level verdict held pending V3-EXQ-836e (interval leg, queued, not yet run) per the claim's own pre-registered dose-AND-interval invariance condition.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": "failure_autopsy_mech476-mech475-cluster_2026-07-29", "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Noise-scaled effect-size gate (replacing the fixed 0.15 margin) produces a well-powered, genuine weakens finding where the prior cycle produced only a measurement-artifact non_contributory read.",
+        "Retention is invariant to install dose across a 3-level ladder (300/600/900), well inside the noise floor for growth."
+      ],
+      "routing": "none"
+    },
+    {
+      "run_id": "v3_exq_836d_mech476_novelty_tagging_consolidation_redesign_20260801T030035Z_v3",
+      "queue_id": "V3-EXQ-836d",
+      "claim_ids": ["MECH-476"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- fair test of the claim's own 'sharpest discrimination' arm",
+        "biological_reference": "clear -- Moncada & Viola 2007 behavioral tagging",
+        "prerequisites": "present -- RND novelty drive landed and exercised",
+        "implementation": "complete -- readiness 100%, noise-scaled effect-size gate correctly implemented",
+        "environment": "adequate -- novelty-pairing is a cleanly manipulable parameter",
+        "measurement": "now adequate -- noise-scaled margin fixes the prior cycle's fixed-0.15-margin defect; leave-one-out 10/10 folds robust",
+        "integration": "coupled -- offline consolidation window + novelty exposure correctly sequenced",
+        "scale": "adequate -- n=10 seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Moncada & Viola 2007 (J Neurosci 27:7476) -- behavioral tagging: weak training consolidates into long-term memory when paired with novel-environment exploration close in time, D1/D5-dependent",
+        "dependencies": ["MECH-457", "MECH-459", "MECH-460", "MECH-475"],
+        "is_formal_import": false,
+        "divergence": "Known and already recorded on the claim (not new); same as 836a",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "836d (novelty-tagging, the claim's 'sharpest discrimination' arm): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818. Robust across all 10 leave-one-out folds. Readiness 100%, non_degenerate true. Part of a 2-of-3-leg cluster (with 836a) both weakening; claim-level verdict held pending V3-EXQ-836e (interval leg, queued, not yet run).",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": "failure_autopsy_mech476-mech475-cluster_2026-07-29", "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The claim's sharpest-discrimination novelty-tagging arm robustly (10/10 LOO folds) finds no tagging benefit, well inside the noise-scaled margin.",
+        "Direction is reversed from prediction (paired < unpaired) but the magnitude is well within noise -- read as invariance, not a reversed effect."
+      ],
+      "routing": "none"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two structurally different, independently-redesigned falsifier arms (3-level dose ladder; paired-vs-unpaired novelty contrast) both robustly find retention invariant to their manipulated variable, using the same noise-scaled measurement fix that resolved the prior cycle's shared fixed-margin defect.",
+    "is_independent_bugs": false,
+    "structural_property": "The measurement fix (noise-scaled effect-size gate) is now producing consistent, cross-design-agreeing genuine evidence rather than the prior cycle's shared measurement artifact -- both arms converge on 'no detectable dose/novelty-dependent consolidation process', consistent with the claim's own pre-registered intended-failure-mode.",
+    "readings": ["test_design_ceiling_resolved_now_genuine_null", "third_leg_836e_still_pending"]
+  },
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Record both, hold claim verdict"
+  }
+}

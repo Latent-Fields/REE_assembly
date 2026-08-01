@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T10:37:54Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+      "queue_id": "V3-EXQ-844",
+      "claim_ids": ["MECH-321"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened for the harm-outcome prediction specifically -- mechanistic (PE-reduction) prediction supported (C2 passes)",
+        "biological_reference": "clear for the mechanism (plan-monitoring/replanning); gap identified for the outcome (threat-modulated path-selection literature -- REE has the component pieces, not the junction)",
+        "prerequisites": "present -- ARC-070/MECH-288/MECH-269/MECH-094 all landed; SD-084 persistent handle validated by V3-EXQ-839",
+        "implementation": "specifically absent -- no harm-valence signal AND no ranked-selection step exists in _apply_policy_decomposition (code-verified)",
+        "environment": "adequate -- same SD-084-lineage env as 839, already validated to produce genuine mid-execution divergence",
+        "measurement": "now adequate -- paired post-divergence-window fresh-selection-restricted statistic fixes 839's own identified whole-run-mean dilution problem",
+        "integration": "isolated -- threat appraisal (BLA/CeA, MECH-357/SD-058) and policy decomposition exist but are not coupled at this junction",
+        "scale": "not applicable to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Plan-monitoring/replanning under prediction failure (mechanism); threat-modulated defensive path-selection, e.g. amygdala-PAG flight/freeze circuits biasing WHICH alternative is taken (the C1 gap)",
+        "dependencies": ["ARC-070", "MECH-288", "MECH-269", "MECH-094"],
+        "is_formal_import": false,
+        "divergence": "REE has the component pieces of a threat-modulated replanning circuit (BLA/CeA SD-035, infralimbic avoidance gate MECH-357/SD-058, hippocampal motivational payload SD-039) but has not built the selection junction where MECH-321 would use them -- a completeness gap, not a translation-quality divergence",
+        "lit_status": "absent for the specific C1 mechanism (threat-modulated path selection); present for the general plan-monitoring mechanism"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-844 (evidence successor to V3-EXQ-839's reachability validation): MECH-321's mid-execution abort mechanism engages correctly and reduces forward-prediction-error post-abort (C2 PASSES) but does not reduce actual task harm (C1, load-bearing, FAILS, -0.0033). Code-verified root cause: _apply_policy_decomposition (ree_core/hippocampal/module.py:896-983) and PolicyDecomposition.evaluate()/decompose_sequence() (ree_core/policy/policy_decomposition.py:471-747) read only z_self/z_world/z_goal -- no harm-valence signal reaches this step, and the step performs NO ranked selection among candidate re-tilings at all. MECH-288 (MECH-321's own trigger) is pure predictive-surprise, unrelated to hazard proximity; REE's actual fear/threat pathway (BLA/CeA, MECH-357/SD-058) biases action selection elsewhere (E3 scoring, the separate MECH-091 urgency-interrupt abort) but is not connected here. weakens (harm-outcome prediction specifically); mechanistic prediction supported. v3_pending STAYS. Route: /implement-substrate -- harm-valence-weighted selection step in redecomposition, prerequisite /lit-pull on threat-modulated defensive path-selection literature.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "SD-hazard-aware-policy-decomposition",
+        "title": "Harm-valence-weighted selection in mid-execution policy redecomposition",
+        "implementation_hint": "Extend SD-039's AnchorGoalPayload/build_goal_payload with a signed harm-valence field sourced from z_harm_a/BLA threat_scale (a VALENCE_HARM_DISCRIMINATIVE residue-field channel already exists elsewhere but is not captured here). Build an actual ranked-selection step in _apply_policy_decomposition (ree_core/hippocampal/module.py:896-983) -- currently absent; all surviving tiles are additively recombined with no choice among them. PREREQUISITE: commission a targeted /lit-pull on threat-modulated defensive path-selection (e.g. Fanselow's predatory-imminence continuum, or comparable graded-defensive-response literature) before fixing the exact functional form, per biology-before-formal-definitions.",
+        "unblocks_claims": ["MECH-321"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_844_mech321_r4_midexec_task_effect_20260801T013315Z_v3",
+          "experiment_type": "v3_exq_844_mech321_r4_midexec_task_effect",
+          "metric": "C1_TASK_OUTCOME_IMPROVES measured -0.003262 vs threshold >0.0 (load-bearing)",
+          "target": "harm-reduction criterion, currently structurally unreachable -- no selection step exists in the redecomposition path to bias toward lower harm"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A genuine, well-powered, mechanistically-interpretable dissociation: abort mechanism works exactly as designed informationally (C2 passes) but this does not translate to lower harm (C1 fails) -- structurally guaranteed by the current implementation, not ambiguous.",
+        "REE's fear/threat proto-emotion machinery (BLA/CeA, MECH-357/SD-058) exists and biases action choice elsewhere (E3 scoring, the separate MECH-091 urgency-interrupt abort) but is not connected to MECH-321's redecomposition. MECH-288 (MECH-321's own trigger) is purely predictive-surprise-based.",
+        "The hippocampal motivational payload (SD-039 AnchorGoalPayload) is architecturally the more natural coupling point than the raw amygdala signal, but currently carries only reward-valence, not harm-valence, and is not wired into _apply_policy_decomposition regardless.",
+        "This is a well-localized, buildable substrate gap once specified: no existing substrate_queue entry or claim covers hazard-aware policy-decomposition retiling (verified)."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "investigation_note": {
+    "trigger": "User mid-autopsy question: does REE's fear/proto-emotion machinery bias mid-execution redecomposition toward defensive/lower-harm paths, and if so is that why C1 fails while C2 passes?",
+    "method": "Two rounds of code-grounded investigation (Explore agent) against ree_core/ and claims.yaml, not speculation.",
+    "outcome": "Coherent hypothesis, retargeted: MECH-288 (MECH-321's trigger) is threat-unrelated; the real fear pathway (MECH-091) is a separate, parallel abort mechanism; the redecomposition step itself has no harm-valence input and no selection mechanism of any kind. This directly explains the C1/C2 dissociation and produced a new, specific, actionable recommended_substrate_queue_entry not previously in claims.yaml or substrate_queue.json."
+  },
+  "user_gate": {
+    "confirmed_utc": "2026-08-01",
+    "user_choice": "Implementation-completeness gap + recommended_substrate_queue_entry + /lit-pull prerequisite noted for design phase"
+  }
+}
