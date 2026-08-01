@@ -1,104 +1,164 @@
-# Project Insights — 2026-07-26
+# Project Insights — 2026-08-01
 
-Generated: 2026-07-26T13:20:01Z
-Recommendations fixed as of: 2026-07-26T13:19:22Z (re-checked `git log --since="2 hours ago"` on REE_assembly immediately before writing Recommendations — see note below)
-Corrected: 2026-07-26T13:59:47Z — see **Correction** below before citing the Governance State pending-decision count.
-
----
-
-## Correction (2026-07-26T13:59:47Z)
-
-**"Pending promotion/demotion decisions: 0" in Governance State, below, was wrong.**
-Found while building the companion `/dual-insights` report: the original check
-(`grep -c "pending_user" .../promotion_demotion_recommendations.md`) was run once
-against a nonexistent path (silently empty) and once, later in the same tool call
-batch, against the correct path — but the correct-path result (`29` substring
-matches) was misread as belonging to a different command and the stat was written
-up as `0`. The precise per-row count (matching the `decision_status` column, not a
-loose substring) is **12** rows reading `pending_user`: ARC-112, INV-091, MECH-321,
-MECH-323, MECH-329, MECH-457, MECH-466, Q-081, Q-082, Q-084, SD-024, SD-076 —
-almost all `hold_candidate_resolve_conflict` or `hold_pending_v3_substrate` holds,
-not silently-stuck routine reviews.
-
-**This does not change any of the four Recommendation gates** (none of them cited
-this stat) but it does soften the closing "genuinely clean, fully-routed state"
-framing — there is a real, non-zero decision backlog, oldest row ~118 days
-(Q-084, git-`-S` first-appearance proxy). See `REE_assembly/dual_insights_report.md`
-(REE_assembly-side "decision backlog age") for the full breakdown, ages, and the two
-items worth naming specifically (MECH-457: a genuinely hard REE-side ceiling *plus*
-a 16-day-old unresolved decision; Q-084: no hard science left, just a stale decision).
+Generated: 2026-08-01T10:44:08Z
 
 ---
 
 ## Experiment Health
 
-- **Total runs:** 190 classified (PASS: 62 | FAIL: 128 | ERROR: 0 | error rate: 0.0%) — window: last 30 days, source: coordinator DB (`experiment_error_rate.py --days 30`).
-  Phantom completions (marked `completed`, no results row) = 6, giving interval **error rate: 0.0%–3.06% (0 recorded ERROR / 190 classified; 6 phantom completions unclassified)**. Quote the interval, not the point estimate.
-- **Last ERROR recorded fleet-wide:** 2026-06-11 (`fleet_last_error_recorded`, per the per-machine `runner_status/` split — 45 days stale relative to today, consistent with a currently low-crash fleet).
-- **Per-machine activity (last 30d):** ree-cloud-2 (59), ree-worker-1/hub (36), ree-cloud-4 (28), ree-cloud-1 (24), ree-worker-3 (23), ree-cloud-3 (9), DLAPTOP-5 (6), DLAPTOP-4 (5).
-- **High-iteration experiments** (3+ lettered iterations, counted from unique manifest-directory letters, not raw manifest files):
-  - V3-EXQ-603 — 18 lettered iterations (a–q+) — claims: MECH-358/SD-059 (Stage-H harm-pathway / escape-affordance-bridge cluster)
-  - V3-EXQ-514 — 17 iterations — claims: SD-049, SD-015, MECH-229, MECH-230, MECH-307, MECH-436 (wanting/liking behavioural validation)
-  - V3-EXQ-460 — 16 iterations — claims: SD-034, MECH-260, MECH-261 (closure control plane / decommit)
-  - V3-EXQ-485 — 14 iterations — claim: SD-033b (OFC-analog devaluation)
-  - V3-EXQ-085 — 14 iterations — claims: MECH-071 → SD-015 → ARC-030 (claim_ids drift across the chain — documented, not an error)
-  - V3-EXQ-543 — 12 iterations — claim: ARC-062 (mode-separation falsifier)
-  - V3-EXQ-047 — 12 iterations — claims: SD-005, MECH-095 (agency-routing / TPJ)
-- **Recurring trouble spots** (claim_ids in 2+ FAIL/ERROR entries, cross-referenced with substrate-queue `failure_record` counts, Step 4): `scaffolded_sd054_onboarding` (28 failure-record entries), `f_dominance_conversion_ceiling` (26), `modulatory-bias-selection-authority` (15), `ARC-062` (11), `MECH-256` (10), `v4_loop_segregation` (10), `SD-049-PHASE-2` (9). These are pre-existing, actively-tracked ceiling nodes (MECH-457 competence-floor campaign, F-dominance conversion-ceiling campaign) — not silent recurrences.
-- **Stalled chains** — liveness check executed per the mandatory Step-2 protocol for every chain above:
-  - **None.** All seven high-iteration chains cleared at least one of the four liveness legs:
-    - V3-EXQ-603 (MECH-358/SD-059): autopsy hit (`failure_autopsy_V3-EXQ-603p_2026-06-15.md` + others in the same cluster).
-    - V3-EXQ-514 (SD-049 family): **actively adjudicated in the last hour** — `failure_autopsy_batch-793a-817-819_2026-07-26` (committed `05e8543300`, 12:38Z today) closed V3-EXQ-793a as `inconclusive/standard`, routing = governance record-finding, no re-queue. Not stalled; currently owned.
-    - V3-EXQ-460 (SD-034): landed and validated per prior session record (`460o/460p` closure-commit-entry BUILT+VALIDATED).
-    - V3-EXQ-485 (SD-033b): SD-033e successor built; validation co-blocked on V3-EXQ-724 (documented blocker, not abandonment).
-    - V3-EXQ-085 (MECH-071→SD-015): migrated to a new EXQ ladder (622/626) under the corrected claim, per the canonical documented case.
-    - V3-EXQ-543 (ARC-062): autopsy hits present (`failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07.json`, `failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json`).
-    - V3-EXQ-047 (SD-005/MECH-095): autopsy hits present (`failure_autopsy_batch9_2026-06-12`); chain reached a `supports` at 047k before continuing to 047l/047m (`non_contributory`/`mixed`).
+- **Total runs:** 227 (PASS: 77 | FAIL: 150 | ERROR: 0 | error rate: 0.0%) — window: last 30 days
+  (2026-07-02T05:25Z .. 2026-08-01T07:34Z), source: coordinator DB. 6 unexplained phantom
+  completions (no evidence on disk) are not folded into the numerator; treating every one as a
+  crash gives an upper bound — **error rate: 0.0%–2.6% (0 recorded ERROR / 227 classified; 6
+  phantom completions unclassified)**.
+- **Last ERROR recorded fleet-wide:** 2026-06-11T21:18:10Z (per-machine `runner_status/` split;
+  the synthetic ERROR-record path only went live 2026-06-17, so counts before that date
+  understate the true historical rate — the live 30-day window above is unaffected).
+- **High-iteration experiments** (3+ lettered iterations) — 52 base EXQ numbers cleared the
+  threshold out of 363 tracked in the manifest corpus. Top 20 by iteration count:
+  - EXQ-603 — 18 iterations — claims: MECH-260, MECH-313, MECH-358, Q-045, SD-059 — last: PASS
+  - EXQ-460 — 15 iterations — claims: ARC-108, MECH-090, MECH-260, MECH-261, MECH-342, MECH-445,
+    MECH-446, SD-034 — last: PASS
+  - EXQ-485 — 14 iterations — claims: MECH-261, MECH-263, SD-033b — last: FAIL
+  - EXQ-543 — 12 iterations — claims: ARC-062, INV-074, MECH-309, MECH-334, SD-029 — last: FAIL
+  - EXQ-418 — 11 iterations — claims: SD-016, SD-017 — last: FAIL
+  - EXQ-514 — 11 iterations — claims: MECH-229, MECH-230, MECH-436, SD-015, SD-049 — last: PASS
+  - EXQ-689 — 10 iterations — claims: ARC-107, MECH-439, MECH-448, MECH-449 — last: FAIL
+  - EXQ-654 — 10 iterations — claims: ARC-062, MECH-309 — last: FAIL
+  - EXQ-569 — 8 iterations — claims: ARC-065, MECH-341 — last: PASS
+  - EXQ-445 — 7 iterations — claims: (none tagged) — last: weakens
+  - EXQ-610 — 7 iterations — claims: INV-074, MECH-313, MECH-333, MECH-334, MECH-341 — last: FAIL
+  - EXQ-680 — 6 iterations — claims: MECH-423 — last: PASS
+  - EXQ-614 — 6 iterations — claims: ARC-065, MECH-341 — last: FAIL
+  - EXQ-468 — 5 iterations — claims: MECH-090, MECH-268, SD-034 — last: FAIL
+  - EXQ-591 — 5 iterations — claims: (none tagged) — last: PASS
+  - EXQ-625 — 5 iterations — claims: (none tagged) — last: FAIL
+  - EXQ-700 — 5 iterations — claims: ARC-108, MECH-439, MECH-450 — last: FAIL
+  - EXQ-836 — 5 iterations — claims: MECH-476 — last: FAIL
+  - EXQ-517 — 5 iterations — claims: MECH-302 — last: PASS
+  - EXQ-733 — 4 iterations — claims: MECH-456 — last: PASS
+
+  Note: "last outcome: FAIL" here is a raw letter-count fact, not a stalled-chain claim — see the
+  liveness-gated section below; several of these (543, 610, 614, 468, 689) are live, actively-owned
+  campaign legs (MECH-341, ARC-062/MECH-309, SD-034 clusters), not dead ends.
+
+- **Recurring trouble spots** (claim_ids in 2+ ERROR entries): **none in the 30-day window** —
+  ERROR count is 0/227 for the period, so there is no ERROR-based trouble-spot signal to report.
+  (Historically the last fleet-wide ERROR was 2026-06-11, well outside this window.)
+
+- **Stalled chains** (FAIL with no successor queued) — liveness check executed per the skill's
+  mandatory 4-leg procedure. Candidate pool: 78 chains whose most-recent lettered iteration ended
+  FAIL, deduplicated to 34 unique claim_ids and screened to those last touched >3 weeks ago (the
+  remainder are too recent to plausibly be "stalled" rather than "mid-cycle"). Legs checked for
+  all 34: TASK_CLAIMS.json (incl. `done`), autopsy-file content grep, successor-manifest grep
+  under any EXQ number, and `git log --since="7 days ago"`.
+  - 33 of 34 claims had at least one autopsy-file hit (4–117 files each) — adjudicated, not
+    stalled.
+  - The one claim with zero autopsy/TASK_CLAIMS hits, **ARC-038**, is not stalled either: its
+    claims.yaml entry documents the FAIL (EXQ-355a) as reclassified `non_contributory` (a
+    write-gating-propagation artifact, not real evidence against the claim) and explicitly gates
+    retest on **MECH-261** (`pending_retest_after_substrate`).
+  - **None — all candidate chains have an owner, an autopsy, or a documented substrate-gate
+    reason.** No claim survives the liveness check as genuinely stalled this cycle.
 
 ---
 
 ## Substrate Bottlenecks
 
-- **Ready SDs (precondition-met AND not yet built):** **0.** All 55 substrate-queue entries with `ready: true` already carry `implementation_status: implemented` (or an equivalent landed/validated status) — there is currently no substrate that is unblocked and simply waiting to be built. The buildable backlog has been cleared; everything remaining is either landed or genuinely blocked.
-- **Blocked SDs** (`ready: false` with `depends_on_unresolved` populated): 69 of 124 queue entries. Representative examples: `SD-025` (deps ARC-057, MECH-111, INV-051), `SD-033c/d/e` (deps SD-033, ARC-035, MECH-151/152/235/261/264/265), `escape-affordance-bridge` (deps SD-058, MECH-357, MECH-279, SD-011), `v4_loop_segregation` (deps ARC-109, MECH-452, MECH-451), `mech457_competence_bootstrap_explorer` (dep MECH-229).
-- **SDs with failure records** (experiments failed against this substrate node), ranked: `scaffolded_sd054_onboarding` (28), `f_dominance_conversion_ceiling` (26), `modulatory-bias-selection-authority` (15), `ARC-062` (11), `MECH-256` (10), `v4_loop_segregation` (10), `SD-049-PHASE-2` (9), `ARC-065` (8), `commitment-closure-control-plane` (7), `SD-037` (6). These are dominated by the two known root-cause campaigns already tracked in memory (F-dominance conversion ceiling, MECH-457 competence floor) — high FAIL volume here is a symptom of active, multi-session probing of a known-hard node, not an unowned defect.
+- **Ready SDs** (`ready: true` in `substrate_queue.json`, not yet `implemented`) — 18 entries:
+  SD-047, SD-048, INF-ENV-002, INF-ENV-004, MECH-341, MECH-090, `scaffolded_sd054_onboarding`,
+  `test_bed_enrichment_crystallization_necessity`, `modulatory-bias-selection-authority`,
+  `crf-availability-maintenance`, `sd_actor_critic_action_learning`,
+  `agency_comparator_testbed_sd047`, `rebinding-harness-p0-coverage-decoupling`, SD-074,
+  SD-PROBE-WARMUP, `sd_zworld_warmup_optimizer_group`, SD-MEL-PRODUCER,
+  MECH324-REACQ-WINDOW-GATING-DECOUPLE. Caveat: `implementation_status` is a sparse free-text
+  field on this file — several of these (e.g. MECH-341, MECH-090) carry substantial amend history
+  in other free-text fields (`status`, `amend_note_*`) this pass did not fully parse, so treat
+  "18" as an upper bound on genuinely unbuilt-and-ready work, not a precise count.
+- **Blocked SDs** (`depends_on_unresolved` non-empty): 38 entries. Notable: SD-033 family
+  (SD-033b/c/d/e all block on MECH-261, plus ARC-035/MECH-116/151/152/235 variously), SD-083
+  (blocked on its own missing `/failure-autopsy` adjudication for V3-EXQ-829), `v4_loop_segregation`
+  (blocked on ARC-109/MECH-452/451 sequencing).
+- **SDs with failure records** (experiments failed because missing), by count: `scaffolded_sd054_onboarding`
+  28, `f_dominance_conversion_ceiling` 26, `modulatory-bias-selection-authority` 15, ARC-062 11,
+  MECH-256 10, `v4_loop_segregation` 10, SD-049-PHASE-2 9, ARC-065 8, `commitment-closure-control-plane` 7,
+  SD-037 6, `mech457_competence_bootstrap_explorer` 6.
+
+Cross-reference with Step 2: the ARC-062/MECH-309 pair (EXQ-543, EXQ-654 chains, 11 failure
+records) and the MECH-341 cluster (EXQ-610, EXQ-614, EXQ-569, 5–8 failure records) are both
+high-iteration AND high-failure-record — but both are liveness-confirmed live campaigns (autopsy
+counts in the dozens), not missing-substrate bottlenecks in the naive sense.
 
 ---
 
 ## Governance State
 
-- Claims pending V3 substrate (`v3_pending: true`): **225**.
-- Pending promotion/demotion decisions (`decision_status` not `applied` in `promotion_demotion_recommendations.md`, 3241-line file, last generated 2026-07-26T06:10:24Z): **12** rows read `pending_user` (238 total rows, 158 `applied`, 12 `pending_user`, remainder other statuses) — see **Correction** above; this was mis-reported as 0.
-- Evidence marked `superseded` across flat manifests: **321** (rework/correction volume — consistent with the EXQ-lettering supersession policy, not necessarily a defect).
-- `pending_review.md` (generated 2026-07-26T11:21:11Z, last review 2026-07-26T00:07:00Z): **7 items** — 5 FAIL, 1 runner-only, 1 diagnostic self-route flagged. **Flag to user per skill Step 6:** all 5 FAILs (793a, 816, 817, 819, 820) already have autopsy coverage as of 12:38Z today (either the direct `failure_autopsy_batch-793a-817-819_2026-07-26` or the earlier same-day `failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26`) — governance's own mark-reviewed step (Step 5) simply hasn't run since. No unowned FAILs are sitting in the backlog.
+- Claims pending V3 substrate (`v3_pending: true`): 228
+- Pending promotion/demotion decisions: **0** — all 169 rows in the current Decision Queue
+  (`evidence/experiments/promotion_demotion_recommendations.md`, regenerated 2026-08-01T10:09Z)
+  show `decision_status: applied`. The 2026-07-30/31 governance cycles cleared the backlog that
+  existed earlier in the window.
+- Evidence superseded (rework): 72 manifests carry `evidence_direction: "superseded"`.
 
 ---
 
 ## Literature Coverage
 
-- Backlog items (`evidence_backlog.v1.json`) needing literature evidence: **5** total (MECH-324 in_progress, SD-078 open, SD-079 open, SD-080 in_progress, Q-019 covered/pinned).
-- Priority-1 backlog items still open: **0**. (SD-078/SD-079 are both `medium` priority.)
-- `evidence/literature/` directory: **411** targeted-review entries on disk.
-- Covered in recent sessions (from WORKSPACE_STATE, last ~5 days): Q-083 + Q-084 (2026-07-25 scheduled lit-pull, `targeted_review_q_083` + `targeted_review_q_084`, both lit_conf raised, both flagged `substrate_conditional`/v4/DO NOT BUILD); ARC-112 + Q-081 + INV-091 + MECH-466 (2026-07-22, search 10 of a 10-search programme, closed).
+- Priority-1 backlog items still open: **none** — the 3 open literature-flagged items (Q-086,
+  Q-087, Q-088) are all `priority: low`; the one `priority: medium` item (Q-019) is `covered`.
+- Total open literature items: 3 (Q-086, Q-087, Q-088)
+- Covered in recent sessions: 5 `targeted_review_*` entries landed in the last 4 days
+  (connectome/MECH-204, MECH-457 consolidation, MECH-457 baseline-informativeness, Q-085,
+  SD-082), plus a MECH-324 connectome review 4 days prior — a healthy, active cadence, not a
+  backlog.
 
 ---
 
 ## Human-Intervention Patterns
 
-- **Governance cycles requiring an interactive decision pause**: the 2026-07-24 governance cycle explicitly deferred Step 3 (promotion/demotion `pending_user` agenda) as "large pre-existing backlog" — but the *current* recommendations file shows 0 pending, meaning a later cycle cleared it without a further flagged pause.
-- **Concurrency/worktree friction dominates recent session overhead, not scientific ambiguity**: of the ~12 WORKSPACE_STATE entries reviewed in the last 6 days, the majority describe navigating diverged/dirty shared checkouts via throwaway worktrees (2026-07-22 claim-synthesis, 2026-07-22 Q-081 build, 2026-07-24 governance cycle, 2026-07-24 two worktree-blindness fixes, 2026-07-24 SD-081 build) rather than requiring a human science call. This is infrastructure-driven friction (many parallel sessions on a shared trunk), not a substrate/design ambiguity pattern.
-- **Low-friction headless tasks:** scheduled `/lit-pull` runs (2026-07-25 AM) and `/failure-autopsy` batches (2026-07-26, this morning) both completed and landed without any recorded pause.
-- **Recurring infra defect class worth naming (not new — already chipped per its own entries):** "worktree-blindness" — code that hardcodes `parents[2]` or a sibling-directory assumption to locate `REE_assembly`/`ree-v3` from a script's own path, which breaks under `.claude/worktrees/<slug>/` nesting. Hit and fixed 4 times in one day (2026-07-24: `test_arm_reuse.py`, `pack_writer.py`, plus two infra scripts referenced in the same entries). No further instance found in this pass; not re-flagging beyond noting the pattern.
+Derived from the WORKSPACE_STATE.md tail (last 200 lines, ~42 dated entries, spanning
+2026-07-20 to 2026-08-01):
+
+- Session-type mix in the tail: governance (41 mentions), queue-experiment (19),
+  implement-substrate (15), failure-autopsy (12), lit-pull (7), claim-synthesis (3),
+  session-land (3), morning-digest (1), diagnose-errors (1). Governance dominates because it is
+  the nexus skill that surfaces and routes the most follow-on work (per this repo's own
+  session-land convention).
+- Explicit user-adjudication / pause points: 9 entries reference a user confirmation, adjudication,
+  or explicit user instruction (e.g. the 2026-07-19 split-vs-eliminate call on the MECH-457
+  competence-retention leg, the 2026-07-22 objective-misspecification cluster adjudication) — this
+  is the recurring low-friction-but-not-zero pattern: `/failure-autopsy` runs mostly headless but
+  regularly reaches a genuine judgment call at its Step-8 gate that only a human can close.
+  Claim-synthesis in the same window shows 2 of 3 mentions being outright Step-3 gate refusals
+  (MECH-440, MECH-204) rather than pass-throughs — a recurring stop point worth noting, though the
+  same-window sample is small.
+- `NOT LANDED:` markers: 3 in the tail — none aged past the same session's own close, i.e. no
+  standing abandoned side-branch surfaced in this window.
+- Low-friction headless tasks: lit-pull (7 of 7 mentions read as completions, no dispute
+  language) and the routine `/governance` apply cycles once a collision window clears (the one
+  governance-abort in the tail, 2026-07-20T09:57Z, self-resolved within the same session once two
+  colliding sessions closed — see the Concurrency friction rate in `dual_insights_report.md` for
+  the detailed count).
 
 ---
 
 ## Recommendations
 
-**Gate check result: no recommendation survives all four gates.** Specifically:
+Every candidate below was run through the four-gate check (liveness, correct target, not already
+applied, not brake-refused) before being written. Re-checked `git log --since="1 hour ago"`
+immediately before this section — only `igw-ledger: update` commits landed, nothing that changes
+an autopsy routing.
 
-1. The two most obvious candidate actions from Step 3 — re-running V3-EXQ-817/819 with corrected objectives/gates — are **already queued and claimed** (`V3-EXQ-817a`, `V3-EXQ-819a`, both `status: claimed` in the live queue as of this run). Recommending them would be redundant.
-2. No substrate node is `ready` (precondition-met) and unbuilt (Substrate Bottlenecks, above) — there is nothing to recommend building right now that isn't already blocked on an unresolved dependency.
-3. `pending_review.md`'s 5 FAILs all have same-day autopsy coverage; the only remaining action is governance's own review-tracker mark-as-reviewed step, which is `/governance` work and out of scope for a recommendation here per the skill's own exclusion.
-4. No priority-1 literature gap is open.
-
-Stating this as the finding rather than manufacturing a plausible-sounding action: **the project is in a genuinely clean, fully-routed state at this snapshot** — every FAIL has an owner, every buildable substrate node has been built, and the queue's own re-tests (817a/819a) already reflect this morning's autopsy findings. The one open thread worth naming without recommending action on it: the **693b guard-fragility design note** from the 793a autopsy (goal-latching-at-contact fragility on hard seeds, SD-049) is explicitly *not* queued by the autopsy's own routing (to avoid circling SD-049's ceiling) — correctly left as a design note, not a gap.
+1. **No substrate-build recommendation this cycle.** The two highest-failure-record SD entries
+   (`scaffolded_sd054_onboarding` 28, `f_dominance_conversion_ceiling` 26) are both live,
+   multi-hypothesis campaigns already tracked in `hypothesis_space_registry.v1.json` with alive
+   hypotheses and active fanout — not missing-substrate gaps a single build would close. Naming
+   either here would duplicate the campaign's own internal routing rather than add information.
+2. **8 pending_review items await adjudication** (2 PASS to close out, 6 FAIL): V3-EXQ-841
+   (MECH-163/Q-085), V3-EXQ-845 (MECH-180), V3-EXQ-836a/836d (MECH-476), V3-EXQ-850 (MECH-204/SD-076,
+   flagged as a diagnostic self-route needing adjudication), V3-EXQ-844 (MECH-321), plus
+   V3-EXQ-846 (ARC-005) and V3-EXQ-849 (Q-081) awaiting PASS close-out. A TASK_CLAIMS entry
+   (`elastic-merkle-e0cca8`) already owns the FAIL side as of 2026-08-01T10:11Z — this is in
+   progress, not unowned, so no separate chip is needed.
+3. **Literature backlog is not actionable** — all 3 open items are `priority: low`; no
+   recommendation to accelerate lit-pull this cycle.
