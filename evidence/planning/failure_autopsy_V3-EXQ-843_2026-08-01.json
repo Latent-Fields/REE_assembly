@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T21:02:08Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_843_mech203_sws_replay_salience_dose_response_20260801T195300Z_v3",
+      "queue_id": "V3-EXQ-843",
+      "claim_ids": ["MECH-203"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- driver reads the real drive_state formula faithfully; no misalignment",
+        "biological_reference": "clear by extension from MECH-099's harm-tagging half (O'Neill 2010, Huelin Gorriz 2023); not the failure locus",
+        "prerequisites": "present -- SerotoninModule, ResidueField, HippocampalModule replay-start selection all live and called directly",
+        "implementation": "complete for the selection-readout half; the SWS/dose-sweep machinery is correctly wired",
+        "environment": "inadequate -- 3 hazards / 0.05 density on a 10x10 grid, routed by a competent avoidant policy, structurally yields near-zero harm contact",
+        "measurement": "adequate -- correctly detects and reports the resulting degeneracy rather than manufacturing a false verdict",
+        "integration": "n/a -- selection readout never reached, gated correctly at admissibility",
+        "scale": "not the limiting factor -- up to 4800 steps/seed did not help, because the issue is exposure policy, not exposure duration"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-099 (residue field harm-salience replay tagging, supported by O'Neill 2010 and Huelin Gorriz 2023) -- MECH-203 is the benefit-tagging complement",
+        "dependencies": ["MECH-186", "MECH-121", "MECH-165", "SD-017"],
+        "is_formal_import": false,
+        "divergence": "none identified -- the failure is protocol design (harm exposure), not biology translation",
+        "lit_status": "partial (grounded by extension from MECH-099; no dedicated targeted_review_mech_203 entry, not recommended -- mechanism plausibility is not what failed)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-01 failure-autopsy, V3-EXQ-843, confirmed]: third consecutive invalid MECH-203 test. Admissibility (C3) failed on all 3 seeds -- n_harm_states=0 across up to 4800 visited states per seed -- because the waking rollout is driven by the agent's own (successfully hazard-avoiding) policy through a low-density hazard layout (3 hazards, 5% harm density, 10x10 grid), which structurally routes around all harm contact. This is an environment/protocol design gap, not evidence against the claim: the SWS replay-selection machinery itself (SerotoninModule drive_state, ResidueField valence, HippocampalModule _select_valence_weighted_start) is correctly wired and was never reached. MECH-203 has NEVER had a valid test -- V3-EXQ-255/256 were invalidated by an env.step() return-order bug (n_benefit_samples=0), and this redesign is invalidated by zero harm exposure. evidence_direction: non_contributory, non_degenerate: false. sleep_substrate_plan.md's existing 'EXQ-255/256 PASS; adequate' note is stale and should be corrected.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "MECH-203 remains fully untested after three attempts, for two structurally different reasons: V3-EXQ-255/256 (env.step() tuple-order bug) and V3-EXQ-843 (environment/protocol design -- the agent's own competence prevents harm exposure). Neither is evidence for or against the claim.",
+        "A trained, avoidant policy driving the waking rollout is fundamentally the wrong tool for generating harm-tagged samples, regardless of episode count or step budget -- a design property, not something more compute fixes.",
+        "sleep_substrate_plan.md's own stale 'EXQ-255/256 PASS; adequate' note (flagged as already known-stale in this driver's own docstring) should be corrected alongside the next redesign."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

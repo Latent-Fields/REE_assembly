@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T21:02:08Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_847_arc062_pd_context_modeswitch_committed_class_divergence_20260801T191410Z_v3",
+      "queue_id": "V3-EXQ-847",
+      "claim_ids": [],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids=[], pure measurement-aliasing probe)",
+        "biological_reference": "not load-bearing",
+        "prerequisites": "present, but mis-measured -- MECH-448/449 are 100% active on genuine fresh-selection ticks once the denominator is corrected",
+        "implementation": "correct except one gate -- numerator latch-guarded correctly, denominator not updated to match",
+        "environment": "adequate except seed 44 (known environmentally-degenerate for this reef/open geometry, per V3-EXQ-690)",
+        "measurement": "the defect -- active_frac computed as mechanism_active_ticks / n_p2_ticks (all P2 ticks) instead of / (n_p2_ticks - n_latched_ticks) (genuine fresh-selection ticks only)",
+        "integration": "coupled -- same live substrate as V3-EXQ-654j",
+        "scale": "only 1 of 3 seeds informative for H4 (seed 43 identical across arms, seed 44 environmentally degenerate)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- measurement-instrumentation question, not a mechanism test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-01 failure-autopsy, V3-EXQ-847, confirmed]: self-routed 'substrate_not_ready_requeue' is a FALSE NEGATIVE -- the driver's mech448_demotion_lever_live_and_excluding_both_arms / mech449_active_nogo_live_and_suppressing_both_arms preconditions compute active_frac against n_p2_ticks (all P2 env ticks) rather than genuine fresh-E3-selection ticks (n_p2_ticks - n_latched_ticks, both already recorded). Recomputed with the correct denominator, MECH-448/449 are 100% active on every seed x arm -- fully live, not dead. The H4 primary DV (tv_context_divergence, paired reef/open by seed) was computed regardless and is fully recoverable from this manifest without a re-run: seed 43 is bit-identical across arms (no detected CRF effect), seed 44 never visits the reef half (known-degenerate seed per V3-EXQ-690), and seed 42 (the only informative cell) shows CRF-ON reducing context-divergence -- opposite H4's predicted direction. n=1 usable seed cannot support or refute H4. evidence_direction: non_contributory.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Recording gap, recoverable by reanalysis, not a re-run: n_p2_ticks and n_latched_ticks were both recorded; the correct active_frac (and readiness verdict) can be recomputed from the existing manifest.",
+        "The denominator bug is a reusable-pattern risk: any driver that latch-guards its numerator against held/replayed E3 ticks but divides by n_p2_ticks (not n_p2_ticks - n_latched_ticks) will systematically under-read active_frac by the held-tick fraction, which varied 40-86% across these six cells. Sibling script V3-EXQ-859 gets this right (divides by n_p2_fresh_select); this driver does not.",
+        "H4 itself remains untested in any real sense: of 3 seeds, only 1 (seed 42) produced a non-degenerate, arm-differentiated observation, and it points against H4's hypothesis."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
