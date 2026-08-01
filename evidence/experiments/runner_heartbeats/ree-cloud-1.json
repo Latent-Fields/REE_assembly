@@ -1,51 +1,48 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-01T14:40:40Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-860",
-  "current_exq_started_utc": "2026-08-01T14:24:19.008645+00:00",
-  "current_title": "GOV-FANOUT-1 H2 REDESIGN: STEPS_PER_EP exposure sweep decoupled from F1-firing count (replaces confounded V3-EXQ-853)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 2 / ARM_INFL_LO",
-    "runs_done": 2,
-    "runs_total": 6,
-    "episodes_done": 10,
-    "episodes_total": 30,
-    "overall_pct": 38.9
-  },
-  "seconds_elapsed": 981,
-  "seconds_remaining": 705,
-  "recent_lines": [
-    "Seed 0 Condition ARM_INFL_LO n_train=30",
-    "[train] arm=ARM_INFL_LO seed=0 ep 5/30 rv=0.038223 ref=0.035832 prec=26.1616",
-    "[train] arm=ARM_INFL_LO seed=0 ep 10/30 rv=0.010414 ref=0.005605 prec=96.0171",
-    "[train] arm=ARM_INFL_LO seed=0 ep 15/30 rv=0.006112 ref=0.003542 prec=163.5981",
-    "[train] arm=ARM_INFL_LO seed=0 ep 20/30 rv=0.004339 ref=0.003147 prec=230.4316",
-    "[train] arm=ARM_INFL_LO seed=0 ep 25/30 rv=0.003531 ref=0.003115 prec=283.1387",
-    "[train] arm=ARM_INFL_LO seed=0 ep 30/30 rv=0.003399 ref=0.003063 prec=294.1410",
-    "[eval] arm=ARM_INFL_LO seed=0 score=-0.0411 calib_ratio=1.042 true_err=0.003069 mean_rv=0.003198 rv_final=0.003399 wci_ref=0.003063",
-    "verdict: PASS",
-    "Seed 1 Condition ARM_INFL_LO n_train=30",
-    "[train] arm=ARM_INFL_LO seed=1 ep 5/30 rv=0.063786 ref=0.055606 prec=15.6771",
-    "[train] arm=ARM_INFL_LO seed=1 ep 10/30 rv=0.026307 ref=0.013774 prec=38.0118",
-    "[train] arm=ARM_INFL_LO seed=1 ep 15/30 rv=0.011159 ref=0.005299 prec=89.6065",
-    "[train] arm=ARM_INFL_LO seed=1 ep 20/30 rv=0.006723 ref=0.003889 prec=148.7181",
-    "[train] arm=ARM_INFL_LO seed=1 ep 25/30 rv=0.004020 ref=0.003614 prec=248.6778",
-    "[train] arm=ARM_INFL_LO seed=1 ep 30/30 rv=0.004239 ref=0.003674 prec=235.8248",
-    "[eval] arm=ARM_INFL_LO seed=1 score=-0.0912 calib_ratio=1.095 true_err=0.003707 mean_rv=0.004061 rv_final=0.004239 wci_ref=0.003674",
-    "verdict: FAIL",
-    "Seed 2 Condition ARM_INFL_LO n_train=30",
-    "[train] arm=ARM_INFL_LO seed=2 ep 5/30 rv=0.004167 ref=0.004191 prec=239.9160",
-    "[train] arm=ARM_INFL_LO seed=2 ep 10/30 rv=0.004166 ref=0.004196 prec=239.9704"
+  "last_tick_utc": "2026-08-01T15:50:31Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 2,
+  "queue_id_at_head": "V3-EXQ-847",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-833",
+      "result": "PASS",
+      "completed_at": "2026-07-30T06:07:02.184534+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-854",
+      "result": "PASS",
+      "completed_at": "2026-08-01T06:25:04.338504+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-829a",
+      "result": "PASS",
+      "completed_at": "2026-08-01T06:25:10.619955+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-857",
+      "result": "FAIL",
+      "completed_at": "2026-08-01T13:47:58.100942+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-860",
+      "result": "FAIL",
+      "completed_at": "2026-08-01T15:34:21.281685+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r4635 bddf66a 2026-08-01 (running r4632 f35b841)",
+  "runner_version": "r4641 333c851 2026-08-01 (running r4632 f35b841)",
   "gpu": {
     "available": false
   },
