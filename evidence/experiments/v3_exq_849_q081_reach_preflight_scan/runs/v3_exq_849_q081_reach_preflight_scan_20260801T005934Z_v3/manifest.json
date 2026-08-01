@@ -1,0 +1,71 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_849_q081_reach_preflight_scan",
+  "run_id": "v3_exq_849_q081_reach_preflight_scan_20260801T005934Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-01T00:59:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-081"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "q081_reach_preflight_no_lever_found",
+    "summary": "H2 (reframe pair) is favoured: 9 non-degenerate cell(s) across levers ['iei_permute', 'jitter'] show NO precursor-level reach to operating_mode -- no named salience input signal ever diverged between INTACT and either manipulated arm. Combined with 824/824a/838's RV-level nulls across off/iei_permute/circular_shift/suppress, this is now four structurally different manipulation families (plus the two REACH_CONSUMERS flags) with zero reach to this pair. Does NOT prove no lever anywhere could reach operating_mode -- a direct operating_mode write path (a substrate build, not a config lever) remains untested and out of scope here. Recommend: reframe Q-081's measured pair onto a confirmed-reachable one (H2) rather than another full run on (z_world, operating_mode).",
+    "preconditions": [
+      {
+        "name": "at_least_one_non_degenerate_cell",
+        "description": "The untrained event segmenter fires boundary events sparsely with high seed-to-seed variance; a cell with zero true boundary events gives its manipulation nothing to scramble and its 'no reach' reading is vacuous, not informative (q081_pair_reach_check.py's own non-degeneracy guard). At least one of the 10 (mode x seed) cells run here must clear that guard for this scan to say anything at all.",
+        "measured": 9.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "q081_pair_reach_check.py's own manual validation (substrate_queue.json Q081-REACH-CHECK-PAIR-SPECIFIC, implemented_utc 2026-07-31) cleared this guard at seeds 0/1 with these exact n_episodes/steps_per_episode/env_size defaults.",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_any_lever_shows_precursor_reach": true
+    },
+    "does_not_adjudicate_note": "This probe answers only whether a lever gives the manipulation precursor-level reach to operating_mode. It does not adjudicate Q-081 Outcome A vs B (per q081_pair_reach_check.py's own docstring)."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "1d66ca50b425d7ec9970b68108114ab51ee5cb5fcb43e9cc04e43e2fe402c1d6",
+  "substrate_commit": {
+    "commit": "1bca42e744508b9912bc2f5d46469c0d4eb3f52c",
+    "dirty": false,
+    "branch": "main"
+  }
+}
