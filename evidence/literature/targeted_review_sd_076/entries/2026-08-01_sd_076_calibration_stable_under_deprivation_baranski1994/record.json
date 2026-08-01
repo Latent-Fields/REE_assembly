@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-08-01_sd_076_calibration_stable_under_deprivation_baranski1994",
+  "timestamp_utc": "2026-08-01T00:00:24Z",
+  "claim_ids_tested": ["SD-076"],
+  "source": {
+    "title": "On the ability to self-monitor cognitive performance during sleep deprivation: a calibration study",
+    "authors": ["J.V. Baranski", "R.A. Pigeau", "R.G. Angus"],
+    "year": 1994,
+    "venue": "Journal of Sleep Research",
+    "doi": "10.1111/j.1365-2869.1994.tb00102.x"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "Commissioned specifically to establish the expected MAGNITUDE of waking metacognitive drift (GOV-FANOUT-1 H3). This is the closest paradigm match in the literature to SD-076's actual construct -- confidence in one's OWN response accuracy, not a world-belief -- and the direct answer is a null: calibration, resolution, and over/underconfidence indices were all statistically unaffected across 3 days of sustained cognitive work and sleep deprivation. Held at 0.68 rather than lower because a well-instrumented null on the exact right construct is informative, not merely unhelpful; held below 0.8 because N=16 males in one lab, 1994, and no direct manipulation of REM sleep specifically (this is a deprivation, not a recalibration-mechanism, test).",
+  "failure_signatures": [
+    "The correlation between confidence and performance (calibration), the ability to differentiate correct from incorrect judgments (resolution), and validity of subjective certainty were ALL unaffected by extensive sleep deprivation -- the paper's own conclusion is that people retain fairly reliable internal feedback about their own performance during sustained vigilant work, which is the opposite of SD-076's premise of an accumulating waking overconfidence drift.",
+    "If REE's asymmetric-EMA drift source is calibrated to reproduce a LARGE, easily-measurable calibration shift under extended wakefulness, it is calibrated against an effect this study could not detect at N=16 over 3 days -- the small, sub-threshold log-ratio swing observed in V3-EXQ-794a (~0.02 between LO and HI asymmetry) is, if anything, MORE consistent with this human calibration literature than a large threshold-clearing effect would have been."
+  ],
+  "tags": ["sd-076", "mech-204", "sleep_deprivation", "metacognition", "calibration", "confidence_accuracy"],
+  "mapping": {
+    "source_claim_statement": "Across 3 days of sustained cognitive work with mental-arithmetic trials and post-trial confidence ratings, sleep deprivation degraded raw task performance (mental addition accuracy/speed) but left the confidence-accuracy relationship (calibration), resolution (discriminating correct from incorrect responses), and the validity of subjective certainty statistically unchanged, recovering to baseline after one night of recovery sleep.",
+    "ree_translation": "REE reads this as the most direct available human evidence on whether a waking, self-accuracy-specific confidence estimate drifts under sustained wakefulness -- SD-076's exact construct, unlike the world-belief asymmetric-updating papers already in this directory (Sharot 2011, Rollwage 2020). The finding argues that if such drift exists, it is small enough to evade detection with a reasonably powered calibration paradigm, which directly informs whether V3-EXQ-794a's small, sub-threshold, dose-ordered effect should be read as evidence AGAINST the asymmetric-EMA mechanism form (H3) or as roughly the magnitude the biology itself would predict.",
+    "mapping_caveat": "This is a deprivation study, not a REM-recalibration study -- it establishes only that waking calibration is stable under SD, not that REM sleep (or its absence) is the causal lever holding it stable, so it cannot directly test MECH-204's specific claim about serotonergic REM withdrawal. It is also a small, single-lab, 1994 sample restricted to males performing a specific mental-arithmetic task; whether the null generalizes to other self-accuracy domains is untested here.",
+    "source_context": "16 healthy male adults, 3-day sustained cognitive-work protocol including sequential mental-addition trials with post-trial confidence ratings, laboratory setting, recovery-sleep control."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.35,
+    "notes": "Mapping fidelity is unusually high for this directory because the measured construct (confidence in one's own response accuracy) is exactly SD-076's construct, not a proxy for it. Source quality moderate: small N, single lab, dated, but the calibration/resolution methodology (Yates-style) is rigorous and purpose-built for exactly this question."
+  }
+}

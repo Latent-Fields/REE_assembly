@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_connectome_mech_204",
+  "entry_id": "2026-08-01_mech_204_rem_depotentiation_aminergic_withdrawal_vanderhelm2011",
+  "timestamp_utc": "2026-08-01T00:00:24Z",
+  "claim_ids_tested": ["MECH-204"],
+  "source": {
+    "title": "REM sleep depotentiates amygdala activity to previous emotional experiences",
+    "authors": ["Els van der Helm", "Justin Yao", "Shubir Dutt", "Vikram Rao", "Jared M. Saletin", "Matthew P. Walker"],
+    "year": 2011,
+    "venue": "Current Biology",
+    "doi": "10.1016/j.cub.2011.10.052"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the canonical human mechanistic precedent for MECH-204's general architecture -- REM sleep physiology, driven by suppression of an aminergic neuromodulator, recalibrating a next-day reactivity set-point -- and is the closest thing the biology-first triage in the autopsy asked for: a dedicated, well-cited, quantitative demonstration that a REM-specific (not just sleep-general) process resets a waking measure. Held at 0.6 rather than higher because the neuromodulator (noradrenergic/adrenergic, not serotonergic) and the target variable (amygdala reactivity to emotional stimuli, not a metacognitive confidence/precision estimate) both diverge from MECH-204's specific claim.",
+  "failure_signatures": [
+    "The proposed mechanism is suppression of central ADRENERGIC (noradrenergic) neurotransmitters during REM, not serotonergic withdrawal -- MECH-204 states the zero-point is set by SEROTONERGIC withdrawal specifically (title: serotonergic_rem_gate_zero_point), so this paper supports the general REM-aminergic-withdrawal-as-recalibration architecture but not the specific neurotransmitter system MECH-204 names.",
+    "The recalibrated variable here is amygdala BOLD reactivity and subjective emotional intensity to previously-viewed images, not a metacognitive precision/confidence estimate -- the paper offers no evidence, one way or the other, about whether the same REM physiology recalibrates a confidence-in-self-accuracy variable rather than an affective-reactivity variable.",
+    "The design contrasts a night of sleep (with REM) against a day of equivalent wakefulness, not REM sleep against non-REM sleep directly -- so the causal attribution to REM specifically (rather than sleep in general) rests on secondary EEG correlations (high-frequency activity) within the sleep condition, a weaker design than a REM-deprivation manipulation would provide."
+  ],
+  "tags": ["mech-204", "sd-076", "rem_sleep", "aminergic_withdrawal", "amygdala", "recalibration", "precision"],
+  "mapping": {
+    "source_claim_statement": "Following overnight sleep, but not an equivalent period of daytime wakefulness, participants showed reduced amygdala fMRI activity and altered amygdala-prefrontal functional connectivity in response to previously-viewed emotional images, along with reduced next-day subjective emotional intensity; this overnight change correlated with EEG markers of REM sleep physiology, specifically the suppression of high-frequency (>30Hz) activity linked to noradrenergic/adrenergic tone.",
+    "ree_translation": "REE reads this as the strongest available biological precedent for MECH-204's general claim that REM sleep physiology -- via withdrawal of an aminergic neuromodulator -- actively RESETS a waking-accumulated set-point, rather than merely permitting passive decay. It is the mechanistic template MECH-204 is a formal reinterpretation of: REM sleep as a periodic corrective process that removes a modulatory drive and thereby depotentiates whatever variable accumulated a bias during waking hours. For REE this licenses the shape of MECH-204's claim (REM sleep does something in this general causal role) without licensing the specific substitution of confidence/precision for affective reactivity, or serotonin for noradrenaline.",
+    "mapping_caveat": "Two substitutions are made in transferring this evidence to MECH-204 and neither is validated by this paper: (1) the neuromodulator -- this paper implicates noradrenergic/adrenergic suppression, MECH-204 specifically names serotonergic withdrawal; (2) the target variable -- this paper measures amygdala reactivity to emotional images, MECH-204 claims a metacognitive precision/confidence zero-point. The paper establishes the general architecture (REM aminergic withdrawal as active recalibration, not passive decay) is biologically real for at least one neuromodulator-variable pairing; it does not establish it holds for MECH-204's specific pairing.",
+    "source_context": "Healthy adult humans, within-subject sleep-vs-wake fMRI habituation paradigm with emotional image stimuli, polysomnography-derived REM EEG measures, laboratory setting."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Source quality high: Current Biology, well-cited, careful within-subject sleep-vs-wake design with converging fMRI and EEG evidence. Mapping fidelity is the binding constraint and is low-moderate: both the neuromodulator (NA vs 5-HT) and the target construct (affective reactivity vs metacognitive confidence) diverge from MECH-204's specific claim, so this paper licenses the general architecture, not the specific mechanism."
+  }
+}

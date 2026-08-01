@@ -1,0 +1,35 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_076",
+  "entry_id": "2026-08-01_sd_076_comparative_overconfidence_wakefulness_jones2006",
+  "timestamp_utc": "2026-08-01T00:00:24Z",
+  "claim_ids_tested": ["SD-076"],
+  "source": {
+    "title": "Self-awareness of impairment and the decision to drive after an extended period of wakefulness",
+    "authors": ["Christopher B. Jones", "Jillian Dorrian", "Sarah M. Jay", "Nicole Lamond", "Sally Ferguson", "Drew Dawson"],
+    "year": 2006,
+    "venue": "Chronobiology International",
+    "doi": "10.1080/07420520601083391"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "The only paper in this pull that documents a genuine overconfidence effect emerging under extended wakefulness, with a rough timescale anchor (self-rated impairment onset ~19h into continuous wakefulness, tracking a PVT-measured decrement equivalent to 0.05% BAC). Confidence held at only 0.55 because the effect is COMPARATIVE (self vs. a hypothetical other), not calibration-based (confidence vs. own accuracy) -- a materially different construct from SD-076's running self-accuracy estimate, and from the null findings in the two Baranski entries above.",
+  "failure_signatures": [
+    "Participants consistently rated a hypothetical OTHER person's driving ability as worse than their own under the same conditions of extended wakefulness -- the overconfidence here is a self-other comparative bias, not a drift in the accuracy of self-assessment per se; self-ratings of one's OWN driving ability DID decline roughly in step with objective PVT performance, which is the opposite of what a pure calibration-drift account would predict.",
+    "The authors' own concluding concern is about the GAP between self-rating and other-rating, not a demonstrated failure of self-calibration -- so this paper should not be read as establishing that waking self-accuracy confidence becomes miscalibrated; it establishes something narrower and different, a social-comparison optimism bias that happens to co-occur with fatigue."
+  ],
+  "tags": ["sd-076", "extended_wakefulness", "optimism_bias", "self_other_comparison", "driving", "timescale"],
+  "mapping": {
+    "source_claim_statement": "Over 40 hours of continuous wakefulness, participants' self-rated driving ability declined significantly in step with objective psychomotor vigilance task (PVT) performance, with the first significant decline appearing around 19 hours of wakefulness; participants nonetheless consistently rated a hypothetical other person's driving ability as worse than their own under identical conditions.",
+    "ree_translation": "REE reads this cautiously as the one piece of evidence in this pull for a genuine overconfidence-type phenomenon under extended wakefulness, and as a rough timescale anchor (order ~19h into a wake episode) that could bound the exposure-budget question in GOV-FANOUT-1's H2. But the specific overconfidence documented here is a self-vs-other comparative bias that coexists with reasonably accurate self-calibration (self-ratings tracked PVT decline), not a runaway inflation of the self-accuracy estimate SD-076 encodes -- so it should not be over-read as direct magnitude evidence for SD-076's construct.",
+    "mapping_caveat": "This is a comparative-optimism paradigm (self vs. hypothetical other), which is a structurally different construct from SD-076's asymmetric running-variance EMA over one's OWN accuracy history. The paper's own data show self-ratings tracking objective decline reasonably well, which if anything argues against a large self-calibration drift and for the Baranski findings above -- the 'overconfidence' language in the abstract refers to the self-other gap, not a self-calibration failure. Treating this as support for SD-076's magnitude should be done with real caution.",
+    "source_context": "32 healthy adult humans, 40 hours of continuous wakefulness, self- and hypothetical-other driving-ability ratings every 2 hours alongside the Psychomotor Vigilance Task, laboratory setting."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.5,
+    "notes": "Source quality moderate: reasonable N and design, mid-tier chronobiology venue. Mapping fidelity is the binding constraint and is low: the documented effect is a self-other comparative bias co-occurring with accurate self-calibration, not the self-calibration drift SD-076 posits, so this paper's 'supports' rating is for the general phenomenon of wakefulness-linked overconfidence rather than for SD-076's specific mechanism."
+  }
+}
