@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_086",
+  "entry_id": "2026-08-01_q_086_opioid_ceiling_effect_umbricht2004",
+  "timestamp_utc": "2026-08-01T19:35:12Z",
+  "claim_ids_tested": ["Q-086"],
+  "source": {
+    "title": "Effects of high-dose intravenous buprenorphine in experienced opioid abusers",
+    "authors": ["Umbricht, Annie", "Huestis, Marilyn A.", "Cone, Edward J.", "Preston, Kenzie L."],
+    "year": 2004,
+    "venue": "Journal of Clinical Psychopharmacology",
+    "doi": "10.1097/01.jcp.0000138766.15858.c6",
+    "pmid": "15349002",
+    "volume": "24",
+    "issue": "5",
+    "pages": "479-487"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.42,
+  "confidence_rationale": "A controlled clinical dose-escalation study demonstrating a textbook pharmacological ceiling effect: escalating intravenous buprenorphine doses (2 to 16mg) produced flat dose-response curves for most physiologic and subjective outcomes above a moderate dose, because buprenorphine is a partial mu-opioid agonist with intrinsically bounded receptor efficacy -- the ceiling reflects the transduction mechanism's own properties, not an absence of further 'true' stimulus (more drug was genuinely administered). This is useful as a clean conceptual anchor for the general principle that a flat/saturating readout does not by itself imply the underlying manipulated quantity stopped changing -- but it is a substantially more distant analogy to z_harm_a than the other three entries in this set (different domain: receptor pharmacology, not affective/nociceptive neural coding or field ecology), so confidence is capped lower.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "receptor_pharmacology_not_neural_representation_or_ecology",
+    "controlled_substance_domain_far_from_agent_harm_signal",
+    "illustrates_the_general_principle_only_no_direct_test_of_either_q086_hypothesis"
+  ],
+  "tags": ["q_086", "ceiling_effect", "dose_response", "partial_agonist", "conceptual_anchor"],
+  "mapping": {
+    "source_claim_statement": "In a controlled clinical trial, six non-dependent opioid abusers received escalating intravenous doses of buprenorphine (2, 4, 8, 12, 16mg) alongside sublingual and placebo comparators. Physiologic measures (heart rate, oxygen saturation) and most subjective measures showed flat dose-response curves across the escalation range -- further dose increases produced no further increase in effect -- a documented pharmacological ceiling attributable to buprenorphine's partial mu-opioid agonism (bounded intrinsic efficacy at the receptor, distinct from full agonists like morphine which do not ceiling in the same way).",
+    "ree_translation": "This paper is included as a conceptual anchor rather than a direct empirical test of either horn of Q-086. It establishes cleanly, in a domain distant from REE, that a readout can genuinely plateau (ceiling) purely because of the properties of the underlying transduction/receptor mechanism, even while the manipulated input variable (drug dose administered) continues to increase without limit. This is the general form of the 'representational/calibration pathology' hypothesis: a ceiling in an observed signal does not by itself distinguish 'the true underlying quantity stopped increasing' from 'the readout mechanism has bounded dynamic range regardless of true input.' For Q-086, this reinforces that the calibration-pathology reading requires no exotic failure mode to be plausible -- bounded-dynamic-range readouts, with flat responses above a threshold input, are a completely ordinary and well-understood class of phenomenon across biological and pharmacological systems.",
+    "mapping_caveat": "The domain is receptor pharmacology (partial mu-opioid agonism) in a clinical population of opioid abusers, which is a substantially more distant analogy to REE's internal affective/harm signal than the neural pain-coding (Frot 2006) or ecological (Boudreau 2019) or stress-physiology (Buske-Kirschbaum 2010) entries in this set. It does not test anything resembling chronic hazard exposure, ecological stress, or affective integration -- it is cited purely to establish the abstract principle that ceiling effects are a property of transduction mechanisms in general, independent of the specific biological system.",
+    "source_context": "Controlled clinical research-unit study; 6 non-dependent, experienced opioid-abusing adult participants; escalating intravenous buprenorphine doses across separate sessions; physiologic and subjective measures collected over 72 hours post-dose per session."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.25,
+    "transfer_risk": 0.75,
+    "notes": "Source quality moderate: small controlled trial (n=6) but rigorous within-subject dose-escalation design in a specialized research unit. Mapping fidelity low: the mechanism (partial-agonist receptor ceiling) is only analogically related to a scalar affective/harm signal's saturation -- there is no shared substrate. Transfer risk high: pharmacology of a specific drug class in humans, to an artificial agent's internal RL signal, is a large domain jump. Included as a conceptual illustration of the general 'ceiling = mechanism property' principle rather than as strong direct evidence."
+  }
+}

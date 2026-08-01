@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_086",
+  "entry_id": "2026-08-01_q_086_thermal_pain_ceiling_frot2006",
+  "timestamp_utc": "2026-08-01T19:35:12Z",
+  "claim_ids_tested": ["Q-086"],
+  "source": {
+    "title": "Human SII and posterior insula differently encode thermal laser stimuli",
+    "authors": ["Frot, Maud", "Magnin, Michel", "Mauguiere, Francois", "Garcia-Larrea, Luis"],
+    "year": 2006,
+    "venue": "Cerebral Cortex",
+    "doi": "10.1093/cercor/bhk007",
+    "pmid": "16614165",
+    "volume": "17",
+    "issue": "3",
+    "pages": "610-620"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Direct intracranial recording in humans (SEEG electrodes implanted for presurgical epilepsy evaluation) showing that one somatosensory region (SII) exhibits a genuine, well-characterized ceiling/saturation effect for high painful stimulus intensities, while an anatomically adjacent, functionally coupled region (posterior insula) does NOT saturate and continues to encode intensity variation into the painful range. This is close to a direct existence proof that 'a scalar readout plateaus at high intensity' is a real, mechanistic, well-documented CNS phenomenon rather than an REE-specific artifact -- but it is stimulus-evoked potential amplitude in an intracranial epilepsy population responding to brief CO2-laser pulses, not a chronic/dispositional affective-load signal, so mapping fidelity to z_harm_a (a running affective fingerprint accumulated over an episode, not a per-stimulus evoked response) is moderate rather than high.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "single_channel_saturation_can_coexist_with_a_parallel_non_saturating_channel",
+    "evoked_potential_paradigm_not_accumulated_affective_load",
+    "epilepsy_population_may_have_atypical_pain_processing"
+  ],
+  "tags": ["q_086", "ceiling_effect", "saturation", "pain_coding", "insula", "SII", "intensity_discrimination"],
+  "mapping": {
+    "source_claim_statement": "Using intracranial SEEG recordings in patients undergoing presurgical epilepsy evaluation, increasing CO2-laser thermal stimulus intensity produced evoked-potential amplitude increases in both SII and posterior insula up to the pain threshold. Above pain threshold, SII responses showed a clear ceiling effect (amplitude stopped scaling with further intensity increases), whereas posterior insula responses continued to scale with stimulus intensity into the painful range without saturating.",
+    "ree_translation": "Q-086 asks whether z_harm_a's saturation at high hazard density reflects genuine ecological tracking (the true chronic-suffering signal legitimately plateaus because the underlying threat has plateaued) or a representational/calibration pathology (the readout mechanism itself has a ceiling independent of the true underlying intensity). This paper demonstrates that BOTH can be simultaneously true of the same organism at the same moment for the same stimulus class: SII genuinely ceilings (a calibration/representational limit in that specific population) while posterior insula genuinely tracks (an ecologically faithful channel) in parallel. It reframes Q-086's either/or framing as potentially a false dichotomy at the level of a single scalar signal -- the informative design question is not 'is z_harm_a's plateau real or artifact' in isolation, but whether REE's harm-signal architecture has (or needs) a second, non-saturating channel analogous to posterior insula for high-intensity discrimination, alongside a SII-like categorical/threshold channel.",
+    "mapping_caveat": "This is an evoked-potential response to a single brief noxious stimulus pulse, not a running/accumulated affective-load signal integrated over an episode (which is what z_harm_a is architecturally closer to). The population is patients with temporal lobe epilepsy, whose pain processing may not be representative of healthy controls. The finding establishes that representational ceilings and faithful-tracking channels can coexist within one nervous system -- it does not, by itself, tell us which regime z_harm_a is currently in; it motivates the diagnostic design (a non-saturating secondary readout) rather than resolving the object-level question.",
+    "source_context": "Human intracranial SEEG electrophysiology; adult patients (n not large, single-unit-adjacent LFP/evoked-potential recording) referred for presurgical evaluation of temporal lobe epilepsy; CO2 laser thermal stimulation from sensory threshold to supra-pain-threshold intensities."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality high: direct intracranial human recording, a strong and frequently-cited design for dissociating cortical pain-intensity coding. Mapping fidelity moderate: the phenomenon (one channel ceilings, a parallel channel doesn't) maps well conceptually onto the calibration-vs-ecological framing, but the temporal structure (evoked response to a brief pulse vs an accumulated episode-level affective fingerprint) is a real disanalogy. Transfer risk moderate-high: human intracranial epilepsy population, acute noxious thermal stimuli, cross-domain transfer to an RL agent's internal scalar harm signal."
+  }
+}

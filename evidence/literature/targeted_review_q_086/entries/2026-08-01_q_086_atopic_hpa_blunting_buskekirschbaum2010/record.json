@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_086",
+  "entry_id": "2026-08-01_q_086_atopic_hpa_blunting_buskekirschbaum2010",
+  "timestamp_utc": "2026-08-01T19:35:12Z",
+  "claim_ids_tested": ["Q-086"],
+  "source": {
+    "title": "Blunted HPA axis responsiveness to stress in atopic patients is associated with the acuity and severeness of allergic inflammation",
+    "authors": ["Buske-Kirschbaum, A.", "Ebrecht, M.", "Hellhammer, D. H."],
+    "year": 2010,
+    "venue": "Brain, Behavior, and Immunity",
+    "doi": "10.1016/j.bbi.2010.06.013",
+    "pmid": "20633637",
+    "volume": "24",
+    "issue": "8",
+    "pages": "1347-1353"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Human, cross-over-controlled study showing that HIGHER sustained inflammatory/allergic burden (more severe, more acute allergic disease) is associated with a MORE BLUNTED acute cortisol stress response, not a heightened one -- a documented, mechanistically real instance of chronic/high physiological load producing a genuine hyporesponsivity (a floor/ceiling-like flattening) rather than a proportionally scaled response. This directly supports the plausibility of the 'calibration/representational pathology' reading of Q-086: physiological readouts genuinely CAN and DO stop discriminating stressor magnitude once a chronic load state is reached, as a real adaptive/pathological mechanism, not merely as an REE-specific instrumentation artifact. Confidence held at 0.58 rather than higher because this is chronic allergic (not chronic threat/predation) load, and the direction of causality (does severity blunt the axis, or does an already-blunted axis permit more severe disease) is not fully resolved by a cross-over design.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "correlational_not_causal_direction_ambiguous",
+    "allergic_inflammatory_load_not_threat_or_predation_load",
+    "single_acute_stressor_TSST_not_a_graded_dose_response"
+  ],
+  "tags": ["q_086", "hpa_axis", "blunting", "hyporesponsivity", "allostatic_load", "chronic_inflammation"],
+  "mapping": {
+    "source_claim_statement": "In a cross-over design, patients with seasonal allergic rhinitis (SAR) were exposed to a standardized laboratory stressor (Trier Social Stress Test) both during active-symptom (pollen season, high inflammatory burden) and symptom-free (pollen-free season, low inflammatory burden) periods. Cortisol responses to the stressor were significantly more blunted during the high-symptom-severity period, and symptom severity correlated negatively with the magnitude of the cortisol stress response (r=.53, p<.05). Non-atopic controls, examined at matched times, showed no such seasonal difference.",
+    "ree_translation": "Q-086 asks whether z_harm_a's plateau under high hazard density is a faithful ecological signal or a calibration/representational pathology. This paper is direct clinical evidence that the calibration-pathology mechanism is not a hypothetical failure mode invented to explain an inconvenient result -- it is a well-documented biological phenomenon: as the underlying pathological/inflammatory load increases, the ACUTE physiological stress-response system becomes LESS able to discriminate further stressor exposure, i.e. its dynamic range compresses precisely as load rises. If z_harm_a behaves analogously (compresses its discriminative range as chronic hazard exposure accumulates, rather than continuing to track instantaneous hazard density), that would be consistent with a real, biologically-grounded allostatic mechanism rather than a design bug -- though whether that is the DESIRED behaviour for REE's affective architecture is a separate normative question this paper cannot answer.",
+    "mapping_caveat": "The chronic load here is allergic/inflammatory disease burden, not predation/threat exposure -- a different stressor category than REE's hazard-density manipulation, though both are 'chronic elevated physiological burden' in a broad sense. The study is correlational/cross-over rather than causally manipulating chronic load directly (pollen season is a naturally occurring exposure, not an experimenter-controlled dose), so causal direction (does inflammatory severity blunt the axis, or does axis dysfunction permit worse allergic control) is not cleanly separable. The acute stressor probed (TSST) is a single fixed-intensity challenge, not a graded intensity series, so this paper speaks to 'does chronic load blunt responsiveness to a fixed acute stressor' rather than 'does chronic load blunt the SCALING of response with stressor intensity' -- the latter is closer to what Q-086 actually needs.",
+    "source_context": "Human clinical population: patients with seasonal allergic rhinitis (n=20) vs non-atopic controls (n=20); cross-over design comparing pollen season (high symptom/inflammatory burden) vs pollen-free season (low burden) for the same individuals; standardized laboratory acute stressor (Trier Social Stress Test) with salivary cortisol sampling."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Source quality moderate: modest sample size (n=20/20) but a strong within-subject cross-over design controlling for individual baseline variation, published in a respected psychoneuroimmunology journal. Mapping fidelity moderate: the general mechanism (chronic load blunting acute stress-axis responsiveness) is directly relevant, but the study does not test graded stressor-intensity scaling, only response-to-a-fixed-stressor under two load states. Transfer risk moderate: human clinical allergic-disease population to an RL agent's internal harm signal, and allergic/inflammatory chronic load is a different stressor class than predation/threat load."
+  }
+}

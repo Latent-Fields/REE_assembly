@@ -1,0 +1,41 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_086",
+  "entry_id": "2026-08-01_q_086_predation_risk_stress_cascade_boudreau2019",
+  "timestamp_utc": "2026-08-01T19:35:12Z",
+  "claim_ids_tested": ["Q-086"],
+  "source": {
+    "title": "Experimental increase in predation risk causes a cascading stress response in free-ranging snowshoe hares",
+    "authors": ["Boudreau, Melanie R.", "Seguin, Jacob L.", "Boonstra, Rudy", "Palme, Rupert", "Boutin, Stan", "Krebs, Charles J.", "Murray, Dennis L."],
+    "year": 2019,
+    "venue": "Oecologia",
+    "doi": "10.1007/s00442-019-04500-2",
+    "pmid": "31535254",
+    "volume": "191",
+    "issue": "2",
+    "pages": "311-323"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Directly on-point ecological field experiment: predation risk (the closest wild analogue to REE's num_hazards / hazard_food_attraction manipulation) was manipulated in free-ranging animals and physiological stress measures rose in a graded, measurable way with the manipulation. This is real evidence that a physiological stress signal CAN and DOES faithfully track predation-risk intensity in a directly analogous chronic/ecological context, weakening any strong prior that ecological tracking is implausible. But the paper also found that whole-organism condition indices were UNAFFECTED despite the physiological stress rise, indicating compensation/buffering -- the physiological readout moved while the organism's overall state did not degrade correspondingly, which complicates a naive 'the physiological signal = the true suffering level' reading and is why this is scored mixed rather than a clean support.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "condition_indices_unaffected_despite_physiological_stress_rise",
+    "compensatory_foraging_may_mask_the_signal_organism_state_relationship",
+    "single_species_two_summers_not_a_full_dose_response_curve"
+  ],
+  "tags": ["q_086", "predation_risk", "ecological_tracking", "cortisol", "compensation", "allostasis"],
+  "mapping": {
+    "source_claim_statement": "Experimentally increasing predation risk (simulated predator chases) in free-ranging snowshoe hares over two summers produced a graded, statistically robust physiological stress cascade relative to controls: 25.8% higher free plasma cortisol, 15.9% lower cortisol-binding capacity, a greater neutrophil:lymphocyte skew, and a 10.4% increase in glucose. Despite this, two independent condition indices were unaffected by risk exposure across the study period, which the authors attribute to compensatory foraging and/or metabolic adjustment.",
+    "ree_translation": "This is the most directly analogous real-world manipulation to REE's V3-EXQ-857/857a design: predation-risk intensity is manipulated in the wild and a physiological harm/stress readout is measured for a graded response. The headline finding -- physiological stress DOES scale measurably with predation-risk manipulation in a genuinely ecological, chronic-exposure setting -- is evidence that the 'faithful ecological tracking' reading of Q-086 is not merely a hopeful just-so story; graded tracking of hazard intensity by a physiological signal is a real, demonstrated phenomenon in exactly this kind of manipulation. The unaffected condition indices are the more interesting wrinkle for REE: they show that a rising physiological/affective readout can coexist with the organism successfully buffering the ecological consequences of that risk -- i.e. the SIGNAL rising is not the same claim as the organism's true fitness-relevant state degrading correspondingly. This maps onto a live design question for z_harm_a: is it meant to track proximate physiological/affective load (which this paper shows CAN scale even under compensation), or downstream functional consequence (which this paper shows can remain flat even while the proximate signal rises)? Q-086's framing conflates these two readings, and this paper is direct evidence they can dissociate.",
+    "mapping_caveat": "This is a single species (Lepus americanus), two field seasons, comparing risk-augmented vs control groups rather than a graded dose-response curve across multiple hazard-intensity levels (REE's manipulation compares two discrete environment configurations, closer in spirit but still not a multi-point curve). The physiological measures (plasma cortisol, cortisol-binding capacity, neutrophil:lymphocyte ratio, glucose) are endocrine/immune, not neural/representational, so this speaks to whether ecological tracking of hazard intensity is physiologically plausible in principle, not to whether REE's specific z_harm_a/z_harm_s architecture implements it correctly. Wild mammal predation-risk physiology to an artificial RL agent's internal harm signal is a substantial domain transfer.",
+    "source_context": "Free-ranging snowshoe hares (Lepus americanus) in the wild, monitored via intensive radio-telemetry across two consecutive summers; predation risk experimentally increased using a model predator to simulate natural chases; physiological assays for stress hormones, immune markers, and metabolic indices; condition indices tracked intra-annually."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.55,
+    "notes": "Source quality high: a genuine field experiment (not observational) with intensive telemetry monitoring, published in a strong ecology journal, directly manipulating the variable of interest (predation risk) rather than inferring it. Mapping fidelity moderate: predation-risk manipulation in the wild is the closest real-world analogue to REE's num_hazards/hazard_food_attraction environment manipulation, but the readouts (endocrine/immune) are a different modality from REE's internal scalar affective signal. Transfer risk moderate: wild mammal to artificial agent is a real gap, but the ecological logic (does a physiological signal track manipulated risk) transfers reasonably well as a existence-proof-level argument."
+  }
+}
