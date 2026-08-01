@@ -1,3 +1,9 @@
+---
+status: candidate/v3_pending
+status_asof: 2026-08-01
+status_claim: MECH-324
+---
+
 # MECH-324 Reacquisition Window Isolation -- targeted bugfix design
 
 **IGW item:** IGW-20260731-196 (`substrate_queue.json` sd_id
