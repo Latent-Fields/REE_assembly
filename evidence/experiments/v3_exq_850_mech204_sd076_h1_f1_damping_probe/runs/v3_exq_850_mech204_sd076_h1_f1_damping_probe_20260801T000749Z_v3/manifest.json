@@ -1,0 +1,204 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_850_mech204_sd076_h1_f1_damping_probe",
+  "run_id": "v3_exq_850_mech204_sd076_h1_f1_damping_probe_20260801T000749Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T00:48:23Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-204",
+    "SD-076"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "MECH-204": "unknown",
+    "SD-076": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ARM_INFL_LO::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4956449827137661,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::f1_recalib_disabled_confirmed_fired",
+        "precondition": "f1_recalib_disabled_confirmed_fired",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "recalib_cycles_fired must be 0 for every seed -- the WRITEBACK consumer (ree_core/sleep/phase_manager.py) writes mech204_recalibration_fired only when use_rem_precision_recalibration is True, so a nonzero count here means the ablation did not actually take effect (a config/wiring bug), not a scientific result.",
+        "control": "use_rem_precision_recalibration=False in every arm of this design",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::f1_recalib_disabled_confirmed_move",
+        "precondition": "f1_recalib_disabled_confirmed_move",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "recalib_mean_abs_move must be 0.0 for every seed -- same manipulation check as f1_recalib_disabled_confirmed_fired, on the movement statistic instead of the fired count.",
+        "control": "use_rem_precision_recalibration=False in every arm of this design",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry)|. THE 794 GATE, re-checked under F1-off: two nominally different doses producing the same rv is a SATURATION signature, not a null. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.21055419970559e-05,
+        "threshold": 0.0001,
+        "met": false
+      },
+      {
+        "name": "ARM_INFL_HI::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4956788947777799,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::f1_recalib_disabled_confirmed_fired",
+        "precondition": "f1_recalib_disabled_confirmed_fired",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "recalib_cycles_fired must be 0 for every seed -- the WRITEBACK consumer (ree_core/sleep/phase_manager.py) writes mech204_recalibration_fired only when use_rem_precision_recalibration is True, so a nonzero count here means the ablation did not actually take effect (a config/wiring bug), not a scientific result.",
+        "control": "use_rem_precision_recalibration=False in every arm of this design",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 0.5,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::f1_recalib_disabled_confirmed_move",
+        "precondition": "f1_recalib_disabled_confirmed_move",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "recalib_mean_abs_move must be 0.0 for every seed -- same manipulation check as f1_recalib_disabled_confirmed_fired, on the movement statistic instead of the fired count.",
+        "control": "use_rem_precision_recalibration=False in every arm of this design",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry)|. THE 794 GATE, re-checked under F1-off: two nominally different doses producing the same rv is a SATURATION signature, not a null. Same statistic the DV routes on, against a control differing ONLY in the dose.",
+        "control": "sibling inflation arm at the other asymmetry level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.21055419970559e-05,
+        "threshold": 0.0001,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_LO_h1_f1_damping_confirmed",
+        "load_bearing": true,
+        "passed": false,
+        "gap_closed_frac": 0.23251368956443805,
+        "rv_final": 0.0036582556513188695,
+        "non_degenerate": true
+      },
+      {
+        "name": "C2_HI_h1_f1_damping_confirmed",
+        "load_bearing": true,
+        "passed": false,
+        "gap_closed_frac": 0.13818915037899293,
+        "rv_final": 0.0036261501093218136,
+        "non_degenerate": true
+      },
+      {
+        "name": "C_MONO_dose_response_direction",
+        "load_bearing": false,
+        "passed": true,
+        "lo_rv_final": 0.0036582556513188695,
+        "hi_rv_final": 0.0036261501093218136
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_LO_h1_f1_damping_confirmed": false,
+      "C2_HI_h1_f1_damping_confirmed": false,
+      "C_MONO_dose_response_direction": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "f5130fe8f287b555b014b09b82619d6fc58f2101992f59116fccf8cb08be05d3",
+  "substrate_commit": {
+    "commit": "20545e7b3d0730bff0f1171575fcc76870fb4dda",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 18568,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}

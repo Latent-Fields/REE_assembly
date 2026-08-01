@@ -1,0 +1,55 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_overconfidence_score": {
+      "ARM_INFL_LO": 0.01368103878848225,
+      "ARM_INFL_HI": 0.021931035052736355
+    },
+    "arm_calibration_ratio": {
+      "ARM_INFL_LO": 0.9864162715280665,
+      "ARM_INFL_HI": 0.9783195075090205
+    },
+    "arm_true_error_ref": {
+      "ARM_INFL_LO": 0.0036995331068548566,
+      "ARM_INFL_HI": 0.0036995331068548566
+    },
+    "arm_rv_final": {
+      "ARM_INFL_LO": 0.0036582556513188695,
+      "ARM_INFL_HI": 0.0036261501093218136
+    },
+    "per_level": {
+      "LO": {
+        "asymmetry": 0.6,
+        "arm_id": "ARM_INFL_LO",
+        "rv_final": 0.0036582556513188695,
+        "ref_794a_rv_final": 0.003997733405264173,
+        "smoke_rv_final": 0.0025377,
+        "gap_total": 0.0014600334052641728,
+        "gap_closed": 0.00033947775394530325,
+        "gap_closed_frac": 0.23251368956443805,
+        "move_from_794a": 0.00033947775394530325,
+        "non_degenerate": true,
+        "h1_supported": false,
+        "overconfidence_score": 0.01368103878848225,
+        "calibration_ratio": 0.9864162715280665
+      },
+      "HI": {
+        "asymmetry": 0.8,
+        "arm_id": "ARM_INFL_HI",
+        "rv_final": 0.0036261501093218136,
+        "ref_794a_rv_final": 0.003870367272153275,
+        "smoke_rv_final": 0.0021031,
+        "gap_total": 0.001767267272153275,
+        "gap_closed": 0.00024421716283146155,
+        "gap_closed_frac": 0.13818915037899293,
+        "move_from_794a": 0.00024421716283146155,
+        "non_degenerate": true,
+        "h1_supported": false,
+        "overconfidence_score": 0.021931035052736355,
+        "calibration_ratio": 0.9783195075090205
+      }
+    },
+    "n_levels_supporting_h1": 0,
+    "readiness_ok": false
+  }
+}
