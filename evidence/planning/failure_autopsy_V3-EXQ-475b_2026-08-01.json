@@ -1,0 +1,50 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T12:54:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_475b_q040c_dacc_pe_weight_delta_correlation_20260801T050027Z_v3",
+      "queue_id": "V3-EXQ-475b",
+      "claim_ids": ["Q-040"],
+      "failed_criterion": "precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the P2 precondition failure means the run tested nothing about the claim (V_s-gating/dACC PE coupling)",
+        "biological_reference": "not assessed -- run never reached a state where dACC's mechanism could be exercised",
+        "prerequisites": "present -- MECH-269b V_s gating engaged correctly (P1 PASSED, 2/3 seeds), the upstream gate is not the problem",
+        "implementation": "DRIVER BUG, not a substrate gap -- ree_core/cingulate/dacc.py's forward() guard (`self.dacc is not None and z_harm_a is not None`) never fired because z_harm_a was structurally None on every tick",
+        "environment": "n/a",
+        "measurement": "the driver's own config builder (`_build_arm_config` -> `experiments/_lib/goal_pipeline_tier1.build_config`) never passed `enable_affective_harm_stream=True`, which is REQUIRED for the gap4-operating branch to populate z_harm_a -- the exact footgun that build_config's own docstring warns about, citing the 2026-06-01 V3-EXQ-620/625 precedent",
+        "integration": "n/a -- dACC never engaged (0/6 runs, 0 fires across ~1000+ eval steps each)",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a -- this is a driver config-wiring defect, not a substrate or biological question",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-475b (Q-040.c, first-ever queuing of this mechanism-quantification sub-question): precondition_unmet correctly flagged (P2 dACC engagement: 0/6 runs across 3 seeds x 2 arms had any dACC firing at all -- n_dacc_fires=0, dacc_bias_nonzero_steps=0 universally). Root cause identified by code trace, not left as an unexplained gate failure: the driver's `_build_arm_config` calls `experiments/_lib/goal_pipeline_tier1.build_config(env, gap4_arm)` WITHOUT passing `enable_affective_harm_stream=True`. That parameter defaults False and gates the ENTIRE code block that sets `use_harm_stream=True`/`use_affective_harm_stream=True`/`z_harm_a_dim=...` on the gap4-operating branch -- so z_harm_a stayed structurally None on every tick, and dACC's own invocation guard in ree_core/agent.py (`self.dacc is not None and z_harm_a is not None`) never once fired. build_config's own docstring names this exact failure mode by its 2026-06-01 precedent (V3-EXQ-620/V3-EXQ-625). P1 (gate-firing) PASSED cleanly (2/3 seeds), confirming MECH-269b's V_s-rollout-gating itself engaged correctly -- the defect is isolated to the harm-stream config omission, nothing upstream. Not a substrate ceiling, not evidence bearing on Q-040c's actual question (whether dACC bias magnitude tracks precision-weighted PE under V_s gating). Recommend same-question re-queue (V3-EXQ-475c) with the one-line fix (`build_config(env, gap4_arm, enable_affective_harm_stream=True)`), plus a smoke-test assertion that n_dacc_fires > 0 before the full run, to catch this class of defect before spending compute on it again.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "P2 (dACC engagement) failing at exactly 0/N across every seed and arm is a strong signal of a structural precondition never being met at all, not a marginal/noisy near-miss -- worth checking the config wiring before assuming 'insufficient signal'.",
+        "The gap4-operating branch of build_config() requires an explicit enable_affective_harm_stream=True opt-in that the non-gap4 (from_dims) branch enables unconditionally -- an asymmetry the module's own docstring flags as a known footgun, and this driver walked into it despite the warning being right there.",
+        "P1 passing cleanly while P2 fails completely is informative: the upstream V_s-gating substrate (MECH-269b) is fine; the defect is isolated to a single downstream config flag.",
+        "A quick smoke-test assertion (n_dacc_fires > 0) before a full run would have caught this in minutes instead of after the full 3-seed x 2-arm run completed."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}

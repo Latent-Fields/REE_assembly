@@ -1,0 +1,49 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T12:54:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_840b_mech294_theta_packet_binding_committed_action_falsifier_20260801T120516Z_v3",
+      "queue_id": "V3-EXQ-840b",
+      "claim_ids": ["MECH-294"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "joint_indistinguishable_from_alternation",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- a fully clean, well-powered, non-degenerate test of the joint-binding claim's own load-bearing criterion",
+        "biological_reference": "Kay-2020 cited directly in the driver's own outcome-map as the parsimonious account this result matches (cross-cycle theta binding is out-of-substrate for V3, so this run tests a proxy -- per-candidate co-binding coherence routed through the selection authority -- not the full lit falsifier)",
+        "prerequisites": "present -- this run IS the pending_retest_after_substrate MECH-294 was waiting on (modulatory-bias-selection-authority substrate amend, landed 2026-06-10)",
+        "implementation": "complete -- fixes the predecessor V3-EXQ-840's measurement-window starvation bug (contaminated_harm zeroing) cleanly",
+        "environment": "adequate -- CausalGridWorldV2 fishtank env exercised the joint/alternation/shuffled theta-burst binding conditions as designed",
+        "measurement": "ALL 12 readiness preconditions green across all 4 arms (ARM_0_OFF, ARM_1_JOINT, ARM_2_ALT, ARM_3_SHUF), 10 seeds run (min required 7) -- as clean and well-powered a non-degenerate FAIL as this corpus produces",
+        "integration": "coupled and correctly measured -- routed coherence range genuinely differentiates JOINT (0.069) from OFF/SHUF (0.0) and from ALT (0.057)",
+        "scale": "adequate -- 10 seeds, 3600-tick committed windows per arm, well above every stated floor"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Kay et al 2020 (cited directly by the driver) -- a parsimonious cross-cycle/alternation account of theta-phase multi-item coding, as an alternative to the joint-binding-within-one-cycle hypothesis MECH-294 asserts",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "MECH-294 asserts joint multi-content binding within a single ~125ms theta cycle; this run's clean null (joint indistinguishable from mere alternation) is consistent with the more parsimonious Kay-2020 account rather than a translation failure",
+        "lit_status": "present -- Kay-2020 cited by name in the driver; this run does not itself resolve the primary lit falsifier (Kay-2020's own cross-cycle theta measurement), which is out-of-substrate for V3 and would need a dedicated /lit-pull to formally register as a claims.yaml literature entry if not already present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-840b (MECH-294 behavioural-evidence retest, superseding V3-EXQ-840's measurement-window-starvation FAIL): ALL 12 readiness preconditions green across all 4 arms, 10 seeds (min required 7) -- this is the pending_retest_after_substrate MECH-294's substrate_ceiling category was explicitly waiting on (the modulatory-bias-selection-authority amend, landed 2026-06-10, now demonstrably engaging correctly at real-run scale). C1 (JOINT != ALTERNATION) FAILS cleanly: mean TV 0.087 vs 0.1 floor, only 3/10 seeds above floor (7 required). Per the driver's own pre-registered outcome map, C1-fail routes to weakens -- 'Kay-2020 parsimonious outcome.' User-confirmed 2026-08-01: RECOMMEND FLIPPING epistemic_category from substrate_ceiling to standard -- the retest this category was pending on has now happened and came back fully clean, so the ceiling designation should graduate and this weakens evidence should score normally rather than continue sitting excluded. Per the driver's own note, 'hold stands' (no demotion) -- this is one clean informative data point against the joint-binding-specific reading, consistent with a more parsimonious alternation-only account (Kay 2020), not yet sufficient on its own to demote a candidate architectural claim with existing lit grounding. This run does NOT resolve the primary lit falsifier (Kay-2020 cross-cycle theta itself), which remains out-of-substrate for V3.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "This is the retest MECH-294's substrate_ceiling/pending_retest_after_substrate flags were explicitly waiting on -- it came back fully clean (all 12 preconditions green, well-powered at 10 seeds), so the epistemic_category should graduate to standard rather than stay pinned at substrate_ceiling.",
+        "A clean, well-powered C1-fail with the driver's own pre-registered outcome map already naming the correct biological reading (Kay-2020 parsimonious account) is about as informative a 'weakens' as this corpus produces -- no residual wiring-gap ambiguity to disambiguate.",
+        "The predecessor's measurement-window starvation bug (contaminated_harm on seeds 45/49) was a genuine, fixable implementation gap, distinct from this run's outcome -- correctly diagnosed and fixed rather than conflated with a substrate ceiling."
+      ],
+      "routing": "governance"
+    }
+  ],
+  "cluster_pattern": null
+}

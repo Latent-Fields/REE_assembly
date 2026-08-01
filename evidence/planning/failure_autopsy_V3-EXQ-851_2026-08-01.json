@@ -1,0 +1,50 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T12:54:47Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout_20260801T110851Z_v3",
+      "queue_id": "V3-EXQ-851",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "failed_criterion": "precondition",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- three preconditions failed, so no H1 verdict is possible from this run",
+        "biological_reference": "not load-bearing for this diagnostic (matches the matched-stack template 654j's own convention)",
+        "prerequisites": "PARTIALLY present -- candidate-generation dynamics (committed_class_axis_exercisable, gapa_consumed_summary_divergence, arm_on_rule_field_differentiated_and_matured, propagation_non_vacuity) all PASS, but MECH-448 (F-eligibility demotion) and MECH-449 (active Go/No-Go) -- both robustly live in the 654j template this run is matched-stack identical to -- are COMPLETELY DEAD here (measured 0.0 against threshold 2.0, vs 654j's 17.76 / 1.549)",
+        "implementation": "the new lateral_pfc route branch itself is correctly wired at the code level (identity-routes _bdc_lpfc into channel_route_bias, independent of MECH-448/449's own use_go_nogo_constitution-gated code path) and both flags (USE_F_ELIGIBILITY_DEMOTION, USE_GO_NOGO_CONSTITUTION) are correctly set True in the driver -- yet the mechanisms did not engage. This is NOT a config-omission bug like V3-EXQ-475b's.",
+        "environment": "SAME SEEDS (42/43/44) as 654j -- ruling out seed-variance as the explanation for MECH-448/449's collapse from robustly-live to completely dead",
+        "measurement": "the new C1g precondition (lateral_pfc_route_range_supra_floor_and_sample_adequate_both_arms) ALSO failed (measured 0.0) -- the corrected erratum-fix route itself does not yet show adequate differentiation/sample either, a second, independent finding from the mech448/449 collapse",
+        "integration": "the sole design change from 654j (modulatory_channel_route_source: 'cand_world_summary' -> 'lateral_pfc') is the only candidate causal factor, given identical seeds and identical flags otherwise -- but the code path for channel_route_bias construction reads as independent from MECH-448/449's own gating, so the causal mechanism connecting the two is not yet identified",
+        "scale": "not assessed -- diagnosing causality is prior to any scale question"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing for this diagnostic run",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not assessed",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-851 (ARC-062 conversion-fanout GOV-FANOUT-1 Leg P-A, H1: selection-authority coupling gap; corrects the 2026-07-29 design-doc erratum routing 'gated_policy' instead of 'lateral_pfc'): precondition_unmet correctly flagged -- three preconditions failed: mech448_demotion_lever_live_and_excluding_both_arms (0.0 vs threshold 2.0), mech449_active_nogo_live_and_suppressing_both_arms (0.0 vs 2.0), and the NEW lateral_pfc_route_range_supra_floor_and_sample_adequate_both_arms (0.0 vs 2.0). The manifest's own embedded evidence_direction_note asserts 'H1 (selection-authority coupling gap) is REFUTED as the ceiling' -- THIS AUTOPSY DOES NOT ENDORSE THAT READING. That conclusion describes the C1-holds/C2-fails branch (the ceiling-reading route), but THIS run hit C1-fails (three preconditions dead), a materially different and more basic failure than the erratum-fix's own C1g test alone. Critically: this run used the IDENTICAL seeds (42/43/44) as V3-EXQ-654j, its matched-stack template, in which MECH-448 measured 17.76 and MECH-449 measured 1.549 (both robustly live) with every other flag identical (USE_F_ELIGIBILITY_DEMOTION=True, USE_GO_NOGO_CONSTITUTION=True in both). In this run both measured exactly 0.0. Same seeds rules out random seed variance as the explanation. The ONLY design change from 654j is modulatory_channel_route_source: 'cand_world_summary' -> 'lateral_pfc' (the chip chip-20260731-arc062-pa-lpfc-route-source fix). Code-traced: the lateral_pfc branch in ree_core/agent.py's channel_route_bias construction reads as independent from MECH-448/449's own use_go_nogo_constitution-gated code path, so the causal LINK between the route-source change and the mech448/449 collapse is not yet identified -- but the deterministic, same-seed reproduction of a clean live-to-dead flip is far too clean to attribute to 'substrate not ready' (which implies stochastic underpowering, not a deterministic collapse under identical seeds). User-confirmed 2026-08-01: recommend a TARGETED DIAGNOSTIC isolating whether channel_route_bias itself (a numerically near-zero-range signal per the failing C1g check) is causally responsible -- e.g. via a controlled ablation comparing modulatory_channel_route_source='lateral_pfc' vs 'none' at the SAME seeds, tracking mech448/449 engagement -- BEFORE spending another ~7.7 hours (this run's elapsed_seconds=27623) re-running the same full 651-style design blind. Do not requeue the same design as-is; the failure looks deterministic, not noise-limited.",
+      "recommended_substrate_queue_entry": {"action": "none", "target_sd_id": null, "sd_id_suggested": null, "title": null, "implementation_hint": null, "unblocks_claims": [], "depends_on_unresolved": [], "priority_suggested": null, "failure_record_entry": null},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": true, "route_to": "queue-experiment", "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "MECH-448/449 flipping from robustly-live (654j: 17.76/1.549) to completely dead (851: 0.0/0.0) under IDENTICAL seeds and identical enabling flags, with the sole design change being the modulatory_channel_route_source value, is strong evidence of a deterministic causal interaction -- not the kind of result a blind requeue with new seeds would resolve.",
+        "The manifest's own embedded evidence_direction_note conflates the ceiling-reading branch (C1-holds/C2-fails, which DOES support 'H1 refuted') with this run's actual outcome (C1-fails outright) -- the self-route's narrative prose should not be accepted as this run's own conclusion without checking which branch actually fired.",
+        "Reading code alone (the channel_route_bias construction path looking independent of MECH-448/449's gating) is not sufficient to rule out a causal link -- a numerically near-zero-range injected channel could still destabilize downstream candidate scoring in ways not visible from a static code read.",
+        "A ~7.7-hour full-design run is expensive to blindly repeat; a cheaper targeted ablation (route_source='lateral_pfc' vs 'none', same seeds) should isolate the causal factor before committing to another full run."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
