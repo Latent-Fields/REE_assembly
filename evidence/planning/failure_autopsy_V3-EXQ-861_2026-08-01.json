@@ -1,0 +1,75 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T21:50:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3",
+      "queue_id": "V3-EXQ-861",
+      "claim_ids": ["MECH-180"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened (DV1/DV2) / weakened-but-explained (DV3)",
+        "biological_reference": "partial -- thalamocortical spindle content-packaging (Yang2018/Ngo2020/Staresina2015) maps to MECH-122, whose content-packaging half is an unwired V3 code stub",
+        "prerequisites": "missing for DV3 (MECH-122 content-packaging half not wired into the sleep pipeline); present for DV1/DV2",
+        "implementation": "partial -- 2/3 DV mechanisms complete; DV3's underlying selection mechanism is a stub",
+        "environment": "adequate -- CausalGridWorldV3, producer (SD-MEL-PRODUCER) validated 2026-07-29",
+        "measurement": "now adequate for DV3 (write-count confound successfully removed by this redesign)",
+        "integration": "isolated for DV3 -- ContextMemory writes have no channel for spindle-analog content selection",
+        "scale": "adequate -- not the limiting factor"
+      },
+      "biological_reference": {
+        "closest_mechanism": "thalamocortical sleep spindles (11-16Hz NREM stage-2): content-packaging (spindle-coupled ripple content transfer) + sensory gating (thalamic relay suppression during spindle-uncoupled ripples)",
+        "dependencies": ["MECH-122"],
+        "is_formal_import": false,
+        "divergence": "REE's content-packaging analog (ThetaBuffer.consolidation_summary()/set_consolidation_mode(), ree_core/latent/theta_buffer.py:146,159) exists but is never called from run_sws_schema_pass()/force_cycle() -- the SWS pass writes via plain EMA-blend with no spindle-analog selection step",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "2026-08-01 (V3-EXQ-861, autopsy-confirmed): confound-corrected redesign of V3-EXQ-845's spindle_density DV (write-count-decoupled touched-slot diversity replacing the whole-bank statistic). sws_power and replay_rate again pass 2/3 seeds -- cross-validated under the corrected methodology, strengthening confidence in these two DVs. spindle_density again fails 0/3 seeds under the deconfounded statistic, ruling out the write-count artifact as the explanation. Biological-reference triage: spindle_density's closest reference (thalamocortical spindle content-packaging, Yang2018/Ngo2020/Staresina2015) maps to MECH-122, whose content-packaging half (ThetaBuffer.consolidation_summary()) exists in ree_core but is never wired into the sleep pipeline -- a genuine, previously-undischarged dependency gap, not a claim falsification. Routed /implement-substrate (new substrate_queue entry, complicated (buildable)). pending_retest_after_substrate: true for the spindle_density DV specifically; DV1/DV2 evidence stands independently.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+        "title": "MECH-122 content-packaging half: wire ThetaBuffer.consolidation_summary()/set_consolidation_mode() (existing V3 code, currently unwired) into run_sws_schema_pass()/force_cycle() so SWS writes to ContextMemory carry a spindle-analog content-selection signal proportional to novelty/MEL",
+        "implementation_hint": "ThetaBuffer.consolidation_summary() and set_consolidation_mode() (ree_core/latent/theta_buffer.py:146,159) already implement a V3 proxy for spindle-mediated content packaging but are never called from the sleep pipeline (run_sws_schema_pass()/force_cycle() in ree_core/agent.py write sampled prototype vectors via plain EMA-blend with no selection step). Wiring this in is the direct candidate explanation for why V3-EXQ-845/861's spindle_density DV (mean_sws_new_slot_diversity / whole-bank cosine diversity) fails to track novelty/MEL while sws_power and replay_rate (which don't depend on content selection) succeed. Distinct from the existing MECH122-SENSORY-GATING-OFFLINE-PROTECTION entry (added same day, session igw-loop-mech122-gap), which covers the OTHER half of MECH-122 (blocking external sensory input during offline windows) and was separately found not-yet-established as load-bearing given the current strictly-sequential (non-interleaved) wake/sleep harness design. This entry's content-packaging half IS directly implicated by a real V3 experimental result (V3-EXQ-861 DV3) and existing code (unwired, not absent), so node_class is complicated (buildable), not complex (probe-gated).",
+        "unblocks_claims": ["MECH-180", "MECH-122"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3",
+          "experiment_type": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity",
+          "metric": "mean_sws_new_slot_diversity (spindle_density DV) fails monotone+spread criterion at 0/3 seeds, and fails ON-HIGH>OFF-HIGH control, even under the write-count-deconfounded statistic",
+          "target": "spindle_density DV must pass on >=2/3 seeds (monotone non-decreasing across 4 ON arms sorted by measured MEL, +/-0.05 slack, >=15% relative spread) once content-packaging selection is wired in"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-677_2026-06-14"],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "The write-count confound fix (845->861) did not change the qualitative outcome -- DV1/DV2 pass, DV3 fails cleanly under both statistics -- which strengthens rather than undermines confidence that DV1/DV2 genuinely support MECH-180 and DV3's disagreement is real.",
+        "New dependency discovered: MECH-180's spindle_density prediction implicitly depends on MECH-122's content-packaging half, which exists as an unwired V3 code stub, not an absent one.",
+        "MECH-122's implementation_phase: v3 field is correct; its own registration prose ('V4 scope') is the stale artifact, per feedback_phase_label_follows_dependency and user confirmation this session.",
+        "MECH-180's stored epistemic_category: substrate_ceiling (from failure_autopsy_V3-EXQ-798a_2026-07-30) was explicitly conditioned on 'STAY until that ecological run scores' -- it has now scored twice (845, 861) -- the reading is stale on its own stated terms."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "presented_utc": "2026-08-01T21:26:00Z",
+    "revised_utc": "2026-08-01T21:44:00Z",
+    "user_choice": "Approved the revised read after raising the sensory-gating/spindle-biology question, which surfaced the MECH-122 content-packaging dependency. Corrected the phase-label fix direction: MECH-122's implementation_phase:v3 is correct; its own prose is the stale artifact ('we of course know mech-122 therefore is V3. the incorrect thing is it saying it is v4. remember what defines v3').",
+    "notes": "User is a consultant psychiatrist; the biological-reference triage in section 3 was substantially deepened by their domain question rather than being a mechanical Step-4 pass."
+  }
+}

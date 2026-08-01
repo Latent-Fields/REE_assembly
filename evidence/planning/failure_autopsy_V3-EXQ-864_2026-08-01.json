@@ -1,0 +1,70 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-01T21:50:27Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3",
+      "queue_id": "V3-EXQ-864",
+      "claim_ids": ["SD-076"],
+      "self_route_label": "wci_rv_trajectory_characterized_no_crossover_in_range",
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear (diagnostic, correctly excluded from claim scoring)",
+        "biological_reference": "not applicable -- methodological finding, not a biology-mapping question",
+        "prerequisites": "present -- rv_live/f1_recalib_engaged pass all 6 cells, SD-076 mechanism IMPLEMENTED",
+        "implementation": "steps_per_ep correctly threaded through the code, but the design did not account for the environment's own termination condition",
+        "environment": "inadequate for this diagnostic's purpose -- CausalGridWorldV3's 500-step/death-floor termination silently overrides the driver's exposure-length manipulation",
+        "measurement": "misleading -- end-of-episode metrics correctly measure substrate state, but that state was never actually varied by the swept parameter",
+        "integration": "isolated -- episode loop and environment termination logic not co-designed",
+        "scale": "not the limiting factor -- N=8 is a legitimate reduced diagnostic scale"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not applicable to this run's finding",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "n/a",
+        "lit_status": "present (separately, via the H3 lit-pull already complete on SD-076/MECH-204)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-864 (2026-08-01, autopsy-confirmed): diagnostic instrumenting V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle across a steps_per_ep sweep. The sweep did not actually vary real exposure -- CausalGridWorldV3's own episode-termination condition (health floor / internal 500-step cap) fires before any of the three swept step counts (200/500/1000) bind, so diff_final and related end-of-episode metrics are bit-identical across the sweep. The 'no crossover in range' finding is uninformative; the puzzle remains open. Non-blocking for EVB-0454 (per V3-EXQ-860's autopsy). Routed /queue-experiment for a redesign that decouples steps_per_ep from environment-level termination.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "Recurring pattern (third instance, after 845's write-count confound and 794's floor-saturation defect): a driver's nominal sweep parameter fails to actually vary the measured quantity because of an unaccounted environment-level constraint -- here CausalGridWorldV3's own termination condition (agent_health<=0 or steps>=500) silently overrides the driver's steps_per_ep exposure manipulation.",
+        "V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle remains genuinely unresolved -- this diagnostic did not test the manipulation it was designed to test.",
+        "Deadline discrepancy found: experiment_proposals.v1.json EVB-0454 decision_deadline_utc (2026-08-04T21:09:57Z) disagrees with claims.yaml/860-autopsy/864-docstring citations (2026-08-03T20:50:36Z) by ~24h."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "presented_utc": "2026-08-01T21:26:00Z",
+    "user_choice": "measurement_test_design_defect, non-blocking (recommended option approved as-is)",
+    "notes": "Presented alongside V3-EXQ-861 in the same AskUserQuestion round."
+  }
+}
