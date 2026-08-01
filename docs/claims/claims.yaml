@@ -20588,6 +20588,11 @@
   title: "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude."
   claim_type: design_decision
   subject: harm_stream.affective_surprise_pe
+  default_off_scope_note: 'SD-020''s stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on
+    configuration. harm_surprise_pe_enabled defaults to False (config.py:2306), so default-trained
+    agents train z_harm_a against the EMA accumulated-harm target this claim argues against. See
+    SD-087 (2026-06-10 z_harm_a saturation intake, candidate 2) for the two-arm OFF-vs-ON falsifier;
+    consider a standing default_off audit across other claims.'
   polarity: asserts
   status: stable
   live_status:
@@ -33910,6 +33915,11 @@
   title: "Suffering-derivative comparator: a non-trainable rolling-window descent detector on z_harm_a.norm() that fires a relief-completion event when a sustained drop from peak to trough exceeds a threshold. Provides the substrate for MECH-302 by detecting when a period of suffering has cleanly ended, reusing the same downstream tag-and-release pipeline as goal-achievement (MECH-057a beta-gate release, MECH-094 VALENCE_LIKING write). Architecturally adjacent to MECH-091 (urgency interrupt) but opposite polarity: MECH-091 fires on upward z_harm_a spike; SD-050 fires on downward sustained drop."
   claim_type: design_decision
   subject: relief.suffering_derivative_comparator
+  readout_precondition_note: 'SD-050 cannot fire on a range-degenerate z_harm_a: a sustained peak-to-trough
+    descent detector requires the signal to have a trough. Its falsifier is uninterpretable while
+    SD-086''s decode-floor non-degeneracy guard fails (measured on V3-EXQ-664, z_harm_a.norm spans only
+    ~7.18-7.42 within an episode, no descent to detect). This is a readout precondition, not a defect in
+    SD-050 on its own terms. See SD-086 (2026-06-10 z_harm_a saturation intake, candidate 4).'
   polarity: asserts
   status: candidate
   live_status:
@@ -33972,6 +33982,9 @@
   title: "Relief-completion event reuses goal-achievement / reward-circuit completion machinery. When a comparator on a suffering-stream derivative crosses a downward threshold (sustained suffering-reduction below baseline), the resulting event fires the same downstream tag-and-release pipeline as goal-achievement: MECH-057a (commitment-release / beta-gate-drop), MECH-091 (salient-event phase-reset), and MECH-094 (categorical hypothesis-tag write gate). The polarity of the reinforcement is set at the input -- what counts as the completion is the suffering-derivative crossing, not a reward-onset event -- but the consolidation pipeline is shared. 'Things that just reduced suffering' are tagged in the same approach-attractor structure as 'things liked'."
   claim_type: mechanism_hypothesis
   subject: relief.completion_event_reuses_goal_achievement_pipeline
+  readout_precondition_note: 'The relief-completion event (via SD-050''s comparator) cannot fire while
+    z_harm_a''s functional readout is range-degenerate -- MECH-302''s falsifier inherits SD-050''s
+    readout precondition. See SD-086 (2026-06-10 z_harm_a saturation intake, candidate 4).'
   polarity: asserts
   status: provisional
   live_status:
@@ -57588,6 +57601,12 @@
   title: "Substrate-ceiling exhaustion demotion rule: a claim that hits the substrate ceiling N>=3 times (>=3 confirmed failure-autopsy verdicts recommending substrate_ceiling) WITHOUT a single positive discrimination on any richer substrate is DEMOTED, not parked indefinitely. The competing null reading -- the mechanism is inert / doing no work -- is then carried co-equally with the hypothesis until a positive discrimination on a richer substrate exists. substrate_ceiling is honest but structurally lets a hypothesis never lose; this rule pre-registers the loss condition."
   claim_type: governance_rule
   subject: governance.epistemics.ceiling_exhaustion_demotion
+  amended_by_note: 'GOV-CEIL-2 (2026-06-24 evolutionary-retention intake, candidate 1) adds a tail-escape
+    clause: absence of positive discrimination does not license demotion when no test ever instantiated
+    the mechanism''s trigger condition (tail-protective / developmental / compensatory claims). The
+    asymmetry is preserved -- a claim is still demoted unless the untested-trigger condition is positively
+    established and written down. This claim''s wired machinery (check_substrate_ceiling_audit.py,
+    governance Step 6a-v) is unchanged; the amendment applies once the SD-090 functional-role field exists.'
   polarity: asserts
   status: candidate
   live_status:
@@ -63060,3 +63079,634 @@
     MECH-321 remains candidate / v3_pending; this build makes its R4 half MEASURABLE, and
     measurement is what governance acts on. MECH-094 N/A (waking path, no simulated memory
     writes); phased training N/A (no encoder head, no new parameters).
+
+- id: SD-086
+  title: z_harm_a's functional readout must be a calibrated scalar valuation, not the latent norm. The latent norm conflates a large near-constant encoder offset with a small functional component; E3 consumes it as an approximately constant gain (e3_selector.py:1038 lambda_ethical, :2766 commit-threshold urgency). Replace with a trained scalar head off z_harm_a, parallel to how harm/benefit are read via trained eval heads rather than latent norms.
+  claim_type: design_decision
+  subject: harm_stream.affective_readout_is_calibrated_scalar_not_norm
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-011
+  - SD-019
+  - SD-020
+  related_claims:
+  - SD-011
+  - SD-019
+  - SD-020
+  - MECH-258
+  - ARC-016
+  - SD-050
+  - INV-089
+  - INV-090
+  source:
+  - docs/thoughts/2026-06-10_z_harm_a_saturation_decoupling.md
+  - evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md
+  falsifier: Two-arm comparison, norm-readout vs trained-head-readout, matched seeds. PASS requires BOTH (a) cross-state dynamic range of the readout increases by a margin scaled on the SD of the delta plus an absolute floor, and (b) at least one downstream consumer changes measurably (commit-threshold distribution or lambda_eff distribution moves beyond the seed-noise band). FAIL if range rises but nothing downstream moves -- that shows the readout is not load-bearing.
+  non_degeneracy_precondition: The z_harm_a LATENT must itself carry decodable cross-state information -- a linear decode of behavioural mode or harm-event status from z_harm_a must clear a floor with non-zero cross-seed variance. If the latent is uninformative the readout form is not the defect and the run self-routes substrate_not_ready.
+  scope_note: 'Curriculum-scope condition (intake candidate 5): every source number is from a ~50-episode raw warmup with scaffold_train_harm_pathway off and no scaffolded_sd054_onboarding. Conclusions are scoped to raw-warmup agents unless re-run on the curriculum-trained configuration. See project_stageh_harm_pathway_training / 603i/603k harm-pathway co-training.'
+  notes: Reaped from the 2026-06-10 z_harm_a saturation-decoupling intake (candidate 1), written 2026-07-21 by session confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Internal experimental observation from the V3-EXQ-664 affective fishtank showcase; the embodied visualisation surfaced the saturation before the scalar metrics (feedback_whimsy_visualization). No claim in the registry asserts a READOUT FORM for z_harm_a; SD-011/SD-019/SD-019b/MECH-219 constrain what the latent must encode, none constrains how it is read. Readout swap is a substrate change and should not be built until SD-087 and Q-086 report (complex, probe-gated).
+- id: SD-087
+  title: SD-020's stable reading is scoped to the flag-on configuration and does not describe default-trained agents. harm_surprise_pe_enabled defaults to False (config.py:2306), so the default-trained substrate trains z_harm_a against the EMA accumulated-harm target SD-020 argues against; SD-020's stable/PASS reading (V3-EXQ-324b) is scoped to the flag-on config and that scoping is not recorded on the claim.
+  claim_type: design_decision
+  subject: harm_stream.sd020_stable_reading_is_flag_on_scoped
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  implementation_phase: v3
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-020
+  related_claims:
+  - SD-020
+  - SD-019
+  - MECH-219
+  - Q-036
+  source:
+  - docs/thoughts/2026-06-10_z_harm_a_saturation_decoupling.md
+  - evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md
+  falsifier: 'Re-run the 664 affective fingerprint as a two-arm experiment, harm_surprise_pe_enabled OFF vs ON, everything else matched. PASS (claim upheld) = the saturation-and-inversion signature is present in OFF and materially reduced in ON: OFF shows within-episode CoV below a pre-registered floor AND inverted mode-ordering (shelter > avoid > freeze) while ON shows neither. FAIL = the signature survives the flag flip, relocating the defect to the encoder or environment (hands the question to Q-086).'
+  non_degeneracy_precondition: The OFF arm must reproduce the original 664 signature before the ON arm means anything, and the two arms must differ on the training loss they actually optimise (assert the PE branch at agent.py:8636-8642 is entered). An ON arm that silently falls through to the EMA target tests nothing and self-routes substrate_not_ready.
+  scope_note: Same raw-warmup curriculum-scope condition as SD-086 (intake candidate 5).
+  notes: 'Reaped from the 2026-06-10 intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. This is a claim-status-vs-default drift finding of the same shape as reference_reeconfig_from_dims_silent_kwargs (a knob that exists but is not reached). SD-020 carries a default_off_scope_note pointing here. Highest-information first move: the one-flag two-arm run separating ''SD-020 was right and is simply not on'' from ''the pathology survives the fix''. Consider a standing default_off annotation audit across other claims (intake next-step 4).'
+- id: Q-086
+  title: 'Environment-confound control: is the z_harm_a saturation ecological or representational? Re-measure the affective fingerprint on a gentler environment (lower num_hazards, lower hazard_food_attraction) to separate faithful chronic-suffering integration from a calibration/representation pathology.'
+  claim_type: open_question
+  subject: harm_stream.saturation_ecological_vs_representational
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: answer_state
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-086
+  - SD-087
+  related_claims:
+  - SD-011
+  - SD-019
+  - INV-053
+  - MECH-219
+  source:
+  - docs/thoughts/2026-06-10_z_harm_a_saturation_decoupling.md
+  - evidence/planning/thought_intake_2026-06-10_z_harm_a_saturation_decoupling.md
+  what_would_answer: 'PASS for ''calibration, not ecology'' = z_harm_a still pegs high with sub-floor CoV in the benign environment. PASS for ''faithful chronic suffering'' = the level and range track hazard density. Non-degeneracy: the manipulation must demonstrably take -- the sensory tier z_harm_s must differ across arms (mean or CoV beyond the seed-noise band); if z_harm_s is unmoved the environment was not actually made gentler and the arm self-routes substrate_not_ready.'
+  scope_note: Same raw-warmup curriculum-scope condition as SD-086/SD-087 (intake candidate 5).
+  notes: Reaped from the 2026-06-10 intake (candidate 3, the raw thought's own confound control), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Should run alongside or after SD-087's flag flip. Queue only via /queue-experiment (close relative of V3-EXQ-664).
+- id: Q-087
+  title: 'What event counts as V3 closure for the purpose of the version-transition artefact gate (GOV-V3FREEZE-1) and the construction-opacity repayment boundary (GOV-OPACITY-1)? Candidate options: strict green board, governance acceptance, or an additional reproducibility check.'
+  claim_type: open_question
+  subject: governance.v3_closure_definition
+  polarity: asks
+  status: resolved
+  live_status:
+    reading: answered
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: answer_state
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  resolved_utc: '2026-08-01'
+  resolution: governance_acceptance
+  resolution_note: 'User decision 2026-08-01 (session cool-sutherland-623d3f, in response to the deferred intake registration): V3 is closed when a governance decision records it, with a decision_log entry, INDEPENDENT of residual closure-node count. Chosen over strict green board (9 nodes currently blocked and the 2026-07-19 target already slipped, so that event may never fire and would make GOV-V3FREEZE-1 permanently inert) and over green-board-plus-reproducibility (inherits that risk and partly duplicates the gate''s own PASS criterion). Robust to substrate-blocked V4/V5 nodes and makes the gate trigger on a controllable date. The known risk -- a judgement-call boundary can drift -- is exactly what GOV-OPACITY-1''s dated-repayment audit exists to catch.'
+  depends_on: []
+  related_claims:
+  - GOV-V3FREEZE-1
+  - GOV-OPACITY-1
+  - GOV-SUBTRACT-1
+  source:
+  - docs/thoughts/2026-06-21_v3_closure_as_external_legibility_boundary.md
+  - evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  notes: Reaped from the 2026-06-21 V3-closure-legibility intake (candidate 4), written 2026-07-21 by confident-pare-9273f1, resolved and registered 2026-08-01 by cool-sutherland-623d3f. Candidate 4 was the critical-path decision on which the intake's candidates 1-3 were undecidable (definition_not_ready). With it resolved, GOV-V3FREEZE-1 is definition_ready.
+- id: GOV-V3FREEZE-1
+  title: 'Version-transition artefact gate: V4 substrate expansion must not erase the opportunity to freeze, reproduce, describe and inspect the completed V3. Before substantial V4 substrate expansion a defined minimum V3 closure package must exist AND double as a manipulable causal reference artefact for later cross-version comparison.'
+  claim_type: governance_rule
+  subject: governance.version_transition.v3_freeze_and_reference_record
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - Q-087
+  - SENT-14
+  - SENT-0
+  related_claims:
+  - SENT-14
+  - SENT-0
+  - GOV-EXT-1
+  - GOV-PROC-1
+  - INV-077
+  - SENT-17
+  source:
+  - docs/thoughts/2026-06-21_v3_closure_as_external_legibility_boundary.md
+  - evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  - docs/thoughts/2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  functional_restatement: 'TWO RATIONALES, ONE GATE (registered jointly per the 2026-06-21 candidate 1 and the 2026-06-24 candidate 5, which reach the same object from opposite directions). Rationale A (external legibility): SENT-14/GOV-EXT-1/GOV-SEC-1 all gate RELEASE; nothing gates the START of V4 on the EXISTENCE of a frozen, inspectable V3. Once V4 moves the substrate the validated object stops existing in the form that was validated. Rationale B (causal reference): a working V3 is only usable as a manipulable reference for later efficiency/compression comparison if its invariants are captured before the substrate moves. MINIMUM V3 CLOSURE PACKAGE (working contents, fixed at registration): one canonical entry point; one frozen V3 specification; one reproducible flagship demonstration; one statement of what V3 does and does not establish; one findings document separating positive results, failures, unresolved claims and scope limits; PLUS the reference-record axes -- behavioural invariants, internal-state invariants, developmental milestones, ethical-constraint traces, failure modes, recovery profiles, computational costs, and memory/latency/sample requirements. AUDIT-SHAPED PASS/FAIL: PASS = every package item exists at a named path AND an independent reader reproduces the flagship result from the frozen spec alone AND every reference axis is recoverable without re-running V3. FAIL = V4 substrate work crosses the named threshold with any item absent or any axis unrecoverable. DECIDABILITY PRECONDITION (governance analogue of non-degeneracy): auditable only once ''V3 closure'' and ''substantial V4 expansion'' both have operational definitions. V3 closure is now DEFINED as governance acceptance (Q-087, user decision 2026-08-01). ''Substantial V4 expansion'' still needs an operational threshold; absent it the gate self-routes definition_not_ready on that leg. NOT a stop-work order: this is a produce-before-submerge requirement, not a block on all V4 work. Flagship selection is deferred (a fact recoverable from the evidence index at package-build time, not a proposition to hold).'
+  notes: 'Reaped jointly from the 2026-06-21 closure intake (candidate 1) and the 2026-06-24 evolutionary-retention intake (candidate 5), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. governance_rule, not MECH/ARC; no substrate falsifier, no EXQ id. Composes with SENT-17 (substitution must preserve internal ethical-process representations). Existing partial machinery: docs/public_explorer/, scripts/export_public_explorer.py, docs/public_explorer_policy.md, docs/START_HERE_HOW_REE_DEVELOPS.md, docs/CURRENT_FRONT.md, docs/REE_MIN_SPEC.md, docs/closure_dashboard.md.'
+- id: GOV-OPACITY-1
+  title: Construction-phase opacity is acceptable technical debt only while it carries a named, dated repayment boundary. External inscrutability during construction is a legitimate choice, not a defect, provided the boundary is declared and reviewed on the same cadence as SENT-0 (every generation boundary).
+  claim_type: governance_rule
+  subject: governance.opacity_as_dated_technical_debt
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - Q-087
+  - SENT-0
+  - GOV-PROC-1
+  related_claims:
+  - SENT-0
+  - GOV-PROC-1
+  - GOV-V3FREEZE-1
+  source:
+  - docs/thoughts/2026-06-21_v3_closure_as_external_legibility_boundary.md
+  - evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  functional_restatement: 'The positive half of the position and the reason it is a rule rather than a preference: inscrutability is acceptable while it carries a defined repayment boundary and unacceptable once it does not. It also names a real cost of PREMATURE externalisation that no existing claim states -- external legibility creates a second design target while the architecture is still moving and can distort research toward what is easiest to explain rather than what most needs testing (the rule''s rationale, not a delay tactic). AUDIT-SHAPED PASS/FAIL: PASS = a boundary event and date are recorded and unchanged, or changed with a recorded reason. FAIL = no boundary recorded, or the date has moved more than once without recorded justification (the drift failure mode -- how construction-phase opacity becomes permanent opacity). DECIDABILITY PRECONDITION: requires at least one named boundary event to exist; a rule with no declared boundary is vacuous rather than violated and reports definition_not_ready, not FAIL. The boundary event is now nameable: governance acceptance of V3 closure (Q-087).'
+  notes: Reaped from the 2026-06-21 closure intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. This rule is the audit that catches GOV-V3FREEZE-1's governance-acceptance boundary drifting.
+- id: GOV-SUBTRACT-1
+  title: 'Legibility by subtraction: the V3 closure package is produced by curating and compressing existing material, not by rewriting the research history. Separate the primary reader path (current work) from supporting research and from operational archaeology; retain audit history but remove it from the reader path; mark human vs agent provenance in the public account.'
+  claim_type: governance_rule
+  subject: governance.legibility_by_subtraction
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-V3FREEZE-1
+  - INV-077
+  related_claims:
+  - INV-077
+  - SD-062
+  - GOV-V3FREEZE-1
+  source:
+  - docs/thoughts/2026-06-21_v3_closure_as_external_legibility_boundary.md
+  - evidence/planning/thought_intake_2026-06-21_v3_closure_as_external_legibility_boundary.md
+  functional_restatement: 'The method claim that makes GOV-V3FREEZE-1 affordable -- without it, ''produce a frozen V3 artefact'' reads as a months-long documentation project and will not happen. Interlocks with INV-077 at the presentation layer: human/agent provenance must be visible in the public account, not only enforced at the confidence-update boundary. AUDIT-SHAPED PASS/FAIL: PASS = a reader path exists whose length from entry point to a reproducible result is bounded by a pre-registered number of hops, with archaeology reachable but off that path. FAIL = the package is produced as new prose narrating the whole history. DECIDABILITY PRECONDITION: requires an agreed entry point and an agreed ''reproducible result'' target; without both, hop-count is unmeasurable and the rule reports definition_not_ready.'
+  notes: Reaped from the 2026-06-21 closure intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Repository consolidation is explicitly out of scope and must not be smuggled in under this rule.
+- id: ARC-115
+  title: Confidence readouts are non-collapsible, and externally-induced agreement is a separate channel from internally-derived confidence. A single scalar confidence conflates propositional confidence, attractor stability, cross-subsystem agreement, conflict pressure, action-readiness, and socially-supplied agreement; the last must not enter the same accumulator as the others -- else being told something becomes indistinguishable from having found it.
+  claim_type: architecture_hypothesis
+  subject: confidence.externally_induced_agreement_is_separate_channel
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5
+  registered_utc: '2026-08-01'
+  depends_on:
+  - MECH-059
+  - INV-033
+  - INV-077
+  related_claims:
+  - MECH-059
+  - MECH-063
+  - INV-033
+  - MECH-065
+  - ARC-016
+  - EXT-001
+  - INV-077
+  - MECH-424
+  - MECH-192
+  - ARC-116
+  source:
+  - docs/thoughts/2026-06-23_cross_system_resonance_and_inference_calibration.md
+  - evidence/planning/thought_intake_2026-06-23_cross_system_resonance_and_inference_calibration.md
+  falsifier: Stage dissociation, not a performance test. An external assertion should raise the social-agreement channel and, on its own, must NOT raise commit-readiness the way accumulated internal evidence does. PASS requires the two paths to be dissociable -- an assertion-only manipulation and an evidence-only manipulation produce distinguishable readout profiles, with the collapsed control showing them indistinguishable. FAIL if performance merely drops without dissociation.
+  non_degeneracy_precondition: The confidence readouts must be live -- non-zero cross-arm and cross-seed variance on each channel being dissociated, not floor-pinned. A channel that never moves cannot be shown separate from another that never moves; the run self-routes substrate_not_ready.
+  notes: 'Reaped from the 2026-06-23 cross-system-resonance intake (candidate 1), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Substrate-BLOCKED in V3: there is no external-assertion input channel; nearest live analogue is z_beta leakage (MECH-192), which is affective not propositional. This is the architectural form of the circularity worry INV-077 forbids at the GOVERNANCE layer but nothing forbids at the AGENT layer. EXT-001 (sycophancy) is arguably the BEHAVIOURAL consequence of exactly this collapse -- checked at registration and kept as a peer claim (architecture/mechanism) rather than merged (EXT-001 is the external_failure_mode symptom, ARC-115 the architectural constraint). Same non-collapse family as ARC-116 (introspection intake candidate 3), a different cut.'
+- id: GOV-CALIB-1
+  title: 'Calibration ledger: pre-registered felt confidence and explicit estimates, with blinding status, are recorded before outcomes are known. An Assembly instrument (not an agent mechanism) that is the only way to distinguish genuine calibration from retrospective resonance.'
+  claim_type: governance_rule
+  subject: governance.calibration_ledger_pre_registered_predictions
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-23_cross_system_resonance_and_inference_calibration.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - INV-077
+  related_claims:
+  - SD-062
+  - GOV-FROZEN-1
+  - GOV-CONFIRM-1
+  - INV-077
+  source:
+  - docs/thoughts/2026-06-23_cross_system_resonance_and_inference_calibration.md
+  - evidence/planning/thought_intake_2026-06-23_cross_system_resonance_and_inference_calibration.md
+  functional_restatement: 'Record, BEFORE outcomes are known, the user''s felt confidence, the assistant''s explicit estimate, whether each was generated blind to the other, the key reasons, and later the outcome -- classified with the existing vocabulary (supports / does_not_support / non_contributory / substrate_ceiling / superseded). Nothing in the registry does this: SD-062 records per-claim multi-axis state but not pre-registered predictions with provenance and blinding; GOV-FROZEN-1 freezes what will be counted, not who predicted what with what confidence. PASS/FAIL (audit + measurement): PASS = pre-registered felt confidence beats a shuffled-outcome null by a margin scaled on the SD of the delta plus an absolute floor. FAIL = indistinguishable from the null (a genuinely useful negative, to be reported not buried). NON-DEGENERACY, both live: (a) blinding must actually occur on a recorded subset -- entries where either party saw the other''s number first are marked and excluded from the calibration statistic; empty subset -> measures agreement not calibration -> insufficient_blind_entries. (b) outcome variance must be non-zero -- a ledger where nearly every entry resolves the same way has no discriminating signal; require a floor on outcome-class spread before computing. Buildable now but slow-yielding by construction (produces nothing until enough blind entries accumulate) -- start early or not at all.'
+  notes: Reaped from the 2026-06-23 resonance intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Assembly instrument, not an agent claim; no EXQ id. The discipline note 'human-AI agreement is not independent replication' (candidate 4) is already INV-077 and is not re-registered.
+- id: SD-088
+  title: The claims index must represent source-dependence between supporting judgements. Two supports sharing a source (a shared driver, a shared run, or one party reasoning from the other's framing) must not contribute independently to confidence. A schema addition (edge type or per-support source_dependence field).
+  claim_type: design_decision
+  subject: registry.schema.source_dependence_between_supports
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-062
+  related_claims:
+  - SD-062
+  - GOV-CONFIRM-1
+  - INV-077
+  - GOV-REUSE-1
+  source:
+  - docs/thoughts/2026-06-23_cross_system_resonance_and_inference_calibration.md
+  - evidence/planning/thought_intake_2026-06-23_cross_system_resonance_and_inference_calibration.md
+  falsifier: PASS = at least one real correlated-support instance is detected and its double-count removed, with the affected claim's confidence changing. FAIL = the field is populated but never changes any confidence (decorative).
+  non_degeneracy_precondition: At least one claim in the registry must actually have two supports sharing a source; if none exists the schema addition is vacuous -- report no_instances rather than shipping an unexercised field. A retrospective scan of existing claims is the cheap way to check before building.
+  notes: Reaped from the 2026-06-23 resonance intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. SD-062 gives per-claim multi-axis state; GOV-CONFIRM-1 detects confirmer EXPERIMENTS; neither represents source-dependence between two supporting JUDGEMENTS. The general case (two experiments sharing a driver, two claims supported by the same run) has the same structure. Cheapest first move is the precondition scan over claims.yaml + the evidence index.
+- id: SD-089
+  title: 'Claim-origin provenance: the registry records the epistemic origin class of each claim. Classes: introspective / literature / computational-analogy / experimental-anomaly / convergent. Backfilled entries marked as reconstructed, not recorded (per MECH-094''s own logic). The registry''s source: field holds file paths, not epistemic origin class.'
+  claim_type: design_decision
+  subject: registry.schema.claim_origin_provenance_class
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-062
+  related_claims:
+  - SD-062
+  - INV-077
+  - ARC-106
+  - MECH-094
+  source:
+  - docs/thoughts/2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  - evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  falsifier: The field's testable proposition is the productivity audit -- do origin classes differ in promotion rate, demotion rate, and substrate-ceiling rate? PASS = a class-difference beyond the null, an actionable read on where hypotheses are worth sourcing. A NULL result is a real and reportable finding (origin does not predict productivity), which would justify NOT maintaining the field.
+  non_degeneracy_precondition: (a) Each class must be non-degenerately populated -- a class with a handful of members supports no rate comparison; require a floor on per-class count before computing. (b) The outcome variable must be live -- promotion/demotion outcomes must have non-zero spread; if nearly all claims sit at candidate the rate comparison is floor-pinned and self-routes insufficient_outcome_variance.
+  notes: Reaped from the 2026-06-23 introspection intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. REGISTERED FIRST in the introspection cluster because GOV-INTRO-1 and GOV-OVERFIT-1 are unauditable without an origin field (schema_not_ready otherwise). The introspective-origin retrieval over docs/thoughts/ + intake corpus + git history is both the productivity audit's input and the backfill source -- one job. Backfill is reconstruction and will be partly confabulated (MECH-094 turned on the registry); mark it reconstructed.
+- id: GOV-INTRO-1
+  title: 'Triangulation rule: introspection generates architectural hypotheses; it never validates them alone. A mechanism first noticed introspectively acquires standing only when it also maps onto neuroscience or cognitive literature, is computationally coherent, produces measurable predictions, and survives experiment. The phenomenology-side counterpart to ARC-106.'
+  claim_type: governance_rule
+  subject: governance.introspection_generates_never_validates_alone
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - SD-089
+  - ARC-106
+  related_claims:
+  - ARC-106
+  - INV-062
+  - INV-077
+  - MECH-094
+  - SD-089
+  source:
+  - docs/thoughts/2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  - evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  functional_restatement: 'REE''s architecture was substantially generated from the user''s phenomenology (''I have based REE on how my mind feels as much as my knowledge of biology and computing''); the practice is currently entirely undocumented, so it cannot be audited, defended externally, or corrected. Registering it is as much a constraint as a licence. PASS/FAIL (compliance audit, not experiment): PASS = every claim whose recorded origin is introspective carries at least one non-introspective support before promotion above candidate. FAIL = any such claim promoted on phenomenological plausibility alone. DECIDABILITY PRECONDITION (governance analogue of non-degeneracy): the audit is undecidable until claim-origin provenance exists -- without SD-089 the rule cannot be checked and self-routes schema_not_ready. Do not treat GOV-INTRO-1 as auditable before SD-089 lands.'
+  notes: 'Reaped from the 2026-06-23 introspection intake (candidate 1), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Precedent that the registry already licenses phenomenology-as-data for one domain: INV-062 (dream phenomenology -> four computational operations). This never authorises introspection as evidence for promotion (that would violate INV-077) -- it bounds it.'
+- id: ARC-116
+  title: Generation, metacognitive readout, and linguistic reconstruction are three non-collapsible stages. The confidence readout must not be derived from the verbal reconstruction, and neither may substitute for the generating dynamics. The felt sequence nonverbal-settling -> felt-confidence -> verbal-reconstruction -> external-testing implies three things REE currently treats as two at most.
+  claim_type: architecture_hypothesis
+  subject: cognition.generation_readout_reconstruction_noncollapse
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5
+  registered_utc: '2026-08-01'
+  depends_on:
+  - ARC-025
+  - MECH-069
+  related_claims:
+  - ARC-025
+  - MECH-069
+  - INV-033
+  - MECH-059
+  - ARC-048
+  - MECH-380
+  - MECH-424
+  - ARC-115
+  source:
+  - docs/thoughts/2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  - evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  falsifier: 'Dissociation under degradation. Degrade the reconstruction channel; a three-stage system''s confidence readout should be substantially preserved while a collapsed system''s should degrade with it. PASS requires the two architectures to be distinguishable on the readout under matched reconstruction degradation, not merely that performance drops. Practical consequence: if a system derives its confidence readout FROM its verbal reconstruction, degrading the reconstruction should corrupt the confidence -- a real testable dissociation and a safety property.'
+  non_degeneracy_precondition: The metacognitive readout must be live in the intact baseline -- non-zero cross-arm and cross-seed variance, not floor-pinned; a readout that never moves cannot be shown preserved or degraded, and the run self-routes substrate_not_ready.
+  notes: 'Reaped from the 2026-06-23 introspection intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Substrate-BLOCKED (no language/reconstruction channel in V3); scoped to V5. Same non-collapse argument-shape as ARC-025 (engine irreducibility) and MECH-069 (error incommensurability). Closely related to but distinct from ARC-115 (resonance intake candidate 1): same non-collapse family, different cut -- registered coherently as a pair.'
+- id: GOV-OVERFIT-1
+  title: 'Designer-overfit standing check: a mechanism first sourced from one person''s phenomenology requires cross-task and cross-agent validation before being treated as general cognition. REE''s n=1 phenomenological base is a genuine external criticism with no registered answer; this is the hedge given standing.'
+  claim_type: governance_rule
+  subject: governance.designer_overfit_cross_task_validation
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - SD-089
+  related_claims:
+  - SD-089
+  - ARC-106
+  source:
+  - docs/thoughts/2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  - evidence/planning/thought_intake_2026-06-23_introspection_as_architectural_evidence_for_ree.md
+  functional_restatement: 'PASS/FAIL (audit): PASS = every introspectively-originated claim treated as general carries validation in at least two structurally different task families. FAIL = generality asserted from a single environment. DECIDABILITY PRECONDITION: requires (a) SD-089''s origin field, and (b) at least two structurally different task families to exist. V3 currently has effectively ONE, so this rule is presently VACUOUS rather than satisfied -- and saying so plainly is the point of registering it. Report insufficient_task_families, never PASS.'
+  notes: 'Reaped from the 2026-06-23 introspection intake (candidate 4), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Hits the same single-domain wall as the 2026-07-14 rule-apprehension intake candidate 2 (domain-generality fork). Designer-overfit risk: the user''s ADHD, strong nonverbal systems reasoning, spatial/motor intuition and long immersion in REE shape what is available to introspection.'
+- id: ARC-119
+  title: 'Language-input update policy: an utterance proposes candidate model states which are evaluated before any update; it never installs a belief. Generalises INV-085 from affect to arbitrary content and ARC-104 from the harm stream to all content. Evaluation criteria: context, source reliability, causal compatibility with existing world-model structure, memory, uncertainty, current goals, speaker model.'
+  claim_type: architecture_hypothesis
+  subject: language.input_proposes_candidate_states_never_installs_belief
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5_v6
+  registered_utc: '2026-08-01'
+  depends_on:
+  - INV-085
+  - ARC-104
+  - MECH-424
+  related_claims:
+  - INV-085
+  - ARC-104
+  - ARC-103
+  - INV-007
+  - MECH-424
+  - MECH-373
+  - MECH-418
+  source:
+  - docs/thoughts/2026-06-23_language_as_cooperation_interface.md
+  - evidence/planning/thought_intake_2026-06-23_language_as_cooperation_interface.md
+  falsifier: 'Inject an assertion that contradicts available world evidence, under a source-reliability manipulation. PASS = the resulting belief tracks the EVIDENCE and the SOURCE RELIABILITY rather than the assertion: a low-reliability contradicting assertion leaves belief substantially unchanged while a high-reliability one shifts it, and neither overwrites contradicting direct evidence. FAIL = belief tracks assertion irrespective of reliability or contradicting evidence.'
+  non_degeneracy_precondition: The contradicting-evidence manipulation must move belief in the no-language control (non-zero cross-arm variance), else the test cannot distinguish 'language was correctly refused' from 'nothing moves belief at all', and it self-routes substrate_not_ready. The source-reliability manipulation must be represented; if the speaker model is absent the reliability leg is untestable.
+  notes: Reaped from the 2026-06-23 language-as-cooperation intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Substrate-BLOCKED (no language stream / propositional input channel / speaker model in V3); scoped V5/V6. REGISTERED FIRST in the language cluster because it is a SAFETY-shaped constraint on a mechanism already registered as capable of corruption (MECH-424, whose corruption branch is exactly what an install-on-assert policy would maximise). INV-085/ARC-104 are content-specific guards; the general propose-and-evaluate gate for arbitrary content is the hole.
+- id: ARC-117
+  title: 'Message selection minimises the receiver''s residual uncertainty: an utterance approximates a task-relevant sufficient statistic for the receiver, not a compression of the sender''s salience. Predicts WHAT gets said (features that most reduce the receiver''s uncertainty about the sender''s state) rather than merely that saying happens.'
+  claim_type: architecture_hypothesis
+  subject: language.message_selection_minimises_receiver_uncertainty
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5_v6
+  registered_utc: '2026-08-01'
+  depends_on:
+  - ARC-009
+  - ARC-099
+  - ARC-101
+  related_claims:
+  - ARC-009
+  - ARC-101
+  - ARC-099
+  - MECH-014
+  - MECH-192
+  - INV-057
+  - MECH-191
+  source:
+  - docs/thoughts/2026-06-23_language_as_cooperation_interface.md
+  - evidence/planning/thought_intake_2026-06-23_language_as_cooperation_interface.md
+  falsifier: Two signalling policies in a multi-agent coordination task -- features selected by predicted uncertainty-reduction in the receiver vs features selected by sender-side salience, under a matched channel budget. PASS = the receiver-objective arm achieves lower coordination cost by a margin scaled on the SD of the delta plus an absolute floor. FAIL = indistinguishable (the receiver model is doing no work; language selection can be sender-local).
+  non_degeneracy_precondition: The receiver's uncertainty must be live -- non-zero cross-arm and cross-seed variance in the receiver's posterior entropy over the sender's relevant state. A task where the receiver already knows the sender's state (entropy floored at zero) or can never know it (entropy pinned at maximum) discriminates nothing, and the run self-routes substrate_not_ready. Additionally the channel budget must bind -- an unconstrained channel makes selection moot.
+  notes: Reaped from the 2026-06-23 language-as-cooperation intake (candidate 1), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Substrate-BLOCKED in V3; nearest live substrate is MECH-192 z_beta leakage (affective, non-propositional, would not test this). ARC-009 says language IS a coordination layer; ARC-101 says it BOOTSTRAPS from a social ecology; neither states a message-selection objective. The specific substrate requirement (receiver model, bound channel, coordination task with live receiver uncertainty) should be recorded against ARC-099's enabling-condition contract.
+- id: ARC-118
+  title: Worldly reference is inherited through the world model, and the same mechanism covers non-present referents. Language refers reliably to the world because it indexes internal states that model the world; therefore reference to imagined, counterfactual, fictional and abstract states requires no additional mechanism.
+  claim_type: architecture_hypothesis
+  subject: language.reference_inherited_via_world_model
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  implementation_phase: v5
+  version_relevance: v5_v6
+  registered_utc: '2026-08-01'
+  depends_on:
+  - ARC-048
+  - INV-003
+  related_claims:
+  - ARC-048
+  - INV-003
+  - ARC-102
+  - MECH-416
+  - MECH-419
+  - EXT-005
+  source:
+  - docs/thoughts/2026-06-23_language_as_cooperation_interface.md
+  - evidence/planning/thought_intake_2026-06-23_language_as_cooperation_interface.md
+  falsifier: The negative signature is the test. A system that refers correctly to present referents should extend to non-present ones WITHOUT an added pathway, given only that the corresponding model states are stable or reconstructable. FAIL = non-present reference requires a distinct mechanism, or degrades in a way not explained by the stability of the underlying model state. PASS additionally requires reference quality to TRACK model-state stability rather than referent presence -- the discriminating measurement. A registry that needed a distinct 'imagination-reference' pathway would falsify the claim.
+  non_degeneracy_precondition: Present-referent reference must first clear a floor with non-zero cross-seed variance; and the model states standing in for non-present referents must be independently shown to be reconstructable (a stability measure above floor). If either is at floor there is nothing to extend and the run self-routes substrate_not_ready.
+  notes: 'Reaped from the 2026-06-23 language-as-cooperation intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Substrate-BLOCKED; scoped V5/V6. ARC-048 says language externalises functional states but does not say this is WHY reference works nor draw the non-present-referent corollary, which is the falsifiable part. Probe (cheap when the time comes): measure whether reference quality tracks model-state stability or referent presence; record the design now so it is not re-derived. NOTE: the interface-not-substrate proposition common to this thought is owned by the 2026-07-14 rule-apprehension intake candidate 3 and is deliberately NOT re-registered here.'
+- id: GOV-CEIL-2
+  title: 'GOV-CEIL-1 tail-escape amendment: absence of positive discrimination does not license demotion when no test ever instantiated the mechanism''s trigger condition. A claim whose registered function is tail-protective, developmental, compensatory or otherwise conditionally expressed is demotable only if either (a) at least one test instantiated its trigger condition, or (b) the demotion record explicitly states that none did and demotes anyway on stated grounds.'
+  claim_type: governance_rule
+  subject: governance.epistemics.ceiling_exhaustion_tail_escape
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: false
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  binds_at_version: v3
+  blocks_v3_green_board: false
+  depends_on:
+  - GOV-CEIL-1
+  - SD-090
+  related_claims:
+  - GOV-CEIL-1
+  - GOV-DIAG-1
+  - GOV-FANOUT-1
+  - SD-090
+  - INV-055
+  - MECH-362
+  - ARC-090
+  source:
+  - docs/thoughts/2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  functional_restatement: 'AN AMENDMENT to the live GOV-CEIL-1, not a loosening. A robustness reserve is silent except under the rare condition it protects against, so it cannot produce a positive discrimination under tests that never instantiate its trigger -- it accumulates substrate-ceiling verdicts and is demoted not because it does nothing but because nothing has ever asked it to. redundant_under_current_tests != functionally_unnecessary. THE ASYMMETRY IS PRESERVED (intake constraint): a claim is STILL demoted unless the untested-trigger condition is POSITIVELY ESTABLISHED AND WRITTEN DOWN -- (b) requires an explicit demotion-record statement, it is not a universal stay of execution. PASS/FAIL (compliance audit + retrospective scan): PASS = every substrate-ceiling demotion of a conditionally-expressed claim carries one of (a) or (b). FAIL = a demotion of such a claim with neither. The retrospective scan is the immediately useful half: are any ALREADY-demoted claims conditionally-expressed ones that were never tested under their trigger? DECIDABILITY PRECONDITION: requires (i) at least one claim whose registered function is conditionally expressed -- supplied by SD-090''s classification -- and (ii) trigger conditions being recorded at all. Absent either the rule is vacuous rather than satisfied and reports no_instances / schema_not_ready, never PASS.'
+  notes: Reaped from the 2026-06-24 evolutionary-retention intake (candidate 1), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. GOV-CEIL-1 carries an amended_by_note pointing here. The retrospective demotion scan is the cheapest highest-value first move (answerable from the autopsy corpus + claims history, no new compute); a positive hit is a live governance defect. GOV-CEIL-1's wired machinery (scripts/check_substrate_ceiling_audit.py, governance Step 6a-v) is unchanged by this registration -- the amendment is recorded here and applied when the classification field (SD-090) exists.
+- id: SD-090
+  title: Mechanism functional-role classification, and a removal-justification vocabulary. Five revisable classes -- constitutive / developmental-scaffold / robustness-reserve / historical-implementation-contingency / true-redundancy -- plus the paired removal-justification distinction redundant_under_current_tests vs functionally_unnecessary (the second requiring materially stronger evidence). claims.yaml types claims by epistemic kind and status but has no axis for a mechanism's functional role in the system's viability.
+  claim_type: design_decision
+  subject: registry.schema.mechanism_functional_role_classification
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  depends_on:
+  - SD-062
+  related_claims:
+  - SD-062
+  - ARC-025
+  - ARC-090
+  - MECH-381
+  - MECH-362
+  - INV-055
+  - GOV-CEIL-2
+  source:
+  - docs/thoughts/2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  falsifier: PASS = the classification changes at least one demotion or retention decision (load-bearing). FAIL = populated but never decision-relevant (decorative) -- the same load-bearing-not-decorative test ARC-106 applies to biological grounding, applied to the registry's own schema.
+  non_degeneracy_precondition: 'The classes must be non-degenerately populated -- if essentially every mechanism lands in one class the axis carries no information and should report insufficient_class_spread rather than ship. Cheap pre-check: hand-classify a sample of existing claims before building the field.'
+  notes: 'Reaped from the 2026-06-24 evolutionary-retention intake (candidate 2), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Supplies GOV-CEIL-2''s precondition (i). The registry already contains members of >=2 of these classes without naming them: ARC-025/MECH-069 are constitutive; ARC-090/MECH-381/MECH-362/INV-055 are developmental-scaffold.'
+- id: Q-088
+  title: Does competitive redevelopment (development-without-the-mechanism) dissociate from mature-state lesion, or agree with it? For a mechanism registered as developmentally necessary the two protocols should give different verdicts -- and one decisive probe settles whether the expensive protocol is warranted as a standing requirement.
+  claim_type: open_question
+  subject: governance.competitive_redevelopment_vs_mature_lesion
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  epistemic_category: answer_state
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  depends_on:
+  - GOV-CEIL-2
+  - SD-090
+  related_claims:
+  - INV-055
+  - MECH-202
+  - MECH-362
+  - ARC-090
+  - MECH-381
+  - INV-041
+  - GOV-CEIL-1
+  source:
+  - docs/thoughts/2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  what_would_answer: 'Pick one mechanism registered as developmentally necessary -- INV-055''s infant stage is the natural candidate (already instrumented via the curriculum). Run (a) mature-state lesion and (b) development-without-the-mechanism. PASS = the two protocols DISSOCIATE (mature lesion says tolerable, redevelopment says not, or the reverse), establishing the expensive protocol buys something and justifying a standing requirement for this claim class. FAIL = they AGREE, establishing mature lesion suffices here and the expensive protocol is NOT justified -- a useful negative that closes the question rather than inviting a second attempt. NON-DEGENERACY: the mature-lesion arm must produce a measurable effect at all (non-zero cross-arm and cross-seed variance on the discriminating metric); a mechanism whose mature lesion AND develop-without are both no-ops is simply inert -- a GOV-CEIL-1 matter, self-routes substrate_not_ready.'
+  notes: Reaped from the 2026-06-24 evolutionary-retention intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. EXPENSIVE on its own terms (a full development run per arm) -- framed as ONE decisive probe, not a standing requirement. Queue via /queue-experiment with that cost stated, ONLY after GOV-CEIL-2 and SD-090's classification report (the classification determines the right probe target; INV-055 is the current best guess, not a settled choice). Do not generalise the protocol before the probe reports.
+- id: SENT-17
+  title: Any mechanism substitution must preserve internal ethical-process representations and their causal authority, not merely the action distribution. A substitution that reproduces actions while deleting the representations of uncertainty, vulnerability, harm, others and responsibility -- or severing their causal authority over selection -- fails the criterion regardless of behavioural match.
+  claim_type: governance_rule
+  subject: governance.substitution_preserves_ethical_process_representations
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-01'
+    needs_review: false
+  v3_pending: true
+  epistemic_category: governance_rule
+  claim_level: governance
+  registered_utc: '2026-08-01'
+  source_thought: evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  binds_at_version: v4
+  blocks_v3_green_board: false
+  depends_on:
+  - INV-077
+  related_claims:
+  - INV-077
+  - SENT-13
+  - ARC-025
+  - MECH-069
+  - GOV-V3FREEZE-1
+  source:
+  - docs/thoughts/2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
+  functional_restatement: 'behavioural imitation != functional equivalence != ethical-process equivalence. Behavioural equivalence is insufficient. PASS = a substitution passes only when BOTH a behavioural-equivalence check AND an internal-invariant check clear; the internal check requires the named representations to be present AND to remain causally load-bearing (ablating them still changes behaviour in the substituted system). FAIL = behavioural match accepted alone. DECIDABILITY PRECONDITION (the binding constraint, recorded as the rule''s dependency): the internal invariants must be instrumented and logged; if the ethical-process representations are not observable in the run record the criterion is unmeasurable and reports instrumentation_not_ready rather than PASS. Binds at V4+ (mechanism substitution / compilation is a V4+ activity).'
+  notes: 'Reaped from the 2026-06-24 evolutionary-retention intake (candidate 4), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. Natural home beside the SENT-* block: INV-077 keeps typed signal classes non-collapsible at the EVIDENCE layer, the SENT-* block gates welfare at the RELEASE layer; nothing stated that a substitution must preserve internal ethical-process representations WITH their causal authority intact -- a safety-relevant gap. Composes with GOV-V3FREEZE-1 (the reference record is what makes the internal-invariant check possible).'
