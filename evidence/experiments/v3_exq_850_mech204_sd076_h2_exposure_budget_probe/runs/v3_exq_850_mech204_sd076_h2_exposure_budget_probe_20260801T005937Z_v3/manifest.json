@@ -1,0 +1,193 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_850_mech204_sd076_h2_exposure_budget_probe",
+  "run_id": "v3_exq_850_mech204_sd076_h2_exposure_budget_probe_20260801T005937Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T03:28:26Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "inconclusive",
+  "evidence_direction_per_claim": {
+    "SD-076": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "ARM_INFL_LO::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.495663999904952,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv at least once. F1 recalibration is ON in every arm, unchanged from 794a -- confirms the substrate operating point this probe holds constant is actually live across the LONGER training budget too.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0013405698274115208,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "mean over seeds of (wci_symmetric_rv_ref_final - rv_final_after_training). SIGNED: SD-076 must push rv DOWN relative to the SUBSTRATE'S OWN internally-tracked un-inflated counterfactual (E3TrajectorySelector._wci_symmetric_rv_ref) or it is not an inflation source. Same statistic the DV routes on (rv level), measured against a positive control computed by the substrate itself on every tick -- no separate ARM_OFF_OFF arm is needed for this comparison.",
+        "control": "each seed's own _wci_symmetric_rv_ref, tracked in parallel by the substrate on every update_running_variance call",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3.945531861515511e-05,
+        "threshold": 0.0001,
+        "met": false
+      },
+      {
+        "name": "ARM_INFL_LO::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_LO",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry)|. THE 794 GATE, carried forward: two nominally different doses producing the same rv is a SATURATION signature, not a null. Must clear before this run's own H2 closure readout can be trusted (a still-clamped lever would read as 'no closure' for a reason unrelated to exposure).",
+        "control": "sibling inflation arm at the other asymmetry level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.4763782676396912e-05,
+        "threshold": 0.0001,
+        "met": false
+      },
+      {
+        "name": "ARM_INFL_HI::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (the Q-042/530c substrate-liveness contract). Worst cell reported.",
+        "control": "every seed of this arm; a dead rv makes the DV meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49567398709131627,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor, i.e. REM was entered and the MECH-204 lever moved rv at least once. F1 recalibration is ON in every arm, unchanged from 794a -- confirms the substrate operating point this probe holds constant is actually live across the LONGER training budget too.",
+        "control": "F1 recalibration is ON in every arm of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0011910023572708542,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::inflation_lowers_rv",
+        "precondition": "inflation_lowers_rv",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "mean over seeds of (wci_symmetric_rv_ref_final - rv_final_after_training). SIGNED: SD-076 must push rv DOWN relative to the SUBSTRATE'S OWN internally-tracked un-inflated counterfactual (E3TrajectorySelector._wci_symmetric_rv_ref) or it is not an inflation source. Same statistic the DV routes on (rv level), measured against a positive control computed by the substrate itself on every tick -- no separate ARM_OFF_OFF arm is needed for this comparison.",
+        "control": "each seed's own _wci_symmetric_rv_ref, tracked in parallel by the substrate on every update_running_variance call",
+        "direction": "lower",
+        "applies": true,
+        "measured": 6.421910129155188e-05,
+        "threshold": 0.0001,
+        "met": false
+      },
+      {
+        "name": "ARM_INFL_HI::dose_levels_separated",
+        "precondition": "dose_levels_separated",
+        "arm": "ARM_INFL_HI",
+        "kind": "readiness",
+        "description": "|rv_final(this arm) - rv_final(sibling arm at the OTHER asymmetry)|. THE 794 GATE, carried forward: two nominally different doses producing the same rv is a SATURATION signature, not a null. Must clear before this run's own H2 closure readout can be trusted (a still-clamped lever would read as 'no closure' for a reason unrelated to exposure).",
+        "control": "sibling inflation arm at the other asymmetry level, same seeds -- differs only in the dose",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2.4763782676396912e-05,
+        "threshold": 0.0001,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_extended_exposure_closes_smoke_gap",
+        "load_bearing": true,
+        "passed": false,
+        "closure_lo": 0.2174871769566745,
+        "closure_hi": 0.12162064930731266,
+        "support_floor": 0.3
+      },
+      {
+        "name": "C2_extended_exposure_plateaus",
+        "load_bearing": true,
+        "passed": false,
+        "closure_lo": 0.2174871769566745,
+        "closure_hi": 0.12162064930731266,
+        "plateau_ceiling": 0.1
+      },
+      {
+        "name": "C3_dose_response_monotone",
+        "load_bearing": false,
+        "passed": true,
+        "lo_rv": 0.0036801948616908275,
+        "hi_rv": 0.0036554310790144306
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_extended_exposure_closes_smoke_gap": false,
+      "C2_extended_exposure_plateaus": false,
+      "C3_dose_response_monotone": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "d9acf1249f3eac283f418befe2547cc71daaf6833e9bb632e9045d7e239db711",
+  "substrate_commit": {
+    "commit": "3bcf55a8597e335f44fb1116a324ce82039447d0",
+    "dirty": false,
+    "branch": "main"
+  }
+}

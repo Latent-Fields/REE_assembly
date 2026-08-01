@@ -1,0 +1,48 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "arm_overconfidence_score": {
+      "ARM_INFL_LO": 0.01222872701885099,
+      "ARM_INFL_HI": 0.018972277304366614
+    },
+    "arm_calibration_ratio": {
+      "ARM_INFL_LO": 0.9878478087519559,
+      "ARM_INFL_HI": 0.9812104192376733
+    },
+    "arm_true_error_ref": {
+      "ARM_INFL_LO": 0.003727350425603643,
+      "ARM_INFL_HI": 0.003727350425603643
+    },
+    "arm_rv_final": {
+      "ARM_INFL_LO": 0.0036801948616908275,
+      "ARM_INFL_HI": 0.0036554310790144306
+    },
+    "per_level": {
+      "LO": {
+        "asymmetry": 0.6,
+        "infl_arm": "ARM_INFL_LO",
+        "rv_final": 0.0036801948616908275,
+        "rv_final_794a": 0.003997733405264173,
+        "rv_final_smoke": 0.0025377,
+        "closure_fraction": 0.2174871769566745,
+        "closes_meaningfully": false,
+        "plateaus": false,
+        "n_seeds_overconfident": 0,
+        "infl_score": 0.01222872701885099
+      },
+      "HI": {
+        "asymmetry": 0.8,
+        "infl_arm": "ARM_INFL_HI",
+        "rv_final": 0.0036554310790144306,
+        "rv_final_794a": 0.003870367272153275,
+        "rv_final_smoke": 0.0021031,
+        "closure_fraction": 0.12162064930731266,
+        "closes_meaningfully": false,
+        "plateaus": false,
+        "n_seeds_overconfident": 0,
+        "infl_score": 0.018972277304366614
+      }
+    },
+    "readiness_ok": false
+  }
+}

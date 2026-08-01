@@ -1,0 +1,189 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout",
+  "run_id": "v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout_20260801T110851Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-01T11:08:51Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-309",
+    "ARC-062"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-309": "non_contributory",
+    "ARC-062": "non_contributory"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "preconditions": [
+      {
+        "name": "committed_class_axis_exercisable_both_arms",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds in BOTH arms. SAME-statistic family as C2 (class multiplicity bounds class entropy).",
+        "control": "SP-CEM multi-class candidate pool, both arms",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_frac_pre_ge2": 1.0,
+        "observed_frac_pre_ge2_floor": 0.3,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_divergence_both_arms",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds in BOTH arms -- the class bias is non-degenerate. Same range statistic the 649 GAP-A readiness asserts.",
+        "control": "ARM_OFF + ARM_ON: SD-056 e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_consumed_spread": 0.020753,
+        "observed_consumed_spread_floor": 0.05,
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_bounded",
+        "kind": "readiness",
+        "description": "consumed-summary spread stayed below the 643a explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all cells",
+        "measured": 0.162652,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "arm_on_rule_field_differentiated_and_matured",
+        "kind": "readiness",
+        "description": "ARM_ON CandidateRuleField minted >= CRF_MIN_MINTED distinct rules AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P2 ticks (the crf_persist-matured pool clears the 0.30 floor the 654 per-episode cold-start could not), on a majority of ARM_ON seeds. Below-floor => substrate not matured => substrate_not_ready_requeue.",
+        "control": "ARM_ON crf frac-active (matured pool) + crf_n_minted_total",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_max_crf_frac_active": 0.972062,
+        "observed_crf_frac_active_floor": 0.3,
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity_arm_on_bias_differs_from_arm_off",
+        "kind": "readiness",
+        "description": "paired-by-seed |mean_lateral_pfc_bias_abs(ARM_ON) - mean_lateral_pfc_bias_abs(ARM_OFF)| > floor on a majority of seeds. The trained head + matured field produce a DIFFERENT bias than the legacy collapsed source -- the 654 seed-42 byte-identical (~4.4e-5) propagation washout did not recur. Below-floor => vacuous propagation => substrate_not_ready_requeue (do NOT score the falsifier). Supported by the within-ARM_ON rule_state counterfactual delta (zeroing rule_state changes the bias).",
+        "control": "paired ARM_ON vs ARM_OFF mean lateral_pfc bias on the matched stack",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_max_paired_bias_diff": 0.05002335,
+        "observed_prop_nonvac_floor": 0.001,
+        "met": true
+      },
+      {
+        "name": "mech448_demotion_lever_live_and_excluding_both_arms",
+        "kind": "readiness",
+        "description": "The MECH-448 f_eligibility-demotion conversion constant (matched on BOTH arms) is ACTIVE on >= DEMOTION_ACTIVE_FRAC_FLOOR of P2 ticks AND it ACTUALLY EXCLUDES on the divergent e2_world_forward pool (mean f_eligibility_excluded_count > EXCLUDED_COUNT_FLOOR), on a majority of seeds in BOTH arms. An all-admit envelope (excluded_count==0; a flat-F pool) means the demotion did nothing -> the conversion constant is vacuous => substrate_not_ready_requeue (do NOT score the falsifier), NEVER a false weakens. Mirrors the V3-EXQ-689d READINESS(c) non-degeneracy gate.",
+        "control": "f_demotion envelope active-frac + excluded_count on both arms (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_excluded_count_mean": 17.030945,
+        "observed_excluded_count_floor": 0.0,
+        "observed_min_demotion_active_frac": 0.23857,
+        "observed_demotion_active_frac_floor": 0.8,
+        "met": false
+      },
+      {
+        "name": "mech449_active_nogo_live_and_suppressing_both_arms",
+        "kind": "readiness",
+        "description": "The MECH-449 Go/No-Go eligibility constitution (matched on BOTH arms) is ACTIVE on >= NOGO_ACTIVE_FRAC_FLOOR of P2 ticks AND it ACTUALLY SUPPRESSES -- removes candidates from the F-eligible set (mean per-tick go_nogo_n_safety_nogo + go_nogo_n_soft_applied > NOGO_SUPPRESSED_FLOOR; the soft path is the MECH-260 perseveration No-Go fed by the dACC recency-share vector with use_dacc=True), on a majority of seeds in BOTH arms. An inert No-Go (nothing suppressed; the perseveration axis never crosses gng_perseveration_floor) means the active opponency leg did nothing -> the conversion constant is vacuous => substrate_not_ready_requeue (do NOT score the falsifier), NEVER a false weakens. Mirrors the V3-EXQ-689g go_nogo-actually-suppresses non-degeneracy gate.",
+        "control": "Go/No-Go constitution active-frac + suppressed-count on both arms (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_nogo_suppressed_per_tick": 1.802932,
+        "observed_nogo_suppressed_floor": 0.0,
+        "observed_min_nogo_active_frac": 0.23857,
+        "observed_nogo_active_frac_floor": 0.8,
+        "met": false
+      },
+      {
+        "name": "lateral_pfc_route_range_supra_floor_and_sample_adequate_both_arms",
+        "kind": "readiness",
+        "description": "V3-EXQ-851 (ARC-062 P-A erratum fix): modulatory_channel_route_source='lateral_pfc' identity-routes the SD-033a rule-apprehension bias (_bdc_lpfc, the SAME channel use_candidate_rule_field differentiates) into _modulatory_accum. On a majority of seeds in BOTH arms (routing is a matched constant, not swept -- unlike 791a's single ARM_1): (a) the routed range's mean clears ROUTE_RANGE_SEED_FLOOR; (b) the GENUINE fresh-selection sample (latch-cleared, 791a pattern) clears FRESH_SELECT_FLOOR (cadence-derived worst-case: nominal P2 window ticks / beta_rate_max_steps); (c) the fresh-select YIELD clears FRESH_SELECT_YIELD_FLOOR (the same cadence bound as a truncation-invariant fraction of the observed window). An unrouted or under-sampled channel means the C2 committed-class DV cannot be attributed to routing => substrate_not_ready_requeue, NEVER a false weakens. Mirrors the V3-EXQ-791a route-range + sample-adequacy P0 gates.",
+        "control": "modulatory_channel_route_range + n_p2_fresh_select on both arms (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "observed_min_route_range_mean": 0.0,
+        "observed_route_range_seed_floor": 0.01,
+        "observed_min_n_p2_fresh_select": 627.0,
+        "observed_fresh_select_floor": 600.0,
+        "observed_min_route_sample_yield": 0.14106,
+        "observed_fresh_select_yield_floor": 0.05,
+        "met": false
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_committed_class_entropy_lift",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a_class_axis_exercisable": true,
+      "C1b_gapa_divergence": true,
+      "C1c_arm_on_differentiated_matured": true,
+      "C1d_propagation_non_vacuity": true,
+      "C1d_within_arm_on_rule_state_counterfactual_nonzero": true,
+      "C1e_mech448_demotion_live_and_excluding": false,
+      "C1f_mech449_active_nogo_live_and_suppressing": false,
+      "C1g_lateral_pfc_route_range_supra_floor_and_sample_adequate": false,
+      "C2_paired_lift": false
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "31b789cd8ea8392c765d6bd17033c89dfbd707dd170778c13ec4ccf9b83e5c8a",
+  "substrate_commit": {
+    "commit": "70fda0012607c0981924d5fdf10fa1da471d52da",
+    "dirty": false,
+    "branch": "main"
+  }
+}
