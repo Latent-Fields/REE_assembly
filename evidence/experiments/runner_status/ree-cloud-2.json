@@ -1,30 +1,30 @@
 {
   "schema_version": "v1",
-  "runner_pid": 837,
-  "runner_started_at": "2026-08-01T14:40:45.965923+00:00",
-  "last_updated": "2026-08-01T15:15:25.441353+00:00",
+  "runner_pid": 836,
+  "runner_started_at": "2026-08-01T20:58:15.341016+00:00",
+  "last_updated": "2026-08-01T22:13:46.554783+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-860",
+      "queue_id": "V3-EXQ-862",
       "backlog_id": "",
       "claim_id": "",
-      "title": "GOV-FANOUT-1 H2 REDESIGN: STEPS_PER_EP exposure sweep decoupled from F1-firing count (replaces confounded V3-EXQ-853)",
+      "title": "Q-040c dACC PE-weight delta correlation, config fix + pre-flight smoke gate (supersedes V3-EXQ-475b)",
       "description": "",
-      "estimated_minutes": 24.0,
+      "estimated_minutes": 48.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-847",
-      "backlog_id": "",
+      "queue_id": "V3-EXQ-857a",
+      "backlog_id": "EVB-0481",
       "claim_id": "",
-      "title": "ARC-062 GOV-FANOUT-1 Leg P-D (H4 diagnostic): context-conditioned (reef vs open) committed-class TV-divergence, ARM_ON vs ARM_OFF",
+      "title": "Q-086 gentler-env confound control REDESIGN (3 arms incl. new num_hazards=0 floor, 6 seeds, survival-time DV; successor to V3-EXQ-857)",
       "description": "",
-      "estimated_minutes": 280.0,
-      "status": "claimed",
+      "estimated_minutes": 120.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     },
@@ -35,6 +35,28 @@
       "title": "ARC-062 GOV-FANOUT-1 Leg P-B (H2: F-dominance) -- f_weight attenuation ladder, committed-class entropy",
       "description": "",
       "estimated_minutes": 560.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-866",
+      "backlog_id": "EVB-0242",
+      "claim_id": "",
+      "title": "INV-034/Q-021: goal-maintenance-vs-avoidance-only ablation (FULL vs AVOIDANCE_ONLY vs RANDOM, post-SD-012/MECH-306/SD-057)",
+      "description": "",
+      "estimated_minutes": 360.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062/MECH-309 full-budget replication of V3-EXQ-859: lateral_pfc route_source vs none ablation, MECH-448/449 engagement (~7.7h)",
+      "description": "",
+      "estimated_minutes": 280.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3226,6 +3248,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 2078.6
+    },
+    {
+      "queue_id": "V3-EXQ-865",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "Q-081 z_goal/z_harm_a reach pre-flight SCAN: does the landmark-manipulation lever reach the REFRAMED (z_world, z_goal) pair, falling back to (z_world, z_harm_a)?",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_865_q081_zgoal_reach_preflight_scan] target=z_harm_a mode=jitter seed=4 is_degenerate=False has_reach=False n_boundaries=16 n_active_ticks=600 (5/5) | [v3_exq_865_q081_zgoal_reach_preflight_scan] label=q081_zgoal_and_zharm_a_no_lever_found outcome=PASS elapsed=4530.9s | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-865 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-865.json",
+      "started_at": "2026-08-01T20:58:15.351564+00:00",
+      "completed_at": "2026-08-01T22:13:46.553961+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4531.2
     }
   ]
 }

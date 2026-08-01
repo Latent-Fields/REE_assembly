@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-01T20:07:25Z",
+  "last_tick_utc": "2026-08-01T22:18:11Z",
   "state": "running",
   "current_exq": "V3-EXQ-862",
   "current_exq_started_utc": "2026-08-01T18:21:38.041769+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 7 / ARM_vs_off",
     "runs_done": 2,
     "runs_total": 6,
-    "episodes_done": 0,
+    "episodes_done": 10,
     "episodes_total": 60,
-    "overall_pct": 33.3
+    "overall_pct": 36.1
   },
-  "seconds_elapsed": 6348,
-  "seconds_remaining": 16731,
+  "seconds_elapsed": 14193,
+  "seconds_remaining": 16033,
   "recent_lines": [
     "[train] preflight_dacc_check ep 3/4",
     "[preflight] dACC engagement check: n_dacc_fires=20 over 20 pilot eval steps",
@@ -37,7 +37,8 @@
     "[train] seed=42 arm=ARM_vs_on ep 50/60",
     "[train] seed=42 arm=ARM_vs_on ep 60/60",
     "verdict: PASS",
-    "Seed 7 Condition ARM_vs_off"
+    "Seed 7 Condition ARM_vs_off",
+    "[train] seed=7 arm=ARM_vs_off ep 10/60"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
