@@ -1,0 +1,97 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_845_mech180_ecological_novelty_sleep_consolidation_dose_response",
+  "run_id": "v3_exq_845_mech180_ecological_novelty_sleep_consolidation_dose_response_20260731T235634Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-07-31T23:56:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-180"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_control_degenerate",
+    "preconditions": [
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds -- the world model must be trained for MEL to live at a meaningful scale (R1).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecological_novelty_mel_gradient_present_this_config",
+        "description": "measured mean_mel is non-degenerately graded (mel[HIGH] >= mel[NONE]*(1+MIN_MEL_SPREAD)) across the 4 ON arms, on >= 2/3 seeds -- re-confirms the V3-EXQ-798a novelty->MEL link under THIS run's full agent config (z_goal/benefit machinery + live sleep loop, absent from 798a's diagnostic setup). Below-floor => the ecological link does not survive in this config (not-ready), NOT a MECH-180 falsification (R2).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": true,
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true
+    },
+    "per_dv_seed_pass_fraction": {
+      "sws_power": 0.6666666666666666,
+      "spindle_density": 0.0,
+      "replay_rate": 0.6666666666666666
+    },
+    "per_dv_pass": {
+      "sws_power": true,
+      "spindle_density": false,
+      "replay_rate": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "322fe64f3981eaeec211cc47c1ed76b223a296300feaee79af3a17c88830728e",
+  "substrate_commit": {
+    "commit": "4123ec3358b7315e2969b8e4d1180502c5865c0a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 38959,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 15,
+    "goal_state_present": true
+  }
+}
