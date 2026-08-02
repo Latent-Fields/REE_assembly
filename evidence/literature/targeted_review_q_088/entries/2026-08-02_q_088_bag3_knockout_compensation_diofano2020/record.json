@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_088",
+  "entry_id": "2026-08-02_q_088_bag3_knockout_compensation_diofano2020",
+  "timestamp_utc": "2026-08-02T13:34:41Z",
+  "claim_ids_tested": ["Q-088"],
+  "source": {
+    "title": "Genetic compensation prevents myopathy and heart failure in an in vivo model of Bag3 deficiency",
+    "authors": ["Federica Diofano", "Karolina Weinmann", "Isabelle Schneider", "Kevin D Thiessen", "Wolfgang Rottbauer", "Steffen Just"],
+    "year": 2020,
+    "venue": "PLoS Genetics, 16(11):e1009088",
+    "doi": "10.1371/journal.pgen.1009088",
+    "url": "https://doi.org/10.1371/journal.pgen.1009088"
+  },
+  "evidence_class": "behavioral_animal",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A clean, decisive single-gene worked example of exactly the protocol dissociation Q-088 posits: the germline knockout (develop-without) of bag3 shows COMPLETE preservation of heart and muscle, while acute morpholino knockdown (mature-state perturbation) of the same gene causes myopathy and heart failure. The dissociation is causally traced to developmental compensation (bag2 upregulation via mutant-mRNA decay) and confirmed by abolishing it (bag2 knockdown or NMD blockade restores the severe phenotype in the KO). This is the crispest available demonstration that the two protocols give opposite verdicts on the SAME target. Held at 0.58 for the zebrafish-to-REE gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The develop-without arm (knockout) returned 'tolerable' ONLY because a compensatory gene (bag2) was upregulated; the mechanism was not actually dispensable, as proven by re-inducing the phenotype when compensation was blocked. A REE develop-without arm reporting AGREE-with-tolerable could be a compensated false-negative, not evidence the mechanism is unnecessary.",
+    "The dissociation required an intact nonsense-mediated-decay pathway; blocking upf1 collapsed it. Substrate-specific enabling conditions gate whether the two protocols dissociate at all."
+  ],
+  "tags": ["q-088", "genetic-compensation", "knockout-vs-knockdown", "developmental-buffering", "protocol-dissociation", "worked-example"],
+  "mapping": {
+    "source_claim_statement": "CRISPR germline knockout of bag3 in zebrafish leaves heart and skeletal muscle structurally and functionally normal, whereas morpholino knockdown of bag3 causes cardiomyopathy and myopathy; the difference is caused by transcriptional upregulation of bag2 in the knockout (triggered by mutant-mRNA decay), and is abolished -- restoring the severe phenotype -- by knocking down bag2 or blocking nonsense-mediated decay.",
+    "ree_translation": "This is a concrete instance of Q-088's PASS outcome: two protocols on one developmentally-relevant target DISSOCIATED (develop-without said tolerable, mature-remove said intolerable). It demonstrates that the expensive develop-without protocol reveals a real, mechanism-specific compensatory reorganisation that a mature lesion would have entirely missed -- and that the sign of the dissociation (KO milder than KD) can be the opposite of naive expectation.",
+    "mapping_caveat": "Single gene, zebrafish embryo, a molecular compensation route with no known REE analog. The value is as an existence proof and cautionary tale (compensation can produce a tolerable-looking develop-without arm that is NOT dispensability), not as quantitative transfer. REE would need its own demonstration that a compensatory channel exists before this worked example's logic applies to its substrate.",
+    "source_context": "Zebrafish embryo; CRISPR/Cas9 germline knockout vs morpholino knockdown of bag3; proteomics + qRT-PCR; heart and skeletal-muscle structure/function readouts."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Rigorous, causally-closed study (dissociation demonstrated AND its mechanism knocked back in). Fidelity/transfer limited by organism and molecular mechanism; strongest as the concrete companion to the Jakutis review's general claim."
+  }
+}

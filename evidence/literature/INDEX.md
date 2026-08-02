@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-02T11:53:14.070330Z`
+Generated: `2026-08-02T13:39:58.533743Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -347,6 +347,7 @@ Generated: `2026-08-02T11:53:14.070330Z`
 | `targeted_review_q_084` | [`2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020`](targeted_review_q_084/entries/2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020/record.json) | 3 | [`summary`](targeted_review_q_084/entries/2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020/summary.md) |
 | `targeted_review_q_085` | [`2026-07-29_q_085_start_stop_bracketing_jin2010`](targeted_review_q_085/entries/2026-07-29_q_085_start_stop_bracketing_jin2010/record.json) | 2 | [`summary`](targeted_review_q_085/entries/2026-07-29_q_085_start_stop_bracketing_jin2010/summary.md) |
 | `targeted_review_q_086` | [`2026-08-01_q_086_thermal_pain_ceiling_frot2006`](targeted_review_q_086/entries/2026-08-01_q_086_thermal_pain_ceiling_frot2006/record.json) | 4 | [`summary`](targeted_review_q_086/entries/2026-08-01_q_086_thermal_pain_ceiling_frot2006/summary.md) |
+| `targeted_review_q_088` | [`2026-08-02_q_088_transcriptional_adaptation_review_jakutis2021`](targeted_review_q_088/entries/2026-08-02_q_088_transcriptional_adaptation_review_jakutis2021/record.json) | 5 | [`summary`](targeted_review_q_088/entries/2026-08-02_q_088_transcriptional_adaptation_review_jakutis2021/summary.md) |
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/record.json) | 5 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/summary.md) |

@@ -1,0 +1,17 @@
+# Genetic Compensation Prevents Myopathy in Bag3 Deficiency (Diofano et al., 2020)
+
+**Claim tested:** Q-088 -- does competitive redevelopment (develop-without) dissociate from mature-state lesion, and does the dissociation carry real information?
+
+## The experiment, and why it is almost a diagram of Q-088
+
+Diofano and colleagues took a single gene, *bag3*, whose loss in humans causes dilated cardiomyopathy and myofibrillar myopathy, and perturbed it two ways in zebrafish. The **germline knockout** -- the fish develops from the egg without functional *bag3* -- showed *complete* preservation of heart and skeletal-muscle structure and function through embryonic development. The **morpholino knockdown** -- an acute reduction of *bag3* product in a system that was otherwise proceeding normally -- produced the expected myopathy and heart failure. Same gene, two protocols, **opposite verdicts**. They then closed the causal loop: the knockout was rescued by upregulation of a sibling gene, *bag2*, driven by decay of the mutant *bag3* transcript; knocking *bag2* down in the *bag3* null, or blocking the nonsense-mediated-decay machinery (via *upf1*), re-created the severe phenotype. So the develop-without arm's "tolerable" reading was not dispensability -- it was *compensation that only a system built without the gene could mount*.
+
+This is as close to a worked example of Q-088 as the literature offers. Map germline knockout to competitive redevelopment and morpholino knockdown to mature-state lesion, and the study says: (a) the two protocols dissociated; (b) the dissociation was informative, exposing a compensatory reorganisation invisible to the mature-lesion arm; and (c) the sign was counterintuitive -- the developmentally-absent condition was the *milder* one. Each of those is a live possibility Q-088 flags ("mature lesion says tolerable, redevelopment says not, or the reverse").
+
+## The cautionary half
+
+The same result is a warning about interpreting a develop-without arm. The knockout looked fine, but the mechanism was *not* actually unnecessary -- it was buffered. If a REE develop-without arm returns "tolerable," this study is the reason not to read that as "the mechanism is dispensable"; it could be a compensated false-negative. The honest version of Q-088's PASS/FAIL therefore needs a compensation check on any tolerable develop-without result, mirroring the *bag2*/*upf1* controls here. And the whole dissociation depended on the fish *having* an intact NMD-linked compensation route: block it and the two protocols re-converge. Substrates without such a route would show agreement even for a truly necessary mechanism.
+
+## Mapping honesty and confidence
+
+This is a single gene in a zebrafish embryo with a molecular compensation mechanism that has no established REE analog, so I do not treat it as quantitative transfer. Its worth is threefold: it is an *existence proof* that the two protocols can flatly disagree; it is a *causally closed* demonstration (the dissociation was not just observed but switched off and back on); and it is the concrete instance underneath the Jakutis & Stainier review's general claim. I set confidence at 0.58 -- solid study, real caveat load from the domain gap. Paired with the compensation-free artificial-network result of Achille et al., it bounds the phenomenon from both ends: it happens with a biochemical compensation route (here) and without one (there).

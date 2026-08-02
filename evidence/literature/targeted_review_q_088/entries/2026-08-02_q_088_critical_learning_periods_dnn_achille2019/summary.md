@@ -1,0 +1,19 @@
+# Critical Learning Periods in Deep Neural Networks (Achille, Rovere & Soatto, 2019)
+
+**Claim tested:** Q-088 -- does *competitive redevelopment* (development-without-the-mechanism) dissociate from *mature-state lesion*, and if so, is the expensive redevelopment protocol worth running as a standing requirement?
+
+## What the paper did
+
+Achille, Rovere and Soatto imposed well-characterised sensory deficits (most tellingly, cataract-like blur) on standard deep networks during defined windows of training, then measured whether the network could recover once the deficit was lifted. They found that a deficit applied during the *early* epochs of training produces an **irreversible** performance loss that closely mimics the critical-period deficits reported in humans and animals, while the same deficit applied *later* leaves essentially no permanent mark. Deficits that do not perturb the low-level input statistics (e.g. flipping every image vertically) have no lasting effect at any time. To explain the asymmetry they use the Fisher Information of the weights as a measure of effective inter-layer connectivity, and show it *rises* sharply in the first few epochs and then *falls* -- a collapse of what they call "Information Plasticity." Once the strong early connections are set, further training does not redistribute them.
+
+## Why it speaks to Q-088
+
+Q-088 is, at bottom, a question about experimental protocol design: for a mechanism the registry marks as *developmentally necessary*, does it matter whether you lesion it from a mature system or instead let the system develop without it? The whole worry behind the "expensive protocol" is that the two might simply agree, in which case the cheap mature lesion suffices. This paper is the closest available analog because the substrate is *artificial* -- there is no biochemistry, no neuromodulator, no critical-period gene. The dissociation between early and late perturbation nonetheless appears, and the authors argue explicitly that critical periods "are not restricted to biological systems ... due to fundamental constraints arising from learning dynamics and information processing." That is exactly the bridge Q-088 needs: if the phenomenon is a property of learning systems as such, then a REE agent -- which is a learning system with a staged infant curriculum -- is a candidate to show it, and the develop-without protocol would then return a genuinely different verdict than mature lesion.
+
+## Limitations and the honest mapping
+
+The paper shows that computational systems *can* dissociate, not that REE *does*. The measured system is a supervised vision CNN; REE is a reinforcement/world-model agent with a very different objective and a plastic window of unknown shape. Two of the paper's own findings are cautionary for the probe design. First, deficits that don't touch low-level statistics leave no trace -- so a null result in REE (develop-without agrees with mature lesion) would not cleanly falsify developmental necessity; it might just mean the lesioned mechanism doesn't shape the early plastic phase. Second, the effect depends on deficit *onset and length* and on network *size* -- a probe run at the wrong developmental timing, or on too small a substrate, could read AGREE for reasons that have nothing to do with the mechanism. Both map onto Q-088's own non-degeneracy requirement (the mature-lesion arm must produce a measurable effect at all).
+
+## Confidence
+
+I put this at 0.70 and treat it as the anchor of the pull. It is the one source in the same *substrate class* as REE, and it converts Q-088's dissociation hypothesis from "biological folk wisdom" into "a documented property of gradient-trained networks." I hold it below 0.8 because it is a supervised-vision result standing in for an RL agent, and because it supplies a prior rather than a measurement of the REE substrate -- which is precisely why the probe Q-088 proposes is still worth its cost.

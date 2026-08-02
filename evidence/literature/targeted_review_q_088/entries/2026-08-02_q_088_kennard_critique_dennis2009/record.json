@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_088",
+  "entry_id": "2026-08-02_q_088_kennard_critique_dennis2009",
+  "timestamp_utc": "2026-08-02T13:34:41Z",
+  "claim_ids_tested": ["Q-088"],
+  "source": {
+    "title": "Margaret Kennard (1899-1975): not a 'principle' of brain plasticity but a founding mother of developmental neuropsychology",
+    "authors": ["Maureen Dennis"],
+    "year": 2010,
+    "venue": "Cortex, 46(8):1043-1059",
+    "doi": "10.1016/j.cortex.2009.10.008",
+    "url": "https://doi.org/10.1016/j.cortex.2009.10.008"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.60,
+  "confidence_rationale": "Historical/critical review arguing the 'Kennard Principle' (monotone age-outcome relation) is neither Kennard's nor a principle: developmental-vs-mature outcome is governed jointly by age, lesion staging, laterality, location, number and outcome domain, not by a single law. This SUPPORTS Q-088's core dissociation (mature lesion does not predict the developmental verdict) while WEAKENING any move to generalise one probe into a standing requirement -- which is exactly the scope discipline Q-088 already builds in ('ONE decisive probe, not a standing requirement; do not generalise the protocol before the probe reports'). Its main value is calibrating what a single Q-088 probe can and cannot license.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "There is no monotone law relating developmental to mature disruption; a single decisive probe on one mechanism (e.g. INV-055's infant stage) therefore licenses a conclusion about THAT mechanism only, not about the develop-without protocol as a general standing requirement.",
+    "Because outcome is multi-factorial (staging x location x laterality x domain), a Q-088 probe that varies the mechanism but leaves other factors uncontrolled can mis-attribute a dissociation (or an agreement) to developmental necessity when it is driven by a covariate."
+  ],
+  "tags": ["q-088", "kennard-principle", "developmental-neuropsychology", "critical-caveat", "scope-discipline", "non-monotonicity"],
+  "mapping": {
+    "source_claim_statement": "The 'Kennard Principle' -- younger-at-injury implies better outcome -- is an oversimplification wrongly attributed to Kennard; her actual work showed outcome after early lesion depends on the interaction of age, staging, laterality, location, number of lesions and outcome domain, and warned against a single-factor rule.",
+    "ree_translation": "For Q-088, this is the calibrating caveat. It affirms the premise that developmental and mature disruption dissociate (there IS an age effect), but denies that the dissociation follows a simple predictable law -- so a mature lesion cannot stand in for the develop-without result, which is Q-088's PASS direction. At the same time it warns that the verdict of one probe does not generalise across mechanisms, directly endorsing Q-088's own framing as a single decisive probe rather than a standing requirement.",
+    "mapping_caveat": "Human developmental-neuropsychology scholarship, not a computational or single-mechanism result; the 'factors' it lists (laterality, lesion number) are brain-specific. What transfers is the epistemic posture -- expect dissociation, do not expect a law, and scope any single probe's conclusion tightly.",
+    "source_context": "Historical and critical review of the origins and misuse of the Kennard Principle in developmental neuropsychology; human early-onset brain-lesion literature."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "Scholarly, well-cited critical review; included specifically for its bearing on how far a Q-088 probe result can be generalised. Mixed direction: pro-dissociation, anti-over-generalisation."
+  }
+}

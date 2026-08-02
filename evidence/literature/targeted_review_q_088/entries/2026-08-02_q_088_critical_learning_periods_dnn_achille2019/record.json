@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_088",
+  "entry_id": "2026-08-02_q_088_critical_learning_periods_dnn_achille2019",
+  "timestamp_utc": "2026-08-02T13:34:41Z",
+  "claim_ids_tested": ["Q-088"],
+  "source": {
+    "title": "Critical Learning Periods in Deep Neural Networks",
+    "authors": ["Alessandro Achille", "Matteo Rovere", "Stefano Soatto"],
+    "year": 2019,
+    "venue": "International Conference on Learning Representations (ICLR); arXiv:1711.08856",
+    "doi": null,
+    "url": "https://arxiv.org/abs/1711.08856"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.70,
+  "confidence_rationale": "Highest-mapping-fidelity source: an ARTIFICIAL neural network (same abstract class as the REE substrate, no biochemistry) in which a deficit applied during an early developmental window causes IRREVERSIBLE loss, while the identical deficit applied later is fully recoverable. That is exactly Q-088's dissociation between develop-without-the-mechanism and mature-state manipulation, demonstrated in a computational learning system. Downgraded from higher because the substrate is a vision CNN, not an RL/world-model agent, and the paper does not report the exact numeric magnitudes in the abstract.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Deficits that do not perturb low-level input statistics (e.g. vertical image flip) leave NO lasting mark and are fully overcome by further training -- i.e. not every developmental perturbation dissociates, so a null dissociation in REE would not by itself falsify the substrate; it may mean the lesioned mechanism does not shape the plastic early phase.",
+    "The dissociation magnitude depends on network size and on deficit onset/length -- a REE probe run at the wrong developmental timing, or on a substrate too small to show information-plasticity collapse, could report AGREE for reasons unrelated to the mechanism's developmental necessity."
+  ],
+  "tags": ["q-088", "critical-period", "developmental-necessity", "artificial-neural-network", "information-plasticity", "irreversibility"],
+  "mapping": {
+    "source_claim_statement": "In deep networks, a temporary stimulus deficit during an early critical window permanently impairs skill acquisition (mimicking animal critical-period data), whereas the same deficit later is recoverable; the effect tracks a rise-then-fall of Fisher-Information 'Information Plasticity' and arises from learning dynamics alone, not biochemistry.",
+    "ree_translation": "Q-088 asks whether developing a REE agent WITHOUT a developmentally-necessary mechanism (competitive redevelopment) gives a different verdict than removing it after maturity (mature-state lesion). Achille et al. is direct computational evidence that early-phase perturbation and late-phase perturbation of a learning system dissociate -- and, crucially, that this dissociation can emerge in a purely artificial substrate from information-processing constraints. This raises the prior that REE's develop-without protocol will disagree with mature lesion, i.e. that the expensive protocol buys real information.",
+    "mapping_caveat": "The result establishes that computational learning systems CAN show develop-vs-mature dissociation, not that REE's specific INV-055 infant-stage mechanism does. Whether the REE substrate exhibits an analogous information-plasticity collapse is precisely the open question -- this paper supplies a strong prior, not a substitute for the probe. The measured system is supervised vision CNN training; REE is a reinforcement/world-model agent, and the shape of its plastic window is unmeasured.",
+    "source_context": "Supervised image-classification CNNs (CIFAR/ImageNet-style), cataract-like blur and other deficits imposed over training-epoch windows; Fisher-Information analysis of weights."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.70,
+    "transfer_risk": 0.35,
+    "notes": "Foundational, heavily-cited ICLR paper; the computational-to-computational transfer keeps transfer_risk low relative to the biological analogs, but domain (vision CNN vs RL agent) caps mapping_fidelity below 0.8."
+  }
+}

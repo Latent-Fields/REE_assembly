@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_088",
+  "entry_id": "2026-08-02_q_088_transcriptional_adaptation_review_jakutis2021",
+  "timestamp_utc": "2026-08-02T13:34:41Z",
+  "claim_ids_tested": ["Q-088"],
+  "source": {
+    "title": "Genotype-Phenotype Relationships in the Context of Transcriptional Adaptation and Genetic Robustness",
+    "authors": ["Gabrielius Jakutis", "Didier Y R Stainier"],
+    "year": 2021,
+    "venue": "Annual Review of Genetics, 55:71-91",
+    "doi": "10.1146/annurev-genet-071719-020342",
+    "url": "https://doi.org/10.1146/annurev-genet-071719-020342"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.60,
+  "confidence_rationale": "Authoritative (Annual Review of Genetics) synthesis establishing that acute perturbation (knockdown) and developmental/from-conception perturbation (knockout) systematically give DISCORDANT phenotypes, and naming the mechanism (transcriptional adaptation / genetic robustness) that makes develop-without a distinct protocol from mature removal. This is the general-form evidence that the two protocols dissociate for a principled reason, not by accident. Held at 0.60 because the mechanism (mRNA-decay-triggered compensation) is molecular-genetic and has no established REE analog -- the epistemic lesson transfers, the mechanism does not.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is driven by a SPECIFIC compensation route (mutant-mRNA decay upregulating related genes); a system lacking that route can show knockdown/knockout AGREEMENT -- so develop-vs-mature dissociation is contingent on the substrate possessing a compensatory capacity, and its absence in REE would predict AGREE regardless of developmental necessity.",
+    "Robustness mechanisms can MASK a true loss-of-function during development, so a develop-without arm that reports 'tolerable' may reflect compensation rather than the mechanism being dispensable -- a confound the mature-lesion arm does not share."
+  ],
+  "tags": ["q-088", "genetic-compensation", "transcriptional-adaptation", "knockout-vs-knockdown", "developmental-robustness", "protocol-dissociation"],
+  "mapping": {
+    "source_claim_statement": "Knockdown (acute reagent-based reduction) and knockout (germline, from-conception loss) of the same gene frequently produce contradictory phenotypes; a major cause is transcriptional adaptation, whereby the mutant allele's decaying mRNA upregulates related genes, buffering the developmental system in a way an acute reagent cannot trigger.",
+    "ree_translation": "Map knockout (present-absent from the start of development) to Q-088's competitive redevelopment, and knockdown (removed acutely from an already-built system) to mature-state lesion. The review is a domain-general statement that these two protocols routinely disagree, and identifies WHY: a system that develops without a component can recruit compensation that a mature system stripped of the same component cannot. That is a direct argument that REE's expensive develop-without protocol can buy information the mature lesion misses.",
+    "mapping_caveat": "The compensating mechanism is molecular (nonsense-mediated-decay-linked upregulation of paralogues); nothing establishes that the REE substrate has any analogous developmental-compensation capacity. The transferable content is the epistemic structure (develop-without and mature-remove are non-interchangeable protocols), not the biology. If REE has no compensation channel, the prior for dissociation weakens.",
+    "source_context": "Review across model organisms (zebrafish, mouse, etc.); comparison of RNAi/morpholino/ASO knockdown vs CRISPR/germline knockout; genotype-phenotype discordance."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.55,
+    "notes": "Top-tier review venue keeps source_quality high; molecular-to-computational transfer is the risk. Weight the epistemic claim (protocols dissociate) heavily, the mechanistic claim lightly."
+  }
+}

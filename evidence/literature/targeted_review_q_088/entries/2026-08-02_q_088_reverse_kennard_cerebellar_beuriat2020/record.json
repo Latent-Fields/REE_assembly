@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_088",
+  "entry_id": "2026-08-02_q_088_reverse_kennard_cerebellar_beuriat2020",
+  "timestamp_utc": "2026-08-02T13:34:41Z",
+  "claim_ids_tested": ["Q-088"],
+  "source": {
+    "title": "Cerebellar lesions at a young age predict poorer long-term functional recovery",
+    "authors": ["Pierre-Aurelien Beuriat", "Irene Cristofori", "Nathalie Richard", "Lara Bardi", "Celia Loriette", "Alexandru Szathmari", "Federico Di Rocco", "Pierre Leblond", "Didier Frappaz", "Cecile Faure-Conter", "Line Claude", "Carmine Mottolese", "Michel Desmurget"],
+    "year": 2020,
+    "venue": "Brain Communications, 2(1):fcaa027",
+    "doi": "10.1093/braincomms/fcaa027",
+    "url": "https://doi.org/10.1093/braincomms/fcaa027"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Human evidence that damage timing dissociates outcome with the OPPOSITE sign to naive Kennard: cerebellar lesions inflicted younger (during a critical developmental period) produce WORSE long-term recovery than the same lesions later, controlling for tumour type/size/location, radiotherapy and deep-nuclei preservation. This is direct support for Q-088's core dissociation and for its 'or the reverse' clause -- developmental disruption and mature disruption need not agree, and which is worse is not fixed. Held at 0.55 because it is observational human clinical data (n=45, three age groups) and lesion-of-the-developing-organ is only a partial analog to develop-without-the-mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Because early cerebellar damage was WORSE than late, the naive assumption that a mature lesion upper-bounds the developmental verdict is falsified -- a REE probe that reasoned 'mature lesion is tolerable, so develop-without will be at least as tolerable' would be systematically wrong for critical-period mechanisms.",
+    "Outcome depended on confounders (deep-nuclei preservation, radiotherapy) as much as on age; a develop-vs-mature dissociation can be manufactured or hidden by uncontrolled covariates, so a REE probe must hold the substrate/curriculum fixed across arms."
+  ],
+  "tags": ["q-088", "critical-period", "reverse-kennard", "cerebellum", "lesion-timing", "developmental-necessity", "protocol-dissociation"],
+  "mapping": {
+    "source_claim_statement": "In 45 posterior-fossa-tumour survivors matched on tumour characteristics but operated at different ages, early age at cerebellar surgery independently predicted worse long-term daily, motor and cognitive functioning, supporting an early critical period during which the cerebellar 'learning machine' is essential -- a reversal of the classic Kennard expectation that younger brains recover better.",
+    "ree_translation": "Q-088 asks whether disrupting a developmentally-necessary mechanism early (develop-without) gives a different verdict than disrupting it in a mature system (mature lesion). This study is human evidence that the two dissociate AND that the developmental disruption can be the more damaging of the two -- the exact 'or the reverse' case Q-088 names. It argues the develop-without protocol is not redundant with mature lesion, because for critical-period mechanisms the mature lesion can under-estimate the true cost.",
+    "mapping_caveat": "This is early LESION of a developing structure, not development-WITHOUT a mechanism from the outset -- a partial analog. It is also observational human clinical data with modest n and residual confounding, and cerebellar-tumour surgery carries collateral damage (radiotherapy) absent from a clean REE ablation. Transfers the direction-of-dissociation lesson, not effect sizes.",
+    "source_context": "Human clinical cohort; 45 posterior-fossa (cerebellar) tumour survivors in three age-at-surgery bands; long-term health-related quality-of-life, ataxia, dexterity and full-scale IQ, with GLM control for tumour volume, radiotherapy, deep-nuclei preservation and assessment delay."
+  },
+  "confidence_components": {
+    "source_quality": 0.70,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.60,
+    "notes": "Confounder-controlled but observational human data; value is the demonstrated REVERSAL of dissociation sign, which is decision-relevant for how a Q-088 probe is interpreted rather than for its magnitude."
+  }
+}
