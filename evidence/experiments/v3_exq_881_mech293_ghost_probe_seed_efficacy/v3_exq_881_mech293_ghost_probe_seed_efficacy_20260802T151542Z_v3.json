@@ -1,0 +1,202 @@
+{
+  "schema_version": "v1",
+  "run_id": "v3_exq_881_mech293_ghost_probe_seed_efficacy_20260802T151542Z_v3",
+  "experiment_type": "v3_exq_881_mech293_ghost_probe_seed_efficacy",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "timestamp_utc": "2026-08-02T15:15:42.599139Z",
+  "experiment_purpose": "evidence",
+  "claim_ids": [
+    "MECH-293"
+  ],
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-293": "supports"
+  },
+  "evidence_direction_note": "Representational/wall-independent confirmer of MECH-293's own falsifiable signature: does the ghost-seeded probe pool returned by ONE propose_trajectories() call end up measurably distinguishable from the value-flat (pure current-anchor) CEM pool from the SAME call, once both have survived E2's rollout -- the 'instead of relying on pure current-anchor CEM' half of the claim V3-EXQ-497's wiring diagnostic (UC1-UC5) does not test. DV: effect_size = ||mean(ghost endpoints) - mean(value-flat endpoints)|| / (value-flat population's own internal scatter) -- normalised to be scale-invariant to this untrained substrate's chaotic per-episode rollout amplitude (a raw absolute-distance version of this DV was tried first and found NOT well-conditioned: the seed-point separation of norm ~0.03-0.07 is swamped within 1 rollout step by ~8-15x per-step amplification from the untrained e2.world_forward transition; the normalised version cancels that common-mode scale). 7/7 seeds comparable (ghost branch fired, >=2 value-flat candidates present, seed points distinct); ghost cluster separated from value-flat cluster by more than 2.0x the value-flat population's own scatter in 7/7 seeds (threshold 4, matching the >=4/7 bar V3-EXQ-868 set for the sibling MECH-292 confirmer proportionally). Secondary, non-gating: of the C1-winning seeds, 4/7 had the ghost-vs-value-flat displacement pointing toward (rather than away from) the target anchor's own direction (mean alignment 0.02684802083032472) -- reported honestly whichever way it falls, since it answers a genuinely different question (direction of the separation) than C1 (existence/magnitude of the separation).",
+  "outcome": "PASS",
+  "interpretation": {
+    "label": "ghost_cluster_separates_from_valueflat_and_aims_at_target",
+    "criteria": [
+      {
+        "name": "C1_ghost_cluster_separates_from_valueflat",
+        "load_bearing": true,
+        "passed": true,
+        "n_comparable": 7,
+        "n_attempted": 7,
+        "n_wins": 7,
+        "win_threshold": 4,
+        "effect_size_bar": 2.0
+      },
+      {
+        "name": "C2_separation_aimed_at_target_direction",
+        "load_bearing": false,
+        "passed": true,
+        "n_c1_winning_seeds": 7,
+        "n_c2_positive": 4,
+        "mean_alignment": 0.02684802083032472
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_ghost_cluster_separates_from_valueflat": true,
+      "C2_separation_aimed_at_target_direction": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if n_comparable < 4 (substrate_not_engaged, never weakens); else PASS/(supports if C2 also majority-positive else mixed) iff C1 (ghost cluster separates from value-flat cluster by > effect_size_bar in >= proportional >=4/7 of comparable seeds); else FAIL/weakens. C2 never gates the outcome -- it distinguishes a clean 'supports' from a 'mixed' PASS, never turns a PASS into a FAIL."
+  },
+  "non_degenerate": true,
+  "degeneracy_reason": null,
+  "per_seed_results": [
+    {
+      "seed": 42,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.06764329969882965,
+      "sigma_vf": 1.258582353591919,
+      "displacement_norm": 14.665154457092285,
+      "effect_size": 11.652121464470568,
+      "c1_win": true,
+      "alignment": 0.08489488065242767
+    },
+    {
+      "seed": 43,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.05910520628094673,
+      "sigma_vf": 3.7738871574401855,
+      "displacement_norm": 36.36651611328125,
+      "effect_size": 9.636354929581024,
+      "c1_win": true,
+      "alignment": -0.22301426529884338
+    },
+    {
+      "seed": 45,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.061257973313331604,
+      "sigma_vf": 1.587821364402771,
+      "displacement_norm": 14.338086128234863,
+      "effect_size": 9.030037288626522,
+      "c1_win": true,
+      "alignment": -0.026984255760908127
+    },
+    {
+      "seed": 46,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.05594012513756752,
+      "sigma_vf": 1.462662696838379,
+      "displacement_norm": 15.416836738586426,
+      "effect_size": 10.540254271822695,
+      "c1_win": true,
+      "alignment": -0.08030808717012405
+    },
+    {
+      "seed": 47,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.07102581113576889,
+      "sigma_vf": 0.9523223638534546,
+      "displacement_norm": 11.94841480255127,
+      "effect_size": 12.546607384293159,
+      "c1_win": true,
+      "alignment": 0.12168359011411667
+    },
+    {
+      "seed": 48,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.026104465126991272,
+      "sigma_vf": 2.2474441528320312,
+      "displacement_norm": 27.172330856323242,
+      "effect_size": 12.090325279977732,
+      "c1_win": true,
+      "alignment": 0.14447566866874695
+    },
+    {
+      "seed": 49,
+      "n_marked_inactive": 1,
+      "comparable": true,
+      "reason": null,
+      "n_ghost": 4,
+      "n_valueflat": 28,
+      "seed_shift_norm": 0.05167778208851814,
+      "sigma_vf": 1.8256813287734985,
+      "displacement_norm": 5.7038726806640625,
+      "effect_size": 3.124243311671458,
+      "c1_win": true,
+      "alignment": 0.1671886146068573
+    }
+  ],
+  "n_comparable_seeds": 7,
+  "n_attempted_seeds": 7,
+  "n_wins": 7,
+  "win_threshold": 4,
+  "n_c2_positive": 4,
+  "mean_alignment_on_wins": 0.02684802083032472,
+  "elapsed_sec": 23.46227337489836,
+  "dry_run": false,
+  "recording_schema": "rec/v1",
+  "substrate_hash": "aa8db10ae38db7de3828acbd2bbfe51036ecf56c8749f568eb1f6d326b6ebc13",
+  "substrate_commit": {
+    "commit": "a72526c795fe117b2ad76643cee47fc06b2883ab",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/exq878_mech332_efference_aic_baseline.py"
+    ],
+    "branch": "main"
+  },
+  "substrate_stable_across_run": true,
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "elapsed_seconds": 23.619334457907826,
+  "config": {
+    "seeds": [
+      42,
+      43,
+      45,
+      46,
+      47,
+      48,
+      49
+    ],
+    "n_ticks": 60,
+    "force_boundary_every": 8,
+    "force_drive": 0.8,
+    "force_benefit": 0.4,
+    "mech293_ghost_fraction": 0.25,
+    "mech293_min_ghost_candidates": 1,
+    "mech293_max_ghost_candidates": 4,
+    "mech293_replace_lowest_ranked": true,
+    "min_comparable_seeds": 4,
+    "prereg_win_fraction": 0.5714285714285714,
+    "effect_size_bar": 2.0,
+    "seed_shift_floor": 0.0001
+  },
+  "seeds": [
+    42,
+    43,
+    45,
+    46,
+    47,
+    48,
+    49
+  ]
+}
