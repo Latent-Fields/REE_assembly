@@ -682,26 +682,28 @@
           "pre_registered_utc": "2026-07-29T09:24:49Z",
           "pre_registration_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
           "adjudicating_runs": [
-            "V3-EXQ-836"
+            "V3-EXQ-836",
+            "V3-EXQ-836a"
           ],
           "null_declared": "retained_fraction_mean is invariant to install dose (spread < margin) -> retention tracks only the concurrent constraint, no dose-dependent consolidation process.",
-          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory; an install that did not take is uninformative about retention. DISCOVERED GAP (this resolution): the SUPPORTED/WEAKENED/NON-MONOTONE discrimination margin must be scaled to observed per-arm noise (SD of the inter-arm delta), not a fixed literal -- see basis.",
+          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory; an install that did not take is uninformative about retention. DISCOVERED GAP (resolved by 836a): the SUPPORTED/WEAKENED/NON-MONOTONE discrimination margin must be scaled to observed per-arm noise (SD of the inter-arm delta), not a fixed literal -- 836a implements the noise-scaled fix; see basis.",
           "motivating_evidence": "V3-EXQ-780 (single BC dose straight into RL refinement, no dose variation) established the erosion phenomenon this leg dose-varies.",
           "probe_status": "resolved",
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-836"
+              "V3-EXQ-836",
+              "V3-EXQ-836a"
             ],
-            "evidence_direction": "non_contributory",
-            "epistemic_category": "measurement_test_design_defect",
-            "self_route_label": "non_monotone_dose_response",
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "retention_invariant_to_dose_no_process",
             "control_passed": true,
             "non_degenerate": true,
-            "met_elimination_bar": false,
-            "resolved_utc": "2026-07-29T09:24:49Z",
-            "adjudicated_by": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
-            "basis": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a)."
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-01T10:37:54Z",
+            "adjudicated_by": "failure_autopsy_V3-EXQ-836-cluster_2026-08-01.json",
+            "basis": "SUPERSEDES the 836 fixed-margin read above. V3-EXQ-836a (FAIL, non_degenerate, all 3 dose arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (max(1.5*sd_delta, floor), the gap 836 itself surfaced): retained_fraction_mean = [0.712 (300), 0.430 (600), 0.512 (900)], non-monotone, effect -0.1998 well inside the noise-scaled margin 0.7162 required to call growth. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-dose-response as the retention-driving mechanism. Read jointly with H-mech476-novelty-tagging (836d) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01)."
           }
         },
         {
@@ -712,26 +714,28 @@
           "pre_registered_utc": "2026-07-29T18:19:56Z",
           "pre_registration_source": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
           "adjudicating_runs": [
-            "V3-EXQ-836c"
+            "V3-EXQ-836c",
+            "V3-EXQ-836d"
           ],
           "null_declared": "retained_fraction is invariant (or reversed) between paired and unpaired -> no behavioural-tagging-style novelty-gated consolidation effect.",
-          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory. DISCOVERED GAP (this resolution): same fixed-margin defect as H-mech476-dose-response, compounded by a deliberately low/noisy weak-install competence regime.",
+          "measurement_requirement": "install_took_strict_majority per-arm readiness gate mandatory. DISCOVERED GAP (resolved by 836d): same fixed-margin defect as H-mech476-dose-response, compounded by a deliberately low/noisy weak-install competence regime -- 836d implements the noise-scaled fix.",
           "motivating_evidence": "SD-083 offline policy-consolidation window (landed 2026-07-29) provides the novelty-gated EWC capture mechanism this leg exercises for the first time.",
           "probe_status": "resolved",
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-836c"
+              "V3-EXQ-836c",
+              "V3-EXQ-836d"
             ],
-            "evidence_direction": "non_contributory",
-            "epistemic_category": "measurement_test_design_defect",
-            "self_route_label": "reversed_novelty_effect",
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "retention_invariant_to_novelty_tagging_no_process",
             "control_passed": true,
             "non_degenerate": true,
-            "met_elimination_bar": false,
-            "resolved_utc": "2026-07-29T18:19:56Z",
-            "adjudicated_by": "failure_autopsy_mech476-mech475-cluster_2026-07-29.json",
-            "basis": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct."
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-01T10:37:54Z",
+            "adjudicated_by": "failure_autopsy_V3-EXQ-836-cluster_2026-08-01.json",
+            "basis": "SUPERSEDES the 836c fixed-margin read above. V3-EXQ-836d (FAIL, non_degenerate, both arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (the gap 836c itself surfaced): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818, and robust across all 10 leave-one-out folds. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-novelty-tagging as the retention-driving mechanism. Read jointly with H-mech476-dose-response (836a) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01)."
           }
         }
       ],
