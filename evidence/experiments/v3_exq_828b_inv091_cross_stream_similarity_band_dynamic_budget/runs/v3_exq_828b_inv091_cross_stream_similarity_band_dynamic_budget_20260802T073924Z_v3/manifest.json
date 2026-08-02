@@ -1,0 +1,56 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget",
+  "run_id": "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget_20260802T073924Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T07:39:24Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "INV-091"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "cross_stream_similarity_band_not_supported",
+    "note": "C1 held (at least one ablation moved similarity) but C2 failed: the peak-composite arm 'harm_collapse' is AT AN EMPIRICAL EXTREME (harm_collapse == harm_collapse), margin_vs_min=0.101, margin_vs_max=0.000 (threshold 0.15); monotonic_direction='none'. Secondary diagnostic (non-load-bearing): intact_beats_both_extremes=False. Dynamic-budget re-run of V3-EXQ-828a's design (sizing-mechanism correction only, NOT a redesign) -- read alongside V3-EXQ-827a, V3-EXQ-828 and V3-EXQ-828a, not in isolation. Does NOT retract or supersede V3-EXQ-828's or V3-EXQ-828a's own scored weakens verdicts; this is a fresh, independently-scored data point."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b23faee0ad6d3354b279bc916078510e4dc9feb526de92410d1b5e4d251ebd3f",
+  "substrate_commit": {
+    "commit": "deb441eb00eb4025915f2043c41c3d50002ba1f1",
+    "dirty": false,
+    "branch": "main"
+  }
+}
