@@ -11,9 +11,9 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -28,9 +28,9 @@ closure_plan:
       status: upstream-blocked
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -45,7 +45,8 @@ closure_plan:
       depends_on: ["arc_062_rule_apprehension:GAP-B"]
       upstream_block_reason: "ARC-065 (behavioral-diversity-generation pathway) registered 2026-05-10. V3-EXQ-418l + 436a returned bit-identical sleep-vs-waking metrics across all seeds because the agent's waking phase produces no behavioural variation for sleep to refine. Sleep refinement experiments cannot register signal until the agent has waking diversity to refine. See arc_062_rule_apprehension_plan.md decision log 2026-05-10 entry."
       resume_condition: "Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_autopsy_V3-EXQ-543l_2026-05-27 (confirmed) routed 543l to substrate_ceiling (FAIL branch-e at escalated floor=0.5 / aux=0.3, basin_stable=true, all four diff-ON gated arms 3/3 inert); the substrate-enrichment-first follow-up V3-EXQ-598b also FAILed (C3 trainable_not_monomodal). ARC-065 SP-CEM substrate (live from V3-EXQ-567 PASS 2026-05-15) is NOT sufficient on its own -- 543l ran 2026-05-26 with it live and the trained policy still collapsed to inert monomodal equilibrium. NEW GATE: rule-creator / discriminator substrate landing (a mechanism that populates DIFFERENTIATED rule_state inputs to SD-033a, not just trainable bias heads), tracked under arc_062_rule_apprehension:GAP-B governance_2026_05_29 + arc_062 GAP-B status=blocked routing to /implement-substrate. On that substrate landing AND a contributory PASS retest of arc_062 GAP-B's MECH-309/ARC-062 falsifier under the new substrate, re-queue V3-EXQ-418m + V3-EXQ-436b under the full ARC-065 SP-CEM + rule-creator stack. Further GatedPolicy floor/aux escalations (notional V3-EXQ-543m) explicitly deferred per 543l autopsy section 9. PRIOR (verbatim, for reconstruction): 'V3-EXQ-543l (queued 2026-05-24; escalated MODE_SEPARATION_FLOOR 0.5 + P1_W_DEVIATION_AUX_WEIGHT 0.3; supersedes 543k which FAIL/mixed 20260522T091714Z) is the active ARC-065 substrate gate. On 543l contributory PASS, re-queue 418m + 436b under the diversity-substrate stack. PRIOR: 543b/c/d/e/f/g/h all non_contributory (see arc_062 GAP-B history); 543i/j/k each addressed a distinct substrate defect but none achieved a contributory falsifier result.'"
-      last_updated: 2026-07-10
+      last_updated: 2026-08-02
+      governance_2026_08_02: "Stale-since-review acknowledgement (governance cycle 2026-08-02, session infallible-villani-f280fa; no status change). failure_autopsy_V3-EXQ-436b_2026-08-02 (confirmed) reclassified SD-017/ARC-045/MECH-166 non_contributory (live: block already correct via governance.sh's Step 3c-pre-heal self-heal). Does NOT change GAP-2 -- the node stays upstream-blocked on arc_062_rule_apprehension:GAP-B, which is still status=in-progress (not done), so the resume_condition gate is unmet. FLAGGED, NOT RESOLVED: this node's own pending_owner_exqs_note and title record 436b as deliberately deferred/unqueued pending GAP-B; V3-EXQ-436b ran anyway (autopsy confirms a real recording-gap FAIL, not a fabricated result), which is either a pre-existing queue entry that predates the gate and was not withdrawn, or the gate was not actually enforced at queue time. Worth a look next time this node is touched -- not investigated further this cycle. last_updated bumped to clear the closure-drift stale-since-review flag."
       governance_2026_07_10: "Stale-since-review acknowledgement (governance cycle 2026-07-10; no status change). failure_autopsy_V3-EXQ-538a_2026-07-10 (confirmed) re-tagged SD-017 (in this node's unblocks_claims) non_contributory for the V3-EXQ-538a sleep-on ablation. But SD-017 stays STABLE / unchanged: 538a re-ran the pre-enrichment 514f COARSE config, and its per-claim SD-017 'supports' was SWS/REM-write liveness only (vacuous); SD-017's genuine support remains V3-EXQ-691. Does NOT change GAP-2 -- the node stays upstream-blocked on the rule-creator/discriminator substrate landing (arc_062_rule_apprehension:GAP-B), orthogonal to SD-017. Sleep retest cohort (418m/436b/500a/503a) stays deferred. last_updated bumped to clear the closure-drift stale-since-review flag."
       governance_2026_06_23: "EDGE RE-POINT (session closure-map-enhance-20260623T043407Z; plan-frontmatter only, NO claims.yaml/queue change). depends_on was 'arc_062_rule_apprehension:ARC-065-substrate' -- a node id that does NOT exist in the arc_062 plan (its nodes are GAP-A..GAP-L), so the closure map drew a DANGLING edge. Re-pointed to arc_062_rule_apprehension:GAP-B, which every resume_condition + governance note here names as the real gate (rule-creator/discriminator substrate landing). No status change (stays upstream-blocked). The 'physical entry name retained for back-pointer compatibility' rationale no longer holds now that GAP-B is the live, rendered node."
       governance_2026_05_29: "Upstream blocker re-confirmed this cycle. V3-EXQ-543l ran 20260526T023059Z FAIL branch-e (substrate-uniform monomodal collapse persists across mode_separation_floor=0.5 + P1 deviation aux=0.3); V3-EXQ-598b retest on the GAP-C/D substrate likewise FAILed C3 trainable_not_monomodal -- substrate-enrichment-first path exhausted without escaping ARC-065 substrate gate. GAP-2 remains upstream-blocked; next unlock requires rule-creator/discriminator substrate (tracked under arc_062_rule_apprehension:GAP-B governance_2026_05_29). Sleep retest cohort (418m + 436b + 500a + 503a) stays deferred."
@@ -56,9 +57,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -74,9 +75,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -94,9 +95,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -111,9 +112,9 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -129,9 +130,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -179,9 +180,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -198,9 +199,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false
@@ -216,9 +217,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-850_2026-08-01"
-        verdict: "inconclusive/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "not_fired"
         needs_review: false

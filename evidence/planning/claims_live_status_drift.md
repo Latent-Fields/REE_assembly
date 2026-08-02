@@ -1,14 +1,14 @@
 # Claims live_status Drift Report
 
-Generated: 2026-08-01T21:10:29Z
+Generated: 2026-08-02T11:53:59Z
 
 Mirror of the closure-plan / claims-doc drift reports, for the claims registry's `live_status` status plane (SHP-4). Flags claims whose stored `live_status` block has fallen out of step with the value re-derived from the claim's own current fields (`status` + `v3_pending` + `epistemic_category`). Resolution + derivation are shared with `scripts/apply_live_status.py`. Only the **Reading drift** bucket is a hard signal (fails `--strict`); the rest are review/info hints.
 
 Warn-only by default -- run with `--strict` for a blocking gate.
 
-Claims in registry: 963
+Claims in registry: 966
 
-## Reading drift -- HARD (19)
+## Reading drift -- HARD (22)
 
 Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`; if it persists, the block was hand-edited or the claim's fields changed without a re-stamp.
 
@@ -33,6 +33,9 @@ Stored `live_status` != re-derived value. Re-run `scripts/apply_live_status.py`;
 | ARC-117 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | ARC-118 | `candidate` | `candidate/substrate_conditional` | reading: stored='candidate' derived='candidate/substrate_conditional' |
 | SENT-17 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| MECH-480 | `candidate` | `candidate/v3_pending` | reading: stored='candidate' derived='candidate/v3_pending' |
+| SD-091 | `candidate` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate' derived='candidate/v3_pending/substrate_conditional' |
+| MECH-481 | `candidate` | `candidate/v3_pending/substrate_conditional` | reading: stored='candidate' derived='candidate/v3_pending/substrate_conditional' |
 
 ## Unstamped -- SOFT (2)
 
@@ -49,7 +52,7 @@ Claims whose own current-state fields contradict each other (`needs_review` true
 
 _None._
 
-## Event-provenance drift -- SOFT (89)
+## Event-provenance drift -- SOFT (100)
 
 The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `verdict`) is projected from the append-only event log via project_status_head. This flags claims whose stored `evidence` block no longer matches the freshly re-projected head -- i.e. a newer autopsy / PASS manifest / decision landed (or one changed) since `apply_live_status.py` last ran. It fluctuates legitimately as the fleet produces evidence, so it is **warn-only and never a --strict failure**: re-run `scripts/apply_live_status.py` (under a TASK_CLAIMS claim on docs/claims/claims.yaml) to refresh. Reading drift (HARD, above) is the gate; provenance drift is a hint.
 
@@ -65,34 +68,45 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | ARC-024 | `decision:ARC-024@2026-03-19T20:35:00Z` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` |
 | MECH-102 | `v3_exq_533_mech102_harm_stream_ablation_20260506T094157Z_v3` | `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-533` |
 | Q-020 | `decision:Q-020@2026-04-10T18:06:06.975132Z` | `decision:Q-020@2026-07-25T16:55:22.930722Z` |
+| Q-021 | `decision:Q-021@2026-03-29T21:15:46.773489Z` | `failure_autopsy_V3-EXQ-866_2026-08-02` |
 | MECH-094 | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` | `failure_autopsy_V3-EXQ-466d_2026-06-24#V3-EXQ-466d` |
+| MECH-090 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-871_2026-08-02` |
 | MECH-093 | `failure_autopsy_EXQ-539-540_MECH307_2026-05-17#V3-EXQ-540f` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-396a` |
 | SD-003 | `failure_autopsy_zworld-integration-cluster_2026-06-06#V3-EXQ-145` | `failure_autopsy_V3-EXQ-032-family_2026-07-26#V3-EXQ-032b` |
 | SD-004 | `_none_` | `failure_autopsy_batch-822a-826-817a-827_2026-07-26#V3-EXQ-817a` |
 | SD-010 | `_none_` | `failure_autopsy_V3-EXQ-059c-533_2026-07-26#V3-EXQ-059c` |
+| INV-034 | `_none_` | `failure_autopsy_V3-EXQ-866_2026-08-02` |
+| MECH-135 | `decision:MECH-135@2026-03-28T17:30:00Z` | `failure_autopsy_V3-EXQ-108a_2026-08-02` |
 | MECH-140 | `failure_autopsy_V3-EXQ-710_2026-07-03` | `failure_autopsy_V3-EXQ-710_2026-07-20` |
 | MECH-153 | `decision:MECH-153@2026-04-04T08:57:00.483957Z` | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` |
 | INV-041 | `decision:INV-041@2026-06-10T16:18:22Z` | `v3_exq_832_inv041_childhood_exposure_context_diff_20260727T214521Z_v3` |
+| MECH-025b | `failure_autopsy_batch9_2026-06-12#V3-EXQ-671` | `failure_autopsy_V3-EXQ-671a_2026-08-02` |
 | MECH-163 | `v3_exq_786b_mech163_dual_system_recruitment_20260724T123825Z_v3` | `failure_autopsy_V3-EXQ-841_2026-07-31` |
+| SD-017 | `failure_autopsy_V3-EXQ-538a_2026-07-10` | `failure_autopsy_V3-EXQ-436b_2026-08-02` |
+| ARC-045 | `decision:ARC-045@2026-05-10T12:24:30Z` | `failure_autopsy_V3-EXQ-436b_2026-08-02` |
+| MECH-166 | `decision:MECH-166@2026-05-10T12:24:30Z` | `failure_autopsy_V3-EXQ-436b_2026-08-02` |
 | INV-047 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-168 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-169 | `failure_autopsy_V3-EXQ-778h_2026-07-19` | `failure_autopsy_V3-EXQ-778a_2026-07-20` |
 | MECH-171 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-673` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-673` |
-| MECH-180 | `failure_autopsy_V3-EXQ-798a_2026-07-30` | `failure_autopsy_V3-EXQ-845_2026-08-01` |
-| MECH-203 | `_none_` | `failure_autopsy_V3-EXQ-843_2026-08-01` |
+| INV-050 | `failure_autopsy_V3-EXQ-861_2026-08-01` | `failure_autopsy_V3-EXQ-718a_2026-07-08` |
+| MECH-180 | `failure_autopsy_V3-EXQ-861_2026-08-01` | `failure_autopsy_V3-EXQ-861_2026-08-01` |
+| MECH-203 | `failure_autopsy_V3-EXQ-843_2026-08-01` | `failure_autopsy_V3-EXQ-843_2026-08-01` |
 | MECH-204 | `failure_autopsy_V3-EXQ-794_2026-07-22` | `failure_autopsy_V3-EXQ-850_2026-08-01` |
 | INV-088 | `failure_autopsy_MECH-457-fanout-752-753-754_2026-07-15#V3-EXQ-754` | `failure_autopsy_V3-EXQ-819a_2026-07-30` |
 | MECH-217 | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-842` |
 | SD-024 | `_none_` | `decision:SD-024@2026-07-26T15:35:35.089092Z` |
 | SD-025 | `failure_autopsy_V3-EXQ-767a_2026-07-17` | `failure_autopsy_V3-EXQ-767a_2026-07-17` |
-| Q-040 | `decision:Q-040@2026-05-08T22:34:09Z` | `failure_autopsy_V3-EXQ-475b_2026-08-01` |
+| Q-040 | `decision:Q-040@2026-05-08T22:34:09Z` | `failure_autopsy_V3-EXQ-862_2026-08-02` |
 | MECH-244 | `_none_` | `failure_autopsy_2026-07-28-sweep#V3-EXQ-826a` |
 | MECH-245 | `_none_` | `v3_exq_825_mech245_generative_dominance_deafferentation_20260726T152102Z_v3` |
 | SD-032a | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
 | MECH-260 | `failure_autopsy_V3-EXQ-460g_2026-06-19` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a` |
 | MECH-266 | `failure_autopsy_SD-034-closure-cluster-ext_2026-06-12#V3-EXQ-467c` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-797` |
+| MECH-267 | `decision:MECH-267@2026-04-25T15:42:09.107851Z` | `failure_autopsy_V3-EXQ-869_2026-08-02` |
 | SD-036 | `decision:SD-036@2026-04-25T15:42:09.107896Z` | `v3_exq_854_sd036_gaba_tone_dose_response_20260801T062503Z_v3` |
 | MECH-288 | `decision:MECH-288@2026-07-14T20:19:21.367028Z` | `failure_autopsy_V3-EXQ-839_2026-07-30` |
+| MECH-292 | `v3_exq_496_mech292_ghost_goal_bank_validation_20260427T094339Z_v3` | `v3_exq_868_mech292_ghost_priority_relevance_confirmer_20260802T035413Z_v3` |
 | MECH-294 | `failure_autopsy_569f-661-654a_2026-06-10#V3-EXQ-661` | `failure_autopsy_V3-EXQ-840b_2026-08-01` |
 | SD-049 | `failure_autopsy_V3-EXQ-538a_2026-07-10` | `failure_autopsy_batch-793a-817-819_2026-07-26#V3-EXQ-793a` |
 | MECH-309 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_V3-EXQ-851_2026-08-01` |
@@ -104,20 +118,9 @@ The `live_status.evidence` sub-block (SHP-4 augmentation: `from` / `as_of` / `ve
 | MECH-314b | `failure_autopsy_V3-EXQ-604c_2026-07-20` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
 | MECH-314c | `failure_autopsy_V3-EXQ-604c_2026-07-20` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
 | Q-044 | `failure_autopsy_V3-EXQ-604c_2026-07-20` | `failure_autopsy_V3-EXQ-604c_2026-07-20` |
-| Q-045 | `failure_autopsy_V3-EXQ-687_2026-06-18` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-687a` |
-| ARC-070 | `decision:ARC-070@2026-05-16T19:08:31Z` | `failure_autopsy_V3-EXQ-839_2026-07-30` |
-| ARC-071 | `failure_autopsy_V3-EXQ-810a_2026-07-30` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-810b` |
-| MECH-321 | `_none_` | `failure_autopsy_V3-EXQ-844_2026-08-01` |
-| MECH-323 | `_none_` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-810b` |
-| MECH-324 | `_none_` | `failure_autopsy_V3-EXQ-810a_2026-07-30` |
-| MECH-341 | `failure_autopsy_V3-EXQ-655_2026-06-13` | `failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30#V3-EXQ-614` |
-| MECH-342 | `failure_autopsy_V3-EXQ-732_2026-07-10` | `failure_autopsy_backlog_2026-07-24#V3-EXQ-629c` |
-| Q-054 | `failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616` | `failure_autopsy_MECH-341-cluster_2026-05-31#V3-EXQ-616` |
-| SD-059 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
-| MECH-358 | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` | `failure_autopsy_batch9_2026-06-12#V3-EXQ-603o` |
-| ... | | (+29 more) |
+| ... | | (+40 more) |
 
-## Never reviewed (no `last_reviewed`) -- INFO (942 of 963)
+## Never reviewed (no `last_reviewed`) -- INFO (945 of 966)
 
 Claims with no `last_reviewed` history value -- not yet reviewed under the history plane. `last_reviewed` is record-once and legitimately absent for most claims (seeded from `adjudicated_at_utc`, or set with `apply_live_status.py --mark-reviewed <ID>`). Count + sample only.
 

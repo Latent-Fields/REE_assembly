@@ -12,9 +12,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -29,9 +29,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -46,9 +46,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -63,9 +63,9 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -80,9 +80,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -97,9 +97,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -114,9 +114,9 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
@@ -131,9 +131,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-24"
-        from: "failure_autopsy_backlog_2026-07-24#V3-EXQ-797"
-        verdict: "non_contributory/substrate_conditional"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        verdict: "non_contributory/competence_implementation_gap"
         next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false

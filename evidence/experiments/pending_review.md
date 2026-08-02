@@ -1,10 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-08-01T22:12:19Z`  
-Last review: `2026-08-01T21:50:27Z`  
-Pending: **0** item(s) -- 0 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
+Generated: `2026-08-02T12:06:03Z`  
+Last review: `2026-08-02T12:05:51Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
-All experiments reviewed. Nothing pending.
+## PASS (verify & close)
+
+| Run ID | Timestamp | Claims |
+|--------|-----------|--------|
+| `v3_v3_exq_870_runner_error_20260802T105035Z_v3` | 2026-08-02T10:50 | (no claim tags) |
 
 ---
 

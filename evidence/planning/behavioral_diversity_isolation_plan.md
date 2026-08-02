@@ -12,9 +12,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -44,9 +44,9 @@ closure_plan:
       status: partial
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -91,9 +91,9 @@ closure_plan:
       status: in-progress
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -128,9 +128,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -149,9 +149,9 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -169,9 +169,9 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -187,9 +187,9 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -205,9 +205,9 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -223,9 +223,9 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -242,9 +242,9 @@ closure_plan:
       status: in-progress
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -285,9 +285,9 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
@@ -310,9 +310,9 @@ closure_plan:
       status: assembling
       severity: load-bearing
       live:
-        as_of: "2026-08-01"
-        from: "failure_autopsy_V3-EXQ-851_2026-08-01"
-        verdict: "non_contributory/measurement_test_design_defect"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-436b_2026-08-02"
+        verdict: "non_contributory/measurement_gap"
         next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_588d_mech189_trained_encoder_absolute_crossing
 
-Generated: `2026-08-01T21:09:57.681848Z`
+Generated: `2026-08-02T11:53:14.070330Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

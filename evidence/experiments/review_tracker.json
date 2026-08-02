@@ -1,6 +1,6 @@
 {
   "schema_version": "review_tracker/v1",
-  "last_review_utc": "2026-08-01T21:50:27Z",
+  "last_review_utc": "2026-08-02T12:05:51Z",
   "discussed_experiment_dirs": [
     "V3-EXQ-008",
     "V3-EXQ-038",
@@ -1045,7 +1045,20 @@
     "v3_exq_847_arc062_pd_context_modeswitch_committed_class_divergence",
     "v3_exq_843_mech203_sws_replay_salience_dose_response",
     "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity",
-    "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic"
+    "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic",
+    "v3_exq_857a_q086_gentler_env_fingerprint_redesign",
+    "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy",
+    "v3_exq_867_mech321_harm_aware_selection_task_effect",
+    "v3_exq_862_q040c_dacc_pe_weight_delta_correlation",
+    "v3_exq_671a_mech025b_precision_responsibility",
+    "v3_exq_436b_sd017_mech166_repr_confirmer",
+    "v3_exq_869_mech267_mode_conditioning_content_persistence",
+    "v3_exq_108a_mech135_discriminative_pair_stepharness",
+    "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget",
+    "v3_exq_866_inv034_q021_goal_maintenance_agency",
+    "v3_exq_855_mech090_commit_latch_persistence_diagnostic",
+    "v3_exq_865_q081_zgoal_reach_preflight_scan",
+    "v3_exq_868_mech292_ghost_priority_relevance_confirmer"
   ],
   "reviewed_run_ids": [
     "2026-02-13T060000Z_dummy-pass",
@@ -3746,7 +3759,20 @@
     "v3_exq_847_arc062_pd_context_modeswitch_committed_class_divergence_20260801T191410Z_v3",
     "v3_exq_843_mech203_sws_replay_salience_dose_response_20260801T195300Z_v3",
     "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity_20260801T205600Z_v3",
-    "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3"
+    "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3",
+    "v3_exq_857a_q086_gentler_env_fingerprint_redesign_20260802T015401Z_v3",
+    "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy_20260802T023831Z_v3",
+    "v3_exq_867_mech321_harm_aware_selection_task_effect_20260802T031937Z_v3",
+    "v3_exq_862_q040c_dacc_pe_weight_delta_correlation_20260802T032301Z_v3",
+    "v3_exq_671a_mech025b_precision_responsibility_20260802T035128Z_v3",
+    "v3_exq_436b_sd017_mech166_repr_confirmer_20260802T035312Z_v3",
+    "v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3",
+    "v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3",
+    "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget_20260802T073924Z_v3",
+    "v3_exq_866_inv034_q021_goal_maintenance_agency_20260802T074409Z_v3",
+    "v3_exq_855_mech090_commit_latch_persistence_diagnostic_20260802T104333Z_v3",
+    "v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3",
+    "v3_exq_868_mech292_ghost_priority_relevance_confirmer_20260802T035413Z_v3"
   ],
   "discussion_notes": [
     "2026-07-11T21:29Z_governance: 538a reviewed (autopsy applied 2026-07-10, all 5 claims non_contributory); 517d PASS/supports MECH-302 clean discriminative pair (ON 686.7 vs OFF 0.0, 3/3 seeds), stays candidate. 8 items left pending for autopsy: 047m(MECH-095 ceiling), 733a-pA/pB(MECH-456 readiness recurrence), 734/735/736/737(conversion-ceiling synthesis), 740(INV-064 IV-didnt-move).",
@@ -5855,6 +5881,26 @@
         "v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3"
       ],
       "note": "Governance cycle 2026-08-01 (session nostalgic-chatelet-c25a78, worktree). All 6 pending items had confirmed autopsies (859/860/847/843 by concurrent session insights-34f9b4; 861/864 autopsied inline this session, Step 1.5 route A). Applied: V3-EXQ-859 (claim-free, ARC-062 route_source ablation, inconclusive -- neither reading distinguished, V3-EXQ-858 stays suspended); V3-EXQ-847 (claim-free, denominator-bug false-negative corrected, MECH-448/449 actually 100% active but only 1/3 seeds usable and opposite H4's direction -- non_contributory); V3-EXQ-843 (MECH-203, third consecutive invalid test, zero harm exposure by design -- non_contributory, sleep_substrate_plan.md's stale 'EXQ-255/256 PASS; adequate' note corrected); V3-EXQ-861 (MECH-180, mixed -- DV1/DV2 strengthened, DV3 explained by a newly-discovered MECH-122 content-packaging dependency gap, not falsified; epistemic_category GRADUATED substrate_ceiling -> standard on MECH-180 AND sibling INV-050 in the same reconciliation pass; new substrate_queue entry MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION; MECH-122's own stale 'V4 scope' prose corrected -- its implementation_phase: v3 field was already correct); V3-EXQ-860 (SD-076/MECH-204, weakens -- clean controlled elimination showing H2 weaker than 853's confounded reading, strengthens H1 by elimination, DECISION-RELEVANT for EVB-0454 per the 723 rule; predecessor V3-EXQ-853 marked evidence_direction=superseded); V3-EXQ-864 (SD-076, non_contributory -- code-verified test-design defect, CausalGridWorldV3's own episode termination overrides the driver's steps_per_ep sweep, V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle stays unresolved, non-blocking). Also found and flagged (not resolved): experiment_proposals.v1.json's EVB-0454 decision_deadline_utc (2026-08-04T21:09:57Z) disagrees with claims.yaml/860-autopsy/864-docstring citations (2026-08-03T20:50:36Z) by ~24h. EVB-0454 retain/hybridize/retire decision deliberately left open this cycle per user instruction. promotion_demotion_recommendations.md: 0 live pending_user rows (all hold rows already applied)."
+    },
+    {
+      "utc": "2026-08-02T12:05:51Z",
+      "session": "infallible-villani-f280fa (/governance cycle 2026-08-02, worktree)",
+      "reviewed": [
+        "v3_exq_857a_q086_gentler_env_fingerprint_redesign_20260802T015401Z_v3",
+        "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy_20260802T023831Z_v3",
+        "v3_exq_867_mech321_harm_aware_selection_task_effect_20260802T031937Z_v3",
+        "v3_exq_862_q040c_dacc_pe_weight_delta_correlation_20260802T032301Z_v3",
+        "v3_exq_671a_mech025b_precision_responsibility_20260802T035128Z_v3",
+        "v3_exq_436b_sd017_mech166_repr_confirmer_20260802T035312Z_v3",
+        "v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3",
+        "v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3",
+        "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget_20260802T073924Z_v3",
+        "v3_exq_866_inv034_q021_goal_maintenance_agency_20260802T074409Z_v3",
+        "v3_exq_855_mech090_commit_latch_persistence_diagnostic_20260802T104333Z_v3",
+        "v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3",
+        "v3_exq_868_mech292_ghost_priority_relevance_confirmer_20260802T035413Z_v3"
+      ],
+      "note": "Governance cycle 2026-08-02 (session infallible-villani-f280fa, worktree). All 11 pending FAILs had confirmed autopsies landed by concurrent sessions today (857a/858/867/862/671a/436b/869/108a/828b/866 by determined-ritchie-55a3a6 and insights-34f9b4; 871/855 by confident-franklin-c8e403), so this cycle applied them in one pass with no Step 1.5 route-A autopsy needed. Applied: V3-EXQ-857a (Q-086, supports 'calibration, not ecology' via paired-by-seed reanalysis, reverses the 857 non_contributory read); V3-EXQ-858 (ARC-062/GOV-FANOUT-1 P-B, non_contributory, compound-gate artifact predicted in advance by 851); V3-EXQ-867 (MECH-321, non_contributory, harm-aware-selection substrate is built and closed but this run's untuned env never let z_harm_a clear the engagement floor -- pending_retest_after_env_tuning, not substrate); V3-EXQ-862 (Q-040, non_contributory, second distinct config-omission bug -- dacc_weight never set, so bias is unconditionally zero); V3-EXQ-671a (MECH-025b, non_contributory/measurement_gap, 4 instrument fixes landed + residue positive-control cleared, but no positive control exists yet for precision variance itself); V3-EXQ-436b (SD-017/ARC-045/MECH-166, non_contributory, primary DV bit-identical across conditions -- recording gap, sws_n_writes/REM counters discarded by the driver, not a null result); V3-EXQ-869 (MECH-267, non_contributory/competence_implementation_gap, only noise-scale mechanism built, horizon-depth deferred per the claim's own registration text -- new substrate_queue entry SD-MECH267-HORIZON-DEPTH, pending_retest_after_substrate=true); V3-EXQ-108a (MECH-135, weakens/substrate_ceiling, replicates 108's real FAIL after ruling out the training-time confound -- also a starker confirmation of INV-088's coupling-leg prediction, cross-referenced there); V3-EXQ-828b (INV-091, weakens, third corroborating weakens in the 827/827a/828/828a/828b lineage -- null-validation formally closed as aleatoric per work-graph debt vocabulary after a third refused attempt); V3-EXQ-866 (INV-034/Q-021, non_contributory, G0 competence-floor gate failed on this lightweight harness -- route to scaffolded_sd054_onboarding); V3-EXQ-871/855 (MECH-090/ARC-071, non_contributory, use_persistent_committed_program_handle scoped to the whole cell instead of the probe phase only -- route V3-EXQ-871a). Plus 2 clean PASS: V3-EXQ-865 (Q-081, diagnostic null -- no lever reach found for this landmark-manipulation family across z_goal/z_harm_a, closes out the lever family, decision-relevant per the driver's own interpretation); V3-EXQ-868 (MECH-292, supports, goal_relevant_trace_outranks_goal_irrelevant). MECH-135 epistemic_category set to substrate_ceiling (was unset). MECH-267 pending_retest_after_substrate set true. Only substrate_ceiling and standard were written to any claim's epistemic_category field -- autopsy-internal categories (measurement_gap, measurement_test_design_defect, environment_adequacy_defect, competence_implementation_gap, substrate_not_ready_requeue) are NOT in the claims.yaml canonical enum {standard, substrate_coherence, answer_state, substrate_ceiling, substrate_conditional, derivational, out_of_domain, governance_rule} per CLAUDE.md's Epistemic categories table, so those went into evidence_quality_note text only, not the field (validate_claims.py --strict confirmed 0 errors both before and after). ANOMALY: V3-EXQ-870 (v3_v3_exq_870_runner_error, MECH-480) is miscategorized under PASS in pending_review.md -- its manifest shows outcome=ERROR/crash_before_manifest=true; NOT marked reviewed here, routes to /diagnose-errors, and the pending_review.md generator's PASS-bucket miscategorization for this run_id shape is worth a separate look. Promotion/demotion agenda: 4 pending_user rows (MECH-322, MECH-481, SD-091 hold_pending_v3_substrate; SD-087 hold_candidate_resolve_conflict) all confirmed as recommended, no status changes -- MECH-481/SD-091 first cycle since 2026-08-01 registration. Collision note: this session's TASK_CLAIMS.json claim overlaps determined-ritchie-55a3a6's active claim on REE_assembly/evidence/planning/experiment_proposals.v1.json (--allow-overlap, user-approved) -- genuinely different task (that session reviews/queues new proposals; this cycle's Step 6 only flags already-executed proposals), no edits made to that file by this session."
     }
   ]
 }

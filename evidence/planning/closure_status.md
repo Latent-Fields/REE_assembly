@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-02T01:15:21Z
+Generated: 2026-08-02T11:53:46Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -8,12 +8,12 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 
 ## Overall
 
-- Weighted progress: **77.6%** across 83 non-deferred nodes in 13 plan(s) with closure frontmatter.
-- Remaining (open/in-progress/blocked/partial): **24** nodes.
+- Weighted progress: **76.9%** across 83 non-deferred nodes in 13 plan(s) with closure frontmatter.
+- Remaining (open/in-progress/blocked/partial): **25** nodes.
 - Assembly frontier (required, under construction -- a SEPARATE axis, not counted in the % above and not a stalled backlog): **10** nodes.
 - Deferred (not required for v3 closure): 13 nodes.
-- Done: 59 nodes.
-- Status tally: assembling=10  blocked=9  blocked_pending_substrate=2  deferred=13  done=59  in_progress=8  open=2  partial=2  upstream_blocked=1
+- Done: 58 nodes.
+- Status tally: assembling=10  blocked=9  blocked_pending_substrate=2  deferred=13  done=58  in_progress=9  open=2  partial=2  upstream_blocked=1
 
 ## Plans
 
@@ -23,9 +23,9 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `global_workspace_jlens_plan.md` | Global Workspace + J-lens (SD-064 access channel) | 4 | 5% | blocked:2 open:2 | 2026-07-10 |
 | `sd_037_axis_b_sustained_threat_curriculum_plan.md` | SD-037 Axis (b): Sustained-Threat Env Curriculum | 4 | 10% | assembling:1 blocked:3 | 2026-06-05 |
 | `self_attribution_plan.md` | Self-Attribution Comparator Loop | 5 | 32% | blocked:3 deferred:1 done:1 | 2026-06-04 |
+| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 60% | done:1 in_progress:2 | 2026-07-31 |
 | `arc_062_rule_apprehension_plan.md` | Rule Apprehension | 13 | 61% | blocked:1 blocked_pending_substrate:1 deferred:4 done:4 in_progress:2 partial:1 | 2026-08-01 |
 | `behavioral_diversity_isolation_plan.md` | Behavioural Diversity Isolation | 12 | 79% | assembling:1 deferred:3 done:5 in_progress:2 partial:1 | 2026-08-01 |
-| `arc_005_control_plane_routing_plan.md` | ARC-005 Control-Plane Routing (does the plane route, and which channel carries it) | 3 | 80% | done:2 in_progress:1 | 2026-07-31 |
 | `commitment_closure_plan.md` | Commitment / Closure / Mode-Governance | 12 | 87% | assembling:1 deferred:2 done:7 in_progress:2 | 2026-07-10 |
 | `sleep_substrate_plan.md` | Sleep Substrate | 10 | 90% | deferred:1 done:8 upstream_blocked:1 | 2026-07-07 |
 | `infant_substrate_plan.md` | Infant Substrate Expansion | 17 | 91% | blocked_pending_substrate:1 done:15 in_progress:1 | 2026-05-30 |
@@ -33,12 +33,13 @@ ACCURACY: this snapshot reports each node's self-declared `status`. Whether that
 | `sd033_governance_plan.md` | SD-033 Governance (OCD test battery sub-plan) | 8 | 100% | done:8 | 2026-05-29 |
 | `sd_037_axis_a_consumer_input_recalibration_plan.md` | SD-037 Axis (a): Consumer-Input-Threshold Recalibration | 4 | 100% | deferred:2 done:2 | 2026-06-05 |
 
-## Remaining work to close v3 (24)
+## Remaining work to close v3 (25)
 
 Ordered by phase, then severity. This is the answer to "what is left."
 
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
+| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A-precision-diagnostic` | Why is log10_precision_mean bit-identical across channel levels in 802? Harness  | in_progress | 0 | informational | V3-EXQ-848, V3-EXQ-848a | depends_on: arc_005_control_plane_routing:GAP-A | 2026-08-02 |
 | arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to  | in_progress | 1 | load-bearing | V3-EXQ-846 | depends_on: arc_005_control_plane_routing:GAP-A | 2026-07-31 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-23 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
@@ -99,10 +100,9 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 | self_attribution_plan.md | `self_attribution:GAP-5` | SD-030/SD-031 z_self / z_world materialisation (V4) | deferred |  |
 | sleep_substrate_plan.md | `sleep_substrate:GAP-5` | Sleep entry K-episode deterministic (no arousal trigger) | deferred | ext: V4 SD-037 arousal substrate |
 
-## Done (59)
+## Done (58)
 
 - `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A` -- Does the control plane route at all? Channel-vs-content double dissociation over precision
-- `arc_005_control_plane_routing_plan.md` `arc_005_control_plane_routing:GAP-A-precision-diagnostic` -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, no
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-A` -- ARC-062 substrate implemented and readiness-validated (gated-policy heads + learned contex
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-C` -- ARC-062 discriminator output not routed to SD-033a LateralPFCAnalog.update() source vector
 - `arc_062_rule_apprehension_plan.md` `arc_062_rule_apprehension:GAP-D` -- E3 optimiser does not include lateral_pfc_analog.rule_bias_head.parameters() (SD-033a bias

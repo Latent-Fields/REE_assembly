@@ -1,0 +1,53 @@
+# Dormant / Chronic High-Conflict Watchlist
+
+Generated: `2026-08-02T11:53:14.070330Z`
+
+No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
+
+- `dormant_low_activity` -- conflict is real but nobody has run enough recent evidence against the claim to meet the mandatory-checkpoint batch floor.
+- `chronic_under_threshold` -- worked heavily, but `conflict_ratio` never quite crosses the mandatory bar, so it is reworked indefinitely without ever being forced to a decision.
+
+Sorted worst-conflict-first.
+
+| claim_id | pattern | conflict_ratio | current_status | recent_targeted_batches |
+|---|---|---|---|---|
+| `Q-084` | `dormant_low_activity` | 1 | `candidate` | 0 |
+| `SD-031` | `dormant_low_activity` | 1 | `candidate` | 1 |
+| `MECH-295` | `chronic_under_threshold` | 0.923 | `candidate` | 16 |
+| `MECH-186` | `chronic_under_threshold` | 0.8 | `candidate` | 2 |
+| `MECH-093` | `chronic_under_threshold` | 0.75 | `provisional` | 19 |
+| `SD-016` | `chronic_under_threshold` | 0.75 | `implemented` | 15 |
+| `ARC-032` | `chronic_under_threshold` | 0.727 | `candidate` | 8 |
+| `MECH-099` | `chronic_under_threshold` | 0.727 | `candidate` | 6 |
+| `MECH-116` | `chronic_under_threshold` | 0.727 | `candidate` | 7 |
+| `MECH-135` | `chronic_under_threshold` | 0.727 | `candidate` | 9 |
+| `ARC-024` | `chronic_under_threshold` | 0.72 | `provisional` | 15 |
+| `SD-049` | `chronic_under_threshold` | 0.714 | `candidate` | 14 |
+| `ARC-030` | `chronic_under_threshold` | 0.706 | `candidate` | 22 |
+| `SD-029` | `chronic_under_threshold` | 0.706 | `candidate` | 24 |
+| `SD-007` | `chronic_under_threshold` | 0.692 | `implemented` | 18 |
+| `MECH-090` | `chronic_under_threshold` | 0.688 | `active` | 24 |
+| `ARC-041` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
+| `INV-047` | `chronic_under_threshold` | 0.667 | `candidate` | 10 |
+| `INV-054` | `chronic_under_threshold` | 0.667 | `candidate` | 5 |
+| `MECH-071` | `chronic_under_threshold` | 0.667 | `provisional` | 21 |
+| `MECH-073` | `chronic_under_threshold` | 0.667 | `provisional` | 3 |
+| `MECH-112` | `chronic_under_threshold` | 0.667 | `candidate` | 23 |
+| `MECH-118` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
+| `MECH-150` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
+| `MECH-321` | `chronic_under_threshold` | 0.667 | `candidate` | 5 |
+| `MECH-333` | `chronic_under_threshold` | 0.667 | `candidate` | 7 |
+| `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
+| `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
+| `MECH-466` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
+| `Q-001` | `dormant_low_activity` | 0.667 | `active` | 1 |
+| `Q-007` | `chronic_under_threshold` | 0.667 | `active` | 5 |
+| `Q-055` | `dormant_low_activity` | 0.667 | `open` | 0 |
+| `Q-074` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
+| `Q-082` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
+| `SD-076` | `chronic_under_threshold` | 0.667 | `candidate` | 6 |
+| `SD-078` | `chronic_under_threshold` | 0.667 | `candidate_substrate_landed` | 4 |
+| `SD-004` | `chronic_under_threshold` | 0.583 | `implemented` | 15 |
+| `ARC-042` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
+| `MECH-075` | `chronic_under_threshold` | 0.571 | `candidate` | 5 |
+| `MECH-128` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |

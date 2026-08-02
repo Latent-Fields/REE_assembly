@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_700d_arc108_sec7_learned_gating_settling_samelayer_null_retune
 
-Generated: `2026-08-01T21:09:57.681848Z`
+Generated: `2026-08-02T11:53:14.070330Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

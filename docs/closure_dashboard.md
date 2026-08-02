@@ -5,19 +5,19 @@ nav_order: 11
 
 # REE-v3 Closure Dashboard
 
-_Generated 2026-08-02T01:15:21Z — regenerated every governance run; do not edit by hand._
+_Generated 2026-08-02T11:53:46Z — regenerated every governance run; do not edit by hand._
 
 How close V3 is to closing, per plan. Weighted by node status (done = 1, partial / in-progress = part credit, open / blocked = 0). The companion **drift audit** checks whether each node's self-declared status matches its experiments. This is the static, server-free view of the live `/closure` dashboard.
 
 ## Overall
 
-<p style="font-size:1.6em;font-weight:600;margin:.2em 0">77.6%</p>
+<p style="font-size:1.6em;font-weight:600;margin:.2em 0">76.9%</p>
 
-<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:77.6%"></div></div>
+<div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:76.9%"></div></div>
 
-83 non-deferred nodes across 13 plan(s) · **59 done · 24 remaining · 13 deferred** · **10 on the assembly frontier** (under construction, off the % axis).
+83 non-deferred nodes across 13 plan(s) · **58 done · 25 remaining · 13 deferred** · **10 on the assembly frontier** (under construction, off the % axis).
 
-Status tally: `assembling`&nbsp;10 · `blocked`&nbsp;9 · `blocked_pending_substrate`&nbsp;2 · `deferred`&nbsp;13 · `done`&nbsp;59 · `in_progress`&nbsp;8 · `open`&nbsp;2 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
+Status tally: `assembling`&nbsp;10 · `blocked`&nbsp;9 · `blocked_pending_substrate`&nbsp;2 · `deferred`&nbsp;13 · `done`&nbsp;58 · `in_progress`&nbsp;9 · `open`&nbsp;2 · `partial`&nbsp;2 · `upstream_blocked`&nbsp;1
 
 ## By plan
 
@@ -27,9 +27,9 @@ Status tally: `assembling`&nbsp;10 · `blocked`&nbsp;9 · `blocked_pending_subst
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Global Workspace + J-lens (SD-064 access channel)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:5.0%"></div></div>&nbsp;<span style="color:#57606a">5%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>SD-037 Axis (b): Sustained-Threat Env Curriculum</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:10.0%"></div></div>&nbsp;<span style="color:#57606a">10%</span></td><td style="padding:6px 10px">4</td><td style="padding:6px 10px;color:#57606a">2026-06-05</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Self-Attribution Comparator Loop</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#cf222e;height:18px;width:32.5%"></div></div>&nbsp;<span style="color:#57606a">32%</span></td><td style="padding:6px 10px">5</td><td style="padding:6px 10px;color:#57606a">2026-06-04</td></tr>
+<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>ARC-005 Control-Plane Routing (does the plane route, and which channel carries it)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:60.0%"></div></div>&nbsp;<span style="color:#57606a">60%</span></td><td style="padding:6px 10px">3</td><td style="padding:6px 10px;color:#57606a">2026-07-31</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Rule Apprehension</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#bf8700;height:18px;width:61.1%"></div></div>&nbsp;<span style="color:#57606a">61%</span></td><td style="padding:6px 10px">13</td><td style="padding:6px 10px;color:#57606a">2026-08-01</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Behavioural Diversity Isolation</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:78.8%"></div></div>&nbsp;<span style="color:#57606a">79%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-08-01</td></tr>
-<tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>ARC-005 Control-Plane Routing (does the plane route, and which channel carries it)</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:80.0%"></div></div>&nbsp;<span style="color:#57606a">80%</span></td><td style="padding:6px 10px">3</td><td style="padding:6px 10px;color:#57606a">2026-07-31</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Commitment / Closure / Mode-Governance</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:86.7%"></div></div>&nbsp;<span style="color:#57606a">87%</span></td><td style="padding:6px 10px">12</td><td style="padding:6px 10px;color:#57606a">2026-07-10</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Sleep Substrate</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:90.0%"></div></div>&nbsp;<span style="color:#57606a">90%</span></td><td style="padding:6px 10px">10</td><td style="padding:6px 10px;color:#57606a">2026-07-07</td></tr>
 <tr style="border-bottom:1px solid #eaeef2"><td style="padding:6px 10px"><strong>Infant Substrate Expansion</strong></td><td style="padding:6px 10px"><div style="background:#eaeef2;border-radius:5px;height:18px;width:100%;max-width:520px;overflow:hidden;display:inline-block;vertical-align:middle"><div style="background:#1a7f37;height:18px;width:91.2%"></div></div>&nbsp;<span style="color:#57606a">91%</span></td><td style="padding:6px 10px">17</td><td style="padding:6px 10px;color:#57606a">2026-05-30</td></tr>
@@ -48,19 +48,19 @@ The two health signals from [`docs/architecture/cognitive_architecture_graveyard
 
 ### Ratio 2 -- governance-mass : cognitive-mass  (commit proxy)
 
-Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3303 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
+Cheap first proxy over the last **30 days** of commits across `REE_assembly` + `ree-v3` (3382 commits). Coarse, prefix-based, and judgment-laden by construction -- read the per-bucket tallies below, not just the headline.
 
-- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **55%** of all commits (1814 / 3303). The source critique's ~60-77% estimate, live.
-- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **10 : 1** (governance 2246 : cognitive 235).
+- **Machine coordination data** (the doc's literal cheap proxy: `phase3*` / `igw-ledger` -- sync_daemon + IGW writers): **55%** of all commits (1856 / 3382). The source critique's ~60-77% estimate, live.
+- **Governance-mass : cognitive-mass** (refinement -- machine coordination + human bookkeeping vs substrate builds; neutral tooling/docs excluded): **10 : 1** (governance 2299 : cognitive 239).
 
 Bucket tally (both repos, window):
 
 | bucket | commits | what it is |
 |--------|--------:|------------|
-| machine coordination | 1814 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
-| human governance | 432 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
-| cognitive / substrate | 235 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
-| neutral / other | 822 | docs, explorer/serve, site, tooling (excluded from the ratio) |
+| machine coordination | 1856 | `phase3*` result/queue/heartbeat writers + `igw-ledger` (automated) |
+| human governance | 443 | registry, queue, governance cycles, reviews, closure/plan reconciles, autopsies, thought-intake, session-land |
+| cognitive / substrate | 239 | `implement-substrate`, MECH/ARC/SD builds, `ree_core` code, substrate tests -- effort that (tries to) move a capability metric |
+| neutral / other | 844 | docs, explorer/serve, site, tooling (excluded from the ratio) |
 
 > Reading: a very high ratio is the graveyard signal, not a bug to 'fix' by suppressing coordination commits. It is only a problem if, cycle after cycle, governance is busy while capability is flat. The governance mass is justified *only* as a falsification engine that kills dead structure -- never as a substitute for earning capability.
 
