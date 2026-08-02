@@ -4218,7 +4218,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_006",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4226,7 +4226,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate: V3-EXQ-658 (run v3_exq_658_mech045_object_file_persistence_20260609T190711Z_v3, PASS, supports) already tests the exact ARC-006 construct via the object-file-buffer substrate that docs/architecture/mech_045_object_file_buffer.md explicitly declares serves both MECH-045 and ARC-006 ('Claims served: MECH-045 ..., ARC-006 ...'). The run's claim_ids tag only lists MECH-045 -- a tagging gap, not a missing-evidence gap. Recommend fixing claim_ids_tested rather than re-running; a new experiment would duplicate an existing PASS."
     },
     {
       "acceptance_checks": [
@@ -4385,7 +4388,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_073",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4394,7 +4397,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "substrate absent: ARC-072 (claims.yaml) explicitly scopes the diversity-bootstrapping epoch / persistent trajectory library (R1/R2, INV-073's direct mechanism) as a V4 architectural requirement -- implementation_note (2026-05-21) confirms gap 2 (cue gradient) closed by SD-055 but 'gap 1 (bootstrapping epoch / trajectory library) unchanged.' No trajectory_store/bootstrap-epoch code exists in ree_core/hippocampal/module.py as of 2026-08-02 (grep for trajectory_store/trajectory_library/bootstrap.*epoch: no hits)."
     },
     {
       "acceptance_checks": [
@@ -4719,7 +4725,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_057",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4728,7 +4734,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "substrate absent: INV-057 depends_on MECH-191 (EVB-0091, blocked_substrate 2026-06-22/reaffirmed 2026-07-21) -- REE-V3 functional channels do not externalize state into separable, cross-arch-consistent scalar readouts (tonic accumulators, saturated-constant across induced states), and V3 has no multi-agent environment (grep -rl multi_agent ree_core/ hits only a config mention, no implementation). INV-057's cross-species claim is strictly harder than MECH-191's cross-architecture claim and inherits the same block."
     },
     {
       "acceptance_checks": [
@@ -4842,7 +4851,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_q_042",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4850,7 +4859,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate/stale-gate: Q-042's own resolution gate (claims.yaml, 2026-05-08) named two conditions -- (a) MECH-258 substrate (confirmed implemented: ree_core/cingulate/dacc.py, predictors/e2_harm_a.py, e2_fast.py) and (b) a StepHarness retest cohort (EXQ-475a/483c/490g/471a/524a). That cohort has substantively run: 483c and 524a directly (manifests confirmed), plus rebuilt successors 483d/490h/490i/490j after failure_autopsy_V3-EXQ-490g-cohort_2026-05-29.md reclassified the 475a/471a/490g gap as a test-harness measurement issue (non_contributory), not a StepHarness/precision-dormancy defect -- all successors completed cleanly via StepHarness. Q-042's status field (candidate_resolved) was never updated to reflect this; do not queue a new experiment, route to governance to align status with the cluster's adjudicated state."
     },
     {
       "acceptance_checks": [
@@ -4961,7 +4973,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_106",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4970,7 +4982,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "governance-settled: ARC-106 is a standing construction-constraint per the 2026-07-09 governance_disposition_note in claims.yaml, not a single-V3-substrate hold ('thin umbrella/method whose evidence accrues from the aggregate of its biology-grounded worked examples' falsifiers (depends_on MECH-439 [V3-EXQ-689a], SD-011, SD-033, ARC-035), not from a dedicated V3 run tagged to ARC-106 itself... Decision recorded (applied) so it leaves the pending_user queue'). Revisit only when a worked-example falsifier materially changes the grounding ledger."
     },
     {
       "acceptance_checks": [
@@ -6121,7 +6136,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_q_078",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6130,7 +6145,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate: Q-078 is an explicitly-declared umbrella/design-pressure question over the MECH-439 F-dominance conversion-ceiling cluster, sequenced behind V3-EXQ-689a per its own claims.yaml note (2026-06-20, 'NOT a build request'). 689a ran 2026-06-20 (readiness_ok=true, c_primary/c_gapblind both FAIL -> the CONSTITUTIONAL branch per Q-078's own adjudication rule), followed by 9 further confirmed substrate_ceiling runs (700/700a-d/709/710/711/713); GOV-CEIL-1 (2026-07-09) already demoted MECH-439 to contested candidate on this evidence. A fresh /queue-experiment run would duplicate an already-exhausted cluster -- route to /claim-synthesis or governance to align Q-078's own status field with the cluster's adjudicated state."
     },
     {
       "acceptance_checks": [
@@ -7134,7 +7152,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_088",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7143,7 +7161,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "substrate/scope block: ARC-088 is an explicitly-declared unifying architectural map (claims.yaml notes, registered 2026-06-09) whose own registration text states 'the intake validates no claim, promotes no substrate, and alters no experiment routing' and 'NO substrate code; NO experiment. New affect work attaches to the relevant owned child (or extends MECH-359), not to this umbrella -- DO NOT invent redundant substrate claims under ARC-088.' Evidence accrues via its constituent claims (SD-011/SD-050/MECH-302/303/304/SD-012/ARC-065), not a direct ARC-088 probe."
     },
     {
       "acceptance_checks": [
@@ -8959,12 +8980,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_q_005",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "substrate absent: Q-005 requires a genuine V3 sleep/offline phase that anneals or resets R(x,t) (residue field). ree_core/sleep/cross_module_consolidation.py explicitly documents (its own docstring) that it is a weight-update pass and 'nothing is written to residue / anchors / memory'; ree_core/residue/field.py's only attenuation path (discharge_domain(), SD-034) is fired by the waking ClosureOperator (MECH-094), not by any sleep-loop module. No file under ree_core/sleep/ references residue/field.py or calls discharge_domain, as of 2026-08-02. V3-EXQ-150 (2026-03-29) already exhausted this exact question (marked superseded) for the identical reason, unchanged since."
     },
     {
       "acceptance_checks": [
@@ -9408,12 +9432,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_q_006",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "substrate absent: Q-006 requires the residue-field to build non-zero cross-condition contrast before the ethics-developmental question is testable. V3-EXQ-151 (2026-03-29) found residue_field_not_building (all conditions delta_harm=0), scoring-excluded. Sibling claims Q-003/Q-004 (same R(x,t) infrastructure, as_of 2026-07-11) still describe this exact precondition as unmet ('must be confirmed working first'); Q-004's own EXQ-149 found a 400x tau-driven contrast difference at the field level with zero effect on behavioral harm_rate. No manifest since EXQ-151 shows nonzero delta_harm contrast."
     },
     {
       "acceptance_checks": [
@@ -10263,8 +10290,11 @@
       "proposal_id": "LIT-0093",
       "proposal_type": "literature",
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "REE_assembly"
+      "status": "gated",
+      "target_repo": "REE_assembly",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "not applicable to /queue-experiment: proposal_type=literature, not experimental. MECH-104 is already status=active, evidence_quadrant=confirmed_established (12 genuine exp entries, exp_conf=0.788, lit_conf=0.872 per claim_evidence.v1.json); companion literature proposal LIT-0092 for the same claim is already status=executed. LIT-0093 is supplementary Bayesian/HGF grounding, non-blocking -- route to /lit-pull if pursued, not /queue-experiment."
     },
     {
       "added_utc": "2026-03-22",
@@ -10522,8 +10552,11 @@
       "proposal_id": "EXP-0099",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate: v3_exq_252_mech187_zgoal_seeding_gain (V3-EXQ-252) already tests this exact claim (claim_ids_tested=['MECH-187'] confirmed in manifest.json) with a 5-condition design that explicitly supersedes this proposal -- its outer-bound conditions gain=0.2 (SIMPLE) / gain=5.0 (LONG_HORIZON) are the docstring-labeled 'original EXP-0099 values', and its pre-registered pair (gain=0.6 SIMPLE collapse AND gain=2.0 LONG_HORIZON rescue) tests the identical bidirectional hypothesis this proposal asks for. Both directions covered. result=supports/PASS."
     },
     {
       "added_utc": "2026-04-06",
@@ -10590,8 +10623,11 @@
       "proposal_id": "LIT-0098",
       "proposal_type": "literature",
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "REE_assembly"
+      "status": "gated",
+      "target_repo": "REE_assembly",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "not applicable to /queue-experiment: proposal_type=literature, not experimental. MECH-187 already carries 7 literature entries (lit_conf=0.837) plus the EXQ-252 experimental entry (exp_conf=0.575) per claim_evidence.v1.json. Non-blocking -- route to /lit-pull if pursued."
     },
     {
       "added_utc": "2026-04-06",
