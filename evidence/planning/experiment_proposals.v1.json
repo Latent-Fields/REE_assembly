@@ -4216,7 +4216,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_059",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4225,7 +4225,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "INV-059 (mutual frame-maintenance signaling for play) requires the same play-mode substrate as INV-058 (EXP-0332), which is unimplemented in V3 (grep confirmed: no play_mode/PlayMode/play_frame in ree_core/, 2026-08-02)."
     },
     {
       "acceptance_checks": [
@@ -4338,7 +4341,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_033e",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4347,7 +4350,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-033e: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-033e is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -4502,7 +4508,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_316",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4511,7 +4517,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml decision for MECH-316 (cross-episode successor-representation extraction, sub-claim of ARC-064): 'hold_pending_v3_substrate/applied' (2026-05-10). No successor-representation module found in ree_core/ (grep confirmed 2026-08-02)."
     },
     {
       "acceptance_checks": [
@@ -4582,7 +4591,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_067",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4591,7 +4600,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml decision for ARC-067 (idle_aversion_boredom): 'hold_pending_v3_substrate/applied' (2026-05-16). No idle_aversion/boredom accumulator substrate found in ree_core/ (grep confirmed 2026-08-02) -- decision still holds."
     },
     {
       "acceptance_checks": [
@@ -4662,7 +4674,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_046",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4671,7 +4683,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-046: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-046 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -4702,7 +4717,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_077",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4711,7 +4726,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml title for ARC-077: 'Registered 2026-05-18 as a structural slot only -- hard-gated on the GAP-L biology lit-pull and on a caregiver/teacher-agent substrate that does not yet exist in V3.' No caregiver-agent substrate found in ree_core/ (grep confirmed 2026-08-02)."
     },
     {
       "acceptance_checks": [
@@ -4822,7 +4840,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_215",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4831,7 +4849,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-215: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-215 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -5149,7 +5170,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_270",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5158,7 +5179,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml decision for MECH-270 (ephaptic field coherence as physical substrate for anchor selection): 'hold_pending_v3_substrate/applied' (2026-04-25). REE-v3 is a discrete-time RL substrate with no extracellular-field/ephaptic model (grep confirmed 2026-08-02: no match in ree_core/) -- this claim asks for physics V3 does not simulate."
     },
     {
       "acceptance_checks": [
@@ -5189,7 +5213,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_271",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5198,7 +5222,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "MECH-271's routing mechanism depends on MECH-270's field-coherence readout (EXP-0322), which has no substrate in V3 (no ephaptic/field model; grep confirmed 2026-08-02). Same hold_pending_v3_substrate/applied decision batch (2026-04-25)."
     },
     {
       "acceptance_checks": [
@@ -5229,7 +5256,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_337",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5238,7 +5265,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "MECH-337 is the 'in-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull and a caregiver-agent substrate that does not exist in V3.' Same absent substrate as its parent claim."
     },
     {
       "acceptance_checks": [
@@ -5313,7 +5343,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_030",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5322,7 +5352,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-030: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-030 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -5353,7 +5386,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_045",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5362,7 +5395,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-045: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-045 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -5476,7 +5512,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_058",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5485,7 +5521,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "INV-058 (play as structurally necessary behavioral mode) requires a play-mode substrate that is unimplemented in V3 (grep confirmed: no play_mode/PlayMode/play_frame in ree_core/, 2026-08-02). Per session memory, play-mode cluster proposals are standing-blocked pending that substrate."
     },
     {
       "acceptance_checks": [
@@ -5646,7 +5685,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_147",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5655,7 +5694,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-147: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-147 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -5686,7 +5728,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_164",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5695,7 +5737,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v5 for MECH-164: substrate scoped to V5, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-164 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -5990,7 +6035,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_338",
       "target_repo": "ree-v3",
       "why_now": [
@@ -5999,7 +6044,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "MECH-338 is the 'select-face' child mechanism of ARC-077 (EXP-0311): 'Structural slot only; hard-gated on the GAP-L biology lit-pull.' Same absent caregiver-agent substrate as its parent."
     },
     {
       "acceptance_checks": [
@@ -6157,7 +6205,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_072",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6166,7 +6214,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml decision for ARC-072 (developmental bootstrapping + cue-indexed retrieval gaps): 'hold_pending_v3_substrate/applied' (2026-06-10). Claim's own title cites the diagnostic evidence already gathered (EXQ-561/MECH-269 for the diversity-bootstrapping gap; EXP-0155 zero-gradient cue_action_proj for the severed-retrieval-gradient gap) -- the cue_action_proj pathway exists (ree_core/hippocampal/module.py) but is diagnosed with a zero gradient. The gap needs a substrate FIX to the existing pathway, not a further generic probe; re-running claim_probe_arc_072 would not add information beyond what EXQ-561/EXP-0155 already showed."
     },
     {
       "acceptance_checks": [
@@ -6497,7 +6548,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_148",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6506,7 +6557,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-148: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-148 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -6745,7 +6799,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_207",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6754,7 +6808,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-207: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-207 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -6785,7 +6842,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_214",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6794,7 +6851,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-214: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-214 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -6825,7 +6885,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_254",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6834,7 +6894,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-254: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-254 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -6865,7 +6928,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_027",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6874,7 +6937,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-027: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-027 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -6905,7 +6971,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_042",
       "target_repo": "ree-v3",
       "why_now": [
@@ -6914,7 +6980,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-042: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-042 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7023,7 +7092,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_040",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7032,7 +7101,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for ARC-040: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when ARC-040 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7222,7 +7294,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_149",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7231,7 +7303,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-149: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-149 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7262,7 +7337,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_252",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7271,7 +7346,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-252: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-252 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7302,7 +7380,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_253",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7311,7 +7389,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-253: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when MECH-253 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7462,7 +7543,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_sd_028",
       "target_repo": "ree-v3",
       "why_now": [
@@ -7471,7 +7552,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-028: substrate scoped to V4, not present in V3. No experiment can test a module that has not been built; re-derive when SD-028 is brought forward to V3 (see CLAUDE.md 'Phase label follows dependency')."
     },
     {
       "acceptance_checks": [
@@ -7844,12 +7928,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "control_axis_ablation",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "suggested_experiment_type 'control_axis_ablation' is the same generator reuse-bug pattern fixed in a5606c211f (suggests an already-completed script, not a new probe): a full V1-era control_axis_ablation experiment family already exists (many runs under evidence/experiments/control_axis_ablation/runs/, 'toyenv_internal_minimal', 2026-02-15 to 2026-02-21) and Q-017 was already resolved via decision:Q-017@2026-02-25T16:51:50Z verdict=hybridize/applied. Re-suggesting this V1 script as a new medium-priority probe is stale registry data."
     },
     {
       "acceptance_checks": [
@@ -10516,8 +10603,11 @@
       "proposal_id": "EXP-0098",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "the exact test this proposes (floor clamp on VALENCE_WANTING, i.e. 'valence_wanting_floor') has already run twice: v3_exq_251_mech186_valence_wanting_floor (runs ...1775504875_v3 and ...1775549211_v3), both evidence_direction=does_not_support, claim_ids_tested=['MECH-186'] confirmed. The EXP-0096 precondition this proposal names was also already run (v3_exq_096_full_integration_benchmark, 2026-03-25). Re-running the identical rescue-mechanism test would hit the same already-observed does_not_support result."
     },
     {
       "added_utc": "2026-04-06",
@@ -10542,8 +10632,11 @@
       "proposal_id": "EXP-0100",
       "proposal_type": "experimental",
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "the exact test this proposes (sustained z_goal injection during LONG_HORIZON to prevent behavioural flattening) has already run three times: v3_exq_253_mech188_zgoal_injection (runs ...1775479111_v3 non_contributory, ...1775494225_v3 non_contributory, ...1775556946_v3 does_not_support), claim_ids_tested=['MECH-188'] confirmed. The INV-052 sufficiency-test dependency this proposal names has also already run (v3_exq_254_inv052_single_mechanism_sufficiency, 5 runs, evidence_direction=supports)."
     },
     {
       "added_utc": "2026-04-06",
@@ -11068,8 +11161,11 @@
       "reserved_queue_id": null,
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-264 (held_v4_by_architectural_commitment/applied decision 2026-06-06). Proposal's own notes mark it a 'preparation-plan proposal, staged before SD-033e design-doc authorship', explicitly gated on (a) SD-033e implementation, (b) MECH-163 V3 full-completion gate, (c) CausalGridWorldV2 three-alternative env extension -- none built."
     },
     {
       "added_utc": "2026-04-21",
@@ -11097,8 +11193,11 @@
       "reserved_queue_id": null,
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-265 (held_v4_by_architectural_commitment/applied decision 2026-06-06). Proposal's own notes mark it a preparation-plan proposal gated on (a) SD-033e implementation, (b) CausalGridWorldV2 dual-active-goal extension (not on any roadmap item), (c) parallel_goal_deliberation mode activation in SalienceCoordinator -- none built."
     },
     {
       "added_utc": "2026-04-21",
@@ -11123,8 +11222,11 @@
       "reserved_queue_id": null,
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "gated",
+      "target_repo": "ree-v3",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-033e (hooks reserved in V3 via operating_mode vocabulary; substrate deferred to V4). Proposal's own notes: 'Depends on SD-033c registration (not yet authored)... proposal serves as a placeholder to anchor the dissociation experiment when both substrates exist.'"
     },
     {
       "added_utc": "2026-04-24",
