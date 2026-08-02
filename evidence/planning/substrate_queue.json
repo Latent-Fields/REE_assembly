@@ -6601,7 +6601,7 @@
       "sd_id": "SD-091",
       "title": "Coalition/topology control primitive: star-topology recruit/suppress G_t alongside existing SalienceCoordinator mode-gate, wired for the 2 MVP typed-demand classes (SENSORY_RESAMPLE, PROVENANCE_CHECK) MECH-481's 4-arm falsifier needs",
       "node_class": "complicated (buildable)",
-      "status": "proposed",
+      "status": "partially_implemented_pending_consumer_wiring",
       "ready": true,
       "design_doc": "docs/architecture/sd_091_coalition_topology_control.md",
       "depends_on_unresolved": [],
@@ -6625,7 +6625,8 @@
       "implementation_hint": "See docs/architecture/sd_091_coalition_topology_control.md Sections 1-3 and 'Minimum-viable V3 implementation path' for the full ordered build: new ree_core/claustrum/ module (control_demand.py ControlDemandType enum with all 10 MECH-481 types declared but only SENSORY_RESAMPLE+PROVENANCE_CHECK templated; coalition_controller.py CoalitionController/CoalitionControllerConfig/CoalitionState), wired into REEAgent.select_action alongside (not inside) SalienceCoordinator, composing multiplicatively with the existing MECH-261 write_gate registry. use_coalition_controller defaults False, bit-identical off.",
       "what_is_NOT_owed": "Not a typed-uncertainty classifier (Monitor+Classify steps of MECH-481's 7-step sequence) -- request_coalition() is an injection point only, per SD-091's own claims.yaml scope statement. Not the other 8 typed-demand classes -- they stay declared-but-untemplated until their own consumer substrates exist (see doc Section 2 triage). Not edge-level pathway topology -- MVP is a star topology (participation weight per subsystem), not a full interaction graph.",
       "validation_experiment": "MECH-481's 4-arm ablation (monitoring-only / parametric-only / untyped-coalition / typed-coalition) -- queue via /queue-experiment only after the Section 'Minimum-viable V3 implementation path' step 6 smoke test passes (request_coalition for both MVP types must produce measurably different write_gate() outputs at every named consumer site).",
-      "origin": "docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md (thought-intake be080ed259, 2026-08-02) -> claims.yaml SD-091/MECH-481 registered 2026-08-02 -> this scoping doc, chip chip-20260802-sd091-coalition-control-scoping."
+      "origin": "docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md (thought-intake be080ed259, 2026-08-02) -> claims.yaml SD-091/MECH-481 registered 2026-08-02 -> this scoping doc, chip chip-20260802-sd091-coalition-control-scoping.",
+      "implementation_progress": "2026-08-02 (ree-v3, chip chip-20260802-sd091-implement-mvp): steps 1-3 of the implementation path landed -- ree_core/claustrum/ (control_demand.py, coalition_templates.py, coalition_controller.py), 13 contract tests pass (tests/contracts/test_claustrum_coalition_controller.py). Steps 4 (consumer read-site wiring), 5 (REEAgent.select_action integration) and 7 (/queue-experiment the 4-arm falsifier) NOT done -- module is new, self-contained, and unimported by the rest of ree_core, so status is partially_implemented_pending_consumer_wiring rather than implemented. See ree-v3/CLAUDE.md 'SD-091 / MECH-481' entry for the full writeup. Follow-up chip left for steps 4-5-7."
     },
     {
       "sd_id": "SD-MECH267-HORIZON-DEPTH",

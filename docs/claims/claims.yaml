@@ -64531,6 +64531,17 @@
     minted yet -- nothing exists to ablate until an /implement-substrate pass lands a minimal coalition-control
     module. Biological mapping explicitly provisional per the source thought's own guardrails (does not claim
     the claustrum computes metacognition, only that it plausibly contributes to the enactment side).
+    PARTIAL /implement-substrate landing 2026-08-02 (ree-v3, steps 1-3 of the design doc's "Minimum-viable V3
+    implementation path" only): new ree_core/claustrum/ package (control_demand.py ControlDemandType,
+    coalition_templates.py COALITION_TEMPLATES for the 2 MVP types, coalition_controller.py
+    CoalitionController/CoalitionControllerConfig/CoalitionState implementing G_t's star-topology
+    recruit/suppress/gain primitive + Gamma_t timeout/completion-condition dissolution), 13 contract tests
+    (tests/contracts/test_claustrum_coalition_controller.py), all pass. NOT wired into any consumer (E1/E2,
+    hippocampal anchor/persistence, BetaGate) and NOT integrated into REEAgent.select_action -- the module is
+    new and self-contained but unimported by the rest of ree_core, so nothing is ablatable yet and
+    epistemic_category/v3_pending are deliberately left unchanged. See ree-v3/CLAUDE.md "SD-091 / MECH-481"
+    entry for the full data-flow/guardrail-enforcement writeup and what remains (steps 4-5-7, chipped
+    separately). substrate_queue.json SD-091 entry status moved to reflect the partial landing.
 
 - id: MECH-481
   title: "Selective cognitive coalition instantiation: the control plane converts typed control demands (e.g. PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, SOCIAL_MODEL_CHECK) into temporary functional interaction graphs over E1/E2/hippocampal/reality-coherence/social/language/affective/E3 systems, recruiting only the subsystems relevant to the discrepancy type."
@@ -64620,3 +64631,11 @@
     behaviour independent of accuracy (supports the broader monitoring-must-enact premise) but is agnostic
     between this claim's Arm 2 (parametric-only) and Arm 4 (typed coalition) since it tests only one
     undifferentiated corrective action -- flagged as a gap the eventual 4-arm falsifier still needs to close.
+    PARTIAL /implement-substrate landing 2026-08-02 (ree-v3, steps 1-3 of the design doc's "Minimum-viable V3
+    implementation path" only) -- see SD-091's notes above for the full description; same landing covers both
+    claims (ree_core/claustrum/ package: ControlDemandType taxonomy, COALITION_TEMPLATES for
+    SENSORY_RESAMPLE+PROVENANCE_CHECK, CoalitionController/Config/State). All 10 taxonomy classes from this
+    claim's functional_restatement are declared in ControlDemandType; only the 2 named above are templated.
+    NOT wired into any consumer or REEAgent.select_action -- no EXP proposal minted yet remains accurate;
+    the 4-arm falsifier (step 7) still needs steps 4-5 to land first. epistemic_category/v3_pending
+    deliberately left unchanged.

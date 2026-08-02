@@ -3,7 +3,7 @@ title: "SD-091: Coalition/Topology Control Substrate"
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
 nav_order: 9
-status: candidate/v3_pending
+status: candidate/v3_pending/partial_implementation_steps_1-3
 status_asof: 2026-08-02
 status_claim: SD-091
 ---
@@ -12,9 +12,15 @@ status_claim: SD-091
 
 **Claim IDs:** SD-091 (architectural commitment) + MECH-481 (mechanism hypothesis, instantiates SD-091)
 **Subject:** `control_plane.coalition_topology_control` / `control_plane.typed_coalition_instantiation`
-**Status:** candidate, v3_pending, epistemic_category substrate_conditional -- **no code exists yet**; this is
-registration-before-build, same pattern SD-032 used (see `sd_032_cingulate_integration_substrate.md` for the
-template this doc follows).
+**Status:** candidate, v3_pending, epistemic_category substrate_conditional. **Partial /implement-substrate
+landing 2026-08-02** (ree-v3, chip `chip-20260802-sd091-implement-mvp`): steps 1-3 of the "Minimum-viable V3
+implementation path" below are built (`ree_core/claustrum/` -- `control_demand.py`, `coalition_templates.py`,
+`coalition_controller.py`; 13 contract tests pass). Steps 4-5 (consumer read-site wiring,
+`REEAgent.select_action` integration) and step 7 (`/queue-experiment` the 4-arm falsifier) are **not** done --
+the module is new, self-contained, and unimported by the rest of `ree_core`, so nothing is ablatable yet and
+this remains registration-before-build in the same pattern SD-032 used (see
+`sd_032_cingulate_integration_substrate.md` for the template this doc follows). See `ree-v3/CLAUDE.md`
+"SD-091 / MECH-481" entry for the full writeup.
 **Registered:** 2026-08-02
 **Depends on:** ARC-005, MECH-004, MECH-019, MECH-039, MECH-063, SD-076 (SD-091); SD-091, MECH-019, MECH-063
 (MECH-481)
