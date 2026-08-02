@@ -4473,22 +4473,32 @@ def _priority_from_reasons(reasons: list[str]) -> str:
 
 
 def _suggest_experiment_type(claim_id: str, matrix: dict[str, Any]) -> str:
-    counts: Counter[str] = Counter()
-    for entry in matrix.get("entries", []):
-        if entry.get("claim_id") == claim_id and entry.get("source_type") == "experimental":
-            counts.update([str(entry.get("experiment_type", "claim_probe"))])
-    if counts:
-        return counts.most_common(1)[0][0]
+    # `matrix["entries"]` with source_type=="experimental" are built exclusively
+    # from _scan_runs() over completed run manifests (see the entry-construction
+    # loop above, ~line 2569) -- every such entry's `experiment_type` therefore
+    # names a SPECIFIC, ALREADY-EXECUTED ree-v3/experiments/<type>.py script
+    # (convention: v3_exq_NNN_description), not a reusable experiment class.
+    # A prior version returned the most-common historical experiment_type here
+    # as the "suggestion" for this claim's next experiment -- which is always
+    # literally the name of a script that has already run and already produced
+    # the evidence being counted. Confirmed 2026-08-02: 35/35 medium-priority
+    # proposals hit this fallback and proposed re-running an already-completed
+    # script with a completed run pack on disk. There is no reusable signal to
+    # extract from `matrix` here, so always hand back the generic placeholder --
+    # same as the no-history case -- and leave naming the real next probe to a
+    # human / `/queue-experiment` session.
     return f"claim_probe_{claim_id.lower().replace('-', '_')}"
 
 
 def _suggest_literature_type(claim_id: str, matrix: dict[str, Any]) -> str:
-    counts: Counter[str] = Counter()
-    for entry in matrix.get("entries", []):
-        if entry.get("claim_id") == claim_id and entry.get("source_type") == "literature":
-            counts.update([str(entry.get("experiment_type", "targeted_review"))])
-    if counts:
-        return counts.most_common(1)[0][0]
+    # Same defect as _suggest_experiment_type above: literature_type values are
+    # one-off review identifiers (evidence/literature/<literature_type>/, e.g.
+    # `targeted_review_q_088`) naming ONE ALREADY-WRITTEN review for this exact
+    # claim, not a reusable category. Returning the historical value verbatim
+    # suggests re-running an already-completed literature pull into its own
+    # directory. Confirmed live 2026-08-02 (LIT-0483, Q-088: suggested
+    # `targeted_review_q_088`, which already has a populated entries/ dir).
+    # Always fall back to the generic placeholder.
     return f"targeted_review_{claim_id.lower().replace('-', '_')}"
 
 

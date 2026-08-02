@@ -1502,6 +1502,112 @@ def test_dormant_high_conflict_watchlist_markdown_reports_none_when_empty():
         assert claim_id not in text
 
 
+# --- _suggest_experiment_type / _suggest_literature_type: literal-duplicate
+# reuse bug ---
+#
+# Regression target: 2026-08-02 (chip-20260802-suggest-exp-type-reuse-bug).
+# Both functions fell back to the MOST COMMON historical experiment_type/
+# literature_type already tagged to a claim. In this corpus that value is a
+# one-off identifier naming a SPECIFIC, ALREADY-EXECUTED
+# ree-v3/experiments/<type>.py script (or an already-written
+# evidence/literature/<type>/ review) -- never a reusable category -- so the
+# "suggestion" was always literally the name of completed work. Confirmed
+# live against the real committed matrix (claim_evidence.v1.json) and
+# proposals file (experiment_proposals.v1.json) as of 2026-08-02: 35/35
+# medium-priority EXP-* proposals matching the v3_exq_* convention (already
+# hand-patched in REE_assembly e7be2c32d4), plus one residual case the
+# convention-specific grep missed -- EXP-0407/Q-017, suggesting
+# `control_axis_ablation`, an experiment_type with 70+ completed runs on
+# disk under a pre-v3_exq naming era. Fix: never surface a historical type
+# verbatim; always hand back the generic claim_probe_/targeted_review_
+# placeholder.
+
+def test_suggest_experiment_type_ignores_prior_history():
+    """A claim with prior experimental entries must NOT get one of those
+    entries' experiment_type back -- that would be an already-run script
+    (MECH-124 shape: v3_exq_224_mech124_zgoal_salience_diag /
+    v3_exq_298_mech124_zgoal_salience_discriminative, both real completed
+    runs)."""
+    matrix = {
+        "entries": [
+            {
+                "claim_id": "MECH-124",
+                "source_type": "experimental",
+                "experiment_type": "v3_exq_224_mech124_zgoal_salience_diag",
+                "run_id": "v3_exq_224_mech124_zgoal_salience_diag_20260101T000000Z_v3",
+            },
+            {
+                "claim_id": "MECH-124",
+                "source_type": "experimental",
+                "experiment_type": "v3_exq_224_mech124_zgoal_salience_diag",
+                "run_id": "v3_exq_224_mech124_zgoal_salience_diag_20260102T000000Z_v3",
+            },
+            {
+                "claim_id": "MECH-124",
+                "source_type": "experimental",
+                "experiment_type": "v3_exq_298_mech124_zgoal_salience_discriminative",
+                "run_id": "v3_exq_298_mech124_zgoal_salience_discriminative_20260103T000000Z_v3",
+            },
+        ],
+    }
+    result = b._suggest_experiment_type("MECH-124", matrix)
+    assert result not in {
+        "v3_exq_224_mech124_zgoal_salience_diag",
+        "v3_exq_298_mech124_zgoal_salience_discriminative",
+    }
+    assert result == "claim_probe_mech_124"
+
+
+def test_suggest_experiment_type_no_history_matches_prior_behavior():
+    """No-history case is unchanged: the generic placeholder, same as before
+    this fix (this branch was never the buggy one)."""
+    matrix = {"entries": []}
+    assert b._suggest_experiment_type("Q-999", matrix) == "claim_probe_q_999"
+
+
+def test_suggest_literature_type_ignores_prior_history():
+    """ARC-062 shape (real corpus data): a claim with prior literature entries
+    tagged with a topic-specific literature_type must not get that value back
+    -- `targeted_review_arc_062_rule_apprehension` already has a populated
+    evidence/literature/ dir with real entries. The claim-generic placeholder
+    (`targeted_review_arc_062`) is a distinct, safe, never-yet-used name."""
+    matrix = {
+        "entries": [
+            {
+                "claim_id": "ARC-062",
+                "source_type": "literature",
+                "experiment_type": "targeted_review_arc_062_rule_apprehension",
+                "run_id": "lit_targeted_review_arc_062_rule_apprehension_0001",
+            },
+            {
+                "claim_id": "ARC-062",
+                "source_type": "literature",
+                "experiment_type": "targeted_review_arc_062_rule_apprehension",
+                "run_id": "lit_targeted_review_arc_062_rule_apprehension_0002",
+            },
+            {
+                "claim_id": "ARC-062",
+                "source_type": "literature",
+                "experiment_type": "targeted_review_arc_062_refuge_forage_ecology",
+                "run_id": "lit_targeted_review_arc_062_refuge_forage_ecology_0001",
+            },
+        ],
+    }
+    result = b._suggest_literature_type("ARC-062", matrix)
+    assert result not in {
+        "targeted_review_arc_062_rule_apprehension",
+        "targeted_review_arc_062_refuge_forage_ecology",
+    }
+    assert result == "targeted_review_arc_062"
+
+
+def test_suggest_literature_type_no_history_matches_prior_behavior():
+    """No-history case is unchanged: the generic placeholder, same as before
+    this fix (this branch was never the buggy one)."""
+    matrix = {"entries": []}
+    assert b._suggest_literature_type("Q-999", matrix) == "targeted_review_q_999"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
