@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-02T10:26:24Z",
+  "last_tick_utc": "2026-08-02T11:06:43Z",
   "state": "running",
   "current_exq": "V3-EXQ-864a",
   "current_exq_started_utc": "2026-08-02T09:50:51.138842+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 1 / ARM_INFL_HI_steps200",
-    "runs_done": 3,
+    "run_label": "Seed 1 / ARM_INFL_LO_steps500",
+    "runs_done": 5,
     "runs_total": 12,
     "episodes_done": 4,
     "episodes_total": 8,
-    "overall_pct": 29.2
+    "overall_pct": 45.8
   },
-  "seconds_elapsed": 2133,
-  "seconds_remaining": 4639,
+  "seconds_elapsed": 4551,
+  "seconds_remaining": 4152,
   "recent_lines": [
     "Seed 0 Condition ARM_INFL_LO_steps200 n_train=8",
     "[train] arm=ARM_INFL_LO steps_per_ep=200 seed=0 ep 2/8 rv=0.003137 ref=0.003223 diff=+0.000086",
@@ -42,7 +42,21 @@
     "verdict: PASS",
     "Seed 1 Condition ARM_INFL_HI_steps200 n_train=8",
     "[train] arm=ARM_INFL_HI steps_per_ep=200 seed=1 ep 2/8 rv=0.003493 ref=0.003630 diff=+0.000137",
-    "[train] arm=ARM_INFL_HI steps_per_ep=200 seed=1 ep 4/8 rv=0.003537 ref=0.003617 diff=+0.000080"
+    "[train] arm=ARM_INFL_HI steps_per_ep=200 seed=1 ep 4/8 rv=0.003537 ref=0.003617 diff=+0.000080",
+    "[train] arm=ARM_INFL_HI steps_per_ep=200 seed=1 ep 6/8 rv=0.003572 ref=0.003627 diff=+0.000055",
+    "[train] arm=ARM_INFL_HI steps_per_ep=200 seed=1 ep 8/8 rv=0.004024 ref=0.004675 diff=+0.000650",
+    "[end]  arm=ARM_INFL_HI steps_per_ep=200 seed=1 rv_final=0.004024 ref_final=0.004675 diff_final=+0.000650 crossover_seen=N final_global_tick=1599 real_exposure_frac=1.0000 env_done_ticks=1542 env_first_done_tick_ep0=8",
+    "verdict: PASS",
+    "Seed 0 Condition ARM_INFL_LO_steps500 n_train=8",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=0 ep 2/8 rv=0.003475 ref=0.003552 diff=+0.000077",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=0 ep 4/8 rv=0.003127 ref=0.003154 diff=+0.000026",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=0 ep 6/8 rv=0.003205 ref=0.003282 diff=+0.000078",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=0 ep 8/8 rv=0.002865 ref=0.002925 diff=+0.000060",
+    "[end]  arm=ARM_INFL_LO steps_per_ep=500 seed=0 rv_final=0.002865 ref_final=0.002925 diff_final=+0.000060 crossover_seen=N final_global_tick=3999 real_exposure_frac=1.0000 env_done_ticks=3927 env_first_done_tick_ep0=5",
+    "verdict: PASS",
+    "Seed 1 Condition ARM_INFL_LO_steps500 n_train=8",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=1 ep 2/8 rv=0.003772 ref=0.003806 diff=+0.000034",
+    "[train] arm=ARM_INFL_LO steps_per_ep=500 seed=1 ep 4/8 rv=0.003744 ref=0.003789 diff=+0.000046"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
