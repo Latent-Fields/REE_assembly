@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-01T21:09:57.681848Z`
+Generated: `2026-08-02T06:08:57.468220Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -399,6 +399,7 @@ Generated: `2026-08-01T21:09:57.681848Z`
 | `targeted_review_sd_079` | [`2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020`](targeted_review_sd_079/entries/2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020/record.json) | 2 | [`summary`](targeted_review_sd_079/entries/2026-07-27_sd_079_single_common_mode_estimate_incomplete_aquino2020/summary.md) |
 | `targeted_review_sd_080` | [`2026-07-28_sd_080_learned_action_representations_chandak2019`](targeted_review_sd_080/entries/2026-07-28_sd_080_learned_action_representations_chandak2019/record.json) | 3 | [`summary`](targeted_review_sd_080/entries/2026-07-28_sd_080_learned_action_representations_chandak2019/summary.md) |
 | `targeted_review_sd_082` | [`2026-07-29_sd_082_rule_to_action_readout_muhammad2006`](targeted_review_sd_082/entries/2026-07-29_sd_082_rule_to_action_readout_muhammad2006/record.json) | 8 | [`summary`](targeted_review_sd_082/entries/2026-07-29_sd_082_rule_to_action_readout_muhammad2006/summary.md) |
+| `targeted_review_sd_087` | [`2026-08-02_sd_087_primacy_bias_rl_nikishin2022`](targeted_review_sd_087/entries/2026-08-02_sd_087_primacy_bias_rl_nikishin2022/record.json) | 4 | [`summary`](targeted_review_sd_087/entries/2026-08-02_sd_087_primacy_bias_rl_nikishin2022/summary.md) |
 | `targeted_review_self_model_integration` | [`2026-06-13_sd_030_motor_awareness_control_comparator_frith2000`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/record.json) | 6 | [`summary`](targeted_review_self_model_integration/entries/2026-06-13_sd_030_motor_awareness_control_comparator_frith2000/summary.md) |
 | `targeted_review_sleep_phase_mechanisms` | [`2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/record.json) | 8 | [`summary`](targeted_review_sleep_phase_mechanisms/entries/2026-05-17_mech120_sleep_odp_protein_synthesis_seibt2012/summary.md) |
 | `targeted_review_social_emotional_mirroring` | [`2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/record.json) | 10 | [`summary`](targeted_review_social_emotional_mirroring/entries/2026-04-05_mech_185_rodent_emotional_contagion_multimodal_yu2024/summary.md) |

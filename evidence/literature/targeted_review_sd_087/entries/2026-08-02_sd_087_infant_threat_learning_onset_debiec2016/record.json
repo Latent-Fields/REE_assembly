@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_087",
+  "entry_id": "2026-08-02_sd_087_infant_threat_learning_onset_debiec2016",
+  "timestamp_utc": "2026-08-02T06:04:25Z",
+  "claim_ids_tested": [
+    "SD-087"
+  ],
+  "source": {
+    "title": "The neurobiology of safety and threat learning in infancy",
+    "authors": [
+      "Jacek Debiec",
+      "Regina M. Sullivan"
+    ],
+    "year": 2016,
+    "venue": "Neurobiology of Learning and Memory 143:49-58",
+    "doi": "10.1016/j.nlm.2016.10.015"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.52,
+  "confidence_rationale": "Authoritative review from the group that established the infant threat-learning sensitive period, and it is the only entry in this pull that speaks to REE's brain-like-construction principle: in biology the aversive teaching signal genuinely does have a developmental ONSET, which is the strongest available naturalistic support for branch (a). But it is scored mixed and held near 0.5 because the same review documents that the switch is GATED AND REVERSIBLE in the juvenile window -- maternal presence can reinstate attachment learning at PN10-15 -- which argues against reading V3-EXQ-856's null as irreversibility. Rodent-infant to artificial-agent transfer is also the largest leap in this pull.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The infant threat system is not merely 'off then on': between roughly PN10 and PN15 the pup can SWITCH between the attachment and amygdala-dependent threat systems, controlled by maternal presence and stress-hormone levels. A teaching signal that can be gated back and forth within a window is evidence AGAINST strict irreversibility, and therefore against the strongest reading of branch (a).",
+    "The developmental onset here is driven by maturation of amygdala circuitry and the end of the stress hyporesponsive period -- an exogenous biological clock. An artificial agent has no such clock, so 'the signal must arrive at the right time' may have no REE-side referent at all; the REE analogue would have to be curriculum position, which SD-087's scope_note already flags as an unresolved raw-warmup scope condition.",
+    "This is a review of rodent work; it aggregates findings rather than testing the specific proposition that a teaching signal introduced late fails to reshape an already-trained valuation."
+  ],
+  "tags": [
+    "sd-087",
+    "sensitive_period",
+    "threat_learning",
+    "amygdala",
+    "developmental_onset",
+    "harm_stream"
+  ],
+  "mapping": {
+    "source_claim_statement": "In altricial rodents the threat-learning system is quiescent in early life, with learning biased toward attachment; at roughly the midway point to independence pups gain access to the adult-like amygdala-dependent threat system. Which system is engaged is controlled by maternal presence and stress hormones, and pups can switch between the infant and adult-like systems (about PN10-15) before losing access to the attachment system near weaning.",
+    "ree_translation": "REE reads this two ways, which is why the entry is scored mixed. Supporting branch (a): biology does not run the aversive teaching signal from birth -- it has a defined onset, and the valuation an animal forms before that onset is formed under a DIFFERENT teaching regime, which is precisely the structure SD-087 describes for a default-trained agent fitted to the EMA accumulated-harm target. Against a strict irreversibility reading: the rodent switch is gated and, within the juvenile window, reversible in both directions, so the existence of an onset does not by itself imply that a late-arriving signal cannot take.",
+    "mapping_caveat": "This is the highest-transfer-risk entry in the pull and should not be cited as mechanistic support on its own. The mapping is an analogy between a biological maturational window and a configuration flag; REE has no corticosterone, no caregiver, and no maturational clock, so the correspondence rests entirely on curriculum position standing in for developmental stage. That substitution is unvalidated and interacts with the raw-warmup curriculum-scope condition SD-087 inherits from SD-086. Use this entry for construction guidance under the brain-like-construction principle, not as evidence about what V3-EXQ-856 measured.",
+    "source_context": "Review of rodent (primarily infant rat) behavioural neuroscience: odor-shock fear conditioning, amygdala recordings and lesions, corticosterone manipulation, and maternal-presence paradigms across postnatal days 1-25."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.55,
+    "notes": "Review rather than primary empirical work, so source_quality is capped below the primary papers in this pull despite the authors' standing. transfer_risk is the highest of the four (rodent infant attachment to an artificial harm stream). Aggregate close to the component mean, with no upward adjustment, because the paper's supporting and disconfirming readings genuinely offset."
+  }
+}

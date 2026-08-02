@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_087",
+  "entry_id": "2026-08-02_sd_087_plasticity_loss_continual_dohare2024",
+  "timestamp_utc": "2026-08-02T06:04:25Z",
+  "claim_ids_tested": [
+    "SD-087"
+  ],
+  "source": {
+    "title": "Loss of plasticity in deep continual learning",
+    "authors": [
+      "Shibhansh Dohare",
+      "J. Fernando Hernandez-Garcia",
+      "Qingfeng Lan",
+      "Parash Rahman",
+      "A. Rupam Mahmood",
+      "Richard S. Sutton"
+    ],
+    "year": 2024,
+    "venue": "Nature 632(8026):768-774",
+    "doi": "10.1038/s41586-024-07711-7"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Highest source quality in this pull -- Nature, replicated across architectures, optimizers, activation functions, batch norm and dropout, and including an RL (PPO Ant) demonstration. But the mapping to SD-087 is the loosest of the three computational entries: plasticity here is lost over THOUSANDS of sequential tasks, whereas V3-EXQ-856 flipped one flag once inside a single training run. Confidence is therefore set by mapping_fidelity, not by venue.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Plasticity loss in this paper accrues over a very long horizon (substantial loss by the 2,000th Continual ImageNet task; up to 25% of units dead after 800 Permuted-MNIST tasks). A single mid-run flag flip is a far shorter horizon, so the mechanism may simply not have had time to operate in V3-EXQ-856 -- meaning this paper can explain a null result only if REE's harm head is already deep into a plasticity-degraded regime, which has not been measured.",
+    "Loss of plasticity was 'substantially eased by L2-regularization, particularly when combined with weight perturbation'. If REE's substrate already applies weight decay to the harm head, the predicted effect is attenuated and this entry's support for branch (a) weakens correspondingly.",
+    "The paper's diagnostic is unit death and loss of representational diversity, not target mis-specification. An agent whose z_harm_a is saturated because it was trained on the wrong target is not obviously the same failure as an agent whose units have died."
+  ],
+  "tags": [
+    "sd-087",
+    "plasticity_loss",
+    "continual_learning",
+    "training_signal_onset",
+    "harm_stream"
+  ],
+  "mapping": {
+    "source_claim_statement": "Standard deep-learning methods gradually lose plasticity in continual-learning settings until they learn no better than a shallow network. In Continual ImageNet, networks starting at ~88% accuracy had lost substantial plasticity by the 2,000th task and eventually fell below a linear network; in class-incremental CIFAR-100 the incrementally trained system ended 5% below a retrained network; a PPO ant agent improved for ~3M steps then collapsed, failing every episode by 20M steps. Continual backpropagation, which reinitializes a small fraction of the least-used units (replacement rate as low as 1e-5), maintains plasticity.",
+    "ree_translation": "REE reads this as the strongest available evidence that a deep network's capacity to be re-taught DECAYS with training rather than staying constant -- the general precondition branch (a) needs. If the harm head has lost plasticity by the time V3-EXQ-856 flips harm_surprise_pe_enabled ON, then the flag flip is being applied to a network that can no longer act on it, which is consistent with the observed dissociation (the loss target moved, mean_harm_obs_ema 0.0 -> 0.0245, while mean_cov_z_harm_a did not). The paper also hands REE a concrete remedial arm: a reinitialization or reset schedule on the harm head, rather than merely flipping the flag.",
+    "mapping_caveat": "The horizon mismatch is the dominant risk and it cuts directly against the mapping. This paper's plasticity loss is a slow accumulation over hundreds to thousands of task boundaries; REE's manipulation is one flag flip inside one run with no task-incremental structure at all. Invoking this paper to explain V3-EXQ-856 requires assuming REE's training regime already induces comparable plasticity decay, which is an unmeasured assumption. The entry is included because it establishes that the PHENOMENON is real, general and venue-verified -- not because it establishes that it operated in run 856.",
+    "source_context": "Continual ImageNet and class-incremental CIFAR-100 (supervised, task-incremental), Online Permuted MNIST, and a PPO reinforcement-learning ant locomotion task; standard feedforward and convolutional architectures."
+  },
+  "confidence_components": {
+    "source_quality": 0.92,
+    "mapping_fidelity": 0.52,
+    "transfer_risk": 0.4,
+    "notes": "Aggregate deliberately tracks mapping_fidelity rather than the exceptional source_quality. A Nature paper about the wrong horizon is still about the wrong horizon; venue prestige should not launder a loose mapping. The RL (Ant/PPO) demonstration is what keeps transfer_risk from going higher, since it shows the effect is not confined to supervised vision."
+  }
+}

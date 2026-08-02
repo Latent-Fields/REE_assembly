@@ -1,0 +1,52 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_087",
+  "entry_id": "2026-08-02_sd_087_primacy_bias_rl_nikishin2022",
+  "timestamp_utc": "2026-08-02T06:04:25Z",
+  "claim_ids_tested": [
+    "SD-087"
+  ],
+  "source": {
+    "title": "The Primacy Bias in Deep Reinforcement Learning",
+    "authors": [
+      "Evgenii Nikishin",
+      "Max Schwarzer",
+      "Pierluca D'Oro",
+      "Pierre-Luc Bacon",
+      "Aaron Courville"
+    ],
+    "year": 2022,
+    "venue": "International Conference on Machine Learning (ICML)",
+    "url": "https://arxiv.org/abs/2205.07802"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Highest mapping_fidelity of the computational entries because the substrate matches: this is deep RL agents trained on a progressively growing replay buffer, which is structurally what REE's agent is. The paper establishes that early experience preferentially shapes the representation and impedes later learning, and -- unusually for a supporting citation -- it supplies a directly portable remedy (periodic partial resets) that can be turned into the next SD-087 experimental arm.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Primacy bias is defined over the DATA the agent trains on (early, near-random exploration transitions), not over a change in the teaching TARGET. Discarding a value function overfitted to early data is not the same operation as discarding a representation fitted to the wrong harm target, so the remedy may transfer even where the diagnosis does not.",
+    "The paper's headline evidence is that resets IMPROVE performance, which is an intervention result; it does not directly measure irreversibility of an un-reset agent. A reader could accept every result here and still hold that V3-EXQ-856's null is explained by branch (b), an encoder or environment defect.",
+    "Gains were demonstrated in sample-limited regimes (Atari 100k, DeepMind Control Suite). REE's harm-stream curriculum is not obviously sample-limited in the same way, and the effect size of resets outside that regime is not established here."
+  ],
+  "tags": [
+    "sd-087",
+    "primacy_bias",
+    "deep_rl",
+    "training_signal_onset",
+    "network_reset",
+    "harm_stream"
+  ],
+  "mapping": {
+    "source_claim_statement": "Deep RL agents tend to rely on early interactions and ignore useful evidence encountered later. Because they train on progressively growing datasets, they risk overfitting to early experiences, which shapes the representation so that subsequent learning from novel situations is harder. Periodically resetting part of the agent mitigates this and consistently improves performance on Atari 100k and the DeepMind Control Suite.",
+    "ree_translation": "REE reads this as branch (a) stated in REE's own substrate class. If the harm head is shaped during early training by the EMA accumulated-harm target, primacy bias predicts that later evidence -- including a newly enabled prediction-error target -- is comparatively ignored. That is a direct account of the V3-EXQ-856 dissociation between a manipulation that demonstrably took and a signature that did not move. It also converts SD-087's next move from 'flip the flag' to a better-powered design: train harm_surprise_pe_enabled ON from initialization, and/or add a reset arm on the harm head, which discriminates branch (a) from branch (b) in a way the post-hoc flip cannot.",
+    "mapping_caveat": "The intervention axis differs. Nikishin et al. change WHICH DATA the network has effectively fitted (by resetting weights); SD-087 changes WHICH TARGET the network is fitted against, with the data stream unchanged. Both are 'early training determines late outcome' stories, but only the former is what this paper measured. Additionally the results are from actor-critic agents on standard benchmarks, whereas z_harm_a is an auxiliary affective head whose gradient path and capacity are different -- the primacy mechanism may be weaker or absent for an auxiliary head that is not in the control loop.",
+    "source_context": "Deep reinforcement learning with replay (SAC, DrQ and related), evaluated on Atari 100k (discrete action) and the DeepMind Control Suite (continuous action) under sample-limited budgets."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.28,
+    "notes": "Lowest transfer_risk of the four entries because the source domain (deep RL agent, growing experience distribution) is REE's own domain, so no cross-species or cross-paradigm leap is required. Aggregate set slightly above the component mean because the paper's remedy is directly actionable as an experimental arm, which raises its governance value independent of its diagnostic strength."
+  }
+}

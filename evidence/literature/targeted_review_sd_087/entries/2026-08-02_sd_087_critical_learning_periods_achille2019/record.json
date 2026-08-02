@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_sd_087",
+  "entry_id": "2026-08-02_sd_087_critical_learning_periods_achille2019",
+  "timestamp_utc": "2026-08-02T06:04:25Z",
+  "claim_ids_tested": [
+    "SD-087"
+  ],
+  "source": {
+    "title": "Critical Learning Periods in Deep Networks",
+    "authors": [
+      "Alessandro Achille",
+      "Matteo Rovere",
+      "Stefano Soatto"
+    ],
+    "year": 2019,
+    "venue": "International Conference on Learning Representations (ICLR)",
+    "url": "https://arxiv.org/abs/1711.08856"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Strong, well-replicated ICLR result with a mechanistic (Fisher-Information) account, and it is the single closest published analogue to the branch-(a) hypothesis in SD-087's evidence_quality_note: that a training signal must be present from the START of training, because the early transient fixes effective connectivity that later training cannot redistribute. Held below 0.8 because the substrate is supervised vision CNNs rather than an RL harm-value regression head, and because the paper's own dissociation (only deficits that perturb LOW-LEVEL statistics are irreversible) is a criterion REE has not yet evaluated for the harm_surprise_pe target.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Deficits that do not alter low-level input statistics (the paper's vertical-flip control) produce NO lasting impairment and are fully recovered with further training. If the harm_surprise_pe teaching target changes only the regression target for z_harm_a and leaves the encoder's low-level input statistics untouched, this paper does NOT predict irreversibility, and branch (a) does not follow automatically from V3-EXQ-856's negative result.",
+    "The critical-period effect is reported to depend on network size; a small harm-stream head may sit outside the regime where information plasticity is lost at all.",
+    "Information Plasticity is measured on the Fisher Information Matrix of the weights, which V3-EXQ-856 did not instrument -- so the mechanism this paper proposes is currently unfalsifiable against REE's own run."
+  ],
+  "tags": [
+    "sd-087",
+    "critical_period",
+    "training_signal_onset",
+    "information_plasticity",
+    "harm_stream"
+  ],
+  "mapping": {
+    "source_claim_statement": "A temporary stimulus deficit applied during an early window of training causes irreversible loss of final performance in a deep network; the impairment depends on the onset and length of the deficit window; the Fisher Information of the weights rises then falls early in training, and once strong inter-layer connections are formed they do not appear to change with further training (a loss of 'Information Plasticity').",
+    "ree_translation": "REE reads this as the general form of branch (a) in SD-087's evidence_quality_note. If the default-trained substrate (harm_surprise_pe_enabled=False, config.py:2306) spends its early training transient fitting z_harm_a to the EMA accumulated-harm target, the resulting effective connectivity may be fixed before the flag is ever flipped. Flipping harm_surprise_pe_enabled ON in an already-trained agent -- exactly what V3-EXQ-856 did -- would then be expected to move the loss term (which it demonstrably did: mean_harm_obs_ema 0.0 -> 0.0245) without moving the downstream signature (which it also did: mean_cov_z_harm_a barely moved). Under this reading the 856 on_reduces_signature FAIL is the PREDICTED outcome of a post-hoc flip, not evidence against SD-087.",
+    "mapping_caveat": "This is a structural analogy, not a measurement of REE. The paper manipulates the INPUT distribution (blur, flip) during a window; SD-087 manipulates a TRAINING TARGET for one head. Those are different interventions and the paper's own control shows the distinction matters: only input perturbations that change low-level statistics were irreversible. Treating this entry as support for branch (a) therefore imports an untested assumption -- that a teaching-target switch behaves like a low-level-statistics deficit rather than like the recoverable vertical-flip control. The honest status is that this paper makes branch (a) a well-motivated hypothesis with a published mechanism, not an established explanation.",
+    "source_context": "Supervised image classification (CIFAR-10, ImageNet-scale variants) with standard CNNs; deficits are simulated sensory impairments (cataract-like blur, image flipping) applied for a fixed epoch window."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.35,
+    "notes": "mapping_fidelity weighted heavily because SD-087 is an architectural/design_decision claim rather than an empirical effect-size claim. Aggregate pulled above the mean of the components because the paper supplies a named, measurable mechanism (Fisher Information / Information Plasticity) that converts branch (a) from a hunch into a testable proposition; pulled below 0.8 by the vertical-flip control, which is a live disconfirming route."
+  }
+}
