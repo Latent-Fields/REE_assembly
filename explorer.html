@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-02.7 -->
+<!-- EXPLORER_VERSION: 2026-08-02.8 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1512,6 +1512,15 @@
     @media (max-width: 760px) {
       .docs-layout {
         flex-direction: column;
+        /* .docs-layout's desktop `align-items: flex-start` keeps the
+           sidebar and main column top-aligned side-by-side -- but in this
+           stacked (column) layout it also stops .docs-main from stretching
+           to the full width, so it sizes to its content instead and can
+           overflow (confirmed: .docs-main rendered ~465px wide inside a
+           ~301px-wide phone-width parent, pushing e.g. a long doc path in
+           .doc-meta past the viewport edge). Stretch is what a column flex
+           container needs here. */
+        align-items: stretch;
       }
       .docs-sidebar {
         position: static;
@@ -1524,6 +1533,11 @@
       font-size: 12px;
       color: var(--muted);
       margin-bottom: 8px;
+      /* doc-meta renders "Title -- path/to/file.md"; the path half is one
+         unbroken token with no spaces, so normal word-wrap has nowhere to
+         break it and it overflows the sidebar/main column on narrow
+         (phone-width) viewports without this. */
+      overflow-wrap: anywhere;
     }
 
     .doc-content {
