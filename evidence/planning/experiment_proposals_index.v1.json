@@ -1971,7 +1971,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0308",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_075",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1980,7 +1980,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:33:12Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate (user-confirmed 2026-08-02): INV-075 is established by logical exhaustion per its own evidence_quality_note (not itself empirically falsifiable), and its REE-substrate instantiation already ran through the INV-074/ARC-076/Q-052/V3-EXQ-543 lineage -- V3-EXQ-543g (claim_ids_tested=[ARC-062,MECH-309], non_contributory) and V3-EXQ-543h (claim_ids_tested=[ARC-062,MECH-309,INV-074,MECH-334], non_contributory/superseded) both ran; the follow-on Q-052 is blocked on a bias_fraction=0.000 vacuous-read precondition behind MECH-439. User confirmed: skip as duplicate of this lineage rather than queue a new experiment under the INV-075 name."
     },
     {
       "backlog_id": "EVB-0361",
@@ -3106,7 +3109,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0377",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_arc_001",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3114,7 +3117,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:33:12Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "not independently testable (user-confirmed 2026-08-02): ARC-001 ('E1 is the persistent predictive substrate') has no what_would_answer falsifier defined anywhere in claims.yaml and functions as a foundational architectural axiom that 25+ mechanism claims (E2/E3/hippocampal/etc., via depends_on) build on and get tested through -- not as an independently falsifiable hypothesis. Its only evidence entry is a single literature SOURCE row with no experimental entries. User confirmed: treat as a foundational axiom whose truth is read off the accumulated evidence for its dependent claims; skip."
     },
     {
       "backlog_id": "EVB-0126",
@@ -3186,7 +3192,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0387",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_inv_014",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3194,7 +3200,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:33:12Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "governance-disposition (user-confirmed 2026-08-02, mirrors ARC-106's 2026-07-09 disposition): INV-014 ('strict separation between representation and regulation') reads as a standing architectural/code-organization boundary, not a single falsifiable behavioral experiment -- docs/invariants.md#inv-014 itself states 'this separation is an interface and responsibility boundary, not a claim of full functional isolation.' 15 of the 17 foundational INV-0xx invariants carry zero evidence entries of any kind, consistent with this whole class never being intended for direct experiment-testing. User confirmed: disposition as a standing constraint, evidence accrues via dependent/constituent claims, no dedicated experiment."
     },
     {
       "backlog_id": "EVB-0127",
