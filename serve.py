@@ -1682,6 +1682,12 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
         "fresh": fresh,
         "display_fresh": display_fresh,
         "state": hb.get("state", "unknown" if not hb else "idle"),
+        # "role" distinguishes a Phase H /loop metaworker-dispatch box (no
+        # experiments, no coordinator client -- it will never appear in
+        # coord_snaps, so this git-only path is the only one it ever takes)
+        # from a normal experiment runner. Absent/omitted reads as "runner"
+        # for every heartbeat written before this field existed.
+        "role": hb.get("role", "runner"),
         "current_exq": hb.get("current_exq"),
         "current_exq_started_utc": hb.get("current_exq_started_utc"),
         "current_title": hb.get("current_title"),
@@ -1703,6 +1709,17 @@ def _machine_entry_from_git(name: str, hb: dict, st: dict, now,
         "has_heartbeat": bool(hb),
         "has_status": bool(st),
         "telemetry_source": "git",
+        # Orchestrator-role fields (role: "orchestrator"). None for a runner
+        # heartbeat, since .get() has no default here -- machines.html only
+        # reads these when it has already branched on role == "orchestrator".
+        "cycles_completed": hb.get("cycles_completed"),
+        "chips_dispatched_total": hb.get("chips_dispatched_total"),
+        "chips_open_work": hb.get("chips_open_work"),
+        "chips_open_decision": hb.get("chips_open_decision"),
+        "in_flight_dispatches": hb.get("in_flight_dispatches"),
+        "last_dispatch_chip_ref": hb.get("last_dispatch_chip_ref"),
+        "coordination_plane_paused": hb.get("coordination_plane_paused"),
+        "last_cycle_note": hb.get("last_cycle_note"),
     }
 
 
