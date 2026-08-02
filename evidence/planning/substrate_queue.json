@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "insights-34f9b4",
-  "last_updated_utc": "2026-08-02T00:25:05Z",
+  "last_seen_session": "sd091-coalition-control-scoping",
+  "last_updated_utc": "2026-08-02T09:01:29Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6590,6 +6590,36 @@
       "added_session": "nostalgic-chatelet-c25a78",
       "last_seen_session": "insights-34f9b4",
       "validation_experiment": "PENDING -- re-run V3-EXQ-861 driver family with use_mech122_spindle_content_selection=True against the spindle_density DV; not yet queued (recommended /queue-experiment follow-on chip)"
+    },
+    {
+      "sd_id": "SD-091",
+      "title": "Coalition/topology control primitive: star-topology recruit/suppress G_t alongside existing SalienceCoordinator mode-gate, wired for the 2 MVP typed-demand classes (SENSORY_RESAMPLE, PROVENANCE_CHECK) MECH-481's 4-arm falsifier needs",
+      "node_class": "complicated (buildable)",
+      "status": "proposed",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_091_coalition_topology_control.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-091",
+        "MECH-481"
+      ],
+      "related_claims": [
+        "ARC-005",
+        "MECH-004",
+        "MECH-019",
+        "MECH-039",
+        "MECH-063",
+        "SD-032",
+        "SD-034",
+        "MECH-090"
+      ],
+      "priority": 2,
+      "added_session": "sd091-coalition-control-scoping",
+      "added_utc": "2026-08-02T09:01:29Z",
+      "implementation_hint": "See docs/architecture/sd_091_coalition_topology_control.md Sections 1-3 and 'Minimum-viable V3 implementation path' for the full ordered build: new ree_core/claustrum/ module (control_demand.py ControlDemandType enum with all 10 MECH-481 types declared but only SENSORY_RESAMPLE+PROVENANCE_CHECK templated; coalition_controller.py CoalitionController/CoalitionControllerConfig/CoalitionState), wired into REEAgent.select_action alongside (not inside) SalienceCoordinator, composing multiplicatively with the existing MECH-261 write_gate registry. use_coalition_controller defaults False, bit-identical off.",
+      "what_is_NOT_owed": "Not a typed-uncertainty classifier (Monitor+Classify steps of MECH-481's 7-step sequence) -- request_coalition() is an injection point only, per SD-091's own claims.yaml scope statement. Not the other 8 typed-demand classes -- they stay declared-but-untemplated until their own consumer substrates exist (see doc Section 2 triage). Not edge-level pathway topology -- MVP is a star topology (participation weight per subsystem), not a full interaction graph.",
+      "validation_experiment": "MECH-481's 4-arm ablation (monitoring-only / parametric-only / untyped-coalition / typed-coalition) -- queue via /queue-experiment only after the Section 'Minimum-viable V3 implementation path' step 6 smoke test passes (request_coalition for both MVP types must produce measurably different write_gate() outputs at every named consumer site).",
+      "origin": "docs/thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_instantiation.md (thought-intake be080ed259, 2026-08-02) -> claims.yaml SD-091/MECH-481 registered 2026-08-02 -> this scoping doc, chip chip-20260802-sd091-coalition-control-scoping."
     }
   ],
   "schema_version": "substrate_queue/v2"
