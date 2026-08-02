@@ -1,0 +1,108 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T22:10:21Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_847a_arc062_pd_context_modeswitch_committed_class_divergence_20260802T182826Z_v3",
+      "queue_id": "V3-EXQ-847a",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids=[], pre-registered informative-null branch)",
+        "biological_reference": "not_load_bearing",
+        "prerequisites": "present",
+        "implementation": "correct (denominator bug from parent V3-EXQ-847 confirmed fixed)",
+        "environment": "adequate (same seeds as 851/858/859 lineage)",
+        "measurement": "adequate (context-partition DV correctly instrumented, negative control confirms manipulation real)",
+        "integration": "isolated single manipulation (CRF ON/OFF)",
+        "scale": "adequate (350 episodes/cell, matching 851's budget)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "lateral-PFC rule-apprehension routing / CRF-lineage construct (established in prior 851/858/859 autopsies)",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable -- instrumentation/measurement-methodology diagnostic, not a biology-vs-formal-import question",
+        "lit_status": "present (established in prior family autopsies)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "H4 (context-conditioned mode-switch measurement aliasing) refuted: readiness gates (C1a-g) all clean (no duty-cycle artifact -- active_frac=1.0 both arms), primary DV (paired tv_context_divergence lift) negative on both scorable seeds (-0.0246, -0.0244), well below the 0.05 margin. Manipulation-check negative control confirms the CRF manipulation is real (lateral_pfc_bias_abs_mean 0.060 OFF vs 0.082 ON) even though the primary DV is null. Pre-registered informative null per the campaign's own decision grid -- strengthens H2 (F-dominance) / H-observation-interface as the remaining live explanations for the ARC-062/MECH-309 conversion ceiling.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "H4 (measurement aliasing via context-conditioned mode-switch) is refuted for this campaign -- the weak marginal committed-class-entropy reading is not explained by a context-gated regime split the pooled DV was blind to.",
+        "This closes out the P-D leg cleanly; no further requeue needed on this question.",
+        "847a is the fixed-forward redesign 847's own autopsy called for (corrected active_frac denominator) and it worked as intended -- no duty-cycle artifact recurred."
+      ],
+      "routing": "none (question closed, informative null)"
+    },
+    {
+      "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+      "queue_id": "V3-EXQ-863",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "self_route_label": "mixed_partial_result_needs_expert_review",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a (claim_ids=[], diagnostic)",
+        "biological_reference": "not_load_bearing",
+        "prerequisites": "present (sample-adequacy precondition holds, min n_p2_fresh_select=1144 >= 600 floor)",
+        "implementation": "correct -- route_source wiring behaves exactly as the driver's own docstring predicts for a null-causal-path",
+        "environment": "adequate (same seeds 42/43/44 as 851/859)",
+        "measurement": "measurement-convention discrepancy noted (MECH-449 fresh-select-only vs 851/858's all-ticks-with-carry-forward suppression magnitude) -- does not affect this run's own conclusion",
+        "integration": "isolated single manipulation (route_source) -- cleanly isolates from 851/858's confounded readiness-gate readings",
+        "scale": "adequate -- full budget confirms result is not a short-probe artifact"
+      },
+      "biological_reference": {
+        "closest_mechanism": "lateral-PFC rule-apprehension routing / MECH-448 F-eligibility demotion / MECH-449 active Go-No-Go opponency",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable -- route-source causal-isolation diagnostic",
+        "lit_status": "present (established in prior family autopsies)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "Route_source ('lateral_pfc' vs 'none') produces bit-identical MECH-448/449 statistics at full training budget (350 episodes/cell) on all 3 seeds, confirming V3-EXQ-859's short-probe finding and ruling out training-duration-dependence. This corroborates 851's own addendum: the apparent duty-cycle variation under lateral_pfc routing in 851/858 is a seed-correlated artifact, not a route_source effect. The driver's own 'mixed_partial_result_needs_expert_review' / vacuous_pass self-route is overly conservative given how unambiguous (bit-identical) the underlying data are -- this is a clean, informative confirmatory null, not an unresolved ambiguity.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "Route_source has no causal effect on MECH-448/449 engagement, confirmed at two budget scales (859 cheap, 863 full) -- closes 859's open training-duration-dependence question.",
+        "851/858's duty-cycle variation is a seed effect, not a manipulation effect -- corroborated by a true negative-manipulation control showing zero divergence between arms while individual seeds retain their own duty-cycle fingerprint.",
+        "A driver's own conservative 'needs expert review' self-route can still be a clean, informative result -- bit-identical arms are the mechanistically expected signature of a genuine null, and human adjudication (this autopsy) can confirm that without the driver over-claiming it automatically.",
+        "MECH-449's 0.0 suppression under the fresh-select convention (vs nonzero under 851/858's all-ticks-with-carry-forward convention) is a genuine unresolved measurement-convention discrepancy -- flagged as a follow-up, not resolved here."
+      ],
+      "routing": "none (question closed, informative confirmatory null)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both targets are diagnostic legs of the ARC-062/MECH-309 GOV-FANOUT-1 portfolio (H1-H4 fanout from arc_062_conversion_fanout_2026-07-29.md), landed the same day, both correctly self-routing to informative nulls once their own instrumentation defects (847's denominator bug, now fixed in 847a; 851/858's compound duty-cycle gate, isolated-but-not-fixed-in-code by 863) are accounted for.",
+    "is_independent_bugs": false,
+    "structural_property": "The family's readiness-gate false negatives (851/858) are seed-correlated duty-cycle artifacts, not effects of either manipulation under test (route_source in 851/863, f_weight in 858) -- 863 supplies the missing negative-manipulation control that confirms this rather than merely inferring it from rung-invariance.",
+    "readings": ["H4_refuted_via_847a", "route_source_noncausal_confirmed_via_863_full_budget"]
+  }
+}
