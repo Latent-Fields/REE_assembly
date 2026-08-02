@@ -56017,13 +56017,15 @@
     SD-092 (2026-08-02): the up-level credit PRIMITIVE this claim needs now exists
     (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent /
     parent_goal_norm(), GoalConfig.use_hierarchical_goal_credit -- default False,
-    bit-identical off). NOT YET a full test: no call site wires a real
-    subgoal-attainment event (causal_grid_world.py subgoal_mode's
-    waypoint/sequence_complete signals) to this primitive, so EXP-0385 still needs
-    that harness-side wiring (an /implement-substrate or /queue-experiment
-    Step-2.5 follow-up) before it can run. experiment_proposals.v1.json EXP-0385
-    flipped blocked_substrate -> proposed on this basis. See
-    docs/architecture/sd_092_cross_level_subgoal_credit.md.
+    bit-identical off). Call-site wiring landed the same day: REEAgent.notify_subgoal_attainment
+    (ree_core/agent.py, mirrors the notify_env_completion/SD-034 explicit-hook convention) routes
+    env info["transition_type"] in {"waypoint","sequence_complete"} into the primitive, gated
+    identically, contract-tested (tests/contracts/test_sd092_notify_subgoal_attainment.py).
+    STILL NEEDED: an experiments/ driver that actually calls the hook off a real
+    causal_grid_world.py subgoal_mode run and decides which representation to credit -- that
+    remains /queue-experiment Step-2.5's job before EXP-0385 can run.
+    experiment_proposals.v1.json EXP-0385 flipped blocked_substrate -> proposed on this basis.
+    See docs/architecture/sd_092_cross_level_subgoal_credit.md.
 
 - id: INV-087
   title: proxy_tethering_constraint
@@ -56186,10 +56188,15 @@
     GoalState.credit_subgoal_attainment call against a near-zero
     _z_goal_parent IS the bootstrap case this claim describes (no separate
     formation-mode code was needed; see the design doc's "same primitive,
-    different starting state" reasoning). Still needs the harness-side
-    subgoal-attainment call site (not built this pass) before EXP-0390's
-    3-arm design is runnable. experiment_proposals.v1.json EXP-0390 flipped
-    blocked_substrate -> proposed on this basis. See
+    different starting state" reasoning). The agent-loop call site
+    (REEAgent.notify_subgoal_attainment, same-day follow-up) is now wired --
+    see MECH-427's implementation_note. STILL NEEDED: EXP-0390's 3-arm design
+    (NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED) needs an experiments/
+    driver that calls the hook inside the seeding-sparse scaffolded_sd054
+    harness, which /queue-experiment Step-2.5 must build and verify
+    (including the non-degenerate-attainment-rate + working-forced-seed
+    preconditions) before this can run. experiment_proposals.v1.json EXP-0390
+    flipped blocked_substrate -> proposed on this basis. See
     docs/architecture/sd_092_cross_level_subgoal_credit.md.
 
 # Registered 2026-06-13 -- completion-set partners REAPED from the autobiographical_memory_v4:ABM-9

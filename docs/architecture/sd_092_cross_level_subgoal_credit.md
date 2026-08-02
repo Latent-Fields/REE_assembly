@@ -13,8 +13,10 @@ status_claim: SD-092
 **Claim ID:** SD-092 (substrate). Mechanism claims served: MECH-427 (`cross_level_subgoal_credit`,
 maintenance-direction), MECH-428 (`subgoal_bootstrapped_goal_seeding`, formation-direction).
 **Subject:** `goal.cross_level_subgoal_credit`
-**Status:** PARTIALLY IMPLEMENTED (primitive only; not wired into the live agent loop) — see
-"What this pass delivers" below.
+**Status:** PRIMITIVE + AGENT-LOOP CALL SITE IMPLEMENTED; environment-driven harness wiring
+(deciding which representation to credit, and calling the hook from an actual
+`experiments/` driver) still needed before EXP-0385/EXP-0390 can run — see "What this pass
+delivers" and the 2026-08-02 call-site-wiring update below.
 **Registered:** 2026-08-02
 **Depends on:** none unresolved (MECH-217 exists as a within-level precedent, not a hard
 dependency; ARC-051 already exists as the "flat" three-level VALENCE_WANTING scheme this SD adds
@@ -163,18 +165,32 @@ parent-level activity (the two attractors are independent state).
 **NOT done this pass, deliberately** (mirrors the SD-091 precedent — build the self-contained
 primitive first, defer live-agent-loop wiring):
 
-1. **No call site.** Nothing in `agent.py` calls `credit_subgoal_attainment()` yet. The method
-   exists and is unit-tested but is not reachable from `REEAgent.select_action()` / `sense()` /
-   any existing hot path — `goal.py`'s existing consumers are unaffected by construction, not
-   merely by the flag default.
-2. **No environment wiring.** `causal_grid_world.py`'s `subgoal_mode` waypoint/sequence-complete
-   events are not connected to `credit_subgoal_attainment()`. EXP-0385/EXP-0390's own designs
-   (a matched ATTAINED vs NO-ATTAINMENT trajectory contrast, and a 3-arm NO-SUBGOAL /
-   SUBGOAL-BOOTSTRAP / FORCED-SEED harness respectively) need this wiring — deciding *which*
-   attained-subgoal representation to pass as `child_representation` (the env's raw waypoint
-   `z_world`? the agent's own settled child-level `z_goal` at the moment of attainment?) is an
-   experiment-design decision for `/queue-experiment`'s Step-2.5, not a substrate decision — the
-   primitive is deliberately agnostic on this via its explicit argument.
+1. ~~**No call site.**~~ **DONE 2026-08-02** (call-site-wiring follow-up chip). Added
+   `REEAgent.notify_subgoal_attainment(transition_type, child_representation=None, credit=1.0)`,
+   mirroring the `notify_env_completion` (SD-034) convention exactly: an explicit hook the
+   *experiment harness* calls right after `env.step()`, passing `info["transition_type"]`. No-op
+   (`{}`) when `self.goal_state is None`, when `transition_type` is not `"waypoint"` /
+   `"sequence_complete"`, or when `use_hierarchical_goal_credit` is `False` (that gate lives
+   solely in `credit_subgoal_attainment` itself, one source of truth). `child_representation`
+   defaults to the current latent's `z_world` when not supplied, but the caller may override it
+   — this keeps the representation choice an experiment-design decision, not a substrate one, per
+   item 2 below. See `ree_core/agent.py` (`notify_subgoal_attainment`, next to
+   `notify_env_completion`) and `tests/contracts/test_sd092_notify_subgoal_attainment.py`
+   (contracts C1-C6: no-goal-state no-op, flag-off no-op, non-attainment-transition no-op,
+   flag-on credits the parent, default-vs-explicit `child_representation`).
+2. **No environment wiring yet, and no experiment driver calls the new hook yet.**
+   `causal_grid_world.py`'s `subgoal_mode` waypoint/sequence-complete events are not
+   *automatically* connected to `credit_subgoal_attainment()` — by design, matching the
+   `notify_env_completion` precedent: the environment stays agnostic of `GoalState`, and it is
+   the harness driver (an `experiments/` script) that reads `info["transition_type"]` off
+   `env.step()`'s return and calls `agent.notify_subgoal_attainment(info["transition_type"])`.
+   EXP-0385/EXP-0390's own designs (a matched ATTAINED vs NO-ATTAINMENT trajectory contrast, and
+   a 3-arm NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED harness respectively) still need that
+   driver-side call added, and deciding *which* attained-subgoal representation to pass as
+   `child_representation` (the env's raw waypoint `z_world`? the agent's own settled
+   child-level `z_goal` at the moment of attainment? — the hook's default is the current
+   latent's `z_world`, but this is a convenience, not a commitment) remains an experiment-design
+   decision for `/queue-experiment`'s Step-2.5, not a substrate decision.
 3. **No `REEConfig.from_dims` kwargs.** The new `GoalConfig` fields are set directly
    (`cfg.goal.use_hierarchical_goal_credit = True`, matching how `test_goalstate_forced_seed_positive_control.py`
    constructs `GoalConfig` directly and how MECH-217's flags are exercised in its own contracts) —
@@ -206,19 +222,21 @@ Distinct from, and does not modify:
 
 ## What This SD Enables
 
-Once the primitive above is unit-verified (this pass) and the call-site wiring (item 1/2 above,
-left for a follow-up `/implement-substrate` or the `/queue-experiment` Step-2.5 harness build)
-lands, EXP-0385 and EXP-0390 become queueable:
+The primitive (this pass) and the agent-loop call site (2026-08-02 follow-up, item 1 above) both
+now exist. EXP-0385 and EXP-0390 are queueable once `/queue-experiment`'s own Step-2.5 adds the
+remaining harness-side piece (item 2 above: a driver script that reads `info["transition_type"]`
+off `env.step()` and calls `agent.notify_subgoal_attainment(...)`, plus decides which
+representation to credit):
 - **EXP-0385 (MECH-427)**: matched ATTAINED vs NO-ATTAINMENT contrast measuring
   `parent_goal_norm()` post-event.
 - **EXP-0390 (MECH-428)**: 3-arm NO-SUBGOAL / SUBGOAL-BOOTSTRAP / FORCED-SEED harness measuring
   whether repeated subgoal-attainment credit alone raises `parent_goal_norm()` from near-zero
   toward the FORCED-SEED reference.
 
-Both experiment_proposals.v1.json entries are flipped from `blocked_substrate` back to
-`proposed` in this pass (the primitive existing and being tested is what their `blocked_note`s
-named as the prerequisite) — `/queue-experiment` still needs to do its own Step-2.5 readiness
-check for the call-site wiring before either can actually run.
+Both experiment_proposals.v1.json entries are flipped from `blocked_substrate` to `proposed`
+(as of this pass) — `/queue-experiment` still needs to do its own Step-2.5 readiness check
+(driver-side call + representation choice + a non-degenerate subgoal-attainment rate check,
+guarding the goal_pipeline:GAP-2 foraging-ceiling trap) before either can actually run.
 
 ---
 
