@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "sd091-coalition-control-scoping",
-  "last_updated_utc": "2026-08-02T12:13:32Z",
+  "last_seen_session": "insights-34f9b4",
+  "last_updated_utc": "2026-08-02T19:39:38Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6656,6 +6656,36 @@
       "implemented_session": "insights-34f9b4",
       "implementation_note_update": "IMPLEMENTED 2026-08-02 (ree-v3 commit e0117eea8b, REE_assembly 37d1da187d): HippocampalConfig.mode_horizon_scale (companion to mode_noise_scale, same mode_conditioning_enabled switch); HippocampalModule._compute_mode_horizon_scale mirrors _compute_mode_noise_scale; _score_trajectory gained optional max_horizon param windowing CEM elite-selection to a mode-conditioned fraction of the trajectory (not the physical rollout length, which stays a fixed structural network dimension). Bit-identical when disabled/operating_mode=None, verified via targeted smoke test. New design doc REE_assembly/docs/architecture/sd_mech267_horizon_depth_modulation.md. STATUS implemented_pending_validation: the retest combining both mechanisms (V3-EXQ-869 C1 condition, num_cem_iterations=3, both mode_noise_scale AND mode_horizon_scale active) is not yet queued -- follow-up chip chip-20260802-mech267-horizon-depth-retest spawned for it.",
       "validation_experiment": "PENDING -- chip-20260802-mech267-horizon-depth-retest (/queue-experiment, re-queue V3-EXQ-869 C1 condition with both mechanisms active)"
+    },
+    {
+      "sd_id": "SD-092",
+      "title": "Cross-level subgoal credit: GoalState parent/subgoal attractor split + up-level credit-propagation channel (MECH-427 maintenance-direction / MECH-428 formation-direction)",
+      "node_class": "complicated (buildable)",
+      "status": "partially_implemented_pending_consumer_wiring",
+      "ready": true,
+      "design_doc": "docs/architecture/sd_092_cross_level_subgoal_credit.md",
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-092",
+        "MECH-427",
+        "MECH-428"
+      ],
+      "related_claims": [
+        "INV-086",
+        "ARC-051",
+        "MECH-217",
+        "MECH-112",
+        "MECH-230",
+        "INV-034"
+      ],
+      "priority": 3,
+      "added_session": "insights-34f9b4",
+      "added_utc": "2026-08-02T19:39:38Z",
+      "implementation_hint": "See docs/architecture/sd_092_cross_level_subgoal_credit.md. GoalState gains a lazily allocated PARENT attractor (_z_goal_parent, None unless GoalConfig.use_hierarchical_goal_credit is set) and credit_subgoal_attainment(child_representation, credit=1.0), which EMA-pulls the parent toward the credited representation -- mirrors alpha_goal/decay_goal one hierarchy level up, triggered by a discrete event rather than a continuous benefit signal (the same shape MECH-217 already uses for its within-level case). MECH-427/MECH-428 are the SAME call against different starting states of the parent attractor -- no separate formation-mode path.",
+      "what_is_NOT_owed": "Not a call site: nothing in agent.py or causal_grid_world.py calls credit_subgoal_attainment() yet -- it is unit-tested standalone but unreachable from the live agent loop. Not a REEConfig.from_dims passthrough -- the new GoalConfig fields are set directly on the dataclass, matching how GoalConfig is already exercised in test_goalstate_forced_seed_positive_control.py. Not a decision on WHICH representation a future call site credits (env waypoint z_world vs. the agent settled child-level z_goal) -- left to /queue-experiment Step-2.5 by design (the primitive takes an explicit argument rather than assuming one).",
+      "validation_experiment": "EXP-0385 (MECH-427) and EXP-0390 (MECH-428), both flipped blocked_substrate -> proposed in experiment_proposals.v1.json on this basis. Neither is queued yet -- /queue-experiment Step-2.5 must design/verify the harness-side subgoal-attainment call site first.",
+      "origin": "MECH-427/MECH-428 registered 2026-06-12 (thought-digestion-proxy-progress-goal-maint); confirmed blocked_substrate 2026-08-02 by this session investigating the chip-20260802-mech427-parent-subgoal-credit chip -> /implement-substrate this pass.",
+      "implementation_progress": "2026-08-02 (ree-v3, session insights-34f9b4): the primitive landed in ree_core/goal.py (GoalConfig.use_hierarchical_goal_credit/parent_goal_alpha/parent_goal_decay/subgoal_credit_min; GoalState._z_goal_parent/credit_subgoal_attainment()/parent_goal_norm()/z_goal_parent/parent_is_active(), plus update()/reset()/state_dict/with_injection wiring for the new attractor), 19 contract tests pass (tests/contracts/test_sd092_cross_level_subgoal_credit.py). Landed on ree-v3 main as 500fd67398, merged with a concurrent SD-093/MECH-426 landing that touched the same files for a different mechanism (throwaway-worktree cherry-pick reconciliation, no code lost on either side). No call site in agent.py or the environment -- module is a pure extension to the existing GoalState class but every new branch is flag-gated and unreachable from any existing consumer, so status is partially_implemented_pending_consumer_wiring rather than implemented (mirrors SD-091). See ree-v3/CLAUDE.md \"SD-092\" entry for the full writeup. Follow-up chip left for the call-site wiring + /queue-experiment Step-2.5."
     }
   ],
   "schema_version": "substrate_queue/v2"

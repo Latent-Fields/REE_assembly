@@ -11559,12 +11559,9 @@
       ],
       "script_path": null,
       "source": "manual",
-      "status": "blocked_substrate",
+      "status": "proposed",
       "target_repo": "ree-v3",
-      "blocked_by": [
-        "MECH-427 up-level cross-hierarchy credit channel not implemented"
-      ],
-      "blocked_note": "Verified 2026-08-02: ree_core has no multi-level z_goal hierarchy (GoalState holds a single unified z_goal tensor; ARC-051 levels feed the SAME VALENCE_WANTING field per its own claims.yaml notes, not distinct parent/child z_goal objects). grep for MECH-427/ARC-051/parent_goal in ree_core returns zero hits for any credit-propagation-to-parent code. MECH-217 (the within-level sibling) IS built (backward_credit_sweep / offline_wanting_spread, HippocampalModule.spread_reverse_replay_wanting, wired into run_rem_attribution_pass) but writes into the same field, not up a level. Subgoal-attainment detection exists only as scalar reward shaping in causal_grid_world.py subgoal_mode (waypoint/sequence_complete events -> harm_signal/total_benefit), never wired to GoalState/z_goal, and this harness has no separate superordinate-goal concept for subgoals to credit. Metric machinery (GoalState.goal_norm, _safe_z_goal_norm) exists but has no parent-vs-subgoal reading to attach to since z_goal is singular. Needs /implement-substrate: a parent/subgoal z_goal split + an up-level credit-propagation channel, before EXP-0385 can be queued. (goal_pipeline:GAP-2 is separately closed per goal_pipeline_plan.md as of V3-EXQ-514o -- the blocker here is the missing hierarchy/credit channel itself, not attainment-rate degeneracy.)"
+      "implementation_note": "SD-092 (2026-08-02): the up-level credit primitive this proposal was blocked on now exists (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent, GoalConfig.use_hierarchical_goal_credit -- default False, bit-identical off). NOT yet wired to a real subgoal-attainment event in any harness -- /queue-experiment Step-2.5 must design/verify that call site (which representation to credit: env waypoint z_world vs. the agent settled child-level z_goal) before this can be queued. See docs/architecture/sd_092_cross_level_subgoal_credit.md."
     },
     {
       "acceptance_checks": [
@@ -11623,12 +11620,9 @@
       ],
       "script_path": null,
       "source": "manual",
-      "status": "blocked_substrate",
+      "status": "proposed",
       "target_repo": "ree-v3",
-      "blocked_by": [
-        "MECH-427 up-level cross-hierarchy credit channel not implemented"
-      ],
-      "blocked_note": "substrate absent (inherited block): MECH-428 formally depends_on MECH-427 in claims.yaml, and MECH-428's own ARM SUBGOAL-BOOTSTRAP design explicitly requires 'cross-level credit enabled (MECH-427) -> credit propagates up to seed the parent z_goal' -- the exact mechanism MECH-427 was just confirmed to lack (ree_core has no multi-level z_goal hierarchy; GoalState holds a single unified z_goal tensor; zero hits for any credit-propagation-to-parent code; needs /implement-substrate: a parent/subgoal z_goal split + up-level credit-propagation channel). MECH-428's own proposal notes anticipate exactly this: 'Step-2.5 must verify the subgoal-attainment + cross-level-credit instrumentation is wired in the scaffolded_sd054 harness before queuing (else blocked_substrate).' zero genuine experimental evidence exists (claim_evidence.v1.json has no entry). Route via /implement-substrate on MECH-427's blocker first."
+      "implementation_note": "SD-092 (2026-08-02): the up-level credit primitive this proposal was blocked on now exists (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent, GoalConfig.use_hierarchical_goal_credit -- default False, bit-identical off). NOT yet wired to a real subgoal-attainment event in any harness -- /queue-experiment Step-2.5 must design/verify that call site (which representation to credit: env waypoint z_world vs. the agent settled child-level z_goal) before this can be queued. See docs/architecture/sd_092_cross_level_subgoal_credit.md."
     },
     {
       "acceptance_checks": [

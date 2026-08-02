@@ -56013,6 +56013,17 @@
     GAP-2 foraging/benefit-contact-ceiling trap; a zero-attainment run self-routes
     substrate_not_ready, not a FAIL). FAIL = subgoal attainment produces no parent
     commitment lift despite a non-zero attainment rate.
+  implementation_note: >
+    SD-092 (2026-08-02): the up-level credit PRIMITIVE this claim needs now exists
+    (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent /
+    parent_goal_norm(), GoalConfig.use_hierarchical_goal_credit -- default False,
+    bit-identical off). NOT YET a full test: no call site wires a real
+    subgoal-attainment event (causal_grid_world.py subgoal_mode's
+    waypoint/sequence_complete signals) to this primitive, so EXP-0385 still needs
+    that harness-side wiring (an /implement-substrate or /queue-experiment
+    Step-2.5 follow-up) before it can run. experiment_proposals.v1.json EXP-0385
+    flipped blocked_substrate -> proposed on this basis. See
+    docs/architecture/sd_092_cross_level_subgoal_credit.md.
 
 - id: INV-087
   title: proxy_tethering_constraint
@@ -56170,6 +56181,16 @@
     self-routes substrate_not_ready, NOT a FAIL -- the GAP-2 foraging-ceiling trap].
     FAIL = subgoal attainment produces no z_goal seeding above the unscaffolded baseline
     despite non-zero attainment and a working forced-seed control.
+  implementation_note: >
+    SD-092 (2026-08-02): inherits MECH-427's primitive directly -- the SAME
+    GoalState.credit_subgoal_attainment call against a near-zero
+    _z_goal_parent IS the bootstrap case this claim describes (no separate
+    formation-mode code was needed; see the design doc's "same primitive,
+    different starting state" reasoning). Still needs the harness-side
+    subgoal-attainment call site (not built this pass) before EXP-0390's
+    3-arm design is runnable. experiment_proposals.v1.json EXP-0390 flipped
+    blocked_substrate -> proposed on this basis. See
+    docs/architecture/sd_092_cross_level_subgoal_credit.md.
 
 # Registered 2026-06-13 -- completion-set partners REAPED from the autobiographical_memory_v4:ABM-9
 # biology /lit-pull (evidence/literature/targeted_review_autobiographical_store). Each was surfaced
@@ -64753,3 +64774,90 @@
     EXP-0384 can be queued. epistemic_category substrate_conditional retained despite the completed
     landing pending the falsifier's own PASS/FAIL read (the claim commits to the channel's necessity,
     which EXP-0384 -- not this build step -- adjudicates).
+
+- id: SD-092
+  title: "Cross-level subgoal credit: GoalState gains a second, PARENT (superordinate) attractor distinct from the existing (child/subgoal-level) z_goal, and a discrete-event credit channel that pulls the parent toward an attained subgoal's own representation -- the substrate MECH-427/MECH-428 need. ree_core goal.py change, bit-identical by default."
+  claim_type: design_decision
+  subject: goal.cross_level_subgoal_credit
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: "2026-08-02"
+    needs_review: false
+  implementation_phase: v3
+  claim_level: architectural
+  registered_utc: "2026-08-02"
+  depends_on: [MECH-427, MECH-428]
+  related_claims: [INV-086, ARC-051, MECH-217]
+  location: docs/architecture/sd_092_cross_level_subgoal_credit.md
+  implementation_note: >
+    PARTIALLY IMPLEMENTED 2026-08-02 (ree-v3 ree_core/goal.py GoalState +
+    GoalConfig). New GoalConfig fields: use_hierarchical_goal_credit (default
+    False = bit-identical OFF, no parent tensor allocated, no extra branch
+    entered in update()), parent_goal_alpha (0.05, mirrors alpha_goal),
+    parent_goal_decay (0.005, mirrors decay_goal), subgoal_credit_min (0.0).
+    New GoalState state: _z_goal_parent (None unless enabled, mirrors the
+    SD-057 IncentiveTokenBank None-unless-enabled pattern), new method
+    credit_subgoal_attainment(child_representation, credit=1.0) -- an EMA
+    pull of the parent toward the caller-supplied child representation,
+    scaled by credit and clamped to a full-replacement ceiling; new readouts
+    parent_goal_norm() / z_goal_parent / parent_is_active(); decay of the
+    parent attractor added to update() (gated identically); reset() clears
+    the parent per-episode; state_dict/load_state_dict extended
+    (backward-compatible: a pre-SD-092 checkpoint dict missing the new keys
+    loads with the parent left unallocated); with_injection() carries the
+    parent state through so the MECH-188 lightweight view does not raise.
+    MECH-427 (maintenance) and MECH-428 (formation/bootstrap) are the SAME
+    call against different starting states of _z_goal_parent -- no separate
+    formation-mode code path was needed. Data flow (once a call site is
+    wired -- NOT this pass): subgoal-attainment event -> caller-chosen
+    representation (env waypoint z_world, or the agent's own settled
+    child-level z_goal) -> credit_subgoal_attainment() -> _z_goal_parent ->
+    parent_goal_norm() (the metric both EXP-0385/EXP-0390 name).
+    Backward compatible: disabled by default; existing experiments and every
+    other GoalState consumer unaffected by construction (the branch guarding
+    every new code path is gated on the same flag, not merely on the parent
+    tensor's existence). Not a learning module: no nn.Module, no trainable
+    parameters, no phased training. MECH-094 N/A (no simulation/replay
+    content; credited representations are whatever the future call site
+    passes in, same status as the existing single-level z_goal update()).
+    DELIBERATELY NOT DONE this pass (mirrors the SD-091 precedent -- build
+    the self-contained primitive, defer live-agent-loop wiring): (1) no call
+    site in agent.py -- credit_subgoal_attainment() is unit-tested but
+    unreachable from REEAgent.select_action()/sense(); (2) no environment
+    wiring -- causal_grid_world.py subgoal_mode's waypoint/sequence_complete
+    events are not connected; (3) no REEConfig.from_dims passthrough -- the
+    new GoalConfig fields are set directly, matching how
+    test_goalstate_forced_seed_positive_control.py already exercises
+    GoalConfig. Concurrency note: a concurrent sibling landing (SD-093 /
+    MECH-426, progress-velocity effort modulation) touched the SAME
+    ree_core/goal.py / CLAUDE.md / claims.yaml / experiment_proposals.v1.json
+    files for a genuinely different mechanism; both landings were merged
+    (throwaway-worktree cherry-pick reconciliation on ree-v3, re-applied
+    edits against fresh origin content on REE_assembly) with no code lost on
+    either side -- see the ree-v3 CLAUDE.md "SD-092" entry's own note.
+    Contracts:
+    ree-v3/tests/contracts/test_sd092_cross_level_subgoal_credit.py (19
+    tests, all pass: R1 flag-off bit-identical/no-op regression guard, R2
+    zero-credit baseline, R3 MECH-428 bootstrap shape vs no-credit control,
+    R4 MECH-427 maintenance/reinforcement shape, R5 credit gating, R6 parent
+    decay, R7 independence from child-level _z_goal, R8 reset(), R9
+    state_dict round-trip + pre-SD-092 checkpoint backward-compat, R10
+    with_injection() carries parent state, R11 lazy allocation when the flag
+    is flipped post-construction). experiment_proposals.v1.json EXP-0385
+    (MECH-427) and EXP-0390 (MECH-428) flipped blocked_substrate -> proposed
+    on this basis; substrate_queue.json SD-092 entry added with status
+    partially_implemented_pending_consumer_wiring (mirrors SD-091's status
+    convention for the identical "primitive built, consumer wiring deferred"
+    shape).
+  what_would_answer: >
+    See MECH-427/MECH-428 for the operative falsifiers (EXP-0385/EXP-0390).
+    This design-decision claim is about whether the architecture needs a
+    distinct parent/child goal-representation split with an up-level credit
+    channel at all -- it is weakened if the existing single-level z_goal
+    plus MECH-217's within-level spread proves sufficient to reproduce the
+    Bandura & Schunk (1981) subgoal-maintenance/formation effects once
+    measured (i.e. if a flat representation with within-level credit alone
+    already shows the predicted lift, the second attractor and cross-level
+    channel are unneeded architecture).
