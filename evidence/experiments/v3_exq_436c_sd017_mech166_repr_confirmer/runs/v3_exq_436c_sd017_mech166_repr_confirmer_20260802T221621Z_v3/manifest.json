@@ -1,0 +1,93 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_436c_sd017_mech166_repr_confirmer",
+  "run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T22:16:21Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-017",
+    "ARC-045",
+    "MECH-166"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "SD-017": "weakens",
+    "ARC-045": "weakens",
+    "MECH-166": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "sws_then_rem_does_not_differentiate_slots",
+    "preconditions": [
+      {
+        "name": "sws_context_memory_writes_occur",
+        "measured": 800.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of ContextMemory.write() calls (sws_n_writes, returned by agent.run_sws_schema_pass() via run_sleep_cycle()) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds -- must be > 0 for the C1 slot_cosine_sim comparison to test SD-017/ARC-045/MECH-166's mechanism rather than an unrecorded no-op (failure_autopsy_V3-EXQ-436b_2026-08-02: 436b's driver discarded agent.run_sleep_cycle()'s entire return value with `_ = ...`, so sws_n_writes was never captured).",
+        "met": true,
+        "kind": "readiness"
+      },
+      {
+        "name": "rem_attribution_rollouts_occur",
+        "measured": 600.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "control": "sum of hippocampal replay rollouts (rem_n_rollouts, returned by agent.run_rem_attribution_pass() via run_sleep_cycle()) across every SWS_THEN_REM sleep pass, pooled across all 5 seeds -- the REM-equivalent write/consolidation counter to sws_n_writes above; same recording gap, same fix.",
+        "met": true,
+        "kind": "readiness"
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "ffeff76b1116767980726a0b07ce208d39e29272af6bc53034cac5497d134464",
+  "substrate_commit": {
+    "commit": "f513c9c74b1f934860154929f50f2c983a2a4cd8",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 10,
+    "goal_state_present": false
+  }
+}
