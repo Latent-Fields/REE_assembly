@@ -55944,6 +55944,21 @@
     derivative of progress at decision time to modulate commitment. Grounded by
     targeted_review_proxy_progress_goal_maintenance (Carver&Scheier1990, Sutton1988).
     Proposal: EXP-0384.
+  implementation_note: >
+    SD-093 (goal.progress_velocity_maintenance) IMPLEMENTED 2026-08-02: GoalState
+    (ree_core/goal.py) gains a rolling-window (default 5-tick) goal_proximity() history,
+    record_progress()/progress_velocity, and progress_velocity_effort_modulation --
+    Carver&Scheier-correct sign (positive velocity -> NEGATIVE modulation/coasting;
+    negative velocity -> POSITIVE modulation/boosted persistence). Wired as an
+    EFFORT/PERSISTENCE modulator only: E3TrajectorySelector.select() (ree_core/predictors/
+    e3_selector.py) multiplies effective_threshold by (1 + velocity_effort_modulation)
+    immediately after the existing SD-011 urgency block; compute_goal_score()/
+    goal_proximity() (goal VALUE / trajectory score) are untouched (verified byte-identical
+    by contract test). Master switch use_progress_velocity_effort_modulation defaults False
+    (bit-identical OFF). See sd_093_progress_velocity_maintenance.md and
+    ree-v3/CLAUDE.md "SD-093" entry for the full data-flow writeup and 18 contract tests
+    (tests/contracts/test_mech426_progress_velocity.py). EXP-0384 reset blocked_substrate ->
+    proposed by this landing.
   what_would_answer: >
     Ablate the rate-of-progress (velocity) signal while holding the proxy-wanting
     landscape and the goal representation intact; long-horizon superordinate-goal
@@ -64681,3 +64696,60 @@
     NOT wired into any consumer or REEAgent.select_action -- no EXP proposal minted yet remains accurate;
     the 4-arm falsifier (step 7) still needs steps 4-5 to land first. epistemic_category/v3_pending
     deliberately left unchanged.
+
+- id: SD-093
+  title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."
+  claim_type: design_decision
+  subject: goal.progress_velocity_maintenance
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-02'
+    needs_review: false
+  implementation_phase: v3
+  epistemic_category: substrate_conditional
+  claim_level: architectural
+  registered_utc: '2026-08-02'
+  depends_on:
+    - INV-086   # goal_maintenance_feedback_necessity -- the motivating necessity claim this design decision instantiates
+    - INV-034   # sustained goal-directed motivation as a co-condition for ethical agency
+    - MECH-217  # temporal_wanting_propagation (goal.replay_wanting_spread) -- IMPLEMENTED; distinct offline/training-time mechanism over the same GoalState
+    - MECH-116  # E1 LSTM as the goal-representation working-memory substrate this signal is read alongside
+  related_claims:
+    - MECH-426
+  registered: "2026-08-02"
+  description: >
+    Architectural commitment: E3's commit decision (committed = variance < effective_threshold in
+    E3TrajectorySelector.select()) needs an EFFORT/PERSISTENCE modulation channel driven by the RATE of
+    goal-proximity change, alongside the existing SD-011 z_harm_a urgency modulation of the same threshold.
+    This is the architectural claim MECH-426 (progress_velocity_maintenance) instantiates as a specific
+    mechanism; SD-093 commits only to the necessity of a velocity-derived effort channel existing at all,
+    distinct from goal VALUE (compute_goal_score/goal_proximity, which this channel must never touch --
+    see MECH-426's Carver&Scheier coasting caveat).
+  implementation_note: >
+    IMPLEMENTED 2026-08-02 (ree-v3): GoalState.record_progress()/progress_velocity/
+    progress_velocity_effort_modulation (ree_core/goal.py) + E3TrajectorySelector.select() consumption
+    (ree_core/predictors/e3_selector.py, immediately after the SD-011 urgency block) +
+    agent.py._e3_tick() recording call site. Master switch use_progress_velocity_effort_modulation
+    defaults False (bit-identical OFF). 18 contract tests
+    (tests/contracts/test_mech426_progress_velocity.py), all pass; verified byte-identical
+    goal_proximity()/goal_distance() regardless of the flag (the goal-VALUE channel is untouched).
+    See sd_093_progress_velocity_maintenance.md and ree-v3/CLAUDE.md "SD-093" entry for the full
+    data-flow writeup. EXP-0384 (MECH-426's falsifier) reset blocked_substrate -> proposed.
+  what_would_answer: >
+    See MECH-426's what_would_answer for the operative falsifier (EXP-0384: 2x2 VELOCITY-ON/OFF x
+    SPARSE/DENSE-confirmation ablation). This architectural claim is refuted if the instantaneous
+    goal_proximity signal alone (no velocity/rate term) proves sufficient to sustain long-horizon
+    superordinate-goal commitment in the sparse-confirmation regime -- i.e. if the rate-derived channel
+    does no discriminative work beyond what the existing instantaneous wanting signal already provides.
+  location: ree_core/goal.py
+  notes: >
+    Registered 2026-08-02 alongside the /implement-substrate landing for MECH-426 (chip
+    chip-20260802-mech426-velocity-substrate). Follows the SD-091/MECH-481 registration pattern
+    (architectural design_decision + specific mechanism_hypothesis pair), but unlike SD-091 this landing
+    is a COMPLETE minimal implementation (all of GoalState computation, E3 consumption, and the agent.py
+    recording call site), not a partial/steps-1-3-only landing -- nothing further is required before
+    EXP-0384 can be queued. epistemic_category substrate_conditional retained despite the completed
+    landing pending the falsifier's own PASS/FAIL read (the claim commits to the channel's necessity,
+    which EXP-0384 -- not this build step -- adjudicates).

@@ -11526,9 +11526,10 @@
         "MECH-217",
         "MECH-116"
       ],
+      "resolved_note": "2026-08-02: blocked_substrate CLEARED. SD-093/MECH-426 progress-velocity readout landed (/implement-substrate, chip chip-20260802-mech426-velocity-substrate): GoalState.record_progress()/progress_velocity/progress_velocity_effort_modulation (ree_core/goal.py, rolling-window derivative of goal_proximity) wired as an effort/persistence modulator into E3TrajectorySelector.select()'s effective_threshold (ree_core/predictors/e3_selector.py, immediately after the SD-011 urgency block) and recorded once per E3 tick from agent.py._e3_tick(). Master switch use_progress_velocity_effort_modulation defaults False (bit-identical OFF); goal_proximity()/goal_distance() (goal VALUE) verified byte-identical regardless of the flag. 18 contract tests (tests/contracts/test_mech426_progress_velocity.py), all pass. Doc: docs/architecture/sd_093_progress_velocity_maintenance.md. A follow-up /queue-experiment session can now re-run Step-2.5 and queue this 2x2 ablation.",
       "script_path": null,
       "source": "manual",
-      "status": "blocked_substrate",
+      "status": "proposed",
       "target_repo": "ree-v3"
     },
     {
