@@ -4,6 +4,14 @@ Generated: `2026-08-02T11:33:36Z`
 Status: confirmed (user-confirmed routing 2026-08-02)
 Scope: single
 
+**Addendum 2026-08-02T11:45Z (user-requested follow-on check, CLOSED -- no defect found):** Section 5's "Learning extracted" flagged `experiments/_lib/baselines/sd084_midexec_reachability.py:271` (the precedent this run's script cited for a script-local flag override) as worth checking for the same whole-cell-vs-probe-only scoping issue. Checked directly, including the full driving loop in its consumer `experiments/v3_exq_839_sd084_midexec_reachability.py` (`_build`, `_register_chunk`, `_run_cell`). **It does not have the defect**, for three structural reasons that all trace back to how the two modules differ:
+
+1. **No organic-formation dependency for the flag to perturb.** The 871 defect required a multi-episode *organic accumulation* phase whose dynamics needed to replicate a *different, differently-flagged* prior run (V3-EXQ-841). `sd084_midexec_reachability.py`'s consumer instead **directly injects** a pre-built, already-`CRYSTALLISED` chunk (`_register_chunk`, `SEEDED_CHUNK_SEQUENCE`) at the start of the run and re-injects it whenever the library empties -- there is no accumulator dynamics for the flag to perturb, by design (module docstring: "WHY A CRYSTALLISED CHUNK MUST BE REGISTERED... is a PRECONDITION of the measurement rather than the manipulation").
+2. **No cross-run inheritance claim.** 871's `ANCHOR_REACHABILITY_EXEMPT` explicitly claimed readiness was inherited by construction from a *different* run that used a *different* flag value. Neither `sd084_midexec_reachability.py` nor its consumer makes an analogous claim -- `_arm_flags(arm_id)` applies one flag value uniformly across the WHOLE cell for that arm (`_build` -> `_run_cell`, one continuous loop over all `episodes`, no formation/probe split), and each arm is evaluated entirely on its own terms.
+3. **The OFF-vs-ON divergence is the intended measurement, independently verified against exactly this failure mode.** The module docstring states the two arms "take different action sequences by design" once a multi-action commit fires (that IS mid-execution reachability), and separately reports the negative-control check: on seeds where no multi-action chunk ever commits, OFF and ON are measured **bit-identical in every recorded field** (module docstring "THREE THINGS THIS TABLE ESTABLISHES", point 3). That is precisely the check that would have caught 871's bug -- confirmed already done and passing here, prior to this addendum.
+
+No code change made; no follow-on queued. This closes the open item from Section 5 and the `learning_extracted` field in the companion JSON.
+
 ## 1. Facts
 
 **Run:** `v3_exq_855_mech090_commit_latch_persistence_diagnostic_20260802T104333Z_v3`
