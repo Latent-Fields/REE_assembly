@@ -46,7 +46,9 @@ except Exception as exc:  # pragma: no cover - import guard
     print(f"ERROR: cannot import generate_inter_governance_workset: {exc}", file=sys.stderr)
     sys.exit(0)
 
-_PROPOSAL_TITLE_RE = re.compile(r"^Proposal\s+(\S+)\s+\((\S*)\)")
+_PROPOSAL_TITLE_RE = re.compile(
+    r"^(?:Proposal|Literature proposal)\s+(?:for\s+(\S+)|\(unclaimed\))$"
+)
 
 
 def _load_workset() -> dict | None:
@@ -137,12 +139,16 @@ def check() -> list[dict]:
         # --- Proposal items ----------------------------------------------------
         m_prop = _PROPOSAL_TITLE_RE.match(title)
         if m_prop:
-            pid, cid = m_prop.group(1), m_prop.group(2)
-            if pid in seen_proposal_ids:
+            cid = m_prop.group(1) or ""
+            # Titles are claim-keyed, not proposal_id-keyed (0e409601fd) -- the
+            # current proposal_id lives on the item itself, not in the title.
+            pid = it.get("owner_proposal_id") or ""
+            dedup_key = pid or iid
+            if dedup_key in seen_proposal_ids:
                 findings.append({"item_id": iid, "title": title,
-                                 "reason": f"duplicate proposal_id {pid} surfaced twice"})
+                                 "reason": f"duplicate proposal_id {dedup_key} surfaced twice"})
                 continue
-            seen_proposal_ids.add(pid)
+            seen_proposal_ids.add(dedup_key)
             meta = claims_meta.get(cid) or {}
             cstatus = (meta.get("status") or "").strip().lower()
             if cstatus in g._CLAIM_DEAD_STATUSES:
