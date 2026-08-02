@@ -1934,7 +1934,7 @@
       "priority": "medium",
       "proposal_id": "EXP-0306",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "claim_probe_mech_317",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1943,7 +1943,10 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T14:39:40Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "superseded-by-realization: MECH-317's own claim text (biological substrate: DLS sequence consolidation, Smith & Graybiel 2013/2016; computational analog: options framework, Bacon/Harb/Precup 2017; falsifier: chunk-ON vs chunk-OFF entropy-trough contrast) is fully subsumed by ARC-071/MECH-323/MECH-324's built ChunkAccumulator/ChunkLibrary (ree_core/policy/policy_chunking.py) -- same DLS-chunking literature, same options triple (initiation set + termination condition), same repetition+outcome-consistency trigger, and V3-EXQ-810/810a/810b/824/829/829a/834 already run the identical ON/OFF/FULL contrast MECH-317's falsifier calls for (claim_ids_tested include ARC-071/MECH-323/MECH-324, never MECH-317). policy_chunking.py never references MECH-317/ARC-064/MECH-318 -- it independently re-derived the same mechanism under a different architectural parent. Precedent: MECH-315 was similarly absorbed into MECH-292/293 (claims.yaml ARC-064 evidence_quality_note) without a separate child registration. Recommend governance mark MECH-317 superseded_by ARC-071/MECH-323/MECH-324 rather than queuing a duplicate falsifier; V3-EXQ-810-series should be treated as satisfying MECH-317's evidence requirement once MECH-323/324 next clear review."
     },
     {
       "backlog_id": "EVB-0233",
