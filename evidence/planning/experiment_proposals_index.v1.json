@@ -4484,12 +4484,16 @@
       "priority": "low",
       "proposal_id": "EXP-0482",
       "proposal_type": "experimental",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_088",
       "target_repo": "ree-v3",
       "why_now": [
         "no_evidence_for_open_question"
-      ]
+      ],
+      "blocked_by": [
+        "Q-088 depends_on GOV-CEIL-2 and SD-090, both still candidate"
+      ],
+      "blocked_note": "Q-088 is blocked on its own stated depends_on: GOV-CEIL-2 (candidate) and SD-090 (candidate) -- the mechanism functional-role classification schema that determines the correct probe target. The claim's notes explicitly instruct: queue only after GOV-CEIL-2/SD-090's classification report, since \"INV-055 is the current best guess, not a settled choice.\" The 2026-08-02 literature pull (5 entries, literature_confidence=0.803) is a strong prior supporting the general dissociation premise but is explicitly stated (both in the claim and in WORKSPACE_STATE) as not a substitute for the probe, and does not resolve which mechanism to target. Queuing now would require guessing the probe target ahead of the governance-decided classification."
     },
     {
       "backlog_id": "EVB-0483",
@@ -5200,8 +5204,12 @@
       "priority": "low",
       "proposal_id": "EXP-0356",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "Q-019 competence-localization precondition unmet (MECH-457/475/476)"
+      ],
+      "blocked_note": "Q-019 lesion sweep remains blocked. Precondition (a) non-degenerate ARM_DROP_* arms is now satisfied (V3-EXQ-707c confirmed 2026-07-25 -- all readiness gates incl. named_channel_routing_live + limbic_graded_competition_live passed). Precondition (b), integrated all-ON competence above the 1.0 forage floor, is NOT satisfied -- MECH-457 remains candidate/v3_pending (decomposed into MECH-475/MECH-476 as of 2026-07-22/24), and the conversion-ceiling campaign's own routing refuses re-queue of any conversion falsifier until the competence-localization gate clears. Per Q-019's own mandatory non-degeneracy readiness gate, queuing now would self-route substrate_not_ready_requeue rather than yield a verdict. Separately, the specific per-axis (attention/trajectory/commitment) independent-control task does not yet exist in the substrate and would need authoring once (b) clears."
     },
     {
       "claim_id": "MECH-423",

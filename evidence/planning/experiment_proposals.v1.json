@@ -4903,7 +4903,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_q_088",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4912,7 +4912,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "Q-088 depends_on GOV-CEIL-2 and SD-090, both still candidate"
+      ],
+      "blocked_note": "Q-088 is blocked on its own stated depends_on: GOV-CEIL-2 (candidate) and SD-090 (candidate) -- the mechanism functional-role classification schema that determines the correct probe target. The claim's notes explicitly instruct: queue only after GOV-CEIL-2/SD-090's classification report, since \"INV-055 is the current best guess, not a settled choice.\" The 2026-08-02 literature pull (5 entries, literature_confidence=0.803) is a strong prior supporting the general dissociation premise but is explicitly stated (both in the claim and in WORKSPACE_STATE) as not a substitute for the probe, and does not resolve which mechanism to target. Queuing now would require guessing the probe target ahead of the governance-decided classification."
     },
     {
       "acceptance_checks": [
@@ -11419,7 +11423,9 @@
         "Non-degeneracy guard: if any gate has near-zero gating variance on its own axis (gate never live), its lesion is uninterpretable -> self-route substrate_not_ready_requeue -> non_contributory, NOT a single-gate verdict.",
         "Emit claim_ids_tested=[Q-019] + per-claim direction; pre-register thresholds before execution."
       ],
-      "blocked_by": [],
+      "blocked_by": [
+        "Q-019 competence-localization precondition unmet (MECH-457/475/476)"
+      ],
       "claim_id": "Q-019",
       "design": "2-arm (plus per-gate lesion sub-conditions) on the V3 commit-gating stack. ARM SINGLE: one BetaGate scores sensorium+trajectory+motor-commitment readiness jointly. ARM THREE: three separable gates on distinct axes (sensorium/attention, thought/trajectory, motor-commitment). Lesion battery in ARM THREE: independently zero each gate and measure which behavioural axis degrades (attention selectivity / trajectory coherence / commitment timing). Task requires independent control of all three axes. Pre-register thresholds. Non-degeneracy precondition: each gate must be live (non-zero gating variance on its own axis) before its lesion is interpretable -- else self-route substrate_not_ready, NOT a verdict.",
       "dispatch_mode": "multi_arm_ablation",
@@ -11452,8 +11458,9 @@
       ],
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_note": "Q-019 lesion sweep remains blocked. Precondition (a) non-degenerate ARM_DROP_* arms is now satisfied (V3-EXQ-707c confirmed 2026-07-25 -- all readiness gates incl. named_channel_routing_live + limbic_graded_competition_live passed). Precondition (b), integrated all-ON competence above the 1.0 forage floor, is NOT satisfied -- MECH-457 remains candidate/v3_pending (decomposed into MECH-475/MECH-476 as of 2026-07-22/24), and the conversion-ceiling campaign's own routing refuses re-queue of any conversion falsifier until the competence-localization gate clears. Per Q-019's own mandatory non-degeneracy readiness gate, queuing now would self-route substrate_not_ready_requeue rather than yield a verdict. Separately, the specific per-axis (attention/trajectory/commitment) independent-control task does not yet exist in the substrate and would need authoring once (b) clears."
     },
     {
       "acceptance_checks": [
