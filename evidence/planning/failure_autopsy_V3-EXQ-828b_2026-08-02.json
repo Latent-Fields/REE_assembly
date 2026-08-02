@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:14:48Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_828b_inv091_cross_stream_similarity_band_dynamic_budget_20260802T073924Z_v3",
+      "queue_id": "V3-EXQ-828b",
+      "claim_ids": ["INV-091"],
+      "failed_criterion": "C2_interior_similarity_arm_beats_both_extremes (peak-composite arm must be interior and beat both extremes by >=0.15 margin)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- C1/C2 correctly evaluated, consistent with V3-EXQ-828/828a",
+        "biological_reference": "not assessed here -- unchanged from prior autopsies in this lineage",
+        "prerequisites": "present -- shared warmed-up substrate, all 6 arms ran correctly",
+        "implementation": "complete for C1/C2 design; genuinely improved for the null-validation mechanism (per-arm-per-seed dynamic pilot, per 828a's own recommendation) -- the improved mechanism still failed",
+        "environment": "inadequate for null-validation, third consecutive design -- a short pilot may be structurally unable to characterize the slow-timescale tau_max it needs to bound",
+        "measurement": "surrogate correctly refuses rather than silently shortening blocks (preserved across all 3 attempts) -- good failure mode, but the underlying goal may not be reachable at reasonable compute cost",
+        "integration": "n/a",
+        "scale": "required budget now known up to ~138,600 steps on one seed -- a real compute-cost decision, not a small parameter tweak"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not assessed in this autopsy -- unchanged from prior V3-EXQ-827/827a/828/828a autopsies in this lineage",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_note": "Third independent corroborating data point for INV-091 weakens (827a/828/828a already scored weakens/non_contributory-confound-fixed). This run's specific winning arm (harm_collapse, at the similarity extreme) differs from 828/828a's (residue_off, interior with a razor-thin margin miss) -- this run-to-run instability in which arm wins is itself corroborating evidence against a robust interior-band structure.",
+      "recommended_evidence_quality_note": "[2026-08-02 failure-autopsy, V3-EXQ-828b, confirmed failure_autopsy_V3-EXQ-828b_2026-08-02, fourth run in the 827/827a/828/828a/828b lineage, USER-CONFIRMED]: C1 PASS (at least one ablation moves similarity), C2 FAIL -- peak-composite arm (harm_collapse) sits AT the similarity extreme (sim_max_arm=harm_collapse), not interior, margin_vs_max=0.000 by construction. Third independent corroborating weakens data point; the specific winning arm now differs from 828/828a's (residue_off, interior, razor-thin 0.148-vs-0.15 miss) -- itself informative against a robust band structure. Null-validation surrogate refused for the THIRD consecutive attempt: static-undersized (827/828) -> static-bumped-still-5x-short (828a) -> per-arm-per-seed dynamic pilot with 2.0x margin (828b, THIS RUN) -- still refused, worst-case seed needing ~138,600 steps (tau_max~79 steps observed) vs the budget the 6-episode pilot supplied. A short pilot may be structurally unable to characterize a slow-timescale statistic it needs to bound (a near-sampling-paradox). Route: DO NOT queue a 4th null-validation attempt -- recommend governance formally close this out as aleatoric (irreducible within reasonable compute budget) per the CLAUDE.md work-graph debt vocabulary, and rely on the C1/C2 ablation-contrast alone per the existing 2026-07-29 governance precedent (already treats it as sufficient without null-validation). The C1/C2 weakens verdict stands independent of this infra question.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "note": "Recommend the EXISTING INV091-NULL-VALIDATION-RUN-LENGTH substrate_queue entry be marked closed/aleatoric rather than left open for a 4th attempt -- this is a status update to an existing entry, not a new build."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "0 prior substrate_ceiling autopsies for INV-091 (827: measurement_test_design_defect; 827a/828/828a: standard, not substrate_ceiling). This autopsy's own recommended category (standard) is also not substrate_ceiling. Does not fire."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A short pilot pass estimating a slow-timescale statistic (tau_max) can be systematically biased toward underestimation if the true timescale exceeds what the pilot can observe -- a structural limitation, not an implementation bug in this pilot's own logic.",
+        "Three consecutive attempts of increasing sophistication at the same infrastructure gap, all failing, is itself diagnostic: the achievable-within-reasonable-budget goal may not exist, warranting an explicit cost/benefit closure decision rather than a further guess.",
+        "Run-to-run instability in which specific ablation arm wins the composite score is corroborating (not neutral) evidence against a robust band structure, worth surfacing explicitly."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_trigger": {
+    "fires": false,
+    "note": "This run corroborates the existing failure signature; it does not introduce a new one."
+  },
+  "hypothesis_space_ledger_pending": null
+}

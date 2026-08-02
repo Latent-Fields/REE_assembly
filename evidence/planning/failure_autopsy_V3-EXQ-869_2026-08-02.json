@@ -1,0 +1,76 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:14:48Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3",
+      "queue_id": "V3-EXQ-869",
+      "claim_ids": ["MECH-267"],
+      "failed_criterion": "C1_production_content_persistence_iters3 (mean pairwise raw_std gaps at num_cem_iterations=3 must clear 0.01 floor)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "claim not tested under conditions where it could fully express itself -- only 1 of >=2 claimed mechanisms (noise-scale) was implemented; horizon-depth was explicitly deferred at 2026-04-20 build time",
+        "biological_reference": "strong, multi-source -- Pfeiffer & Foster 2013, Tambini 2019, Olafsdottir 2018, Mattar & Daw 2018, Wikenheiser & Redish 2015 (the last directly evidencing the untested horizon-depth mechanism)",
+        "prerequisites": "present -- SD-032a, MECH-261, MECH-092 all implemented",
+        "implementation": "partial -- noise-scale only; horizon-depth modulation explicitly named in the claim text and the original lit-pull recommendation but deferred to 'V4 reconsideration' at build time",
+        "environment": "adequate, well-powered -- 30 seeds",
+        "measurement": "excellent -- C0 (manipulation check, iters=1) vs C1 (production settings, iters=3) cleanly separates 'wiring present' from 'survives realistic downstream refit'",
+        "integration": "plausible causal mechanism identified -- CEM elite-refit toward a mode-independent value function structurally erases an initial-noise-scale-only bias over iterations",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "state/task-dependent hippocampal replay content and theta-cycle look-ahead scaling with goal distance",
+        "dependencies": ["SD-032a", "MECH-261", "MECH-092"],
+        "is_formal_import": false,
+        "divergence": "none -- biology is well-grounded and directly supports the untested horizon-depth mechanism (Wikenheiser & Redish 2015)",
+        "lit_status": "present -- 5 supporting entries in evidence/literature/targeted_review_connectome_mech_267/"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Informative about implementation completeness (noise-scale-only modulation washes out under production CEM elite-refit), not evidence against mode-conditioned hippocampal proposal content as a claim -- the claim's own text names horizon-depth modulation as a second mechanism that was never built.",
+      "recommended_evidence_quality_note": "[2026-08-02 failure-autopsy, V3-EXQ-869, confirmed failure_autopsy_V3-EXQ-869_2026-08-02, first-ever full retest, USER-CONFIRMED]: well-powered (30 seeds), pre-registered design cleanly separates manipulation-present (C0, iters=1, gaps 0.031-0.092 vs 0.015 floor, PASS) from production-persistence (C1, iters=3, gaps -0.004 to +0.004 vs 0.01 floor, FAIL; 0/30 seeds show the full predicted ordering). However the claim's own registration text and 2026-04-20 implementation_note explicitly name TWO mechanisms -- noise-scale modulation (built) and horizon-depth modulation (explicitly deferred to 'V4 reconsideration', matching the original 2026-04-27 lit-pull's actual recommendation and directly evidenced by Wikenheiser & Redish 2015). The wash-out-under-elite-refit pattern is mechanistically consistent with a noise-scale-only implementation being structurally insufficient against CEM's iterative refit toward a mode-independent value optimum -- not with the underlying claim being biologically wrong. Route: /implement-substrate to build horizon-depth modulation, then retest content persistence with both mechanisms active. pending_retest_after_substrate: true.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-MECH267-HORIZON-DEPTH",
+        "title": "Mode-conditioned horizon-depth modulation for HippocampalModule.propose_trajectories",
+        "implementation_hint": "Add a mode-conditional multiplier/selector on proposal-rollout depth (shallower in external_task, longer in internal_planning), alongside the existing mode_noise_scale mechanism, per MECH-267's own claim text and the original 2026-04-27 lit-pull recommendation (deferred to 'V4 reconsideration' at 2026-04-20 build time). Motivated directly by V3-EXQ-869's finding that noise-scale-only modulation washes out under production CEM elite-refit (3 iterations) despite being clearly present at iters=1.",
+        "unblocks_claims": ["MECH-267"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3",
+          "experiment_type": "v3_exq_869_mech267_mode_conditioning_content_persistence",
+          "metric": "mean pairwise raw_std gaps between mode-conditioned proposal distributions at num_cem_iterations=3 (production settings)",
+          "target": "clear the 0.01 floor (currently -0.004 to +0.004, essentially flat; 0/30 seeds show the full predicted mode ordering)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "0 prior autopsies for MECH-267 -- first-ever target. Does not fire."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A claim asserting multiple sub-mechanisms should be tracked as partially- vs fully-implemented; testing against only the implemented subset and reading a FAIL as pressure on the whole claim risks under-crediting the untested part.",
+        "CEM (and similar iterative-refit optimizers) can structurally wash out an initial-distribution-only manipulation if the downstream selection criterion is mode-independent -- a design principle worth generalizing.",
+        "The manipulation-check-vs-production-settings split (C0 vs C1) cleanly separates 'wiring exists' from 'effect survives realistic downstream processing' -- worth reusing elsewhere."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_trigger": {
+    "fires": false,
+    "note": "granularity_debt_cluster.py MECH-267: 0 prior tagging targets."
+  },
+  "hypothesis_space_ledger_pending": null
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:14:48Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_671a_mech025b_precision_responsibility_20260802T035128Z_v3",
+      "queue_id": "V3-EXQ-671a",
+      "claim_ids": ["MECH-025b"],
+      "failed_criterion": "discrimination (C1 precision_residue_correlation > 0.15, C2 high_precision_residue_ratio > 1.1; both load-bearing)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- readiness precondition (residue accumulation) cleared, but the independent variable's (precision) own adequacy was never checked",
+        "biological_reference": "philosophical-bridge, no direct lit backing -- precision modulation (MECH-025) is grounded (Friston 2013, Wen & Haggard 2020); the responsibility-linkage half is explicitly a philosophical construct per the claim's own registration notes, mapped onto legal negligence-vs-deliberate-action distinctions",
+        "prerequisites": "unconfirmed -- MECH-025 (precision produces a distinct signature) has evidence:None in claims.yaml, only a V2 FAIL citing 'E3 precision hardcoded, no dynamic channel' and a note that the V3 gate was cleared to allow testing, not that the signature was confirmed",
+        "implementation": "genuinely improved over V3-EXQ-671 -- 4 documented, code-verified instrument fixes (update_residue never called, wrong commitment field, benefit/harm pollution, environment-sourced ownership)",
+        "environment": "n/a",
+        "measurement": "asymmetric positive-control gap -- a readiness gate was added for residue (the dependent variable) but not for precision variance (the independent variable), despite this being the exact historical failure signature (near-constant precision defeating a correlation test) for this substrate per MECH-025's own V2 record",
+        "integration": "n/a",
+        "scale": "underpowered -- single seed, n=29 samples for a Pearson correlation and a median-split ratio"
+      },
+      "biological_reference": {
+        "closest_mechanism": "precision modulation of motor control (Friston 2013 active inference; Wen & Haggard 2020 agency prediction error) is grounded; the responsibility/accountability linkage on top of it is not",
+        "dependencies": ["MECH-025"],
+        "is_formal_import": true,
+        "divergence": "the claim's own registration notes explicitly identify the responsibility-linkage half as a philosophical bridge (legal negligence-vs-deliberate-action distinction), not a neuroscience finding",
+        "lit_status": "absent -- no literature entry specifically addresses precision-at-commitment correlating with responsibility/accountability weighting; two similarly-titled entries found (paper_fm4_precision_staleness, rem_precision_recalibration_timing) are about unrelated precision-recalibration topics"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Informative about instrumentation (the residue-side fixes worked, confirmed by the cleared positive-control precondition), not yet a fair test of MECH-025b -- the precision (independent variable) side has no equivalent positive-control check, and this is single-seed/n=29.",
+      "recommended_evidence_quality_note": "[2026-08-02 failure-autopsy, V3-EXQ-671a, confirmed failure_autopsy_V3-EXQ-671a_2026-08-02, second attempt (671a corrected retest of degenerate V3-EXQ-671), USER-CONFIRMED]: the driver made 4 well-documented, code-verified instrument fixes (update_residue never called in 671, wrong commitment field, benefit/harm sample pollution, environment-sourced ownership) and added a residue-accumulation positive-control gate, which CLEARED (1.86 vs 1e-6 floor) -- confirming the fixes worked. C1 (precision_residue_correlation=0.0505) and C2 (high_precision_residue_ratio=0.9214, below 1.0) both FAILed cleanly against a >0.15 / >1.1 bar. However, no equivalent positive-control gate exists for precision VARIANCE (the independent variable) -- the exact historical failure signature for this substrate (MECH-025's own V2 record: 'E3 precision hardcoded, no dynamic channel'); MECH-025 itself carries evidence:None in claims.yaml (no direct V3 confirmation, only 'V3 gate cleared to test'). ARC-016 (stable, V3-confirmed dynamic precision) is reassuring but measures cross-environment-condition variance, not within-a-single-29-sample-eval-run variance. Single seed. This is also a philosophical-bridge claim (responsibility/accountability linkage) with no direct biological literature backing per the claim's own registration notes. Route: /queue-experiment V3-EXQ-671b -- add a precision-variance positive-control gate (mirroring the residue gate) plus 3-5 seeds. Reads as measurement_gap / inconclusive, not yet claim pressure against MECH-025b.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "1 prior autopsy for MECH-025b (failure_autopsy_batch9_2026-06-12), category n/a (degenerate), not substrate_ceiling. This autopsy's own recommended category (measurement_gap) is also not substrate_ceiling. Brake does not fire."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "When fixing a degenerate instrument defect on one side of a correlation test, check whether the same defect class could exist on the other side before trusting the corrected read.",
+        "A prerequisite claim being 'gate cleared to test' (substrate now supports the experiment) is not the same as 'confirmed operative' -- MECH-025's evidence:None is a real gap.",
+        "Single-seed correlational tests on philosophical-bridge claims (no direct biological literature) warrant a higher evidentiary bar before being read as claim pressure."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_trigger": {
+    "fires": false,
+    "note": "granularity_debt_cluster.py MECH-025b: 1 prior target, claim_alignment intact (not tested), no target reads weakened."
+  },
+  "hypothesis_space_ledger_pending": null
+}
