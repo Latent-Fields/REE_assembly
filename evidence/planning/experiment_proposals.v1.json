@@ -11622,9 +11622,11 @@
       ],
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "ree-v3",
-      "implementation_note": "SD-092 (2026-08-02): the up-level credit primitive this proposal was blocked on now exists (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent, GoalConfig.use_hierarchical_goal_credit -- default False, bit-identical off). NOT yet wired to a real subgoal-attainment event in any harness -- /queue-experiment Step-2.5 must design/verify that call site (which representation to credit: env waypoint z_world vs. the agent settled child-level z_goal) before this can be queued. See docs/architecture/sd_092_cross_level_subgoal_credit.md."
+      "implementation_note": "SD-092 (2026-08-02): the up-level credit primitive this proposal was blocked on now exists (ree_core/goal.py GoalState.credit_subgoal_attainment / _z_goal_parent, GoalConfig.use_hierarchical_goal_credit -- default False, bit-identical off). NOT yet wired to a real subgoal-attainment event in any harness -- /queue-experiment Step-2.5 must design/verify that call site (which representation to credit: env waypoint z_world vs. the agent settled child-level z_goal) before this can be queued. See docs/architecture/sd_092_cross_level_subgoal_credit.md.",
+      "executed_by": "V3-EXQ-884",
+      "executed_queue_id": "V3-EXQ-884"
     },
     {
       "acceptance_checks": [
