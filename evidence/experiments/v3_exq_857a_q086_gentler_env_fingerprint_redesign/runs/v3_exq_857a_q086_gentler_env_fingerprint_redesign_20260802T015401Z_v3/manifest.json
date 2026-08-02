@@ -1,0 +1,182 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_857a_q086_gentler_env_fingerprint_redesign",
+  "run_id": "v3_exq_857a_q086_gentler_env_fingerprint_redesign_20260802T015401Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T01:54:01Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-086"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "arm_harsh_summary": {
+      "arm_id": "ARM_HARSH",
+      "mean_cov_z_harm_a": 0.012153527721916595,
+      "mean_level_z_harm_a": 7.413664453467358,
+      "mean_level_z_harm_s": 0.39370191578932223,
+      "per_seed_z_harm_s": [
+        0.30762466139781736,
+        0.6474511443540968,
+        0.4208685661483015,
+        0.3453397606127559,
+        0.2915650241568609,
+        0.34936233806610106
+      ],
+      "min_eval_steps": 58,
+      "n_seeds": 6,
+      "mean_episode_survival_steps": 53.766666666666666,
+      "min_episode_survival_steps": 7,
+      "per_seed_mean_episode_survival_steps": [
+        81.8,
+        11.6,
+        23.4,
+        62.6,
+        118.2,
+        25.0
+      ]
+    },
+    "arm_gentle_summary": {
+      "arm_id": "ARM_GENTLE",
+      "mean_cov_z_harm_a": 0.04095253258710251,
+      "mean_level_z_harm_a": 8.093588929264087,
+      "mean_level_z_harm_s": 0.3337596691586843,
+      "per_seed_z_harm_s": [
+        0.21214652609419482,
+        0.6489879775047303,
+        0.2988571286690612,
+        0.2919848618209362,
+        0.2802178354561329,
+        0.2703636854070507
+      ],
+      "min_eval_steps": 125,
+      "n_seeds": 6,
+      "mean_episode_survival_steps": 158.83333333333334,
+      "min_episode_survival_steps": 8,
+      "per_seed_mean_episode_survival_steps": [
+        182.2,
+        25.0,
+        170.6,
+        200.0,
+        200.0,
+        175.2
+      ]
+    },
+    "arm_benign_summary": {
+      "arm_id": "ARM_BENIGN",
+      "mean_cov_z_harm_a": 0.02896442698529661,
+      "mean_level_z_harm_a": 8.64047170893572,
+      "mean_level_z_harm_s": 0.3370606227832342,
+      "per_seed_z_harm_s": [
+        0.2122682502653715,
+        0.6950931230085431,
+        0.3007971276797211,
+        0.28020865288376806,
+        0.27931895965337755,
+        0.2546776232086238
+      ],
+      "min_eval_steps": 526,
+      "n_seeds": 6,
+      "mean_episode_survival_steps": 163.56666666666666,
+      "min_episode_survival_steps": 23,
+      "per_seed_mean_episode_survival_steps": [
+        160.2,
+        105.2,
+        187.6,
+        200.0,
+        200.0,
+        128.4
+      ]
+    },
+    "preconditions": [
+      {
+        "name": "gentle_env_manipulation_took_z_harm_s_differs_starkest",
+        "description": "cross-arm |delta mean z_harm_s| (ARM_HARSH vs ARM_BENIGN, the starkest num_hazards 4-vs-0 gradient) as an SNR against pooled cross-seed SD must exceed Z_HARM_S_SNR_K",
+        "measured": 0.38830778371213637,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "ARM_HARSH vs ARM_BENIGN differ only in num_hazards/hazard_food_attraction (4/0.7 vs 0/0.0); a real gentling must move the sensory harm tier z_harm_s beyond seed noise",
+        "met": false
+      },
+      {
+        "name": "episode_survival_time_differs_starkest",
+        "description": "NON-GATING secondary check: cross-arm |delta mean episode_survival_steps| (ARM_HARSH vs ARM_BENIGN) as an SNR against pooled cross-seed SD, exceeding Z_HARM_S_SNR_K",
+        "measured": 1.6584660526192112,
+        "threshold": 2.0,
+        "direction": "lower",
+        "control": "Same harsh-vs-benign pair as the primary precondition; a real hazard-density difference should also show up in how long episodes survive before termination",
+        "met": false,
+        "load_bearing": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "z_harm_s_manipulation_took_starkest": false,
+      "sufficient_eval_steps_all_arms": false
+    },
+    "criteria": [
+      {
+        "name": "z_harm_s_manipulation_took_starkest",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "discrimination": {
+      "benign_saturated_sub_floor_cov": true,
+      "level_tracks_hazard_density": false,
+      "cov_tracks_hazard_density": false,
+      "calibration_pathology_representational": false,
+      "faithful_chronic_suffering_ecological": false
+    },
+    "note": "Diagnostic confound control -- REDESIGN of V3-EXQ-857 per its confirmed failure autopsy's routing (more seeds, starker gradient, survival-time DV). The self-route keys off the STARKEST pair (ARM_HARSH vs ARM_BENIGN, num_hazards 4 vs 0), not 857's original (4 vs 1) pair, which is reported for comparability only. Once the gentler-env manipulation is confirmed to have moved the sensory tier z_harm_s (readiness precondition), the z_harm_a readout partitions cleanly: a still-saturated, still-high-level benign arm => representational/calibration pathology; a level/range that tracks hazard density => faithful chronic suffering. Self-routes substrate_not_ready_requeue if z_harm_s did not move even at the starkest gradient -- if that happens, the episode-survival-time secondary check is reported explicitly rather than silently folded into the primary verdict, since a movement there while z_harm_s stays flat would itself be informative. Scoped to raw-warmup agents."
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4d45c1d03b883cd0cf2cb89cecb74843012898414ff23e7aed435958d5dbf357",
+  "substrate_commit": {
+    "commit": "fa5ce37d89292543bff12d3d3f5bdf8e034baee1",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 114573,
+    "ticks_active": 0,
+    "writer_calls": 114573,
+    "active_frac": 0.0,
+    "writer_defect": false,
+    "n_agents": 18,
+    "goal_state_present": true
+  }
+}
