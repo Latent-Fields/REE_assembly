@@ -646,7 +646,10 @@
       ],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-857a",
+      "executed_queue_id": "V3-EXQ-857a",
       "min_shared_seeds": 2,
+      "note": "V3-EXQ-857 ran (FAIL), autopsied, redesigned as 857a which also ran (FAIL) and was itself autopsied (2026-08-02, this worktree's session, resolved calibration_pathology_representational, user-confirmed). Literature leg (LIT-0319/IGW-220) also landed. Both experimental and literature legs closed.",
       "objective": "Generate decision-grade discriminative evidence for Q-086 before governance deadline.",
       "priority": "high",
       "proposal_id": "EXP-0014",
@@ -663,7 +666,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_857_q086_gentler_env_fingerprint",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1498,6 +1501,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-794/794a (original design, executed); superseded by GOV-FANOUT-1 cascade V3-EXQ-850/853/860/864/864a",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Literal suggested design (v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2) already ran (794/794a). SD-076's retain/hybridize/retire decision was deliberately left open this governance cycle per user instruction, pending the live H1/H2/H3 GOV-FANOUT-1 cascade -- not resolvable by re-running this superseded design.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for SD-076 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -1515,7 +1522,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_794_mech204_phase7_sd076_calibration_loop_2x2",
       "target_repo": "ree-v3",
       "why_now": [
@@ -1792,7 +1799,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-806",
+      "executed_queue_id": "V3-EXQ-806",
       "min_shared_seeds": 2,
+      "note": "V3-EXQ-806 (2026-07-25) ran this exact design and PASSED (on_dist_mean 1.67 vs off 0.0, C1/C2/C3 pass frac 1.0). Held at candidate_substrate_landed pending a downstream consumer test, not re-litigable via this proposal. why_now's directional_conflict_alert traces to a separate claim (SD-082 untrained bias head), not SD-078 itself.",
       "objective": "Run a discriminative support-vs-ablation pair for SD-078 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0041",
@@ -1809,7 +1819,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_806_sd078_centered_rule_field_context_key",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2426,6 +2436,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-436b",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "V3-EXQ-436b (2026-08-02, same day) already ran this design, tagged claim_ids [SD-017, ARC-045, MECH-166], FAILED/weakens. Failure-autopsy already completed (root cause: sws_n_writes counter discarded by driver -- measurement gap, not a genuine null result); sitting in pending_review.md awaiting governance disposition of the routed re-run (436c-class, counter-capturing fix).",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for ARC-045 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -2443,7 +2457,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_436_sd017_context_cond_harm_thresh",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2467,7 +2481,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-672b",
+      "executed_queue_id": "V3-EXQ-672b",
       "min_shared_seeds": 2,
+      "note": "Full 672 -> 672a -> 672b supersession chain already ran; 672b (2026-06-15, non-collapsed baseline) is precisely this proposal's discriminative-pair design and returned FAIL/weakens, user-adjudicated. Open item is a lit-vs-exp conflict-classification pass, not a new experiment.",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-057b with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0057",
@@ -2484,7 +2501,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_672_mech057b_trajectory_promotion_gate",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2635,7 +2652,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-856",
+      "executed_queue_id": "V3-EXQ-856",
       "min_shared_seeds": 2,
+      "note": "V3-EXQ-856 ran 2026-08-01, FAILED/weakens, autopsied, applied to claims.yaml by /governance the same day, routed onward to Q-086 (V3-EXQ-857/857a). Follow-on lit-pull also completed (literature_confidence 0.825). why_now's insufficient_experimental_replication/low_exp_conf predate this run.",
       "objective": "Run a discriminative support-vs-ablation pair for SD-087 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0061",
@@ -2652,7 +2672,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_856_sd087_harm_surprise_pe_fingerprint",
       "target_repo": "ree-v3",
       "why_now": [
@@ -2677,7 +2697,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-804",
+      "executed_queue_id": "V3-EXQ-804",
       "min_shared_seeds": 2,
+      "note": "LEG A (selection, this proposal's scope) already ran as V3-EXQ-804 -- exactly this discriminative-pair design (A0_INTACT/A1_E3_LESIONED/ARM_NOISE) -- outcome FAIL/weakens, which IS the active_conflict/low_exp_conf signal this proposal is reacting to. LEG B (commitment) remains genuinely blocked on unbuilt ARC-107 BG-selector substrate; not queueable regardless.",
       "objective": "Run a discriminative support-vs-ablation pair for ARC-003 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0062",
@@ -2694,7 +2717,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_arc_003",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3090,7 +3113,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-815",
+      "executed_queue_id": "V3-EXQ-815",
       "min_shared_seeds": 2,
+      "note": "V3-EXQ-815 (readiness diagnostic) PASSed 2026-07-24. Claim family moved through 816/816b/816c/820/830/841/844 to a substrate build and validation run V3-EXQ-867 (autopsied 2026-08-02: environment_adequacy_defect). Live thread is successor 867a, pending governance ratification before queuing (not this proposal).",
       "objective": "Run a discriminative support-vs-ablation pair for ARC-070 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0072",
@@ -3107,7 +3133,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_815_mech321_policy_decomposition_readiness",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3377,6 +3403,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-436b",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Same V3-EXQ-436b finding as EVB-0476 (ARC-045) -- 436b tagged MECH-166 directly. Awaiting governance disposition of the pending failure-autopsy's routed re-run, not a re-run of this proposal's target.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for MECH-166 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -3394,7 +3424,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_436_sd017_context_cond_harm_thresh",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3631,7 +3661,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-237a",
+      "executed_queue_id": "V3-EXQ-237a",
       "min_shared_seeds": 2,
+      "note": "237a ran three times (2026-04-05/06), all FAIL/non_contributory, fully digested into claims.yaml as depressive-attractor scaffolding. Claim's live evidence anchor has since moved to the dual_system_recruitment lineage (786/786a/786b/841), a different question from this proposal's dual_system_discrimination target.",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-163 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0107",
@@ -3648,7 +3681,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_237a_mech163_dual_system_discrimination",
       "target_repo": "ree-v3",
       "why_now": [
@@ -3749,6 +3782,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-266b",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "266 -> 266a -> 266b lineage already ran; 266b (2026-07-23) is this exact discriminative pair and FAILED/weakens, user-confirmed, which REOPENED Q-020 (status resolved -> candidate, needs_review, 2026-07-25). The active_conflict this proposal cites is downstream of that reopening -- awaiting a /governance disposition on the reopened claim, not a re-run of the already-answered design.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for Q-020 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -3766,7 +3803,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_266_q020_valence_geometry_pair",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4448,7 +4485,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-462",
+      "executed_queue_id": "V3-EXQ-462",
       "min_shared_seeds": 2,
+      "note": "V3-EXQ-462 (5 sub-tests) PASSed 2026-04-21; claim is provisional, not in active conflict (why_now's active_conflict premise doesn't hold). A much more recent, finer-grained probe V3-EXQ-869 (queued and run 2026-08-02) FAILED and was autopsied same-day, routed to /implement-substrate (horizon-depth modulation gap), user-confirmed -- that is the live thread, not this proposal.",
       "objective": "Run a discriminative support-vs-ablation pair for MECH-267 with matched seeds and pre-registered thresholds.",
       "priority": "high",
       "proposal_id": "EXP-0127",
@@ -4465,7 +4505,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_462_mech267_rule_binding",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4527,6 +4567,10 @@
       "decision_required_outcomes": [],
       "dispatch_mode": "discriminative_pair",
       "exclude_broad_profile_sweeps": true,
+      "executed_by": "V3-EXQ-436b",
+      "gated_at_utc": "2026-08-02T11:59:00Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "This proposal's literal target v3_exq_418a already ran four times (2026-04-18/19/20/24), all non_contributory (SD-016 cue_action_proj consumer collapse), and was twice superseded in the 418-lineage (culminating 418l, 2026-05-09). SD-017's live thread is V3-EXQ-436b (2026-08-02, tags SD-017 directly), FAILED, autopsied, awaiting governance disposition of its routed re-run -- not a re-run of the dead 418a script.",
       "min_shared_seeds": 2,
       "objective": "Run a discriminative support-vs-ablation pair for SD-017 with matched seeds and pre-registered thresholds.",
       "priority": "high",
@@ -4544,7 +4588,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_418a_sd016_sd017_context_conditioned_action",
       "target_repo": "ree-v3",
       "why_now": [
@@ -14336,7 +14380,10 @@
       "design": "Run a matched-seed environment-complexity ladder and measure information availability before any SD-016 or sleep/self-model retest. Arms: A0 baseline CausalGridWorldV2 matching the EXQ-418f/g failure regime; A1 SD-023 landmarks-on only; A2 existing-knobs rich world using larger grid, more hazards/resources, high hazard drift, scheduled external hazards, subgoals/waypoints, landmarks, and resource respawn; A3 causal-wrapper rich world, implemented inside the experiment if needed, appending default-off diagnostic world channels for stable object identity, context/rule cue, delayed consequence marker, and matched self-caused vs env-caused event labels. For each arm, train the same short agent schedule with alpha_world=0.9, sd016_enabled=True, use_event_classifier=True, and use_resource_proximity_head=True. Collect balanced eval batches across safe, dangerous, resource-rich, delayed-consequence, self-caused, and env-caused contexts. Report raw world_state effective rank, z_world effective rank, mean pairwise z_world cosine, cross-context z_world cosine, separation_gap, linear-probe accuracy from z_world for context identity / transition_type / hazard proximity / resource proximity / self-vs-env cause, and action-conditioned predictability of z_world_{t+1} from (z_world_t, action).",
       "dispatch_mode": "targeted_probe",
       "estimated_minutes": 90,
+      "executed_by": "V3-EXQ-418k",
+      "executed_queue_id": "V3-EXQ-418k",
       "machine_affinity": "any",
+      "note": "V3-EXQ-418j/k (2026-05-05/06) already ran this exact 4-arm env-richness ladder question and returned does_not_support (cos_cross_mean 0.987-0.9999, separation_gap_mean 0.0000-0.0039 across all arms). Marked superseded 2026-08-02 (session determined-ritchie-55a3a6) per user direction, rather than re-queued -- see claims.yaml SD-016 status_note and evidence/planning/sleep_substrate_plan.md Tier 0 table for the folded-in result. Not to be re-queued; if SD-016 is revisited, the open question is narrower (Path 3 selection-mechanism validation), not env-richness.",
       "notes": "This proposal operationalises the user's 2026-04-29 hypothesis that attributional sleep, self-model, and other apparently inert substrates may be starved by low world complexity rather than broken internally. It is the successor to EXQ-418h's landmarks-only gate. If PASS, queue a follow-up SD-016 4-arm retest in the passing env config, then a MECH-273 self-model sleep writeback probe using the same env. If FAIL, write a focused CausalGridWorldV3 enrichment design doc before further substrate retests.",
       "objective": "Test whether V3's current or enriched environments produce enough world-state information for downstream attribution, SD-016 cue retrieval, and sleep/self-model aggregation to operate. This is an environment-readiness gate, not direct claim-confidence evidence. It follows V3-EXQ-418f/g/h, which showed SD-016 substrate mechanics can work while z_world remains too near-constant to drive behaviour.",
       "prerequisites": [
@@ -14351,7 +14398,7 @@
       "reserved_queue_id": null,
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_NNN_env_complexity_gate",
       "target_repo": "ree-v3"
     },

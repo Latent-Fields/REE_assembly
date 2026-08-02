@@ -134,7 +134,7 @@
       "suggested_experiment_type": "v3_exq_NNN_env_complexity_gate",
       "estimated_minutes": 90,
       "machine_affinity": "any",
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-04-29",
       "source": "manual",
       "script_path": null,
@@ -156,7 +156,10 @@
         "If A3 causal-wrapper is needed, implement it inside the experiment script first rather than changing CausalGridWorldV2 globally.",
         "Do not mark SD-016, MECH-273, or MECH-275 supported/unsupported directly from this run; evidence_direction must be diagnostic."
       ],
-      "notes": "This proposal operationalises the user's 2026-04-29 hypothesis that attributional sleep, self-model, and other apparently inert substrates may be starved by low world complexity rather than broken internally. It is the successor to EXQ-418h's landmarks-only gate. If PASS, queue a follow-up SD-016 4-arm retest in the passing env config, then a MECH-273 self-model sleep writeback probe using the same env. If FAIL, write a focused CausalGridWorldV3 enrichment design doc before further substrate retests."
+      "notes": "This proposal operationalises the user's 2026-04-29 hypothesis that attributional sleep, self-model, and other apparently inert substrates may be starved by low world complexity rather than broken internally. It is the successor to EXQ-418h's landmarks-only gate. If PASS, queue a follow-up SD-016 4-arm retest in the passing env config, then a MECH-273 self-model sleep writeback probe using the same env. If FAIL, write a focused CausalGridWorldV3 enrichment design doc before further substrate retests.",
+      "executed_by": "V3-EXQ-418k",
+      "executed_queue_id": "V3-EXQ-418k",
+      "note": "V3-EXQ-418j/k (2026-05-05/06) already ran this exact 4-arm env-richness ladder question and returned does_not_support (cos_cross_mean 0.987-0.9999, separation_gap_mean 0.0000-0.0039 across all arms). Marked superseded 2026-08-02 (session determined-ritchie-55a3a6) per user direction, rather than re-queued -- see claims.yaml SD-016 status_note and evidence/planning/sleep_substrate_plan.md Tier 0 table for the folded-in result. Not to be re-queued; if SD-016 is revisited, the open question is narrower (Path 3 selection-mechanism validation), not env-richness."
     },
     {
       "proposal_id": "EXP-0085",
