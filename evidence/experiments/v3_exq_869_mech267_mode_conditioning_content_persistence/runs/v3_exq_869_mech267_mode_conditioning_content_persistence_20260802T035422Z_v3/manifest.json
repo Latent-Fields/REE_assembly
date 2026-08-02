@@ -1,0 +1,94 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_869_mech267_mode_conditioning_content_persistence",
+  "run_id": "v3_exq_869_mech267_mode_conditioning_content_persistence_20260802T035422Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T03:54:22.742315Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-267"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-267": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mode_conditioning_content_effect_washed_out_by_elite_refit",
+    "criteria": [
+      {
+        "name": "C0_diagnostic_manipulation_check_iters1",
+        "load_bearing": true,
+        "passed": true,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": 0.054585663601756096,
+          "external_task_minus_internal_replay": 0.0918179708532989,
+          "internal_replay_minus_offline_consolidation": 0.031088031238565843
+        },
+        "floor": 0.015
+      },
+      {
+        "name": "C1_production_content_persistence_iters3",
+        "load_bearing": true,
+        "passed": false,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": -0.00028230218837658566,
+          "external_task_minus_internal_replay": 0.003475625781963269,
+          "internal_replay_minus_offline_consolidation": -0.003747899690642953
+        },
+        "floor": 0.01
+      },
+      {
+        "name": "C2_seed_majority_full_ordering_iters3",
+        "load_bearing": false,
+        "passed": false,
+        "n_seeds_full_order": 0,
+        "n_seeds_total": 30
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0_diagnostic_manipulation_check_iters1": true,
+      "C1_production_content_persistence_iters3": true,
+      "C2_seed_majority_full_ordering_iters3": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if the primary DV is degenerate (no spread across modes at iters=1) or if C0 (the manipulation check reproducing 462/465's wiring finding at the content level) fails -- neither case is informative about the claim. Else PASS/supports iff C1 (the mean pairwise raw_std gaps at production num_cem_iterations=3 each clear FLOOR_PRODUCTION); else FAIL/weakens (wiring confirmed but the content effect does not survive elite-refit under realistic settings). C2 is reported alongside as non-gating per-seed corroboration."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "639933e083ee4f26eb162ab4f6412d407f883a281967f7f4e0c17594dbed637b",
+  "substrate_commit": {
+    "commit": "14f50a0fc167ab64038da3cf54b6438cd5dbc58d",
+    "dirty": false,
+    "branch": "main"
+  }
+}

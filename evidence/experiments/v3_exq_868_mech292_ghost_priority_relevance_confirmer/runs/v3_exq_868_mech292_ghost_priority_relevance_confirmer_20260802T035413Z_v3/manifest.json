@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_868_mech292_ghost_priority_relevance_confirmer",
+  "run_id": "v3_exq_868_mech292_ghost_priority_relevance_confirmer_20260802T035413Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-02T03:54:13.973927Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-292"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-292": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "goal_relevant_trace_outranks_goal_irrelevant",
+    "criteria": [
+      {
+        "name": "C1_relevant_majority_wins",
+        "load_bearing": true,
+        "passed": true,
+        "n_comparable": 7,
+        "n_attempted": 7,
+        "n_wins": 4,
+        "win_threshold": 4
+      },
+      {
+        "name": "C2_goal_match_dominant_on_direct_wins",
+        "load_bearing": false,
+        "passed": true,
+        "n_direct_wins": 4,
+        "n_goal_match_dominant": 3
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_relevant_majority_wins": true,
+      "C2_goal_match_dominant_on_direct_wins": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if n_comparable < 4 (substrate_not_engaged, never weakens); else PASS/supports iff C1 (relevant wins >= proportional >=4/7 majority of comparable seeds); else FAIL/weakens. C2 is reported alongside as a secondary, non-gating corroboration of the docstring's goal_match-dominance half."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "6cb1cdca30a9bdfba5cfc10eb0d1890fa3578171c5b651bfda9e0019c1eae631",
+  "substrate_commit": {
+    "commit": "14f50a0fc167ab64038da3cf54b6438cd5dbc58d",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 840,
+    "ticks_active": 840,
+    "writer_calls": 840,
+    "active_frac": 1.0,
+    "writer_defect": false,
+    "n_agents": 14,
+    "goal_state_present": true
+  }
+}
