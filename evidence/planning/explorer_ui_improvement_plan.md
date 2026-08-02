@@ -279,6 +279,26 @@ change -- proposing, not building.
 `explorer.html` edit to become reachable via this picker at all -- worth
 knowing if the user finds a doc that "isn't in the dropdown."
 
+**2026-08-02 follow-up decision (chip `chip-20260802-docs-picker-redesign`):**
+user approved both open questions:
+1. **Picker UI** -- replace the `<select>` with a searchable panel: a
+   left-hand grouped list/tree with always-visible titles (sidebar-style
+   TOC) + a search box filtering in place, doc renders on the right.
+2. **Doc source** -- make `DOC_GROUPS` server-generated: `serve.py` scans
+   `docs/` (and other known doc dirs) by convention and returns a doc
+   index; a small curated-overrides config maps specific paths to a
+   display group/title/order for anything that needs it (e.g. "Start
+   here" pulling files from across the tree), everything else falls back
+   to filename-derived title + directory-derived group. New docs become
+   reachable automatically without an `explorer.html` edit.
+
+**Implementation blocked at decision time**: `REE_assembly/explorer.html`
+and `REE_assembly/serve.py` were both under an active `TASK_CLAIMS.json`
+claim (`claims-stash-surfacing-cf8392`, unrelated work: wiring stale-claim
++ orphaned-stash surfacing into Explorer). Build deferred to a follow-up
+session/chip once that claim clears -- see `TASK_CLAIMS.json` /
+`WORKSPACE_STATE.md` for current status.
+
 ---
 
 ## (d) General usability
@@ -330,7 +350,7 @@ wants a similar at-a-glance summary for, say, the List/claims view specifically.
 | C1 | No dark mode | c | needs-design-discussion | **Landed** (auto via prefers-color-scheme) |
 | C2 | Inline hex colors vs CSS vars | c | needs-design-discussion | **Landed, partially** -- see note below |
 | C3 | "More" menu accretion | c | needs-design-discussion | **Landed, partially** -- Docs promoted to top-level; Contributors + 6 dashboard links still in More by user decision |
-| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | **Deferred by user decision** |
+| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | **Approved 2026-08-02** (searchable panel + server-generated index) -- **implementation blocked**, `explorer.html`/`serve.py` under active claim |
 | D1 | List table has no pagination | d | small | **Landed** (~100/page) |
 | D2 | Mobile/responsive | d | -- | Already fine |
 | D3 | Governance's priority pane as a reusable pattern | d | -- | Noted, no action proposed |
