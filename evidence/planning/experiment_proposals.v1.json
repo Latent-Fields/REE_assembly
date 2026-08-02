@@ -7581,12 +7581,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_224_mech124_zgoal_salience_diag",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_224_mech124_zgoal_salience_diag",
+      "note": "Claim's live_status.evidence already cites the newer v3_exq_298_mech124_zgoal_salience_discriminative run (supports/PASS, 2026-04-09), which superseded this earlier diagnostic (224). Re-suggesting 224 is stale registry data pointing at pre-superseded evidence."
     },
     {
       "acceptance_checks": [
@@ -7653,12 +7655,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_511_sd048_interoceptive_noise_substrate_readiness",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict (2026-03/live_status) + v3_pending=true; the suggested design (v3_exq_511) already ran (weakens) and is held, not re-litigable by an identical rerun."
     },
     {
       "acceptance_checks": [
@@ -7875,12 +7880,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_385a_inv049_offline_consolidation_necessity",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_385a_inv049_offline_consolidation_necessity",
+      "note": "Governance already reclassified this run (2026-04-19) as a duplicate of the 20260418T210738Z run; that run is the primary evidence, not this proposal."
     },
     {
       "acceptance_checks": [
@@ -8025,12 +8032,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_065_mech029_default_mode_probe",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_065) already ran: 'Design-inconclusive: uncommitted_steps=0 throughout eval' -- same committed-mode substrate gap as ARC-028/EXQ-139."
     },
     {
       "acceptance_checks": [
@@ -8061,12 +8071,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_822b_sd082_head_internals_diagnostic",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_822b) already ran: non_contributory -- root-caused to REINFORCE never updating rule_bias_head's last linear layer ('head_untrained'); note points to a pending 'SD-082 substrate amend'. Gated on that amend, not on more runs of this diagnostic."
     },
     {
       "acceptance_checks": [
@@ -8097,13 +8110,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_321_mech090_bistable_gate",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_321, shared with MECH-090) already ran: NON_CONTRIBUTORY 2026-04-11 governance -- total_committed_steps=0 across all seeds/conditions, the same committed-sequence-generation gap that blocked EXQ-139. Substrate does not elicit committed mode; re-running the identical script hits the same wall."
     },
     {
       "acceptance_checks": [
@@ -8134,12 +8150,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_067_mech026_ready_vigilance",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_067) already ran: 'Design-inconclusive: uncommitted_threat_steps=0, uncommitted_neutral_steps=0' -- same committed-mode substrate gap as ARC-028/EXQ-139."
     },
     {
       "acceptance_checks": [
@@ -8170,12 +8189,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_252_mech187_zgoal_seeding_gain",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "executed_by": "v3_exq_252_mech187_zgoal_seeding_gain",
+      "note": "Claim's live_status.evidence.from is exactly this run (supports/PASS). Already incorporated."
     },
     {
       "acceptance_checks": [
@@ -8206,12 +8227,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_708_mech440_noisy_selection_head_propagation_falsifier",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "pending_retest_after_substrate=true + v3_pending=true; suggested design (v3_exq_708) already ran (non_contributory/measurement_gap); claim explicitly awaits substrate change before a retest is non-vacuous."
     },
     {
       "acceptance_checks": [
@@ -8279,12 +8303,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_131_arc023_multirate_heartbeat_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_131) already ran and was itself flagged evidence_direction=superseded (identical-metrics rerun of an earlier run) -- re-running again would repeat the same substrate wall."
     },
     {
       "acceptance_checks": [
@@ -8353,12 +8380,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_075d_mech113_self_maintenance",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_075d_mech113_self_maintenance",
+      "note": "Suggested design already ran (evidence_direction=mixed, no substrate-gate note). No indication of a blocking substrate gap; the proposal as specified has already been carried out."
     },
     {
       "acceptance_checks": [
@@ -8389,12 +8418,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_152_q012_control_constraints_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_152_q012_control_constraints_pair",
+      "note": "Suggested design already ran (evidence_direction=mixed); claim's live_status verdict (demote_to_candidate/applied) reflects a governance decision already made on this evidence."
     },
     {
       "acceptance_checks": [
@@ -8425,12 +8456,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_494_sd039_anchor_payload_validation",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "executed_by": "v3_exq_494_sd039_anchor_payload_validation",
+      "note": "Claim's live_status.evidence.from is exactly this run (supports/PASS, 2026-04-27). v3_pending on the claim reflects promotion needing further replication, not that this literal proposal is outstanding."
     },
     {
       "acceptance_checks": [
@@ -8461,12 +8494,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_176_arc036_valence_dimension_probe",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_176) already ran (mixed)."
     },
     {
       "acceptance_checks": [
@@ -8497,13 +8533,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_214_arc039_entorhinal_consolidation_probe",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_214) already ran: non_contributory -- 'ResidueField.integrate() V3 proxy too crude to test full [mechanism]'; governance verdict hold_candidate_resolve_conflict. Proxy immaturity, not an open question a rerun answers."
     },
     {
       "acceptance_checks": [
@@ -8534,12 +8573,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_190_mech022_hypothesis_injection_probe",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_190_mech022_hypothesis_injection_probe",
+      "note": "Suggested design already ran (evidence_direction=mixed, no substrate-gate note)."
     },
     {
       "acceptance_checks": [
@@ -8570,12 +8611,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_671_mech025b_precision_responsibility",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_671_mech025b_precision_responsibility",
+      "note": "Claim's live_status.evidence already cites failure_autopsy_batch9_2026-06-12#V3-EXQ-671 (non_contributory/degenerate) -- this exact run, already autopsied and folded into claim state."
     },
     {
       "acceptance_checks": [
@@ -8606,13 +8649,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_243_inv045_phase_ordering_necessity",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_243) already ran: non_contributory -- 'Diagnostic: proxy offline phases too immature to test ordering necessity (INV-045)'. Proxy immaturity gate, same class as ARC-039."
     },
     {
       "acceptance_checks": [
@@ -8643,12 +8689,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_156_q016_tri_loop_arbitration_policy_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_156) already ran: evidence_direction=superseded -- 'Implementation gap: policy receives gradient only from entropy bonus'. Governance verdict retain_open_question_with_policy_probe_plan already names the follow-on plan; not resolvable by an identical rerun."
     },
     {
       "acceptance_checks": [
@@ -8679,12 +8728,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_127_mech030_sleep_consolidation_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_127) already ran: evidence_direction=superseded -- 'Sleep not implemented in V3; post-training phase simulation does not test MECH-030'. Sleep substrate is a known V3-blocked area for this claim family."
     },
     {
       "acceptance_checks": [
@@ -8715,12 +8767,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_068_mech047_mode_hysteresis",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_068) already ran: 'Design-inconclusive: both H and C agents show commit_rate=1.0 in eval' -- a ceiling effect in the existing design, not a fresh question; needs a redesigned probe under a new letter, not a rerun."
     },
     {
       "acceptance_checks": [
@@ -8751,12 +8806,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_128_mech103_multimodal_fusion_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_128) already ran: evidence_direction=superseded -- 'No multimodal sensory input in V3; artificial auditory channel not representative'. Substrate lacks the modality this claim needs."
     },
     {
       "acceptance_checks": [
@@ -8859,12 +8917,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_817_sd080_consequence_grounding_falsifier",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_817_sd080_consequence_grounding_falsifier",
+      "note": "Suggested design already ran (evidence_direction=non_contributory, no substrate-gate note)."
     },
     {
       "acceptance_checks": [
@@ -8895,12 +8955,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_129_arc017_stream_tag_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_129_arc017_stream_tag_pair",
+      "note": "Suggested design already ran (evidence_direction=mixed, no substrate-gate note)."
     },
     {
       "acceptance_checks": [
@@ -8968,12 +9030,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_130_mech096_dual_stream_routing_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict; suggested design (v3_exq_130) already ran and was flagged evidence_direction=superseded (identical-metrics rerun)."
     },
     {
       "acceptance_checks": [
@@ -9004,12 +9069,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_137_mech097_pps_commit_locus_pair",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_137) already ran: inconclusive -- prerequisites SD-006 (now implemented) and MECH-091 (still candidate, hold_candidate_resolve_conflict verdict) are only partially met. Blocked on MECH-091, not on more runs of this design."
     },
     {
       "acceptance_checks": [
@@ -9040,12 +9108,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_194_direct_terrain_pathway",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_194_direct_terrain_pathway",
+      "note": "Suggested design already ran (evidence_direction=inconclusive, no substrate-gate note)."
     },
     {
       "acceptance_checks": [
@@ -9076,12 +9146,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_826_mech244_precision_weighting_self_sealing",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "Suggested design (v3_exq_826) already ran: non_contributory -- 'E1 never received a training gradient -- the script's random-action rollout never [trained it]'. This is a script-design defect (untrained E1), not an open scientific question; a meaningful retest needs a redesigned script under a new letter, not a rerun of this one."
     },
     {
       "acceptance_checks": [
@@ -9112,12 +9185,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_600a_mech282_lpb_interoceptive_routing_diag",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_600a) already ran (supports) but is held pending substrate, not promotable by an identical rerun."
     },
     {
       "acceptance_checks": [
@@ -9148,12 +9224,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_599a_mech286_sleep_onset_gate_validation",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "executed_by": "v3_exq_599a_mech286_sleep_onset_gate_validation",
+      "note": "Claim's live_status.evidence.from is exactly this run (supports/PASS, 2026-05-21). Already incorporated."
     },
     {
       "acceptance_checks": [
@@ -9292,12 +9370,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_568_sd055_differentiable_cem_substrate_readiness",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_568) already ran (non_contributory)."
     },
     {
       "acceptance_checks": [
@@ -9328,12 +9409,14 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_502_mech062_tri_loop_gate_coordination",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "executed_by": "v3_exq_502_mech062_tri_loop_gate_coordination",
+      "note": "Claim's live_status.evidence.from is exactly this run (supports/PASS, 2026-04-29). Already incorporated."
     },
     {
       "acceptance_checks": [
@@ -9401,12 +9484,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_594_mech339_composite_cue_outshining_validation",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_594) already ran (supports) but is held pending substrate."
     },
     {
       "acceptance_checks": [
@@ -9437,12 +9523,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "gated",
       "suggested_experiment_type": "v3_exq_607_mech340_persistence_efficacy_gate_validation",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication"
-      ]
+      ],
+      "gated_at_utc": "2026-08-02T13:25:34Z",
+      "gated_by_session": "determined-ritchie-55a3a6",
+      "gating_reason": "hold_pending_v3_substrate governance verdict + v3_pending=true; suggested design (v3_exq_607) already ran (supports) but is held pending substrate."
     },
     {
       "acceptance_checks": [
@@ -9656,13 +9745,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "executed",
       "suggested_experiment_type": "v3_exq_210_mech156_theta_traversal_probe",
       "target_repo": "ree-v3",
       "why_now": [
         "insufficient_experimental_replication",
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "v3_exq_210_mech156_theta_traversal_probe",
+      "note": "Suggested design already ran (evidence_direction=mixed, no substrate-gate note)."
     },
     {
       "acceptance_checks": [
