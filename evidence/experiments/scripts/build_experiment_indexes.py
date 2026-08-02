@@ -2946,31 +2946,85 @@ def _is_inactive_claim_status(status: str) -> bool:
 _ANSWERED_OR_CLOSING_CLAIM_STATUSES = {"resolved", "open", "retiring"}
 
 # Resolved epistemic_category values whose questions are settled by literature,
-# derivation, or policy rather than by a REE experiment. (answer_state and the
-# substrate_* categories are intentionally NOT here -- they keep their own
-# recommendation handling in _recommendation_for_claim.)
+# derivation, or policy rather than by a REE experiment. (answer_state is
+# intentionally NOT here -- it keeps its own recommendation handling in
+# _recommendation_for_claim. The substrate_* categories previously shared that
+# "intentionally NOT here" note too, but that was a bug, not a design choice:
+# _recommendation_for_claim's handling of substrate_conditional/substrate_ceiling
+# only ever suppresses promote/demote GOVERNANCE recommendations -- it has no
+# path back into the EXP-* proposal-eligibility gate below, which is a wholly
+# separate call site (the backlog dispatcher). See _PROBE_GATED_EPISTEMIC_
+# CATEGORIES for the fix.)
 _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES = {
     "out_of_domain",
     "derivational",
     "governance_rule",
 }
 
+# substrate_conditional / substrate_ceiling: EXPLICIT-only categories meaning
+# "no build-relevant action is available until an upstream probe/substrate
+# lands" (REE_assembly/CLAUDE.md "Epistemic categories"). Neither is
+# REE-experiment-testable right now by definition -- substrate_conditional's
+# upstream dependency is planned but not yet built, and substrate_ceiling's
+# documented remedy is substrate enrichment, "not more experiments on the
+# existing substrate". A claim in either category must not seed an EXP-*
+# proposal even though it may still be perfectly fine to route to /lit-pull
+# (the literature-proposal branch is untouched by this gate).
+_PROBE_GATED_EPISTEMIC_CATEGORIES = {
+    "substrate_conditional",
+    "substrate_ceiling",
+}
+
+
+def _is_deferred_to_later_generation(registry_meta: "dict[str, Any] | None") -> bool:
+    """True when a claim is v3_pending AND implementation_phase names a
+    generation >= v4 -- i.e. deliberately deferred to a later architecture
+    generation by an explicit commitment, not merely awaiting V3 substrate
+    readiness (that narrower case is implementation_phase == "v3" with no V3
+    runs yet, handled separately by the hold_pending_v3_substrate branch).
+
+    Shared by _recommendation_for_claim's held_v4_by_architectural_commitment
+    gate and _is_experiment_ineligible_claim below, so both call sites
+    recognize the same signal instead of drifting apart.
+    """
+    if not registry_meta:
+        return False
+    v3_pending = str(registry_meta.get("v3_pending", "False")).strip().lower() in ("true", "yes", "1")
+    impl_phase = str(registry_meta.get("implementation_phase", "")).strip().lower()
+    later_gen = re.fullmatch(r"v(\d+)", impl_phase)
+    return bool(v3_pending and later_gen and int(later_gen.group(1)) >= 4)
+
 
 def _is_experiment_ineligible_claim(registry_meta: dict[str, Any]) -> bool:
     """True when a claim must not seed an experimental (EXP-*) proposal.
 
-    Two independent reasons (either suffices):
-      * the claim status is answered/closing (a REE run cannot move it), or
+    Four independent reasons (any one suffices):
+      * registry_meta is empty -- the claim_id has no claims.yaml entry at all
+        (claim_registry.get(claim_id, {}) fell through to the default; a real
+        parsed entry always carries status/claim_type keys, even blank, so an
+        empty dict is unambiguously "not registered"). There is no claims.yaml
+        disposition to test, so no targeted experiment can be proposed against
+        it -- this is a data-hygiene gap (dead/renamed claim_id), not a
+        substrate-readiness one.
+      * the claim status is answered/closing (a REE run cannot move it),
       * its resolved epistemic_category is one settled outside REE experiments
-        (literature / derivation / policy).
+        (literature / derivation / policy), or explicitly probe-gated
+        (substrate_conditional / substrate_ceiling -- see
+        _PROBE_GATED_EPISTEMIC_CATEGORIES), or
+      * the claim is deliberately deferred to a later generation (v3_pending
+        + implementation_phase >= v4 -- see _is_deferred_to_later_generation).
 
-    Warn-safe: missing/blank fields resolve to eligible (False) so absent
-    metadata never silently suppresses a genuine proposal. Uses
-    _resolve_epistemic_category so an inferred answer_state (open_question
-    default) is handled by the status rule, not mis-skipped here.
+    Warn-safe: missing/blank fields on a REGISTERED claim resolve to eligible
+    (False) so absent metadata never silently suppresses a genuine proposal --
+    only a wholly-missing registry entry, or an explicit deferral signal,
+    suppresses. Uses _resolve_epistemic_category so an inferred answer_state
+    (open_question default) is handled by the status rule, not mis-skipped
+    here.
     """
     if not isinstance(registry_meta, dict):
         return False
+    if not registry_meta:
+        return True
     status = str(registry_meta.get("status", "")).strip().lower()
     if status in _ANSWERED_OR_CLOSING_CLAIM_STATUSES:
         return True
@@ -2979,7 +3033,11 @@ def _is_experiment_ineligible_claim(registry_meta: dict[str, Any]) -> bool:
         str(registry_meta.get("invariant_type", "")),
         str(registry_meta.get("epistemic_category", "")),
     )
-    return epistemic_category in _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES
+    if epistemic_category in _NON_EXPERIMENTAL_EPISTEMIC_CATEGORIES:
+        return True
+    if epistemic_category in _PROBE_GATED_EPISTEMIC_CATEGORIES:
+        return True
+    return _is_deferred_to_later_generation(registry_meta)
 
 
 # ── Phase 3 wave 2: epistemic-category resolver ──────────────────────────────
@@ -3535,8 +3593,10 @@ def _recommendation_for_claim(
     # held_v4_by_architectural_commitment (the shared "architectural-commitment"
     # bucket recognised by the IGW workset suppress set and morning digest)
     # regardless of the exact later generation; only the prose is generation-aware.
-    _later_gen = re.fullmatch(r"v(\d+)", _impl_phase)
-    if _v3_pending and _later_gen and int(_later_gen.group(1)) >= 4:
+    # (_is_deferred_to_later_generation is the shared helper -- also consulted by
+    # _is_experiment_ineligible_claim so the EXP-* proposal gate recognizes the
+    # same signal.)
+    if _is_deferred_to_later_generation(registry_meta):
         _gen = _impl_phase.upper()
         return {
             "claim_id": claim_id,
@@ -5517,6 +5577,40 @@ def _write_planning_outputs(
 
     proposals: list[dict[str, Any]] = []
     proposal_counter = 1
+
+    # Existing (pre-regen) resolved proposals, loaded early so their proposal_id
+    # indices can be reserved below BEFORE the auto counter runs -- see the
+    # reservation block immediately after. Also reused later (the carry-forward
+    # and re-append-missing-resolved-items blocks) so the file is read once.
+    _existing_proposal_status: dict[str, dict] = {}
+    _existing_proposals_doc: dict | None = None
+    _existing_proposals_path = planning_root / "experiment_proposals.v1.json"
+    if _existing_proposals_path.exists():
+        try:
+            _existing_proposals_doc = json.loads(
+                _existing_proposals_path.read_text(encoding="utf-8")
+            )
+            for _ep in _existing_proposals_doc.get("items", []):
+                _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+                if _bid and _ep.get("status", "proposed") != "proposed":
+                    _existing_proposal_status[_bid] = {
+                        k: _ep[k]
+                        for k in (
+                            "status",
+                            "executed_by",
+                            "executed_queue_id",
+                            "gated_at_utc",
+                            "gated_by_session",
+                            "gating_reason",
+                            "predecessor_disposition",
+                            "release_condition",
+                            "superseded_by",
+                        )
+                        if k in _ep
+                    }
+        except Exception:
+            _existing_proposals_doc = None  # malformed existing file -- skip silently
+
     # Numeric proposal-id indices already hand-assigned in manual_proposals.v1.json
     # (e.g. EXP-0085..EXP-0176). The auto counter below MUST skip these so an
     # auto-generated EXP-/LIT-NNNN id never collides with a manual proposal id.
@@ -5526,7 +5620,26 @@ def _write_planning_outputs(
     # shared -- a manual LIT-0099 must block auto EXP-0099 and LIT-0099 alike.
     # (Fixes the 47 duplicate proposal_ids the old shared-namespace counter
     # produced in the generated experiment_proposals.v1.json.)
+    #
+    # ALSO reserve every already-RESOLVED existing proposal_id (_existing_proposal_status,
+    # loaded above): those items are re-appended verbatim near the end of this
+    # function (see "Preserve historical resolution records" below) whenever a
+    # claim no longer generates a fresh proposal this cycle (e.g. it just became
+    # experiment-ineligible), so their old numeric id must not be handed to an
+    # unrelated freshly-generated proposal in the meantime. Confirmed 2026-08-02
+    # (chip-20260802-backlog-dispatcher-gating-bug): without this, the same
+    # substrate_conditional/v3_pending+v4 gate fix that motivated the
+    # re-append produced 18 duplicate proposal_ids (e.g. two different claims
+    # both stamped EXP-0039) in the same regen that introduced the re-append.
     _manual_reserved_idx: set[int] = set()
+    if _existing_proposals_doc is not None:
+        for _ep in _existing_proposals_doc.get("items", []):
+            _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+            if not _bid or _bid not in _existing_proposal_status:
+                continue  # only resolved (non-"proposed") entries get re-appended later
+            _m = re.match(r"^(?:EXP|LIT)-(\d+)$", str(_ep.get("proposal_id") or ""))
+            if _m:
+                _manual_reserved_idx.add(int(_m.group(1)))
     _manual_ids_path = planning_root / "manual_proposals.v1.json"
     if _manual_ids_path.exists():
         try:
@@ -5878,43 +5991,52 @@ def _write_planning_outputs(
     # (e.g. "executed") are wiped on regeneration unless we re-apply them here.
     # Key by backlog_id (stable across regenerations); fall back to proposal_id
     # for manual proposals that may not carry a backlog_id.
-    _existing_status: dict[str, dict] = {}
-    _existing_proposals_path = planning_root / "experiment_proposals.v1.json"
-    if _existing_proposals_path.exists():
-        try:
-            _existing_doc = json.loads(
-                _existing_proposals_path.read_text(encoding="utf-8")
-            )
-            for _ep in _existing_doc.get("items", []):
-                _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
-                if _bid and _ep.get("status", "proposed") != "proposed":
-                    _existing_status[_bid] = {
-                        k: _ep[k]
-                        for k in (
-                            "status",
-                            "executed_by",
-                            "executed_queue_id",
-                            "gated_at_utc",
-                            "gated_by_session",
-                            "gating_reason",
-                            "predecessor_disposition",
-                            "release_condition",
-                            "superseded_by",
-                        )
-                        if k in _ep
-                    }
-        except Exception:
-            pass  # malformed existing file -- skip silently
-
+    # (_existing_proposal_status / _existing_proposals_doc were loaded earlier,
+    # before the proposal_id counter, so their numeric ids could be reserved --
+    # see "ALSO reserve every already-RESOLVED existing proposal_id" above.)
     for _p in proposals:
         _bid = _p.get("backlog_id") or _p.get("proposal_id")
-        if _bid and _bid in _existing_status:
-            _p.update(_existing_status[_bid])
+        if _bid and _bid in _existing_proposal_status:
+            _p.update(_existing_proposal_status[_bid])
+
+    # Preserve historical resolution records for items that no longer appear
+    # in the freshly-generated `proposals` list AT ALL -- e.g. a claim that
+    # is now correctly recognized as experiment-ineligible
+    # (_is_experiment_ineligible_claim) but had an ALREADY-RESOLVED proposal
+    # (executed / gated / blocked_substrate) from before that recognition
+    # landed. Without this, an eligibility-gate fix (or any future gate
+    # change) silently drops the historical record that an experiment WAS
+    # already run and answered for that claim -- real evidence-loss, unlike
+    # the desired disappearance of a dead-on-arrival "proposed" item (which
+    # legitimately should stop being regenerated). Confirmed 2026-08-02
+    # (chip-20260802-backlog-dispatcher-gating-bug): the substrate_
+    # conditional/v3_pending+v4 gate fix newly excluded 19 claims whose
+    # EXP-*/LIT-* proposal was already executed/gated/blocked_substrate
+    # (e.g. Q-007 EXP-0039, executed as V3-EXQ-132) purely because the
+    # eligibility check runs before a NEW proposal would be minted -- it has
+    # no way to know a resolved proposal for that claim already exists. The
+    # carry-forward loop above can't help either: it only updates items still
+    # present in `proposals` this cycle. Re-append the prior item verbatim
+    # (not just the status-family fields) so it survives regen exactly like
+    # any other resolved item does.
+    if _existing_proposals_doc is not None:
+        _regenerated_bids = {
+            _p.get("backlog_id") or _p.get("proposal_id") for _p in proposals
+        }
+        for _ep in _existing_proposals_doc.get("items", []):
+            _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+            if (
+                _bid
+                and _bid not in _regenerated_bids
+                and _ep.get("status", "proposed") != "proposed"
+            ):
+                proposals.append(dict(_ep))
+                _regenerated_bids.add(_bid)
 
     # Write the same carried-forward status back into manual_proposals.v1.json
     # itself. Without this, a manual item's on-disk "status" is frozen at
     # whatever it was authored as -- the merge above always overrides the IN-
-    # MEMORY copy from _existing_status, but nothing ever wrote that resolution
+    # MEMORY copy from _existing_proposal_status, but nothing ever wrote that resolution
     # back to the source file, so a session reading manual_proposals.v1.json
     # directly (its own docstring calls it the place to "add new items", which
     # reads as authoritative) sees a permanently-stale "proposed" for anything
@@ -5932,7 +6054,7 @@ def _write_planning_outputs(
                 if not isinstance(_mp, dict):
                     continue
                 _mp_bid = _mp.get("backlog_id") or _mp.get("proposal_id")
-                _resolved = _existing_status.get(_mp_bid) if _mp_bid else None
+                _resolved = _existing_proposal_status.get(_mp_bid) if _mp_bid else None
                 if not _resolved:
                     continue
                 for _k, _v in _resolved.items():

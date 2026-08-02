@@ -920,6 +920,97 @@ def test_hold_candidate_resolve_conflict_standard_category_options_unchanged():
     assert any("run conflict-resolution experiments" in o.lower() for o in rec["options"])
 
 
+# --- EXP-* proposal-eligibility gate: substrate_conditional / v3_pending+v4 ---
+#
+# Regression target: 2026-08-02 (chip-20260802-backlog-dispatcher-gating-bug).
+# _is_experiment_ineligible_claim previously checked only answered/closing
+# status and out_of_domain/derivational/governance_rule epistemic_category --
+# it did NOT recognize substrate_conditional/substrate_ceiling claims or
+# claims deliberately deferred to a later architecture generation
+# (v3_pending + implementation_phase>=v4), even though _recommendation_for_
+# claim already had working logic for the second signal. Confirmed live: 56
+# medium-priority EXP-* proposals had been minted for claims whose own
+# claims.yaml notes said "DO NOT BUILD" / "DO NOT QUEUE AN EXPERIMENT AGAINST
+# THIS" (Q-084, Q-082, Q-074, MECH-442 are the shapes fixtured below).
+
+def test_ineligible_substrate_conditional_no_v3_pending():
+    """Q-084/Q-082 shape: epistemic_category=substrate_conditional,
+    implementation_phase=v4, but v3_pending is NOT set -- this must still be
+    caught by the epistemic_category rule alone (the v3_pending+v4 rule is a
+    distinct, independent signal, not a prerequisite)."""
+    meta = {"status": "candidate", "epistemic_category": "substrate_conditional",
+            "implementation_phase": "v4", "claim_type": "open_question"}
+    assert b._is_experiment_ineligible_claim(meta) is True
+
+
+def test_ineligible_substrate_ceiling():
+    meta = {"status": "candidate", "epistemic_category": "substrate_ceiling",
+            "implementation_phase": "v3", "claim_type": "mechanism_hypothesis"}
+    assert b._is_experiment_ineligible_claim(meta) is True
+
+
+def test_ineligible_v3_pending_deferred_to_later_generation():
+    """Q-074/ARC-080/MECH-264/MECH-265 shape: v3_pending + implementation_phase
+    >= v4, WITHOUT an explicit epistemic_category set -- must be caught by the
+    _is_deferred_to_later_generation rule, mirroring _recommendation_for_
+    claim's held_v4_by_architectural_commitment gate."""
+    meta = {"status": "candidate", "v3_pending": "True", "implementation_phase": "v6",
+            "claim_type": "open_question"}
+    assert b._is_experiment_ineligible_claim(meta) is True
+    # generation boundary: v4 is the lowest deferred generation
+    assert b._is_experiment_ineligible_claim(
+        {"status": "candidate", "v3_pending": "True", "implementation_phase": "v4"}
+    ) is True
+
+
+def test_ineligible_ceiling_decision_deferred_via_substrate_conditional():
+    """MECH-442 shape: implementation_phase=v3 (NOT v4+), so the deferred-
+    generation rule alone would miss it -- must be caught by
+    epistemic_category=substrate_conditional independently."""
+    meta = {"status": "candidate", "epistemic_category": "substrate_conditional",
+            "implementation_phase": "v3", "claim_type": "mechanism_hypothesis"}
+    assert b._is_experiment_ineligible_claim(meta) is True
+
+
+def test_ineligible_unregistered_claim_id():
+    """Dead/renamed claim_id (e.g. Q-046, MECH-900): claim_registry.get(claim_id,
+    {}) falls through to an empty dict when the id has no claims.yaml entry at
+    all. Must be ineligible -- there is no disposition to test."""
+    assert b._is_experiment_ineligible_claim({}) is True
+
+
+def test_eligible_v3_pending_still_v3_not_later_generation():
+    """ARC-063 shape (the load-bearing negative control): v3_pending=true but
+    implementation_phase=v3 (not >=v4) and no substrate_conditional/ceiling
+    category -- this is hold_pending_v3_substrate territory (substrate already
+    exists or is landing; genuinely testable), NOT an architectural deferral.
+    Must stay eligible or the gate over-suppresses claims that need exactly
+    the EXP-* proposal this pipeline would otherwise mint for them."""
+    meta = {"status": "candidate", "v3_pending": "True", "implementation_phase": "v3",
+            "claim_type": "architectural_commitment"}
+    assert b._is_experiment_ineligible_claim(meta) is False
+
+
+def test_eligible_plain_candidate_unaffected():
+    """A standard registered claim with no gating fields at all must stay
+    eligible -- the new rules must not over-suppress ordinary candidates."""
+    meta = {"status": "candidate", "claim_type": "mechanism_hypothesis"}
+    assert b._is_experiment_ineligible_claim(meta) is False
+
+
+def test_recommendation_held_v4_still_fires_after_shared_helper_refactor():
+    """_recommendation_for_claim's held_v4_by_architectural_commitment gate now
+    delegates to the shared _is_deferred_to_later_generation helper -- pin that
+    the refactor didn't change its own behavior."""
+    criteria = {"thresholds": {}}
+    registry_meta = {"v3_pending": "True", "implementation_phase": "v4"}
+    rec = b._recommendation_for_claim(
+        "ARC-TEST-V4", {"source_counts": {"experimental": 0}}, "candidate",
+        "architectural_commitment", criteria, registry_meta, matrix={"entries": []},
+    )
+    assert rec["recommendation"] == "held_v4_by_architectural_commitment"
+
+
 # --- decision_deadline_utc freeze-on-first-trigger -------------------------
 #
 # Regression target: 2026-08-01 (chip-20260801-decision-deadline-rolling-defect-
