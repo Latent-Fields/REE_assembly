@@ -741,6 +741,29 @@ def _parse_timestamp_only(raw: str) -> datetime:
     return dt.astimezone(timezone.utc)
 
 
+def _batch_keys_for_entries(entries: list[dict[str, Any]]) -> set[str]:
+    """Collapse experimental entries into distinct minute-truncated "batch" keys
+    (falling back to the run_id prefix when no timestamp is present). Used to
+    count how many distinct targeted evidence batches back a conflict signal,
+    both for the general recent-activity signal and for the mandatory-decision
+    freshness gate."""
+    batch_keys: set[str] = set()
+    for entry in entries:
+        ts_raw = str(entry.get("timestamp_utc", "")).strip()
+        if ts_raw:
+            try:
+                batch_dt = _parse_timestamp_only(ts_raw).replace(second=0, microsecond=0)
+                batch_key = batch_dt.isoformat().replace("+00:00", "Z")
+            except ValueError:
+                batch_key = ts_raw
+        else:
+            run_id = str(entry.get("run_id", "")).strip()
+            batch_key = run_id.split("_", 1)[0] if run_id else ""
+        if batch_key:
+            batch_keys.add(batch_key)
+    return batch_keys
+
+
 def _normalize_direction(raw: str | None) -> str:
     # "superseded" marks a run as invalidated by a corrected iteration -- it is
     # preserved in the entry log but excluded from scoring (see loop below).
@@ -4624,6 +4647,12 @@ def _write_planning_outputs(
     mandatory_decision_deadline_hours = max(
         1, int(thresholds.get("mandatory_decision_deadline_hours", 72))
     )
+    dormant_high_conflict_ratio = float(
+        thresholds.get("dormant_high_conflict_ratio", 0.55)
+    )
+    dormant_high_conflict_min_entries = max(
+        1, int(thresholds.get("dormant_high_conflict_min_entries", 2))
+    )
     atomic_split_conflict_ratio = float(
         thresholds.get("atomic_split_conflict_ratio", 0.70)
     )
@@ -4769,6 +4798,7 @@ def _write_planning_outputs(
 
     backlog_items: list[dict[str, Any]] = []
     architecture_items: list[dict[str, Any]] = []
+    dormant_high_conflict_items: list[dict[str, Any]] = []
     # Pseudo-claim filter: drop non-canonical claim_ids that flow in via the
     # evidence matrix (e.g. "onboarding" from contributor smoke tests). These
     # are bucket labels for instrumentation runs, not registered claims; without
@@ -4888,21 +4918,7 @@ def _write_planning_outputs(
         decision_recent_exp_entries = exp_entries[-mandatory_decision_recent_window:]
         if not decision_recent_exp_entries:
             decision_recent_exp_entries = exp_entries
-        batch_keys: set[str] = set()
-        for entry in decision_recent_exp_entries:
-            ts_raw = str(entry.get("timestamp_utc", "")).strip()
-            if ts_raw:
-                try:
-                    batch_dt = _parse_timestamp_only(ts_raw).replace(second=0, microsecond=0)
-                    batch_key = batch_dt.isoformat().replace("+00:00", "Z")
-                except ValueError:
-                    batch_key = ts_raw
-            else:
-                run_id = str(entry.get("run_id", "")).strip()
-                batch_key = run_id.split("_", 1)[0] if run_id else ""
-            if batch_key:
-                batch_keys.add(batch_key)
-        recent_targeted_batches = len(batch_keys)
+        recent_targeted_batches = len(_batch_keys_for_entries(decision_recent_exp_entries))
         if recent_targeted_batches > 0:
             signals["recent_targeted_batches"] = recent_targeted_batches
 
@@ -5120,11 +5136,41 @@ def _write_planning_outputs(
             and decision_recommendation in allowed_conflict_outcomes
         )
         decision_unresolved = not decision_resolved
+
+        # Freshness-since-decision (nag-loop fix, 2026-08-02): once a claim has
+        # a recorded decision -- including a deliberate hold_* deferral, not
+        # only a terminal retain/hybridize/retire outcome -- only batches that
+        # landed AFTER that decision count as "fresh" for the mandatory
+        # checkpoint trigger below. Without this, decision_unresolved stays
+        # True forever for any hold_* recommendation (it is not a terminal
+        # outcome, by design -- see allowed_conflict_outcomes), so the
+        # checkpoint re-fires every regen purely because the flat trailing
+        # window (recent_targeted_batches, above) still contains batches that
+        # predate the decision, whether or not anything has actually changed
+        # since a human looked at it. A claim with NO recorded decision keeps
+        # the original trailing-window count -- there is nothing to be
+        # "since", so first-time triggering is unaffected.
+        mandatory_decision_fresh_batches = recent_targeted_batches
+        _eff_decision_status = str(effective_decision_state.get("decision_status", "")).strip().lower()
+        _eff_decision_ts_raw = str(effective_decision_state.get("timestamp_utc", "")).strip()
+        if _eff_decision_status in {"applied", "approved"} and _eff_decision_ts_raw:
+            try:
+                _eff_decision_dt = _parse_timestamp_only(_eff_decision_ts_raw)
+                _entries_since_decision = [
+                    e for e in exp_entries
+                    if str(e.get("timestamp_utc", "")).strip()
+                    and _parse_timestamp_only(str(e["timestamp_utc"])) > _eff_decision_dt
+                ]
+                mandatory_decision_fresh_batches = len(_batch_keys_for_entries(_entries_since_decision))
+                signals["fresh_batches_since_decision"] = mandatory_decision_fresh_batches
+            except ValueError:
+                pass  # Malformed decision timestamp -- fall back to the trailing-window count
+
         if (
             not suppress_mandatory_decision
             and
             conflict_ratio >= mandatory_decision_conflict_ratio
-            and recent_targeted_batches >= mandatory_decision_min_fresh_batches
+            and mandatory_decision_fresh_batches >= mandatory_decision_min_fresh_batches
             and decision_unresolved
         ):
             mandatory_decision_checkpoint = True
@@ -5141,6 +5187,46 @@ def _write_planning_outputs(
             signals["decision_deadline_utc"] = decision_deadline_utc
             signals["decision_required_outcomes"] = list(allowed_conflict_outcomes)
             _add_reason("mandatory_decision_checkpoint")
+        elif (
+            not suppress_mandatory_decision
+            and claim_meta is not None
+            and conflict_ratio >= dormant_high_conflict_ratio
+            and entries_total >= dormant_high_conflict_min_entries
+            and decision_unresolved
+        ):
+            # Dormant / at-risk high-conflict watchlist (blind-spot fix,
+            # 2026-08-02): mandatory_decision_checkpoint only fires at
+            # conflict_ratio >= mandatory_decision_conflict_ratio (0.80 by
+            # default) AND with fresh recent batches -- so two classes of
+            # genuinely contentious claim were previously invisible to any
+            # signal at all: (a) claims nobody has run evidence against
+            # recently (conflict is real but the batch floor is never met --
+            # "dormant_low_activity" below), and (b) claims worked heavily
+            # whose conflict never quite crosses the mandatory bar, so they
+            # get reworked indefinitely without ever being forced to a
+            # decision ("chronic_under_threshold" below). Deliberately NOT
+            # given a decision_deadline_utc / hard SLA: forcing a decision
+            # without new evidence would just reproduce the same hold, and a
+            # second deadline mechanism would reintroduce the exact
+            # never-actually-due failure mode the freshness fix above
+            # corrects. This is a no-deadline visibility report only, kept
+            # mutually exclusive with mandatory_decision_checkpoint (elif)
+            # so a claim never appears in both lists at once.
+            dormant_high_conflict_items.append(
+                {
+                    "claim_id": claim_id,
+                    "current_status": current_status,
+                    "conflict_ratio": round(conflict_ratio, 3),
+                    "recent_targeted_batches": recent_targeted_batches,
+                    "entries_total": entries_total,
+                    "pattern": (
+                        "chronic_under_threshold"
+                        if recent_targeted_batches >= mandatory_decision_min_fresh_batches
+                        else "dormant_low_activity"
+                    ),
+                    "latest_decision": effective_decision_state,
+                }
+            )
 
         # Snapshot the genuine evidence need BEFORE the guards below discard from it, so the
         # backlog status derivation can gate "covered" on the correct evidence type.
@@ -5758,6 +5844,14 @@ def _write_planning_outputs(
         },
         "criteria_version": str(planning_criteria.get("schema_version", "planning_criteria/v1")),
         "items": backlog_items,
+        # No-deadline visibility report -- see the dormant_high_conflict_items
+        # append site above for the full rationale. Sorted worst-first so the
+        # most contentious silent claims surface at the top of any consumer
+        # that just reads the first few entries.
+        "dormant_high_conflict": sorted(
+            dormant_high_conflict_items,
+            key=lambda item: -item["conflict_ratio"],
+        ),
     }
     # Merge in manually-curated proposals that survive pipeline regeneration.
     # Read evidence/planning/manual_proposals.v1.json if it exists; append its

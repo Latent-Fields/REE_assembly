@@ -15,6 +15,7 @@ V3-EXQ-648a and V3-EXQ-649 `precondition_unmet`.
 Run directly:  python test_build_experiment_indexes.py
 Or via pytest:  pytest test_build_experiment_indexes.py
 """
+import json
 import os
 import sys
 
@@ -1069,6 +1070,259 @@ def test_mandatory_decision_checkpoint_deadline_remints_after_clearing():
         )["signals"]["decision_deadline_utc"]
         assert deadline_3 == "2026-08-06T00:00:00Z"
         assert deadline_3 != deadline_1
+
+
+# --- mandatory_decision_checkpoint: since-decision freshness ---------------
+#
+# Regression target: a claim that already received a deliberate governance
+# decision -- including a hold_* deferral, which is NOT a terminal outcome --
+# re-tripped mandatory_decision_checkpoint on every subsequent regen purely
+# because recent_targeted_batches counts a flat trailing window with no
+# regard for when the decision was made. Only batches that land AFTER the
+# decision should count as "fresh" once a decision is on record.
+
+def _v3_entries(claim_id, specs):
+    """specs: list of (direction, timestamp_utc, run_suffix) tuples."""
+    return {
+        "claims": {claim_id: {}},
+        "entries": [
+            {
+                "claim_id": claim_id,
+                "source_type": "experimental",
+                "run_id": f"run_{suffix}_v3",
+                "evidence_direction": direction,
+                "timestamp_utc": ts,
+            }
+            for direction, ts, suffix in specs
+        ],
+    }
+
+
+def test_mandatory_decision_checkpoint_suppressed_after_hold_with_no_new_evidence():
+    """A claim already carrying an applied hold_* decision, with no evidence
+    landed since, must NOT re-trigger the checkpoint -- even though a hold is
+    not a terminal outcome and conflict_ratio/batches still meet the raw
+    thresholds on their own."""
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-HOLD-NO-NEW-EVIDENCE"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+        ("weakens", "2026-07-01T01:00:00Z", "b"),
+    ])
+    criteria = {
+        "thresholds": {
+            "mandatory_decision_conflict_ratio": 0.5,
+            "mandatory_decision_min_fresh_batches": 1,
+            "mandatory_decision_recent_window": 10,
+            "mandatory_decision_deadline_hours": 72,
+        },
+    }
+    latest_adjudication_decisions = {
+        claim_id: b.DecisionLogEntry(
+            claim_id=claim_id,
+            decision_status="applied",
+            recommendation="hold_candidate_resolve_conflict",
+            decision_needed="",
+            timestamp_utc="2026-07-02T00:00:00Z",  # after both entries
+        ),
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        backlog, _p, _a = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, latest_adjudication_decisions,
+            criteria, "2026-07-05T00:00:00Z",
+        )
+        items = [i for i in backlog if i["claim_id"] == claim_id]
+        assert not any(i["signals"].get("mandatory_decision_checkpoint") for i in items), (
+            "checkpoint re-fired on a claim with an applied hold and no new "
+            "evidence since"
+        )
+
+
+def test_mandatory_decision_checkpoint_refires_after_new_evidence_since_decision():
+    """The SAME hold as above, but a new conflicting entry lands after the
+    decision timestamp -- the checkpoint must fire again."""
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-HOLD-NEW-EVIDENCE"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+        ("weakens", "2026-07-01T01:00:00Z", "b"),
+        ("weakens", "2026-07-03T00:00:00Z", "c"),  # after the decision below
+    ])
+    criteria = {
+        "thresholds": {
+            "mandatory_decision_conflict_ratio": 0.6,
+            "mandatory_decision_min_fresh_batches": 1,
+            "mandatory_decision_recent_window": 10,
+            "mandatory_decision_deadline_hours": 72,
+        },
+    }
+    latest_adjudication_decisions = {
+        claim_id: b.DecisionLogEntry(
+            claim_id=claim_id,
+            decision_status="applied",
+            recommendation="hold_candidate_resolve_conflict",
+            decision_needed="",
+            timestamp_utc="2026-07-02T00:00:00Z",  # before entry c only
+        ),
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        backlog, _p, _a = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, latest_adjudication_decisions,
+            criteria, "2026-07-05T00:00:00Z",
+        )
+        item = next(i for i in backlog if i["claim_id"] == claim_id)
+        assert item["signals"]["mandatory_decision_checkpoint"] is True
+        assert item["signals"]["fresh_batches_since_decision"] == 1
+
+
+# --- dormant_high_conflict watchlist -----------------------------------------
+#
+# Two claim shapes are contentious (high conflict_ratio) but invisible to
+# mandatory_decision_checkpoint: claims worked so rarely they never meet the
+# fresh-batch floor ("dormant_low_activity"), and claims worked heavily whose
+# conflict never quite crosses the mandatory bar ("chronic_under_threshold").
+# Both should surface in the no-deadline evidence_backlog.v1.json watchlist.
+
+def _dormant_criteria(**overrides):
+    thresholds = {
+        "mandatory_decision_conflict_ratio": 0.8,
+        "mandatory_decision_min_fresh_batches": 2,
+        "mandatory_decision_recent_window": 10,
+        "mandatory_decision_deadline_hours": 72,
+        "dormant_high_conflict_ratio": 0.55,
+        "dormant_high_conflict_min_entries": 2,
+    }
+    thresholds.update(overrides)
+    return {"thresholds": thresholds}
+
+
+def _dormant_items_for(planning_root, matrix, claim_registry, criteria, generated_at,
+                        latest_adjudication_decisions=None):
+    b._write_planning_outputs(
+        planning_root, matrix, claim_registry, [], {},
+        latest_adjudication_decisions or {}, criteria, generated_at,
+    )
+    doc = json.loads((planning_root / "evidence_backlog.v1.json").read_text(encoding="utf-8"))
+    return doc["dormant_high_conflict"]
+
+
+def test_dormant_high_conflict_watchlist_flags_low_activity_claim():
+    """Two batches total, but mandatory_decision_min_fresh_batches is 5 -- the
+    claim never meets the mandatory floor despite conflict_ratio 1.0."""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DORMANT-LOW-ACTIVITY"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+        ("weakens", "2026-07-01T01:00:00Z", "b"),
+    ])
+    criteria = _dormant_criteria(mandatory_decision_min_fresh_batches=5)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        items = _dormant_items_for(planning_root, matrix, claim_registry, criteria,
+                                    "2026-07-05T00:00:00Z")
+        entry = next((i for i in items if i["claim_id"] == claim_id), None)
+        assert entry is not None, "dormant, high-conflict claim never surfaced"
+        assert entry["pattern"] == "dormant_low_activity"
+        assert entry["conflict_ratio"] == 1.0
+
+
+def test_dormant_high_conflict_watchlist_flags_chronic_under_threshold_claim():
+    """Three batches (>= the mandatory batch floor) but conflict_ratio 0.667
+    stays under the 0.8 mandatory bar -- heavy work, never forced to decide."""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-CHRONIC-UNDER-THRESHOLD"
+    claim_registry = {claim_id: {"status": "active", "claim_type": "mechanism_hypothesis"}}
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+        ("supports", "2026-07-01T01:00:00Z", "b"),
+        ("weakens", "2026-07-01T02:00:00Z", "c"),
+    ])
+    criteria = _dormant_criteria()
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        items = _dormant_items_for(planning_root, matrix, claim_registry, criteria,
+                                    "2026-07-05T00:00:00Z")
+        entry = next((i for i in items if i["claim_id"] == claim_id), None)
+        assert entry is not None, "chronic under-threshold claim never surfaced"
+        assert entry["pattern"] == "chronic_under_threshold"
+        assert entry["conflict_ratio"] == 0.667
+        assert entry["current_status"] == "active"
+
+
+def test_dormant_high_conflict_watchlist_excludes_mandatory_checkpoint_claims():
+    """A claim that DOES trigger mandatory_decision_checkpoint must not also
+    appear in the watchlist -- the two are mutually exclusive."""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DEADLINE"  # reuses the module-level mandatory-decision fixture
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _mandatory_decision_matrix(claim_id)
+    criteria = _mandatory_decision_planning_criteria()
+    criteria["thresholds"]["dormant_high_conflict_ratio"] = 0.1
+    criteria["thresholds"]["dormant_high_conflict_min_entries"] = 1
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        items = _dormant_items_for(planning_root, matrix, claim_registry, criteria,
+                                    "2026-08-01T00:00:00Z")
+        assert not any(i["claim_id"] == claim_id for i in items), (
+            "claim under an active mandatory_decision_checkpoint also leaked "
+            "into the no-deadline watchlist"
+        )
+
+
+def test_dormant_high_conflict_watchlist_excludes_resolved_claims():
+    """A high-conflict claim with an already-resolved (terminal) decision is
+    not neglected -- it must not appear in the watchlist."""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DORMANT-RESOLVED"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+        ("weakens", "2026-07-01T01:00:00Z", "b"),
+    ])
+    criteria = _dormant_criteria(mandatory_decision_min_fresh_batches=5)
+    latest_adjudication_decisions = {
+        claim_id: b.DecisionLogEntry(
+            claim_id=claim_id,
+            decision_status="applied",
+            recommendation="retain_ree",  # terminal, allowed outcome
+            decision_needed="",
+            timestamp_utc="2026-07-02T00:00:00Z",
+        ),
+    }
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        items = _dormant_items_for(planning_root, matrix, claim_registry, criteria,
+                                    "2026-07-05T00:00:00Z", latest_adjudication_decisions)
+        assert not any(i["claim_id"] == claim_id for i in items), (
+            "resolved claim still showed up on the neglect watchlist"
+        )
 
 
 def _run_all():
