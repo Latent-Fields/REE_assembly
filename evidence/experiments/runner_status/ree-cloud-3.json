@@ -2,7 +2,7 @@
   "schema_version": "v1",
   "runner_pid": 8993,
   "runner_started_at": "2026-08-01T19:16:27.768928+00:00",
-  "last_updated": "2026-08-01T20:03:59.368771+00:00",
+  "last_updated": "2026-08-02T12:13:14.358651+00:00",
   "idle": false,
   "current": null,
   "queue": [
@@ -36,17 +36,6 @@
       "description": "",
       "estimated_minutes": 560.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-863",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062/MECH-309 full-budget replication of V3-EXQ-859: lateral_pfc route_source vs none ablation, MECH-448/449 engagement (~7.7h)",
-      "description": "",
-      "estimated_minutes": 280.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -2187,6 +2176,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic/v3_exq_864_sd076_wci_rv_trajectory_crossover_diagnostic_20260801T195304Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 656.5
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-062/MECH-309 full-budget replication of V3-EXQ-859: lateral_pfc route_source vs none ablation, MECH-448/449 engagement (~7.7h)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | outcome: PASS label=mixed_partial_result_needs_expert_review lpfc_engaged=False none_engaged=False | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-863 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-863.json",
+      "started_at": "2026-08-01T20:04:00.824205+00:00",
+      "completed_at": "2026-08-02T12:13:14.357552+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 58153.5
     }
   ]
 }
