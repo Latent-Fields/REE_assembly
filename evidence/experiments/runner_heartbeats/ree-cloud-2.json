@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-02T03:54:43Z",
+  "last_tick_utc": "2026-08-02T04:14:55Z",
   "state": "running",
   "current_exq": "V3-EXQ-866",
   "current_exq_started_utc": "2026-08-02T01:54:03.919095+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / AVOIDANCE_ONLY",
-    "runs_done": 1,
+    "run_label": "Seed 43 / FULL",
+    "runs_done": 3,
     "runs_total": 9,
-    "episodes_done": 250,
+    "episodes_done": 50,
     "episodes_total": 300,
-    "overall_pct": 20.4
+    "overall_pct": 35.2
   },
-  "seconds_elapsed": 7240,
-  "seconds_remaining": 27368,
+  "seconds_elapsed": 8452,
+  "seconds_remaining": 22276,
   "recent_lines": [
     "[V3-EXQ-866] INV-034 / Q-021 Goal-Maintenance-Necessary-for-Agency",
     "Seed 42 Condition FULL",
@@ -34,7 +34,15 @@
     "[train] seed=42 AVOIDANCE_ONLY ep 100/300 phase=P0",
     "[train] seed=42 AVOIDANCE_ONLY ep 150/300 phase=P1",
     "[train] seed=42 AVOIDANCE_ONLY ep 200/300 phase=P1",
-    "[train] seed=42 AVOIDANCE_ONLY ep 250/300 phase=P1"
+    "[train] seed=42 AVOIDANCE_ONLY ep 250/300 phase=P1",
+    "[train] seed=42 AVOIDANCE_ONLY ep 300/300 phase=P2",
+    "[eval] AVOIDANCE_ONLY seed=42 resource_rate=0.0026 harm_rate=0.0999 entropy=0.2499 survival=0.2200 zgoal_norm=0.0000",
+    "verdict: PASS",
+    "Seed 42 Condition RANDOM",
+    "[eval] RANDOM seed=42 resource_rate=0.0208 harm_rate=0.8485 entropy=1.6092 survival=0.0000",
+    "verdict: PASS",
+    "Seed 43 Condition FULL",
+    "[train] seed=43 FULL ep 50/300 phase=P0"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
