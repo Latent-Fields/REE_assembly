@@ -4135,7 +4135,7 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_arc_063",
       "target_repo": "ree-v3",
       "why_now": [
@@ -4144,7 +4144,11 @@
         "low_exp_conf",
         "missing_experimental_evidence",
         "synthetic_signals_only"
-      ]
+      ],
+      "blocked_by": [
+        "ARC-063 CandidateRuleField sleep-pass"
+      ],
+      "blocked_note": "Fresh 2026-08-02 substrate check (agent re-verification for this queuing pass) found the sleep-vs-waking refinement asymmetry (design-doc element (v) in docs/architecture/arc_063_candidate_rule_field.md) has NO implementation: agent.py's sleep cycle (run_sleep_cycle/exit_sleep_mode) never calls into candidate_rule_field.py, and MECH-094 scoping explicitly no-ops mint/credit during simulation/replay passes. So today, sleep performs zero refinement operations on the rule field -- comparing sleep-vs-waking CRF refinement right now would trivially confirm absence-vs-absence, not a real asymmetry (vacuous_pass territory). This is complicated (buildable): route via /implement-substrate to add the CandidateRuleField sleep-pass hook the design doc anticipated (reusing the existing MECH-272/273/285 sleep cluster), THEN queue a probe of sleep-vs-waking asymmetry. Queue ID V3-EXQ-871 was reserved for this item and is released back to the pool."
     },
     {
       "acceptance_checks": [
