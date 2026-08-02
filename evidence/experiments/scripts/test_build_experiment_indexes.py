@@ -1325,6 +1325,92 @@ def test_dormant_high_conflict_watchlist_excludes_resolved_claims():
         )
 
 
+def test_dormant_high_conflict_watchlist_markdown_surfaces_worst_first():
+    """The dormant_high_conflict list is machine-readable JSON only -- nothing
+    previously surfaced it to a human. DORMANT_HIGH_CONFLICT_WATCHLIST.md must
+    list both dormant patterns, worst-conflict-first, and INDEX.md must count
+    them."""
+    import json
+    import tempfile
+    from pathlib import Path
+
+    low_activity_id = "MECH-TEST-DORMANT-MD-LOW"
+    chronic_id = "MECH-TEST-DORMANT-MD-CHRONIC"
+    claim_registry = {
+        low_activity_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"},
+        chronic_id: {"status": "active", "claim_type": "mechanism_hypothesis"},
+    }
+    matrix = {
+        "claims": {low_activity_id: {}, chronic_id: {}},
+        "entries": (
+            _v3_entries(low_activity_id, [
+                ("supports", "2026-07-01T00:00:00Z", "a"),
+                ("weakens", "2026-07-01T01:00:00Z", "b"),
+            ])["entries"]
+            + _v3_entries(chronic_id, [
+                ("supports", "2026-07-01T00:00:00Z", "c"),
+                ("supports", "2026-07-01T01:00:00Z", "d"),
+                ("weakens", "2026-07-01T02:00:00Z", "e"),
+            ])["entries"]
+        ),
+    }
+    criteria = _dormant_criteria(mandatory_decision_min_fresh_batches=5)
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        backlog, _p, _a = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {},
+            criteria, "2026-07-05T00:00:00Z",
+        )
+        watchlist_path = planning_root / "DORMANT_HIGH_CONFLICT_WATCHLIST.md"
+        assert watchlist_path.exists(), "watchlist markdown was not written"
+        text = watchlist_path.read_text(encoding="utf-8")
+
+        # conflict_ratio 1.0 (low_activity) must precede 0.667 (chronic) -- worst-first.
+        low_pos = text.index(low_activity_id)
+        chronic_pos = text.index(chronic_id)
+        assert low_pos < chronic_pos, (
+            "watchlist is not sorted worst-conflict-first"
+        )
+        assert "dormant_low_activity" in text
+        assert "chronic_under_threshold" in text
+
+        doc = json.loads((planning_root / "evidence_backlog.v1.json").read_text(encoding="utf-8"))
+        n_dormant = len(doc["dormant_high_conflict"])
+        assert n_dormant == 2
+
+        index_text = (planning_root / "INDEX.md").read_text(encoding="utf-8")
+        assert f"({n_dormant} item(s))" in index_text and "Dormant high-conflict watchlist" in index_text, (
+            "INDEX.md does not reference the dormant high-conflict watchlist count"
+        )
+
+
+def test_dormant_high_conflict_watchlist_markdown_reports_none_when_empty():
+    """An empty dormant_high_conflict list must still render a valid (empty)
+    watchlist file rather than a stale one from a prior run."""
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DORMANT-MD-EMPTY"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    # Only one entry -- fails dormant_high_conflict_min_entries (2), so the
+    # watchlist stays empty for this claim.
+    matrix = _v3_entries(claim_id, [
+        ("supports", "2026-07-01T00:00:00Z", "a"),
+    ])
+    criteria = _dormant_criteria()
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+        b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {},
+            criteria, "2026-07-05T00:00:00Z",
+        )
+        text = (planning_root / "DORMANT_HIGH_CONFLICT_WATCHLIST.md").read_text(encoding="utf-8")
+        assert "_none_" in text
+        assert claim_id not in text
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

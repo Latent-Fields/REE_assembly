@@ -5833,6 +5833,15 @@ def _write_planning_outputs(
 
     planning_root.mkdir(parents=True, exist_ok=True)
 
+    # Sorted worst-first so the most contentious silent claims surface at the
+    # top of any consumer that just reads the first few entries. Shared
+    # between the JSON backlog doc below and the human-readable watchlist
+    # markdown written further down (see DORMANT_HIGH_CONFLICT_WATCHLIST.md).
+    dormant_high_conflict_sorted = sorted(
+        dormant_high_conflict_items,
+        key=lambda item: -item["conflict_ratio"],
+    )
+
     backlog_doc = {
         "schema_version": "evidence_backlog/v1",
         "generated_at_utc": generated_at,
@@ -5845,13 +5854,8 @@ def _write_planning_outputs(
         "criteria_version": str(planning_criteria.get("schema_version", "planning_criteria/v1")),
         "items": backlog_items,
         # No-deadline visibility report -- see the dormant_high_conflict_items
-        # append site above for the full rationale. Sorted worst-first so the
-        # most contentious silent claims surface at the top of any consumer
-        # that just reads the first few entries.
-        "dormant_high_conflict": sorted(
-            dormant_high_conflict_items,
-            key=lambda item: -item["conflict_ratio"],
-        ),
+        # append site above for the full rationale.
+        "dormant_high_conflict": dormant_high_conflict_sorted,
     }
     # Merge in manually-curated proposals that survive pipeline regeneration.
     # Read evidence/planning/manual_proposals.v1.json if it exists; append its
@@ -6152,6 +6156,66 @@ def _write_planning_outputs(
         encoding="utf-8",
     )
 
+    # Human-readable surface for the dormant_high_conflict no-deadline watchlist
+    # (see the append site above for the full rationale). The JSON list in
+    # evidence_backlog.v1.json is machine-readable only; nothing previously
+    # surfaced these genuinely contentious claims to a human reviewer.
+    # Derive-only: regenerated from dormant_high_conflict_sorted every run,
+    # never hand-edited.
+    dormant_lines: list[str] = []
+    dormant_lines.append("# Dormant / Chronic High-Conflict Watchlist")
+    dormant_lines.append("")
+    dormant_lines.append(f"Generated: `{generated_at}`")
+    dormant_lines.append("")
+    dormant_lines.append(
+        "No-deadline visibility report. Lists claims with `conflict_ratio >= "
+        + _fmt_number(dormant_high_conflict_ratio)
+        + "` and an unresolved decision, but invisible to the "
+        + "`mandatory_decision_checkpoint` (which requires `conflict_ratio >= "
+        + _fmt_number(mandatory_decision_conflict_ratio)
+        + "` AND fresh recent batches). Deliberately carries no deadline -- see "
+        + "`evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record "
+        + "and the full rationale in `build_experiment_indexes.py`."
+    )
+    dormant_lines.append("")
+    dormant_lines.append(
+        "- `dormant_low_activity` -- conflict is real but nobody has run enough "
+        "recent evidence against the claim to meet the mandatory-checkpoint batch floor."
+    )
+    dormant_lines.append(
+        "- `chronic_under_threshold` -- worked heavily, but `conflict_ratio` "
+        "never quite crosses the mandatory bar, so it is reworked indefinitely "
+        "without ever being forced to a decision."
+    )
+    dormant_lines.append("")
+    dormant_lines.append("Sorted worst-conflict-first.")
+    dormant_lines.append("")
+    dormant_lines.append(
+        "| claim_id | pattern | conflict_ratio | current_status | recent_targeted_batches |"
+    )
+    dormant_lines.append("|---|---|---|---|---|")
+    if not dormant_high_conflict_sorted:
+        dormant_lines.append("| _none_ | - | - | - | - |")
+    else:
+        for item in dormant_high_conflict_sorted:
+            dormant_lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        f"`{item['claim_id']}`",
+                        f"`{item['pattern']}`",
+                        _fmt_number(float(item.get("conflict_ratio", 0.0))),
+                        f"`{item['current_status']}`",
+                        str(item.get("recent_targeted_batches", 0)),
+                    ]
+                )
+                + " |"
+            )
+    (planning_root / "DORMANT_HIGH_CONFLICT_WATCHLIST.md").write_text(
+        "\n".join(dormant_lines).rstrip() + "\n",
+        encoding="utf-8",
+    )
+
     index_lines: list[str] = []
     index_lines.append("# Planning Index")
     index_lines.append("")
@@ -6167,6 +6231,10 @@ def _write_planning_outputs(
         "- Architecture gap register: "
         + f"`architecture_gap_register.v1.json` ({len(architecture_items)} item(s), "
         + f"consider_new_structure={len(consider_items)})"
+    )
+    index_lines.append(
+        "- Dormant high-conflict watchlist: "
+        + f"`DORMANT_HIGH_CONFLICT_WATCHLIST.md` ({len(dormant_high_conflict_sorted)} item(s))"
     )
     index_lines.append("- Planning criteria: `planning_criteria.v1.yaml`")
     (planning_root / "INDEX.md").write_text(
