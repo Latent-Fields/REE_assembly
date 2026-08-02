@@ -11,6 +11,8 @@ This file documents REE's offline consolidation phases.
 
 **2026-04-05 roadmap update:** A minimal sleep-phase infrastructure (SD-017) is now **V3 scope**. The four full sub-phases (MECH-120-123) remain V4. See `sd_017_sleep_phase_architecture.md` for the V3 design.
 
+**2026-08-01/02 correction (failure_autopsy_V3-EXQ-861_2026-08-01, `/implement-substrate` IGW-20260801-197):** the sentence above is stale for MECH-122 specifically. MECH-122's `implementation_phase: v3` field in `claims.yaml` was always correct -- the "remain V4" prose here was registration-era and never updated when sleep (MECH-120/121/122/180 cluster) was pulled into V3 as a live dependency of MECH-180 (see `feedback_phase_label_follows_dependency`). MECH-122 splits into two halves with different status: the **content-packaging** half (Phase 3 row below) is now **V3 IMPLEMENTED** -- `ThetaBuffer.set_consolidation_mode()`/`consolidation_summary()` are wired into `run_sws_schema_pass()` (`ree_core/agent.py`) behind `REEConfig.use_mech122_spindle_content_selection` (default off); see `ree-v3/CLAUDE.md` "SD Design Decisions Implemented" for the full data-flow writeup. The **sensory-gating** half (Phase 0 row below) remains unimplemented and is `complex (probe-gated)` in `substrate_queue.json` (`MECH122-SENSORY-GATING-OFFLINE-PROTECTION`) -- not yet established as load-bearing given the current strictly-sequential (non-interleaved) wake/sleep harness design.
+
 ## V3 Minimal Offline Phases (SD-017)
 
 | Phase | Name | Function | Status |
@@ -24,7 +26,7 @@ This file documents REE's offline consolidation phases.
 |---|---|---|---|
 | SWS denoising | MECH-120 | Synaptic homeostasis (Tononi SHY) | MECH-094 tag |
 | NREM replay | MECH-121 | SWR + spindles + slow oscillation | MECH-092 replay |
-| Spindles | MECH-122 | Thalamo-cortical spindle bursts | MECH-089 ThetaBuffer (bidirectional) |
+| Spindles | MECH-122 | Thalamo-cortical spindle bursts | MECH-089 ThetaBuffer (bidirectional); content-packaging half IMPLEMENTED as a V3 proxy 2026-08-02 (`use_mech122_spindle_content_selection`), sensory-gating half still open |
 | REM recalibration | MECH-123 | REM precision prior (Hobson/Friston) | MECH-094 tag, ARC-016 |
 
 ## Phase Ordering Rationale and V4 Rewiring Specification (INV-045)

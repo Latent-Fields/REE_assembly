@@ -10642,6 +10642,20 @@
     (added this session, complicated (buildable) -- the ThetaBuffer methods already exist, unwired).
     PROMOTES/DEMOTES NOTHING (status stays provisional).
 
+    [2026-08-02, /implement-substrate, IGW-20260801-197]: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION
+    substrate landed (ree-v3). ThetaBuffer.set_consolidation_mode()/consolidation_summary() are now
+    called from run_sws_schema_pass() (ree_core/agent.py) under REEConfig.use_mech122_spindle_content_selection
+    (default False, bit-identical off) -- each SWS schema-installation write is blended toward the
+    theta-cycle consolidation reference in proportion to how closely it matches it (spindle-analog
+    content selection: habitual content homogenised, novel content preserved). This is the
+    content-packaging half ONLY -- MECH122-SENSORY-GATING-OFFLINE-PROTECTION (the other half) remains
+    complex (probe-gated) and unimplemented; see that substrate_queue entry. Contract probe in
+    ree-v3/tests/test_flag_inertness.py pins OFF-inert and ON-live (differentiates ContextMemory
+    writes, the specific bar the null V3-EXQ-246 proxy failed). NOT yet validated against MECH-180's
+    spindle_density DV -- that needs a fresh run of the V3-EXQ-861 driver family with the new flag ON,
+    not queued this session (substrate-build scope only). PROMOTES/DEMOTES NOTHING (status stays
+    provisional; implementation_phase: v3 unchanged, already correct).
+
 - id: MECH-123
   title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
   claim_type: mechanism_hypothesis
@@ -17113,6 +17127,33 @@
     scripts/granularity_debt_cluster.py MECH-180 -- neither fires (1 substrate_ceiling hit under R1-R3,
     no target reads weakened). PROMOTES/DEMOTES NOTHING (status stays candidate/v3_pending; v3_pending
     STAYS -- the MECH-122 substrate work is itself V3 scope, still pending).
+
+    [2026-08-02, /implement-substrate, IGW-20260801-197, ree-v3 substrate landed]: MECH-122's
+    content-packaging half is now WIRED. ThetaBuffer.set_consolidation_mode()/consolidation_summary()
+    (ree_core/latent/theta_buffer.py:146,159) are called from run_sws_schema_pass()
+    (ree_core/agent.py) under a new master flag REEConfig.use_mech122_spindle_content_selection
+    (default False, bit-identical off) + REEConfig.mech122_spindle_selection_gain (default 1.0).
+    When on, each schema-installation prototype write is blended toward the theta-cycle
+    consolidation reference in proportion to how CLOSELY it already matches that reference
+    (habitual content homogenised toward the reference, novel content keeps its own direction) --
+    giving ContextMemory's touched-slot diversity (the mean_sws_new_slot_diversity / spindle_density
+    DV) a real channel to track novelty/MEL, which a uniform per-write scale (e.g. the existing
+    MECH-272 anchor_weight) structurally cannot, since the diversity metric is cosine similarity of
+    NORMALISED rows. Deliberately distinct in design from the V3-EXQ-246 Phase-3 proxy (a single
+    undifferentiated post-hoc write of consolidation_summary(), which measured ZERO effect on its
+    downstream metric in both runs / all 3 seeds -- see the EXQ-246 paragraph above): this wiring
+    modulates every schema-installation write during the SWS pass itself rather than adding one
+    extra write after the fact. Contract probe
+    test_mech122_spindle_content_selection_fires_and_differentiates_writes
+    (ree-v3/tests/test_flag_inertness.py) pins OFF-inert (selection weight/applied both 0.0,
+    byte-identical to plain sws_enabled=True) and ON-live (in-range selection weight AND a
+    DIFFERENT post-pass ContextMemory tensor than OFF on the same buffered content -- the specific
+    bar the naive 246 proxy failed to clear). NOT itself evidence for or against MECH-180's
+    spindle_density DV or MECH-122 -- that requires a validation experiment re-running the
+    V3-EXQ-861 driver with the new flag ON, not yet queued from this session (per this session's
+    scope: substrate build only; a /queue-experiment chip is the recommended follow-on).
+    pending_retest_after_substrate STAYS on MECH-180 until that validation run scores.
+    PROMOTES/DEMOTES NOTHING.
   implementation_note: >
     SUBSTRATE LANDED 2026-07-07 (/implement-substrate SD-MEL-CONSUMER; ree-v3 main). The
     MEL consumer (ree_core/sleep/mel_consumer.py; REEConfig.use_mel_consumer default False)
