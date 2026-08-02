@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-07-17.1 -->
+<!-- WORKSET_VERSION: 2026-08-02.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -289,7 +289,7 @@
   #pending-chips .pc-list { padding: 6px 0; max-height: 320px; overflow-y: auto; }
   #pending-chips .pc-row {
     display: grid;
-    grid-template-columns: 90px 1fr 140px 90px;
+    grid-template-columns: 90px 1fr 140px 90px 130px;
     gap: 10px;
     padding: 6px 12px;
     font-size: 11px;
@@ -306,6 +306,12 @@
   #pending-chips .pc-row .pc-status.status-withdrawn { background: #8b949e22; color: var(--muted); }
   #pending-chips .pc-row .pc-status.status-done { background: #2ea04326; color: #56d364; }
   #pending-chips .pc-row .pc-title { color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #pending-chips .pc-row .pc-claim {
+    font-family: ui-monospace, monospace; font-size: 10px;
+    padding: 1px 6px; border-radius: 8px; text-align: center;
+    color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  #pending-chips .pc-row .pc-claim.claimed { background: #58a6ff22; color: #79c0ff; border: 1px solid #58a6ff55; }
   #pending-chips .pc-row .pc-session { color: var(--muted); font-family: ui-monospace, monospace; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #pending-chips .pc-row .pc-when { color: var(--muted); font-family: ui-monospace, monospace; }
   #pending-chips .pc-empty { padding: 12px; font-size: 12px; color: var(--muted); }
@@ -370,7 +376,9 @@
   <summary>Pending chips (durable spawn_task ledger) -- <span id="pc-count">0</span></summary>
   <div class="pc-note">Recorded by scripts/chip_ledger.py so a chip survives a session
     archive or crash. "open" means not known to be stale -- it cannot see whether you
-    already clicked the live chip in the UI, only whether a session later withdrew it.</div>
+    already clicked the live chip in the UI, only whether a session later withdrew it.
+    A "claimed" badge means a worker already has it via `chip_ledger.py claim` -- do not
+    also start it by hand until that claim goes stale.</div>
   <div class="pc-list" id="pc-list"></div>
 </details>
 <section class="leverage-rail" id="leverage-rail" hidden></section>
@@ -526,11 +534,23 @@ function renderChips() {
   list.innerHTML = sorted.map(ch => {
     const statusCls = (ch.status === 'withdrawn' || ch.status === 'done') ? ' status-' + ch.status : '';
     const titleTip = (ch.tldr || ch.prompt || '').replace(/"/g, '&quot;');
+    // claimed_by/claimed_at/claim_note added 2026-08-02 (chip_ledger.py
+    // "CLAIMING" section) -- distinct from status, which only ever reflects
+    // resolution. Only meaningful while status is still "open"; a resolved
+    // chip's claim fields are a historical record, not a live in-progress signal.
+    const isClaimed = ch.status === 'open' && !!ch.claimed_by;
+    const claimTip = isClaimed
+      ? ('claimed by ' + ch.claimed_by + ' at ' + (ch.claimed_at || '?') +
+         (ch.claim_note ? (' -- ' + ch.claim_note) : ''))
+      : 'not claimed';
+    const claimText = isClaimed ? ('claimed: ' + ch.claimed_by) : '--';
     return '<div class="pc-row">' +
       '<span class="pc-status' + statusCls + '">' + escapeHtml(ch.status || '?') + '</span>' +
       '<span class="pc-title" title="' + escapeAttr(titleTip) + '">' + escapeHtml(ch.title || '(untitled)') + '</span>' +
       '<span class="pc-session" title="' + escapeAttr(ch.cwd || '') + '">' + escapeHtml(ch.session_id || '?') + '</span>' +
       '<span class="pc-when">' + escapeHtml(formatReleaseWindow(null, ch.spawned_at)) + '</span>' +
+      '<span class="pc-claim' + (isClaimed ? ' claimed' : '') + '" title="' + escapeAttr(claimTip) + '">' +
+        escapeHtml(claimText) + '</span>' +
       '</div>';
   }).join('');
 }

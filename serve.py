@@ -3883,10 +3883,14 @@ def read_chips() -> dict:
     is no staleness to guard against here.
 
     Status here reflects only what chip_ledger.py has been told: "open"
-    (recorded, not withdrawn) or "withdrawn" (dismiss_task was called for it).
-    It cannot see a human clicking the live chip in the UI -- that event never
-    reaches any session's tool calls -- so "open" means "not known to be
-    stale", not "definitely still unclicked".
+    (recorded, not withdrawn/done) or "withdrawn"/"done". It cannot see a
+    human clicking the live chip in the UI -- that event never reaches any
+    session's tool calls -- so "open" means "not known to be stale", not
+    "definitely still unclicked". A chip's `claimed_by`/`claimed_at`/
+    `claim_note` fields (added 2026-08-02, see chip_ledger.py's "CLAIMING"
+    docstring section), when present on an `open` chip, mean a worker or
+    session has already started it via `chip_ledger.py claim` -- distinct
+    from status, which only ever reflects resolution, not in-progress work.
     """
     empty = {"schema_version": "task_chips/v1", "chips": [],
              "empty_note": "No TASK_CHIPS.json yet, or it is unreadable. "
