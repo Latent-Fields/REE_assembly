@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-02.2 -->
+<!-- EXPLORER_VERSION: 2026-08-02.5 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,6 +7,7 @@
   <title>REE Claims Explorer</title>
   <style>
     :root {
+      color-scheme: light dark;
       --bg: #f5f1e8;
       --bg-2: #efe6d9;
       --ink: #1f2328;
@@ -18,6 +19,45 @@
       --shadow: rgba(31,35,40,0.08);
       --error: #8c2f2f;
       --error-bg: #fbecec;
+      --success: #1a7a4c;
+      --success-bg: #e6f4ea;
+      --warning: #92400e;
+      --warning-bg: #fff3cd;
+      /* R,G,B triplet (no rgb()/rgba() wrapper) so call sites can pick their
+         own alpha via rgba(var(--glass-rgb), 0.4) -- used for the handful of
+         translucent "frosted" surfaces over the body gradient (header,
+         stats row, a couple of process-view panels). */
+      --glass-rgb: 255,255,255;
+    }
+
+    /* Dark palette -- auto, follows the OS/browser setting, no manual toggle.
+       Covers the base tokens above, which the large majority of surfaces
+       (`.panel`, borders, body text, the two new fixes this pass, etc.)
+       already reference via var(...). Known limitation: a long tail of
+       older status/badge colors elsewhere in this file are literal hex
+       values (not tokens) and will NOT shift with this -- see
+       evidence/planning/explorer_ui_improvement_plan.md C2 for the scoping
+       reasoning. Those are mostly saturated pass/fail/warning colors that
+       stay legible on a dark background even unconverted. */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16191d;
+        --bg-2: #1c2024;
+        --ink: #e6e8eb;
+        --muted: #9aa1a9;
+        --accent: #5fb0b3;
+        --accent-2: #d98a55;
+        --card: #21252b;
+        --border: #383e46;
+        --shadow: rgba(0,0,0,0.4);
+        --error: #e28080;
+        --error-bg: #3a2323;
+        --success: #6cc499;
+        --success-bg: #1e3327;
+        --warning: #e0ac5a;
+        --warning-bg: #3a3121;
+        --glass-rgb: 30,33,38;
+      }
     }
 
     * { box-sizing: border-box; }
@@ -32,7 +72,7 @@
     header {
       padding: 12px 24px 0 24px;
       border-bottom: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.5));
+      background: linear-gradient(180deg, rgba(var(--glass-rgb),0.8), rgba(var(--glass-rgb),0.5));
       backdrop-filter: blur(6px);
       position: sticky;
       top: 0;
@@ -103,7 +143,7 @@
       border-top: 1px solid var(--border);
       margin: 0 -24px;
       padding: 0 24px;
-      background: rgba(255,255,255,0.4);
+      background: rgba(var(--glass-rgb),0.4);
     }
 
     .view-btn {
@@ -233,14 +273,14 @@
     .error-banner pre {
       margin: 6px 0 10px 0;
       padding: 8px;
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: auto;
       font-size: 12px;
     }
     .error-banner code {
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       padding: 1px 4px;
       border-radius: 4px;
@@ -270,7 +310,7 @@
       padding: 8px 10px;
       border: 1px solid var(--border);
       border-radius: 8px;
-      background: #fff;
+      background: var(--card);
       color: var(--ink);
       font-size: 14px;
     }
@@ -283,7 +323,7 @@
 
     button {
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--card);
       padding: 8px 12px;
       border-radius: 8px;
       cursor: pointer;
@@ -338,6 +378,43 @@
       color: var(--muted);
     }
 
+    th[data-sort] {
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    th[data-sort]:hover {
+      color: var(--ink);
+    }
+
+    .sort-arrow {
+      display: inline-block;
+      margin-left: 3px;
+      font-size: 10px;
+      color: var(--accent);
+    }
+
+    .list-pager {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .list-pager button {
+      font-size: 12px;
+      padding: 3px 9px;
+    }
+
+    .list-pager button:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
     tr:hover {
       background: #faf7f1;
       cursor: pointer;
@@ -355,11 +432,15 @@
       border: 1px solid var(--border);
     }
 
-    .type-invariant { background: #f7ecd0; border-color: #dfc17a; }
-    .type-architectural_commitment { background: #e5efff; border-color: #9bb6e8; }
-    .type-mechanism_hypothesis { background: #e3f2ee; border-color: #92c9b7; }
-    .type-implementation_note { background: #efeff2; border-color: #c0c4ce; }
-    .type-open_question { background: #fdebd8; border-color: #e5b37d; }
+    /* These pastel fills are literal (unthemed -- same in light and dark
+       mode), so their text must be a fixed dark color too, not the inherited
+       body color -- var(--ink) turns light in dark mode and would be
+       illegible against a background that never changes. */
+    .type-invariant { background: #f7ecd0; border-color: #dfc17a; color: #4a3c0f; }
+    .type-architectural_commitment { background: #e5efff; border-color: #9bb6e8; color: #1f3864; }
+    .type-mechanism_hypothesis { background: #e3f2ee; border-color: #92c9b7; color: #1c4a3d; }
+    .type-implementation_note { background: #efeff2; border-color: #c0c4ce; color: #35383f; }
+    .type-open_question { background: #fdebd8; border-color: #e5b37d; color: #5c3b12; }
 
     .status-stable { border-left: 4px solid #2f6f3e; padding-left: 6px; }
     .status-provisional { border-left: 4px dashed #b67923; padding-left: 6px; }
@@ -443,7 +524,7 @@
     }
 
     .chip.empty {
-      background: #fff;
+      background: var(--card);
       color: var(--muted);
       cursor: default;
     }
@@ -463,7 +544,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 8px 10px;
-      background: #fff;
+      background: var(--card);
       margin: 8px 0;
     }
 
@@ -638,7 +719,7 @@
       border-collapse: collapse;
       width: 100%;
       font-size: 13px;
-      background: #fff;
+      background: var(--card);
     }
     #paperDoc th, #paperDoc td, .docs-wrap th, .docs-wrap td {
       border: 1px solid var(--border);
@@ -676,14 +757,14 @@
     .gov-card {
       border: 1px solid var(--border);
       border-radius: 10px;
-      background: #fff;
+      background: var(--card);
       padding: 10px;
       box-shadow: 0 2px 8px var(--shadow);
     }
 
     .gov-card-alert {
-      border-color: #f59e0b;
-      background: #fffbeb;
+      border-color: var(--warning);
+      background: var(--warning-bg);
     }
 
     .gov-card .label {
@@ -706,8 +787,8 @@
 
     /* Priority pane */
     .gov-priority-pane {
-      background: #fffbeb;
-      border: 1px solid #f59e0b;
+      background: var(--warning-bg);
+      border: 1px solid var(--warning);
       border-radius: 10px;
       padding: 12px 16px;
       margin-bottom: 14px;
@@ -718,7 +799,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #92400e;
+      color: var(--warning);
       margin-bottom: 8px;
     }
 
@@ -800,7 +881,7 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 4px 10px;
-      background: #f8f5ef;
+      background: var(--bg-2);
     }
 
     .gov-pill {
@@ -811,7 +892,7 @@
       padding: 2px 8px;
       font-size: 11px;
       border: 1px solid var(--border);
-      background: #f8f5ef;
+      background: var(--bg-2);
       margin-left: 6px;
     }
 
@@ -836,7 +917,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 10px;
-      background: #fff;
+      background: var(--card);
     }
 
     .gov-section h3 {
@@ -940,7 +1021,7 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 8px;
-      background: #f8f5ef;
+      background: var(--bg-2);
     }
 
     .command-row code {
@@ -1020,7 +1101,7 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 4px 10px;
-      background: #f8f5ef;
+      background: var(--bg-2);
     }
 
     .map-summary {
@@ -1039,7 +1120,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 10px;
-      background: #fff;
+      background: var(--card);
       box-shadow: 0 2px 8px var(--shadow);
     }
 
@@ -1127,7 +1208,7 @@
       border-radius: 999px;
       font-size: 9px;
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--card);
       color: var(--muted);
       font-weight: 600;
     }
@@ -1154,7 +1235,7 @@
       border: 1px dashed var(--border);
       border-radius: 10px;
       padding: 8px 10px;
-      background: #fcfaf5;
+      background: var(--card);
       margin: 0 0 10px 0;
     }
 
@@ -1176,7 +1257,7 @@
     .legend-toggle {
       margin-left: 6px;
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--card);
       color: var(--muted);
       border-radius: 999px;
       font-size: 11px;
@@ -1216,7 +1297,7 @@
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--card);
       font-size: 11px;
     }
 
@@ -1274,7 +1355,7 @@
       border: 1px solid var(--border);
       display: inline-block;
       flex-shrink: 0;
-      background: #fff;
+      background: var(--card);
     }
 
     .legend-swatch.heat-low {
@@ -1310,7 +1391,7 @@
       height: 16px;
       border: 1px solid var(--border);
       border-radius: 999px;
-      background: #fff;
+      background: var(--card);
       color: var(--muted);
       font-size: 11px;
       line-height: 1;
@@ -1364,7 +1445,7 @@
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 12px;
-      background: #fff;
+      background: var(--card);
       max-height: calc(100vh - 280px);
       overflow: auto;
       font-size: 13px;
@@ -1422,7 +1503,7 @@
       font-size: 11px;
       border-radius: 6px;
       border: 1px solid var(--border);
-      background: #fff;
+      background: var(--card);
       cursor: pointer;
     }
 
@@ -1485,7 +1566,7 @@
       z-index: 2;
       display: none;
       max-width: 280px;
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       padding: 8px 10px;
@@ -1545,7 +1626,7 @@
       padding: 6px 10px;
       border-radius: 8px;
       cursor: pointer;
-      background: #fff;
+      background: var(--card);
       font-size: 13px;
     }
 
@@ -1575,7 +1656,7 @@
       padding: 8px;
       max-height: 160px;
       overflow: auto;
-      background: #fff;
+      background: var(--card);
       font-size: 12px;
     }
 
@@ -1822,7 +1903,7 @@
 
     .process-stat {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.74);
+      background: rgba(var(--glass-rgb),0.74);
       border-radius: 8px;
       padding: 10px 12px;
     }
@@ -1850,7 +1931,7 @@
     .process-signal {
       border: 1px solid var(--border);
       border-left: 4px solid #9aa0a6;
-      background: #fff;
+      background: var(--card);
       border-radius: 8px;
       padding: 10px 12px;
       min-width: 0;
@@ -1928,7 +2009,7 @@
 
     .process-detail-panel {
       border: 1px solid var(--border);
-      background: rgba(255,255,255,0.78);
+      background: rgba(var(--glass-rgb),0.78);
       border-radius: 8px;
       padding: 12px;
       margin: -6px 0 18px 0;
@@ -1981,7 +2062,7 @@
       overflow: hidden;
       border: 1px solid var(--border);
       border-radius: 6px;
-      background: #fff;
+      background: var(--card);
     }
 
     .process-bar {
@@ -2016,7 +2097,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 12px;
-      background: #fff;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
@@ -2081,7 +2162,7 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       overflow: hidden;
-      background: #fff;
+      background: var(--card);
       margin-bottom: 8px;
     }
 
@@ -2227,6 +2308,7 @@
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="experimentsViewBtn" class="view-btn">Experiments<span id="pendingReviewBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="archViewBtn" class="view-btn" title="Architecture diagram with substrate stability overlay">Architecture</button>
+      <button id="docsViewBtn" class="view-btn" title="Browse design documents by theme">Docs</button>
       <a href="/workset" target="_blank" rel="noopener" class="view-btn ext" title="Post-governance work packages with copy-paste agent briefs">Workset<span class="ext-arrow">&#x2197;</span></a>
       <a href="/closure" target="_blank" rel="noopener" class="view-btn ext" title="ree-v3 closure progress: gap nodes across all plan-of-record docs">Closure &#x1F9E9;<span class="ext-arrow">&#x2197;</span></a>
       <!-- Secondary surfaces + design documents, tucked behind one click -->
@@ -2234,7 +2316,6 @@
         <button type="button" id="navMoreBtn" class="view-btn nav-more-btn" aria-haspopup="true" aria-expanded="false" title="Docs, contributors and other dashboards">More <span class="nav-more-caret">&#x25BE;</span></button>
         <div id="navMoreMenu" class="nav-more-menu" hidden>
           <div class="nav-more-label">Reference</div>
-          <button id="docsViewBtn" class="nav-more-item" title="Browse design documents by theme">Docs</button>
           <button id="contribViewBtn" class="nav-more-item" title="Contributor ledger">Contributors</button>
           <div class="nav-more-label">Dashboards</div>
           <a href="/progress" target="_blank" rel="noopener" class="nav-more-item ext" title="Scientific Progress Dashboard: Build / Prove / Narrow / Decide + momentum -- how much closer to understanding REE (complements the closure map)">Progress &#x1F4C8;<span class="ext-arrow">&#x2197;</span></a>
@@ -2287,6 +2368,14 @@
           <input id="evidencedFilter" type="checkbox" style="width:auto;" />
           Evidenced substrate only
         </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);" title="Hide claims that aren't applicable in the current architecture epoch (same filter Map and Governance already default to)">
+          <input id="listEpochOnlyFilter" type="checkbox" checked style="width:auto;" />
+          Current epoch only
+        </label>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);" title="Show only claims with at least one recorded conflict">
+          <input id="hasConflictFilter" type="checkbox" style="width:auto;" />
+          Has conflict
+        </label>
         <button id="clearFilters" class="primary" style="font-size:12px;padding:6px 10px;">✕ Clear Filters</button>
       </div>
     </section>
@@ -2297,19 +2386,20 @@
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Subject</th>
-                <th>Depends On</th>
-                <th title="Beta posterior mean over P(supported) with 95% credible interval; own-evidence (exp preferred). Model-based, not yet calibrated.">Posterior</th>
-                <th>Conflicts</th>
+                <th data-sort="id" title="Click to sort" role="button" tabindex="0" aria-label="Sort by ID">ID<span class="sort-arrow" data-sort-arrow="id"></span></th>
+                <th data-sort="type" title="Click to sort" role="button" tabindex="0" aria-label="Sort by Type">Type<span class="sort-arrow" data-sort-arrow="type"></span></th>
+                <th data-sort="status" title="Click to sort" role="button" tabindex="0" aria-label="Sort by Status">Status<span class="sort-arrow" data-sort-arrow="status"></span></th>
+                <th data-sort="subject" title="Click to sort" role="button" tabindex="0" aria-label="Sort by Subject">Subject<span class="sort-arrow" data-sort-arrow="subject"></span></th>
+                <th data-sort="depends" title="Click to sort" role="button" tabindex="0" aria-label="Sort by Depends On">Depends On<span class="sort-arrow" data-sort-arrow="depends"></span></th>
+                <th data-sort="posterior" title="Beta posterior mean over P(supported) with 95% credible interval; own-evidence (exp preferred). Model-based, not yet calibrated. Click to sort." role="button" tabindex="0" aria-label="Sort by Posterior">Posterior<span class="sort-arrow" data-sort-arrow="posterior"></span></th>
+                <th data-sort="conflicts" title="Click to sort" role="button" tabindex="0" aria-label="Sort by Conflicts">Conflicts<span class="sort-arrow" data-sort-arrow="conflicts"></span></th>
                 <th>Thought</th>
                 <th>Conflict</th>
               </tr>
             </thead>
             <tbody id="claimsTable"></tbody>
           </table>
+          <div id="listPager" class="list-pager"></div>
         </div>
         <div id="graphWrap" class="panel graph-panel-wrap">
         <div class="meta" id="graphMeta">Dependency graph (filtered set)</div>
@@ -3017,6 +3107,8 @@ END CONFLICT RESOLUTION`;
       includeDeps: document.getElementById('includeDeps'),
       v3PendingFilter: document.getElementById('v3PendingFilter'),
       evidencedFilter: document.getElementById('evidencedFilter'),
+      listEpochOnlyFilter: document.getElementById('listEpochOnlyFilter'),
+      hasConflictFilter: document.getElementById('hasConflictFilter'),
       clearFilters: document.getElementById('clearFilters'),
       stats: document.getElementById('stats'),
       statsToggle: document.getElementById('statsToggle'),
@@ -5515,7 +5607,7 @@ END CONFLICT RESOLUTION`;
         const count = data.pending_review_count || 0;
         if (count > 0) {
           badge.textContent = count;
-          badge.title = `${count} experiment result(s) awaiting review -- see More > Docs > "Pending review (inbox)"`;
+          badge.title = `${count} experiment result(s) awaiting review -- click to open`;
           badge.style.display = '';
         } else {
           badge.style.display = 'none';
@@ -5523,6 +5615,16 @@ END CONFLICT RESOLUTION`;
       } catch (_) {
         // non-fatal: badge just stays hidden if the tracker fetch fails
       }
+    }
+
+    function openPendingReviewDoc(e) {
+      // The badge lives inside experimentsViewBtn (for placement, matching
+      // govConflictBadge) -- stop the click from also bubbling to the
+      // button's own listener, which would switch to the Experiments view
+      // and immediately undo the Docs view switch below.
+      if (e) e.stopPropagation();
+      setView('docs');
+      openDoc('evidence/experiments/pending_review.md');
     }
 
     function renderGovernance() {
@@ -6157,6 +6259,14 @@ END CONFLICT RESOLUTION`;
       const subjectTerm = (els.subjectFilter.value || '').trim().toLowerCase();
       const v3Only = els.v3PendingFilter && els.v3PendingFilter.checked;
       const evidencedOnly = els.evidencedFilter && els.evidencedFilter.checked;
+      // Same "current epoch only" concept Map/Governance already default to
+      // (buildEpochApplicabilityMap/isCurrentEpochClaim) -- List had no way to
+      // apply it before this filter existed.
+      const epochOnly = els.listEpochOnlyFilter ? !!els.listEpochOnlyFilter.checked : false;
+      const epochMap = epochOnly
+        ? buildEpochApplicabilityMap((governanceAgenda && governanceAgenda.checkpoints) || {})
+        : null;
+      const conflictOnly = els.hasConflictFilter && els.hasConflictFilter.checked;
 
       return allClaims.filter(c => {
         if (type && c.type !== type) return false;
@@ -6164,6 +6274,8 @@ END CONFLICT RESOLUTION`;
         if (subjectTerm && !c.subject.toLowerCase().includes(subjectTerm)) return false;
         if (v3Only && !c.v3_pending && c.implementation_phase !== 'v3') return false;
         if (evidencedOnly && !(c.genuine_exp_count > 0)) return false;
+        if (epochOnly && !isCurrentEpochClaim(c.id, epochMap)) return false;
+        if (conflictOnly && !((conflictsMap[c.id] || []).length > 0)) return false;
         if (term) {
           const hay = `${c.id} ${c.subject} ${c.type} ${c.status}`.toLowerCase();
           if (!hay.includes(term)) return false;
@@ -6185,8 +6297,116 @@ END CONFLICT RESOLUTION`;
       catch (_) { return 'experiments'; }
     })();
 
+    // List view sort + pagination. Session-only (not persisted across reloads,
+    // unlike the filter fields above) to keep this addition small; sort field/
+    // dir do get saved into the same filter-state blob below since that was a
+    // one-line addition to an existing pattern.
+    let listSort = { field: null, dir: 'asc' };
+    let listPage = 1;
+    const LIST_PAGE_SIZE = 100;
+
+    function posteriorMeanFor(id) {
+      const ov = epistemicOverlay[id];
+      if (!ov) return null;
+      const bel = ov.own_belief || {};
+      const post = bel.source === 'lit' ? ov.lit_posterior : ov.exp_posterior;
+      if (!post || typeof post.mean !== 'number' || post.n_entries === 0) return null;
+      return post.mean;
+    }
+
+    function applySortToClaims(list) {
+      if (!listSort.field) return list;
+      const field = listSort.field;
+      const dir = listSort.dir === 'desc' ? -1 : 1;
+      const numericFields = new Set(['depends', 'posterior', 'conflicts']);
+      const numeric = numericFields.has(field);
+      const valueFor = (c) => {
+        switch (field) {
+          case 'id': return c.id || '';
+          case 'type': return c.type || '';
+          case 'status': return c.status || '';
+          case 'subject': return c.subject || '';
+          case 'depends': return (c.depends_on || []).length;
+          case 'posterior': return posteriorMeanFor(c.id);
+          case 'conflicts': return (conflictsMap[c.id] || []).length;
+          default: return '';
+        }
+      };
+      return list.slice().sort((a, b) => {
+        const av = valueFor(a);
+        const bv = valueFor(b);
+        if (numeric) {
+          const an = av === null || av === undefined;
+          const bn = bv === null || bv === undefined;
+          if (an && bn) return 0;
+          if (an) return 1;  // nulls/missing sort last regardless of direction
+          if (bn) return -1;
+          return dir * (av - bv);
+        }
+        return dir * String(av).localeCompare(String(bv));
+      });
+    }
+
+    function updateSortHeaderIndicators() {
+      document.querySelectorAll('#listWrap [data-sort-arrow]').forEach(el => {
+        const field = el.dataset.sortArrow;
+        el.textContent = listSort.field === field ? (listSort.dir === 'asc' ? '▲' : '▼') : '';
+      });
+    }
+
+    function renderListPager(totalCount, totalPages) {
+      const pager = document.getElementById('listPager');
+      if (!pager) return;
+      if (totalCount === 0) { pager.innerHTML = ''; return; }
+      if (totalPages <= 1) {
+        pager.innerHTML = `<span>${totalCount} claim${totalCount === 1 ? '' : 's'}</span>`;
+        return;
+      }
+      const startRow = (listPage - 1) * LIST_PAGE_SIZE + 1;
+      const endRow = Math.min(totalCount, listPage * LIST_PAGE_SIZE);
+      pager.innerHTML = `
+        <button type="button" id="listPagerPrev" ${listPage <= 1 ? 'disabled' : ''}>&larr; Prev</button>
+        <span>${startRow}-${endRow} of ${totalCount}</span>
+        <button type="button" id="listPagerNext" ${listPage >= totalPages ? 'disabled' : ''}>Next &rarr;</button>
+      `;
+      const prevBtn = document.getElementById('listPagerPrev');
+      const nextBtn = document.getElementById('listPagerNext');
+      if (prevBtn) prevBtn.addEventListener('click', () => { listPage = Math.max(1, listPage - 1); renderTable(); });
+      if (nextBtn) nextBtn.addEventListener('click', () => { listPage = Math.min(totalPages, listPage + 1); renderTable(); });
+    }
+
+    function sortableHeaderClick(field) {
+      if (listSort.field === field) {
+        listSort.dir = listSort.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        listSort.field = field;
+        listSort.dir = 'asc';
+      }
+      listPage = 1;
+      saveFilterStateToStorage();
+      renderTable();
+    }
+
+    function wireListSortHeaders() {
+      document.querySelectorAll('#listWrap thead th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => sortableHeaderClick(th.dataset.sort));
+        th.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            sortableHeaderClick(th.dataset.sort);
+          }
+        });
+      });
+    }
+
     function renderTable() {
-      const filtered = applyFilters();
+      const filteredAll = applySortToClaims(applyFilters());
+      const totalCount = filteredAll.length;
+      const totalPages = Math.max(1, Math.ceil(totalCount / LIST_PAGE_SIZE));
+      if (listPage > totalPages) listPage = totalPages;
+      if (listPage < 1) listPage = 1;
+      const startIdx = (listPage - 1) * LIST_PAGE_SIZE;
+      const filtered = filteredAll.slice(startIdx, startIdx + LIST_PAGE_SIZE);
       els.claimsTable.innerHTML = '';
       filtered.forEach(c => {
         const tr = document.createElement('tr');
@@ -6230,6 +6450,8 @@ END CONFLICT RESOLUTION`;
         }
         els.claimsTable.appendChild(tr);
       });
+      updateSortHeaderIndicators();
+      renderListPager(totalCount, totalPages);
     }
 
     function syncRowCheckboxes(id) {
@@ -7186,10 +7408,12 @@ END CONFLICT RESOLUTION`;
         else btn.classList.remove('primary');
       });
       // Reflect active state on the "More" button when a view it hosts is active.
+      // Docs was promoted to a top-level button (it's in the loop above now,
+      // like the other primary views) so it's no longer "hosted" in More --
+      // only Contributors still lives there.
       const navMoreBtn = document.getElementById('navMoreBtn');
       if (navMoreBtn) {
-        const hostedActive = (activeButton === els.docsViewBtn || activeButton === els.contribViewBtn);
-        navMoreBtn.classList.toggle('primary', hostedActive);
+        navMoreBtn.classList.toggle('primary', activeButton === els.contribViewBtn);
       }
     }
 
@@ -7744,7 +7968,7 @@ END CONFLICT RESOLUTION`;
       if (Number.isNaN(ms)) return '';
       const hours = (Date.now() - ms) / 3600000;
       if (hours < 6) return '';
-      return `<span class="exp-timing" style="color:#b8860b" title="Claimed ${hours.toFixed(1)}h ago by ${escapeHtml(claimedBy.machine || '?')} -- past the 6h stale-claim cutoff">&#9888; stale claim (${hours.toFixed(0)}h)</span>`;
+      return `<span class="exp-timing" style="color:var(--warning)" title="Claimed ${hours.toFixed(1)}h ago by ${escapeHtml(claimedBy.machine || '?')} -- past the 6h stale-claim cutoff">&#9888; stale claim (${hours.toFixed(0)}h)</span>`;
     }
 
     function expQueueItemHtml(qi, ev) {
@@ -7975,8 +8199,14 @@ END CONFLICT RESOLUTION`;
 
       const isRunning = !!(status && !status.idle && status.runner_pid);
       let cur = status && status.current;
-      // Use queue from files (always up-to-date) rather than runner_status.json
-      const queue = queueFromFiles;
+      // Use queue from files (always up-to-date) rather than runner_status.json.
+      // Sorted by priority desc (higher runs first) -- stable, so items without
+      // a priority keep their original relative order, at the bottom.
+      const queue = queueFromFiles.slice().sort((a, b) => {
+        const ap = typeof a.priority === 'number' ? a.priority : -Infinity;
+        const bp = typeof b.priority === 'number' ? b.priority : -Infinity;
+        return bp - ap;
+      });
       const completed = [...((status && status.completed) || [])].reverse();
       const lastUpdated = status && status.last_updated
         ? status.last_updated.replace('T', ' ').replace('Z', ' UTC') : '';
@@ -8743,6 +8973,10 @@ END CONFLICT RESOLUTION`;
           subject: els.subjectFilter.value,
           v3Pending: els.v3PendingFilter ? els.v3PendingFilter.checked : false,
           evidencedOnly: els.evidencedFilter ? els.evidencedFilter.checked : false,
+          epochOnly: els.listEpochOnlyFilter ? els.listEpochOnlyFilter.checked : true,
+          hasConflictOnly: els.hasConflictFilter ? els.hasConflictFilter.checked : false,
+          sortField: listSort.field,
+          sortDir: listSort.dir,
         };
         localStorage.setItem('ree_explorer.filters.v1', JSON.stringify(state));
       } catch (_) {}
@@ -8759,19 +8993,28 @@ END CONFLICT RESOLUTION`;
         if (typeof state.subject === 'string') els.subjectFilter.value = state.subject;
         if (els.v3PendingFilter && state.v3Pending) els.v3PendingFilter.checked = true;
         if (els.evidencedFilter && state.evidencedOnly) els.evidencedFilter.checked = true;
+        if (els.listEpochOnlyFilter && typeof state.epochOnly === 'boolean') els.listEpochOnlyFilter.checked = state.epochOnly;
+        if (els.hasConflictFilter && state.hasConflictOnly) els.hasConflictFilter.checked = true;
+        if (typeof state.sortField === 'string') listSort.field = state.sortField;
+        if (state.sortDir === 'asc' || state.sortDir === 'desc') listSort.dir = state.sortDir;
       } catch (_) {}
     }
 
     function wireEvents() {
       ['input', 'change'].forEach(evt => {
-        els.search.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); applyExpFilter(); saveFilterStateToStorage(); });
-        els.typeFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
-        els.statusFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
-        els.subjectFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        els.search.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); applyExpFilter(); saveFilterStateToStorage(); });
+        els.typeFilter.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        els.statusFilter.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        els.subjectFilter.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
         els.includeDeps.addEventListener(evt, () => renderGraph());
-        if (els.v3PendingFilter) els.v3PendingFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
-        if (els.evidencedFilter) els.evidencedFilter.addEventListener(evt, () => { renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        if (els.v3PendingFilter) els.v3PendingFilter.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        if (els.evidencedFilter) els.evidencedFilter.addEventListener(evt, () => { listPage = 1; renderTable(); renderGraph(); renderMap(); saveFilterStateToStorage(); });
+        if (els.listEpochOnlyFilter) els.listEpochOnlyFilter.addEventListener(evt, () => { listPage = 1; renderTable(); saveFilterStateToStorage(); });
+        if (els.hasConflictFilter) els.hasConflictFilter.addEventListener(evt, () => { listPage = 1; renderTable(); saveFilterStateToStorage(); });
       });
+
+      const pendingReviewBadgeEl = document.getElementById('pendingReviewBadge');
+      if (pendingReviewBadgeEl) pendingReviewBadgeEl.addEventListener('click', openPendingReviewDoc);
 
 
       // Pressing Enter in the search box explicitly re-applies the experiment-card
@@ -8788,6 +9031,11 @@ END CONFLICT RESOLUTION`;
         els.subjectFilter.value = '';
         if (els.v3PendingFilter) els.v3PendingFilter.checked = false;
         if (els.evidencedFilter) els.evidencedFilter.checked = false;
+        if (els.listEpochOnlyFilter) els.listEpochOnlyFilter.checked = true;
+        if (els.hasConflictFilter) els.hasConflictFilter.checked = false;
+        listSort.field = null;
+        listSort.dir = 'asc';
+        listPage = 1;
         saveFilterStateToStorage();
         renderTable();
         renderGraph();
@@ -9100,6 +9348,7 @@ END CONFLICT RESOLUTION`;
         initDraftTabs();
         setupDraftActions();
         wireEvents();
+        wireListSortHeaders();
         wireGraphZoomPan();
         initLegendToggles();
         updateWorksetUI();
@@ -9128,9 +9377,17 @@ END CONFLICT RESOLUTION`;
        main script above -- the dock script at the bottom is the only consumer
        of these element ids. -->
   <style>
+    /* cornerDock intentionally stays light-styled regardless of page theme --
+       its own literal #fff/#ccc/etc weren't converted to the shared tokens
+       (out of scope for this pass, see explorer_ui_improvement_plan.md C2).
+       The one fix that IS needed: default text color must be pinned to a
+       fixed dark value too, or it inherits body's var(--ink) -- which turns
+       light in dark mode and would be illegible against this card's
+       unchanging white background. Elements below with their own explicit
+       color (#555/#888/#999 etc.) are already fixed-value and unaffected. */
     #cornerDock{position:fixed;right:14px;bottom:14px;width:320px;
       display:flex;flex-direction:column;gap:10px;align-items:stretch;
-      z-index:9999;font:12px/1.4 system-ui,sans-serif;}
+      z-index:9999;font:12px/1.4 system-ui,sans-serif;color:#1f2328;}
     #cornerDock .dock-card{background:#fff;border:1px solid #ccc;
       border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.15);overflow:hidden;}
     #cornerDock .dock-head{display:flex;align-items:center;gap:6px;

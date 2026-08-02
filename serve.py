@@ -5599,6 +5599,8 @@ def _queue_items_from_raw(data: dict, ver: str) -> list[dict]:
             "script": item.get("script", ""),
             "estimated_minutes": item.get("estimated_minutes"),
             "machine_affinity": item.get("machine_affinity", ""),
+            "priority": item.get("priority"),
+            "claimed_by": item.get("claimed_by"),
             "ree_version": ver,
         })
     return items
