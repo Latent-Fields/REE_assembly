@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-02T12:32:20Z",
+  "last_tick_utc": "2026-08-02T12:47:21Z",
   "state": "running",
   "current_exq": "V3-EXQ-864a",
   "current_exq_started_utc": "2026-08-02T09:50:51.138842+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 0 / ARM_INFL_LO_steps1000",
-    "runs_done": 8,
+    "run_label": "Seed 1 / ARM_INFL_LO_steps1000",
+    "runs_done": 9,
     "runs_total": 12,
-    "episodes_done": 6,
+    "episodes_done": 2,
     "episodes_total": 8,
-    "overall_pct": 72.9
+    "overall_pct": 77.1
   },
-  "seconds_elapsed": 9689,
-  "seconds_remaining": 3852,
+  "seconds_elapsed": 10590,
+  "seconds_remaining": 3899,
   "recent_lines": [
     "Seed 0 Condition ARM_INFL_LO_steps200 n_train=8",
     "[train] arm=ARM_INFL_LO steps_per_ep=200 seed=0 ep 2/8 rv=0.003137 ref=0.003223 diff=+0.000086",
@@ -78,7 +78,12 @@
     "Seed 0 Condition ARM_INFL_LO_steps1000 n_train=8",
     "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=0 ep 2/8 rv=0.002937 ref=0.002958 diff=+0.000021",
     "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=0 ep 4/8 rv=0.003964 ref=0.005500 diff=+0.001536",
-    "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=0 ep 6/8 rv=0.004987 ref=0.006307 diff=+0.001320"
+    "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=0 ep 6/8 rv=0.004987 ref=0.006307 diff=+0.001320",
+    "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=0 ep 8/8 rv=0.005999 ref=0.009939 diff=+0.003940",
+    "[end]  arm=ARM_INFL_LO steps_per_ep=1000 seed=0 rv_final=0.005999 ref_final=0.009939 diff_final=+0.003940 crossover_seen=N final_global_tick=7999 real_exposure_frac=1.0000 env_done_ticks=7947 env_first_done_tick_ep0=5",
+    "verdict: PASS",
+    "Seed 1 Condition ARM_INFL_LO_steps1000 n_train=8",
+    "[train] arm=ARM_INFL_LO steps_per_ep=1000 seed=1 ep 2/8 rv=0.004181 ref=0.004213 diff=+0.000032"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
