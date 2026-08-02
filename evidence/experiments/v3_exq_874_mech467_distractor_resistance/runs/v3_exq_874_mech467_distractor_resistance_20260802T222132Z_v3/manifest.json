@@ -1,0 +1,80 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_874_mech467_distractor_resistance",
+  "run_id": "v3_exq_874_mech467_distractor_resistance_20260802T222132Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T22:21:32.827369Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-467"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "does_not_support",
+  "evidence_direction_per_claim": {
+    "MECH-467": "does_not_support"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "legs_covary_no_dissociation",
+    "preconditions": [
+      {
+        "name": "distractor_registered_in_active_representation",
+        "description": "resource_field_view_distractor non-zero in at least one arm -- distractor must be encoded, not just present",
+        "measured": 0.6667,
+        "threshold": 0.0,
+        "comparator": ">",
+        "met": true
+      },
+      {
+        "name": "rule_intact_conditioning_non_vacuous",
+        "description": "at least one arm has SOME intact ticks and SOME non-intact ticks -- the (b)-floor conditioning must actually discriminate ticks, not trivially include/exclude everything",
+        "measured": 1.0,
+        "threshold": 1.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "sensory_capture_registered": true,
+      "any_leg_moves": true,
+      "conditioning_non_vacuous": true
+    }
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "097f4fb920689bc6d2722610e5a1fc94e6046cc3f5d4c1f065d3929929d90c29",
+  "substrate_commit": {
+    "commit": "f513c9c74b1f934860154929f50f2c983a2a4cd8",
+    "dirty": false,
+    "branch": "main"
+  }
+}
