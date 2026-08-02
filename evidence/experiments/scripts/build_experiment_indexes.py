@@ -4730,6 +4730,20 @@ def _write_planning_outputs(
     _early_backlog_path = planning_root / "evidence_backlog.v1.json"
     _pinned_claim_ids: set[str] = set()
     _preloaded_pinned_items: list[dict[str, Any]] = []
+    # Pre-load frozen mandatory_decision_checkpoint deadlines, keyed by claim_id.
+    # decision_deadline_utc must be stamped once, on the FIRST regen where the
+    # mandatory-decision condition fires for a claim, and then held constant on
+    # every subsequent regen while the condition stays continuously active --
+    # otherwise it recomputes as generated_at_dt + N hours on every run and
+    # perpetually reads "~N hours from now", so a deadline can never actually be
+    # missed (confirmed 2026-08-01: 16 unrelated claims in the pre-fix
+    # evidence_backlog.v1.json all shared the identical deadline timestamp,
+    # which is only possible if every one was computed from "now" rather than
+    # from its own first-trigger time). When a claim's checkpoint clears
+    # (resolved, or the item drops out of the backlog entirely), it naturally
+    # falls out of this preload on the next regen -- a later re-trigger mints a
+    # fresh deadline, which is the correct "re-trigger" behavior, not a bug.
+    _existing_decision_deadlines: dict[str, str] = {}
     if _early_backlog_path.exists():
         try:
             _early_doc = json.loads(_early_backlog_path.read_text(encoding="utf-8"))
@@ -4739,8 +4753,18 @@ def _write_planning_outputs(
                     if _pcid:
                         _pinned_claim_ids.add(_pcid)
                         _preloaded_pinned_items.append(dict(_pit))
+                if isinstance(_pit, dict):
+                    _dcid = str(_pit.get("claim_id", "")).strip()
+                    _dsignals = _pit.get("signals", {})
+                    _ddeadline = (
+                        str(_dsignals.get("decision_deadline_utc", "")).strip()
+                        if isinstance(_dsignals, dict)
+                        else ""
+                    )
+                    if _dcid and _ddeadline:
+                        _existing_decision_deadlines[_dcid] = _ddeadline
         except Exception:
-            pass  # Missing or corrupt backlog — no pinned items to protect
+            pass  # Missing or corrupt backlog — no pinned items to protect, no deadlines to freeze
     # ── end pre-load ─────────────────────────────────────────────────────────────
 
     backlog_items: list[dict[str, Any]] = []
@@ -5104,9 +5128,15 @@ def _write_planning_outputs(
             and decision_unresolved
         ):
             mandatory_decision_checkpoint = True
-            decision_deadline_utc = (
-                generated_at_dt + timedelta(hours=mandatory_decision_deadline_hours)
-            ).isoformat().replace("+00:00", "Z")
+            # Freeze on first trigger: reuse the deadline already on record for this
+            # claim from the prior regen (if the checkpoint was already active then),
+            # rather than recomputing generated_at_dt + N hours every cycle. See the
+            # _existing_decision_deadlines preload above for the full rationale.
+            decision_deadline_utc = _existing_decision_deadlines.get(claim_id, "")
+            if not decision_deadline_utc:
+                decision_deadline_utc = (
+                    generated_at_dt + timedelta(hours=mandatory_decision_deadline_hours)
+                ).isoformat().replace("+00:00", "Z")
             signals["mandatory_decision_checkpoint"] = True
             signals["decision_deadline_utc"] = decision_deadline_utc
             signals["decision_required_outcomes"] = list(allowed_conflict_outcomes)

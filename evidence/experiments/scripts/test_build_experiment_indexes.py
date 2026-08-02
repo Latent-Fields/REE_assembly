@@ -919,6 +919,158 @@ def test_hold_candidate_resolve_conflict_standard_category_options_unchanged():
     assert any("run conflict-resolution experiments" in o.lower() for o in rec["options"])
 
 
+# --- decision_deadline_utc freeze-on-first-trigger -------------------------
+#
+# Regression target: 2026-08-01 (chip-20260801-decision-deadline-rolling-defect-
+# review). decision_deadline_utc was recomputed as generated_at_dt + 72h on
+# EVERY governance regeneration while the underlying mandatory_decision
+# conflict stayed unresolved, instead of being frozen on the regen where the
+# checkpoint first fired. That meant a "TIME-SENSITIVE, deadline approaching"
+# citation was always ~3 days out and could never actually be missed.
+# Confirmed concretely: 16 unrelated claims in the pre-fix
+# evidence_backlog.v1.json all carried the IDENTICAL deadline timestamp
+# (generated_at_utc of that one regen + 72h) -- only possible if every one was
+# computed from "now" rather than from its own first-trigger time.
+
+def _mandatory_decision_planning_criteria():
+    # Loosen the mandatory-decision-checkpoint gate so two matched-seed
+    # supports/weakens entries are sufficient to trigger it deterministically,
+    # independent of the production defaults in planning_criteria.v1.json.
+    return {
+        "thresholds": {
+            "mandatory_decision_conflict_ratio": 0.5,
+            "mandatory_decision_min_fresh_batches": 1,
+            "mandatory_decision_recent_window": 10,
+            "mandatory_decision_deadline_hours": 72,
+        },
+    }
+
+
+def _mandatory_decision_matrix(claim_id="MECH-TEST-DEADLINE"):
+    # One genuine V3 "supports" + one genuine V3 "weakens" entry at distinct
+    # minute-truncated timestamps -> conflict_ratio == 1.0 (>= 0.5 threshold)
+    # and recent_targeted_batches == 2 (>= 1 threshold), with no recorded
+    # decision -> decision_unresolved == True. Together these satisfy every
+    # mandatory_decision_checkpoint precondition.
+    entries = [
+        {
+            "claim_id": claim_id,
+            "source_type": "experimental",
+            "run_id": "run_a_v3",
+            "run_id_full": "20260801T000000Z_run_a_v3",
+            "evidence_direction": "supports",
+            "timestamp_utc": "2026-08-01T00:00:00Z",
+        },
+        {
+            "claim_id": claim_id,
+            "source_type": "experimental",
+            "run_id": "run_b_v3",
+            "run_id_full": "20260801T010000Z_run_b_v3",
+            "evidence_direction": "weakens",
+            "timestamp_utc": "2026-08-01T01:00:00Z",
+        },
+    ]
+    return {"claims": {claim_id: {}}, "entries": entries}
+
+
+def test_mandatory_decision_checkpoint_deadline_frozen_across_regens():
+    """Two consecutive regens of the same unresolved conflict must produce the
+    SAME decision_deadline_utc -- not a fresh generated_at + 72h each time."""
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DEADLINE"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _mandatory_decision_matrix(claim_id)
+    criteria = _mandatory_decision_planning_criteria()
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+
+        backlog_1, _proposals_1, _arch_1 = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {}, criteria,
+            "2026-08-01T00:00:00Z",
+        )
+        item_1 = next(i for i in backlog_1 if i["claim_id"] == claim_id)
+        assert item_1["signals"]["mandatory_decision_checkpoint"] is True
+        deadline_1 = item_1["signals"]["decision_deadline_utc"]
+        assert deadline_1
+
+        # A second regen, hours later, with the conflict still unresolved (no
+        # decision entries were added). The buggy code computes
+        # generated_at_dt + 72h off THIS call's generated_at and would
+        # therefore differ from deadline_1 by exactly the 5h gap below.
+        backlog_2, _proposals_2, _arch_2 = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {}, criteria,
+            "2026-08-01T05:00:00Z",
+        )
+        item_2 = next(i for i in backlog_2 if i["claim_id"] == claim_id)
+        assert item_2["signals"]["mandatory_decision_checkpoint"] is True
+        deadline_2 = item_2["signals"]["decision_deadline_utc"]
+
+        assert deadline_2 == deadline_1, (
+            "decision_deadline_utc rolled forward on a second regen of the "
+            f"same unresolved conflict: {deadline_1!r} -> {deadline_2!r}"
+        )
+        # Anchored to the FIRST regen's generated_at, not the second's.
+        assert deadline_1 == "2026-08-04T00:00:00Z"
+
+
+def test_mandatory_decision_checkpoint_deadline_remints_after_clearing():
+    """If the checkpoint clears (claim drops out of the backlog) and later
+    re-triggers, a fresh deadline is expected -- freezing must not persist
+    across a genuine resolve-and-recur cycle."""
+    import tempfile
+    from pathlib import Path
+
+    claim_id = "MECH-TEST-DEADLINE-RETRIGGER"
+    claim_registry = {claim_id: {"status": "candidate", "claim_type": "mechanism_hypothesis"}}
+    matrix = _mandatory_decision_matrix(claim_id)
+    criteria = _mandatory_decision_planning_criteria()
+
+    with tempfile.TemporaryDirectory() as tmp:
+        planning_root = Path(tmp)
+
+        backlog_1, _p1, _a1 = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {}, criteria,
+            "2026-08-01T00:00:00Z",
+        )
+        deadline_1 = next(
+            i for i in backlog_1 if i["claim_id"] == claim_id
+        )["signals"]["decision_deadline_utc"]
+        assert deadline_1 == "2026-08-04T00:00:00Z"
+
+        # Checkpoint clears: an approved decision with an allowed outcome
+        # resolves the claim, so mandatory_decision_checkpoint no longer fires.
+        latest_adjudication_decisions = {
+            claim_id: b.DecisionLogEntry(
+                claim_id=claim_id,
+                decision_status="approved",
+                recommendation="retain_ree",
+                decision_needed="",
+                timestamp_utc="2026-08-02T00:00:00Z",
+            ),
+        }
+        backlog_cleared, _p2, _a2 = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, latest_adjudication_decisions,
+            criteria, "2026-08-02T00:00:00Z",
+        )
+        cleared_items = [i for i in backlog_cleared if i["claim_id"] == claim_id]
+        assert not any(i["signals"].get("mandatory_decision_checkpoint") for i in cleared_items)
+
+        # Re-trigger with a fresh, still-unresolved conflict (revert to no
+        # decision on record, simulating a new conflict cycle).
+        backlog_3, _p3, _a3 = b._write_planning_outputs(
+            planning_root, matrix, claim_registry, [], {}, {}, criteria,
+            "2026-08-03T00:00:00Z",
+        )
+        deadline_3 = next(
+            i for i in backlog_3 if i["claim_id"] == claim_id
+        )["signals"]["decision_deadline_utc"]
+        assert deadline_3 == "2026-08-06T00:00:00Z"
+        assert deadline_3 != deadline_1
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
