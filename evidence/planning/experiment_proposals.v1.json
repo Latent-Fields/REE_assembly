@@ -11615,8 +11615,12 @@
       ],
       "script_path": null,
       "source": "manual",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "MECH-427 up-level cross-hierarchy credit channel not implemented"
+      ],
+      "blocked_note": "substrate absent (inherited block): MECH-428 formally depends_on MECH-427 in claims.yaml, and MECH-428's own ARM SUBGOAL-BOOTSTRAP design explicitly requires 'cross-level credit enabled (MECH-427) -> credit propagates up to seed the parent z_goal' -- the exact mechanism MECH-427 was just confirmed to lack (ree_core has no multi-level z_goal hierarchy; GoalState holds a single unified z_goal tensor; zero hits for any credit-propagation-to-parent code; needs /implement-substrate: a parent/subgoal z_goal split + up-level credit-propagation channel). MECH-428's own proposal notes anticipate exactly this: 'Step-2.5 must verify the subgoal-attainment + cross-level-credit instrumentation is wired in the scaffolded_sd054 harness before queuing (else blocked_substrate).' zero genuine experimental evidence exists (claim_evidence.v1.json has no entry). Route via /implement-substrate on MECH-427's blocker first."
     },
     {
       "acceptance_checks": [
