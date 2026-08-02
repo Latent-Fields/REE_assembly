@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-02T10:55:12Z",
+  "generated_at": "2026-08-02T11:36:04Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,112 +31,112 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 42,
-      "total_initial": 73,
-      "total_initial_at_registration": 55,
+      "total_surviving": 44,
+      "total_initial": 75,
+      "total_initial_at_registration": 57,
       "total_fanout_added": 18,
       "total_resolved_out": 29,
-      "reduction_pct_vs_current": 39.7,
-      "net_narrowing_pct": 23.6,
+      "reduction_pct_vs_current": 38.7,
+      "net_narrowing_pct": 22.8,
       "convergence_classes": {
         "narrowing": 7,
-        "static": 6,
+        "static": 7,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "42 alive against 55 originally enumerated, and against 73 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 18
+      "honest_pair_note": "44 alive against 57 originally enumerated, and against 75 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 19
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 9,
-      "open_questions": 18
+      "open_questions": 19
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 72,
+      "surviving": 74,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-13",
-      "surviving": 70,
+      "surviving": 72,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-15",
-      "surviving": 66,
+      "surviving": 68,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-16",
-      "surviving": 65,
+      "surviving": 67,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-17",
-      "surviving": 62,
+      "surviving": 64,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-18",
-      "surviving": 56,
+      "surviving": 58,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-19",
-      "surviving": 52,
+      "surviving": 54,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-20",
-      "surviving": 51,
+      "surviving": 53,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-24",
-      "surviving": 50,
+      "surviving": 52,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-25",
-      "surviving": 49,
+      "surviving": 51,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-27",
-      "surviving": 47,
+      "surviving": 49,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-29",
-      "surviving": 46,
+      "surviving": 48,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-07-31",
-      "surviving": 45,
+      "surviving": 47,
       "closure_pct": 76.9,
       "build_pct": 81.2
     },
     {
       "date": "2026-08-02",
-      "surviving": 42,
+      "surviving": 44,
       "closure_pct": 76.9,
       "build_pct": 81.2
     }
@@ -2408,9 +2408,96 @@
         "live_gate": null,
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "arc071-commit-latch-postfix-persistence",
+      "title": "Does the landed fix (ree-v3 commit 278599a, use_persistent_committed_program_handle) restore meaningful multi-step ARC-071 commit-latch persistence under REAL organically-formed chunks, or does gap (b) (E3 unconditional re-commitment every E3 tick) still dominate?",
+      "short_title": "ARC-071 commit-latch: does fix (a) restore persistence?",
+      "claims": [
+        "MECH-090",
+        "ARC-071"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 2,
+      "alive": 2,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-postfix-persistence-restored",
+          "label": "H1: fix (a) restores persistence",
+          "desc": "official_readout_mean_realised_length clears 3.0 in every cell once use_persistent_committed_program_handle=True is scoped correctly to the probe phase under organically-formed chunks -- the landed fallback (278599a) is sufficient and gap (b) (E3 unconditional re-commitment every E3 tick) does not, in practice, prevent meaningful persistence.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-871"
+          ],
+          "basis": "V3-EXQ-871's readiness gate (arc071_chunk_commitments_observed_supra_floor) measured 0.0 vs threshold 10.0 on both seeds -- 1/0 chunks formed vs 2/2 for the SAME seeds under V3-EXQ-841 (flag at lineage default). Root cause: use_persistent_committed_program_handle=True was applied for the WHOLE cell (formation+probe) instead of scoped to the probe phase, which changes select_action's between-tick fast path and cascades into a different, formation-suppressing action sequence via RNG-coupled environment dynamics. Uninformative-by-design run; narrows nothing. Redesign queued as V3-EXQ-871a (flag scoped to probe-only).",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-postfix-persistence-still-broken",
+          "label": "H2: fix (a) alone is insufficient",
+          "desc": "official_readout_mean_realised_length stays pinned near 1 even with the fix enabled and organic formation -- gap (b) (E3 unconditionally re-committing a new trajectory object every E3 tick, addressed separately by the still-default-off use_e3_reselection_shortcircuit flag from commit 31ed78e) dominates in practice.",
+          "axis": "instrumentation",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-871"
+          ],
+          "basis": "Same non-discriminating run as H1 above (V3-EXQ-871) -- the readiness gate failed before either hypothesis could be tested. See H-postfix-persistence-restored.basis for the full mechanism. Redesign queued as V3-EXQ-871a.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Does the landed fix (278599a) restore meaningful multi-step ARC-071 commit-latch persistence under organically-formed chunks (H1), or does gap (b) -- E3's unconditional re-commitment every E3 tick -- still dominate (H2)?",
+        "distance_phrase": "NOT decidable. V3-EXQ-871's own construction (flag applied for the whole cell) suppressed chunk formation before either hypothesis could be tested. Next step is V3-EXQ-871a with the flag scoped to probe-only, not further discrimination on the current design.",
+        "live_gate": "requires a redesigned probe (V3-EXQ-871a) that scopes use_persistent_committed_program_handle=True to the probe phase only, so formation replays V3-EXQ-841's proven 2/2-chunk dynamics instead of being suppressed by the flag's own formation-phase side effects",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-871",
+      "all_runs": [
+        "V3-EXQ-871"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "arc071-commit-latch-postfix-persistence",
+      "claims": [
+        "MECH-090",
+        "ARC-071"
+      ],
+      "moved": "V3-EXQ-871's readiness gate (arc071_chunk_commitments_observed_supra_floor) measured 0.0 vs threshold 10.0 on both seeds -- 1/0 chunks formed vs 2/2 for the SAME seeds under V3-EXQ-841 (flag at lineage default). Root cause: use_persistent_committed_program_handle=True was applied for the WHOLE cell (formation+probe) instead of scoped to the probe phase, which changes select_action's between-tick fast path and cascades into a different, formation-suppressing action sequence via RNG-coupled environment dynamics. Uninformative-by-design run; narrows nothing. Redesign queued as V3-EXQ-871a (flag scoped to probe-only).",
+      "resolved_utc": "2026-08-02T10:43:33Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-858",
       "all_runs": [

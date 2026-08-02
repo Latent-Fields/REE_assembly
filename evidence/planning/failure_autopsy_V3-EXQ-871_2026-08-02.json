@@ -1,0 +1,79 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T11:33:36Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_855_mech090_commit_latch_persistence_diagnostic_20260802T104333Z_v3",
+      "queue_id": "V3-EXQ-871",
+      "claim_ids": ["MECH-090", "ARC-071"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- neither claim was fairly exercised; precondition failure traces to the probe's own construction (flag scoped over the whole cell), not to claim/substrate incapacity",
+        "biological_reference": "clear -- MECH-090 (BG beta-gating of E3-to-action-selection propagation) and ARC-071 (striatal sequence chunking, Graybiel/Sakai/Wymbs/Smith & Graybiel) both have solid direct biological grounding, not implicated by this failure",
+        "prerequisites": "present -- V3-EXQ-810a (8/8 seeds) and V3-EXQ-841 (2/2 chunks, same seeds 101/505) already proved formation prerequisites hold under the lineage-default flag configuration",
+        "implementation": "complete -- fix 278599a (ree-v3 main, landed 2026-08-01) works exactly as designed; the between-tick fast path correctly falls back to the persistent handle",
+        "environment": "adequate -- CausalGridWorldV2 8x8/2-hazard/6-resource unchanged from 810a/841",
+        "measurement": "under-instrumented/misleading -- primary defect layer. use_persistent_committed_program_handle=True applied for the WHOLE cell (formation + probe) instead of scoped to probe-only, invalidating the readiness-inherited-by-construction assumption",
+        "integration": "n/a -- single-flag scoping issue within one experiment driver, not a cross-module integration failure",
+        "scale": "n/a -- not implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-090: STN/striatal beta-oscillatory gating of BG output to action selection. ARC-071: striatal action-sequence chunking (habitual/planned transition).",
+        "dependencies": ["ARC-023", "ARC-021", "MECH-057a (MECH-090 depends_on)", "ARC-069", "MECH-163 (ARC-071 depends_on)"],
+        "is_formal_import": false,
+        "divergence": "none -- this failure is a pure software probe-construction artifact with no bearing on either mechanism's biological grounding",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-090": "unknown",
+        "ARC-071": "unknown"
+      },
+      "recommended_evidence_quality_note": "V3-EXQ-871 (2026-08-02) self-routed substrate_not_ready_requeue (precondition arc071_chunk_commitments_observed_supra_floor: measured 0.0 vs threshold 10.0, worst seed) -- adjudicated measurement_test_design_defect, not a substrate ceiling. Root cause: use_persistent_committed_program_handle=True was set for the ENTIRE cell (formation + probe), not scoped to the probe phase. That flag changes select_action's between-E3-tick fast path (agent.py:5999-6014): once any commitment is present (chunk-sourced or not) and beta_gate is elevated, the agent now steps a planned macro-action from the committed trajectory instead of holding _last_action. This alters the action sequence from the first relevant tick onward, which (via RNG-coupled environment dynamics -- RNG reset confirmed deterministic per seed) cascades into materially different chunk-formation outcomes: this run's seeds 101/505 formed only 1/0 chunks respectively during the identical 120ep formation schedule, versus 2/2 chunks for the SAME two seeds under V3-EXQ-841 (flag at lineage default False) on 2026-07-31 -- a direct same-seed comparison. V3-EXQ-810a's/841's 'readiness inherited by construction' claim does not hold once the flag is set globally; it only holds when the flag stays at its lineage default during formation. Fix: scope the flag to the probe phase only (V3-EXQ-871a). Neither MECH-090 nor ARC-071 evidence changes (non_contributory, precondition_unmet).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "MECH-090 has 7 prior confirmed substrate_ceiling hits under the R1-R3 convention, all a different sub-mechanism (delayed-reward persistence / commitment-vs-contradiction / control-plane-ramp / readiness-conjunction), none touching commit-latch cross-tick persistence -- exempt, matching the queuing session's own prior check. ARC-071 has 0 ceiling hits. Not applicable regardless: this finding is measurement_test_design_defect, not substrate_ceiling."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Applying a behavior-changing config override across an experiment cell's ENTIRE lifetime (formation + probe), when the override is only meant to be tested during the probe phase, can retroactively invalidate an 'inherited readiness' claim that depends on formation replaying a prior, differently-configured run -- even when the override's intended effect is not conceptually about the phase it ends up perturbing.",
+        "RNG is seeded deterministically per-seed (confirmed in experiments/_lib/arm_fingerprint.py), so the seed-101/505 chunks_formed divergence (2/2 -> 1/0) is attributable to the flag-driven behavioral change cascading through the environment trajectory, not to nondeterminism.",
+        "Second ARC-071 diagnostic in a row (after V3-EXQ-834) to land on measurement_test_design_defect rather than a substrate-level finding -- not yet a granularity-debt pattern (granularity_debt_cluster.py confirms no weakened target for ARC-071), but worth watching.",
+        "experiments/_lib/baselines/sd084_midexec_reachability.py:271 is cited by this script as precedent for a script-local flag override before formation runs -- flagged as a follow-on check (does it have the same whole-cell-vs-probe-only scoping issue), not investigated in this autopsy."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": null,
+  "hypothesis_space_ledger_applied": {
+    "new_question": {
+      "qid": "arc071-commit-latch-postfix-persistence",
+      "note": "Registered live (not staging mode) -- see hypothesis_space_registry.v1.json for the full entry. Both hypotheses left alive; this run recorded as a non-discriminating resolving_run (measurement_test_design_defect, control_passed=false, non_degenerate=false)."
+    }
+  }
+}
