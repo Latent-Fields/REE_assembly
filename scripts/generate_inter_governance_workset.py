@@ -131,6 +131,23 @@ _LANE_SKILLS = {
     "monitor": "(monitor -- do not re-queue)",
 }
 
+# experiment_proposals.v1.json proposal_type values that route to the /lit-pull
+# lane/skill instead of /queue-experiment (both observed in the data: an early
+# "literature" tag and the current "literature_review").
+_LITERATURE_PROPOSAL_TYPES = {"literature_review", "literature"}
+
+
+def _proposal_lane_skill(proposal_type: str | None) -> tuple[str, str]:
+    """Lane/skill for one experiment_proposals.v1.json item, keyed on its OWN
+    proposal_type -- never on owner_backlog_id. A single backlog id can back
+    proposals of different types (confirmed 2026-08-01: EVB-0481/Q-086 backed
+    both an "experimental" EXP- proposal and a "literature_review" LIT-
+    proposal; deriving the tag from the backlog id instead of the proposal
+    mistagged the literature one as /queue-experiment)."""
+    if (proposal_type or "").strip().lower() in _LITERATURE_PROPOSAL_TYPES:
+        return "lit", _LANE_SKILLS["lit"]
+    return "experiment", _LANE_SKILLS["experiment"]
+
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -1766,9 +1783,10 @@ def build_workset() -> dict:
         # The claim_id is the stable key; title is claim-keyed. The current
         # proposal_id is kept in owner_proposal_id (regenerated each tick, never
         # the frozen source of truth) and the launch path re-resolves it fresh.
+        lane, skill = _proposal_lane_skill(prop.get("proposal_type"))
         add(
-            lane="experiment",
-            skill="/queue-experiment",
+            lane=lane,
+            skill=skill,
             status="ready",
             priority=40,
             severity="medium",
