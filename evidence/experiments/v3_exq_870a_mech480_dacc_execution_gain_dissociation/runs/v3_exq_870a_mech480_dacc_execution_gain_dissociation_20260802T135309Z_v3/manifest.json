@@ -1,0 +1,78 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_870a_mech480_dacc_execution_gain_dissociation",
+  "run_id": "v3_exq_870a_mech480_dacc_execution_gain_dissociation_20260802T135309Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T13:53:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-480"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "no_reliable_outcome_sensitivity_effect",
+    "preconditions": [
+      {
+        "name": "arm_off_execution_strength_cross_seed_variance",
+        "measured": 1.5054030324898513,
+        "threshold": 0.0001,
+        "direction": "lower",
+        "control": "Arm-OFF (dacc_weight=0) per-seed mean logit margin",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_outcome_sensitivity_shift": true,
+      "C2_execution_strength_equivalence": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "0142c393701bead2866054ade446435b07bceb4fb1b924e4fa6439f3e9ecafcc",
+  "substrate_commit": {
+    "commit": "90ebbac3393bf302823b706628271df2c8e9c4e5",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 85504440,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 26096,
+    "goal_state_present": false
+  }
+}
