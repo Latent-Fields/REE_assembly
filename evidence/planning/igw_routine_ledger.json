@@ -2279,7 +2279,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-225-literature-proposal-for-q-088 && claude --resume f5e2a2c6-60a2-46ab-ba58-9dc0b1bad85c",
       "task_claim_session_id": "igw-auto-igw-225-literature-proposal-for-q-088-20260802T132958Z",
       "assigned_at": "2026-08-02T13:29:37Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-02T13:45:40Z",
+      "completion_summary": "lit-pull Q-088: 5 entries (develop-without vs mature-lesion dissociation), REE_assembly 3b0226db7e, literature_confidence=0.803",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull Q-088: 5 entries (develop-without vs mature-lesion dissociation), REE_assembly 3b0226db7e, literature_confidence=0.803"
     }
   ],
   "dispositions": [
@@ -3054,6 +3058,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-01T19:42:18Z",
       "re_eligible_after": "2026-08-03T19:42:18Z"
+    },
+    {
+      "stable_hash": "239348dda3af",
+      "igw_id_at_disposition": "IGW-20260802-225",
+      "owner_exq": null,
+      "claim_ids": [
+        "Q-088"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for Q-088",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-02T13:45:40Z",
+      "re_eligible_after": "2026-08-04T13:45:40Z"
     }
   ]
 }
