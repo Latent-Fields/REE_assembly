@@ -5911,6 +5911,41 @@ def _write_planning_outputs(
         if _bid and _bid in _existing_status:
             _p.update(_existing_status[_bid])
 
+    # Write the same carried-forward status back into manual_proposals.v1.json
+    # itself. Without this, a manual item's on-disk "status" is frozen at
+    # whatever it was authored as -- the merge above always overrides the IN-
+    # MEMORY copy from _existing_status, but nothing ever wrote that resolution
+    # back to the source file, so a session reading manual_proposals.v1.json
+    # directly (its own docstring calls it the place to "add new items", which
+    # reads as authoritative) sees a permanently-stale "proposed" for anything
+    # already executed/superseded/gated. Confirmed root cause of proposals
+    # being re-investigated as open work long after landing: see
+    # WORKSPACE_STATE.md 2026-08-02 (session determined-ritchie-55a3a6).
+    # Only the same status-family keys the carry-forward above reads are
+    # touched, in place, preserving field order -- so a real diff only shows
+    # up when something actually resolved.
+    if manual_proposals_path.exists():
+        try:
+            _manual_doc = json.loads(manual_proposals_path.read_text(encoding="utf-8"))
+            _manual_changed = False
+            for _mp in _manual_doc.get("items", []):
+                if not isinstance(_mp, dict):
+                    continue
+                _mp_bid = _mp.get("backlog_id") or _mp.get("proposal_id")
+                _resolved = _existing_status.get(_mp_bid) if _mp_bid else None
+                if not _resolved:
+                    continue
+                for _k, _v in _resolved.items():
+                    if _mp.get(_k) != _v:
+                        _mp[_k] = _v
+                        _manual_changed = True
+            if _manual_changed:
+                manual_proposals_path.write_text(
+                    json.dumps(_manual_doc, indent=2) + "\n", encoding="utf-8"
+                )
+        except Exception:
+            pass  # malformed manual file -- skip silently, same as the merge above
+
     proposals_doc = {
         "schema_version": "experiment_proposals/v1",
         "generated_at_utc": generated_at,
