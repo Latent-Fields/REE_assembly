@@ -1324,3 +1324,5 @@ One line per hourly tick. ASCII only.
 2026-08-02T12:28:59Z STAGE IGW-20260802-204 skill=/implement-substrate prio=25 worktree=igw-204-substrate-ready-sd-mech267-horiz (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-02T13:29:37Z SPAWN IGW-20260802-225 skill=/lit-pull prio=40 uuid=f5e2a2c6-60a2-46ab-ba58-9dc0b1bad85c pid=96750 worktree=igw-225-literature-proposal-for-q-088
 2026-08-02T13:45:40Z auto-defer IGW-20260802-225 hash=239348dda3af for 48h (complete)
+2026-08-02T13:45:45Z complete IGW-20260802-225 spawned->completed outcome=USEFUL_LANDED: lit-pull Q-088: 5 entries (develop-without vs mature-lesion dissociation), REE_a
+2026-08-02T14:01:06Z auto-defer IGW-20260802-204 hash=be961fd75216 for 48h (complete)
