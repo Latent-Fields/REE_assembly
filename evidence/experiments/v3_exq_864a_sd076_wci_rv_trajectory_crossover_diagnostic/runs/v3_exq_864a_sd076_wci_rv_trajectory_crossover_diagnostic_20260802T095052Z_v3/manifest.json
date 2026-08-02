@@ -1,0 +1,444 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic",
+  "run_id": "v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-02T14:41:34Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-076"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {
+    "SD-076": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "wci_rv_trajectory_characterized_no_crossover_in_range",
+    "preconditions": [
+      {
+        "name": "ARM_INFL_LO::steps200::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO::steps200",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4957806815327882,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps200::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_LO::steps200",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0021175433960235815,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps200::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_LO::steps200",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.09356860484141147,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps200::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_LO::steps200",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps200::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI::steps200",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49597553673862327,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps200::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_HI::steps200",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.00210432519829083,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps200::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_HI::steps200",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.1144373088320403,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps200::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_HI::steps200",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps500::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO::steps500",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4961194513218211,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps500::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_LO::steps500",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0021863493174851182,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps500::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_LO::steps500",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.09294615976852245,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps500::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_LO::steps500",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps500::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI::steps500",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.49612512951125337,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps500::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_HI::steps500",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.002165105118192346,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps500::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_HI::steps500",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.11509629214010793,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps500::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_HI::steps500",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps1000::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_LO::steps1000",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4940014936310345,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps1000::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_LO::steps1000",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.002231474248261624,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps1000::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_LO::steps1000",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.07945433482931877,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_LO::steps1000::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_LO::steps1000",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps1000::rv_live",
+        "precondition": "rv_live",
+        "arm": "ARM_INFL_HI::steps1000",
+        "kind": "readiness",
+        "description": "rv_final differs from precision_init by more than the floor (Q-042/530c substrate-liveness contract). Worst seed reported.",
+        "control": "every seed of this cell; a dead rv makes the trajectory meaningless",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.4947648543550552,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps1000::f1_recalib_engaged",
+        "precondition": "f1_recalib_engaged",
+        "arm": "ARM_INFL_HI::steps1000",
+        "kind": "readiness",
+        "description": "mean per-cycle |rv_after - rv_before| from the F1 WRITEBACK recalibration exceeds the floor -- confirms the reduced N_TRAIN_EPS=8 operating point still exercises the same substrate mechanism 860 measured at N_TRAIN_EPS=30.",
+        "control": "F1 recalibration is ON in every cell of this design",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.002208753528685054,
+        "threshold": 0.0001,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps1000::trajectory_non_degenerate",
+        "precondition": "trajectory_non_degenerate",
+        "arm": "ARM_INFL_HI::steps1000",
+        "kind": "readiness",
+        "description": "max(diff) - min(diff) across this cell's sampled within-episode trajectory exceeds the floor -- the instrumentation captured real EMA movement, not a frozen/constant reading. Worst seed reported.",
+        "control": "the sampled diff series itself; a constant reading anywhere near zero variation means nothing was actually observed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.0923924374888188,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "ARM_INFL_HI::steps1000::real_exposure_achieved",
+        "precondition": "real_exposure_achieved",
+        "arm": "ARM_INFL_HI::steps1000",
+        "kind": "readiness",
+        "description": "fraction of this cell's nominal STEPS_PER_EP*N_TRAIN_EPS tick budget actually executed (final_global_tick_reached + 1) / (steps_per_ep * n_train) -- the DESIGN FIX's own falsifiable check that STEPS_PER_EP genuinely bounds real exposure rather than being silently overridden by env-internal termination, the exact defect V3-EXQ-864's autopsy diagnosed. Worst seed reported.",
+        "control": "every seed of this cell; this is the regression guard against reintroducing 864's early-break defect",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.999,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C0_trajectory_data_usable",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C1_crossover_bracketed_in_swept_range",
+        "load_bearing": false,
+        "passed": false,
+        "per_arm_bracket": {
+          "ARM_INFL_LO": {
+            "steps_per_ep_swept": [
+              200,
+              500,
+              1000
+            ],
+            "diff_final_by_steps": {
+              "200": 0.00029727829762193013,
+              "500": 3.728377365356324e-05,
+              "1000": 0.0020129531601193523
+            },
+            "final_global_tick_reached_by_steps": {
+              "200": 1599,
+              "500": 3999,
+              "1000": 7999
+            },
+            "sign_sequence": [
+              "positive",
+              "positive",
+              "positive"
+            ],
+            "crossover_bracket_steps_per_ep": null
+          },
+          "ARM_INFL_HI": {
+            "steps_per_ep_swept": [
+              200,
+              500,
+              1000
+            ],
+            "diff_final_by_steps": {
+              "200": 0.0004084281390245735,
+              "500": 4.663807590490508e-05,
+              "1000": 0.0024780060179656295
+            },
+            "final_global_tick_reached_by_steps": {
+              "200": 1599,
+              "500": 3999,
+              "1000": 7999
+            },
+            "sign_sequence": [
+              "positive",
+              "positive",
+              "positive"
+            ],
+            "crossover_bracket_steps_per_ep": null
+          }
+        }
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C0_trajectory_data_usable": true,
+      "C1_crossover_bracketed_in_swept_range": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "b23faee0ad6d3354b279bc916078510e4dc9feb526de92410d1b5e4d251ebd3f",
+  "substrate_commit": {
+    "commit": "f7250c1f5951f05c8ca6888092746bf1c59e7476",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 54400,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 12,
+    "goal_state_present": false
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "per_cell": {
+      "ARM_INFL_LO_steps200": {
+        "steps_per_ep": 200,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": 0.00029727829762193013,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 1599,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 1549
+      },
+      "ARM_INFL_HI_steps200": {
+        "steps_per_ep": 200,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": 0.0004084281390245735,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 1599,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 1549
+      },
+      "ARM_INFL_LO_steps500": {
+        "steps_per_ep": 500,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": 3.728377365356324e-05,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 3999,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 3928
+      },
+      "ARM_INFL_HI_steps500": {
+        "steps_per_ep": 500,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": 4.663807590490508e-05,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 3999,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 3928
+      },
+      "ARM_INFL_LO_steps1000": {
+        "steps_per_ep": 1000,
+        "arm_id": "ARM_INFL_LO",
+        "asymmetry": 0.6,
+        "diff_final_mean": 0.0020129531601193523,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 7999,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 7947
+      },
+      "ARM_INFL_HI_steps1000": {
+        "steps_per_ep": 1000,
+        "arm_id": "ARM_INFL_HI",
+        "asymmetry": 0.8,
+        "diff_final_mean": 0.0024780060179656295,
+        "diff_final_sign": "positive",
+        "any_seed_sign_flip": false,
+        "n_seeds": 2,
+        "final_global_tick_reached_min": 7999,
+        "real_exposure_frac_min": 1.0,
+        "env_done_ticks_total_max": 7947
+      }
+    },
+    "per_arm_bracket": {
+      "ARM_INFL_LO": {
+        "steps_per_ep_swept": [
+          200,
+          500,
+          1000
+        ],
+        "diff_final_by_steps": {
+          "200": 0.00029727829762193013,
+          "500": 3.728377365356324e-05,
+          "1000": 0.0020129531601193523
+        },
+        "final_global_tick_reached_by_steps": {
+          "200": 1599,
+          "500": 3999,
+          "1000": 7999
+        },
+        "sign_sequence": [
+          "positive",
+          "positive",
+          "positive"
+        ],
+        "crossover_bracket_steps_per_ep": null
+      },
+      "ARM_INFL_HI": {
+        "steps_per_ep_swept": [
+          200,
+          500,
+          1000
+        ],
+        "diff_final_by_steps": {
+          "200": 0.0004084281390245735,
+          "500": 4.663807590490508e-05,
+          "1000": 0.0024780060179656295
+        },
+        "final_global_tick_reached_by_steps": {
+          "200": 1599,
+          "500": 3999,
+          "1000": 7999
+        },
+        "sign_sequence": [
+          "positive",
+          "positive",
+          "positive"
+        ],
+        "crossover_bracket_steps_per_ep": null
+      }
+    },
+    "readiness_ok": true
+  }
+}
