@@ -53,12 +53,55 @@ closure_plan:
     - id: "arc_005_control_plane_routing:GAP-A-precision-diagnostic"
       title: "Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, not a substrate null"
       phase: 0
-      status: done
+      status: in-progress
       severity: informational
-      owner_exq: "V3-EXQ-848"
+      owner_exq: "V3-EXQ-848, V3-EXQ-848a"
       unblocks_claims: []
       depends_on: ["arc_005_control_plane_routing:GAP-A"]
-      last_updated: 2026-07-31
+      last_updated: 2026-08-02
+      remedy_2026_08_02: "STATUS REVERTED done -> in-progress: 848's own landed result did NOT
+        validly test the remedy this node's remedy_2026_07_31 entry describes, for a reason
+        distinct from anything diagnosed in 802 -- a plain configuration omission in 848's own
+        driver. 848 landed 2026-08-01T13:48:55Z with outcome FAIL, evidence_direction mixed,
+        4/10 units satisfied (rho up to 0.866) -- NOT the near-zero null the pre-registered
+        dv_symmetry_declaration and the dry-run smoke both expected. Root cause (found via a
+        follow-up direct probe, session IGW-20260801-199 / arc005_dacc_adapter_goal_proximity_
+        training, instrumenting REEAgent.select_action on 848's own driver config): 848's
+        _agent_kwargs() set every prerequisite for the channel-1 dACC-consume pathway
+        (use_mech_consume=True, z_goal_enabled=True, candidate_summary_source=
+        'e2_world_forward') EXCEPT dacc_goal_readout_weight, which was never referenced
+        anywhere in the script and therefore silently defaulted to 0.0
+        (DACCConfig.dacc_goal_readout_weight: float = 0.0). DACCtoE3Adapter.forward() gates
+        the goal-readout term on 'grw != 0.0 and gr is not None' (ree_core/cingulate/dacc.py)
+        -- with grw==0.0 this term contributed EXACTLY ZERO to score_bias on every tick of
+        848's run. So 848 never actually exercised the pathway it was queued to test; its
+        observed FAIL/mixed signal is attributable entirely to channel 1's pre-existing
+        serotonin-mediated pathway (tonic_5ht_baseline -> z_goal_seeding_gain + wanting_floor,
+        unrelated to dACC-consume) and to channel 2, not to the dACC-consume mechanism this
+        diagnostic chain exists to characterise. The same probe also found raw
+        candidate_goal_proximity carries a units/calibration mismatch (small achieved
+        cross-candidate spread, ~0.003-0.03, against the full [0,1] nominal range, because
+        GoalState.goal_proximity()'s MSE-sum distance is dominated by the larger
+        e2_world_forward candidate-summary norm rather than genuine goal-relative
+        displacement) -- a calibration issue, not an untrained consumer (DACCtoE3Adapter has
+        no nn.Parameter anywhere; 'training' was a category error in the substrate_queue
+        hint this diagnostic chain originally carried). Both fixed on ree-v3 main
+        4b79d18d44 (SD-057 L7 amend): DACCConfig.dacc_goal_readout_normalize (new, default
+        False, bit-identical off) does a per-candidate-set min-max rescale before the
+        existing dacc_goal_readout_weight multiply. V3-EXQ-848a queued as the corrected
+        re-test (ree-v3 1b69606543, pushed to origin/main, coordinator POST applied=true,
+        confirmed present in /queue/active): identical design and pre-registered
+        C_PRECISION_MONOTONICITY criterion to 848, with dacc_goal_readout_weight=0.5
+        (V3-EXQ-637 precedent value) and dacc_goal_readout_normalize=True as the only
+        change, plus a build-time guard (asserts the two flags actually threaded through
+        REEConfig.from_dims and into agent.dacc_adapter.config) and a whole-run engagement
+        check (agent.dacc_adapter._n_bias_calls must increment at least once) added
+        specifically to prevent a repeat of this exact silent-zero failure mode. This node
+        resumes WHEN V3-EXQ-848a LANDS A MANIFEST -- nothing re-derives it automatically.
+        848's own manifest evidence_direction (mixed) is UNCHANGED by this correction (that
+        is a governance-review call, not this note's) -- but its dv_symmetry_declaration's
+        characterisation of channel 1 as 'untrained-consumer, expected null' should be read
+        as UNTESTED, not confirmed, until 848a's result is available."
       remedy_2026_07_31: "Same session, immediately following the diagnosis: (1) FIXED the dACC score_bias wiring gap -- ree_core/agent.py's SD-057 L7 candidate_goal_proximity block was reading get_world_state_sequence()[0,0,:] (collapsed proposer starting state, identical across every candidate, confirmed exactly 0.0 cross-candidate range every call); fixed by mirroring the existing ARC-065 GAP-A _candidate_world_summaries() pattern (agent.py mech295 block already did this correctly). Landed ree-v3 main 18945a4 (--no-verify used with explicit user approval: the pre-commit hook needed a full remote contract suite, but the hub + all 3 cloud workers were continuously busy with real experiments and other sessions' test runs for 30+ minutes with no sign of clearing; substituted 8/8 targeted regression tests -- including a new test proving the pre-fix bug and the post-fix behaviour, added to tests/contracts/test_arc065_gapa_candidate_summary_source.py -- plus a clean validate_experiments.py --strict run). VERIFIED, before committing, that the fix alone is NOT SUFFICIENT: even with genuine non-degenerate goal_proximity input, dacc_adapter's response is quantified at ~1e-8 in scale vs the ~0.87 range of the OTHER score_bias components -- four to seven orders of magnitude too small to ever move an argmin -- consistent with dacc_adapter never having trained on non-degenerate values of this input (use_mech_consume has never been ON in any prior training run). (2) QUEUED V3-EXQ-848 (ree-v3 26d2539d59 on origin/main, coordinator POST confirmed live in /queue/active): a precision-ONLY, DECOUPLED-ladder redesign -- channels 1+2 laddered L0/L1/L2 as 802 did, channels 3+4 held FIXED at L0 in every cell (removing the dilution confound 802's joint 4-channel ladder carried, since 3/4 were only ever expected to carry occupancy per this doc's own channel table), with the now-fixed use_mech_consume=True + z_goal_enabled=True + candidate_summary_source='e2_world_forward' so channel 1 gets its best honest post-fix shot. PRE-REGISTERED EXPECTATION (stated in the script's dv_symmetry_declaration): still likely a near-zero null, for the two separate already-diagnosed reasons above (untrained dacc_adapter for channel 1; argmax-invariant temperature under REE's ~97%-committed normal operation for channel 2) -- self-routes evidence_direction=non_contributory (never weakens/mixed) if confirmed, per the mandatory_design_check disposition for a DV-symmetry-invariant manipulation. Smoke --dry-run already lands exactly that pattern (all_near_zero_null=true) even at dry-run scale. TRACK B (channel 2 under an uncommitted/exploratory-only regime -- the only way to let temperature matter) and TRACK C (retraining dacc_adapter on live goal_proximity) were user-confirmed OUT OF SCOPE for this remedy -- noted as candidate future work, not built. GAP-B (V3-EXQ-846, occupancy-only) is unaffected throughout."
       completion_note: "Diagnosed chip-20260731-arc005-802-precision-anomaly (2026-07-31), the open question the GAP-B reconcile note deferred. VERDICT: (a) genuine harness/measurement-construction defect, NOT (b) a real substrate null -- the precision DV in 802's driven harness is MATHEMATICALLY GUARANTEED to be channel-invariant regardless of the true substrate, so its rho=0.0/bit-identical result carries zero evidential weight either way about whether the control plane routes precision. MECHANISM, confirmed empirically by re-running 802's exact _build/_run_cell logic (agent_kwargs/channel_settings from experiments/_lib/baselines/exq802_arc005_control_plane.py, reset_all_rng from experiments/_lib/arm_fingerprint.py) at L0 vs L2, same seed+content: (1) arm_cell's per-cell RNG reset (random/numpy/torch/cuda, a deliberate reproducibility hardening fix, plan section 2.2) reseeds to the SAME value for cells sharing a seed across channel levels, so the stochastic candidate-trajectory pool generated by agent.generate_trajectories is bit-identical across L0/L1/L2. (2) Given that identical pool, the e3.select() score tensor (agent.e3.last_scores) came back torch.equal()-TRUE between L0 and L2 at every one of 8 captured selection calls across a 70-tick probe -- not merely the same argmin, the SAME SCORES to float32 precision. (3) Root cause of (2): the dACC score_bias term (SD-032b, the pathway the pre-registered dv_symmetry_declaration cites for channel 1 -- '5-HT reshapes the dACC bundle') is computed from z_harm_a, candidate payoffs/effort/action_classes, e3.current_precision and drive_level -- NONE of which read serotonin.current_seeding_gain()/valence_wanting_floor in this call path (ree_core/agent.py select_action, the self.dacc(...) invocation ~line 6133), so it is bit-identical regardless of the channel-1 setting; channel_route_bias is unconditionally None because use_modulatory_channel_routing defaults False and BASE.agent_kwargs() never sets it; and effective_temperature (channel 2, phasic burst) DOES verifiably differ by level (captured 0.9 at L0 vs 0.1 at L2, confirming phasic_burst_temp_delta is live) but selection is a deterministic argmin over scores in agent.eval() -- exactly the argmax-invariant transform the docstring's OWN dv_symmetry_declaration admits for channel 2, so it never changes which candidate is chosen. Channels 3/4 (salience mode prior, pcc_stability) correctly drive agent.salience.current_mode (confirmed: L0 stayed internal_planning-only, L2 visited both internal_planning and external_task over the same 70 ticks) but that mode variable is read only for the OCCUPANCY diagnostic, never fed back into trajectory scoring. Net: the actually-EXECUTED action sequence is bit-identical across channel levels (confirmed directly, not just inferred from scores) -> the env trajectory, z_world stream, and the driver's manually-recomputed e2.world_forward prediction-error stream feeding e3.update_running_variance are ALL bit-identical -> log10_precision_mean is bit-identical BY CONSTRUCTION, independent of any true precision-routing property of the substrate. DECISION RELEVANCE: in 802's own manifest, rho_external_task_occupancy already clears the C2 0.60 floor in ALL 10/10 (content,seed) units (range 0.866-1.0) -- C2 failed 0/10 purely on the precision half's degenerate (undefined, non-weak) rho=0.0. Had the precision DV been validly measurable, C2's occupancy component alone would already have satisfied C2 (>=7/10 required), and since C1/C3 both PASS, 802's overall verdict would likely have been PASS/supports rather than FAIL/mixed/control_plane_routing_weak -- meaning the current FAIL verdict is an artifact of an unmeasurable DV component, not evidence that the plane fails to route precision. This does NOT mean precision routing is real (that remains genuinely untested); it means 802 supplies NO information about it either way, and the FAIL label should not be read as a negative finding on precision specifically. REMEDY NOT EXECUTED IN THIS CHIP (a substrate-wiring or DV-redesign decision, out of a diagnostic chip's scope, and /queue-experiment authoring is the mandatory path for any fix): a corrected re-run (V3-EXQ-802a) would need either (i) dACC's score_bias to genuinely read serotonin-driven z_goal_seeding_gain/valence_wanting_floor as the dv_symmetry_declaration assumed, or (ii) a precision DV construction that isn't bottlenecked through deterministic argmin selection over an RNG-matched candidate pool (e.g. reading the agent's own internally-tracked e3 state from its normal orchestration path rather than the driver's manual e2.world_forward recomputation) -- deciding between these is a design call for whoever next works this claim, not this chip. GAP-B (occupancy-only, V3-EXQ-846) is UNAFFECTED either way: it was already correctly scoped to occupancy, which this diagnostic confirms was the only validly-measured DV in 802. Probe scripts (not committed, throwaway): reproduced via experiments/_lib/baselines/exq802_arc005_control_plane.py + experiments/_lib/arm_fingerprint.py reset_all_rng, driving REEAgent directly outside the experiment harness."
 ---
@@ -66,12 +109,20 @@ closure_plan:
 # ARC-005 -- Control-Plane Routing (Plan of Record)
 
 **Created:** 2026-07-22 &nbsp;|&nbsp; **Reconciled + GAP-B queued:** 2026-07-31 &nbsp;|&nbsp;
-**Precision-DV diagnosed + remedied:** 2026-07-31
+**Precision-DV diagnosed + remedied:** 2026-07-31 &nbsp;|&nbsp; **848's remedy found untested,
+corrected re-test queued:** 2026-08-02
 **Status:** GAP-A **done** (V3-EXQ-802 landed FAIL/mixed, reviewed + adjudicated by governance
 2026-07-25, no claims.yaml change) — GAP-A precision-DV bit-identity **diagnosed as a harness
-defect, not a substrate null, and remedied**: dACC wiring bug fixed (ree-v3 `18945a4`), corrected
-precision-only decoupled-ladder experiment queued as **V3-EXQ-848** (see below) — GAP-B
-**in-progress** (V3-EXQ-846 queued, re-scoped to mode-occupancy attribution only).
+defect, not a substrate null, and a remedy attempted**: dACC wiring bug fixed (ree-v3
+`18945a4`), corrected precision-only decoupled-ladder experiment queued as **V3-EXQ-848** (see
+below). **GAP-A-precision-diagnostic reopened to in-progress 2026-08-02**: 848 landed
+2026-08-01 (FAIL/mixed, NOT the pre-registered near-zero null) because 848's own driver never
+set `dacc_goal_readout_weight`, so the dACC goal-readout pathway it was queued to test
+contributed exactly zero throughout the run -- a silent configuration omission, not a
+substrate finding. Corrected re-test queued as **V3-EXQ-848a** (dacc_goal_readout_weight=0.5
++ the new dacc_goal_readout_normalize=True calibration flag, ree-v3 `4b79d18d44`) -- see the
+node's `remedy_2026_08_02` entry below. GAP-B **in-progress** (V3-EXQ-846 queued, re-scoped to
+mode-occupancy attribution only; unaffected by the precision-channel bug above).
 
 ## Why this doc exists
 
