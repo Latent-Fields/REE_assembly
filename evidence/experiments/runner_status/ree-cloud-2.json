@@ -1,40 +1,29 @@
 {
   "schema_version": "v1",
   "runner_pid": 834,
-  "runner_started_at": "2026-08-02T09:50:51.124021+00:00",
-  "last_updated": "2026-08-02T14:41:35.356078+00:00",
+  "runner_started_at": "2026-08-02T14:43:48.932772+00:00",
+  "last_updated": "2026-08-02T14:58:05.261519+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-848a",
+      "queue_id": "V3-EXQ-847a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "ARC-005 precision-only decoupled ladder, CALIBRATED: does the dACC goal-readout channel route precision once dacc_goal_readout_weight/normalize are actually set? (successor to V3-EXQ-848)",
+      "title": "ARC-062 GOV-FANOUT-1 Leg P-D (H4 diagnostic, corrected denominator): context-conditioned (reef vs open) committed-class TV-divergence, ARM_ON vs ARM_OFF -- supersedes V3-EXQ-847",
       "description": "",
-      "estimated_minutes": 8000.0,
+      "estimated_minutes": 280.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-870",
-      "backlog_id": "EXP-0413",
-      "claim_id": "",
-      "title": "MECH-480: dACC-analog execution-gain dissociation -- outcome-sensitivity vs logit-margin execution strength under dacc_weight OFF/ON ablation with mid-episode contingency switch (EXP-0413)",
-      "description": "",
-      "estimated_minutes": 72.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-863",
+      "queue_id": "V3-EXQ-861a",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062/MECH-309 full-budget replication of V3-EXQ-859: lateral_pfc route_source vs none ablation, MECH-448/449 engagement (~7.7h)",
+      "claim_id": "MECH-180",
+      "title": "MECH-122 spindle content-selection validation of V3-EXQ-861 spindle_density DV (MECH-180)",
       "description": "",
-      "estimated_minutes": 280.0,
+      "estimated_minutes": 150.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -3254,6 +3243,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 17443.4
+    },
+    {
+      "queue_id": "V3-EXQ-872",
+      "backlog_id": "EXP-0386",
+      "claim_id": "INV-087",
+      "title": "INV-087 proxy tethering constraint: untethered (non-potential) maintenance proxy diverts E3 selection from the true-goal optimum; potential-difference proxy (gamma*Phi(s')-Phi(s), Ng/Harada/Russell 1999) does not",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | Outcome: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-872 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-872.json",
+      "started_at": "2026-08-02T14:57:56.893349+00:00",
+      "completed_at": "2026-08-02T14:58:05.260686+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_872_inv087_proxy_tethering_constraint_20260802T145757Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 8.4
     }
   ]
 }
