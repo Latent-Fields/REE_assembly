@@ -874,6 +874,71 @@ def run_workspace_health_summary() -> dict:
         return result
 
 
+# ── Docs picker index ─────────────────────────────────────────────────────────
+
+_DOCS_PICKER_CONFIG_PATH = SERVE_DIR / "docs_picker_config.json"
+_DOCS_TITLE_ACRONYMS = {"REE", "E1", "E2", "E3", "JEPA", "V1", "V2", "V3", "V4"}
+
+
+def _title_from_filename(path: Path) -> str:
+    words = re.split(r"[_\-]+", path.stem)
+    parts = [w.upper() if w.upper() in _DOCS_TITLE_ACRONYMS else w.capitalize()
+             for w in words if w]
+    return " ".join(parts) if parts else path.stem
+
+
+def read_docs_index() -> dict:
+    """Doc index for the Docs picker (GET /api/docs/index): curated groups
+    from docs_picker_config.json, plus every *.md file in that config's
+    low-noise 'auto_dirs' (titled from its filename). docs/architecture/ and
+    evidence/planning/ are deliberately NOT auto-scanned -- both are mostly
+    historical/working files rather than reference docs (247 vs ~48 curated,
+    799 vs 11 curated as of 2026-08-02) -- see docs_picker_config.json's
+    top-level comment and explorer_ui_improvement_plan.md C4.
+    """
+    try:
+        config = json.loads(_DOCS_PICKER_CONFIG_PATH.read_text())
+    except Exception as exc:
+        return {"groups": [], "error": f"{type(exc).__name__}: {exc}"}
+
+    serve_root = SERVE_DIR.resolve()
+    groups = []
+    seen_paths = set()
+
+    for group in config.get("curated_groups", []):
+        docs = []
+        for doc in group.get("docs", []):
+            rel_path = doc.get("path")
+            if not rel_path:
+                continue
+            seen_paths.add(rel_path)
+            docs.append({"title": doc.get("title") or rel_path, "path": rel_path})
+        if docs:
+            groups.append({"label": group.get("label") or "Docs", "docs": docs})
+
+    for entry in config.get("auto_dirs", []):
+        rel_dir = entry.get("dir")
+        label = entry.get("group") or rel_dir
+        if not rel_dir:
+            continue
+        abs_dir = (SERVE_DIR / rel_dir).resolve()
+        if abs_dir != serve_root and serve_root not in abs_dir.parents:
+            continue  # outside the repo root -- ignore rather than serve it
+        if not abs_dir.is_dir():
+            continue
+        docs = []
+        for f in sorted(abs_dir.glob("*.md")):
+            rel_path = str(f.relative_to(serve_root))
+            if rel_path in seen_paths:
+                continue  # already reachable via a curated entry
+            seen_paths.add(rel_path)
+            docs.append({"title": _title_from_filename(f), "path": rel_path})
+        if docs:
+            groups.append({"label": label, "docs": docs})
+
+    return {"groups": groups, "error": None}
+
+
 # ── GitHub fallback ───────────────────────────────────────────────────────────
 
 ORG = "Latent-Fields"
@@ -6069,6 +6134,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/workspace/health":
             body = json.dumps(run_workspace_health_summary()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/docs/index":
+            body = json.dumps(read_docs_index()).encode()
             self._json_response(body)
             return
         if path == "/api/usage":

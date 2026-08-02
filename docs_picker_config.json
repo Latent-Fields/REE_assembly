@@ -1,0 +1,163 @@
+{
+  "_comment": "Backs the Docs picker in explorer.html (GET /api/docs/index). 'curated_groups' are hand-picked entries from docs/architecture/ and evidence/planning/ -- both trees are mostly historical/working files (247 vs ~48 curated, 799 vs 11 curated as of 2026-08-02), so they are NOT auto-scanned; add new entries here by hand. 'auto_dirs' are low-noise directories where every file is scanned automatically and titled from its filename -- see explorer_ui_improvement_plan.md C4 for the full reasoning.",
+  "curated_groups": [
+    {
+      "label": "Start here",
+      "docs": [
+        { "title": "How REE develops", "path": "docs/START_HERE_HOW_REE_DEVELOPS.md" },
+        { "title": "Roadmap", "path": "docs/roadmap.md" },
+        { "title": "Development guide", "path": "DEVELOPMENT.md" },
+        { "title": "Pending review (inbox)", "path": "evidence/experiments/pending_review.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Overview & Engines",
+      "docs": [
+        { "title": "Overview", "path": "docs/architecture/overview.md" },
+        { "title": "E1", "path": "docs/architecture/e1.md" },
+        { "title": "E2", "path": "docs/architecture/e2.md" },
+        { "title": "E3", "path": "docs/architecture/e3.md" },
+        { "title": "L-space", "path": "docs/architecture/l_space.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Control Plane",
+      "docs": [
+        { "title": "Control Plane", "path": "docs/architecture/control_plane.md" },
+        { "title": "Control Plane Signal Map", "path": "docs/architecture/control_plane_signal_map.md" },
+        { "title": "Hook Surface Contract", "path": "docs/architecture/hook_surface_contract.md" },
+        { "title": "Path Authority and Interrupts", "path": "docs/architecture/path_authority_and_interrupts.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Memory & Circuits",
+      "docs": [
+        { "title": "Default Mode", "path": "docs/architecture/default_mode.md" },
+        { "title": "Hippocampal Systems", "path": "docs/architecture/hippocampal_systems.md" },
+        { "title": "Hippocampal Braid (legacy)", "path": "docs/architecture/hippocampal_braid.md" },
+        { "title": "Papez Circuit", "path": "docs/architecture/papez_circuit.md" },
+        { "title": "Arcuate Fasciculus", "path": "docs/architecture/arcuate_fasciculus.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Modes & Agency",
+      "docs": [
+        { "title": "Mode Manager", "path": "docs/architecture/mode_manager.md" },
+        { "title": "Modes of Cognition", "path": "docs/architecture/modes_of_cognition.md" },
+        { "title": "Agency Responsibility Flow", "path": "docs/architecture/agency_responsibility_flow.md" },
+        { "title": "Trajectory Selection", "path": "docs/architecture/trajectory_selection.md" },
+        { "title": "Developmental Curriculum", "path": "docs/architecture/developmental_curriculum.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Attention & Binding",
+      "docs": [
+        { "title": "Entities and Binding", "path": "docs/architecture/entities_and_binding.md" },
+        { "title": "Precision Control", "path": "docs/architecture/precision_control.md" },
+        { "title": "Precision Scoping", "path": "docs/architecture/precision_scoping.md" },
+        { "title": "Why Attention Must Be Fragmented", "path": "docs/architecture/why_attention_must_be_fragmented.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Representation & Dynamics",
+      "docs": [
+        { "title": "Residue Geometry", "path": "docs/architecture/residue_geometry.md" },
+        { "title": "Sensory Stream Tags", "path": "docs/architecture/sensory_stream_tags.md" },
+        { "title": "Temporal Dynamics", "path": "docs/architecture/temporal_dynamics.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Neuromodulation",
+      "docs": [
+        { "title": "Astrocyte Regulatory Stack", "path": "docs/architecture/astrocyte_regulatory_stack.md" },
+        { "title": "Serotonin", "path": "docs/architecture/serotonin.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Language",
+      "docs": [
+        { "title": "Language (overview)", "path": "docs/architecture/language.md" },
+        { "title": "Emergence and Bootstrapping", "path": "docs/architecture/language/emergence_and_bootstrapping.md" },
+        { "title": "Language and Learning", "path": "docs/architecture/language/language_and_learning.md" },
+        { "title": "Language and Institutions", "path": "docs/architecture/language/language_and_institutions.md" },
+        { "title": "Language Failure Modes", "path": "docs/architecture/language/language_failure_modes.md" },
+        { "title": "Minimal Signalling Channel", "path": "docs/architecture/language/minimal_signalling_channel.md" },
+        { "title": "Trust and Deception", "path": "docs/architecture/language/trust_and_deception.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Sleep",
+      "docs": [
+        { "title": "Sleep (overview)", "path": "docs/architecture/sleep.md" },
+        { "title": "Precision Recalibration", "path": "docs/architecture/sleep/precision_recalibration.md" },
+        { "title": "Reality Consolidation", "path": "docs/architecture/sleep/reality_consolidation.md" },
+        { "title": "Residue Integration", "path": "docs/architecture/sleep/residue_integration.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Social",
+      "docs": [
+        { "title": "Social", "path": "docs/architecture/social.md" }
+      ]
+    },
+    {
+      "label": "Architecture / JEPA Integration",
+      "docs": [
+        { "title": "JEPA E1/E2 Integration Contract", "path": "docs/architecture/jepa_e1e2_integration_contract.md" },
+        { "title": "JEPA-REE Hybrid Diagram Spec", "path": "docs/architecture/jepa_ree_hybrid_diagram_spec.md" }
+      ]
+    },
+    {
+      "label": "Architecture / Diagrams & Sources",
+      "docs": [
+        { "title": "Architecture Triple-View Guide", "path": "docs/architecture/diagram_views.md" },
+        { "title": "Architecture Stream Catalog", "path": "docs/architecture/streams.md" },
+        { "title": "Architecture Routing Table", "path": "docs/architecture/stream_routing.v1.yaml" },
+        { "title": "Architecture Static Diagram Source", "path": "docs/architecture/architecture_static.mmd" },
+        { "title": "Architecture Typed Dataflow Source", "path": "docs/architecture/architecture_typed_dataflow.mmd" },
+        { "title": "Architecture Episode Sequence Source", "path": "docs/architecture/episode_sequence.mmd" }
+      ]
+    },
+    {
+      "label": "Architecture / Specs (v2)",
+      "docs": [
+        { "title": "REE-v2 Spec", "path": "docs/architecture/ree_v2_spec.md" },
+        { "title": "REE-v2 Repo Bootstrap Spec", "path": "docs/architecture/ree_v2_repo_bootstrap_spec.md" }
+      ]
+    },
+    {
+      "label": "Core Docs",
+      "docs": [
+        { "title": "Invariants", "path": "docs/invariants.md" },
+        { "title": "Glossary", "path": "docs/glossary.md" },
+        { "title": "REE Minimum Spec", "path": "docs/REE_MIN_SPEC.md" },
+        { "title": "REE Overview", "path": "docs/REE_overview.md" },
+        { "title": "REE Failure Modes", "path": "docs/REE_failure_modes.md" }
+      ]
+    },
+    {
+      "label": "Governance / Planning",
+      "docs": [
+        { "title": "Governance Agenda", "path": "evidence/planning/GOVERNANCE_AGENDA.md" },
+        { "title": "Architecture Gap Register", "path": "evidence/planning/ARCHITECTURE_GAP_REGISTER.md" },
+        { "title": "Connectome Literature Pull", "path": "evidence/planning/CONNECTOME_LITERATURE_PULL.md" },
+        { "title": "Planning README", "path": "evidence/planning/README.md" },
+        { "title": "Task Inbox", "path": "evidence/planning/task_inbox.md" },
+        { "title": "Manual Carryover Items", "path": "evidence/planning/manual_carryover_items.v1.json" },
+        { "title": "Planning Criteria", "path": "evidence/planning/planning_criteria.v1.yaml" },
+        { "title": "Structure Review (Active)", "path": "evidence/planning/structure_review/latest/ACTIVE_INDEX.md" },
+        { "title": "Structure Review (Archive)", "path": "evidence/planning/structure_review/latest/ARCHIVE_INDEX.md" },
+        { "title": "Connectome Pull State", "path": "evidence/planning/connectome_pull_state.v1.json" },
+        { "title": "Experiment Proposals", "path": "evidence/planning/experiment_proposals.v1.json" }
+      ]
+    }
+  ],
+  "auto_dirs": [
+    { "dir": "docs", "group": "Docs (root)" },
+    { "dir": "docs/governance", "group": "Governance" },
+    { "dir": "docs/claims", "group": "Claims" },
+    { "dir": "docs/strategy", "group": "Strategy" },
+    { "dir": "docs/examples", "group": "Examples" },
+    { "dir": "docs/notes", "group": "Notes" }
+  ]
+}

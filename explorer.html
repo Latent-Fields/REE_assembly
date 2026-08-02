@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-02.6 -->
+<!-- EXPLORER_VERSION: 2026-08-02.7 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1434,12 +1434,90 @@
       opacity: 1;
     }
 
-    .docs-toolbar {
-      display: grid;
-      grid-template-columns: minmax(200px, 1fr) minmax(180px, 240px);
-      gap: 12px;
-      align-items: end;
-      margin-bottom: 8px;
+    .docs-layout {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .docs-sidebar {
+      flex: 0 0 260px;
+      width: 260px;
+      position: sticky;
+      top: 0;
+      max-height: calc(100vh - 160px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .docs-sidebar input#docSearch {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .docs-list {
+      overflow: auto;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .docs-group + .docs-group {
+      margin-top: 10px;
+    }
+
+    .docs-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      padding: 4px 8px 2px;
+    }
+
+    .docs-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 5px 8px;
+      border: none;
+      border-radius: 6px;
+      background: none;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .docs-item:hover {
+      background: var(--bg-2, rgba(0,0,0,0.05));
+    }
+
+    .docs-item.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .docs-empty {
+      padding: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .docs-main {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    @media (max-width: 760px) {
+      .docs-layout {
+        flex-direction: column;
+      }
+      .docs-sidebar {
+        position: static;
+        width: 100%;
+        max-height: 240px;
+      }
     }
 
     .doc-meta {
@@ -2506,18 +2584,16 @@
           <div class="graph-tooltip" id="graphTooltip"></div>
         </div>
         <div id="docsWrap" class="panel docs-wrap">
-          <div class="docs-toolbar">
-            <div>
-              <label for="docSelect">Document</label>
-              <select id="docSelect"></select>
+          <div class="docs-layout">
+            <div class="docs-sidebar">
+              <input id="docSearch" type="text" placeholder="Filter docs..." aria-label="Filter docs" />
+              <div id="docList" class="docs-list"></div>
             </div>
-            <div>
-              <label for="docSearch">Filter</label>
-              <input id="docSearch" type="text" placeholder="Filter docs..." />
+            <div class="docs-main">
+              <div id="docMeta" class="doc-meta"></div>
+              <div id="docContent" class="doc-content"></div>
             </div>
           </div>
-          <div id="docMeta" class="doc-meta"></div>
-          <div id="docContent" class="doc-content"></div>
         </div>
         <div id="mapWrap" class="panel map-wrap">
           <div class="meta">Subsystem map (filtered set)</div>
@@ -2791,158 +2867,18 @@ Resolution decision (free text):
 
 END CONFLICT RESOLUTION`;
 
-    const DOC_GROUPS = [
-      {
-        label: 'Start here',
-        docs: [
-          { title: 'How REE develops', path: 'docs/START_HERE_HOW_REE_DEVELOPS.md' },
-          { title: 'Roadmap', path: 'docs/roadmap.md' },
-          { title: 'Development guide', path: 'DEVELOPMENT.md' },
-          { title: 'Pending review (inbox)', path: 'evidence/experiments/pending_review.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Overview & Engines',
-        docs: [
-          { title: 'Overview', path: 'docs/architecture/overview.md' },
-          { title: 'E1', path: 'docs/architecture/e1.md' },
-          { title: 'E2', path: 'docs/architecture/e2.md' },
-          { title: 'E3', path: 'docs/architecture/e3.md' },
-          { title: 'L-space', path: 'docs/architecture/l_space.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Control Plane',
-        docs: [
-          { title: 'Control Plane', path: 'docs/architecture/control_plane.md' },
-          { title: 'Control Plane Signal Map', path: 'docs/architecture/control_plane_signal_map.md' },
-          { title: 'Hook Surface Contract', path: 'docs/architecture/hook_surface_contract.md' },
-          { title: 'Path Authority and Interrupts', path: 'docs/architecture/path_authority_and_interrupts.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Memory & Circuits',
-        docs: [
-          { title: 'Default Mode', path: 'docs/architecture/default_mode.md' },
-          { title: 'Hippocampal Systems', path: 'docs/architecture/hippocampal_systems.md' },
-          { title: 'Hippocampal Braid (legacy)', path: 'docs/architecture/hippocampal_braid.md' },
-          { title: 'Papez Circuit', path: 'docs/architecture/papez_circuit.md' },
-          { title: 'Arcuate Fasciculus', path: 'docs/architecture/arcuate_fasciculus.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Modes & Agency',
-        docs: [
-          { title: 'Mode Manager', path: 'docs/architecture/mode_manager.md' },
-          { title: 'Modes of Cognition', path: 'docs/architecture/modes_of_cognition.md' },
-          { title: 'Agency Responsibility Flow', path: 'docs/architecture/agency_responsibility_flow.md' },
-          { title: 'Trajectory Selection', path: 'docs/architecture/trajectory_selection.md' },
-          { title: 'Developmental Curriculum', path: 'docs/architecture/developmental_curriculum.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Attention & Binding',
-        docs: [
-          { title: 'Entities and Binding', path: 'docs/architecture/entities_and_binding.md' },
-          { title: 'Precision Control', path: 'docs/architecture/precision_control.md' },
-          { title: 'Precision Scoping', path: 'docs/architecture/precision_scoping.md' },
-          { title: 'Why Attention Must Be Fragmented', path: 'docs/architecture/why_attention_must_be_fragmented.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Representation & Dynamics',
-        docs: [
-          { title: 'Residue Geometry', path: 'docs/architecture/residue_geometry.md' },
-          { title: 'Sensory Stream Tags', path: 'docs/architecture/sensory_stream_tags.md' },
-          { title: 'Temporal Dynamics', path: 'docs/architecture/temporal_dynamics.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Neuromodulation',
-        docs: [
-          { title: 'Astrocyte Regulatory Stack', path: 'docs/architecture/astrocyte_regulatory_stack.md' },
-          { title: 'Serotonin', path: 'docs/architecture/serotonin.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Language',
-        docs: [
-          { title: 'Language (overview)', path: 'docs/architecture/language.md' },
-          { title: 'Emergence and Bootstrapping', path: 'docs/architecture/language/emergence_and_bootstrapping.md' },
-          { title: 'Language and Learning', path: 'docs/architecture/language/language_and_learning.md' },
-          { title: 'Language and Institutions', path: 'docs/architecture/language/language_and_institutions.md' },
-          { title: 'Language Failure Modes', path: 'docs/architecture/language/language_failure_modes.md' },
-          { title: 'Minimal Signalling Channel', path: 'docs/architecture/language/minimal_signalling_channel.md' },
-          { title: 'Trust and Deception', path: 'docs/architecture/language/trust_and_deception.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Sleep',
-        docs: [
-          { title: 'Sleep (overview)', path: 'docs/architecture/sleep.md' },
-          { title: 'Precision Recalibration', path: 'docs/architecture/sleep/precision_recalibration.md' },
-          { title: 'Reality Consolidation', path: 'docs/architecture/sleep/reality_consolidation.md' },
-          { title: 'Residue Integration', path: 'docs/architecture/sleep/residue_integration.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Social',
-        docs: [
-          { title: 'Social', path: 'docs/architecture/social.md' },
-        ],
-      },
-      {
-        label: 'Architecture / JEPA Integration',
-        docs: [
-          { title: 'JEPA E1/E2 Integration Contract', path: 'docs/architecture/jepa_e1e2_integration_contract.md' },
-          { title: 'JEPA-REE Hybrid Diagram Spec', path: 'docs/architecture/jepa_ree_hybrid_diagram_spec.md' },
-        ],
-      },
-      {
-        label: 'Architecture / Diagrams & Sources',
-        docs: [
-          { title: 'Architecture Triple-View Guide', path: 'docs/architecture/diagram_views.md' },
-          { title: 'Architecture Stream Catalog', path: 'docs/architecture/streams.md' },
-          { title: 'Architecture Routing Table', path: 'docs/architecture/stream_routing.v1.yaml' },
-          { title: 'Architecture Static Diagram Source', path: 'docs/architecture/architecture_static.mmd' },
-          { title: 'Architecture Typed Dataflow Source', path: 'docs/architecture/architecture_typed_dataflow.mmd' },
-          { title: 'Architecture Episode Sequence Source', path: 'docs/architecture/episode_sequence.mmd' },
-        ],
-      },
-      {
-        label: 'Architecture / Specs (v2)',
-        docs: [
-          { title: 'REE-v2 Spec', path: 'docs/architecture/ree_v2_spec.md' },
-          { title: 'REE-v2 Repo Bootstrap Spec', path: 'docs/architecture/ree_v2_repo_bootstrap_spec.md' },
-        ],
-      },
-      {
-        label: 'Core Docs',
-        docs: [
-          { title: 'Invariants', path: 'docs/invariants.md' },
-          { title: 'Glossary', path: 'docs/glossary.md' },
-          { title: 'REE Minimum Spec', path: 'docs/REE_MIN_SPEC.md' },
-          { title: 'REE Overview', path: 'docs/REE_overview.md' },
-          { title: 'REE Failure Modes', path: 'docs/REE_failure_modes.md' },
-        ],
-      },
-      {
-        label: 'Governance / Planning',
-        docs: [
-          { title: 'Governance Agenda', path: 'evidence/planning/GOVERNANCE_AGENDA.md' },
-          { title: 'Architecture Gap Register', path: 'evidence/planning/ARCHITECTURE_GAP_REGISTER.md' },
-          { title: 'Connectome Literature Pull', path: 'evidence/planning/CONNECTOME_LITERATURE_PULL.md' },
-          { title: 'Planning README', path: 'evidence/planning/README.md' },
-          { title: 'Task Inbox', path: 'evidence/planning/task_inbox.md' },
-          { title: 'Manual Carryover Items', path: 'evidence/planning/manual_carryover_items.v1.json' },
-          { title: 'Planning Criteria', path: 'evidence/planning/planning_criteria.v1.yaml' },
-          { title: 'Structure Review (Active)', path: 'evidence/planning/structure_review/latest/ACTIVE_INDEX.md' },
-          { title: 'Structure Review (Archive)', path: 'evidence/planning/structure_review/latest/ARCHIVE_INDEX.md' },
-          { title: 'Connectome Pull State', path: 'evidence/planning/connectome_pull_state.v1.json' },
-          { title: 'Experiment Proposals', path: 'evidence/planning/experiment_proposals.v1.json' },
-        ],
-      },
-    ];
+    let DOC_GROUPS = [];
+
+    async function loadDocGroups() {
+      try {
+        const res = await fetch('/api/docs/index');
+        const data = await res.json();
+        DOC_GROUPS = (data && data.groups) || [];
+      } catch (err) {
+        DOC_GROUPS = [];
+        console.error('Failed to load docs index:', err);
+      }
+    }
 
     const SUBSYSTEM_MAP_URL = './subsystem_map.yaml';
     let subsystemRules = [];
@@ -3138,7 +3074,7 @@ END CONFLICT RESOLUTION`;
       generateConflict: document.getElementById('generateConflict'),
       copyConflict: document.getElementById('copyConflict'),
       downloadConflict: document.getElementById('downloadConflict'),
-      docSelect: document.getElementById('docSelect'),
+      docList: document.getElementById('docList'),
       docSearch: document.getElementById('docSearch'),
       docMeta: document.getElementById('docMeta'),
       docContent: document.getElementById('docContent'),
@@ -5967,34 +5903,53 @@ END CONFLICT RESOLUTION`;
       wireGovAccordion();
     }
 
-    function populateDocSelect(filterText) {
-      if (!els.docSelect) return;
+    function populateDocList(filterText) {
+      if (!els.docList) return;
       const term = (filterText || '').trim().toLowerCase();
-      const current = els.docSelect.value;
-      els.docSelect.innerHTML = '';
+      els.docList.innerHTML = '';
+      let anyRendered = false;
       DOC_GROUPS.forEach(group => {
-        const opts = group.docs.filter(doc => {
+        const opts = (group.docs || []).filter(doc => {
           if (!term) return true;
           return doc.title.toLowerCase().includes(term) || doc.path.toLowerCase().includes(term);
         });
         if (!opts.length) return;
-        const optgroup = document.createElement('optgroup');
-        optgroup.label = group.label;
+        anyRendered = true;
+        const groupEl = document.createElement('div');
+        groupEl.className = 'docs-group';
+        const labelEl = document.createElement('div');
+        labelEl.className = 'docs-group-label';
+        labelEl.textContent = group.label;
+        groupEl.appendChild(labelEl);
         opts.forEach(doc => {
           const url = doc.path.match(/^https?:\/\//)
             ? doc.path
             : new URL(doc.path, window.location.href).toString();
-          const opt = document.createElement('option');
-          opt.value = url;
-          opt.textContent = doc.title;
-          optgroup.appendChild(opt);
+          const itemEl = document.createElement('button');
+          itemEl.type = 'button';
+          itemEl.className = 'docs-item';
+          itemEl.dataset.url = url;
+          if (url === currentDocUrl) itemEl.classList.add('active');
+          itemEl.textContent = doc.title;
+          itemEl.title = doc.path;
+          itemEl.addEventListener('click', () => openDoc(url));
+          groupEl.appendChild(itemEl);
         });
-        els.docSelect.appendChild(optgroup);
+        els.docList.appendChild(groupEl);
       });
-      if (current) {
-        const exists = Array.from(els.docSelect.options).some(o => o.value === current);
-        if (exists) els.docSelect.value = current;
+      if (!anyRendered) {
+        const emptyEl = document.createElement('div');
+        emptyEl.className = 'docs-empty';
+        emptyEl.textContent = term ? `No docs match "${filterText.trim()}".` : 'No docs available.';
+        els.docList.appendChild(emptyEl);
       }
+    }
+
+    function highlightActiveDoc() {
+      if (!els.docList) return;
+      els.docList.querySelectorAll('.docs-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.url === currentDocUrl);
+      });
     }
 
     function updateDocMeta(entry) {
@@ -6039,13 +5994,13 @@ END CONFLICT RESOLUTION`;
         : new URL(path, window.location.href).toString();
       currentDocUrl = url;
       const entry = docIndexMap.get(url);
-      if (entry && els.docSelect) {
-        els.docSelect.value = url;
+      if (entry) {
         updateDocMeta(entry);
       } else if (els.docMeta) {
         const displayPath = path.replace(new URL(window.location.href).origin, '');
         els.docMeta.textContent = displayPath;
       }
+      highlightActiveDoc();
       try {
         const text = await fetchText(url);
         if (els.docContent) {
@@ -6073,14 +6028,32 @@ END CONFLICT RESOLUTION`;
       openDoc(path, anchor);
     }
 
-    function initDocs() {
-      if (docsInitialized) return;
-      buildDocIndex();
-      populateDocSelect('');
-      if (els.docSelect && els.docSelect.value) {
-        openDoc(els.docSelect.value);
+    function firstDocUrl() {
+      for (const group of DOC_GROUPS) {
+        if (group.docs && group.docs.length) {
+          const doc = group.docs[0];
+          return doc.path.match(/^https?:\/\//)
+            ? doc.path
+            : new URL(doc.path, window.location.href).toString();
+        }
       }
+      return null;
+    }
+
+    async function initDocs() {
+      if (docsInitialized) return;
       docsInitialized = true;
+      await loadDocGroups();
+      buildDocIndex();
+      populateDocList(els.docSearch ? els.docSearch.value : '');
+      if (currentDocUrl) {
+        highlightActiveDoc();
+        const entry = docIndexMap.get(currentDocUrl);
+        if (entry) updateDocMeta(entry);
+      } else {
+        const url = firstDocUrl();
+        if (url) openDoc(url);
+      }
     }
 
     function normalizeSpace(text) {
@@ -9166,14 +9139,9 @@ END CONFLICT RESOLUTION`;
         els.worksetConflict.addEventListener('change', () => renderGraph());
       }
 
-      if (els.docSelect) {
-        els.docSelect.addEventListener('change', () => {
-          if (els.docSelect.value) openDoc(els.docSelect.value);
-        });
-      }
       if (els.docSearch) {
         els.docSearch.addEventListener('input', () => {
-          populateDocSelect(els.docSearch.value);
+          populateDocList(els.docSearch.value);
         });
       }
     }
