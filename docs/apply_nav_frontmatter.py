@@ -133,6 +133,7 @@ ASSIGN = {
     "mech_313_stochastic_noise_floor.md": "control", "sd_036_gabaergic_decay_regulator.md": "control",
     "sd_037_broadcast_override_regulator.md": "control", "mech_271_routing_v3_substrate_plan.md": "control",
     "state_conditioned_exploration_noise_floor.md": "control",
+    "sd_091_coalition_topology_control.md": "control",
 
     # --- Memory & Hippocampus ---
     "hippocampal_systems.md": "memory", "hippocampal_braid.md": "memory",
@@ -164,6 +165,7 @@ ASSIGN = {
     "mech_111_per_candidate_novelty.md": "goals", "mech_314_structured_curiosity_bonus.md": "goals",
     "mech_314a_phase2_novelty_source_design.md": "goals",
     "sd_061_difficulty_gated_proposal_entropy.md": "goals",
+    "sd_hazard_aware_policy_decomposition.md": "goals",
 
     # --- Affect, Harm & Nociception ---
     "affect_primitives.md": "affect", "affect_terminology_instinct_protoemotion.md": "affect",
@@ -390,21 +392,70 @@ def _fm_block(text):
     return text[4:end] if end != -1 else ""
 
 
-def scan_unplaced():
-    """Return (leaks, hidden_no_fm) over docs/.
+# Top-level directories (relative to docs/) this script actually positions in
+# the nav -- the only two page classes it is entitled to touch: bare top-level
+# docs/*.md|*.html files, and the architecture/ subtree. Every other docs/
+# subdirectory (thoughts/, notes/, strategy/, design/, experiment_profiles/,
+# fishtank/, public_explorer/, brain_map/, plus build dirs like _data/,
+# _includes/, assets/, __pycache__) is owned by some other convention -- e.g.
+# docs/thoughts/*.md carries thought-digestion metadata (date/scope/
+# related_claims/processed_in) that has nothing to do with the sidebar -- and
+# must never be walked by the tidiness sweep below, regardless of whether a
+# given file happens to have a `title:` key in frontmatter.
+#
+# 2026-08-02 incident: the sweep used to walk ALL of docs/ (os.walk(DOCS) with
+# no top-dir filter) and treated any titled, non-nav_exclude page outside the
+# explicitly-registered placed set as a "leak" to auto-hide. That reached
+# thoughts/2026-08-01_metacognitive_control_selective_cognitive_coalition_
+# instantiation.md (the first docs/thoughts/ file to carry a frontmatter
+# block) and wholesale-overwrote its date/scope/related_claims/processed_in
+# fields down to bare {title, nav_exclude: true}. Manually reverted same
+# night; this SWEEP_DIRS allowlist is the structural fix -- see also the
+# placement-preserving check in scan_unplaced() below for the architecture/
+# half of the same incident (sd_hazard_aware_policy_decomposition.md).
+SWEEP_DIRS = {"architecture"}
 
-    leaks       = pages with a `title:` and no `nav_exclude`, not explicitly
-                  placed -> these WOULD render raw in the sidebar (the drift).
-    hidden_no_fm = architecture/top-level pages with no frontmatter and not in
-                  ASSIGN/TOP_LEVEL -> invisible today (just-the-docs needs a
-                  title), surfaced only as a reminder to file them into a theme.
+
+def _has_deliberate_placement(fm_block):
+    """True if an existing frontmatter block already sets both `parent:` and
+    `nav_order:` -- i.e. someone (a landing session, a hand-edit) already gave
+    this page a real sidebar position, as opposed to a bare `title:` with
+    nothing else. Distinguishes "freshly created, never placed, safe to
+    auto-hide" from "was deliberately filed, just not yet mirrored into this
+    script's ASSIGN map" -- collapsing both to nav_exclude is exactly what
+    destroyed sd_hazard_aware_policy_decomposition.md's placement in the
+    2026-08-02 incident."""
+    import re as _re
+    has_parent = bool(_re.search(r'(?m)^parent:\s*\S', fm_block))
+    has_order = bool(_re.search(r'(?m)^nav_order:\s*\S', fm_block))
+    return has_parent and has_order
+
+
+def scan_unplaced():
+    """Return (leaks, hidden_no_fm, unregistered_placed), scoped to SWEEP_DIRS.
+
+    leaks              = pages with a `title:` and no `nav_exclude`, not
+                         explicitly placed and with no deliberate placement of
+                         their own -> these WOULD render raw in the sidebar
+                         (the drift) and are safe to auto-hide.
+    unregistered_placed = same "not explicitly placed" condition, but the page
+                         ALREADY has its own parent+nav_order set (someone
+                         filed it by hand) -> the drift is a stale ASSIGN map,
+                         not an unfiled doc. Never auto-hidden; report only.
+    hidden_no_fm       = architecture/top-level pages with no frontmatter and
+                         not in ASSIGN/TOP_LEVEL -> invisible today (just-the-
+                         docs needs a title), surfaced only as a reminder to
+                         file them into a theme.
     """
     placed = _placed_set()
-    leaks, hidden_no_fm = [], []
+    leaks, hidden_no_fm, unregistered_placed = [], [], []
     import re as _re
-    for root, _dirs, files in os.walk(DOCS):
+    for root, dirs, files in os.walk(DOCS):
         rel_root = os.path.relpath(root, DOCS).replace("\\", "/")
-        parts = rel_root.split("/")
+        parts = [] if rel_root == "." else rel_root.split("/")
+        if parts and parts[0] not in SWEEP_DIRS:
+            dirs[:] = []  # prune -- never descend into an unowned top dir
+            continue
         if any(p in EXCLUDE_SUBDIRS for p in parts):
             continue
         if "sections" in parts:
@@ -424,7 +475,10 @@ def scan_unplaced():
                 has_title = bool(_re.search(r"(?m)^title:\s*\S", fm))
                 excluded = bool(_re.search(r"(?m)^nav_exclude:\s*true", fm))
                 if has_title and not excluded:
-                    leaks.append(rel)
+                    if _has_deliberate_placement(fm):
+                        unregistered_placed.append(rel)
+                    else:
+                        leaks.append(rel)
             else:
                 # No frontmatter: invisible in nav. Only nag for top-of-tree
                 # architecture docs + bare top-level docs (where a real design
@@ -434,13 +488,16 @@ def scan_unplaced():
                     hidden_no_fm.append(rel)
                 elif depth == 0:
                     hidden_no_fm.append(rel)
-    return sorted(leaks), sorted(hidden_no_fm)
+    return sorted(leaks), sorted(hidden_no_fm), sorted(unregistered_placed)
 
 
 def sweep_unplaced():
-    """Stamp nav_exclude on every titled-but-unplaced page (preserving title).
-    Returns the list of paths hidden this pass."""
-    leaks, _ = scan_unplaced()
+    """Stamp nav_exclude on every titled-but-truly-unplaced page (preserving
+    title). Deliberately does NOT touch unregistered_placed pages (see
+    scan_unplaced) -- those already carry real placement and must be fixed by
+    adding them to ASSIGN, never by overwriting their frontmatter. Returns the
+    list of paths hidden this pass."""
+    leaks, _, _ = scan_unplaced()
     for rel in leaks:
         abs_path = os.path.join(DOCS, rel)
         text = open(abs_path, encoding="utf-8", errors="ignore").read()
@@ -455,20 +512,28 @@ def sweep_unplaced():
 
 def check():
     """Report-only drift check for the nightly routine. Exit non-zero if any
-    titled-but-unplaced page would leak into the sidebar."""
-    leaks, hidden = scan_unplaced()
+    titled-but-unplaced page would leak into the sidebar, or if a page that
+    was already deliberately filed (parent+nav_order set by hand) is missing
+    from ASSIGN -- the latter is flagged, never silently auto-hidden (see
+    scan_unplaced's unregistered_placed and the 2026-08-02 incident note)."""
+    leaks, hidden, unregistered = scan_unplaced()
     if leaks:
         print("NAV DRIFT: {} titled page(s) not placed -- would render RAW in the sidebar:".format(len(leaks)))
         for r in leaks:
             print("   LEAK  " + r)
         print("Fix: add each to ASSIGN/TOP_LEVEL in docs/apply_nav_frontmatter.py, or it will be auto-hidden on the next run.")
+    if unregistered:
+        print("NAV DRIFT: {} page(s) already have a deliberate parent+nav_order but are NOT in ASSIGN:".format(len(unregistered)))
+        for r in unregistered:
+            print("   UNREGISTERED (placement preserved, NOT auto-hidden)  " + r)
+        print("Fix: add each to ASSIGN in docs/apply_nav_frontmatter.py to match the theme its own frontmatter already claims.")
     if hidden:
         print("FYI: {} architecture/top-level doc(s) have no frontmatter (hidden from nav until filed into a theme):".format(len(hidden)))
         for r in hidden:
             print("   hidden  " + r)
-    if not leaks and not hidden:
+    if not leaks and not hidden and not unregistered:
         print("Nav is tidy: every titled page is explicitly placed; no orphan design docs.")
-    return 1 if leaks else 0
+    return 1 if (leaks or unregistered) else 0
 
 
 # ---------------------------------------------------------------------------
@@ -566,11 +631,19 @@ def run():
         for r in hidden:
             print("   nav_exclude  " + r)
         count += len(hidden)
-    _, no_fm = scan_unplaced()
+    _, no_fm, unregistered = scan_unplaced()
     if no_fm:
         print("\nFYI -- {} architecture/top-level doc(s) without frontmatter (hidden until filed into a theme):".format(len(no_fm)))
         for r in no_fm:
             print("   unfiled  " + r)
+    if unregistered:
+        # Deliberately NOT auto-hidden -- these already carry a real
+        # parent+nav_order, just not yet mirrored into ASSIGN. Report loudly
+        # instead of overwriting; see the 2026-08-02 incident note above
+        # scan_unplaced().
+        print("\nNAV DRIFT -- {} page(s) already placed by hand but missing from ASSIGN (frontmatter left untouched):".format(len(unregistered)))
+        for r in unregistered:
+            print("   unregistered  " + r)
 
     print("\nDone. {} files stamped.".format(count))
 
