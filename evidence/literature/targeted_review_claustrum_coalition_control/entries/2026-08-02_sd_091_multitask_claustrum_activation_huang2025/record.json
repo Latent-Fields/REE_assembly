@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_sd_091_multitask_claustrum_activation_huang2025",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["SD-091"],
+  "source": {
+    "title": "The Human Claustrum Activates Across Multiple Cognitive Control Tasks.",
+    "authors": ["Celine H L Huang", "Brent W Stewart", "Chun Yin Liu", "Phivos Phylactou", "Brian N Mathur", "David A Seminowicz"],
+    "year": 2025,
+    "venue": "European Journal of Neuroscience",
+    "doi": "10.1111/ejn.70318",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12617337/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Direct human fMRI evidence (n=55) that claustrum activates during periods of increased cognitive demand across four distinct, well-validated cognitive-control paradigms (Stroop, AX-CPT, cued task-switching, Sternberg working memory), coinciding with task-positive cortical network activation -- solid support that the claustrum's involvement generalizes across task TYPES rather than being tied to one narrow paradigm. Confidence is capped at moderate because the paper reports claustrum recruitment scaling with cognitive DEMAND, not evidence that the recruited configuration differs qualitatively by demand TYPE -- a distinction load-bearing for MECH-481 but not addressed here.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Claustrum activation is reported as occurring 'particularly during times of increased cognitive demand' across all four tasks -- a profile consistent with a generic difficulty/arousal-scaling signal (which would look like Arm 2, parametric-only, in MECH-481's falsifier) and not distinguishable, on this data alone, from a genuinely typed, task-specific coalition signature (Arm 4)."
+  ],
+  "tags": ["sd-091", "claustrum", "cognitive_control", "task_switching", "working_memory", "stroop"],
+  "mapping": {
+    "source_claim_statement": "Bilateral claustrum activation was observed during certain conditions and trial phases of all four cognitive control tasks tested (Stroop, AX-CPT, cued task-switching, Sternberg working memory), particularly during periods of increased cognitive demand, coinciding with task-positive cortical network activation.",
+    "ree_translation": "Empirical grounding for SD-091's premise that a topology-control mechanism should be recruitable across a broad range of distinct cognitive-control demands, not restricted to a single task family -- consistent with a control-plane output axis that is general-purpose rather than task-specific machinery bolted onto one paradigm.",
+    "mapping_caveat": "This paper measures WHETHER the claustrum activates, not WHICH cortical network configuration it instantiates per task. It therefore cannot discriminate REE's core architectural question (does the same generic 'more claustrum when harder' signal suffice, versus does task type change which subsystems are coupled) -- that discrimination requires connectivity/graph-level analysis per task condition, which this paper does not report. Treat as supporting the existence of a general topology-control mechanism, not as evidence for the typed-coalition-template mechanism MECH-481 asserts.",
+    "source_context": "Human fMRI, n=55 healthy participants, four separate well-established cognitive-control task paradigms within the same dataset."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.3,
+    "notes": "Good sample size, four independently-validated paradigms, direct human data (low species-transfer risk). Mapping fidelity held at moderate because demand-scaling activation is compatible with multiple REE control-plane hypotheses, not uniquely diagnostic of the topology-graph account."
+  }
+}

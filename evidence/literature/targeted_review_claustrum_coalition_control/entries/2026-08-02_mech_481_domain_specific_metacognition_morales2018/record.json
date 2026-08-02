@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_mech_481_domain_specific_metacognition_morales2018",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["MECH-481"],
+  "source": {
+    "title": "Domain-General and Domain-Specific Patterns of Activity Supporting Metacognition in Human Prefrontal Cortex.",
+    "authors": ["Jorge Morales", "Hakwan Lau", "Stephen M Fleming"],
+    "year": 2018,
+    "venue": "Journal of Neuroscience",
+    "doi": "10.1523/JNEUROSCI.2360-17.2018",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5895040/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly relevant to the 'typed' premise underlying MECH-481: using MVPA on matched perceptual and memory metacognitive-judgment tasks, the authors find domain-SPECIFIC confidence representations in anterior PFC coexisting with domain-GENERAL confidence/accuracy signals in a separate frontal-posterior-midline network. This is genuinely mixed evidence for REE's typed-coalition claim -- it supports the premise that metacognitive representations are not monolithically generic, but it also shows a real domain-general component that a purely-typed architecture would need to explain away or fold in as its own separate channel.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A substantial domain-general confidence/accuracy signal exists in a widespread frontal-posterior-midline network, alongside the domain-specific anterior-PFC signal -- meaning any REE implementation that discretizes control demands into purely disjoint typed channels risks misrepresenting a biological reality that includes a persistent generic component running in parallel with type-specific ones.",
+    "Only two domains (perception and memory) were tested, matched for difficulty -- a small fraction of REE's proposed ten-item control-demand taxonomy (SENSORY_RESAMPLE, PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, etc.), so this cannot establish that finer-grained typing (e.g. distinguishing PROVENANCE_CHECK from SOCIAL_MODEL_CHECK) has any neural counterpart at all."
+  ],
+  "tags": ["mech-481", "metacognitive_monitoring", "domain_specificity", "prefrontal_cortex", "confidence"],
+  "mapping": {
+    "source_claim_statement": "Using multivoxel pattern analysis during matched perceptual and memory metacognitive-judgment tasks, the authors found that multivoxel activity patterns in anterior prefrontal cortex predicted confidence in a domain-SPECIFIC fashion, while domain-GENERAL signals predicting both confidence and accuracy were found in a widespread frontal and posterior midline network.",
+    "ree_translation": "Speaks to MECH-481's step (1)-(2), 'Monitor' and 'Classify' -- before a control demand can be typed and routed to a coalition template, the underlying monitoring signal itself needs to carry type-discriminating information. This paper is direct evidence that the human brain's metacognitive substrate does carry such discriminable, domain-specific signal (at least between perception and memory), which is a necessary (though not sufficient) precondition for MECH-481's typed-demand pipeline to be biologically plausible rather than purely stipulated.",
+    "mapping_caveat": "The 'domains' distinguished here (perception vs memory) are a much coarser grain than REE's proposed control-demand taxonomy, and the paper says nothing about what happens DOWNSTREAM of the domain-specific signal -- i.e. whether a different cortical coalition actually gets instantiated once a domain-specific vs domain-general signal is detected. This entry evidences the CLASSIFY step's plausibility, not the INSTANTIATE step MECH-481 is really about.",
+    "source_context": "Human fMRI, matched-difficulty perceptual and memory metacognitive judgment tasks, multivariate decoding (MVPA)."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Rigorous MVPA design with matched task difficulty across domains, published J Neurosci, from a leading metacognition research group (Fleming). Mapping fidelity moderate: informative for the upstream monitor/classify stage of MECH-481's proposed sequence, silent on the downstream instantiate/operate/dissolve stages that are the mechanism's actual novelty."
+  }
+}

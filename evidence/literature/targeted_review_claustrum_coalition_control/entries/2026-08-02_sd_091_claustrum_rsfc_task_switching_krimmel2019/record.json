@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_sd_091_claustrum_rsfc_task_switching_krimmel2019",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["SD-091"],
+  "source": {
+    "title": "Resting state functional connectivity and cognitive task-related activation of the human claustrum.",
+    "authors": ["Samuel R Krimmel", "Michael G White", "Matthew H Panicker", "Frederick S Barrett", "Brian N Mathur", "David A Seminowicz"],
+    "year": 2019,
+    "venue": "NeuroImage",
+    "doi": "10.1016/j.neuroimage.2019.03.075",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6629463/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Foundational human claustrum isolation + resting-state functional connectivity study showing extensive connectivity to cognitive-control cortex (ACC, PFC, parietal) and task-onset-specific activation during a conflict task -- directly grounds the 'which pathways are available to open/attenuate' component of SD-091's topology-control axis. Confidence held at moderate because the task-related finding is a transient, onset-locked signal rather than a sustained coalition, which is itself an important caveat for MECH-481's persistence/dissolution timing (Gamma_t).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Claustrum was significantly activated at task onset during high-conflict conditions but NOT during the remainder of the difficult condition -- an early-transient rather than sustained-recruitment profile, which complicates any assumption that coalition instantiation, once triggered, persists for the duration of the demand."
+  ],
+  "tags": ["sd-091", "claustrum", "resting_state_connectivity", "cognitive_control", "task_switching"],
+  "mapping": {
+    "source_claim_statement": "Extensive resting-state functional connectivity was observed between claustrum and cortical regions associated with cognitive control (anterior cingulate, prefrontal, parietal cortices). During high cognitive-conflict conditions of a multi-source interference task, claustrum was significantly activated at task onset but not during the remainder of the difficult condition, suggesting a role in cognitive control and specifically task switching independent of sensorimotor processing.",
+    "ree_translation": "Provides the anatomical substrate claim underlying SD-091's topology axis: the claustrum has structural/functional access to exactly the kind of frontoparietal cognitive-control cortex a coalition-instantiation mechanism would need to couple. The onset-locked, non-sustained activation pattern is a useful empirical anchor for MECH-481's Gamma_t (persistence/completion/dissolution conditions) -- it suggests coalition instantiation may be triggered transiently at a control-demand switch point rather than being tonically maintained.",
+    "mapping_caveat": "This is a resting-state connectivity study plus one task's activation pattern -- it establishes ANATOMICAL AVAILABILITY of pathways, not that those pathways are selectively, differentially recruited by different control-demand TYPES (the specific MECH-481 claim). The task-switching interpretation is the authors' own inference from a single interference task, not a direct demonstration of task-type-selective network reconfiguration.",
+    "source_context": "Human fMRI: 7T resting-state (n=20) + 3T replication (n=35), plus 3T task-based activation during a multi-source interference task (n=33)."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.3,
+    "notes": "Careful anatomical isolation methodology (addressing the claustrum's notoriously difficult sheet-like geometry) with a 7T + 3T replication design strengthens source_quality. Mapping fidelity moderate: connectivity-to-control-cortex is directly relevant, but the paper does not test typed-demand selectivity."
+  }
+}

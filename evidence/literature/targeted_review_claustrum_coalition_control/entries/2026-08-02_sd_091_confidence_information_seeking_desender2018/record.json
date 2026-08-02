@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_sd_091_confidence_information_seeking_desender2018",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["SD-091"],
+  "source": {
+    "title": "Subjective Confidence Predicts Information Seeking in Decision Making.",
+    "authors": ["Kobe Desender", "Annika Boldt", "Nick Yeung"],
+    "year": 2018,
+    "venue": "Psychological Science",
+    "doi": "10.1177/0956797617744771",
+    "url": "https://doi.org/10.1177/0956797617744771"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "A clean, preregistered-replicated causal dissociation of confidence from objective accuracy, showing that low subjective confidence -- independent of actual task difficulty -- causally increases information-seeking behaviour. This is strong direct support for SD-091's foundational premise (a metacognitive signal must be able to alter subsequent processing, not merely represent uncertainty). Confidence held at moderate rather than high because the single undifferentiated information-seeking response tested here cannot discriminate between REE's own Arm 2 (parametric-only) and Arm 4 (typed coalition) accounts -- it evidences that SOME control-enactment link exists, not that it takes the graph-valued, typed-coalition form MECH-481 specifically proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The 'information seeking' behaviour measured is a single, undifferentiated action (sampling more of the same evidence stream) rather than recruitment of a qualitatively different processing system -- exactly the kind of result MECH-481's own falsifier design (Arm 2 vs Arm 4) is built to disambiguate, and this study's single-task, single-response-type design cannot make that discrimination."
+  ],
+  "tags": ["sd-091", "metacognitive_control", "confidence", "information_seeking", "decision_making"],
+  "mapping": {
+    "source_claim_statement": "In a perceptual decision task with conditions matched for objective accuracy but differing in subjective confidence (via strength vs. variability of evidence), participants were more likely to sample additional information before responding under lower confidence, despite matched accuracy -- replicated in a preregistered follow-up with increased difficulty.",
+    "ree_translation": "Direct behavioural evidence for the source thought's central working claim -- 'metacognitive closure requires control enactment' -- by showing that confidence, dissociated from accuracy, causally changes subsequent information-gathering behaviour rather than merely being represented. This is the clearest evidence in this pull that metacognitive monitoring and metacognitive control are functionally separable and causally linked, which is SD-091's foundational premise before any claim about topology-specific coalitions.",
+    "mapping_caveat": "The paradigm offers only one type of corrective action (sample more evidence from the same source), so it cannot speak to whether different types of low-confidence discrepancy would recruit different corrective systems (MECH-481's specific claim). It is squarely evidence for 'monitoring must change control' and agnostic on 'control change must be graph-valued rather than scalar' -- do not cite this entry in support of the coalition/topology axis specifically, only the more general enactment premise.",
+    "source_context": "Human psychophysics, two experiments (N=20 initial, N=50 preregistered replication), healthy adult participants, perceptual decision task."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.3,
+    "notes": "Excellent methodological rigor -- preregistered replication, clean experimental dissociation of confidence from accuracy, published in a top psychology venue. Mapping fidelity held low-moderate because the single-response-type paradigm is structurally unable to discriminate REE's parametric-only vs typed-coalition accounts, which is the actual open question for MECH-481."
+  }
+}

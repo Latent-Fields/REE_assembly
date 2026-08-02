@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_mech_481_brooding_attractor_disengagement_singh2026",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["MECH-481"],
+  "source": {
+    "title": "Reduced task-switching flexibility in parietal-cingulate and frontal circuits associated with brooding.",
+    "authors": ["Selena Singh", "Saurabh Bhaskar Shaw", "Suzanna Becker"],
+    "year": 2026,
+    "venue": "Cognitive Neurodynamics",
+    "doi": "10.1007/s11571-026-10425-3",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12920956/"
+  },
+  "evidence_class": "electrophysiology_lfp",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly tests a task-switching paradigm interleaving cued rumination, working memory, and autobiographical memory tasks with EEG, finding that high-trait-brooding individuals show impaired disengagement (reduced dlPFC recruitment, persistent posterior-cingulate beta power) when switching FROM a rumination-like state TO a working-memory state -- an unusually precise experimental analogue of MECH-481's coalition-dissolution failure mode, framed explicitly by the authors as a pathological attractor state. Confidence held at moderate because EEG source attribution to specific networks is inferential (topographic beta power, not a reconstructed connectivity graph), and the 'attractor state' framing is itself a modeling choice.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The DMN/central-executive network attribution rests on EEG topography (posterior cingulate and dlPFC electrode sites) rather than a directly reconstructed whole-brain connectivity graph, so the specific claim that this is a 'coalition' failing to dissolve (versus some other electrophysiological process localized to similar scalp regions) is an interpretive step, not a direct observation."
+  ],
+  "tags": ["mech-481", "rumination", "brooding", "task_switching", "attractor_state", "coalition_dissolution", "eeg"],
+  "mapping": {
+    "source_claim_statement": "In healthy volunteers performing a task-switching protocol interleaving cued rumination, working memory, and autobiographical memory tasks, cued rumination was associated with beta power in posterior cingulate cortex; high-trait-rumination individuals showed impaired disengagement of these rumination-related dynamics (persistent posterior parietal/cingulate beta power, reduced dlPFC recruitment) when switching to the working memory task, and trait brooding was associated with reduced variance (greater convergence) in posterior parietal/cingulate time series during rumination -- jointly interpreted as evidence that brooding reflects a pathological neural attractor state, satisfying both the convergence and resistance-to-perturbation criteria of attractor dynamics.",
+    "ree_translation": "An unusually close experimental match to MECH-481's scenario 5 (coalition persistence failure) and step (7) of its proposed sequence ('Dissolve, sustain, or escalate'): this paper operationalizes exactly the transition REE's architecture needs to succeed at -- switching FROM one engaged processing configuration (rumination, DMN-dominant) TO another (working memory, executive-dominant) when task demands require it -- and shows that this transition is measurably impaired in individuals prone to perseverative, non-dissolving engagement. The 'attractor state' framing is a formal way of saying a coalition can become pathologically hard to dissolve once instantiated, directly relevant to why REE's guardrails single out 'indiscriminate coalition maintenance' as a rumination/control-capture risk.",
+    "mapping_caveat": "EEG beta power at posterior-cingulate and dlPFC sites is a coarse proxy for 'default mode network' and 'central executive network' engagement respectively -- it is not a reconstructed connectivity graph demonstrating which specific cortical coalition is or is not dissolving. The attractor-state interpretation is the authors' theoretical framing of the data, not a directly observed dynamical-systems measurement (e.g. no explicit state-space reconstruction or Lyapunov-stability analysis is reported). Treat as strong conceptual and directional support for the persistence/dissolution failure mode, not as a validated computational model REE could port directly.",
+    "source_context": "Human EEG, healthy volunteers, task-switching protocol interleaving cued rumination, working memory, and autobiographical memory conditions; individual-differences analysis by trait rumination/brooding score."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.35,
+    "notes": "Solid experimental (task-switching manipulation, not purely resting-state) design in a newer, less established venue than the other entries in this pull; EEG affords good temporal but limited spatial specificity relative to fMRI. Mapping fidelity comparatively high because the paradigm directly operationalizes a demand-triggered switch OUT of an engaged state, which is the specific transition MECH-481's dissolution mechanism needs to explain."
+  }
+}

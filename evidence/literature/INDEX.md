@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-02T06:08:57.468220Z`
+Generated: `2026-08-02T09:03:57.470463Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -46,6 +46,7 @@ Generated: `2026-08-02T06:08:57.468220Z`
 | `targeted_review_candidate_rule_field_representation` | [`2026-06-04_arc_063_subspace_partitioning_weber2023`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/record.json) | 3 | [`summary`](targeted_review_candidate_rule_field_representation/entries/2026-06-04_arc_063_subspace_partitioning_weber2023/summary.md) |
 | `targeted_review_candidate_support_preserving_cem` | [`2026-05-14_arc_065_information_theoretic_mpc_williams2017`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/record.json) | 5 | [`summary`](targeted_review_candidate_support_preserving_cem/entries/2026-05-14_arc_065_information_theoretic_mpc_williams2017/summary.md) |
 | `targeted_review_cingulate_integration_substrate` | [`2026-04-19_cingulate_salience_network_switching_menon2010`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/record.json) | 9 | [`summary`](targeted_review_cingulate_integration_substrate/entries/2026-04-19_cingulate_salience_network_switching_menon2010/summary.md) |
+| `targeted_review_claustrum_coalition_control` | [`2026-08-02_sd_091_network_instantiation_cognitive_control_madden2022`](targeted_review_claustrum_coalition_control/entries/2026-08-02_sd_091_network_instantiation_cognitive_control_madden2022/record.json) | 8 | [`summary`](targeted_review_claustrum_coalition_control/entries/2026-08-02_sd_091_network_instantiation_cognitive_control_madden2022/summary.md) |
 | `targeted_review_commit_boundary_belief_lock` | [`2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/record.json) | 7 | [`summary`](targeted_review_commit_boundary_belief_lock/entries/2026-05-03_cbbl_predictive_coding_psychosis_sterzer2018/summary.md) |
 | `targeted_review_commit_release_duration_latch` | [`2026-06-20_crdl_deliberation_commitment_urgency_thura2022`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/record.json) | 5 | [`summary`](targeted_review_commit_release_duration_latch/entries/2026-06-20_crdl_deliberation_commitment_urgency_thura2022/summary.md) |
 | `targeted_review_competence_bootstrap_without_demonstrator` | [`2026-07-18_cdq_007_untutored_song_abnormal_volman1995`](targeted_review_competence_bootstrap_without_demonstrator/entries/2026-07-18_cdq_007_untutored_song_abnormal_volman1995/record.json) | 8 | [`summary`](targeted_review_competence_bootstrap_without_demonstrator/entries/2026-07-18_cdq_007_untutored_song_abnormal_volman1995/summary.md) |

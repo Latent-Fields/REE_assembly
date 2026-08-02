@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_sd_091_network_instantiation_cognitive_control_madden2022",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["SD-091", "MECH-481"],
+  "source": {
+    "title": "A role for the claustrum in cognitive control.",
+    "authors": ["Maxwell B Madden", "Brent W Stewart", "Michael G White", "Samuel R Krimmel", "Houman Qadir", "Frederick S Barrett", "David A Seminowicz", "Brian N Mathur"],
+    "year": 2022,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2022.09.006",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9669149/"
+  },
+  "evidence_class": "connectome_mechanistic_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the source thought's own central citation and the primary published articulation of the 'network instantiation' account -- direct architectural support for SD-091's parameter/topology distinction. Confidence is capped at moderate because the account is explicitly presented as a synthesis with 'testable predictions' rather than a settled mechanism, and it does not itself address the TYPED (demand-specific) recruitment MECH-481 requires -- it proposes one generic instantiation function, not a taxonomy of coalition templates.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review itself notes that prior claustrum models (salience detection, multisensory binding, top-down attention, cognitive control) were mutually incompatible and required active reconciliation -- convergence on the network-instantiation account is not yet an established consensus, only the authors' proposed synthesis.",
+    "The model specifies that frontal cortex directs claustrum-mediated network instantiation but does not specify a mechanism for how different control DEMAND TYPES would produce qualitatively different instantiated networks, which is the specific gap MECH-481 needs closed."
+  ],
+  "tags": ["sd-091", "mech-481", "claustrum", "network_instantiation", "cognitive_control", "topology_control"],
+  "mapping": {
+    "source_claim_statement": "Frontal cortices direct the claustrum to flexibly instantiate cortical networks in the service of cognitive control -- the 'network instantiation in cognitive control' (NICC) model, proposed to reconcile prior claustrum function hypotheses (salience detection, multisensory binding, attention).",
+    "ree_translation": "Direct biological analogue of SD-091's proposed second control-plane output axis: a frontally-driven mechanism that assembles a temporary functional interaction graph (G_t) is structurally what NICC describes for the claustrum. Also motivates MECH-481's claim that control-demand formation causally precedes coalition instantiation (frontal control signal -> claustrum -> cortical network), though NICC does not itself commit to a typed-demand taxonomy.",
+    "mapping_caveat": "NICC is a conceptual/anatomical model, not a computational architecture -- the REE mapping from 'claustrum instantiates a cortical network' to 'control plane emits a graph-valued output G_t with persistence/dissolution conditions Gamma_t' is an explicit reinterpretation, not something the paper itself formalizes. The paper's own guardrail language (used verbatim in the source thought and carried into MECH-481's notes) explicitly disclaims that the claustrum computes metacognition -- it only proposes an enactment role. Do not read this entry as validating the specific typed-demand taxonomy (SENSORY_RESAMPLE, PROVENANCE_CHECK, etc.); that taxonomy is REE's own invention, not sourced from this paper.",
+    "source_context": "Human and animal neuroanatomical/neuroimaging literature review; theoretical synthesis, not a single new dataset."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "High-quality, well-cited review from an active claustrum-research group (Mathur/Seminowicz/Krimmel lab), but the NICC model itself is a proposal awaiting the kind of falsifier MECH-481 registers, not a confirmed mechanism. Weight mapping_fidelity moderately: strong for the architectural bifurcation (parameters vs topology), weak for the typed-coalition specifics."
+  }
+}

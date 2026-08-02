@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_claustrum_coalition_control",
+  "entry_id": "2026-08-02_mech_481_rnt_disengagement_networks_lydonstaley2019",
+  "timestamp_utc": "2026-08-02T08:56:59Z",
+  "claim_ids_tested": ["MECH-481"],
+  "source": {
+    "title": "Repetitive negative thinking in daily life and functional connectivity among default mode, fronto-parietal, and salience networks.",
+    "authors": ["D M Lydon-Staley", "C Kuehner", "V Zamoscik", "S Huffziger", "P Kirsch", "D S Bassett"],
+    "year": 2019,
+    "venue": "Translational Psychiatry",
+    "doi": "10.1038/s41398-019-0560-0",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6751201/"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Directly instantiates MECH-481's 'coalition persistence failure' scenario (scenario 5 in the source thought): individuals with higher between-network coupling of default mode and fronto-parietal networks show increased repetitive negative thinking following sadness, consistent with an impaired-disengagement account, while flexibility of the salience network's connectivity pattern is protective. This maps closely onto REE's Gamma_t (persistence/completion/dissolution conditions) being a load-bearing, independently-failable part of the coalition mechanism, not an afterthought.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The design is correlational and between-person (trait-level individual differences in network connectivity), not an experimental manipulation of a control-demand-triggered dissolution event -- so it establishes plausibility of a persistence-failure mechanism in the DMN/FPN/salience system generally, but cannot show that this failure mode is specifically caused by, or specific to, a mistyped or mistimed control-demand classification as MECH-481's architecture would frame it."
+  ],
+  "tags": ["mech-481", "rumination", "disengagement", "default_mode_network", "fronto_parietal_network", "salience_network", "coalition_persistence"],
+  "mapping": {
+    "source_claim_statement": "Using ambulatory assessment paired with resting-state fMRI in 58 participants (29 with a history of Major Depression), repetitive negative thinking increased following momentary sadness more strongly in individuals with higher between-network connectivity of default mode and fronto-parietal networks, and less strongly in individuals with more flexible salience-network connectivity patterns -- supporting the 'impaired disengagement hypothesis' of repetitive negative thinking.",
+    "ree_translation": "Direct empirical grounding for MECH-481's scenario 5, 'coalition persistence failure': the source thought explicitly predicts that failing to dissolve a coalition (over-long engagement) produces 'rumination, perseveration, or control capture.' This paper is a naturalistic, ecologically-sampled demonstration of exactly that failure mode in humans, with the specific networks named (default mode, fronto-parietal, salience) mapping onto REE's proposed 'typed coalition' substrate systems, and salience-network flexibility specifically implicated as protective -- i.e. a marker of intact dissolution capacity.",
+    "mapping_caveat": "This is individual-differences, trait-level, correlational evidence, not an experimental demonstration that a specific typed control demand failed to trigger timely dissolution. It supports the general biological plausibility of persistence/dissolution as a separately-failable mechanism (worth building Gamma_t as a first-class, independently testable component, per the source thought's own guardrails) but should not be read as validating REE's specific typed-demand-to-dissolution-condition architecture.",
+    "source_context": "Human resting-state fMRI + 4-day ecological momentary assessment (10x/day), n=58 (40 female), mixed sample including 29 with remitted Major Depression history."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Solid multilevel-model design combining ecological momentary assessment with resting connectivity, though sample size is modest (n=58) and the clinical subsample introduces some population heterogeneity. Mapping fidelity reasonably direct for the persistence/dissolution concept specifically; transfer_risk reflects the correlational, individual-differences nature of the design relative to REE's event-triggered mechanism."
+  }
+}
