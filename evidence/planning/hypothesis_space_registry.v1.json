@@ -879,15 +879,18 @@
           ],
           "resolution": {
             "state": "alive",
-            "resolving_runs": [],
-            "evidence_direction": "pending",
-            "epistemic_category": "competence_implementation_gap",
-            "self_route_label": null,
-            "control_passed": false,
-            "non_degenerate": null,
+            "resolving_runs": [
+              "V3-EXQ-851",
+              "V3-EXQ-858"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "substrate_not_ready_requeue (compound-gate artifact, corrected)",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": null,
-            "basis": "the live root candidate (see memory: pursue BG-like commitment over F-dominance); co-adjudicated by V3-EXQ-737."
+            "resolved_utc": "2026-08-02T02:38:31Z",
+            "basis": "2026-08-02 (failure_autopsy_V3-EXQ-857a+858, session determined-ritchie-55a3a6): V3-EXQ-851's and V3-EXQ-858's own substrate_not_ready_requeue self-routes are COMPOUND-GATE ARTIFACTS (an all-4-rungs-simultaneous AND active_frac>=0.8 requirement), not evidence of a dead mechanism -- raw per-cell data (851: excluded_count 17-28 at active_frac 0.24-0.58; 858: excluded_count 17.8-29.0 at active_frac 0.24-0.84, both matching the healthy V3-EXQ-654j baseline magnitude) show MECH-448/449 robustly engaged at a reduced duty cycle. 858's own C2 (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003) -- suggestive but not decisive (only 1/3 clears the driver's own 2-of-3 pass bar). Stays alive pending V3-EXQ-863 (route_source='none' comparator, queued, deprioritized) and a corrected readiness-gate spec for this GOV-FANOUT-1 lineage."
           }
         },
         {
@@ -2475,6 +2478,85 @@
         "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline is now very close. Governance will need to decide with H1 relatively favored by elimination but not independently confirmed, H2 clearly weakened, and H3 weakened-not-eliminated by literature."
       },
       "registration_note": "Question and its 3 hypotheses were originally pre-registered by V3-EXQ-794a's autopsy (2026-07-31T21:53:02Z, hypothesis_space_ledger_pending, mode A_pre_register_only) but never applied to this live registry until now -- applied by failure_autopsy_V3-EXQ-850_2026-08-01, which also resolves H1 in the same edit. registered_utc reflects when this question entry actually entered the tracked file; per-hypothesis pre_registered_utc values preserve 794a's original 2026-07-31T21:53:02Z timestamp."
+    },
+    {
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "title": "Is the V3-EXQ-664 z_harm_a saturation-and-inversion signature a calibration/representational pathology, or does it faithfully track ecological (hazard-density) chronic suffering?",
+      "short_title": "z_harm_a saturation: calibration vs ecology",
+      "claims": [
+        "Q-086"
+      ],
+      "registered_utc": "2026-08-02T09:49:33Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-857a_2026-08-02.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "axis_families": {
+        "map": {}
+      },
+      "hypotheses": [
+        {
+          "hid": "H-calibration-pathology",
+          "label": "calibration/representational pathology",
+          "desc": "z_harm_a stays pegged high with sub-floor CoV regardless of ecology (does not track hazard density)",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-08-01T00:00:00Z",
+          "adjudicating_runs": [
+            "V3-EXQ-857",
+            "V3-EXQ-857a"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-857a"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "q086_calibration_pathology_representational (via paired-seed reanalysis; driver's own gate self-routed substrate_not_ready_requeue)",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-02T01:54:01Z",
+            "basis": "857a's readiness gate (unpaired pooled-SD SNR) failed at the starkest possible gradient (num_hazards 0 vs 4, n=6 seeds), but a paired-by-seed reanalysis (the design already shares seeds identically across arms) clears the same K=2.0 bar (paired SNR=2.20). Once cleared, the driver's own discrimination logic resolves cleanly toward this branch: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is INVERTED (8.64 vs 7.41, higher not lower) relative to ARM_HARSH -- consistent with the original 2026-06-10 V3-EXQ-664 signature. USER-CONFIRMED 2026-08-02. A low-priority V3-EXQ-857b confirmatory pass (fixing the readiness statistic to be paired by default) is recommended but this reading is not contingent on it."
+          }
+        },
+        {
+          "hid": "H-faithful-ecological",
+          "label": "faithful chronic-suffering (ecological)",
+          "desc": "z_harm_a level and range genuinely track hazard density",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-08-01T00:00:00Z",
+          "adjudicating_runs": [
+            "V3-EXQ-857",
+            "V3-EXQ-857a"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-857a"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "measurement_test_design_defect",
+            "self_route_label": "q086_calibration_pathology_representational (discriminated away)",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-02T01:54:01Z",
+            "basis": "Same paired-seed reanalysis that clears the readiness gate for the sibling hypothesis: ARM_BENIGN's z_harm_a level is higher, not lower, than ARM_HARSH (level_drop_frac negative) and CoV stays sub-floor -- the opposite of what a level/range tracking hazard density predicts. Discriminated away, not merely under-supported. USER-CONFIRMED 2026-08-02."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Is Q-086 answered (calibration, not ecology), or does it need V3-EXQ-857b's confirmatory paired-statistic re-run before governance treats it as closed?",
+        "live_gate": "V3-EXQ-857b (low-priority, confirmatory only -- fixes the readiness statistic for future reuse in this lineage, does not re-litigate the question)",
+        "decidable": true,
+        "decision_log_ref": null,
+        "distance_phrase": "0 discriminative experiments required -- reads answered from existing data pending a low-priority confirmatory pass"
+      }
     }
   ]
 }

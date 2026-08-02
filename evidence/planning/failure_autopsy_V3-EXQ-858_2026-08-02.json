@@ -1,0 +1,65 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T09:49:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy_20260802T023831Z_v3",
+      "queue_id": "V3-EXQ-858",
+      "claim_ids": [],
+      "failed_criterion": "readiness_precondition (C1e/C1f/C1g compound gates, all-rungs-simultaneous AND active_frac>=0.8)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[] by design (diagnostic, brake-exempt)",
+        "biological_reference": "not load-bearing (diagnostic)",
+        "prerequisites": "present -- C1a-d and C1h (class-axis exercisability, gapa divergence, CRF differentiation, propagation non-vacuity, f_weight-knob liveness) all hold on every rung",
+        "implementation": "correctly wired, reuses V3-EXQ-851's structural machinery verbatim per the driver's own note",
+        "environment": "same seeds (42/43/44) as V3-EXQ-851, ruling out seed variance as an explanation for the C1e/C1f readiness failure",
+        "measurement": "under-instrumented/test-design defect -- the C1e/C1f compound gate (active_frac>=0.8 AND excluded/suppressed>0, required simultaneously on ALL 4 rungs) reads a robustly-engaged mechanism as dead because duty cycle (0.24-0.84 across seeds/rungs), not magnitude (17.8-29.0 excluded_count, 1.67-13.13 suppression, matching the healthy 654j baseline), drives the '0.0' reading. C1g (route range) is a separate, more genuine near-zero-magnitude finding.",
+        "integration": "same causal candidate as 851 (route-source / duty-cycle interaction); mechanism for the duty-cycle reduction itself not yet identified",
+        "scale": "C2 underpowered at n=3 seeds for a near-miss effect -- 2/3 in the predicted direction (H-f-dominance), 1/3 formally clears the 0.05-nat margin"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing -- diagnostic GOV-FANOUT-1 leg, not a biology-translation test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "claim_ids=[] by design; this is a routing/governance signal for the standing ARC-062/MECH-309 GOV-FANOUT-1 investigation (H-f-dominance hypothesis in hypothesis_space_registry.v1.json), not new claim evidence. C2's own near-miss (2/3 seeds positive in the H-f-dominance direction, 1/3 clearing the 0.05-nat margin) is suggestive but not decisive pending V3-EXQ-863 (route_source='none' comparator).",
+      "recommended_evidence_quality_note": "[2026-08-02 failure-autopsy, V3-EXQ-858, confirmed failure_autopsy_V3-EXQ-858_2026-08-02, GOV-FANOUT-1 Leg P-B, self-route flagged precondition_unmet in pending_review.md, USER-CONFIRMED]: C1e (MECH-448 demotion) and C1f (MECH-449 no-go) both read 'measured 0.0' due to a COMPOUND-GATE ARTIFACT identical to the one V3-EXQ-851's 2026-08-01T21:19:59Z addendum diagnosed and predicted this exact run would confirm -- the gate requires active_frac>=0.8 on ALL 4 rungs simultaneously for a single seed, but raw per-cell data show both mechanisms robustly engaged at every cell (active_frac 0.24-0.84, excluded_count 17.8-29.0, nogo_supp 1.67-13.13 -- matching the healthy V3-EXQ-654j baseline in magnitude), just at a reduced duty cycle that no single seed clears on every rung at once. C1g (lateral_pfc route range) is a DISTINCT, more genuine finding: sub-floor in 9/12 cells, corroborating 851's own near-zero-range-channel observation. The suppressed C2 result (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance-predicted direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003). Route: recommend the GOV-FANOUT-1 P-A/P-B/P-C/P-D readiness-gate spec be amended to score duty-cycle magnitude-when-active rather than an all-rungs-simultaneous floor; do NOT blindly requeue this design as-is (would likely reproduce '0.0' again for the same spec reason). Await V3-EXQ-863 (route_source='none' comparator, already queued, deprioritized) before adjudicating H-f-dominance itself.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "claim_ids=[] (diagnostic, brake-exempt), matching V3-EXQ-851/859's own convention. This autopsy's own recommended category (measurement_test_design_defect) is also not substrate_ceiling."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A compound AND-across-rungs precondition can read a robustly-engaged mechanism as completely dead when duty cycle (not magnitude) varies across seeds/rungs and no single seed simultaneously clears the floor everywhere.",
+        "A prior autopsy's addendum correctly predicted a not-yet-run experiment's outcome (851's addendum, written before 858 landed, named this exact pattern) -- worth treating as a validated diagnostic method for this lineage.",
+        "C1g (route-range) and C1e/C1f (demotion/no-go) are diagnostically distinct even though all three read 0.0 under the same driver -- C1g looks like genuine near-zero magnitude, C1e/C1f are duty-cycle artifacts at preserved magnitude.",
+        "A suppressed C2 result behind a misfiring readiness gate can still carry information (a 2/3-seeds-positive near-miss) worth surfacing rather than discarding behind a blind requeue."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_trigger": {
+    "fires": false,
+    "note": "granularity_debt_cluster.py ARC-062 / MECH-309: large prior history, all intact/other/unstamped alignment, no target reads weakened. Well-tracked standing GOV-FANOUT-1 investigation, not new granularity debt."
+  },
+  "hypothesis_space_ledger_pending": null
+}

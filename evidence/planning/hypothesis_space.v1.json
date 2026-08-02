@@ -1,144 +1,144 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-01T21:10:19Z",
+  "generated_at": "2026-08-02T09:55:41Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 136,
-      "built_modules": 110,
-      "fraction_built": 0.8088,
+      "total_modules": 138,
+      "built_modules": 112,
+      "fraction_built": 0.8116,
       "state_counts": {
         "proposed": 26,
-        "implemented": 79,
-        "implemented_pending_validation": 16,
+        "implemented": 80,
+        "implemented_pending_validation": 17,
         "validated": 15
       },
-      "build_proof_gap": 95,
-      "build_proof_gap_note": "110 modules built, 95 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 97,
+      "build_proof_gap_note": "112 modules built, 97 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 77.6,
+      "closure_pct": 76.9,
       "node_total": 83,
-      "node_done_weighted": 64.4,
+      "node_done_weighted": 63.8,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 39,
-      "total_initial": 69,
-      "total_initial_at_registration": 51,
+      "total_surviving": 40,
+      "total_initial": 71,
+      "total_initial_at_registration": 53,
       "total_fanout_added": 18,
-      "total_resolved_out": 28,
-      "reduction_pct_vs_current": 40.6,
-      "net_narrowing_pct": 23.5,
+      "total_resolved_out": 29,
+      "reduction_pct_vs_current": 40.8,
+      "net_narrowing_pct": 24.5,
       "convergence_classes": {
-        "narrowing": 6,
+        "narrowing": 7,
         "static": 5,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "39 alive against 51 originally enumerated, and against 69 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 16
+      "honest_pair_note": "40 alive against 53 originally enumerated, and against 71 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 17
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 8,
-      "open_questions": 16
+      "ready": 9,
+      "open_questions": 17
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 68,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 70,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-13",
-      "surviving": 66,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 68,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-15",
-      "surviving": 62,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 64,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-16",
-      "surviving": 61,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 63,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-17",
-      "surviving": 58,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 60,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-18",
-      "surviving": 52,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 54,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-19",
-      "surviving": 48,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 50,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-20",
-      "surviving": 47,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 49,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-24",
-      "surviving": 46,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 48,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-25",
-      "surviving": 45,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 47,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-27",
-      "surviving": 43,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 45,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-29",
-      "surviving": 42,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 44,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
       "date": "2026-07-31",
-      "surviving": 41,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "surviving": 43,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     },
     {
-      "date": "2026-08-01",
-      "surviving": 39,
-      "closure_pct": 77.6,
-      "build_pct": 80.9
+      "date": "2026-08-02",
+      "surviving": 40,
+      "closure_pct": 76.9,
+      "build_pct": 81.2
     }
   ],
   "questions": [
@@ -915,9 +915,10 @@
           "axis": "selection",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-737"
+            "V3-EXQ-851",
+            "V3-EXQ-858"
           ],
-          "basis": "the live root candidate (see memory: pursue BG-like commitment over F-dominance); co-adjudicated by V3-EXQ-737.",
+          "basis": "2026-08-02 (failure_autopsy_V3-EXQ-857a+858, session determined-ritchie-55a3a6): V3-EXQ-851's and V3-EXQ-858's own substrate_not_ready_requeue self-routes are COMPOUND-GATE ARTIFACTS (an all-4-rungs-simultaneous AND active_frac>=0.8 requirement), not evidence of a dead mechanism -- raw per-cell data (851: excluded_count 17-28 at active_frac 0.24-0.58; 858: excluded_count 17.8-29.0 at active_frac 0.24-0.84, both matching the healthy V3-EXQ-654j baseline magnitude) show MECH-448/449 robustly engaged at a reduced duty cycle. 858's own C2 (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003) -- suggestive but not decisive (only 1/3 clears the driver's own 2-of-3 pass bar). Stays alive pending V3-EXQ-863 (route_source='none' comparator, queued, deprioritized) and a corrected readiness-gate spec for this GOV-FANOUT-1 lineage.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -2265,9 +2266,112 @@
         "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, partial signal, not confirmed/eliminated. H2 probed twice 2026-08-01 (V3-EXQ-853, then confound-corrected V3-EXQ-860): alive but now MORE STRONGLY weakened -- the decoupled comparison collapsed 853's 12-22% closure to 2.5-2.9%, cleanly implicating H1's axis (F1-firing count) rather than H2's (exposure duration) as the driver of 853's original partial signal. H3 resolved via lit-pull 2026-08-01 (e84240108d): alive, weakened by the best-controlled human calibration literature, not eliminated. H1 is now the best-supported of the three by process of elimination, though still not formally confirmed.",
         "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline is now very close. Governance will need to decide with H1 relatively favored by elimination but not independently confirmed, H2 clearly weakened, and H3 weakened-not-eliminated by literature."
       }
+    },
+    {
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "title": "Is the V3-EXQ-664 z_harm_a saturation-and-inversion signature a calibration/representational pathology, or does it faithfully track ecological (hazard-density) chronic suffering?",
+      "short_title": "z_harm_a saturation: calibration vs ecology",
+      "claims": [
+        "Q-086"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-calibration-pathology",
+          "label": "calibration/representational pathology",
+          "desc": "z_harm_a stays pegged high with sub-floor CoV regardless of ecology (does not track hazard density)",
+          "axis": "measurement",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-857a"
+          ],
+          "basis": "857a's readiness gate (unpaired pooled-SD SNR) failed at the starkest possible gradient (num_hazards 0 vs 4, n=6 seeds), but a paired-by-seed reanalysis (the design already shares seeds identically across arms) clears the same K=2.0 bar (paired SNR=2.20). Once cleared, the driver's own discrimination logic resolves cleanly toward this branch: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is INVERTED (8.64 vs 7.41, higher not lower) relative to ARM_HARSH -- consistent with the original 2026-06-10 V3-EXQ-664 signature. USER-CONFIRMED 2026-08-02. A low-priority V3-EXQ-857b confirmatory pass (fixing the readiness statistic to be paired by default) is recommended but this reading is not contingent on it.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-faithful-ecological",
+          "label": "faithful chronic-suffering (ecological)",
+          "desc": "z_harm_a level and range genuinely track hazard density",
+          "axis": "measurement",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-857a"
+          ],
+          "basis": "Same paired-seed reanalysis that clears the readiness gate for the sibling hypothesis: ARM_BENIGN's z_harm_a level is higher, not lower, than ARM_HARSH (level_drop_frac negative) and CoV stays sub-floor -- the opposite of what a level/range tracking hazard density predicts. Discriminated away, not merely under-supported. USER-CONFIRMED 2026-08-02.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is Q-086 answered (calibration, not ecology), or does it need V3-EXQ-857b's confirmatory paired-statistic re-run before governance treats it as closed?",
+        "distance_phrase": "0 discriminative experiments required -- reads answered from existing data pending a low-priority confirmatory pass",
+        "live_gate": "V3-EXQ-857b (low-priority, confirmatory only -- fixes the readiness statistic for future reuse in this lineage, does not re-litigate the question)",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-858",
+      "all_runs": [
+        "V3-EXQ-851",
+        "V3-EXQ-858"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "2026-08-02 (failure_autopsy_V3-EXQ-857a+858, session determined-ritchie-55a3a6): V3-EXQ-851's and V3-EXQ-858's own substrate_not_ready_requeue self-routes are COMPOUND-GATE ARTIFACTS (an all-4-rungs-simultaneous AND active_frac>=0.8 requirement), not evidence of a dead mechanism -- raw per-cell data (851: excluded_count 17-28 at active_frac 0.24-0.58; 858: excluded_count 17.8-29.0 at active_frac 0.24-0.84, both matching the healthy V3-EXQ-654j baseline magnitude) show MECH-448/449 robustly engaged at a reduced duty cycle. 858's own C2 (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003) -- suggestive but not decisive (only 1/3 clears the driver's own 2-of-3 pass bar). Stays alive pending V3-EXQ-863 (route_source='none' comparator, queued, deprioritized) and a corrected readiness-gate spec for this GOV-FANOUT-1 lineage.",
+      "resolved_utc": "2026-08-02T02:38:31Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-857a",
+      "all_runs": [
+        "V3-EXQ-857a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "claims": [
+        "Q-086"
+      ],
+      "moved": "857a's readiness gate (unpaired pooled-SD SNR) failed at the starkest possible gradient (num_hazards 0 vs 4, n=6 seeds), but a paired-by-seed reanalysis (the design already shares seeds identically across arms) clears the same K=2.0 bar (paired SNR=2.20). Once cleared, the driver's own discrimination logic resolves cleanly toward this branch: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is INVERTED (8.64 vs 7.41, higher not lower) relative to ARM_HARSH -- consistent with the original 2026-06-10 V3-EXQ-664 signature. USER-CONFIRMED 2026-08-02. A low-priority V3-EXQ-857b confirmatory pass (fixing the readiness statistic to be paired by default) is recommended but this reading is not contingent on it.",
+      "resolved_utc": "2026-08-02T01:54:01Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-860",
       "all_runs": [

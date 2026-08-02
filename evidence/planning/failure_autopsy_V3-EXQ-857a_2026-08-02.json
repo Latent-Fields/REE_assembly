@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T09:49:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_857a_q086_gentler_env_fingerprint_redesign_20260802T015401Z_v3",
+      "queue_id": "V3-EXQ-857a",
+      "claim_ids": ["Q-086"],
+      "failed_criterion": "readiness_precondition (gentle_env_manipulation_took_z_harm_s_differs_starkest, unpaired SNR 0.388 vs 2.0)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- once correctly re-analysed (paired by seed), the manipulation took and the question is answered",
+        "biological_reference": "not load-bearing (diagnostic)",
+        "prerequisites": "n/a",
+        "implementation": "manipulation itself worked as designed on paper",
+        "environment": "genuinely moved z_harm_s and episode-survival-time; paired analysis shows a real, consistent, majority-of-seeds effect",
+        "measurement": "under-instrumented/misleading -- the readiness statistic (unpaired pooled-SD SNR) discards the shared-seed pairing structure the design already has (torch.manual_seed(seed) identical across arms), letting one deterministic outlier seed (seed=1, reproducible bit-identically across 857 and 857a) swamp a real signal present in 5/6 seeds",
+        "integration": "n/a",
+        "scale": "adequate once paired (paired SNR 2.20, n=6); more seeds would firm up the borderline margin"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing -- diagnostic confound control, not a biology-translation test",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_direction_note": "supports the 'calibration, not ecology' reading of Q-086 (ARM_BENIGN stays CoV-saturated and its z_harm_a level is INVERTED -- higher, not lower, than ARM_HARSH -- once the readiness gate is read via a paired-by-seed SNR, which clears the driver's own K=2.0 bar at 2.20). Consistent with the original 2026-06-10 V3-EXQ-664 saturation-and-inversion observation.",
+      "recommended_evidence_quality_note": "[2026-08-02 failure-autopsy, V3-EXQ-857a, confirmed failure_autopsy_V3-EXQ-857a_2026-08-02, second attempt (857a redesign of 857), self-route flagged precondition_unmet in pending_review.md, USER-CONFIRMED reversal]: the driver's own readiness precondition (unpaired pooled-SD SNR across 6 seeds x 2 arms) FAILED again (0.388 vs required >=2.0) despite double the seeds and the starkest possible gradient (num_hazards 0 vs 4), and the driver's own code flagged this as possibly indicating an ecologically-insensitive readout. A PAIRED-BY-SEED reanalysis (the design already shares seeds identically across arms via torch.manual_seed(seed)) overturns this: 5 of 6 seeds show a consistent positive delta, paired SNR=2.20 clears the same K=2.0 bar the unpaired test failed. Cross-run reproducibility (857's 3-seed subset is bit-identical to 857a's) confirms the discarded 'noise' is a deterministic per-seed effect (seed=1 is an outlier in ALL THREE arms equally), not sampling variance -- exactly the signature 851's autopsy independently flagged in a different lineage. Once the gate is read as cleared, the driver's own already-computed discrimination resolves cleanly: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is higher, not lower, than ARM_HARSH (8.64 vs 7.41, an INVERSION) -- calibration_pathology_representational, not faithful_chronic_suffering_ecological. Consistent with the original 664 saturation-and-inversion signature. Route: low-priority /queue-experiment V3-EXQ-857b to fix the readiness statistic to a paired-by-seed SNR for this lineage's future reuse (confirmatory, not re-litigation). Q-086 reads answered pending that confirmatory pass; evidence_direction supports 'calibration, not ecology.'",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "1 prior autopsy for Q-086 (failure_autopsy_V3-EXQ-857_2026-08-01), category non_contributory (not substrate_ceiling, R3-excluded from the count). This autopsy's own recommended category (measurement_test_design_defect) is also not substrate_ceiling. Brake does not fire."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "When a design shares seeds identically across arms, the non-degeneracy statistic should be paired, not pooled-unpaired -- an unpaired SD test is vulnerable to one outlier seed masking a real, consistent, majority-of-seeds effect.",
+        "Cross-run bit-identical reproducibility (same seed, same arm, different run) is itself diagnostic evidence of a deterministic per-seed effect rather than stochastic noise.",
+        "A self-route's own speculative narrative about readout insensitivity should be checked against whether the TEST (aggregation statistic), not the READOUT, is at fault.",
+        "The episode-survival-time secondary DV (added per the prior autopsy's routing) was the strongest corroborating signal even though it individually missed its own unpaired SNR bar for the same pooling reason."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence_trigger": {
+    "fires": false,
+    "targets_checked": 1,
+    "alignment_distribution": {"unclear": 1},
+    "note": "granularity_debt_cluster.py Q-086: no target reads weakened; measurement debt not granularity debt, confirmed by this autopsy's own finding."
+  },
+  "hypothesis_space_ledger_pending": null
+}
