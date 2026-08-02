@@ -2307,7 +2307,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-222-proposal-for-mech-472 && claude --resume c8096171-84c8-4098-8d09-ef4f57de5c24",
       "task_claim_session_id": "igw-auto-igw-222-proposal-for-mech-472-20260802T153130Z",
       "assigned_at": "2026-08-02T15:31:06Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-02T15:56:00Z",
+      "completion_summary": "DUPLICATE: MECH-472 already queued as V3-EXQ-882 by concurrent session confident-franklin-c8e403 (ree-v3 0062ba7, pushed). Did NOT re-queue. Substrate-readiness verified but FLAGGED a design confound in V3-EXQ-882: held-out = same-kwargs/diff-seed = SAME distribution, and hazards re-randomize every reset (domain randomization), so more exposure -> more generalization, gap structurally ~0; PASS(widening) branch unreachable -> can only emit a confounded FAIL/weakens, not a real MECH-472 verdict. Recommend a genuine distributional held-out (banded-corridor orientation rotation, exploiting the absolute-position obs channel) before treating any 882 result as evidence.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "DUPLICATE: MECH-472 already queued as V3-EXQ-882 by concurrent session confident-franklin-c8e403 (ree-v3 0062ba7, pushed). Did NOT re-queue. Substrate-readiness verified but FLAGGED a design confound in V3-EXQ-882: held-out = same-kwargs/diff-seed = SAME distribution, and hazards re-randomize every reset (domain randomization), so more exposure -> more generalization, gap structurally ~0; PASS(widening) branch unreachable -> can only emit a confounded FAIL/weakens, not a real MECH-472 verdict. Recommend a genuine distributional held-out (banded-corridor orientation rotation, exploiting the absolute-position obs channel) before treating any 882 result as evidence."
     }
   ],
   "dispositions": [
@@ -3110,6 +3114,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-02T14:01:06Z",
       "re_eligible_after": "2026-08-04T14:01:06Z"
+    },
+    {
+      "stable_hash": "9d049a69d26c",
+      "igw_id_at_disposition": "IGW-20260802-222",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-472"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Proposal for MECH-472",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-02T15:56:00Z",
+      "re_eligible_after": "2026-08-04T15:56:00Z"
     }
   ]
 }
