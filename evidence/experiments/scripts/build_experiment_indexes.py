@@ -4502,6 +4502,65 @@ def _suggest_literature_type(claim_id: str, matrix: dict[str, Any]) -> str:
     return f"targeted_review_{claim_id.lower().replace('-', '_')}"
 
 
+def _proposal_carry_forward_key(item: dict[str, Any]) -> str:
+    """Stable identity used to match a proposal across regenerations.
+
+    backlog_id (EVB-NNNN) is preferred -- every auto-generated proposal
+    carries one, minted once and carried forward by claim_id (see the
+    "Persistent ID assignment" block in main()). proposal_id (EXP-/LIT-NNNN)
+    is the fallback for the historical case where a proposal has no
+    backlog_id at all; unlike backlog_id it has no code-enforced stability
+    guarantee, so a proposal relying on this fallback is one rewrite away
+    from breaking carry-forward. As of 2026-08-02 every manual proposal
+    (evidence/planning/manual_proposals.v1.json) is minted a backlog_id on
+    first regen (see _mint_missing_manual_backlog_ids), so this fallback
+    should no longer be exercised in practice -- kept for defense in depth
+    against a malformed or hand-edited entry that skips minting.
+    """
+    return str(item.get("backlog_id") or item.get("proposal_id") or "")
+
+
+def _reserve_manual_proposal_backlog_ids(
+    manual_doc: dict[str, Any], used_numeric_ids: set[int]
+) -> None:
+    """Fold manual_proposals.v1.json's own EVB-NNNN ids into the shared
+    reservation set so the auto-backlog minting loop (which only scans
+    evidence_backlog.v1.json) can never hand out a number a manual proposal
+    already owns. Mutates used_numeric_ids in place, matching the existing
+    caller-side convention.
+    """
+    for _mp_item in manual_doc.get("items", []):
+        if not isinstance(_mp_item, dict):
+            continue
+        _mp_bid = str(_mp_item.get("backlog_id", "")).strip()
+        _m = re.fullmatch(r"EVB-(\d{4,})", _mp_bid)
+        if _m:
+            used_numeric_ids.add(int(_m.group(1)))
+
+
+def _mint_missing_manual_backlog_ids(
+    manual_doc: dict[str, Any], next_idx: int
+) -> tuple[bool, int]:
+    """Assign a stable EVB-NNNN to every manual proposal that lacks one.
+
+    Mutates manual_doc's items in place. Idempotent: an item that already
+    carries a backlog_id (including one minted by a prior call) is left
+    untouched, so calling this again on the same doc with the same next_idx
+    is a no-op (changed=False) -- the property the carry-forward regression
+    test relies on. Returns (changed, next_idx_after) so the caller can
+    decide whether to persist manual_doc and can keep allocating from a
+    single shared counter.
+    """
+    changed = False
+    for mp in manual_doc.get("items", []):
+        if isinstance(mp, dict) and mp.get("proposal_id"):
+            if not str(mp.get("backlog_id", "")).strip():
+                mp["backlog_id"] = f"EVB-{next_idx:04d}"
+                next_idx += 1
+                changed = True
+    return changed, next_idx
+
+
 def _claim_stage_index(stage_order: list[str], stage_id: str) -> int:
     token = str(stage_id).strip()
     if token in stage_order:
@@ -5541,6 +5600,23 @@ def _write_planning_outputs(
         except Exception:
             pass  # Corrupt or missing backlog -- skip carry-forward
 
+    # Also reserve numeric EVB-NNNN ids already assigned to manual proposals
+    # (evidence/planning/manual_proposals.v1.json) -- those items are never
+    # inserted into evidence_backlog.v1.json itself, so _used_numeric_ids
+    # above is blind to them. Without this, the auto-backlog minting loop
+    # below could hand a fresh claim the SAME EVB-NNNN a manual proposal
+    # already owns (see the manual-proposal backlog_id minting further down,
+    # which draws from this same numeric pool).
+    _manual_proposals_path_for_reservation = planning_root / "manual_proposals.v1.json"
+    if _manual_proposals_path_for_reservation.exists():
+        try:
+            _existing_manual_doc = json.loads(
+                _manual_proposals_path_for_reservation.read_text(encoding="utf-8")
+            )
+            _reserve_manual_proposal_backlog_ids(_existing_manual_doc, _used_numeric_ids)
+        except Exception:
+            pass  # Corrupt or missing manual proposals -- skip reservation
+
     # Restore preserved user_notes + honour manual user_status overrides on auto-generated items
     for item in backlog_items:
         _cid = str(item.get("claim_id", ""))
@@ -5601,7 +5677,7 @@ def _write_planning_outputs(
                 _existing_proposals_path.read_text(encoding="utf-8")
             )
             for _ep in _existing_proposals_doc.get("items", []):
-                _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+                _bid = _proposal_carry_forward_key(_ep)
                 if _bid and _ep.get("status", "proposed") != "proposed":
                     _existing_proposal_status[_bid] = {
                         k: _ep[k]
@@ -5644,7 +5720,7 @@ def _write_planning_outputs(
     _manual_reserved_idx: set[int] = set()
     if _existing_proposals_doc is not None:
         for _ep in _existing_proposals_doc.get("items", []):
-            _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+            _bid = _proposal_carry_forward_key(_ep)
             if not _bid or _bid not in _existing_proposal_status:
                 continue  # only resolved (non-"proposed") entries get re-appended later
             _m = re.match(r"^(?:EXP|LIT)-(\d+)$", str(_ep.get("proposal_id") or ""))
@@ -5984,15 +6060,38 @@ def _write_planning_outputs(
     # Read evidence/planning/manual_proposals.v1.json if it exists; append its
     # items verbatim to the generated list. Manual items must carry:
     #   proposal_id, claim_id, proposal_type, priority, objective, status
+    #
+    # Every manual item MUST carry a stable backlog_id, minted here on first
+    # encounter and persisted back to the source file so it never needs
+    # re-minting. Without this, the status carry-forward below (and the
+    # "Preserve historical resolution records" re-append further down) falls
+    # back to keying on proposal_id for these items instead -- which, unlike
+    # every auto-generated proposal, has no code-enforced stability guarantee
+    # of its own; it merely happens to hold today because nothing currently
+    # rewrites a manual item's proposal_id. Confirmed 2026-08-02
+    # (chip-20260802-backlog-null-carryforward): all 81 manual_proposals.v1.json
+    # items lacked backlog_id, the one exposed category (every auto-generated
+    # proposal always gets one via the "Persistent ID assignment" loop above).
+    # Reuses the SAME numeric EVB-NNNN counter/collision-set as that loop so
+    # the two ID spaces can never collide, without inserting these proposals
+    # into evidence_backlog.v1.json itself (they are direct manual dispatches,
+    # not auto-detected evidence gaps).
     manual_proposals_path = planning_root / "manual_proposals.v1.json"
     if manual_proposals_path.exists():
         try:
             manual_doc = json.loads(manual_proposals_path.read_text(encoding="utf-8"))
+            _manual_doc_changed, _next_auto_idx = _mint_missing_manual_backlog_ids(
+                manual_doc, _next_auto_idx
+            )
             for mp in manual_doc.get("items", []):
                 if isinstance(mp, dict) and mp.get("proposal_id"):
                     mp_copy = dict(mp)
                     mp_copy["source"] = "manual"
                     proposals.append(mp_copy)
+            if _manual_doc_changed:
+                manual_proposals_path.write_text(
+                    json.dumps(manual_doc, indent=2) + "\n", encoding="utf-8"
+                )
         except Exception:
             pass  # malformed manual file -- skip silently
 
@@ -6005,7 +6104,7 @@ def _write_planning_outputs(
     # before the proposal_id counter, so their numeric ids could be reserved --
     # see "ALSO reserve every already-RESOLVED existing proposal_id" above.)
     for _p in proposals:
-        _bid = _p.get("backlog_id") or _p.get("proposal_id")
+        _bid = _proposal_carry_forward_key(_p)
         if _bid and _bid in _existing_proposal_status:
             _p.update(_existing_proposal_status[_bid])
 
@@ -6031,10 +6130,10 @@ def _write_planning_outputs(
     # any other resolved item does.
     if _existing_proposals_doc is not None:
         _regenerated_bids = {
-            _p.get("backlog_id") or _p.get("proposal_id") for _p in proposals
+            _proposal_carry_forward_key(_p) for _p in proposals
         }
         for _ep in _existing_proposals_doc.get("items", []):
-            _bid = _ep.get("backlog_id") or _ep.get("proposal_id")
+            _bid = _proposal_carry_forward_key(_ep)
             if (
                 _bid
                 and _bid not in _regenerated_bids
@@ -6063,7 +6162,7 @@ def _write_planning_outputs(
             for _mp in _manual_doc.get("items", []):
                 if not isinstance(_mp, dict):
                     continue
-                _mp_bid = _mp.get("backlog_id") or _mp.get("proposal_id")
+                _mp_bid = _proposal_carry_forward_key(_mp)
                 _resolved = _existing_proposal_status.get(_mp_bid) if _mp_bid else None
                 if not _resolved:
                     continue

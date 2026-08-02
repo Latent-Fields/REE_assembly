@@ -1608,6 +1608,165 @@ def test_suggest_literature_type_no_history_matches_prior_behavior():
     assert b._suggest_literature_type("Q-999", matrix) == "targeted_review_q_999"
 
 
+# --- backlog_id-null proposal carry-forward instability --------------------
+#
+# Regression target: 2026-08-02 (chip-20260802-backlog-null-carryforward).
+# Proposals with backlog_id null/absent (manual_proposals.v1.json historically
+# had NO backlog_id on any of its 81 items) rely on _proposal_carry_forward_key
+# falling back to proposal_id. That fallback is not code-enforced stable the
+# way backlog_id is (every auto-generated proposal gets one, minted once and
+# carried forward by claim_id) -- a manual item's status survived a regen only
+# because nothing rewrote its proposal_id, an unenforced invariant. Confirmed
+# incident shape: MECH-426/EXP-0384, MECH-427/EXP-0385, INV-087/EXP-0386 were
+# hand-patched to blocked_substrate/blocked_substrate/executed and observed
+# reverted to "proposed" in a shared working tree the same day. Fix: mint a
+# stable EVB-NNNN for every manual proposal on first regen
+# (_mint_missing_manual_backlog_ids), persisted back to manual_proposals.v1.json
+# so it is never re-minted, with the numeric id space shared/reserved against
+# evidence_backlog.v1.json via _reserve_manual_proposal_backlog_ids so the two
+# minting loops can never collide.
+
+def test_carry_forward_key_prefers_backlog_id():
+    assert b._proposal_carry_forward_key(
+        {"backlog_id": "EVB-0500", "proposal_id": "EXP-0384"}
+    ) == "EVB-0500"
+
+
+def test_carry_forward_key_falls_back_to_proposal_id():
+    assert b._proposal_carry_forward_key(
+        {"backlog_id": None, "proposal_id": "EXP-0384"}
+    ) == "EXP-0384"
+    assert b._proposal_carry_forward_key({"proposal_id": "EXP-0384"}) == "EXP-0384"
+
+
+def test_carry_forward_key_empty_when_neither_present():
+    assert b._proposal_carry_forward_key({}) == ""
+
+
+def test_mint_missing_manual_backlog_ids_assigns_only_missing():
+    manual_doc = {
+        "items": [
+            {"proposal_id": "EXP-0384", "claim_id": "MECH-426"},  # missing
+            {"proposal_id": "EXP-0129", "claim_id": "MECH-104", "backlog_id": "EVB-0062"},  # has one
+        ]
+    }
+    changed, next_idx = b._mint_missing_manual_backlog_ids(manual_doc, 490)
+    assert changed is True
+    assert manual_doc["items"][0]["backlog_id"] == "EVB-0490"
+    assert manual_doc["items"][1]["backlog_id"] == "EVB-0062"  # untouched
+    assert next_idx == 491
+
+
+def test_mint_missing_manual_backlog_ids_is_idempotent():
+    """Second call on an already-minted doc is a no-op: same ids, changed=False.
+    This is what makes the carry-forward SAFE across repeated regens -- a
+    manual item's backlog_id, once minted, never moves again."""
+    manual_doc = {"items": [{"proposal_id": "EXP-0384", "claim_id": "MECH-426"}]}
+    changed1, next_idx1 = b._mint_missing_manual_backlog_ids(manual_doc, 490)
+    assert changed1 is True
+    minted_id = manual_doc["items"][0]["backlog_id"]
+
+    changed2, next_idx2 = b._mint_missing_manual_backlog_ids(manual_doc, next_idx1)
+    assert changed2 is False
+    assert manual_doc["items"][0]["backlog_id"] == minted_id
+    assert next_idx2 == next_idx1  # counter did not advance on the no-op pass
+
+
+def test_reserve_manual_proposal_backlog_ids_prevents_future_collision():
+    """The auto-backlog minting loop only scans evidence_backlog.v1.json;
+    without folding manual_proposals.v1.json's own ids into the same
+    reservation set, a freshly-minted auto EVB-NNNN could collide with one
+    already owned by a manual proposal."""
+    manual_doc = {
+        "items": [
+            {"proposal_id": "EXP-0384", "backlog_id": "EVB-0490"},
+            {"proposal_id": "EXP-0385", "backlog_id": "EVB-0491"},
+            {"proposal_id": "EXP-0129", "backlog_id": "EVB-PINNED-Q019"},  # non-numeric, ignored
+            {"proposal_id": "EXP-0999"},  # missing backlog_id, ignored
+        ]
+    }
+    used = {489}
+    b._reserve_manual_proposal_backlog_ids(manual_doc, used)
+    assert used == {489, 490, 491}
+
+
+def test_manual_proposal_status_survives_two_regen_cycles_via_backlog_id():
+    """End-to-end shape of the confirmed 2026-08-02 incident (MECH-426/427/
+    INV-087): a manual proposal is hand-gated (e.g. blocked_substrate) between
+    two regens. Before the fix, the carry-forward join key for these items was
+    proposal_id (backlog_id was permanently None) -- a fallback with no
+    code-enforced stability guarantee. After the fix, the FIRST regen mints
+    and persists a stable backlog_id, and every subsequent regen's carry-
+    forward keys on it. Simulates main()'s own two-line merge loop
+    (`_bid = _proposal_carry_forward_key(_p); if _bid in status: _p.update(...)`)
+    using the real extracted functions rather than re-deriving new logic."""
+    # Cycle 1: manual_proposals.v1.json has no backlog_id yet (the pre-fix
+    # shape, still real today for any freshly-authored manual proposal).
+    manual_doc = {
+        "items": [{"proposal_id": "EXP-0384", "claim_id": "MECH-426", "status": "proposed"}]
+    }
+    changed, next_idx = b._mint_missing_manual_backlog_ids(manual_doc, 490)
+    assert changed is True
+    assert manual_doc["items"][0]["backlog_id"] == "EVB-0490"
+
+    # Regen 1's output (experiment_proposals.v1.json) carries the minted id.
+    regen1_proposal = dict(manual_doc["items"][0])
+    assert regen1_proposal["status"] == "proposed"
+
+    # A session hand-patches the DERIVED file's status (as the real MECH-426
+    # incident did), independent of the regen.
+    regen1_proposal["status"] = "blocked_substrate"
+    regen1_proposal["blocked_note"] = "velocity readout not built"
+
+    # Cycle 2: a fresh regen reloads manual_proposals.v1.json (backlog_id
+    # already minted and persisted from cycle 1 -- mint is a no-op) and
+    # rebuilds proposals from source (status resets to "proposed" in the
+    # freshly-loaded copy, exactly as main() does every cycle).
+    changed2, _ = b._mint_missing_manual_backlog_ids(manual_doc, next_idx)
+    assert changed2 is False  # already minted -- no re-mint, no drift
+    fresh_proposal = dict(manual_doc["items"][0])
+    assert fresh_proposal["status"] == "proposed"  # source is always "proposed"
+
+    # Carry-forward: existing (regen 1 output) keyed the same way main() does.
+    existing_status_by_key = {
+        b._proposal_carry_forward_key(regen1_proposal): {
+            "status": regen1_proposal["status"],
+            "blocked_note": regen1_proposal["blocked_note"],
+        }
+    }
+    _bid = b._proposal_carry_forward_key(fresh_proposal)
+    assert _bid in existing_status_by_key
+    fresh_proposal.update(existing_status_by_key[_bid])
+
+    assert fresh_proposal["status"] == "blocked_substrate"
+    assert fresh_proposal["blocked_note"] == "velocity readout not built"
+
+
+def test_manual_proposal_without_backlog_id_still_survives_single_cycle_fallback():
+    """Defense-in-depth: even if a manual item somehow skips minting (a
+    malformed entry, or a doc that bypassed _mint_missing_manual_backlog_ids),
+    the proposal_id fallback still works for a SINGLE regen cycle in
+    isolation -- this was never actually broken (proposal_id is stable for a
+    manual item that nothing rewrites). The exposure the fix closes is the
+    missing code-enforced guarantee, not a demonstrated single-cycle failure;
+    this test pins that the fallback path itself keeps working."""
+    old_proposal = {
+        "proposal_id": "EXP-0384", "status": "executed", "executed_by": "V3-EXQ-872",
+    }
+    fresh_proposal = {"proposal_id": "EXP-0384", "status": "proposed"}
+
+    existing_status_by_key = {
+        b._proposal_carry_forward_key(old_proposal): {
+            "status": old_proposal["status"],
+            "executed_by": old_proposal["executed_by"],
+        }
+    }
+    _bid = b._proposal_carry_forward_key(fresh_proposal)
+    assert _bid in existing_status_by_key
+    fresh_proposal.update(existing_status_by_key[_bid])
+    assert fresh_proposal["status"] == "executed"
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
