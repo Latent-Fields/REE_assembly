@@ -2312,6 +2312,31 @@
       "completion_summary": "DUPLICATE: MECH-472 already queued as V3-EXQ-882 by concurrent session confident-franklin-c8e403 (ree-v3 0062ba7, pushed). Did NOT re-queue. Substrate-readiness verified but FLAGGED a design confound in V3-EXQ-882: held-out = same-kwargs/diff-seed = SAME distribution, and hazards re-randomize every reset (domain randomization), so more exposure -> more generalization, gap structurally ~0; PASS(widening) branch unreachable -> can only emit a confounded FAIL/weakens, not a real MECH-472 verdict. Recommend a genuine distributional held-out (banded-corridor orientation rotation, exploiting the absolute-position obs channel) before treating any 882 result as evidence.",
       "outcome": "DUPLICATE",
       "outcome_evidence": "DUPLICATE: MECH-472 already queued as V3-EXQ-882 by concurrent session confident-franklin-c8e403 (ree-v3 0062ba7, pushed). Did NOT re-queue. Substrate-readiness verified but FLAGGED a design confound in V3-EXQ-882: held-out = same-kwargs/diff-seed = SAME distribution, and hazards re-randomize every reset (domain randomization), so more exposure -> more generalization, gap structurally ~0; PASS(widening) branch unreachable -> can only emit a confounded FAIL/weakens, not a real MECH-472 verdict. Recommend a genuine distributional held-out (banded-corridor orientation rotation, exploiting the absolute-position obs channel) before treating any 882 result as evidence."
+    },
+    {
+      "igw_id": "IGW-20260802-204",
+      "stable_hash": "a183d14d7ce5",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "SD-092",
+        "MECH-427",
+        "MECH-428"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: SD-092",
+      "worktree": ".claude/worktrees/igw-204-substrate-ready-sd-092",
+      "branch": "claude/igw-204-substrate-ready-sd-092",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260802-204",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-204-substrate-ready-sd-092 && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-204-substrate-ready-sd-092-20260802T183309Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-08-02T18:32:37Z",
+      "staged_at": "2026-08-02T18:32:37Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
