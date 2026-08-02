@@ -1,0 +1,278 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_848a_arc005_precision_only_decoupled_ladder_calibrated",
+  "run_id": "v3_exq_848a_arc005_precision_only_decoupled_ladder_calibrated_20260802T120712Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T12:07:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-005"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "mixed",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "precision_channel_authority_weak_calibrated",
+    "preconditions": [
+      {
+        "name": "L0_A::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L0_A",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.18434278837407572,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L0_A::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L0_A",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 258.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "L1_A::channel_state_delta_vs_L0",
+        "precondition": "channel_state_delta_vs_L0",
+        "arm": "L1_A",
+        "kind": "readiness",
+        "description": "normalised L1 distance of the cell's REALISED channel-1/2 state from the same-content L0 cell's",
+        "control": "same-content level-0 cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "L1_A::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L1_A",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.18371160743482584,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L1_A::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L1_A",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 258.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "L2_A::channel_state_delta_vs_L0",
+        "precondition": "channel_state_delta_vs_L0",
+        "arm": "L2_A",
+        "kind": "readiness",
+        "description": "normalised L1 distance of the cell's REALISED channel-1/2 state from the same-content L0 cell's",
+        "control": "same-content level-0 cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "L2_A::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L2_A",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.1838793733389556,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L2_A::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L2_A",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 256.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "L0_B::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L0_B",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.16818558118103044,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L0_B::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L0_B",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 249.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "L1_B::channel_state_delta_vs_L0",
+        "precondition": "channel_state_delta_vs_L0",
+        "arm": "L1_B",
+        "kind": "readiness",
+        "description": "normalised L1 distance of the cell's REALISED channel-1/2 state from the same-content L0 cell's",
+        "control": "same-content level-0 cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.5,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "L1_B::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L1_B",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.167654461286672,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L1_B::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L1_B",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 249.0,
+        "threshold": 150.0,
+        "met": true
+      },
+      {
+        "name": "L2_B::channel_state_delta_vs_L0",
+        "precondition": "channel_state_delta_vs_L0",
+        "arm": "L2_B",
+        "kind": "readiness",
+        "description": "normalised L1 distance of the cell's REALISED channel-1/2 state from the same-content L0 cell's",
+        "control": "same-content level-0 cell",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1.0,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "L2_B::precision_cross_seed_sd",
+        "precondition": "precision_cross_seed_sd",
+        "arm": "L2_B",
+        "kind": "readiness",
+        "description": "cross-seed SD of the cell's log10-precision mean, at a fixed level",
+        "control": "five independently seeded cells of the same level+content",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.16843456009431101,
+        "threshold": 1e-06,
+        "met": true
+      },
+      {
+        "name": "L2_B::n_salience_ticks",
+        "precondition": "n_salience_ticks",
+        "arm": "L2_B",
+        "kind": "readiness",
+        "description": "genuine SalienceCoordinator ticks",
+        "control": "coordinator ticking on the live selection path",
+        "direction": "lower",
+        "applies": true,
+        "measured": 249.0,
+        "threshold": 150.0,
+        "met": true
+      }
+    ],
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+    "criteria_non_degenerate": {
+      "C_precision_monotonicity": true
+    }
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "78c5ae3b2d7ed1dc19956d632d675dcf2412cd6c7cd9637f92537358ff37d2bf",
+  "substrate_commit": {
+    "commit": "f275afc3eaf3390b4e7ed475f61922336dce4f6b",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 60000,
+    "ticks_active": 48390,
+    "writer_calls": 60000,
+    "active_frac": 0.8065,
+    "writer_defect": false,
+    "n_agents": 30,
+    "goal_state_present": true
+  }
+}
