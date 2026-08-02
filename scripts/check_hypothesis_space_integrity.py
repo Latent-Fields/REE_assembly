@@ -49,7 +49,8 @@ RESOLVED_OUT_STATES = {"eliminated", "split"}
 # the quiet unverifiable-provenance state, cleared git witnesses, and the
 # fan-out RECURRENCE overlay (an ACTIONABLE routing signal, still never a gate).
 ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
-                    "h_fanout_recurrence"}
+                    "h_fanout_recurrence", "i_confirmed_backed",
+                    "j_confirmed_unverifiable"}
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -429,7 +430,8 @@ def audit(registry: dict, timeseries: list) -> dict:
     flags = {"a_unbacked_drop": [], "b_enlargement": [],
              "c_confirmed_no_control": [], "d_bar_violation": [],
              "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
-             "h_fanout_recurrence": []}
+             "h_fanout_recurrence": [], "i_confirmed_backed": [],
+             "j_confirmed_unverifiable": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
     # was recorded -- lets the time-series check attribute a total_initial rise.
@@ -514,11 +516,48 @@ def audit(registry: dict, timeseries: list) -> dict:
         d_res = (cur.get("total_resolved_out") or 0) - (prev.get("total_resolved_out") or 0)
         d_init = (cur.get("total_initial") or 0) - (prev.get("total_initial") or 0)
         if d_surv < 0 and d_res <= 0 and d_init <= 0:
-            flags["a_unbacked_drop"].append(
-                f"time series {prev.get('date')} -> {cur.get('date')}: "
-                f"surviving fell by {-d_surv} but resolved_out did not rise "
-                f"(delta_resolved_out={d_res}) -- drop is not backed by adjudicated eliminations."
-            )
+            # A `confirmed` resolution (supports + control_passed) also
+            # legitimately removes a hypothesis from "surviving": per
+            # build_hypothesis_space._question_rollup, surviving == alive
+            # whenever alive > 0, so an alive -> confirmed transition on a
+            # question with other alive legs remaining drops the total with NO
+            # elimination behind it -- resolved_out only ever counts
+            # eliminated/split. Before total_confirmed existed in the ledger
+            # this read as an unbacked drop -- confirmed false positive
+            # 2026-08-02 on H-zworld-trained-instrument (V3-EXQ-819a landed the
+            # confirmation into the registry on 2026-07-30, inside the
+            # 07-29->07-30 window; check_hypothesis_space_integrity.md kept
+            # reporting it as unbacked because nothing credited the
+            # confirmation). total_confirmed is only populated going forward
+            # (build_hypothesis_space.py), so an existing snapshot missing it
+            # on either side cannot be checked either way -- treated as
+            # unverifiable (quiet), never as a violation, matching the
+            # git-witness provenance design elsewhere in this file (insufficient
+            # data reads as "cannot tell", not as "therefore a violation").
+            conf_prev, conf_cur = prev.get("total_confirmed"), cur.get("total_confirmed")
+            if conf_prev is None or conf_cur is None:
+                flags["j_confirmed_unverifiable"].append(
+                    f"time series {prev.get('date')} -> {cur.get('date')}: surviving fell by "
+                    f"{-d_surv} with no rise in resolved_out, but total_confirmed is absent "
+                    "from one or both snapshots (predates the field) so a "
+                    "confirmation-explained drop cannot be ruled out -- unverifiable, not "
+                    "a violation."
+                )
+            else:
+                d_conf = conf_cur - conf_prev
+                if d_conf > 0:
+                    flags["i_confirmed_backed"].append(
+                        f"time series {prev.get('date')} -> {cur.get('date')}: surviving fell "
+                        f"by {-d_surv}, backed by {d_conf} newly-confirmed hypothesis(es) "
+                        "(an adjudicated resolution, not an elimination) -- advisory, not "
+                        "a violation."
+                    )
+                else:
+                    flags["a_unbacked_drop"].append(
+                        f"time series {prev.get('date')} -> {cur.get('date')}: "
+                        f"surviving fell by {-d_surv} but resolved_out did not rise "
+                        f"(delta_resolved_out={d_res}) -- drop is not backed by adjudicated eliminations."
+                    )
         # (b-timeseries) frozen initial set grew. Attribute the rise to labelled
         # sources landing in this window -- new-question registrations and valid
         # fan-out growth events. Only the UNATTRIBUTED remainder is a violation.
@@ -641,6 +680,41 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         for msg in adv:
             L.append(f"- {msg}")
     L.append("")
+
+    conf_backed = flags.get("i_confirmed_backed") or []
+    conf_unv = flags.get("j_confirmed_unverifiable") or []
+    L.append(
+        f"## Advisory -- surviving-count drop backed by confirmation "
+        f"({len(conf_backed)} backed, {len(conf_unv)} unverifiable, NOT violations)"
+    )
+    L.append("")
+    L.append(
+        "_A `confirmed` resolution (supports + control_passed) also legitimately removes a "
+        "hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts "
+        "alive legs, so an alive -> confirmed transition drops the total with no elimination "
+        "behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) lets this "
+        "check credit that instead of reading the drop as unbacked. A snapshot pair predating "
+        "the field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design "
+        "as the git-witness provenance check below._"
+    )
+    L.append("")
+    if conf_backed:
+        L.append("**Backed (drop fully explained by a confirmation):**")
+        L.append("")
+        for msg in conf_backed:
+            L.append(f"- {msg}")
+        L.append("")
+    if conf_unv:
+        L.append(
+            "**Unverifiable (quiet -- total_confirmed absent from one or both snapshots):**"
+        )
+        L.append("")
+        for msg in conf_unv:
+            L.append(f"- {msg}")
+        L.append("")
+    if not conf_backed and not conf_unv:
+        L.append("_No surviving-count drop needed a confirmation check this cycle._")
+        L.append("")
 
     rec = flags.get("h_fanout_recurrence") or []
     L.append(f"## Fan-out recurrence (ACTIONABLE, {len(rec)}) -- N >= {FANOUT_RECURRENCE_N} portfolios on one question")
@@ -856,9 +930,15 @@ def _self_test() -> int:
         ]},
     ]}
     ts = [
-        {"date": "2026-07-01", "total_surviving": 5, "total_resolved_out": 0, "total_initial": 5},
-        {"date": "2026-07-02", "total_surviving": 3, "total_resolved_out": 0, "total_initial": 5},  # (a) unbacked drop
-        {"date": "2026-07-03", "total_surviving": 3, "total_resolved_out": 0, "total_initial": 7},  # (b) init grew
+        # total_confirmed present + FLAT across every row: proves the 07-01->07-02
+        # drop is genuinely unbacked (no confirmation explains it either), not
+        # merely unverifiable for lack of the field.
+        {"date": "2026-07-01", "total_surviving": 5, "total_resolved_out": 0,
+         "total_initial": 5, "total_confirmed": 0},
+        {"date": "2026-07-02", "total_surviving": 3, "total_resolved_out": 0,
+         "total_initial": 5, "total_confirmed": 0},  # (a) unbacked drop
+        {"date": "2026-07-03", "total_surviving": 3, "total_resolved_out": 0,
+         "total_initial": 7, "total_confirmed": 0},  # (b) init grew
     ]
     # Hermetic: stub the two git lookups so the self-test never shells out (and so
     # it exercises the witness LOGIC rather than this repo's actual history).
@@ -976,6 +1056,55 @@ def _self_test() -> int:
         ("sameday_before_snapshot_not_attributed",
          _same_day_case(4, 4, rec="2026-07-18T04:49:14Z"),
          "growth recorded BEFORE the same-day prior snapshot does not attribute"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Confirmed-backed / confirmed-unverifiable surviving-drop discriminations
+    # (2026-08-02 fix). A minimal one-question registry+timeseries pair is enough
+    # here -- the drop is purely a total_surviving/total_resolved_out/
+    # total_confirmed arithmetic comparison, unlike the fan-out checks above which
+    # need real hypotheses/events to drive. `confirmed` param controls whether
+    # BOTH snapshot rows carry total_confirmed (and what it's set to); `None`
+    # means the key is omitted entirely, simulating a pre-fix ledger row.
+    def _confirmed_drop_case(confirmed_prev, confirmed_cur) -> list:
+        reg3 = {"questions": [{"qid": "confdrop_q", "initial_frozen_count": 2,
+                               "hypotheses": [
+                                   {"hid": "cd1", "pre_registered_utc": "2026-07-01",
+                                    "resolution": {"state": "alive"}},
+                               ]}]}
+        row1 = {"date": "2026-07-29", "total_surviving": 5, "total_resolved_out": 2,
+                "total_initial": 7}
+        row2 = {"date": "2026-07-30", "total_surviving": 4, "total_resolved_out": 2,
+                "total_initial": 7}
+        if confirmed_prev is not None:
+            row1["total_confirmed"] = confirmed_prev
+        if confirmed_cur is not None:
+            row2["total_confirmed"] = confirmed_cur
+        return audit(reg3, [row1, row2])
+
+    flags_backed = _confirmed_drop_case(3, 4)          # total_confirmed rose by 1 == the drop
+    flags_missing_cur = _confirmed_drop_case(3, None)   # field absent on the LATER row
+    flags_missing_prev = _confirmed_drop_case(None, 4)  # field absent on the EARLIER row
+    flags_flat = _confirmed_drop_case(3, 3)             # field present but flat -> genuinely unbacked
+
+    for name, cond, msg in [
+        ("confirmed_backed_not_unbacked",
+         not flags_backed["a_unbacked_drop"] and len(flags_backed["i_confirmed_backed"]) == 1,
+         "a drop matched by a total_confirmed rise lands in i_confirmed_backed, not a_unbacked_drop"),
+        ("confirmed_missing_cur_is_unverifiable",
+         not flags_missing_cur["a_unbacked_drop"] and len(flags_missing_cur["j_confirmed_unverifiable"]) == 1,
+         "total_confirmed absent from the LATER snapshot reads as unverifiable, not a violation"),
+        ("confirmed_missing_prev_is_unverifiable",
+         not flags_missing_prev["a_unbacked_drop"] and len(flags_missing_prev["j_confirmed_unverifiable"]) == 1,
+         "total_confirmed absent from the EARLIER snapshot reads as unverifiable, not a violation"),
+        ("confirmed_flat_stays_unbacked",
+         len(flags_flat["a_unbacked_drop"]) == 1 and not flags_flat["i_confirmed_backed"]
+         and not flags_flat["j_confirmed_unverifiable"],
+         "total_confirmed present on both sides but FLAT -- drop stays a real (a) violation"),
     ]:
         if cond:
             print(f"  ok   discrimination: {msg}")
@@ -1104,6 +1233,9 @@ def main() -> int:
           f"{len(flags['e_labelled_growth'])} note(s)")
     print(f"  pre-registration provenance: {len(flags['g_witnessed'])} git-witnessed, "
           f"{len(flags['f_unverifiable'])} unverifiable")
+    print(f"  surviving-drop confirmation check (advisory, not a flag): "
+          f"{len(flags['i_confirmed_backed'])} backed, "
+          f"{len(flags['j_confirmed_unverifiable'])} unverifiable")
     n_rec = len(flags["h_fanout_recurrence"])
     print(f"  fan-out recurrence (N>={FANOUT_RECURRENCE_N} portfolios, ACTIONABLE): "
           f"{n_rec}")

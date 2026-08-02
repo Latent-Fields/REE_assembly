@@ -116,6 +116,30 @@ def _live_join_span(node_lines):
     return ls, idx
 
 
+def _kept_lines_for_collapse(node_lines):
+    """Lines to keep from a not-yet-collapsed node before inserting a fresh
+    live:/join: block: every line except the phase/owner_exq/awaiting blob AND
+    any pre-existing live:/join: span.
+
+    A node can carry BOTH a legacy blob AND an already-present live:/join:
+    block -- a half-migrated leftover from an earlier partial collapse attempt
+    (the caller's `has_blob` check only ever looked for the three blob fields,
+    not for whether a live:/join: span already exists too). `_BLOB_RE` alone
+    only matches the blob fields, so without also stripping `_live_join_span`,
+    that stale span survives untouched here, and the fresh block the caller
+    inserts after severity/status then produces a SECOND live:/join: pair -- a
+    duplicate YAML key that `yaml.safe_load` silently resolves to whichever
+    occurs LAST, i.e. the stale one collapse was meant to replace. Confirmed
+    2026-08-02 on commitment_closure:GAP-4-battery: gate 4 kept reporting drift
+    immediately after a fresh collapse because the "stored" value the drift
+    check read back was the orphaned second block, not the one just written.
+    """
+    stale_span = _live_join_span(node_lines)
+    stale_idx = set(range(*stale_span)) if stale_span is not None else set()
+    return [nl for idx, nl in enumerate(node_lines)
+            if not _BLOB_RE.match(nl) and idx not in stale_idx]
+
+
 def main():
     ap = argparse.ArgumentParser(description="SHP-2 two-plane collapse (design sec 4a).")
     ap.add_argument("--plan", required=True, help="repo-relative *_plan.md to collapse")
@@ -217,7 +241,7 @@ def main():
 
         # emit node with blob lines removed and live/join inserted after severity
         # (else after status, else after the last field before the blobs).
-        kept = [nl for nl in node_lines if not _BLOB_RE.match(nl)]
+        kept = _kept_lines_for_collapse(node_lines)
         anchor = None
         for idx, nl in enumerate(kept):
             fm2 = _FIELD_RE.match(nl)

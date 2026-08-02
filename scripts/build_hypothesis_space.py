@@ -641,6 +641,16 @@ def main() -> int:
         q["initial_frozen_count_at_registration"] for q in questions)
     total_fanout_added = sum(q["fanout_added"] for q in questions)
     total_resolved_out = sum(q["resolved_out"] for q in questions)
+    # A `confirmed` resolution is the "supports" twin of an eliminated/split
+    # `resolved_out` state -- it also legitimately removes a hypothesis from
+    # the "surviving" count (see _question_rollup: surviving == alive when
+    # alive > 0, so a hypothesis moving alive -> confirmed drops the total
+    # even though nothing was eliminated). check_hypothesis_space_integrity's
+    # anti-Goodhart drop check only ever compared total_surviving against
+    # total_resolved_out, so a confirmation-driven drop read as "unbacked" --
+    # confirmed 2026-08-02 false-positive on H-zworld-trained-instrument.
+    # Carrying the aggregate here lets that check credit it the same way.
+    total_confirmed = sum(q["confirmed"] for q in questions)
     ready_count = sum(1 for q in questions
                       if q["decision"]["readiness_state"] in ("decidable_now", "decided"))
 
@@ -672,6 +682,7 @@ def main() -> int:
                 "total_initial_at_registration": total_initial_at_registration,
                 "total_fanout_added": total_fanout_added,
                 "total_resolved_out": total_resolved_out,
+                "total_confirmed": total_confirmed,
                 "reduction_pct_vs_current": round(
                     (total_resolved_out / total_initial * 100.0) if total_initial else 0.0, 1),
                 "net_narrowing_pct": round(
@@ -721,6 +732,7 @@ def main() -> int:
         "total_initial_at_registration": total_initial_at_registration,
         "total_fanout_added": total_fanout_added,
         "total_resolved_out": total_resolved_out,
+        "total_confirmed": total_confirmed,
         "closure_pct": closure_pct,
         "build_pct": build_pct,
         "ready": ready_count,

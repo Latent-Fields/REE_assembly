@@ -1736,7 +1736,24 @@ def _evaluate_runs(runs: list[RunRecord], criteria: dict[str, Any]) -> None:
         run.fail_hits = fail_hits
         criteria_fail = bool(fail_hits)
         manifest_fail = run.manifest_status == "FAIL"
-        run.final_status = "FAIL" if (criteria_fail or manifest_fail) else "PASS"
+        # A crash-before-manifest / synthetic runner record carries
+        # manifest_status ERROR (or UNKNOWN), never FAIL -- `manifest_fail` above
+        # is False for it, and `criteria_fail` is also False (a crashed run has no
+        # metrics for fail_if to compare against). Before this branch, that left
+        # final_status on its dataclass default of "PASS", so a code crash was
+        # reported as a clean pass everywhere final_status is read (confirmed
+        # 2026-08-02 on V3-EXQ-870: unlinked_runs carried status="PASS" for a
+        # crash-before-manifest ERROR record, and pending_review.md then listed
+        # it under "PASS (verify & close)" instead of routing it to
+        # /diagnose-errors). Propagate ERROR/UNKNOWN through rather than
+        # defaulting past it -- FAIL still takes precedence when a run somehow
+        # carries both (defensive; not expected in practice).
+        if criteria_fail or manifest_fail:
+            run.final_status = "FAIL"
+        elif run.manifest_status in ("ERROR", "UNKNOWN"):
+            run.final_status = run.manifest_status
+        else:
+            run.final_status = "PASS"
 
         if prev_metrics:
             for metric, value in run.metrics.items():
@@ -2509,6 +2526,27 @@ def _write_claim_evidence_matrix(
                       f"diagnostic adjudication gate (queue-experiment SKILL.md).")
 
         if not run.claim_ids_tested:
+            if run.final_status in ("ERROR", "UNKNOWN"):
+                # A crash-before-manifest / synthetic runner record: claim_ids is
+                # always empty for these by construction, so every one of them
+                # used to land here and get indexed with (before the final_status
+                # fix above) a bogus "PASS" status, or (after that fix, without
+                # this guard) a correctly-labelled but still-INDEXED "ERROR"/
+                # "UNKNOWN" status. Either way, being indexed at all is the
+                # second half of the bug: generate_pending_review.py's
+                # load_error_manifests() explicitly skips any run_id present in
+                # claim_evidence.v1.json (entries OR unlinked_runs) on the
+                # documented assumption that "ERROR records carry no claim tags,
+                # so they are never indexed" -- so an indexed ERROR run is
+                # invisible to BOTH the PASS/FAIL sections (status isn't PASS/
+                # FAIL) AND the ERROR-manifest section (already indexed),
+                # vanishing from pending_review.md entirely. Confirmed 2026-08-02
+                # on V3-EXQ-870 (v3_v3_exq_870_runner_error_20260802T105035Z_v3).
+                # Leaving it OUT of claim_evidence keeps that assumption true and
+                # lets load_error_manifests() pick it up directly from the raw
+                # on-disk manifest, which is the path actually designed to
+                # surface it and route it to /diagnose-errors.
+                continue
             unlinked_entry = {
                 "source_type": "experimental",
                 "experiment_type": run.experiment_type,

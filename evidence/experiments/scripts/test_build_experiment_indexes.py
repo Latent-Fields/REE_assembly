@@ -18,6 +18,9 @@ Or via pytest:  pytest test_build_experiment_indexes.py
 import json
 import os
 import sys
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -1837,6 +1840,106 @@ def test_old_record_not_duplicated_when_fresh_item_matches_via_either_key():
     already_covered = any(k in regenerated_keys for k in old_keys)
 
     assert already_covered is True  # matched via the shared "EXP-0384" key
+
+
+# --- ERROR-as-PASS miscategorization (2026-08-02) --------------------------
+#
+# Regression cover for the confirmed V3-EXQ-870 defect: a crash-before-manifest
+# / synthetic runner ERROR record (manifest_status="ERROR", claim_ids=[]) was
+# indexed into claim_evidence.v1.json's unlinked_runs with status="PASS" --
+# RunRecord.final_status defaults to "PASS" and _evaluate_runs only ever set it
+# to "FAIL", never propagating ERROR/UNKNOWN through. generate_pending_review.py
+# then listed the crash under "PASS (verify & close)" instead of routing it to
+# /diagnose-errors. The fix has two parts, tested separately below: (1)
+# _evaluate_runs must set final_status to the manifest's own ERROR/UNKNOWN
+# value rather than defaulting past it, and (2) an ERROR/UNKNOWN-status
+# unlinked run must not be written into claim_evidence at all, matching
+# generate_pending_review.load_error_manifests()'s documented assumption that
+# such records are "never indexed" (which is what lets it read them straight
+# off the raw on-disk manifest and route them to /diagnose-errors).
+
+def _run_record(run_id="run1", manifest_status="PASS", claim_ids_tested=None,
+                 experiment_type="exp_type_1"):
+    return b.RunRecord(
+        experiment_type=experiment_type,
+        run_id=run_id,
+        timestamp_raw="2026-08-02T10:50:35Z",
+        timestamp=datetime(2026, 8, 2, 10, 50, 35, tzinfo=timezone.utc),
+        manifest_path=Path(f"/tmp/{run_id}/manifest.json"),
+        metrics_path=Path(f"/tmp/{run_id}/metrics.json"),
+        summary_path=Path(f"/tmp/{run_id}/summary.md"),
+        manifest_status=manifest_status,
+        claim_ids_tested=claim_ids_tested or [],
+    )
+
+
+def test_evaluate_runs_error_status_propagates_not_defaulted_to_pass():
+    """The core defect: manifest_status=ERROR must not collapse to final_status
+    PASS just because it isn't literally FAIL."""
+    run = _run_record(manifest_status="ERROR")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "ERROR"
+
+
+def test_evaluate_runs_unknown_status_propagates_not_defaulted_to_pass():
+    run = _run_record(manifest_status="UNKNOWN")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "UNKNOWN"
+
+
+def test_evaluate_runs_fail_still_wins_over_manifest_status():
+    """Sanity: ordinary FAIL behavior is unchanged by the ERROR/UNKNOWN branch."""
+    run = _run_record(manifest_status="FAIL")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "FAIL"
+
+
+def test_evaluate_runs_criteria_fail_wins_over_error_manifest_status():
+    """Defensive: if a run somehow carries both fail_if-triggering metrics AND
+    manifest_status=ERROR, FAIL must still take precedence (this should not
+    happen in practice -- a crash produces no metrics -- but final_status must
+    never silently prefer ERROR over a genuine criteria failure)."""
+    run = _run_record(manifest_status="ERROR")
+    run.metrics = {"some_metric": 10.0}
+    b._evaluate_runs([run], {"fail_if": [{"metric": "some_metric", "op": ">", "threshold": 5.0}]})
+    assert run.final_status == "FAIL"
+
+
+def test_write_claim_evidence_matrix_excludes_error_class_unlinked_run():
+    """An ERROR-class run tagging no claims must not appear anywhere in
+    claim_evidence.v1.json -- indexing it (even with the correct "ERROR" status)
+    makes load_error_manifests() skip the run_id as already-indexed, so the
+    crash vanishes from pending_review.md entirely instead of routing to
+    /diagnose-errors."""
+    run = _run_record(run_id="crash_run", manifest_status="ERROR")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "ERROR"
+
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": [run]}, {}, "2026-08-02T00:00:00Z")
+
+    unlinked_ids = {e["run_id"] for e in matrix["unlinked_runs"]}
+    entry_ids = {e["run_id"] for e in matrix["entries"]}
+    assert "crash_run" not in unlinked_ids
+    assert "crash_run" not in entry_ids
+
+
+def test_write_claim_evidence_matrix_still_includes_pass_class_unlinked_run():
+    """Regression guard against over-correcting: a legitimate PASS/FAIL run
+    that tags no claims (e.g. a substrate-readiness diagnostic) must still be
+    indexed in unlinked_runs -- only ERROR/UNKNOWN-status runs are excluded."""
+    run = _run_record(run_id="readiness_probe", manifest_status="PASS")
+    b._evaluate_runs([run], {})
+    assert run.final_status == "PASS"
+
+    with tempfile.TemporaryDirectory() as td:
+        matrix = b._write_claim_evidence_matrix(
+            Path(td), {"exp_type_1": [run]}, {}, "2026-08-02T00:00:00Z")
+
+    unlinked = {e["run_id"]: e for e in matrix["unlinked_runs"]}
+    assert "readiness_probe" in unlinked
+    assert unlinked["readiness_probe"]["status"] == "PASS"
 
 
 def _run_all():

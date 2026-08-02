@@ -12,13 +12,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -39,13 +38,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -58,13 +56,12 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -78,13 +75,12 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -123,13 +119,12 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -137,7 +132,6 @@ closure_plan:
       depends_on: ["commitment_closure:GAP-4", "commitment_closure:GAP-3", "commitment_closure:GAP-11"]
       cross_plan_link: ["sd033_governance:CHK-SD034"]
       last_updated: 2026-07-24
-      owner_exq: "V3-EXQ-629c queued 2026-07-21 (gate-cleared 2026-07-21 per its own queue note: contact guard clears 3/3 seeds across the 461c..717 sibling family; MECH-342 ecological maintenance-release retest, supersedes V3-EXQ-629b) -- noted by inter-governance-brief 2026-07-24; does not change node status, resume_condition prose already anticipates this as the deferred 629-lineage MECH-342 face."
       resume_condition: "466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery arm is DONE; the residual node openness is the commitment-DEPENDENT arms (461/464b/467b/468b for MECH-266/267/268, 629-lineage for MECH-342), which the standing don't-queue-commitment-dependent-behavioural rule defers until the BG commitment layer is complete (blocked-on-upstream). Node stays in_progress as battery-incomplete, NOT as discharge-arm-pending."
       governance_2026_06_25: "OWNER 466e RAN terminal PASS/supports 2026-06-25T03:02Z (manifest v3_exq_466e_satisficing_residue_discharge_behavioural_20260625T030205Z_v3; supersedes V3-EXQ-466d). The 466d harness gap is FIXED: sd034_satisficing_discharge_confirmed -- all three load-bearing criteria PASS and non_degenerate (C1_n_closures, C2_discharge_events, C3_off_no_closure_no_discharge), and the new residue-field-populated non-vacuity gate (ON residue_active_peak >= 1 on >= 2/3 seeds) is MET, so C2 now fires genuinely rather than from the 466d empty active_mask. SD-034 records a clean supports for the residue-discharge leg (part c of the done-token). APPLIED (user-approved 'Apply supports + supersede 466d'): SD-034 evidence supports (auto-scored); 466d manifest -> evidence_direction:superseded (whole run scoring-excluded); SD-034 STAYS provisional + pending_retest_after_substrate=True (the de-commit-authority lineage GAP-4/460h..460l still owes its retest -- a single discharge-leg PASS does not clear the claim's broader retest debt). 466e marked reviewed. Node STAYS in_progress: the SD-034 discharge arm is delivered, but the MECH-266/267/268/342 commitment-dependent arms remain deferred-blocked on the incomplete BG commitment layer (don't-queue rule). This is Case 3 in closure-drift terms -- the owner_exq 466e reached terminal PASS, but the node is legitimately non-terminal pending those deferred successor arms (blocked-on-upstream BG commitment layer), NOT drifted. (session governance-cycle-20260625T0420Z)"
       result_note: "2026-06-24 (failure-autopsy-466d-20260624T2200Z): AUTOPSIED + CONFIRMED non_contributory (interactive gate). owner V3-EXQ-466d FAILed C2_discharge_events 0/3 while C1_n_closures PASSED -- closures now FORM (466c Leg-A hook fixed) but the discharge does NOT follow because the residue field is EMPTY for the whole run: ResidueField.discharge_domain is implemented + correctly wired (closure_operator.residue=residue_field, agent.py:1577) and fires every closure, but neither the scaffold curriculum nor the 466d eval ever calls agent.update_residue() (the sole add_residue path), so discharge_domain returns 0 from an empty active_mask (field.py:671) regardless of closure behaviour. C2 is DEGENERATE (pinned by test construction) -- the V3-EXQ-642 invalid-precondition pattern, NOT a falsification and NOT a substrate ceiling (the discharge mechanism needs no enrichment; the manifest's criteria_non_degenerate C2=true is wrong). SD-034 -> non_contributory + pending_retest; MECH-094 -> non_contributory (waking-only, not exercised) + DROPPED from scored tags. Re-derive brake NOT fired (642 exemption: harness gap; SD-034's 9 priors are the separate MECH-445/446 latch lineage). Route /queue-experiment V3-EXQ-466e: wire update_residue into scaffold P1/P2 + eval, add a residue-field-populated non-vacuity gate, claim_ids=[SD-034]. substrate_queue action=none. See failure_autopsy_V3-EXQ-466d_2026-06-24.{md,json}. Node STAYS in_progress -- the 466e harness-fix re-queue is the owed next step (chip). Governance applies the evidence_direction at its next walk."
@@ -147,13 +141,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -166,13 +159,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -184,13 +176,12 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -203,13 +194,12 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -237,13 +227,12 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -256,13 +245,12 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]
@@ -276,13 +264,12 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-07-10"
-        from: "failure_autopsy_V3-EXQ-732_2026-07-10"
-        verdict: "non_contributory/precondition_unmet"
+        as_of: "2026-08-02"
+        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
+        verdict: "non_contributory/measurement_test_design_defect"
         next: "routing=queue-experiment"
         brake: "fired"
-        needs_review: true
-        needs_review_reasons: ["newest_forward_predates_later_manifest+measurement_event(s)"]
+        needs_review: false
       join:
         bears_on: ["f_dominance_conversion_ceiling", "ree_ai_design_critique_plan:WS-1"]
         scope_claims: ["SD-033a", "SD-033b", "SD-033c", "SD-033d", "SD-033e", "SD-034", "MECH-090", "MECH-091", "MECH-260", "MECH-262", "MECH-263", "MECH-266", "MECH-267", "MECH-268"]

@@ -1,16 +1,16 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-02T11:53:51Z
+Generated: 2026-08-02T16:55:08Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **19** open question(s) across **15** time-series snapshot(s). **1** flag(s) raised, **26** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
+Audited **19** open question(s) across **15** time-series snapshot(s). **0** flag(s) raised, **26** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s).
 
-## (a) Un-backed surviving-count drop (1)
+## (a) Un-backed surviving-count drop (0)
 
 _A question's surviving count fell with no adjudicated `weakens`/discrimination behind the elimination._
 
-- time series 2026-07-29 -> 2026-07-30: surviving fell by 1 but resolved_out did not rise (delta_resolved_out=0) -- drop is not backed by adjudicated eliminations.
+_None._
 
 ## (b) Post-hoc enlargement of a frozen set (0)
 
@@ -62,6 +62,14 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - time series 2026-07-30 -> 2026-07-31: total_initial grew by 2, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 2 leg(s)) -- advisory, not a violation.
 - time series 2026-07-31 -> 2026-08-01: total_initial grew by 3, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 3 leg(s)) -- advisory, not a violation.
 - time series 2026-08-01 -> 2026-08-02: total_initial grew by 6, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 6 leg(s)) -- advisory, not a violation.
+
+## Advisory -- surviving-count drop backed by confirmation (0 backed, 1 unverifiable, NOT violations)
+
+_A `confirmed` resolution (supports + control_passed) also legitimately removes a hypothesis from `surviving`, exactly like an elimination does -- `surviving` counts alive legs, so an alive -> confirmed transition drops the total with no elimination behind it. `total_confirmed` (build_hypothesis_space.py, added 2026-08-02) lets this check credit that instead of reading the drop as unbacked. A snapshot pair predating the field is UNVERIFIABLE, not a violation -- same quiet-on-insufficient-data design as the git-witness provenance check below._
+
+**Unverifiable (quiet -- total_confirmed absent from one or both snapshots):**
+
+- time series 2026-07-29 -> 2026-07-30: surviving fell by 1 with no rise in resolved_out, but total_confirmed is absent from one or both snapshots (predates the field) so a confirmation-explained drop cannot be ruled out -- unverifiable, not a violation.
 
 ## Fan-out recurrence (ACTIONABLE, 1) -- N >= 3 portfolios on one question
 

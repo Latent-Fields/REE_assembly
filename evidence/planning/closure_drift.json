@@ -1,32 +1,18 @@
 {
-  "generated_at": "2026-08-02T12:08:11Z",
+  "generated_at": "2026-08-02T16:57:27Z",
   "counts": {
     "drifted": 0,
-    "stale_since": 3,
+    "stale_since": 2,
     "suppressed": 1,
     "assembling": 10,
     "assembling_revisit_due": 0,
-    "status_plane_drifted": 1,
+    "status_plane_drifted": 0,
     "status_plane_checked": 99
   },
   "status_plane_drift": {
     "checked": 99,
     "skipped_reason": null,
-    "drifted": [
-      {
-        "plan": "commitment_closure_plan.md",
-        "node_id": "commitment_closure:GAP-4-battery",
-        "diffs": [
-          "as_of: stored='2026-07-10' projected='2026-08-02'",
-          "from: stored='failure_autopsy_V3-EXQ-732_2026-07-10' projected='failure_autopsy_V3-EXQ-871_2026-08-02'",
-          "verdict: stored='non_contributory/precondition_unmet' projected='non_contributory/measurement_test_design_defect'",
-          "needs_review: stored=True projected=False",
-          "needs_review_reasons: stored=['newest_forward_predates_later_manifest+measurement_event(s)'] projected=[]"
-        ],
-        "projected_from": "failure_autopsy_V3-EXQ-871_2026-08-02",
-        "stored_from": "failure_autopsy_V3-EXQ-732_2026-07-10"
-      }
-    ]
+    "drifted": []
   },
   "assembly_frontier": [
     {
@@ -140,16 +126,6 @@
       "node_last_updated": "2026-07-24",
       "reasons": [
         "failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267"
-      ]
-    },
-    {
-      "node_id": "sleep_substrate:GAP-2",
-      "plan": "sleep_substrate_plan.md",
-      "node_status": "upstream-blocked",
-      "owner_exq": null,
-      "node_last_updated": "2026-07-10",
-      "reasons": [
-        "failure_autopsy_V3-EXQ-436b_2026-08-02.json (2026-08-02) reclassified ARC-045, MECH-166, SD-017"
       ]
     }
   ]
