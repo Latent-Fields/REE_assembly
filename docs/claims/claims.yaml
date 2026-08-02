@@ -28833,7 +28833,7 @@
   subject: hippocampal.mode_conditioned_proposals
   polarity: asserts
   status: provisional
-  pending_retest_after_substrate: true  # 2026-08-02: awaiting SD-MECH267-HORIZON-DEPTH build
+  pending_retest_after_substrate: true  # 2026-08-02: SD-MECH267-HORIZON-DEPTH BUILT (implementation_note below); retest EXQ not yet queued -- follow-up /queue-experiment chip
   live_status:
     reading: provisional
     as_of: 2026-07-11
@@ -28871,6 +28871,46 @@
     mechanism with similar effect (mode-conditional exploration breadth
     vs depth). V4 reconsideration could add explicit horizon
     modulation alongside the existing noise-scale mechanism.
+
+
+    [2026-08-02, SD-MECH267-HORIZON-DEPTH IMPLEMENTED, ree-v3
+    ree_core/hippocampal/module.py]: the second mechanism named above
+    (horizon-depth modulation, deferred at 2026-04-20) is now built,
+    superseding the "V4 reconsideration" framing -- a 2026-08-02
+    governance cycle re-examined that deferral in light of USER-CONFIRMED
+    evidence (V3-EXQ-869: noise-scale-only washes out under production
+    CEM elite-refit at num_cem_iterations=3 despite working at iters=1;
+    confirmed failure_autopsy_V3-EXQ-869_2026-08-02) and routed it to
+    /implement-substrate now rather than leaving it V4-deferred.
+    HippocampalConfig.mode_horizon_scale (Dict[str, float], default
+    {external_task: 0.5, internal_planning: 1.0, internal_replay: 0.7,
+    offline_consolidation: 1.0}), gated by the same
+    mode_conditioning_enabled switch as mode_noise_scale (companion facet
+    of one mechanism, not a separate feature). Modulates the CEM
+    elite-selection SCORING WINDOW (_score_trajectory's new max_horizon
+    param: how many of the already-rolled-out steps count toward each
+    candidate's score), NOT the physical rollout length (config.horizon
+    remains a fixed structural network dimension -- terrain_prior's output
+    width). Diagnostics: _last_mode_horizon_scale, _last_effective_horizon.
+    Backward compatible: bit-identical when mode_conditioning_enabled is
+    False or operating_mode is not supplied (verified by smoke test).
+    Design doc:
+    REE_assembly/docs/architecture/sd_mech267_horizon_depth_modulation.md.
+    Validation experiment NOT queued this session (substrate-build scope
+    only, per this IGW item's instructions) -- follow-on is a
+    /queue-experiment re-run of V3-EXQ-869's C1 condition (production
+    num_cem_iterations=3) with BOTH mechanisms active, flagged via a
+    follow-up chip. V3-EXQ-869's run manifest marked
+    pending_retest_after_substrate:true /
+    superseded_by_substrate:SD-MECH267-HORIZON-DEPTH@2026-08-02 (nested
+    manifest, per REE_assembly/evidence/planning/substrate_dependencies.json).
+    Separately noted (not corrected in this pass, outside this
+    substrate-implementation task's scope): the V3-EXQ-869 manifest's own
+    evidence_direction field still reads "weakens", while the confirmed
+    autopsy's recommended_evidence_direction was "non_contributory" --
+    that reclassification appears applied to this claim's
+    evidence_quality_note history but not yet propagated to the manifest
+    field itself.
   claim_level: mechanistic
   registered_utc: 2026-04-20
   depends_on:
