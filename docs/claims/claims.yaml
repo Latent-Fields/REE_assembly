@@ -12114,6 +12114,52 @@
     sim z_self/z_world remains near-zero across horizons 1/3/5; world_acc 0.90/0.78/0.93). Third
     substrate confirmation. v3_pending hold retained -- EXQ-104b trained-agent diagnostic still needed
     before directional evidence on MECH-135 proper.
+
+    [2026-08-02 correction] The two EXQ-108 lines above (12:50 "PASS...second support
+    entry" and 19:53 "FAIL...empty metrics -- runner artifacts") are both wrong, verified
+    directly against ree-v3/experiments/v3_exq_108_mech135_discriminative_pair.py and both
+    manifest copies (flat + runs/ pack) of each run.
+    (1) The 12:50:04Z "PASS" is a --smoke-test invocation, not a real result: its
+    registered_c1_threshold=-99.0 / registered_c3_var_threshold=0.0 / n_train_episodes=2 /
+    single-seed config is an exact match to the script's `if args.smoke_test:` branch
+    (lines 646-656), which sets those exact vacuous thresholds so the run cannot fail.
+    It should never have counted as a second support entry.
+    (2) The 19:53:41Z "FAIL" is the real full-production run (n_train_episodes=100,
+    seeds=[42,123], real thresholds c1=0.05/c3_var=0.002) and is NOT empty -- its flat
+    manifest (v3_exq_108_mech135_discriminative_pair_20260328T195341Z.json) carries
+    complete per-seed metrics and genuinely fails on real grounds: c1_mean_prox_delta
+    =0.00229 < 0.05 needed, c3 per-seed variance ~1.4e-14 / 1.4e-14 << 0.002 needed. The
+    empty `{}` in its runs/-pack metrics.json (which the "empty metrics" claim was
+    apparently read from) is not diagnostic of an artifact run -- an empty pack
+    metrics.json is the norm for many legitimate scored runs in this corpus (e.g.
+    v3_exq_418g, 634b, 756, 564, 460l all carry `"values": {}` in their packs while
+    being real, non-artifact evidence).
+    Corrected disposition, applied directly to both manifest copies of each run
+    (evidence_direction is the field the indexer scores from the runs/ pack, with the
+    flat copy authoritative only when it alone carries a governance annotation --
+    see build_experiment_indexes.py _FLAT_AUTHORITATIVE_FIELDS): 12:50Z reclassified
+    evidence_direction=superseded (vacuous, superseded by the same-day real run and by
+    V3-EXQ-108a) and now scoring_excluded; 19:53Z reclassified evidence_direction=weakens
+    and now resumes weighting confidence/conflict as genuine (if unfavorable) evidence.
+    Net effect on the claim's counted experimental record: one "supports" entry is
+    removed and one "weakens" entry is restored (confidence/conflict math shifts from
+    4-supports/2-weakens to 4-supports/3-weakens among the non-excluded EXQ-103/104/105/108
+    runs); this does NOT change MECH-135's status/live_status, which was already held at
+    candidate/v3_pending on 2026-03-28 pending V3 substrate work, independent of EXQ-108's
+    individual direction. Corrected for governance auditability regardless: the prior
+    text overstated the substrate-support case and mischaracterized a real, informative
+    FAIL as a discardable artifact.
+    Also note: V3-EXQ-108a (StepHarness re-run, queued/run 2026-08-02, run_id
+    v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3) already
+    declares "supersedes": "V3-EXQ-108" in its own manifest and independently reproduces
+    the 19:53Z FAIL direction (real thresholds, weakens) with the multi-sense training
+    confound fixed. It is currently scoring_excluded=degenerate (zero-spread
+    e1coe_score_var across its two seeds) and is under a separate, already in-progress
+    failure-autopsy (TASK_CLAIMS session infallible-villani-f280fa, claimed
+    2026-08-02T10:21:41Z) -- not corrected here, out of this correction's scope. Once
+    that autopsy resolves the degeneracy question, EXQ-108a's own direction will be the
+    load-bearing evidence for MECH-135 going forward and this EXQ-108 correction becomes
+    historical-accuracy bookkeeping rather than decision-relevant.
   title: "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state."
   claim_type: mechanism_hypothesis
   subject: planning.e1_e2_parallel_rollout

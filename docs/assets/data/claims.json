@@ -3555,8 +3555,8 @@
   },
   "MECH-122": {
     "assembly_state": "mature",
-    "assembly_status": "queued",
-    "awaiting": "MECH122-SENSORY-GATING-OFFLINE-PROTECTION",
+    "assembly_status": "built",
+    "awaiting": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
     "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "sleep.spindles_packaging_gating",
@@ -3661,7 +3661,7 @@
   },
   "MECH-135": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "planning.e1_e2_parallel_rollout",
     "title": "During trajectory evaluation, E2 (cerebellar, z_self) must run in parallel with E1 (cortical, z_world) so that z_world co-evolves during the planning rollout; a frozen z_world causes E3 to evaluate goal achievement against a stale world state.",
@@ -5003,7 +5003,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-039",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "hippocampal.unresolved_goal_ghost_bank",
     "title": "Inactive or strained anchors whose preserved goal payload still matches the current goal form a ranked ghost-goal bank; priority scales with wanting, goal-match, staleness, and recoverability rather than with staleness alone.",
@@ -6648,6 +6648,8 @@
   },
   "MECH-481": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-091",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "control_plane.typed_coalition_instantiation",
@@ -8334,6 +8336,8 @@
   },
   "SD-091": {
     "assembly_state": "awaiting_substrate",
+    "assembly_status": "queued",
+    "awaiting": "SD-091",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "control_plane.coalition_topology_control",
