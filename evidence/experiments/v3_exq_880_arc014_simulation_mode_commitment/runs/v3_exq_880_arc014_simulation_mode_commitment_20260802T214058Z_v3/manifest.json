@@ -1,0 +1,83 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_880_arc014_simulation_mode_commitment",
+  "run_id": "v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-02T21:40:58.767766Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "ARC-014"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "arc014_commitment_worldstate_suppressed",
+    "combination_rule": "seed_pass = C0 AND C1 AND C2 AND C3 AND C4 AND C5 AND C6 (plain AND, two independent channels: rule_state / MECH-319, residue / MECH-094)",
+    "criteria": [
+      {
+        "name": "C1_sim_suppresses_commitment_rule_state",
+        "load_bearing": true
+      },
+      {
+        "name": "C2_wake_commits_rule_state",
+        "load_bearing": true
+      },
+      {
+        "name": "C4_sim_suppresses_worldstate_residue",
+        "load_bearing": true
+      },
+      {
+        "name": "C5_wake_commits_worldstate_residue",
+        "load_bearing": true
+      }
+    ]
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "22b6d8d205a7202011579059ab09f62644ee6f45f368dcc13916c6b138fcc0bd",
+  "substrate_commit": {
+    "commit": "5f487145b830eeef248e7ef0883d6b9a9a13c94e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 9,
+    "goal_state_present": false
+  }
+}
