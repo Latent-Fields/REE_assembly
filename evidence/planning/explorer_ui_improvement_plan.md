@@ -343,7 +343,7 @@ wants a similar at-a-glance summary for, say, the List/claims view specifically.
 | A3 | "Current epoch only" filter missing from List | a | small | **Landed** |
 | A4 | No "has conflict" filter | a | trivial-small | **Landed** |
 | A5 | Experiments > Completed sort | a | -- | Already fine |
-| B2 | Stale TASK_CLAIMS / orphaned stashes not computed server-side | b | needs-design-discussion | **Deferred by user decision** |
+| B2 | Stale TASK_CLAIMS / orphaned stashes not computed server-side | b | needs-design-discussion | **Landed 2026-08-02** (see "Deferred by user decision" below) |
 | B3 | Closure load-bearing counts | b | -- | Out of scope (separate file) |
 | B4 | Nav-badge vs corner-dock convention | b | -- | Documented, no action needed |
 | B5 | Pending-review badge doesn't deep-link | b | small | **Landed** |
@@ -406,6 +406,12 @@ These were explicitly discussed and declined for this pass, not overlooked:
   backend plumbing (import or shell out to `audit_stale_claims.py` /
   `audit_stashes.py`), which is a different kind of work than the rest of
   this pass. Scope it as its own follow-up if wanted.
+  **Landed 2026-08-02 (`REE_assembly` `166f3b773e`, chip
+  `chip-20260802-claims-stash-surfacing`):** `serve.py` gained
+  `/api/workspace/health` (60s-cached, shells out to both scripts with
+  `--json` rather than porting their classification logic), and
+  `explorer.html` gained a third corner-dock card ("Workspace"), following
+  the existing Coordination-card pattern per B4 rather than a nav badge.
 - **C4 (Docs picker redesign).** Promoting Docs to top-level nav (landed)
   already fixes the main discoverability problem; the 70-item select+filter
   itself was left as-is.
