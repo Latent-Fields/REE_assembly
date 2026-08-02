@@ -14972,6 +14972,26 @@
     Status stays 'implemented' (design_decision; no flag/confidence change). Substrate-
     readiness validation queued (claim_ids=[]; primary acceptance selection entropy < 2.5).
     See ree-v3/CLAUDE.md "SD-016 Path 3" + docs/architecture/sd_016_writepath_v3_diversification_loss.md Section 7.
+    V3-EXQ-418j/k (2026-05-05/06, "SD-016 ContextMemory reef", supersedes V3-EXQ-418j;
+    evidence_direction does_not_support) tested a DIFFERENT precondition from 418d/e/i's
+    attention-selectivity question: whether the environment itself supplies enough
+    world-state information for cue-indexed retrieval to have anything to differentiate
+    on, across a 4-arm enrichment ladder (A0 off/no-reef, A1 sd016/no-reef, A2 reef/no-sd016,
+    A3 reef+sd016 landmarks-and-hazard-drift richer world). Result: cos_cross_mean stayed
+    0.987-0.9999 and separation_gap_mean 0.0000-0.0039 across ALL four arms (overall_pass
+    false; only C2_uniform_rail_broken passed) -- z_world remains near-constant regardless
+    of environment enrichment, ruling out "the environment is too information-poor" as the
+    bottleneck (that hypothesis predicted separation_gap would improve under A2/A3; it did
+    not). This was proposed as its own EVB-0476/EXP-0174 backlog item ("env complexity
+    gate") and re-surfaced unqueued for 3+ months after 418k had already answered the same
+    question -- retroactively marked superseded 2026-08-02 (session determined-ritchie-55a3a6)
+    rather than re-run. Not yet reflected in evidence/planning/sleep_substrate_plan.md's
+    Tier 0 table (still read "check status" for EXQ-418j/k as of that date -- see that
+    file for the correction). If SD-016 is revisited again, the open question is narrower
+    than "is the env rich enough" (answered: enrichment alone does not move the metric) --
+    it is whether the SELECTION mechanism (Path 3 feedforward cue->slot tagger, implemented
+    2026-06-05, substrate-readiness validation still pending per the paragraph above) can
+    exploit the existing richness once retrieval selectivity itself is fixed.
   functional_restatement: >
     E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
     associations when z_world encodes a cue-dense context. But no downstream pathway existed
@@ -21180,6 +21200,15 @@
     Next substrate iteration must guarantee >=10% positive-label density across
     training (e.g. reward-dense curriculum, longer future window, or denser aux
     supervision).
+    V3-EXQ-418k (2026-05-06, does_not_support -- see SD-016 status_note for full
+    detail) separately tested SD-023-landmarks as one arm (A3_reef_sd016) of a
+    4-arm z_world-richness ladder: landmark enrichment did not move separation_gap
+    off its ~0.0001-0.004 floor (cos_cross_mean 0.9998). Distinct from this claim's
+    own supervision-density conflict above -- 418k measured raw z_world
+    distinguishability, not the downstream resource-prediction correlation EXQ-332/332a
+    targeted -- but relevant background for any future SD-023 substrate iteration:
+    landmark placement alone, even combined with SD-016 cue retrieval, does not by
+    itself break the near-constant z_world regime.
   notes: >
     The principle "all objects emit, each type distinctively" is biologically grounded:
     in natural environments every object has a detectable presence (olfactory, acoustic,

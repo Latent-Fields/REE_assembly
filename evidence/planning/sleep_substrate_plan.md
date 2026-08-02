@@ -609,7 +609,7 @@ Two tiers.
 | EXQ-418g | SD-016 selectivity-first 4-arm | check status | yes |
 | EXQ-418h | SD-016 env-entropy precondition | check status | yes |
 | EXQ-418i | SD-016 div-weight sweep | check status | yes |
-| EXQ-418j/k | SD-016 ContextMemory reef | check status | yes |
+| EXQ-418j/k | SD-016 ContextMemory reef (env-richness ladder, distinct from 418f-i's attention-selectivity question) | FAIL (`does_not_support`; cos_cross_mean 0.987-0.9999, separation_gap_mean 0.0000-0.0039 across all 4 arms -- see claims.yaml SD-016 status_note) | yes |
 
 Tier 0 acceptance: EXQ-418e arm A2_div_only or A3_writes_plus_div produces
 `slot_diversity >= 0.5` with non-collapsed seeds across at least 2/3 seeds.
