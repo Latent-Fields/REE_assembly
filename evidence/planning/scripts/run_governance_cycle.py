@@ -738,6 +738,16 @@ def _build_agenda(
         for item in backlog_items
         if "escalate_architecture_decision" in {str(x) for x in item.get("reasons", [])}
     ]
+    # No-deadline visibility report (see build_experiment_indexes.py's
+    # dormant_high_conflict append site for the full rationale): claims with
+    # high conflict_ratio and an unresolved decision, but invisible to the
+    # mandatory_decision_checkpoint hard deadline. Already sorted
+    # worst-conflict-first by the producer.
+    dormant_high_conflict_items = (
+        backlog.get("dormant_high_conflict", []) if isinstance(backlog, dict) else []
+    )
+    if not isinstance(dormant_high_conflict_items, list):
+        dormant_high_conflict_items = []
 
     proposal_items = proposals.get("items", []) if isinstance(proposals, dict) else []
     high_proposals = [item for item in proposal_items if item.get("priority") == "high"]
@@ -1029,6 +1039,7 @@ def _build_agenda(
             "backlog_high_priority": len(high_backlog),
             "backlog_saturation_holds": len(backlog_saturation_holds),
             "backlog_escalation_required": len(backlog_escalation_required),
+            "backlog_dormant_high_conflict": len(dormant_high_conflict_items),
             "proposal_items": len(proposal_items),
             "proposal_high_priority": len(high_proposals),
             "architecture_gap_items": len(architecture_items),
@@ -1547,6 +1558,26 @@ def _build_agenda(
     if warnings:
         for warning in warnings:
             lines.append(f"- {warning}")
+    lines.append(
+        "15. Dormant High-Conflict Watchlist (no deadline): "
+        + f"{len(dormant_high_conflict_items)} contentious claim(s) invisible to the "
+        + "mandatory decision checkpoint -- worked too rarely (`dormant_low_activity`) "
+        + "or reworked indefinitely without crossing the mandatory conflict bar "
+        + "(`chronic_under_threshold`). Not a hard deadline; a visibility report only."
+    )
+    lines.append(
+        "- context: `evidence/planning/DORMANT_HIGH_CONFLICT_WATCHLIST.md`, "
+        + "`evidence/planning/evidence_backlog.v1.json` -> `dormant_high_conflict`"
+    )
+    if dormant_high_conflict_items:
+        for item in dormant_high_conflict_items[:10]:
+            claim_id = _strip_ticks(str(item.get("claim_id", "")))
+            claim_ref = _claim_reference(claim_id, claim_registry_meta)
+            pattern = _strip_ticks(str(item.get("pattern", "")))
+            conflict_ratio = item.get("conflict_ratio", "n/a")
+            lines.append(
+                f"- {claim_ref}; pattern=`{pattern}`; conflict_ratio={conflict_ratio}"
+            )
 
     markdown = "\n".join(lines).rstrip() + "\n"
     return agenda, markdown
