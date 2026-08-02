@@ -149,6 +149,17 @@ def _proposal_lane_skill(proposal_type: str | None) -> tuple[str, str]:
     return "experiment", _LANE_SKILLS["experiment"]
 
 
+def _proposal_title(lane: str, claim_id: str | None) -> str:
+    """Title for one proposal-lane IGW item, tagged by lane so an experiment
+    proposal and a literature-review proposal for the SAME claim_id don't
+    render as identical rows in the /workset table (they can coexist -- see
+    _proposal_lane_skill). claim_id stays the stable key; only the prefix
+    varies. Does not affect IGW ledger identity: stable_hash_item() keys on
+    skill, not title."""
+    prefix = "Proposal" if lane == "experiment" else "Literature proposal"
+    return f"{prefix} for {claim_id}" if claim_id else f"{prefix} (unclaimed)"
+
+
 def _utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -1790,7 +1801,7 @@ def build_workset() -> dict:
             status="ready",
             priority=40,
             severity="medium",
-            title=f"Proposal for {cid}" if cid else "Proposal (unclaimed)",
+            title=_proposal_title(lane, cid),
             why_now="; ".join(prop.get("why_now") or [])[:200] or "experiment_proposals status=proposed",
             gap_ids=[],
             claim_ids=[cid] if cid else [],

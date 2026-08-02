@@ -88,6 +88,39 @@ class ProposalLaneSkillUnitTest(unittest.TestCase):
         )
 
 
+class ProposalTitleUnitTest(unittest.TestCase):
+    """_proposal_title tags the lane in the title so two proposals for the
+    same claim_id (one experiment, one literature) don't render identically
+    in the /workset table."""
+
+    def test_experiment_lane_title(self):
+        self.assertEqual(
+            GEN._proposal_title("experiment", "Q-088"),
+            "Proposal for Q-088",
+        )
+
+    def test_lit_lane_title(self):
+        self.assertEqual(
+            GEN._proposal_title("lit", "Q-088"),
+            "Literature proposal for Q-088",
+        )
+
+    def test_unclaimed(self):
+        self.assertEqual(
+            GEN._proposal_title("experiment", None),
+            "Proposal (unclaimed)",
+        )
+        self.assertEqual(
+            GEN._proposal_title("lit", ""),
+            "Literature proposal (unclaimed)",
+        )
+
+    def test_same_claim_different_lane_titles_differ(self):
+        exp_title = GEN._proposal_title("experiment", "Q-088")
+        lit_title = GEN._proposal_title("lit", "Q-088")
+        self.assertNotEqual(exp_title, lit_title)
+
+
 class SharedBacklogIdDifferentProposalTypeTest(unittest.TestCase):
     """Integration-level: two proposals sharing one owner_backlog_id (and one
     claim_id) but with different proposal_type must come back from
@@ -157,6 +190,11 @@ class SharedBacklogIdDifferentProposalTypeTest(unittest.TestCase):
         # The whole point of the bug: same backlog_id, same claim_id, must NOT
         # collapse to the same lane/skill tag.
         self.assertNotEqual((exp_lane, exp_skill), (lit_lane, lit_skill))
+
+        # And the /workset table must not render them as identical rows either.
+        exp_title = GEN._proposal_title(exp_lane, claim_id)
+        lit_title = GEN._proposal_title(lit_lane, claim_id)
+        self.assertNotEqual(exp_title, lit_title)
 
 
 if __name__ == "__main__":
