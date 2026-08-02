@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-02.5 -->
+<!-- EXPLORER_VERSION: 2026-08-02.6 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -483,6 +483,13 @@
     .panel.table-panel {
       max-height: calc(100vh - 160px);
       overflow: auto;
+      /* iOS Safari doesn't do momentum/inertial scrolling by default on a
+         plain overflow:auto container -- without this it feels stuck/janky
+         on a touch device even though it works fine with a mouse wheel or
+         a Chrome DevTools mobile-viewport emulation (which doesn't emulate
+         WebKit's scroll physics). More relevant now that the List view's
+         new sort headers + pager encourage more scrolling inside this box. */
+      -webkit-overflow-scrolling: touch;
     }
 
     .selected-summary {
@@ -9490,6 +9497,25 @@ END CONFLICT RESOLUTION`;
     </div>
   </div>
 
+  <!-- Workspace health panel: backs serve.py /api/workspace/health --
+       stale TASK_CLAIMS.json entries (scripts/audit_stale_claims.py) and
+       orphaned git stashes (scripts/audit_stashes.py). Neither signal was
+       computed by serve.py at all before this card (explorer_ui_improvement_
+       plan.md B2) -- an ambient health status that matters everywhere, so it
+       goes in the corner dock rather than a nav badge (B4). -->
+  <div id="workspaceCard" class="dock-card">
+    <div class="dock-head" id="workspaceHead">
+      <span class="dock-caret">&#9662;</span>
+      <strong>Workspace</strong>
+      <span id="workspaceDot" title="stale TASK_CLAIMS / orphaned stashes"
+            style="margin-left:auto;width:11px;height:11px;border-radius:50%;
+            background:#777;display:inline-block;flex:0 0 auto;"></span>
+    </div>
+    <div class="dock-body" id="workspaceBody" style="padding:8px 10px;">
+      <div id="workspaceContent" class="usage-muted">loading...</div>
+    </div>
+  </div>
+
   </div><!-- /cornerDock -->
 
   <script>
@@ -9522,6 +9548,7 @@ END CONFLICT RESOLUTION`;
     }
     applyCollapse("usageCard", "ree_dock_usage_collapsed");
     applyCollapse("coordCard", "ree_dock_coord_collapsed");
+    applyCollapse("workspaceCard", "ree_dock_workspace_collapsed");
   })();
   </script>
 
@@ -9873,6 +9900,95 @@ END CONFLICT RESOLUTION`;
     // keeps the panel fresh without a manual refresh.
     poll();
     setInterval(poll, 15000);
+  })();
+  </script>
+
+  <script>
+  // Workspace health panel: polls /api/workspace/health (serve.py shells out
+  // to scripts/audit_stale_claims.py + scripts/audit_stashes.py, both --json,
+  // on a 60s cache). Self-contained.
+  (function () {
+    var COLORS = {green:"#2e7d32", amber:"#b8860b", red:"#c62828",
+                  grey:"#777"};
+    var BUCKET_LABELS = {
+      G_governance_lock: "gov lock", P_coordination_pause: "pause lock",
+      S_staged_never_ran: "staged/never ran", A_landed_unclosed: "landed/unclosed",
+      B_vendor_sync: "dirty/proven", C_no_trace: "no trace",
+      D_dirty_unproven: "dirty/unproven", U_undetermined: "undetermined"
+    };
+    function $(id){ return document.getElementById(id); }
+    function esc(s){
+      return String(s == null ? "" : s).replace(/[&<>]/g, function(c){
+        return c === "&" ? "&amp;" : c === "<" ? "&lt;" : "&gt;"; });
+    }
+    function render(d) {
+      var sc = d.stale_claims || {}, st = d.stashes || {};
+      var urgent = (sc.contentions || 0) > 0 || (st.count || 0) > 0;
+      var warn = (sc.count || 0) > 0;
+      var color = !d.ok ? COLORS.grey : urgent ? COLORS.red
+                  : warn ? COLORS.amber : COLORS.green;
+      $("workspaceDot").style.background = color;
+
+      var parts = [];
+      if (!d.ok) {
+        parts.push('<div style="color:' + COLORS.grey + ';">unavailable</div>');
+        if (sc.error) parts.push('<div style="font-size:10px;color:#888;">claims: ' + esc(sc.error) + '</div>');
+        if (st.error) parts.push('<div style="font-size:10px;color:#888;">stashes: ' + esc(st.error) + '</div>');
+        $("workspaceContent").className = "";
+        $("workspaceContent").innerHTML = parts.join("");
+        return;
+      }
+
+      parts.push('<div class="usage-row"><span class="lbl">Stale TASK_CLAIMS</span>'
+        + '<span class="val" style="color:' + (sc.count ? COLORS.amber : COLORS.green) + ';">'
+        + (sc.count || 0) + '</span></div>');
+      if (sc.contentions) {
+        parts.push('<div class="usage-row"><span class="lbl">Live contention</span>'
+          + '<span class="val" style="color:' + COLORS.red + ';">' + sc.contentions + '</span></div>');
+      }
+      var bucketBits = [];
+      Object.keys(sc.buckets || {}).forEach(function(k) {
+        bucketBits.push((BUCKET_LABELS[k] || k) + ": " + sc.buckets[k]);
+      });
+      if (bucketBits.length) {
+        parts.push('<div style="font-size:10px;color:#888;margin:2px 0 4px;">'
+          + bucketBits.join(", ") + '</div>');
+      }
+
+      parts.push('<div class="usage-row" style="margin-top:6px;border-top:1px solid #eee;padding-top:6px;">'
+        + '<span class="lbl">Orphaned stashes</span>'
+        + '<span class="val" style="color:' + (st.count ? COLORS.red : COLORS.green) + ';">'
+        + (st.count || 0) + '</span></div>');
+      (st.repos || []).forEach(function(r) {
+        if (r.error) {
+          parts.push('<div style="font-size:10px;color:#888;">' + esc(r.repo) + ': ' + esc(r.error) + '</div>');
+          return;
+        }
+        parts.push('<div style="font-size:10px;color:#666;">' + esc(r.repo) + ': '
+          + r.entries + ' entr' + (r.entries === 1 ? 'y' : 'ies')
+          + (r.rebase_findings ? ', ' + r.rebase_findings + ' rebase finding(s)' : '') + '</div>');
+      });
+
+      if (!warn && !urgent) {
+        parts.push('<div style="color:' + COLORS.green + ';margin-top:4px;">clean -- nothing stale or orphaned</div>');
+      }
+
+      $("workspaceContent").className = "";
+      $("workspaceContent").innerHTML = parts.join("");
+    }
+    function poll(){
+      fetch("/api/workspace/health?t=" + Date.now())
+        .then(function (r){ return r.json(); })
+        .then(render)
+        .catch(function (err){
+          $("workspaceDot").style.background = COLORS.grey;
+          $("workspaceContent").className = "usage-muted";
+          $("workspaceContent").innerHTML = "Workspace health endpoint not available.<br>"
+            + '<span style="font-size:10px;">' + esc(err && err.message || err) + '</span>';
+        });
+    }
+    poll();
+    setInterval(poll, 60000);
   })();
   </script>
 </body>

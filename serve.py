@@ -27,6 +27,7 @@ API (POST, called by the Experiments tab in the explorer):
     /api/regression/preflight  -- GET: ree-v3 preflight suite result (cached 60s)
     /api/coordinator/phase3/preflight  -- GET: Phase 3 cutover pre-checks (cached 60s)
     /api/coordinator/phase3/writers    -- GET: Phase 3 sync_daemon writer health (cached 60s)
+    /api/workspace/health       -- GET: stale TASK_CLAIMS + orphaned git stashes (cached 60s)
     /api/queue/live                -- GET: active queue (coordinator DB when reachable, else file)
     /api/queue/v3                  -- GET: experiment_queue.json mirror (file)
 
@@ -768,6 +769,110 @@ def run_preflight_suite() -> dict:
         _preflight_cache = result
         _preflight_cache_at = now
         return result
+
+
+# ── Workspace health (stale TASK_CLAIMS + orphaned git stashes) ─────────────
+# Explorer UI improvement plan B2: neither signal was computed by serve.py at
+# all -- both were standalone CLI scripts (scripts/audit_stale_claims.py,
+# scripts/audit_stashes.py) with no HTTP surface. Shells out to each with
+# --json on a cheap cache TTL, mirroring run_preflight_suite() above rather
+# than porting the classification logic (lower risk -- the scripts stay the
+# single source of truth for what counts as stale/orphaned).
+_WORKSPACE_HEALTH_TTL = 60.0
+_workspace_health_cache: dict | None = None
+_workspace_health_cache_at: float = 0.0
+_workspace_health_lock = threading.Lock()
+
+UMBRELLA_DIR = SERVE_DIR.parent
+_SCRIPTS_DIR = UMBRELLA_DIR / "scripts"
+
+
+def _run_json_script(script: Path, args: list[str], timeout: float) -> dict:
+    """Run `python3 script *args` and parse stdout as JSON. Raises on failure."""
+    if not script.exists():
+        raise FileNotFoundError(f"{script} missing")
+    proc = subprocess.run(
+        [sys.executable, str(script), *args],
+        cwd=str(UMBRELLA_DIR),
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+    )
+    try:
+        return json.loads(proc.stdout)
+    except (json.JSONDecodeError, ValueError) as exc:
+        tail = (proc.stderr or proc.stdout or "").strip().splitlines()[-5:]
+        raise ValueError(
+            f"exit {proc.returncode}, unparseable output: {'; '.join(tail)}"
+        ) from exc
+
+
+def _stale_claims_summary(timeout: float = 20.0) -> dict:
+    try:
+        data = _run_json_script(
+            _SCRIPTS_DIR / "audit_stale_claims.py", ["--json"], timeout)
+        buckets: dict[str, int] = {}
+        for r in data.get("records") or []:
+            b = r.get("bucket") or "?"
+            buckets[b] = buckets.get(b, 0) + 1
+        return {
+            "ok": True,
+            "count": data.get("stale_active", 0),
+            "contentions": len(data.get("contentions") or []),
+            "buckets": buckets,
+            "error": None,
+        }
+    except Exception as exc:
+        return {"ok": False, "count": 0, "contentions": 0, "buckets": {},
+                "error": f"{type(exc).__name__}: {exc}"}
+
+
+def _orphaned_stashes_summary(timeout: float = 20.0) -> dict:
+    try:
+        data = _run_json_script(
+            _SCRIPTS_DIR / "audit_stashes.py", ["--json"], timeout)
+        repos = []
+        total = 0
+        for r in data.get("repos") or []:
+            n = len(r.get("entries") or [])
+            n_rebase = len(r.get("rebase_findings") or [])
+            total += n + n_rebase
+            if n or n_rebase or r.get("error"):
+                repos.append({
+                    "repo": r.get("repo"),
+                    "entries": n,
+                    "rebase_findings": n_rebase,
+                    "error": r.get("error"),
+                })
+        return {"ok": True, "count": total, "repos": repos, "error": None}
+    except Exception as exc:
+        return {"ok": False, "count": 0, "repos": [],
+                "error": f"{type(exc).__name__}: {exc}"}
+
+
+def run_workspace_health_summary() -> dict:
+    """Combined stale-claim + orphaned-stash summary. Memoised for
+    _WORKSPACE_HEALTH_TTL seconds -- each half is a git-touching CLI script,
+    not free, and the corner-dock panel polls this on a fixed interval.
+    """
+    global _workspace_health_cache, _workspace_health_cache_at
+    with _workspace_health_lock:
+        now = time.time()
+        if (_workspace_health_cache is not None
+                and (now - _workspace_health_cache_at) < _WORKSPACE_HEALTH_TTL):
+            return _workspace_health_cache
+        stale_claims = _stale_claims_summary()
+        stashes = _orphaned_stashes_summary()
+        result = {
+            "ok": stale_claims["ok"] and stashes["ok"],
+            "cached_at": _utc_now_iso_z(),
+            "stale_claims": stale_claims,
+            "stashes": stashes,
+        }
+        _workspace_health_cache = result
+        _workspace_health_cache_at = now
+        return result
+
 
 # ── GitHub fallback ───────────────────────────────────────────────────────────
 
@@ -5960,6 +6065,10 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         if path == "/api/coordinator/phase3/writers":
             body = json.dumps(run_phase3_writers_summary()).encode()
+            self._json_response(body)
+            return
+        if path == "/api/workspace/health":
+            body = json.dumps(run_workspace_health_summary()).encode()
             self._json_response(body)
             return
         if path == "/api/usage":
