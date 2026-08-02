@@ -1,0 +1,95 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication",
+  "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-02T12:13:13Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mixed_partial_result_needs_expert_review",
+    "preconditions": [
+      {
+        "name": "p2_fresh_select_sample_adequate_both_arms",
+        "kind": "readiness",
+        "description": "The latch-cleared genuine-fresh-E3.select() sample collected in P2 (n_p2_fresh_select) clears the cadence-derived worst-case floor (P2_MEASUREMENT_EPISODES*STEPS_PER_EPISODE / BETA_RATE_MAX_STEPS) on the WORST cell across both arms x all seeds. Below-floor means the live/dead read for that cell is not trustworthy -> substrate_not_ready_requeue, never a false discrimination.",
+        "control": "min(n_p2_fresh_select) across all 6 cells",
+        "measured": 1144.0,
+        "threshold": 600.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "sample_adequate",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "mech448_ablation_discriminates": false,
+      "mech449_ablation_discriminates": false
+    },
+    "arm_lpfc_mech448_live_seeds": 3,
+    "arm_lpfc_mech449_live_seeds": 0,
+    "arm_none_mech448_live_seeds": 3,
+    "arm_none_mech449_live_seeds": 0,
+    "arm_lpfc_mech448_live_majority": true,
+    "arm_lpfc_mech449_live_majority": false,
+    "arm_none_mech448_live_majority": true,
+    "arm_none_mech449_live_majority": false,
+    "summary": "MECH-448 and MECH-449 disagree with each other within an arm, or the ablation's effect direction was not clean across both mechanisms, even at full training budget. Report the raw per-seed/per-arm numbers to the user for expert adjudication; do not treat this as a clean discrimination either way."
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8c7d3c1147cf75b79880445e0f5fa21db7b614f7d12982bd971aed12726d2acb",
+  "substrate_commit": {
+    "commit": "f7d4354d3a14124768298dc72abe40d6efcd18f4",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 269552,
+    "ticks_active": 73570,
+    "writer_calls": 269552,
+    "active_frac": 0.2729343503294355,
+    "writer_defect": false,
+    "n_agents": 6,
+    "goal_state_present": true
+  }
+}

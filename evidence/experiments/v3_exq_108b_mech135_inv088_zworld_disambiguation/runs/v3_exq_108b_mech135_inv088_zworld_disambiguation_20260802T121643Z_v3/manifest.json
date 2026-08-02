@@ -1,0 +1,92 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_108b_mech135_inv088_zworld_disambiguation",
+  "run_id": "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T12:16:43Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-135",
+    "INV-088"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-135": "non_contributory",
+    "INV-088": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "downstream_dynamics_collapse",
+    "preconditions": [
+      {
+        "name": "encoder_trained",
+        "kind": "readiness",
+        "description": "At least one split_encoder.world_encoder tensor moved during the Phase 0a SD-070 warmup, per every seed (zworld_encoder_guard's load-bearing bit).",
+        "measured": 0.22424642741680145,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "real_zworld_nondegenerate",
+        "kind": "readiness",
+        "description": "CR_real (the antecedent contrast ratio on 40 real, diverse z_world observations) is a finite, positive number for every seed -- confirms sensing itself is not degenerate before drawing any a1/a2 conclusion from it.",
+        "measured": 0.19250807328589772,
+        "threshold": 0.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C3_E1COE_SCORE_DISCRIMINATES",
+        "load_bearing": true,
+        "passed": false,
+        "measured": 2.2500520530425137e-14,
+        "threshold": 0.002,
+        "statement": "e1coe_score_var >= C3_VAR_THRESHOLD in every seed -- the same non-degeneracy criterion V3-EXQ-108/108a used, now on a sanctioned-trained z_world."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C3_E1COE_SCORE_DISCRIMINATES": true
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "cdab05998446446b1b75fa399bdaefd0c76441a10a6b600167f38a5ef53a55db",
+  "substrate_commit": {
+    "commit": "f7d4354d3a14124768298dc72abe40d6efcd18f4",
+    "dirty": false,
+    "branch": "main"
+  }
+}
