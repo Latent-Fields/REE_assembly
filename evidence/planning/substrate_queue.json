@@ -6632,7 +6632,7 @@
       "sd_id": "SD-MECH267-HORIZON-DEPTH",
       "title": "Mode-conditioned horizon-depth modulation for HippocampalModule.propose_trajectories",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6650,7 +6650,12 @@
       "implementation_hint": "MECH-267's claim registration and 2026-04-20 implementation_note name TWO mechanisms: noise-scale modulation (built, default-off/bit-identical) and horizon-depth modulation (explicitly deferred to 'V4 reconsideration', but directly evidenced by Wikenheiser & Redish 2015 and matching the original lit-pull's own recommendation). Add a mode-conditional multiplier/selector on HippocampalModule.propose_trajectories's rollout depth (shallower in external_task, longer in internal/imagination mode). The washed-out-under-CEM-elite-refit pattern V3-EXQ-869 found is consistent with a noise-scale-only implementation being structurally insufficient against CEM's iterative refit toward a mode-independent value optimum -- not with the claim being biologically wrong.",
       "priority": 2,
       "added_session": "infallible-villani-f280fa",
-      "last_seen_session": "infallible-villani-f280fa"
+      "last_seen_session": "infallible-villani-f280fa",
+      "implementation_status": "implemented",
+      "implemented_utc": "2026-08-02T13:31:00Z",
+      "implemented_session": "insights-34f9b4",
+      "implementation_note_update": "IMPLEMENTED 2026-08-02 (ree-v3 commit e0117eea8b, REE_assembly 37d1da187d): HippocampalConfig.mode_horizon_scale (companion to mode_noise_scale, same mode_conditioning_enabled switch); HippocampalModule._compute_mode_horizon_scale mirrors _compute_mode_noise_scale; _score_trajectory gained optional max_horizon param windowing CEM elite-selection to a mode-conditioned fraction of the trajectory (not the physical rollout length, which stays a fixed structural network dimension). Bit-identical when disabled/operating_mode=None, verified via targeted smoke test. New design doc REE_assembly/docs/architecture/sd_mech267_horizon_depth_modulation.md. STATUS implemented_pending_validation: the retest combining both mechanisms (V3-EXQ-869 C1 condition, num_cem_iterations=3, both mode_noise_scale AND mode_horizon_scale active) is not yet queued -- follow-up chip chip-20260802-mech267-horizon-depth-retest spawned for it.",
+      "validation_experiment": "PENDING -- chip-20260802-mech267-horizon-depth-retest (/queue-experiment, re-queue V3-EXQ-869 C1 condition with both mechanisms active)"
     }
   ],
   "schema_version": "substrate_queue/v2"
