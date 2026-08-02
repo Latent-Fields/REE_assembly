@@ -89,6 +89,32 @@ When experiences are stored (for potential replay), tag each with:
 benefit_salience = tonic_5ht * benefit_exposure_at_time
 ```
 
+**AMEND 2026-08-02 -- the "existing harm salience" this section originally assumed did
+not actually exist as a calibrated, tonic-5HT-modulated write.** Investigation (MECH-203
+gap fix) found `ResidueField.accumulate()` (the `update_residue()` harm path) only ever
+wrote the legacy scalar `weights` field (residue density) -- never `valence_vecs`, so
+`VALENCE_HARM_DISCRIMINATIVE` was never populated via that path regardless of harm-contact
+frequency. A separate SD-014 `valence_harm_enabled` path (agent.py `sense()`) writes raw
+post-attenuation `z_harm.norm()` every step, but is ungated by `tonic_5ht` and not
+calibrated to be symmetric with `benefit_salience`.
+
+Fixed by `SerotoninModule.harm_salience(harm_exposure) = (1 - tonic_5ht) * harm_exposure`
+and `Agent.update_harm_salience()`, mirroring `benefit_salience()` /
+`update_benefit_salience()` exactly and gated by the same `tonic_5ht_enabled` switch (no
+new flag). The `(1 - tonic_5ht)` factor is not invented for this fix -- it is the same
+harm weight the substrate's replay `drive_state` vector already uses
+(`[tonic_5ht, 0.5, 1 - tonic_5ht, surprise_weight]` in `Agent._do_replay`), applied
+symmetrically on the write side. Calibration note: `harm_exposure` must be the EMA'd
+nociceptive-exposure convention (`CausalGridWorldV2.harm_exposure` / `body_obs[10]`,
+the exact counterpart of `benefit_exposure` / `body_obs[11]`) -- feeding raw
+`|harm_signal|` (env-scale, ~0.05-0.13) instead of the EMA convention
+(~0.0037-0.0066, matching `benefit_salience`'s own output scale) was tried and reverted:
+it swamped the shared-capacity RBF field (both channels write to the nearest ACTIVE
+center of the same `rbf_field`) to a 100% harm / 0% benefit degenerate split. See
+`ree_core/neuromodulation/serotonin.py::harm_salience()` and
+`tests/contracts/test_mech203_harm_salience_writepath.py` (6/6 PASS, including a
+regression fixture pinning the naive-fix failure mode).
+
 This creates a replay priority signal complementary to the existing harm salience from the
 residue field. The hippocampal replay system (MECH-121) should then prioritize by:
 ```python
