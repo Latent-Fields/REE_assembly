@@ -1,11 +1,22 @@
 {
   "schema_version": "v1",
-  "runner_pid": 834,
-  "runner_started_at": "2026-08-02T14:43:48.932772+00:00",
-  "last_updated": "2026-08-02T14:58:05.261519+00:00",
+  "runner_pid": 835,
+  "runner_started_at": "2026-08-02T15:35:47.660253+00:00",
+  "last_updated": "2026-08-02T21:40:59.057243+00:00",
   "idle": false,
   "current": null,
   "queue": [
+    {
+      "queue_id": "V3-EXQ-875",
+      "backlog_id": "",
+      "claim_id": "MECH-471",
+      "title": "MECH-471 local-update interference test (EXP-0399): does a targeted REINFORCE update on one competence degrade an unrelated, previously-acquired competence?",
+      "description": "",
+      "estimated_minutes": 592.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
     {
       "queue_id": "V3-EXQ-847a",
       "backlog_id": "",
@@ -25,6 +36,50 @@
       "description": "",
       "estimated_minutes": 150.0,
       "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-873",
+      "backlog_id": "EVB-0489",
+      "claim_id": "MECH-322",
+      "title": "MECH-322 sleep-replay carve-out: AND-gate fires correctly and fails closed (first evidence)",
+      "description": "",
+      "estimated_minutes": 144.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-874",
+      "backlog_id": "",
+      "claim_id": "MECH-467",
+      "title": "MECH-467 distractor battery: sensory capture / rule drift / wrong-target selection dissociation (behavioural capture)",
+      "description": "",
+      "estimated_minutes": 80.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-149b",
+      "backlog_id": "EVB-0179",
+      "claim_id": "",
+      "title": "Q-004 tau_R calibration at larger training budget, selection-instrument fixed (supersedes V3-EXQ-149)",
+      "description": "",
+      "estimated_minutes": 480.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-878",
+      "backlog_id": "EVB-0268",
+      "claim_id": "MECH-332",
+      "title": "MECH-332: efference-copy comparator vs descending-modulation double dissociation",
+      "description": "",
+      "estimated_minutes": 288.0,
+      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3257,6 +3312,48 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_872_inv087_proxy_tethering_constraint_20260802T145757Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 8.4
+    },
+    {
+      "queue_id": "V3-EXQ-876",
+      "backlog_id": "EVB-0286",
+      "claim_id": "",
+      "title": "MECH-025: action-doing mode causal signal, CORRECTED commitment instrument (direct V3 confirmation)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "harm_pred_std: 0.08035053610801697 | total_harm_train: 3661.8 | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-876 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-876.json",
+      "started_at": "2026-08-02T15:35:47.682837+00:00",
+      "completed_at": "2026-08-02T21:40:06.278798+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_876_mech025_doing_mode_causal_signal_20260802T214005Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 21857.7
+    },
+    {
+      "queue_id": "V3-EXQ-877",
+      "backlog_id": "EVB-0431",
+      "claim_id": "MECH-072",
+      "title": "MECH-072 full discriminator-gate design: residue gating via ARC-033/E2_harm_s counterfactual causal_sig (replaces V3-EXQ-213 world_forward proxy)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "[EXQ-877] outcome=FAIL evidence_direction=weakens | [EXQ-877] Done. outcome=FAIL | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-877 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-877.json",
+      "started_at": "2026-08-02T21:40:08.136986+00:00",
+      "completed_at": "2026-08-02T21:40:51.422517+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_877_mech072_discriminator_gate_full_20260802T214050Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 43.3
+    },
+    {
+      "queue_id": "V3-EXQ-880",
+      "backlog_id": "EVB-0097",
+      "claim_id": "ARC-014",
+      "title": "ARC-014 commitment-suppressed internal simulation mode (MECH-319 rule_state + MECH-094 residue channels)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | OVERALL: PASS | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-880 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-880.json",
+      "started_at": "2026-08-02T21:40:54.280958+00:00",
+      "completed_at": "2026-08-02T21:40:59.055572+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 4.8
     }
   ]
 }
