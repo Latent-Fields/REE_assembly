@@ -160,6 +160,61 @@ def _proposal_title(lane: str, claim_id: str | None) -> str:
     return f"{prefix} for {claim_id}" if claim_id else f"{prefix} (unclaimed)"
 
 
+# experiment_proposals.v1.json status values meaning "a prior investigation
+# adjudicated this proposal as blocked on unbuilt substrate" -- the manually
+# maintained field the retest lane below consults. "proposed_blocked_substrate"
+# is the one observed variant spelling (MECH-343, EXP-0176) of the same
+# semantic as the canonical "blocked_substrate".
+_PROPOSAL_BLOCKED_SUBSTRATE_STATUSES = {"blocked_substrate", "proposed_blocked_substrate"}
+
+
+def _proposal_blocked_substrate_by_claim() -> dict[str, dict]:
+    """claim_id -> first experiment_proposals.v1.json entry whose status is a
+    blocked_substrate variant (FM7).
+
+    The retest lane's blocked-ness (_retest_blockers + the epistemic_category
+    ceiling check + _claim_v3_testable) all reason about *unbuilt substrate_queue
+    entries*. None of them can see a proposal a prior investigating session
+    already adjudicated as blocked on OTHER CLAIMS rather than a substrate_queue
+    row. Confirmed incident: INV-089's retest was investigated and closed
+    2026-07-31 (session inv089-retest-exq-subagent), which traced the real
+    blocker to two unbuilt CLAIMS (MECH-457, INV-088) and recorded
+    status=blocked_substrate on the backing proposal (EXP-0080, claim_id
+    INV-089) in this file specifically because there was no substrate_queue row
+    to hang the block on. _retest_blockers found nothing (no substrate_queue
+    entry lists INV-089 in unblocks_claims) and INV-089 carries no
+    epistemic_category, so the ceiling fallback never engaged either -- the
+    generator re-surfaced it as `ready` the very next regen (IGW-20260802-220),
+    wasting a second investigation before the discrepancy was caught again.
+
+    Deliberately read-only and additive: this does not re-derive substrate
+    readiness itself, it consults a field a prior session already maintains
+    for exactly this purpose. Staleness: there is no auto-clear mechanism (see
+    the call site's comment) -- a blocked_substrate status sits until a
+    human/session manually clears it once the real blocker resolves, which is
+    the intended manually-adjudicated semantic (matches how the INV-089
+    investigator explicitly set it, and how claims.yaml pending_retest_after_substrate
+    itself works -- also never auto-cleared).
+    """
+    if not PROPOSALS_JSON.exists():
+        return {}
+    try:
+        data = json.loads(PROPOSALS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    out: dict[str, dict] = {}
+    for p in data.get("items") or []:
+        if not isinstance(p, dict):
+            continue
+        if p.get("status") not in _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES:
+            continue
+        cid = str(p.get("claim_id") or "")
+        if not cid or cid in out:  # first occurrence wins (proposals file carries dup ids)
+            continue
+        out[cid] = p
+    return out
+
+
 def _utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -1657,6 +1712,7 @@ def build_workset() -> dict:
 
     claims_meta = _load_claims_meta()
     exp_evidence = _claims_with_experimental_evidence()
+    proposal_blocked_by_claim = _proposal_blocked_substrate_by_claim()
     retest_all = sorted(_claim_retest_ids())
     queued_coverage = _queued_retest_coverage(queue_items)
     auto_absorbed_retests: dict[str, str] = {
@@ -1695,9 +1751,46 @@ def build_workset() -> dict:
         held_not_testable = not testable and not blocker_strs
         if held_not_testable:
             blocker_strs = [f"not v3-testable: {untest_reason}"]
+        # FM7: a prior /queue-experiment investigation may have already
+        # adjudicated this retest's backing proposal as blocked on OTHER
+        # CLAIMS (not a substrate_queue row), which _retest_blockers and the
+        # epistemic_category ceiling check above cannot see -- see
+        # _proposal_blocked_substrate_by_claim() docstring (confirmed
+        # incident: INV-089). Only fires when nothing above already blocked
+        # the item; if it did, that finding is already correctly `blocked`.
+        proposal_block = proposal_blocked_by_claim.get(cid)
+        held_proposal_blocked = bool(proposal_block) and not blocker_strs
+        if held_proposal_blocked:
+            pid = proposal_block.get("proposal_id") or "?"
+            blocked_by_list = proposal_block.get("blocked_by") or []
+            note = proposal_block.get("blocked_note") or ""
+            if blocked_by_list:
+                detail = ", ".join(str(x) for x in blocked_by_list)[:160]
+                blocker_strs = [
+                    f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
+                    f"blocked by {detail}"
+                ]
+            elif note:
+                blocker_strs = [
+                    f"experiment_proposals.v1.json {pid} status=blocked_substrate: "
+                    f"{note[:160]}"
+                ]
+            else:
+                blocker_strs = [
+                    f"experiment_proposals.v1.json {pid} status=blocked_substrate "
+                    f"(backlog_id {proposal_block.get('backlog_id') or '?'}); see "
+                    f"the proposal record for adjudication detail."
+                ]
         status = "blocked" if blocker_strs else "ready"
         if status == "ready":
             why_now = "claims.yaml pending_retest_after_substrate=true."
+        elif held_proposal_blocked:
+            why_now = (
+                f"A prior investigation already adjudicated the backing "
+                f"proposal as blocked_substrate -- see blocked_by. Do not "
+                f"re-investigate; re-run /queue-experiment once the named "
+                f"blocker(s) are built."
+            )
         elif held_not_testable:
             why_now = (
                 f"Held by the governance V3-pending gate ({untest_reason}) -- a "
