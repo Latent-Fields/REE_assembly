@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:50:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_866_inv034_q021_goal_maintenance_agency_20260802T074409Z_v3",
+      "queue_id": "V3-EXQ-866",
+      "claim_ids": ["INV-034", "Q-021"],
+      "failed_criterion": "non-degeneracy (G0 gate -- FULL arm did not clear random-baseline resource-visit rate)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- claims never got a fair test; G0 gate correctly blocked interpretation",
+        "biological_reference": "unchanged -- goal-maintenance-necessary-for-agency mechanism itself was not tested",
+        "prerequisites": "present in principle -- C1/C2/C3/C6 all pass (harm parity, survival parity, quiescence, z_goal mechanistic check)",
+        "implementation": "not applicable to this finding -- the goal-maintenance mechanism itself is not implicated",
+        "environment": "inadequate for THIS lightweight harness -- FULL arm's resource_visit_rate (0.0046) is BELOW the RANDOM baseline (0.0217), a genuine competence floor",
+        "measurement": "adequate -- the driver's own G0 non-degeneracy gate correctly caught this before any C4/C5 verdict was drawn, and its interpretation block already self-diagnoses the correct reading",
+        "integration": "not applicable to this finding",
+        "scale": "not applicable to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "unchanged -- goal-maintenance-as-necessary-for-directed-agency (INV-034/Q-021's own territory)",
+        "dependencies": ["scaffolded_sd054_onboarding curriculum (already built, per experiments/scaffolded_sd054_onboarding.py)"],
+        "is_formal_import": false,
+        "divergence": "none -- pure substrate/harness-adequacy issue, not a biology gap",
+        "lit_status": "unchanged"
+      },
+      "recommended_epistemic_category": "substrate_not_ready_requeue",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-866 (INV-034/Q-021 goal-maintenance-necessary-for-agency, lightweight harness): G0 non-degeneracy gate FAILED cleanly and was correctly self-diagnosed by the driver's own interpretation block -- the FULL (approach+avoidance) arm's resource_visit_rate (0.0046) is BELOW the RANDOM baseline (0.0217), a genuine competence-floor failure mirroring the already-documented EXQ-072b failure mode, not evidence against INV-034/Q-021. C1 (harm parity), C2 (survival parity), C3 (quiescence/avoidance-only flat) and C6 (z_goal mechanistic check) all pass -- the substrate components work individually, but this lightweight harness cannot get the agent to forage above chance at all, so C4 (approach restored under FULL) and C5 (entropy signature) cannot be meaningfully evaluated. Per IGW-222 DESIGN.md 5.8 (cited in the driver's own summary), the correct remedy is escalating to the full scaffolded_sd054_onboarding curriculum (Option B) -- the substrate that already cleared goal_pipeline GAP-2's contact-rate ceiling -- rather than re-running this lightweight harness. Recommend same-question re-queue (866a) built on scaffolded_sd054_onboarding.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_866_inv034_q021_goal_maintenance_agency_20260802T074409Z_v3",
+          "experiment_type": "v3_exq_866_inv034_q021_goal_maintenance_agency",
+          "metric": "G0 non-degeneracy: FULL arm resource_visit_rate_mean=0.0046 vs RANDOM baseline resource_visit_rate_mean=0.0217 (FULL below random)",
+          "target": "lightweight harness cannot get the agent to forage above chance -- already-built scaffolded_sd054_onboarding curriculum is the known fix, no new substrate work needed"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The driver's own self-diagnosis (G0 gate + interpretation block citing IGW-222 DESIGN.md 5.8 and the EXQ-072b precedent) was already correct and complete -- this autopsy confirms rather than re-derives the reading.",
+        "A lightweight harness that passes individual-component checks (C1/C2/C3/C6) can still fail to produce above-chance foraging at all -- component-level correctness does not guarantee whole-task competence, echoing the broader competence-floor pattern (MECH-457) elsewhere in the codebase.",
+        "The remedy (scaffolded_sd054_onboarding) is already-built substrate, not a new implementation gap -- this is a harness/environment escalation, not a build."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02",
+    "user_choice": "Approved as recommended (substrate_not_ready_requeue, /queue-experiment 866a on scaffolded_sd054_onboarding)"
+  }
+}

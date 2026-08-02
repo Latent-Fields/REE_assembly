@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:50:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_867_mech321_harm_aware_selection_task_effect_20260802T031937Z_v3",
+      "queue_id": "V3-EXQ-867",
+      "claim_ids": ["MECH-321"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- the mechanism could not be tested this run; not weighted either direction",
+        "biological_reference": "clear (threat-modulated defensive path-selection, per 844's lit-pull); the substrate build is now in place, but the ENVIRONMENT did not present enough hazard exposure for the affect signal to clear its engagement threshold",
+        "prerequisites": "present -- SD-hazard-aware-policy-decomposition IMPLEMENTED 2026-08-01 (chip-20260801-hazard-aware-decomp-build), status=implemented/ready=true in substrate_queue.json",
+        "implementation": "complete -- PolicyDecomposition.harm_bias()/select_harm_aware_leaves() exist and are wired; this run's own P0 readiness gates (multi_action_commits, precommit_live, midexec_decomp, PE_varies/bounded) all passed",
+        "environment": "inadequate -- run used the default SD-084 midexec-reachability baseline env with no scheduled_external_hazard tuning; z_harm_a_norm apparently never cleared decomposition_harm_threat_floor=0.1 on any of 6 seeds, both arms (decomp_n_harm_bias_nonzero=0 / decomp_n_harm_override_fires=0 in every per_seed_row)",
+        "measurement": "adequate -- the run's own P_HARM_BIAS_ENGAGES precondition and 4-way seed tiering correctly detected and self-routed the inert manipulation rather than emitting a false verdict",
+        "integration": "not applicable to this finding",
+        "scale": "not applicable to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Threat-modulated defensive path-selection (Fanselow predatory-imminence continuum; Mobbs categorical PFC-PAG shift) -- same reference 844's lit-pull already established",
+        "dependencies": ["SD-hazard-aware-policy-decomposition", "z_harm_a/BLA threat_scale (SD-014 VALENCE_HARM_DISCRIMINATIVE channel)", "SD-029 scheduled_external_hazard"],
+        "is_formal_import": false,
+        "divergence": "none new -- this is a translation-fidelity/environment-density issue, not a biology-vs-formalism gap",
+        "lit_status": "present (844's targeted_review_threat_modulated_defensive_path_selection covers the mechanism; no new lit gap)"
+      },
+      "recommended_epistemic_category": "environment_adequacy_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-867 (evidence successor to V3-EXQ-844, first behavioural-effect test of SD-hazard-aware-policy-decomposition after its 2026-08-01 build): the substrate gap 844 identified is CLOSED (harm_bias()/select_harm_aware_leaves() implemented, wired, default-off/bit-identical confirmed by 32 pre-existing + 11 new contracts). But this run's own P0 precondition harm_bias_engages FAILED on ARM_SELECTION_ON: decomp_n_harm_bias_nonzero=0 and decomp_n_harm_override_fires=0 across all 6 seeds and both arms -- the harm-aware bias never fired even once, so ARM_SELECTION_ON and ARM_SELECTION_OFF produced bit-identical action sequences on the 3 neither_decompose seeds and no measurable divergence anywhere (self-route manipulation_inert_or_unmatched, correctly diagnosed by the driver's own readiness gate design). Root cause: the run used the default env with no SD-029 scheduled_external_hazard tuning, so z_harm_a_norm apparently never cleared decomposition_harm_threat_floor=0.1 -- consistent with the already-documented SD-037/V3-EXQ-620 finding that the untuned 'fishtank baseline' produces near-zero z_harm_a signal (pooled distributions all 0.0 across all 6 measured quantities). Not a substrate ceiling, not an implementation gap, not evidence bearing on MECH-321's harm-aware-selection question -- the manipulation never got a chance to engage. Recommend same-question re-queue (867a) applying the SD-029 hazard-density overlay already specified in SD-037's Phase 1b plan (scheduled_external_hazard_enabled=True, interval=20, prob=0.7, adjacent_only=True; hazard_harm 0.05->0.2; proximity_harm_scale 0.1->0.2), with a cheap preflight assertion that decomp_n_harm_bias_nonzero>0 in a pilot rollout before committing to the full 6-seed design (mirroring the class of preflight gate V3-EXQ-862 added for dACC engagement). pending_retest_after_substrate is not the right flag here (substrate is ready); this is pending_retest_after_env_tuning.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-hazard-aware-policy-decomposition",
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": ["MECH-321"],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_867_mech321_harm_aware_selection_task_effect_20260802T031937Z_v3",
+          "experiment_type": "v3_exq_867_mech321_harm_aware_selection_task_effect",
+          "metric": "P_HARM_BIAS_ENGAGES precondition FAILED -- decomp_n_harm_bias_nonzero=0, decomp_n_harm_override_fires=0 on all 6 seeds, both arms",
+          "target": "harm-aware selection cannot be behaviourally tested until the environment produces sufficient hazard exposure for z_harm_a_norm to clear decomposition_harm_threat_floor=0.1 -- an env-tuning gap, not a substrate gap (SD-hazard-aware-policy-decomposition itself is implemented+ready)"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "SD-hazard-aware-policy-decomposition's build closed 844's structural gap correctly -- the readiness/precondition design (P_HARM_BIAS_ENGAGES) worked exactly as intended, catching an inert manipulation before it could produce a false verdict either direction.",
+        "Building the mechanism does not by itself guarantee the environment presents enough of the triggering condition (hazard exposure) for the mechanism to be exercised -- an environment-adequacy check is a distinct readiness gate from an implementation-completeness check, and this run demonstrates why both are needed.",
+        "The SD-029 scheduled_external_hazard-tuned overlay documented in SD-037's Phase 1b plan is the known, already-built fix for this exact class of under-hazard-density baseline env -- no new substrate or environment code is needed, only applying an existing config overlay."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02",
+    "user_choice": "Approved as recommended (environment_adequacy_defect, /queue-experiment 867a with SD-029 hazard-density overlay)"
+  }
+}

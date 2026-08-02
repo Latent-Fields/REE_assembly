@@ -2557,6 +2557,74 @@
         "decision_log_ref": null,
         "distance_phrase": "0 discriminative experiments required -- reads answered from existing data pending a low-priority confirmatory pass"
       }
+    },
+    {
+      "qid": "inv088_evaluator_degeneracy_cause",
+      "title": "Is MECH-135/INV-088's near-total evaluator-degeneracy (V3-EXQ-108a) caused by inadequate bespoke-loss training or a genuine world_dim=32 discriminative-granularity ceiling?",
+      "short_title": "108a evaluator degeneracy: undertrained vs dim-ceiling",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "registered_utc": "2026-08-02T10:50:16Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-108a_2026-08-02.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_growth_events": [],
+      "hypotheses": [
+        {
+          "hid": "H-undertrained-instrument",
+          "label": "undertrained instrument (a1)",
+          "desc": "108a's bespoke single-step E1 MSE loss (100 episodes) is inadequate to differentiate z_world; a properly-trained z_world (the sanctioned sd_zworld_warmup_optimizer_group route, already confirmed adequately-trained by V3-EXQ-819/819a) would show materially higher e1coe_score_var, clearing C3 (>=0.002).",
+          "axis": "representation",
+          "pre_registered_utc": "2026-08-02T10:50:16Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "not yet tested"
+          }
+        },
+        {
+          "hid": "H-dimension-ceiling",
+          "label": "genuine dim=32 discriminative-granularity ceiling (a2)",
+          "desc": "Even with the sanctioned-trained z_world (the SAME stack V3-EXQ-819/819a confirmed reaches only AUC 0.90 vs a ~48-57 achievable ceiling), e1coe_score_var stays near-degenerate -- world_dim=32 structurally cannot support enough discriminative capacity for 40 distinct 30-step rollouts to diverge in goal-proximity.",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-08-02T10:50:16Z",
+          "adjudicating_runs": [],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [],
+            "evidence_direction": "pending",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "not yet tested"
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does swapping 108a's bespoke-trained z_world for the sanctioned sd_zworld_warmup_optimizer_group-trained stack resolve the near-total evaluator-degeneracy (var ~1.5e-14 vs 0.002 threshold), and does the antecedent contrast-ratio characterisation on 108a's own rollout endpoints match the 2026-07-18 zworld_near_static_characterisation low-and-untrainable signature?",
+        "live_gate": null,
+        "decidable": false,
+        "observation_bottleneck": null,
+        "decision_log_ref": null,
+        "distance_phrase": "needs a single re-queued diagnostic swapping the training route + instrumenting the antecedent contrast-ratio metric on the rollout endpoints"
+      }
     }
   ]
 }

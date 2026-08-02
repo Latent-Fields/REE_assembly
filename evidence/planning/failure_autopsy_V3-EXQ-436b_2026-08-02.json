@@ -1,0 +1,68 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:50:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_436b_sd017_mech166_repr_confirmer_20260802T035312Z_v3",
+      "queue_id": "V3-EXQ-436b",
+      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "failed_criterion": "discrimination (C1 primary slot_cosine_sim directional)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- cannot tell whether consolidation genuinely has no effect on the slot representation, or whether the effect was never recorded",
+        "biological_reference": "unchanged -- SWS/REM schema consolidation forming distinct memory-slot attractors (MECH-166's own docstring, Zacks/Schapiro-adjacent)",
+        "prerequisites": "present -- agent.run_sleep_cycle() is wired and invoked correctly (sws_en/rem_en both True for SWS_THEN_REM; sleep_passes increments; slot_danger_ema and harm_rate genuinely differ between conditions, proving the two conditions are not literally identical runs)",
+        "implementation": "context_memory.write() IS called within run_sws_schema_pass() (ree_core/agent.py, confirmed by direct read) and returns a per-pass write counter (metrics['sws_n_writes'])",
+        "environment": "not applicable to this finding",
+        "measurement": "RECORDING GAP -- the driver discards agent.run_sleep_cycle()'s entire return value (`_ = agent.run_sleep_cycle()`), so sws_n_writes (and any REM-equivalent counter) is never captured in the manifest; there is no way to tell from this run's data whether ContextMemory.write() ever executed",
+        "integration": "not applicable to this finding",
+        "scale": "not applicable to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS-then-REM schema consolidation forming distinct memory-slot attractors (SD-017's own mechanism)",
+        "dependencies": ["MECH-313/ARC-065 noise-floor diversity (confirmed wired into action selection this run, per driver notes)"],
+        "is_formal_import": false,
+        "divergence": "none -- this is a recording-completeness issue, not a translation gap",
+        "lit_status": "unchanged from prior MECH-166 evidence"
+      },
+      "recommended_epistemic_category": "measurement_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-436b (successor to V3-EXQ-436/436a; slot_cosine_sim now the SOLE PASS/FAIL gate, MECH-313/ARC-065 noise-floor diversity now genuinely wired into action selection -- confirmed fixing 436a's own zero-cross-seed-variation defect, since behavioural stats (harm_rate, slot_danger_ema, action_class_entropy) DO differ meaningfully between WAKING_ONLY and SWS_THEN_REM per seed). But the primary DV (slot_cosine_sim, mean pairwise cosine similarity of agent.e1.context_memory.memory) is BIT-IDENTICAL between WAKING_ONLY and SWS_THEN_REM within every one of 5 seeds (e.g. seed 42: 0.000965997576713562 in both conditions, to full float64 precision), while slot_separation is 0.0 in both conditions for every seed too. This is inconsistent with a genuine 'sleep has zero effect' finding (which would still show floating-point noise from different computation paths) and instead points to a RECORDING gap: run_sws_schema_pass() (ree_core/agent.py) DOES call self.e1.context_memory.write(e1_input) and returns metrics['sws_n_writes'] as a diagnostic counter proving whether the write actually fired -- but the driver calls `_ = agent.run_sleep_cycle()`, discarding the entire metrics dict, including sws_n_writes and any REM-equivalent counter. We cannot distinguish 'ContextMemory.write() never fired this run' from 'it fired but had negligible effect on pairwise cosine structure' from 'the readout itself is structurally invariant under this run's config.' Additional note for governance: only 1 of 16 memory slots (index 8) ever receives visits in EITHER condition (slot_visit_safe_count/slot_visit_dang_count all-zero except index 8) -- worth checking whether slot-addressing itself is collapsing to a single slot, independent of the recording gap. Recommend same-question re-queue capturing sws_n_writes / rem-equivalent write counters per sleep pass into the manifest, per the Experimental Recording Standard (evidence/planning/experimental_recording_standard_2026-07-12.md), before drawing any conclusion about whether SD-017/ARC-045/MECH-166's slot-differentiation prediction holds.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_436b_sd017_mech166_repr_confirmer_20260802T035312Z_v3",
+          "experiment_type": "v3_exq_436b_sd017_mech166_repr_confirmer",
+          "metric": "slot_cosine_sim bit-identical between WAKING_ONLY and SWS_THEN_REM within every seed, despite other behavioural stats differing",
+          "target": "record agent.run_sleep_cycle()'s returned metrics dict (sws_n_writes at minimum) in the manifest so a future run can distinguish a genuine null from an unrecorded write"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "436a's own documented defect (deterministic argmin never consulting noise-floor diversity) IS fixed this run -- behavioural stats genuinely differ between conditions now -- but that fix does not by itself guarantee the primary DV's OWN write path is being recorded.",
+        "A bit-identical readout across two conditions that otherwise produce different behavioural trajectories is a strong tell for a recording/write-path gap, not evidence of a genuine null -- floating-point computation on different trajectories essentially never produces exact equality by chance.",
+        "agent.run_sleep_cycle()'s return value carries exactly the diagnostic (sws_n_writes) that would resolve this -- discarding it with `_ = ...` is a one-line recording gap, not a design flaw in the experiment's logic.",
+        "Slot-visit concentration in a single slot (1 of 16) across both conditions is a secondary observation worth a closer look independent of the recording gap -- may indicate slot-addressing itself is not differentiating contexts."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02",
+    "user_choice": "Approved as recommended (recording gap, /queue-experiment re-run capturing the write counters)"
+  }
+}

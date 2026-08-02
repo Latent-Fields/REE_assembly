@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:50:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_862_q040c_dacc_pe_weight_delta_correlation_20260802T032301Z_v3",
+      "queue_id": "V3-EXQ-862",
+      "claim_ids": ["Q-040"],
+      "failed_criterion": "precondition (P2 dACC engagement, more precisely -- bias magnitude never non-zero)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- P1 (MECH-269b V_s gating) fired correctly (2/3 seeds), but the primary DV could not be measured",
+        "biological_reference": "unchanged from 475b -- Shenhav 2013 EVC framing of dACC control-cost weighting",
+        "prerequisites": "present -- MECH-269b V_s-gating substrate confirmed fine (P1 passes cleanly)",
+        "implementation": "STOPGAP adapter (DACCtoE3Adapter) working exactly as documented -- 'all multipliers default to 0, so with default config the bias is the zero vector regardless of bundle content' (dacc.py:523-526 docstring, verbatim)",
+        "environment": "not applicable to this finding",
+        "measurement": "the new preflight gate (added specifically to catch 475b's defect class) only asserts n_dacc_fires>0, not bias-magnitude nonzero -- structurally cannot catch this second, distinct config-omission",
+        "integration": "isolated -- dACC's PE computation and the adapter's bias emission are two independently-gated stages, and only the first stage's gate was fixed",
+        "scale": "not applicable to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Shenhav 2013 Expected Value of Control (EVC): dACC as effort-cost-weighted control allocator",
+        "dependencies": ["MECH-269b (V_s rollout gating)", "z_harm_a (affective harm stream)"],
+        "is_formal_import": false,
+        "divergence": "none -- this is a pure config-omission defect, not a translation gap",
+        "lit_status": "present, unchanged from 475b"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-862 (475c, the config-fix requeue of V3-EXQ-475b): the FIRST diagnosed defect (`enable_affective_harm_stream=True` never passed to `build_config`, leaving z_harm_a structurally None) is FIXED and confirmed working -- `n_dacc_fires=451` on seed 42 (was 0 in 475b). But `dacc_bias_nonzero_steps=0` in EVERY seed/arm cell (P2 dACC engagement gate still fails, `p2_on_dacc_fired_seeds=0`), and `dacc_bias_magnitude_series` is pinned at exactly 0.0 with zero spread in all 6 groups. Code-verified root cause: `DACCtoE3Adapter.forward()` (ree_core/cingulate/dacc.py:505-550) computes `weight = self.config.dacc_weight * drive_gain`; when `weight==0.0` (the class default, per the module's own docstring: 'All multipliers default to 0, so with default config the bias is the zero vector regardless of bundle content'), `scaled = torch.zeros_like(mode_ev)` unconditionally -- independent of whether dACC fires or what PE it computes. The driver never sets `dacc_weight` (confirmed by direct grep -- zero mentions in the script). This is a SECOND, distinct config-omission bug of the same class as 475b's (a required non-default flag never set), not a substrate ceiling, not evidence on Q-040c's actual question (whether dACC bias magnitude tracks precision-weighted PE under V_s gating). The new preflight gate added specifically to catch 475b's defect class (`_preflight_dacc_engagement_check`, asserting `pe is not None and bias_mag is not None`) structurally cannot catch THIS defect: `bias_mag=0.0` still satisfies `bias_mag is not None`, so the preflight passes even though the bias is guaranteed zero. Recommend same-question re-queue with `dacc_weight` (and at least one of `dacc_interaction_weight`/`dacc_foraging_weight`/`dacc_suppression_weight`) set to a nonzero, SD-doc-recommended value, AND extend the preflight gate to assert bias MAGNITUDE (not merely definedness) is nonzero on at least one pilot tick -- a value-nonzero check, not merely a call-count check, generalizing 475b's own lesson #4 ('a quick smoke-test assertion would have caught this in minutes').",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_862_q040c_dacc_pe_weight_delta_correlation_20260802T032301Z_v3",
+          "experiment_type": "v3_exq_862_q040c_dacc_pe_weight_delta_correlation",
+          "metric": "P2 dACC engagement (bias magnitude): dacc_bias_nonzero_steps=0 across all seeds/arms, despite n_dacc_fires=451 (dACC forward pass now runs)",
+          "target": "DACCConfig.dacc_weight (and sub-weights) must be set to a nonzero value for the adapter to emit any bias at all -- currently left at the STOPGAP class default of 0.0"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A preflight gate built to catch one defect class (a signal never being computed at all) does not automatically catch a sibling defect class (the signal is computed but its downstream consumer's weight is zero) -- preflight assertions need to check MAGNITUDE, not just definedness/call-count, when the failure mode could be 'defined but structurally zero'.",
+        "The DACCtoE3Adapter is an explicitly-labelled STOPGAP module (its own docstring: 'REMOVE this class when SD-032a lands') whose default behaviour is a documented no-op -- any experiment exercising it must explicitly opt in via dacc_weight>0, and this is now the second driver in this lineage to have missed that opt-in.",
+        "P1 passing cleanly while P2 fails completely is, again (as in 475b), informative: the upstream substrate (here, MECH-269b V_s gating) is fine; the defect is isolated to a single downstream config flag."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02",
+    "user_choice": "Approved as recommended (measurement_test_design_defect, /queue-experiment with dacc_weight fix + bias-magnitude preflight assertion)"
+  }
+}

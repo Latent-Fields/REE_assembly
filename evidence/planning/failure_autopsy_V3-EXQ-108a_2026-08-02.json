@@ -1,0 +1,81 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T10:50:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3",
+      "queue_id": "V3-EXQ-108a",
+      "claim_ids": ["MECH-135"],
+      "failed_criterion": "discrimination (C1 mean_prox_delta) and non-degeneracy (C3 e1coe_score_var)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- E1_COE (dynamic z_world co-evolution) provides no measurable behavioural advantage over FROZEN (static z_world) selection, because the underlying evaluator cannot discriminate candidates at all",
+        "biological_reference": "clear for the mechanism (parallel cortical/cerebellar co-evolution during rollout, per MECH-135's own functional_restatement); the failure is downstream in evaluator discriminative capacity, not in the co-evolution mechanism itself",
+        "prerequisites": "present -- Phases 1-6 unchanged from V3-EXQ-108 (byte-identical), and this run's own training-time confound fix (single sense() per env step, matching StepHarness's documented invariant) is a genuine methodological improvement over 108",
+        "implementation": "present but yields a near-total-collapse result -- E1's forward rollout genuinely updates z_world step-by-step (confirmed by design), but the resulting goal_proximity scores across 40 distinct 30-step candidate sequences vary by ~4e-7 (var=1.49e-14 vs threshold 0.002)",
+        "environment": "not applicable to this finding",
+        "measurement": "adequate -- the statistic (goal_state.goal_proximity(z_world_curr) after per-candidate E1 rollout) is a direct, simple, well-instrumented readout with no known confound",
+        "integration": "not applicable to this finding",
+        "scale": "world_dim=32 -- see cross-reference below; possibly THE cause",
+        "cross_reference_note": "This run REPLICATES the original V3-EXQ-108 real full-production FAIL (2026-03-28, run v3_exq_108_mech135_discriminative_pair_20260328T195341Z: c1=0.00229, c3 var~1.4e-14) almost exactly (this run: c1=0.00219, c3 var~1.49e-14/9.47e-15), AFTER independently fixing 108's own documented training-time confound (double agent.sense() per env step). Ruling the confound out as the explanation strengthens the reading that the near-total scoring collapse is a real, reproducible property of this evaluator/representation pairing, not an artifact of that specific bug."
+      },
+      "biological_reference": {
+        "closest_mechanism": "MECH-135's own claim: parallel cortical (E1/z_world)-cerebellar (E2/z_self) co-evolution during rollout planning, so goal evaluation is against a co-evolving rather than a stale world state",
+        "dependencies": ["ARC-070 (not directly)", "z_world representation capacity (INV-088's territory -- see cross-claim note)"],
+        "is_formal_import": false,
+        "divergence": "none new -- the mechanism (co-evolving rollout) is implemented as designed; the failure is in the representation the mechanism operates on, not in the mechanism's own translation fidelity",
+        "lit_status": "unchanged"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-108a (multi_sense_audit_2026_05_08 re-run of V3-EXQ-108, StepHarness single-sense() training-time confound fixed; Phases 1-6 byte-identical to 108): C1 (mean_prox_delta 0.00219 << 0.05 threshold) and C3 (e1coe_score_var ~1.49e-14/9.47e-15 << 0.002 threshold, seeds 42/123) both FAIL. This nearly exactly REPLICATES 108's own real full-production FAIL (c1=0.00229, c3 var~1.4e-14, run 20260328T195341Z) -- a run claims.yaml currently mischaracterises as 'empty metrics -- runner artifact' (factually wrong; the manifest is complete and non-empty; flagged for governance to correct separately from this claim disposition). Fixing 108's documented training-time confound (agent.sense() called twice per env step during training vs once during eval, StepHarness's own module docstring names this construct 'structurally impossible' by design) did NOT change the result -- ruling the confound out as the explanation and strengthening the reading that this is a genuine, reproducible collapse: E1_COE's rollout-based goal_proximity scoring assigns functionally-identical scores (var ~1.5e-14, i.e. ~13 orders of magnitude below the discrimination threshold) to 40 DIFFERENT 30-step candidate action sequences from the same starting state. weakens MECH-135 (E1_COE co-evolution provides no measurable advantage over FROZEN selection because nothing downstream can use the co-evolving signal to discriminate).\n\nCROSS-CLAIM SIGNIFICANCE (flagged prominently per user instruction, 2026-08-02): this is a starker, more direct confirmation of INV-088's coupling-leg prediction ('world_goal_evaluator_bounded_by_z_world_differentiation' -- a low-effective-dimension z_world causes an evaluator built on it to assign near-identical value to distinct situations) than either V3-EXQ-744a (real-but-weak, rho=0.69 near-miss) or V3-EXQ-819/819a (AUC 0.90 vs ~48-57 achievable ceiling on a SANCTIONED-trained z_world -- 'mild, non-load-bearing support for INV-088/MECH-457's shared thesis'). `_score_sequence_e1coe` computes `goal_state.goal_proximity(z_world_curr)` -- a bare distance-in-latent-space readout with no foraging policy or AUC discretization in between -- at `world_dim=32`, the SAME dimensionality flagged in INV-088's own evidence note as the '(a2) world_dim=32 discriminative-granularity ceiling' arm of its still-open (a1)-undertrained-vs-(a2)-dimension-ceiling confound. This run's E1 IS trained (bespoke single-step MSE loss, 100 episodes) -- unlike the zworld_near_static_characterisation_2026-07-18 cells, which were ALL untrained (0/61 tensors moved), so (a1) and (a2) were perfectly confounded there. 108a is therefore a genuinely NEW data point along the confound-breaking axis, though it does NOT cleanly resolve it: the bespoke single-step loss is not the SANCTIONED sd_zworld_warmup_optimizer_group training route that 819/819a confirmed as adequately-trained, so 108a's near-total collapse could still be explained by (a1) 'this bespoke loss is inadequate' rather than (a2) 'genuine dimension ceiling.' recommended_bears_on: ['INV-088'] -- governance should consider adding this cross-reference so INV-088's evidence trail reflects this run even though it was pre-registered against MECH-135 only. A disambiguating experiment is recommended (see fanout_recommendation) and the user has directed that it be queued to conclusively resolve the confound.\n\nSeparately, this run's own audit trail (docstring) surfaces that claims.yaml's characterisation of the original V3-EXQ-108 SECOND (real, full-production, 2026-03-28) run as 'empty metrics -- runner artifact' does not match the manifest, which is complete. Flagged for governance to correct independent of this disposition.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": {
+          "run_id": "v3_exq_108a_mech135_discriminative_pair_stepharness_20260802T035458Z_v3",
+          "experiment_type": "v3_exq_108a_mech135_discriminative_pair_stepharness",
+          "metric": "e1coe_score_var ~1.49e-14 vs threshold 0.002 (13 orders of magnitude below); c1_mean_prox_delta 0.00219 vs threshold 0.05",
+          "target": "not a substrate build target -- routed via fanout_recommendation to a disambiguating diagnostic instead (a1-undertrained vs a2-dimension-ceiling)"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": true,
+      "re_derive_brake": {"fired": false, "threshold": 2, "prior_substrate_ceiling_autopsies": [], "supersedes_autopsy": null, "refused_requeue": false, "route_to": null, "upstream_substrate": null},
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-undertrained-instrument (a1): 108a's bespoke single-step E1 MSE loss (100 episodes) is inadequate to differentiate z_world; a properly-trained z_world (the sanctioned sd_zworld_warmup_optimizer_group route, already confirmed adequately-trained by V3-EXQ-819/819a) would show materially higher e1coe_score_var, clearing C3 (>=0.002).",
+          "H-dimension-ceiling (a2): even with the sanctioned-trained z_world (the SAME stack V3-EXQ-819/819a confirmed reaches only AUC 0.90 vs a ~48-57 achievable ceiling), e1coe_score_var stays near-degenerate -- world_dim=32 structurally cannot support enough discriminative capacity for 40 distinct 30-step rollouts to diverge in goal-proximity."
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H-undertrained-instrument", "axis": "representation", "sketch": "Re-run 108a's exact Phases 1-6 discriminative-pair design, but swap the bespoke single-step-loss-trained z_world stack for the SANCTIONED sd_zworld_warmup_optimizer_group-trained one (reusing existing substrate, no new code). If e1coe_score_var rises materially (clears C3), that supports (a1) -- the bespoke loss was the bottleneck, not the dimension."},
+          {"hypothesis": "H-dimension-ceiling", "axis": "measurement", "sketch": "On the SAME re-run, directly instrument and record the antecedent contrast-ratio metric (spread / ||centroid||, per zworld_near_static_characterisation_2026-07-18's methodology) on the 40 candidate z_world_curr rollout endpoints, alongside e1coe_score_var. If the sanctioned-trained z_world shows the same low-and-untrainable contrast-ratio signature as the 2026-07-18 characterisation, that supports (a2) even if e1coe_score_var itself improves somewhat."}
+        ],
+        "note": "GOV-FANOUT-1: a single re-queued diagnostic can address BOTH probes at once (same driver, swap the training route, add the contrast-ratio instrumentation) -- this is not proposing two separate experiments, just naming the two things one experiment must measure to be decisive. User explicitly directed (2026-08-02) that this experiment be queued to resolve the matter conclusively, not left as an open recommendation."
+      },
+      "learning_extracted": [
+        "Fixing 108's known training-time confound (double sense()) did NOT change the outcome -- this rules the confound out and strengthens the reading that the scoring collapse is real and reproducible, not an artifact of that specific bug.",
+        "e1coe_score_var ~1.5e-14 is a near-machine-epsilon collapse across 40 genuinely different 30-step candidate sequences -- one of the starkest, most direct confirmations yet recorded of INV-088's coupling-leg prediction (evaluator assigns near-identical value to distinct situations), because the readout (goal_state.goal_proximity on a z_world rollout endpoint) has essentially no confounding machinery between it and the representation itself.",
+        "This run's z_world IS trained (bespoke loss, 100 episodes) -- unlike every cell in the 2026-07-18 zworld_near_static_characterisation, which was universally untrained (0/61 tensors moved) -- so it is a genuinely new data point on the (a1)-undertrained vs (a2)-dimension-ceiling confound, though the bespoke loss's adequacy relative to the sanctioned training route is itself unverified, so it does not cleanly resolve the confound on its own.",
+        "claims.yaml mischaracterises the original 2026-03-28 108 full-production FAIL as 'empty metrics -- runner artifact'; the manifest is complete. This is a data-quality issue independent of this run's own disposition, flagged for governance to fix."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "hypothesis_space_ledger_pending": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02",
+    "user_choice": "Cross-reference to INV-088 confirmed as significant; user directed that a disambiguating experiment be queued to resolve the (a1) undertrained-instrument vs (a2) dimension-ceiling confound conclusively -- to be actioned via /queue-experiment in this same session, per user instruction, rather than deferred as a chip."
+  }
+}
