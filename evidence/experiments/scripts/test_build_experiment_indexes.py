@@ -1612,35 +1612,55 @@ def test_suggest_literature_type_no_history_matches_prior_behavior():
 #
 # Regression target: 2026-08-02 (chip-20260802-backlog-null-carryforward).
 # Proposals with backlog_id null/absent (manual_proposals.v1.json historically
-# had NO backlog_id on any of its 81 items) rely on _proposal_carry_forward_key
-# falling back to proposal_id. That fallback is not code-enforced stable the
-# way backlog_id is (every auto-generated proposal gets one, minted once and
-# carried forward by claim_id) -- a manual item's status survived a regen only
-# because nothing rewrote its proposal_id, an unenforced invariant. Confirmed
-# incident shape: MECH-426/EXP-0384, MECH-427/EXP-0385, INV-087/EXP-0386 were
-# hand-patched to blocked_substrate/blocked_substrate/executed and observed
-# reverted to "proposed" in a shared working tree the same day. Fix: mint a
-# stable EVB-NNNN for every manual proposal on first regen
+# had NO backlog_id on any of its 81 items) relied on falling back to
+# proposal_id for carry-forward identity. That fallback is not code-enforced
+# stable the way backlog_id is (every auto-generated proposal gets one,
+# minted once and carried forward by claim_id) -- a manual item's status
+# survived a regen only because nothing rewrote its proposal_id, an
+# unenforced invariant. Confirmed incident shape: MECH-426/EXP-0384,
+# MECH-427/EXP-0385, INV-087/EXP-0386 were hand-patched to
+# blocked_substrate/blocked_substrate/executed and observed reverted to
+# "proposed" in a shared working tree the same day. Fix: mint a stable
+# EVB-NNNN for every manual proposal on first regen
 # (_mint_missing_manual_backlog_ids), persisted back to manual_proposals.v1.json
 # so it is never re-minted, with the numeric id space shared/reserved against
 # evidence_backlog.v1.json via _reserve_manual_proposal_backlog_ids so the two
 # minting loops can never collide.
+#
+# A second, more subtle bug was found empirically running this fix's FIRST
+# regen against the real (not-yet-regenerated) live experiment_proposals.v1.json
+# in an isolated scratch copy: the OLD on-disk record for a manual proposal
+# is keyed only by proposal_id (it predates minting), but the FRESH item now
+# carries a backlog_id and a single-preferred-key lookup keys on THAT instead
+# -- missing the old record entirely. The "preserve historical resolution
+# records" safety net then re-appends the old record verbatim (so nothing is
+# silently lost), but the result is a DUPLICATE: one fresh "proposed" row plus
+# one stale-but-correct row. _proposal_identity_keys returns every identifier
+# a proposal carries (backlog_id AND proposal_id) so a lookup can match either
+# way, in either direction, at any point in the transition.
 
-def test_carry_forward_key_prefers_backlog_id():
-    assert b._proposal_carry_forward_key(
+def test_proposal_identity_keys_backlog_id_first():
+    assert b._proposal_identity_keys(
         {"backlog_id": "EVB-0500", "proposal_id": "EXP-0384"}
-    ) == "EVB-0500"
+    ) == ["EVB-0500", "EXP-0384"]
 
 
-def test_carry_forward_key_falls_back_to_proposal_id():
-    assert b._proposal_carry_forward_key(
+def test_proposal_identity_keys_proposal_id_only():
+    assert b._proposal_identity_keys(
         {"backlog_id": None, "proposal_id": "EXP-0384"}
-    ) == "EXP-0384"
-    assert b._proposal_carry_forward_key({"proposal_id": "EXP-0384"}) == "EXP-0384"
+    ) == ["EXP-0384"]
+    assert b._proposal_identity_keys({"proposal_id": "EXP-0384"}) == ["EXP-0384"]
 
 
-def test_carry_forward_key_empty_when_neither_present():
-    assert b._proposal_carry_forward_key({}) == ""
+def test_proposal_identity_keys_empty_when_neither_present():
+    assert b._proposal_identity_keys({}) == []
+
+
+def test_proposal_identity_keys_dedupes_when_equal():
+    # Pathological but should not produce a 2-element list of the same string.
+    assert b._proposal_identity_keys(
+        {"backlog_id": "EXP-0384", "proposal_id": "EXP-0384"}
+    ) == ["EXP-0384"]
 
 
 def test_mint_missing_manual_backlog_ids_assigns_only_missing():
@@ -1690,18 +1710,61 @@ def test_reserve_manual_proposal_backlog_ids_prevents_future_collision():
     assert used == {489, 490, 491}
 
 
+def _carry_forward(fresh_item, existing_status_by_key):
+    """Mirrors main()'s real merge loop exactly (site 3):
+    `for _key in _proposal_identity_keys(_p): if _key in status: update; break`.
+    Not a reimplementation of new logic -- the same try-each-key-in-order
+    shape now used at every carry-forward site in main()."""
+    for _key in b._proposal_identity_keys(fresh_item):
+        if _key in existing_status_by_key:
+            fresh_item.update(existing_status_by_key[_key])
+            return True
+    return False
+
+
+def _index_by_all_keys(item, status_fields):
+    """Mirrors main()'s _existing_proposal_status population (site 1):
+    register the SAME status dict under every identity key the old record
+    carries, not just its preferred one."""
+    status = {k: item[k] for k in status_fields if k in item}
+    return {key: status for key in b._proposal_identity_keys(item)}
+
+
+def test_manual_proposal_status_survives_transition_onto_a_freshly_minted_backlog_id():
+    """The actual bug found empirically 2026-08-02: the OLD on-disk record
+    (written before this fix existed) is keyed ONLY by proposal_id -- it has
+    no backlog_id at all, exactly like every real entry in
+    experiment_proposals.v1.json today. The FRESH item, from a
+    manual_proposals.v1.json that has since been backfilled with a minted
+    backlog_id, now prefers a DIFFERENT key. A lookup that only tries the
+    fresh item's preferred key misses the old record. This is the case a
+    single-key `_proposal_carry_forward_key` lookup got wrong; asserting it
+    here is what pins the fix rather than just the steady-state case."""
+    # Old record: pre-fix shape, backlog_id was never minted at all.
+    old_record = {"proposal_id": "EXP-0384", "status": "blocked_substrate",
+                  "blocked_note": "velocity readout not built"}
+    existing_status_by_key = _index_by_all_keys(
+        old_record, ("status", "blocked_note")
+    )
+    assert set(existing_status_by_key) == {"EXP-0384"}  # no backlog_id key yet
+
+    # Fresh item: same proposal, but manual_proposals.v1.json has since been
+    # backfilled -- it now carries a minted backlog_id the old record never had.
+    fresh_item = {"proposal_id": "EXP-0384", "backlog_id": "EVB-0490", "status": "proposed"}
+
+    matched = _carry_forward(fresh_item, existing_status_by_key)
+    assert matched is True
+    assert fresh_item["status"] == "blocked_substrate"
+    assert fresh_item["blocked_note"] == "velocity readout not built"
+
+
 def test_manual_proposal_status_survives_two_regen_cycles_via_backlog_id():
-    """End-to-end shape of the confirmed 2026-08-02 incident (MECH-426/427/
-    INV-087): a manual proposal is hand-gated (e.g. blocked_substrate) between
-    two regens. Before the fix, the carry-forward join key for these items was
-    proposal_id (backlog_id was permanently None) -- a fallback with no
-    code-enforced stability guarantee. After the fix, the FIRST regen mints
-    and persists a stable backlog_id, and every subsequent regen's carry-
-    forward keys on it. Simulates main()'s own two-line merge loop
-    (`_bid = _proposal_carry_forward_key(_p); if _bid in status: _p.update(...)`)
-    using the real extracted functions rather than re-deriving new logic."""
-    # Cycle 1: manual_proposals.v1.json has no backlog_id yet (the pre-fix
-    # shape, still real today for any freshly-authored manual proposal).
+    """Steady-state shape (after the transition above has already happened
+    once): a manual proposal is hand-gated between two regens where BOTH the
+    old record and the fresh item already carry the same minted backlog_id.
+    Exercises _mint_missing_manual_backlog_ids' idempotency (cycle 2's mint
+    call is a no-op) together with the carry-forward merge."""
+    # Cycle 1: manual_proposals.v1.json has no backlog_id yet.
     manual_doc = {
         "items": [{"proposal_id": "EXP-0384", "claim_id": "MECH-426", "status": "proposed"}]
     }
@@ -1727,17 +1790,11 @@ def test_manual_proposal_status_survives_two_regen_cycles_via_backlog_id():
     fresh_proposal = dict(manual_doc["items"][0])
     assert fresh_proposal["status"] == "proposed"  # source is always "proposed"
 
-    # Carry-forward: existing (regen 1 output) keyed the same way main() does.
-    existing_status_by_key = {
-        b._proposal_carry_forward_key(regen1_proposal): {
-            "status": regen1_proposal["status"],
-            "blocked_note": regen1_proposal["blocked_note"],
-        }
-    }
-    _bid = b._proposal_carry_forward_key(fresh_proposal)
-    assert _bid in existing_status_by_key
-    fresh_proposal.update(existing_status_by_key[_bid])
-
+    existing_status_by_key = _index_by_all_keys(
+        regen1_proposal, ("status", "blocked_note")
+    )
+    matched = _carry_forward(fresh_proposal, existing_status_by_key)
+    assert matched is True
     assert fresh_proposal["status"] == "blocked_substrate"
     assert fresh_proposal["blocked_note"] == "velocity readout not built"
 
@@ -1745,26 +1802,41 @@ def test_manual_proposal_status_survives_two_regen_cycles_via_backlog_id():
 def test_manual_proposal_without_backlog_id_still_survives_single_cycle_fallback():
     """Defense-in-depth: even if a manual item somehow skips minting (a
     malformed entry, or a doc that bypassed _mint_missing_manual_backlog_ids),
-    the proposal_id fallback still works for a SINGLE regen cycle in
+    the proposal_id-only fallback still works for a SINGLE regen cycle in
     isolation -- this was never actually broken (proposal_id is stable for a
     manual item that nothing rewrites). The exposure the fix closes is the
-    missing code-enforced guarantee, not a demonstrated single-cycle failure;
-    this test pins that the fallback path itself keeps working."""
+    missing code-enforced guarantee AND the transition case above, not a
+    demonstrated single-cycle failure; this test pins that the fallback path
+    itself keeps working when neither side ever gets a backlog_id."""
     old_proposal = {
         "proposal_id": "EXP-0384", "status": "executed", "executed_by": "V3-EXQ-872",
     }
     fresh_proposal = {"proposal_id": "EXP-0384", "status": "proposed"}
 
-    existing_status_by_key = {
-        b._proposal_carry_forward_key(old_proposal): {
-            "status": old_proposal["status"],
-            "executed_by": old_proposal["executed_by"],
-        }
-    }
-    _bid = b._proposal_carry_forward_key(fresh_proposal)
-    assert _bid in existing_status_by_key
-    fresh_proposal.update(existing_status_by_key[_bid])
+    existing_status_by_key = _index_by_all_keys(
+        old_proposal, ("status", "executed_by")
+    )
+    matched = _carry_forward(fresh_proposal, existing_status_by_key)
+    assert matched is True
     assert fresh_proposal["status"] == "executed"
+
+
+def test_old_record_not_duplicated_when_fresh_item_matches_via_either_key():
+    """Regression for the exact duplicate-row shape observed empirically: the
+    "preserve historical resolution records" re-append must recognise a fresh
+    item as already covering an old record when EITHER key matches, not just
+    the fresh item's preferred one -- otherwise the old (correctly-resolved)
+    record gets re-appended as a second, redundant row alongside the fresh
+    (freshly-reset-to-"proposed") one. Mirrors main()'s _regenerated_bids
+    membership check (site 3.5)."""
+    old_record = {"proposal_id": "EXP-0384", "status": "executed"}
+    fresh_item = {"proposal_id": "EXP-0384", "backlog_id": "EVB-0490", "status": "proposed"}
+
+    regenerated_keys = set(b._proposal_identity_keys(fresh_item))
+    old_keys = b._proposal_identity_keys(old_record)
+    already_covered = any(k in regenerated_keys for k in old_keys)
+
+    assert already_covered is True  # matched via the shared "EXP-0384" key
 
 
 def _run_all():

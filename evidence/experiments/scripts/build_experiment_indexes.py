@@ -4502,22 +4502,38 @@ def _suggest_literature_type(claim_id: str, matrix: dict[str, Any]) -> str:
     return f"targeted_review_{claim_id.lower().replace('-', '_')}"
 
 
-def _proposal_carry_forward_key(item: dict[str, Any]) -> str:
-    """Stable identity used to match a proposal across regenerations.
+def _proposal_identity_keys(item: dict[str, Any]) -> list[str]:
+    """Every identifier this proposal is known by, backlog_id first.
 
-    backlog_id (EVB-NNNN) is preferred -- every auto-generated proposal
-    carries one, minted once and carried forward by claim_id (see the
-    "Persistent ID assignment" block in main()). proposal_id (EXP-/LIT-NNNN)
-    is the fallback for the historical case where a proposal has no
-    backlog_id at all; unlike backlog_id it has no code-enforced stability
-    guarantee, so a proposal relying on this fallback is one rewrite away
-    from breaking carry-forward. As of 2026-08-02 every manual proposal
-    (evidence/planning/manual_proposals.v1.json) is minted a backlog_id on
-    first regen (see _mint_missing_manual_backlog_ids), so this fallback
-    should no longer be exercised in practice -- kept for defense in depth
-    against a malformed or hand-edited entry that skips minting.
+    backlog_id (EVB-NNNN) is preferred where present -- every auto-generated
+    proposal carries one, minted once and carried forward by claim_id (see
+    the "Persistent ID assignment" block in main()). proposal_id
+    (EXP-/LIT-NNNN) is the fallback for a proposal with no backlog_id, or a
+    SECOND match candidate during the transition onto one.
+
+    A single preferred key is not enough to match an OLD record against a
+    FRESH item across that transition: the very first regen after a manual
+    proposal is minted a backlog_id changes its preferred key from
+    proposal_id to backlog_id, while the existing on-disk record was written
+    under proposal_id (the only key it had at the time). A single-key lookup
+    misses that match -- confirmed empirically 2026-08-02 running the
+    newly-minted-backlog_id fix against the (not-yet-regenerated) live
+    experiment_proposals.v1.json: MECH-426/427/INV-087 each came back as TWO
+    rows, a fresh "proposed" one plus a stale-but-correct one preserved by
+    the "historical resolution" re-append safety net -- not silent data
+    loss, but not a clean carry-forward either. Returning BOTH keys (when
+    both are present) and trying each in turn closes that transitional gap
+    without weakening steady-state behaviour (once backlog_id is stable,
+    proposal_id is just a redundant second hit).
     """
-    return str(item.get("backlog_id") or item.get("proposal_id") or "")
+    keys: list[str] = []
+    _bid = str(item.get("backlog_id") or "").strip()
+    if _bid:
+        keys.append(_bid)
+    _pid = str(item.get("proposal_id") or "").strip()
+    if _pid and _pid not in keys:
+        keys.append(_pid)
+    return keys
 
 
 def _reserve_manual_proposal_backlog_ids(
@@ -5677,9 +5693,9 @@ def _write_planning_outputs(
                 _existing_proposals_path.read_text(encoding="utf-8")
             )
             for _ep in _existing_proposals_doc.get("items", []):
-                _bid = _proposal_carry_forward_key(_ep)
-                if _bid and _ep.get("status", "proposed") != "proposed":
-                    _existing_proposal_status[_bid] = {
+                _ep_keys = _proposal_identity_keys(_ep)
+                if _ep_keys and _ep.get("status", "proposed") != "proposed":
+                    _ep_status = {
                         k: _ep[k]
                         for k in (
                             "status",
@@ -5694,6 +5710,10 @@ def _write_planning_outputs(
                         )
                         if k in _ep
                     }
+                    # Register under EVERY identity key this OLD record carries
+                    # (not just the preferred one) -- see _proposal_identity_keys.
+                    for _ep_key in _ep_keys:
+                        _existing_proposal_status[_ep_key] = _ep_status
         except Exception:
             _existing_proposals_doc = None  # malformed existing file -- skip silently
 
@@ -5720,8 +5740,8 @@ def _write_planning_outputs(
     _manual_reserved_idx: set[int] = set()
     if _existing_proposals_doc is not None:
         for _ep in _existing_proposals_doc.get("items", []):
-            _bid = _proposal_carry_forward_key(_ep)
-            if not _bid or _bid not in _existing_proposal_status:
+            _ep_keys = _proposal_identity_keys(_ep)
+            if not _ep_keys or not any(k in _existing_proposal_status for k in _ep_keys):
                 continue  # only resolved (non-"proposed") entries get re-appended later
             _m = re.match(r"^(?:EXP|LIT)-(\d+)$", str(_ep.get("proposal_id") or ""))
             if _m:
@@ -6104,9 +6124,10 @@ def _write_planning_outputs(
     # before the proposal_id counter, so their numeric ids could be reserved --
     # see "ALSO reserve every already-RESOLVED existing proposal_id" above.)
     for _p in proposals:
-        _bid = _proposal_carry_forward_key(_p)
-        if _bid and _bid in _existing_proposal_status:
-            _p.update(_existing_proposal_status[_bid])
+        for _key in _proposal_identity_keys(_p):
+            if _key in _existing_proposal_status:
+                _p.update(_existing_proposal_status[_key])
+                break
 
     # Preserve historical resolution records for items that no longer appear
     # in the freshly-generated `proposals` list AT ALL -- e.g. a claim that
@@ -6129,18 +6150,18 @@ def _write_planning_outputs(
     # (not just the status-family fields) so it survives regen exactly like
     # any other resolved item does.
     if _existing_proposals_doc is not None:
-        _regenerated_bids = {
-            _proposal_carry_forward_key(_p) for _p in proposals
-        }
+        _regenerated_bids: set[str] = set()
+        for _p in proposals:
+            _regenerated_bids.update(_proposal_identity_keys(_p))
         for _ep in _existing_proposals_doc.get("items", []):
-            _bid = _proposal_carry_forward_key(_ep)
+            _ep_keys = _proposal_identity_keys(_ep)
             if (
-                _bid
-                and _bid not in _regenerated_bids
+                _ep_keys
+                and not any(k in _regenerated_bids for k in _ep_keys)
                 and _ep.get("status", "proposed") != "proposed"
             ):
                 proposals.append(dict(_ep))
-                _regenerated_bids.add(_bid)
+                _regenerated_bids.update(_ep_keys)
 
     # Write the same carried-forward status back into manual_proposals.v1.json
     # itself. Without this, a manual item's on-disk "status" is frozen at
@@ -6162,8 +6183,11 @@ def _write_planning_outputs(
             for _mp in _manual_doc.get("items", []):
                 if not isinstance(_mp, dict):
                     continue
-                _mp_bid = _proposal_carry_forward_key(_mp)
-                _resolved = _existing_proposal_status.get(_mp_bid) if _mp_bid else None
+                _resolved = None
+                for _mp_key in _proposal_identity_keys(_mp):
+                    _resolved = _existing_proposal_status.get(_mp_key)
+                    if _resolved:
+                        break
                 if not _resolved:
                     continue
                 for _k, _v in _resolved.items():
