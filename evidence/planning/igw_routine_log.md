@@ -1331,3 +1331,4 @@ One line per hourly tick. ASCII only.
 2026-08-02T14:30:37Z GC sweep removed 2 orphan worktree(s), kept 8
 2026-08-02T14:30:49Z reconcile-release hash=239348dda3af (IGW-20260802-225 -> completed)
 2026-08-02T14:30:37Z no eligible item (skipped 248): IGW-20260802-001:skill /governance not allowed; IGW-20260802-004:skill /governance not allowed; IGW-20260802-206:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
+2026-08-02T15:31:06Z SPAWN IGW-20260802-222 skill=/queue-experiment prio=40 uuid=c8096171-84c8-4098-8d09-ef4f57de5c24 pid=61278 worktree=igw-222-proposal-for-mech-472
