@@ -292,12 +292,25 @@ user approved both open questions:
    to filename-derived title + directory-derived group. New docs become
    reachable automatically without an `explorer.html` edit.
 
-**Implementation blocked at decision time**: `REE_assembly/explorer.html`
+**Implementation was briefly blocked at decision time**: `REE_assembly/explorer.html`
 and `REE_assembly/serve.py` were both under an active `TASK_CLAIMS.json`
 claim (`claims-stash-surfacing-cf8392`, unrelated work: wiring stale-claim
-+ orphaned-stash surfacing into Explorer). Build deferred to a follow-up
-session/chip once that claim clears -- see `TASK_CLAIMS.json` /
-`WORKSPACE_STATE.md` for current status.
++ orphaned-stash surfacing into Explorer). That claim closed minutes later
+and the build proceeded in the same session -- **landed 2026-08-02,
+REE_assembly `90bfe64e24`**.
+
+Directory-scope refinement made during the build, also user-approved:
+auto-discovery is a **hybrid**, not a blanket recursive scan.
+`docs/architecture/` (247 files, only ~48 curated) and `evidence/planning/`
+(799 files, only 11 curated) turned out to be mostly historical/working
+files rather than reference docs -- a naive recursive scan would have
+surfaced ~1,400 files, recreating the flat-dropdown problem at 20x scale.
+Both trees stay explicitly curated (unchanged from before); auto-discovery
+is limited to six low-noise directories (`docs/` root, `docs/governance`,
+`docs/claims`, `docs/strategy`, `docs/examples`, `docs/notes`), adding 43
+newly-reachable docs with zero noise increase. See `docs_picker_config.json`
+(`_comment` field) and `serve.py`'s `read_docs_index()` docstring for the
+mechanism.
 
 ---
 
@@ -350,7 +363,7 @@ wants a similar at-a-glance summary for, say, the List/claims view specifically.
 | C1 | No dark mode | c | needs-design-discussion | **Landed** (auto via prefers-color-scheme) |
 | C2 | Inline hex colors vs CSS vars | c | needs-design-discussion | **Landed, partially** -- see note below |
 | C3 | "More" menu accretion | c | needs-design-discussion | **Landed, partially** -- Docs promoted to top-level; Contributors + 6 dashboard links still in More by user decision |
-| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | **Approved 2026-08-02** (searchable panel + server-generated index) -- **implementation blocked**, `explorer.html`/`serve.py` under active claim |
+| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | **Landed 2026-08-02** (REE_assembly `90bfe64e24`) -- searchable sidebar panel + server-generated index (`GET /api/docs/index`, `docs_picker_config.json`) |
 | D1 | List table has no pagination | d | small | **Landed** (~100/page) |
 | D2 | Mobile/responsive | d | -- | Already fine |
 | D3 | Governance's priority pane as a reusable pattern | d | -- | Noted, no action proposed |
