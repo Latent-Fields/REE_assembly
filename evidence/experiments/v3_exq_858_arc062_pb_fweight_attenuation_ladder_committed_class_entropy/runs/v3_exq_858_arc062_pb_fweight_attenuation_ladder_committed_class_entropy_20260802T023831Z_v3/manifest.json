@@ -1,0 +1,183 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy",
+  "run_id": "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy_20260802T023831Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T02:38:31Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_not_ready_requeue",
+    "dv_symmetry_declaration": "Committed-class entropy is a function of the argmax action-class sequence. f_weight rescales ONE per-candidate-VARYING term (F, the reality cost -- NOT a broadcast scalar; F differs across candidates at every tick) relative to the other additive terms (M, Phi) in the score sum. This is neither a uniform additive shift (argmax-cancelling) nor a monotone rescaling of the WHOLE score -- only one component's relative weight changes, so relative candidate ordering under the other terms is not preserved -- so it is NOT invariant under the argmax symmetry of the committed-class DV, and legitimately CAN change which candidate wins the committed argmin. Holds identically at every rung (same kind of rescaling, only the coefficient differs).",
+    "preconditions": [
+      {
+        "name": "committed_class_axis_exercisable_all_rungs",
+        "kind": "readiness",
+        "description": "frac of P2 ticks with >= 2 candidate first-action classes exceeds floor on a majority of seeds, on EVERY rung.",
+        "control": "SP-CEM multi-class candidate pool, all 4 rungs",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_divergence_all_rungs",
+        "kind": "readiness",
+        "description": "consumed cand_world_summaries (e2.world_forward) per-candidate SPREAD clears the floor on a majority of seeds, on EVERY rung.",
+        "control": "e2 trained online in P0; candidate_summary_source=e2_world_forward",
+        "measured": 2.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "gapa_consumed_summary_bounded",
+        "kind": "readiness",
+        "description": "consumed-summary spread stayed below the explosion ceiling (SD-056 online-training numerical stability; rollout-norm clamp ON).",
+        "control": "max consumed_summary_pairwise_dist across all cells",
+        "measured": 0.275444,
+        "threshold": 1000000.0,
+        "comparator": "<",
+        "direction": "upper",
+        "met": true
+      },
+      {
+        "name": "crf_field_differentiated_and_matured_all_rungs",
+        "kind": "readiness",
+        "description": "CandidateRuleField (matched constant ON) minted >= CRF_MIN_MINTED distinct rules AND fired a non-zero rule_state on >= CRF_FRAC_ACTIVE_FLOOR of P2 ticks, on a majority of seeds, on EVERY rung.",
+        "control": "crf frac-active (matured pool) + crf_n_minted_total",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "propagation_non_vacuity_lateral_pfc_bias_all_rungs",
+        "kind": "readiness",
+        "description": "mean |lateral_pfc bias| > PROP_NONVAC_FLOOR on a majority of seeds, on EVERY rung. Re-expressed as a DIRECT magnitude floor (no OFF arm in this design -- CRF is a matched constant ON everywhere, unlike 851's paired ON-vs-OFF diff).",
+        "control": "mean_lateral_pfc_bias_abs on the matched CRF-ON stack, all rungs",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "mech448_demotion_lever_live_and_excluding_all_rungs",
+        "kind": "readiness",
+        "description": "The MECH-448 f_eligibility-demotion conversion constant (matched on EVERY rung) is ACTIVE on >= DEMOTION_ACTIVE_FRAC_FLOOR of P2 ticks AND actually EXCLUDES (mean excluded_count > EXCLUDED_COUNT_FLOOR), on a majority of seeds, on EVERY rung.",
+        "control": "f_demotion envelope active-frac + excluded_count, all rungs (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "mech449_active_nogo_live_and_suppressing_all_rungs",
+        "kind": "readiness",
+        "description": "The MECH-449 Go/No-Go eligibility constitution (matched on EVERY rung) is ACTIVE on >= NOGO_ACTIVE_FRAC_FLOOR of P2 ticks AND actually SUPPRESSES (mean per-tick safety+soft No-Go removals > NOGO_SUPPRESSED_FLOOR), on a majority of seeds, on EVERY rung.",
+        "control": "Go/No-Go constitution active-frac + suppressed-count, all rungs (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "lateral_pfc_route_range_supra_floor_and_sample_adequate_all_rungs",
+        "kind": "readiness",
+        "description": "modulatory_channel_route_source='lateral_pfc' (V3-EXQ-851's corrected route source) identity-routes the SD-033a rule-apprehension bias into _modulatory_accum. On a majority of seeds, on EVERY rung (routing is a matched constant): (a) the routed range's mean clears ROUTE_RANGE_SEED_FLOOR; (b) the genuine fresh-selection sample (latch-cleared) clears FRESH_SELECT_FLOOR; (c) the fresh-select YIELD clears FRESH_SELECT_YIELD_FLOOR.",
+        "control": "modulatory_channel_route_range + n_p2_fresh_select, all rungs (matched lever)",
+        "measured": 0.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": false
+      },
+      {
+        "name": "f_weight_knob_live_through_full_matched_stack_all_rungs",
+        "kind": "readiness",
+        "description": "NEW C1(h). At each rung/seed, on genuine fresh-select P2 ticks, mean_f_weighted must fall within [rung_f_weight*mean_f_raw - tol, rung_f_weight*mean_f_raw + tol] (tol = F_WEIGHT_SCALING_TOL * max(1e-6, |expected|), a two-sided closeness check -- see per-row f_weight_knob_live for the interval bounds), on a majority of seeds, on EVERY rung. Confirms f_weight genuinely rescales F through the FULL matched-stack pipeline (CRF-ON, lateral_pfc-routed, MECH-448/449-active) at every attenuation level -- V3-EXQ-852 only checked substrate DEFAULTS.",
+        "control": "agent.e3._last_traj_components['f']/['f_weighted'] on genuine fresh-select ticks, all rungs (matched-stack readiness, COUNT-shaped aggregate over a per-row INTERVAL-decided boolean)",
+        "measured": 3.0,
+        "threshold": 2.0,
+        "comparator": ">=",
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C2_committed_class_entropy_lift_f000_vs_f100",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1a_class_axis_exercisable": true,
+      "C1b_gapa_divergence": true,
+      "C1c_crf_differentiated_matured": true,
+      "C1d_propagation_non_vacuity": true,
+      "C1e_mech448_demotion_live_and_excluding": false,
+      "C1f_mech449_active_nogo_live_and_suppressing": false,
+      "C1g_lateral_pfc_route_range_supra_floor_and_sample_adequate": false,
+      "C1h_f_weight_knob_live": true,
+      "C2_paired_lift": false
+    },
+    "note": "GOV-FANOUT-1 Leg P-B (H2: F-dominance, downstream of selection). claim_ids=[] (diagnostic; brake-exempt). Branch 2 (f_dominance_confirmed_h2_operative_ceiling) is evidence_direction='non_contributory' (claim-neutral by design) but is nonetheless a load-bearing GOVERNANCE ROUTING signal: if reached, ARC-062's behavioural retest should be gated behind an F-rebalance substrate landing before any further probe. Branch 3 (f_dominance_refuted_as_sole_cause) does NOT reopen H3 (competence/action-learning) -- per the fanout doc's P-C resolution, H-policy-learning is already 'eliminated' in hypothesis_space_registry.v1.json; the surviving live root is H-observation-interface (MECH-457-tagged, owned by the standing competence_floor re-posing thread), which this branch corroborates rather than reopens."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "4c8dbb6f44f8a2c53e28c4cf6dbba25f6faa5dea0e6f16acdced5c1a5f6a8e9b",
+  "substrate_commit": {
+    "commit": "05f7e0e8079cde1081528ac80017265fe6868361",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 313231,
+    "ticks_active": 15774,
+    "writer_calls": 313231,
+    "active_frac": 0.050359000226669774,
+    "writer_defect": false,
+    "n_agents": 12,
+    "goal_state_present": true
+  }
+}
