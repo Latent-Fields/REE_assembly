@@ -1,0 +1,117 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest",
+  "run_id": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T19:59:43.059190Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-267"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "weakens",
+  "evidence_direction_per_claim": {
+    "MECH-267": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mode_conditioning_content_effect_still_washed_out_with_both_mechanisms",
+    "criteria": [
+      {
+        "name": "C_mechanism_activation_check",
+        "load_bearing": true,
+        "passed": true,
+        "detail": {
+          "noise_scale_active": true,
+          "horizon_scale_active": true,
+          "horizon_varies_by_mode": true,
+          "distinct_effective_horizons": [
+            2,
+            3,
+            4
+          ],
+          "effective_horizon_by_mode": {
+            "internal_planning": 4,
+            "external_task": 2,
+            "internal_replay": 3,
+            "offline_consolidation": 4
+          },
+          "both_mechanisms_active": true
+        }
+      },
+      {
+        "name": "C0_diagnostic_manipulation_check_iters1",
+        "load_bearing": true,
+        "passed": true,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": 0.054585663601756096,
+          "external_task_minus_internal_replay": 0.0918179708532989,
+          "internal_replay_minus_offline_consolidation": 0.031088031238565843
+        },
+        "floor": 0.015
+      },
+      {
+        "name": "C1_production_content_persistence_iters3",
+        "load_bearing": true,
+        "passed": false,
+        "mean_gaps": {
+          "internal_planning_minus_external_task": 0.0007764140299210946,
+          "external_task_minus_internal_replay": 0.002416704765831431,
+          "internal_replay_minus_offline_consolidation": -0.003747694892808795
+        },
+        "floor": 0.01
+      },
+      {
+        "name": "C2_seed_majority_full_ordering_iters3",
+        "load_bearing": false,
+        "passed": false,
+        "n_seeds_full_order": 0,
+        "n_seeds_total": 30
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C_mechanism_activation_check": true,
+      "C0_diagnostic_manipulation_check_iters1": true,
+      "C1_production_content_persistence_iters3": true,
+      "C2_seed_majority_full_ordering_iters3": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if the mechanism-activation check fails (both mode_noise_scale and mode_horizon_scale must be measured non-None and effective_horizon must vary by mode) or if the primary DV is degenerate at iters=1 or if C0 (manipulation check) fails -- none of these are informative about the claim. Else PASS/supports iff C1 (the mean pairwise raw_std gaps at production num_cem_iterations=3 each clear FLOOR_PRODUCTION, IDENTICAL floor to V3-EXQ-869); else FAIL/weakens (both mechanisms active but the content effect still does not survive elite-refit under realistic settings). C2 is reported alongside as non-gating per-seed corroboration."
+  },
+  "machine": "ree-cloud-4",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "fe9475cca547da8817e0c798ea90b6bc4e771af6dee645bd3e521062ef59b374",
+  "substrate_commit": {
+    "commit": "500fd6739857f19b4fda7e851dde9f13f8de62a8",
+    "dirty": false,
+    "branch": "main"
+  }
+}
