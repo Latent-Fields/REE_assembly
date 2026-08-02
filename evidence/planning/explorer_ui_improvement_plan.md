@@ -1,7 +1,10 @@
 # Explorer UI Improvement Plan
 
-**Status:** DRAFT -- awaiting user review/approval. Nothing in this doc beyond the
-"Done now" section (below) has been implemented.
+**Status:** Most items below are LANDED (REE_assembly master `ce7ac6096b`,
+2026-08-02, same session continued). Two items were explicitly deferred by
+user decision rather than built -- see "Deferred by user decision" at the
+bottom. Anything not mentioned as landed or deferred there is still just a
+proposal.
 **Scope:** `REE_assembly/explorer.html` (~9,600 lines) + its backend `serve.py`
 (~6,800 lines). Linked-out pages reachable from the top nav (`/workset`,
 `/closure`, `/progress`, `/brain-map`, `/code-atlas`, `/machines`, `/igw`,
@@ -314,24 +317,75 @@ wants a similar at-a-glance summary for, say, the List/claims view specifically.
 | # | Finding | Bucket | Effort | Status |
 |---|---|---|---|---|
 | Done-1 | Queue priority + stale-claim chips (client-side) | b | trivial | **Landed** |
-| 1 | `priority`/`claimed_by` dropped in `_queue_items_from_raw()` | b | small | Proposed -- top priority |
-| A1 | No sort control on List view | a | small | Proposed |
-| A2 | Queue not sorted/shown by priority | a | small (blocked on #1) | Proposed |
-| A3 | "Current epoch only" filter missing from List | a | small | Proposed |
-| A4 | No "has conflict" filter | a | trivial-small | Proposed |
+| 1 | `priority`/`claimed_by` dropped in `_queue_items_from_raw()` | b | small | **Landed** |
+| A1 | No sort control on List view | a | small | **Landed** (click-to-sort headers) |
+| A2 | Queue not sorted/shown by priority | a | small (blocked on #1) | **Landed** |
+| A3 | "Current epoch only" filter missing from List | a | small | **Landed** |
+| A4 | No "has conflict" filter | a | trivial-small | **Landed** |
 | A5 | Experiments > Completed sort | a | -- | Already fine |
-| B2 | Stale TASK_CLAIMS / orphaned stashes not computed server-side | b | needs-design-discussion | Proposed (bigger than it looks) |
+| B2 | Stale TASK_CLAIMS / orphaned stashes not computed server-side | b | needs-design-discussion | **Deferred by user decision** |
 | B3 | Closure load-bearing counts | b | -- | Out of scope (separate file) |
 | B4 | Nav-badge vs corner-dock convention | b | -- | Documented, no action needed |
-| B5 | Pending-review badge doesn't deep-link | b | small | Proposed |
-| C1 | No dark mode | c | needs-design-discussion | Proposed |
-| C2 | Inline hex colors vs CSS vars | c | needs-design-discussion | Proposed |
-| C3 | "More" menu accretion | c | needs-design-discussion | Proposed |
-| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | Proposed |
-| D1 | List table has no pagination | d | small | Proposed |
+| B5 | Pending-review badge doesn't deep-link | b | small | **Landed** |
+| C1 | No dark mode | c | needs-design-discussion | **Landed** (auto via prefers-color-scheme) |
+| C2 | Inline hex colors vs CSS vars | c | needs-design-discussion | **Landed, partially** -- see note below |
+| C3 | "More" menu accretion | c | needs-design-discussion | **Landed, partially** -- Docs promoted to top-level; Contributors + 6 dashboard links still in More by user decision |
+| C4 | Docs picker is a 70-item select | c | small/needs-design-discussion | **Deferred by user decision** |
+| D1 | List table has no pagination | d | small | **Landed** (~100/page) |
 | D2 | Mobile/responsive | d | -- | Already fine |
 | D3 | Governance's priority pane as a reusable pattern | d | -- | Noted, no action proposed |
 
 **No unrelated bugs were found** during this review (everything above is a UX
 gap or a design-consistency observation, not a correctness defect), so no
 separate chip was needed for out-of-scope issues.
+
+---
+
+## Landed 2026-08-02 (session continued, REE_assembly `ce7ac6096b`)
+
+All items above marked **Landed** were implemented and verified in-browser
+(light + dark, console-clean, no light-mode regressions) in the same session
+that wrote this plan, after the user reviewed it and said to proceed with all
+of it, asking clarifying questions along the way. Key decisions made when
+asked:
+
+- List sort: click-to-sort column headers (not a separate sort-by dropdown).
+- Pagination: numbered pages, ~100/page.
+- Nav: promote Docs to top-level (not a Reference/Dashboards menu split).
+- Dark mode: auto via `prefers-color-scheme`, no manual toggle.
+- Docs picker redesign: skipped -- promoting Docs to top-level already fixes
+  the main pain point.
+- TASK_CLAIMS/stash surfacing: skipped -- real backend work, scoped as its
+  own follow-up rather than folded into a UI pass.
+
+**C2 scope note, since "partially" needs a definition:** dark mode required
+touching more literal colors than the plan originally scoped as "structural,"
+because turning `--ink`/`--muted` light in dark mode broke legibility
+anywhere a literal light background didn't move with it (light-on-light
+text). Fixed as discovered: the 4 translucent "glass" chrome surfaces, 5
+claim-type badges, the `#cornerDock` widget (kept intentionally light-styled,
+needed a pinned text color only), ~10 toolbar/pill/card backgrounds across
+Governance and Map (`gov-toolbar`, `gov-pill`, `command-row`, `map-toolbar`,
+`gov-card`/`gov-card-alert`, `gov-priority-pane`/`-header`, `map-card`,
+`legend-wrap`), and a bulk pass converting 22 identical `background: #fff`
+declarations (buttons, tooltips, chips, doc content, tables) to
+`var(--card)` -- verified as a no-op in light mode since `--card` is
+`#ffffff` there. **Not converted:** the literal saturated status colors
+(pass/fail/warning badges, priority-urgent/warn/ok text, etc.) -- these
+stay legible against a dark background even unconverted, and a full sweep
+of every remaining literal in the file (Process/Architecture/Graph views
+were not exhaustively checked) remains open if a future pass wants it.
+
+---
+
+## Deferred by user decision
+
+These were explicitly discussed and declined for this pass, not overlooked:
+
+- **B2 (TASK_CLAIMS staleness / orphaned stash surfacing).** Needs new
+  backend plumbing (import or shell out to `audit_stale_claims.py` /
+  `audit_stashes.py`), which is a different kind of work than the rest of
+  this pass. Scope it as its own follow-up if wanted.
+- **C4 (Docs picker redesign).** Promoting Docs to top-level nav (landed)
+  already fixes the main discoverability problem; the 70-item select+filter
+  itself was left as-is.
