@@ -1,0 +1,103 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation",
+  "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T21:50:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-180",
+    "MECH-122"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-180": "non_contributory",
+    "MECH-122": "weakens"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mel_control_degenerate",
+    "preconditions": [
+      {
+        "name": "world_forward_converged_frozen_probe",
+        "description": "recon-only P0 converges on the fixed frozen-probe battery (conv_rel_drop >= MIN_REL_CONV_DROP) on the ecological ON arms, on >= 2/3 seeds -- the world model must be trained for MEL to live at a meaningful scale (R1).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "ecological_novelty_mel_gradient_present_this_config",
+        "description": "measured mean_mel is non-degenerately graded (mel[HIGH] >= mel[NONE]*(1+MIN_MEL_SPREAD)) across the 4 ON arms, on >= 2/3 seeds -- re-confirms the V3-EXQ-798a/845 novelty->MEL link under THIS run's full agent config. Below-floor => the ecological link does not survive in this config (not-ready), NOT a MECH-180 falsification (R2).",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_measured_mel_gradient_present": true,
+      "C1_dv_spread_nonzero": true,
+      "C2_off_control_present": true
+    },
+    "per_dv_seed_pass_fraction": {
+      "sws_power": 0.6666666666666666,
+      "spindle_density": 0.0,
+      "replay_rate": 0.6666666666666666
+    },
+    "per_dv_pass": {
+      "sws_power": true,
+      "spindle_density": false,
+      "replay_rate": true
+    },
+    "redesign_note": "spindle_density (C1b/C2) reads mean_sws_new_slot_diversity, the SAME write-count-decoupled statistic V3-EXQ-861 introduced (unchanged readout code). This run's ONLY change from 861 is use_mech122_spindle_content_selection=True (uniform across every arm), testing whether the MECH-122 content-packaging substrate build (ree-v3 a7d36429fd) closes 861's 0/3-seed spindle_density gap.",
+    "mech122_content_packaging_note": "MECH-122's per-claim direction (evidence_direction_per_claim below) is read off spindle_density's own seed-pass fraction (C1b), not this label -- see module docstring 'MECH-122 per-claim direction'. A PASS/mixed/FAIL label here reflects the FULL MECH-180 three-DV grid, which MECH-122's content-packaging half alone does not determine (C1a/C1c and C2's non-spindle legs are untouched by this run's substrate change)."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "649a8c4d4f9fb5f1e8d8bdfeecb681491c09064b70c9a52a090085706761ebc5",
+  "substrate_commit": {
+    "commit": "025c92f7b98874b34ec68ffe6bf34e4805f67d3e",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 38959,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": 0.0,
+    "writer_defect": true,
+    "n_agents": 15,
+    "goal_state_present": true
+  }
+}
