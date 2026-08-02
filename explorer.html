@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-07-17.1 -->
+<!-- EXPLORER_VERSION: 2026-08-02.2 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -2225,7 +2225,7 @@
       <button id="mapViewBtn" class="view-btn">Map</button>
       <button id="processViewBtn" class="view-btn" title="Weekly claim growth and SCC-collapsed dependency process view">Process</button>
       <button id="governanceViewBtn" class="view-btn">Governance<span id="govConflictBadge" class="gov-conflict-badge" style="display:none"></span></button>
-      <button id="experimentsViewBtn" class="view-btn">Experiments</button>
+      <button id="experimentsViewBtn" class="view-btn">Experiments<span id="pendingReviewBadge" class="gov-conflict-badge" style="display:none"></span></button>
       <button id="archViewBtn" class="view-btn" title="Architecture diagram with substrate stability overlay">Architecture</button>
       <a href="/workset" target="_blank" rel="noopener" class="view-btn ext" title="Post-governance work packages with copy-paste agent briefs">Workset<span class="ext-arrow">&#x2197;</span></a>
       <a href="/closure" target="_blank" rel="noopener" class="view-btn ext" title="ree-v3 closure progress: gap nodes across all plan-of-record docs">Closure &#x1F9E9;<span class="ext-arrow">&#x2197;</span></a>
@@ -5507,6 +5507,24 @@ END CONFLICT RESOLUTION`;
       }
     }
 
+    async function refreshPendingReviewBadge() {
+      const badge = document.getElementById('pendingReviewBadge');
+      if (!badge) return;
+      try {
+        const data = await fetchJson('/api/review/tracker?t=' + Date.now());
+        const count = data.pending_review_count || 0;
+        if (count > 0) {
+          badge.textContent = count;
+          badge.title = `${count} experiment result(s) awaiting review -- see More > Docs > "Pending review (inbox)"`;
+          badge.style.display = '';
+        } else {
+          badge.style.display = 'none';
+        }
+      } catch (_) {
+        // non-fatal: badge just stays hidden if the tracker fetch fails
+      }
+    }
+
     function renderGovernance() {
       if (!els.governanceContent) return;
       if (governanceLoading && !governanceAgenda) {
@@ -7716,6 +7734,19 @@ END CONFLICT RESOLUTION`;
         </div>`;
     }
 
+    function claimStaleHtml(claimedBy) {
+      // Matches the runner's own 6h stale-claim cutoff (CLAUDE.md "Multi-Machine
+      // Experiment Coordination"; ree-v3 coordinator/db.py COORDINATOR_STALE_HOURS).
+      // Purely informational here -- does not affect actual claim recovery.
+      const claimedAt = claimedBy && claimedBy.claimed_at;
+      if (!claimedAt) return '';
+      const ms = Date.parse(claimedAt);
+      if (Number.isNaN(ms)) return '';
+      const hours = (Date.now() - ms) / 3600000;
+      if (hours < 6) return '';
+      return `<span class="exp-timing" style="color:#b8860b" title="Claimed ${hours.toFixed(1)}h ago by ${escapeHtml(claimedBy.machine || '?')} -- past the 6h stale-claim cutoff">&#9888; stale claim (${hours.toFixed(0)}h)</span>`;
+    }
+
     function expQueueItemHtml(qi, ev) {
       const s = (qi.status || 'pending').toLowerCase().replace('_', '-');
       const priorHtml = ev && ev.run_count > 0
@@ -7747,6 +7778,8 @@ END CONFLICT RESOLUTION`;
             ${versionChipHtml(inferVersion(qi))}
             <span class="exp-timing">${fmtMinutes(qi.estimated_minutes || 15)}</span>
             ${qi.machine_affinity && qi.machine_affinity !== 'any' ? `<span class="exp-timing" title="Machine affinity">🖥 ${escapeHtml(qi.machine_affinity)}</span>` : ''}
+            ${qi.priority !== undefined && qi.priority !== null ? `<span class="exp-timing" title="Queue priority -- higher runs first">&#9650; ${escapeHtml(String(qi.priority))}</span>` : ''}
+            ${claimStaleHtml(qi.claimed_by)}
           </div>
           <div class="exp-desc">${escapeHtml(qi.description || '')}</div>
           ${qi.status_reason ? `<div class="exp-timing" style="margin-top:4px">${escapeHtml(qi.status_reason)}</div>` : ''}
@@ -9044,6 +9077,7 @@ END CONFLICT RESOLUTION`;
 
       await loadPrompts();
       await refreshGovernanceData();
+      await refreshPendingReviewBadge();
       updateRefreshStatus();
     }
 

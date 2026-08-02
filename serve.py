@@ -6225,6 +6225,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 "discussed_experiment_dirs": discussed,
                 "reviewed_run_ids": data.get("reviewed_run_ids", []),
                 "last_review_utc": data.get("last_review_utc", ""),
+                "pending_review_count": _closure_pending_review_count(),
             }).encode()
             self._json_response(body)
             return
