@@ -1,51 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 836,
-  "runner_started_at": "2026-08-01T20:58:15.341016+00:00",
-  "last_updated": "2026-08-01T22:13:46.554783+00:00",
+  "runner_pid": 834,
+  "runner_started_at": "2026-08-02T09:50:51.124021+00:00",
+  "last_updated": "2026-08-02T14:41:35.356078+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-862",
+      "queue_id": "V3-EXQ-848a",
       "backlog_id": "",
       "claim_id": "",
-      "title": "Q-040c dACC PE-weight delta correlation, config fix + pre-flight smoke gate (supersedes V3-EXQ-475b)",
+      "title": "ARC-005 precision-only decoupled ladder, CALIBRATED: does the dACC goal-readout channel route precision once dacc_goal_readout_weight/normalize are actually set? (successor to V3-EXQ-848)",
       "description": "",
-      "estimated_minutes": 48.0,
+      "estimated_minutes": 8000.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-857a",
-      "backlog_id": "EVB-0481",
+      "queue_id": "V3-EXQ-870",
+      "backlog_id": "EXP-0413",
       "claim_id": "",
-      "title": "Q-086 gentler-env confound control REDESIGN (3 arms incl. new num_hazards=0 floor, 6 seeds, survival-time DV; successor to V3-EXQ-857)",
+      "title": "MECH-480: dACC-analog execution-gain dissociation -- outcome-sensitivity vs logit-margin execution strength under dacc_weight OFF/ON ablation with mid-episode contingency switch (EXP-0413)",
       "description": "",
-      "estimated_minutes": 120.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-858",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062 GOV-FANOUT-1 Leg P-B (H2: F-dominance) -- f_weight attenuation ladder, committed-class entropy",
-      "description": "",
-      "estimated_minutes": 560.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-866",
-      "backlog_id": "EVB-0242",
-      "claim_id": "",
-      "title": "INV-034/Q-021: goal-maintenance-vs-avoidance-only ablation (FULL vs AVOIDANCE_ONLY vs RANDOM, post-SD-012/MECH-306/SD-057)",
-      "description": "",
-      "estimated_minutes": 360.0,
+      "estimated_minutes": 72.0,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -3262,6 +3240,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_865_q081_zgoal_reach_preflight_scan_20260801T221346Z_v3.json",
       "completed_by": "ree-cloud-2",
       "actual_secs": 4531.2
+    },
+    {
+      "queue_id": "V3-EXQ-864a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "SD-076 diagnostic REDESIGN: wci_symmetric_rv_ref/rv within-episode trajectory crossover, decoupled from CausalGridWorld's own episode termination (corrects V3-EXQ-864)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "C0_trajectory_data_usable: PASS (load-bearing) | C1_crossover_bracketed_in_swept_range: FAIL | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-864a -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-864a.json",
+      "started_at": "2026-08-02T09:50:51.138842+00:00",
+      "completed_at": "2026-08-02T14:41:35.355244+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3.json",
+      "completed_by": "ree-cloud-2",
+      "actual_secs": 17443.4
     }
   ]
 }
