@@ -5390,8 +5390,10 @@
       "priority": "low",
       "proposal_id": "EXP-0400",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "executed",
+      "target_repo": "ree-v3",
+      "executed_by": "V3-EXQ-882",
+      "executed_queue_id": "V3-EXQ-882"
     },
     {
       "claim_id": "MECH-474",
@@ -5400,8 +5402,13 @@
       "priority": "low",
       "proposal_id": "EXP-0401",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "ARC-092",
+        "MECH-365"
+      ],
+      "blocked_note": "no learning-regime-selection hook exists to wire a selector into. Specifically: no standalone 'counterfactual-simulation-as-learning-regime' mechanism exists in ree_core. The only counterfactual-related code found (ree_core/agent.py: frontopolar.compute_counterfactual_value, MECH-264) is a per-tick VALUE/attribution signal already folded into the standard REINFORCE baseline computation, not a separate, independently-invocable training regime comparable in kind to online-practice REINFORCE (P1 acquisition) or offline consolidation (ree_core/sleep/cross_module_consolidation.py). Building a genuine fourth 'counterfactual simulation' arm that durably updates the policy from simulated/imagined rollouts would run directly against ARC-092 (Imagination-learning constraint principle: simulated/imagined experience is FORBIDDEN from driving durable world-model updates) -- and ARC-092 is itself candidate/v3_pending/substrate_conditional at implementation_phase:v4, i.e. the very principle governing what's licit is not yet resolved for V3. This is a genuine substrate gap, not a design-effort gap. Route via /implement-substrate on the ARC-092/MECH-365 provenance-gate line if pursued, not another /queue-experiment iteration."
     },
     {
       "claim_id": "MECH-480",
