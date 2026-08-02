@@ -482,3 +482,71 @@ complete, manifest written and cleaned up, no crash; C1/C1g correctly read
 readiness floors, matching 654j's own dry-run behaviour).
 
 Legs P-A/P-B/P-C are unaffected by this finding.
+
+---
+
+## `active_frac` denominator sweep (2026-08-02, chip
+`chip-20260801-mech448449-active-frac-denominator-sweep`) -- V3-EXQ-847's
+confirmed bug is ISOLATED to 847; the rest of the lineage uses one of two
+OTHER conventions, neither of which is the same defect.
+
+`failure_autopsy_V3-EXQ-847_2026-08-01.md` confirmed a denominator bug in
+that script's `f_eligibility_demotion_active_frac` / `go_nogo_active_frac`
+readiness statistics (numerator latch-guarded to genuine fresh
+`E3.select()` ticks only; denominator left as `n_p2_ticks`, i.e. every P2
+tick including held/replayed ones) and recommended the same check be run
+against every other script in this portfolio that reused the precondition
+pattern. This is that check, run against every script that computes
+`active_frac` via P2-tick counting for the MECH-448/449 readiness gates.
+
+**Full search.** `git grep -l n_p2_ticks` +
+`grep -l "mech448_demotion_lever_live\|mech449_active_nogo_live"` across
+`ree-v3/experiments/*.py`, cross-checked against this doc's own P-A/P-B/P-C/P-D
+sections and every 2026-08-01 `GOV-FANOUT-1`-tagged autopsy
+(`V3-EXQ-844/845/848/850/853/856/857/860/861/864` -- the SD-076/MECH-204
+GOV-FANOUT-1 portfolio, a different lineage entirely, none compute this
+statistic). No script beyond the seven below carries the MECH-448/449
+`active_frac` precondition pattern. `V3-EXQ-862` (`experiments/
+v3_exq_862_q040c_dacc_pe_weight_delta_correlation.py`) was in the chip's
+provisional list but is confirmed OUT OF SCOPE on direct code read:
+`claim_ids: [Q-040]`, a dACC PE-weight Spearman-correlation script with no
+`active_frac` / `n_p2_ticks` statistic at all -- unrelated to this lineage.
+No eighth in-scope script was found; the classification below covers the
+complete set.
+
+### Classification
+
+| Script | Bucket | Evidence | Action |
+|---|---|---|---|
+| `v3_exq_654h`/`654i`/`654j` (template origin) | **(b)** legacy/vacuous convention | `last_score_diagnostics` is never cleared before `select_action`, so the numerator (`if diag:` where `diag = getattr(agent.e3, "last_score_diagnostics", {}) or {}`) is truthy on essentially every P2 tick once first populated. Denominator `n_p2_ticks`. Basis-MATCHED (both numerator and denominator are "all P2 ticks"), but the statistic is near-vacuous -- 654j's own reported `f_eligibility_demotion_active_frac` is a flat `1.0` on every seed/arm (confirmed, `failure_autopsy_V3-EXQ-851_2026-08-01.md` Addendum). Predates the `n_latched_ticks`/fresh-select concept entirely (no such field exists in these scripts). | Already run + governance-reviewed. No fix -- this is the convention 851/858 deliberately preserve for cross-comparability with 654j, not an isolated defect to patch. |
+| `v3_exq_851` (Leg P-A, re-authored) | **(b)** same convention as 654j, NOT 847's bug | Explicit latch-clearing (`agent.e3.last_score_diagnostics = None` before every `select_action`) + `_fresh_diag`/`_prev_diag_snapshot` bookkeeping. The MECH-448/449 numerator (`demotion_active_ticks`, `nogo_active_ticks`) reads `diag = _fresh_diag if _fresh_diag is not None else (_prev_diag_snapshot or {})` -- i.e. a HELD tick is credited "active" via the last fresh snapshot carried forward, not skipped. Denominator `n_p2_ticks`. Numerator and denominator are on the SAME basis (all P2 ticks; held ticks contribute to both), so this is basis-MATCHED, self-consistent -- explicitly commented in-code "BIT-IDENTICAL to 654j". It is a different statistic from 847's (duty-cycle-with-carry-forward vs. genuine-fresh-only), not the same defect expressed differently. The script's OWN `route_active_frac` (the new C1g check) correctly divides by `n_p2_fresh_select` -- proving the authors distinguished the two constructs deliberately rather than missing the distinction. | Already run + autopsied + user-confirmed. 851's own Addendum (2026-08-01T21:19:59Z, already in file) already reinterprets the 0.24-0.58 reading as "reduced duty cycle at preserved magnitude" rather than "dead" -- this sweep does not change that reading, only confirms it is not the 847 mismatch. No code fix warranted (would retroactively alter already-governance-facing evidence for a statistic that is not actually wrong, only differently defined than 859's). |
+| `v3_exq_858` (Leg P-B) | **(b)** same convention as 851, verbatim | Code-confirmed identical pattern to 851: `_fresh_diag`/`_prev_diag_snapshot` carry-forward for `demotion_active_frac`/`nogo_active_frac` (denominator `n_p2_ticks`), `route_active_frac` correctly on `n_p2_fresh_select`. The `ree-v3/experiment_queue.json` note for V3-EXQ-863 states 858 "reuses V3-EXQ-851's C1(a-g) readiness gates verbatim" -- confirmed by direct code read, not just the note's claim. **STILL LIVE**: `runner_heartbeats/ree-cloud-4.json` shows `state: running`, `current_exq: V3-EXQ-858`, started 2026-08-01T12:44:33Z, last tick 2026-08-01T22:18:11Z, 65.0% overall (7/12 rung x seed cells done, `f_weight_0p25` rung seed 42 in progress), ~3h53m remaining as of last tick (checked 2026-08-02T00:05Z -- heartbeat ~1h47m stale, not itself evidence of stoppage per the standing heartbeat-staleness caution). No manifest yet; `experiment_queue.json` still shows `status: claimed`. | **Not fixed -- correctly so.** This is bucket (b), not (a): 858 does not have 847's mismatch defect, so there is nothing urgent to repair even setting aside that it is mid-flight and must not be touched or interrupted. What IS actionable: when 858 completes, its C1(e)/C1(f) (MECH-448/449 non-vacuity) gates should be read through the SAME lens 851's Addendum already applied -- a sub-0.8 `active_frac` here means "reduced held-tick duty cycle", not "dead", and the raw `excluded_count_mean`/`suppressed_per_tick_mean` fields (recorded regardless of gate outcome) remain the ones to check for magnitude. Flagged as a follow-up chip (below), not performed here. |
+| `v3_exq_859` (short-budget ablation) | **(c)** clean, reference-correct | Numerator increments (`demotion_active_ticks`, `nogo_active_ticks`) live INSIDE the `else` branch of `if fresh_diag is None: n_p2_latched_ticks += 1 else: n_p2_fresh_select += 1; [...]` -- i.e. only ever incremented on a genuine fresh tick, and the surrounding `demotion_active_frac`/`nogo_active_frac` divide by `n_p2_fresh_select`. Numerator and denominator both fresh-only; matched. This is 847's own cited reference-correct pattern, confirmed by direct code read. | Already run + autopsied. No action. |
+| `v3_exq_863` (full-budget replication) | **(c)** clean, matches 859 | Identical code shape to 859 (`agent.e3.last_score_diagnostics = None` before select; numerator increments nested inside the `fresh_diag is not None` branch; `n_p2_fresh_select` denominator for `demotion_active_frac`/`nogo_active_frac`/`route_active_frac`). Confirmed by direct code read. **STILL LIVE**: `experiment_queue.json` shows `status: claimed`, `ree-cloud-3`, claimed 2026-08-01T20:04:00Z; no manifest yet. | Correctly built -- no fix needed. When it lands, its MECH-448/449 reading is directly comparable to 859's on the same (fresh-only) basis, unlike 858's (carry-forward) reading -- worth noting explicitly in whatever autopsy/review reads 863 alongside 858. |
+| `v3_exq_847` (Leg P-D) | **(a)** confirmed bug | Per the commissioning autopsy: numerator (`demotion_active_ticks`, `nogo_active_ticks`) increments ONLY inside the `else` branch when `diag_raw = getattr(agent.e3, "last_score_diagnostics", None)` is non-None -- a held tick contributes `diag = {}` and is silently skipped by every `if bool(diag.get(...))` check. Denominator remains `n_p2_ticks` (all ticks, held included). Numerator restricted to a SUBSET (fresh ticks) of the denominator's population (all ticks) -- a genuine basis mismatch, unlike 851/858's carry-forward convention. Deflates `active_frac` by exactly the held-tick fraction (40-86% across 847's 6 cells), confirmed by the autopsy's own recomputation (every cell corrects to exactly 1.0 against `n_p2_ticks - n_latched_ticks`). | Already run + autopsied + confirmed 2026-08-01. Per CLAUDE.md EXQ-versioning policy, the already-run manifest and its autopsy are NOT retroactively edited -- correction lives in the autopsy's `evidence_quality_note` (already drafted there) for governance to apply to `evidence_direction`. The autopsy's own routing (`/queue-experiment`, a redesigned re-run "e.g. V3-EXQ-847a" with the corrected denominator) is the appropriate fixed-forward path and has NOT been built by this sweep -- flagged as a follow-up chip (below), not built here, since a new EXQ script must go through the mandatory `/queue-experiment` skill (code review + smoke test), which is out of scope for a classification sweep. |
+| `v3_exq_862` | out of scope | `claim_ids: [Q-040]`; no `active_frac`/`n_p2_ticks` statistic anywhere in the file -- a Q-040c dACC PE-weight correlation script, unrelated to MECH-448/449 or GOV-FANOUT-1. | None -- correctly excluded from the chip's provisional list. |
+
+### Why nothing was patched in-place
+
+No queued-but-not-yet-run script in `ree-v3/experiment_queue.json` (checked
+2026-08-02: `V3-EXQ-867`, `436b`, `108a`, `866`, none MECH-448/449-related)
+carries either the 847 mismatch or a copy of the 851/858 convention, so
+CLAUDE.md's "fix in place before it runs" allowance for not-yet-run scripts
+has no live target this sweep. The one confirmed defect (847) is already
+run and already governance-facing via its own autopsy's
+`evidence_quality_note`; editing that script now would not affect any
+existing evidence and a fixed-forward re-letter needs the full
+`/queue-experiment` pipeline, not an inline edit.
+
+### Follow-up chips spawned from this sweep
+
+1. Re-analyze V3-EXQ-858 once it completes (currently ~65%, ETA
+   ~2026-08-02T02:00Z) applying the 851-Addendum lens to its C1(e)/C1(f)
+   MECH-448/449 gates before accepting a `substrate_not_ready_requeue`
+   self-route at face value, if it self-routes that way.
+2. `/queue-experiment` a V3-EXQ-847a redesigned re-run per the 847 autopsy's
+   own routing (corrected `active_frac` denominator = `n_p2_ticks -
+   n_latched_ticks`, i.e. `n_p2_fresh_select`), once governance has ratified
+   the 847 autopsy's routing.
+
+Legs/scripts not named above are unaffected by this sweep.
