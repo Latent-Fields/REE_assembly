@@ -5222,8 +5222,12 @@
       "priority": "low",
       "proposal_id": "EXP-0384",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "MECH-426 progress-derivative/velocity readout not implemented"
+      ],
+      "blocked_note": "RE-APPLIED after a confirmed status-persistence bug reset this to 'proposed' (backlog_id=None items don't survive a full build_experiment_indexes.py regen -- see chip task_01ea7910). Original disposition, unchanged: route blocked_substrate -- no progress-derivative/velocity readout in ree_core (original finding, commit ec26557d12, 2026-08-02)."
     },
     {
       "claim_id": "MECH-427",
@@ -5232,8 +5236,12 @@
       "priority": "low",
       "proposal_id": "EXP-0385",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "blocked_substrate",
+      "target_repo": "ree-v3",
+      "blocked_by": [
+        "MECH-427 up-level cross-hierarchy credit channel not implemented"
+      ],
+      "blocked_note": "RE-APPLIED after a confirmed status-persistence bug reset this to 'proposed' (backlog_id=None items don't survive a full build_experiment_indexes.py regen -- see chip task_01ea7910). Original disposition, unchanged: Verified 2026-08-02: ree_core has no multi-level z_goal hierarchy (GoalState holds a single unified z_goal tensor; ARC-051 levels feed the SAME VALENCE_WANTING field per its own claims.yaml notes, not distinct parent/child z_goal objects). grep for MECH-427/ARC-051/parent_goal in ree_core returns zero hits for any credit-propagation-to-parent code. MECH-217 (the within-level sibling) IS built (backward_credit_sweep / offline_wanting_spread, HippocampalModule.spread_reverse_replay_wanting, wired into run_rem_attribution_pass) but writes into the same field, not up a level. Subgoal-attainment detection exists only as scalar reward shaping in causal_grid_world.py subgoal_mode (waypoint/sequence_complete events -> harm_signal/total_benefit), never wired to GoalState/z_goal, and this harness has no separate superordinate-goal concept for subgoals to credit. Metric machinery (GoalState.goal_norm, _safe_z_goal_norm) exists but has no parent-vs-subgoal reading to attach to since z_goal is singular. Needs /implement-substrate: a parent/subgoal z_goal split + an up-level credit-propagation channel, before EXP-0385 can be queued. (goal_pipeline:GAP-2 is separately closed per goal_pipeline_plan.md as of V3-EXQ-514o -- the blocker here is the missing hierarchy/credit channel itself, not attainment-rate degeneracy.) (original commit d5a7a2a684, 2026-08-02)"
     },
     {
       "claim_id": "INV-087",
@@ -5242,8 +5250,10 @@
       "priority": "low",
       "proposal_id": "EXP-0386",
       "proposal_type": "experimental",
-      "status": "proposed",
-      "target_repo": "ree-v3"
+      "status": "executed",
+      "target_repo": "ree-v3",
+      "executed_by": "V3-EXQ-872",
+      "executed_queue_id": "V3-EXQ-872"
     },
     {
       "claim_id": "MECH-428",
