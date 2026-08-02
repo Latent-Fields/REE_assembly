@@ -1326,3 +1326,8 @@ One line per hourly tick. ASCII only.
 2026-08-02T13:45:40Z auto-defer IGW-20260802-225 hash=239348dda3af for 48h (complete)
 2026-08-02T13:45:45Z complete IGW-20260802-225 spawned->completed outcome=USEFUL_LANDED: lit-pull Q-088: 5 entries (develop-without vs mature-lesion dissociation), REE_a
 2026-08-02T14:01:06Z auto-defer IGW-20260802-204 hash=be961fd75216 for 48h (complete)
+2026-08-02T14:30:39Z GC removed worktree igw-204-substrate-ready-sd-mech267-horiz (removed; branch deleted)
+2026-08-02T14:30:40Z GC removed worktree igw-225-literature-proposal-for-q-088 (removed; branch deleted)
+2026-08-02T14:30:37Z GC sweep removed 2 orphan worktree(s), kept 8
+2026-08-02T14:30:49Z reconcile-release hash=239348dda3af (IGW-20260802-225 -> completed)
+2026-08-02T14:30:37Z no eligible item (skipped 248): IGW-20260802-001:skill /governance not allowed; IGW-20260802-004:skill /governance not allowed; IGW-20260802-206:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
