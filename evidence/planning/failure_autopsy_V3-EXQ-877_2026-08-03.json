@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:34:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_877_mech072_discriminator_gate_full_20260802T214050Z_v3",
+      "queue_id": "V3-EXQ-877",
+      "claim_ids": ["MECH-072"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened-but-questionable -- ground-truth partition does not match the axis the mechanism computes",
+        "biological_reference": "clear -- comparator/efference-copy self-attribution (Frith; Blakemore & Wolpert); inherently proximal, no natural diachronic analogue",
+        "prerequisites": "present -- ARC-033/SD-011 independently validated (V3-EXQ-431/525 PASS)",
+        "implementation": "complete for the intended proximal mechanism -- C7 null-CF sanity confirms causal_sig computation is sound",
+        "environment": "inadequate for this ground-truth partition -- env_caused_hazard/agent_caused_hazard encode object provenance not proximal avoidability, anti-correlated for the contamination mechanic",
+        "measurement": "misleading -- false_attr_rate assumes transition_type tracks responsibility; it tracks hazard-object history instead",
+        "integration": "isolated correctly -- discriminator computation self-contained and verified",
+        "scale": "adequate -- harm_forward_r2=0.92 well above C6=0.05"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Comparator model / efference-copy self-other attribution (Frith 1992; Blakemore, Wolpert & Frith sensory attenuation)",
+        "dependencies": ["MECH-071", "MECH-060", "ARC-033", "SD-011"],
+        "is_formal_import": false,
+        "divergence": "None from the biology itself -- the built mechanism (SD-011/ARC-033 stay-counterfactual comparator) IS a faithful proximal comparator translation. The divergence is between the ENVIRONMENT's ground-truth labels (object provenance / diachronic) and what the comparator computes (proximal avoidability) -- a test-design mismatch, not a biology-vs-implementation mismatch.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "EXQ-877 FAIL (2026-08-02): first test gating accumulation on the REAL ARC-033/SD-011 counterfactual discriminator (previously only V3-EXQ-213's world_forward magnitude proxy had been gated on). C1 failed on all 3 seeds in the WRONG direction (gated false_attr 0.753 > ungated 0.506). Root cause identified: the environment's env_caused_hazard/agent_caused_hazard transition_type labels track hazard-OBJECT PROVENANCE (env-placed tile vs agent's own historical contamination footprint), not PROXIMAL avoidability (would a_stay have avoided this specific harm) -- and these are anti-correlated for the contamination mechanic (contamination accrues on the agent's own currently-occupied cell, so staying causes rather than avoids it). The discriminator's causal_sig computation is verified sound (C7 null-CF sanity, all seeds); it is behaving as a biological proximal comparator (Frith/Blakemore) should. This is a measurement/test-design gap, not falsification -- v3_pending KEPT. Routed: (1) /queue-experiment redesign with a proximal-avoidability ground truth (2) /claim-synthesis candidate for a separate diachronic self-attribution mechanism.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "claim_synthesis_recommendation": {
+        "candidate_new_claim": "Diachronic/footprint-based self-caused-harm attribution (contamination-style: harm caused by prolonged occupancy/history at a location, not by the current tick's action) requires a separate, memory/trace-based mechanism distinct from MECH-072's proximal stay-counterfactual comparator.",
+        "why_not_a_mech072_narrowing": "MECH-072's own biological reference (comparator/efference-copy) is proximal by nature -- it should not, and structurally cannot, cover diachronic self-attribution. This is a missing sibling mechanism, not a defect in MECH-072.",
+        "relevant_claims": ["MECH-072", "MECH-071", "ARC-033", "SD-011"]
+      },
+      "learning_extracted": [
+        "The environment's transition_type ground truth conflates hazard-object PROVENANCE (diachronic) with PROXIMAL avoidability -- MECH-072's comparator computes the latter, the experiment scores against the former.",
+        "This mismatch is structural (a property of the contamination mechanic: staying is what triggers threshold-crossing harm), not fixable by more training.",
+        "V3-EXQ-213's PASS used an absolute-magnitude gate with no stay-counterfactual, so it never exercised this mismatch -- 213 and 877 are not measuring comparably despite sharing an experiment name and env/agent partition.",
+        "Diachronic self-caused harm likely needs its own memory/trace-based mechanism, not a stronger version of the instant comparator."
+      ],
+      "routing": "queue-experiment + claim-synthesis"
+    }
+  ],
+  "cluster_pattern": null
+}

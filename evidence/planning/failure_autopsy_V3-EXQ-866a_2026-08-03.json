@@ -1,0 +1,57 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:34:50Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_866a_inv034_q021_goal_maintenance_agency_onboarded_20260803T075813Z_v3",
+      "queue_id": "V3-EXQ-866a",
+      "claim_ids": ["INV-034", "Q-021"],
+      "failed_criterion": "absolute",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- claim never fairly tested; substrate readiness failed on two successive harness generations",
+        "biological_reference": "unchanged -- D1/D2 Go/NoGo (Bariselli 2018 PMID 29481617); wanting/liking (Barch & Dowd 2010 PMID 20868638); not yet tested",
+        "prerequisites": "missing/immature -- Stage-H hazard-avoidance training does not reproduce its cited validated precedent (~7x shortfall) despite confirmed config parity",
+        "implementation": "unclear -- z_goal forms correctly at Stage-0 but decays to well below the C6 floor by the P2 measurement window",
+        "environment": "possibly inadequate -- hazard-only curriculum stages offer no resource-approach reinforcement to sustain z_goal",
+        "measurement": "reference is commit-unverifiable -- 603q's manifest predates the recording standard (no substrate_hash/commit)",
+        "integration": "unclear pending diagnostic",
+        "scale": "adequate on paper -- curriculum budgets match the validated reference exactly"
+      },
+      "biological_reference": {
+        "closest_mechanism": "D1 (Go/wanting) vs D2 (NoGo/avoidance) basal ganglia pathways evaluating shared proposals (Bariselli 2018); wanting (prospective/dopaminergic) vs liking (reactive/opioid) dissociation, avolition in schizophrenia as intact liking + absent wanting (Barch & Dowd 2010)",
+        "dependencies": ["scaffolded_sd054_onboarding curriculum", "harm-pathway training (603k)", "z_goal maintenance mechanism"],
+        "is_formal_import": false,
+        "divergence": "not assessed this cycle -- substrate readiness precondition unmet for a second time, so the mechanism itself has not yet been fairly exercised",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "substrate_ceiling",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "EXQ-866a FAIL (2026-08-03), supersedes EXQ-866: G0 non-degeneracy failed AGAIN on the scaffolded_sd054_onboarding curriculum that 866's own autopsy prescribed (FULL resource_visit_rate 0.0033 < RANDOM 0.0103). Configuration verified line-by-line identical to the cited reference V3-EXQ-603q (ARM_BASE_IA_ONLY) -- same seeds, same curriculum order/budgets, same agent flags -- yet Stage-H hazard-avoidance survival (median 4-5.5/200 steps) is ~7x below 603q's cited base_mean_survival=37.7. 603q's own manifest predates the recording standard (no substrate_hash/commit), so the reference is commit-unverifiable across the 47-day gap; substrate drift is plausible but not confirmed. Separately, z_goal decays from a healthy Stage-0 peak (~0.5) to a P2 mean of only 0.12 (floor 0.4), so goal maintenance itself may not be surviving the intervening hazard-only curriculum stages. Still NOT evidence against INV-034/Q-021. Routed to a substrate-regression diagnostic (re-run 603q fresh) rather than a third lettered iteration -- v3_pending KEPT.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": true,
+        "route_to": "queue-experiment (diagnostic, not a same-claim evidence re-queue)",
+        "upstream_substrate": "scaffolded_sd054_onboarding Stage-H hazard-avoidance training path / z_goal maintenance-during-distraction"
+      },
+      "learning_extracted": [
+        "The driver's own self-diagnosis (G0 fail -> escalation-exhausted, not evidence against the claim) is correct and complete -- this autopsy confirms and extends it.",
+        "Configuration parity with the cited reference V3-EXQ-603q is confirmed line-by-line; the ~7x Stage-H survival shortfall is not explained by a hyperparameter or curriculum-order mismatch.",
+        "The cited reference is itself commit-unverifiable (pre-recording-standard manifest, no substrate_hash) -- a 47-day-old uncommitted reference should not be treated as a confirmed performance target without re-measurement.",
+        "z_goal decays from a healthy Stage-0 peak (~0.5) to well below the C6 floor (0.12 vs 0.4) by P2 -- goal maintenance itself may not survive an extended no-goal-relevant-stimuli curriculum stretch, which is thematically adjacent to INV-034 but currently shows up as a confound rather than a clean result."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
