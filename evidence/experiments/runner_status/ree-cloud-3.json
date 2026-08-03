@@ -1,40 +1,29 @@
 {
   "schema_version": "v1",
-  "runner_pid": 8993,
-  "runner_started_at": "2026-08-01T19:16:27.768928+00:00",
-  "last_updated": "2026-08-02T12:13:14.358651+00:00",
+  "runner_pid": 923,
+  "runner_started_at": "2026-08-03T15:45:35.150669+00:00",
+  "last_updated": "2026-08-03T19:24:06.175377+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-861",
+      "queue_id": "V3-EXQ-867b",
       "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-180 redesign: write-count-decoupled sws_slot_diversity DV (supersedes V3-EXQ-845)",
+      "claim_id": "MECH-321",
+      "title": "MECH-321 harm-aware selection, screened matched-abort seed pool (supersedes V3-EXQ-867a)",
       "description": "",
-      "estimated_minutes": 150.0,
+      "estimated_minutes": 32.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-862",
-      "backlog_id": "",
+      "queue_id": "V3-EXQ-149b",
+      "backlog_id": "EVB-0179",
       "claim_id": "",
-      "title": "Q-040c dACC PE-weight delta correlation, config fix + pre-flight smoke gate (supersedes V3-EXQ-475b)",
+      "title": "Q-004 tau_R calibration at larger training budget, selection-instrument fixed (supersedes V3-EXQ-149)",
       "description": "",
-      "estimated_minutes": 48.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-858",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-062 GOV-FANOUT-1 Leg P-B (H2: F-dominance) -- f_weight attenuation ladder, committed-class entropy",
-      "description": "",
-      "estimated_minutes": 560.0,
+      "estimated_minutes": 480.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2190,6 +2179,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 58153.5
+    },
+    {
+      "queue_id": "V3-EXQ-866b",
+      "backlog_id": "",
+      "claim_id": "SD-059",
+      "title": "603q ARM_BASE_IA_ONLY substrate-regression diagnostic (per failure_autopsy_V3-EXQ-866a routing)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "[v3_exq_866b_603q_substrate_regression_check] base_mean_survival=33.90 per_seed=[29.1, 20.45, 52.15] | ref=37.73 floor=18.86 ratio=0.90x | reproduces=True readiness_met=True -> outcome=PASS label=substrate_reproduces_603q_reference | z_goal stage0_peak=0.434 -> p2=0.456 contact_peak=0.470 | harm_disc_frac=1.00 | Done. Outcome: PASS label: substrate_reproduces_603q_reference | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-866b -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-866b.json",
+      "started_at": "2026-08-03T15:47:38.669448+00:00",
+      "completed_at": "2026-08-03T19:24:06.174504+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_866b_603q_substrate_regression_check/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 12987.5
     }
   ]
 }

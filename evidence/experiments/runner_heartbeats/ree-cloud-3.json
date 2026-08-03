@@ -1,35 +1,31 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-03T16:52:29Z",
+  "last_tick_utc": "2026-08-03T19:28:13Z",
   "state": "running",
-  "current_exq": "V3-EXQ-866b",
-  "current_exq_started_utc": "2026-08-03T15:47:38.669448+00:00",
-  "current_title": "603q ARM_BASE_IA_ONLY substrate-regression diagnostic (per failure_autopsy_V3-EXQ-866a routing)",
-  "current_claim_id": "SD-059",
+  "current_exq": "V3-EXQ-848b",
+  "current_exq_started_utc": "2026-08-03T19:26:22.700935+00:00",
+  "current_title": "ARC-005 precision monotonicity, finer 7-level ladder (breaks 848a 3-point Spearman-rho ceiling)",
+  "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 42 / ARM_BASE_IA_ONLY",
+    "run_label": "Seed 0 / L0_A",
     "runs_done": 0,
-    "runs_total": 3,
-    "episodes_done": 170,
-    "episodes_total": 235,
-    "overall_pct": 24.1
+    "runs_total": 70,
+    "episodes_done": 0,
+    "episodes_total": 2000,
+    "overall_pct": 0.0
   },
-  "seconds_elapsed": 3891,
-  "seconds_remaining": 12255,
+  "seconds_elapsed": 111,
+  "seconds_remaining": 26400,
   "recent_lines": [
-    "[v3_exq_866b_603q_substrate_regression_check] starting (dry_run=False)",
-    "Seed 42 Condition ARM_BASE_IA_ONLY",
-    "[train] stage0 ARM_BASE_IA_ONLY seed=42 ep 20/235 z_goal_peak=0.5031 zg_now=0.4713",
-    "[train] p0 ARM_BASE_IA_ONLY seed=42 ep 130/235 mean_len=190.3 rv=0.00017 zg_now=0.4713",
-    "[train] hazard_avoidance ARM_BASE_IA_ONLY seed=42 ep 170/235 mean_len=29.1 median_last=4.5 auc=0.145 survival_gate=FAIL harm_range=0.4700 pag_commits=188 zg_now=0.4713"
+    "Seed 0 Condition L0_A"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
   "recent_completed": [],
   "runner_pid": 923,
-  "runner_version": "r4792 3a6527d 2026-08-03 (running r4790 6e27d29)",
+  "runner_version": "r4809 c424779 2026-08-03",
   "gpu": {
     "available": false
   },
