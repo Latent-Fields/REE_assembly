@@ -1352,3 +1352,8 @@ One line per hourly tick. ASCII only.
 2026-08-03T08:09:55Z skip IGW-20260803-225: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-03T09:10:20Z SPAWN IGW-20260803-226 skill=/lit-pull prio=40 uuid=40c6592b-c407-43c7-81a1-bddf0d276b3e pid=86523 worktree=igw-226-literature-proposal-for-mech-472
 2026-08-03T09:45:49Z auto-defer IGW-20260803-226 hash=301666c46fa0 for 48h (complete)
+2026-08-03T09:45:56Z complete IGW-20260803-226 spawned->completed outcome=USEFUL_LANDED: lit-pull MECH-472: 4 entries (Cobbe2019/Zhang2017/Lake2018 supports + Feldman202
+2026-08-03T10:12:08Z GC removed worktree igw-226-literature-proposal-for-mech-472 (removed; branch deleted)
+2026-08-03T10:12:00Z GC sweep removed 1 orphan worktree(s), kept 8
+2026-08-03T10:12:24Z reconcile-release hash=301666c46fa0 (IGW-20260803-226 -> completed)
+2026-08-03T10:12:00Z no eligible item (skipped 245): IGW-20260803-001:skill /governance not allowed; IGW-20260803-005:skill /governance not allowed; IGW-20260803-208:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
