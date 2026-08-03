@@ -12495,8 +12495,8 @@
       "design": "Local-update interference test. Phase 1: train the agent to above-floor performance on a SET of separable competences, verifying each independently. Phase 2: apply a TARGETED competence improvement to exactly one of them, across a perturbation-strength range (the strength sweep is what turns a single point into a dose-response). Phase 3: re-measure performance on the UNRELATED previously-acquired competences. PRIMARY DV: change in unrelated-competence performance as a function of targeted-update strength. Author via /queue-experiment; emit the phase-1-trained pre-update arm fingerprint with include_driver_script_in_hash=False -- it is a reusable baseline for the whole cluster-E line.",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 240,
-      "executed_by": "V3-EXQ-875",
-      "executed_queue_id": "V3-EXQ-875",
+      "executed_by": "V3-EXQ-875a",
+      "executed_queue_id": "V3-EXQ-875a",
       "machine_affinity": "any",
       "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 1), which names this the cheapest real probe in the cluster and the right first move. complicated (buildable) on existing substrate. A 'skill' in REE is NOT a document -- it is distributed across action objects, learned affordances, predictive models, hippocampal trajectories, goal-conditioned policies, rule-state persistence, control settings and residue-shaped tendencies; design the competences accordingly and do NOT import any text-space SkillOpt construct. NOT on the V3 critical path. The ethical constraint INV-093 (no trading harm sensitivity for competence) is a SEPARATE joint-measurement question and is not answered here.",
       "objective": "Establish whether behavioural-competence updates need the bounded / provenanced / rollback-capable discipline that the memory-consolidation path already has (MECH-392 provenance+contradiction-flag+rollback, INV-080 raw-episode preservation, MECH-401 gated-write authority). The asymmetry is the point: consolidation has the discipline, policy/affordance/action-object learning has NO rollback, NO provenance record, and NO gate against a single successful rollout propagating widely. The question this answers is the intake's own: does a LOCAL competence update degrade UNRELATED competences?",
@@ -12516,7 +12516,8 @@
       ],
       "source": "manual",
       "status": "executed",
-      "target_repo": "ree-v3"
+      "target_repo": "ree-v3",
+      "note_supersedes": "Original executed_queue_id V3-EXQ-875 self-routed substrate_not_ready_requeue (SD-070 zworld_p0 defect); corrected requeue V3-EXQ-875a supersedes it."
     },
     {
       "acceptance_checks": [
