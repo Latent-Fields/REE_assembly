@@ -8590,12 +8590,16 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "executed",
+      "status": "deferred_substrate_not_ready",
       "suggested_experiment_type": "claim_probe_mech_203",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "gating_reason": "GOV-CONFIRM-1 SELF-ROUTE, 2026-08-03T20:24:36Z, session metaworker-chip-20260803-igw-confirm-mech203 (chip-20260803-igw-confirm-mech203, IGW-20260803-235 stable_hash 1b7d2a6eeea6). QUEUED NOTHING -- routed measurement_test_design_defect. STOP-CHECK was clear (MECH-203 still zero-valid; no queue entry). The session built draft V3-EXQ-843b exactly per failure_autopsy_V3-EXQ-843_2026-08-01 (forced-exploration uniform-random pool-building + denser hazards) and then EMPIRICALLY DISPROVED that fix in smoke+probes. (1) Forced exposure WORKS (n_harm_events 61-65/seed) but n_harm_states stays 0, because the DV reads VALENCE_HARM_DISCRIMINATIVE, which the 843 driver never populates: it requires use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() + valence_harm_enabled=True, all default-off and none set by 843; agent.update_residue writes only a scalar residue weight, not the harm valence component. The autopsy's 'SWS replay-selection machinery correctly wired but never reached' is therefore incomplete -- the harm-valence WRITE path was never wired at all. (2) Wiring the harm stream yields the MIRROR degeneracy: harm valence = z_harm.norm() written EVERY step (agent.py:4552) on an UNTRAINED HarmEncoder (843 runs no P0 training) is non-discriminative (0.72 harm-contact vs 0.77 benefit-contact vs 0.60 neutral -> all-harm pool), while benefit valence is written on ~1.2 percent of steps. CONCLUSION: 843 reads a discriminative benefit/harm valence structure off an untrained substrate (P0-readiness-gate violation) via a non-localized per-step harm write, and cannot build the balanced discriminative pool C3 admissibility needs. Queuing 843b would have been the FOURTH consecutive invalid MECH-203 test. Draft script deleted; nothing queued or committed to ree-v3. NOTE ON status: executed_by/executed_queue_id V3-EXQ-843 are UNCHANGED above -- this records the ADJUDICATION (not queueable now), not a denial that the proposal was executed. Verdict transcribed by FM11 (scripts/confirmer_verdict.py) from the originating session's chip resolution note; it was not recorded here at the time, which is why the confirmer lane re-offered IGW-20260803-228 as ready in the 22:43:12Z regeneration, two hours after the verdict.",
+      "gated_at_utc": "2026-08-03T23:44:00Z",
+      "gated_by_session": "metaworker-chip-20260803-igw-confirm-mech203",
+      "release_condition": "A MECH-203 confirming DV becomes constructible once the harm/benefit valence write path is wired AND read off a TRAINED substrate: use_harm_stream=True + obs_dict['harm_obs'] passed to agent.sense() + valence_harm_enabled=True, plus a P0 encoder warmup, plus contact-localized (not per-step) valence tagging with guaranteed benefit AND harm contact. Until then any forced-exposure lettered iteration reproduces the same invalid measurement."
     },
     {
       "acceptance_checks": [
