@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-03T18:37:50Z",
+  "generated_at": "2026-08-03T18:40:13Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5690,6 +5690,76 @@
         "priority": 55,
         "claim_ids": [
           "MECH-191"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260803T184013Z-a183d14d-spawned_task",
+      "stable_hash": "a183d14d7ce5",
+      "igw_id_at_assign": "IGW-20260803-207",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:40:13Z",
+      "released_at": "2026-08-03T18:40:13Z",
+      "released_by": "metaworker-dispatch-interactive-2026-08-03",
+      "released_reason": "already landed ree-v3 d9e0586 (wire credit_subgoal_attainment into REEAgent) -- workset generator stale, item was not actually ready",
+      "released_event_for": "asn-20260803T183750Z-a183d14d-spawned_task",
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-sd092-subgoal-credit-wiring (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: SD-092",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "SD-092",
+          "MECH-427",
+          "MECH-428"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260803T184013Z-5c97197f-spawned_task",
+      "stable_hash": "5c97197f94d5",
+      "igw_id_at_assign": "IGW-20260803-208",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:40:13Z",
+      "released_at": "2026-08-03T18:40:13Z",
+      "released_by": "metaworker-dispatch-interactive-2026-08-03",
+      "released_reason": "already landed ree-v3 3db7d23 (modulatory-channel route decomp-gate fix), chip chip-20260803-route-decomp-gate-fix already closed done -- workset generator stale",
+      "released_event_for": "asn-20260803T183750Z-5c97197f-spawned_task",
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-sd-modchannel-decomp-gate-fix (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: SD-modulatory-channel-route-decomp-gate-fix",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "rel-20260803T184013Z-cf2eb338-spawned_task",
+      "stable_hash": "cf2eb33887c2",
+      "igw_id_at_assign": "IGW-20260803-209",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:40:13Z",
+      "released_at": "2026-08-03T18:40:13Z",
+      "released_by": "metaworker-dispatch-interactive-2026-08-03",
+      "released_reason": "already landed ree-v3 31ed78e (E3-tick reselection short-circuit for unexpired arc071_chunk commitments, use_e3_reselection_shortcircuit flag) -- workset generator stale",
+      "released_event_for": "asn-20260803T183750Z-cf2eb338-spawned_task",
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-mech090-arc071-attick-handle-fix (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: mech090-arc071-attick-persistent-handle-fix",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-090",
+          "ARC-071"
         ]
       }
     }
