@@ -21,10 +21,18 @@ closure_plan:
       last_updated: 2026-08-03
       completion_note: "REE_assembly/scripts/check_substrate_staleness_candidates.py landed + unit-tested (test_check_substrate_staleness_candidates.py). Reuses ree-v3/experiments/_lib/arm_fingerprint.py's compute_substrate_hash unmodified against a throwaway detached worktree at origin/main (never reimplements the hash algorithm). Zero validity risk -- prints a report only; the existing pending_retest_after_substrate / superseded_by_substrate gate in build_experiment_indexes.py (landed 2026-06-02, predates this plan) is the sole consumer and is unchanged."
     - id: "substrate_stability:P1-scope-schema"
-      title: "Phase 1 -- optional per-claim substrate_scope declarations in claims.yaml (same glob format arm_fingerprint/substrate_scope_guard already use), narrowing the detector from whole-tree to declared scope to cut noise, plus a default-off-diff filter so a changed file gated behind a still-default-off flag downgrades to informational."
+      title: "Phase 1 -- optional per-claim substrate_scope declarations in claims.yaml (same glob format arm_fingerprint/substrate_scope_guard already use), narrowing the detector from whole-tree to declared scope to cut noise."
+      phase: 1
+      status: done
+      severity: low
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "check_substrate_staleness_candidates.py extended: load_claim_substrate_scopes() reads optional substrate_scope off claims.yaml; a drift candidate whose diffed changed-file list does not intersect a claim's declared scope moves to a new 'filtered OUTSIDE declared substrate_scope' bucket (per-claim, not per-manifest -- other claims on the same manifest are unaffected). 2 pilot claims declared (MECH-471, MECH-321), both derived from an actual read of the claim's own dependency (the V3-EXQ-875 autopsy for MECH-471; the claim's own implementation_note for MECH-321), not guessed. 9 new unit tests (_file_in_scope correctness incl. the zero-intervening-dirs / false-prefix-match traps a naive '**'->'*' substitution would get wrong) + the end-to-end fixture extended to exercise both the in-scope and out-of-scope branches for real. REAL FINDING running against the actual corpus (see section 4.5): 0 of the 2 pilots' diffable candidates were filtered -- both legitimately declare a dependency on ree_core/agent.py, which ~half of recent substrate-touching commits touch, so scope narrowing alone provides no noise reduction for hub-file-dependent claims. Motivates P1b."
+    - id: "substrate_stability:P1b-default-off-filter"
+      title: "Phase 1b (new, motivated by the P1 real-corpus finding) -- a changed file whose only diff is gated behind a config flag that is still default-off AND unused by the claim's own recorded evidence config downgrades from a drift candidate to informational. This is the lever hub-file-dependent claims (agent.py et al) actually need; scope narrowing alone does not help them."
       phase: 1
       status: open
-      severity: low
+      severity: medium
       owner_exq: null
       last_updated: 2026-08-03
       completion_note: ""
@@ -48,7 +56,7 @@ closure_plan:
 
 # Substrate Stability + Claim-Drift Detection -- Design Plan
 
-**Status:** Phase 0 of the drift detector LANDED (`check_substrate_staleness_candidates.py`, read-only, zero validity risk -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). The structural-isolation problem (section 3) is designed but **not built** this session. Phases 1/2 of the detector (section 4.4) are designed but not built.
+**Status:** Phase 0 AND Phase 1 of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Phase 1's real-corpus run surfaced a genuine, load-bearing finding (section 4.5): scope narrowing alone gives ZERO noise reduction for claims that legitimately depend on a hub file like `ree_core/agent.py`, motivating a new Phase 1b (default-off-diff filtering) as the actual next lever, not previously anticipated in this plan's first draft. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built, now additionally gated on Phase 1b.
 **Created:** 2026-08-03T16:56Z
 **Author session:** failure-autopsy-10b982
 **Motivation chip:** user question during the V3-EXQ-875 (MECH-471) failure autopsy, 2026-08-03 -- "is there a way that the substrate could be updated as it will be as we develop ree but experiments keep stable substrate across their runs. Experiments should know their substrate build (as in we have versioning or similar for substrate) and updated substrate which is relevant could potentially become a reason to run experiments again?"
@@ -197,20 +205,58 @@ is not a prerequisite for a first, honest, whole-tree-scoped report.
 
 ### 4.4 Phased rollout
 
-- **Phase 0 (this session, done)**: instrument-only report, run manually, zero validity risk,
-  no schema change, no automatic flagging. Purpose: measure how noisy whole-tree drift detection
-  actually is against the real corpus before committing to anything more automated.
-- **Phase 1 (open)**: optional per-claim `substrate_scope` in `claims.yaml` (reusing the exact
-  glob format + `substrate_scope_guard` conservatism proofs already built for arm fingerprints),
-  narrowing the detector from whole-tree to declared scope; plus a default-off-diff filter (a
-  changed file whose only diff is behind a flag that is still default-off and unused by the
-  claim's evidence config downgrades to an informational note, not a candidate) -- reusing the
-  same discrimination this repo's default-off-drift-audit convention already applies elsewhere.
-- **Phase 2 (open, gated on Phase 0/1 proving low noise)**: surface flagged candidates somewhere
+- **Phase 0 (done)**: instrument-only report, run manually, zero validity risk, no schema
+  change, no automatic flagging. Purpose: measure how noisy whole-tree drift detection actually
+  is against the real corpus before committing to anything more automated. Result: ~93% of
+  evaluable manifests read as "differs" -- too noisy to act on directly.
+- **Phase 1 (done)**: optional per-claim `substrate_scope` in `claims.yaml` (reusing the exact
+  glob format + `substrate_scope_guard`'s conservatism vocabulary already built for arm
+  fingerprints -- author-declared here, not machine-proven the same way), narrowing the
+  detector from whole-tree to declared scope per claim. Landed and unit-tested; real-corpus
+  result in section 4.5 below.
+- **Phase 1b (open, NEW -- added after Phase 1's real-corpus result, not anticipated in this
+  plan's first draft)**: a changed file whose only diff is behind a flag that is still
+  default-off and unused by the claim's own recorded evidence config downgrades to an
+  informational note, not a candidate -- reusing the same discrimination this repo's
+  default-off-drift-audit convention already applies elsewhere. Section 4.5 explains why this,
+  not further scope narrowing, is now the load-bearing next lever.
+- **Phase 2 (open, gated on Phase 1b proving low noise)**: surface flagged candidates somewhere
   a human actually reads every cycle -- either a `pending_review.md`-style derived report, or an
   IGW workset item (reusing the workset generator's existing `pending_retest_after_substrate`
   read path). Never auto-requeues a re-test -- matches the interactive-governance philosophy
   used everywhere else in this repo (a human decides whether a diff is claim-relevant).
+
+### 4.5 Phase 1's real-corpus result (the honest finding, not the hoped-for one)
+
+Two pilot claims were scoped from an actual read of their own dependencies, not guessed:
+`MECH-471` (from this session's own V3-EXQ-875 autopsy root-cause read of the
+`_train_all_on_agent`/SD-070/SD-056 acquisition path) and `MECH-321` (from the claim's own
+`implementation_note` naming its substrate and two wiring call sites). Running
+`check_substrate_staleness_candidates.py` against the real corpus with both scopes declared:
+
+```
+claims with a declared substrate_scope: 2 (MECH-321, MECH-471)
+...
+    0  (claim, run) pair(s) filtered OUTSIDE a declared substrate_scope (Phase 1)
+```
+
+**Zero candidates were filtered for either pilot.** Both claims correctly declare a dependency
+on `ree_core/agent.py` -- and `agent.py` is a genuine hub file: roughly half of the last 20
+substrate-touching commits on `ree-v3` `main` touch it (SD-091, SD-092, SD-093, MECH-203,
+MECH-122, ARC-071/MECH-090, MECH-324, MECH-217, MECH-321 itself, ...), because it is where
+every new mechanism wires into the live agent loop. So a scope that honestly includes
+`agent.py` -- which it must, for either claim -- inherits nearly all of `agent.py`'s churn as
+"in scope," regardless of how tightly everything else in the declared scope is drawn.
+
+This is not a bug in the scope-matching logic (verified separately by 9 unit tests plus a
+controlled end-to-end fixture where the filter does correctly exclude an out-of-scope file);
+it is a real property of the substrate. **Scope narrowing alone cannot help a claim that
+legitimately depends on a hub file** -- the noise in `agent.py`'s diff is not "irrelevant
+files," it is irrelevant *changes to a relevant file* (a new default-off flag another claim's
+work added). That is exactly what Phase 1b is for, and why it is now the load-bearing next
+step rather than "declare scope for more claims": more scope declarations would not have
+changed this result for any claim that also, correctly, depends on `agent.py` (or another hub
+file such as `ree_core/goal.py`, `ree_core/utils/config.py`).
 
 ## 5. Explicitly out of scope (this plan)
 
@@ -231,6 +277,7 @@ is not a prerequisite for a first, honest, whole-tree-scoped report.
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
 |---|---|---|---|---|---|---|
 | P0-detector | 0 | done | -- | none; run on demand via `/opt/local/bin/python3 scripts/check_substrate_staleness_candidates.py` | null | 2026-08-03 |
-| P1-scope-schema | 1 | open | Phase 0 producing a low-noise-enough signal to be worth the schema cost | Decide, from a real Phase-0 run's noise level, whether per-claim scope declarations are worth the authoring cost | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | Phase 1 | Wire a low-noise candidate list into `/governance` or `morning-digest` | null | 2026-08-03 |
+| P1-scope-schema | 1 | done | -- | none; 2 pilot claims declared (MECH-471, MECH-321). Real corpus result: 0/2 pilots' candidates filtered -- see section 4.5 | null | 2026-08-03 |
+| P1b-default-off-filter | 1 | open | Section 4.5's finding (scope narrowing alone doesn't help hub-file-dependent claims) | Build the default-off-diff filter -- the lever a hub-file dependency (e.g. `agent.py`) actually needs | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | Phase 1b | Wire a low-noise candidate list into `/governance` or `morning-digest` | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |

@@ -42509,6 +42509,18 @@
     - MECH-288    # substrate: bidirectional event_segmenter (R2 verdict; MECH-288 depends_on includes ARC-070 as the rollout-side downstream consumer)
     - MECH-269    # V_s primitive: the region-conditioned predictability scalar that produces the trigger signal on the chunk's region
     - MECH-094    # hypothesis_tag gate: pre-commit fires under tag=True write nothing; post-commit fires under tag=False enable residue / observation-side effects
+  # Phase-1 pilot (substrate_stability_and_drift_detection_plan.md, 2026-08-03): author-declared,
+  # deliberately conservative (safe to over-include, unsafe to under-include) -- NOT machine-proven
+  # the way arm_fingerprint's per-cell scoped hashes are. Used only by
+  # check_substrate_staleness_candidates.py to narrow drift relevance; never feeds arm_fingerprint
+  # itself. Derived from this claim's own implementation_note (the R1/R5 decomposition substrate
+  # and its two wiring call sites).
+  substrate_scope:
+    - ree_core/policy/policy_decomposition.py
+    - ree_core/hippocampal/module.py
+    - ree_core/agent.py
+    - ree_core/environment/causal_grid_world.py
+    - ree_core/utils/config.py
   functional_restatement: >
     MECH-321 names the primary child mechanism for ARC-070. It is the
     policy-side consumer of MECH-288 boundary pulses on the rollout /
@@ -62857,6 +62869,19 @@
     - MECH-083
     - MECH-261
     - ARC-092
+  # Phase-1 pilot (substrate_stability_and_drift_detection_plan.md, 2026-08-03): author-declared,
+  # deliberately conservative (safe to over-include, unsafe to under-include) -- NOT machine-proven
+  # the way arm_fingerprint's per-cell scoped hashes are. Used only by
+  # check_substrate_staleness_candidates.py to narrow drift relevance; never feeds arm_fingerprint
+  # itself. Derived from the V3-EXQ-875 autopsy's own root-cause read of what the
+  # _train_all_on_agent / SD-070 / SD-056 acquisition path actually touches.
+  substrate_scope:
+    - ree_core/agent.py
+    - ree_core/environment/causal_grid_world.py
+    - ree_core/predictors/e1_deep.py
+    - ree_core/predictors/e2_fast.py
+    - experiments/_lib/allon_training.py
+    - experiments/_lib/capability_eval.py
   notes: >
     THE ASYMMETRY IS THE NEW OBSERVATION, and it is a SPECIFIC gap rather than a general
     aspiration: the consolidation path has the discipline (MECH-392 provenance +

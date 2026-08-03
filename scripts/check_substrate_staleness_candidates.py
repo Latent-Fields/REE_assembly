@@ -40,6 +40,24 @@ WHAT THIS DOES (Phase 0 -- zero validity risk, mirrors arm_reuse_report.py's own
 5. Manifests with no recorded `substrate_hash` (pre-recording-standard) are bucketed as
    "no substrate identity recorded" -- reported, never silently dropped.
 
+PHASE 1 (added 2026-08-03): OPTIONAL per-claim `substrate_scope` DECLARATIONS in claims.yaml
+---------------------------------------------------------------------------------------------
+Phase 0's whole-tree comparison is noisy by design (measured: ~93% of evaluable manifests
+read as "differs" against a fast-moving `main`). When a claim declares a `substrate_scope` in
+`docs/claims/claims.yaml` (the SAME glob format `arm_fingerprint`/`substrate_scope_guard`
+already use -- exact file paths, or a `dir/**/*.ext` recursive pattern), this script narrows
+relevance PER CLAIM: a drift candidate whose changed-file list (already computed for the
+report -- see point 3 above) does not intersect that claim's declared scope is moved out of
+"drift candidates" and into a separate "outside declared scope" bucket for that claim only
+(other, unscoped claims on the SAME manifest are unaffected). A claim's `substrate_scope` here
+is an AUTHOR-DECLARED, deliberately conservative approximation -- NOT machine-proven the way
+`substrate_scope_guard`'s call-trace/static-closure guards prove an arm_fingerprint scope; it
+is safe to over-include (false candidate, wastes a human's attention) and unsafe to
+under-include (false all-clear, hides real drift), so when in doubt declare wider. This
+filter only applies when BOTH a scope is declared AND the manifest has a diffable
+`substrate_commit.commit` -- otherwise Phase-0 whole-tree behaviour is unchanged for that
+claim.
+
 Nothing here can invalidate an experiment or alter scoring. Read the report, then a human
 decides whether to hand-edit a flat manifest's `pending_retest_after_substrate` (or the
 per-claim variants) -- exactly as `/failure-autopsy` already does today for other reasons.
@@ -55,6 +73,7 @@ ASCII-only stdout per repo convention.
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import glob
 import json
 import shutil
@@ -65,9 +84,15 @@ import uuid
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
+try:
+    import yaml
+except ImportError:  # pragma: no cover -- yaml is a hard dep of the pipeline
+    yaml = None
+
 REPO_ROOT = Path(__file__).resolve().parents[1]  # REE_assembly root
 DEFAULT_EXP_DIR = REPO_ROOT / "evidence" / "experiments"
 DEFAULT_REE_V3_ROOT = REPO_ROOT.parent / "ree-v3"
+DEFAULT_CLAIMS_YAML = REPO_ROOT / "docs" / "claims" / "claims.yaml"
 
 # The four fields the existing gate in build_experiment_indexes.py already honors.
 _ALREADY_ACTIONED_FIELDS = (
@@ -132,6 +157,61 @@ def load_flat_claim_tagged_manifests(exp_dir: Path) -> List[Tuple[Path, Dict[str
             continue
         out.append((path, manifest))
     return out
+
+
+def load_claim_substrate_scopes(claims_yaml_path: Path) -> Dict[str, List[str]]:
+    """claim_id -> declared substrate_scope glob list, for claims that declare one.
+
+    Best-effort: an unreadable/malformed claims.yaml yields {} (Phase-0 behaviour for every
+    claim), never a crash -- this is an optional narrowing, not a hard dependency.
+    """
+    if yaml is None or not claims_yaml_path.exists():
+        return {}
+    try:
+        with open(claims_yaml_path, "r", encoding="utf-8") as fh:
+            data = yaml.safe_load(fh)
+    except Exception:
+        return {}
+    claims = data.get("claims", data) if isinstance(data, dict) else data
+    if not isinstance(claims, list):
+        return {}
+    out: Dict[str, List[str]] = {}
+    for c in claims:
+        if not isinstance(c, dict):
+            continue
+        scope = c.get("substrate_scope")
+        claim_id = c.get("id")
+        if claim_id and isinstance(scope, list) and scope:
+            out[str(claim_id)] = [str(g) for g in scope]
+    return out
+
+
+def _file_in_scope(changed_file: str, scope_globs: List[str]) -> bool:
+    """Does changed_file fall inside ANY of scope_globs?
+
+    Handles the two scope-declaration shapes actually used in this repo today: an exact
+    file path, and a `dir/**/*.ext` recursive pattern (matched as "starts with the prefix
+    before '**' AND ends with the same extension" -- correctly matches zero-or-more
+    intervening path segments, unlike a naive fnmatch/regex substitution of '**' -> '*',
+    which would wrongly REQUIRE at least one intervening segment and under-match files
+    directly in the named directory -- the dangerous direction here, since an under-match
+    hides genuine relevance). Any other wildcard shape falls back to plain fnmatch as a
+    best-effort (over-inclusive on failure to parse is fine; under-inclusive is not, so
+    this fallback is deliberately permissive, not a silent no-match).
+    """
+    for pattern in scope_globs:
+        if "**" in pattern:
+            prefix, _, rest = pattern.partition("**")
+            suffix = ("." + rest.rsplit(".", 1)[-1]) if "." in rest else ""
+            if changed_file.startswith(prefix) and (not suffix or changed_file.endswith(suffix)):
+                return True
+        elif "*" in pattern or "?" in pattern:
+            if fnmatch.fnmatch(changed_file, pattern):
+                return True
+        else:
+            if changed_file == pattern:
+                return True
+    return False
 
 
 class _CurrentSubstrate:
@@ -217,21 +297,25 @@ def main() -> int:
     ap.add_argument("--exp-dir", default=str(DEFAULT_EXP_DIR))
     ap.add_argument("--ree-v3-root", default=str(DEFAULT_REE_V3_ROOT))
     ap.add_argument("--ref", default="origin/main")
+    ap.add_argument("--claims-yaml", default=str(DEFAULT_CLAIMS_YAML))
     args = ap.parse_args()
 
     exp_dir = Path(args.exp_dir)
     ree_v3_root = Path(args.ree_v3_root)
+    claim_scopes = load_claim_substrate_scopes(Path(args.claims_yaml))
 
     manifests = load_flat_claim_tagged_manifests(exp_dir)
-    print("substrate-staleness candidate report (READ-ONLY, Phase 0)  --  %d claim-tagged flat manifest(s)" % len(manifests))
+    print("substrate-staleness candidate report (READ-ONLY, Phase 0+1)  --  %d claim-tagged flat manifest(s)" % len(manifests))
     print("source: %s" % exp_dir)
     print("comparing against: %s (ree-v3 root: %s)" % (args.ref, ree_v3_root))
+    print("claims with a declared substrate_scope: %d (%s)" % (
+        len(claim_scopes), ", ".join(sorted(claim_scopes)) or "none"))
     print()
 
     no_identity: List[Path] = []
     current: List[Path] = []
     already_actioned: List[Tuple[Path, Dict[str, Any]]] = []
-    candidates: List[Tuple[Path, Dict[str, Any]]] = []
+    candidate_manifests: List[Tuple[Path, Dict[str, Any]]] = []
     current_globs: List[str] = []
 
     try:
@@ -251,36 +335,63 @@ def main() -> int:
                 if _already_actioned(manifest):
                     already_actioned.append((path, manifest))
                     continue
-                candidates.append((path, manifest))
+                candidate_manifests.append((path, manifest))
     except RuntimeError as e:
         print("ERROR: could not resolve current substrate identity: %s" % e)
         return 1
 
     print("current substrate (%s): %d file(s), hash %s" % (args.ref, current_n_files, current_hash[:12]))
     print()
+
+    # One diff per distinct recorded commit, reused across every claim on every manifest that
+    # cites it (a manifest can tag several claims; the changed-file list is the same for all).
+    diff_cache: Dict[str, Optional[List[str]]] = {}
+
+    def changed_files_for(commit: str) -> Optional[List[str]]:
+        if commit not in diff_cache:
+            diff_cache[commit] = _diff_changed_files(ree_v3_root, commit, args.ref, current_globs)
+        return diff_cache[commit]
+
+    by_claim_candidate: Dict[str, List[Tuple[Path, Dict[str, Any], Optional[List[str]]]]] = {}
+    by_claim_out_of_scope: Dict[str, List[Tuple[Path, Dict[str, Any], List[str]]]] = {}
+
+    for path, manifest in candidate_manifests:
+        commit = manifest.get("substrate_commit", {}).get("commit")
+        changed = changed_files_for(commit) if commit else None
+        for claim_id in manifest.get("claim_ids") or []:
+            scope = claim_scopes.get(claim_id)
+            if scope and changed is not None:
+                relevant = any(_file_in_scope(f, scope) for f in changed)
+                if not relevant:
+                    by_claim_out_of_scope.setdefault(claim_id, []).append((path, manifest, changed))
+                    continue
+            by_claim_candidate.setdefault(claim_id, []).append((path, manifest, changed))
+
+    n_candidate_pairs = sum(len(v) for v in by_claim_candidate.values())
+    n_out_of_scope_pairs = sum(len(v) for v in by_claim_out_of_scope.values())
+
     print("summary:")
     print("  %4d  no substrate identity recorded (cannot assess)" % len(no_identity))
     print("  %4d  current (matches %s)" % (len(current), args.ref))
     print("  %4d  already actioned (pending_retest_after_substrate / superseded_by_substrate / superseded already set)" % len(already_actioned))
-    print("  %4d  DRIFT CANDIDATE (recorded substrate differs, not yet actioned)" % len(candidates))
+    print("  %4d  drift candidate manifest(s) (recorded substrate differs, not yet actioned)" % len(candidate_manifests))
+    print("  %4d  (claim, run) pair(s) filtered OUTSIDE a declared substrate_scope (Phase 1)" % n_out_of_scope_pairs)
+    print("  %4d  (claim, run) pair(s) remain DRIFT CANDIDATES after scope filtering" % n_candidate_pairs)
     print()
 
-    if candidates:
-        by_claim: Dict[str, List[Tuple[Path, Dict[str, Any]]]] = {}
-        for path, manifest in candidates:
-            for claim_id in manifest.get("claim_ids") or []:
-                by_claim.setdefault(claim_id, []).append((path, manifest))
-
+    if by_claim_candidate:
         print("drift candidates by claim:")
-        for claim_id in sorted(by_claim):
-            print("  %s (%d run(s)):" % (claim_id, len(by_claim[claim_id])))
-            for path, manifest in by_claim[claim_id]:
+        for claim_id in sorted(by_claim_candidate):
+            scoped = claim_id in claim_scopes
+            print("  %s (%d run(s))%s:" % (
+                claim_id, len(by_claim_candidate[claim_id]),
+                " -- substrate_scope declared" if scoped else ""))
+            for path, manifest, changed in by_claim_candidate[claim_id]:
                 commit = manifest.get("substrate_commit", {}).get("commit")
                 run_id = manifest.get("run_id", path.stem)
                 print("    - %s" % run_id)
                 print("      manifest: %s" % _display_path(path))
                 if commit:
-                    changed = _diff_changed_files(ree_v3_root, commit, args.ref, current_globs)
                     if changed is None:
                         print("      recorded commit %s not diffable against %s locally" % (commit[:12], args.ref))
                     elif changed:
@@ -296,9 +407,22 @@ def main() -> int:
                 print("      suggested (NOT written by this script): pending_retest_after_substrate_per_claim: [\"%s\"]" % claim_id)
             print()
 
+    if by_claim_out_of_scope:
+        print("filtered OUTSIDE declared substrate_scope (Phase 1 -- not shown as candidates above):")
+        for claim_id in sorted(by_claim_out_of_scope):
+            print("  %s (%d run(s), scope: %s):" % (
+                claim_id, len(by_claim_out_of_scope[claim_id]), claim_scopes[claim_id]))
+            for path, manifest, changed in by_claim_out_of_scope[claim_id]:
+                run_id = manifest.get("run_id", path.stem)
+                print("    - %s (whole-tree diff had %d changed file(s), none in declared scope)" % (run_id, len(changed)))
+            print()
+
     print("Reminder: this is a READ-ONLY report. Nothing here writes to a manifest, changes")
     print("scoring, or requeues an experiment. A drift candidate is a signal for a human to")
     print("judge relevance, not a verdict -- most substrate churn is irrelevant to most claims.")
+    print("A claim's substrate_scope (Phase 1) is an author-declared, deliberately conservative")
+    print("approximation, not machine-proven -- treat an out-of-scope filter result as a hint,")
+    print("not a guarantee, until the claim's scope has more track record.")
     return 0
 
 

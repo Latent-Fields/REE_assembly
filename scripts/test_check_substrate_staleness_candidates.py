@@ -110,6 +110,62 @@ class LoadFlatManifestsTests(unittest.TestCase):
             self.assertEqual(run_ids, ["a"])  # no_claim, dry_run, malformed, nested all excluded
 
 
+class FileInScopeTests(unittest.TestCase):
+    def test_exact_path(self):
+        self.assertTrue(MOD._file_in_scope("ree_core/agent.py", ["ree_core/agent.py"]))
+        self.assertFalse(MOD._file_in_scope("ree_core/goal.py", ["ree_core/agent.py"]))
+
+    def test_recursive_glob_zero_intervening_dirs(self):
+        # The dangerous direction: a naive '**' -> '*' substitution with a literal '/' on
+        # both sides would REQUIRE an intervening path segment and miss this -- must not.
+        self.assertTrue(MOD._file_in_scope(
+            "ree_core/predictors/e1_deep.py", ["ree_core/predictors/**/*.py"]))
+
+    def test_recursive_glob_one_intervening_dir(self):
+        self.assertTrue(MOD._file_in_scope(
+            "ree_core/predictors/sub/e2.py", ["ree_core/predictors/**/*.py"]))
+
+    def test_recursive_glob_no_match_outside_prefix(self):
+        self.assertFalse(MOD._file_in_scope(
+            "ree_core/goal.py", ["ree_core/predictors/**/*.py"]))
+
+    def test_recursive_glob_no_false_prefix_match(self):
+        # "ree_core_other/..." must not match a "ree_core/**" scope (prefix, not substring).
+        self.assertFalse(MOD._file_in_scope(
+            "ree_core_other/foo.py", ["ree_core/**/*.py"]))
+
+    def test_multiple_globs_any_match(self):
+        scope = ["ree_core/agent.py", "experiments/_lib/allon_training.py"]
+        self.assertTrue(MOD._file_in_scope("experiments/_lib/allon_training.py", scope))
+        self.assertFalse(MOD._file_in_scope("ree_core/goal.py", scope))
+
+
+class LoadClaimSubstrateScopesTests(unittest.TestCase):
+    def test_loads_declared_scopes_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "claims.yaml"
+            p.write_text(
+                "claims:\n"
+                "  - id: MECH-A\n"
+                "    substrate_scope:\n"
+                "      - ree_core/agent.py\n"
+                "      - ree_core/goal.py\n"
+                "  - id: MECH-B\n"
+                "    title: no scope declared\n"
+            )
+            scopes = MOD.load_claim_substrate_scopes(p)
+            self.assertEqual(scopes, {"MECH-A": ["ree_core/agent.py", "ree_core/goal.py"]})
+
+    def test_missing_file_returns_empty(self):
+        self.assertEqual(MOD.load_claim_substrate_scopes(Path("/no/such/claims.yaml")), {})
+
+    def test_malformed_yaml_returns_empty(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "claims.yaml"
+            p.write_text("not: [valid: yaml: at all")
+            self.assertEqual(MOD.load_claim_substrate_scopes(p), {})
+
+
 class DisplayPathTests(unittest.TestCase):
     def test_relative_to_umbrella_root(self):
         p = REPO_ROOT / "evidence" / "experiments" / "foo.json"
@@ -147,6 +203,7 @@ class EndToEndDetectionTests(unittest.TestCase):
         (seed / "ree_core").mkdir()
         shutil.copy(REAL_ARM_FINGERPRINT, seed / "experiments" / "_lib" / "arm_fingerprint.py")
         (seed / "ree_core" / "foo.py").write_text("VALUE = 1\n")
+        (seed / "ree_core" / "bar.py").write_text("UNCHANGED = 1\n")  # never touched between A/B
         _git(seed, "add", "-A")
         _git(seed, "commit", "-m", "commit A -- initial substrate")
         commit_a = _git(seed, "rev-parse", "HEAD").strip()
@@ -182,6 +239,24 @@ class EndToEndDetectionTests(unittest.TestCase):
                   pending_retest_after_substrate=True)
         manifest("no_identity_run", claim_ids=["TEST-NOID"], run_id="no_identity_run")
 
+        # Phase-1 scope-filter fixtures: same stale hash/commit, two claims tagged on one
+        # manifest -- one whose declared scope covers the file that actually changed
+        # (ree_core/foo.py), one whose scope covers only the untouched ree_core/bar.py.
+        manifest("scoped_run", claim_ids=["TEST-IN-SCOPE", "TEST-OUT-OF-SCOPE"],
+                  run_id="scoped_run", substrate_hash=self.hash_a,
+                  substrate_commit={"commit": commit_a})
+
+        self.claims_yaml = self.root / "claims.yaml"
+        self.claims_yaml.write_text(
+            "claims:\n"
+            "  - id: TEST-IN-SCOPE\n"
+            "    substrate_scope:\n"
+            "      - ree_core/foo.py\n"
+            "  - id: TEST-OUT-OF-SCOPE\n"
+            "    substrate_scope:\n"
+            "      - ree_core/bar.py\n"
+        )
+
     def _real_hash_at(self, seed_repo, commit):
         with tempfile.TemporaryDirectory() as wtdir:
             wt = Path(wtdir) / "wt"
@@ -205,6 +280,7 @@ class EndToEndDetectionTests(unittest.TestCase):
             "--exp-dir", str(self.exp_dir),
             "--ree-v3-root", str(self.clone),
             "--ref", "origin/main",
+            "--claims-yaml", str(self.claims_yaml),
         ]
         old_argv = sys.argv
         sys.argv = argv
@@ -219,12 +295,23 @@ class EndToEndDetectionTests(unittest.TestCase):
         self.assertIn("1  current (matches origin/main)", out)
         self.assertIn("1  already actioned", out)
         self.assertIn("1  no substrate identity recorded", out)
-        self.assertIn("1  DRIFT CANDIDATE", out)
+        self.assertIn("2  drift candidate manifest(s)", out)  # stale_run + scoped_run
         self.assertIn("TEST-STALE", out)
         self.assertNotIn("TEST-CURRENT (", out)
         self.assertNotIn("TEST-ACTIONED (", out)
         self.assertIn("stale_run", out)
         self.assertIn("ree_core/foo.py", out)  # named in the changed-files diff
+
+        # Phase 1: the claim whose declared scope covers the changed file stays a candidate...
+        self.assertIn("TEST-IN-SCOPE (1 run(s)) -- substrate_scope declared", out)
+        # ...the claim whose scope covers only the untouched file is filtered out of it. Split
+        # on the SECTION HEADER specifically ("filtered OUTSIDE declared..."), not the summary
+        # count line above it ("... filtered OUTSIDE A declared..." -- note the "a"), which also
+        # contains the word sequence "filtered OUTSIDE" and would otherwise split too early.
+        self.assertIn("filtered OUTSIDE declared substrate_scope", out)
+        before, _, after = out.partition("filtered OUTSIDE declared substrate_scope")
+        self.assertNotIn("TEST-OUT-OF-SCOPE (", before)
+        self.assertIn("TEST-OUT-OF-SCOPE (1 run(s)", after)
 
         # No leftover worktree from the run under test.
         listing = _git(self.clone, "worktree", "list")
