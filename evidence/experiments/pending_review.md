@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-02T22:57:01Z`  
+Generated: `2026-08-03T10:49:16Z`  
 Last review: `2026-08-02T12:05:51Z`  
-Pending: **19** item(s) -- 3 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 8 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
+Pending: **26** item(s) -- 6 PASS, 19 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 1 ERROR manifest(s); 1 diagnostic self-route(s) flagged for adjudication; 1 run(s) with a DEAD z_goal stream
 
 ## FAIL (action required)
 
@@ -11,10 +11,22 @@ Pending: **19** item(s) -- 3 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_848a_arc005_precision_only_decoupled_ladder_calibrated_20260802T120712Z_v3` | 2026-08-02T12:07 | ARC-005 | — |
 | `v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3` | 2026-08-02T12:16 | INV-088, MECH-135 | — |
 | `v3_exq_870a_mech480_dacc_execution_gain_dissociation_20260802T135309Z_v3` | 2026-08-02T13:53 | MECH-480 | — |
+| `v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3` | 2026-08-02T17:41 | ARC-071, MECH-090 | — |
 | `v3_exq_847a_arc062_pd_context_modeswitch_committed_class_divergence_20260802T182826Z_v3` | 2026-08-02T18:28 | (no claim tags) | — |
 | `v3_exq_862a_q040c_dacc_pe_weight_delta_correlation_20260802T195935Z_v3` | 2026-08-02T19:59 | Q-040 | — |
 | `v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3` | 2026-08-02T19:59 | MECH-267 | — |
 | `v3_exq_867a_mech321_harm_aware_selection_hazard_tuned_20260802T203309Z_v3` | 2026-08-02T20:33 | MECH-321 | — |
+| `v3_exq_873_mech322_sleep_replay_carveout_20260802T213319Z_v3` | 2026-08-02T21:33 | MECH-322 | — |
+| `v3_exq_876_mech025_doing_mode_causal_signal_20260802T214005Z_v3` | 2026-08-02T21:40 | MECH-025 | — |
+| `v3_exq_877_mech072_discriminator_gate_full_20260802T214050Z_v3` | 2026-08-02T21:40 | MECH-072 | — |
+| `v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3` | 2026-08-02T21:50 | MECH-122, MECH-180 | — |
+| `v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3` | 2026-08-02T22:16 | ARC-045, MECH-166, SD-017 | — |
+| `v3_exq_874_mech467_distractor_resistance_20260802T222132Z_v3` | 2026-08-02T22:21 | MECH-467 | — |
+| `v3_exq_671b_mech025b_precision_responsibility_20260803T022036Z_v3` | 2026-08-03T02:20 | MECH-025b | — |
+| `v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding_20260803T022131Z_v3` | 2026-08-03T02:21 | MECH-428 | — |
+| `v3_exq_878_mech332_efference_aic_dissociation_20260803T023041Z_v3` | 2026-08-03T02:30 | MECH-332 | — |
+| `v3_exq_866a_inv034_q021_goal_maintenance_agency_onboarded_20260803T075813Z_v3` | 2026-08-03T07:58 | INV-034, Q-021 | — |
+| `v3_exq_882_mech472_context_memorization_generalization_20260803T080441Z_v3` | 2026-08-03T08:04 | MECH-472 | — |
 
 ## PASS (verify & close)
 
@@ -23,6 +35,9 @@ Pending: **19** item(s) -- 3 PASS, 7 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 
 | `v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3` | 2026-08-02T12:13 | (no claim tags) |
 | `v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3` | 2026-08-02T14:41 | SD-076 |
 | `v3_exq_872_inv087_proxy_tethering_constraint_20260802T145757Z_v3` | 2026-08-02T14:57 | INV-087 |
+| `v3_exq_881_mech293_ghost_probe_seed_efficacy_20260802T151542Z_v3` | 2026-08-02T15:15 | MECH-293 |
+| `v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3` | 2026-08-02T21:40 | ARC-014 |
+| `v3_exq_883_mech427_cross_level_subgoal_credit_20260803T022051Z_v3` | 2026-08-03T02:20 | MECH-427 |
 
 ## Diagnostic adjudication required (self-route unverified)
 
@@ -45,21 +60,6 @@ Each run below reports `z_goal_stream.writer_defect: true`: the agent was steppe
 | Run ID | Status | Ticks | writer_calls | active_frac | GoalState |
 |--------|--------|-------|--------------|-------------|-----------|
 | `v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3` | FAIL | 38959 | **0** | 0.000 | live |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| FAIL | `v3_exq_876_mech025_doing_mode_causal_signal_20260802T214005Z_v3` | v3_exq_876_mech025_doing_mode_causal_signal | V3-EXQ-876 | mixed |
-| FAIL | `v3_exq_877_mech072_discriminator_gate_full_20260802T214050Z_v3` | v3_exq_877_mech072_discriminator_gate_full | V3-EXQ-877 | weakens |
-| PASS | `v3_exq_880_arc014_simulation_mode_commitment_20260802T214058Z_v3` | v3_exq_880_arc014_simulation_mode_commitment | V3-EXQ-880 | supports |
-| FAIL | `v3_exq_874_mech467_distractor_resistance_20260802T222132Z_v3` | v3_exq_874_mech467_distractor_resistance | V3-EXQ-874 | does_not_support |
-| FAIL | `v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3` | v3_exq_871a_mech090_commit_latch_persistence_diagnostic | ? | non_contributory |
-| FAIL | `v3_exq_873_mech322_sleep_replay_carveout_20260802T213319Z_v3` | v3_exq_873_mech322_sleep_replay_carveout | V3-EXQ-873 | unknown |
-| FAIL | `v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3` | v3_exq_861a_mech180_mech122_spindle_content_selection_validation | V3-EXQ-861a | non_contributory |
-| FAIL | `v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3` | v3_exq_436c_sd017_mech166_repr_confirmer | V3-EXQ-436c | weakens |
 
 ## Needs diagnosis (ERROR manifests -> /diagnose-errors)
 
