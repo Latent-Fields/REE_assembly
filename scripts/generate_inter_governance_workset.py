@@ -10,6 +10,44 @@ Outputs:
     evidence/planning/inter_governance_workset.md
 
 Consumed by GET /api/workset and /workset.html. Regenerate via /inter-governance-brief.
+
+SUBSTRATE LANE FAILS OPEN TO "ready" -- KNOWN, AND THE REASON STALENESS IS SILENT
+--------------------------------------------------------------------------------
+`_substrate_ready_items()` emits an /implement-substrate item for every
+substrate_queue entry with `ready: true` that no classifier positively
+recognises as done. There is no "unknown status" branch: a status string the
+matchers do not understand takes the default, and the default is "go build it".
+So a substrate_queue status that drifts, or a new status token nobody taught
+this file about, does not error -- it silently becomes a spawned chip to
+re-implement something that already landed. When auditing this lane, always ask
+what an UNRECOGNISED status does, not just what the listed ones do.
+
+Nothing here is cached: `_load_substrate_queue()` re-reads substrate_queue.json
+on every call, and igw_routine_tick.regenerate_workset() shells out to this
+script each tick (falling back to the last-good workset on disk ONLY on
+timeout/non-zero exit, GENERATOR_TIMEOUT_SEC=420). Staleness in this lane is
+therefore a CLASSIFICATION defect, not a freshness one -- do not go looking for
+a stale snapshot.
+
+FM3 (2026-08-03): `implemented_pending_validation` was classified `ready`.
+Both `_status_resolved` and `_status_terminal` hard-veto on the substring
+"pending", which is right for the retest-blocker question they answer and wrong
+for the implement question -- that status asserts the build HAS landed and only
+validation is outstanding. It is the second-most-common non-empty status in
+substrate_queue.json (11 entries the day this was found). Confirmed incident:
+on 2026-08-03 four of the five items rendered as "Substrate ready" (SD-091,
+SD-092, SD-modulatory-channel-route-decomp-gate-fix,
+mech090-arc071-attick-persistent-handle-fix) were already fully landed in
+ree-v3; they had been staged as IGW-20260803-206..209, sat in "awaiting human
+launch" for up to two days, and were GC-reaped unused (see
+evidence/planning/igw_routine_log.md, STAGE entries 2026-08-02T18:32Z ->
+2026-08-03T14:02Z). A manual status correction (98651d2e27) was applied as a
+stopgap and did NOT fix it -- the corrected statuses were themselves
+`implemented_pending_validation`, so the same four re-qualified as ready on the
+very next regen. Fix: `_status_implementation_complete` /
+`_substrate_implementation_complete`, which suppress the IMPLEMENT lane only and
+leave retest-blocker semantics untouched. Regression test:
+scripts/test_generate_inter_governance_workset_substrate_staleness.py
 """
 from __future__ import annotations
 
@@ -609,6 +647,59 @@ def _status_terminal(value: str) -> bool:
         return False
     return any(tok in s for tok in _SUBSTRATE_TERMINAL_TOKENS)
 
+
+# --- FM3: build-landed-but-validation-pending (2026-08-03) --------------------
+# Both matchers above hard-veto on the SUBSTRING "pending". That is correct for
+# the RETEST-BLOCKER question they answer ("is this substrate finished enough
+# that a retest of the claim it unblocks is meaningful?"), but it is wrong for
+# the IMPLEMENT question ("should a /implement-substrate chip be spawned to
+# BUILD this?"). `implemented_pending_validation` asserts the opposite of what
+# the veto reads it as: the code has LANDED and only a downstream validation
+# step is outstanding. It is the second-most-common non-empty status in
+# substrate_queue.json (11 entries on 2026-08-03), so the veto mis-routes a
+# whole class, not an edge case.
+#
+# The pending qualifier must name a downstream VERIFICATION step. A status like
+# `partially_implemented_pending_consumer_wiring` names remaining BUILD work and
+# must keep surfacing as implementable -- hence the explicit suffix allowlist
+# plus the `partial` guard, rather than a bare "has an implemented token" test.
+_PENDING_VALIDATION_RE = re.compile(
+    r"pending_(validation|validations|verification|review|"
+    r"governance_review|retest|evidence|experiment)\b"
+)
+_IMPLEMENTATION_COMPLETE_TOKENS = (
+    "implemented", "landed", "subsumed", "superseded", "closed", "validated",
+)
+
+
+def _status_implementation_complete(value: str) -> bool:
+    """True if the status asserts the BUILD has landed -- even when a downstream
+    validation step is still outstanding.
+
+    Superset of `_status_resolved` / `_status_terminal`: everything they call
+    done is build-complete too. What this adds is the `*_pending_<verification>`
+    family those two veto on a bare "pending" substring (FM3).
+
+    NOT build-complete:
+      * `pending_implementation` -- the build has not started.
+      * `partially_implemented_pending_consumer_wiring` -- real build work
+        remains; `partial` guard plus the suffix allowlist both reject it.
+      * `candidate_v3_pending`, `blocked_pending_discrimination`,
+        `parked_pending_env_entropy_precondition` -- the pending qualifier
+        names something other than a verification step.
+    """
+    s = (value or "").strip().lower()
+    if not s:
+        return False
+    if _status_resolved(s) or _status_terminal(s):
+        return True
+    if "partial" in s:
+        return False
+    if not _PENDING_VALIDATION_RE.search(s):
+        return False
+    return any(tok in s for tok in _IMPLEMENTATION_COMPLETE_TOKENS)
+
+
 _LEADING_CLAIM_TOKEN_RE = re.compile(r"^\s*([A-Z]+-\d+[a-z]?)\b")
 
 
@@ -673,6 +764,30 @@ def _substrate_resolved(entry: dict | None) -> bool:
     return False
 
 
+def _substrate_implementation_complete(entry: dict | None) -> bool:
+    """True if this substrate_queue entry's BUILD has landed -- so it must not
+    be routed to /implement-substrate -- even if it is not yet `_substrate_
+    resolved` (validation outstanding).
+
+    Deliberately NARROWER in effect than `_substrate_resolved`: this suppresses
+    the IMPLEMENT lane only. The entry keeps whatever retest-blocker semantics
+    `_substrate_resolved` gives it, because "the code landed" and "the claim it
+    unblocks is retestable" are different questions and only the first one is
+    settled by an `implemented_pending_validation` status.
+
+    `depends_on_unresolved` still wins: an entry with unresolved prerequisites
+    stays in the lane so the substrate loop can surface it as `blocked` with a
+    blocked_by descriptor, rather than vanishing silently.
+    """
+    if not entry:
+        return False
+    if entry.get("depends_on_unresolved"):
+        return False
+    impl = entry.get("implementation_status") or ""
+    status = entry.get("status") or ""
+    return _status_implementation_complete(impl) or _status_implementation_complete(status)
+
+
 def _substrate_ready_items() -> list[dict]:
     out = []
     for item in _load_substrate_queue():
@@ -680,6 +795,45 @@ def _substrate_ready_items() -> list[dict]:
             continue
         if _substrate_resolved(item):
             continue
+        if _substrate_implementation_complete(item):
+            continue
+        out.append(item)
+    return out
+
+
+# Statuses this file's classifiers recognise at all. Anything outside the union
+# of them lands in the fail-open default -- `ready`, i.e. "go build it" -- which
+# is why a stale or novel status string degrades SILENTLY into spawned
+# /implement-substrate work rather than erroring. `_unclassified_ready_items`
+# exists to make that default visible; see the FM3 note above.
+def _unclassified_ready_items() -> list[dict]:
+    """substrate_queue entries surfacing as implementable ONLY because no
+    classifier recognised their status string.
+
+    Advisory: the generator reports these on stderr and still emits them, since
+    a genuinely-unbuilt entry with an unusual status must not be dropped. A
+    LANDED entry appearing here means the status vocabulary has drifted and the
+    matchers above need a new case.
+    """
+    out = []
+    for item in _substrate_ready_items():
+        impl = (item.get("implementation_status") or "").strip().lower()
+        status = (item.get("status") or "").strip().lower()
+        if not impl and not status:
+            continue  # blank status is a recognised state, not drift
+        recognised = any(
+            fn(v)
+            for v in (impl, status)
+            for fn in (_status_resolved, _status_terminal, _status_implementation_complete)
+        )
+        if recognised:
+            continue
+        if any(
+            v.startswith(("pending_", "candidate_", "proposed", "blocked_", "parked_"))
+            for v in (impl, status)
+            if v
+        ):
+            continue  # explicitly-not-built vocabulary, correctly ready
         out.append(item)
     return out
 
@@ -2116,6 +2270,23 @@ def main() -> int:
     OUTPUT_MD.write_text(write_markdown(data), encoding="utf-8")
     print(f"Wrote {OUTPUT_JSON.relative_to(ROOT)} ({len(data['items'])} items)")
     print(f"Wrote {OUTPUT_MD.relative_to(ROOT)}")
+    # FM3 advisory: the substrate lane fails OPEN to "ready", so an unrecognised
+    # status string silently becomes a spawned /implement-substrate chip. Name
+    # them rather than letting the default stay invisible. Never fatal -- a
+    # genuinely-unbuilt entry with an unusual status must still be emitted.
+    drift = _unclassified_ready_items()
+    if drift:
+        print(
+            f"NOTE: {len(drift)} substrate_queue entr(ies) are 'Substrate ready' "
+            f"only because no status classifier recognised their status string. "
+            f"If any of these have LANDED, the status vocabulary has drifted -- "
+            f"see the FM3 note in this file:",
+            file=sys.stderr,
+        )
+        for item in drift:
+            sd = item.get("sd_id") or "?"
+            st = (item.get("status") or item.get("implementation_status") or "")[:80]
+            print(f"  - {sd}: status={st!r}", file=sys.stderr)
     return 0
 
 
