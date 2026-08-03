@@ -1362,3 +1362,7 @@ One line per hourly tick. ASCII only.
 2026-08-03T13:14:27Z STAGE IGW-20260803-206 skill=/implement-substrate prio=25 worktree=igw-206-substrate-ready-sd-094 (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
 2026-08-03T14:02:08Z complete 5c97197f94d5 staged->completed outcome=DUPLICATE: User-confirmed duplicate 2026-08-03: /governance already spawned this exact SD-m
 2026-08-03T14:02:08Z auto-defer e4d80465a76a hash=e4d80465a76a for 48h (complete)
+2026-08-03T14:02:08Z complete e4d80465a76a staged->completed outcome=DUPLICATE: User-confirmed duplicate 2026-08-03: /governance already spawned this exact SD-0
+2026-08-03T14:02:29Z GC removed worktree igw-204-substrate-ready-sd-modulatory-ch (removed; branch deleted)
+2026-08-03T14:02:29Z GC removed worktree igw-206-substrate-ready-sd-094 (removed; branch deleted)
+2026-08-03T14:15:16Z skip IGW-20260803-208: no fresh runner heartbeat (experiment-lane item would just sit in queue)
