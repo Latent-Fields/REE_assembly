@@ -1,0 +1,101 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T08:24:26Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3",
+      "queue_id": "V3-EXQ-861a",
+      "claim_ids": ["MECH-180", "MECH-122"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "MECH-180 DV1/DV2 strengthened (unchanged from 861); MECH-180 DV3 weakened-but-explained (unchanged category, new explanation); MECH-122 content-packaging half weakened (this implementation, this run)",
+        "biological_reference": "partial -- content-packaging citations stand (Yang2018/Ngo2020/Staresina2015, evidence/literature/targeted_review_connectome_mech_122/); the REE proxy's chosen reference source (self-referential 10-tick recency buffer) is arguably itself a biological mismatch, independent of the MEL-decoupling finding",
+        "prerequisites": "present but wrongly sourced -- ThetaBuffer (MECH-089) genuinely implemented and available; defect is which of its outputs was chosen as the selection reference, not a missing prerequisite",
+        "implementation": "partial -- blend/selection arithmetic correct and contract-tested (OFF-inert, ON-differentiating); the reference signal it operates on is the gap",
+        "environment": "adequate -- unchanged from 845/861/798a; SD-MEL-PRODUCER validated, R1/R2 both clear at 1.0",
+        "measurement": "now better understood, still inadequate for DV3 -- new instrumentation (mean_spindle_selection_applied/_weight) let this autopsy distinguish 'mechanism didn't fire' from 'mechanism fired against the wrong reference'; seed 123 additionally degenerate (touched-slot insufficiency, 4-6/6 cycles)",
+        "integration": "isolated for DV3 -- content-selection operates entirely within the SWS pass; DV1/DV2 untouched by this substrate change, as designed",
+        "scale": "adequate -- N/A to this finding"
+      },
+      "biological_reference": {
+        "closest_mechanism": "thalamocortical sleep spindle content-packaging (spindle-coupled hippocampal ripple content transfer to cortex)",
+        "dependencies": ["MECH-089 (ThetaBuffer)", "MECH-030", "MECH-121", "SD-006"],
+        "is_formal_import": false,
+        "divergence": "REE proxy uses a 10-tick self-referential recency buffer as the 'novelty reference', which is drawn from the same short window supplying the content being evaluated -- structurally decoupled from the world_rule_shift/MEL novelty axis this experiment family validates elsewhere in the same run (R2 measured 1.0/0.667). Arguably also a mismatch to the biological analogy on its own terms (biological content selection is understood relative to a stable cortical schema, not a rolling self-average).",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-180": "measurement_test_design_defect",
+        "MECH-122": "measurement_test_design_defect"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-180": "non_contributory",
+        "MECH-122": "weakens"
+      },
+      "recommended_evidence_quality_note": "2026-08-03 (V3-EXQ-861a, autopsy-confirmed): validation of the MECH-122 content-packaging build (ree-v3 a7d36429fd) against the spindle_density DV. The mechanism fires every cycle (mean_spindle_selection_applied=1.0 throughout) but its novelty reference (ThetaBuffer.consolidation_summary(), a 10-tick self-referential recency average) is structurally decoupled from the world_rule_shift-driven MEL axis this experiment family varies -- confirmed both by a uniformly tiny/flat selection_weight (~0.004-0.01, no MEL-tracking) and by code trace. On the two well-formed seeds, diversity now moves the WRONG direction (decreasing with MEL) rather than merely failing to move. DV3 remains pending_retest_after_substrate, now against a specifically-diagnosed repair (re-source the novelty reference to something MEL-correlated, e.g. E3/E2 prediction error or a calibrated stable-base baseline). DV1/DV2 evidence is unchanged and stands independently (845/861).",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+        "unblocks_claims": ["MECH-180", "MECH-122"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3",
+          "experiment_type": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation",
+          "metric": "mean_sws_new_slot_diversity (spindle_density DV) still fails monotone+spread at 0/3 seeds with the content-selection flag ON. New instrumentation shows the mechanism fires every cycle (mean_spindle_selection_applied=1.0) but mean_spindle_selection_weight is uniformly tiny/flat (~0.004-0.01, no MEL-tracking) in every arm/seed; on the two well-formed seeds (42, 456) diversity decreases monotonically as MEL increases (wrong direction). Root cause: ThetaBuffer.consolidation_summary() (the novelty reference) is a 10-tick recency average of the SAME short window supplying the schema-installation prototypes being compared against it -- structurally self-similar (novelty~=0) regardless of arm.",
+          "target": "Re-source consolidation_ref in run_sws_schema_pass() from a signal that correlates with the world_rule_shift/MEL novelty axis (e.g. gate selection_weight on the E3/E2 prediction-error signal that already drives MEL, or widen the theta reference to a calibrated stable-base baseline analogous to mel_reference's own calibration) rather than the current 10-tick self-referential recency buffer. Re-run the 861/861a driver family (new letter) against the repaired reference once built."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-677_2026-06-14"],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION"
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The MECH-122 content-packaging build (ree-v3 a7d36429fd) is not inert -- it fires every cycle in every cell (mean_spindle_selection_applied=1.0 throughout) and its blend arithmetic is correct and independently contract-tested. This is new information 861's autopsy could not have had (861 predates the build).",
+        "The build's novelty reference is structurally decoupled from the manipulation this experiment family varies: ThetaBuffer.consolidation_summary() averages the same short recent window that also supplies the schema-installation prototypes, so 'novelty relative to it' collapses toward ~0 almost independent of arm -- confirmed both by the uniformly tiny/flat selection_weight and by direct code trace (theta_buffer_size=10, ree_core/utils/config.py:2387).",
+        "On the two well-formed seeds (42, 456), touched-slot diversity now moves in the WRONG direction (monotonically decreasing with MEL) rather than merely failing to move -- near-total homogenization (tiny selection weight everywhere) appears to interact with which slots get touched more in higher-shift-rate arms; noted but not fully explained, does not change the repair recommendation.",
+        "Seed 123's touched-slot statistic is separately degenerate (4-6/6 cycles insufficient in every arm), independent of the reference-source finding, and produced this run's one spurious C2 pass via a no-data (0.0) fallback comparison rather than a genuine effect.",
+        "MECH-122 now has its first claim-tagged autopsy target (weakens, content-packaging half only, this implementation) -- not yet a recurrence pattern (n=1); the sensory-gating half (separate substrate_queue.json entry MECH122-SENSORY-GATING-OFFLINE-PROTECTION) remains entirely untested."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_recurrence": {
+    "MECH-180": {
+      "fires": false,
+      "n_targets_before_this": 5,
+      "alignment_distribution": "unclear=3, strengthened=2",
+      "note": "No target reads a bare 'weakened' -- 861's and this target's DV3 read 'weakened-but-explained', same explained-dependency-gap shape, not a structurally different failure signature. Trigger requires >=1 bare 'weakened' plus structurally differing signatures; does not fire."
+    },
+    "MECH-122": {
+      "fires": false,
+      "n_targets_before_this": 0,
+      "alignment_distribution": "n/a -- first claim-tagged target",
+      "note": "granularity_debt_cluster.py MECH-122 returned 0 targets prior to this run. A single target cannot signal recurrence by definition; not applicable until a second, structurally-different MECH-122 failure appears."
+    }
+  },
+  "hypothesis_space_ledger": {
+    "step_9b_applicable": true,
+    "step_9b_executed": false,
+    "deferred_reason": "hypothesis_space_registry.v1.json is held by an active TASK_CLAIMS.json claim from a concurrent session (lucid-spence-efbee6, dACC PE/execution-gain cluster autopsy V3-EXQ-862a/870a, claimed 2026-08-03T08:12:53Z) as of this autopsy's generation time. Per task_claim.py's exact-file arbitration and the precedent set by failure_autopsy_V3-EXQ-847a-863_2026-08-02 (same situation, same deferral), the registry append is deferred rather than forced. MECH-180/MECH-122 are not yet tracked in the registry as of this writing (confirmed by direct read). A follow-on session or the next /governance walk should pre-register/resolve this run's two legs (MECH-180 non_contributory, MECH-122 weakens) once the contention clears.",
+    "legs_pending_registration": [
+      {"claim_id": "MECH-180", "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3", "recommended_evidence_direction": "non_contributory"},
+      {"claim_id": "MECH-122", "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3", "recommended_evidence_direction": "weakens"}
+    ]
+  }
+}
