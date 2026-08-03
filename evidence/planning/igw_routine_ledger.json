@@ -2412,7 +2412,11 @@
       "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
       "assigned_at": "2026-08-03T13:14:27Z",
       "staged_at": "2026-08-03T13:14:27Z",
-      "status": "staged"
+      "status": "completed",
+      "completed_at": "2026-08-03T14:02:08Z",
+      "completion_summary": "User-confirmed duplicate 2026-08-03: /governance already spawned this exact SD-094 fix directly as work chip chip-20260803-sd094-causal-grid-world-fix (queued for cloud-5 dispatch). Withdrawn rather than launched to avoid the same fix landing twice on the shared causal_grid_world.py environment.",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "User-confirmed duplicate 2026-08-03: /governance already spawned this exact SD-094 fix directly as work chip chip-20260803-sd094-causal-grid-world-fix (queued for cloud-5 dispatch). Withdrawn rather than launched to avoid the same fix landing twice on the shared causal_grid_world.py environment."
     }
   ],
   "dispositions": [
@@ -3259,6 +3263,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-03T09:45:49Z",
       "re_eligible_after": "2026-08-05T09:45:49Z"
+    },
+    {
+      "stable_hash": "e4d80465a76a",
+      "igw_id_at_disposition": "IGW-20260803-206",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-428"
+      ],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-094",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-03T14:02:08Z",
+      "re_eligible_after": "2026-08-05T14:02:08Z"
     }
   ]
 }
