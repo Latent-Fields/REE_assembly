@@ -12,8 +12,9 @@ This doc corrects that and scopes the actual gap.
 
 ## What already exists (do not re-build this)
 
-`ree-v3/tests/contracts/` carries **47 `test_*_lint.py` files** as of 2026-08-03, each
-added reactively after one specific confirmed incident — `test_dacc_last_bundle_lint`,
+`ree-v3/tests/contracts/` carries **19 `test_*_lint.py` files** as of 2026-08-03 (see
+correction note below), each added reactively after one specific confirmed incident —
+`test_dacc_last_bundle_lint`,
 `test_dead_z_goal_stream_lint`, `test_hardcoded_dry_run_lint`, `test_inert_arm_knob_lint`,
 `test_spearman_guard_shape_lint`, `test_precondition_recomputability_lint`, and more.
 `validate_experiments.py --checks <name>` and `validate_queue.py` add another layer of
@@ -32,7 +33,7 @@ check" is already the standing practice, not a proposal.
 
 ### Gap 1 — new experiment scripts can dodge the whole corpus (HIGHEST PRIORITY)
 
-`ree-v3/scripts/precommit_contracts.sh` Block 2 (the block that runs all 47 lints, via
+`ree-v3/scripts/precommit_contracts.sh` Block 2 (the block that runs all 19 lints, via
 the shared `tests/contracts/conftest.py::corpus_scan` fixture) only fires when staged
 paths match `^(ree_core/|experiments/_lib/)`. A brand-new `experiments/v3_exq_NNN.py` —
 the single most common artifact `/queue-experiment` produces — touches neither, so it
@@ -56,7 +57,7 @@ corpus-scan fixture, ~100s) because it excludes the slow non-lint contracts
 (`test_sd081_dualsystem_arbitration`, `test_graceful_timeout_lockfile`, the full non-lint
 suite). Runs locally, unconditionally — no OOM-routing logic needed at this size.
 
-### Gap 2 — no consolidated index across the 47 lints
+### Gap 2 — no consolidated index across the 19 lints
 
 A session authoring a new experiment class has no single place to check "what's already
 covered, so I don't need to hand-verify it myself." Add `tests/contracts/LINT_INDEX.md`:
@@ -84,7 +85,7 @@ to the structural delta. Points at the CLAUDE.md guidance in its own message.
 | Gap | Fix | Status | Landed at |
 |---|---|---|---|
 | 1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | **done** | ree-v3 `a249c708b2` (main) |
-| 2 | `tests/contracts/LINT_INDEX.md` | not started | — |
+| 2 | `tests/contracts/LINT_INDEX.md` | **done** | ree-v3 `74011a8981` (main) |
 | 3 | `scripts/check_json_edit_locality.py` | not started | — |
 
 Gap 1 verification: 8 new tests added, red/green-checked (5 of 8 genuinely fail
@@ -94,9 +95,20 @@ against the pre-fix script, restored and re-verified green); existing
 this change since it touches neither `ree_core/` nor `experiments/_lib/` (would
 not trigger Block 2 itself either).
 
+**Correction (2026-08-04):** the original draft of this doc, and the
+WORKSPACE_STATE.md entry recording Gap 1's landing, both said "47 lint files."
+That count was wrong — it came from an unfiltered `find ... -iname "*lint*"`
+that also counted `.pyc` cache variants (2-3 per source file) and nested
+`.claude/worktrees/` copies. The real count, filtered to canonical
+`tests/contracts/test_*_lint.py` source files only, is **19**. Corrected
+throughout this doc while building `LINT_INDEX.md` (Gap 2), which enumerates
+all 19 individually and is the authoritative count going forward. Not
+retroactively edited in WORKSPACE_STATE.md (append-only history log) — this
+note is the correction of record.
+
 ## Explicitly out of scope
 
-- Re-deriving the 47 existing lints or their taxonomy from a "clean-slate forensic pass"
+- Re-deriving the 19 existing lints or their taxonomy from a "clean-slate forensic pass"
   — they already exist and are each individually incident-documented in
   `queue-experiment/SKILL.md` and their own file headers.
 - A generic cross-language static-analysis framework. Each gap above is a narrow, scoped
