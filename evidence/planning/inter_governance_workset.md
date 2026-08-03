@@ -1,6 +1,6 @@
 # Inter-Governance Workset
 
-Generated: `2026-08-02T11:53:44Z`
+Generated: `2026-08-03T08:09:56Z`
 Schema: `inter_governance_workset/v1.1`
 
 Regenerate: `/inter-governance-brief` or `python scripts/generate_inter_governance_workset.py` from `REE_assembly/`.
@@ -9,30 +9,28 @@ UI: http://localhost:8000/workset
 
 ## Summary
 
-- Items: **247** (ready 29, in_flight 0, blocked 151)
+- Items: **247** (ready 26, in_flight 0, blocked 154)
 - By generation: clinical 11, meta 4, process 4, v3 88, v4 77, v5 38, v6 25
-- Pending review: **14**
-- Queue pending (unclaimed): **2**
+- Pending review: **19**
+- Queue pending (unclaimed): **0**
 
-- Live EXQs: V3-EXQ-847a, V3-EXQ-848a, V3-EXQ-863, V3-EXQ-864a
-
-- Auto-absorbed retests (queued, suppressed from workset): MECH-180 -> V3-EXQ-861a
+- Live EXQs: V3-EXQ-149b, V3-EXQ-861a, V3-EXQ-874, V3-EXQ-875
 
 ## Work packages
 
-### IGW-20260802-001 -- Complete governance review (14 pending)
+### IGW-20260803-001 -- Complete governance review (19 pending)
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 1 | **Generation:** v3
-- **Why now:** pending_review.md lists 14 item(s) -- must clear before new work packages.
+- **Why now:** pending_review.md lists 19 item(s) -- must clear before new work packages.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-001
-Title: Complete governance review (14 pending)
+REE inter-governance work item: IGW-20260803-001
+Title: Complete governance review (19 pending)
 Lane: governance | Skill: /governance
 Status: ready
-Why now: pending_review.md lists 14 item(s) -- must clear before new work packages.
+Why now: pending_review.md lists 19 item(s) -- must clear before new work packages.
 
 Instructions:
 - Run /governance from REE_assembly; walk pending_review with user.
@@ -41,7 +39,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-004 -- Governance decision: SD-087
+### IGW-20260803-005 -- Governance decision: SD-087
 
 - **Lane:** governance | **Skill:** `/governance` | **Status:** ready | **Priority:** 8 | **Generation:** v3
 - **Why now:** promotion_demotion recommends hold_candidate_resolve_conflict.
@@ -49,7 +47,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-004
+REE inter-governance work item: IGW-20260803-005
 Title: Governance decision: SD-087
 Lane: governance | Skill: /governance
 Status: ready
@@ -63,7 +61,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-206 -- Implement substrate: ARC-046 (unblocks ARC-046)
+### IGW-20260803-208 -- Implement substrate: ARC-046 (unblocks ARC-046)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -72,7 +70,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-206
+REE inter-governance work item: IGW-20260803-208
 Title: Implement substrate: ARC-046 (unblocks ARC-046)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -87,7 +85,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-208 -- Implement substrate: escape-affordance-bridge (unblocks ARC-060)
+### IGW-20260803-210 -- Implement substrate: escape-affordance-bridge (unblocks ARC-060)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: V3-EXQ-603l scored 4-arm escape-affordance-bridge behavioural validation must clear G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY before ready=True. Both non-vacuity readiness prereqs are now GREEN: relief ha; SD-058 [no-substrate-entry]: SD-058; MECH-357 [no-substrate-entry]: MECH-357; MECH-303 [no-substrate-entry]: MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry]: SD-011 (z_harm_a)
@@ -96,7 +94,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-208
+REE inter-governance work item: IGW-20260803-210
 Title: Implement substrate: escape-affordance-bridge (unblocks ARC-060)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -111,7 +109,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-210 -- Implement substrate: ARC-062 (unblocks ARC-062)
+### IGW-20260803-212 -- Implement substrate: ARC-062 (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready=false (no ready_blocked_by detail)
@@ -120,7 +118,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-210
+REE inter-governance work item: IGW-20260803-212
 Title: Implement substrate: ARC-062 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -135,7 +133,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-211 -- Implement substrate: SD-054 (unblocks ARC-062)
+### IGW-20260803-213 -- Implement substrate: SD-054 (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: V3-EXQ-543b PASS on the new gated-policy + reef + hazard_food_attraction substrate stack.; ARC-062 [implemented]
@@ -144,7 +142,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-211
+REE inter-governance work item: IGW-20260803-213
 Title: Implement substrate: SD-054 (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -159,7 +157,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-212 -- Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
+### IGW-20260803-214 -- Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: RECOMPUTED 2026-07-06 (session ecstatic-pare-45f7ad). Both selection-face levers are BUILT + VALIDATED + PROMOTED-provisional: MECH-448 (demotion; V3-EXQ-689d PASS, promoted governance-cycle-20260621T
@@ -168,7 +166,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-212
+REE inter-governance work item: IGW-20260803-214
 Title: Implement substrate: f_dominance_conversion_ceiling (unblocks ARC-062)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -183,7 +181,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-216 -- Implement substrate: v4_loop_segregation (unblocks ARC-108)
+### IGW-20260803-218 -- Implement substrate: v4_loop_segregation (unblocks ARC-108)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready_blocked_by: V3-generation substrate (REAPPOINTED V4->V3 2026-06-24, user-directed): recouped onto the V3 critical path because it attacks MECH-439, the standing V3 conversion-ceiling closure blocker. Built/V3-fro; ARC-109 [no-substrate-entry]: ARC-109 (D1/D2 population split -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 2026-06-27;; MECH-452 [no-substrate-entry]: MECH-452 (loop-local eligibility traces -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 202; MECH-451 [no-substrate-entry]: MECH-451 (intermediate finer-channel falsifier -- V3 cheap rung; exhaust first, may pre-empt this build)
@@ -192,7 +190,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-216
+REE inter-governance work item: IGW-20260803-218
 Title: Implement substrate: v4_loop_segregation (unblocks ARC-108)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -207,7 +205,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-219 -- Implement substrate: SD-MEL-CONSUMER (unblocks INV-050)
+### IGW-20260803-221 -- Implement substrate: SD-MEL-CONSUMER (unblocks INV-050)
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
 - **Blocked by:** ready=false (no ready_blocked_by detail)
@@ -216,7 +214,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-219
+REE inter-governance work item: IGW-20260803-221
 Title: Implement substrate: SD-MEL-CONSUMER (unblocks INV-050)
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -231,7 +229,31 @@ Instructions:
 
 </details>
 
-### IGW-20260802-097 -- Inferred state must not collapse to perceived observation (invariant)
+### IGW-20260803-224 -- Implement substrate: INV091-NULL-VALIDATION-RUN-LENGTH (unblocks INV-091)
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 20 | **Generation:** v3
+- **Blocked by:** ready=false (no ready_blocked_by detail)
+- **Why now:** substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of INV-091. See blocked_by.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260803-224
+Title: Implement substrate: INV091-NULL-VALIDATION-RUN-LENGTH (unblocks INV-091)
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: INV-091
+Blocked by: ready=false (no ready_blocked_by detail)
+Why now: substrate_queue entry status=implemented with 1 unresolved prerequisite(s); blocks retest of INV-091. See blocked_by.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260803-098 -- Inferred state must not collapse to perceived observation (invariant)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 25 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-2
@@ -240,7 +262,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-097
+REE inter-governance work item: IGW-20260803-098
 Title: Inferred state must not collapse to perceived observation (invariant)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -256,7 +278,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-108 -- Enabling-conditions register: the pre-linguistic substrate inventory communication needs before it can bootstrap
+### IGW-20260803-109 -- Enabling-conditions register: the pre-linguistic substrate inventory communication needs before it can bootstrap
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 25 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-2
@@ -265,7 +287,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-108
+REE inter-governance work item: IGW-20260803-109
 Title: Enabling-conditions register: the pre-linguistic substrate inventory communication needs before it can bootstrap
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -281,7 +303,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-148 -- PILLAR 1 -- token-instance object-file substrate (permanence through occlusion)
+### IGW-20260803-149 -- PILLAR 1 -- token-instance object-file substrate (permanence through occlusion)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 25 | **Generation:** v4
 - **Gap(s):** object_representation_v4:OBJ-2
@@ -290,7 +312,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-148
+REE inter-governance work item: IGW-20260803-149
 Title: PILLAR 1 -- token-instance object-file substrate (permanence through occlusion)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -306,7 +328,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-155 -- PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientation signal as the earliest V4 sense
+### IGW-20260803-156 -- PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientation signal as the earliest V4 sense
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 25 | **Generation:** v4
 - **Gap(s):** perceptual_adaptors_v4:PA-2
@@ -315,7 +337,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-155
+REE inter-governance work item: IGW-20260803-156
 Title: PILLAR A -- low-adaptor (smell/gradient) primitive: near-raw orientation signal as the earliest V4 sense
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -331,7 +353,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-200 -- Substrate (blocked): SD-033b
+### IGW-20260803-201 -- Substrate (blocked): SD-033b
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 25 | **Generation:** v3
 - **Blocked by:** SD-033 [unknown]; MECH-263 [no-substrate-entry]: MECH-263; MECH-261 [no-substrate-entry]: MECH-261
@@ -340,7 +362,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-200
+REE inter-governance work item: IGW-20260803-201
 Title: Substrate (blocked): SD-033b
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -355,7 +377,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-201 -- Substrate (blocked): scaffolded_sd054_onboarding
+### IGW-20260803-202 -- Substrate (blocked): scaffolded_sd054_onboarding
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 25 | **Generation:** v3
 - **Blocked by:** SD-054 [candidate_v3_pending]; MECH-307 [implemented]
@@ -364,7 +386,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-201
+REE inter-governance work item: IGW-20260803-202
 Title: Substrate (blocked): scaffolded_sd054_onboarding
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -379,7 +401,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-202 -- Substrate ready: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION
+### IGW-20260803-203 -- Substrate ready: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
 - **Why now:** ThetaBuffer.consolidation_summary() and set_consolidation_mode() (ree_core/latent/theta_buffer.py:146,159) already implement a V3 proxy for spindle-mediated content packaging but are never called from
@@ -387,7 +409,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-202
+REE inter-governance work item: IGW-20260803-203
 Title: Substrate ready: MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -401,7 +423,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-203 -- Substrate ready: SD-091
+### IGW-20260803-204 -- Substrate ready: SD-091
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
 - **Why now:** See docs/architecture/sd_091_coalition_topology_control.md Sections 1-3 and 'Minimum-viable V3 implementation path' for the full ordered build: new ree_core/claustrum/ module (control_demand.py Contro
@@ -409,7 +431,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-203
+REE inter-governance work item: IGW-20260803-204
 Title: Substrate ready: SD-091
 Lane: substrate | Skill: /implement-substrate
 Status: ready
@@ -423,7 +445,29 @@ Instructions:
 
 </details>
 
-### IGW-20260802-205 -- Retest after substrate: ARC-046
+### IGW-20260803-205 -- Substrate ready: SD-092
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** ready | **Priority:** 25 | **Generation:** v3
+- **Why now:** See docs/architecture/sd_092_cross_level_subgoal_credit.md. GoalState gains a lazily allocated PARENT attractor (_z_goal_parent, None unless GoalConfig.use_hierarchical_goal_credit is set) and credit_
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260803-205
+Title: Substrate ready: SD-092
+Lane: substrate | Skill: /implement-substrate
+Status: ready
+Claims: SD-092, MECH-427, MECH-428
+Why now: See docs/architecture/sd_092_cross_level_subgoal_credit.md. GoalState gains a lazily allocated PARENT attractor (_z_goal_parent, None unless GoalConfig.use_hierarchical_goal_credit is set) and credit_
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260803-207 -- Retest after substrate: ARC-046
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** ARC-046 [implemented]; free-text (via ARC-046): goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
@@ -432,7 +476,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-205
+REE inter-governance work item: IGW-20260803-207
 Title: Retest after substrate: ARC-046
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -448,7 +492,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-207 -- Retest after substrate: ARC-060
+### IGW-20260803-209 -- Retest after substrate: ARC-060
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)
@@ -457,7 +501,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-207
+REE inter-governance work item: IGW-20260803-209
 Title: Retest after substrate: ARC-060
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -473,7 +517,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-209 -- Retest after substrate: ARC-062
+### IGW-20260803-211 -- Retest after substrate: ARC-062
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** ARC-062 [implemented]; SD-054 [candidate_v3_pending]; ARC-062 [implemented] (transitive via SD-054); f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]
@@ -482,7 +526,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-209
+REE inter-governance work item: IGW-20260803-211
 Title: Retest after substrate: ARC-062
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -498,7 +542,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-213 -- Retest after substrate: ARC-063
+### IGW-20260803-215 -- Retest after substrate: ARC-063
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** f_dominance_conversion_ceiling [mech448_lead_lever_BUILT_VALIDATED_PROMOTED_provisional__mech449_gonogo_leg_BUILT_falsifier_V3_EXQ_689g_RAN_PASS_PROMOTED_provisional_2026_06_22__selection_face_conversion_ceiling_LIFTED_on_GAP_A_foraging_substrate__CONVERSION_ROUTE_OF_RECORD__cross_loop_arbitration_reweighting_route_EXHAUSTED_709_711_713_autopsy_2026_07_05__no_new_build_owed__downstream_behavioural_retests_654h_485i_625e_RAN_FAIL_substrate_not_ready_requeue__445h_RAN_weakens__GAP_A_lift_generalisation_NOT_yet_demonstrated__decommit_release_duration_face_rung6_460_lineage_460h_460i_RAN_substrate_not_ready__readiness_still_unmet__PROMOTES_NOTHING]
@@ -507,7 +551,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-213
+REE inter-governance work item: IGW-20260803-215
 Title: Retest after substrate: ARC-063
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -523,7 +567,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-214 -- Retest after substrate: ARC-068
+### IGW-20260803-216 -- Retest after substrate: ARC-068
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** escape-affordance-bridge [IMPLEMENTED (affordance-indexed avoidance credit wired; MECH-302 relief half + MECH-303/304 safety half built+wired into instrumental avoidance). SAFETY HALF VALIDATED at the readiness layer by V3-EXQ-603j PASS 2026-06-09 (trained safety_signal 0.893 >= 0.5 floor + under-threat gate 0.584 >= 0.1; load-bearing G1_on_safety_credits_via_trained_signal PASS; claim_ids=[], non_contributory, reviewed). Relief half already credited non-vacuously (603i relief_credit_frac 0.67). Both bridge halves now credit; the scored 4-arm behavioural validation V3-EXQ-603l (ARM_BASE_IA_ONLY / ARM_RELIEF_BRIDGE / ARM_SAFETY_BRIDGE / ARM_RELIEF_SAFETY_BRIDGE; G_H >= 2/3 AND G_H > ARM_BASE_IA_ONLY) is IN FLIGHT. ready STAYS false until 603l scores.]; SD-058 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-058; MECH-357 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-357; MECH-303 [no-substrate-entry] (transitive via escape-affordance-bridge): MECH-303/304 (safety; built+wired; trained-signal validated V3-EXQ-603j); SD-011 [no-substrate-entry] (transitive via escape-affordance-bridge): SD-011 (z_harm_a)
@@ -532,7 +576,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-214
+REE inter-governance work item: IGW-20260803-216
 Title: Retest after substrate: ARC-068
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -548,7 +592,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-215 -- Retest after substrate: ARC-108
+### IGW-20260803-217 -- Retest after substrate: ARC-108
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** v4_loop_segregation [implemented]; ARC-109 [no-substrate-entry] (transitive via v4_loop_segregation): ARC-109 (D1/D2 population split -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 2026-06-27;; MECH-452 [no-substrate-entry] (transitive via v4_loop_segregation): MECH-452 (loop-local eligibility traces -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 202; MECH-451 [no-substrate-entry] (transitive via v4_loop_segregation): MECH-451 (intermediate finer-channel falsifier -- V3 cheap rung; exhaust first, may pre-empt this build)
@@ -557,7 +601,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-215
+REE inter-governance work item: IGW-20260803-217
 Title: Retest after substrate: ARC-108
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -573,7 +617,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-217 -- Retest after substrate: ARC-110
+### IGW-20260803-219 -- Retest after substrate: ARC-110
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** v4_loop_segregation [implemented]; ARC-109 [no-substrate-entry] (transitive via v4_loop_segregation): ARC-109 (D1/D2 population split -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 2026-06-27;; MECH-452 [no-substrate-entry] (transitive via v4_loop_segregation): MECH-452 (loop-local eligibility traces -- V3 built co-requisite, reappointed V4->V3 2026-06-24; built no-op-default 202; MECH-451 [no-substrate-entry] (transitive via v4_loop_segregation): MECH-451 (intermediate finer-channel falsifier -- V3 cheap rung; exhaust first, may pre-empt this build)
@@ -582,7 +626,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-217
+REE inter-governance work item: IGW-20260803-219
 Title: Retest after substrate: ARC-110
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -598,7 +642,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-218 -- Retest after substrate: INV-050
+### IGW-20260803-220 -- Retest after substrate: INV-050
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
 - **Blocked by:** SD-MEL-CONSUMER [implemented]
@@ -607,7 +651,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-218
+REE inter-governance work item: IGW-20260803-220
 Title: Retest after substrate: INV-050
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -623,21 +667,21 @@ Instructions:
 
 </details>
 
-### IGW-20260802-220 -- Retest after substrate: INV-089
+### IGW-20260803-222 -- Retest after substrate: INV-089
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
-- **Blocked by:** experiment_proposals.v1.json EXP-0080 status=blocked_substrate (backlog_id EVB-0445); see the proposal record for adjudication detail.
+- **Blocked by:** experiment_proposals.v1.json EXP-0083 status=blocked_substrate (backlog_id EVB-0445); see the proposal record for adjudication detail.
 - **Why now:** A prior investigation already adjudicated the backing proposal as blocked_substrate -- see blocked_by. Do not re-investigate; re-run /queue-experiment once the named blocker(s) are built.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-220
+REE inter-governance work item: IGW-20260803-222
 Title: Retest after substrate: INV-089
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
 Claims: INV-089
-Blocked by: experiment_proposals.v1.json EXP-0080 status=blocked_substrate (backlog_id EVB-0445); see the proposal record for adjudication detail.
+Blocked by: experiment_proposals.v1.json EXP-0083 status=blocked_substrate (backlog_id EVB-0445); see the proposal record for adjudication detail.
 Why now: A prior investigation already adjudicated the backing proposal as blocked_substrate -- see blocked_by. Do not re-investigate; re-run /queue-experiment once the named blocker(s) are built.
 
 Instructions:
@@ -648,20 +692,22 @@ Instructions:
 
 </details>
 
-### IGW-20260802-221 -- Retest after substrate: INV-091
+### IGW-20260803-223 -- Retest after substrate: INV-091
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 28 | **Generation:** v3
-- **Why now:** claims.yaml pending_retest_after_substrate=true.
+- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 28 | **Generation:** v3
+- **Blocked by:** INV091-NULL-VALIDATION-RUN-LENGTH [implemented]
+- **Why now:** Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-221
+REE inter-governance work item: IGW-20260803-223
 Title: Retest after substrate: INV-091
 Lane: experiment | Skill: /queue-experiment
-Status: ready
+Status: blocked
 Claims: INV-091
-Why now: claims.yaml pending_retest_after_substrate=true.
+Blocked by: INV091-NULL-VALIDATION-RUN-LENGTH [implemented]
+Why now: Blocked by 1 unresolved substrate prerequisite(s) -- see blocked_by.
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -671,7 +717,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-019 -- Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occupancy after 802
+### IGW-20260803-020 -- Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occupancy after 802
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** arc_005_control_plane_routing:GAP-B
@@ -681,7 +727,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-019
+REE inter-governance work item: IGW-20260803-020
 Title: Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to mode-occupancy after 802
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -699,7 +745,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-021 -- MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
+### IGW-20260803-022 -- MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-B
@@ -708,7 +754,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-021
+REE inter-governance work item: IGW-20260803-022
 Title: MECH-309/ARC-062 behavioural falsifier now unblocked by CandidateRuleField + GAP-A + authority readiness
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -724,7 +770,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-033 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
+### IGW-20260803-034 -- Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** behavioral_diversity_isolation:GAP-B
@@ -733,7 +779,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-033
+REE inter-governance work item: IGW-20260803-034
 Title: Theory 2 / Layer B: E3 scoring collapses diverse candidates to one (MECH-341)
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -749,7 +795,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-035 -- F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root behind GAP-A's local conversion ceiling
+### IGW-20260803-036 -- F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root behind GAP-A's local conversion ceiling
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** behavioral_diversity_isolation:GAP-I
@@ -758,7 +804,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-035
+REE inter-governance work item: IGW-20260803-036
 Title: F-dominance committed-selection variance monopoly (MECH-439) -- the GENERAL root behind GAP-A's local conversion ceiling
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -774,7 +820,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-036 -- ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling step -- the next MECH-439 attack after GAP-J. Turn
+### IGW-20260803-037 -- ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling step -- the next MECH-439 attack after GAP-J. Turn
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** behavioral_diversity_isolation:GAP-K
@@ -783,7 +829,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-036
+REE inter-governance work item: IGW-20260803-037
 Title: ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling step -- the next MECH-439 attack after GAP-J. Turn
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -799,7 +845,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-044 -- Umbrella: assemble the multi-face substrate that converts per-candidate diversity to committed-class diversity
+### IGW-20260803-045 -- Umbrella: assemble the multi-face substrate that converts per-candidate diversity to committed-class diversity
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:CAMPAIGN
@@ -808,7 +854,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-044
+REE inter-governance work item: IGW-20260803-045
 Title: Umbrella: assemble the multi-face substrate that converts per-candidate diversity to committed-class diversity
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -823,7 +869,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-045 -- Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go compound or cancel at committed-class entropy (C2
+### IGW-20260803-046 -- Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go compound or cancel at committed-class entropy (C2
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:P-comp
@@ -832,7 +878,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-045
+REE inter-governance work item: IGW-20260803-046
 Title: Selection-face composition: does MECH-448 demotion x MECH-449 Go/No-Go compound or cancel at committed-class entropy (C2
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -847,7 +893,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-046 -- Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-comm
+### IGW-20260803-047 -- Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-comm
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:P2-rootC
@@ -856,7 +902,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-046
+REE inter-governance work item: IGW-20260803-047
 Title: Commit-duration face (root C, MECH-445/446): de-commit authority on a substrate where natural-commit and closure-de-comm
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -871,7 +917,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-048 -- The real test: co-armed full-stack arm (demotion + Go/No-Go + floor + root-C + OFC ON), sweep use_candidate_rule_field, 
+### IGW-20260803-049 -- The real test: co-armed full-stack arm (demotion + Go/No-Go + floor + root-C + OFC ON), sweep use_candidate_rule_field, 
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:FULLSTACK
@@ -880,7 +926,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-048
+REE inter-governance work item: IGW-20260803-049
 Title: The real test: co-armed full-stack arm (demotion + Go/No-Go + floor + root-C + OFC ON), sweep use_candidate_rule_field, 
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -895,7 +941,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-049 -- Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic BG arbitration LEARNABLE. The selection face was n
+### IGW-20260803-050 -- Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic BG arbitration LEARNABLE. The selection face was n
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:P4-learned-gating
@@ -904,7 +950,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-049
+REE inter-governance work item: IGW-20260803-050
 Title: Learned-gating face (ARC-108 / MECH-450): make the ARC-107 arithmetic BG arbitration LEARNABLE. The selection face was n
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -919,7 +965,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-050 -- GENERATION face (the missing 6th face, MECH-458): per-candidate strategy diversity may be generation-LIMITED, not merely
+### IGW-20260803-051 -- GENERATION face (the missing 6th face, MECH-458): per-candidate strategy diversity may be generation-LIMITED, not merely
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:GENERATION
@@ -928,7 +974,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-050
+REE inter-governance work item: IGW-20260803-051
 Title: GENERATION face (the missing 6th face, MECH-458): per-candidate strategy diversity may be generation-LIMITED, not merely
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -943,7 +989,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-142 -- Substrate-vocabulary expansion is the gating fork (atomic-only V3 has no second granularity)
+### IGW-20260803-143 -- Substrate-vocabulary expansion is the gating fork (atomic-only V3 has no second granularity)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked_pending_substrate | **Priority:** 30 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-1
@@ -952,7 +998,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-142
+REE inter-governance work item: IGW-20260803-143
 Title: Substrate-vocabulary expansion is the gating fork (atomic-only V3 has no second granularity)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked_pending_substrate
@@ -968,7 +1014,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-175 -- Capability floor before structure -- isolate can-it-act from does-structure-help
+### IGW-20260803-176 -- Capability floor before structure -- isolate can-it-act from does-structure-help
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 30 | **Generation:** meta
 - **Gap(s):** WS-1
@@ -977,7 +1023,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-175
+REE inter-governance work item: IGW-20260803-176
 Title: Capability floor before structure -- isolate can-it-act from does-structure-help
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -992,7 +1038,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-185 -- Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curric
+### IGW-20260803-186 -- Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curric
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** assembling | **Priority:** 30 | **Generation:** v3
 - **Gap(s):** sd_037_axis_b:P1b
@@ -1002,7 +1048,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-185
+REE inter-governance work item: IGW-20260803-186
 Title: Phase 1b -- substrate-readiness diagnostic: re-run the V3-EXQ-620 protocol under SD-029 scheduled-external-hazard curric
 Lane: experiment | Skill: /queue-experiment
 Status: assembling
@@ -1020,7 +1066,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-193 -- z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability
+### IGW-20260803-194 -- z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 30 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-3
@@ -1029,7 +1075,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-193
+REE inter-governance work item: IGW-20260803-194
 Title: z_self enters E3 viability scoring (DR-10): bodily state modulates trajectory viability
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -1045,7 +1091,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-125 -- False-linking-risk / reality-coherence cost term (the single aspect with no REE home)
+### IGW-20260803-126 -- False-linking-risk / reality-coherence cost term (the single aspect with no REE home)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 35 | **Generation:** v4
 - **Gap(s):** memory_lifecycle_v4:MEM-3
@@ -1054,7 +1100,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-125
+REE inter-governance work item: IGW-20260803-126
 Title: False-linking-risk / reality-coherence cost term (the single aspect with no REE home)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -1070,7 +1116,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-170 -- Frame-tag failure modes: derealization, delusion, commitment-gate (developmental etiology)
+### IGW-20260803-171 -- Frame-tag failure modes: derealization, delusion, commitment-gate (developmental etiology)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 35 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:FRAME-TAG
@@ -1079,7 +1125,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-170
+REE inter-governance work item: IGW-20260803-171
 Title: Frame-tag failure modes: derealization, delusion, commitment-gate (developmental etiology)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -1095,7 +1141,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-176 -- Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)
+### IGW-20260803-177 -- Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 35 | **Generation:** meta
 - **Gap(s):** WS-2
@@ -1104,7 +1150,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-176
+REE inter-governance work item: IGW-20260803-177
 Title: Ceiling-claim demotion rule (new GOV-* pre-registered falsification/demotion rule)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -1119,7 +1165,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-204 -- Queue depth low (2 pending)
+### IGW-20260803-206 -- Queue depth low (0 pending)
 
 - **Lane:** ops | **Skill:** `(manual)` | **Status:** ready | **Priority:** 35 | **Generation:** v3
 - **Why now:** Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1127,8 +1173,8 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-204
-Title: Queue depth low (2 pending)
+REE inter-governance work item: IGW-20260803-206
+Title: Queue depth low (0 pending)
 Lane: ops | Skill: (manual)
 Status: ready
 Why now: Fewer than 3 unclaimed queue items -- consider /queue-experiment for ready plan gaps.
@@ -1140,7 +1186,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-006 -- Compositional generalisation over named primitives (recombine grounded symbols to novel combinations)
+### IGW-20260803-007 -- Compositional generalisation over named primitives (recombine grounded symbols to novel combinations)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** abstract_relational_reasoning_v6:ARR-2
@@ -1149,7 +1195,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-006
+REE inter-governance work item: IGW-20260803-007
 Title: Compositional generalisation over named primitives (recombine grounded symbols to novel combinations)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1165,7 +1211,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-010 -- Symbolic reasoning cannot override embodied harm sensing (the V6 instance of INV-007)
+### IGW-20260803-011 -- Symbolic reasoning cannot override embodied harm sensing (the V6 instance of INV-007)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** abstract_relational_reasoning_v6:ARR-6
@@ -1175,7 +1221,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-010
+REE inter-governance work item: IGW-20260803-011
 Title: Symbolic reasoning cannot override embodied harm sensing (the V6 instance of INV-007)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1192,7 +1238,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-011 -- FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)
+### IGW-20260803-012 -- FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-1
@@ -1201,7 +1247,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-011
+REE inter-governance work item: IGW-20260803-012
 Title: FOUNDATION -- per-candidate multi-channel affect vector substrate (MECH-359)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1217,7 +1263,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-026 -- Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulati
+### IGW-20260803-027 -- Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulati
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-2
@@ -1226,7 +1272,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-026
+REE inter-governance work item: IGW-20260803-027
 Title: Unified autobiographical event-token store (ARC-085): ONE self-tagged store backing both replay and prospective simulati
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1242,7 +1288,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-027 -- Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)
+### IGW-20260803-028 -- Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-3
@@ -1252,7 +1298,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-027
+REE inter-governance work item: IGW-20260803-028
 Title: Provenance-bearing event token + one-way committed-vs-imagined gate (MECH-365)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1269,7 +1315,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-053 -- Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)
+### IGW-20260803-054 -- Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-2
@@ -1278,7 +1324,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-053
+REE inter-governance work item: IGW-20260803-054
 Title: Graded action-status + self-reference-frame vocabulary decision (Q-068 fork)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1294,7 +1340,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-054 -- PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds
+### IGW-20260803-055 -- PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-3
@@ -1304,7 +1350,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-054
+REE inter-governance work item: IGW-20260803-055
 Title: PILLAR -- externalised DMN play scaffold (ARC-090): simulation pushed outward into objects/roles/as-if worlds
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1321,7 +1367,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-059 -- Multidrive arbitration / orchestration policy (which drive wins when several are active)
+### IGW-20260803-060 -- Multidrive arbitration / orchestration policy (which drive wins when several are active)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** drives_motivation_v4:DRV-2
@@ -1330,7 +1376,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-059
+REE inter-governance work item: IGW-20260803-060
 Title: Multidrive arbitration / orchestration policy (which drive wins when several are active)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1346,7 +1392,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-063 -- Multi-agent D_V substrate: extend temporal-depth coherence optimisation over self AND represented others (ARC-056 entry)
+### IGW-20260803-064 -- Multi-agent D_V substrate: extend temporal-depth coherence optimisation over self AND represented others (ARC-056 entry)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-1
@@ -1355,7 +1401,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-063
+REE inter-governance work item: IGW-20260803-064
 Title: Multi-agent D_V substrate: extend temporal-depth coherence optimisation over self AND represented others (ARC-056 entry)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1371,7 +1417,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-064 -- Typed causal-attribution ontology: ownership tags for self / world / body / model / commitment / OTHER / shared / accide
+### IGW-20260803-065 -- Typed causal-attribution ontology: ownership tags for self / world / body / model / commitment / OTHER / shared / accide
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-2
@@ -1381,7 +1427,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-064
+REE inter-governance work item: IGW-20260803-065
 Title: Typed causal-attribution ontology: ownership tags for self / world / body / model / commitment / OTHER / shared / accide
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1398,7 +1444,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-065 -- Guilt-as-repair routing: self-attributed harm opens repair-search + policy-update pathways (E3 repair-trajectory generat
+### IGW-20260803-066 -- Guilt-as-repair routing: self-attributed harm opens repair-search + policy-update pathways (E3 repair-trajectory generat
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-3
@@ -1408,7 +1454,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-065
+REE inter-governance work item: IGW-20260803-066
 Title: Guilt-as-repair routing: self-attributed harm opens repair-search + policy-update pathways (E3 repair-trajectory generat
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1425,7 +1471,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-070 -- Stream-binding mechanism: route own motivational-affective streams across the other-model
+### IGW-20260803-071 -- Stream-binding mechanism: route own motivational-affective streams across the other-model
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** fast_empathy_v5:EMP-3
@@ -1434,7 +1480,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-070
+REE inter-governance work item: IGW-20260803-071
 Title: Stream-binding mechanism: route own motivational-affective streams across the other-model
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1450,7 +1496,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-071 -- Falsifiable dissociation: prediction != reciprocity-reward != residue-aware repair (A/B/C/D)
+### IGW-20260803-072 -- Falsifiable dissociation: prediction != reciprocity-reward != residue-aware repair (A/B/C/D)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** fast_empathy_v5:EMP-4
@@ -1460,7 +1506,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-071
+REE inter-governance work item: IGW-20260803-072
 Title: Falsifiable dissociation: prediction != reciprocity-reward != residue-aware repair (A/B/C/D)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1477,7 +1523,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-074 -- Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)
+### IGW-20260803-075 -- Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v3
 - **Gap(s):** global_workspace_jlens:A
@@ -1486,7 +1532,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-074
+REE inter-governance work item: IGW-20260803-075
 Title: Experiment A -- REE-native J-lens dispositional readout (does REE have a J-space?)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1502,7 +1548,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-076 -- Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD-064 falsifier)
+### IGW-20260803-077 -- Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD-064 falsifier)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v3
 - **Gap(s):** global_workspace_jlens:B
@@ -1512,7 +1558,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-076
+REE inter-governance work item: IGW-20260803-077
 Title: Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD-064 falsifier)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1529,7 +1575,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-078 -- PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)
+### IGW-20260803-079 -- PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** goal_deliberation_v4:GDL-2
@@ -1538,7 +1584,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-078
+REE inter-governance work item: IGW-20260803-079
 Title: PILLAR 1 -- frontopolar-analog deliberation substrate (SD-033e module + mode transitions)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1554,7 +1600,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-084 -- Predicate-argument-event bridge to ARC-063 CandidateRuleField: render minted rules as 'if context, then action-object, c
+### IGW-20260803-085 -- Predicate-argument-event bridge to ARC-063 CandidateRuleField: render minted rules as 'if context, then action-object, c
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** grammar_primitive_mining_v6:GRAM-3
@@ -1564,7 +1610,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-084
+REE inter-governance work item: IGW-20260803-085
 Title: Predicate-argument-event bridge to ARC-063 CandidateRuleField: render minted rules as 'if context, then action-object, c
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1581,7 +1627,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-087 -- Language-bootstrap-from-ecology: proto-language stabilises from grounded proto-communication in the social ecology (gram
+### IGW-20260803-088 -- Language-bootstrap-from-ecology: proto-language stabilises from grounded proto-communication in the social ecology (gram
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** grammar_primitive_mining_v6:GRAM-6
@@ -1591,7 +1637,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-087
+REE inter-governance work item: IGW-20260803-088
 Title: Language-bootstrap-from-ecology: proto-language stabilises from grounded proto-communication in the social ecology (gram
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1608,7 +1654,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-088 -- GATE -- multi-step hippocampally-planned system validated in V3 (MECH-163)
+### IGW-20260803-089 -- GATE -- multi-step hippocampally-planned system validated in V3 (MECH-163)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-1
@@ -1617,7 +1663,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-088
+REE inter-governance work item: IGW-20260803-089
 Title: GATE -- multi-step hippocampally-planned system validated in V3 (MECH-163)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1633,7 +1679,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-089 -- PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)
+### IGW-20260803-090 -- PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-2
@@ -1643,7 +1689,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-089
+REE inter-governance work item: IGW-20260803-090
 Title: PILLAR -- dorsal/ventral hippocampal functional segregation (ARC-040)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1660,7 +1706,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-098 -- Belief-state hypothesis set (top-k latent-state hypotheses with precision)
+### IGW-20260803-099 -- Belief-state hypothesis set (top-k latent-state hypotheses with precision)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-3
@@ -1670,7 +1716,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-098
+REE inter-governance work item: IGW-20260803-099
 Title: Belief-state hypothesis set (top-k latent-state hypotheses with precision)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1687,7 +1733,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-100 -- Safety-route inference (infer route to safety from partial map/cue/gradient)
+### IGW-20260803-101 -- Safety-route inference (infer route to safety from partial map/cue/gradient)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-5
@@ -1697,7 +1743,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-100
+REE inter-governance work item: IGW-20260803-101
 Title: Safety-route inference (infer route to safety from partial map/cue/gradient)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1714,7 +1760,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-103 -- Pre-linguistic-grounding gate: no affect adaptor before object/self/other primitives exist (the load-bearing ordering)
+### IGW-20260803-104 -- Pre-linguistic-grounding gate: no affect adaptor before object/self/other primitives exist (the load-bearing ordering)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_affect_adaptor_v6:LAA-1
@@ -1723,7 +1769,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-103
+REE inter-governance work item: IGW-20260803-104
 Title: Pre-linguistic-grounding gate: no affect adaptor before object/self/other primitives exist (the load-bearing ordering)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1739,7 +1785,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-104 -- Uncertainty-propagation invariant: parsed affect enters as a hypothesis (distribution), NEVER as ground truth
+### IGW-20260803-105 -- Uncertainty-propagation invariant: parsed affect enters as a hypothesis (distribution), NEVER as ground truth
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_affect_adaptor_v6:LAA-2
@@ -1749,7 +1795,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-104
+REE inter-governance work item: IGW-20260803-105
 Title: Uncertainty-propagation invariant: parsed affect enters as a hypothesis (distribution), NEVER as ground truth
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1766,7 +1812,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-105 -- The adaptor itself: a lightweight LanguageAffectAdaptor (SLM-class) text -> distribution-over-affect
+### IGW-20260803-106 -- The adaptor itself: a lightweight LanguageAffectAdaptor (SLM-class) text -> distribution-over-affect
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_affect_adaptor_v6:LAA-3
@@ -1776,7 +1822,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-105
+REE inter-governance work item: IGW-20260803-106
 Title: The adaptor itself: a lightweight LanguageAffectAdaptor (SLM-class) text -> distribution-over-affect
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1793,7 +1839,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-109 -- Minimal signalling channel: smallest signal that lets one agent alter another's attention or action (MECH-014)
+### IGW-20260803-110 -- Minimal signalling channel: smallest signal that lets one agent alter another's attention or action (MECH-014)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-3
@@ -1803,7 +1849,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-109
+REE inter-governance work item: IGW-20260803-110
 Title: Minimal signalling channel: smallest signal that lets one agent alter another's attention or action (MECH-014)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1820,7 +1866,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-110 -- Joint-attention coordination games: signalling emerges under partial observability + coordination pressure (the emergenc
+### IGW-20260803-111 -- Joint-attention coordination games: signalling emerges under partial observability + coordination pressure (the emergenc
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-4
@@ -1830,7 +1876,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-110
+REE inter-governance work item: IGW-20260803-111
 Title: Joint-attention coordination games: signalling emerges under partial observability + coordination pressure (the emergenc
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1847,7 +1893,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-114 -- Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)
+### IGW-20260803-115 -- Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_trust_deception_institutions_v6:LTI-2
@@ -1856,7 +1902,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-114
+REE inter-governance work item: IGW-20260803-115
 Title: Trust-calibration over linguistic signals (sender-reliability estimate weights symbolic updates)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1872,7 +1918,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-115 -- Deception detection / honest-signal pressure (deception = modelling another model)
+### IGW-20260803-116 -- Deception detection / honest-signal pressure (deception = modelling another model)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v6
 - **Gap(s):** language_trust_deception_institutions_v6:LTI-3
@@ -1882,7 +1928,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-115
+REE inter-governance work item: IGW-20260803-116
 Title: Deception detection / honest-signal pressure (deception = modelling another model)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1899,7 +1945,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-118 -- Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- the prerequisite OTHER
+### IGW-20260803-119 -- Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- the prerequisite OTHER
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-1
@@ -1908,7 +1954,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-118
+REE inter-governance work item: IGW-20260803-119
 Title: Caregiver/multi-agent substrate exists (ARC-047 SocialGridWorld) -- the prerequisite OTHER
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1924,7 +1970,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-119 -- Loveability internalisation: care received as APPLICABLE-TO-SELF (close the MECH-158 failure)
+### IGW-20260803-120 -- Loveability internalisation: care received as APPLICABLE-TO-SELF (close the MECH-158 failure)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-2
@@ -1934,7 +1980,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-119
+REE inter-governance work item: IGW-20260803-120
 Title: Loveability internalisation: care received as APPLICABLE-TO-SELF (close the MECH-158 failure)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1951,7 +1997,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-120 -- Live unethical affordance: harmful action representable as a chooseable possibility (not absent)
+### IGW-20260803-121 -- Live unethical affordance: harmful action representable as a chooseable possibility (not absent)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-3
@@ -1961,7 +2007,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-120
+REE inter-governance work item: IGW-20260803-121
 Title: Live unethical affordance: harmful action representable as a chooseable possibility (not absent)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -1978,7 +2024,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-121 -- Correction without annihilation: caregiver correction updates rule/harm/residue models WITHOUT self-valence collapse
+### IGW-20260803-122 -- Correction without annihilation: caregiver correction updates rule/harm/residue models WITHOUT self-valence collapse
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-4
@@ -1988,7 +2034,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-121
+REE inter-governance work item: IGW-20260803-122
 Title: Correction without annihilation: caregiver correction updates rule/harm/residue models WITHOUT self-valence collapse
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2005,7 +2051,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-123 -- Ethical agency as care-biased choice among live alternatives (kindness is NOT constraint compliance)
+### IGW-20260803-124 -- Ethical agency as care-biased choice among live alternatives (kindness is NOT constraint compliance)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-6
@@ -2015,7 +2061,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-123
+REE inter-governance work item: IGW-20260803-124
 Title: Ethical agency as care-biased choice among live alternatives (kindness is NOT constraint compliance)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2032,7 +2078,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-128 -- Otherness inference: tag an entity OTHER_SELFLIKE without symbolic identity (MECH-031/032)
+### IGW-20260803-129 -- Otherness inference: tag an entity OTHER_SELFLIKE without symbolic identity (MECH-031/032)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-1
@@ -2041,7 +2087,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-128
+REE inter-governance work item: IGW-20260803-129
 Title: Otherness inference: tag an entity OTHER_SELFLIKE without symbolic identity (MECH-031/032)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2057,7 +2103,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-129 -- Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive clo
+### IGW-20260803-130 -- Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive clo
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-2
@@ -2067,7 +2113,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-129
+REE inter-governance work item: IGW-20260803-130
 Title: Reuse the self generative model to SIMULATE the other (ARC-010): shared L-space, reduced precision, no interoceptive clo
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2084,7 +2130,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-130 -- Precision-weighted coupling apparatus (ARC-010 signed coupling): the alpha_k / coupling-strength control that scales oth
+### IGW-20260803-131 -- Precision-weighted coupling apparatus (ARC-010 signed coupling): the alpha_k / coupling-strength control that scales oth
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-3
@@ -2094,7 +2140,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-130
+REE inter-governance work item: IGW-20260803-131
 Title: Precision-weighted coupling apparatus (ARC-010 signed coupling): the alpha_k / coupling-strength control that scales oth
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2111,7 +2157,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-131 -- Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm (INV-005, MECH-036)
+### IGW-20260803-132 -- Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm (INV-005, MECH-036)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-4
@@ -2121,7 +2167,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-131
+REE inter-governance work item: IGW-20260803-132
 Title: Empathy veto + harm-equivalence: predicted other-degradation treated as homologous to self-harm (INV-005, MECH-036)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2138,7 +2184,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-135 -- Multi-agent substrate: MultiAgentCausalGridWorldV4 + per-agent REEAgent instances + inter-agent arbitration
+### IGW-20260803-136 -- Multi-agent substrate: MultiAgentCausalGridWorldV4 + per-agent REEAgent instances + inter-agent arbitration
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-1
@@ -2147,7 +2193,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-135
+REE inter-governance work item: IGW-20260803-136
 Title: Multi-agent substrate: MultiAgentCausalGridWorldV4 + per-agent REEAgent instances + inter-agent arbitration
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2163,7 +2209,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-136 -- Per-agent observation + collision/cooperation arbitration: how agents perceive and act on each other
+### IGW-20260803-137 -- Per-agent observation + collision/cooperation arbitration: how agents perceive and act on each other
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-2
@@ -2173,7 +2219,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-136
+REE inter-governance work item: IGW-20260803-137
 Title: Per-agent observation + collision/cooperation arbitration: how agents perceive and act on each other
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2190,7 +2236,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-143 -- PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway
+### IGW-20260803-144 -- PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-2
@@ -2200,7 +2246,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-143
+REE inter-governance work item: IGW-20260803-144
 Title: PILLAR A -- action-chunk cache (SD-045): the first reusable-unit substrate, model-free habit pathway
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2217,7 +2263,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-147 -- PILLAR D -- theta-packaging + cognitive-map traversal scale to the active abstraction level (MECH-299 / MECH-300)
+### IGW-20260803-148 -- PILLAR D -- theta-packaging + cognitive-map traversal scale to the active abstraction level (MECH-299 / MECH-300)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-6
@@ -2227,7 +2273,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-147
+REE inter-governance work item: IGW-20260803-148
 Title: PILLAR D -- theta-packaging + cognitive-map traversal scale to the active abstraction level (MECH-299 / MECH-300)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2244,7 +2290,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-158 -- PILLAR C -- cross-modal negotiation currency: making heterogeneous sense geometries mutually negotiable in one world mod
+### IGW-20260803-159 -- PILLAR C -- cross-modal negotiation currency: making heterogeneous sense geometries mutually negotiable in one world mod
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** perceptual_adaptors_v4:PA-5
@@ -2254,7 +2300,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-158
+REE inter-governance work item: IGW-20260803-159
 Title: PILLAR C -- cross-modal negotiation currency: making heterogeneous sense geometries mutually negotiable in one world mod
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2271,7 +2317,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-160 -- Opening-vs-closure asymmetry framing + the V3-conservative-is-insufficient gate
+### IGW-20260803-161 -- Opening-vs-closure asymmetry framing + the V3-conservative-is-insufficient gate
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** plasticity_neuromodulation_v4:PLW-1
@@ -2280,7 +2326,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-160
+REE inter-governance work item: IGW-20260803-161
 Title: Opening-vs-closure asymmetry framing + the V3-conservative-is-insufficient gate
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2296,7 +2342,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-161 -- PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate
+### IGW-20260803-162 -- PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** plasticity_neuromodulation_v4:PLW-3
@@ -2305,7 +2351,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-161
+REE inter-governance work item: IGW-20260803-162
 Title: PILLAR A -- ACh-analog basal-forebrain plasticity-gain gate
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2321,7 +2367,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-179 -- Harm-to-agency signal: goal-interference over trajectory pairs (MECH-129), distinct from harm-to-agent
+### IGW-20260803-180 -- Harm-to-agency signal: goal-interference over trajectory pairs (MECH-129), distinct from harm-to-agent
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-1
@@ -2330,7 +2376,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-179
+REE inter-governance work item: IGW-20260803-180
 Title: Harm-to-agency signal: goal-interference over trajectory pairs (MECH-129), distinct from harm-to-agent
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2346,7 +2392,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-182 -- Love as agent-indexed terrain inference with self-like gradient weighting (MECH-164)
+### IGW-20260803-183 -- Love as agent-indexed terrain inference with self-like gradient weighting (MECH-164)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-4
@@ -2356,7 +2402,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-182
+REE inter-governance work item: IGW-20260803-183
 Title: Love as agent-indexed terrain inference with self-like gradient weighting (MECH-164)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2373,7 +2419,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-192 -- Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)
+### IGW-20260803-193 -- Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 38 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-2
@@ -2382,7 +2428,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-192
+REE inter-governance work item: IGW-20260803-193
 Title: Finish self-attribution: complete the per-stream comparator topology (SD-030 z_self stream)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2398,7 +2444,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-012 -- Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across the affect stack
+### IGW-20260803-013 -- Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across the affect stack
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-2
@@ -2407,7 +2453,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-012
+REE inter-governance work item: IGW-20260803-013
 Title: Anti-collapse MAP consolidation (ARC-088) -- audit distinctness across the affect stack
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -2423,7 +2469,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-037 -- Commitment / de-commit latch grounding L1 -> L3
+### IGW-20260803-038 -- Commitment / de-commit latch grounding L1 -> L3
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** v4
 - **Gap(s):** biology_grounding_convergence_v4:BG-3
@@ -2432,7 +2478,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-037
+REE inter-governance work item: IGW-20260803-038
 Title: Commitment / de-commit latch grounding L1 -> L3
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -2448,7 +2494,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-041 -- OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction
+### IGW-20260803-042 -- OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** v3
 - **Gap(s):** commitment_closure:GAP-4
@@ -2457,7 +2503,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-041
+REE inter-governance work item: IGW-20260803-042
 Title: OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -2473,7 +2519,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-051 -- Phase 1 -- emit a derived gitignored SQLite read-model from build_experiment_indexes.py at the point it already writes c
+### IGW-20260803-052 -- Phase 1 -- emit a derived gitignored SQLite read-model from build_experiment_indexes.py at the point it already writes c
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** pending | **Priority:** 40 | **Generation:** process
 - **Gap(s):** derived_evidence_index:P1
@@ -2482,7 +2528,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-051
+REE inter-governance work item: IGW-20260803-052
 Title: Phase 1 -- emit a derived gitignored SQLite read-model from build_experiment_indexes.py at the point it already writes c
 Lane: plan | Skill: (plan reconcile)
 Status: pending
@@ -2497,7 +2543,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-062 -- Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, additive output schema, evidence-flow animation
+### IGW-20260803-063 -- Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, additive output schema, evidence-flow animation
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 40 | **Generation:** meta
 - **Gap(s):** PHASE-2
@@ -2506,7 +2552,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-062
+REE inter-governance work item: IGW-20260803-063
 Title: Phase 2 (Option B): pairwise MRF + damped loopy belief propagation, additive output schema, evidence-flow animation
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -2521,7 +2567,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-164 -- 2x2 motivational state taxonomy + three-stage pipeline (depression / GAD)
+### IGW-20260803-165 -- 2x2 motivational state taxonomy + three-stage pipeline (depression / GAD)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:MOTIVATIONAL-TAXONOMY
@@ -2530,7 +2576,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-164
+REE inter-governance work item: IGW-20260803-165
 Title: 2x2 motivational state taxonomy + three-stage pipeline (depression / GAD)
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -2546,7 +2592,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-165 -- Catatonia subtype II: harm-stream lock-in (SD-036 decay regulator, MECH-279 PAG freeze gate)
+### IGW-20260803-166 -- Catatonia subtype II: harm-stream lock-in (SD-036 decay regulator, MECH-279 PAG freeze gate)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:CATATONIA-II
@@ -2555,7 +2601,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-165
+REE inter-governance work item: IGW-20260803-166
 Title: Catatonia subtype II: harm-stream lock-in (SD-036 decay regulator, MECH-279 PAG freeze gate)
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -2571,7 +2617,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-166 -- OCD as a three-layer architectural failure
+### IGW-20260803-167 -- OCD as a three-layer architectural failure
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 40 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:OCD-THREE-LAYER
@@ -2580,7 +2626,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-166
+REE inter-governance work item: IGW-20260803-167
 Title: OCD as a three-layer architectural failure
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -2596,7 +2642,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-199 -- SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
+### IGW-20260803-200 -- SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** upstream_blocked | **Priority:** 40 | **Generation:** v3
 - **Gap(s):** sleep_substrate:GAP-2
@@ -2606,7 +2652,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-199
+REE inter-governance work item: IGW-20260803-200
 Title: SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassified non_contributory 2026-05-10 pending A
 Lane: plan | Skill: (plan reconcile)
 Status: upstream_blocked
@@ -2623,21 +2669,21 @@ Instructions:
 
 </details>
 
-### IGW-20260802-222 -- Proposal for Q-086
+### IGW-20260803-225 -- Proposal for MECH-467
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint
+- **Why now:** insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-222
-Title: Proposal for Q-086
+REE inter-governance work item: IGW-20260803-225
+Title: Proposal for MECH-467
 Lane: experiment | Skill: /queue-experiment
 Status: ready
-Claims: Q-086
-Proposal backlog id (stable): EVB-0481
-Why now: directional_conflict_alert; low_exp_conf; mandatory_decision_checkpoint
+Claims: MECH-467
+Proposal backlog id (stable): EVB-0574
+Why now: insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -2647,103 +2693,30 @@ Instructions:
 
 </details>
 
-### IGW-20260802-223 -- Proposal for MECH-123
+### IGW-20260803-226 -- Literature proposal for MECH-467
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** insufficient_experimental_replication; low_exp_conf
+- **Lane:** lit | **Skill:** `/lit-pull` | **Status:** ready | **Priority:** 40 | **Generation:** v3
+- **Why now:** insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-223
-Title: Proposal for MECH-123
-Lane: experiment | Skill: /queue-experiment
+REE inter-governance work item: IGW-20260803-226
+Title: Literature proposal for MECH-467
+Lane: lit | Skill: /lit-pull
 Status: ready
-Claims: MECH-123
-Proposal backlog id (stable): EVB-0139
-Why now: insufficient_experimental_replication; low_exp_conf
+Claims: MECH-467
+Proposal backlog id (stable): EVB-0574
+Why now: insufficient_experimental_replication; low_exp_conf; missing_literature_evidence
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Use /lit-pull for the claim cluster named.
 - Workset: http://localhost:8000/workset
 ```
 
 </details>
 
-### IGW-20260802-224 -- Proposal for MECH-030
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** low_exp_conf
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260802-224
-Title: Proposal for MECH-030
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-030
-Proposal backlog id (stable): EVB-0167
-Why now: low_exp_conf
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260802-225 -- Proposal for MECH-103
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** low_exp_conf
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260802-225
-Title: Proposal for MECH-103
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: MECH-103
-Proposal backlog id (stable): EVB-0169
-Why now: low_exp_conf
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260802-226 -- Proposal for SD-080
-
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 40 | **Generation:** v3
-- **Why now:** low_exp_conf
-
-<details><summary>Agent brief (copy-paste)</summary>
-
-```
-REE inter-governance work item: IGW-20260802-226
-Title: Proposal for SD-080
-Lane: experiment | Skill: /queue-experiment
-Status: ready
-Claims: SD-080
-Proposal backlog id (stable): EVB-0469
-Why now: low_exp_conf
-
-Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
-- Workset: http://localhost:8000/workset
-```
-
-</details>
-
-### IGW-20260802-083 -- Grammar->substrate mapping table (the mining artifact): per primitive, which substrate, which version, grounded-or-merel
+### IGW-20260803-084 -- Grammar->substrate mapping table (the mining artifact): per primitive, which substrate, which version, grounded-or-merel
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** v6
 - **Gap(s):** grammar_primitive_mining_v6:GRAM-2
@@ -2752,7 +2725,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-083
+REE inter-governance work item: IGW-20260803-084
 Title: Grammar->substrate mapping table (the mining artifact): per primitive, which substrate, which version, grounded-or-merel
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2768,7 +2741,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-102 -- Inference failure-mode register + biology grounding (lit-pulls)
+### IGW-20260803-103 -- Inference failure-mode register + biology grounding (lit-pulls)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-7
@@ -2777,7 +2750,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-102
+REE inter-governance work item: IGW-20260803-103
 Title: Inference failure-mode register + biology grounding (lit-pulls)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2793,7 +2766,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-159 -- Adaptor-maturity curriculum gate: each sense admitted when its adaptor is mature, not all at once
+### IGW-20260803-160 -- Adaptor-maturity curriculum gate: each sense admitted when its adaptor is mature, not all at once
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** v4
 - **Gap(s):** perceptual_adaptors_v4:PA-6
@@ -2802,7 +2775,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-159
+REE inter-governance work item: IGW-20260803-160
 Title: Adaptor-maturity curriculum gate: each sense admitted when its adaptor is mature, not all at once
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2818,7 +2791,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-171 -- Self-model failure modes: E1 schema poverty vs E2 capacity degradation
+### IGW-20260803-172 -- Self-model failure modes: E1 schema poverty vs E2 capacity degradation
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:SELF-MODEL-DEGRADATION
@@ -2827,7 +2800,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-171
+REE inter-governance work item: IGW-20260803-172
 Title: Self-model failure modes: E1 schema poverty vs E2 capacity degradation
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2843,7 +2816,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-172 -- Narcolepsy and cataplexy: bilateral orexin-loss failure
+### IGW-20260803-173 -- Narcolepsy and cataplexy: bilateral orexin-loss failure
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:NARCOLEPSY-CATAPLEXY
@@ -2852,7 +2825,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-172
+REE inter-governance work item: IGW-20260803-173
 Title: Narcolepsy and cataplexy: bilateral orexin-loss failure
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2868,7 +2841,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-173 -- Difficulty-gated proposal entropy: stuck-state cognition (working hypothesis)
+### IGW-20260803-174 -- Difficulty-gated proposal entropy: stuck-state cognition (working hypothesis)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:PROPOSAL-ENTROPY
@@ -2877,7 +2850,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-173
+REE inter-governance work item: IGW-20260803-174
 Title: Difficulty-gated proposal entropy: stuck-state cognition (working hypothesis)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2893,7 +2866,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-177 -- Minimal 2-agent world (put any load on the ethics thesis, currently V5-only)
+### IGW-20260803-178 -- Minimal 2-agent world (put any load on the ethics thesis, currently V5-only)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** v5
 - **Gap(s):** WS-10
@@ -2902,7 +2875,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-177
+REE inter-governance work item: IGW-20260803-178
 Title: Minimal 2-agent world (put any load on the ethics thesis, currently V5-only)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2917,7 +2890,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-178 -- Early-gating vs late-judging demo (REE early commit-gating beats a Constitutional-AI-style late judge)
+### IGW-20260803-179 -- Early-gating vs late-judging demo (REE early commit-gating beats a Constitutional-AI-style late judge)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** ready | **Priority:** 45 | **Generation:** meta
 - **Gap(s):** WS-11
@@ -2926,7 +2899,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-178
+REE inter-governance work item: IGW-20260803-179
 Title: Early-gating vs late-judging demo (REE early commit-gating beats a Constitutional-AI-style late judge)
 Lane: plan | Skill: (plan reconcile)
 Status: ready
@@ -2941,7 +2914,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-007 -- Relational / propositional inference over named relations (transitivity, role-binding, relational chaining)
+### IGW-20260803-008 -- Relational / propositional inference over named relations (transitivity, role-binding, relational chaining)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** abstract_relational_reasoning_v6:ARR-3
@@ -2951,7 +2924,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-007
+REE inter-governance work item: IGW-20260803-008
 Title: Relational / propositional inference over named relations (transitivity, role-binding, relational chaining)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2968,7 +2941,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-008 -- Analogy / structure-mapping across grounded domains (relational alignment, not surface match)
+### IGW-20260803-009 -- Analogy / structure-mapping across grounded domains (relational alignment, not surface match)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** abstract_relational_reasoning_v6:ARR-4
@@ -2978,7 +2951,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-008
+REE inter-governance work item: IGW-20260803-009
 Title: Analogy / structure-mapping across grounded domains (relational alignment, not surface match)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -2995,7 +2968,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-009 -- Grammatical realisation of the event-arc: tense / aspect / because / but / unless / done / again
+### IGW-20260803-010 -- Grammatical realisation of the event-arc: tense / aspect / because / but / unless / done / again
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** abstract_relational_reasoning_v6:ARR-5
@@ -3005,7 +2978,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-009
+REE inter-governance work item: IGW-20260803-010
 Title: Grammatical realisation of the event-arc: tense / aspect / because / but / unless / done / again
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3022,7 +2995,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-013 -- Expression as emergent action geometry (MECH-360) -- the readout side of the affect vector
+### IGW-20260803-014 -- Expression as emergent action geometry (MECH-360) -- the readout side of the affect vector
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-3
@@ -3032,7 +3005,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-013
+REE inter-governance work item: IGW-20260803-014
 Title: Expression as emergent action geometry (MECH-360) -- the readout side of the affect vector
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3049,7 +3022,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-014 -- Candidate-gradient hippocampal episode schema (MECH-361) -- affect gradient as write-weight + retrieval-query
+### IGW-20260803-015 -- Candidate-gradient hippocampal episode schema (MECH-361) -- affect gradient as write-weight + retrieval-query
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-4
@@ -3059,7 +3032,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-014
+REE inter-governance work item: IGW-20260803-015
 Title: Candidate-gradient hippocampal episode schema (MECH-361) -- affect gradient as write-weight + retrieval-query
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3075,7 +3048,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-017 -- Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value
+### IGW-20260803-018 -- Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-7
@@ -3085,7 +3058,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-017
+REE inter-governance work item: IGW-20260803-018
 Title: Compulsion-risk substrate -- slow modulator (MECH-369) + composed readout (MECH-370) + chunk-cache loop (SD-045) + value
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3102,7 +3075,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-018 -- Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction 
+### IGW-20260803-019 -- Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction 
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-10
@@ -3112,7 +3085,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-018
+REE inter-governance work item: IGW-20260803-019
 Title: Slow value-INDEPENDENT decommit-friction / engagement-release modulator substrate (the slow-modulator-class distinction 
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3129,7 +3102,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-028 -- Imagination-learning licit/forbidden principle (ARC-level, folded into the provenance gate)
+### IGW-20260803-029 -- Imagination-learning licit/forbidden principle (ARC-level, folded into the provenance gate)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-4
@@ -3139,7 +3112,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-028
+REE inter-governance work item: IGW-20260803-029
 Title: Imagination-learning licit/forbidden principle (ARC-level, folded into the provenance gate)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3156,7 +3129,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-029 -- Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)
+### IGW-20260803-030 -- Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-5
@@ -3166,7 +3139,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-029
+REE inter-governance work item: IGW-20260803-030
 Title: Event-level write-authority gate over the durable model-update path (MECH-368) + its falsifier (Q-062)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3183,7 +3156,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-055 -- PILLAR -- private speech as external cognitive-control surface (MECH-380): Vygotskian internalisation ladder
+### IGW-20260803-056 -- PILLAR -- private speech as external cognitive-control surface (MECH-380): Vygotskian internalisation ladder
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-4
@@ -3193,7 +3166,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-055
+REE inter-governance work item: IGW-20260803-056
 Title: PILLAR -- private speech as external cognitive-control surface (MECH-380): Vygotskian internalisation ladder
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3210,7 +3183,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-056 -- PILLAR -- developmental compression ladder (MECH-381): externalise-then-internalise across the whole curriculum
+### IGW-20260803-057 -- PILLAR -- developmental compression ladder (MECH-381): externalise-then-internalise across the whole curriculum
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-5
@@ -3220,7 +3193,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-056
+REE inter-governance work item: IGW-20260803-057
 Title: PILLAR -- developmental compression ladder (MECH-381): externalise-then-internalise across the whole curriculum
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3237,7 +3210,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-061 -- Orienting/surveying drive: pre-approach active-sensing control state
+### IGW-20260803-062 -- Orienting/surveying drive: pre-approach active-sensing control state
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** drives_motivation_v4:DRV-4
@@ -3246,7 +3219,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-061
+REE inter-governance work item: IGW-20260803-062
 Title: Orienting/surveying drive: pre-approach active-sensing control state
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3262,7 +3235,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-066 -- Anti-shame safety invariants: no-global-self-condemnation write + containment-not-shame autonomy suspension
+### IGW-20260803-067 -- Anti-shame safety invariants: no-global-self-condemnation write + containment-not-shame autonomy suspension
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-4
@@ -3272,7 +3245,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-066
+REE inter-governance work item: IGW-20260803-067
 Title: Anti-shame safety invariants: no-global-self-condemnation write + containment-not-shame autonomy suspension
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3289,7 +3262,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-067 -- Love as agent-indexed terrain inference: infer another agent's goal/harm gradients and weight them with self-equal motiv
+### IGW-20260803-068 -- Love as agent-indexed terrain inference: infer another agent's goal/harm gradients and weight them with self-equal motiv
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-5
@@ -3299,7 +3272,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-067
+REE inter-governance work item: IGW-20260803-068
 Title: Love as agent-indexed terrain inference: infer another agent's goal/harm gradients and weight them with self-equal motiv
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3316,7 +3289,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-072 -- Residue-aware social repair: regret-residue after exploitation generates a repair-goal
+### IGW-20260803-073 -- Residue-aware social repair: regret-residue after exploitation generates a repair-goal
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** fast_empathy_v5:EMP-5
@@ -3326,7 +3299,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-072
+REE inter-governance work item: IGW-20260803-073
 Title: Residue-aware social repair: regret-residue after exploitation generates a repair-goal
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3343,7 +3316,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-073 -- Developmental ordering of other-bound streams: protective streams before appetitive (safety gate)
+### IGW-20260803-074 -- Developmental ordering of other-bound streams: protective streams before appetitive (safety gate)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** fast_empathy_v5:EMP-6
@@ -3353,7 +3326,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-073
+REE inter-governance work item: IGW-20260803-074
 Title: Developmental ordering of other-bound streams: protective streams before appetitive (safety gate)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3370,7 +3343,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-075 -- SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, no-op-default)
+### IGW-20260803-076 -- SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, no-op-default)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** global_workspace_jlens:GATE-B
@@ -3380,7 +3353,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-075
+REE inter-governance work item: IGW-20260803-076
 Title: SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, no-op-default)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3397,7 +3370,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-079 -- PILLAR 2 -- counterfactual-value tracking and switch-to-alternative gate (MECH-264)
+### IGW-20260803-080 -- PILLAR 2 -- counterfactual-value tracking and switch-to-alternative gate (MECH-264)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** goal_deliberation_v4:GDL-3
@@ -3407,7 +3380,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-079
+REE inter-governance work item: IGW-20260803-080
 Title: PILLAR 2 -- counterfactual-value tracking and switch-to-alternative gate (MECH-264)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3424,7 +3397,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-080 -- PILLAR 3 -- relative-importance monitoring across competing goals + dACC cross-slot arbitrator (MECH-265, SD-046)
+### IGW-20260803-081 -- PILLAR 3 -- relative-importance monitoring across competing goals + dACC cross-slot arbitrator (MECH-265, SD-046)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** goal_deliberation_v4:GDL-4
@@ -3434,7 +3407,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-080
+REE inter-governance work item: IGW-20260803-081
 Title: PILLAR 3 -- relative-importance monitoring across competing goals + dACC cross-slot arbitrator (MECH-265, SD-046)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3451,7 +3424,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-081 -- PILLAR 4 -- interrupted-task resumption / Zeigarnik (the event-arc's weak interrupt->reorient->resume span)
+### IGW-20260803-082 -- PILLAR 4 -- interrupted-task resumption / Zeigarnik (the event-arc's weak interrupt->reorient->resume span)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** goal_deliberation_v4:GDL-5
@@ -3461,7 +3434,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-081
+REE inter-governance work item: IGW-20260803-082
 Title: PILLAR 4 -- interrupted-task resumption / Zeigarnik (the event-arc's weak interrupt->reorient->resume span)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3478,7 +3451,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-090 -- DG-equivalent pattern separation before rollout proposal (MECH-147)
+### IGW-20260803-091 -- DG-equivalent pattern separation before rollout proposal (MECH-147)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-3
@@ -3488,7 +3461,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-090
+REE inter-governance work item: IGW-20260803-091
 Title: DG-equivalent pattern separation before rollout proposal (MECH-147)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3505,7 +3478,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-091 -- Pure time cells -- temporal scaffolding for E3 credit assignment (MECH-148)
+### IGW-20260803-092 -- Pure time cells -- temporal scaffolding for E3 credit assignment (MECH-148)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-4
@@ -3515,7 +3488,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-091
+REE inter-governance work item: IGW-20260803-092
 Title: Pure time cells -- temporal scaffolding for E3 credit assignment (MECH-148)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3532,7 +3505,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-092 -- CA1 mismatch novelty gate on rollout injection (MECH-149)
+### IGW-20260803-093 -- CA1 mismatch novelty gate on rollout injection (MECH-149)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-5
@@ -3542,7 +3515,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-092
+REE inter-governance work item: IGW-20260803-093
 Title: CA1 mismatch novelty gate on rollout injection (MECH-149)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3559,7 +3532,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-099 -- Inferred affordance field (afford. not directly perceived; biases E3 candidates)
+### IGW-20260803-100 -- Inferred affordance field (afford. not directly perceived; biases E3 candidates)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-4
@@ -3569,7 +3542,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-099
+REE inter-governance work item: IGW-20260803-100
 Title: Inferred affordance field (afford. not directly perceived; biases E3 candidates)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3586,7 +3559,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-101 -- Epistemic action pressure (information-gathering as survival-relevant, not just curiosity)
+### IGW-20260803-102 -- Epistemic action pressure (information-gathering as survival-relevant, not just curiosity)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** inference_belief_state_v4:INF-6
@@ -3596,7 +3569,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-101
+REE inter-governance work item: IGW-20260803-102
 Title: Epistemic action pressure (information-gathering as survival-relevant, not just curiosity)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3613,7 +3586,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-106 -- Consumption wiring: parsed other-affect prior feeds the V5 empathy stream-binding layer (not a parallel path)
+### IGW-20260803-107 -- Consumption wiring: parsed other-affect prior feeds the V5 empathy stream-binding layer (not a parallel path)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_affect_adaptor_v6:LAA-4
@@ -3623,7 +3596,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-106
+REE inter-governance work item: IGW-20260803-107
 Title: Consumption wiring: parsed other-affect prior feeds the V5 empathy stream-binding layer (not a parallel path)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3640,7 +3613,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-107 -- Falsifiable test: language-parsed affect must change other-directed behaviour vs literal-semantics-only baseline (and mu
+### IGW-20260803-108 -- Falsifiable test: language-parsed affect must change other-directed behaviour vs literal-semantics-only baseline (and mu
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_affect_adaptor_v6:LAA-5
@@ -3650,7 +3623,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-107
+REE inter-governance work item: IGW-20260803-108
 Title: Falsifiable test: language-parsed affect must change other-directed behaviour vs literal-semantics-only baseline (and mu
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3667,7 +3640,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-111 -- Signal-to-rule minting: repeated signal/action/outcome regularities become CandidateRuleField rules (ARC-063 bridge)
+### IGW-20260803-112 -- Signal-to-rule minting: repeated signal/action/outcome regularities become CandidateRuleField rules (ARC-063 bridge)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-5
@@ -3677,7 +3650,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-111
+REE inter-governance work item: IGW-20260803-112
 Title: Signal-to-rule minting: repeated signal/action/outcome regularities become CandidateRuleField rules (ARC-063 bridge)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3694,7 +3667,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-112 -- Convention robustness: partner variation + repair distinguish true convention from overfitted co-adaptation
+### IGW-20260803-113 -- Convention robustness: partner variation + repair distinguish true convention from overfitted co-adaptation
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-6
@@ -3704,7 +3677,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-112
+REE inter-governance work item: IGW-20260803-113
 Title: Convention robustness: partner variation + repair distinguish true convention from overfitted co-adaptation
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3721,7 +3694,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-113 -- Language-as-play-game substrate reuse: the bootstrap runs inside play_mode, not a parallel language-acquisition module (
+### IGW-20260803-114 -- Language-as-play-game substrate reuse: the bootstrap runs inside play_mode, not a parallel language-acquisition module (
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_emergence_bootstrap_v6:LANG-7
@@ -3731,7 +3704,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-113
+REE inter-governance work item: IGW-20260803-114
 Title: Language-as-play-game substrate reuse: the bootstrap runs inside play_mode, not a parallel language-acquisition module (
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3748,7 +3721,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-116 -- Language failure modes as REE pathologies (rationalisation / ideological capture / bureaucratic dissociation / moral lic
+### IGW-20260803-117 -- Language failure modes as REE pathologies (rationalisation / ideological capture / bureaucratic dissociation / moral lic
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_trust_deception_institutions_v6:LTI-4
@@ -3757,7 +3730,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-116
+REE inter-governance work item: IGW-20260803-117
 Title: Language failure modes as REE pathologies (rationalisation / ideological capture / bureaucratic dissociation / moral lic
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3773,7 +3746,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-117 -- Institutions as multi-agent linguistic coordination structures (residue absorb / diffuse / deny)
+### IGW-20260803-118 -- Institutions as multi-agent linguistic coordination structures (residue absorb / diffuse / deny)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v6
 - **Gap(s):** language_trust_deception_institutions_v6:LTI-5
@@ -3783,7 +3756,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-117
+REE inter-governance work item: IGW-20260803-118
 Title: Institutions as multi-agent linguistic coordination structures (residue absorb / diffuse / deny)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3800,7 +3773,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-122 -- Love-mediated repair after harm: repair as relationship restoration, not punishment avoidance
+### IGW-20260803-123 -- Love-mediated repair after harm: repair as relationship restoration, not punishment avoidance
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** loveability_ethical_agency_v5:LOVE-5
@@ -3810,7 +3783,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-122
+REE inter-governance work item: IGW-20260803-123
 Title: Love-mediated repair after harm: repair as relationship restoration, not punishment avoidance
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3827,7 +3800,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-124 -- Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing
+### IGW-20260803-125 -- Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** memory_lifecycle_v4:MEM-2
@@ -3836,7 +3809,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-124
+REE inter-governance work item: IGW-20260803-125
 Title: Explicit active-separation operation (separate != failed-integration) + DG pattern-separation pairing
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3852,7 +3825,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-126 -- Provenance + contradiction-flag + rollback layer on consolidated memory
+### IGW-20260803-127 -- Provenance + contradiction-flag + rollback layer on consolidated memory
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** memory_lifecycle_v4:MEM-5
@@ -3861,7 +3834,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-126
+REE inter-governance work item: IGW-20260803-127
 Title: Provenance + contradiction-flag + rollback layer on consolidated memory
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3877,7 +3850,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-132 -- Gain-calibration window: low/high/miscalibrated coupling failure modes (psychopathy / overwhelm / burnout)
+### IGW-20260803-133 -- Gain-calibration window: low/high/miscalibrated coupling failure modes (psychopathy / overwhelm / burnout)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-5
@@ -3887,7 +3860,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-132
+REE inter-governance work item: IGW-20260803-133
 Title: Gain-calibration window: low/high/miscalibrated coupling failure modes (psychopathy / overwhelm / burnout)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3904,7 +3877,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-134 -- Care persistence + counterfactual empathic activation: love/cooperation as long-horizon coupling (MECH-052, MECH-127)
+### IGW-20260803-135 -- Care persistence + counterfactual empathic activation: love/cooperation as long-horizon coupling (MECH-052, MECH-127)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-7
@@ -3914,7 +3887,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-134
+REE inter-governance work item: IGW-20260803-135
 Title: Care persistence + counterfactual empathic activation: love/cooperation as long-horizon coupling (MECH-052, MECH-127)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3931,7 +3904,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-137 -- Agency detection with a structurally-distinct OTHER (MECH-095 retest; MECH-099 richer-causation attribution)
+### IGW-20260803-138 -- Agency detection with a structurally-distinct OTHER (MECH-095 retest; MECH-099 richer-causation attribution)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-3
@@ -3941,7 +3914,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-137
+REE inter-governance work item: IGW-20260803-138
 Title: Agency detection with a structurally-distinct OTHER (MECH-095 retest; MECH-099 richer-causation attribution)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3958,7 +3931,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-138 -- Multi-channel coping repertoire so violence is genuinely terminal (MECH-102): negotiation / withdrawal / cooperation cha
+### IGW-20260803-139 -- Multi-channel coping repertoire so violence is genuinely terminal (MECH-102): negotiation / withdrawal / cooperation cha
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-4
@@ -3968,7 +3941,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-138
+REE inter-governance work item: IGW-20260803-139
 Title: Multi-channel coping repertoire so violence is genuinely terminal (MECH-102): negotiation / withdrawal / cooperation cha
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -3985,7 +3958,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-139 -- Ethics-as-coherence under axiom conflict (Q-028): context-sensitive self-vs-other comparator + moral-residue mechanism
+### IGW-20260803-140 -- Ethics-as-coherence under axiom conflict (Q-028): context-sensitive self-vs-other comparator + moral-residue mechanism
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-5
@@ -3995,7 +3968,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-139
+REE inter-governance work item: IGW-20260803-140
 Title: Ethics-as-coherence under axiom conflict (Q-028): context-sensitive self-vs-other comparator + moral-residue mechanism
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4012,7 +3985,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-141 -- ARC-010 mirror-modelling cutover: other-agent state re-represented through the self's own predictive machinery
+### IGW-20260803-142 -- ARC-010 mirror-modelling cutover: other-agent state re-represented through the self's own predictive machinery
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-7
@@ -4022,7 +3995,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-141
+REE inter-governance work item: IGW-20260803-142
 Title: ARC-010 mirror-modelling cutover: other-agent state re-represented through the self's own predictive machinery
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4039,7 +4012,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-144 -- PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world
+### IGW-20260803-145 -- PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-3
@@ -4049,7 +4022,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-144
+REE inter-governance work item: IGW-20260803-145
 Title: PILLAR B -- type-encoder + category prototypes (SD-040): type-keyed anchors over z_world
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4066,7 +4039,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-145 -- PILLAR B retrieval -- prototype-readout operator + type-V_s gating (MECH-296 / MECH-297)
+### IGW-20260803-146 -- PILLAR B retrieval -- prototype-readout operator + type-V_s gating (MECH-296 / MECH-297)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-4
@@ -4076,7 +4049,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-145
+REE inter-governance work item: IGW-20260803-146
 Title: PILLAR B retrieval -- prototype-readout operator + type-V_s gating (MECH-296 / MECH-297)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4093,7 +4066,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-146 -- PILLAR C -- option library (SD-042): named reusable subroutines (init-set / termination / internal-policy)
+### IGW-20260803-147 -- PILLAR C -- option library (SD-042): named reusable subroutines (init-set / termination / internal-policy)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_reasoning_abstraction_v4:OBJ-ABS-5
@@ -4103,7 +4076,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-146
+REE inter-governance work item: IGW-20260803-147
 Title: PILLAR C -- option library (SD-042): named reusable subroutines (init-set / termination / internal-policy)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4120,7 +4093,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-149 -- PILLAR 2 -- self-as-object cutover (ARC-081): z_self -> privileged object-file slot
+### IGW-20260803-150 -- PILLAR 2 -- self-as-object cutover (ARC-081): z_self -> privileged object-file slot
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_representation_v4:OBJ-3
@@ -4130,7 +4103,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-149
+REE inter-governance work item: IGW-20260803-150
 Title: PILLAR 2 -- self-as-object cutover (ARC-081): z_self -> privileged object-file slot
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4147,7 +4120,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-150 -- PILLAR 3 -- tools/affordances object->action binding (ARC-082)
+### IGW-20260803-151 -- PILLAR 3 -- tools/affordances object->action binding (ARC-082)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_representation_v4:OBJ-4
@@ -4157,7 +4130,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-150
+REE inter-governance work item: IGW-20260803-151
 Title: PILLAR 3 -- tools/affordances object->action binding (ARC-082)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4174,7 +4147,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-151 -- PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-file slots
+### IGW-20260803-152 -- PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-file slots
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** object_representation_v4:OBJ-5
@@ -4184,7 +4157,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-151
+REE inter-governance work item: IGW-20260803-152
 Title: PILLAR 4 -- others-as-object (ARC-083): per-agent token-keyed object-file slots
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4201,7 +4174,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-156 -- PILLAR B -- deep-adaptor (sight) perceptual-manifold constructor: metric/geometry before world-model entry
+### IGW-20260803-157 -- PILLAR B -- deep-adaptor (sight) perceptual-manifold constructor: metric/geometry before world-model entry
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** perceptual_adaptors_v4:PA-3
@@ -4211,7 +4184,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-156
+REE inter-governance work item: IGW-20260803-157
 Title: PILLAR B -- deep-adaptor (sight) perceptual-manifold constructor: metric/geometry before world-model entry
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4228,7 +4201,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-157 -- Metric-origin fork: per-sense perceptual metric LEARNED from similarity statistics vs partly DEFINED (structural prior)
+### IGW-20260803-158 -- Metric-origin fork: per-sense perceptual metric LEARNED from similarity statistics vs partly DEFINED (structural prior)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** perceptual_adaptors_v4:PA-4
@@ -4238,7 +4211,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-157
+REE inter-governance work item: IGW-20260803-158
 Title: Metric-origin fork: per-sense perceptual metric LEARNED from similarity statistics vs partly DEFINED (structural prior)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4255,7 +4228,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-162 -- PILLAR B -- state-conditional plasticity-gain architectural commitment
+### IGW-20260803-163 -- PILLAR B -- state-conditional plasticity-gain architectural commitment
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** plasticity_neuromodulation_v4:PLW-4
@@ -4265,7 +4238,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-162
+REE inter-governance work item: IGW-20260803-163
 Title: PILLAR B -- state-conditional plasticity-gain architectural commitment
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4282,7 +4255,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-163 -- Layer-specificity adjudication (one global scalar vs per-substrate gates)
+### IGW-20260803-164 -- Layer-specificity adjudication (one global scalar vs per-substrate gates)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** plasticity_neuromodulation_v4:PLW-7
@@ -4292,7 +4265,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-163
+REE inter-governance work item: IGW-20260803-164
 Title: Layer-specificity adjudication (one global scalar vs per-substrate gates)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4309,7 +4282,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-180 -- Agent-policy novelty typing (MECH-130): world-state novelty != agent-policy novelty
+### IGW-20260803-181 -- Agent-policy novelty typing (MECH-130): world-state novelty != agent-policy novelty
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-2
@@ -4318,7 +4291,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-180
+REE inter-governance work item: IGW-20260803-181
 Title: Agent-policy novelty typing (MECH-130): world-state novelty != agent-policy novelty
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4334,7 +4307,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-181 -- Consent / incidental-vs-constitutive qualifier on harm-to-agency (the discriminant layer of MECH-129)
+### IGW-20260803-182 -- Consent / incidental-vs-constitutive qualifier on harm-to-agency (the discriminant layer of MECH-129)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-3
@@ -4344,7 +4317,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-181
+REE inter-governance work item: IGW-20260803-182
 Title: Consent / incidental-vs-constitutive qualifier on harm-to-agency (the discriminant layer of MECH-129)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4361,7 +4334,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-183 -- Self-like weighting calibration: full-symmetry vs collapse vs callousness (the lambda the structural claim leaves open)
+### IGW-20260803-184 -- Self-like weighting calibration: full-symmetry vs collapse vs callousness (the lambda the structural claim leaves open)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-5
@@ -4371,7 +4344,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-183
+REE inter-governance work item: IGW-20260803-184
 Title: Self-like weighting calibration: full-symmetry vs collapse vs callousness (the lambda the structural claim leaves open)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4388,7 +4361,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-186 -- Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b manifest; emit a non-empty per-knob overri
+### IGW-20260803-187 -- Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b manifest; emit a non-empty per-knob overri
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** sd_037_axis_b:P2
@@ -4398,7 +4371,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-186
+REE inter-governance work item: IGW-20260803-187
 Title: Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b manifest; emit a non-empty per-knob overri
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4415,7 +4388,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-187 -- Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lift consumer outputs above zero; acceptanc
+### IGW-20260803-188 -- Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lift consumer outputs above zero; acceptanc
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** sd_037_axis_b:P3
@@ -4425,7 +4398,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-187
+REE inter-governance work item: IGW-20260803-188
 Title: Phase 3 (re-application) -- verification diagnostic: recalibrated thresholds lift consumer outputs above zero; acceptanc
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4442,7 +4415,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-188 -- Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate
+### IGW-20260803-189 -- Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** sd_037_axis_b:P4
@@ -4453,7 +4426,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-188
+REE inter-governance work item: IGW-20260803-189
 Title: Phase 4 (re-application) -- V3-EXQ-483f behavioural validation (4-arm 2x2) on the axis-(b)-recalibrated substrate
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -4472,7 +4445,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-189 -- ARC-033 vs ARC-058 path arbitration (forensic 445h read)
+### IGW-20260803-190 -- ARC-033 vs ARC-058 path arbitration (forensic 445h read)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** self_attribution:GAP-1
@@ -4482,7 +4455,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-189
+REE inter-governance work item: IGW-20260803-190
 Title: ARC-033 vs ARC-058 path arbitration (forensic 445h read)
 Lane: experiment | Skill: /queue-experiment
 Status: blocked
@@ -4500,7 +4473,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-190 -- SD-029 / MECH-256 retest under full substrate stack
+### IGW-20260803-191 -- SD-029 / MECH-256 retest under full substrate stack
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v3
 - **Gap(s):** self_attribution:GAP-2
@@ -4509,7 +4482,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-190
+REE inter-governance work item: IGW-20260803-191
 Title: SD-029 / MECH-256 retest under full substrate stack
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4525,7 +4498,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-195 -- z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals
+### IGW-20260803-196 -- z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-5
@@ -4535,7 +4508,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-195
+REE inter-governance work item: IGW-20260803-196
 Title: z_self-domain goal representation (DR-11): self-state goals representable, not just world-location goals
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4552,7 +4525,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-196 -- Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure
+### IGW-20260803-197 -- Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-6
@@ -4562,7 +4535,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-196
+REE inter-governance work item: IGW-20260803-197
 Title: Proxy/hedonic dissociating environment (DR-14): substrate that surfaces the wanting-without-satisfaction failure
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4579,7 +4552,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-197 -- Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar
+### IGW-20260803-198 -- Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 48 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-7
@@ -4589,7 +4562,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-197
+REE inter-governance work item: IGW-20260803-198
 Title: Maturational-sequence honesty gate (INV-064): self-stability must precede the social/other pillar
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -4606,7 +4579,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-020 -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, not a substrate null
+### IGW-20260803-021 -- Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, not a substrate null
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** arc_005_control_plane_routing:GAP-A-precision-diagnostic
@@ -4616,7 +4589,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-020
+REE inter-governance work item: IGW-20260803-021
 Title: Why is log10_precision_mean bit-identical across channel levels in 802? Harness defect, not a substrate null
 Lane: experiment | Skill: /queue-experiment
 Status: in_progress
@@ -4633,7 +4606,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-022 -- ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
+### IGW-20260803-023 -- ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-H
@@ -4643,7 +4616,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-022
+REE inter-governance work item: IGW-20260803-023
 Title: ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-043 / Q-044 / Q-045 ablation EXQs pending
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -4660,7 +4633,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-023 -- ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
+### IGW-20260803-024 -- ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked_pending_substrate | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-I
@@ -4670,7 +4643,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-023
+REE inter-governance work item: IGW-20260803-024
 Title: ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorption check done); empirical gate pending
 Lane: plan | Skill: (plan reconcile)
 Status: blocked_pending_substrate
@@ -4687,7 +4660,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-025 -- MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidence falsifier LANDED PASS (supports) 2026-
+### IGW-20260803-026 -- MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidence falsifier LANDED PASS (supports) 2026-
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-K
@@ -4697,7 +4670,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-025
+REE inter-governance work item: IGW-20260803-026
 Title: MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidence falsifier LANDED PASS (supports) 2026-
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -4714,7 +4687,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-032 -- Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imaginat
+### IGW-20260803-033 -- Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imaginat
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** closed | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-9
@@ -4723,7 +4696,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-032
+REE inter-governance work item: IGW-20260803-033
 Title: Biology grounding completion (emotional-modulation-of-consolidation write-weight, source/provenance monitoring, imaginat
 Lane: plan | Skill: (plan reconcile)
 Status: closed
@@ -4739,7 +4712,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-034 -- Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
+### IGW-20260803-035 -- Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** behavioral_diversity_isolation:GAP-C
@@ -4748,7 +4721,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-034
+REE inter-governance work item: IGW-20260803-035
 Title: Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog)
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -4764,7 +4737,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-038 -- Goal / wanting layer grounding L1 -> L2 [L2 REACHED 2026-07-07 via on-file anchors]
+### IGW-20260803-039 -- Goal / wanting layer grounding L1 -> L2 [L2 REACHED 2026-07-07 via on-file anchors]
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** biology_grounding_convergence_v4:BG-5
@@ -4773,7 +4746,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-038
+REE inter-governance work item: IGW-20260803-039
 Title: Goal / wanting layer grounding L1 -> L2 [L2 REACHED 2026-07-07 via on-file anchors]
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -4788,37 +4761,34 @@ Instructions:
 
 </details>
 
-### IGW-20260802-042 -- OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) for SD-034/MECH-266/267/268 + ME
+### IGW-20260803-043 -- OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) for SD-034/MECH-266/267/268 + ME
 
-- **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
+- **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** commitment_closure:GAP-4-battery
-- **Owner EXQ:** V3-EXQ-629c queued 2026-07-21 (gate-cleared 2026-07-21 per its own queue note: contact guard clears 3/3 seeds across the 461c..717 sibling family; MECH-342 ecological maintenance-release retest, supersedes V3-EXQ-629b) -- noted by inter-governance-brief 2026-07-24; does not change node status, resume_condition prose already anticipates this as the deferred 629-lineage MECH-342 face.
 - **Blocked by:** commitment_closure:GAP-4 [in_progress]
 - **Why now:** 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery arm is DONE; the residual node openness is the commitment-DEPENDENT arms (461/464b/467b/468b for MECH-266/267/268, 629-lineage for MECH-342), which th
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-042
+REE inter-governance work item: IGW-20260803-043
 Title: OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467b/468b) for SD-034/MECH-266/267/268 + ME
-Lane: experiment | Skill: /queue-experiment
+Lane: plan | Skill: (plan reconcile)
 Status: in_progress
 Gap(s): commitment_closure:GAP-4-battery
-Owner EXQ: V3-EXQ-629c queued 2026-07-21 (gate-cleared 2026-07-21 per its own queue note: contact guard clears 3/3 seeds across the 461c..717 sibling family; MECH-342 ecological maintenance-release retest, supersedes V3-EXQ-629b) -- noted by inter-governance-brief 2026-07-24; does not change node status, resume_condition prose already anticipates this as the deferred 629-lineage MECH-342 face.
 Claims: SD-034, MECH-266, MECH-267, MECH-268, MECH-342
 Blocked by: commitment_closure:GAP-4 [in_progress]
 Why now: 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery arm is DONE; the residual node openness is the commitment-DEPENDENT arms (461/464b/467b/468b for MECH-266/267/268, 629-lineage for MECH-342), which th
 
 Instructions:
-- Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
-- Design the experiment for the Claims id above (the stable target). To read the backing proposal, look it up by claim_id in experiment_proposals.v1.json -- the auto EXP-#### proposal_ids (>= EXP-0177) are ephemeral and renumber every governance cycle, so do NOT trust an EXP-#### number frozen in any older brief.
+- Update plan-of-record doc and closure frontmatter when complete.
 - Plan doc: REE_assembly/evidence/planning/commitment_closure_plan.md
 - Workset: http://localhost:8000/workset
 ```
 
 </details>
 
-### IGW-20260802-043 -- SD-033b behavioural validation (devaluation + perceptual discrimination)
+### IGW-20260803-044 -- SD-033b behavioural validation (devaluation + perceptual discrimination)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** commitment_closure:GAP-8
@@ -4827,7 +4797,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-043
+REE inter-governance work item: IGW-20260803-044
 Title: SD-033b behavioural validation (devaluation + perceptual discrimination)
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -4843,7 +4813,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-047 -- Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feeding F
+### IGW-20260803-048 -- Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feeding F
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** conversion_ceiling_campaign:P3-ofc
@@ -4852,7 +4822,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-047
+REE inter-governance work item: IGW-20260803-048
 Title: Valuation face (SD-033b/MECH-263): decoupled OFC devaluation head feeding F
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -4867,7 +4837,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-052 -- Phase 2 -- cut over the six identified consumers, incl. a /api/claims/summary endpoint replacing explorer.html's 10 MB p
+### IGW-20260803-053 -- Phase 2 -- cut over the six identified consumers, incl. a /api/claims/summary endpoint replacing explorer.html's 10 MB p
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** pending | **Priority:** 50 | **Generation:** process
 - **Gap(s):** derived_evidence_index:P2
@@ -4877,7 +4847,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-052
+REE inter-governance work item: IGW-20260803-053
 Title: Phase 2 -- cut over the six identified consumers, incl. a /api/claims/summary endpoint replacing explorer.html's 10 MB p
 Lane: plan | Skill: (plan reconcile)
 Status: pending
@@ -4893,7 +4863,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-060 -- Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)
+### IGW-20260803-061 -- Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** closed | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** drives_motivation_v4:DRV-3
@@ -4902,7 +4872,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-060
+REE inter-governance work item: IGW-20260803-061
 Title: Drive-arbitration biology grounding (multidrive competition / drive hierarchy lit-pull)
 Lane: plan | Skill: (plan reconcile)
 Status: closed
@@ -4918,7 +4888,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-069 -- Biology grounding: guilt-as-reparative-motivation vs shame-as-withdrawal, moral-repair, typed-causal-attribution, and p-
+### IGW-20260803-070 -- Biology grounding: guilt-as-reparative-motivation vs shame-as-withdrawal, moral-repair, typed-causal-attribution, and p-
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** closed | **Priority:** 50 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-8
@@ -4927,7 +4897,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-069
+REE inter-governance work item: IGW-20260803-070
 Title: Biology grounding: guilt-as-reparative-motivation vs shame-as-withdrawal, moral-repair, typed-causal-attribution, and p-
 Lane: plan | Skill: (plan reconcile)
 Status: closed
@@ -4943,7 +4913,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-095 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
+### IGW-20260803-096 -- EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** infant_substrate:GAP-13
@@ -4952,7 +4922,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-095
+REE inter-governance work item: IGW-20260803-096
 Title: EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal novelty_bonus_weight before stochastic attra
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -4968,7 +4938,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-096 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
+### IGW-20260803-097 -- EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked_pending_substrate | **Priority:** 50 | **Generation:** v3
 - **Gap(s):** infant_substrate:GAP-14
@@ -4977,7 +4947,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-096
+REE inter-governance work item: IGW-20260803-097
 Title: EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion satisfaction comparison)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked_pending_substrate
@@ -4993,7 +4963,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-152 -- Biology grounding completion (object-files / permanence / affordances / self / ToM lit-pulls)
+### IGW-20260803-153 -- Biology grounding completion (object-files / permanence / affordances / self / ToM lit-pulls)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** object_representation_v4:OBJ-6
@@ -5002,7 +4972,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-152
+REE inter-governance work item: IGW-20260803-153
 Title: Biology grounding completion (object-files / permanence / affordances / self / ToM lit-pulls)
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -5018,7 +4988,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-153 -- Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_pack delegate to one shared skeleton)
+### IGW-20260803-154 -- Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_pack delegate to one shared skeleton)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** parked | **Priority:** 50 | **Generation:** process
 - **Gap(s):** STEP-7.1
@@ -5027,7 +4997,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-153
+REE inter-governance work item: IGW-20260803-154
 Title: Unify the pack skeleton (sync build_runpack_docs + pack_writer.write_pack delegate to one shared skeleton)
 Lane: plan | Skill: (plan reconcile)
 Status: parked
@@ -5042,7 +5012,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-154 -- Carry the always-core through sync into the pack (substrate_hash/config/seeds/machine/elapsed_seconds + rich governance 
+### IGW-20260803-155 -- Carry the always-core through sync into the pack (substrate_hash/config/seeds/machine/elapsed_seconds + rich governance 
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** parked_indefinite | **Priority:** 50 | **Generation:** process
 - **Gap(s):** STEP-7.2
@@ -5051,7 +5021,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-154
+REE inter-governance work item: IGW-20260803-155
 Title: Carry the always-core through sync into the pack (substrate_hash/config/seeds/machine/elapsed_seconds + rich governance 
 Lane: plan | Skill: (plan reconcile)
 Status: parked_indefinite
@@ -5066,7 +5036,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-167 -- Hyperarousal insomnia and schema-repair starvation (PTSD chronicity)
+### IGW-20260803-168 -- Hyperarousal insomnia and schema-repair starvation (PTSD chronicity)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 50 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:PTSD-HYPERAROUSAL-INSOMNIA
@@ -5075,7 +5045,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-167
+REE inter-governance work item: IGW-20260803-168
 Title: Hyperarousal insomnia and schema-repair starvation (PTSD chronicity)
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -5091,7 +5061,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-168 -- Dream phenomenology as diagnostic and treatment-response marker
+### IGW-20260803-169 -- Dream phenomenology as diagnostic and treatment-response marker
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** partial | **Priority:** 50 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:DREAM-PHENOMENOLOGY
@@ -5100,7 +5070,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-168
+REE inter-governance work item: IGW-20260803-169
 Title: Dream phenomenology as diagnostic and treatment-response marker
 Lane: plan | Skill: (plan reconcile)
 Status: partial
@@ -5116,7 +5086,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-169 -- Serotonergic cross-state architecture (replay salience tagging, REM-gate zero-point)
+### IGW-20260803-170 -- Serotonergic cross-state architecture (replay salience tagging, REM-gate zero-point)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:SEROTONERGIC-CROSS-STATE
@@ -5125,7 +5095,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-169
+REE inter-governance work item: IGW-20260803-170
 Title: Serotonergic cross-state architecture (replay salience tagging, REM-gate zero-point)
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -5141,7 +5111,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-174 -- Pharmacological predictions registry + receptor-subtype resolution layer
+### IGW-20260803-175 -- Pharmacological predictions registry + receptor-subtype resolution layer
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** tracked | **Priority:** 50 | **Generation:** clinical
 - **Gap(s):** clinical_failure_modes:PHARMACOLOGICAL-PREDICTIONS
@@ -5151,7 +5121,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-174
+REE inter-governance work item: IGW-20260803-175
 Title: Pharmacological predictions registry + receptor-subtype resolution layer
 Lane: plan | Skill: (plan reconcile)
 Status: tracked
@@ -5167,7 +5137,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-184 -- Biology grounding for relational harm + love-as-care (harm-to-agency, ToM-of-goals, empathy-as-shared-circuit lit-pulls)
+### IGW-20260803-185 -- Biology grounding for relational harm + love-as-care (harm-to-agency, ToM-of-goals, empathy-as-shared-circuit lit-pulls)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** closed | **Priority:** 50 | **Generation:** v5
 - **Gap(s):** relational_harm_moral_semantics_v5:RHM-6
@@ -5176,7 +5146,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-184
+REE inter-governance work item: IGW-20260803-185
 Title: Biology grounding for relational harm + love-as-care (harm-to-agency, ToM-of-goals, empathy-as-shared-circuit lit-pulls)
 Lane: plan | Skill: (plan reconcile)
 Status: closed
@@ -5192,7 +5162,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-194 -- E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability
+### IGW-20260803-195 -- E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** in_progress | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-4
@@ -5201,7 +5171,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-194
+REE inter-governance work item: IGW-20260803-195
 Title: E2 prediction error modulates E3 confidence (DR-12): PE-magnitude signals trajectory unreliability
 Lane: plan | Skill: (plan reconcile)
 Status: in_progress
@@ -5217,7 +5187,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-198 -- Own-future-option uncertainty: does REE need an explicit self-model of its OWN future option-space (second-order uncerta
+### IGW-20260803-199 -- Own-future-option uncertainty: does REE need an explicit self-model of its OWN future option-space (second-order uncerta
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** assembling | **Priority:** 50 | **Generation:** v4
 - **Gap(s):** self_model_v4:SELF-9
@@ -5226,7 +5196,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-198
+REE inter-governance work item: IGW-20260803-199
 Title: Own-future-option uncertainty: does REE need an explicit self-model of its OWN future option-space (second-order uncerta
 Lane: plan | Skill: (plan reconcile)
 Status: assembling
@@ -5241,7 +5211,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-227 -- Confirm evidence: MECH-203 (lit 0.88, exp ~0)
+### IGW-20260803-227 -- Confirm evidence: MECH-203 (lit 0.88, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.88, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5249,7 +5219,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-227
+REE inter-governance work item: IGW-20260803-227
 Title: Confirm evidence: MECH-203 (lit 0.88, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5264,7 +5234,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-228 -- Confirm evidence: MECH-293 (lit 0.87, exp ~0)
+### IGW-20260803-228 -- Confirm evidence: MECH-293 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5272,7 +5242,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-228
+REE inter-governance work item: IGW-20260803-228
 Title: Confirm evidence: MECH-293 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5287,7 +5257,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-229 -- Confirm evidence: SD-014 (lit 0.87, exp ~0)
+### IGW-20260803-229 -- Confirm evidence: SD-014 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** ready | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5295,7 +5265,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-229
+REE inter-governance work item: IGW-20260803-229
 Title: Confirm evidence: SD-014 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5310,7 +5280,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-230 -- Confirm evidence: MECH-191 (lit 0.87, exp ~0)
+### IGW-20260803-230 -- Confirm evidence: MECH-191 (lit 0.87, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.87, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5318,7 +5288,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-230
+REE inter-governance work item: IGW-20260803-230
 Title: Confirm evidence: MECH-191 (lit 0.87, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5333,7 +5303,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-231 -- Confirm evidence: MECH-074 (lit 0.86, exp ~0)
+### IGW-20260803-231 -- Confirm evidence: MECH-074 (lit 0.86, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.86, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5341,7 +5311,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-231
+REE inter-governance work item: IGW-20260803-231
 Title: Confirm evidence: MECH-074 (lit 0.86, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5356,7 +5326,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-232 -- Confirm evidence: SD-039 (lit 0.86, exp ~0)
+### IGW-20260803-232 -- Confirm evidence: SD-039 (lit 0.86, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.86, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5364,7 +5334,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-232
+REE inter-governance work item: IGW-20260803-232
 Title: Confirm evidence: SD-039 (lit 0.86, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5379,7 +5349,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-233 -- Confirm evidence: MECH-269 (lit 0.85, exp ~0)
+### IGW-20260803-233 -- Confirm evidence: MECH-269 (lit 0.85, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.85, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5387,7 +5357,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-233
+REE inter-governance work item: IGW-20260803-233
 Title: Confirm evidence: MECH-269 (lit 0.85, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5402,7 +5372,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-234 -- Confirm evidence: INV-064 (lit 0.84, exp ~0)
+### IGW-20260803-234 -- Confirm evidence: INV-064 (lit 0.84, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.84, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5410,7 +5380,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-234
+REE inter-governance work item: IGW-20260803-234
 Title: Confirm evidence: INV-064 (lit 0.84, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5425,7 +5395,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-235 -- Confirm evidence: MECH-282 (lit 0.83, exp ~0)
+### IGW-20260803-235 -- Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.83, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5433,7 +5403,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-235
+REE inter-governance work item: IGW-20260803-235
 Title: Confirm evidence: MECH-282 (lit 0.83, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5448,7 +5418,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-236 -- Confirm evidence: MECH-286 (lit 0.82, exp ~0)
+### IGW-20260803-236 -- Confirm evidence: MECH-286 (lit 0.82, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.82, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5456,7 +5426,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-236
+REE inter-governance work item: IGW-20260803-236
 Title: Confirm evidence: MECH-286 (lit 0.82, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5471,7 +5441,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-237 -- Confirm evidence: MECH-074d (lit 0.81, exp ~0)
+### IGW-20260803-237 -- Confirm evidence: MECH-074d (lit 0.81, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.81, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5479,7 +5449,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-237
+REE inter-governance work item: IGW-20260803-237
 Title: Confirm evidence: MECH-074d (lit 0.81, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5494,7 +5464,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-238 -- Confirm evidence: MECH-338 (lit 0.79, exp ~0)
+### IGW-20260803-238 -- Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.79, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5502,7 +5472,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-238
+REE inter-governance work item: IGW-20260803-238
 Title: Confirm evidence: MECH-338 (lit 0.79, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5517,7 +5487,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-239 -- Confirm evidence: MECH-232 (lit 0.78, exp ~0)
+### IGW-20260803-239 -- Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.78, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5525,7 +5495,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-239
+REE inter-governance work item: IGW-20260803-239
 Title: Confirm evidence: MECH-232 (lit 0.78, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5540,7 +5510,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-240 -- Confirm evidence: MECH-322 (lit 0.77, exp ~0)
+### IGW-20260803-240 -- Confirm evidence: MECH-322 (lit 0.77, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.77, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5548,7 +5518,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-240
+REE inter-governance work item: IGW-20260803-240
 Title: Confirm evidence: MECH-322 (lit 0.77, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5563,7 +5533,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-241 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
+### IGW-20260803-241 -- Confirm evidence: SD-055 (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5571,7 +5541,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-241
+REE inter-governance work item: IGW-20260803-241
 Title: Confirm evidence: SD-055 (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5586,7 +5556,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-242 -- Confirm evidence: MECH-074c (lit 0.76, exp ~0)
+### IGW-20260803-242 -- Confirm evidence: MECH-074c (lit 0.76, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.76, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5594,7 +5564,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-242
+REE inter-governance work item: IGW-20260803-242
 Title: Confirm evidence: MECH-074c (lit 0.76, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5609,20 +5579,20 @@ Instructions:
 
 </details>
 
-### IGW-20260802-243 -- Confirm evidence: SD-009 (lit 0.73, exp ~0)
+### IGW-20260803-243 -- Confirm evidence: SD-009 (lit 0.72, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
-- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.73, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+- **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.72, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-243
-Title: Confirm evidence: SD-009 (lit 0.73, exp ~0)
+REE inter-governance work item: IGW-20260803-243
+Title: Confirm evidence: SD-009 (lit 0.72, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
 Claims: SD-009
-Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.73, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
+Why now: GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.72, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
 
 Instructions:
 - Use /queue-experiment (not manual queue edits). Smoke test before declaring done.
@@ -5632,7 +5602,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-244 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
+### IGW-20260803-244 -- Confirm evidence: SD-024 (lit 0.70, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5640,7 +5610,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-244
+REE inter-governance work item: IGW-20260803-244
 Title: Confirm evidence: SD-024 (lit 0.70, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5655,7 +5625,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-245 -- Confirm evidence: MECH-217 (lit 0.70, exp ~0)
+### IGW-20260803-245 -- Confirm evidence: MECH-217 (lit 0.70, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.70, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5663,7 +5633,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-245
+REE inter-governance work item: IGW-20260803-245
 Title: Confirm evidence: MECH-217 (lit 0.70, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5678,7 +5648,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-246 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
+### IGW-20260803-246 -- Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.69, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5686,7 +5656,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-246
+REE inter-governance work item: IGW-20260803-246
 Title: Confirm evidence: MECH-340 (lit 0.69, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5701,7 +5671,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-247 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
+### IGW-20260803-247 -- Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 
 - **Lane:** experiment | **Skill:** `/queue-experiment` | **Status:** surfaced | **Priority:** 55 | **Generation:** v3
 - **Why now:** GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), lit_conf 0.68, ZERO experimental evidence. Scope a WALL-INDEPENDENT representation/functional-signature confirming DV (self-route substrate_not_ready_requeue if only a behavi
@@ -5709,7 +5679,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-247
+REE inter-governance work item: IGW-20260803-247
 Title: Confirm evidence: MECH-339 (lit 0.68, exp ~0)
 Lane: experiment | Skill: /queue-experiment
 Status: ready
@@ -5724,7 +5694,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-015 -- Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social
+### IGW-20260803-016 -- Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-5
@@ -5734,7 +5704,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-015
+REE inter-governance work item: IGW-20260803-016
 Title: Soothing / comfort autonomic state-gain modulator (MECH-355) -- V4-social
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5751,7 +5721,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-016 -- Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudicatio
+### IGW-20260803-017 -- Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudicatio
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** affect_expression_v4:AE-6
@@ -5761,7 +5731,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-016
+REE inter-governance work item: IGW-20260803-017
 Title: Laughter regime-transition discharge (MECH-364) + crying/distress-vocalisation analogue and laughter-valence adjudicatio
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5778,7 +5748,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-024 -- MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
+### IGW-20260803-025 -- MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v3
 - **Gap(s):** arc_062_rule_apprehension:GAP-J
@@ -5788,7 +5758,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-024
+REE inter-governance work item: IGW-20260803-025
 Title: MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / MECH-312d sub-MECHs)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5805,7 +5775,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-030 -- Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query
+### IGW-20260803-031 -- Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-6
@@ -5815,7 +5785,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-030
+REE inter-governance work item: IGW-20260803-031
 Title: Candidate-gradient episode content schema (MECH-361): affect gradient as write-weight + retrieval-query
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5832,7 +5802,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-031 -- Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property
+### IGW-20260803-032 -- Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** autobiographical_memory_v4:ABM-7
@@ -5842,7 +5812,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-031
+REE inter-governance work item: IGW-20260803-032
 Title: Switchable episodic perspective tag (MECH-366): participant/observer viewpoint as a represented, switchable property
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5859,7 +5829,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-039 -- Attention (distributed precision-selection) grounding -- containment, not a module
+### IGW-20260803-040 -- Attention (distributed precision-selection) grounding -- containment, not a module
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** biology_grounding_convergence_v4:BG-6
@@ -5868,7 +5838,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-039
+REE inter-governance work item: IGW-20260803-040
 Title: Attention (distributed precision-selection) grounding -- containment, not a module
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5883,7 +5853,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-040 -- Ethics / commitment policy grounding (or honest 'no clean analog')
+### IGW-20260803-041 -- Ethics / commitment policy grounding (or honest 'no clean analog')
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** biology_grounding_convergence_v4:BG-7
@@ -5892,7 +5862,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-040
+REE inter-governance work item: IGW-20260803-041
 Title: Ethics / commitment policy grounding (or honest 'no clean analog')
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5907,7 +5877,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-057 -- Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move
+### IGW-20260803-058 -- Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-6
@@ -5917,7 +5887,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-057
+REE inter-governance work item: IGW-20260803-058
 Title: Distancing operator (MECH-382): first/third-person reframe as an arbitration-altering control move
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5934,7 +5904,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-058 -- Labels as top-down perceptual-control signals (MECH-383): self-directed labels tune perceptual search
+### IGW-20260803-059 -- Labels as top-down perceptual-control signals (MECH-383): self-directed labels tune perceptual search
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** developmental_dmn_v4:DMN-7
@@ -5944,7 +5914,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-058
+REE inter-governance work item: IGW-20260803-059
 Title: Labels as top-down perceptual-control signals (MECH-383): self-directed labels tune perceptual search
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5961,7 +5931,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-068 -- Prescriptive + diagnostic ethical-trajectory certification: CBF forward-invariance + backward-reachability barrier certi
+### IGW-20260803-069 -- Prescriptive + diagnostic ethical-trajectory certification: CBF forward-invariance + backward-reachability barrier certi
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v5
 - **Gap(s):** ethics_as_coherence_v5:ETH-6
@@ -5971,7 +5941,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-068
+REE inter-governance work item: IGW-20260803-069
 Title: Prescriptive + diagnostic ethical-trajectory certification: CBF forward-invariance + backward-reachability barrier certi
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -5988,7 +5958,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-077 -- MECH-191 cross-architecture legibility unblock check (does A's dispositional readout resolve the tonic-channel gap?)
+### IGW-20260803-078 -- MECH-191 cross-architecture legibility unblock check (does A's dispositional readout resolve the tonic-channel gap?)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v3
 - **Gap(s):** global_workspace_jlens:MECH-191
@@ -5998,7 +5968,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-077
+REE inter-governance work item: IGW-20260803-078
 Title: MECH-191 cross-architecture legibility unblock check (does A's dispositional readout resolve the tonic-channel gap?)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6015,7 +5985,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-082 -- PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberatio
+### IGW-20260803-083 -- PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberatio
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** goal_deliberation_v4:GDL-6
@@ -6024,7 +5994,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-082
+REE inter-governance work item: IGW-20260803-083
 Title: PILLAR 5 -- capacity-limited E3 access gate + attentional template (SD-027/SD-028/MECH-254/MECH-255) feeding deliberatio
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6040,7 +6010,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-085 -- V5/V6 frame inventory: feeding / hazard / contact / interruption / help-harm / give-receive / request-response / belief-
+### IGW-20260803-086 -- V5/V6 frame inventory: feeding / hazard / contact / interruption / help-harm / give-receive / request-response / belief-
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v6
 - **Gap(s):** grammar_primitive_mining_v6:GRAM-4
@@ -6050,7 +6020,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-085
+REE inter-governance work item: IGW-20260803-086
 Title: V5/V6 frame inventory: feeding / hazard / contact / interruption / help-harm / give-receive / request-response / belief-
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6067,7 +6037,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-086 -- Aspect / event-arc as closure map: starting / ongoing / repeated / interrupted / resumed / completed / failed / abandone
+### IGW-20260803-087 -- Aspect / event-arc as closure map: starting / ongoing / repeated / interrupted / resumed / completed / failed / abandone
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v6
 - **Gap(s):** grammar_primitive_mining_v6:GRAM-5
@@ -6077,7 +6047,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-086
+REE inter-governance work item: IGW-20260803-087
 Title: Aspect / event-arc as closure map: starting / ongoing / repeated / interrupted / resumed / completed / failed / abandone
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6094,7 +6064,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-093 -- ACh permissive write-gate on the surprise buffer (MECH-207)
+### IGW-20260803-094 -- ACh permissive write-gate on the surprise buffer (MECH-207)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-6
@@ -6104,7 +6074,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-093
+REE inter-governance work item: IGW-20260803-094
 Title: ACh permissive write-gate on the surprise buffer (MECH-207)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6121,7 +6091,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-094 -- Schema-primed rapid assimilation (INV-039)
+### IGW-20260803-095 -- Schema-primed rapid assimilation (INV-039)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** hippocampal_planning_v4:HPL-7
@@ -6131,7 +6101,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-094
+REE inter-governance work item: IGW-20260803-095
 Title: Schema-primed rapid assimilation (INV-039)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6148,7 +6118,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-127 -- Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)
+### IGW-20260803-128 -- Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v4
 - **Gap(s):** memory_lifecycle_v4:MEM-7
@@ -6157,7 +6127,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-127
+REE inter-governance work item: IGW-20260803-128
 Title: Gated-write-authority on consolidation (over-frequent rewriting is a failure mode)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6173,7 +6143,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-133 -- Affective expression as mode-broadcast: emit own control-plane regime to reduce the OTHER'S prediction load (MECH-041)
+### IGW-20260803-134 -- Affective expression as mode-broadcast: emit own control-plane regime to reduce the OTHER'S prediction load (MECH-041)
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v5
 - **Gap(s):** mirror_modelling_other_self_v5:MIRROR-6
@@ -6183,7 +6153,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-133
+REE inter-governance work item: IGW-20260803-134
 Title: Affective expression as mode-broadcast: emit own control-plane regime to reduce the OTHER'S prediction load (MECH-041)
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6200,7 +6170,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-140 -- Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others
+### IGW-20260803-141 -- Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v5
 - **Gap(s):** multi_agent_ecology_v5:MAE-6
@@ -6210,7 +6180,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-140
+REE inter-governance work item: IGW-20260803-141
 Title: Loneliness as architectural harm (Q-029): unshared suffering measurable only against present-or-absent others
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6227,7 +6197,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-191 -- MECH-257 dual-function 3-arm ablation re-queue
+### IGW-20260803-192 -- MECH-257 dual-function 3-arm ablation re-queue
 
 - **Lane:** plan | **Skill:** `(plan reconcile)` | **Status:** blocked | **Priority:** 58 | **Generation:** v3
 - **Gap(s):** self_attribution:GAP-3
@@ -6237,7 +6207,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-191
+REE inter-governance work item: IGW-20260803-192
 Title: MECH-257 dual-function 3-arm ablation re-queue
 Lane: plan | Skill: (plan reconcile)
 Status: blocked
@@ -6254,7 +6224,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-002 -- Held pending substrate: MECH-322
+### IGW-20260803-002 -- Held pending substrate: MECH-322
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60 | **Generation:** v3
 - **Blocked by:** V3 substrate implementation / per-claim retest
@@ -6263,7 +6233,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-002
+REE inter-governance work item: IGW-20260803-002
 Title: Held pending substrate: MECH-322
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -6278,7 +6248,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-003 -- Held pending substrate: MECH-481
+### IGW-20260803-003 -- Held pending substrate: MECH-480
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60 | **Generation:** v3
 - **Blocked by:** V3 substrate implementation / per-claim retest
@@ -6287,7 +6257,31 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-003
+REE inter-governance work item: IGW-20260803-003
+Title: Held pending substrate: MECH-480
+Lane: substrate | Skill: /implement-substrate
+Status: blocked
+Claims: MECH-480
+Blocked by: V3 substrate implementation / per-claim retest
+Why now: promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.
+
+Instructions:
+- Use /implement-substrate for the SD/MECH named in title.
+- Workset: http://localhost:8000/workset
+```
+
+</details>
+
+### IGW-20260803-004 -- Held pending substrate: MECH-481
+
+- **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60 | **Generation:** v3
+- **Blocked by:** V3 substrate implementation / per-claim retest
+- **Why now:** promotion_demotion verdict is `hold_pending_v3_substrate` -- governance is HELD pending substrate, not a decision to make in /governance. Unblocks when the substrate lands AND a per-claim retest supplies V3 evidence.
+
+<details><summary>Agent brief (copy-paste)</summary>
+
+```
+REE inter-governance work item: IGW-20260803-004
 Title: Held pending substrate: MECH-481
 Lane: substrate | Skill: /implement-substrate
 Status: blocked
@@ -6302,7 +6296,7 @@ Instructions:
 
 </details>
 
-### IGW-20260802-005 -- Held pending substrate: SD-091
+### IGW-20260803-006 -- Held pending substrate: SD-091
 
 - **Lane:** substrate | **Skill:** `/implement-substrate` | **Status:** blocked | **Priority:** 60 | **Generation:** v3
 - **Blocked by:** V3 substrate implementation / per-claim retest
@@ -6311,7 +6305,7 @@ Instructions:
 <details><summary>Agent brief (copy-paste)</summary>
 
 ```
-REE inter-governance work item: IGW-20260802-005
+REE inter-governance work item: IGW-20260803-006
 Title: Held pending substrate: SD-091
 Lane: substrate | Skill: /implement-substrate
 Status: blocked

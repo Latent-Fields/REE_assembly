@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_611_mech341_substrate_readiness_4arm
 
-Generated: `2026-08-02T11:53:14.070330Z`
+Generated: `2026-08-02T20:39:45.146808Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

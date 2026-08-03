@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_614b_mech341_p3_behavioural_falsifier_3arm_sd056_amended
 
-Generated: `2026-08-02T11:53:14.070330Z`
+Generated: `2026-08-02T20:39:45.146808Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

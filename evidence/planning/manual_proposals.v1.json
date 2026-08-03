@@ -307,9 +307,12 @@
         "Mathys et al. (2011) - A Bayesian foundation for individual learning under uncertainty (HGF)",
         "Adams & MacKay (2007) - Bayesian online changepoint detection"
       ],
-      "status": "proposed",
+      "status": "gated",
       "added_utc": "2026-03-22",
-      "backlog_id": "EVB-0503"
+      "backlog_id": "EVB-0503",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "not applicable to /queue-experiment: proposal_type=literature, not experimental. MECH-104 is already status=active, evidence_quadrant=confirmed_established (12 genuine exp entries, exp_conf=0.788, lit_conf=0.872 per claim_evidence.v1.json); companion literature proposal LIT-0092 for the same claim is already status=executed. LIT-0093 is supplementary Bayesian/HGF grounding, non-blocking -- route to /lit-pull if pursued, not /queue-experiment."
     },
     {
       "proposal_id": "EXP-0087",
@@ -549,10 +552,13 @@
       "priority": "medium",
       "objective": "Test whether artificially maintaining a minimum VALENCE_WANTING floor (simulating serotonergic benefit terrain maintenance) prevents depression attractor formation in LONG_HORIZON condition.",
       "design": "2-condition x 3-seed matched design: (A) LONG_HORIZON/no_floor (baseline, depression expected), (B) LONG_HORIZON/floor_maintained (clip VALENCE_WANTING minimum=0.05 throughout training). Measure: z_goal_norm, |HABIT_harm_rate - PLANNED_harm_rate|. PASS: condition B shows z_goal_norm >= 0.15 AND HABIT/PLANNED gap >= 0.05 vs condition A (floor prevents depression attractor).",
-      "status": "proposed",
+      "status": "gated",
       "added_utc": "2026-04-06",
       "notes": "Requires small implementation: floor clamp on VALENCE_WANTING in agent. Run EXP-0096 first to confirm depression attractor is robust before testing rescue mechanisms. Maps to environmental intervention and activity scheduling in therapy (externally supplied terrain restoration).",
-      "backlog_id": "EVB-0518"
+      "backlog_id": "EVB-0518",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "the exact test this proposes (floor clamp on VALENCE_WANTING, i.e. 'valence_wanting_floor') has already run twice: v3_exq_251_mech186_valence_wanting_floor (runs ...1775504875_v3 and ...1775549211_v3), both evidence_direction=does_not_support, claim_ids_tested=['MECH-186'] confirmed. The EXP-0096 precondition this proposal names was also already run (v3_exq_096_full_integration_benchmark, 2026-03-25). Re-running the identical rescue-mechanism test would hit the same already-observed does_not_support result."
     },
     {
       "proposal_id": "EXP-0099",
@@ -562,10 +568,13 @@
       "priority": "medium",
       "objective": "Test bidirectional gain effects on z_goal seeding: reduced gain replicates depression in SIMPLE/LOW_HARM condition; elevated gain rescues LONG_HORIZON from depression attractor. Bidirectional prediction is a strong discriminating test.",
       "design": "3-condition x 3-seed: (A) SIMPLE/normal_gain (baseline), (B) SIMPLE/reduced_gain (multiply z_goal seeding gain by 0.2), (C) LONG_HORIZON/elevated_gain (multiply gain by 5). Measure: z_goal_norm, HABIT/PLANNED gap. PASS: condition B shows z_goal_norm < 0.1 in SIMPLE (reduced gain induces depression in easy environment); condition C shows partial z_goal_norm rescue >= 0.10 in LONG_HORIZON (elevated gain partially restores seeding despite terrain collapse).",
-      "status": "proposed",
+      "status": "gated",
       "added_utc": "2026-04-06",
       "notes": "Maps to SSRI mechanism: not mood elevation per se, but recalibration of the approach system responsiveness to terrain signals. Bidirectional prediction (gain reduction causes depression; gain elevation rescues) is what distinguishes MECH-187 from MECH-186 (terrain maintenance). Requires gain parameter in z_goal seeding module.",
-      "backlog_id": "EVB-0519"
+      "backlog_id": "EVB-0519",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "duplicate: v3_exq_252_mech187_zgoal_seeding_gain (V3-EXQ-252) already tests this exact claim (claim_ids_tested=['MECH-187'] confirmed in manifest.json) with a 5-condition design that explicitly supersedes this proposal -- its outer-bound conditions gain=0.2 (SIMPLE) / gain=5.0 (LONG_HORIZON) are the docstring-labeled 'original EXP-0099 values', and its pre-registered pair (gain=0.6 SIMPLE collapse AND gain=2.0 LONG_HORIZON rescue) tests the identical bidirectional hypothesis this proposal asks for. Both directions covered. result=supports/PASS."
     },
     {
       "proposal_id": "EXP-0100",
@@ -575,10 +584,13 @@
       "priority": "medium",
       "objective": "Test whether injecting a sustained z_goal signal (simulating PFC top-down goal persistence) prevents behavioral flattening during LONG_HORIZON even when benefit terrain has collapsed.",
       "design": "2-condition x 3-seed: (A) LONG_HORIZON/no_injection (baseline), (B) LONG_HORIZON/z_goal_injected (add constant z_goal_seed=0.3 to action selection phase, bypassing terrain-based seeding). Measure: HABIT/PLANNED behavioral gap, harm_rate. PASS: injection maintains HABIT/PLANNED gap >= 0.05 in LONG_HORIZON (terrain collapsed but external goal scaffolding preserves goal-directed behavior).",
-      "status": "proposed",
+      "status": "gated",
       "added_utc": "2026-04-06",
       "notes": "Maps to behavioural activation therapy: injecting goal structure that the terrain can no longer supply spontaneously. Key test: is MECH-188 sufficient in isolation? INV-052 (EXP-0101) tests whether any single mechanism is sufficient. MECH-188 is a top-down override, distinct from terrain manipulation (MECH-186) and gain regulation (MECH-187).",
-      "backlog_id": "EVB-0520"
+      "backlog_id": "EVB-0520",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "the exact test this proposes (sustained z_goal injection during LONG_HORIZON to prevent behavioural flattening) has already run three times: v3_exq_253_mech188_zgoal_injection (runs ...1775479111_v3 non_contributory, ...1775494225_v3 non_contributory, ...1775556946_v3 does_not_support), claim_ids_tested=['MECH-188'] confirmed. The INV-052 sufficiency-test dependency this proposal names has also already run (v3_exq_254_inv052_single_mechanism_sufficiency, 5 runs, evidence_direction=supports)."
     },
     {
       "proposal_id": "EXP-0101",
@@ -628,9 +640,12 @@
         "Robinson & Berridge (2003) - Addiction and incentive-sensitization theory (Addiction) -- incentive salience, gain modulation, and sensitization",
         "Lim et al. (2020) or Fonseca et al. (2015) - Serotonin modulation of dopamine-dependent reward and incentive salience (PFC/VTA/VLS circuit)"
       ],
-      "status": "proposed",
+      "status": "gated",
       "added_utc": "2026-04-06",
-      "backlog_id": "EVB-0523"
+      "backlog_id": "EVB-0523",
+      "gated_at_utc": "2026-08-02T14:28:07Z",
+      "gated_by_session": "confident-franklin-c8e403",
+      "gating_reason": "not applicable to /queue-experiment: proposal_type=literature, not experimental. MECH-187 already carries 7 literature entries (lit_conf=0.837) plus the EXQ-252 experimental entry (exp_conf=0.575) per claim_evidence.v1.json. Non-blocking -- route to /lit-pull if pursued."
     },
     {
       "proposal_id": "LIT-0099",
@@ -1087,7 +1102,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "gated",
       "prerequisites": [
         "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred pending Prong D literature synthesis)",
         "MECH-163 hippocampal multi-step trajectory planning (V3 full-completion gate); without multi-step plans the counterfactual collapses to MECH-257 dACC function",
@@ -1104,7 +1119,10 @@
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null,
-      "backlog_id": "EVB-0543"
+      "backlog_id": "EVB-0543",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-264 (held_v4_by_architectural_commitment/applied decision 2026-06-06). Proposal's own notes mark it a 'preparation-plan proposal, staged before SD-033e design-doc authorship', explicitly gated on (a) SD-033e implementation, (b) MECH-163 V3 full-completion gate, (c) CausalGridWorldV2 three-alternative env extension -- none built."
     },
     {
       "proposal_id": "EXP-0166",
@@ -1114,7 +1132,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "gated",
       "prerequisites": [
         "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred)",
         "CausalGridWorldV2 dual-simultaneously-active-goal extension (env extension): two goals with independently resetting drive levels and distinct resource cues",
@@ -1133,7 +1151,10 @@
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null,
-      "backlog_id": "EVB-0544"
+      "backlog_id": "EVB-0544",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for MECH-265 (held_v4_by_architectural_commitment/applied decision 2026-06-06). Proposal's own notes mark it a preparation-plan proposal gated on (a) SD-033e implementation, (b) CausalGridWorldV2 dual-active-goal extension (not on any roadmap item), (c) parallel_goal_deliberation mode activation in SalienceCoordinator -- none built."
     },
     {
       "proposal_id": "EXP-0167",
@@ -1143,7 +1164,7 @@
       "priority": "medium",
       "dispatch_mode": "new_run",
       "target_repo": "ree-v3",
-      "status": "proposed",
+      "status": "gated",
       "prerequisites": [
         "SD-033e FrontopolarAnalog substrate (V4; stub landed 2026-04-21, implementation deferred)",
         "SD-033c dlPFC-analog working-memory substrate (pending registration)",
@@ -1159,7 +1180,10 @@
       "script_path": null,
       "reserved_queue_id": null,
       "queued_utc": null,
-      "backlog_id": "EVB-0545"
+      "backlog_id": "EVB-0545",
+      "gated_at_utc": "2026-08-02T13:59:40Z",
+      "gated_by_session": "elastic-merkle-e0cca8",
+      "gating_reason": "claims.yaml implementation_phase=v4 for SD-033e (hooks reserved in V3 via operating_mode vocabulary; substrate deferred to V4). Proposal's own notes: 'Depends on SD-033c registration (not yet authored)... proposal serves as a placeholder to anchor the dissociation experiment when both substrates exist.'"
     },
     {
       "proposal_id": "EXP-0168",
@@ -1394,7 +1418,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "queue_id": null,
       "script_path": null,
       "dispatch_mode": "multi_arm_ablation",
@@ -1504,7 +1528,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "executed",
       "queue_id": null,
       "script_path": null,
       "dispatch_mode": "multi_arm_ablation",
@@ -1519,7 +1543,9 @@
         "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): subgoals must be ATTAINED at a NON-ZERO rate in ARM ATTAINED [else there is nothing to credit -- the goal_pipeline:GAP-2 foraging/benefit-contact-ceiling trap]; AND parent z_goal must be live (non-floor) so a lift is measurable; check_degeneracy non_degenerate=false otherwise."
       ],
       "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Bandura&Schunk1981 proximal-subgoal distal motivation; goal-gradient Hull1932/Kivetz2006). Cross-level UP-credit channel that ARC-051 does not currently carry. Hand to /queue-experiment; Step-2.5 must verify the substrate can produce non-zero subgoal-attainment (cf. GAP-2 foraging ceiling) before queuing.",
-      "backlog_id": "EVB-0556"
+      "backlog_id": "EVB-0556",
+      "executed_by": "V3-EXQ-883",
+      "executed_queue_id": "V3-EXQ-883"
     },
     {
       "proposal_id": "EXP-0386",
@@ -1532,7 +1558,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "executed",
       "queue_id": null,
       "script_path": null,
       "dispatch_mode": "multi_arm_ablation",
@@ -1547,7 +1573,9 @@
         "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL): the clean-goal optimum must be DISCRIMINABLE -- selected-candidate true-quality must have non-zero range across proxy conditions on the identical base landscape [else there is no optimum to divert from]; the uncommitted (multinomial) E3 regime must be active per the 674 finding [temperature-blind argmin branch would mask the effect]; check_degeneracy non_degenerate=false otherwise."
       ],
       "notes": "Source: proxy/progress goal-maintenance intake (Daniel 2026-06-12). THE standout new capture -- REE owns proxy-goal NECESSITY (INV-065) but not the alignment GUARD. Directly buildable on the V3-EXQ-674 E3-selection-probe shape (real e3.select(), injected score_bias landscape over an identical base). Grounded by evidence/literature/targeted_review_proxy_progress_goal_maintenance (Ng/Harada/Russell1999 potential-based policy-invariance; Skalse2022 restricted-policy tractability). Hand to /queue-experiment.",
-      "backlog_id": "EVB-0557"
+      "backlog_id": "EVB-0557",
+      "executed_by": "V3-EXQ-872",
+      "executed_queue_id": "V3-EXQ-872"
     },
     {
       "proposal_id": "EXP-0390",
@@ -1562,7 +1590,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "executed",
       "queue_id": null,
       "script_path": null,
       "dispatch_mode": "multi_arm_ablation",
@@ -1577,7 +1605,9 @@
         "NON-DEGENERACY / READINESS (else substrate_not_ready_requeue, NOT a FAIL -- the GAP-2 foraging-ceiling trap): (a) subgoals must be ATTAINED at a non-zero rate in ARM SUBGOAL-BOOTSTRAP [else nothing to credit]; (b) ARM FORCED-SEED must itself produce a structured z_goal in the SAME harness [else the substrate, not bootstrapping, is what fails]; check_degeneracy non_degenerate=false on either failing."
       ],
       "notes": "Source: proxy/progress goal-maintenance intake -- SEEDING-fragility refinement (Daniel 2026-06-12). FORMATION-direction sibling of MECH-427 (EXP-0385, maintenance). Anchored to the live z_goal-seeding blocker (goal_pipeline:GAP-2): the 626b forced-seed positive control is the reference; the no-subgoal arm is the GAP-2 unscaffolded failure. Grounded by targeted_review_proxy_progress_goal_maintenance (Bandura&Schunk1981 formation result). Hand to /queue-experiment; Step-2.5 must verify the subgoal-attainment + cross-level-credit instrumentation is wired in the scaffolded_sd054 harness before queuing (else blocked_substrate). A Vygotsky/ZPD developmental-scaffolding lit anchor is a flagged NEXT.",
-      "backlog_id": "EVB-0558"
+      "backlog_id": "EVB-0558",
+      "executed_by": "V3-EXQ-884",
+      "executed_queue_id": "V3-EXQ-884"
     },
     {
       "proposal_id": "EXP-0391",
@@ -1849,7 +1879,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "executed",
       "registered_utc": "2026-07-22",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 240,
@@ -1862,7 +1892,9 @@
         "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): (a) THE DISTRACTOR MUST BE REGISTERED BY THE SYSTEM -- non-zero sensory-capture rate in at least one arm. A distractor the agent never encodes tests nothing. (b) An ALL-FLOOR battery (no leg moves in any arm) self-routes substrate_not_ready. (c) Rule state must be non-degenerate: if the rule-creator emits monomodal rule state, leg (c)'s 'rule verified intact' conditioning is vacuous -- check against the ARC-062 GAP-B monostrategy-collapse status before running."
       ],
       "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-12_goal_relevance_salience_distractor_suppression.md (candidate 1). STANDING CONTAINMENT RULE, still in force from the 2026-06-04 attention analysis and NOT relaxed by this proposal: REE-v3 attention is distributed precision-selection control, not a missing module -- do NOT add a generic attention module and do NOT expand the V3 green-board closure path. A new attention substrate is justified only if THIS experiment exposes a specific failure (which is exactly what Q-082 is gated on). The intake also asks that the battery be scoped against existing telemetry before queuing; treat that as a precondition on the /queue-experiment pass. Ethical counterpart INV-092 is NOT tested here -- it needs a suppression-strength knob that does not yet exist.",
-      "backlog_id": "EVB-0566"
+      "backlog_id": "EVB-0566",
+      "executed_by": "V3-EXQ-874",
+      "executed_queue_id": "V3-EXQ-874"
     },
     {
       "proposal_id": "EXP-0399",
@@ -1880,7 +1912,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "medium",
-      "status": "proposed",
+      "status": "executed",
       "registered_utc": "2026-07-22",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 240,
@@ -1893,7 +1925,9 @@
         "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE 'UNRELATED' COMPETENCES MUST BE DEMONSTRABLY ACQUIRED IN THE BASELINE -- above-floor performance WITH live cross-seed variance, verified in phase 1 before phase 2 runs. Testing interference against competences the agent never had is vacuous and is the single most likely way this experiment returns a meaningless PASS. Also required: the targeted update must actually MOVE the targeted competence, or nothing was perturbed."
       ],
       "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 1), which names this the cheapest real probe in the cluster and the right first move. complicated (buildable) on existing substrate. A 'skill' in REE is NOT a document -- it is distributed across action objects, learned affordances, predictive models, hippocampal trajectories, goal-conditioned policies, rule-state persistence, control settings and residue-shaped tendencies; design the competences accordingly and do NOT import any text-space SkillOpt construct. NOT on the V3 critical path. The ethical constraint INV-093 (no trading harm sensitivity for competence) is a SEPARATE joint-measurement question and is not answered here.",
-      "backlog_id": "EVB-0567"
+      "backlog_id": "EVB-0567",
+      "executed_by": "V3-EXQ-875",
+      "executed_queue_id": "V3-EXQ-875"
     },
     {
       "proposal_id": "EXP-0400",
@@ -1906,7 +1940,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "executed",
       "registered_utc": "2026-07-22",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 180,
@@ -1919,7 +1953,9 @@
         "NON-DEGENERACY (else substrate_not_ready_requeue, NOT a verdict): THE HELD-OUT CONTEXTS MUST BE GENUINELY REACHABLE BY THE TRAINED POLICY -- non-zero baseline completion in the held-out set. If they are not, the measured gap is a FLOOR ARTEFACT, not evidence of memorisation. This is the guard most likely to be skipped and the most likely source of a false positive. Also required: in-context performance must be above floor, or there is no acquisition to test for."
       ],
       "notes": "Minted by thought-intake registration 2026-07-22 from evidence/planning/thought_intake_2026-07-19_conservative_skill_refinement_multi_timescale_learning.md (candidate 2). *** DO NOT CONFLATE WITH GOV-HELDOUT-1 *** -- that is the ASSEMBLY-side held-out validation of workflow and rule changes, from the sibling intake of the same SkillOpt source. This is REE-internal and concerns the agent's own competence promotion. Per GOV-ANALOGY-1 the resemblance is an analogy and NEVER evidence; a result here does not transfer there. Lower priority than EXP-0399, which is the cluster's first move.",
-      "backlog_id": "EVB-0568"
+      "backlog_id": "EVB-0568",
+      "executed_by": "V3-EXQ-882",
+      "executed_queue_id": "V3-EXQ-882"
     },
     {
       "proposal_id": "EXP-0401",
@@ -1936,7 +1972,7 @@
       "proposal_type": "experimental",
       "target_repo": "ree-v3",
       "priority": "low",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "registered_utc": "2026-07-22",
       "dispatch_mode": "multi_arm_ablation",
       "estimated_minutes": 300,

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_717_mech445_commit_intent_regime_scoped_falsifier
 
-Generated: `2026-08-02T11:53:14.070330Z`
+Generated: `2026-08-02T20:39:45.146808Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

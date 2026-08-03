@@ -1,0 +1,12 @@
+# Experiment Index: v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic
+
+Generated: `2026-08-02T20:39:45.146808Z`
+
+- Experiment profile: `experiment.md`
+- Stop criteria: `../../stop_criteria.v1.yaml`
+
+## Runs
+
+| run_id | timestamp_utc | status | key metrics | deltas vs previous | stop-criteria hits | adapter contract | summary |
+|---|---|---|---|---|---|---|---|
+| `v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3` | `2026-08-02T14:41:34Z` | PASS | readiness_ok=1 | - | - | - | [`summary`](runs/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3/summary.md) / [`manifest`](runs/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3/manifest.json) / [`metrics`](runs/v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic_20260802T095052Z_v3/metrics.json) |

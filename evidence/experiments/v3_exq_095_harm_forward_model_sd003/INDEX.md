@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_095_harm_forward_model_sd003
 
-Generated: `2026-08-02T11:53:14.070330Z`
+Generated: `2026-08-02T20:39:45.146808Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
