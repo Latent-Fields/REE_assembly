@@ -1,0 +1,236 @@
+---
+closure_plan:
+  id: substrate_stability_and_drift_detection
+  # Infrastructure/tooling lane, not V3 substrate science -- owns no scientific
+  # claims, so it is segmented out of the V3 closure % the same way
+  # arm_reuse_fingerprint_plan is (see that plan's own generation note).
+  generation: process
+  title: "Substrate Stability + Claim-Drift Detection (freeze substrate per run; detect when it has moved since a claim's evidence was recorded)"
+  registered: 2026-08-03
+  last_updated: 2026-08-03
+  scope_claims: []
+  sibling_plans:
+    - arm_reuse_fingerprint_plan.md
+  nodes:
+    - id: "substrate_stability:P0-detector"
+      title: "Phase 0 -- instrument only: check_substrate_staleness_candidates.py. Scans claim-tagged flat manifests, recomputes the current substrate hash over the same globs arm_fingerprint.py already uses, reports drift candidates. Read-only; never writes a manifest field."
+      phase: 0
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "REE_assembly/scripts/check_substrate_staleness_candidates.py landed + unit-tested (test_check_substrate_staleness_candidates.py). Reuses ree-v3/experiments/_lib/arm_fingerprint.py's compute_substrate_hash unmodified against a throwaway detached worktree at origin/main (never reimplements the hash algorithm). Zero validity risk -- prints a report only; the existing pending_retest_after_substrate / superseded_by_substrate gate in build_experiment_indexes.py (landed 2026-06-02, predates this plan) is the sole consumer and is unchanged."
+    - id: "substrate_stability:P1-scope-schema"
+      title: "Phase 1 -- optional per-claim substrate_scope declarations in claims.yaml (same glob format arm_fingerprint/substrate_scope_guard already use), narrowing the detector from whole-tree to declared scope to cut noise, plus a default-off-diff filter so a changed file gated behind a still-default-off flag downgrades to informational."
+      phase: 1
+      status: open
+      severity: low
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: ""
+    - id: "substrate_stability:P2-governance-surface"
+      title: "Phase 2 -- surface Phase-0/1 candidates in /governance or morning-digest (pending_review.md-style derived report or an IGW workset item), gated on Phase 0/1 first proving the signal is low-noise enough to be worth a human's attention every cycle."
+      phase: 2
+      status: open
+      severity: low
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: ""
+    - id: "substrate_stability:ISO-design"
+      title: "Structural isolation design (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; not built."
+      phase: 0
+      status: open
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: ""
+---
+
+# Substrate Stability + Claim-Drift Detection -- Design Plan
+
+**Status:** Phase 0 of the drift detector LANDED (`check_substrate_staleness_candidates.py`, read-only, zero validity risk -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). The structural-isolation problem (section 3) is designed but **not built** this session. Phases 1/2 of the detector (section 4.4) are designed but not built.
+**Created:** 2026-08-03T16:56Z
+**Author session:** failure-autopsy-10b982
+**Motivation chip:** user question during the V3-EXQ-875 (MECH-471) failure autopsy, 2026-08-03 -- "is there a way that the substrate could be updated as it will be as we develop ree but experiments keep stable substrate across their runs. Experiments should know their substrate build (as in we have versioning or similar for substrate) and updated substrate which is relevant could potentially become a reason to run experiments again?"
+
+---
+
+## 1. Problem statement
+
+V3-EXQ-875 (MECH-471, autopsied same session: `failure_autopsy_V3-EXQ-875_2026-08-03.md`)
+ran for ~20.5h wall-clock on `ree-worker-3`. Its manifest recorded
+`substrate_stable_across_run: false`: the per-cell process-snapshot substrate hash differed
+between its early cells (`strength=0`, hash `e001d2aa...`, 179 files) and its later cells
+(`strength=25/50/150`, hash `b1fa9593...`, 181 files). Tracing this: six `ree_core`-touching
+commits landed on `ree-v3` `main` during the run's window. It was benign this time (all six
+added default-off config flags this experiment's config never enables, confirmed by the
+manifest's own bit-identical determinism check across strength arms) -- but nothing
+*structural* prevented it. The runner executes each experiment **in place**, inside the same
+shared `ree-v3` checkout a co-resident heartbeat/runner loop periodically
+`git pull --rebase --autostash`es against `origin/main` -- including while an experiment
+subprocess is mid-execution, reading source files live from that same directory tree.
+
+This surfaces two genuinely separate design problems, both raised by the user's question and
+both real gaps once checked against what already exists:
+
+1. **Isolation** -- can a single experiment's substrate be frozen for its own run duration,
+   so a concurrent `main` commit landing mid-run cannot silently become part of what that run
+   measured?
+2. **Drift detection** -- once evidence is recorded against substrate S1, and the substrate
+   later moves to S2, is there any way to notice that S1->S2 touched files a *specific claim's*
+   evidence depended on, so a human can judge whether the claim's evidence should be re-tested?
+
+## 2. What already exists (checked before designing anything new)
+
+Substantial machinery already exists for both problems -- confirmed by reading source, not
+assumed:
+
+- **Per-run substrate identity.** `ree-v3/experiments/_lib/arm_fingerprint.py::compute_substrate_hash()`
+  hashes the content of `ree_core/**/*.py`, `experiments/_harness.py`, `experiments/_metrics.py`,
+  `experiments/_lib/**/*.py` (`_SUBSTRATE_GLOBS`) -- sorted, content-addressed, order-stable.
+  It is pure stdlib (`hashlib` + `pathlib`; no `torch`/`numpy` import), so it is cheap to call
+  from a lightweight governance-time script, not just from inside a running experiment.
+- **Optional dependency-scoping.** The same function accepts a `scope` of author-declared globs,
+  narrowing the hash to only the files a specific cell provably executes/reads-a-constant-from.
+  `ree-v3/experiments/_lib/substrate_scope_guard.py` PROVES a declared scope is a safe
+  over-approximation via two guards (call-trace + static AST data-closure) -- a scope that is
+  too narrow trips loudly rather than silently under-hashing.
+- **Within-run drift detection.** `arm_fingerprint.substrate_stability_report()` memoizes the
+  hash at process start and re-checks it later in the same process, which is exactly what
+  produced V3-EXQ-875's `substrate_stable_across_run: false` self-report.
+- **A recording standard that makes this comparable across runs.** The Experimental Recording
+  Standard's always-core fields (`evidence/planning/experimental_recording_standard_2026-07-12.md`
+  section 3b) include a top-level `substrate_hash` and `substrate_commit` on the flat manifest,
+  checked by `ree-v3/validate_recording.py`.
+- **A claim-evidence staleness GATE that already exists and is already wired into scoring** --
+  this was the biggest surprise checking existing infrastructure, and the main reason this plan
+  is scoped narrower than the original sketch. `evidence/experiments/scripts/build_experiment_indexes.py`
+  (added 2026-06-02, predates the arm-reuse-fingerprint plan) already reads four manually-settable
+  manifest fields:
+  - `pending_retest_after_substrate: bool` (run-level)
+  - `superseded_by_substrate: "<SD-id>@<YYYY-MM-DD>"` (run-level ref string)
+  - `pending_retest_after_substrate_per_claim: [claim_id]` (per-claim)
+  - `superseded_by_substrate_per_claim: {claim_id: ref}` (per-claim ref)
+
+  A flagged entry stays in the full audit log but is tagged `scoring_excluded="stale_substrate"`
+  and does not feed claim confidence/conflict. `/failure-autopsy`'s own artifact schema already
+  has a `pending_retest_after_substrate` field per target (used, correctly `false`, in this
+  session's V3-EXQ-875 autopsy), and `generate_inter_governance_workset.py` also reads the field,
+  so there is a complete path from "someone notices" through to "surfaced on the IGW workset."
+
+**What is missing is narrower than originally scoped: nothing on the "someone notices" side is
+automated.** The gate honors these four fields; nothing computes them. A human has to notice
+that substrate moved in a way relevant to a specific claim and hand-edit the flat manifest.
+That is the actual, confirmed gap this plan's section 4 fills -- a *producer* for fields whose
+*consumer* is already built, tested, and live.
+
+## 3. Problem 1 -- structural isolation (designed, not built this session)
+
+| Option | Mechanism | Isolation strength | Cost |
+|---|---|---|---|
+| **A1 -- pinned git worktree per run** | Runner creates `git worktree add --detach <scratch>/<run_id> <pinned-commit>`, executes the driver there, syncs only the manifest back to the shared checkout on completion | Strong -- byte-identical for the run's whole life, immune to concurrent commits landing on `main` | Disk (one tree copy per in-flight run) + worktree bookkeeping/cleanup (this repo already has a documented orphaned-worktree hazard class to avoid repeating) |
+| **A2 -- pause-the-puller mutex (recommended default)** | Before a "needs-stable-substrate" experiment starts, it takes a local lock (a worker-scoped analog of the `coordination_plane.py` pause pattern this session used for its own claim, but scoped to `ree_core/`/`experiments/_lib/` rather than the coordination-data plane); the heartbeat's `git pull --rebase --autostash` step checks the lock and defers while it is held | Strong against *new* drift; does not protect against dirt already uncommitted in the checkout at run start (rare on a worker, since workers do not normally carry live human edits) | Cheapest -- no new directories, no disk cost, a small addition to `experiment_runner.py`'s pull step |
+| **A3 -- rsync snapshot per run (rejected)** | Full file copy, the pattern `scripts/remote_pytest.sh` already uses for pytest staging | Strong, sidesteps git-object-store contention on very long runs | Higher disk cost than A1 with no shared object store, and inherits the exact `.git`-file-vs-directory trap `remote_pytest.sh` had to fix (documented in `CLAUDE.md` "Running the test suite") for zero isolation benefit over A1 |
+
+**Recommendation**: A2 as the default (V3-EXQ-875 showed drift is usually benign, and the cost
+should match that), reserving A1 for experiments an author explicitly flags as expensive/
+critical (long wall-clock, claim-decisive). A3 should not be built -- it is strictly dominated
+by A1 for this use case.
+
+**Why this section is not built this session**: it requires a change to
+`ree-v3/experiment_runner.py`'s pull step, which is executable-code-plane infrastructure shared
+by every worker and the hub, and per this repo's own git policy that class of change should be
+staged (an `integration/<slug>` branch, tested on a cloud worker, before merging to `main`) --
+not a same-session drive-by edit. Left as an open node (`substrate_stability:ISO-design`) for a
+dedicated follow-on.
+
+## 4. Problem 2 -- claim-drift detection (Phase 0 landed this session)
+
+### 4.1 Design
+
+A read-only report script, `REE_assembly/scripts/check_substrate_staleness_candidates.py`:
+
+1. Scan flat claim-tagged manifests under `REE_assembly/evidence/experiments/*.json` (Phase 0
+   scope note below on why flat-only).
+2. For each with a recorded top-level `substrate_hash` (and, if present, `substrate_commit`):
+   fetch `origin/main`, materialise a throwaway detached worktree at it, and call the REAL
+   `compute_substrate_hash()` from `ree-v3/experiments/_lib/arm_fingerprint.py` **as found in
+   that worktree** (never reimplemented -- reusing the actual function is what guarantees the
+   comparison is meaningful, since a subtly different reimplementation could produce a false
+   drift signal or a false all-clear).
+3. Compare. A mismatch is a **drift candidate**, not an automatic flag -- nothing is written to
+   any manifest. If `substrate_commit.commit` is present, additionally run
+   `git diff --name-only <recorded-commit>..origin/main -- <the same four globs>` in `ree-v3`
+   so the report names exactly which files changed, not just "something changed."
+4. Manifests already carrying `pending_retest_after_substrate` / `superseded_by_substrate` (or
+   whose `evidence_direction` is already `superseded`) are excluded from "new candidates" and
+   reported separately as "already actioned" -- this report should never suggest re-flagging
+   something governance has already handled.
+5. Manifests with no recorded substrate identity (pre-recording-standard) are bucketed as
+   "no substrate identity recorded, cannot assess" -- an honest limitation, not silently
+   dropped (per this repo's no-silent-caps convention).
+6. Group results by `claim_id` and print a plain-text report. Never writes a file, never
+   mutates a manifest -- mirrors `arm_reuse_report.py`'s own Phase-0 posture exactly ("READ-ONLY",
+   printed to stdout, run on demand).
+
+### 4.2 Why flat-only, for now
+
+`build_experiment_indexes.py` enumerates evidence from three sources: `*.json` (flat),
+`*/*.json`, and `**/runs/**/manifest.json` (the pack -- the historical scoring source for
+`arm_results`). Per that module's own comment, `/failure-autopsy` and operators edit the FLAT
+file, never `runs/<run_id>/manifest.json` -- the flat file is the human-editable override layer.
+Since `pending_retest_after_substrate` is exactly such an override, restricting Phase 0 to flat
+manifests matches where a human would actually act on the report. Measured corpus scan
+(2026-08-03): 641 flat claim-tagged manifests, 206 carry `substrate_hash`, 58 also carry
+`substrate_commit`. A future phase can extend coverage to the `runs/` pack if flat-only proves
+to miss too much (tracked as a Phase-1 refinement, not blocking Phase 0).
+
+### 4.3 Noise control already built in, without needing new schema
+
+The whole-tree default (`_SUBSTRATE_GLOBS`) is already `ree_core/**` + a handful of
+`experiments/_lib`/`_harness`/`_metrics` files -- not the whole repo, so it does not fire on
+every `experiments/v3_exq_*.py` driver addition or planning-doc edit the way a naive whole-repo
+hash would. This keeps Phase 0's false-positive rate lower than the original worry in the design
+sketch. No per-claim `substrate_scope` schema addition was needed to make Phase 0 useful; that
+remains a real Phase-1 refinement (narrowing further, and filtering default-off-only diffs) but
+is not a prerequisite for a first, honest, whole-tree-scoped report.
+
+### 4.4 Phased rollout
+
+- **Phase 0 (this session, done)**: instrument-only report, run manually, zero validity risk,
+  no schema change, no automatic flagging. Purpose: measure how noisy whole-tree drift detection
+  actually is against the real corpus before committing to anything more automated.
+- **Phase 1 (open)**: optional per-claim `substrate_scope` in `claims.yaml` (reusing the exact
+  glob format + `substrate_scope_guard` conservatism proofs already built for arm fingerprints),
+  narrowing the detector from whole-tree to declared scope; plus a default-off-diff filter (a
+  changed file whose only diff is behind a flag that is still default-off and unused by the
+  claim's evidence config downgrades to an informational note, not a candidate) -- reusing the
+  same discrimination this repo's default-off-drift-audit convention already applies elsewhere.
+- **Phase 2 (open, gated on Phase 0/1 proving low noise)**: surface flagged candidates somewhere
+  a human actually reads every cycle -- either a `pending_review.md`-style derived report, or an
+  IGW workset item (reusing the workset generator's existing `pending_retest_after_substrate`
+  read path). Never auto-requeues a re-test -- matches the interactive-governance philosophy
+  used everywhere else in this repo (a human decides whether a diff is claim-relevant).
+
+## 5. Explicitly out of scope (this plan)
+
+- Any change to `ree-v3/experiment_runner.py`'s git-pull behaviour (section 3's isolation design
+  is deliberately left unbuilt this session -- see rationale there).
+- Any automatic write of `pending_retest_after_substrate` / `superseded_by_substrate` -- the
+  detector only ever reports; a human (governance) makes the call and edits the flat manifest,
+  exactly as `/failure-autopsy` already does today for other reasons.
+- Retro-fitting historical manifests with no recorded `substrate_hash` into comparability --
+  matches `arm_reuse_fingerprint_plan.md` section 6's identical exclusion for the same reason
+  (no substrate hash exists for them; unsafe to assume one).
+- Cross-`machine_class` drift comparison -- Phase 0 compares content hashes only, not runtime
+  behaviour across machine classes; that is `arm_reuse_fingerprint_plan.md`'s Regime B, a
+  separate and harder problem.
+
+## Status table
+
+| Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
+|---|---|---|---|---|---|---|
+| P0-detector | 0 | done | -- | none; run on demand via `/opt/local/bin/python3 scripts/check_substrate_staleness_candidates.py` | null | 2026-08-03 |
+| P1-scope-schema | 1 | open | Phase 0 producing a low-noise-enough signal to be worth the schema cost | Decide, from a real Phase-0 run's noise level, whether per-claim scope declarations are worth the authoring cost | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | Phase 1 | Wire a low-noise candidate list into `/governance` or `morning-digest` | null | 2026-08-03 |
+| ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |
