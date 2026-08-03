@@ -62954,6 +62954,26 @@
     non_contributory/precondition_unmet. Route: /queue-experiment with either more training budget
     or an easier held-out context set to clear the acquisition floor on every seed before scoring
     the gap.
+    [2026-08-03T18:19Z addendum, autopsy Section 9, confirmed via zworld_p0_warmup lint
+    (ree-v3 c81813b)]: UNRESOLVED CONFOUND on the reading above. The driver's single
+    `_train_all_on_agent` call (line 256) never passes `zworld_p0_episodes`, so the SD-070
+    z_world-encoder warmup never ran and `z_world` stayed a frozen random projection for the
+    entire run -- the identical defect independently confirmed on V3-EXQ-728 (original,
+    "3/3 seeds failed") and V3-EXQ-875/MECH-471 the same day. A frozen random projection is
+    itself a plausible source of a stable, SEED-dependent (not exposure-dependent) split of
+    exactly this shape -- one seed's random projection happens to support the policy, two
+    don't, and no amount of added REINFORCE exposure would be expected to fix that. Nothing in
+    this run's evidence distinguishes that reading from the "genuine hazard-geometry difficulty
+    split" reading above; both predict a stable, non-improving per-seed split under more
+    training. STATUS: unresolved, not adjudicated between the two readings -- do not read the
+    "difficulty split in the intended direction" sentence above as settled pending this.
+    Consequence for re-queuing: any successor run (V3-EXQ-882a or otherwise) MUST add
+    `zworld_p0_episodes=60` (the V3-EXQ-728/875a validated operating point) to the acquisition
+    call before it queues -- this is a strict improvement regardless of which reading is
+    correct (either the per-seed split resolves, which is itself informative, or it doesn't,
+    which rules out this confound and strengthens the genuine-difficulty-split reading).
+    V3-EXQ-882a is NOT YET QUEUED as of this addendum (verified against ree-v3/experiment_queue.json,
+    2026-08-03T18:22:41Z) -- it must not be queued with the driver unchanged.
 
 - id: MECH-473
   title: "REJECTED-ADAPTATION MEMORY improves later recovery and transfer: retaining failed behavioural revisions together with their failure conditions improves adaptation when conditions later change. A failed adaptation should remain available as evidence about what was tried, why it failed, and under what conditions it might later become useful."
