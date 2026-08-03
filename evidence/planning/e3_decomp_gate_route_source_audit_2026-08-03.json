@@ -1,0 +1,182 @@
+{
+  "schema": "corpus_audit/v1",
+  "audit_id": "e3_decomp_gate_route_source_audit_2026-08-03",
+  "generated_at_utc": "2026-08-03T12:58:33Z",
+  "session_id": "metaworker-chip-20260803-e3-decomp-gate-corpus-audit",
+  "chip_ref": "chip-20260803-e3-decomp-gate-corpus-audit",
+  "companion_markdown": "evidence/planning/e3_decomp_gate_route_source_audit_2026-08-03.md",
+  "answers_open_item": {
+    "artifact": "evidence/planning/failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02.md",
+    "section": "8. Not investigated this session",
+    "item": "Full audit of every other experiment that has ever used modulatory_channel_route_source in {lateral_pfc, curiosity, gated_policy, mech295} without setting e3_score_decomp_enabled"
+  },
+  "bases": {
+    "ree_v3": "be5f93b3",
+    "ree_assembly": "cd659a3b07"
+  },
+
+  "defect": {
+    "summary": "modulatory_channel_route_source values backed by a _bdc_* local are silently inert unless the unrelated diagnostic flag agent.e3.e3_score_decomp_enabled is True; channel_route_bias stays None and the config behaves identically to route_source='none'.",
+    "gated_route_sources": ["lateral_pfc", "gated_policy", "mech295", "curiosity"],
+    "ungated_route_sources": ["cand_world_summary", "coherence", "none"],
+    "assignment_sites": {
+      "lateral_pfc": "ree_core/agent.py:6718-6719",
+      "gated_policy": "ree_core/agent.py:6530-6531",
+      "mech295": "ree_core/agent.py:6909-6910",
+      "curiosity": "ree_core/agent.py:6997-6998",
+      "coherence": "ree_core/agent.py:7460-7461 (gated on _tp_bias is not None, NOT on decomp)",
+      "cand_world_summary": "ree_core/agent.py:7611-7617 (separate code path)"
+    },
+    "routing_dispatch": "ree_core/agent.py:7607-7635",
+    "flag_default": "ree_core/predictors/e3_selector.py:424 (False; no REEConfig field exists)",
+    "diagnostic_field": "ree_core/predictors/e3_selector.py:2702-2712 (modulatory_channel_route_range initialised 0.0, overwritten only when channel_route_bias is not None)",
+    "introduced_with": "V3-EXQ-571 (2026-05-16)",
+    "still_live_at_base": true
+  },
+
+  "method": {
+    "driver_side": {
+      "technique": "ast.parse with module-level string-constant resolution; kwarg, dict-literal and attribute-assignment forms",
+      "why_not_grep": "every gated_policy/curiosity/mech295 occurrence in the corpus is docstring prose; a textual scan yields false positives",
+      "working_tree_drivers_total": 1271,
+      "working_tree_drivers_referencing_key": 71,
+      "historical_commit_file_pairs": 3926,
+      "historical_unique_blobs": 3923
+    },
+    "manifest_side": {
+      "technique": "driver-independent sweep of REE_assembly/evidence/experiments/*.json for declared route source and modulatory_channel_route_range_{mean,max}",
+      "manifests_mentioning_route_fields": 38,
+      "catches_what_driver_pass_cannot": "runs whose driver was later deleted, renamed or rewritten"
+    },
+    "passes_agree": true
+  },
+
+  "route_source_usage_corpus_wide": {
+    "cand_world_summary": {"current_drivers": 65, "gated": false, "ever_run": true},
+    "lateral_pfc": {"current_drivers": 4, "gated": true, "ever_run": true},
+    "coherence": {"current_drivers": 2, "gated": false, "ever_run": true},
+    "none": {"current_drivers": 2, "gated": null, "ever_run": true},
+    "gated_policy": {"current_drivers": 0, "gated": true, "ever_run": false, "note": "docstring prose only, all history"},
+    "curiosity": {"current_drivers": 0, "gated": true, "ever_run": false},
+    "mech295": {"current_drivers": 0, "gated": true, "ever_run": false}
+  },
+
+  "blast_radius": {
+    "affected_runs": 3,
+    "cleared_runs": 1,
+    "bounded": true,
+    "bounded_by": "full-history AST pass over 3923 unique blobs plus driver-independent manifest sweep"
+  },
+
+  "runs": [
+    {
+      "queue_id": "V3-EXQ-851",
+      "run_id": "v3_exq_851_arc062_pa_lateral_pfc_route_source_gapfanout_20260801T110851Z_v3",
+      "verdict": "AFFECTED",
+      "route_source": ["lateral_pfc"],
+      "decomp_enabled": false,
+      "route_range_cells": 6,
+      "route_range_all_zero": true,
+      "outcome": "FAIL",
+      "self_route": "substrate_not_ready_requeue",
+      "claim_ids": ["MECH-309", "ARC-062"],
+      "evidence_direction": "non_contributory",
+      "existing_autopsy": "failure_autopsy_V3-EXQ-851_2026-08-01.md",
+      "existing_autopsy_status": "confirmed",
+      "readjudication_required": true,
+      "reason": "Its confirmed attribution reads the 654j->851 contrast as an effect of WHICH channel is routed. 654j used cand_world_summary (gated-exempt, live); 851 used lateral_pfc (dead). The real contrast is live routing vs NO routing. The MECH-448/449 duty-cycle reduction is real and deterministic but its cause is loss of modulatory channel routing, not the lateral-PFC channel."
+    },
+    {
+      "queue_id": "V3-EXQ-859",
+      "run_id": "v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation_20260801T151524Z_v3",
+      "verdict": "AFFECTED",
+      "route_source": ["lateral_pfc", "none"],
+      "decomp_enabled": false,
+      "route_range_cells": 6,
+      "route_range_all_zero": true,
+      "outcome": "PASS",
+      "self_route": "mixed_partial_result_needs_full_replication",
+      "claim_ids": [],
+      "existing_autopsy": "failure_autopsy_V3-EXQ-859_2026-08-01.md",
+      "existing_autopsy_status": "confirmed",
+      "readjudication_required": true,
+      "priority": "lower — no claim exposure; superseded in practice by 863",
+      "arms_bit_identical": {"seeds": [42, 43, 44], "identical_measured_fields": 15, "total_measured_fields": 15, "differing_fields": ["modulatory_channel_route_source", "arm_fingerprint"]}
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+      "verdict": "AFFECTED",
+      "route_source": ["lateral_pfc", "none"],
+      "decomp_enabled": false,
+      "route_range_cells": 6,
+      "route_range_all_zero": true,
+      "outcome": "PASS",
+      "self_route": "mixed_partial_result_needs_expert_review",
+      "claim_ids": [],
+      "existing_autopsy": "failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02.md",
+      "existing_autopsy_status": "confirmed",
+      "readjudication_required": false,
+      "reason": "already correctly re-adjudicated by the decomp-gate autopsy; this audit adds empirical bit-identity confirmation",
+      "arms_bit_identical": {"seeds": [42, 43, 44], "identical_measured_fields": 17, "total_measured_fields": 17, "differing_fields": ["modulatory_channel_route_source", "arm_fingerprint"]}
+    },
+    {
+      "queue_id": "V3-EXQ-858",
+      "run_id": "v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy_20260802T023831Z_v3",
+      "verdict": "CLEARED",
+      "route_source": ["lateral_pfc"],
+      "decomp_enabled": true,
+      "decomp_set_at": "experiments/v3_exq_858_arc062_pb_fweight_attenuation_ladder_committed_class_entropy.py:694",
+      "decomp_set_annotation": "# populates _last_traj_components (C1h)",
+      "correct_by_accident": true,
+      "route_range_cells": 12,
+      "route_range_all_zero": false,
+      "route_range_live_cells": 10,
+      "route_range_max": 0.129616,
+      "outcome": "FAIL",
+      "claim_ids": [],
+      "resolves_open_flag": "failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02.md Section 7 flagged 858 as likely affected and recommended it remain suspended pending this check. Check is negative: 858's f_weight ladder is NOT invalidated by this defect."
+    }
+  ],
+
+  "signature_caveat": {
+    "signature": "modulatory_channel_route_range exactly 0.0 in EVERY cell of EVERY arm and seed, with a declared route source other than 'none'",
+    "not_sufficient_alone": "V3-EXQ-858 routes correctly yet reads exactly 0.0 in 2 of 12 cells (ARM_F100 and ARM_F050 at seed 42) — a live channel can legitimately produce no cross-candidate spread on a given seed",
+    "confirm_with": "driver-side check that e3_score_decomp_enabled is never set"
+  },
+
+  "findings": [
+    {"id": "F1", "severity": "high", "summary": "V3-EXQ-851's confirmed autopsy rests on an attribution this audit invalidates; re-adjudication owed. Only claim-tagged affected run."},
+    {"id": "F2", "severity": "medium", "summary": "V3-EXQ-859's confirmed autopsy asserts a route-source null that was never measured. No claim exposure."},
+    {"id": "F3", "severity": "resolved", "summary": "V3-EXQ-858 cleared; the 863 autopsy's open recommendation on it can be closed. Clean only by accident."},
+    {"id": "F4", "severity": "high", "summary": "The user-confirmed (2026-08-02) recommended substrate fix was never queued — substrate_queue.json (140 entries) has no decomp/route-decoupling entry, and neither IGW ledger mentions it. Defect still live at be5f93b3."},
+    {"id": "F5", "severity": "informational", "summary": "No forward exposure: experiment_queue.json holds 1 item, none using a gated route source. Exposure is historical PROVIDED F4 is closed before a new experiment reaches for one of these values."}
+  ],
+
+  "claim_layer": {
+    "claim_tagged_affected_runs": ["V3-EXQ-851"],
+    "claim_evidence_entries": [
+      {"index": 5210, "claim_id": "ARC-062", "evidence_direction": "non_contributory"},
+      {"index": 5211, "claim_id": "MECH-309", "evidence_direction": "non_contributory"}
+    ],
+    "claim_states": {"ARC-062": {"status": "candidate", "v3_pending": true}, "MECH-309": {"status": "candidate"}},
+    "confidence_revert_owed": false,
+    "exposure_kind": "narrative — a confirmed autopsy feeds a wrong causal mechanism forward into the ARC-062/MECH-309 chain; correct the routing and evidence_quality_note, not the confidence"
+  },
+
+  "recommended_followon": [
+    {"priority": 1, "action": "re-adjudicate V3-EXQ-851", "owner_skill": "/failure-autopsy", "reported": "inline per CLAUDE.md Session Land Protocol step 6", "chipped": false},
+    {"priority": 2, "action": "re-adjudicate V3-EXQ-859", "owner_skill": "/failure-autopsy", "reported": "inline", "chipped": false},
+    {"priority": 3, "action": "queue the substrate fix: populate _bdc_lpfc/_bdc_gp/_bdc_m295/_bdc_curiosity unconditionally for routing, gate only diagnostic exposure behind the flag; or raise when a gated route source is selected with the flag off. Add a contract test pinning the raise.", "owner_skill": "/governance -> /implement-substrate", "chipped": false, "note": "governance Step 2b/4/6a ratifies before spawning; check igw_routine_ledger.json for auto-discovery first"},
+    {"priority": 4, "action": "un-suspend V3-EXQ-858 on its own merits", "owner_skill": "/governance", "chipped": false},
+    {"priority": 5, "action": "reinstate a route-range readiness gate (851's C1g pattern) in any successor experiment", "owner_skill": "/queue-experiment", "chipped": false}
+  ],
+
+  "scope_limits": {
+    "audited": "ree-v3/experiments/ working tree and complete git history, all refs",
+    "not_audited_repos": ["ree-v2", "ree-v1-minimal", "REE_convergence", "REE_OpenClaw"],
+    "not_audited_reason": "not cloned in this worker's checkout; modulatory_channel_route_source is a V3 REEConfig field with no V1/V2 counterpart, so exposure is expected nil but was NOT verified",
+    "lib_helpers": "only _lib/baselines/exq700_arc108_settling_baseline.py references the key; uses cand_world_summary, unaffected",
+    "scanner_blind_spot": "a route value assembled at runtime from a non-literal expression. None found in the corpus; the claim is none was found, not that none can exist."
+  }
+}
