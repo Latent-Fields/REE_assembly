@@ -1,48 +1,32 @@
 {
   "machine": "ree-cloud-1",
   "hostname": "ree-worker-1",
-  "last_tick_utc": "2026-08-03T12:20:20Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-149b",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-671b",
-      "result": "FAIL",
-      "completed_at": "2026-08-03T02:20:37.144173+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-883",
-      "result": "PASS",
-      "completed_at": "2026-08-03T02:20:52.157589+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-884",
-      "result": "FAIL",
-      "completed_at": "2026-08-03T02:21:31.325253+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-878",
-      "result": "FAIL",
-      "completed_at": "2026-08-03T02:30:41.660148+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-866a",
-      "result": "FAIL",
-      "completed_at": "2026-08-03T07:58:14.128421+00:00"
-    }
+  "last_tick_utc": "2026-08-03T15:47:08Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-867b",
+  "current_exq_started_utc": "2026-08-03T15:42:42.878079+00:00",
+  "current_title": "MECH-321 harm-aware selection, screened matched-abort seed pool (supersedes V3-EXQ-867a)",
+  "current_claim_id": "MECH-321",
+  "current_description": "",
+  "progress": {
+    "run_label": "starting...",
+    "runs_done": 0,
+    "runs_total": 20,
+    "episodes_done": 0,
+    "episodes_total": 12,
+    "overall_pct": 0.0
+  },
+  "seconds_elapsed": 265,
+  "seconds_remaining": 12600,
+  "recent_lines": [
+    "[phase] SCREEN: up to 48 candidate seed(s) x 2 arms at 4 x 60",
+    "[screen] cand 1/48 seed=11 off_decomp=0 on_decomp=0 matched=0/8 controls=1/2"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 3973580,
-  "runner_version": "r4780 6369d16 2026-08-03 (running r4768 cea69dc)",
+  "runner_version": "r4790 6e27d29 2026-08-03 (running r4788 a95e103)",
   "gpu": {
     "available": false
   },

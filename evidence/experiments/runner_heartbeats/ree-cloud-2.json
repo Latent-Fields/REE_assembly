@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-03T12:21:20Z",
+  "last_tick_utc": "2026-08-03T15:47:07Z",
   "state": "running",
   "current_exq": "V3-EXQ-149b",
   "current_exq_started_utc": "2026-08-02T21:41:00.781204+00:00",
@@ -9,15 +9,15 @@
   "current_claim_id": "",
   "current_description": "",
   "progress": {
-    "run_label": "Seed 123 / FAST_TAU",
-    "runs_done": 1,
+    "run_label": "Seed 42 / DEFAULT_TAU",
+    "runs_done": 2,
     "runs_total": 6,
-    "episodes_done": 600,
+    "episodes_done": 150,
     "episodes_total": 600,
-    "overall_pct": 33.3
+    "overall_pct": 37.5
   },
-  "seconds_elapsed": 52819,
-  "seconds_remaining": 115875,
+  "seconds_elapsed": 65166,
+  "seconds_remaining": 114279,
   "recent_lines": [
     "=== V3-EXQ-149b: Q-004 tau_R Calibration at Larger Budget (selection-fixed) ===",
     "Conditions: ['FAST_TAU', 'DEFAULT_TAU', 'SLOW_TAU']  Seeds: [42, 123]",
@@ -62,7 +62,14 @@
     "[train] FAST_TAU seed=123 ep 450/600 harm_events=45720 harm_rate=0.5080 hippo_fallback_rate=0.0000",
     "[train] FAST_TAU seed=123 ep 500/600 harm_events=50818 harm_rate=0.5082 hippo_fallback_rate=0.0000",
     "[train] FAST_TAU seed=123 ep 550/600 harm_events=55865 harm_rate=0.5079 hippo_fallback_rate=0.0000",
-    "[train] FAST_TAU seed=123 ep 600/600 harm_events=61006 harm_rate=0.5084 hippo_fallback_rate=0.0000"
+    "[train] FAST_TAU seed=123 ep 600/600 harm_events=61006 harm_rate=0.5084 hippo_fallback_rate=0.0000",
+    "[eval] FAST_TAU seed=123 mean_harm=31.0057 residue_contrast=2.5710 total_residue=1671.450 harm_events_train=61006 candidate_diversity_min=2.0 hippo_fallback_rate_eval=0.0000",
+    "verdict: PASS",
+    "--- Condition: DEFAULT_TAU ---",
+    "Seed 42 Condition DEFAULT_TAU",
+    "[train] DEFAULT_TAU seed=42 ep 50/600 harm_events=1615 harm_rate=0.1615 hippo_fallback_rate=0.0000",
+    "[train] DEFAULT_TAU seed=42 ep 100/600 harm_events=3624 harm_rate=0.1812 hippo_fallback_rate=0.0000",
+    "[train] DEFAULT_TAU seed=42 ep 150/600 harm_events=5244 harm_rate=0.1748 hippo_fallback_rate=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
