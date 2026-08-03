@@ -2,7 +2,9 @@
   "schema_version": "failure_autopsy/v1",
   "generated_utc": "2026-08-03T08:20:00Z",
   "scope": "cluster",
-  "status": "awaiting_human_confirmation",
+  "status": "confirmed",
+  "confirmed_utc": "2026-08-03T10:54:20Z",
+  "confirmation_note": "Drafted in staging/headless mode 2026-08-03T08:20:00Z by a prior session (checkout 44 behind origin, dirty tree). This session (lucid-spence-efbee6) re-verified all cited facts against the manifests on a clean, up-to-date checkout before presenting: vs_gate_held_e1/e2_z_harm_a=0 in all 3 ARM_vs_on seeds of V3-EXQ-862a (confirmed, matches draft table exactly); n_margin_samples=0 -> execution_strength=NaN in the exact 3/6 cells the draft names for V3-EXQ-870a, with matching tick totals (confirmed). Re-ran granularity_debt_cluster.py on a clean checkout for both claims (Q-040: 2 prior targets, both non_contributory/unclear, none weakened -- trigger does not fire, consistent with draft's manual read; MECH-480: 0 prior targets -- consistent). User confirmed both routings as drafted via AskUserQuestion at the Step 8 gate, and declined to chip the low-priority MECH-480 /lit-pull gap (report inline only).",
   "dry_run_checked": true,
   "excluded_dry_run_ids": [],
   "targets": [

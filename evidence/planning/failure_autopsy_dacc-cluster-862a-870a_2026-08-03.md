@@ -1,7 +1,8 @@
 # Failure Autopsy: dACC substrate cluster (V3-EXQ-862a Q-040c + V3-EXQ-870a MECH-480)
 
 **Generated:** 2026-08-03T08:20:00Z
-**Status:** awaiting_human_confirmation (staging-mode write — this session is one of several parallel autopsy sessions; routing is drafted, not finalized. Present to the user for the Step 8 interactive gate before `/governance` consumes it.)
+**Confirmed:** 2026-08-03T10:54:20Z
+**Status:** confirmed
 **Scope:** cluster (2 targets — different claims, same dACC substrate module `ree_core/cingulate/dacc.py` + adjacent V_s/environment machinery, both authored/run 2026-08-02, both FAIL)
 
 ## 0. Pending-review flags and dry-run gate
@@ -120,6 +121,24 @@ Draft `evidence_quality_note` text for governance (per target, for `claims.yaml`
 
 > **MECH-480** — `[2026-08-03 failure_autopsy, V3-EXQ-870a, confirmed]`: first V3 run. FAIL is a design/measurement gap, not evidence against the dissociation hypothesis: in 3/6 seed×arm cells, evaluation episodes terminate (mean 8-20 of 80 steps) well before the contingency switch at step 40, leaving `execution_strength=NaN` and near-zero post-switch data; the design's only non-degeneracy check silently passes on 2/3 (not 3/3) OFF seeds due to NaN-filtering. In the 3 well-powered cells, `post_switch_toward_new_frac` reads near-zero regardless of arm — a floor effect that may reflect either genuine replanning-stickiness or DV insensitivity, but the censored cells never had a chance to inform C1 at all. `non_contributory`. The execution-strength DV design itself (avoiding SD-032b/MECH-260's committed-action-entropy floor-lock) is validated as sound — this FAIL does not reproduce that known ceiling. Route: same-question letter (870b) with a per-cell switch-step-reached precondition and termination-cause recording.
 
-## 8. Interactive gate (STOP — awaiting user confirmation)
+## 8. Interactive gate — CONFIRMED 2026-08-03T10:54:20Z
 
-Presenting to the user in this session's chat response: facts, claim-layer mapping, four-layer table, cluster read, and the two draft `evidence_direction: non_contributory` / `epistemic_category: measurement_test_design_defect` recommendations with routing to same-question letters 862b / 870b. Awaiting confirmation or redirection before `/governance` applies anything to `claims.yaml` / `review_tracker.json`.
+Session `lucid-spence-efbee6` re-verified this draft's cited facts against the manifests on a clean, up-to-date `REE_assembly` checkout (the drafting session's was 44 commits behind origin with an unrelated dirty tree) before presenting: `vs_gate_held_e1/e2_z_harm_a=0` in all 3 `ARM_vs_on` seeds of V3-EXQ-862a matches the draft table exactly; `n_margin_samples=0 -> execution_strength=NaN` in the exact 3/6 cells named for V3-EXQ-870a, with matching tick totals. `granularity_debt_cluster.py` re-run on a clean checkout for both claims confirms the draft's manual read (Q-040: 2 prior targets, both `non_contributory`/`unclear`, none `weakened` — trigger does not fire; MECH-480: 0 prior targets).
+
+Presented to the user via `AskUserQuestion`. Both routings **confirmed as drafted**:
+- V3-EXQ-862a (Q-040): `non_contributory` / `measurement_test_design_defect`, no claim pressure, re-queue 862b with per-stream V_s threshold calibration + `z_harm_a`-specific engagement precondition.
+- V3-EXQ-870a (MECH-480): `non_contributory` / `measurement_test_design_defect`, no claim pressure, re-queue 870b with per-cell switch-step-reached precondition + termination-cause recording.
+- MECH-480 `/lit-pull` gap (Asaoka 2026 citation, no formal `targeted_review_mech_480` entry): user chose **report inline only** — not chipped, left for a future `/lit-pull` session to pick up organically.
+
+`/governance` may now apply the `evidence_quality_note`s above to `claims.yaml` and clear both run_ids from `pending_review.md` via `review_tracker.json`.
+
+## 9. Step 9b (frozen hypothesis-space ledger)
+
+**Skipped cleanly — applicability condition not met.** Neither target emits a `fanout_recommendation` (both routings are a single, narrowly-scoped same-question re-queue with a named fix, not a >=2-live-hypothesis discrimination portfolio), and no pre-existing `hypothesis_space_registry.v1.json` question names Q-040 or MECH-480. A `non_contributory`/`measurement_test_design_defect` read is an instrumentation-gap adjudication, not a resolution among live rival hypotheses the ledger tracks — consistent with the sibling MECH-025/MECH-025b cluster autopsy's (`failure_autopsy_mech025-cluster-876-671b_2026-08-03`) same reasoning for skipping Step 9b.
+
+## 10. Follow-on (reported inline, not chipped — `/failure-autopsy` work-type per Session Land Protocol)
+
+- `/queue-experiment` V3-EXQ-862b: Q-040.c redesign per the routing above (per-stream `e1_threshold_per_stream`/`e2_threshold_per_stream` calibration against `z_harm_a`'s own empirical V_s distribution + a stream-specific engagement precondition).
+- `/queue-experiment` V3-EXQ-870b: MECH-480 redesign per the routing above (per-cell switch-step-reached precondition, termination-cause recording, fixed non-degeneracy NaN-filtering).
+- `/governance`: apply both `evidence_quality_note`s above; no `claims.yaml` status changes recommended by this autopsy for either claim.
+- (Not chipped, per user decision) `/lit-pull` commission for `targeted_review_mech_480` (Asaoka, Pagano & Hayashi 2026) — noted here for a future session.
