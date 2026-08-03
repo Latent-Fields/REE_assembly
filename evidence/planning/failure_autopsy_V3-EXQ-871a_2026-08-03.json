@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T09:51:33Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3",
+      "queue_id": "V3-EXQ-871a",
+      "claim_ids": ["MECH-090", "ARC-071"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact (MECH-090 core mechanism unchallenged; ARC-071 not exercised beyond precondition role)",
+        "biological_reference": "clear -- Cisek & Kalaska 2010 affordance-competition persistence, Hanes & Schall 1996 accumulator-to-threshold; MECH-090's own stated principle (E3 internal updating decoupled from output propagation) predicts the invariant this run finds violated at the AT-tick selection site only",
+        "prerequisites": "present -- ARC-071 formation (MECH-323/324) already validated (V3-EXQ-810a/810b); SD-084 persistent handle exists and is correctly used by the fixed between-tick path",
+        "implementation": "partial -- fix (a) (between-tick fast path fallback to persistent handle) confirmed correctly implemented; gap (b) (AT-tick selection unconditionally recreates the trajectory object every E3 tick) confirmed still dominant, universally, in both seeds",
+        "environment": "adequate -- 147 genuine ARC-071-chunk-sourced commitments observed across seeds, well above the 10-tick floor; formation schedule proven by V3-EXQ-810a/841",
+        "measurement": "misleading -- official_readout_mean_realised_length is confounded by e3_tick_rate (an uncontrolled nuisance variable differing ~4.4x between seeds); the apparent seed-dependent bistability is fully explained by this confound via exact arithmetic (n_genuine_commits == n_e3_ticks + n_episodes_probe in both seeds)",
+        "integration": "partially coupled but unstable -- ARC-071 chunks correctly enter the persistent handle and survive _committed_trajectory teardown; the AT-tick commit-creation path does not yet consult the persistent handle before creating a new one",
+        "scale": "adequate -- 2 seeds sufficed to expose the deterministic (not probabilistic) nature of gap (b) once the tick-rate confound is accounted for"
+      },
+      "biological_reference": {
+        "closest_mechanism": "BG winner-take-all commitment persisting as a stable output state while upstream deliberation continues (Cisek & Kalaska 2010; Hanes & Schall 1996 accumulator-to-threshold)",
+        "dependencies": ["SD-084 persistent trajectory handle", "MECH-323/MECH-324 chunk formation", "MECH-090 beta-gate propagation semantics"],
+        "is_formal_import": false,
+        "divergence": "none -- this is an implementation gap in one wiring site (AT-tick selection), not a biology-vs-substrate divergence; MECH-090's own architecture already correctly specifies the needed separation, just not yet wired at this call site",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category_per_claim": {
+        "MECH-090": "competence_implementation_gap",
+        "ARC-071": "standard"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-090": "non_contributory",
+        "ARC-071": "unknown"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-03 governance, V3-EXQ-871a, confirmed failure_autopsy_V3-EXQ-871a_2026-08-03, MECH-090/ARC-071 commit-latch AT-tick persistence]: post-fix validation of ree-v3 278599a (between-tick fast path fallback to the SD-084 persistent handle) under REAL organic chunk formation (V3-EXQ-871's whole-cell-flag defect corrected by scoping the flag to the probe phase only). Self-routed mixed_across_seeds (seed 101 mean-length 6.37 restored; seed 505 1.43 still broken) is resolved by exact arithmetic as a tick-rate confound, not real seed-dependent discrimination: n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe exactly in BOTH seeds (113=103+10; 103=93+10) -- every single E3 tick recreates the committed-trajectory object, with zero exceptions, in both seeds. The readout's floor/ceiling thresholds (3.0/1.5) were not validated against e3_tick_rate (which differs ~4.4x between seeds for reasons unrelated to the latch), so a low-tick-rate seed clears the floor purely from a longer natural gap between E3 re-evaluations, not from genuine persistence. Fix (a) (between-tick fast path) is confirmed CORRECTLY implemented (official readout and independent identity-based reading agree exactly in both seeds); the still-open gap (b) (E3 unconditionally recreating a fresh trajectory object at the AT-tick selection site, regardless of an existing unexpired commitment) is CONFIRMED as the dominant remaining defect, universally, not merely in some seeds. Read as non_contributory/competence_implementation_gap for MECH-090 (narrow to this AT-tick wiring interaction; the core gate-propagation mechanism remains well-supported by EXQ-049e/062b/049a) -- no change to MECH-090 status/confidence. ARC-071 unaffected (exercised only as the chunk-injection vehicle, per the same precedent V3-EXQ-841 used to exclude MECH-323; no evidence change, still candidate/v3_pending). Routed /implement-substrate: create sd_id mech090-arc071-attick-persistent-handle-fix (extend the between-tick fix to the AT-tick selection site). A future validation of the fix should use a tick-rate-normalised DV (e.g. n_genuine_commits/n_e3_ticks), not raw mean segment length. pending_retest_after_substrate=true. narrow_supports_flag=false.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "mech090-arc071-attick-persistent-handle-fix",
+        "title": "E3 AT-tick commit selection should preserve an existing unexpired persistent committed trajectory (ARC-071 chunk-sourced) instead of unconditionally recreating it every E3 tick",
+        "implementation_hint": "Mirror the between-tick fast path's fallback to agent.e3._persistent_committed_trajectory (landed ree-v3 278599a, flag use_persistent_committed_program_handle) at the AT-E3-tick selection site itself (agent.e3.select(...) / the commit-creation branch in select_action / post_action_update's unconditional _committed_trajectory = None teardown path) -- if an unexpired _persistent_committed_trajectory sourced from an ARC-071 chunk already exists and the chunk has not been fully executed/exhausted, continue it rather than creating a fresh trajectory object. Validate with a redesigned DV: n_genuine_commits / n_e3_ticks (or equivalent tick-rate-normalised statistic), not raw mean segment length.",
+        "unblocks_claims": ["MECH-090", "ARC-071"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3",
+          "experiment_type": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic",
+          "metric": "n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe (exact, both seeds) -- every E3 tick recreates the committed trajectory object",
+          "target": "post-fix, n_genuine_commits / n_e3_ticks should drop well below 1.0 for an ARC-071-chunk-sourced commitment not yet exhausted"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "mech090-arc071-attick-persistent-handle-fix"
+      },
+      "learning_extracted": [
+        "n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe exactly in both seeds -- gap (b) fires on literally every E3 tick, deterministically, not probabilistically or seed-dependently",
+        "The apparent seed-dependent bistability (mixed_across_seeds) is a measurement-design artifact: the verdict statistic is definitionally n_probe_ticks/(n_e3_ticks+n_episodes), so it tracks e3_tick_rate (a nuisance variable ~4.4x different between seeds) rather than commit-latch behaviour",
+        "Fix (a) (between-tick fast path fallback to the persistent handle) is confirmed correctly implemented in both seeds -- official readout and independent identity-based reading agree exactly",
+        "A concrete, already-diagnosed fix exists for gap (b): extend the persistent-handle check to the AT-E3-tick selection site",
+        "Future validation of the fix needs a tick-rate-normalised DV (e.g. n_genuine_commits/n_e3_ticks), not raw mean segment length"
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null
+}

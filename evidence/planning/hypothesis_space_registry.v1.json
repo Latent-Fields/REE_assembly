@@ -2706,19 +2706,19 @@
             "V3-EXQ-871a"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "eliminated",
             "resolving_runs": [
-              "V3-EXQ-871"
+              "V3-EXQ-871a"
             ],
             "evidence_direction": "non_contributory",
-            "epistemic_category": "measurement_test_design_defect",
-            "self_route_label": "substrate_not_ready_requeue",
-            "control_passed": false,
-            "non_degenerate": false,
-            "met_elimination_bar": false,
-            "resolved_utc": "2026-08-02T10:43:33Z",
-            "adjudicated_by": "failure_autopsy_V3-EXQ-871_2026-08-02.json",
-            "basis": "V3-EXQ-871's readiness gate (arc071_chunk_commitments_observed_supra_floor) measured 0.0 vs threshold 10.0 on both seeds -- 1/0 chunks formed vs 2/2 for the SAME seeds under V3-EXQ-841 (flag at lineage default). Root cause: use_persistent_committed_program_handle=True was applied for the WHOLE cell (formation+probe) instead of scoped to the probe phase, which changes select_action's between-tick fast path and cascades into a different, formation-suppressing action sequence via RNG-coupled environment dynamics. Uninformative-by-design run; narrows nothing. Redesign queued as V3-EXQ-871a (flag scoped to probe-only)."
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "mixed_across_seeds",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-02T17:41:41Z",
+            "adjudicated_by": "failure_autopsy_V3-EXQ-871a_2026-08-03.json",
+            "basis": "Seed 101's apparent 'restoration' (mean_realised_length=6.372 >= 3.0 floor) is fully explained by a tick-rate confound, not genuine persistence: n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe EXACTLY in both seeds (113=103+10; 103=93+10), meaning every single E3 tick recreates the committed-trajectory object with zero exceptions in BOTH seeds -- there is no seed in which the object survives an E3 tick. Seed 101's higher readout is purely a product of that seed's lower e3_tick_rate (0.143 vs 0.633), not a different underlying mechanism. H1 as stated (the fix restores real persistence) is eliminated by this exact arithmetic."
           }
         },
         {
@@ -2732,19 +2732,19 @@
             "V3-EXQ-871a"
           ],
           "resolution": {
-            "state": "alive",
+            "state": "confirmed",
             "resolving_runs": [
-              "V3-EXQ-871"
+              "V3-EXQ-871a"
             ],
             "evidence_direction": "non_contributory",
-            "epistemic_category": "measurement_test_design_defect",
-            "self_route_label": "substrate_not_ready_requeue",
-            "control_passed": false,
-            "non_degenerate": false,
+            "epistemic_category": "competence_implementation_gap",
+            "self_route_label": "mixed_across_seeds",
+            "control_passed": true,
+            "non_degenerate": true,
             "met_elimination_bar": false,
-            "resolved_utc": "2026-08-02T10:43:33Z",
-            "adjudicated_by": "failure_autopsy_V3-EXQ-871_2026-08-02.json",
-            "basis": "Same non-discriminating run as H1 above (V3-EXQ-871) -- the readiness gate failed before either hypothesis could be tested. See H-postfix-persistence-restored.basis for the full mechanism. Redesign queued as V3-EXQ-871a."
+            "resolved_utc": "2026-08-02T17:41:41Z",
+            "adjudicated_by": "failure_autopsy_V3-EXQ-871a_2026-08-03.json",
+            "basis": "Gap (b) -- E3 unconditionally recreating a fresh committed-trajectory object at the AT-tick selection site -- is confirmed as universal and deterministic in both seeds (n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe exactly, both seeds), not merely 'dominant in some seeds'. Fix (a), the between-tick fast path, is confirmed correctly implemented (official readout and independent identity-based reading agree exactly in both seeds) -- what remains broken is upstream of the readout, at the AT-tick commit-creation site. Routed /implement-substrate (sd_id mech090-arc071-attick-persistent-handle-fix)."
           }
         }
       ],
@@ -2752,11 +2752,11 @@
       "decision": {
         "decision_question": "Does the landed fix (278599a) restore meaningful multi-step ARC-071 commit-latch persistence under organically-formed chunks (H1), or does gap (b) -- E3's unconditional re-commitment every E3 tick -- still dominate (H2)?",
         "live_gate": "requires a redesigned probe (V3-EXQ-871a) that scopes use_persistent_committed_program_handle=True to the probe phase only, so formation replays V3-EXQ-841's proven 2/2-chunk dynamics instead of being suppressed by the flag's own formation-phase side effects",
-        "decidable": false,
+        "decidable": true,
         "decision_log_ref": null,
-        "distance_phrase": "NOT decidable. V3-EXQ-871's own construction (flag applied for the whole cell) suppressed chunk formation before either hypothesis could be tested. Next step is V3-EXQ-871a with the flag scoped to probe-only, not further discrimination on the current design."
+        "distance_phrase": "DECIDABLE (not yet decided -- awaits a human decision_log entry). V3-EXQ-871a confirms gap (b) universally in both seeds via exact arithmetic (n_genuine_commits == n_e3_ticks + n_episodes in both seeds); the apparent bistability was a tick-rate confound in the readout statistic, not real seed-dependent discrimination. H1 eliminated, H2 confirmed. Next step: /implement-substrate (mech090-arc071-attick-persistent-handle-fix), then re-validate with a tick-rate-normalised DV."
       },
-      "observation_bottleneck": "use_persistent_committed_program_handle=True, when applied to the whole experiment cell rather than scoped to the probe phase, changes select_action's between-tick action selection as soon as any commitment forms, cascading via RNG-coupled environment dynamics into suppressed chunk formation (2/2 -> 1/0 chunks on the same seeds vs V3-EXQ-841). Any new leg must scope the flag to the probe phase only (flip it on the agent's live config after formation completes), never apply it for the whole cell."
+      "observation_bottleneck": null
     },
     {
       "qid": "mech267_content_persistence_cem_refit",
