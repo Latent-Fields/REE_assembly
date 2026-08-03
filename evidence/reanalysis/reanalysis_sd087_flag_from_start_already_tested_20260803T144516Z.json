@@ -1,0 +1,42 @@
+{
+  "schema_version": "reanalysis/v1",
+  "recording_schema": "rec/v1",
+  "artifact_type": "post_hoc_reanalysis",
+  "reanalysis_id": "reanalysis_sd087_flag_from_start_already_tested_20260803T144516Z",
+  "generated_utc": "2026-08-03T14:45:16Z",
+  "gov_rule": "GOV-REUSE-1",
+  "question": "Does setting harm_surprise_pe_enabled from the START of training (rather than post-hoc on an already-trained agent) remove or materially reduce the V3-EXQ-664 z_harm_a saturation-and-inversion signature? (SD-087 residual option (a); the last untested branch of the SD-087/Q-086 joint disjunction)",
+  "claim_ids": [
+    "SD-087",
+    "Q-086",
+    "SD-020"
+  ],
+  "decisive_readout": "harm_obs_ema_after_warmup + cov_z_harm_a + signature_present, per (arm, seed)",
+  "source_run_ids": [
+    "v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3"
+  ],
+  "source_substrate_hashes": {
+    "v3_exq_856_sd087_harm_surprise_pe_fingerprint_20260801T124431Z_v3": "690c1ccd29756988521395dda420698f16177930f025959c5893a1175ba7706d"
+  },
+  "substrate_compatibility": "matched",
+  "substrate_invariant_asserted": false,
+  "answer": {
+    "already_tested_by": "V3-EXQ-856",
+    "flag_was_on_from_start_of_training": true,
+    "branch_entry_witness": "harm_obs_ema_after_warmup non-zero on 3/3 ARM_ON seeds (0.012075, 0.042787, 0.018694), exactly 0.0 on 3/3 ARM_OFF seeds; written only inside the PE branch",
+    "answer": "NO -- flag-from-start does NOT remove or materially reduce the signature",
+    "arm_off_mean_cov_z_harm_a": 0.007057,
+    "arm_on_mean_cov_z_harm_a": 0.007421,
+    "cov_floor": 0.05,
+    "arm_off_n_seeds_signature": "2/3",
+    "arm_on_n_seeds_signature": "2/3",
+    "both_arms_far_below_saturation_floor": true,
+    "consequence": "SD-087 residual option (a) is CLOSED, not open. The joint SD-087/Q-086 disjunction now has no untested branch left on this substrate: training-target choice (856), environmental harshness (857a) and flag-from-start (856, same run) have all been tested and none explains the signature away. Remaining reading is an as-yet-unidentified encoder/representation defect (calibration_pathology_representational).",
+    "documentation_defect": "failure_autopsy_V3-EXQ-856_2026-08-01.md sections 4 and 6 describe 856 as flipping the flag on an already-raw-warmup-trained agent (raw-warmup-then-flip) and recommend a successor that sets the flag from the start of training. That is a misreading of the driver: the flag was set at construction, before any training. The misreading propagated verbatim into SD-087 evidence_quality_note (2026-08-01, 2026-08-02, 2026-08-03 entries) and Q-086 evidence_quality_note (2026-08-03 entry).",
+    "residual_hypothesis_not_this_one": "SD-020 was validated (V3-EXQ-324b) on the SD-022 substrate (limb_damage_enabled=True, 8 hazards, EVAL_STEPS=400, seeds 43/44/45) against the readout surprise_corr_pe. V3-EXQ-856 tested the flag on the 664 raw-warmup affective_fishtank substrate (num_hazards=4, no limb damage, 50-ep warmup, 5x200 eval) against the CoV/inversion readout. The genuinely untested hypothesis is REGIME/READOUT mismatch, not flag timing."
+  },
+  "method_note": "Source read of the driver + substrate, plus the recorded per-cell readouts of V3-EXQ-856. (1) v3_exq_856_sd087_harm_surprise_pe_fingerprint.py:177-184 calls make_agent_and_env(seed, harm_surprise_pe_enabled=arm[...]) and ONLY THEN warmup_train(...); experiments/_lib/baselines/affective_fishtank.py:255-257 sets config.harm_surprise_pe_enabled BEFORE REEAgent(config) is constructed, and the agent is built fresh per (arm,seed) with no checkpoint load -- so ARM_ON trained from scratch with the flag on for its entire 50-episode warmup. (2) ree_core/agent.py:9598-9608: self._harm_obs_ema is written ONLY inside the 'if harm_surprise_pe_enabled:' branch of compute_harm_accum_loss, which warmup_train calls every training step (affective_fishtank.py:360). It is therefore a witness of PE-branch entry DURING training. (3) The recorded field harm_obs_ema_after_warmup is measured after warmup and is non-zero on all three ARM_ON seeds (0.012075, 0.042787, 0.018694) and exactly 0.0 on all three ARM_OFF seeds. (4) Independently confirmed by a one-tick probe on this substrate: constructing via make_agent_and_env(harm_surprise_pe_enabled=True) and calling compute_harm_accum_loss(0.5, latent) once drives _harm_obs_ema 0.0 -> 0.05, while the flag-False agent stays at 0.0.",
+  "verdict": "weakens",
+  "notes": "Emitted by /queue-experiment Step 2.4 (GOV-REUSE-1) in lieu of a queue entry, from chip-20260803-sd087-q086-flag-from-start, which asked for a train-from-scratch-with-flag-ON experiment. That experiment already exists: it is V3-EXQ-856's ARM_ON. No compute was queued. Recommend /governance correct the propagated post-hoc misreading in SD-087 and Q-086 evidence_quality_note and in the V3-EXQ-856 autopsy sections 4/6, and decide whether the regime/readout-mismatch hypothesis (SD-022 substrate, surprise_corr_pe readout) warrants a run.",
+  "caveat": ""
+}
