@@ -1,0 +1,95 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:16:57Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
+      "queue_id": "V3-EXQ-436c",
+      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened -- P0 readiness gate met (pooled sws_n_writes=800, rem_n_rollouts=600, both floor-clearing), waking-phase action-class entropy healthy (~1.19-1.24) in every seed/condition, DV is wall-independent. A fair test.",
+        "biological_reference": "clear -- systems consolidation (hippocampal-cortical replay) predicts selective differentiation of engrams during SWS/REM, not homogenization. Measured direction (cos_sim -> ~1.0 in 4/5 seeds) is the opposite of the biological prediction, which is itself informative rather than merely null.",
+        "prerequisites": "present -- depends_on (MECH-092, ARC-038, ARC-007/SD-014 for SD-017; +MECH-166 for ARC-045) are all V3-implemented; not a missing-prerequisite story.",
+        "implementation": "partial -- hypothesized gap: ContextMemory.write_gate (Linear+Sigmoid, default bias) may carry the same bias-over-content collapse already found and fixed on key_proj's read path (SD-016 Part A / EXQ-477, bias_over_content_ratio 9.88->3.41), but write_gate itself has never been audited since it plays no role in read(). Untested this run.",
+        "environment": "adequate -- context-conditioned harm-threshold env with SAFE/DANGEROUS structure, unchanged design from validated 436a/436b.",
+        "measurement": "adequate -- wall-independent DV (read under torch.no_grad() off agent.e1.context_memory.memory); P0 gate closes 436b's recording gap; non_degenerate=true.",
+        "integration": "isolated -- failure is local to the ContextMemory write path; does not implicate encoder, E2, or downstream consumers.",
+        "scale": "adequate -- 20 sleep cycles x 5 seeds is ample volume to detect differentiation if the write path supported it."
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal systems consolidation via sharp-wave-ripple-mediated selective replay (targeted engram strengthening/differentiation)",
+        "dependencies": ["MECH-092", "ARC-038", "ARC-007", "SD-014", "MECH-166"],
+        "is_formal_import": false,
+        "divergence": "REE's SWS write path (ContextMemory.write(), plain 0.9/0.1 EMA blend into one argmin-selected slot per call) homogenizes content across repeated writes rather than differentiating it -- opposite of the biological prediction. Likely mechanism: write_gate's un-audited bias-over-content ratio.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_direction_per_claim": {
+        "SD-017": "weakens",
+        "ARC-045": "weakens",
+        "MECH-166": "weakens"
+      },
+      "recommended_evidence_quality_note": "2026-08-03 (governance, V3-EXQ-436c, confirmed failure_autopsy_V3-EXQ-436c_2026-08-03, successor to V3-EXQ-436b): recording gap fixed (P0 gate: pooled sws_n_writes=800, rem_n_rollouts=600, both floor-clearing). Waking-phase action-class entropy healthy in every seed (~1.2), ruling out the monomodal-collapse confound that blocked this lineage under sleep_substrate_plan.md GAP-2. C1 (slot_cosine_sim differentiation) fails 0/5 seeds -- not a null: SWS_THEN_REM collapses whole-bank cosine similarity to ~0.9999-1.0 in 4/5 seeds (homogenization), opposite the predicted direction. Root-cause hypothesis (untested this run): ContextMemory.write_gate (Linear+Sigmoid, default bias) may carry the same bias-over-content collapse already found and fixed on key_proj's read path (SD-016 Part A / EXQ-477); has never been audited. Converges with failure_autopsy_V3-EXQ-861a_2026-08-03's independent finding on a different DV (touched-slot diversity, MECH-180/MECH-122) via the same write path. weakens SD-017, ARC-045, MECH-166 (all: pending_retest_after_substrate=true). Routing: implement-substrate, amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.",
+      "recommended_substrate_queue_entry": {
+        "action": "amend",
+        "target_sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
+        "unblocks_claims": ["SD-017", "ARC-045", "MECH-166"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
+          "experiment_type": "v3_exq_436c_sd017_mech166_repr_confirmer",
+          "metric": "slot_cosine_sim(SWS_THEN_REM) < slot_cosine_sim(WAKING_ONLY) fails 0/5 seeds; SWS_THEN_REM collapses whole-bank cosine similarity to ~0.9999-1.0 in 4/5 seeds (homogenization, opposite predicted direction), with P0 write/replay-liveness gate cleanly met (800/600 pooled events) and waking-phase entropy healthy in every seed -- ruling out both the recording-gap and monomodal-collapse alternative explanations.",
+          "target": "Measure ContextMemory.write_gate's bias-over-content ratio (same methodology as EXQ-477/EXP-0155 measured for key_proj: bias_over_content_ratio pre-train and post-P0). If dominant, apply the same class of fix already landed on key_proj (remove or zero-init the bias) and re-verify query_proj's role in write()'s argmin slot-selection for genuine content-sensitivity. Re-run the 436-family (new letter, e.g. V3-EXQ-436d) against the repaired write path once built. This is a DISTINCT diagnostic step from the ThetaBuffer novelty-reference bug this entry already tracks (failure_autopsy_V3-EXQ-861a_2026-08-03) -- both bugs sit on the same write path and should be investigated together."
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "implement-substrate",
+        "upstream_substrate": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION"
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "checked_via": "scripts/granularity_debt_cluster.py MECH-166",
+        "prior_targets": ["failure_autopsy_V3-EXQ-436b_2026-08-02 (claim_alignment=unclear, category=measurement_gap)"],
+        "this_target_alignment": "weakened",
+        "note": "2 targets total (436b unclear/instrumentation-dead-end, 436c weakened/real-result). Not structurally-different failure signatures suggesting the claim needs splitting -- both point at the same identified write-path mechanism. Implementation debt, not granularity debt."
+      },
+      "learning_extracted": [
+        "The recording-gap fix (P0 gate) worked: 436c is genuinely non-degenerate, unlike 436a/436b.",
+        "SD-017/ARC-045/MECH-166's decisive DV moves in the opposite direction from prediction, with a strong, consistent effect size (4/5 seeds within 3e-5 of total collapse) -- not a null.",
+        "ContextMemory.write_gate has never been audited for the bias-over-content defect class already found and fixed on the sibling key_proj (read path) -- a concrete, cheap, unaddressed gap.",
+        "Converges structurally with failure_autopsy_V3-EXQ-861a_2026-08-03's finding on a different DV/claim family via the same ContextMemory write path -- reinforces a general (not experiment-specific) substrate gap.",
+        "sleep_substrate_plan.md's GAP-2 gate (arc_062 GAP-B) predates and does not account for this run; its stated concern (waking monomodal collapse) is empirically absent here. Flagged for governance/plan reconciliation, not resolved by this autopsy."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "cross_reference": {
+    "related_autopsy": "failure_autopsy_V3-EXQ-861a_2026-08-03",
+    "shared_substrate": "ContextMemory write path (run_sws_schema_pass -> ContextMemory.write())",
+    "shared_failure_shape": "writes homogenize/fail-to-differentiate content across two unrelated claim families and two different DVs",
+    "note": "Both autopsies recommend amending the SAME substrate_queue.json entry (MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION). Governance should triage together and merge both failure_record_entry additions in one pass."
+  },
+  "process_note": {
+    "topic": "sleep_substrate_plan.md GAP-2 gate discrepancy",
+    "detail": "GAP-2 states 436-family successors (418m/436b) are deferred/unqueued pending arc_062_rule_apprehension:GAP-B, yet both 436b (2026-08-02T03:53Z) and 436c (this run, 2026-08-02T22:16Z) ran without that gate lifting. The 2026-08-02 governance entry for this node already flagged this ('worth a look next time this node is touched'). This run's own healthy waking-entropy readout suggests GAP-2's stated concern (monomodal collapse) does not apply here, but this autopsy does not resolve whether GAP-B matters for some other reason -- recommend governance reconcile the plan doc."
+  },
+  "hypothesis_space_registry_step_9b": {
+    "action": "skipped",
+    "reason": "Lone non-fan-out FAIL -- adjudicates a leg (recommended_evidence_direction present) but does not resolve a previously pre-registered rival hypothesis and does not open a discrimination portfolio. hypothesis_space_registry.v1.json has 0/22 questions referencing SD-017, ARC-045, or MECH-166 (checked directly)."
+  }
+}

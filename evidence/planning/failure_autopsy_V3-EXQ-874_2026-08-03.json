@@ -1,0 +1,82 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:16:57Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_874_mech467_distractor_resistance_20260802T222132Z_v3",
+      "queue_id": "V3-EXQ-874",
+      "claim_ids": ["MECH-467"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear for leg (c) only -- legs (a) sensory-capture and (b) rule-drift were fairly and informatively tested and dissociate cleanly between arms; leg (c) wrong-target-selection has a 0/0 event denominator in all 6 cells and never had a chance to express anything.",
+        "biological_reference": "clear -- 'looking is not choosing' / behavioural-capture-despite-intact-rule-representation dissociations are a real, well-motivated phenomenon in attention/action-selection literature. The gap is testbed completion (zero consumption events), not a biological mismatch.",
+        "prerequisites": "present -- MECH-262, SD-033a, MECH-261, MECH-254 all V3-implemented.",
+        "implementation": "adequate for legs (a)/(b) -- correctly reuses existing telemetry (SD-049 resource_field_view, SD-033a rule_state norm, SD-049 consumed-type-tag); no new module needed per the standing containment rule.",
+        "environment": "inadequate for leg (c) specifically -- 10x10 grid, 150-tick eval window, internal-only operating modes (internal_planning/internal_replay, the same non-committed states that justified excluding the third arm) produce zero target-consumption events in every one of 6 cells.",
+        "measurement": "inadequate for leg (c) -- 0/0 denominator silently rendered as a clean 0.000 rate; the claim's own pre-registered non-degeneracy guard checks leg (a) (distractor registered) but has no equivalent floor requiring leg (c)'s underlying event to occur at least once.",
+        "integration": "isolated -- the gap is specific to whether committed approach-and-consume completes; sensory/rule telemetry paths are unaffected and correctly wired.",
+        "scale": "likely insufficient -- 150 ticks under non-committed operating modes appears below the volume needed for even one full approach-and-consume sequence; untested whether a longer budget or denser resource placement would clear it."
+      },
+      "biological_reference": {
+        "closest_mechanism": "goal-directed foraging/reaching dissociations between attentional/gaze capture and motor commitment ('looking is not choosing'); the reverse direction (behavioural capture despite verified-intact task-set) is the specific phenomenon MECH-467 targets",
+        "dependencies": ["MECH-262", "SD-033a", "MECH-261", "MECH-254"],
+        "is_formal_import": false,
+        "divergence": "none identified -- the gap is a testbed/behavioural-completion limitation (zero consumption events under the two included non-committed operating modes), not a biological-mismatch finding",
+        "lit_status": "partial (MECH-262 has targeted_review_connectome_mech_262; MECH-467 itself has no dedicated lit entry yet)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-467": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "2026-08-03 (governance, V3-EXQ-874, confirmed failure_autopsy_V3-EXQ-874_2026-08-03): legs (a) sensory-capture and (b) rule-drift were fairly and informatively tested (clear dissociation between ARM_PRECOMMIT drift ~0.22 and ARM_REPLAY drift ~0.015). Leg (c) (conditioned wrong-target selection) has a 0/0 event denominator in all 6 cells (3 seeds x 2 arms) -- zero target-consumption events of either kind occurred across 900 real navigation ticks. This is not a measured null; it is the decisive leg never firing, plausibly because both included operating modes (internal_planning, internal_replay) are the same non-committed cognitive states whose lack of sustained multi-step commitment already justified excluding the third arm. Reclassified non_contributory (not does_not_support) pending a redesign that can actually produce consumption events. MECH-467 stays candidate, unresolved on leg (c); legs (a)/(b) results stand as reported. Routing: /queue-experiment for a redesign (larger eval budget and/or denser resource placement, or a short bounded-commitment sub-arm within existing substrate limits) that clears a consumption-event floor before scoring leg (c).",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "granularity_debt_trigger": {
+        "fires": false,
+        "checked_via": "grep of claim_ids across evidence/planning/failure_autopsy_*.json",
+        "prior_targets": [],
+        "this_target_alignment": "unclear (leg c only)",
+        "note": "First autopsy target for MECH-467 -- no recurrence to assess."
+      },
+      "learning_extracted": [
+        "Leg (c) (wrong-target selection) has a 0/0 event denominator in all 6 cells -- the decisive leg for MECH-467's core prediction never fired, in either direction.",
+        "This is the same substrate limitation (no sustained multi-step commitment) that justified excluding the third arm, re-appearing inside the two INCLUDED arms: without commitment, target-consumption events may not complete at all within budget.",
+        "The claim's own pre-registered non-degeneracy guard checks leg (a) (distractor registered) but has no equivalent floor for leg (c) (at least one consumption event must occur) -- a genuine gap in the falsifier's own design, not just an unlucky run.",
+        "Legs (a) and (b) were fairly and informatively tested and should not be discarded -- sensory capture and rule-drift dissociate cleanly between arms exactly as existing rule-corruption evidence would predict.",
+        "No prior autopsy target exists for MECH-467 -- this is its first."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "process_note": {
+    "topic": "non-degeneracy guard gap in MECH-467's own pre-registration",
+    "detail": "claims.yaml's non-degeneracy guard for MECH-467 requires non-zero sensory-capture rate in at least one arm (checked), but has no equivalent floor requiring leg (c)'s underlying event (a target-consumption tick, correct or incorrect) to occur at least once. Recommend adding this floor to the claim's notes or to the next redesign's pre-registration."
+  },
+  "hypothesis_space_registry_step_9b": {
+    "action": "skipped",
+    "reason": "Lone non-fan-out FAIL -- adjudicates a leg (recommended_evidence_direction present) but does not resolve a previously pre-registered rival hypothesis and does not open a discrimination portfolio. hypothesis_space_registry.v1.json has 0/22 questions referencing MECH-467 (checked directly)."
+  }
+}
