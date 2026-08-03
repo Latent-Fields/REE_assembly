@@ -1,0 +1,106 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T09:18:08Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_876_mech025_doing_mode_causal_signal_20260802T214005Z_v3",
+      "queue_id": "V3-EXQ-876",
+      "claim_ids": ["MECH-025"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "partial",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under-instrumented / possibly mis-signed",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Thura & Cisek 2014 (Neuron): PMd/M1 activity converges during deliberation-to-commitment transition",
+        "dependencies": ["ARC-016 (dynamic E3 precision)"],
+        "is_formal_import": true,
+        "divergence": "Friston 2013's own recorded failure_signature: precision is continuous, not a discrete mode switch producing a categorical signature gap. Thura & Cisek 2014 predicts convergence (narrowing) during commitment, i.e. a SMALLER counterfactual-harm contrast once committed -- the opposite sign to what C1 tests for, and consistent with the observed negative doing_mode_delta in 4/5 seeds.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-876 (2026-08-02) is the first fair V3 test of MECH-025 -- all three prior instrument defects (050/050b/199: cache-field/torn-down-field commitment read, frozen running_variance during eval) are fixed and verified (committed/uncommitted regimes both well-sampled every seed, non-degenerate). doing_mode_delta is consistently negative (4/5 seeds), opposite the predicted sign. This is read as non_contributory / measurement_test_design_defect, not claim pressure: the claim's own cited literature (Friston 2013's recorded failure_signature: precision is continuous, not a discrete mode switch; Thura & Cisek 2014: PMd/M1 representations converge, not diverge, during commitment) predicts the operationalization's sign convention may be backwards. Precision itself separates by 4-5 orders of magnitude in every seed (unambiguous, but a near-tautological consequence of ARC-016's commit rule, and not currently scored as a criterion). Route: /queue-experiment redesign, testing either the reversed sign or precision itself as the primary DV.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "MECH-025 now has its first-ever fair V3 test: precision/commitment separation is unambiguous (4-5 orders of magnitude) in every seed, confirming ARC-016's mechanism reaches this substrate cleanly.",
+        "The specific downstream operationalization (harm-counterfactual differentiation, predicted larger when committed) is contradicted by the claim's own cited literature (Thura & Cisek 2014 predicts convergence/narrowing during commitment, not divergence) -- a biology-divergence finding discovered by re-reading the claim's existing lit entries, not new literature.",
+        "Precision itself (the claim's literal subject, 'high-precision control') was recorded but never scored as a criterion -- a direct precision-based DV is available for a redesign without new instrumentation.",
+        "Recording gap: v3_exq_876_mech025_doing_mode_causal_signal.py passes config=None to write_flat_manifest despite building a full REEConfig -- fix in any redesign."
+      ],
+      "routing": "queue-experiment",
+      "user_confirmed_option": "Re-operationalize (recommended)"
+    },
+    {
+      "run_id": "v3_exq_671b_mech025b_precision_responsibility_20260803T022036Z_v3",
+      "queue_id": "V3-EXQ-671b",
+      "claim_ids": ["MECH-025b"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened",
+        "biological_reference": "absent",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "adequate, modest power",
+        "integration": "coupled",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "none -- MECH-025b is an explicit philosophical bridge (precision level implies degree of ethical accountability), not a translated neuroscience finding, per its own 2026-04-02 decomposition note",
+        "dependencies": ["ARC-016", "MECH-025 (not load-bearing for this test's own design)", "SD-003"],
+        "is_formal_import": false,
+        "divergence": "n/a -- no biological existence proof applies by the claim's own design; the two MECH-025b-tagged lit entries (Caspar 2021, Kahane 2012) address human moral-responsibility judgments, not a neural precision-to-residue mechanism, and cannot arbitrate this result",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-671b (2026-08-03) is the first fair, fully-gated test of MECH-025b. Both positive-control gates (residue accumulation, precision variance) clear cleanly; the correlation the claim predicts (precision_residue_correlation > 0.15) reads -0.0446, and the ratio test (> 1.1) reads 1.0618 -- both null, consistently across the 3 seeds with real committed-step spread. Unlike MECH-025 (same cluster, V3-EXQ-876), this test does not depend on MECH-025's own operationalization succeeding -- it correlates E3's own precision value directly against residue accumulation, both independently confirmed live this run. Read as weakens / standard -- real claim pressure against the precision-implies-accountability bridge specifically. No biological reference exists to check this against (the claim is explicitly a philosophical construct, not a translated neuroscience finding). No demotion recommended this cycle -- single result, and pooled n is modest (179, unevenly distributed across seeds: 29/72/77/1).",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "First fair, fully-gated test of MECH-025b: both positive-control gates (residue accumulation, precision variance) clear, and the correlation/ratio the claim predicts both read null.",
+        "This test is self-contained -- it does not require MECH-025's own causal-signature claim to hold, since it correlates E3 precision directly against residue accumulation, both confirmed live in this run.",
+        "No biological existence proof applies to this claim by its own design (philosophical bridge, not a translated neuroscience finding) -- the standard biology-triage move does not arbitrate this result either way.",
+        "Seed 3 contributed only n=1 committed step to the pooled n=179 -- real signal comes from 3 of 4 seeds; worth a stronger per-seed floor in any follow-up."
+      ],
+      "routing": "governance-demotion",
+      "user_confirmed_option": "Weakens, note only (recommended)"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Both siblings share a fully instrument-clean measurement of E3 precision/commitment (ARC-016) in this cycle, and in both cases precision/commitment separation is unambiguous while the downstream functional consequence each claim predicts from it fails to appear, for different specific reasons.",
+    "is_independent_bugs": false,
+    "structural_property": "Precision separation is real and large (ARC-016 confirmed operative in both scripts), but neither of the two hypothesized higher-level functional readouts built on top of it -- harm-differentiation signature (MECH-025) or responsibility-residue weighting (MECH-025b) -- has yet been shown to track it. This is not evidence the precision mechanism itself is wrong; it is evidence the two claims layered on top of it need independent re-examination: MECH-025's DV/sign (operationalization mismatch, re-queue), and MECH-025b's bridge-claim status (genuine null, note).",
+    "readings": ["operationalization_mismatch_mech025", "genuine_bridge_claim_null_mech025b"]
+  }
+}
