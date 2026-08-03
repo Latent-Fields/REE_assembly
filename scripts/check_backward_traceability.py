@@ -64,6 +64,8 @@ TRACEABILITY_EXEMPT = {
     "MECH-442": "behavioral-descriptor committed-selection archive (MAP-Elites analog); 'repertoire' is the QD behavioral-repertoire archive + the biology lit-pull's 'behavioral-module repertoire', not developmental",
     "MECH-443": "priority-weighted replay write-selection (MuZero/EfficientZero reanalyze); 'play' matches '(pre)played' (hippocampal preplay/replay sequence), not developmental play",
     "MECH-444": "staleness-gated target refresh on replay-write; 'play' matches 'verbatim playback' (replay-playback), not developmental play",
+    "ARC-071": "policy composition via repeated grounding (Graybiel striatal chunking); 'repertoire' only in a governance note naming the experiment 'seed-202 narrow-repertoire follow-up V3-EXQ-810b', not developmental",
+    "MECH-323": "chunk-accumulator formation operator (ARC-071 child); same incidental 'narrow-repertoire' V3-EXQ-810b experiment nickname in a governance note, not developmental",
 }
 
 _CLAIM_ID_RE = re.compile(r"\b(INV|ARC|MECH|SD|Q|IMPL|RA)-\d+[a-z]?\b")
