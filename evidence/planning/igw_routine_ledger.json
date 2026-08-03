@@ -2516,7 +2516,10 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-212-retest-after-substrate-arc-045 && claude --resume c40e5582-8c50-4f96-bed3-5466bf29a2ec",
       "task_claim_session_id": "igw-auto-igw-212-retest-after-substrate-arc-045-20260803T171643Z",
       "assigned_at": "2026-08-03T17:16:26Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-03T18:04:01Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit ref ARC-045 since 2026-08-03T17:16:26Z: 90a17bf V3-EXQ-848b: ARC-005 precision monotonicity finer 7-level ladder (supers"
     }
   ],
   "dispositions": [
@@ -3392,6 +3395,20 @@
       "decision": "DONE",
       "note": "Landed interactively (not via IGW dispatch): ree-v3 87a7e2115c + REE_assembly 88375d0126, chip-20260802-sd091-live-wiring resolved done. CoalitionController wired into REEAgent.__init__/reset/select_action + all 8 named consumer sites (E1/E2/hippocampal/BetaGate), 9 new contract tests, use_coalition_controller default False bit-identical off. substrate_queue.json status -> implemented_pending_validation. Do not re-stage or re-launch.",
       "noted_at": "2026-08-03T17:06:13Z"
+    },
+    {
+      "stable_hash": "7aac4893a7c6",
+      "igw_id_at_disposition": "IGW-20260803-212",
+      "owner_exq": null,
+      "claim_ids": [
+        "ARC-045"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Retest after substrate: ARC-045",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-03T18:04:03Z",
+      "re_eligible_after": "2026-08-05T18:04:01Z"
     }
   ]
 }
