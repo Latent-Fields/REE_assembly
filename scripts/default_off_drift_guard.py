@@ -30,6 +30,8 @@ METHOD (as validated 2026-07-21)
    field's preceding comment block. The `from_dims()` block mirrors the same names and
    is excluded to avoid double-counting -- this parse is AST-based, so `from_dims` is a
    FunctionDef body and is structurally excluded rather than excluded by line number.
+   The parse FOLLOWS `field(default_factory=XConfig)` references to wherever `XConfig`
+   is actually declared, which is not always config.py -- see NESTED SUB-CONFIGS below.
 2. Join knob -> claim against `REE_assembly/docs/claims/claims.yaml`, keeping claims at
    status stable / active / provisional / implemented.
 3. For each knob, count files under `ree-v3/experiments/` and `ree-v3/tests/` that set
@@ -57,6 +59,36 @@ naming MECH-094 only in a parenthetical about replay ticks.
 suppressing a `mention` pairing would silently drop real drift (`pacc_offline_decay`
 names SD-032e mid-prose and is Tier 1 #2 of the source audit; `override_pfc_eta_gain`
 names SD-035 mid-prose and is Tier 2 #6). Grade the pairing, do not filter on it.
+
+NESTED SUB-CONFIGS ARE NOT ALL DECLARED IN config.py
+----------------------------------------------------
+`REEConfig` composes 10 nested sub-config dataclasses via
+`goal: GoalConfig = field(default_factory=GoalConfig)`. Two of those classes are declared
+in OTHER modules (`GoalConfig` in `ree_core/goal.py`, `SerotoninConfig` in
+`ree_core/neuromodulation/serotonin.py`); config.py only imports them. Until 2026-08-03
+this parse read config.py's text and nothing else, so every field those two classes
+declare was invisible to the guard -- not "unresolved", never considered a knob at all.
+`use_hierarchical_goal_credit` (on `GoalConfig`) was the worked case: it did not appear
+in `parse_knobs()`'s returned set, which silently defeated the default-off filters in
+`check_substrate_staleness_candidates.py` that consume this function as ground truth
+(see `evidence/planning/substrate_stability_and_drift_detection_plan.md` section 7.4).
+
+The fix is IMPORT RESOLUTION, not a second hardcoded file list: each
+`field(default_factory=XConfig)` (and each `x: XConfig = XConfig()`) is followed to
+whichever module actually declares `XConfig`, by reading the declaring module's own
+`import` statements and locating the target file on disk, recursively. An 11th nested
+config added in a third location tomorrow is picked up with no change here. The files
+are AST-PARSED, never imported -- `ree_core/goal.py` imports torch, and this script is
+stdlib-only by design.
+
+Two deliberate asymmetries in that walk:
+  * The ENTRY module (config.py) contributes EVERY dataclass in it, as before. A
+    FOLLOWED module contributes only the specific class that was referenced (plus what
+    that class itself references), never every dataclass that happens to live in the
+    same file -- `ree_core/goal.py` also declares unrelated classes, and hoovering them
+    up would silently widen the knob set beyond what REEConfig actually composes.
+  * Name collisions keep the FIRST declaration, and config.py is walked first, so no
+    existing knob's `owner`/`lineno`/attribution can be changed by a followed module.
 
 EXIT STATUS
 -----------
@@ -205,6 +237,7 @@ class Knob:
     lineno: int
     owner: str            # dataclass that declares it
     default: str          # rendered default ("False" / "0" / "0.0")
+    source: str = ""      # file the OWNER dataclass is declared in (not always config.py)
     claim_ids: dict = field(default_factory=dict)   # claim id -> "decl" | "mention"
     exp_files: int = 0       # experiment files with a confirmed ON site
     test_files: int = 0      # test files with a confirmed ON site
@@ -312,39 +345,227 @@ def extract_claim_ids(comment_lines):
     return graded
 
 
-def parse_knobs(config_py: Path):
-    src = config_py.read_text(encoding="utf-8")
-    lines = src.splitlines()
-    tree = ast.parse(src)
-
-    knobs = {}
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.ClassDef) or not _is_dataclass(node):
+def _collect_class_knobs(node: ast.ClassDef, lines, source: Path, knobs) -> None:
+    """Add every default-off field of one dataclass to `knobs` (first declaration wins)."""
+    for stmt in node.body:
+        if not isinstance(stmt, ast.AnnAssign) or not isinstance(stmt.target, ast.Name):
             continue
-        for stmt in node.body:
-            if not isinstance(stmt, ast.AnnAssign) or not isinstance(stmt.target, ast.Name):
+        rendered = _default_off(stmt)
+        if rendered is None:
+            continue
+        name = stmt.target.id
+        if name in knobs:
+            # Same field name declared in two dataclasses. Enablement counting is
+            # by NAME, so keep the first declaration and do not double-count.
+            continue
+        comment = _preceding_comment(lines, stmt.lineno)
+        # Also fold in a same-line trailing comment.
+        trailing = lines[stmt.lineno - 1]
+        if "#" in trailing:
+            comment.append(trailing.split("#", 1)[1].strip())
+        knobs[name] = Knob(
+            name=name,
+            lineno=stmt.lineno,
+            owner=node.name,
+            default=rendered,
+            source=str(source),
+            claim_ids=extract_claim_ids(comment),
+        )
+
+
+# --- following `field(default_factory=XConfig)` to wherever XConfig is declared ------ #
+
+
+def _dotted(node):
+    """['a', 'b', 'C'] for `a.b.C`, ['C'] for `C`, None for anything else (lambda, call)."""
+    parts = []
+    while isinstance(node, ast.Attribute):
+        parts.append(node.attr)
+        node = node.value
+    if not isinstance(node, ast.Name):
+        return None
+    parts.append(node.id)
+    parts.reverse()
+    return parts
+
+
+def _import_bindings(tree):
+    """Local name -> (module, level, imported_name) for the import forms this resolver reads.
+
+    `from ree_core.goal import GoalConfig`       -> GoalConfig -> ("ree_core.goal", 0, "GoalConfig")
+    `from ree_core.goal import GoalConfig as G`  -> G          -> ("ree_core.goal", 0, "GoalConfig")
+    `from . import goal`                         -> goal       -> ("",             1, "goal")
+    `import ree_core.goal as g`                  -> g          -> ("ree_core.goal", 0, None)
+    `import ree_core.goal`                       -> ree_core   -> ("ree_core",      0, None)
+
+    `imported_name` is None for a whole-module binding. It is not None for a `from`-import,
+    where the bound name may be EITHER a class in that module or a submodule of it -- the
+    resolver tries both rather than guessing from the name.
+    """
+    bindings = {}
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ImportFrom):
+            module = node.module or ""
+            for alias in node.names:
+                if alias.name == "*":
+                    continue
+                bindings.setdefault(alias.asname or alias.name, (module, node.level, alias.name))
+        elif isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.asname:
+                    bindings.setdefault(alias.asname, (alias.name, 0, None))
+                else:
+                    head = alias.name.split(".")[0]
+                    bindings.setdefault(head, (head, 0, None))
+    return bindings
+
+
+def _resolve_module_file(module: str, level: int, origin: Path):
+    """Locate the .py file for a module named in `origin`'s imports, or None.
+
+    Absolute imports are searched against every ancestor directory of `origin`,
+    nearest first -- that finds `ree-v3/ree_core/goal.py` for `ree_core.goal` imported
+    from `ree-v3/ree_core/utils/config.py` without being told where the package root is.
+    Relative imports (`level > 0`) are resolved against `origin`'s own package instead.
+    """
+    parts = [p for p in module.split(".") if p]
+    if not parts:
+        return None
+    if level:
+        base = origin.parent
+        for _ in range(level - 1):
+            base = base.parent
+        bases = [base]
+    else:
+        bases = list(origin.parents)
+    for base in bases:
+        mod = base.joinpath(*parts[:-1]) / (parts[-1] + ".py")
+        if mod.is_file():
+            return mod.resolve()
+        pkg = base.joinpath(*parts) / "__init__.py"
+        if pkg.is_file():
+            return pkg.resolve()
+    return None
+
+
+def _resolve_class_ref(parts, bindings, origin: Path):
+    """(file, class_name) for a config class referenced as `parts`, or None if unresolvable.
+
+    Unresolvable is the safe answer and is common and benign: `field(default_factory=dict)`
+    and `field(default_factory=lambda: ...)` name no importable class at all.
+    """
+    cls, prefix = parts[-1], parts[:-1]
+    if not prefix:
+        binding = bindings.get(cls)
+        if binding is None:
+            return None
+        module, level, imported = binding
+        if imported is None:      # a module binding used as a bare name -- not a class
+            return None
+        path = _resolve_module_file(module, level, origin)
+        return (path, imported) if path else None
+    binding = bindings.get(prefix[0])
+    if binding is None:
+        return None
+    module, level, imported = binding
+    mod_parts = [p for p in module.split(".") if p]
+    if imported is not None:      # `from . import goal` used as `goal.GoalConfig`
+        mod_parts.append(imported)
+    mod_parts.extend(prefix[1:])
+    path = _resolve_module_file(".".join(mod_parts), level, origin)
+    return (path, cls) if path else None
+
+
+def _nested_config_refs(class_node: ast.ClassDef):
+    """Dotted names of the sub-config classes a dataclass composes.
+
+    Both spellings this codebase uses: `x: XConfig = field(default_factory=XConfig)` and
+    the plain `x: XConfig = XConfig()`. A `default_factory=lambda: ...` / `=dict` yields
+    nothing resolvable and is dropped downstream.
+    """
+    refs = []
+    for stmt in class_node.body:
+        if not isinstance(stmt, ast.AnnAssign) or not isinstance(stmt.value, ast.Call):
+            continue
+        call = stmt.value
+        func = _dotted(call.func)
+        if func and func[-1] == "field":
+            for kw in call.keywords:
+                if kw.arg == "default_factory":
+                    parts = _dotted(kw.value)
+                    if parts:
+                        refs.append(parts)
+        elif func:
+            refs.append(func)
+    return refs
+
+
+def parse_knobs(config_py: Path, max_modules: int = 64):
+    """Default-off knobs of config.py AND of every nested sub-config class it composes.
+
+    Returns {field name: Knob}. See NESTED SUB-CONFIGS in the module docstring for why
+    this follows imports rather than reading one file: two of REEConfig's 10 nested
+    config classes are declared elsewhere, and their fields were invisible to this guard
+    entirely until 2026-08-03.
+
+    Best-effort by construction -- an unreadable, unparseable or unlocatable module is
+    skipped, never raised. `max_modules` caps how many distinct files a pathological
+    import graph can make this parse (the real one reaches 3).
+    """
+    config_py = Path(config_py).resolve()
+    knobs: dict = {}
+    cache: dict = {}
+    seen = set()
+    # (file, class name) work items; class name None means "every dataclass in this
+    # file" and is used ONLY for the entry module.
+    queue = [(config_py, None)]
+
+    while queue:
+        path, want = queue.pop(0)
+        if (path, want) in seen:
+            continue
+        seen.add((path, want))
+
+        parsed = cache.get(path)
+        if parsed is None:
+            if len(cache) >= max_modules:
                 continue
-            rendered = _default_off(stmt)
-            if rendered is None:
-                continue
-            name = stmt.target.id
-            if name in knobs:
-                # Same field name declared in two dataclasses. Enablement counting is
-                # by NAME, so keep the first declaration and do not double-count.
-                continue
-            comment = _preceding_comment(lines, stmt.lineno)
-            # Also fold in a same-line trailing comment.
-            trailing = lines[stmt.lineno - 1]
-            if "#" in trailing:
-                comment.append(trailing.split("#", 1)[1].strip())
-            ids = extract_claim_ids(comment)
-            knobs[name] = Knob(
-                name=name,
-                lineno=stmt.lineno,
-                owner=node.name,
-                default=rendered,
-                claim_ids=ids,
-            )
+            try:
+                src = path.read_text(encoding="utf-8")
+                tree = ast.parse(src)
+            except (OSError, SyntaxError, ValueError):
+                cache[path] = parsed = ([], None, {}, {})
+            else:
+                parsed = (
+                    src.splitlines(),
+                    tree,
+                    _import_bindings(tree),
+                    {
+                        n.name: n
+                        for n in ast.walk(tree)
+                        if isinstance(n, ast.ClassDef) and _is_dataclass(n)
+                    },
+                )
+                cache[path] = parsed
+        lines, _tree, bindings, classes = parsed
+
+        if want is None:
+            targets = list(classes.values())
+        else:
+            targets = [classes[want]] if want in classes else []
+
+        for node in targets:
+            _collect_class_knobs(node, lines, path, knobs)
+            for parts in _nested_config_refs(node):
+                if len(parts) == 1 and parts[0] in classes:
+                    # Declared in this same file. Already covered when want is None
+                    # (every dataclass was queued); otherwise queue it explicitly.
+                    if want is not None:
+                        queue.append((path, parts[0]))
+                    continue
+                target = _resolve_class_ref(parts, bindings, path)
+                if target is not None:
+                    queue.append(target)
     return knobs
 
 
@@ -477,6 +698,26 @@ def inertness_index(test_path: Path):
 
 STATUS_RANK = {"stable": 0, "implemented": 1, "active": 2, "provisional": 3}
 
+# Rendered declaration sites are relative to this, so the common case stays short
+# (`utils/config.py:4342`) while a knob declared elsewhere is visibly elsewhere
+# (`goal.py:335`). A bare line number would misattribute the latter to config.py.
+_SITE_TRIM = "ree-v3/ree_core/"
+
+
+def knob_site(knob, base=None) -> str:
+    """`utils/config.py:335`-style declaration site for a knob."""
+    if not knob.source:
+        return str(knob.lineno)
+    path = Path(knob.source)
+    rel = str(path)
+    if base is not None and _under(path, base):
+        rel = path.relative_to(base).as_posix()
+        if rel.startswith(_SITE_TRIM):
+            rel = rel[len(_SITE_TRIM):]
+    else:
+        rel = path.name
+    return "%s:%d" % (rel, knob.lineno)
+
 
 def build_rows(knobs, claims, known_inert, mentioned):
     rows = []
@@ -538,8 +779,10 @@ def render(rows, knobs, claims, args, out):
     w("Generated by `REE_assembly/scripts/default_off_drift_guard.py`.\n")
     w("Method and its known false-positive mode: `%s`.\n\n" % SOURCE_REPORT)
     w(
-        "Scope: %d default-off (False/0/0.0) dataclass fields in `%s`, %d carrying a "
-        "claim id in their comment block; joined to claims at status %s.\n\n"
+        "Scope: %d default-off (False/0/0.0) dataclass fields in `%s` **and in the nested "
+        "sub-config classes it composes** (two of which -- `GoalConfig`, `SerotoninConfig` "
+        "-- are declared in other modules and are followed by import resolution), %d "
+        "carrying a claim id in their comment block; joined to claims at status %s.\n\n"
         % (
             n_default_off,
             args.config.relative_to(args.base) if _under(args.config, args.base) else args.config,
@@ -569,9 +812,10 @@ def render(rows, knobs, claims, args, out):
     w(
         "`exp`/`test` show confirmed-ON files; a `+N?` suffix is files whose only site "
         "is an UNRESOLVED RHS (a variable the scanner could not evaluate) -- possible "
-        "enablements that suppress a FAIL.\n\n"
+        "enablements that suppress a FAIL. `declared at` is relative to "
+        "`ree-v3/ree_core/`, since not every knob is declared in config.py.\n\n"
     )
-    w("| Claim | Status | attr | Knob | Default | config.py:line | exp | test | inertness | Evidence run |\n")
+    w("| Claim | Status | attr | Knob | Default | declared at | exp | test | inertness | Evidence run |\n")
     w("|---|---|---|---|---|---|---|---|---|---|\n")
 
     def cell(on, unresolved):
@@ -596,14 +840,14 @@ def render(rows, knobs, claims, args, out):
         if r.evidence_verdict:
             ev = "%s (`%s`)" % (ev, r.evidence_verdict)
         w(
-            "| %s | `%s` | %s | `%s` | `%s` | %d | %s | %s | %s | %s%s |\n"
+            "| %s | `%s` | %s | `%s` | `%s` | %s | %s | %s | %s | %s%s |\n"
             % (
                 r.claim_id,
                 r.status,
                 r.attr,
                 r.knob.name,
                 r.knob.default,
-                r.knob.lineno,
+                knob_site(r.knob, args.base),
                 cell(r.knob.exp_files, r.knob.exp_unresolved),
                 cell(r.knob.test_files, r.knob.test_unresolved),
                 r.inertness,
@@ -628,12 +872,12 @@ def render(rows, knobs, claims, args, out):
         )
         for r in gating:
             w(
-                "- **%s** (`%s`) -> `%s` (config.py:%d), attribution `%s`, evidence `%s`\n"
+                "- **%s** (`%s`) -> `%s` (%s), attribution `%s`, evidence `%s`\n"
                 % (
                     r.claim_id,
                     r.status,
                     r.knob.name,
-                    r.knob.lineno,
+                    knob_site(r.knob, args.base),
                     r.attr,
                     r.evidence_from,
                 )
@@ -737,7 +981,10 @@ def main(argv=None):
                     "attribution": r.attr,
                     "knob": r.knob.name,
                     "default": r.knob.default,
+                    # `config_line` is the line in `source_file`, which is NOT always
+                    # config.py -- the key name predates nested-config resolution.
                     "config_line": r.knob.lineno,
+                    "source_file": knob_site(r.knob, args.base).rsplit(":", 1)[0],
                     "owner_dataclass": r.knob.owner,
                     "exp_files": r.knob.exp_files,
                     "test_files": r.knob.test_files,
