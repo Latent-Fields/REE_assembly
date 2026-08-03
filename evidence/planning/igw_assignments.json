@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-03T22:17:46Z",
+  "generated_at": "2026-08-03T22:55:11Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5919,6 +5919,51 @@
         "priority": 55,
         "claim_ids": [
           "MECH-074"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260803T223941Z-a4977718-spawned_task",
+      "stable_hash": "a49777189b2a",
+      "igw_id_at_assign": "IGW-20260803-230",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T22:39:41Z",
+      "released_at": "2026-08-03T22:39:41Z",
+      "released_by": "reconcile",
+      "released_reason": "work_landed_or_item_gone",
+      "released_event_for": "asn-20260803T221746Z-a4977718-spawned_task",
+      "note": "routed to chip chip-20260803-igw-confirm-mech074 by metaworker-dispatch cycle 279 (ree-cloud-5)",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-074 (lit 0.86, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-074"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T225511Z-055690e1-spawned_task",
+      "stable_hash": "055690e17356",
+      "igw_id_at_assign": "IGW-20260803-231",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T22:55:11Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "routed to chip chip-20260803-igw-confirm-sd039 by metaworker-dispatch cycle 286 (ree-cloud-5); headless worker pid 85697, session 56c262c0-575a-403f-9cc9-284716949862",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: SD-039 (lit 0.86, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "SD-039"
         ]
       }
     }
