@@ -232,6 +232,42 @@ class EvalFlagFormulaTests(unittest.TestCase):
         node = _test_expr("some_unrelated_flag")
         self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {}))
 
+    def test_getattr_pattern_recognized_disabled(self):
+        # The DOMINANT gate idiom in ree_core (622 occurrences measured 2026-08-03),
+        # not an edge case -- e.g. ree_core/goal.py:990
+        # `if not getattr(self.config, "use_hierarchical_goal_credit", False): return {}`.
+        node = _test_expr('getattr(self.config, "use_foo", False)')
+        self.assertFalse(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_getattr_pattern_recognized_enabled(self):
+        node = _test_expr('getattr(self.config, "use_foo", False)')
+        self.assertTrue(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": True}))
+
+    def test_getattr_pattern_unresolved_flag_is_unknown(self):
+        node = _test_expr('getattr(self.config, "use_foo", False)')
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {}))
+
+    def test_getattr_unrelated_name_arg_is_unknown(self):
+        node = _test_expr('getattr(self.config, "not_a_knob", False)')
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_getattr_non_constant_name_arg_is_unknown(self):
+        # getattr(obj, some_variable, default) -- the name isn't statically known at all.
+        node = _test_expr("getattr(self.config, name_var, False)")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_getattr_in_not_and_real_guard_clause_shape(self):
+        # The EXACT real shape: `if not getattr(self.config, "use_foo", False):` -- this is
+        # the condition of an early-return guard clause (handled by inert_line_ranges
+        # elsewhere; here just confirming the formula itself evaluates right).
+        node = _test_expr('not getattr(self.config, "use_foo", False)')
+        self.assertTrue(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_other_call_is_still_unknown(self):
+        # Only getattr is special-cased -- an arbitrary call remains a disqualifying Unknown.
+        node = _test_expr("some_function(self.config)")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
 
 class InertLineRangesTests(unittest.TestCase):
     SOURCE = (
@@ -315,6 +351,259 @@ class FlagStatusFromRecordedConfigTests(unittest.TestCase):
     def test_non_dict_field_yields_empty(self):
         self.assertEqual(MOD.flag_status_from_recorded_config({"enabled_default_off_flags": None}, {"use_foo"}), {})
         self.assertEqual(MOD.flag_status_from_recorded_config({"enabled_default_off_flags": "garbage"}, {"use_foo"}), {})
+
+
+class CallTargetNameTests(unittest.TestCase):
+    def test_attribute_call(self):
+        call = _test_expr("self.goal_state.credit_subgoal_attainment(rep, credit=1.0)")
+        self.assertEqual(MOD._call_target_name(call), "credit_subgoal_attainment")
+
+    def test_bare_name_call(self):
+        call = _test_expr("some_function(x)")
+        self.assertEqual(MOD._call_target_name(call), "some_function")
+
+    def test_subscript_call_is_unresolvable(self):
+        call = _test_expr("handlers[key](x)")
+        self.assertIsNone(MOD._call_target_name(call))
+
+
+class HasDisqualifyingSideEffectTests(unittest.TestCase):
+    def _func(self, src):
+        tree = ast.parse(src)
+        return tree.body[0]
+
+    def test_local_assignment_only_is_fine(self):
+        f = self._func("def f(self, x):\n    rep = x\n    return rep\n")
+        self.assertFalse(MOD._has_disqualifying_side_effect(f))
+
+    def test_self_attribute_assignment_disqualifies(self):
+        f = self._func("def f(self, x):\n    self.x = x\n    return self.x\n")
+        self.assertTrue(MOD._has_disqualifying_side_effect(f))
+
+    def test_subscript_assignment_disqualifies(self):
+        f = self._func("def f(self, d, k, v):\n    d[k] = v\n")
+        self.assertTrue(MOD._has_disqualifying_side_effect(f))
+
+    def test_augmented_attribute_assignment_disqualifies(self):
+        f = self._func("def f(self):\n    self.count += 1\n")
+        self.assertTrue(MOD._has_disqualifying_side_effect(f))
+
+    def test_nested_function_own_effects_do_not_count(self):
+        # A nested function's own body is its own business -- it is not executed just by
+        # being defined, so it must not disqualify the OUTER function.
+        f = self._func("def f(self):\n    def inner():\n        self.x = 1\n    return 0\n")
+        self.assertFalse(MOD._has_disqualifying_side_effect(f))
+
+    def test_call_only_is_fine(self):
+        f = self._func("def f(self):\n    return self.goal_state.credit(1.0)\n")
+        self.assertFalse(MOD._has_disqualifying_side_effect(f))
+
+
+class GuardClauseConfirmsInertTests(unittest.TestCase):
+    KNOBS = {"use_foo"}
+
+    def _func(self, src):
+        tree = ast.parse(src)
+        return tree.body[0]
+
+    def test_real_shape_confirmed_inert(self):
+        # The ACTUAL credit_subgoal_attainment shape (ree_core/goal.py:990).
+        f = self._func(
+            'def credit(self, rep, credit=1.0):\n'
+            '    """docstring."""\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+            '    return {"applied": True}\n'
+        )
+        self.assertTrue(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": False}))
+
+    def test_flag_enabled_not_confirmed_inert(self):
+        f = self._func(
+            'def credit(self):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+            '    return {"applied": True}\n'
+        )
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": True}))
+
+    def test_flag_unknown_not_confirmed_inert(self):
+        f = self._func(
+            'def credit(self):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+            '    return {"applied": True}\n'
+        )
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {}))
+
+    def test_no_leading_if_is_not_inert(self):
+        f = self._func("def f(self):\n    x = 1\n    return x\n")
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": False}))
+
+    def test_guard_with_else_is_not_inert(self):
+        # An else-branch means the function does not ALWAYS return at the guard.
+        f = self._func(
+            'def f(self):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+            '    else:\n'
+            '        return {"x": 1}\n'
+        )
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": False}))
+
+    def test_guard_body_with_more_than_return_is_not_inert(self):
+        f = self._func(
+            'def f(self):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        x = 1\n'
+            '        return {}\n'
+        )
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": False}))
+
+    def test_return_value_with_a_call_is_not_provably_cheap(self):
+        f = self._func(
+            'def f(self):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return compute_default()\n'
+        )
+        self.assertFalse(MOD._guard_clause_confirms_inert(f, self.KNOBS, {"use_foo": False}))
+
+
+class FunctionIsOneHopInertTests(unittest.TestCase):
+    KNOBS = {"use_foo"}
+
+    def _index_from(self, src):
+        tree = ast.parse(src)
+        index = {}
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                index.setdefault(node.name, []).append(node)
+        return index
+
+    def test_real_shape_one_hop_inert(self):
+        # notify_subgoal_attainment (caller) + credit_subgoal_attainment (callee), the
+        # ACTUAL real-world case P1d exists for.
+        caller_src = (
+            'def notify(self, transition_type, rep=None, credit=1.0):\n'
+            '    if self.goal_state is None:\n'
+            '        return {}\n'
+            '    if transition_type not in ("waypoint", "sequence_complete"):\n'
+            '        return {}\n'
+            '    if rep is None:\n'
+            '        if self._current_latent is None:\n'
+            '            return {}\n'
+            '        rep = self._current_latent.z_world\n'
+            '    return self.goal_state.credit_subgoal_attainment(rep, credit=credit)\n'
+        )
+        callee_src = (
+            'def credit_subgoal_attainment(self, rep, credit=1.0):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+            '    return {"applied": True}\n'
+        )
+        caller = ast.parse(caller_src).body[0]
+        index = self._index_from(callee_src)
+        self.assertTrue(MOD._function_is_one_hop_inert(caller, index, self.KNOBS, {"use_foo": False}))
+
+    def test_disqualifying_side_effect_blocks_it(self):
+        src = (
+            'def notify(self, rep):\n'
+            '    self.last_rep = rep\n'
+            '    return self.goal_state.credit_subgoal_attainment(rep)\n'
+        )
+        callee_src = (
+            'def credit_subgoal_attainment(self, rep):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+        )
+        caller = ast.parse(src).body[0]
+        index = self._index_from(callee_src)
+        self.assertFalse(MOD._function_is_one_hop_inert(caller, index, self.KNOBS, {"use_foo": False}))
+
+    def test_unresolved_call_blocks_it(self):
+        src = 'def notify(self, rep):\n    return self.goal_state.nonexistent_method(rep)\n'
+        caller = ast.parse(src).body[0]
+        self.assertFalse(MOD._function_is_one_hop_inert(caller, {}, self.KNOBS, {"use_foo": False}))
+
+    def test_ambiguous_name_requires_all_candidates_to_qualify(self):
+        # Two different classes both define "step" -- one inert, one not. Conservative: the
+        # call must NOT be treated as inert since we cannot tell which one is meant.
+        caller_src = 'def notify(self):\n    return self.thing.step()\n'
+        callee_src = (
+            'class A:\n'
+            '    def step(self):\n'
+            '        if not getattr(self.config, "use_foo", False):\n'
+            '            return {}\n'
+            'class B:\n'
+            '    def step(self):\n'
+            '        return {"always": True}\n'
+        )
+        caller = ast.parse(caller_src).body[0]
+        index = self._index_from(callee_src)
+        self.assertEqual(len(index["step"]), 2)
+        self.assertFalse(MOD._function_is_one_hop_inert(caller, index, self.KNOBS, {"use_foo": False}))
+
+    def test_no_calls_at_all_is_not_one_hop_inert(self):
+        # This extension is specifically for call-mediated inertness -- a function with no
+        # calls at all isn't what it's for (Phase 1b's in-place check is the right tool then).
+        src = 'def f(self):\n    return 1\n'
+        caller = ast.parse(src).body[0]
+        self.assertFalse(MOD._function_is_one_hop_inert(caller, {}, self.KNOBS, {"use_foo": False}))
+
+
+class OneHopInertLineRangesTests(unittest.TestCase):
+    def test_real_shape_end_to_end_line_range(self):
+        knobs = {"use_foo"}
+        caller_src = (
+            'def notify(self, rep):\n'                    # line 1
+            '    if self.goal_state is None:\n'            # line 2
+            '        return {}\n'                          # line 3
+            '    return self.goal_state.credit(rep)\n'      # line 4
+        )
+        index = {}
+        callee_src = (
+            'def credit(self, rep):\n'
+            '    if not getattr(self.config, "use_foo", False):\n'
+            '        return {}\n'
+        )
+        tree = ast.parse(callee_src)
+        for node in ast.walk(tree):
+            if isinstance(node, ast.FunctionDef):
+                index.setdefault(node.name, []).append(node)
+        ranges = MOD.one_hop_inert_line_ranges(caller_src, index, knobs, {"use_foo": False})
+        self.assertEqual(ranges, [(1, 4)])
+
+    def test_syntax_error_yields_empty(self):
+        self.assertEqual(MOD.one_hop_inert_line_ranges("def f(:\n", {}, set(), {}), [])
+
+
+class BuildFunctionIndexTests(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self._tmp.name) / "repo"
+        self.repo.mkdir()
+        _git(self.repo, "init", "-b", "main")
+        _git(self.repo, "config", "user.email", "test@example.com")
+        _git(self.repo, "config", "user.name", "Test")
+        (self.repo / "ree_core").mkdir()
+        (self.repo / "ree_core" / "a.py").write_text("def foo():\n    return 1\n")
+        (self.repo / "ree_core" / "b.py").write_text(
+            "def bar():\n    return 2\n\ndef foo():\n    return 3\n")
+        (self.repo / "outside_scope.py").write_text("def foo():\n    return 99\n")
+        _git(self.repo, "add", "-A")
+        _git(self.repo, "commit", "-m", "seed")
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def test_indexes_by_name_across_files_within_scope_only(self):
+        index = MOD.build_function_index(self.repo, "main", ["ree_core/**/*.py"])
+        self.assertEqual(len(index.get("foo", [])), 2)  # a.py + b.py, NOT outside_scope.py
+        self.assertEqual(len(index.get("bar", [])), 1)
+        self.assertNotIn("outside_scope", str(index))
+
+    def test_unresolvable_ref_yields_empty(self):
+        index = MOD.build_function_index(self.repo, "0" * 40, ["ree_core/**/*.py"])
+        self.assertEqual(index, {})
 
 
 class LoadDefaultOffKnobNamesTests(unittest.TestCase):

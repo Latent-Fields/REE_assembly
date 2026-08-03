@@ -53,16 +53,24 @@ closure_plan:
       last_updated: 2026-08-03
       completion_note: "ree-v3/experiments/_lib/manifest_core.py: enabled_default_off_flags(config) (recursive dataclass-field walk, generalizing q081_profile.py's 4-holder hardcoded _read_flag) + enabled_default_off_flags_for_agents(agent) (pools one-or-many agents, same normalisation as z_goal_stream_stats) + wired into stamp_recording_core() as a new best-effort block reusing the EXISTING agent= parameter -- no new kwarg needed on write_flat_manifest at all, since it already forwards agent= for z_goal_stream and that threading is already live for ~28 of 565 stepping drivers today. 24 new pytest tests in tests/contracts/test_recording_standard.py (fixture dataclasses, no torch/ree_core import needed, matching manifest_core.py's own stdlib-only posture), plus a real end-to-end smoke against the actual REEConfig. FOUND AND FIXED A REAL PRECISION GAP mid-implementation, before landing: the first draft followed z_goal_stream's 'omit when nothing to report' convention, which for THIS field silently collapsed two different, important cases into the same omission -- 'no agent passed' (never measured) and 'agent passed, nothing enabled' (measured, legitimately all-defaults) -- indistinguishable to a downstream consumer that needs the second case to say 'every other known flag is confirmed disabled,' not 'unknown.' Fixed: enabled_default_off_flags_for_agents returns None (omit) only when no config-bearing agent was found at all, and an actual (possibly empty {}) dict otherwise -- caught and corrected by writing the consumer-side test before shipping, not by manual review. Consumer side: check_substrate_staleness_candidates.py's flag_status_from_recorded_config() reads the field when present (matching parse_knobs()'s bare field names against the recorded dict's trailing dotted-path segment, e.g. 'goal.use_hierarchical_goal_credit' -> 'use_hierarchical_goal_credit') and main() prefers it over the textual driver-source proxy whenever a manifest has it; also fixed the existing default_off_cache (keyed by commit+experiment_type+path) to route AROUND that cache for recorded-config lookups, since -- unlike the driver-source proxy -- the recorded status is manifest-specific, not a pure function of that key (two arms of one experiment_type at one commit could genuinely record different enabled flags). 6 new unit tests for the consumer function + 1 integration test proving the recorded path succeeds where the proxy has nothing to read (55 tests total in the suite). REAL corpus run confirms this is genuinely prospective, as designed: 0 of 621 manifests have the new field yet (no driver has been updated to adopt it), so 0 pairs used it -- exactly the expected result for a feature that only benefits FUTURE runs, not a null finding like P1/P1b's. Landing this into new /queue-experiment drivers (so it actually starts accumulating coverage) is the natural next step, not done this session."
     - id: "substrate_stability:P1d-interprocedural-hop"
-      title: "One-hop interprocedural extension to Phase 1b: when a changed function's body is only calls, follow direct callees (name-resolved, conservative -- ALL same-named candidates must agree) and treat the change as inert if every resolved callee's own top-of-body gate is confirmed-False. Complementary to, not dependent on, P1c. Higher risk/complexity -- scoped in section 7, not yet built."
+      title: "One-hop interprocedural extension to Phase 1b: build a corpus-wide function index, resolve a changed function's calls by name to their definitions, and treat the change as inert when the caller has no direct side effect AND every resolved callee is confirmed inert by its own top-of-body guard clause. Also fixed _eval_flag_formula to recognise the getattr(obj, name, default) gate idiom (622 occurrences in ree_core/, the dominant shape -- previously unrecognised entirely)."
       phase: 1
+      status: done
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: "check_substrate_staleness_candidates.py extended with: (1) _eval_flag_formula now recognises getattr(obj, \"name\", default) as a flag reference (previously only direct attribute access) -- a real, valuable, retroactive fix to Phase 1b itself, not just P1d, since this is the dominant gate idiom in ree_core (622 occurrences measured). (2) build_function_index() (name -> every FunctionDef/AsyncFunctionDef across the current substrate scope, built once per report run), _has_disqualifying_side_effect() (scope-respecting -- found and fixed a real bug during testing: a naive ast.walk-based nested-function exclusion only skips the FunctionDef node itself, not its descendants, since ast.walk flattens across scope boundaries; fixed with a proper ast.iter_child_nodes recursion that never descends into a nested def/lambda/class), _guard_clause_confirms_inert() (a callee's own first-statement `if <formula>: return <cheap>` confirmed to always fire), _function_is_one_hop_inert(), and one_hop_inert_line_ranges(), unioned with Phase 1b's existing if-body ranges. 25 new unit tests including the ACTUAL real-world shape (notify_subgoal_attainment calling credit_subgoal_attainment across files) as a positive control -- confirmed working IN ISOLATION. 87 tests total in the suite. REAL corpus run: STILL 0 pairs filtered for either pilot -- but for a THIRD, deeper root cause than P1/P1b's, not a repeat: traced (not guessed) via direct debugging that use_hierarchical_goal_credit resolves as Unknown, not confirmed-False, for MECH-471's driver, because default_off_drift_guard.py's parse_knobs() ONLY parses ree_core/utils/config.py -- and GoalConfig (which declares that flag) is defined in ree_core/goal.py, a different file, imported in as a nested REEConfig field. Confirmed exactly 2 of 10 nested config classes (GoalConfig, SerotoninConfig) live outside config.py and are therefore invisible to parse_knobs() entirely -- this is a real, bounded, well-scoped gap in default_off_drift_guard.py itself, one layer below everything built this session, and P1c's own runtime-introspection recording (enabled_default_off_flags(), which walks the LIVE dataclass structure regardless of which file declares each nested class) does NOT share this limitation -- confirming the asymmetry is specific to the AST-based knob-name approach Phase 1b/1d both depend on. Also confirmed even accounting for this, 183 of 236 changed lines in ree_core/agent.py for the MECH-471 candidate remain uncovered (use_coalition_controller DID resolve correctly, confirmed False, since it lives in config.py directly) -- other gating idioms (e.g. a cached state check like `if self.coalition is not None:`, which is a derived-at-init-time proxy for a flag rather than a direct flag reference) are not recognised by any analysis built this session and would need actual data-flow tracking to close. See section 7.4 for the full writeup. Not fixed here -- extending parse_knobs() to cover nested-config classes declared outside config.py is a well-scoped, separate follow-on, flagged not built."
+    - id: "substrate_stability:ISO-design"
+      title: "Structural isolation design (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; not built."
+      phase: 0
       status: open
       severity: medium
       owner_exq: null
       last_updated: 2026-08-03
       completion_note: ""
-    - id: "substrate_stability:ISO-design"
-      title: "Structural isolation design (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; not built."
-      phase: 0
+    - id: "substrate_stability:parse-knobs-file-coverage"
+      title: "Teach REE_assembly/scripts/default_off_drift_guard.py's parse_knobs() to follow each REEConfig field(default_factory=XConfig) reference to wherever XConfig is actually declared (an import resolution, not a hardcoded second/third file path), so nested config classes declared outside ree_core/utils/config.py (confirmed: GoalConfig, SerotoninConfig) are no longer invisible to it. Discovered as the real blocker behind P1d's still-0 real-corpus result (section 7.4), not built this session -- a separate, well-scoped follow-on one layer below everything else in this plan."
+      phase: 1
       status: open
       severity: medium
       owner_exq: null
@@ -81,12 +89,20 @@ now prefers over the textual proxy. 30 new tests across both repos. Caught and f
 correctness issues before landing (an omission-vs-empty-dict ambiguity, and a cache keyed on an
 assumption that stopped holding once a manifest-specific flag source was added) -- see 6.5 for
 both. Confirmed genuinely prospective on the real corpus: 0 of 621 manifests carry the field yet,
-since no driver has adopted `agent=` for this reason specifically. **P1d** (section 7) remains
-DESIGNED, not built: a one-hop interprocedural extension that follows a changed function's
-direct callees to find a gate living in a different file -- the specific gap P1c cannot close on
-its own (P1c sharpens WHICH flags are on; P1d would extend WHERE the gate can be found). The
-structural-isolation problem (section 3) is designed but **not built** this session. Phase 2
-(section 4.4) remains held pending a human decision: land P1c into `/queue-experiment` so new
+since no driver has adopted `agent=` for this reason specifically. **P1d is now BUILT** (section
+7.4): a one-hop interprocedural extension (`build_function_index`, `_guard_clause_confirms_inert`,
+`_function_is_one_hop_inert`) that follows a changed function's direct callees to find a gate
+living in a different file, PLUS a real fix to the shared Kleene evaluator (recognising the
+`getattr(obj, "name", default)` gate idiom -- 622 occurrences in `ree_core/`, previously
+unrecognised entirely). 25 new tests confirm both work correctly on the exact real-world target
+case IN ISOLATION. **Still 0 on the real corpus** -- but for a THIRD, deeper root cause, not a
+repeat: `default_off_drift_guard.py`'s `parse_knobs()` (reused as ground truth throughout this
+plan) only parses `ree_core/utils/config.py`, and 2 of REEConfig's 10 nested sub-config classes
+(`GoalConfig` -- holding the exact flag this case needs -- and `SerotoninConfig`) are declared in
+OTHER files, invisible to it entirely. P1c's runtime-introspection recording does not share this
+limitation. Flagged as a well-scoped follow-on, not fixed here. The structural-isolation problem
+(section 3) is designed but **not built** this session. Phase 2 (section 4.4) remains held
+pending a human decision: land P1c into `/queue-experiment` so new
 drivers start accumulating coverage, pursue P1d, or accept Phase-0's whole-tree ceiling.
 **Created:** 2026-08-03T16:56Z
 **Author session:** failure-autopsy-10b982
@@ -501,6 +517,77 @@ generalizing, rather than building it corpus-wide on faith. Complementary to, no
 section 6 -- P1c sharpens `flag_status` regardless of which file the gate lives in; P1d extends
 WHERE the gate can be found, for whichever flag-status source (proxy or recorded) is in use.
 
+### 7.4 Built, tested, and correct for its target shape -- STILL 0 on the real corpus, for a
+### third and deeper reason (2026-08-03)
+
+Built as designed: `build_function_index()`, `_has_disqualifying_side_effect()` (found and
+fixed a real bug during testing -- a naive `ast.walk`-based scope exclusion only skips the
+nested `FunctionDef` node itself, not its descendants, since `ast.walk` flattens across scope
+boundaries regardless; fixed with a proper `ast.iter_child_nodes` recursion that never
+descends into a nested def/lambda/class), `_guard_clause_confirms_inert()`,
+`_function_is_one_hop_inert()`, `one_hop_inert_line_ranges()`. Also fixed, in the SAME pass, a
+real gap in the Kleene evaluator this extension (and Phase 1b) both depend on: `getattr(obj,
+"name", default)` -- the DOMINANT gate idiom in `ree_core/` (622 occurrences measured), not an
+edge case -- was not recognised as a flag reference at all before this session; now is. 25 new
+unit tests, including the ACTUAL real-world case (`notify_subgoal_attainment` calling
+`credit_subgoal_attainment` across two files) as a positive control, confirmed working IN
+ISOLATION.
+
+**Running it against the real corpus: still 0 pairs filtered for either pilot.** Debugged
+directly rather than accepted at face value. `use_hierarchical_goal_credit` -- the exact flag
+`credit_subgoal_attainment`'s guard clause tests -- resolves as **Unknown**, not
+confirmed-False, for the MECH-471 candidate. Traced to a THIRD, deeper root cause, one layer
+below everything built this session: `default_off_drift_guard.py`'s `parse_knobs()` -- reused
+unmodified throughout this whole plan as the source of truth for "what is a default-off knob"
+-- only parses `ree_core/utils/config.py`. `GoalConfig` (which declares
+`use_hierarchical_goal_credit`) is defined in `ree_core/goal.py`, a completely different file,
+and is only *used* by `config.py` as a nested field (`goal: GoalConfig =
+field(default_factory=GoalConfig)`). `parse_knobs()`'s AST walk never reads `goal.py`, so this
+flag -- and every other field `GoalConfig` declares -- is invisible to it entirely, not merely
+unresolved. Confirmed the scope of this precisely: **exactly 2 of REEConfig's 10 nested
+sub-config classes** (`GoalConfig`, `SerotoninConfig`) are declared outside `config.py`; the
+other 8 (`LatentStackConfig`, `E1Config`, `E2Config`, `E3Config`, `HippocampalConfig`,
+`ResidueConfig`, `HeartbeatConfig`, `EnvironmentConfig`) are declared directly in it and are
+correctly covered.
+
+**This is a real, bounded gap in infrastructure this plan has treated as ground truth, not a
+bug in anything built this session** -- `default_off_drift_guard.py` predates this plan
+entirely (it is the tool `_default_off`/`Knob` etc. were deliberately reused from, per this
+plan's own "never reimplement" principle throughout). Worth naming precisely for whoever picks
+it up: fixing it means teaching `parse_knobs()` to follow each `field(default_factory=XConfig)`
+reference to wherever `XConfig` is actually declared (via an import resolution, not another
+hardcoded file list), not just adding `goal.py`/`serotonin.py` as two more hardcoded paths --
+REEConfig could grow an 11th nested config in a third location tomorrow.
+
+**Notably, P1c does NOT share this limitation.** `enabled_default_off_flags()` (section 6)
+walks the LIVE dataclass structure at runtime via `dataclasses.fields()`, which correctly
+reaches every nested sub-config regardless of which file declares its class -- the AST-parse
+vs. runtime-introspection distinction is exactly what makes P1c's producer side more complete
+than Phase 1b/1d's consumer-side flag enumeration, a real asymmetry worth knowing about rather
+than assuming the two "know about the same flags."
+
+**Even fixing this would likely not fully close the gap.** Debugged one level further: of the
+236 changed lines in `ree_core/agent.py` for the MECH-471 candidate, `use_coalition_controller`
+(SD-091's flag, declared directly in `config.py`) DOES resolve correctly (confirmed False), yet
+183 of 236 lines remain uncovered even so. Reading the diff: some of SD-091's own consumer
+sites gate not on a direct flag read but on a CACHED STATE CHECK derived from it at
+initialization time -- `if self.coalition is not None:` -- which is a *proxy* for the flag
+(`self.coalition` is only ever non-`None` when `use_coalition_controller` was true at
+`__init__`), not a reference to the flag itself. No analysis built this session recognises
+this pattern; doing so would need actual data-flow tracking (does this attribute's value
+trace back to a confirmed-disabled flag at every assignment site), a materially harder problem
+than anything attempted here, and not recommended as a next step without first fixing the
+narrower `parse_knobs()` gap above and re-measuring what's actually left.
+
+**Net assessment**: both fixes built this session (getattr recognition, one-hop resolution)
+are real, correct, and independently useful -- the getattr fix in particular retroactively
+improves Phase 1b for any future candidate whose gate uses that idiom in-file. Neither changes
+today's practical result for the 2 pilots, because the actual blocker turned out to be one
+layer further down the stack (which flags are even known to exist) than either fix addresses.
+Flagged, not fixed: extending `parse_knobs()`'s file coverage is a well-scoped, separate
+follow-on with a clear owner and a clear test (does `use_hierarchical_goal_credit` newly
+resolve).
+
 ## Status table
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
@@ -509,6 +596,7 @@ WHERE the gate can be found, for whichever flag-status source (proxy or recorded
 | P1-scope-schema | 1 | done | -- | none; 2 pilot claims declared (MECH-471, MECH-321). Real corpus result: 0/2 pilots' candidates filtered -- see section 4.5 | null | 2026-08-03 |
 | P1b-default-off-filter | 1 | done | -- | none; real corpus result: 0/2 pilots' candidates filtered, for a DIFFERENT reason than P1 (same-file conditionals aren't this repo's actual pattern -- see section 4.6) | null | 2026-08-03 |
 | P1c-prospective-recording | 1 | done | -- | none; 0 of 621 manifests carry the field yet (genuinely prospective) -- next real step is updating /queue-experiment's template so new drivers pass agent= for this reason | null | 2026-08-03 |
-| P1d-interprocedural-hop | 1 | open | Section 7.3: prototype against the 2 known pilots' candidates before generalizing | Not yet started -- awaiting a build decision | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | P1c accumulating real coverage (needs new/re-run drivers) and/or P1d landing with a real noise-reduction result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
+| P1d-interprocedural-hop | 1 | done | -- | none; real corpus result: still 0/2 pilots' candidates filtered, for a THIRD reason (default_off_drift_guard.py's parse_knobs() misses config classes declared outside config.py) -- see section 7.4 | null | 2026-08-03 |
+| parse-knobs-file-coverage | 1 | open | Section 7.4's finding | Teach default_off_drift_guard.py's parse_knobs() to follow field(default_factory=XConfig) to wherever XConfig is actually declared, not a hardcoded single-file scan | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | P1c accumulating real coverage (needs new/re-run drivers), and/or the parse_knobs file-coverage fix landing with a re-measured result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |

@@ -121,6 +121,44 @@ Building the recording-standard fix is a separate, legitimate follow-on (it woul
 version of this filter drop the proxy and read the real flag set directly) but is out of this
 script's scope -- noted here so the two are never conflated.
 
+PHASE 1d (added 2026-08-03): ONE-HOP INTERPROCEDURAL EXTENSION
+------------------------------------------------------------------
+Phase 1b's same-file analysis cannot see `ree_core/agent.py:notify_subgoal_attainment`
+(SD-092): it unconditionally calls `self.goal_state.credit_subgoal_attainment(...)`, and the
+`use_hierarchical_goal_credit` gate lives entirely inside THAT callee, in `ree_core/goal.py`
+-- `if not getattr(self.config, "use_hierarchical_goal_credit", False): return {}` as the
+callee's own first statement. This extension follows exactly ONE hop of function calls to
+find gates like this, narrowly and conservatively:
+
+1. `build_function_index()` parses every `.py` file in the current substrate scope ONCE per
+   report run and indexes every `FunctionDef`/`AsyncFunctionDef` by its bare name (multiple
+   files can share a name -- e.g. `step`, `reset` -- so this is name -> LIST of definitions,
+   not name -> one definition).
+2. A changed FUNCTION (not just a changed `if`-body, unlike Phase 1b) counts as "one-hop
+   inert" only when BOTH hold:
+   a. It contains NO side effect that isn't mediated by a call -- no `self.x = ...` / `obj.attr
+      = ...` / subscript assignment / `del` / `global` / `nonlocal` anywhere in its body. A
+      function with any such construct is NEVER analysed this way (bail, stays a candidate) --
+      this is deliberately narrow, not "any function," because proving a call chain inert says
+      nothing about a direct state mutation sitting beside it.
+   b. EVERY `Call` in its body resolves, by bare callee name via the index, to definition(s)
+      that are ALL independently confirmed inert by a GUARD-CLAUSE check: the callee's own
+      first statement (after an optional docstring) is `if <formula>: return <cheap-literal>`
+      whose formula evaluates (via the SAME `_eval_flag_formula` Kleene evaluator, unmodified)
+      to a confirmed TRUE for this run -- meaning the guard's return unconditionally fires and
+      nothing after it in the callee ever executes. If a call's name matches MORE than one
+      definition anywhere in scope, ALL of them must independently qualify, or the call is
+      unresolved (conservative, mirrors Phase 1b's own scope-widening safety rule). If a call's
+      name matches NO definition, it is likewise unresolved. A single unresolved or non-inert
+      call disqualifies the WHOLE function.
+3. A one-hop-inert function's FULL line span becomes an additional inert range, unioned with
+   Phase 1b's in-place `if`-body ranges before the final coverage check.
+
+This is deliberately ONE hop, not general call-graph reachability -- see the design plan
+section 7.3 for why (name-collision risk could make it over-conservative at depth, and this
+was recommended to be prototyped against known cases before generalising, not built
+corpus-wide on faith).
+
 Nothing here can invalidate an experiment or alter scoring. Read the report, then a human
 decides whether to hand-edit a flat manifest's `pending_retest_after_substrate` (or the
 per-claim variants) -- exactly as `/failure-autopsy` already does today for other reasons.
@@ -475,6 +513,19 @@ def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[st
         return flag_status.get(node.attr)
     if isinstance(node, ast.Name) and node.id in knob_names:
         return flag_status.get(node.id)
+    if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "getattr":
+        # getattr(self.config, "use_foo", False) is the DOMINANT gate idiom in ree_core --
+        # 622 occurrences measured 2026-08-03, vs. plain attribute access. It is semantically
+        # identical to a direct attribute read when (as is always true here) the attribute
+        # exists on the config object; the default argument is purely defensive styling, never
+        # taken. Missing this made Phase 1b (and the interprocedural extension that depends on
+        # it) blind to the majority real gate shape in this codebase, not an edge case.
+        if len(node.args) >= 2:
+            name_arg = node.args[1]
+            if isinstance(name_arg, ast.Constant) and isinstance(name_arg.value, str):
+                if name_arg.value in knob_names:
+                    return flag_status.get(name_arg.value)
+        return None
     return None
 
 
@@ -520,6 +571,157 @@ def inert_line_ranges(file_source: str, knob_names: Set[str], flag_status: Dict[
     return ranges
 
 
+# --------------------------------------------------------------------------------------- #
+# Phase 1d -- one-hop interprocedural extension (module docstring has the full design)     #
+# --------------------------------------------------------------------------------------- #
+
+
+def _call_target_name(call: ast.Call) -> Optional[str]:
+    """The bare callee name of a Call -- 'credit_subgoal_attainment' from
+    `self.goal_state.credit_subgoal_attainment(...)`, or the function name from a bare
+    `foo(...)`. None for anything else (a call through a subscript, a lambda result, etc.)."""
+    func = call.func
+    if isinstance(func, ast.Attribute):
+        return func.attr
+    if isinstance(func, ast.Name):
+        return func.id
+    return None
+
+
+def _has_disqualifying_side_effect(func_def: Any) -> bool:
+    """True if func_def's body contains ANY state mutation not mediated by a call: an
+    assignment (incl. augmented/annotated) whose target is not a bare local Name (i.e. is an
+    Attribute or Subscript -- `self.x = ...`, `obj.attr = ...`, `d[k] = ...`), or a
+    Delete/Global/Nonlocal. A function with any of these is NEVER treated as one-hop inert,
+    regardless of what its calls resolve to -- proving a call chain is dead says nothing
+    about a direct mutation sitting beside it in the same function.
+
+    Deliberately does NOT use ast.walk: that flattens the WHOLE subtree regardless of scope,
+    so a naive "skip FunctionDef nodes" check would still visit a nested function's own body
+    (walk yields it as a descendant either way) and wrongly disqualify the OUTER function for
+    an inner one's effects. This recurses via ast.iter_child_nodes instead, and stops
+    descending entirely at a nested scope boundary (FunctionDef/AsyncFunctionDef/Lambda/
+    ClassDef) -- a nested definition's own body is never inspected here at all.
+    """
+    def _scan(node: Any) -> bool:
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef, ast.Lambda, ast.ClassDef)):
+                continue  # a nested scope's own effects are its own business, not this one's
+            if isinstance(child, (ast.Delete, ast.Global, ast.Nonlocal)):
+                return True
+            if isinstance(child, (ast.Assign, ast.AugAssign, ast.AnnAssign)):
+                targets = child.targets if isinstance(child, ast.Assign) else [child.target]
+                for t in targets:
+                    if not isinstance(t, ast.Name):
+                        return True
+            if _scan(child):
+                return True
+        return False
+    return _scan(func_def)
+
+
+def _leading_statements(func_def: Any) -> List[Any]:
+    """func_def.body with a leading docstring Expr(Constant(str)) stripped, if present."""
+    body = list(func_def.body)
+    if body and isinstance(body[0], ast.Expr) and isinstance(body[0].value, ast.Constant) \
+            and isinstance(body[0].value.value, str):
+        body = body[1:]
+    return body
+
+
+def _guard_clause_confirms_inert(func_def: Any, knob_names: Set[str], flag_status: Dict[str, bool]) -> bool:
+    """True iff func_def's FIRST real statement (after an optional docstring) is
+    `if <formula>: return <cheap>` -- a single Return statement, no elif/else -- whose test
+    formula evaluates to a confirmed TRUE for this run, so the guard's return unconditionally
+    fires and nothing else in func_def ever executes. The returned expression must itself
+    contain no Call (must be a cheap literal/Name/Attribute), so the "inert" verdict cannot be
+    defeated by the guard's own return value secretly doing work.
+    """
+    body = _leading_statements(func_def)
+    if not body or not isinstance(body[0], ast.If):
+        return False
+    if_node = body[0]
+    if if_node.orelse:
+        return False  # an else-branch means the function does NOT always return here
+    if len(if_node.body) != 1 or not isinstance(if_node.body[0], ast.Return):
+        return False
+    ret = if_node.body[0]
+    if ret.value is not None and any(isinstance(n, ast.Call) for n in ast.walk(ret.value)):
+        return False  # the return value itself calls something -- not provably cheap
+    return _eval_flag_formula(if_node.test, knob_names, flag_status) is True
+
+
+def build_function_index(ree_v3_root: Path, ref: str, globs: List[str]) -> Dict[str, List[Any]]:
+    """name -> every FunctionDef/AsyncFunctionDef found across every .py file in `globs` at
+    `ref`, built ONCE per report run (not per candidate -- this walks the whole scope).
+    Best-effort: an unlistable ref or an unparseable file is silently skipped, never a crash.
+    """
+    index: Dict[str, List[Any]] = {}
+    rc, out, err = _run(["git", "ls-tree", "-r", "--name-only", ref], cwd=ree_v3_root)
+    if rc != 0:
+        return index
+    all_files = [ln.strip() for ln in out.splitlines() if ln.strip()]
+    in_scope = [f for f in all_files if f.endswith(".py") and _file_in_scope(f, list(globs))]
+    for path in in_scope:
+        source = _git_show(ree_v3_root, ref, path)
+        if source is None:
+            continue
+        try:
+            tree = ast.parse(source)
+        except SyntaxError:
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                index.setdefault(node.name, []).append(node)
+    return index
+
+
+def _function_is_one_hop_inert(
+    func_def: Any, index: Dict[str, List[Any]], knob_names: Set[str], flag_status: Dict[str, bool],
+) -> bool:
+    """True iff func_def has no disqualifying direct side effect, and every Call in its body
+    resolves (by bare name) to definition(s) that are ALL confirmed inert via
+    _guard_clause_confirms_inert. A call with no resolvable name, no matching definition, or
+    ANY matching definition that does not qualify, disqualifies the whole function.
+    """
+    if _has_disqualifying_side_effect(func_def):
+        return False
+    calls = [n for n in ast.walk(func_def) if isinstance(n, ast.Call) and n is not func_def]
+    if not calls:
+        return False  # nothing to resolve at all -- not what this extension is for
+    for call in calls:
+        name = _call_target_name(call)
+        if not name:
+            return False
+        candidates = index.get(name)
+        if not candidates:
+            return False
+        if not all(_guard_clause_confirms_inert(c, knob_names, flag_status) for c in candidates):
+            return False
+    return True
+
+
+def one_hop_inert_line_ranges(
+    file_source: str, index: Dict[str, List[Any]], knob_names: Set[str], flag_status: Dict[str, bool],
+) -> List[Tuple[int, int]]:
+    """Full line spans of every top-level or nested function in file_source that qualifies as
+    one-hop inert (see module docstring, Phase 1d). Best effort: a syntax error yields [].
+    """
+    try:
+        tree = ast.parse(file_source)
+    except SyntaxError:
+        return []
+    ranges: List[Tuple[int, int]] = []
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+        if _function_is_one_hop_inert(node, index, knob_names, flag_status):
+            lo, hi = _line_span([node])
+            if lo is not None:
+                ranges.append((lo, hi))
+    return ranges
+
+
 def changed_line_numbers(ree_v3_root: Path, recorded_commit: str, ref: str, path: str) -> Optional[List[int]]:
     """New-file (post-image) line numbers touched by recorded_commit..ref for `path`, from
     `git diff --unified=0` hunk headers (`@@ -a,b +c,d @@`) -- exact, not context-window
@@ -544,11 +746,14 @@ def changed_line_numbers(ree_v3_root: Path, recorded_commit: str, ref: str, path
 def file_is_default_off_only(
     ree_v3_root: Path, recorded_commit: str, ref: str, path: str,
     knob_names: Set[str], flag_status: Dict[str, bool],
+    function_index: Optional[Dict[str, List[Any]]] = None,
 ) -> Optional[bool]:
-    """True iff every changed line in `path` sits inside a confirmed-inert `if` body for this
-    run. False if at least one changed line is not covered (a genuine live change). None if
-    this could not be determined (not a .py file, unreadable, undiffable, no changed lines)
-    -- callers must treat None the same as False (stays a candidate), never as True.
+    """True iff every changed line in `path` sits inside a confirmed-inert range for this run
+    -- either an in-place gated `if` body (Phase 1b) or a one-hop-inert function (Phase 1d,
+    only checked when `function_index` is given). False if at least one changed line is not
+    covered (a genuine live change). None if this could not be determined (not a .py file,
+    unreadable, undiffable, no changed lines) -- callers must treat None the same as False
+    (stays a candidate), never as True.
     """
     if not path.endswith(".py"):
         return None
@@ -559,6 +764,8 @@ def file_is_default_off_only(
     if source is None:
         return None
     ranges = inert_line_ranges(source, knob_names, flag_status)
+    if function_index is not None:
+        ranges = ranges + one_hop_inert_line_ranges(source, function_index, knob_names, flag_status)
     if not ranges:
         return False
     return all(any(lo <= ln <= hi for lo, hi in ranges) for ln in lines)
@@ -570,6 +777,9 @@ def main() -> int:
     ap.add_argument("--ree-v3-root", default=str(DEFAULT_REE_V3_ROOT))
     ap.add_argument("--ref", default="origin/main")
     ap.add_argument("--claims-yaml", default=str(DEFAULT_CLAIMS_YAML))
+    ap.add_argument("--skip-one-hop", action="store_true",
+                     help="Phase 1d builds a corpus-wide function index (one git-show per "
+                          "in-scope .py file) -- skip it for a faster Phase 0/1/1b-only run.")
     args = ap.parse_args()
 
     exp_dir = Path(args.exp_dir)
@@ -646,6 +856,13 @@ def main() -> int:
     driver_source_cache: Dict[Tuple[str, str], Optional[str]] = {}
     default_off_cache: Dict[Tuple[str, str, str], Optional[bool]] = {}
 
+    # Phase 1d: built ONCE per report run (one git-show per in-scope .py file -- the same
+    # cost class as materialising the Phase-0 worktree), reused by every candidate below.
+    # None (not built) when knob_names is empty (nothing to gate on) or --skip-one-hop.
+    function_index: Optional[Dict[str, List[Any]]] = None
+    if knob_names and not args.skip_one_hop:
+        function_index = build_function_index(ree_v3_root, args.ref, current_globs)
+
     def driver_source_for(commit: str, experiment_type: str) -> Optional[str]:
         key = (commit, experiment_type)
         if key not in driver_source_cache:
@@ -662,11 +879,13 @@ def main() -> int:
         # NOT -- it is specific to one manifest's own run (two arms of the same
         # experiment_type at the same commit could genuinely record different enabled
         # flags) -- see the caller below, which routes recorded-config lookups around
-        # this cache entirely rather than risk a stale cross-manifest hit.
+        # this cache entirely rather than risk a stale cross-manifest hit. function_index is
+        # the SAME object across the whole report run, so it is safe to fold into this key's
+        # cached value without being part of the key itself.
         key = (commit, experiment_type, path)
         if key not in default_off_cache:
             default_off_cache[key] = file_is_default_off_only(
-                ree_v3_root, commit, args.ref, path, knob_names, flag_status)
+                ree_v3_root, commit, args.ref, path, knob_names, flag_status, function_index)
         return default_off_cache[key]
 
     by_claim_default_off: Dict[str, List[Tuple[Path, Dict[str, Any], Optional[List[str]]]]] = {}
@@ -695,7 +914,8 @@ def main() -> int:
                     n_recorded_config_used += 1
                     flag_status = recorded_status
                     verdicts = [
-                        file_is_default_off_only(ree_v3_root, commit, args.ref, f, knob_names, flag_status)
+                        file_is_default_off_only(
+                            ree_v3_root, commit, args.ref, f, knob_names, flag_status, function_index)
                         for f in relevant_files
                     ]
                 else:
