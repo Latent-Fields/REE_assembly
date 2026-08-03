@@ -6759,7 +6759,7 @@
       "sd_id": "SD-094",
       "title": "Fix CausalGridWorld subgoal_mode waypoint-arrival detection (grid-cell-type coupling bug) + gate ambient self-contamination for hazard-free probes",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6778,8 +6778,15 @@
       "priority": 2,
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
-      "last_seen_session": "epic-mirzakhani-4928b5",
-      "origin": "Confirmed failure_autopsy_V3-EXQ-884_2026-08-03; create recommendation applied by /governance 2026-08-03."
+      "last_seen_session": "metaworker-chip-20260803-igw-sd094-waypoint-arrival-fix",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-884_2026-08-03; create recommendation applied by /governance 2026-08-03.",
+      "implementation_landed": {
+        "commit": "a95e103dc58c505efc935c6b71db5d40a2b8fe0e",
+        "repo": "ree-v3",
+        "branch": "main",
+        "landed_utc": "2026-08-03T15:34:26Z",
+        "note": "Code+contract-tests landed by recovered crashed worker for chip-20260803-sd094-causal-grid-world-fix; subgoal_arrival_position_check + hazard_free_contamination_gate + done_cause/episode_steps manifest fields; 33/33 contract tests pass (re-confirmed 2026-08-03T19:46Z local: 33 passed 2.16s). Validation owed = MECH-428 behavioural re-run (V3-EXQ-884 successor)."
+      }
     },
     {
       "sd_id": "SD-e1-rollout-consistency-training",
