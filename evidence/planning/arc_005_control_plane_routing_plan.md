@@ -55,10 +55,27 @@ closure_plan:
       phase: 0
       status: in-progress
       severity: informational
-      owner_exq: "V3-EXQ-848, V3-EXQ-848a"
+      owner_exq: "V3-EXQ-848, V3-EXQ-848a, V3-EXQ-848b (recommended, not yet queued)"
       unblocks_claims: []
       depends_on: ["arc_005_control_plane_routing:GAP-A"]
-      last_updated: 2026-08-02
+      last_updated: 2026-08-03
+      remedy_2026_08_03: "848a landed 2026-08-02T12:07:12Z, confirmed failure_autopsy_V3-EXQ-848a_2026-08-03.
+        The calibration fix this node's remedy_2026_08_02 entry queued IS confirmed genuinely engaged
+        (total_dacc_bias_calls=25289, build-time guard held) -- the wiring/calibration line of inquiry
+        opened by 848 is CLOSED. Still FAIL (C_precision_monotonicity 1/10 units), but the per-unit rho
+        distribution (7/10 positive-signed, 6 of 10 clustered at exactly rho=0.5) is the signature of a
+        3-point-ladder (L0/L1/L2) Spearman-rho resolution ceiling -- |rho|>=0.6 is reachable only by a
+        perfect ordering on a 3-level design -- not a substrate ceiling: 802's genuinely-null channels
+        showed bit-identical rho=0.0 by contrast, and 848's own learning_extracted had already predicted
+        this exact statistic would be too coarse to discriminate a weak real effect from noise.
+        User-confirmed routing: /queue-experiment for a ladder-granularity redesign (candidate
+        V3-EXQ-848b: 5+ levels and/or a magnitude-based statistic replacing per-unit Spearman rho over
+        raw log10-precision), NOT further substrate work -- recommendation only, not yet queued (a
+        /failure-autopsy session's own routing is reported for /governance to ratify, not chipped
+        directly, per CLAUDE.md Session Land Protocol step 6). epistemic_category=standard (unchanged).
+        This node resumes WHEN V3-EXQ-848b IS QUEUED AND LANDS A MANIFEST -- nothing re-derives it
+        automatically. New hypothesis_space_registry.v1.json question arc005_precision_channel_
+        measurement_resolution registered (state=alive) tracking this sub-question independently."
       remedy_2026_08_02: "STATUS REVERTED done -> in-progress: 848's own landed result did NOT
         validly test the remedy this node's remedy_2026_07_31 entry describes, for a reason
         distinct from anything diagnosed in 802 -- a plain configuration omission in 848's own
@@ -110,7 +127,8 @@ closure_plan:
 
 **Created:** 2026-07-22 &nbsp;|&nbsp; **Reconciled + GAP-B queued:** 2026-07-31 &nbsp;|&nbsp;
 **Precision-DV diagnosed + remedied:** 2026-07-31 &nbsp;|&nbsp; **848's remedy found untested,
-corrected re-test queued:** 2026-08-02
+corrected re-test queued:** 2026-08-02 &nbsp;|&nbsp; **848a (calibrated) landed, measurement
+ceiling diagnosed:** 2026-08-03
 **Status:** GAP-A **done** (V3-EXQ-802 landed FAIL/mixed, reviewed + adjudicated by governance
 2026-07-25, no claims.yaml change) — GAP-A precision-DV bit-identity **diagnosed as a harness
 defect, not a substrate null, and a remedy attempted**: dACC wiring bug fixed (ree-v3
@@ -121,8 +139,14 @@ set `dacc_goal_readout_weight`, so the dACC goal-readout pathway it was queued t
 contributed exactly zero throughout the run -- a silent configuration omission, not a
 substrate finding. Corrected re-test queued as **V3-EXQ-848a** (dacc_goal_readout_weight=0.5
 + the new dacc_goal_readout_normalize=True calibration flag, ree-v3 `4b79d18d44`) -- see the
-node's `remedy_2026_08_02` entry below. GAP-B **in-progress** (V3-EXQ-846 queued, re-scoped to
-mode-occupancy attribution only; unaffected by the precision-channel bug above).
+node's `remedy_2026_08_02` entry below. **848a landed 2026-08-02, calibration confirmed
+genuinely engaged, but still FAIL** -- confirmed `failure_autopsy_V3-EXQ-848a_2026-08-03`
+diagnosed the remaining gap as a **3-point-ladder Spearman-rho measurement-resolution
+ceiling**, not a substrate issue; routed to `/queue-experiment` for a ladder-granularity
+redesign (candidate **V3-EXQ-848b**, not yet queued) -- see the node's `remedy_2026_08_03`
+entry below. **GAP-A-precision-diagnostic remains in-progress**, now blocked only on a
+measurement redesign, not on substrate work. GAP-B **in-progress** (V3-EXQ-846 queued,
+re-scoped to mode-occupancy attribution only; unaffected by the precision-channel work above).
 
 ## Why this doc exists
 
