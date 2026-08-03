@@ -1,0 +1,97 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-02T23:11:59Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "supersedes_candidate": {
+    "artifact": "failure_autopsy_V3-EXQ-847a-863_2026-08-02",
+    "scope_of_supersession": "V3-EXQ-863 target and its Section 2 reasoning only; the V3-EXQ-847a target and routing in that artifact are untouched",
+    "reason": "modulatory_channel_route_range_mean/route_active_frac read exactly 0.0 on the ARM_LPFC treatment arm in both V3-EXQ-851 and V3-EXQ-863, matching a confirmed code-level defect (agent.py:6718-6719, 7626-7635) where four of six modulatory_channel_route_source values are silently no-op unless the unrelated diagnostic flag agent.e3.e3_score_decomp_enabled is set, which none of V3-EXQ-851/859/863's driver scripts do. The bit-identical MECH-448/449 statistics between arms are the expected artifact of the manipulation never firing, not a confirmed causal null.",
+    "pending_user_confirmation": false,
+    "user_confirmed_utc": "2026-08-02T23:11:59Z"
+  },
+  "targets": [
+    {
+      "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+      "queue_id": "V3-EXQ-863",
+      "claim_ids": [],
+      "failed_criterion": "discrimination",
+      "self_route_label": "mixed_partial_result_needs_expert_review",
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- claim_ids=[] by design, GOV-FANOUT-1 diagnostic",
+        "biological_reference": "not load-bearing -- pure instrumentation/wiring defect, not a biology-translation question",
+        "prerequisites": "DEFECT FOUND: e3_score_decomp_enabled (an unrelated diagnostic-instrumentation flag, default False, no REEConfig kwarg to set it) silently gates whether lateral_pfc/curiosity/gated_policy/mech295 channel-routed bias is ever populated into channel_route_bias",
+        "implementation": "routing dispatch (agent.py:7607-7635) itself is structurally correct; the defect is an unstated cross-dependency between the diagnostic-decomposition feature (e3_score_decomp_enabled) and the functional routing feature (modulatory_channel_route_source)",
+        "environment": "n/a",
+        "measurement": "MECH-448/449 per-arm reads are individually well-powered and correctly computed (sample_adequate 1144 vs 600 floor); what is uninterpretable is the causal attribution to route_source, since route_source's own effect was never exercised -- channel_route_bias stayed None on every tick of the lateral_pfc arm",
+        "integration": "the routing feature and the diagnostic-decomposition feature are coupled in a way neither design intended -- confirmed substrate integration defect",
+        "scale": "n/a -- not a power/budget issue; full 7.7h budget does not fix a None channel"
+      },
+      "biological_reference": {
+        "closest_mechanism": "not load-bearing",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": "not applicable",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-863 (and its predecessor V3-EXQ-859, and V3-EXQ-851's own lateral_pfc arm) never validly exercised modulatory_channel_route_source='lateral_pfc': the routing branch's per-candidate bias is populated only when the unrelated diagnostic flag agent.e3.e3_score_decomp_enabled is set, which none of these three driver scripts do, so channel_route_bias stayed None throughout -- confirmed via modulatory_channel_route_range_mean/route_active_frac reading exactly 0.0 on every cell of both runs, matching the code trace in ree_core/agent.py:6718-6719/7626-7635. The bit-identical MECH-448/449 statistics between the lateral_pfc and none arms are the expected artifact of the manipulation never firing, not a confirmed null result. Whether route_source has a genuine causal effect on MECH-448/449 remains OPEN -- no valid test of it exists yet.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "target_sd_id": null,
+        "sd_id_suggested": "SD-modulatory-channel-route-decomp-gate-fix",
+        "title": "Decouple modulatory-channel routing (lateral_pfc/curiosity/gated_policy/mech295) from the e3_score_decomp_enabled diagnostic flag",
+        "implementation_hint": "In ree_core/agent.py, _bdc_lpfc/_bdc_gp/_bdc_m295/_bdc_curiosity are only assigned their computed bias when self.e3.e3_score_decomp_enabled is True (agent.py ~6194, 6530-6531, 6718-6719, 6909-6910, 6997-6998), and the modulatory_channel_route_source dispatch at ~7607-7635 reads those same _bdc_* variables to build channel_route_bias -- so four of six route-source values are silently no-op unless a script also sets the unrelated diagnostic flag. Fix: populate the four _bdc_* variables unconditionally (or at minimum whenever use_modulatory_channel_routing=True and modulatory_channel_route_source selects one of the four affected values), and gate only the diagnostic EXPOSURE (last_score_decomp / component trackers, the original V3-EXQ-571 purpose) behind e3_score_decomp_enabled. Add a runtime assertion/warning as a backstop for any remaining coupling. New contract test: modulatory_channel_route_source in {lateral_pfc, curiosity, gated_policy, mech295} with e3_score_decomp_enabled=False (the common case) should still produce a nonzero route_range when the underlying per-candidate bias is genuinely differentiated.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 1,
+        "failure_record_entry": {
+          "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+          "experiment_type": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication",
+          "metric": "modulatory_channel_route_range_mean / modulatory_channel_route_active_frac read exactly 0.0 on the lateral_pfc arm despite modulatory_channel_route_source='lateral_pfc' and use_modulatory_channel_routing=True being correctly configured",
+          "target": "a functioning lateral_pfc route should produce a nonzero cross-candidate range whenever agent.lateral_pfc.compute_bias's output is genuinely differentiated across candidates (confirmed nonzero and differentiated via the separate mean_lateral_pfc_bias_abs / propagation_non_vacuity readout in V3-EXQ-851's own arm_results)"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "A precondition/readiness gate that a later, simplified script drops can be exactly the gate that would have caught the real defect -- 851's C1g route-range readiness check self-routed substrate_not_ready_requeue correctly; 859/863 dropped that check and could not self-catch the same defect.",
+        "Bit-identical arms across a manipulation are not self-evidently a clean null -- check whether the manipulation's own pre-outcome magnitude/range reads as genuinely zero, not just whether the two arms match each other.",
+        "A diagnostic-instrumentation flag (e3_score_decomp_enabled) can silently double as an undocumented functional precondition for unrelated substrate features -- a design smell worth a dedicated substrate fix.",
+        "A causal narrative restated across a chain of docstrings (851 -> 859 -> 863) drifted from the originating run's own more cautious self-assessment (851 self-routed substrate_not_ready_requeue, not a confirmed collapse).",
+        "An autopsy's own read should be cross-checked against raw per-arm fields the interpretation grid didn't surface, especially when corroborating readings (criteria_non_degenerate, and a human concurrence with it) share the same blind spot rather than being independent."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "cluster_pattern": null,
+  "user_gate": {
+    "confirmed_utc": "2026-08-02T23:11:59Z",
+    "user_choice": "Confirmed: land as-is. Accept measurement_test_design_defect (not standard/clean-null) for V3-EXQ-863, confirm the substrate_queue fix recommendation for the e3_score_decomp_enabled coupling, flag the sibling artifact's Section 2 for correction in WORKSPACE_STATE.md without editing that artifact directly."
+  },
+  "cross_reference": {
+    "related_artifacts": [
+      "failure_autopsy_V3-EXQ-847a-863_2026-08-02.md",
+      "failure_autopsy_V3-EXQ-847a-863_2026-08-02.json",
+      "failure_autopsy_V3-EXQ-851_2026-08-01.md",
+      "failure_autopsy_V3-EXQ-859_2026-08-01.md"
+    ],
+    "not_investigated_this_session": [
+      "V3-EXQ-858's own manifest/driver for the same modulatory_channel_route_range_mean signature -- flagged, not audited",
+      "Corpus-wide blast radius: every experiment ever using modulatory_channel_route_source in {lateral_pfc, curiosity, gated_policy, mech295} without setting e3_score_decomp_enabled -- unknown scope, natural follow-up"
+    ]
+  }
+}
