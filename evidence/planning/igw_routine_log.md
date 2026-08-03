@@ -1349,3 +1349,4 @@ One line per hourly tick. ASCII only.
 2026-08-03T01:36:54Z GC removed worktree igw-204-substrate-ready-sd-092 (removed; branch deleted)
 2026-08-03T01:36:52Z GC sweep removed 1 orphan worktree(s), kept 8
 2026-08-03T01:36:52Z skip IGW-20260803-224: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-03T08:09:55Z skip IGW-20260803-225: no fresh runner heartbeat (experiment-lane item would just sit in queue)
