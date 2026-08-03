@@ -29,13 +29,13 @@ closure_plan:
       last_updated: 2026-08-03
       completion_note: "check_substrate_staleness_candidates.py extended: load_claim_substrate_scopes() reads optional substrate_scope off claims.yaml; a drift candidate whose diffed changed-file list does not intersect a claim's declared scope moves to a new 'filtered OUTSIDE declared substrate_scope' bucket (per-claim, not per-manifest -- other claims on the same manifest are unaffected). 2 pilot claims declared (MECH-471, MECH-321), both derived from an actual read of the claim's own dependency (the V3-EXQ-875 autopsy for MECH-471; the claim's own implementation_note for MECH-321), not guessed. 9 new unit tests (_file_in_scope correctness incl. the zero-intervening-dirs / false-prefix-match traps a naive '**'->'*' substitution would get wrong) + the end-to-end fixture extended to exercise both the in-scope and out-of-scope branches for real. REAL FINDING running against the actual corpus (see section 4.5): 0 of the 2 pilots' diffable candidates were filtered -- both legitimately declare a dependency on ree_core/agent.py, which ~half of recent substrate-touching commits touch, so scope narrowing alone provides no noise reduction for hub-file-dependent claims. Motivates P1b."
     - id: "substrate_stability:P1b-default-off-filter"
-      title: "Phase 1b (new, motivated by the P1 real-corpus finding) -- a changed file whose only diff is gated behind a config flag that is still default-off AND unused by the claim's own recorded evidence config downgrades from a drift candidate to informational. This is the lever hub-file-dependent claims (agent.py et al) actually need; scope narrowing alone does not help them."
+      title: "Phase 1b -- a changed file whose diff is confined to code reachable only under a still-default-off config flag this run's driver never references downgrades from a drift candidate to informational (3-valued/Kleene formula evaluation over pure AND/OR/NOT-of-flag conditions, textual proxy for flag-enablement since manifests don't record actual REEConfig field values)."
       phase: 1
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       last_updated: 2026-08-03
-      completion_note: ""
+      completion_note: "check_substrate_staleness_candidates.py extended: load_default_off_knob_names() reuses default_off_drift_guard.parse_knobs() unmodified; inert_line_ranges()/_eval_flag_formula() find if-bodies whose test is a pure boolean formula over default-off flags that evaluates to definite False (Kleene logic -- one confirmed-disabled flag resolves an AND short-circuit to False even beside an unrelated/unresolvable operand, matching real Python and-semantics); flag_status_from_driver_source() is a conservative textual proxy (a flag counts confirmed-disabled only if its name never appears anywhere in the driver source at the recorded commit; a mention in either direction stays Unknown, never guessed). 26 new unit tests including a real 2-commit git fixture. Found and fixed a real bug during testing: importing default_off_drift_guard.py without registering it in sys.modules before exec_module silently broke (@dataclass needs sys.modules[cls.__module__] to resolve), which the broad except would have swallowed into a silent, permanent no-op -- same class of bug this repo's own test_substrate_staleness_gate.py _load_indexer() pattern already works around. REAL FINDING running against the actual corpus (section 4.6): 0 pairs filtered for either pilot, again -- traced to a genuine, different limitation than Phase 1's: this repo's actual recent default-off additions (SD-092's notify_subgoal_attainment, etc.) are new hook METHODS added to agent.py whose flag check lives in a DIFFERENT file's callee (GoalState.credit_subgoal_attainment in ree_core/goal.py), not an in-place `if flag:` wrapping existing code in the same file -- structurally invisible to a same-file AST analysis. Catching that pattern would need interprocedural reachability analysis (expensive, fragile) or actually running the code (the arm_fingerprint call-trace guard's approach) -- out of scope for a lightweight governance script. Phase 1b is correct and tested for the pattern it targets; that pattern is just not what's common in this codebase's recent history."
     - id: "substrate_stability:P2-governance-surface"
       title: "Phase 2 -- surface Phase-0/1 candidates in /governance or morning-digest (pending_review.md-style derived report or an IGW workset item), gated on Phase 0/1 first proving the signal is low-noise enough to be worth a human's attention every cycle."
       phase: 2
@@ -56,7 +56,7 @@ closure_plan:
 
 # Substrate Stability + Claim-Drift Detection -- Design Plan
 
-**Status:** Phase 0 AND Phase 1 of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Phase 1's real-corpus run surfaced a genuine, load-bearing finding (section 4.5): scope narrowing alone gives ZERO noise reduction for claims that legitimately depend on a hub file like `ree_core/agent.py`, motivating a new Phase 1b (default-off-diff filtering) as the actual next lever, not previously anticipated in this plan's first draft. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built, now additionally gated on Phase 1b.
+**Status:** Phases 0, 1, AND 1b of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Both Phase 1 (section 4.5) and Phase 1b (section 4.6) surfaced real, load-bearing findings against the actual corpus, and both found the SAME result for a DIFFERENT reason: zero noise reduction for the 2 pilot claims. Phase 1 (scope narrowing) is defeated by legitimate dependence on a hub file (`ree_core/agent.py`); Phase 1b (default-off-diff filtering) is defeated by the dominant real pattern in this repo's recent history being new hook METHODS whose flag check lives in a different file's callee, not an in-place conditional in the same changed file -- structurally invisible to a same-file analysis. Neither is a bug in the filters (49 unit tests, including real git-repo fixtures, confirm both work correctly on the patterns they target); both are honest findings about what this codebase's actual change shape is. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built; given two independent filters have now both come up empty on real data, Phase 2 should not proceed until a human decides whether a THIRD lever (interprocedural reachability, or recording actual REEConfig values prospectively) is worth building, or whether whole-tree Phase-0 reporting is simply the ceiling for this approach on hub-file-dependent claims.
 **Created:** 2026-08-03T16:56Z
 **Author session:** failure-autopsy-10b982
 **Motivation chip:** user question during the V3-EXQ-875 (MECH-471) failure autopsy, 2026-08-03 -- "is there a way that the substrate could be updated as it will be as we develop ree but experiments keep stable substrate across their runs. Experiments should know their substrate build (as in we have versioning or similar for substrate) and updated substrate which is relevant could potentially become a reason to run experiments again?"
@@ -214,17 +214,20 @@ is not a prerequisite for a first, honest, whole-tree-scoped report.
   fingerprints -- author-declared here, not machine-proven the same way), narrowing the
   detector from whole-tree to declared scope per claim. Landed and unit-tested; real-corpus
   result in section 4.5 below.
-- **Phase 1b (open, NEW -- added after Phase 1's real-corpus result, not anticipated in this
-  plan's first draft)**: a changed file whose only diff is behind a flag that is still
-  default-off and unused by the claim's own recorded evidence config downgrades to an
-  informational note, not a candidate -- reusing the same discrimination this repo's
-  default-off-drift-audit convention already applies elsewhere. Section 4.5 explains why this,
-  not further scope narrowing, is now the load-bearing next lever.
-- **Phase 2 (open, gated on Phase 1b proving low noise)**: surface flagged candidates somewhere
-  a human actually reads every cycle -- either a `pending_review.md`-style derived report, or an
-  IGW workset item (reusing the workset generator's existing `pending_retest_after_substrate`
-  read path). Never auto-requeues a re-test -- matches the interactive-governance philosophy
-  used everywhere else in this repo (a human decides whether a diff is claim-relevant).
+- **Phase 1b (done)**: a changed file whose diff is confined to code reachable only under a
+  still-default-off flag this run's driver never references downgrades to an informational
+  note, not a candidate. Landed and unit-tested (26 tests incl. a real 2-commit git fixture);
+  real-corpus result in section 4.6 below -- again zero reduction, for a different and equally
+  real reason than Phase 1's.
+- **Phase 2 (open, status uncertain -- see section 4.6's closing note)**: surface flagged
+  candidates somewhere a human actually reads every cycle -- either a `pending_review.md`-style
+  derived report, or an IGW workset item (reusing the workset generator's existing
+  `pending_retest_after_substrate` read path). Never auto-requeues a re-test -- matches the
+  interactive-governance philosophy used everywhere else in this repo. Originally gated on
+  "Phase 1b proving low noise"; Phase 1b did not, so proceeding to Phase 2 now would surface a
+  0%-actionable signal every cycle -- exactly the alarm-fatigue failure mode this repo's own
+  NOTE-vs-finding conventions (`audit_vendored_copies.py`, `audit_worktree_skills.py`) exist to
+  avoid. Held pending a human decision (section 4.6).
 
 ### 4.5 Phase 1's real-corpus result (the honest finding, not the hoped-for one)
 
@@ -258,6 +261,52 @@ step rather than "declare scope for more claims": more scope declarations would 
 changed this result for any claim that also, correctly, depends on `agent.py` (or another hub
 file such as `ree_core/goal.py`, `ree_core/utils/config.py`).
 
+### 4.6 Phase 1b's real-corpus result -- a DIFFERENT limitation, same empty answer
+
+Running the extended script with default-off filtering enabled against the same 2 pilots:
+
+```
+   317  default-off knob(s) known
+     0  (claim, run) pair(s) filtered as DEFAULT-OFF ONLY (Phase 1b)
+```
+
+**Zero pairs filtered again -- but for a genuinely different reason than Phase 1's, not a
+repeat of it.** Traced to the actual recent commit dominating `agent.py`'s diff for both
+pilots: SD-092's `notify_subgoal_attainment` (`ree_core/agent.py:8810`). Its own docstring says
+plainly: "`use_hierarchical_goal_credit` is False -- `GoalState.credit_subgoal_attainment`'s own
+gate (default -> bit-identical; not duplicated here so the flag has one source of truth)." The
+method itself contains NO `if use_hierarchical_goal_credit:` anywhere -- it unconditionally
+calls into `ree_core/goal.py`'s `credit_subgoal_attainment`, which does the gating. So the new
+lines added to `agent.py` are not wrapped in an inert `if` block in the file where they appear;
+they are a new, always-present hook whose downstream EFFECT is gated one file away. Phase 1b's
+same-file AST analysis, by construction, cannot see across that call boundary -- and this is
+the DOMINANT shape of this repo's actual recent default-off additions (a new hook method +
+call-site wiring, not an in-place conditional retrofit onto existing code), not an edge case.
+
+**Two lessons, not one, and they compound rather than duplicate:**
+1. Phase 1 (scope) fails when a claim legitimately depends on a hub file, because the hub file
+   is genuinely relevant and narrowing scope cannot un-relevant it.
+2. Phase 1b (default-off) fails EVEN WHEN a hub file's change really is behaviourally inert for
+   a given claim's config, because the inertness is expressed via a call into another file's
+   gate rather than an in-place conditional in the file that changed.
+
+Both filters are correct and tested for the pattern each targets (49 total unit tests across
+both, including real git-repo fixtures demonstrating each filter firing on a constructed
+positive case). Neither pattern is what this codebase's actual recent history looks like for
+its two most-tested pilot claims. **This is not evidence the filters are broken; it is evidence
+that "confined to one file's in-place conditional" is too narrow a definition of inert for a
+codebase whose convention is new-hook-plus-callee-gate**, and closing that gap needs either (a)
+interprocedural reachability analysis (trace whether a call chain from a changed line
+ultimately bottoms out at a confirmed-disabled flag check in ANY file it reaches -- a real
+static-analysis undertaking, not a governance-script afternoon), or (b) actually running the
+code path (the same class of solution `arm_fingerprint`'s call-trace guard already uses for a
+different problem), or (c) accepting Phase 0's whole-tree report as the practical ceiling for
+hub-file-dependent claims and leaning on human judgment at that granularity instead.
+
+**Recommendation, not a decision this plan makes unilaterally**: hold Phase 2 rather than wire
+a 0%-actionable-so-far signal into a cycle a human reads regularly. Whether to pursue (a), (b),
+or (c) above is a real design fork worth a deliberate choice, not a default continuation.
+
 ## 5. Explicitly out of scope (this plan)
 
 - Any change to `ree-v3/experiment_runner.py`'s git-pull behaviour (section 3's isolation design
@@ -278,6 +327,6 @@ file such as `ree_core/goal.py`, `ree_core/utils/config.py`).
 |---|---|---|---|---|---|---|
 | P0-detector | 0 | done | -- | none; run on demand via `/opt/local/bin/python3 scripts/check_substrate_staleness_candidates.py` | null | 2026-08-03 |
 | P1-scope-schema | 1 | done | -- | none; 2 pilot claims declared (MECH-471, MECH-321). Real corpus result: 0/2 pilots' candidates filtered -- see section 4.5 | null | 2026-08-03 |
-| P1b-default-off-filter | 1 | open | Section 4.5's finding (scope narrowing alone doesn't help hub-file-dependent claims) | Build the default-off-diff filter -- the lever a hub-file dependency (e.g. `agent.py`) actually needs | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | Phase 1b | Wire a low-noise candidate list into `/governance` or `morning-digest` | null | 2026-08-03 |
+| P1b-default-off-filter | 1 | done | -- | none; real corpus result: 0/2 pilots' candidates filtered, for a DIFFERENT reason than P1 (same-file conditionals aren't this repo's actual pattern -- see section 4.6) | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | A human decision (section 4.6): pursue interprocedural analysis, real-flag recording (prospective-only), or accept Phase-0 whole-tree as the practical ceiling for hub-file claims | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |

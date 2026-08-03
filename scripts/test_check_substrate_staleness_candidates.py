@@ -16,6 +16,7 @@ Run: /opt/local/bin/python3 scripts/test_check_substrate_staleness_candidates.py
 
 from __future__ import annotations
 
+import ast
 import contextlib
 import importlib.util
 import io
@@ -30,6 +31,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]  # REE_assembly root
 SCRIPT_PATH = REPO_ROOT / "scripts" / "check_substrate_staleness_candidates.py"
 REAL_ARM_FINGERPRINT = REPO_ROOT.parent / "ree-v3" / "experiments" / "_lib" / "arm_fingerprint.py"
+REAL_DEFAULT_OFF_GUARD = REPO_ROOT / "scripts" / "default_off_drift_guard.py"
 
 
 def _load_module():
@@ -164,6 +166,203 @@ class LoadClaimSubstrateScopesTests(unittest.TestCase):
             p = Path(d) / "claims.yaml"
             p.write_text("not: [valid: yaml: at all")
             self.assertEqual(MOD.load_claim_substrate_scopes(p), {})
+
+
+def _test_expr(src: str) -> ast.AST:
+    return ast.parse(src, mode="eval").body
+
+
+class EvalFlagFormulaTests(unittest.TestCase):
+    """The tri-valued (Kleene) evaluator -- correctness here is safety-critical, since a wrong
+    True/False verdict is what could wrongly downgrade a genuinely-relevant drift candidate."""
+
+    KNOBS = {"use_foo", "use_bar"}
+
+    def test_single_flag_disabled(self):
+        node = _test_expr("self.config.use_foo")
+        self.assertFalse(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_single_flag_unknown(self):
+        node = _test_expr("self.config.use_foo")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {}))  # not in flag_status
+
+    def test_not_flag(self):
+        node = _test_expr("not self.config.use_foo")
+        self.assertTrue(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_and_short_circuits_on_confirmed_false(self):
+        # False AND Unknown == False -- one confirmed-disabled flag is enough, regardless of
+        # what the other, unresolved operand might be. This is the property Phase 1b needs.
+        node = _test_expr("self.config.use_foo and self.config.use_bar")
+        self.assertFalse(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_and_all_disabled_is_false(self):
+        node = _test_expr("self.config.use_foo and self.config.use_bar")
+        self.assertFalse(MOD._eval_flag_formula(
+            node, self.KNOBS, {"use_foo": False, "use_bar": False}))
+
+    def test_and_unknown_only_is_unknown(self):
+        node = _test_expr("self.config.use_foo and self.config.use_bar")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {}))
+
+    def test_or_all_disabled_is_false(self):
+        node = _test_expr("self.config.use_foo or self.config.use_bar")
+        self.assertFalse(MOD._eval_flag_formula(
+            node, self.KNOBS, {"use_foo": False, "use_bar": False}))
+
+    def test_or_one_unknown_is_unknown(self):
+        # Or(False, Unknown) == Unknown -- cannot rule out the Unknown side being True.
+        node = _test_expr("self.config.use_foo or self.config.use_bar")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_and_with_non_flag_leaf_still_short_circuits_on_confirmed_false(self):
+        # Real Python "and" short-circuits on a False left operand -- it never evaluates the
+        # right side at all, so "use_foo and some_runtime_check()" is DEFINITELY False when
+        # use_foo is confirmed disabled, regardless of what the call would have returned.
+        node = _test_expr("self.config.use_foo and some_runtime_check()")
+        self.assertFalse(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_or_with_non_flag_leaf_and_no_confirmed_true_is_unknown(self):
+        # Unlike "and", "or" genuinely depends on the unresolvable right side here -- correctly
+        # Unknown, not a guess in either direction.
+        node = _test_expr("self.config.use_foo or some_runtime_check()")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {"use_foo": False}))
+
+    def test_unrelated_name_disqualifies(self):
+        node = _test_expr("some_unrelated_flag")
+        self.assertIsNone(MOD._eval_flag_formula(node, self.KNOBS, {}))
+
+
+class InertLineRangesTests(unittest.TestCase):
+    SOURCE = (
+        "def f(self):\n"
+        "    x = 1\n"
+        "    if self.config.use_foo:\n"
+        "        y = 2\n"
+        "        z = 3\n"
+        "    w = 4\n"
+        "    if some_runtime_check():\n"
+        "        q = 5\n"
+    )
+
+    def test_confirmed_disabled_if_body_is_inert(self):
+        ranges = MOD.inert_line_ranges(self.SOURCE, {"use_foo"}, {"use_foo": False})
+        self.assertEqual(len(ranges), 1)
+        lo, hi = ranges[0]
+        # Line 3 is "if self.config.use_foo:" itself -- included because a newly-added if-line
+        # whose condition is confirmed False is itself inert, not just its body (lines 4-5).
+        self.assertEqual((lo, hi), (3, 5))
+
+    def test_unrelated_if_is_not_inert(self):
+        ranges = MOD.inert_line_ranges(self.SOURCE, {"use_foo"}, {"use_foo": False})
+        # line 8 ("q = 5") must not be covered by any inert range
+        self.assertFalse(any(lo <= 8 <= hi for lo, hi in ranges))
+
+    def test_unknown_status_yields_no_inert_ranges(self):
+        ranges = MOD.inert_line_ranges(self.SOURCE, {"use_foo"}, {})
+        self.assertEqual(ranges, [])
+
+    def test_syntax_error_yields_empty(self):
+        self.assertEqual(MOD.inert_line_ranges("def f(:\n", {"use_foo"}, {"use_foo": False}), [])
+
+
+class FlagStatusFromDriverSourceTests(unittest.TestCase):
+    def test_absent_name_is_confirmed_disabled(self):
+        status = MOD.flag_status_from_driver_source("agent = REEAgent()\n", {"use_foo"})
+        self.assertEqual(status, {"use_foo": False})
+
+    def test_present_name_is_omitted_not_guessed(self):
+        status = MOD.flag_status_from_driver_source(
+            "cfg = REEConfig(use_foo=True)\n", {"use_foo"})
+        self.assertEqual(status, {})  # NOT {"use_foo": True} -- a substring hit proves nothing
+
+    def test_word_boundary_avoids_partial_match(self):
+        # "use_foobar" must not count as a mention of "use_foo".
+        status = MOD.flag_status_from_driver_source("use_foobar = 1\n", {"use_foo"})
+        self.assertEqual(status, {"use_foo": False})
+
+    def test_none_source_yields_empty(self):
+        self.assertEqual(MOD.flag_status_from_driver_source(None, {"use_foo"}), {})
+
+
+class LoadDefaultOffKnobNamesTests(unittest.TestCase):
+    @unittest.skipUnless(REAL_DEFAULT_OFF_GUARD.exists(), "default_off_drift_guard.py not present")
+    def test_real_guard_and_config_yield_a_nonempty_set(self):
+        names = MOD.load_default_off_knob_names(REAL_DEFAULT_OFF_GUARD)
+        self.assertIsInstance(names, set)
+        self.assertGreater(len(names), 0)
+
+    def test_missing_guard_path_yields_empty(self):
+        self.assertEqual(MOD.load_default_off_knob_names(Path("/no/such/guard.py")), set())
+
+
+class ChangedLineNumbersAndDefaultOffOnlyTests(unittest.TestCase):
+    """A small, self-contained git repo (distinct from EndToEndDetectionTests' bigger fixture)
+    to exercise changed_line_numbers' hunk-header parsing and file_is_default_off_only's full
+    pipeline against real git diff output."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self._tmp.name) / "repo"
+        self.repo.mkdir()
+        _git(self.repo, "init", "-b", "main")
+        _git(self.repo, "config", "user.email", "test@example.com")
+        _git(self.repo, "config", "user.name", "Test")
+
+        (self.repo / "ree_core").mkdir()
+        (self.repo / "ree_core" / "gated.py").write_text(
+            "def f(self):\n"
+            "    x = 1\n"
+            "    return x\n"
+        )
+        _git(self.repo, "add", "-A")
+        _git(self.repo, "commit", "-m", "commit A")
+        self.commit_a = _git(self.repo, "rev-parse", "HEAD").strip()
+
+        # New commit adds an inert (default-off-gated) branch AND leaves the rest unchanged.
+        (self.repo / "ree_core" / "gated.py").write_text(
+            "def f(self):\n"
+            "    x = 1\n"
+            "    if self.config.use_foo:\n"
+            "        x = 2\n"
+            "    return x\n"
+        )
+        _git(self.repo, "add", "-A")
+        _git(self.repo, "commit", "-m", "commit B -- adds an inert branch")
+        self.commit_b = _git(self.repo, "rev-parse", "HEAD").strip()
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def test_changed_line_numbers_matches_real_diff(self):
+        lines = MOD.changed_line_numbers(self.repo, self.commit_a, self.commit_b, "ree_core/gated.py")
+        self.assertEqual(sorted(lines), [3, 4])  # the two new lines in the post-image
+
+    def test_changed_line_numbers_undiffable_ref_returns_none(self):
+        lines = MOD.changed_line_numbers(self.repo, "0" * 40, self.commit_b, "ree_core/gated.py")
+        self.assertIsNone(lines)
+
+    def test_file_is_default_off_only_true_when_gated_and_unreferenced(self):
+        verdict = MOD.file_is_default_off_only(
+            self.repo, self.commit_a, self.commit_b, "ree_core/gated.py",
+            {"use_foo"}, {"use_foo": False})
+        self.assertTrue(verdict)
+
+    def test_file_is_default_off_only_not_true_when_flag_status_unknown(self):
+        # If the driver source MENTIONED use_foo, flag_status wouldn't map it at all --
+        # simulate that: pass {} rather than {"use_foo": False}. The exact non-True value
+        # (False or None) is an implementation detail the caller doesn't need to
+        # distinguish -- both mean "stays a candidate" (see the function's own docstring).
+        verdict = MOD.file_is_default_off_only(
+            self.repo, self.commit_a, self.commit_b, "ree_core/gated.py",
+            {"use_foo"}, {})
+        self.assertIsNot(verdict, True)
+
+    def test_file_is_default_off_only_false_for_non_py_file(self):
+        verdict = MOD.file_is_default_off_only(
+            self.repo, self.commit_a, self.commit_b, "ree_core/gated.txt",
+            {"use_foo"}, {"use_foo": False})
+        self.assertIsNone(verdict)
 
 
 class DisplayPathTests(unittest.TestCase):
