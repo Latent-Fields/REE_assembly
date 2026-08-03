@@ -2943,6 +2943,56 @@
         "distance_phrase": "1 of 1 tested leg (calibrated channel, 3-level ladder) inconclusive -- 7/10 units positive-signed but clustered at the rho=0.5 resolution ceiling, insufficient to clear the 0.6 threshold short of a perfect ordering. Not yet decidable whether this reflects a real weak effect or noise; needs a finer-grained design.",
         "observation_bottleneck": "3-point Spearman-rho ladder cannot resolve intermediate monotonic-signal strength from sampling noise -- both land at rho=0.5."
       }
+    },
+    {
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "title": "Does repeated realistic-cadence subgoal-attainment credit bootstrap a structured parent (superordinate) goal attractor bottom-up (MECH-428)?",
+      "short_title": "MECH-428 bootstrap seeding",
+      "claims": [
+        "MECH-428"
+      ],
+      "registered_utc": "2026-08-03T09:40:32Z",
+      "fanout_sources": [],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech428-bootstrap-v1",
+          "label": "Bottom-up EMA credit accumulation nets out ahead of per-tick decay under realistic intermittent event rate",
+          "desc": "SUBGOAL_BOOTSTRAP arm recovers >=30% of FORCED_SEED's ceiling range on >=2/3 seeds (V3-EXQ-884 C1 criterion)",
+          "axis": "process",
+          "pre_registered_utc": "2026-08-03T02:21:31Z",
+          "adjudicating_runs": [
+            "V3-EXQ-884"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-884"
+            ],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "precondition_unmet",
+            "self_route_label": "clean_scripted_bootstrap_scored (overridden)",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-03T02:21:31Z",
+            "basis": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test)."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does MECH-428's bottom-up bootstrap mechanism produce a materially structured parent under realistic event cadence?",
+        "live_gate": "A causal_grid_world.py substrate fix (SD-094: waypoint-arrival detection + ambient contamination gating) is needed before a genuine test can run -- not yet queued under a new letter.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet) -- awaiting substrate fix before a genuine test can run",
+        "observation_bottleneck": "causal_grid_world.py waypoint-arrival detection bug (grid-cell-type clobbered on premature transit) + undisabled ambient self-contamination mechanic (see SD-094)"
+      }
     }
   ]
 }

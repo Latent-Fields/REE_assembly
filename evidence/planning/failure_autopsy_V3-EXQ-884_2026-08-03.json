@@ -1,0 +1,111 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T09:40:32Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding_20260803T022131Z_v3",
+      "queue_id": "V3-EXQ-884",
+      "claim_ids": ["MECH-428"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "defective -- causal_grid_world.py substrate bug (waypoint-arrival detection clobbered by agent's own grid-position marker on premature transit) + undisabled ambient self-contamination mechanic",
+        "measurement": "under-instrumented -- n_steps field records configured budget not real episode length; done cause and harm_signal discarded",
+        "integration": "isolated but coupled to an unrelated substrate bug -- SD-092 goal.py primitive proven sound (G1, and sibling MECH-427/V3-EXQ-883 PASS); failure arises entirely from causal_grid_world.py's waypoint/entity-grid/contamination coupling",
+        "scale": "not implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Bandura & Schunk (1981) -- proximal subgoal decomposition sustains motivation/mastery (formation-direction)",
+        "dependencies": ["INV-086", "MECH-427", "ARC-051", "MECH-112", "MECH-230"],
+        "is_formal_import": false,
+        "divergence": "none -- the failure is an implementation/environment-layer bug (grid-cell-type bookkeeping clobbered by an unrelated rendering convention), not a biological plausibility issue",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-884 FAIL is non-contributory to MECH-428: the episode terminated 77-95% short of its designed budget in all 3 seeds due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered by the agent's own grid-position marker on premature transit) compounded by an undisabled ambient self-contamination mechanic, starving the accumulation-vs-decay dynamics the claim's own non-degeneracy clause requires. G0/G1 passed vacuously; the sibling MECH-427 run (883) confirms the underlying SD-092 primitive functions correctly. Re-test pending substrate fix (see SD-094).",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-094",
+        "title": "Fix CausalGridWorld subgoal_mode waypoint-arrival detection (grid-cell-type coupling bug) + gate ambient self-contamination for hazard-free probes",
+        "implementation_hint": "causal_grid_world.py's waypoint-arrival branch (line ~2270) is keyed on target_type == ENTITY_TYPES['waypoint'], but the agent's own position marker (line ~2490, self.grid[new_x,new_y] = ENTITY_TYPES['agent']) permanently overwrites that cell the first time the agent transits it -- including a merely-passed-through, not-yet-current waypoint -- and the 'leaving a cell' logic reverts a vacated cell to EMPTY, never back to WAYPOINT. Fix: detect arrival by comparing agent position directly against self.waypoints[self._next_waypoint_idx] (the substrate's own completion_tolerance_enabled feature already does this correctly, gated off by default -- either flip that default for subgoal_mode or add a position-based check to the primary path). Separately, gate/disable contamination_spread for num_hazards=0 configs by default, or at minimum surface the V3-EXQ-513 precedent (contamination_spread=0.0) more prominently for hazard-free probe authors. Also add real episode-length + done-cause fields to the manifest (recording gap).",
+        "unblocks_claims": ["MECH-428"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding_20260803T022131Z_v3",
+          "experiment_type": "v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding",
+          "metric": "Episode terminated at 32/19/90 of 400 configured steps (seeds 42/43/44) via agent_health<=0 self-contamination death, driven by a waypoint-arrival detection miss on the final waypoint of the sequence in 2/3 seeds (confirmed live-reproduced)",
+          "target": "Episode should run its full configured N_STEPS budget (or terminate only via a scientifically meaningful condition), and every legitimate waypoint arrival should register a transition_type"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false
+      },
+      "learning_extracted": [
+        "causal_grid_world.py's subgoal_mode waypoint-arrival detection depends on a mutable grid-cell entity type that the agent's own position marker permanently overwrites on premature transit through a not-yet-current waypoint -- a general substrate bug, not MECH-428-specific. Confirmed by live reproduction for all 3 seeds.",
+        "The ambient self-contamination mechanic (contamination_spread/threshold/contaminated_harm) is always-on and NOT gated by num_hazards=0 -- an established mitigation precedent exists (V3-EXQ-513/SD-049: contamination_spread=0.0) that was not applied here or in sibling V3-EXQ-883.",
+        "V3-EXQ-883 (MECH-427, sibling, PASS) escaped this defect only because its short, single-waypoint, single-attainment-event design never dwells long enough on any cell to trigger self-contamination or to require a multi-waypoint arrival that could collide.",
+        "Recording gap: the manifest's n_steps field is the configured budget, not the actual episode length, and done's cause (health-death vs step-cap) is not recorded -- this defect was invisible without live re-execution.",
+        "Scope risk flagged but NOT investigated (user-confirmed to route as a separate chip, not part of this autopsy): ~24 other experiment scripts (SD-034/MECH-268/ARC-071 commitment/closure family) use subgoal_mode with num_waypoints=2 or 4 and may carry the same latent defect in their confirmed results."
+      ],
+      "routing": "implement-substrate"
+    }
+  ],
+  "hypothesis_space_ledger": {
+    "question": {
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "title": "Does repeated realistic-cadence subgoal-attainment credit bootstrap a structured parent (superordinate) goal attractor bottom-up (MECH-428)?",
+      "short_title": "MECH-428 bootstrap seeding",
+      "claims": ["MECH-428"],
+      "registered_utc": "2026-08-03T09:40:32Z",
+      "fanout_sources": [],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "hypotheses": [
+        {
+          "hid": "H-mech428-bootstrap-v1",
+          "label": "Bottom-up EMA credit accumulation nets out ahead of per-tick decay under realistic intermittent event rate",
+          "desc": "SUBGOAL_BOOTSTRAP arm recovers >=30% of FORCED_SEED's ceiling range on >=2/3 seeds (V3-EXQ-884 C1 criterion)",
+          "axis": "process",
+          "basis": "First test of MECH-428; pre-registered and resolved in the same cycle (the experiment had already run)",
+          "pre_registered_utc": "2026-08-03T02:21:31Z",
+          "adjudicating_runs": ["V3-EXQ-884"],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": ["V3-EXQ-884"],
+            "evidence_direction": "non_contributory",
+            "epistemic_category": "precondition_unmet",
+            "self_route_label": "clean_scripted_bootstrap_scored (overridden)",
+            "control_passed": false,
+            "non_degenerate": false,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-03T02:21:31Z",
+            "basis": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test)."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does MECH-428's bottom-up bootstrap mechanism produce a materially structured parent under realistic event cadence?",
+        "live_gate": true,
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "One inconclusive run (precondition_unmet) -- awaiting substrate fix (SD-094) before a genuine test can run",
+        "observation_bottleneck": "causal_grid_world.py waypoint-arrival detection bug + undisabled ambient contamination (see SD-094)"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-03T09:08:59Z",
+  "generated_at": "2026-08-03T09:43:57Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -31,126 +31,126 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 45,
-      "total_initial": 82,
-      "total_initial_at_registration": 63,
+      "total_surviving": 46,
+      "total_initial": 83,
+      "total_initial_at_registration": 64,
       "total_fanout_added": 19,
       "total_resolved_out": 35,
       "total_confirmed": 16,
-      "reduction_pct_vs_current": 42.7,
-      "net_narrowing_pct": 28.6,
+      "reduction_pct_vs_current": 42.2,
+      "net_narrowing_pct": 28.1,
       "convergence_classes": {
         "narrowing": 8,
-        "static": 7,
+        "static": 8,
         "circling": 3,
         "indeterminate": 1,
         "refining": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "45 alive against 63 originally enumerated, and against 82 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 21
+      "honest_pair_note": "46 alive against 64 originally enumerated, and against 83 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 22
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 10,
-      "open_questions": 21
+      "open_questions": 22
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 81,
+      "surviving": 82,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-13",
-      "surviving": 79,
+      "surviving": 80,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-15",
-      "surviving": 75,
+      "surviving": 76,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-16",
-      "surviving": 74,
+      "surviving": 75,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-17",
-      "surviving": 71,
+      "surviving": 72,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-18",
-      "surviving": 65,
+      "surviving": 66,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-19",
-      "surviving": 61,
+      "surviving": 62,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-20",
-      "surviving": 60,
+      "surviving": 61,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-24",
-      "surviving": 59,
+      "surviving": 60,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-25",
-      "surviving": 58,
+      "surviving": 59,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-27",
-      "surviving": 56,
+      "surviving": 57,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-29",
-      "surviving": 55,
+      "surviving": 56,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-07-31",
-      "surviving": 54,
+      "surviving": 55,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-01",
-      "surviving": 52,
+      "surviving": 53,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-02",
-      "surviving": 47,
+      "surviving": 48,
       "closure_pct": 76.9,
       "build_pct": 82.1
     },
     {
       "date": "2026-08-03",
-      "surviving": 45,
+      "surviving": 46,
       "closure_pct": 76.9,
       "build_pct": 82.1
     }
@@ -2712,9 +2712,81 @@
         "live_gate": "A ladder-granularity redesign (5+ levels and/or a magnitude-based statistic replacing per-unit Spearman rho) is needed before this question can be decided -- not yet queued under a new letter.",
         "observation_bottleneck": "3-point Spearman-rho ladder cannot resolve intermediate monotonic-signal strength from sampling noise -- both land at rho=0.5."
       }
+    },
+    {
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "title": "Does repeated realistic-cadence subgoal-attainment credit bootstrap a structured parent (superordinate) goal attractor bottom-up (MECH-428)?",
+      "short_title": "MECH-428 bootstrap seeding",
+      "claims": [
+        "MECH-428"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech428-bootstrap-v1",
+          "label": "Bottom-up EMA credit accumulation nets out ahead of per-tick decay under realistic intermittent event rate",
+          "desc": "SUBGOAL_BOOTSTRAP arm recovers >=30% of FORCED_SEED's ceiling range on >=2/3 seeds (V3-EXQ-884 C1 criterion)",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-884"
+          ],
+          "basis": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does MECH-428's bottom-up bootstrap mechanism produce a materially structured parent under realistic event cadence?",
+        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet) -- awaiting substrate fix before a genuine test can run",
+        "live_gate": "A causal_grid_world.py substrate fix (SD-094: waypoint-arrival detection + ambient contamination gating) is needed before a genuine test can run -- not yet queued under a new letter.",
+        "observation_bottleneck": "causal_grid_world.py waypoint-arrival detection bug (grid-cell-type clobbered on premature transit) + undisabled ambient self-contamination mechanic (see SD-094)"
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-884",
+      "all_runs": [
+        "V3-EXQ-884"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "claims": [
+        "MECH-428"
+      ],
+      "moved": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test).",
+      "resolved_utc": "2026-08-03T02:21:31Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-869a",
       "all_runs": [
