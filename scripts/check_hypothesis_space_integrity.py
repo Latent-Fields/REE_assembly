@@ -11,12 +11,15 @@ Checks (design rule 5):
       (across the append-only time series, or within the registry) with no
       adjudicated `weakens`/discrimination behind the eliminations that caused it.
   (b) Post-hoc enlargement of a frozen initial set -- initial_frozen_count grew
-      after registration WITHOUT a labelled fan-out record, or a hypothesis's
-      pre_registered_utc is AFTER the run that adjudicated it (retro-padding).
-      LABELLED fan-out growth (a GOV-FANOUT-1 discrimination portfolio enumerating
-      new rivals as earlier axes are eliminated) is NOT a violation -- it is
-      reported separately as advisory. See `labelled_fanout_growth` in the
-      registry's invariants block for the (a)-(c) conditions it must satisfy.
+      after registration WITHOUT a labelled fan-out or discovery-growth record,
+      or a hypothesis's pre_registered_utc is AFTER the run that adjudicated it
+      (retro-padding). LABELLED fan-out growth (a GOV-FANOUT-1 discrimination
+      portfolio enumerating new rivals as earlier axes are eliminated) and
+      LABELLED discovery growth (a genuinely serendipitous explanation found
+      DURING the same analysis that resolves it, never anticipated beforehand)
+      are NOT violations -- both are reported separately as advisory. See
+      `labelled_fanout_growth` and `discovery_growth` in the registry's
+      invariants block for the conditions each must satisfy.
   (c) Confirmed without a passed control -- a `confirmed` hypothesis whose
       resolution lacks control_passed == true.
   (d) Elimination-bar violation -- an `eliminated`/`split` hypothesis missing the
@@ -50,7 +53,8 @@ RESOLVED_OUT_STATES = {"eliminated", "split"}
 # fan-out RECURRENCE overlay (an ACTIONABLE routing signal, still never a gate).
 ADVISORY_BUCKETS = {"e_labelled_growth", "f_unverifiable", "g_witnessed",
                     "h_fanout_recurrence", "i_confirmed_backed",
-                    "j_confirmed_unverifiable"}
+                    "j_confirmed_unverifiable", "k_discovery_growth",
+                    "l_discovery_recurrence"}
 
 # Distinct labelled fan-out portfolios on ONE question before the recurrence
 # overlay fires. Matches GOV-CEIL-1's CEILING_EXHAUSTION_N and GOV-DIAG-1's
@@ -213,43 +217,15 @@ def _load_timeseries(path: Path) -> list:
     return out
 
 
-def _validate_fanout_growth(q: dict, flags: dict) -> int:
-    """Validate a question's LABELLED fan-out growth against the registry's
-    `labelled_fanout_growth` invariant, conditions (a)-(c).
+def _validate_fanout_events(qid: str, events: list, by_hid: dict, flags: dict) -> tuple:
+    """Validate a question's LABELLED fan-out growth events against the
+    registry's `labelled_fanout_growth` invariant, conditions (a)-(c).
 
     Growth satisfying all three is ADVISORY (bucket `e_labelled_growth`), not a
     violation. Unaccounted / unlabelled / retro-padded growth stays a REAL
-    bucket-(b) flag. Returns the number of legitimately-labelled added legs, so
-    the time-series check can attribute a `total_initial` rise to it.
+    bucket-(b) flag. Returns (accounted, valid_sources).
     """
-    qid = q.get("qid")
-    initial = int(q.get("initial_frozen_count") or 0)
-    # (c) the registration-time denominator must be preserved separately.
-    at_reg = q.get("initial_frozen_count_at_registration")
-    events = q.get("fanout_growth_events") or []
-    growth = initial - int(at_reg) if at_reg is not None else 0
-
-    if at_reg is None:
-        if events:
-            flags["b_enlargement"].append(
-                f"`{qid}`: fanout_growth_events recorded but "
-                "initial_frozen_count_at_registration is missing -- condition (c) "
-                "unmet, the original denominator is not preserved."
-            )
-        # No growth claimed and no registration denominator: nothing to check here.
-        # (b1) below still guards initial_frozen_count == len(hypotheses).
-        return 0
-
-    if growth < 0:
-        flags["b_enlargement"].append(
-            f"`{qid}`: initial_frozen_count={initial} is BELOW "
-            f"initial_frozen_count_at_registration={at_reg} -- the frozen set shrank."
-        )
-        return 0
-
-    by_hid = {h.get("hid"): h for h in (q.get("hypotheses") or [])}
     accounted = 0
-    ok_events = 0
     # Keyed on the ARTIFACT, not on recorded_utc: a single backfill pass can record
     # several historically-distinct portfolios with one timestamp (and conversely a
     # re-record of one portfolio must not inflate the count). The autopsy that
@@ -320,54 +296,200 @@ def _validate_fanout_growth(q: dict, flags: dict) -> int:
             )
             continue
         accounted += delta
-        ok_events += 1
         valid_sources.add(src)
         flags["e_labelled_growth"].append(
             f"`{qid}`: +{delta} leg(s) ({', '.join(hids)}) added by labelled fan-out "
             f"from `{src}` -- conditions (a)-(c) satisfied, advisory not a violation."
         )
+    return accounted, valid_sources
+
+
+def _validate_discovery_events(qid: str, events: list, by_hid: dict, flags: dict) -> tuple:
+    """Validate a question's LABELLED discovery-growth events against the
+    registry's `discovery_growth` invariant, conditions (i)-(iii).
+
+    Unlike fan-out growth, a discovery leg's adjudicating run has ALREADY
+    resolved by construction -- the same analysis that discovered the
+    hypothesis is what resolves it, so "pre-dates the run" is structurally
+    impossible to satisfy honestly. The validity test is instead "born already
+    resolved, same-day, with a rationale" (condition i/ii). A leg left `alive`
+    needed Mode A pre-registration BEFORE its adjudicating run instead --
+    that is not what this path is for, and back-dating pre_registered_utc to
+    fake it is exactly the (b) violation this ledger polices either way.
+
+    Growth satisfying all three is ADVISORY (bucket `k_discovery_growth`), not
+    a violation. Returns (accounted, valid_sources).
+    """
+    accounted = 0
+    valid_sources = set()
+    for ev in events:
+        src = ev.get("discovery_source")
+        hids = ev.get("added_hids") or []
+        delta = int(ev.get("delta") or len(hids))
+        rationale = ev.get("rationale")
+        label = f"`{qid}` discovery {src or '<no source>'}"
+        # (ii) the growth must NAME the discovering-and-resolving autopsy.
+        if not src:
+            flags["b_enlargement"].append(
+                f"{label}: discovery_growth_event has no `discovery_source` -- condition "
+                "(ii) unmet, the growth is unlabelled."
+            )
+            continue
+        if not hids:
+            flags["b_enlargement"].append(
+                f"{label}: discovery_growth_event lists no `added_hids` -- condition (ii) "
+                "unmet, the growth is untraceable to specific legs."
+            )
+            continue
+        if delta != len(hids):
+            flags["b_enlargement"].append(
+                f"{label}: delta={delta} but {len(hids)} added_hids listed -- "
+                "the growth record does not match the legs it claims to add."
+            )
+            continue
+        if not rationale:
+            flags["b_enlargement"].append(
+                f"{label}: discovery_growth_event has no `rationale` -- condition (ii) "
+                "unmet, the theory/mechanism grounding for the discovery is not recorded."
+            )
+            continue
+        # (i) born resolved, same-day: the structural signature that distinguishes
+        # genuine serendipity (discovered by the very run that resolves it) from a
+        # rival that was actually anticipated and should have used Mode A instead.
+        bad = []
+        for hid in hids:
+            h = by_hid.get(hid)
+            if h is None:
+                bad.append(f"{hid} (not in hypotheses[])")
+                continue
+            resolution = h.get("resolution") or {}
+            resolved = (resolution.get("resolved_utc") or "")[:10]
+            state = resolution.get("state")
+            pre = (h.get("pre_registered_utc") or "")[:10]
+            if not resolved or state in (None, "alive", "untested"):
+                bad.append(
+                    f"{hid} (not born resolved -- state={state!r}; a hypothesis left "
+                    "alive needed Mode A pre-registration BEFORE its adjudicating run "
+                    "instead, not discovery growth)"
+                )
+                continue
+            if not pre:
+                bad.append(f"{hid} (no pre_registered_utc)")
+                continue
+            if pre != resolved:
+                bad.append(
+                    f"{hid} (pre_registered_utc {pre} != resolved_utc {resolved} -- a "
+                    "discovery leg must be born on the same day it is resolved)"
+                )
+                continue
+        if bad:
+            flags["b_enlargement"].append(
+                f"{label}: condition (i) unmet for {', '.join(bad)} -- a leg added by "
+                "discovery growth must be born already resolved, same-day."
+            )
+            continue
+        accounted += delta
+        valid_sources.add(src)
+        flags["k_discovery_growth"].append(
+            f"`{qid}`: +{delta} leg(s) ({', '.join(hids)}) added by labelled discovery "
+            f"from `{src}` -- conditions (i)-(iii) satisfied, advisory not a violation. "
+            f"Rationale: {rationale}"
+        )
+    return accounted, valid_sources
+
+
+def _validate_question_growth(q: dict, flags: dict) -> int:
+    """Validate a question's denominator growth against BOTH sanctioned paths --
+    labelled fan-out (`labelled_fanout_growth` invariant) and labelled discovery
+    (`discovery_growth` invariant) -- and reconcile the combined accounted total
+    against the actual denominator move. Returns the reconciled accounted count.
+    """
+    qid = q.get("qid")
+    initial = int(q.get("initial_frozen_count") or 0)
+    # (iii)/(c) the registration-time denominator must be preserved separately.
+    at_reg = q.get("initial_frozen_count_at_registration")
+    fanout_events = q.get("fanout_growth_events") or []
+    discovery_events = q.get("discovery_growth_events") or []
+    growth = initial - int(at_reg) if at_reg is not None else 0
+
+    if at_reg is None:
+        if fanout_events or discovery_events:
+            flags["b_enlargement"].append(
+                f"`{qid}`: growth events recorded but "
+                "initial_frozen_count_at_registration is missing -- the original "
+                "denominator is not preserved."
+            )
+        # No growth claimed and no registration denominator: nothing to check here.
+        # (b1) elsewhere still guards initial_frozen_count == len(hypotheses).
+        return 0
+
+    if growth < 0:
+        flags["b_enlargement"].append(
+            f"`{qid}`: initial_frozen_count={initial} is BELOW "
+            f"initial_frozen_count_at_registration={at_reg} -- the frozen set shrank."
+        )
+        return 0
+
+    by_hid = {h.get("hid"): h for h in (q.get("hypotheses") or [])}
+    fanout_accounted, fanout_sources = _validate_fanout_events(qid, fanout_events, by_hid, flags)
+    discovery_accounted, discovery_sources = _validate_discovery_events(
+        qid, discovery_events, by_hid, flags)
+    accounted = fanout_accounted + discovery_accounted
 
     if accounted < growth:
         flags["b_enlargement"].append(
             f"`{qid}`: grew {at_reg} -> {initial} (+{growth}) but only {accounted} "
-            "leg(s) are covered by a valid fanout_growth_events entry -- "
-            f"{growth - accounted} unaccounted, which is post-hoc enlargement."
+            "leg(s) are covered by a valid fanout_growth_events/discovery_growth_events "
+            f"entry -- {growth - accounted} unaccounted, which is post-hoc enlargement."
         )
     elif accounted > growth:
         flags["b_enlargement"].append(
-            f"`{qid}`: fanout_growth_events claim {accounted} added leg(s) but the "
+            f"`{qid}`: growth events claim {accounted} added leg(s) but the "
             f"denominator only grew by {growth} ({at_reg} -> {initial}) -- "
             "the growth record and the denominator disagree."
         )
     elif growth > 0:
         # Honest-reporting reminder: a growing denominator is a non-convergence
         # signal even when it is entirely legitimate.
+        n_events = len(fanout_sources) + len(discovery_sources)
         flags["e_labelled_growth"].append(
-            f"`{qid}`: denominator grew {at_reg} -> {initial} across {ok_events} "
-            "labelled portfolio(s). Legitimate; report the reduction ratio BOTH ways. "
-            "Whether this growth is REFINEMENT (a family closed, survivors on fresh "
-            "territory) or CIRCLING (re-entry into already-eliminated territory) is "
-            "decided by the axis-family discriminator -- read `convergence.convergence_class` "
-            "for this question in hypothesis_space.v1.json rather than assuming either."
+            f"`{qid}`: denominator grew {at_reg} -> {initial} across {n_events} "
+            "labelled event(s) (fan-out + discovery). Legitimate; report the reduction "
+            "ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, "
+            "survivors on fresh territory) or CIRCLING (re-entry into already-eliminated "
+            "territory) is decided by the axis-family discriminator -- read "
+            "`convergence.convergence_class` for this question in hypothesis_space.v1.json "
+            "rather than assuming either."
         )
 
-    # RECURRENCE overlay (GOV-FROZEN-1 escalation). Every portfolio counted here
-    # was individually legitimate -- that is the point. The signal is the COUNT.
-    n_portfolios = len(valid_sources)
-    if n_portfolios >= FANOUT_RECURRENCE_N:
+    # RECURRENCE overlays (GOV-FROZEN-1 escalation). Every event counted here was
+    # individually legitimate -- that is the point. The signal is the COUNT.
+    if len(fanout_sources) >= FANOUT_RECURRENCE_N:
         hs = q.get("hypotheses") or []
         alive = sum(1 for h in hs
                     if (h.get("resolution") or {}).get("state") == "alive")
         flags["h_fanout_recurrence"].append(
-            f"`{qid}`: {n_portfolios} distinct labelled fan-out portfolios "
+            f"`{qid}`: {len(fanout_sources)} distinct labelled fan-out portfolios "
             f"(>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}, "
             f"{alive} leg(s) still alive. Each portfolio cleared conditions (a)-(c) "
             "individually -- the RECURRENCE is the signal. Reading: the question may "
             "be MIS-POSED rather than under-enumerated. Re-pose the operationalization "
             "before opening portfolio "
-            f"{n_portfolios + 1}; enumerating another round of rivals on an "
+            f"{len(fanout_sources) + 1}; enumerating another round of rivals on an "
             "unchanged framing is the denominator-side twin of re-running a braked "
-            "experiment harder. Sources: " + ", ".join(f"`{s}`" for s in sorted(valid_sources))
+            "experiment harder. Sources: "
+            + ", ".join(f"`{s}`" for s in sorted(fanout_sources))
+        )
+    if len(discovery_sources) >= FANOUT_RECURRENCE_N:
+        flags["l_discovery_recurrence"].append(
+            f"`{qid}`: {len(discovery_sources)} distinct labelled discovery-growth "
+            f"events (>= N={FANOUT_RECURRENCE_N}); denominator {at_reg} -> {initial}. "
+            "Each event cleared conditions (i)-(iii) individually -- the RECURRENCE is "
+            "the signal. Reading: 'discovery' may be substituting for pre-registration "
+            "discipline rather than genuine one-off serendipity -- check whether a rival "
+            "hypothesis was actually anticipated before its adjudicating run and should "
+            "have gone through Mode A pre-registration instead. Sources: "
+            + ", ".join(f"`{s}`" for s in sorted(discovery_sources))
         )
     return min(accounted, growth)
 
@@ -404,7 +526,7 @@ def _instant(value: str) -> str:
 
 
 def _event_instant(ev: dict) -> str:
-    """When a fan-out growth event happened.
+    """When a fan-out or discovery growth event happened.
 
     Honours an explicit `recorded_utc` / `event_utc` on the event; falls back to
     the date embedded in the source artifact's filename only when neither is
@@ -416,7 +538,7 @@ def _event_instant(ev: dict) -> str:
         got = _instant(ev.get(key) or "")
         if got:
             return got
-    return _instant(ev.get("fanout_source") or "")
+    return _instant(ev.get("fanout_source") or ev.get("discovery_source") or "")
 
 
 def _snapshot_instant(row: dict) -> str:
@@ -431,7 +553,8 @@ def audit(registry: dict, timeseries: list) -> dict:
              "c_confirmed_no_control": [], "d_bar_violation": [],
              "e_labelled_growth": [], "f_unverifiable": [], "g_witnessed": [],
              "h_fanout_recurrence": [], "i_confirmed_backed": [],
-             "j_confirmed_unverifiable": []}
+             "j_confirmed_unverifiable": [], "k_discovery_growth": [],
+             "l_discovery_recurrence": []}
     questions = registry.get("questions") or []
     # Total legs added by VALID labelled fan-out, keyed by the INSTANT the growth
     # was recorded -- lets the time-series check attribute a total_initial rise.
@@ -450,9 +573,9 @@ def audit(registry: dict, timeseries: list) -> dict:
                 f"`{qid}`: initial_frozen_count={initial} but {n_hyps} hypotheses "
                 "registered -- denominator does not match the enumerated set."
             )
-        # (b3) labelled fan-out growth of an EXISTING question (conditions a-c).
-        _validate_fanout_growth(q, flags)
-        for ev in q.get("fanout_growth_events") or []:
+        # (b3) labelled fan-out / discovery growth of an EXISTING question.
+        _validate_question_growth(q, flags)
+        for ev in (q.get("fanout_growth_events") or []) + (q.get("discovery_growth_events") or []):
             date = _event_instant(ev)
             if date:
                 labelled_growth_by_date[date] = (
@@ -601,6 +724,8 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
     n_unverifiable = len(flags.get("f_unverifiable") or [])
     n_witnessed = len(flags.get("g_witnessed") or [])
     n_recurrence = len(flags.get("h_fanout_recurrence") or [])
+    n_discovery = len(flags.get("k_discovery_growth") or [])
+    n_discovery_recurrence = len(flags.get("l_discovery_recurrence") or [])
     L = []
     L.append("# Hypothesis-Space Integrity Audit (anti-Goodhart)")
     L.append("")
@@ -621,7 +746,9 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         f"snapshot(s). **{total}** flag(s) raised, **{n_advisory}** advisory note(s), "
         f"**{n_witnessed}** git-witnessed pre-registration(s), "
         f"**{n_unverifiable}** unverifiable, "
-        f"**{n_recurrence}** fan-out recurrence overlay(s)."
+        f"**{n_recurrence}** fan-out recurrence overlay(s), "
+        f"**{n_discovery}** discovery-growth note(s), "
+        f"**{n_discovery_recurrence}** discovery-recurrence overlay(s)."
     )
     L.append("")
     sections = [
@@ -747,6 +874,64 @@ def render_report(flags: dict, registry: dict, timeseries: list, now: str) -> st
         L.append("_None._")
     else:
         for msg in rec:
+            L.append(f"- {msg}")
+    L.append("")
+
+    disc = flags.get("k_discovery_growth") or []
+    L.append(f"## Advisory -- labelled discovery growth ({len(disc)}, NOT violations)")
+    L.append("")
+    L.append(
+        "_An existing question's hypothesis set grew because a genuinely serendipitous "
+        "explanation was found DURING the same analysis that resolves it -- discovered "
+        "while explaining away already-pre-registered rivals, never anticipated "
+        "beforehand. This is DIFFERENT from labelled fan-out growth above: by "
+        "construction no artifact can pre-date a discovery made by the very run that "
+        "reveals it, so this path does not require (and cannot honestly satisfy) the "
+        "pre-dates-the-run witness fan-out growth needs. It is permitted instead when "
+        "(i) the hypothesis is born already resolved in the same edit (never left "
+        "`alive`), (ii) it is recorded in `discovery_growth_events[]` naming the "
+        "discovering-and-resolving autopsy plus a `rationale` grounding why this is "
+        "principled abduction and not motivated post-hoc reasoning, and (iii) "
+        "`initial_frozen_count_at_registration` is preserved. These are LABELLED, not "
+        "flagged._"
+    )
+    L.append("")
+    L.append(
+        "**A hypothesis left `alive` never qualifies here.** If a leg is not resolved "
+        "in the same edit, it needed Mode A pre-registration BEFORE its adjudicating "
+        "run instead -- back-dating `pre_registered_utc` to make an actually-anticipated "
+        "rival look like a discovery is exactly the (b) violation this ledger polices, "
+        "whichever door it is walked through."
+    )
+    L.append("")
+    if not disc:
+        L.append("_None._")
+    else:
+        for msg in disc:
+            L.append(f"- {msg}")
+    L.append("")
+
+    disc_rec = flags.get("l_discovery_recurrence") or []
+    L.append(
+        f"## Discovery-growth recurrence (ACTIONABLE, {len(disc_rec)}) -- "
+        f"N >= {FANOUT_RECURRENCE_N} discovery events on one question"
+    )
+    L.append("")
+    L.append(
+        "_Mirrors the fan-out recurrence overlay above, for the discovery-growth path. "
+        "Every event counted below was individually legitimate -- **the recurrence is "
+        "the signal**: a question racking up repeated 'discoveries' may be using this "
+        "path as a substitute for pre-registration discipline (an actually-anticipated "
+        "rival hypothesis being called a discovery each time to dodge Mode A) rather "
+        "than genuine one-off serendipity. Response is routing -- check whether the "
+        "next candidate explanation was really unforeseeable before treating it as "
+        "another discovery. Warn-only: this never gates a cycle._"
+    )
+    L.append("")
+    if not disc_rec:
+        L.append("_None._")
+    else:
+        for msg in disc_rec:
             L.append(f"- {msg}")
     L.append("")
 
@@ -909,6 +1094,89 @@ def _self_test() -> int:
              {"hid": "r_b", "pre_registered_utc": "2026-07-05", "resolution": {"state": "alive"}},
              {"hid": "r_c", "pre_registered_utc": "2026-07-06", "resolution": {"state": "alive"}},
          ]},
+        # LABELLED discovery growth: born resolved same-day, with a rationale --
+        # must land in k_discovery_growth, NOT bucket (b).
+        {"qid": "discovery_ok_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-08-01T00:00:00Z",
+         "discovery_growth_events": [
+             {"recorded_utc": "2026-08-02T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_ok_2026-08-02.json",
+              "added_hids": ["d_new"], "delta": 1,
+              "rationale": "eliminates both pre-registered rivals; the remaining "
+                           "pattern matches an independent, established mechanism."},
+         ],
+         "hypotheses": [
+             {"hid": "d1", "pre_registered_utc": "2026-08-01", "resolution": {"state": "alive"}},
+             {"hid": "d_new", "pre_registered_utc": "2026-08-02",
+              "discovery_source": "failure_autopsy_disc_ok_2026-08-02.json",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-08-02",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+         ]},
+        # INVALID discovery growth: the "discovered" leg is left alive -- did not
+        # qualify (needed Mode A instead) -> real (b) flag, not advisory.
+        {"qid": "discovery_alive_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-08-01T00:00:00Z",
+         "discovery_growth_events": [
+             {"recorded_utc": "2026-08-02T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_alive_2026-08-02.json",
+              "added_hids": ["da_new"], "delta": 1,
+              "rationale": "claims a discovery but the leg is still alive."},
+         ],
+         "hypotheses": [
+             {"hid": "da1", "pre_registered_utc": "2026-08-01", "resolution": {"state": "alive"}},
+             {"hid": "da_new", "pre_registered_utc": "2026-08-02", "resolution": {"state": "alive"}},
+         ]},
+        # INVALID discovery growth: no rationale -> real (b) flag.
+        {"qid": "discovery_norationale_q", "initial_frozen_count": 2,
+         "initial_frozen_count_at_registration": 1,
+         "registered_utc": "2026-08-01T00:00:00Z",
+         "discovery_growth_events": [
+             {"recorded_utc": "2026-08-02T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_norat_2026-08-02.json",
+              "added_hids": ["dn_new"], "delta": 1},
+         ],
+         "hypotheses": [
+             {"hid": "dn1", "pre_registered_utc": "2026-08-01", "resolution": {"state": "alive"}},
+             {"hid": "dn_new", "pre_registered_utc": "2026-08-02",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-08-02",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+         ]},
+        # RECURRENCE: three individually-VALID discovery events on one question ->
+        # l_discovery_recurrence overlay must fire, still NOT a (b) violation.
+        {"qid": "discovery_recurring_q", "initial_frozen_count": 5,
+         "initial_frozen_count_at_registration": 2,
+         "registered_utc": "2026-08-01T00:00:00Z",
+         "discovery_growth_events": [
+             {"recorded_utc": "2026-08-02T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_rec_a_2026-08-02.json",
+              "added_hids": ["dr_a"], "delta": 1, "rationale": "discovery A."},
+             {"recorded_utc": "2026-08-03T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_rec_b_2026-08-03.json",
+              "added_hids": ["dr_b"], "delta": 1, "rationale": "discovery B."},
+             {"recorded_utc": "2026-08-04T00:00:00Z",
+              "discovery_source": "failure_autopsy_disc_rec_c_2026-08-04.json",
+              "added_hids": ["dr_c"], "delta": 1, "rationale": "discovery C."},
+         ],
+         "hypotheses": [
+             {"hid": "dr1", "pre_registered_utc": "2026-08-01", "resolution": {"state": "alive"}},
+             {"hid": "dr2", "pre_registered_utc": "2026-08-01", "resolution": {"state": "alive"}},
+             {"hid": "dr_a", "pre_registered_utc": "2026-08-02",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-08-02",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+             {"hid": "dr_b", "pre_registered_utc": "2026-08-03",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-08-03",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+             {"hid": "dr_c", "pre_registered_utc": "2026-08-04",
+              "resolution": {"state": "confirmed", "resolved_utc": "2026-08-04",
+                             "evidence_direction": "supports", "control_passed": True,
+                             "non_degenerate": True}},
+         ]},
         # UNLABELLED growth: no fanout_growth_events covering it -> real (b) flag.
         {"qid": "fanout_bad_q", "initial_frozen_count": 3,
          "initial_frozen_count_at_registration": 2,
@@ -963,6 +1231,8 @@ def _self_test() -> int:
         "f_unverifiable": flags["f_unverifiable"],
         "g_witnessed": flags["g_witnessed"],
         "h_fanout_recurrence": flags["h_fanout_recurrence"],
+        "k_discovery_growth": flags["k_discovery_growth"],
+        "l_discovery_recurrence": flags["l_discovery_recurrence"],
     }
     failures = [k for k, v in checks.items() if not v]
     for k, v in checks.items():
@@ -1006,6 +1276,29 @@ def _self_test() -> int:
          "witnessed late append self-cleared (not flagged, listed as witnessed)"),
         ("unverifiable_quiet", "fanout_unverifiable_q" not in joined_b and "uv_new" in joined_f,
          "no-git-history leg reported unverifiable, NOT flagged"),
+    ]:
+        if cond:
+            print(f"  ok   discrimination: {msg}")
+        else:
+            print(f"  FAIL discrimination: {msg}")
+            failures.append(name)
+
+    # Discovery-growth discriminations (the serendipity path, distinct from fan-out).
+    joined_k = " ".join(flags["k_discovery_growth"])
+    joined_l = " ".join(flags["l_discovery_recurrence"])
+    for name, cond, msg in [
+        ("discovery_ok_advised", "discovery_ok_q" in joined_k and "discovery_ok_q" not in joined_b,
+         "valid discovery growth (born resolved same-day, with a rationale) reported "
+         "as advisory, not flagged as (b)"),
+        ("discovery_alive_caught", "discovery_alive_q" in joined_b,
+         "a leg left alive after a claimed 'discovery' is flagged as (b) -- it needed "
+         "Mode A pre-registration instead"),
+        ("discovery_norationale_caught", "discovery_norationale_q" in joined_b,
+         "a discovery event with no rationale is flagged as (b)"),
+        ("discovery_recurrence_fires", "discovery_recurring_q" in joined_l,
+         f"N>={FANOUT_RECURRENCE_N} valid discovery events fired the recurrence overlay"),
+        ("discovery_recurrence_not_a_violation", "discovery_recurring_q" not in joined_b,
+         "recurring discovery question NOT flagged as (b) -- every event was legitimate"),
     ]:
         if cond:
             print(f"  ok   discrimination: {msg}")
@@ -1246,6 +1539,18 @@ def main() -> int:
         for msg in flags["h_fanout_recurrence"]:
             qid = msg.split("`")[1] if "`" in msg else msg[:40]
             print(f"    [recurrence] {qid}")
+    print(f"  labelled discovery growth (advisory, not a flag): "
+          f"{len(flags['k_discovery_growth'])} note(s)")
+    n_disc_rec = len(flags["l_discovery_recurrence"])
+    print(f"  discovery-growth recurrence (N>={FANOUT_RECURRENCE_N} events, ACTIONABLE): "
+          f"{n_disc_rec}")
+    if n_disc_rec:
+        print("  -- RECURRENCE: 'discovery' may be substituting for pre-registration")
+        print("     discipline. Check whether the next candidate was really")
+        print("     unforeseeable (routing only; promotes/demotes nothing):")
+        for msg in flags["l_discovery_recurrence"]:
+            qid = msg.split("`")[1] if "`" in msg else msg[:40]
+            print(f"    [discovery-recurrence] {qid}")
     return 0
 
 
