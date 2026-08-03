@@ -1,0 +1,73 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T16:48:16Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_875_mech471_competence_provenance_20260803T120202Z_v3",
+      "queue_id": "V3-EXQ-875",
+      "claim_ids": ["MECH-471"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear, adjacent ground already tested (Krakauer 2005 / Walker 2003 via sibling MECH-476, retired 2026-08-01)",
+        "prerequisites": "present but not enabled (SD-070 z_world encoder warmup omitted from all 3 driver call sites)",
+        "implementation": "harness/driver-level bug, not substrate; opt-in flag zworld_p0_episodes defaulted to 0",
+        "environment": "adequate",
+        "measurement": "adequate -- non-degeneracy guard worked as designed",
+        "integration": "n/a",
+        "scale": "contributing factor, already corrected in 875a (training budget aligned to V3-EXQ-728's validated recipe)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "motor-skill / procedural-memory consolidation as resistance to retrograde interference (Brashers-Krug/Shadmehr/Bizzi 1996; Krakauer/Ghez/Ghilardi 2005; Walker/Brakefield/Hobson/Stickgold 2003)",
+        "dependencies": ["MECH-392", "INV-080", "MECH-401"],
+        "is_formal_import": false,
+        "divergence": "Sibling claim MECH-476 (same lit base, retired 2026-08-01) found REE's competence-protection pathways are plain regularizers, not a dose/interval-sensitive consolidation PROCESS -- relevant adjacent context for MECH-471, not dispositive (different design axis: cross-environment interference vs within-task BC-install-then-RL-erosion)",
+        "lit_status": "absent (no dedicated MECH-471 pull; MECH-476's targeted_review_mech_457_consolidation substantially covers the same biology)"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-03 failure-autopsy, V3-EXQ-875, confirmed]: FAIL self-routed substrate_not_ready_requeue -- correctly. Root cause verified against driver source: all three _train_all_on_agent calls in v3_exq_875_mech471_competence_provenance.py omit zworld_p0_episodes (defaults to 0), the exact SD-070 defect documented in ree-v3/CLAUDE.md and previously responsible for V3-EXQ-728's original failed seeds. No competence was installed above floor (a_baseline_worst_seed=19.67, b_baseline_worst_seed=15.5 vs floor=90.0) and the targeted perturbation moved nothing (targeted_moved=false) -- the run yields no information about MECH-471 either way. Non-contributory / precondition_unmet, not evidence toward or against the claim. Corrected re-run already queued and validated pre-run: V3-EXQ-875a (supersedes V3-EXQ-875), zworld_p0 warmup added, training budget aligned to V3-EXQ-728's validated recipe. Note for whoever reads 875a's result: sibling claim MECH-476 (same Krakauer 2005 / Walker 2003 lit base, retired 2026-08-01) found REE's existing competence-protection pathways are plain regularizers, not a dose/interval-sensitive consolidation process -- relevant adjacent context, not dispositive for MECH-471's distinct cross-environment design. Stays candidate. No substrate_queue action -- this was a driver configuration gap, not a substrate gap.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": "SD-070",
+        "note": "SD-070 z_world encoder substrate already exists and functions (proven by V3-EXQ-728's fix). This FAIL was a driver-configuration omission (zworld_p0_episodes not wired into this specific driver's 3 call sites), not a substrate gap. No substrate_queue.json action needed."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null,
+        "note": "First autopsy for MECH-471 (0 prior substrate_ceiling/non_contributory hits via granularity_debt_cluster.py + manual check). Also: this recommended_epistemic_category (precondition_unmet) would not count toward the brake under R3 regardless (only substrate_ceiling counts)."
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "Recurring driver-configuration defect class: the opt-in zworld_p0_episodes default-0 design in _train_all_on_agent is silent and easy to omit -- confirmed twice now (V3-EXQ-728 originally, V3-EXQ-875 here). Worth a standing lint flagging _train_all_on_agent call sites with no zworld_p0_episodes in drivers whose acceptance criteria depend on z_world-derived representations. Not fixed in this session; flagged as follow-on.",
+        "The non-degeneracy guard performed exactly as designed -- declined a discrimination verdict on degenerate acquisition rather than emitting a misleading PASS/FAIL. Positive validation of the guard, not a finding against the claim or substrate.",
+        "MECH-471 is adjacent to (not demonstrated redundant with) the MECH-457/459/460/475/476 cluster -- user-confirmed disposition (interactive gate) is to note the adjacency and move on; escalate to /claim-synthesis only if 875a's eventual result is ambiguous or contested."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "granularity_debt_trigger": {
+    "fires": false,
+    "cluster_targets": 0,
+    "cluster_files": 0,
+    "note": "granularity_debt_cluster.py MECH-471 -- 0 tagging targets, first autopsy for this claim"
+  },
+  "hypothesis_space_ledger": {
+    "step_9b_applicable": false,
+    "reason": "Lone non-fan-out precondition-failure FAIL that discriminates nothing and opens no rival set -- the skill's own explicit skip example. No existing hypothesis_space_registry.v1.json question covers MECH-471 or this design; not registering a new one solely to record one uninformative (would-stay-alive) run."
+  },
+  "session_notes": {
+    "coordination_plane_pause": "failed arbitration (exit 3) against 3 earlier active claims (epic-mirzakhani-4928b5 SD-091 wiring; metaworker-chip-20260803-848b-arc005-ladder; metaworker-chip-20260803-873a-mech322-fraction-gate) naming claims.yaml/substrate_queue.json/experiment_queue.json. Not the owner; proceeded without the pause (nothing written, nothing to reverse). This autopsy touches none of the contended files."
+  }
+}
