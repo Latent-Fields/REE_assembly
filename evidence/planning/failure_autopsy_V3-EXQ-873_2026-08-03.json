@@ -1,0 +1,62 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:35:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_873_mech322_sleep_replay_carveout_20260802T213319Z_v3",
+      "queue_id": "V3-EXQ-873",
+      "claim_ids": ["MECH-322"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_note": "C1 (load-bearing) fails only via a worst-of-3-seed readiness-precondition veto (replay_high_value_candidate_available), not because the AND-gate's own decision logic misfired in any tested cell.",
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "adequate",
+        "measurement": "under_instrumented_test_design_gap",
+        "integration": "coupled_stable",
+        "scale": "adequate"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal-striatal offline replay driving sleep-dependent motor-sequence consolidation (Albouy 2013); striatal chunk formation via DLS plasticity (Graybiel 1998/2008, Smith & Graybiel 2013)",
+        "dependencies": ["ARC-071", "MECH-094", "SD-017", "SD-039", "SD-014"],
+        "is_formal_import": false,
+        "divergence": "MECH-322 was registered precisely because biology does NOT cleanly gate the chunking write path the way ARC-071's original strict pre-registration assumed -- load-bearing biology divergence, already resolved at registration (2026-05-11 R6 decision), not newly discovered by this autopsy.",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_direction_note": "2/2 valid-precondition seeds gave a clean positive result (minted with replay_origin=True); 1/3 correctly withheld per design. Leaning-supports pending a corrected re-run, not a genuine weakening.",
+      "recommended_evidence_quality_note": "[2026-08-03 failure autopsy, V3-EXQ-873, confirmed failure_autopsy_V3-EXQ-873_2026-08-03]: FIRST experimental test of MECH-322. The load-bearing criterion (C1) reads FAIL only because a worst-of-3-seed readiness precondition (a real high-value candidate must naturally emerge by a fixed sleep checkpoint) failed in 1/3 seeds; in the other 2/3, the AND-gate minted a replay_origin=True chunk exactly as specified, and every fail-closed branch tested (wake-refusal, master-switch-off, low-value, no-candidate) passed cleanly across all 9 cells. This is a test-design defect (an overly strict worst-of-N-seed aggregation conflating a stochastic precondition with a deterministic plumbing check), not a substrate ceiling or claim weakening -- read as evidence_direction=mixed leaning supports pending a corrected re-run. Route: /queue-experiment V3-EXQ-873a with a decoupled, fraction-based readiness gate and 6-8 seeds. No claim-status change; v3_pending stays True pending the corrected re-run.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "MECH-322's AND-gate (ChunkAccumulator.record_replay_sequence) mints correctly under genuine valid conditions and fails closed correctly under every invalid condition tested across all 9 cells -- positive-leaning evidence, not a null result.",
+        "The experiment's own test design conflates a stochastic readiness precondition (candidate availability by a fixed checkpoint episode) with the deterministic criterion it is meant to gate, at SEED_PASS_FRACTION=1.0 -- a measurement/test-design gap, not a substrate or claim problem.",
+        "Recording is complete (validate_recording.py OK); not a recording-debt case.",
+        "Shared structural property with V3-EXQ-882 (MECH-472, unrelated claim): a worst-of-N=3-seed readiness gate lets one hard/unlucky seed veto a whole arm/run's adjudication even though clearing seeds are independently informative -- see cluster_pattern."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "worst_of_n_seed_readiness_veto",
+    "cross_referenced_targets": ["V3-EXQ-873", "V3-EXQ-882"],
+    "is_independent_bugs": false,
+    "structural_property": "A within-arm, cross-seed worst-case reduction (each driver's own local _worst()-style helper, applied before calling experiments/_lib/precondition_gate.py's evaluate_arm_gate) treats a naturally stochastic readiness precondition as if it required deterministic 100% clearance across all N=3 seeds. One hard/unlucky seed then zeroes the entire arm/run's adjudication, burying informative data from the seeds that did clear (a clean confirming result in V3-EXQ-873; a stable difficulty-diagnostic split in V3-EXQ-882). Distinct from the arm-vs-arm vacating defect precondition_gate.py already closes (V3-EXQ-785) -- that fix is cross-arm; this pattern is within-arm, cross-seed, and the shared library is agnostic to it. Both drivers are among 55 in the corpus using precondition_gate.py, so this convention is plausibly common elsewhere.",
+    "readings": ["test_design_gate_too_strict_for_small_n"]
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:35:09Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_882_mech472_context_memorization_generalization_20260803T080441Z_v3",
+      "queue_id": "V3-EXQ-882",
+      "claim_ids": ["MECH-472"],
+      "failed_criterion": "negative_control",
+      "failed_criterion_note": "Non-degeneracy readiness gate (worst-of-3-seed in-context acquisition floor) failed; the decisive in-context/held-out gap discrimination criterion was never reached.",
+      "self_route_label": "substrate_not_ready_requeue",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "absent",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "too_sparse_or_mismatched_for_2_of_3_seeds",
+        "measurement": "adequate_guard_worked_as_designed",
+        "integration": "coupled_stable",
+        "scale": "unknown_ambiguous_between_task_difficulty_and_training_budget"
+      },
+      "biological_reference": {
+        "closest_mechanism": "none claimed -- ML-methodology import (generalization-gap-as-promotion-gate); loosely analogous only to systems consolidation, explicitly not asserted as biological translation",
+        "dependencies": ["MECH-471", "ARC-092"],
+        "is_formal_import": true,
+        "divergence": "n/a -- claim is explicitly a methodology principle, not a biology translation; the claim's own notes forbid conflating it with the biology-flavoured GOV-HELDOUT-1 (per GOV-ANALOGY-1)",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_note": "Acquisition floor unmet on 2/3 seeds means the decisive discrimination criterion was never reachable; correctly self-routed. The per-seed difficulty split (1/3 solved immediately and stays solved; 2/3 never approach the floor across a 10x exposure range with no improving trend) is recorded as an informative finding even though the run itself does not weigh on MECH-472's truth value.",
+      "recommended_evidence_quality_note": "[2026-08-03 failure autopsy, V3-EXQ-882, confirmed failure_autopsy_V3-EXQ-882_2026-08-03]: FIRST experimental test of MECH-472. non_degenerate=false correctly per the claim's own pre-registered guard (acquisition floor unmet on worst seed) -- the decisive in-context/held-out gap was never reachable, so this is neither support nor weakening. Per-seed data shows a real, stable difficulty split in the 'corner' reef geometry (1/3 seeds solved immediately and stays solved; 2/3 never approach the floor across a 10x exposure range with no improving trend) -- worth recording as informative even though the run itself is non-contributory to MECH-472's own truth value. Route: /queue-experiment V3-EXQ-882a with more seeds and a fraction-based (not worst-of-3) acquisition gate; do not assume more of the same training alone resolves the hard seeds. No claim-status change; v3_pending stays as registered pending a corrected re-run.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "MECH-472's own non-degeneracy guard (registered 2026-07-22, before any run existed) correctly identified and prevented exactly the failure mode it was designed to catch -- a guard-worked-as-designed instance.",
+        "The 'corner' reef geometry (hazard_food_attraction=0.0) shows a stable, large per-seed difficulty split under a bare frozen-e2/REINFORCE recipe: one seed solved almost immediately, two not solved even at 10x budget with no improving trend.",
+        "This is a measurement/test-design gap in the same family as V3-EXQ-873's: a worst-of-3-seed veto is too fragile a readiness bar given real per-seed environment-difficulty variance in a freshly-minted (first-ever) competence/geometry pairing.",
+        "Whether the difficulty split reflects a genuine training-recipe ceiling or is a too-few-seeds sampling artefact is not decidable from this run alone.",
+        "Shared structural property with V3-EXQ-873 (MECH-322, unrelated claim): a worst-of-N=3-seed readiness gate lets one hard/unlucky seed veto a whole arm/run's adjudication even though clearing seeds are independently informative -- see cluster_pattern."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "worst_of_n_seed_readiness_veto",
+    "cross_referenced_targets": ["V3-EXQ-882", "V3-EXQ-873"],
+    "is_independent_bugs": false,
+    "structural_property": "A within-arm, cross-seed worst-case reduction (this driver's own worst-seed readiness computation, analogous to V3-EXQ-873's local _worst()-style helper feeding experiments/_lib/precondition_gate.py's evaluate_arm_gate) treats a naturally stochastic readiness precondition (here, per-seed environment-difficulty variance in acquisition) as if it required deterministic clearance across all N=3 seeds. One or two hard/unlucky seeds then zero the entire run's adjudication, burying informative data from the seed(s) that did clear (a stable difficulty-diagnostic split here; a clean confirming result in V3-EXQ-873). Distinct from the arm-vs-arm vacating defect precondition_gate.py already closes (V3-EXQ-785) -- that fix is cross-arm; this pattern is within-arm, cross-seed. This driver is among 55 in the corpus using precondition_gate.py, so this convention is plausibly common elsewhere.",
+    "readings": ["test_design_gate_too_strict_for_small_n"]
+  }
+}

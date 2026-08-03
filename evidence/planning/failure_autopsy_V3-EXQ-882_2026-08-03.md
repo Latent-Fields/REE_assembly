@@ -1,0 +1,87 @@
+# Failure Autopsy: V3-EXQ-882 (MECH-472 held-out-context vs task-memorisation, EXP-0400)
+
+**Generated:** 2026-08-03T10:35:09Z | **Status:** confirmed | **Scope:** single (cross-referenced structural cluster with `failure_autopsy_V3-EXQ-873_2026-08-03.md` -- see Section 5)
+
+## 1. Facts reconstruction
+
+- **Run:** `v3_exq_882_mech472_context_memorization_generalization_20260803T080441Z_v3`, queue_id `V3-EXQ-882`, `experiment_purpose=evidence`, `outcome=FAIL`, `evidence_direction=unknown` (self-routed), `dry_run=false`.
+- **Dry-run check:** `check_dry_run_citations.py` -> 0 dry, 1 clean. Not a smoke.
+- **Recording:** `validate_recording.py` -> OK, always-core complete. No recording gap.
+- **Self-route label:** `substrate_not_ready_requeue`. `non_degenerate: false`. `degeneracy_reason`: "in-context trained competence below floor or below random-walk margin at lowest exposure."
+- **Design.** One competence (survival/avoidance under the "corner" reef geometry, `hazard_food_attraction=0.0` to decouple from foraging, e2 frozen throughout, reused verbatim from V3-EXQ-875/EXP-0399 variant A) trained from scratch per (seed x exposure) cell -- SD-056 e2 warmup (60 episodes) then P1 REINFORCE for `exposure` in {50, 100, 250, 500} episodes, 3 seeds (42, 43, 45). Evaluated **in-context** (fresh env, same seed) vs **held-out** (fresh env, `seed + offset`, identical kwargs). Primary DV: `gap = in_context.survival_horizon - held_out.survival_horizon`, swept across exposure. PASS predicts the gap stays near zero at low exposure and widens beyond a pre-registered margin at high exposure (overtraining signature); FAIL predicts it stays flat throughout.
+- **Readiness gate (evaluated on the worst of 3 seeds):** `survival_floor_ticks = 0.6 x steps_per_episode = 90.0` (a fixed 60%-of-episode-length competence bar, not empirically calibrated from a prior run); `random_margin_ticks = 22.5` (must also beat a same-seed random-walk anchor by >=15%). Worst-seed in-context survival at the lowest exposure level: **25.75 ticks** (29% of floor); worst-seed margin above random-walk: **14.9** (below the 22.5 required). `held_out_reachable_ok=true` and `cross_seed_variance_ok=true` both passed -- only the acquisition-floor half of the readiness gate failed.
+- **The full per-seed picture (not visible from the readiness summary alone) is a stable, non-improving split:**
+
+  | Seed | in-context survival @ 50 | @ 100 | @ 250 | @ 500 | Ever clears 90-tick floor? |
+  |---|---|---|---|---|---|
+  | 42 | 25.75 | 24.42 | 13.00 | 33.33 | No, at any exposure tested |
+  | 43 | **101.0** | **104.0** | **104.0** | 87.5 | Yes, at every exposure tested (incl. the lowest) |
+  | 45 | 46.75 | 39.00 | 32.92 | 37.83 | No, at any exposure tested |
+
+  Seed 43's random hazard/resource layout is solved almost immediately (already above floor at the *lowest* exposure, 50 episodes) and stays solved. Seeds 42 and 45 never approach the floor across a **10x exposure range** (50 -> 500 episodes), and show **no improving trend** with more training -- seed 42 is if anything slightly worse at 500 (33.3) than at 100 (24.4), noisy and flat rather than climbing.
+- **Dose-response (computed on the raw gap, uninterpretable given the readiness failure, but consistent with the above):** `near_zero_at_lowest_exposure=true`, `gap_widens_confirmed=false`, `gap_flat_across_sweep=true` -- the predicted overtraining signature never appeared, but this reading is downstream of the readiness failure and not independently decisive.
+- **Expected vs observed:** expected -- given V3-EXQ-728 established this all-ON stack "survives competently" in some prior configuration, and this is the first-ever run of this exact competence/geometry pairing (docstring: "mints its own arms"), acquisition was expected to clear the floor reliably enough across 3 seeds to test the decisive in-context-vs-held-out question. Observed -- acquisition succeeded cleanly and immediately for 1 of 3 random seed draws of the "corner" geometry and failed for the other 2, with training budget up to 10x the minimum showing no rescuing effect. **The failed criterion is the readiness precondition** (worst-of-3-seed acquisition floor), not the discrimination criterion (the in-context/held-out gap) -- the decisive MECH-472 question was never reachable.
+
+## 2. Claim-layer mapping (MECH-472)
+
+- **Text:** "HELD-OUT CONTEXT distinguishes skill acquisition from task memorisation: a competence update should be promoted to durable only on evidence from contexts that did not generate it." `claim_type: mechanism_hypothesis`, `epistemic_category: standard`, `status: candidate`, registered 2026-07-22, `depends_on: [MECH-471, ARC-092]`.
+- **Prior evidence: none** -- confirmed first-ever test of MECH-472 (re-derive-brake recipe below returns 0 prior targets of any category).
+- **The claim's own registration notes already named this exact risk:** "NON-DEGENERACY GUARD: the held-out contexts must be GENUINELY REACHABLE by the trained policy... or the gap is a FLOOR ARTEFACT rather than evidence of memorisation. This is the guard **most likely to be skipped and most likely to produce a false positive**." That guard is precisely what fired here, and it fired correctly -- it stopped a floor-artefact gap from being read as a memorisation signal.
+- **Did the experiment test the claim under conditions where it could express itself?** No, and correctly so -- the decisive readout (does the in-context/held-out gap discriminate acquisition from memorisation) presupposes acquisition happened; on 2/3 seeds it did not, so the comparison would have been contaminated by floor effects exactly as the claim's own guard warns against. `claim_ids` accuracy: correct, single-claim, first test.
+
+## 3. Biological / formal-reference triage
+
+- **Character of this claim:** MECH-472 is explicitly a **machine-learning methodology import**, not a direct biological-mechanism translation. Its source document is a thought-intake on "conservative skill refinement and multi-timescale learning," and its literature basis (landed *today*, 2026-08-03, via the concurrent `igw-226` lit-pull) is entirely ML/CS: Cobbe 2019 (RL held-out generalization), Zhang 2017 (memorization vs random labels), Feldman 2020 (memorization is sometimes necessary for generalization), Lake 2018 (compositional held-out generalization). No biological citation is claimed or needed -- this is a promotion-gate design principle (validate before treating a competence update as durable), analogous only loosely to systems consolidation, and the claim explicitly warns against conflating it with the biology-flavoured GOV-HELDOUT-1 (a different, governance-workflow claim from the same source document; per GOV-ANALOGY-1 the resemblance is not evidence in either direction).
+- **Does the failure resemble a missing-dependency signature?** Partially -- MECH-471 (the parent generalisation claim MECH-472 serves as a promotion gate for) and ARC-092 are both still `v3_pending`/unbuilt in the sense that no durability-promotion discipline exists yet to actually consume this gate; but that is orthogonal to why *this* run failed. This run failed at the acquisition stage, one level below where MECH-472's actual question begins.
+
+## 4. Four-layer diagnosis
+
+| Layer | Status | Notes |
+|---|---|---|
+| Claim alignment | **unclear** | The decisive comparison was never reached; the claim's own guard correctly prevented a floor-artefact result from masquerading as a memorisation reading. |
+| Biological reference | **absent / not applicable** | This is an ML-methodology import (generalization-gap-as-promotion-gate), not a biological mechanism claim; lit basis is ML/CS papers, landed today, and is load-bearing for the *design*, not for a biology existence-proof. |
+| Developmental / dependency prerequisites | **present (for this run's own needs)** | SD-056 e2 warmup, the frozen-e2/A0 REINFORCE recipe, and the "corner" geometry env kwargs are all reused verbatim from confirmed-working lineages (V3-EXQ-728, V3-EXQ-875/EXP-0399 variant A). |
+| Implementation completeness | **complete** | Env's own seeded RNG stream is confirmed sufficient to define "context" vs "held-out context" with no new machinery; training/eval pipeline confirmed wired per docstring. |
+| Environment adequacy | **too sparse / mismatched for 2 of 3 random seed draws** | The "corner" geometry with `hazard_food_attraction=0.0` produces a hazard/resource layout whose survivability varies enormously by seed (25-47 vs 87-104 ticks) -- a real, stable difficulty split the current 3-seed sample happened to land mostly on the hard side. |
+| Measurement adequacy | **adequate -- the guard worked as designed** | The floor/margin non-degeneracy check is exactly what MECH-472's own claims.yaml notes anticipated as the highest-risk failure mode, and it caught it. This is not a measurement gap; it is a measurement *success* that correctly withheld a verdict. |
+| Integration adequacy | **coupled and stable** | No cross-module instability; the readiness computation itself behaved correctly. |
+| Scale / capacity | **unknown -- ambiguous between task-difficulty ceiling and training-budget insufficiency** | 500 REINFORCE episodes (10x the lowest exposure) produced no improving trend for either failing seed. This argues against "just needs more of the same training" as the fix, but with only 3 seeds and one training recipe tested, it cannot yet distinguish a genuine substrate/recipe ceiling on hard "corner" instantiations from an unlucky small sample of only 3 environment draws. |
+
+## 5. Cluster pattern (structural property, cross-referenced with V3-EXQ-873)
+
+V3-EXQ-882 (MECH-472) and V3-EXQ-873 (MECH-322) are structurally unrelated claims -- one a held-out-context competence-promotion gate, the other a policy-chunking sleep-replay AND-gate -- autopsied together only because both landed in the same 2026-08-03 pending-review FAIL backlog sweep. They nonetheless share one **failure shape**:
+
+| Target | Claim | Readiness precondition (worst-of-3-seed) | What the clearing seed(s) showed |
+|---|---|---|---|
+| V3-EXQ-882 | MECH-472 | in-context survival floor (90 ticks): 1/3 seeds clear (seed 43, at every exposure), 2/3 (seeds 42/45) never do, at any exposure up to 10x budget | The 1 clearing seed solved immediately and stayed solved; the 2 non-clearing seeds showed a stable, non-improving **difficulty split**, itself informative |
+| V3-EXQ-873 | MECH-322 | `replay_high_value_candidate_available`: 2/3 seeds clear, 1/3 (seed 303, margin -0.157) does not | The 2 clearing seeds gave a clean, unambiguous **positive** result (carve-out minted correctly, `replay_origin=True`, in both) |
+
+**Structural property, not two independent bugs:** in both cases a worst-of-N=3-seed readiness gate is used as a hard pass/fail veto on the run's own load-bearing adjudication, so a single hard or unlucky seed's natural (non-error) outcome zeroes the ENTIRE arm/run's read -- even though the seeds that *did* clear the precondition are themselves fully informative (difficulty-diagnostic in 882's case, confirming in 873's case). This is distinct from the arm-vs-arm vacating defect `experiments/_lib/precondition_gate.py` was built to close (V3-EXQ-785, `failure_autopsy_V3-EXQ-785_2026-07-19.md`): that library fix stops one ARM's structurally-impossible precondition from vacating a DIFFERENT arm's valid result. The pattern here is one level down -- a **within-arm, cross-seed** worst-case reduction (each driver's own local `_worst()`-style helper, computed *before* calling `evaluate_arm_gate`), which the shared library is agnostic to. Both 882 and 873 are among the 55 drivers using `precondition_gate.py`, so this convention is plausibly common across other precondition-gated diagnostics in the corpus, not unique to these two.
+
+**General design lesson (for future precondition-gated diagnostics, not just these two re-queues):** a readiness precondition that depends on natural stochastic variation (an exploration outcome, an environment-difficulty draw) should not be aggregated worst-of-N at small N (here, N=3) as a hard veto. Either raise N enough that requiring all seeds to clear is statistically reasonable, or use a fraction-based pass rule with the precondition-fail rate reported as an informational readiness statistic rather than a hard gate on the load-bearing criterion.
+
+## 6. Learning extracted
+
+- MECH-472's own non-degeneracy guard (registered 2026-07-22, before any run existed) correctly identified and prevented exactly the failure mode it was designed to catch -- this is worth recording as a guard-worked-as-designed instance, not just a null result.
+- The "corner" reef geometry (`hazard_food_attraction=0.0`) shows a stable, large per-seed difficulty split under a bare frozen-e2/REINFORCE recipe: one seed is solved almost immediately, two are not solved even at 10x budget with no improving trend.
+- This is a **measurement/test-design gap** in the same family as V3-EXQ-873's: a worst-of-3-seed veto is too fragile a readiness bar given real per-seed environment-difficulty variance in a freshly-minted (first-ever) competence/geometry pairing.
+- Whether the difficulty split reflects a genuine training-recipe ceiling (would need `/implement-substrate`) or is simply an artefact of too few seeds (would need only `/queue-experiment` with more seeds) is **not yet decidable from this run alone** -- the flat exposure trend is suggestive but not conclusive at n=3.
+
+## 7. Repair pathway
+
+**Diagnosis category (work-graph debt vocabulary):** `complex (probe-gated) / puzzle (known rules)` -- the frame (worst-of-N-seed veto is too fragile; the per-seed difficulty split is real) is well-posed, but which of the two live explanations (sampling artefact vs recipe ceiling) holds is a missing fact, resolvable with a targeted spike rather than a blind re-run.
+
+**Routing:** `/queue-experiment` -- same-question letter, **V3-EXQ-882a**. Fix:
+1. Increase seed count (6-8) and evaluate the acquisition-floor readiness gate on a fraction basis (e.g. require the floor cleared on a majority of seeds, informational-only on the rest) rather than worst-of-3, mirroring the V3-EXQ-873a fix.
+2. Do **not** simply extend exposure further on the same recipe without also checking per-seed difficulty -- the existing dose-response data already argues against "more of the same training" alone fixing the two hard seeds. If the redesign wants to test the training-budget question directly, it should do so as an explicit, separately-flagged probe (e.g. one hard seed pushed to 1500-2000 episodes) rather than folding it into the same worst-of-N gate.
+3. Record per-seed acquisition difficulty explicitly in the manifest (not just the worst-seed summary) so a future reader does not have to reconstruct the split from `arm_results` by hand, as this autopsy had to.
+
+**Re-derive brake:** does not fire -- 0 prior `substrate_ceiling`/`non_contributory` autopsies tag MECH-472 (first-ever test, verified via the R1-R3 counting recipe).
+
+**Draft `evidence_quality_note` (for governance to apply, not written here):**
+
+> [2026-08-03 failure autopsy, V3-EXQ-882, confirmed failure_autopsy_V3-EXQ-882_2026-08-03]: FIRST experimental test of MECH-472. `non_degenerate=false` correctly per the claim's own pre-registered guard (acquisition floor unmet on worst seed) -- the decisive in-context/held-out gap was never reachable, so this is neither support nor weakening. Per-seed data shows a real, stable difficulty split in the "corner" reef geometry (1/3 seeds solved immediately and stays solved; 2/3 never approach the floor across a 10x exposure range with no improving trend) -- worth recording as informative even though the run itself is non-contributory to MECH-472's own truth value. Route: /queue-experiment V3-EXQ-882a with more seeds and a fraction-based (not worst-of-3) acquisition gate; do not assume more of the same training alone resolves the hard seeds. No claim-status change; v3_pending stays as registered pending a corrected re-run.
+
+## 8. Interactive gate (user-confirmed 2026-08-03)
+
+User selected: **"Precondition correctly unmet, re-queue with more seeds + informative note"** -- `epistemic_category=precondition_unmet` (correctly self-routed), `evidence_direction=unknown/non_contributory` with the per-seed difficulty split recorded as a real finding, routed to `/queue-experiment V3-EXQ-882a`. User also confirmed the shared cluster write-up with V3-EXQ-873 (worst-of-N-seed veto structural property).
