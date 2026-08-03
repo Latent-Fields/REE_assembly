@@ -1,0 +1,104 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T08:20:00Z",
+  "scope": "cluster",
+  "status": "awaiting_human_confirmation",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_862a_q040c_dacc_pe_weight_delta_correlation_20260802T195935Z_v3",
+      "queue_id": "V3-EXQ-862a",
+      "claim_ids": ["Q-040"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "inadequate_for_specific_manipulation",
+        "measurement": "defect",
+        "integration": "isolated",
+        "scale": "not_implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Shenhav 2013 EVC / Shenhav 2016 dACC choice-difficulty; Hayden 2011 unsigned RPE behavioural adjustment; Treuting 2025 causal ACC adaptive RL",
+        "dependencies": ["MECH-269", "MECH-269b", "SD-032b", "SD-037"],
+        "is_formal_import": false,
+        "divergence": "none -- pre-existing targeted_review_q_040 covers this; FAIL is instrumentation, not biology-translation",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-03 failure_autopsy, V3-EXQ-862a, confirmed]: 862a fixed both prior config bugs (475b's z_harm_a wiring, 862's dacc_weight=0 consumer gain) and both preconditions pass, but the ON/OFF manipulation itself never engaged: code-verified (vs_gate_held_e1/e2_z_harm_a = 0 across all 3 seeds), the borrowed 490b threshold (0.85, applied globally) never crosses for z_harm_a's own V_s -- the ON arm's held-budget lands entirely on z_beta instead. PE and bias-magnitude series are bit-identical between arms per seed. non_contributory -- this is a third, independent manipulation-check gap, not a substrate finding; Q-040.c's mechanism-quantification question remains untested. Route: same-question letter (862b) with per-stream threshold calibration + a z_harm_a-specific engagement precondition.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "A stream-level V_s gate threshold borrowed wholesale from a different target experiment (490b) does not transfer -- z_harm_a's own V_s never crosses the borrowed 0.85 threshold in this harness, while z_beta does.",
+        "An aggregate 'any stream held' precondition (vs_gate_total_held) is structurally blind to a per-channel failure -- it passed while the one stream (z_harm_a) the DV depends on never engaged.",
+        "The gate's own e1_threshold_per_stream/e2_threshold_per_stream override dicts exist to prevent exactly this and were not used."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_870a_mech480_dacc_execution_gain_dissociation_20260802T135309Z_v3",
+      "queue_id": "V3-EXQ-870a",
+      "claim_ids": ["MECH-480"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear",
+        "biological_reference": "clear_not_formalized",
+        "prerequisites": "present",
+        "implementation": "complete",
+        "environment": "inadequate",
+        "measurement": "defect",
+        "integration": "isolated",
+        "scale": "not_implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Asaoka, Pagano & Hayashi 2026 (Nat Commun) -- ACC-retrosplenial strategy authority vs lateral-OFC-central-striatal execution gain/vigor dissociation",
+        "dependencies": ["SD-032b", "MECH-258", "MECH-260"],
+        "is_formal_import": false,
+        "divergence": "none -- direct paper-to-mechanism translation; no targeted_review_mech_480 entry yet (secondary gap, low priority)",
+        "lit_status": "partial"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-03 failure_autopsy, V3-EXQ-870a, confirmed]: first V3 run. FAIL is a design/measurement gap, not evidence against the dissociation hypothesis: in 3/6 seed x arm cells, evaluation episodes terminate (mean 8-20 of 80 steps) well before the contingency switch at step 40, leaving execution_strength=NaN and near-zero post-switch data; the design's only non-degeneracy check silently passes on 2/3 (not 3/3) OFF seeds due to NaN-filtering. In the 3 well-powered cells, post_switch_toward_new_frac reads near-zero regardless of arm -- a floor effect that may reflect either genuine replanning-stickiness or DV insensitivity, but the censored cells never had a chance to inform C1 at all. non_contributory. The execution-strength DV design itself (avoiding SD-032b/MECH-260's committed-action-entropy floor-lock) is validated as sound -- this FAIL does not reproduce that known ceiling. Route: same-question letter (870b) with a per-cell switch-step-reached precondition and termination-cause recording.",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "learning_extracted": [
+        "Survival censoring: 3/6 cells terminate episodes (mean 8-20 of 80 steps) well before switch_step=40, leaving the post-switch window structurally unreached -- not condition-linked (hits both ON and OFF cells across different seeds), most plausibly a hazard-collision interaction.",
+        "The non-degeneracy precondition's NaN-filtering list comprehension silently reduces N (2/3 not 3/3 OFF seeds) without flagging reduced sample size -- reports met:true with false confidence.",
+        "Even in well-powered cells, post_switch_toward_new_frac reads near-zero in 2 of 3 -- a floor effect independent of dACC arm, suggesting either a genuine replanning-stickiness property or a DV-sensitivity gap (resource_field_decay=0.5 vs proximity_benefit_scale=0.12 close to proximity_harm_scale=0.1).",
+        "MECH-480's execution-strength DV design (routing around SD-032b/MECH-260's committed-action-entropy floor-lock) is validated as sound in principle -- the gap is upstream of the DV, not the DV's construct validity.",
+        "No formalized targeted_review_mech_480 literature entry exists yet despite the Asaoka 2026 citation already being identified in claims.yaml prose -- low-priority /lit-pull commission to close."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "Two structurally different bugs (a globally-applied, wrongly-calibrated per-stream V_s gate threshold vs. an environment survival-censoring gap) converge on one property: each experiment's own precondition/acceptance-gate checked engagement in AGGREGATE (any of six V_s streams held; any nonzero sample from 2 of 3 seeds) rather than on the SPECIFIC slice (the z_harm_a stream; the post-switch window per cell) the primary DV actually reads -- so both preflight checks reported 'met' while the load-bearing slice never engaged.",
+    "is_independent_bugs": true,
+    "structural_property": "Coarse/aggregate precondition checks are structurally blind to a per-channel or per-cell failure in the specific slice a primary DV depends on. Recommend future /queue-experiment authoring in this dACC-adjacent cohort assert engagement of the exact substrate slice (stream / time-window / cell) each primary DV consumes, not merely 'some' nonzero engagement anywhere in the design.",
+    "readings": ["measurement_test_design_defect", "instrumentation_authoring_convention_gap"]
+  },
+  "granularity_debt_check": {
+    "claim": "Q-040",
+    "method": "manual (granularity_debt_cluster.py not run -- local REE_assembly checkout 44 behind origin/master with unrelated dirty tree from another session's regen)",
+    "targets_on_q040c": ["V3-EXQ-475b", "V3-EXQ-862", "V3-EXQ-862a"],
+    "claim_alignment_distribution": "all three read non_contributory; none reads weakened",
+    "trigger_fires": false,
+    "note": "Per skill rule, a cluster with no target reading weakened is measurement/instrumentation debt, not granularity debt. Three different bug classes in a row on one sub-question (PE never computed -> consumer weight zero -> manipulation never engaged) is a recurring instrumentation-debt pattern, not evidence the claim needs splitting."
+  },
+  "re_derive_brake": {
+    "fired": false,
+    "note": "Neither target's recommended_epistemic_category is substrate_ceiling; R3 excludes non-ceiling non_contributory reads from the brake count."
+  }
+}
