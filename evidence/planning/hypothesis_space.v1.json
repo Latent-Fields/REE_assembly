@@ -1,23 +1,23 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-02T16:54:57Z",
+  "generated_at": "2026-08-03T08:36:45Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 139,
-      "built_modules": 114,
-      "fraction_built": 0.8201,
+      "total_modules": 140,
+      "built_modules": 115,
+      "fraction_built": 0.8214,
       "state_counts": {
         "proposed": 25,
         "implemented": 80,
-        "implemented_pending_validation": 19,
+        "implemented_pending_validation": 20,
         "validated": 15
       },
-      "build_proof_gap": 99,
-      "build_proof_gap_note": "114 modules built, 99 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 100,
+      "build_proof_gap_note": "115 modules built, 100 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,115 +31,127 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 44,
-      "total_initial": 75,
-      "total_initial_at_registration": 57,
+      "total_surviving": 45,
+      "total_initial": 80,
+      "total_initial_at_registration": 62,
       "total_fanout_added": 18,
-      "total_resolved_out": 29,
+      "total_resolved_out": 33,
       "total_confirmed": 15,
-      "reduction_pct_vs_current": 38.7,
-      "net_narrowing_pct": 22.8,
+      "reduction_pct_vs_current": 41.2,
+      "net_narrowing_pct": 27.4,
       "convergence_classes": {
-        "narrowing": 7,
+        "narrowing": 8,
         "static": 7,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "44 alive against 57 originally enumerated, and against 75 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 19
+      "honest_pair_note": "45 alive against 62 originally enumerated, and against 80 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 20
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
       "ready": 9,
-      "open_questions": 19
+      "open_questions": 20
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 74,
+      "surviving": 79,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-13",
-      "surviving": 72,
+      "surviving": 77,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-15",
-      "surviving": 68,
+      "surviving": 73,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-16",
-      "surviving": 67,
+      "surviving": 72,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-17",
-      "surviving": 64,
+      "surviving": 69,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-18",
-      "surviving": 58,
+      "surviving": 63,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-19",
-      "surviving": 54,
+      "surviving": 59,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-20",
-      "surviving": 53,
+      "surviving": 58,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-24",
-      "surviving": 52,
+      "surviving": 57,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-25",
-      "surviving": 51,
+      "surviving": 56,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-27",
-      "surviving": 49,
+      "surviving": 54,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-29",
-      "surviving": 48,
+      "surviving": 53,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-31",
-      "surviving": 47,
+      "surviving": 52,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
+    },
+    {
+      "date": "2026-08-01",
+      "surviving": 50,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-08-02",
-      "surviving": 44,
+      "surviving": 47,
       "closure_pct": 76.9,
-      "build_pct": 82.0
+      "build_pct": 82.1
+    },
+    {
+      "date": "2026-08-03",
+      "surviving": 45,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     }
   ],
   "questions": [
@@ -234,14 +246,15 @@
         }
       ],
       "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
-      "net_narrowing_ratio": 0.5714,
-      "bits_removed_vs_registration": 1.22,
+      "net_narrowing_ratio": 0.8571,
+      "bits_removed_vs_registration": 2.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
           "instrumentation",
+          "process",
           "representation",
           "world"
         ],
@@ -452,13 +465,13 @@
           }
         ]
       },
-      "surviving": 3,
-      "alive": 2,
-      "resolved_out": 14,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 16,
       "confirmed": 4,
-      "reduction_numerator": 14,
-      "reduction_ratio": 0.7,
-      "bits_removed": 2.74,
+      "reduction_numerator": 16,
+      "reduction_ratio": 0.8,
+      "bits_removed": 4.32,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -739,26 +752,28 @@
           "label": "competence retention is a dose-dependent consolidation process (over-training deepens the trace)",
           "desc": "MECH-476 DOSE arm (Krakauer 2005 over-training paradigm ported): BC-install at 300/600/900 episodes, then identical unconstrained RL refinement; DV is retained_fraction TRAJECTORY. SUPPORTED if retained_fraction_mean is monotone non-decreasing in dose and grows by >= the discrimination margin; WEAKENED if invariant to dose.",
           "axis": "curriculum",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-836"
+            "V3-EXQ-836",
+            "V3-EXQ-836a"
           ],
-          "basis": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
+          "basis": "SUPERSEDES the 836 fixed-margin read above. V3-EXQ-836a (FAIL, non_degenerate, all 3 dose arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (max(1.5*sd_delta, floor), the gap 836 itself surfaced): retained_fraction_mean = [0.712 (300), 0.430 (600), 0.512 (900)], non-monotone, effect -0.1998 well inside the noise-scaled margin 0.7162 required to call growth. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-dose-response as the retention-driving mechanism. Read jointly with H-mech476-novelty-tagging (836d) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-mech476-novelty-tagging",
           "label": "a temporally-close novelty exposure consolidates an otherwise sub-threshold (weak) install via behavioural tagging",
           "desc": "MECH-476 NOVELTY arm (Moncada & Viola 2007 behavioural-tagging paradigm ported): fixed weak BC install (150 episodes, deliberately sub-threshold), then an offline novelty-paired vs novelty-unpaired consolidation window (SD-083 OfflineEWCAnchor, novelty-gated capture). SUPPORTED if the novelty-paired arm retains a larger fraction than unpaired.",
           "axis": "drive",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-836c"
+            "V3-EXQ-836c",
+            "V3-EXQ-836d"
           ],
-          "basis": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
+          "basis": "SUPERSEDES the 836c fixed-margin read above. V3-EXQ-836d (FAIL, non_degenerate, both arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (the gap 836c itself surfaced): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818, and robust across all 10 leave-one-out folds. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-novelty-tagging as the retention-driving mechanism. Read jointly with H-mech476-dose-response (836a) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         }
       ],
       "decision": {
@@ -2481,9 +2496,128 @@
         "live_gate": "requires a redesigned probe (V3-EXQ-871a) that scopes use_persistent_committed_program_handle=True to the probe phase only, so formation replays V3-EXQ-841's proven 2/2-chunk dynamics instead of being suppressed by the flag's own formation-phase side effects",
         "observation_bottleneck": null
       }
+    },
+    {
+      "qid": "mech267_content_persistence_cem_refit",
+      "title": "Does MECH-267's mode-conditioned hippocampal proposal content survive HippocampalModule's CEM elite-refit at production settings, and if not, which locus (iteration count, scoring criterion, or pool architecture) is responsible?",
+      "short_title": "MECH-267 content persistence vs CEM refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.4,
+      "bits_removed_vs_registration": 0.74,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 2 families",
+        "families_closed": [],
+        "families_touched": [
+          "process",
+          "representation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 2,
+      "confirmed": 0,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.4,
+      "bits_removed": 0.74,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech267-noise-only",
+          "label": "noise-scale-only modulation preserves content",
+          "desc": "CEM proposal noise-scale, scaled by operating_mode alone (without horizon-depth), preserves mode-conditioned content through production elite-refit (iters=3)",
+          "axis": "exploration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-869"
+          ],
+          "basis": "V3-EXQ-869 (30 seeds): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C1 production (iters=3) failed flat (gaps -0.0003 to +0.0035 vs 0.01 floor). Confirmed autopsy failure_autopsy_V3-EXQ-869_2026-08-02: competence_implementation_gap, non_contributory -- noise-scale-only insufficient to survive production elite-refit.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech267-both-mechanisms-iters3",
+          "label": "noise-scale + horizon-depth (both mechanisms) preserve content at iters=3",
+          "desc": "Adding horizon-depth modulation (CEM elite-selection scoring-window depth) alongside noise-scale preserves mode-conditioned content through production elite-refit",
+          "axis": "readout",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-869a"
+          ],
+          "basis": "V3-EXQ-869a (30 seeds, both mechanisms confirmed active via mechanism_activation check): C0 passed cleanly (gaps 0.031-0.092 vs 0.015 floor, unchanged from 869); C1 production (iters=3) failed flat (gaps +0.0008 to +0.0024, -0.0037 vs 0.01 floor) -- nearly identical to 869's own C1 numbers despite the new mechanism genuinely firing. Confirmed autopsy failure_autopsy_V3-EXQ-869a_2026-08-03: competence_implementation_gap (user-confirmed, not upgraded to substrate_ceiling), non_contributory. Routed to a GOV-FANOUT-1 portfolio rather than a third same-question letter.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech267-fewer-iters",
+          "label": "wash-out is iteration-count dependent",
+          "desc": "The content-persistence wash-out depends on num_cem_iterations itself; a lower iteration count (e.g. 2) would preserve mode-conditioned content that iters=3 erases",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- only iters=1 and iters=3 have ever been measured for this question; no intermediate value exists in any run to date. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H1.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech267-mode-aware-scoring",
+          "label": "elite-selection value function needs an explicit mode-dependent term",
+          "desc": "Windowing an already mode-independent score (horizon-depth's actual mechanism) is insufficient; the CEM elite-selection value function itself must carry an explicit mode-dependent term to survive refit",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- both built mechanisms perturb CEM refit inputs (variance, scoring window), neither perturbs the decision rule (value function) that ranks and retains elites. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H2.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech267-partitioned-pools",
+          "label": "mode-independence is structural to shared elite-refit",
+          "desc": "Cross-mode elite mixing during refit is itself the wash-out mechanism; hard-partitioning candidate pools per mode (no shared elite set) would preserve differentiation",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- the most structurally different of the three legs, changing CEM's own architecture rather than any input to it. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H3.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Does the currently-implemented CEM-based hippocampal proposal pipeline preserve MECH-267's mode-conditioned content through production-settings elite-refit, and if not, which locus (iteration count / scoring criterion / pool architecture) fixes it?",
+        "distance_phrase": "2 of 2 tested upstream-signal mechanisms eliminated (noise-scale alone; noise-scale+horizon-depth together) -- both wash out identically at production iters=3. 3 untested loci remain, on 3 distinct design axes (selection/iteration-count, representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out.",
+        "live_gate": "H-mech267-fewer-iters, H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- three untested loci, not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the three should precede queuing per GOV-FANOUT-1 Step 2.5b.",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-869a",
+      "all_runs": [
+        "V3-EXQ-869a"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-869a (30 seeds, both mechanisms confirmed active via mechanism_activation check): C0 passed cleanly (gaps 0.031-0.092 vs 0.015 floor, unchanged from 869); C1 production (iters=3) failed flat (gaps +0.0008 to +0.0024, -0.0037 vs 0.01 floor) -- nearly identical to 869's own C1 numbers despite the new mechanism genuinely firing. Confirmed autopsy failure_autopsy_V3-EXQ-869a_2026-08-03: competence_implementation_gap (user-confirmed, not upgraded to substrate_ceiling), non_contributory. Routed to a GOV-FANOUT-1 portfolio rather than a third same-question letter.",
+      "resolved_utc": "2026-08-02T19:59:43Z",
+      "evidence_direction": "non_contributory"
+    },
     {
       "run": "V3-EXQ-871",
       "all_runs": [
@@ -2497,6 +2631,20 @@
       ],
       "moved": "V3-EXQ-871's readiness gate (arc071_chunk_commitments_observed_supra_floor) measured 0.0 vs threshold 10.0 on both seeds -- 1/0 chunks formed vs 2/2 for the SAME seeds under V3-EXQ-841 (flag at lineage default). Root cause: use_persistent_committed_program_handle=True was applied for the WHOLE cell (formation+probe) instead of scoped to the probe phase, which changes select_action's between-tick fast path and cascades into a different, formation-suppressing action sequence via RNG-coupled environment dynamics. Uninformative-by-design run; narrows nothing. Redesign queued as V3-EXQ-871a (flag scoped to probe-only).",
       "resolved_utc": "2026-08-02T10:43:33Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-869",
+      "all_runs": [
+        "V3-EXQ-869"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-869 (30 seeds): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C1 production (iters=3) failed flat (gaps -0.0003 to +0.0035 vs 0.01 floor). Confirmed autopsy failure_autopsy_V3-EXQ-869_2026-08-02: competence_implementation_gap, non_contributory -- noise-scale-only insufficient to survive production elite-refit.",
+      "resolved_utc": "2026-08-02T03:54:22Z",
       "evidence_direction": "non_contributory"
     },
     {
@@ -2546,6 +2694,38 @@
       "evidence_direction": "weakens"
     },
     {
+      "run": "V3-EXQ-836d",
+      "all_runs": [
+        "V3-EXQ-836c",
+        "V3-EXQ-836d"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "SUPERSEDES the 836c fixed-margin read above. V3-EXQ-836d (FAIL, non_degenerate, both arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (the gap 836c itself surfaced): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818, and robust across all 10 leave-one-out folds. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-novelty-tagging as the retention-driving mechanism. Read jointly with H-mech476-dose-response (836a) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
+      "resolved_utc": "2026-08-01T10:37:54Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-836a",
+      "all_runs": [
+        "V3-EXQ-836",
+        "V3-EXQ-836a"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "SUPERSEDES the 836 fixed-margin read above. V3-EXQ-836a (FAIL, non_degenerate, all 3 dose arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (max(1.5*sd_delta, floor), the gap 836 itself surfaced): retained_fraction_mean = [0.712 (300), 0.430 (600), 0.512 (900)], non-monotone, effect -0.1998 well inside the noise-scaled margin 0.7162 required to call growth. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-dose-response as the retention-driving mechanism. Read jointly with H-mech476-novelty-tagging (836d) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
+      "resolved_utc": "2026-08-01T10:37:54Z",
+      "evidence_direction": "weakens"
+    },
+    {
       "run": "V3-EXQ-850",
       "all_runs": [
         "V3-EXQ-850"
@@ -2576,21 +2756,6 @@
       "evidence_direction": "supports"
     },
     {
-      "run": "V3-EXQ-836c",
-      "all_runs": [
-        "V3-EXQ-836c"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
-      "resolved_utc": "2026-07-29T18:19:56Z",
-      "evidence_direction": "non_contributory"
-    },
-    {
       "run": "V3-EXQ-837",
       "all_runs": [
         "V3-EXQ-837"
@@ -2604,21 +2769,6 @@
       "moved": "V3-EXQ-837 (FAIL, non_degenerate, 2/2 scorable families capacity+approach both readiness- and phenomenon-reproduction-gated green; metabolic correctly self-excluded on its own unmet control-competence guard): the distributional critic's treatment-below-control inversion (15.13/14.90) is 3.4x LARGER than the scalar critic's (4.45/4.44) in both scorable families, reverses_or_flattens=false on all 6 scorable seeds. The informative baseline does not reverse or flatten the destructive effect -- it worsens it. ELIMINATES H-mech475-baseline-reversal; per MECH-475's own text this outcome shape means the claim is WITHDRAWN, not narrowed.",
       "resolved_utc": "2026-07-29T14:17:38Z",
       "evidence_direction": "weakens"
-    },
-    {
-      "run": "V3-EXQ-836",
-      "all_runs": [
-        "V3-EXQ-836"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
-      "resolved_utc": "2026-07-29T09:24:49Z",
-      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-819a",

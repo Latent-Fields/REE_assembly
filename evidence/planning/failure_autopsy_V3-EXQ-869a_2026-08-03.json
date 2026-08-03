@@ -1,0 +1,71 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T08:33:56Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3",
+      "queue_id": "V3-EXQ-869a",
+      "claim_ids": ["MECH-267"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- both named mechanisms confirmed active at runtime, neither perturbs the CEM elite-selection value function that actually decides which candidates survive refit",
+        "biological_reference": "clear -- Pfeiffer & Foster 2013, Tambini 2019, Olafsdottir 2018, Mattar & Daw 2018, Wikenheiser & Redish 2015 (the last is the specific lit basis for the horizon-depth mechanism just built and shown insufficient alone)",
+        "prerequisites": "present -- SD-004, SD-032a, MECH-261, MECH-092 all IMPLEMENTED",
+        "implementation": "complete for both named mechanisms (noise-scale 2026-04-20, horizon-depth 2026-08-02, both confirmed firing via mechanism_activation check); the elite-selection scoring criterion itself was never named by the claim and remains unbuilt",
+        "environment": "adequate -- 30 seeds, unchanged design from V3-EXQ-869, clean C0/C1 separation preserved",
+        "measurement": "excellent -- new mechanism-activation check confirms both mechanisms fire non-trivially (effective_horizon varies 2/3/4 by mode) before trusting the C1 verdict",
+        "integration": "partially coupled but unstable -- CEM elite-refit's iterative convergence toward a mode-independent value function is the suspected shared cause across both 869 and 869a",
+        "scale": "untested axis -- num_cem_iterations has only ever been measured at 1 and 3; no intermediate value (e.g. 2) has ever been run"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Wikenheiser & Redish 2015 (theta-cycle look-ahead distance scales with goal distance) for horizon-depth; Mattar & Daw 2018 (prioritized replay, gain/need mode-dependent) for the broader mode-conditioned-content claim",
+        "dependencies": ["SD-004", "SD-032a", "MECH-261", "MECH-092"],
+        "is_formal_import": false,
+        "divergence": "none identified -- both mechanisms are direct biological translations, not formal-concept imports; the wash-out is attributed to an REE architectural property (CEM elite-refit's mode-independent value function), not a biology mismatch",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-869a (2026-08-03, confirmed autopsy failure_autopsy_V3-EXQ-869a_2026-08-03): retest of V3-EXQ-869 with BOTH named mechanisms (noise-scale + horizon-depth, the latter built 2026-08-02 per 869's own routing) confirmed active at runtime. Production-settings (iters=3) content persistence still washes out, nearly identical numbers to 869's noise-scale-only result. epistemic_category retained as competence_implementation_gap (user-confirmed, not yet substrate_ceiling); evidence_direction non_contributory. Routed to a GOV-FANOUT-1 discrimination portfolio (3 legs: iteration-count, mode-aware scoring, partitioned pools) rather than a third sequential same-question letter -- see fanout_recommendation in the linked JSON artifact.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "implementation_hint": "No substrate build recommended this cycle -- the open question is WHICH locus fix (if any) addresses the wash-out, not that a named build is missing. A follow-up autopsy on the fan-out portfolio's results should fill this field once a leg discriminates a specific fix."
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "MECH-267 carries 0 prior substrate_ceiling autopsies (869's reading was competence_implementation_gap, which does not count under R1-R3). This target's own recommended category is also competence_implementation_gap (user-confirmed, not upgraded), so the ceiling-hit count remains 0 and the brake does not fire. Flagged explicitly: a third same-question letter attempting yet another single upstream mechanism (without addressing the elite-selection criterion itself) would be exactly the pattern the brake exists to stop -- hence this autopsy routes to a discrimination portfolio instead of a fourth sequential letter."
+      },
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H1: the wash-out is iteration-count dependent (num_cem_iterations=2 or lower would preserve content) -- untested, only iters=1 and iters=3 have ever been measured",
+          "H2: the CEM elite-selection value function itself needs an explicit mode-dependent term (not merely a windowed view of an already mode-independent score, which is what the horizon-depth mechanism does)",
+          "H3: mode-independence is structural to shared elite-refit -- hard-partitioning candidate pools per mode (no cross-mode elite mixing during refit) would preserve differentiation"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "H1", "axis": "selection", "sketch": "same DV/design/seeds as 869a, add num_cem_iterations=2 condition; null = gaps at iters=2 are as flat as iters=3"},
+          {"hypothesis": "H2", "axis": "representation", "sketch": "add an explicit mode-dependent term to the CEM elite-selection value function (not a scoring window) and re-measure C1 at iters=3; null = still washes out"},
+          {"hypothesis": "H3", "axis": "algorithm", "sketch": "hard-partition CEM candidate pools per mode with no cross-mode elite mixing during refit, re-measure C1 at iters=3; null = still washes out even fully partitioned"}
+        ],
+        "note": "GOV-FANOUT-1: fan out a diverse portfolio (each leg declares its null; design-audit coverage+aliasing before queuing) instead of one sequential re-pose. This is the second consecutive identical wash-out on this claim after closing a confirmed implementation gap (869 -> 869a), which is exactly the shape a single best-guess re-letter risks compounding rather than resolving. User confirmed this routing choice over a single best-guess re-letter (869b) or a stop/demotion-review path."
+      },
+      "learning_extracted": [
+        "Two consecutive same-signature wash-outs after closing a confirmed implementation gap is stronger evidence than either FAIL alone, without yet being conclusive proof of a structural ceiling (user declined to upgrade the category this cycle).",
+        "num_cem_iterations has only ever been tested at its two extremes (1 and 3); no run has ever asked whether the wash-out is iteration-count-dependent.",
+        "Both built mechanisms perturb the CEM elite-refit's inputs (initial variance, scoring window) -- neither perturbs its decision rule (the value function that ranks and retains elites). If mode-independence lives in the decision rule, no amount of upstream input-shaping will survive enough refit iterations. Generalizable design principle for any future mode-conditioning mechanism layered on an iterative-refit optimizer.",
+        "Re-derive brake does not fire (0 prior substrate_ceiling hits for MECH-267) but is flagged: a third single-mechanism same-question letter would be the pattern it exists to stop.",
+        "Granularity-debt recurrence trigger does not fire -- neither the 869 nor the 869a target reads `weakened`; this is one recurring structural property, not evidence the claim needs splitting."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
