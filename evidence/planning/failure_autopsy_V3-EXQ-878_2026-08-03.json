@@ -1,0 +1,67 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T10:35:00Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_878_mech332_efference_aic_dissociation_20260803T023041Z_v3",
+      "queue_id": "V3-EXQ-878",
+      "claim_ids": ["MECH-332"],
+      "failed_criterion": "negative_control",
+      "four_layer_diagnosis": {
+        "claim_alignment": "untested (Pathway 2 / D1) ; intact (Pathway 1 / D2, passed 3/3 seeds)",
+        "biological_reference": "clear -- Wolpert efference-copy attenuation (Pathway 1) + PAG/RVM descending modulation triggered by sustained committed threat-approach (Pathway 2, De Preter & Heinricher 2024), both directly cited, non-formal",
+        "prerequisites": "present but not engaged -- MECH-090 (BetaGate commit-entry) and MECH-342 (commitment-release coupling) are implemented/implemented_validated elsewhere per substrate_queue.json; did not fire in this arena/schedule",
+        "implementation": "complete -- both pathway modules (E2HarmSForward/ARC-033, AICAnalog/SD-032c) exist and are independently wireable, code-verified fresh against agent.py this run",
+        "environment": "likely inadequate -- 8x8 arena, 2 hazards, 3 resources, 150 steps/ep, 50 eval episodes; first-of-lineage, no prior calibration for this arena's exposure requirement",
+        "measurement": "adequate for Pathway 1; latent (non-blocking) hygiene gap for Pathway 2 -- z_harm_s_ratio silently defaults to 1.0 on empty committed-sample data, currently screened by the non-degeneracy gate",
+        "integration": "not exercised -- Pathway 2 never fired, so D3 (co-activation independence) is untested",
+        "scale": "likely insufficient -- P0+P1=180 training episodes may be below the exposure/competence level needed for E3 to sustain commitment near threat in this arena"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Pathway 1: Wolpert/Kawato efference-copy forward-model attenuation (spinal dorsal horn / S1-insula). Pathway 2: pgACC->PAG->RVM descending inhibitory circuit, contextual behavioral-state gating (De Preter & Heinricher 2024)",
+        "dependencies": ["E3 commitment state (BetaGate elevated, MECH-090)", "sustained threat-approach trajectory"],
+        "is_formal_import": false,
+        "divergence": "none -- biology supports the mechanism; the test's own behavioral precondition (sustained E3 commitment) did not arise within this schedule, not a mechanism-absent signature",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-03, V3-EXQ-878, confirmed failure_autopsy_V3-EXQ-878_2026-08-03]: First experiment against this claim. FAIL via self-route substrate_not_ready_requeue (non_degenerate=false): E3's commitment gate (BetaGate/MECH-090) never elevated during eval in either AIC-active arm across all 3 seeds (n_committed_steps=0 vs floor=8), so Pathway 2's claim-intrinsic trigger (sustained committed threat-approach) never occurred -- Pathway 2 (SD-021/AICAnalog descending modulation) remains UNTESTED, not falsified. Pathway 1 (efference-copy comparator, MECH-256/SD-029) DID get a valid test and passed cleanly (D2, 3/3 seeds). non_contributory; PROMOTES/DEMOTES NOTHING. Routed /queue-experiment V3-EXQ-878a: calibration pilot to find a schedule/arena exposure that reliably produces sustained E3 commitment in this arena, before repeating the full dissociation. Companion action: v3_pending/hold_pending_v3_substrate (2026-05-19) is stale -- both pathway substrates are confirmed implemented and wireable; recommend lifting.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "Substrate (MECH-090 BetaGate commit-entry, MECH-342 commitment-release coupling, AICAnalog/SD-032c, E2HarmSForward/ARC-033) already implemented and validated elsewhere. This is a schedule/arena calibration gap for the MECH-332 lineage specifically, not a missing build.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "MECH-332's Pathway-2 test has a claim-intrinsic precondition (sustained E3 commitment via BetaGate) not guaranteed by beta_gate_bistable=True alone -- needs arena/schedule calibration this first-of-lineage run did not yet have.",
+        "Pathway 1 (efference-copy comparator, MECH-256/SD-029) is fully functional and cleanly dissociable -- D2 passes in all 3 seeds whenever its own non-degeneracy condition is met -- a genuine positive buried inside the overall FAIL.",
+        "Latent (non-blocking) measurement gap: z_harm_s_ratio's silent 1.0 fallback on empty committed-sample data should emit NaN/None so a future threshold/gate change can't silently launder a zero-commitment run into a false 'no attenuation' reading.",
+        "Recording note: claims.yaml's v3_pending/hold_pending_v3_substrate gate (2026-05-19) is stale relative to the now-confirmed substrate mapping; recommend governance lift it as a companion action (user-confirmed 2026-08-03)."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
