@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -38,10 +38,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -56,10 +56,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -75,10 +75,10 @@ closure_plan:
       status: in-progress
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -119,10 +119,10 @@ closure_plan:
       status: in_progress
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -141,10 +141,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -159,10 +159,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -176,10 +176,10 @@ closure_plan:
       status: deferred
       severity: low
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -194,10 +194,10 @@ closure_plan:
       status: assembling
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -227,10 +227,10 @@ closure_plan:
       status: done
       severity: low
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -245,10 +245,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:
@@ -264,10 +264,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-871_2026-08-02"
-        verdict: "non_contributory/measurement_test_design_defect"
-        next: "routing=queue-experiment"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-871a_2026-08-03"
+        verdict: "non_contributory/competence_implementation_gap"
+        next: "routing=implement-substrate"
         brake: "fired"
         needs_review: false
       join:

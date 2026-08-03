@@ -1,6 +1,6 @@
 # Closure-Plan Drift Report
 
-Generated: 2026-08-02T16:57:27Z
+Generated: 2026-08-03T11:33:07Z
 
 This report flags closure_plan nodes whose `owner_exq` has reached a terminal state (manifest landed and / or failure_autopsy artifact present) but whose `status` is still non-terminal. Nodes that self-tag as Case 3 (legitimately non-terminal pending upstream substrate or successor EXQs) and nodes whose owner_exq manifest is non-contributory / superseded / inconclusive are recorded under Suppressed instead, not Drifted. A separate date-aware section, `Stale since last update`, flags non-terminal nodes (including suppressed ones) where a later-lettered owner_exq sibling reached terminal state or a confirmed failure_autopsy touching the node's `unblocks_claims` post-dates the node's `last_updated` -- the class of staleness that hid goal_pipeline:GAP-2 on 2026-06-03. The report also flags plans missing a top-level `closure_plan.last_updated` field.
 
@@ -18,14 +18,15 @@ Nodes whose `owner_exq` reached a terminal state but where suppression rules say
 |------|------|--------|-----------|-----------------|
 | self_attribution_plan.md | `self_attribution:GAP-1` | blocked | V3-EXQ-445h | case_3_self_tag |
 
-## Stale since last update -- review (2)
+## Stale since last update -- review (3)
 
 Non-terminal nodes (including ones Suppressed above) where newer evidence landed that the node frontmatter may not have absorbed: a later-lettered owner_exq sibling reached terminal state (lineage advanced), and / or a confirmed failure_autopsy touching the node's `unblocks_claims` is dated after the node's `last_updated`. Review each: update owner_exq / status / resume_condition and bump `last_updated`, or (if the new evidence genuinely does not change the node) bump `last_updated` to acknowledge it. Not counted as drift.
 
 | plan | node | status | owner_exq | node last_updated | why |
 |------|------|--------|-----------|-------------------|-----|
-| commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | _none_ | 2026-06-25 | failure_autopsy_V3-EXQ-871_2026-08-02.json (2026-08-02) reclassified MECH-090; failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | in_progress | _none_ | 2026-07-24 | failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4` | in-progress | _none_ | 2026-06-25 | failure_autopsy_V3-EXQ-871_2026-08-02.json (2026-08-02) reclassified MECH-090; failure_autopsy_V3-EXQ-869a_2026-08-03.json (2026-08-03) reclassified MECH-267; failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267; (+1 more) |
+| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | in_progress | _none_ | 2026-07-24 | failure_autopsy_V3-EXQ-869a_2026-08-03.json (2026-08-03) reclassified MECH-267; failure_autopsy_V3-EXQ-869_2026-08-02.json (2026-08-02) reclassified MECH-267 |
+| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | upstream-blocked | _none_ | 2026-08-02 | failure_autopsy_V3-EXQ-436c_2026-08-03.json (2026-08-03) reclassified ARC-045, MECH-166, SD-017 |
 
 ## Assembly frontier -- resting, not drift (10)
 

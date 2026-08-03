@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-02T11:53:46Z
+Generated: 2026-08-03T11:33:09Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -39,7 +39,7 @@ Ordered by phase, then severity. This is the answer to "what is left."
 
 | plan | node | title | status | phase | sev | owner_exq | active blocker | last_updated |
 |------|------|-------|--------|-------|-----|-----------|----------------|--------------|
-| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A-precision-diagnostic` | Why is log10_precision_mean bit-identical across channel levels in 802? Harness  | in_progress | 0 | informational | V3-EXQ-848, V3-EXQ-848a | depends_on: arc_005_control_plane_routing:GAP-A | 2026-08-02 |
+| arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-A-precision-diagnostic` | Why is log10_precision_mean bit-identical across channel levels in 802? Harness  | in_progress | 0 | informational | V3-EXQ-848, V3-EXQ-848a, V3-EXQ-848b (recommende | depends_on: arc_005_control_plane_routing:GAP-A | 2026-08-03 |
 | arc_005_control_plane_routing_plan.md | `arc_005_control_plane_routing:GAP-B` | Which channel carries it? Per-channel leave-one-out ablation grid, RE-SCOPED to  | in_progress | 1 | load-bearing | V3-EXQ-846 | depends_on: arc_005_control_plane_routing:GAP-A | 2026-07-31 |
 | self_attribution_plan.md | `self_attribution:GAP-1` | ARC-033 vs ARC-058 path arbitration (forensic 445h read) | blocked | 1 | high | V3-EXQ-445h | Same upstream substrate gates as GAP-2. 2026-05-11 forensic read of EXQ-445h surfaced that | 2026-06-23 |
 | sd_037_axis_b_sustained_threat_curriculum_plan.md | `sd_037_axis_b:P2` | Phase 2 (re-application) -- deterministic p70 recalibration over the Phase-1b ma | blocked | 2 | high |  | depends_on: sd_037_axis_b:P1b | 2026-06-05 |
@@ -54,12 +54,12 @@ Ordered by phase, then severity. This is the answer to "what is left."
 | global_workspace_jlens_plan.md | `global_workspace_jlens:B` | Experiment B -- workspace-ablation cliff (cliff vs graceful degradation; the SD- | blocked |  | load-bearing |  | Resume ONLY after GATE-B builds + smoke-tests the SD-027/MECH-254 V3 top-k access gate. Th | 2026-07-09 |
 | commitment_closure_plan.md | `commitment_closure:GAP-4` | OCD battery completeness (V3-EXQ-460..468) + MECH-090 commit-entry conjunction | in_progress |  | high |  | Advances/closes on the V3-EXQ-460k RESULT -- the LIVE in-flight de-commit falsifier (QUEUE | 2026-06-25 |
 | global_workspace_jlens_plan.md | `global_workspace_jlens:GATE-B` | SD-027 / MECH-254 V3 boundary top-k access-gate build (use_boundary_access_gate, | open |  | high |  | ext: competence-localization: V3-EXQ-724 (queued) + a competent all-ON substrate -- see cr | 2026-07-10 |
-| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-07-10 |
+| sleep_substrate_plan.md | `sleep_substrate:GAP-2` | SD-017 retest cohort (V3-EXQ-265a PASS 2026-05-09; V3-EXQ-418l + 436a reclassifi | upstream_blocked |  | high |  | Gate corrected 2026-05-30: prior gate 'V3-EXQ-543l contributory PASS' is dead. failure_aut | 2026-08-02 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-H` | ARC-065 diversity-generation cluster: MECH-313 / MECH-314 substrates landed; Q-0 | partial |  | medium |  | PARTIAL 2026-06-08. Q-044/MECH-314-family leg is satisfied by V3-EXQ-604c PASS on validate | 2026-07-20 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-I` | ARC-064 bottom-up rule-discovery cluster (MECH-316 / MECH-317 / MECH-318 absorpt | blocked_pending_substrate |  | medium |  | BLOCKED ON arc_062_rule_apprehension:GAP-B (status blocked_pending_substrate -- rule-creat | 2026-06-23 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-K` | MECH-319 simulation-mode rule-write-gating: substrate landed; V3-EXQ-628 evidenc | in_progress |  | medium |  | IN-PROGRESS 2026-06-08. V3-EXQ-628 has satisfied the MECH-319 replay/write-gate evidence s | 2026-06-19 |
 | behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-C` | Theory 3 / Layer C: missing tonic noise floor (MECH-313 LC-NE analog) | in_progress |  | medium |  | REFRESHED 2026-06-27 (the stale '603q is QUEUED / AWAITING RUN+REVIEW' framing below is SU | 2026-07-10 |
-| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium | V3-EXQ-629c queued 2026-07-21 (gate-cleared 2026 | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-07-24 |
+| commitment_closure_plan.md | `commitment_closure:GAP-4-battery` | OCD-battery completeness: the *b behavioural cohort (460b/461/463b/464b/466b/467 | in_progress |  | medium |  | 466e RAN + PASSED (governance-cycle-20260625T0420Z). The SD-034 residue-discharge battery  | 2026-07-24 |
 | infant_substrate_plan.md | `infant_substrate:GAP-13` | EXQ-ISEF-004: novelty bonus calibration (Goldilocks sweep; identify optimal nove | in_progress |  | medium |  | Re-pointed 2026-06-09. Routing substrate landed + load-bearing-ready (V3-EXQ-648a C2 PASS; | 2026-07-20 |
 | infant_substrate_plan.md | `infant_substrate:GAP-14` | EXQ-ISEF-005: 4-phase curriculum vs flat parameter baselines (gate-criterion sat | blocked_pending_substrate |  | medium |  | 2026-05-27 governance: V3-EXQ-591 ran 20260526T184231Z FAIL/does_not_support (substrate-un | 2026-07-21 |
 | arc_062_rule_apprehension_plan.md | `arc_062_rule_apprehension:GAP-J` | MECH-312 precision-gating family registered (MECH-312a / MECH-312b / MECH-312c / | blocked |  | low |  | depends_on: arc_062_rule_apprehension:GAP-B | 2026-05-17 |
@@ -71,8 +71,8 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=queue-experiment | exhausted |  | 2026-07-06 |
-| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=queue-experiment | built |  | 2026-06-23 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | exhausted |  | 2026-07-06 |
+| commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=implement-substrate | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:GENERATION` | GENERATION face (the missing 6th face, MECH-458): per-candidate strate | assembling | routing=queue-experiment | blocked_on_upstream |  |  |
@@ -161,11 +161,12 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (1)
+## Plans WITHOUT closure_plan frontmatter (2)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/e3_fresh_select_migration_plan.md`
+- `evidence/planning/explorer_ui_improvement_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
 

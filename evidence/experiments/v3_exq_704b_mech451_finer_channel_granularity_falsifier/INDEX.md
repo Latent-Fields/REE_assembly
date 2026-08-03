@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_704b_mech451_finer_channel_granularity_falsifier
 
-Generated: `2026-08-02T20:39:45.146808Z`
+Generated: `2026-08-03T11:32:49.695169Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

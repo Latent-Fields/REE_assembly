@@ -1,6 +1,6 @@
 {
   "schema_version": "development_map/v1",
-  "generated_at": "2026-07-30T19:17:12Z",
+  "generated_at": "2026-08-03T11:33:10Z",
   "contract": "Derived public index only. Claim state, evidence, and schedules remain canonical in the cited repository records.",
   "sources": [
     "docs/CURRENT_FRONT.md",
@@ -10,7 +10,7 @@
   ],
   "frontier": {
     "headline": null,
-    "gate": "The two most obvious candidate actions from Step 3 \u2014 re-running V3-EXQ-817/819 with corrected objectives/gates \u2014 are **already queued and claimed** (`V3-EXQ-817a`, `V3-EXQ-819a`, both `status: claimed` in the live queue as of this run)",
+    "gate": "No substrate-build recommendation this cycle",
     "questions": [
       {
         "id": "competence_floor",
@@ -19,10 +19,45 @@
           "MECH-457",
           "INV-088"
         ],
-        "surviving": 3,
+        "surviving": 1,
         "initial": 20,
         "convergence": "circling",
         "is_hero": true
+      },
+      {
+        "id": "arc005_precision_channel_measurement_resolution",
+        "title": "ARC-005 precision-channel measurement resolution",
+        "claims": [
+          "ARC-005"
+        ],
+        "surviving": 1,
+        "initial": 1,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "arc071-commit-latch-persistence",
+        "title": "ARC-071 commit-latch persistence: wiring vs readout",
+        "claims": [
+          "MECH-163",
+          "Q-085"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "arc071-commit-latch-postfix-persistence",
+        "title": "ARC-071 commit-latch: does fix (a) restore persistence?",
+        "claims": [
+          "MECH-090",
+          "ARC-071"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
       },
       {
         "id": "arousal-variance-amplifier",
@@ -149,6 +184,74 @@
         "is_hero": false
       },
       {
+        "id": "inv088_evaluator_degeneracy_cause",
+        "title": "108a evaluator degeneracy: undertrained vs dim-ceiling",
+        "claims": [
+          "INV-088",
+          "MECH-135"
+        ],
+        "surviving": 1,
+        "initial": 3,
+        "convergence": "refining",
+        "is_hero": false
+      },
+      {
+        "id": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+        "title": "SD-076 drift-source magnitude gap (full-loop vs smoke)",
+        "claims": [
+          "MECH-204",
+          "SD-076"
+        ],
+        "surviving": 3,
+        "initial": 3,
+        "convergence": "indeterminate",
+        "is_hero": false
+      },
+      {
+        "id": "mech267_content_persistence_cem_refit",
+        "title": "MECH-267 content persistence vs CEM refit",
+        "claims": [
+          "MECH-267"
+        ],
+        "surviving": 3,
+        "initial": 5,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
+        "id": "mech322_replay_carveout_and_gate_validity",
+        "title": "MECH-322 replay carve-out AND-gate validity",
+        "claims": [
+          "MECH-322"
+        ],
+        "surviving": 1,
+        "initial": 1,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "mech428_subgoal_bootstrap_seeding",
+        "title": "MECH-428 bootstrap seeding",
+        "claims": [
+          "MECH-428"
+        ],
+        "surviving": 1,
+        "initial": 1,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
+        "id": "mech472_heldout_acquisition_floor_reliability",
+        "title": "MECH-472 acquisition-floor reliability (corner geometry)",
+        "claims": [
+          "MECH-472"
+        ],
+        "surviving": 1,
+        "initial": 1,
+        "convergence": "static",
+        "is_hero": false
+      },
+      {
         "id": "policy_decomposition_discrimination",
         "title": "Policy decomposition R1-vs-R5",
         "claims": [
@@ -172,6 +275,17 @@
         "is_hero": false
       },
       {
+        "id": "q086-zharma-calibration-vs-ecological",
+        "title": "z_harm_a saturation: calibration vs ecology",
+        "claims": [
+          "Q-086"
+        ],
+        "surviving": 1,
+        "initial": 2,
+        "convergence": "narrowing",
+        "is_hero": false
+      },
+      {
         "id": "zworld_underdifferentiation_cause",
         "title": "z_world under-differentiation cause",
         "claims": [
@@ -188,22 +302,22 @@
   "metrics": [
     {
       "label": "Build",
-      "value": "104 / 130",
+      "value": "115 / 140",
       "detail": "modules recorded as built"
     },
     {
       "label": "Prove",
-      "value": "76.2%",
+      "value": "76.9%",
       "detail": "weighted closure, not an overall score"
     },
     {
       "label": "Narrow",
-      "value": "35 / 46",
+      "value": "47 / 66",
       "detail": "rival explanations still standing"
     },
     {
       "label": "Decide",
-      "value": "7",
+      "value": "11",
       "detail": "design choices currently recorded as ready"
     }
   ],
@@ -433,23 +547,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "INV-034",
-              "title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "invariant_or_foundation",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 11,
-              "depends_on": [
-                "INV-032",
-                "ARC-030",
-                "MECH-112",
-                "Q-021"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "INV-043",
               "title": "REE architecture enables but does not guarantee ethical development; without a developmental phase in which the agent experiences love from caregivers and internalises the belief that it is loveable, the architectural capacity for ethics (INV-025-029) may resolve to survival, domination, or indifference instead.",
               "status": "candidate",
@@ -543,6 +640,25 @@
               "additional_dependencies": 0
             },
             {
+              "id": "INV-050",
+              "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "invariant_or_foundation",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 5,
+              "depends_on": [
+                "INV-049",
+                "INV-044",
+                "SD-017",
+                "MECH-120",
+                "MECH-121",
+                "MECH-123"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "INV-059",
               "title": "Mutual frame-maintenance signaling is necessary for play to function as distinct from manipulation: unilateral play declaration without partner agreement masks real harm as synthetic.",
               "status": "candidate",
@@ -597,7 +713,7 @@
       "id": "architecture",
       "title": "Architecture",
       "summary": "System commitments and mechanism-level design.",
-      "total": 285,
+      "total": 293,
       "buckets": [
         {
           "key": "active",
@@ -613,7 +729,7 @@
               "claim_class": "architecture_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 89,
+              "incoming_dependencies": 90,
               "depends_on": [
                 "INV-008",
                 "INV-009",
@@ -781,8 +897,8 @@
         {
           "key": "closed",
           "label": "Closed record",
-          "count": 24,
-          "more_count": 14,
+          "count": 25,
+          "more_count": 15,
           "nodes": [
             {
               "id": "MECH-094",
@@ -828,7 +944,7 @@
               "claim_class": "mechanism_general",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 23,
+              "incoming_dependencies": 24,
               "depends_on": [
                 "ARC-021",
                 "MECH-033",
@@ -959,8 +1075,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 175,
-          "more_count": 165,
+          "count": 182,
+          "more_count": 172,
           "nodes": [
             {
               "id": "ARC-035",
@@ -1144,7 +1260,7 @@
       "id": "substrate",
       "title": "Substrate",
       "summary": "Implementation and test-bed work that makes a question testable.",
-      "total": 181,
+      "total": 184,
       "buckets": [
         {
           "key": "active",
@@ -1333,6 +1449,22 @@
               "additional_dependencies": 0
             },
             {
+              "id": "SD-020",
+              "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
+              "status": "stable",
+              "phase": "substrate_unspecified",
+              "claim_class": "substrate_or_design",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 8,
+              "depends_on": [
+                "SD-011",
+                "SD-019",
+                "ARC-016"
+              ],
+              "additional_dependencies": 0
+            },
+            {
               "id": "SD-008",
               "title": "LatentStack EMA alpha for z_world must be >= 0.9 to preserve event responsiveness.",
               "status": "stable",
@@ -1343,22 +1475,6 @@
               "incoming_dependencies": 7,
               "depends_on": [
                 "SD-005"
-              ],
-              "additional_dependencies": 0
-            },
-            {
-              "id": "SD-020",
-              "title": "z_harm_a encodes affective surprise (precision-weighted PE), not raw accumulated harm state. The affective stream training target is the mismatch between predicted and actual harm accumulation, making E3 urgency respond to unexpectedness of threat, not just magnitude.",
-              "status": "stable",
-              "phase": "substrate_unspecified",
-              "claim_class": "substrate_or_design",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 6,
-              "depends_on": [
-                "SD-011",
-                "SD-019",
-                "ARC-016"
               ],
               "additional_dependencies": 0
             },
@@ -1409,8 +1525,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 163,
-          "more_count": 153,
+          "count": 166,
+          "more_count": 156,
           "nodes": [
             {
               "id": "ARC-049",
@@ -1424,6 +1540,23 @@
               "depends_on": [
                 "MECH-094",
                 "INV-059"
+              ],
+              "additional_dependencies": 0
+            },
+            {
+              "id": "INV-034",
+              "title": "An agent that only avoids harm but cannot sustain prospective goal-directed motivation cannot exercise genuine agency; goal maintenance is a necessary co-condition for ethical agency alongside harm-avoidance.",
+              "status": "candidate",
+              "phase": "unset",
+              "claim_class": "substrate_gap_marked",
+              "lifecycle": "governance_evidence_bearing",
+              "attention_rank": 4,
+              "incoming_dependencies": 12,
+              "depends_on": [
+                "INV-032",
+                "ARC-030",
+                "MECH-112",
+                "Q-021"
               ],
               "additional_dependencies": 0
             },
@@ -1531,25 +1664,6 @@
               "additional_dependencies": 0
             },
             {
-              "id": "INV-050",
-              "title": "Sleep phase architecture is regulated by three distinct drives -- circadian timing, homeostatic synaptic pressure, and a learning/model-update demand drive proportional to daily prediction error accumulation (Model Error Load, MEL) -- and only the third drive determines whether the overnight update phase is sufficient for the error burden generated during waking.",
-              "status": "candidate",
-              "phase": "unset",
-              "claim_class": "substrate_gap_marked",
-              "lifecycle": "governance_evidence_bearing",
-              "attention_rank": 4,
-              "incoming_dependencies": 5,
-              "depends_on": [
-                "INV-049",
-                "INV-044",
-                "SD-017",
-                "MECH-120",
-                "MECH-121",
-                "MECH-123"
-              ],
-              "additional_dependencies": 0
-            },
-            {
               "id": "MECH-173",
               "title": "Medications that suppress REM sleep (anticholinergics, MAOIs, most antidepressants at therapeutic doses, benzodiazepines) selectively impair MECH-123 precision recalibration -- the most downstream pipeline phase -- and thereby accelerate the earliest dementia prodrome: overconfident contextual attributions before overt memory loss.",
               "status": "candidate",
@@ -1590,7 +1704,7 @@
       "id": "evidence",
       "title": "Evidence",
       "summary": "V3 claims being exposed to an experimental verdict.",
-      "total": 227,
+      "total": 237,
       "buckets": [
         {
           "key": "active",
@@ -1776,8 +1890,8 @@
         {
           "key": "closed",
           "label": "Closed record",
-          "count": 14,
-          "more_count": 4,
+          "count": 15,
+          "more_count": 5,
           "nodes": [
             {
               "id": "SD-011",
@@ -1787,7 +1901,7 @@
               "claim_class": "active_v3_closure",
               "lifecycle": "governance_evidence_bearing",
               "attention_rank": 4,
-              "incoming_dependencies": 72,
+              "incoming_dependencies": 73,
               "depends_on": [
                 "SD-010",
                 "ARC-027"
@@ -1954,8 +2068,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 156,
-          "more_count": 146,
+          "count": 165,
+          "more_count": 155,
           "nodes": [
             {
               "id": "MECH-269",
@@ -2143,7 +2257,7 @@
       "id": "future",
       "title": "Future shape",
       "summary": "Later phases and conditional work, not a promised schedule.",
-      "total": 179,
+      "total": 184,
       "buckets": [
         {
           "key": "active",
@@ -2162,8 +2276,8 @@
         {
           "key": "planned",
           "label": "Planned / conditional",
-          "count": 179,
-          "more_count": 169,
+          "count": 184,
+          "more_count": 174,
           "nodes": [
             {
               "id": "MECH-095",
@@ -2347,24 +2461,24 @@
   ],
   "record_counts": {
     "active": 182,
-    "closed": 47,
-    "planned": 713
+    "closed": 49,
+    "planned": 737
   },
   "archive": {
-    "snapshot_count": 86,
-    "latest": "2026-07-30",
+    "snapshot_count": 89,
+    "latest": "2026-08-03",
     "earliest": "2026-02-28",
     "recent_dates": [
+      "2026-08-03",
+      "2026-08-02",
+      "2026-08-01",
       "2026-07-30",
       "2026-07-29",
       "2026-07-28",
       "2026-07-27",
       "2026-07-26",
       "2026-07-25",
-      "2026-07-22",
-      "2026-07-21",
-      "2026-07-20",
-      "2026-07-19"
+      "2026-07-22"
     ]
   }
 }

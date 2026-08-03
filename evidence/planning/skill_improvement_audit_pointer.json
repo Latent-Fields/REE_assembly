@@ -744,6 +744,39 @@
         "write-count"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-869a_2026-08-03|0|4": {
+      "artifact": "failure_autopsy_V3-EXQ-869a_2026-08-03",
+      "claim_ids": [
+        "MECH-267"
+      ],
+      "embedded_ids": [
+        "869",
+        "869a"
+      ],
+      "flags": [
+        "recurring"
+      ],
+      "item_index": 4,
+      "run_id": "v3_exq_869a_mech267_mode_conditioning_content_persistence_retest_20260802T195943Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "Granularity-debt recurrence trigger does not fire -- neither the 869 nor the 869a target reads `weakened`; this is one recurring structural property, not evidence the claim needs splitting.",
+      "tokens": [
+        "does",
+        "fire",
+        "granularity-debt",
+        "needs",
+        "neither",
+        "property",
+        "reads",
+        "splitting",
+        "structural",
+        "target",
+        "trigger",
+        "weakened"
+      ]
+    },
     "autopsy|failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30|0|0": {
       "artifact": "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30",
       "claim_ids": [],
@@ -940,7 +973,7 @@
       ]
     }
   },
-  "last_swept_at": "2026-08-02T11:54:30Z",
+  "last_swept_at": "2026-08-03T11:33:33Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
@@ -983,8 +1016,10 @@
     "failure_autopsy_V3-EXQ-047m_2026-07-11.json": 1783807666.0461442,
     "failure_autopsy_V3-EXQ-059c-533_2026-07-26.json": 1785088570.613919,
     "failure_autopsy_V3-EXQ-108a_2026-08-02.json": 1785668029.7057362,
+    "failure_autopsy_V3-EXQ-108b_2026-08-03.json": 1785746715.678587,
     "failure_autopsy_V3-EXQ-418m_2026-06-05.json": 1780682880.2668154,
     "failure_autopsy_V3-EXQ-436b_2026-08-02.json": 1785667957.8075736,
+    "failure_autopsy_V3-EXQ-436c_2026-08-03.json": 1785752327.570451,
     "failure_autopsy_V3-EXQ-445h_2026-06-19.json": 1781879536.2040417,
     "failure_autopsy_V3-EXQ-455a_2026-05-25.json": 1784537630.5768764,
     "failure_autopsy_V3-EXQ-460b-461b-464b-466b_2026-06-04.json": 1780554770.920178,
@@ -1223,31 +1258,47 @@
     "failure_autopsy_V3-EXQ-844_2026-08-01.json": 1785581002.897169,
     "failure_autopsy_V3-EXQ-845_2026-08-01.json": 1785580756.74853,
     "failure_autopsy_V3-EXQ-847_2026-08-01.json": 1785618255.552016,
+    "failure_autopsy_V3-EXQ-847a-863_2026-08-02.json": 1785708780.6305263,
     "failure_autopsy_V3-EXQ-848_2026-08-01.json": 1785593903.1713493,
+    "failure_autopsy_V3-EXQ-848a_2026-08-03.json": 1785747991.4715595,
     "failure_autopsy_V3-EXQ-850_2026-08-01.json": 1785580903.0216296,
     "failure_autopsy_V3-EXQ-851_2026-08-01.json": 1785589282.0414045,
     "failure_autopsy_V3-EXQ-853_2026-08-01.json": 1785589092.7081091,
     "failure_autopsy_V3-EXQ-856_2026-08-01.json": 1785593787.3325984,
     "failure_autopsy_V3-EXQ-857_2026-08-01.json": 1785593840.8093538,
     "failure_autopsy_V3-EXQ-857a_2026-08-02.json": 1785664393.9891696,
-    "failure_autopsy_V3-EXQ-858_2026-08-02.json": 1785664466.861154,
+    "failure_autopsy_V3-EXQ-858_2026-08-02.json": 1785745543.8523893,
     "failure_autopsy_V3-EXQ-859_2026-08-01.json": 1785609288.4020472,
     "failure_autopsy_V3-EXQ-860_2026-08-01.json": 1785609266.6568217,
     "failure_autopsy_V3-EXQ-861_2026-08-01.json": 1785621128.3828628,
+    "failure_autopsy_V3-EXQ-861a_2026-08-03.json": 1785745606.5687885,
     "failure_autopsy_V3-EXQ-862_2026-08-02.json": 1785667906.5832808,
+    "failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02.json": 1785744509.8587706,
     "failure_autopsy_V3-EXQ-864_2026-08-01.json": 1785622787.8423915,
     "failure_autopsy_V3-EXQ-866_2026-08-02.json": 1785668076.9784958,
+    "failure_autopsy_V3-EXQ-866a_2026-08-03.json": 1785753450.3913603,
     "failure_autopsy_V3-EXQ-867_2026-08-02.json": 1785667853.5209358,
+    "failure_autopsy_V3-EXQ-867a_2026-08-03.json": 1785746788.2897456,
     "failure_autopsy_V3-EXQ-869_2026-08-02.json": 1785665807.8567712,
+    "failure_autopsy_V3-EXQ-869a_2026-08-03.json": 1785746129.1276183,
     "failure_autopsy_V3-EXQ-871_2026-08-02.json": 1785670519.0616593,
+    "failure_autopsy_V3-EXQ-871a_2026-08-03.json": 1785750817.702033,
+    "failure_autopsy_V3-EXQ-873_2026-08-03.json": 1785753508.358407,
+    "failure_autopsy_V3-EXQ-874_2026-08-03.json": 1785752411.6759791,
+    "failure_autopsy_V3-EXQ-877_2026-08-03.json": 1785753388.3781018,
+    "failure_autopsy_V3-EXQ-878_2026-08-03.json": 1785753397.1385481,
+    "failure_autopsy_V3-EXQ-882_2026-08-03.json": 1785753529.3023105,
+    "failure_autopsy_V3-EXQ-884_2026-08-03.json": 1785750199.6627288,
     "failure_autopsy_backlog_2026-07-24.json": 1784969983.4732661,
     "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30.json": 1785527184.2260716,
     "failure_autopsy_batch-793a-817-819_2026-07-26.json": 1785065754.4007711,
     "failure_autopsy_batch-822a-826-817a-827_2026-07-26.json": 1785085692.9710379,
     "failure_autopsy_batch9_2026-06-12.json": 1784537630.594963,
     "failure_autopsy_competence-objective-cluster-734-737b-742a_2026-07-22.json": 1784878048.3548896,
+    "failure_autopsy_dacc-cluster-862a-870a_2026-08-03.json": 1785754479.1684783,
     "failure_autopsy_f-dominance-conversion-cluster_2026-06-20.json": 1784537630.581889,
     "failure_autopsy_gapA-cluster-604b-648a-649_2026-06-07.json": 1780842100.0952914,
+    "failure_autopsy_mech025-cluster-876-671b_2026-08-03.json": 1785748835.6335511,
     "failure_autopsy_mech457-retention-confirms-788-792a_2026-07-25.json": 1785023783.3349857,
     "failure_autopsy_mech457-retention-portfolio_2026-07-20.json": 1784561746.8989909,
     "failure_autopsy_mech463-exogenous-inertness_2026-07-20.json": 1784561531.923593,
@@ -1258,5 +1309,5 @@
     "failure_autopsy_v3-exq-838_2026-07-29.json": 1785362475.8221185,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1785622787.3774955
+  "seen_review_tracker_mtime": 1785673110.4389727
 }

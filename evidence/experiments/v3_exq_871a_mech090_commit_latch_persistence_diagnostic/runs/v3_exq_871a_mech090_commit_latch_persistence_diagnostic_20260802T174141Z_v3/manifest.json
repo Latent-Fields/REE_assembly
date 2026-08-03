@@ -1,0 +1,95 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic",
+  "run_id": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-02T17:41:41Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-090",
+    "ARC-071"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-090": "unknown",
+    "ARC-071": "unknown"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "mixed_across_seeds",
+    "preconditions": [
+      {
+        "name": "arc071_chunk_commitments_observed_supra_floor",
+        "description": "Gate (a)-analog: the probe agent must register some genuine ARC-071 CHUNK-SOURCED commitment (agent.e3._persistent_committed_trajectory present AND its metadata source == 'arc071_chunk') during the probe, or there is nothing ARC-071-specific to discriminate H1 from H2 with. Scoped to chunk-sourced commitments specifically (not any MECH-090 commitment) because _persistent_committed_trajectory is set on ANY committed selection regardless of candidate provenance -- confirmed by this script's own --dry-run smoke test, which at the toy 2-episode formation schedule formed zero chunks yet still registered ordinary commitments.",
+        "control": "Count of probe ticks with agent.e3._persistent_committed_trajectory not None AND metadata['source'] == 'arc071_chunk', worst seed.",
+        "measured": 147.0,
+        "threshold": 10.0,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_sufficient_commitments_observed",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_discrimination_reached",
+        "load_bearing": true,
+        "passed": false
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_sufficient_commitments_observed": true,
+      "C2_discrimination_reached": true
+    }
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "d10fb38f3e07a46b8dc272af93a460cab986cfc06b6827be453e12e8a53a4c56",
+  "substrate_commit": {
+    "commit": "a1a660b1b996616f7b4d139db1f2f2a762b40d1a",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 17954,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 2,
+    "goal_state_present": false
+  }
+}

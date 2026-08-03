@@ -1802,7 +1802,7 @@
     "type": "invariant"
   },
   "INV-034": {
-    "assembly_state": "remaining",
+    "assembly_state": "enriching",
     "emergent_from": [
       "ARC-030"
     ],
@@ -2419,7 +2419,7 @@
       "SD-014",
       "SD-015"
     ],
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "invariant_type": "emergent",
     "pending_substrate_reconfirmation": true,
     "status": "candidate",
@@ -3389,7 +3389,7 @@
   },
   "MECH-102": {
     "assembly_state": "awaiting_substrate",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "active",
     "subject": "ethics.violence_as_terminal_error_correction",
     "title": "Violence is a terminal error-correction mechanism triggered only when all other channels fail.",
@@ -3660,7 +3660,7 @@
     "type": "mechanism_hypothesis"
   },
   "MECH-135": {
-    "assembly_state": "enriching",
+    "assembly_state": "gated_v3",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "planning.e1_e2_parallel_rollout",
@@ -4723,7 +4723,7 @@
     "assembly_state": "mature",
     "assembly_status": "built",
     "awaiting": "SD-033a",
-    "epistemic_stance": "shown",
+    "epistemic_stance": "believed",
     "status": "stable",
     "subject": "cingulate.mode_conditioned_write_gating",
     "title": "Mode-conditioned write gating: the operating-mode variable from the salience-network coordinator (SD-032a) determines which substrates can write to E3, episodic memory, policy updates, and autonomic coupling. Generalises MECH-094 hypothesis tag to a mode-conditioned family of write gates. Operating mode is implemented as a soft probability vector over {external_task, internal_planning, internal_replay, offline_consolidation}, not a one-hot categorical.",
@@ -4781,8 +4781,8 @@
   },
   "MECH-267": {
     "assembly_state": "mature",
-    "assembly_status": "in_progress",
-    "awaiting": "MECH-090",
+    "assembly_status": "built",
+    "awaiting": "SD-MECH267-HORIZON-DEPTH",
     "epistemic_stance": "believed",
     "status": "provisional",
     "subject": "hippocampal.mode_conditioned_proposals",
@@ -5013,7 +5013,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-039",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "hippocampal.awake_ghost_goal_probe_search",
     "title": "Waking hippocampal search allocates a minority probe budget to top ghost-goal entries, seeding proposals around unresolved but still-wanted anchors instead of relying on pure current-anchor CEM or random probe noise.",
@@ -6159,7 +6159,9 @@
   },
   "MECH-427": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "assembly_status": "queued",
+    "awaiting": "SD-092",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "goal.cross_level_subgoal_credit",
     "title": "cross_level_subgoal_credit",
@@ -6168,6 +6170,8 @@
   },
   "MECH-428": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-092",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "goal.subgoal_bootstrapped_seeding",
@@ -6831,7 +6835,7 @@
     "type": "open_question"
   },
   "Q-021": {
-    "assembly_state": "remaining",
+    "assembly_state": "enriching",
     "epistemic_stance": "asked",
     "status": "open",
     "subject": "drive.behavioral_flatness_under_pure_avoidance",
@@ -8344,6 +8348,26 @@
     "title": "Control plane must produce a coalition/topology control output -- a temporary functional interaction graph specifying which subsystems are recruited and how they communicate -- distinct from and complementary to parametric modulation (precision, gain, threshold, horizon).",
     "type": "design_decision",
     "what_would_answer": "See MECH-481 for the operative falsifier (a 4-arm ablation distinguishing monitoring-only / parametric-only / untyped-coalition / typed-coalition conditions). This claim is refuted at the architectural level if the parametric-only arm matches the typed-coalition arm on type-selective corrective performance -- i.e. if coalition/topology control does no discriminative work beyond what existing parametric modulation already provides.\n"
+  },
+  "SD-092": {
+    "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-092",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.cross_level_subgoal_credit",
+    "title": "Cross-level subgoal credit: GoalState gains a second, PARENT (superordinate) attractor distinct from the existing (child/subgoal-level) z_goal, and a discrete-event credit channel that pulls the parent toward an attained subgoal's own representation -- the substrate MECH-427/MECH-428 need. ree_core goal.py change, bit-identical by default.",
+    "type": "design_decision",
+    "what_would_answer": "See MECH-427/MECH-428 for the operative falsifiers (EXP-0385/EXP-0390). This design-decision claim is about whether the architecture needs a distinct parent/child goal-representation split with an up-level credit channel at all -- it is weakened if the existing single-level z_goal plus MECH-217's within-level spread proves sufficient to reproduce the Bandura & Schunk (1981) subgoal-maintenance/formation effects once measured (i.e. if a flat representation with within-level credit alone already shows the predicted lift, the second attractor and cross-level channel are unneeded architecture).\n"
+  },
+  "SD-093": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "goal.progress_velocity_maintenance",
+    "title": "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring.",
+    "type": "design_decision",
+    "what_would_answer": "See MECH-426's what_would_answer for the operative falsifier (EXP-0384: 2x2 VELOCITY-ON/OFF x SPARSE/DENSE-confirmation ablation). This architectural claim is refuted if the instantaneous goal_proximity signal alone (no velocity/rate term) proves sufficient to sustain long-horizon superordinate-goal commitment in the sparse-confirmation regime -- i.e. if the rate-derived channel does no discriminative work beyond what the existing instantaneous wanting signal already provides.\n"
   },
   "SENT-0": {
     "assembly_state": "remaining",

@@ -1,137 +1,158 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-07-30T19:17:12Z",
+  "generated_at": "2026-08-03T11:33:10Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 130,
-      "built_modules": 104,
-      "fraction_built": 0.8,
+      "total_modules": 140,
+      "built_modules": 115,
+      "fraction_built": 0.8214,
       "state_counts": {
-        "proposed": 26,
-        "implemented": 74,
-        "implemented_pending_validation": 17,
-        "validated": 13
+        "proposed": 25,
+        "implemented": 80,
+        "implemented_pending_validation": 20,
+        "validated": 15
       },
-      "build_proof_gap": 91,
-      "build_proof_gap_note": "104 modules built, 91 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 100,
+      "build_proof_gap_note": "115 modules built, 100 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
     "prove": {
       "question": "is the claim proven? (conservative, unchanged)",
-      "closure_pct": 76.2,
-      "node_total": 82,
-      "node_done_weighted": 62.5,
+      "closure_pct": 76.9,
+      "node_total": 83,
+      "node_done_weighted": 63.8,
       "source": "serve.read_closure() (read-only mirror; closure weights untouched)",
       "authoritative_view": "/closure"
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 35,
-      "total_initial": 64,
-      "total_initial_at_registration": 46,
-      "total_fanout_added": 18,
-      "total_resolved_out": 27,
-      "reduction_pct_vs_current": 42.2,
-      "net_narrowing_pct": 23.9,
+      "total_surviving": 47,
+      "total_initial": 85,
+      "total_initial_at_registration": 66,
+      "total_fanout_added": 19,
+      "total_resolved_out": 36,
+      "total_confirmed": 17,
+      "reduction_pct_vs_current": 42.4,
+      "net_narrowing_pct": 28.8,
       "convergence_classes": {
-        "narrowing": 5,
-        "static": 5,
+        "narrowing": 9,
+        "static": 9,
         "circling": 3,
+        "indeterminate": 1,
+        "refining": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "35 alive against 46 originally enumerated, and against 64 including 18 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 14
+      "honest_pair_note": "47 alive against 66 originally enumerated, and against 85 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 24
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 7,
-      "open_questions": 14
+      "ready": 11,
+      "open_questions": 24
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 63,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 84,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-13",
-      "surviving": 61,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 82,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-15",
-      "surviving": 57,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 78,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-16",
-      "surviving": 56,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 77,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-17",
-      "surviving": 53,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 74,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-18",
-      "surviving": 47,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 68,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-19",
-      "surviving": 43,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 64,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-20",
-      "surviving": 42,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 63,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-24",
-      "surviving": 41,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 62,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-25",
-      "surviving": 40,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 61,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-27",
-      "surviving": 38,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 59,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
       "date": "2026-07-29",
-      "surviving": 37,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "surviving": 58,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     },
     {
-      "date": "2026-07-30",
-      "surviving": 35,
-      "closure_pct": 76.2,
-      "build_pct": 80.0
+      "date": "2026-07-31",
+      "surviving": 57,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
+    },
+    {
+      "date": "2026-08-01",
+      "surviving": 55,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
+    },
+    {
+      "date": "2026-08-02",
+      "surviving": 49,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
+    },
+    {
+      "date": "2026-08-03",
+      "surviving": 47,
+      "closure_pct": 76.9,
+      "build_pct": 82.1
     }
   ],
   "questions": [
@@ -226,14 +247,15 @@
         }
       ],
       "fanout_growth_note": "competence_floor is a hero campaign that has accumulated multiple fan-out growth events (769 drive/env/credit legs; now the 819 instrument-validity leg). Denominator growth here signals a campaign still searching for the competence root -- read the reduction ratio with that caveat.",
-      "net_narrowing_ratio": 0.5714,
-      "bits_removed_vs_registration": 1.22,
+      "net_narrowing_ratio": 0.8571,
+      "bits_removed_vs_registration": 2.81,
       "convergence": {
         "convergence_class": "circling",
         "reason": "a growth event added ONLY legs re-entering already-eliminated families",
         "families_closed": [
           "constitution",
           "instrumentation",
+          "process",
           "representation",
           "world"
         ],
@@ -444,13 +466,13 @@
           }
         ]
       },
-      "surviving": 3,
-      "alive": 2,
-      "resolved_out": 14,
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 16,
       "confirmed": 4,
-      "reduction_numerator": 14,
-      "reduction_ratio": 0.7,
-      "bits_removed": 2.74,
+      "reduction_numerator": 16,
+      "reduction_ratio": 0.8,
+      "bits_removed": 4.32,
       "synthesis": {
         "surviving_label": "retention of an installed competent policy -- which of four loci (value estimator / update constraint / auxiliary persistence / consummatory binding) sets the decay half-life",
         "text": "Floor = success-dependence + capacity-to-convert. FIVE axes eliminated (capacity 769; drive-schedule 770; reward-coupling 771; credit-horizon 772; approach-primitive 781). RND (H-optim) remains necessary-not-sufficient. THE QUESTION SHAPE CHANGED on 2026-07-18: V3-EXQ-780's raw_view arm installed a BC prior at 20.933 post-BC -- the campaign's FIRST supra-lift-target observation, 3/3 seeds -- which RL refinement then eroded to 11.667. So a competence-directed behavioural prior CAN produce competence; the substrate does not RETAIN it. The ten prior legs were adjudicated on TERMINAL competence, a DV structurally incapable of distinguishing a failed manipulation from a successful one that decayed -- it manufactures nulls at a constant rate independent of the science, and those nulls drove the rival enumeration the recurrence overlay counts. The live frontier is the four-leg RETENTION portfolio (anti-aliased: value estimator / update constraint / auxiliary persistence / consummatory binding). SECOND, UNOWNED explanandum: the same run's z_world arm reached post_bc 0.583 with 0/3 seeds taking -- the manipulation never installed at all. That is an installability question, not a retention one, and no leg currently owns it. RESOLVED 2026-07-25 (failure_autopsy_mech457-retention-confirms-788-792a): all four retention loci adjudicated. CONFIRMED (process family): value estimator -- a distributional critic retains 1.839 vs a flat scalar critic 0.525 (788); update constraint -- a strong KL-anchor to the installed policy retains 0.895 vs unconstrained 0.509, non-monotone dose-response (792a). ELIMINATED (constitution family): auxiliary persistence (789), consummatory binding (821). The retention half-life is set by PROCESS-family mechanisms; the question is decidable_now.",
@@ -731,26 +753,28 @@
           "label": "competence retention is a dose-dependent consolidation process (over-training deepens the trace)",
           "desc": "MECH-476 DOSE arm (Krakauer 2005 over-training paradigm ported): BC-install at 300/600/900 episodes, then identical unconstrained RL refinement; DV is retained_fraction TRAJECTORY. SUPPORTED if retained_fraction_mean is monotone non-decreasing in dose and grows by >= the discrimination margin; WEAKENED if invariant to dose.",
           "axis": "curriculum",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-836"
+            "V3-EXQ-836",
+            "V3-EXQ-836a"
           ],
-          "basis": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
+          "basis": "SUPERSEDES the 836 fixed-margin read above. V3-EXQ-836a (FAIL, non_degenerate, all 3 dose arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (max(1.5*sd_delta, floor), the gap 836 itself surfaced): retained_fraction_mean = [0.712 (300), 0.430 (600), 0.512 (900)], non-monotone, effect -0.1998 well inside the noise-scaled margin 0.7162 required to call growth. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-dose-response as the retention-driving mechanism. Read jointly with H-mech476-novelty-tagging (836d) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         },
         {
           "hid": "H-mech476-novelty-tagging",
           "label": "a temporally-close novelty exposure consolidates an otherwise sub-threshold (weak) install via behavioural tagging",
           "desc": "MECH-476 NOVELTY arm (Moncada & Viola 2007 behavioural-tagging paradigm ported): fixed weak BC install (150 episodes, deliberately sub-threshold), then an offline novelty-paired vs novelty-unpaired consolidation window (SD-083 OfflineEWCAnchor, novelty-gated capture). SUPPORTED if the novelty-paired arm retains a larger fraction than unpaired.",
           "axis": "drive",
-          "state": "alive",
+          "state": "eliminated",
           "evidence_runs": [
-            "V3-EXQ-836c"
+            "V3-EXQ-836c",
+            "V3-EXQ-836d"
           ],
-          "basis": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
+          "basis": "SUPERSEDES the 836c fixed-margin read above. V3-EXQ-836d (FAIL, non_degenerate, both arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (the gap 836c itself surfaced): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818, and robust across all 10 leave-one-out folds. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-novelty-tagging as the retention-driving mechanism. Read jointly with H-mech476-dose-response (836a) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
           "children": [],
-          "met_elimination_bar": false
+          "met_elimination_bar": true
         }
       ],
       "decision": {
@@ -908,9 +932,10 @@
           "axis": "selection",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-737"
+            "V3-EXQ-851",
+            "V3-EXQ-858"
           ],
-          "basis": "the live root candidate (see memory: pursue BG-like commitment over F-dominance); co-adjudicated by V3-EXQ-737.",
+          "basis": "2026-08-02 (failure_autopsy_V3-EXQ-857a+858, session determined-ritchie-55a3a6): V3-EXQ-851's and V3-EXQ-858's own substrate_not_ready_requeue self-routes are COMPOUND-GATE ARTIFACTS (an all-4-rungs-simultaneous AND active_frac>=0.8 requirement), not evidence of a dead mechanism -- raw per-cell data (851: excluded_count 17-28 at active_frac 0.24-0.58; 858: excluded_count 17.8-29.0 at active_frac 0.24-0.84, both matching the healthy V3-EXQ-654j baseline magnitude) show MECH-448/449 robustly engaged at a reduced duty cycle. 858's own C2 (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003) -- suggestive but not decisive (only 1/3 clears the driver's own 2-of-3 pass bar). Stays alive pending V3-EXQ-863 (route_source='none' comparator, queued, deprioritized) and a corrected readiness-gate spec for this GOV-FANOUT-1 lineage.",
           "children": [],
           "met_elimination_bar": false
         },
@@ -2093,23 +2118,1000 @@
         "live_gate": "Blocked on reachability: RV(z_world, operating_mode) has not moved under any lever tried (824 use_invalidation_trigger, 824a use_anchor_sets, 838 use_per_region_vs + temporal ablations). A cheap empirical per-pair reach pre-flight must find a lever that moves operating_mode (-> H1 build) or confirm none does (-> H2 reframe) before Outcome A/B can be scored.",
         "observation_bottleneck": "RV(z_world, operating_mode) is bit-identical across arms under all levers tried -- the DV never moves, so Q-081 Outcome A vs B cannot be scored. Any new leg must gate a full run on a cheap empirical per-pair reach assertion (at least one arm moves rv_primary on the SPECIFIC measured pair), never a blanket reach flag."
       }
+    },
+    {
+      "qid": "arc071-commit-latch-persistence",
+      "title": "Does the MECH-090 commit latch actually hold an injected ARC-071 chunk atomically for more than one tick, or does the experiment's own readout misreport a persisting commitment as resetting every step?",
+      "short_title": "ARC-071 commit-latch persistence: wiring vs readout",
+      "claims": [
+        "MECH-163",
+        "Q-085"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": {
+        "surviving_label": "H1 confirmed (ree_core commit-latch wiring gap); H2 refuted (readout is faithful)",
+        "text": "H1 (ree_core wiring defect) CONFIRMED via direct instrumentation; H2 (readout artifact) REFUTED (0/160 mismatches between the experiment's read function and ground-truth attribute reads). Root cause: agent.py's between-E3-tick stepping branch never consults the SD-084 persistent trajectory handle (unlike the MECH-321 hook, which already does), so _committed_step_idx never advances past its first post-commit value; compounded by E3 unconditionally re-deliberating and re-committing a fresh trajectory object on every E3 tick with no already-committed short-circuit. Fix is two-part (agent.py fallback + arc071_chunking.py baseline flag) plus one open, undiagnosed question (should E3 skip re-selection when already committed) -- routed to /implement-substrate (substrate_queue.json arc071_chunk_commit_latch_persistence, diagnosis_correction field) rather than applied this session, because ree_core/agent.py was under an active claim by a concurrent session's merge at diagnosis time.",
+        "under_test": null
+      },
+      "hypotheses": [
+        {
+          "hid": "H-commitlatch-wiring",
+          "label": "H1: commit-latch wiring defect",
+          "desc": "The step-index advance / re-deliberation suppression in select_action does not hold across ticks under train_mode=False + use_chunk_proposal_injection=True + a continued StepHarness run; a genuinely new commitment is issued every tick.",
+          "axis": "instrumentation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+          ],
+          "basis": "Direct instrumentation (seeds 101/505, A_HIER_S2, forced guaranteed-selectable 3-step chunk + forced commit) shows agent._committed_step_idx never advances past 1 across 80 ticks / 8-10 E3 re-deliberation cycles per seed, and a BRAND NEW trajectory object (distinct id()) is installed on every single E3 tick despite the identical candidate being re-selected -- confirming the commit-latch does not hold across ticks in this configuration. Root cause: agent.py's between-E3-tick stepping branch never falls back to e3._persistent_committed_trajectory (unlike the MECH-321 hook), so the step-index-advance increment is never reached; compounded by no re-selection short-circuit on E3 ticks. control_passed: true (the forced-commit / guaranteed-candidate manipulation check unambiguously isolates the mechanism); non_degenerate: true (160 real ticks exercised, 18 real E3 re-deliberation cycles observed). met_elimination_bar left false -- this maps to 'supports', not an elimination target; see evidence/planning/diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md for the full trace.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-commitlatch-readout-artifact",
+          "label": "H2: experiment readout artifact",
+          "desc": "The internal commitment state persists correctly across ticks, but _committed_chunk_state()/_segment_commitments()'s read path does not correctly observe it, producing an artefactual reset-every-tick reading.",
+          "axis": "measurement",
+          "state": "eliminated",
+          "evidence_runs": [
+            "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+          ],
+          "basis": "_committed_chunk_state() (the experiment's own read function) was directly compared against ground-truth attribute reads (e3._committed_trajectory, e3._persistent_committed_trajectory, agent._committed_step_idx read independently, outside the read path) at every one of 160 ticks across seeds 101/505 -- 0 genuine mismatches. The readout faithfully reports the real, broken substrate state; there is no genuinely-persisting commitment for it to misreport. H2 is refuted.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is the ARC-071 chunk-injection commit-latch persistence pathway a genuine ree_core defect (route implement-substrate) or an experiment-script measurement defect (route queue-experiment redesign of the readout only)?",
+        "distance_phrase": "DECIDED: H1 confirmed, H2 refuted. Distance to CLOSED is now implementation (agent.py fallback + arc071_chunking.py flag), not further discrimination.",
+        "live_gate": "requires the H1/H2 discriminating probe (fanout_recommendation.suggested_probes) to run",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "title": "Does SD-076's asymmetric-EMA waking-confidence-inflation mechanism create absolute overconfidence expressible by MECH-204's broadcast correction, once the headroom-clamp defect is repaired?",
+      "short_title": "SD-076 drift-source magnitude gap (full-loop vs smoke)",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "indeterminate",
+        "reason": "1 axis label(s) not in the declared family map (world) -- extend `axis_families.map` to classify.",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "representation"
+        ],
+        "unclassified_axes": [
+          "world"
+        ],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H1-f1-recalibration-damping",
+          "label": "F1/REM recalibration interaction damps SD-076 drift",
+          "desc": "rem_precision_recalibration_step=0.25, ON in every arm by design necessity, partially undoes SD-076's waking-induced rv drift before eval; the isolated smoke never exercises this loop.",
+          "axis": "integration",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-850"
+          ],
+          "basis": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H2-insufficient-training-exposure",
+          "label": "Training budget too short for full drift accumulation",
+          "desc": "N_TRAIN_EPS=30, K=1 single-fire sleep may be too short for the asymmetric EMA to accumulate as much drift as the smoke's own update sequence reached.",
+          "axis": "world",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-853",
+            "V3-EXQ-860"
+          ],
+          "basis": "STRENGTHENED 2026-08-01 by V3-EXQ-860, a confound-corrected redesign of the V3-EXQ-853 probe: holds N_TRAIN_EPS fixed at 794a's original 30 (F1/REM recalibration firing count UNCHANGED from 794a, decoupling H1's axis) and instead raises STEPS_PER_EP 200->1000 (5x), reaching the SAME total exposure (30000 waking steps) as 853's own 5x N_TRAIN_EPS change via a single clean axis. RESULT: closure toward the smoke's target collapsed from 853's confounded 12-22% down to 2.5-2.9% once F1-firing count was held fixed. Since the only design difference between 853 and 860 is which axis absorbed the 5x exposure increase (episode count, which also multiplies F1 firings, vs episode length, which does not), this is a clean controlled comparison directly implicating F1-firing count (H1's axis), not raw exposure duration (H2's axis), as the driver of 853's partial signal. H2 is therefore weakened more strongly and more cleanly than by 853 alone. 860 ALSO failed inflation_lowers_rv, but WRONG-SIGNED (negative in both arms, vs 850/853's small-positive-but-sub-threshold readings) -- a separate, new, undiagnosed puzzle (see failure_autopsy_V3-EXQ-860_2026-08-01) that does not undermine the closure-fraction finding above, since that comparison does not depend on this precondition's sign. state stays alive per GOV-FROZEN-1's elimination bar (non_degenerate=false), but H2 is now the most clearly weakened of the three hypotheses. User-confirmed 2026-08-01: recommend /governance mark V3-EXQ-853's own evidence_direction as superseded by this cleaner result.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H3-wrong-mechanism-form",
+          "label": "Asymmetric-EMA is the wrong drift-source mechanism",
+          "desc": "The driver's own pre-registered fallback: if C1 fails at both LO and HI, a structurally different SD-076 mechanism (not asymmetric EMA) is owed.",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Literature synthesis (not an experimental run), commissioned by 794a's own fanout_recommendation: /lit-pull on expected magnitude/timescale of waking metacognitive overconfidence drift under sleep deprivation/fatigue (ree-v3/REE_assembly commit e84240108d, targeted_review_sd_076 + targeted_review_connectome_mech_204, 5 entries). Net read: the best-controlled human calibration literature (Baranski 1994/2007) finds NO significant waking confidence-calibration drift under acute deprivation, and Boardman 2024 shows the acute regime is specifically where drift is LEAST likely (chronic restriction is where it appears) -- both nudge AWAY from H3 (wrong mechanism form) and TOWARD H2, without eliminating H3. Jones et al 2006 (comparative overconfidence emerges ~19h into wakefulness) offers partial counter-support for a real drift phenomenon existing at all, with a construct-mismatch caveat. van der Helm et al 2011 supports MECH-204's general REM-active-recalibration architecture (noradrenergic, not serotonergic -- an honest caveat). Net: H3 weakened, not eliminated; independent of and consistent with 794a's own smoke-comparison finding. NOTE: the V3-EXQ-850 (H1) autopsy's registration_note/decision text (generated 2026-08-01T10:37:54Z) states this lit-pull was 'not yet started' -- that was already stale at the time it was written (the lit-pull landed 2026-08-01T00:07:47Z, ~10.5h earlier); this resolution corrects the record.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Which of H1 (F1-interaction damping), H2 (insufficient training exposure), or H3 (wrong mechanism form) explains why V3-EXQ-794a's full behavioural loop reached only about half the rv reduction the SD-076 headroom repair's own validation smoke demonstrated is achievable at this error scale -- and does the answer support retain_ree, hybridize, or retire_ree_claim for SD-076 under EVB-0454?",
+        "distance_phrase": "H2 is now clearly the weakest-supported hypothesis after a clean controlled comparison; H1 remains the most likely explanation by elimination but still lacks its own confirming evidence beyond the original partial signal; a separate small diagnostic on V3-EXQ-860's wrong-signed inflation_lowers_rv puzzle is chipped but not expected to resolve before the 2026-08-03T20:50:36Z deadline.",
+        "live_gate": "H1 partially probed 2026-08-01 (V3-EXQ-850): alive, partial signal, not confirmed/eliminated. H2 probed twice 2026-08-01 (V3-EXQ-853, then confound-corrected V3-EXQ-860): alive but now MORE STRONGLY weakened -- the decoupled comparison collapsed 853's 12-22% closure to 2.5-2.9%, cleanly implicating H1's axis (F1-firing count) rather than H2's (exposure duration) as the driver of 853's original partial signal. H3 resolved via lit-pull 2026-08-01 (e84240108d): alive, weakened by the best-controlled human calibration literature, not eliminated. H1 is now the best-supported of the three by process of elimination, though still not formally confirmed.",
+        "observation_bottleneck": "EVB-0454's 2026-08-03T20:50:36Z decision deadline is now very close. Governance will need to decide with H1 relatively favored by elimination but not independently confirmed, H2 clearly weakened, and H3 weakened-not-eliminated by literature."
+      }
+    },
+    {
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "title": "Is the V3-EXQ-664 z_harm_a saturation-and-inversion signature a calibration/representational pathology, or does it faithfully track ecological (hazard-density) chronic suffering?",
+      "short_title": "z_harm_a saturation: calibration vs ecology",
+      "claims": [
+        "Q-086"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-calibration-pathology",
+          "label": "calibration/representational pathology",
+          "desc": "z_harm_a stays pegged high with sub-floor CoV regardless of ecology (does not track hazard density)",
+          "axis": "measurement",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-857a"
+          ],
+          "basis": "857a's readiness gate (unpaired pooled-SD SNR) failed at the starkest possible gradient (num_hazards 0 vs 4, n=6 seeds), but a paired-by-seed reanalysis (the design already shares seeds identically across arms) clears the same K=2.0 bar (paired SNR=2.20). Once cleared, the driver's own discrimination logic resolves cleanly toward this branch: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is INVERTED (8.64 vs 7.41, higher not lower) relative to ARM_HARSH -- consistent with the original 2026-06-10 V3-EXQ-664 signature. USER-CONFIRMED 2026-08-02. A low-priority V3-EXQ-857b confirmatory pass (fixing the readiness statistic to be paired by default) is recommended but this reading is not contingent on it.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-faithful-ecological",
+          "label": "faithful chronic-suffering (ecological)",
+          "desc": "z_harm_a level and range genuinely track hazard density",
+          "axis": "measurement",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-857a"
+          ],
+          "basis": "Same paired-seed reanalysis that clears the readiness gate for the sibling hypothesis: ARM_BENIGN's z_harm_a level is higher, not lower, than ARM_HARSH (level_drop_frac negative) and CoV stays sub-floor -- the opposite of what a level/range tracking hazard density predicts. Discriminated away, not merely under-supported. USER-CONFIRMED 2026-08-02.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Is Q-086 answered (calibration, not ecology), or does it need V3-EXQ-857b's confirmatory paired-statistic re-run before governance treats it as closed?",
+        "distance_phrase": "0 discriminative experiments required -- reads answered from existing data pending a low-priority confirmatory pass",
+        "live_gate": "V3-EXQ-857b (low-priority, confirmatory only -- fixes the readiness statistic for future reuse in this lineage, does not re-litigate the question)",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "inv088_evaluator_degeneracy_cause",
+      "title": "Is MECH-135/INV-088's near-total evaluator-degeneracy (V3-EXQ-108a) caused by inadequate bespoke-loss training or a genuine world_dim=32 discriminative-granularity ceiling?",
+      "short_title": "108a evaluator degeneracy: undertrained vs dim-ceiling",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 1,
+      "fanout_growth_events": [
+        {
+          "recorded_utc": "2026-08-03T08:42:37Z",
+          "pre_registered_utc": "2026-08-02T12:16:43Z",
+          "fanout_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
+          "added_hids": [
+            "H-dynamics-collapse"
+          ],
+          "delta": 1,
+          "note": "108b's own disambiguation run eliminated both pre-registered hypotheses and surfaced a third, previously-unconsidered mechanism (E1 rollout-dynamics collapse) in the same run that resolves it -- registered and resolved together per Step 9b's same-cycle rule."
+        }
+      ],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "refining",
+        "reason": "3 families closed out; the latest growth opened fresh territory",
+        "families_closed": [
+          "constitution",
+          "instrumentation",
+          "representation"
+        ],
+        "families_touched": [
+          "instrumentation",
+          "representation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": [
+          {
+            "recorded_utc": "2026-08-03T08:42:37Z",
+            "fanout_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
+            "event_class": "refining",
+            "added": [
+              {
+                "hid": "H-dynamics-collapse",
+                "family": "constitution"
+              }
+            ],
+            "re_entered": [],
+            "families_already_dead": [
+              "instrumentation",
+              "representation"
+            ]
+          }
+        ]
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 2,
+      "confirmed": 1,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.6667,
+      "bits_removed": 1.58,
+      "synthesis": {
+        "surviving_label": "E1 forward-rollout dynamics collapse (new, third mechanism) -- neither pre-registered hypothesis; a single-step-trained dynamics model rolled out 30 steps beyond its training horizon at eval",
+        "text": "Both pre-registered hypotheses eliminated by V3-EXQ-108b (2026-08-02): the sanctioned-trained z_world encoder differentiates real states fine, ruling out both undertraining and a dimension ceiling. The actual bottleneck is E1's forward-rollout dynamics collapsing over the 30-step horizon -- a single-step-trained dynamics model applied far beyond its training horizon (a learning-signal/training-objective gap, not a representational-capacity one). Routed to /lit-pull (targeted_review_e1_forward_model_rollout_consistency) given no existing biology/ML lit entry covers this specific multi-step-rollout-consistency axis (the sibling targeted_review_e2_forward_model_action_divergence covers a related but distinct single-step action-divergence failure)."
+      },
+      "hypotheses": [
+        {
+          "hid": "H-undertrained-instrument",
+          "label": "undertrained instrument (a1)",
+          "desc": "108a's bespoke single-step E1 MSE loss (100 episodes) is inadequate to differentiate z_world; a properly-trained z_world (the sanctioned sd_zworld_warmup_optimizer_group route, already confirmed adequately-trained by V3-EXQ-819/819a) would show materially higher e1coe_score_var, clearing C3 (>=0.002).",
+          "axis": "representation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3"
+          ],
+          "basis": "108b used the SANCTIONED sd_zworld_warmup_optimizer_group training route (encoder_trained precondition met, world_encoder_max_abs_delta 0.22-0.24, holdout balanced accuracy 0.80-0.94) and C3 STILL failed (e1coe_score_var ~2.25e-14 vs 0.002 threshold) -- directly refutes 'the bespoke loss just wasn't adequate training'.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-dimension-ceiling",
+          "label": "genuine dim=32 discriminative-granularity ceiling (a2)",
+          "desc": "Even with the sanctioned-trained z_world (the SAME stack V3-EXQ-819/819a confirmed reaches only AUC 0.90 vs a ~48-57 achievable ceiling), e1coe_score_var stays near-degenerate -- world_dim=32 structurally cannot support enough discriminative capacity for 40 distinct 30-step rollouts to diverge in goal-proximity.",
+          "axis": "measurement",
+          "state": "eliminated",
+          "evidence_runs": [
+            "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3"
+          ],
+          "basis": "CR_real (antecedent contrast ratio on 40 real diverse z_world observations, same sanctioned-trained encoder) measured 0.19-0.20, far above the CR_REAL_FLOOR=1e-4 degeneracy floor in both seeds -- world_dim=32 clearly CAN support real-state differentiation, directly refuting 'dimension=32 is a structural ceiling'.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-dynamics-collapse",
+          "label": "E1 forward-rollout dynamics collapse (new, third mechanism)",
+          "desc": "Neither pre-registered hypothesis: the sanctioned-trained z_world encoder differentiates REAL states fine (CR_real ~0.19-0.20, healthy), but E1's forward-rollout DYNAMICS collapse distinct 30-step imagined action-sequence endpoints toward near-identical predictions (CR_rollout/CR_real ~2.6e-6 to 3.2e-6, code-verified against the CR_ROLLOUT_COLLAPSE_RATIO=0.1 threshold). Root cause traced in code: agent.e1 is trained ONLY via single-step MSE loss (_train_agent, 100 episodes, horizon=1) yet applied autoregressively 30 times at eval (_score_sequence_e1coe_with_endpoint) -- a single-step-trained dynamics model rolled out far beyond its training horizon, the classic model-based-RL compounding-error/mode-collapse failure. Independent of z_world's own representational capacity (INV-088's literal framing) -- the bottleneck is E1's training OBJECTIVE (learning-signal), not the representation.",
+          "axis": "learning-signal",
+          "state": "confirmed",
+          "evidence_runs": [
+            "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3"
+          ],
+          "basis": "Both antecedent checks (encoder_trained, real_zworld_nondegenerate) passed and both alternative hypotheses were eliminated by the same run's own decision tree (branch 3 hit exactly, code-verified in v3_exq_108b_mech135_inv088_zworld_disambiguation.py lines 846-853); confirmed in both seeds (cr_ratio 2.57e-6 / 3.18e-6).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Does swapping 108a's bespoke-trained z_world for the sanctioned sd_zworld_warmup_optimizer_group-trained stack resolve the near-total evaluator-degeneracy (var ~1.5e-14 vs 0.002 threshold), and does the antecedent contrast-ratio characterisation on 108a's own rollout endpoints match the 2026-07-18 zworld_near_static_characterisation low-and-untrainable signature?",
+        "distance_phrase": "Answered by V3-EXQ-108b: neither undertraining nor a dimension ceiling -- E1's forward-rollout dynamics collapse trajectory diversity over the 30-step horizon. Next step is a /lit-pull on multi-step/rollout-consistency training objectives before committing to a substrate fix.",
+        "live_gate": null,
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "arc071-commit-latch-postfix-persistence",
+      "title": "Does the landed fix (ree-v3 commit 278599a, use_persistent_committed_program_handle) restore meaningful multi-step ARC-071 commit-latch persistence under REAL organically-formed chunks, or does gap (b) (E3 unconditional re-commitment every E3 tick) still dominate?",
+      "short_title": "ARC-071 commit-latch: does fix (a) restore persistence?",
+      "claims": [
+        "MECH-090",
+        "ARC-071"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 2,
+      "initial_frozen_count_at_registration": 2,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.5,
+      "bits_removed_vs_registration": 1.0,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "instrumentation"
+        ],
+        "families_touched": [
+          "instrumentation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.5,
+      "bits_removed": 1.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-postfix-persistence-restored",
+          "label": "H1: fix (a) restores persistence",
+          "desc": "official_readout_mean_realised_length clears 3.0 in every cell once use_persistent_committed_program_handle=True is scoped correctly to the probe phase under organically-formed chunks -- the landed fallback (278599a) is sufficient and gap (b) (E3 unconditional re-commitment every E3 tick) does not, in practice, prevent meaningful persistence.",
+          "axis": "instrumentation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-871a"
+          ],
+          "basis": "Seed 101's apparent 'restoration' (mean_realised_length=6.372 >= 3.0 floor) is fully explained by a tick-rate confound, not genuine persistence: n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe EXACTLY in both seeds (113=103+10; 103=93+10), meaning every single E3 tick recreates the committed-trajectory object with zero exceptions in BOTH seeds -- there is no seed in which the object survives an E3 tick. Seed 101's higher readout is purely a product of that seed's lower e3_tick_rate (0.143 vs 0.633), not a different underlying mechanism. H1 as stated (the fix restores real persistence) is eliminated by this exact arithmetic.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-postfix-persistence-still-broken",
+          "label": "H2: fix (a) alone is insufficient",
+          "desc": "official_readout_mean_realised_length stays pinned near 1 even with the fix enabled and organic formation -- gap (b) (E3 unconditionally re-committing a new trajectory object every E3 tick, addressed separately by the still-default-off use_e3_reselection_shortcircuit flag from commit 31ed78e) dominates in practice.",
+          "axis": "instrumentation",
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-871a"
+          ],
+          "basis": "Gap (b) -- E3 unconditionally recreating a fresh committed-trajectory object at the AT-tick selection site -- is confirmed as universal and deterministic in both seeds (n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe exactly, both seeds), not merely 'dominant in some seeds'. Fix (a), the between-tick fast path, is confirmed correctly implemented (official readout and independent identity-based reading agree exactly in both seeds) -- what remains broken is upstream of the readout, at the AT-tick commit-creation site. Routed /implement-substrate (sd_id mech090-arc071-attick-persistent-handle-fix).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Does the landed fix (278599a) restore meaningful multi-step ARC-071 commit-latch persistence under organically-formed chunks (H1), or does gap (b) -- E3's unconditional re-commitment every E3 tick -- still dominate (H2)?",
+        "distance_phrase": "DECIDABLE (not yet decided -- awaits a human decision_log entry). V3-EXQ-871a confirms gap (b) universally in both seeds via exact arithmetic (n_genuine_commits == n_e3_ticks + n_episodes in both seeds); the apparent bistability was a tick-rate confound in the readout statistic, not real seed-dependent discrimination. H1 eliminated, H2 confirmed. Next step: /implement-substrate (mech090-arc071-attick-persistent-handle-fix), then re-validate with a tick-rate-normalised DV.",
+        "live_gate": "requires a redesigned probe (V3-EXQ-871a) that scopes use_persistent_committed_program_handle=True to the probe phase only, so formation replays V3-EXQ-841's proven 2/2-chunk dynamics instead of being suppressed by the flag's own formation-phase side effects",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "mech267_content_persistence_cem_refit",
+      "title": "Does MECH-267's mode-conditioned hippocampal proposal content survive HippocampalModule's CEM elite-refit at production settings, and if not, which locus (iteration count, scoring criterion, or pool architecture) is responsible?",
+      "short_title": "MECH-267 content persistence vs CEM refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 5,
+      "initial_frozen_count_at_registration": 5,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.4,
+      "bits_removed_vs_registration": 0.74,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 2 families",
+        "families_closed": [],
+        "families_touched": [
+          "process",
+          "representation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 2,
+      "confirmed": 0,
+      "reduction_numerator": 2,
+      "reduction_ratio": 0.4,
+      "bits_removed": 0.74,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech267-noise-only",
+          "label": "noise-scale-only modulation preserves content",
+          "desc": "CEM proposal noise-scale, scaled by operating_mode alone (without horizon-depth), preserves mode-conditioned content through production elite-refit (iters=3)",
+          "axis": "exploration",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-869"
+          ],
+          "basis": "V3-EXQ-869 (30 seeds): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C1 production (iters=3) failed flat (gaps -0.0003 to +0.0035 vs 0.01 floor). Confirmed autopsy failure_autopsy_V3-EXQ-869_2026-08-02: competence_implementation_gap, non_contributory -- noise-scale-only insufficient to survive production elite-refit.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech267-both-mechanisms-iters3",
+          "label": "noise-scale + horizon-depth (both mechanisms) preserve content at iters=3",
+          "desc": "Adding horizon-depth modulation (CEM elite-selection scoring-window depth) alongside noise-scale preserves mode-conditioned content through production elite-refit",
+          "axis": "readout",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-869a"
+          ],
+          "basis": "V3-EXQ-869a (30 seeds, both mechanisms confirmed active via mechanism_activation check): C0 passed cleanly (gaps 0.031-0.092 vs 0.015 floor, unchanged from 869); C1 production (iters=3) failed flat (gaps +0.0008 to +0.0024, -0.0037 vs 0.01 floor) -- nearly identical to 869's own C1 numbers despite the new mechanism genuinely firing. Confirmed autopsy failure_autopsy_V3-EXQ-869a_2026-08-03: competence_implementation_gap (user-confirmed, not upgraded to substrate_ceiling), non_contributory. Routed to a GOV-FANOUT-1 portfolio rather than a third same-question letter.",
+          "children": [],
+          "met_elimination_bar": true
+        },
+        {
+          "hid": "H-mech267-fewer-iters",
+          "label": "wash-out is iteration-count dependent",
+          "desc": "The content-persistence wash-out depends on num_cem_iterations itself; a lower iteration count (e.g. 2) would preserve mode-conditioned content that iters=3 erases",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- only iters=1 and iters=3 have ever been measured for this question; no intermediate value exists in any run to date. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H1.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech267-mode-aware-scoring",
+          "label": "elite-selection value function needs an explicit mode-dependent term",
+          "desc": "Windowing an already mode-independent score (horizon-depth's actual mechanism) is insufficient; the CEM elite-selection value function itself must carry an explicit mode-dependent term to survive refit",
+          "axis": "representation",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- both built mechanisms perturb CEM refit inputs (variance, scoring window), neither perturbs the decision rule (value function) that ranks and retains elites. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H2.",
+          "children": [],
+          "met_elimination_bar": false
+        },
+        {
+          "hid": "H-mech267-partitioned-pools",
+          "label": "mode-independence is structural to shared elite-refit",
+          "desc": "Cross-mode elite mixing during refit is itself the wash-out mechanism; hard-partitioning candidate pools per mode (no shared elite set) would preserve differentiation",
+          "axis": "algorithm",
+          "state": "alive",
+          "evidence_runs": [],
+          "basis": "Untested -- the most structurally different of the three legs, changing CEM's own architecture rather than any input to it. Suggested probe: failure_autopsy_V3-EXQ-869a_2026-08-03 fanout_recommendation H3.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Does the currently-implemented CEM-based hippocampal proposal pipeline preserve MECH-267's mode-conditioned content through production-settings elite-refit, and if not, which locus (iteration count / scoring criterion / pool architecture) fixes it?",
+        "distance_phrase": "2 of 2 tested upstream-signal mechanisms eliminated (noise-scale alone; noise-scale+horizon-depth together) -- both wash out identically at production iters=3. 3 untested loci remain, on 3 distinct design axes (selection/iteration-count, representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out.",
+        "live_gate": "H-mech267-fewer-iters, H-mech267-mode-aware-scoring, H-mech267-partitioned-pools -- three untested loci, not yet queued under new EXQ letters; a design-audit for coverage/aliasing across the three should precede queuing per GOV-FANOUT-1 Step 2.5b.",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "arc005_precision_channel_measurement_resolution",
+      "title": "Does the calibrated ARC-005 precision-routing channel (dACC goal-readout + serotonin) produce a monotonic precision response, and can the current 3-level Spearman-rho ladder design detect it?",
+      "short_title": "ARC-005 precision-channel measurement resolution",
+      "claims": [
+        "ARC-005"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-arc005-calibrated-channel-monotonic",
+          "label": "calibrated dACC goal-readout + serotonin channel routes precision monotonically",
+          "desc": "With dacc_goal_readout_weight=0.5 and dacc_goal_readout_normalize=True genuinely engaged (unlike V3-EXQ-848's silent-zero confound), channel 1 (5-HT + dACC goal-readout) produces a detectable monotonic log10-precision response across the L0/L1/L2 ladder",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-848a"
+          ],
+          "basis": "V3-EXQ-848a (30 cells, 10 units): calibration confirmed genuinely engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry. Only 1/10 units satisfied |rho|>=0.6, but 7/10 are positive-signed (6 at exactly rho=0.5, the second-highest value a 3-point ladder can produce short of a perfect ordering) vs 802's genuinely-null channels which showed bit-identical rho=0.0. Confirmed autopsy failure_autopsy_V3-EXQ-848a_2026-08-03: the result does not discriminate a real weak effect from noise at this ladder resolution -- an observation bottleneck (3-point Spearman-rho ceiling), not an elimination. Routed to /queue-experiment for a ladder-granularity redesign (candidate V3-EXQ-848b) rather than further substrate work.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does the calibrated ARC-005 precision channel route monotonically, or is the current 3-level ladder design too coarse to tell?",
+        "distance_phrase": "1 of 1 tested leg (calibrated channel, 3-level ladder) inconclusive -- 7/10 units positive-signed but clustered at the rho=0.5 resolution ceiling, insufficient to clear the 0.6 threshold short of a perfect ordering. Not yet decidable whether this reflects a real weak effect or noise; needs a finer-grained design.",
+        "live_gate": "A ladder-granularity redesign (5+ levels and/or a magnitude-based statistic replacing per-unit Spearman rho) is needed before this question can be decided -- not yet queued under a new letter.",
+        "observation_bottleneck": "3-point Spearman-rho ladder cannot resolve intermediate monotonic-signal strength from sampling noise -- both land at rho=0.5."
+      }
+    },
+    {
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "title": "Does repeated realistic-cadence subgoal-attainment credit bootstrap a structured parent (superordinate) goal attractor bottom-up (MECH-428)?",
+      "short_title": "MECH-428 bootstrap seeding",
+      "claims": [
+        "MECH-428"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech428-bootstrap-v1",
+          "label": "Bottom-up EMA credit accumulation nets out ahead of per-tick decay under realistic intermittent event rate",
+          "desc": "SUBGOAL_BOOTSTRAP arm recovers >=30% of FORCED_SEED's ceiling range on >=2/3 seeds (V3-EXQ-884 C1 criterion)",
+          "axis": "process",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-884"
+          ],
+          "basis": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test).",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does MECH-428's bottom-up bootstrap mechanism produce a materially structured parent under realistic event cadence?",
+        "distance_phrase": "1 of 1 tested leg inconclusive (precondition_unmet) -- awaiting substrate fix before a genuine test can run",
+        "live_gate": "A causal_grid_world.py substrate fix (SD-094: waypoint-arrival detection + ambient contamination gating) is needed before a genuine test can run -- not yet queued under a new letter.",
+        "observation_bottleneck": "causal_grid_world.py waypoint-arrival detection bug (grid-cell-type clobbered on premature transit) + undisabled ambient self-contamination mechanic (see SD-094)"
+      }
+    },
+    {
+      "qid": "mech322_replay_carveout_and_gate_validity",
+      "title": "Does MECH-322's sleep-replay carve-out AND-gate (record_replay_sequence) mint correctly under genuine valid conditions and fail closed under every invalid one?",
+      "short_title": "MECH-322 replay carve-out AND-gate validity",
+      "claims": [
+        "MECH-322"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech322-andgate-fires-and-fails-closed",
+          "label": "the carve-out mints under valid (a+b+c) conditions and refuses under every invalid combination",
+          "desc": "record_replay_sequence mints a replay_origin=True chunk when a real tracked high-value candidate exists during a genuine sleep phase, and refuses during wake, when the master switch is off, when no valid candidate exists, or when the value_tag is deliberately below threshold.",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-873"
+          ],
+          "basis": "V3-EXQ-873 (9 cells, 3 arms x 3 seeds): the load-bearing criterion's own readiness gate failed on a worst-of-3-seed candidate-availability precondition (1/3 seeds), but in the 2/3 seeds where the precondition held, the carve-out minted correctly with replay_origin=True, and every fail-closed branch (wake-refusal, master-switch-off, low-value, no-candidate) passed cleanly across all 9 cells. Confirmed autopsy failure_autopsy_V3-EXQ-873_2026-08-03: test-design defect (an overly strict SEED_PASS_FRACTION=1.0 worst-of-N-seed gate conflating a stochastic precondition with a deterministic plumbing check), not a substrate ceiling. Routed to /queue-experiment V3-EXQ-873a with a decoupled, fraction-based readiness gate and 6-8 seeds.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does MECH-322's AND-gate correctly implement all three ANDed conditions, or does it misbehave under some valid/invalid combination?",
+        "distance_phrase": "1 of 1 tested leg: 2/2 valid-precondition seeds gave a clean positive result; 1/3 correctly withheld per the gate's own design. Not yet decidable as a claim-level verdict because the readiness gate's own aggregation rule (not the mechanism) is what failed.",
+        "live_gate": "A re-run with a decoupled, fraction-based readiness gate and more seeds (V3-EXQ-873a) is needed to give this a clean confirming or falsifying read -- the current run's own gate design cannot cleanly test it at N=3.",
+        "observation_bottleneck": "Worst-of-3-seed readiness-precondition veto cannot distinguish a genuinely working AND-gate from a substrate ceiling when the precondition itself is naturally stochastic at small N."
+      }
+    },
+    {
+      "qid": "mech472_heldout_acquisition_floor_reliability",
+      "title": "Can the in-context vs held-out survival-competence acquisition floor be reliably cleared for MECH-472's promotion-gate test, or does per-seed environment difficulty in the 'corner' reef geometry make it too fragile at small N?",
+      "short_title": "MECH-472 acquisition-floor reliability (corner geometry)",
+      "claims": [
+        "MECH-472"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-mech472-corner-geometry-acquisition-reliable",
+          "label": "survival/avoidance competence in the 'corner' reef geometry (hazard_food_attraction=0.0) can be reliably acquired under a frozen-e2/REINFORCE recipe, clearing the 60%-of-episode-length floor across seeds",
+          "desc": "A bare P1 REINFORCE training recipe (e2 frozen, SD-056 warmup) should acquire survival competence above the pre-registered floor on the great majority of random seed draws of the 'corner' geometry, so that the in-context/held-out memorisation-discrimination test is reachable.",
+          "axis": "environment",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-882"
+          ],
+          "basis": "V3-EXQ-882 (3 seeds x 4 exposure levels): the acquisition floor (90 ticks, 60% of episode length) was cleared by 1/3 seeds at every exposure level tested (including the lowest, 50 episodes) but never approached by the other 2/3 seeds across a 10x exposure range (50->500 episodes), with no improving trend. Confirmed autopsy failure_autopsy_V3-EXQ-882_2026-08-03: MECH-472's own pre-registered non-degeneracy guard correctly withheld a verdict rather than reading a floor-artefact gap as memorisation evidence. Ambiguous between a genuine per-seed task-difficulty ceiling and a too-small (n=3) seed sample. Routed to /queue-experiment V3-EXQ-882a with more seeds and a fraction-based (not worst-of-3) acquisition gate.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Is the 'corner' geometry acquisition floor reliably clearable at all under this training recipe, and if so with how many seeds/how much budget?",
+        "distance_phrase": "1 of 1 tested leg: acquisition floor cleared by 1/3 seeds, never by the other 2/3 across a 10x exposure range. Not yet decidable whether this is a training-recipe ceiling or a small-sample artefact.",
+        "live_gate": "A re-run with more seeds and a fraction-based acquisition gate (V3-EXQ-882a) is needed before MECH-472's actual discrimination question (does the in-context/held-out gap track memorisation) becomes testable.",
+        "observation_bottleneck": "Worst-of-3-seed acquisition-floor veto cannot distinguish a genuine training-recipe ceiling from ordinary per-seed environment-difficulty variance at small N."
+      }
     }
   ],
   "momentum": [
     {
-      "run": "V3-EXQ-836c",
+      "run": "V3-EXQ-882",
       "all_runs": [
-        "V3-EXQ-836c"
+        "V3-EXQ-882"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "mech472_heldout_acquisition_floor_reliability",
+      "claims": [
+        "MECH-472"
+      ],
+      "moved": "V3-EXQ-882 (3 seeds x 4 exposure levels): the acquisition floor (90 ticks, 60% of episode length) was cleared by 1/3 seeds at every exposure level tested (including the lowest, 50 episodes) but never approached by the other 2/3 seeds across a 10x exposure range (50->500 episodes), with no improving trend. Confirmed autopsy failure_autopsy_V3-EXQ-882_2026-08-03: MECH-472's own pre-registered non-degeneracy guard correctly withheld a verdict rather than reading a floor-artefact gap as memorisation evidence. Ambiguous between a genuine per-seed task-difficulty ceiling and a too-small (n=3) seed sample. Routed to /queue-experiment V3-EXQ-882a with more seeds and a fraction-based (not worst-of-3) acquisition gate.",
+      "resolved_utc": "2026-08-03T08:04:41Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-884",
+      "all_runs": [
+        "V3-EXQ-884"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "mech428_subgoal_bootstrap_seeding",
+      "claims": [
+        "MECH-428"
+      ],
+      "moved": "Episode terminated 77-95% short of its designed budget due to a causal_grid_world.py substrate bug (waypoint-arrival detection clobbered on premature transit) + undisabled ambient contamination, starving the intended accumulation-vs-decay dynamics. G0/G1 passed vacuously. Not a genuine test of the hypothesis -- narrows nothing; surfaces an observation bottleneck (substrate fix needed before re-test).",
+      "resolved_utc": "2026-08-03T02:21:31Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-873",
+      "all_runs": [
+        "V3-EXQ-873"
       ],
       "momentum_class": "control_repaired",
+      "qid": "mech322_replay_carveout_and_gate_validity",
+      "claims": [
+        "MECH-322"
+      ],
+      "moved": "V3-EXQ-873 (9 cells, 3 arms x 3 seeds): the load-bearing criterion's own readiness gate failed on a worst-of-3-seed candidate-availability precondition (1/3 seeds), but in the 2/3 seeds where the precondition held, the carve-out minted correctly with replay_origin=True, and every fail-closed branch (wake-refusal, master-switch-off, low-value, no-candidate) passed cleanly across all 9 cells. Confirmed autopsy failure_autopsy_V3-EXQ-873_2026-08-03: test-design defect (an overly strict SEED_PASS_FRACTION=1.0 worst-of-N-seed gate conflating a stochastic precondition with a deterministic plumbing check), not a substrate ceiling. Routed to /queue-experiment V3-EXQ-873a with a decoupled, fraction-based readiness gate and 6-8 seeds.",
+      "resolved_utc": "2026-08-02T21:33:19Z",
+      "evidence_direction": "mixed"
+    },
+    {
+      "run": "V3-EXQ-869a",
+      "all_runs": [
+        "V3-EXQ-869a"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-869a (30 seeds, both mechanisms confirmed active via mechanism_activation check): C0 passed cleanly (gaps 0.031-0.092 vs 0.015 floor, unchanged from 869); C1 production (iters=3) failed flat (gaps +0.0008 to +0.0024, -0.0037 vs 0.01 floor) -- nearly identical to 869's own C1 numbers despite the new mechanism genuinely firing. Confirmed autopsy failure_autopsy_V3-EXQ-869a_2026-08-03: competence_implementation_gap (user-confirmed, not upgraded to substrate_ceiling), non_contributory. Routed to a GOV-FANOUT-1 portfolio rather than a third same-question letter.",
+      "resolved_utc": "2026-08-02T19:59:43Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-871a",
+      "all_runs": [
+        "V3-EXQ-871a"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "arc071-commit-latch-postfix-persistence",
+      "claims": [
+        "MECH-090",
+        "ARC-071"
+      ],
+      "moved": "Seed 101's apparent 'restoration' (mean_realised_length=6.372 >= 3.0 floor) is fully explained by a tick-rate confound, not genuine persistence: n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe EXACTLY in both seeds (113=103+10; 103=93+10), meaning every single E3 tick recreates the committed-trajectory object with zero exceptions in BOTH seeds -- there is no seed in which the object survives an E3 tick. Seed 101's higher readout is purely a product of that seed's lower e3_tick_rate (0.143 vs 0.633), not a different underlying mechanism. H1 as stated (the fix restores real persistence) is eliminated by this exact arithmetic.",
+      "resolved_utc": "2026-08-02T17:41:41Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3",
+      "all_runs": [
+        "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "inv088_evaluator_degeneracy_cause",
+      "claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "moved": "108b used the SANCTIONED sd_zworld_warmup_optimizer_group training route (encoder_trained precondition met, world_encoder_max_abs_delta 0.22-0.24, holdout balanced accuracy 0.80-0.94) and C3 STILL failed (e1coe_score_var ~2.25e-14 vs 0.002 threshold) -- directly refutes 'the bespoke loss just wasn't adequate training'.",
+      "resolved_utc": "2026-08-02T12:16:43Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-848a",
+      "all_runs": [
+        "V3-EXQ-848a"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "arc005_precision_channel_measurement_resolution",
+      "claims": [
+        "ARC-005"
+      ],
+      "moved": "V3-EXQ-848a (30 cells, 10 units): calibration confirmed genuinely engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry. Only 1/10 units satisfied |rho|>=0.6, but 7/10 are positive-signed (6 at exactly rho=0.5, the second-highest value a 3-point ladder can produce short of a perfect ordering) vs 802's genuinely-null channels which showed bit-identical rho=0.0. Confirmed autopsy failure_autopsy_V3-EXQ-848a_2026-08-03: the result does not discriminate a real weak effect from noise at this ladder resolution -- an observation bottleneck (3-point Spearman-rho ceiling), not an elimination. Routed to /queue-experiment for a ladder-granularity redesign (candidate V3-EXQ-848b) rather than further substrate work.",
+      "resolved_utc": "2026-08-02T12:07:12Z",
+      "evidence_direction": "mixed"
+    },
+    {
+      "run": "V3-EXQ-869",
+      "all_runs": [
+        "V3-EXQ-869"
+      ],
+      "momentum_class": "hypothesis_narrowed",
+      "qid": "mech267_content_persistence_cem_refit",
+      "claims": [
+        "MECH-267"
+      ],
+      "moved": "V3-EXQ-869 (30 seeds): C0 manipulation check passed cleanly (gaps 0.031-0.092 vs 0.015 floor); C1 production (iters=3) failed flat (gaps -0.0003 to +0.0035 vs 0.01 floor). Confirmed autopsy failure_autopsy_V3-EXQ-869_2026-08-02: competence_implementation_gap, non_contributory -- noise-scale-only insufficient to survive production elite-refit.",
+      "resolved_utc": "2026-08-02T03:54:22Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-858",
+      "all_runs": [
+        "V3-EXQ-851",
+        "V3-EXQ-858"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "conversion_ceiling_root",
+      "claims": [
+        "MECH-457",
+        "ARC-065"
+      ],
+      "moved": "2026-08-02 (failure_autopsy_V3-EXQ-857a+858, session determined-ritchie-55a3a6): V3-EXQ-851's and V3-EXQ-858's own substrate_not_ready_requeue self-routes are COMPOUND-GATE ARTIFACTS (an all-4-rungs-simultaneous AND active_frac>=0.8 requirement), not evidence of a dead mechanism -- raw per-cell data (851: excluded_count 17-28 at active_frac 0.24-0.58; 858: excluded_count 17.8-29.0 at active_frac 0.24-0.84, both matching the healthy V3-EXQ-654j baseline magnitude) show MECH-448/449 robustly engaged at a reduced duty cycle. 858's own C2 (committed-class entropy lift F000 vs F100) reads as a near-miss in the H-f-dominance direction: 2/3 seeds positive (+0.090, +0.048 nats vs 0.05 margin), 1/3 flat (-0.003) -- suggestive but not decisive (only 1/3 clears the driver's own 2-of-3 pass bar). Stays alive pending V3-EXQ-863 (route_source='none' comparator, queued, deprioritized) and a corrected readiness-gate spec for this GOV-FANOUT-1 lineage.",
+      "resolved_utc": "2026-08-02T02:38:31Z",
+      "evidence_direction": "non_contributory"
+    },
+    {
+      "run": "V3-EXQ-857a",
+      "all_runs": [
+        "V3-EXQ-857a"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "q086-zharma-calibration-vs-ecological",
+      "claims": [
+        "Q-086"
+      ],
+      "moved": "857a's readiness gate (unpaired pooled-SD SNR) failed at the starkest possible gradient (num_hazards 0 vs 4, n=6 seeds), but a paired-by-seed reanalysis (the design already shares seeds identically across arms) clears the same K=2.0 bar (paired SNR=2.20). Once cleared, the driver's own discrimination logic resolves cleanly toward this branch: ARM_BENIGN stays CoV-saturated (0.029 < 0.05 floor) AND its z_harm_a level is INVERTED (8.64 vs 7.41, higher not lower) relative to ARM_HARSH -- consistent with the original 2026-06-10 V3-EXQ-664 signature. USER-CONFIRMED 2026-08-02. A low-priority V3-EXQ-857b confirmatory pass (fixing the readiness statistic to be paired by default) is recommended but this reading is not contingent on it.",
+      "resolved_utc": "2026-08-02T01:54:01Z",
+      "evidence_direction": "supports"
+    },
+    {
+      "run": "V3-EXQ-860",
+      "all_runs": [
+        "V3-EXQ-853",
+        "V3-EXQ-860"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "moved": "STRENGTHENED 2026-08-01 by V3-EXQ-860, a confound-corrected redesign of the V3-EXQ-853 probe: holds N_TRAIN_EPS fixed at 794a's original 30 (F1/REM recalibration firing count UNCHANGED from 794a, decoupling H1's axis) and instead raises STEPS_PER_EP 200->1000 (5x), reaching the SAME total exposure (30000 waking steps) as 853's own 5x N_TRAIN_EPS change via a single clean axis. RESULT: closure toward the smoke's target collapsed from 853's confounded 12-22% down to 2.5-2.9% once F1-firing count was held fixed. Since the only design difference between 853 and 860 is which axis absorbed the 5x exposure increase (episode count, which also multiplies F1 firings, vs episode length, which does not), this is a clean controlled comparison directly implicating F1-firing count (H1's axis), not raw exposure duration (H2's axis), as the driver of 853's partial signal. H2 is therefore weakened more strongly and more cleanly than by 853 alone. 860 ALSO failed inflation_lowers_rv, but WRONG-SIGNED (negative in both arms, vs 850/853's small-positive-but-sub-threshold readings) -- a separate, new, undiagnosed puzzle (see failure_autopsy_V3-EXQ-860_2026-08-01) that does not undermine the closure-fraction finding above, since that comparison does not depend on this precondition's sign. state stays alive per GOV-FROZEN-1's elimination bar (non_degenerate=false), but H2 is now the most clearly weakened of the three hypotheses. User-confirmed 2026-08-01: recommend /governance mark V3-EXQ-853's own evidence_direction as superseded by this cleaner result.",
+      "resolved_utc": "2026-08-01T18:17:37Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-836d",
+      "all_runs": [
+        "V3-EXQ-836c",
+        "V3-EXQ-836d"
+      ],
+      "momentum_class": "ruled_out",
       "qid": "competence_floor",
       "claims": [
         "MECH-457",
         "INV-088"
       ],
-      "moved": "V3-EXQ-836c (FAIL, non_degenerate, both arms readiness-gated green, n=6 seeds each): paired_retained_fraction_mean=0.844, unpaired=1.133, read as reversed against a 0.15 margin. The entire delta is attributable to one unpaired-arm seed at retained_fraction=2.767 (2-15x every sibling, arm SD 0.90 vs the paired arm's 0.33); removing it flips the sign to +0.038 (paired slightly ahead), well inside the margin. Left ALIVE -- uninformative at this margin/N, not evidence of a genuine reversal. Surfaces the same discrimination-rule defect as H-mech476-dose-response for /queue-experiment to correct.",
-      "resolved_utc": "2026-07-29T18:19:56Z",
-      "evidence_direction": "non_contributory"
+      "moved": "SUPERSEDES the 836c fixed-margin read above. V3-EXQ-836d (FAIL, non_degenerate, both arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (the gap 836c itself surfaced): paired retention (0.8338) is LOWER than unpaired (0.9499), opposite Moncada & Viola's prediction, effect -0.1161 well inside the noise-scaled margin 0.7818, and robust across all 10 leave-one-out folds. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-novelty-tagging as the retention-driving mechanism. Read jointly with H-mech476-dose-response (836a) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
+      "resolved_utc": "2026-08-01T10:37:54Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-836a",
+      "all_runs": [
+        "V3-EXQ-836",
+        "V3-EXQ-836a"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "competence_floor",
+      "claims": [
+        "MECH-457",
+        "INV-088"
+      ],
+      "moved": "SUPERSEDES the 836 fixed-margin read above. V3-EXQ-836a (FAIL, non_degenerate, all 3 dose arms readiness-gated 100%, n=10 seeds each) redesigned the discrimination rule to the noise-scaled effect-size margin (max(1.5*sd_delta, floor), the gap 836 itself surfaced): retained_fraction_mean = [0.712 (300), 0.430 (600), 0.512 (900)], non-monotone, effect -0.1998 well inside the noise-scaled margin 0.7162 required to call growth. This is now a clean, well-powered null, not a measurement artifact. ELIMINATES H-mech476-dose-response as the retention-driving mechanism. Read jointly with H-mech476-novelty-tagging (836d) and the interval leg (V3-EXQ-836e, failure_autopsy_V3-EXQ-836e_2026-08-01.json): all three of MECH-476's pre-registered falsifier arms independently and robustly find retention invariant to their manipulated variable, satisfying the claim's own pre-registered withdrawal condition. MECH-476 status updated to retired/withdrawn in claims.yaml (live_status.as_of 2026-08-01, adjudicated_by failure_autopsy_V3-EXQ-836e_2026-08-01).",
+      "resolved_utc": "2026-08-01T10:37:54Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-850",
+      "all_runs": [
+        "V3-EXQ-850"
+      ],
+      "momentum_class": "control_repaired",
+      "qid": "mech204-sd076-calibration-loop-drift-source-exposure-gap",
+      "claims": [
+        "MECH-204",
+        "SD-076"
+      ],
+      "moved": "F1-disabled INFL-only re-run at 794a's asymmetry levels (V3-EXQ-850): dose_levels_separated precondition FAILED (LO vs HI rv differ by only 3.21e-05, below the 1e-04 floor -- same saturation signature 794a itself showed), so C1/C2's quantitative gap-closure criteria cannot be trusted as a clean confirmation/elimination of H1. Partial signal only: F1-off rv (0.003658 LO / 0.003626 HI) sits measurably below the F1-on reference (0.003998/0.003870) in H1's predicted direction, closing 14-23% of the gap to the smoke floor (0.002538/0.002103) -- consistent with SOME F1-damping contribution, but the driver's own gap-closure criteria (C1/C2) both failed to confirm. Not eliminated, not confirmed -- stays alive, weight partially shifted toward H2/H3. Recommend a requeue that separates the dose-level-differentiation question (orthogonal, inherited from 794a's design) from the F1-on/off between-run comparison H1 actually needs. See failure_autopsy_V3-EXQ-850_2026-08-01.",
+      "resolved_utc": "2026-08-01T00:48:23Z",
+      "evidence_direction": "inconclusive"
+    },
+    {
+      "run": "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md",
+      "all_runs": [
+        "diagnostic:diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "arc071-commit-latch-persistence",
+      "claims": [
+        "MECH-163",
+        "Q-085"
+      ],
+      "moved": "Direct instrumentation (seeds 101/505, A_HIER_S2, forced guaranteed-selectable 3-step chunk + forced commit) shows agent._committed_step_idx never advances past 1 across 80 ticks / 8-10 E3 re-deliberation cycles per seed, and a BRAND NEW trajectory object (distinct id()) is installed on every single E3 tick despite the identical candidate being re-selected -- confirming the commit-latch does not hold across ticks in this configuration. Root cause: agent.py's between-E3-tick stepping branch never falls back to e3._persistent_committed_trajectory (unlike the MECH-321 hook), so the step-index-advance increment is never reached; compounded by no re-selection short-circuit on E3 ticks. control_passed: true (the forced-commit / guaranteed-candidate manipulation check unambiguously isolates the mechanism); non_degenerate: true (160 real ticks exercised, 18 real E3 re-deliberation cycles observed). met_elimination_bar left false -- this maps to 'supports', not an elimination target; see evidence/planning/diagnostic_arc071_commit_latch_h1h2_probe_2026-07-31.md for the full trace.",
+      "resolved_utc": "2026-07-31T23:46:08Z",
+      "evidence_direction": "supports"
     },
     {
       "run": "V3-EXQ-837",
@@ -2125,21 +3127,6 @@
       "moved": "V3-EXQ-837 (FAIL, non_degenerate, 2/2 scorable families capacity+approach both readiness- and phenomenon-reproduction-gated green; metabolic correctly self-excluded on its own unmet control-competence guard): the distributional critic's treatment-below-control inversion (15.13/14.90) is 3.4x LARGER than the scalar critic's (4.45/4.44) in both scorable families, reverses_or_flattens=false on all 6 scorable seeds. The informative baseline does not reverse or flatten the destructive effect -- it worsens it. ELIMINATES H-mech475-baseline-reversal; per MECH-475's own text this outcome shape means the claim is WITHDRAWN, not narrowed.",
       "resolved_utc": "2026-07-29T14:17:38Z",
       "evidence_direction": "weakens"
-    },
-    {
-      "run": "V3-EXQ-836",
-      "all_runs": [
-        "V3-EXQ-836"
-      ],
-      "momentum_class": "control_repaired",
-      "qid": "competence_floor",
-      "claims": [
-        "MECH-457",
-        "INV-088"
-      ],
-      "moved": "V3-EXQ-836 (FAIL, non_degenerate, all 3 dose arms readiness-gated green, n=6 seeds each): retained_fraction_mean = [0.588 (300), 0.287 (600), 0.423 (900)], read as non-monotone against a FIXED 0.15 margin. Recomputed SEM per arm (0.150/0.056/0.059): dose_bc300's own SEM equals the between-arm deltas the verdict rests on, and the dose_bc300 mean is driven by one seed at retained_fraction=1.274 against five siblings in 0.259-0.637. Does not survive a leave-one-out check. Left ALIVE (not eliminated/confirmed) -- the run is uninformative about the true dose-response shape at this margin/N, not evidence of a genuine non-monotone effect. Narrows nothing; surfaces a discrimination-rule defect for /queue-experiment to correct (V3-EXQ-836a).",
-      "resolved_utc": "2026-07-29T09:24:49Z",
-      "evidence_direction": "non_contributory"
     },
     {
       "run": "V3-EXQ-819a",

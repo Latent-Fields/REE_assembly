@@ -8,41 +8,48 @@ Source plan: `evidence/planning/perceptual_adaptors_v4_plan.md`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-2`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-3`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-4`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-5`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-6`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 
 ## `perceptual_adaptors_v4:PA-7`
 
 - `2026-07-24T18:59Z` [autopsy] `failure_autopsy_backlog_2026-07-24#V3-EXQ-802` -> [`evidence/planning/failure_autopsy_backlog_2026-07-24.json`](../../../../evidence/planning/failure_autopsy_backlog_2026-07-24.json) :: autopsy mixed/standard routing=governance
 - `2026-07-31T20:59Z` [manifest] `v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3` -> [`evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json`](../../../../evidence/experiments/v3_exq_846_arc005_control_plane_channel_occupancy_attribution_20260731T205951Z_v3.json) :: PASS manifest supports
-- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate **<- live head**
+- `2026-08-01T14:08Z` [autopsy] `failure_autopsy_V3-EXQ-848_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
+- `2026-08-03T09:01Z` [autopsy] `failure_autopsy_V3-EXQ-848a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-848a_2026-08-03.json) :: autopsy mixed/standard routing=queue-experiment **<- live head**
 

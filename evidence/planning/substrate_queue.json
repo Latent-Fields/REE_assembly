@@ -27,8 +27,8 @@
       "populated_by": "/governance Step 6a (6a-iii schema write + 6a-iv autopsy create) sets node_class on every new / updated entry; historical (pre-2026-07-10) entries may lack it and are read under default_reading until a governance cycle next touches them."
     }
   },
-  "last_seen_session": "insights-34f9b4",
-  "last_updated_utc": "2026-08-02T19:39:38Z",
+  "last_seen_session": "epic-mirzakhani-4928b5",
+  "last_updated_utc": "2026-08-03T11:45:20Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6574,14 +6574,17 @@
       "sd_id": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
       "title": "MECH-122 content-packaging half: wire ThetaBuffer.consolidation_summary()/set_consolidation_mode() (existing V3 code, currently unwired) into run_sws_schema_pass()/force_cycle() so SWS writes to ContextMemory carry a spindle-analog content-selection signal proportional to novelty/MEL",
       "node_class": "complicated (buildable)",
-      "status": "implemented_pending_validation",
-      "implementation_note": "IMPLEMENTED 2026-08-02 (/implement-substrate, IGW-20260801-197; ree-v3). ThetaBuffer.set_consolidation_mode()/consolidation_summary() (ree_core/latent/theta_buffer.py:146,159) are now called from run_sws_schema_pass() (ree_core/agent.py), gated by new REEConfig flags use_mech122_spindle_content_selection (default False, bit-identical off) and mech122_spindle_selection_gain (default 1.0). Each schema-installation prototype write is blended toward the theta-cycle consolidation reference in proportion to how CLOSELY it already matches it (habitual content homogenised, novel content keeps its own direction) -- giving ContextMemory's touched-slot diversity a channel to track novelty/MEL that a uniform per-write scale cannot (the diversity metric is cosine similarity of normalised rows, scale-invariant to a uniform multiplier). Deliberately distinct from the V3-EXQ-246 Phase-3 proxy (a single post-hoc write, measured zero effect): this modulates every schema-installation write in the pass itself. New contract probes in ree-v3/tests/test_flag_inertness.py: test_mech122_spindle_content_selection_fires_and_differentiates_writes (OFF-inert; ON in-range weight AND a different post-pass ContextMemory tensor than OFF on identical buffered content) and test_mech122_spindle_content_selection_gain_zero_collapses_to_off (gain=0.0 sanity check). STATUS implemented_pending_validation, not implemented: nothing yet re-runs the V3-EXQ-861 driver family with the new flag ON against the spindle_density DV -- that is the outstanding validation, recommended as a /queue-experiment follow-on (not queued this session; substrate-build scope only per this session's task).",
+      "status": "implemented_validation_failed_needs_followup_fix",
+      "implementation_note": "IMPLEMENTED 2026-08-02 (/implement-substrate, IGW-20260801-197; ree-v3). ThetaBuffer.set_consolidation_mode()/consolidation_summary() (ree_core/latent/theta_buffer.py:146,159) are now called from run_sws_schema_pass() (ree_core/agent.py), gated by new REEConfig flags use_mech122_spindle_content_selection (default False, bit-identical off) and mech122_spindle_selection_gain (default 1.0). Each schema-installation prototype write is blended toward the theta-cycle consolidation reference in proportion to how CLOSELY it already matches it (habitual content homogenised, novel content keeps its own direction) -- giving ContextMemory's touched-slot diversity a channel to track novelty/MEL that a uniform per-write scale cannot (the diversity metric is cosine similarity of normalised rows, scale-invariant to a uniform multiplier). Deliberately distinct from the V3-EXQ-246 Phase-3 proxy (a single post-hoc write, measured zero effect): this modulates every schema-installation write in the pass itself. New contract probes in ree-v3/tests/test_flag_inertness.py: test_mech122_spindle_content_selection_fires_and_differentiates_writes (OFF-inert; ON in-range weight AND a different post-pass ContextMemory tensor than OFF on identical buffered content) and test_mech122_spindle_content_selection_gain_zero_collapses_to_off (gain=0.0 sanity check). VALIDATION RAN 2026-08-02/03 (V3-EXQ-861a): the mechanism DOES fire (mean_spindle_selection_applied=1.0), so the build is confirmed live/wired -- but its selection_weight is uniformly tiny/flat, tracing to ThetaBuffer.consolidation_summary() being self-referentially decoupled from the MEL/novelty axis (see failure_record). A second, independent DV (V3-EXQ-436c, slot_cosine_sim on SD-017/ARC-045/MECH-166) converges on a related write-path hypothesis (ContextMemory.write_gate bias-over-content collapse, untested by either run). STATUS implemented_validation_failed_needs_followup_fix: the original wiring gap this entry tracked is closed, but two new, more specific write-path defects are now the blocker -- see the two most recent failure_record entries for the exact follow-up fixes.",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "MECH-180",
-        "MECH-122"
+        "MECH-122",
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
       ],
       "failure_record": [
         {
@@ -6589,13 +6592,25 @@
           "experiment_type": "v3_exq_861_mech180_ecological_novelty_sleep_consolidation_decoupled_diversity",
           "metric": "mean_sws_new_slot_diversity (spindle_density DV) fails monotone+spread criterion at 0/3 seeds, and fails ON-HIGH>OFF-HIGH control, even under the write-count-deconfounded statistic",
           "target": "spindle_density DV must pass on >=2/3 seeds (monotone non-decreasing across 4 ON arms sorted by measured MEL, +/-0.05 slack, >=15% relative spread) once content-packaging selection is wired in"
+        },
+        {
+          "run_id": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation_20260802T215005Z_v3",
+          "experiment_type": "v3_exq_861a_mech180_mech122_spindle_content_selection_validation",
+          "metric": "mean_sws_new_slot_diversity (spindle_density DV) still fails monotone+spread at 0/3 seeds with the content-selection flag ON. New instrumentation shows the mechanism fires every cycle (mean_spindle_selection_applied=1.0) but mean_spindle_selection_weight is uniformly tiny/flat (~0.004-0.01, no MEL-tracking) in every arm/seed; on the two well-formed seeds (42, 456) diversity decreases monotonically as MEL increases (wrong direction). Root cause: ThetaBuffer.consolidation_summary() (the novelty reference) is a 10-tick recency average of the SAME short window supplying the schema-installation prototypes being compared against it -- structurally self-similar (novelty~=0) regardless of arm.",
+          "target": "Re-source consolidation_ref in run_sws_schema_pass() from a signal that correlates with the world_rule_shift/MEL novelty axis (e.g. gate selection_weight on the E3/E2 prediction-error signal that already drives MEL, or widen the theta reference to a calibrated stable-base baseline analogous to mel_reference's own calibration) rather than the current 10-tick self-referential recency buffer. Re-run the 861/861a driver family (new letter) against the repaired reference once built."
+        },
+        {
+          "run_id": "v3_exq_436c_sd017_mech166_repr_confirmer_20260802T221621Z_v3",
+          "experiment_type": "v3_exq_436c_sd017_mech166_repr_confirmer",
+          "metric": "slot_cosine_sim(SWS_THEN_REM) < slot_cosine_sim(WAKING_ONLY) fails 0/5 seeds; SWS_THEN_REM collapses whole-bank cosine similarity to ~0.9999-1.0 in 4/5 seeds (homogenization, opposite predicted direction), with P0 write/replay-liveness gate cleanly met (800/600 pooled events) and waking-phase entropy healthy in every seed -- ruling out both the recording-gap and monomodal-collapse alternative explanations.",
+          "target": "Measure ContextMemory.write_gate's bias-over-content ratio (same methodology as EXQ-477/EXP-0155 measured for key_proj: bias_over_content_ratio pre-train and post-P0). If dominant, apply the same class of fix already landed on key_proj (remove or zero-init the bias) and re-verify query_proj's role in write()'s argmin slot-selection for genuine content-sensitivity. Re-run the 436-family (new letter, e.g. V3-EXQ-436d) against the repaired write path once built. This is a DISTINCT diagnostic step from the ThetaBuffer novelty-reference bug this entry already tracks (failure_autopsy_V3-EXQ-861a_2026-08-03) -- both bugs sit on the same write path and should be investigated together."
         }
       ],
       "implementation_hint": "ThetaBuffer.consolidation_summary() and set_consolidation_mode() (ree_core/latent/theta_buffer.py:146,159) already implement a V3 proxy for spindle-mediated content packaging but are never called from the sleep pipeline (run_sws_schema_pass()/force_cycle() in ree_core/agent.py write sampled prototype vectors via plain EMA-blend with no selection step). Wiring this in is the direct candidate explanation for why V3-EXQ-845/861's spindle_density DV (mean_sws_new_slot_diversity / whole-bank cosine diversity) fails to track novelty/MEL while sws_power and replay_rate (which don't depend on content selection) succeed. Distinct from the sibling MECH122-SENSORY-GATING-OFFLINE-PROTECTION entry above (added same day, session igw-loop-mech122-gap), which covers the OTHER half of MECH-122 (blocking external sensory input during offline windows) and was separately found not-yet-established as load-bearing given the current strictly-sequential (non-interleaved) wake/sleep harness design. This entry's content-packaging half IS directly implicated by a real V3 experimental result (V3-EXQ-861 DV3) and existing code (unwired, not absent), so node_class is complicated (buildable), not complex (probe-gated). MECH-122's implementation_phase: v3 field is correct (its own registration-era 'V4 scope' prose was the stale artifact, corrected in claims.yaml the same session per feedback_phase_label_follows_dependency).",
       "priority": 1,
       "added_session": "nostalgic-chatelet-c25a78",
-      "last_seen_session": "insights-34f9b4",
-      "validation_experiment": "QUEUED -- V3-EXQ-861a (ree-v3 commit 0446d17407, queued 2026-08-02), re-runs the V3-EXQ-861 driver family with use_mech122_spindle_content_selection=True against the spindle_density DV (mean_sws_new_slot_diversity). claim_ids=[MECH-180, MECH-122]. Not yet run. status stays implemented_pending_validation until it lands."
+      "last_seen_session": "epic-mirzakhani-4928b5",
+      "validation_experiment": "RAN 2026-08-02/03 (V3-EXQ-861a, confirmed failure_autopsy_V3-EXQ-861a_2026-08-03). Mechanism confirmed live (fires every cycle), but spindle_density DV still FAILS 0/3 seeds due to a self-referential novelty-reference bug (see failure_record). A second, independent validation (V3-EXQ-436c, slot_cosine_sim DV on SD-017/ARC-045/MECH-166) also FAILS and converges on a related write-path hypothesis (ContextMemory.write_gate). Two follow-up fixes owed before either DV can pass -- see the two most recent failure_record entries."
     },
     {
       "sd_id": "SD-091",
@@ -6686,6 +6701,112 @@
       "validation_experiment": "EXP-0385 (MECH-427) and EXP-0390 (MECH-428), both flipped blocked_substrate -> proposed in experiment_proposals.v1.json on this basis. Neither is queued yet -- /queue-experiment Step-2.5 must design/verify the harness-side subgoal-attainment call site first.",
       "origin": "MECH-427/MECH-428 registered 2026-06-12 (thought-digestion-proxy-progress-goal-maint); confirmed blocked_substrate 2026-08-02 by this session investigating the chip-20260802-mech427-parent-subgoal-credit chip -> /implement-substrate this pass.",
       "implementation_progress": "2026-08-02 (ree-v3, session insights-34f9b4): the primitive landed in ree_core/goal.py (GoalConfig.use_hierarchical_goal_credit/parent_goal_alpha/parent_goal_decay/subgoal_credit_min; GoalState._z_goal_parent/credit_subgoal_attainment()/parent_goal_norm()/z_goal_parent/parent_is_active(), plus update()/reset()/state_dict/with_injection wiring for the new attractor), 19 contract tests pass (tests/contracts/test_sd092_cross_level_subgoal_credit.py). Landed on ree-v3 main as 500fd67398, merged with a concurrent SD-093/MECH-426 landing that touched the same files for a different mechanism (throwaway-worktree cherry-pick reconciliation, no code lost on either side). No call site in agent.py or the environment -- module is a pure extension to the existing GoalState class but every new branch is flag-gated and unreachable from any existing consumer, so status is partially_implemented_pending_consumer_wiring rather than implemented (mirrors SD-091). See ree-v3/CLAUDE.md \"SD-092\" entry for the full writeup. Follow-up chip left for the call-site wiring + /queue-experiment Step-2.5."
+    },
+    {
+      "sd_id": "SD-modulatory-channel-route-decomp-gate-fix",
+      "title": "Decouple modulatory-channel routing (lateral_pfc/curiosity/gated_policy/mech295) from the e3_score_decomp_enabled diagnostic flag",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication_20260802T121313Z_v3",
+          "experiment_type": "v3_exq_863_arc062_lateral_pfc_route_mech448_449_full_replication",
+          "metric": "modulatory_channel_route_range_mean / modulatory_channel_route_active_frac read exactly 0.0 on the lateral_pfc arm despite modulatory_channel_route_source='lateral_pfc' and use_modulatory_channel_routing=True being correctly configured",
+          "target": "a functioning lateral_pfc route should produce a nonzero cross-candidate range whenever agent.lateral_pfc.compute_bias's output is genuinely differentiated across candidates (confirmed nonzero and differentiated via the separate mean_lateral_pfc_bias_abs / propagation_non_vacuity readout in V3-EXQ-851's own arm_results)"
+        }
+      ],
+      "implementation_hint": "In ree_core/agent.py, _bdc_lpfc/_bdc_gp/_bdc_m295/_bdc_curiosity are only assigned their computed bias when self.e3.e3_score_decomp_enabled is True (agent.py ~6194, 6530-6531, 6718-6719, 6909-6910, 6997-6998), and the modulatory_channel_route_source dispatch at ~7607-7635 reads those same _bdc_* variables to build channel_route_bias -- so four of six route-source values are silently no-op unless a script also sets the unrelated diagnostic flag. Fix: populate the four _bdc_* variables unconditionally (or at minimum whenever use_modulatory_channel_routing=True and modulatory_channel_route_source selects one of the four affected values), and gate only the diagnostic EXPOSURE (last_score_decomp / component trackers, the original V3-EXQ-571 purpose) behind e3_score_decomp_enabled. Add a runtime assertion/warning as a backstop for any remaining coupling. New contract test: modulatory_channel_route_source in {lateral_pfc, curiosity, gated_policy, mech295} with e3_score_decomp_enabled=False (the common case) should still produce a nonzero route_range when the underlying per-candidate bias is genuinely differentiated.",
+      "priority": 1,
+      "added_session": "epic-mirzakhani-4928b5",
+      "added_utc": "2026-08-03T11:45:20Z",
+      "last_seen_session": "epic-mirzakhani-4928b5",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02 (governance, session determined-ritchie-55a3a6); create recommendation applied by /governance 2026-08-03."
+    },
+    {
+      "sd_id": "mech090-arc071-attick-persistent-handle-fix",
+      "title": "E3 AT-tick commit selection should preserve an existing unexpired persistent committed trajectory (ARC-071 chunk-sourced) instead of unconditionally recreating it every E3 tick",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-090",
+        "ARC-071"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic_20260802T174141Z_v3",
+          "experiment_type": "v3_exq_871a_mech090_commit_latch_persistence_diagnostic",
+          "metric": "n_genuine_commits_identity_based == n_e3_ticks + n_episodes_probe (exact, both seeds) -- every E3 tick recreates the committed trajectory object",
+          "target": "post-fix, n_genuine_commits / n_e3_ticks should drop well below 1.0 for an ARC-071-chunk-sourced commitment not yet exhausted"
+        }
+      ],
+      "implementation_hint": "Mirror the between-tick fast path's fallback to agent.e3._persistent_committed_trajectory (landed ree-v3 278599a, flag use_persistent_committed_program_handle) at the AT-E3-tick selection site itself (agent.e3.select(...) / the commit-creation branch in select_action / post_action_update's unconditional _committed_trajectory = None teardown path) -- if an unexpired _persistent_committed_trajectory sourced from an ARC-071 chunk already exists and the chunk has not been fully executed/exhausted, continue it rather than creating a fresh trajectory object. Validate with a redesigned DV: n_genuine_commits / n_e3_ticks (or equivalent tick-rate-normalised statistic), not raw mean segment length.",
+      "priority": 2,
+      "added_session": "epic-mirzakhani-4928b5",
+      "added_utc": "2026-08-03T11:45:20Z",
+      "last_seen_session": "epic-mirzakhani-4928b5",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-871a_2026-08-03; create recommendation applied by /governance 2026-08-03."
+    },
+    {
+      "sd_id": "SD-094",
+      "title": "Fix CausalGridWorld subgoal_mode waypoint-arrival detection (grid-cell-type coupling bug) + gate ambient self-contamination for hazard-free probes",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "MECH-428"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding_20260803T022131Z_v3",
+          "experiment_type": "v3_exq_884_mech428_subgoal_bootstrapped_goal_seeding",
+          "metric": "Episode terminated at 32/19/90 of 400 configured steps (seeds 42/43/44) via agent_health<=0 self-contamination death, driven by a waypoint-arrival detection miss on the final waypoint of the sequence in 2/3 seeds (confirmed live-reproduced)",
+          "target": "Episode should run its full configured N_STEPS budget (or terminate only via a scientifically meaningful condition), and every legitimate waypoint arrival should register a transition_type"
+        }
+      ],
+      "implementation_hint": "causal_grid_world.py's waypoint-arrival branch (line ~2270) is keyed on target_type == ENTITY_TYPES['waypoint'], but the agent's own position marker (line ~2490, self.grid[new_x,new_y] = ENTITY_TYPES['agent']) permanently overwrites that cell the first time the agent transits it -- including a merely-passed-through, not-yet-current waypoint -- and the 'leaving a cell' logic reverts a vacated cell to EMPTY, never back to WAYPOINT. Fix: detect arrival by comparing agent position directly against self.waypoints[self._next_waypoint_idx] (the substrate's own completion_tolerance_enabled feature already does this correctly, gated off by default -- either flip that default for subgoal_mode or add a position-based check to the primary path). Separately, gate/disable contamination_spread for num_hazards=0 configs by default, or at minimum surface the V3-EXQ-513 precedent (contamination_spread=0.0) more prominently for hazard-free probe authors. Also add real episode-length + done-cause fields to the manifest (recording gap).",
+      "priority": 2,
+      "added_session": "epic-mirzakhani-4928b5",
+      "added_utc": "2026-08-03T11:45:20Z",
+      "last_seen_session": "epic-mirzakhani-4928b5",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-884_2026-08-03; create recommendation applied by /governance 2026-08-03."
+    },
+    {
+      "sd_id": "SD-e1-rollout-consistency-training",
+      "title": "E1 forward-model multi-step rollout-consistency training objective",
+      "node_class": "complex (probe-gated)",
+      "status": "pending_implementation",
+      "ready": false,
+      "design_doc": null,
+      "depends_on_unresolved": [
+        "targeted_review_e1_forward_model_rollout_consistency (lit-pull, not yet commissioned)"
+      ],
+      "unblocks_claims": [
+        "INV-088",
+        "MECH-135"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3",
+          "experiment_type": "v3_exq_108b_mech135_inv088_zworld_disambiguation",
+          "metric": "e1coe_score_var (both seeds ~1e-13 to 1e-14) vs C3_VAR_THRESHOLD=0.002; CR_rollout/CR_real ratio ~3e-6 vs CR_ROLLOUT_COLLAPSE_RATIO=0.1",
+          "target": "e1coe_score_var >= 0.002 and CR_rollout/CR_real >= 0.1 under a multi-step-trained E1"
+        }
+      ],
+      "implementation_hint": "Add a multi-step/rollout-consistency term to E1's training objective (candidates per the commissioned /lit-pull: latent overshooting, scheduled multi-step unrolling, or a contrastive next-state objective analogous to the E2 fix already surveyed in targeted_review_e2_forward_model_action_divergence) so autoregressive rollouts beyond the single-step training horizon do not collapse to a training-distribution-average attractor. Node class is complex (probe-gated), not a plain build: the right training-objective choice among three candidates is a reducible unknown owed a lit-pull first, not yet a build decision.",
+      "priority": 2,
+      "added_session": "epic-mirzakhani-4928b5",
+      "added_utc": "2026-08-03T11:45:20Z",
+      "last_seen_session": "epic-mirzakhani-4928b5",
+      "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency)."
     }
   ],
   "schema_version": "substrate_queue/v2"

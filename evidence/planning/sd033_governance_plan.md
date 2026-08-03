@@ -12,10 +12,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -29,10 +29,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -46,10 +46,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -63,10 +63,10 @@ closure_plan:
       status: done
       severity: load-bearing
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -80,10 +80,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -97,10 +97,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -114,10 +114,10 @@ closure_plan:
       status: done
       severity: high
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:
@@ -131,10 +131,10 @@ closure_plan:
       status: done
       severity: medium
       live:
-        as_of: "2026-08-02"
-        from: "failure_autopsy_V3-EXQ-869_2026-08-02"
+        as_of: "2026-08-03"
+        from: "failure_autopsy_V3-EXQ-869a_2026-08-03"
         verdict: "non_contributory/competence_implementation_gap"
-        next: "routing=implement-substrate"
+        next: "routing=queue-experiment"
         brake: "fired"
         needs_review: false
       join:

@@ -1,0 +1,86 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_881_mech293_ghost_probe_seed_efficacy",
+  "run_id": "v3_exq_881_mech293_ghost_probe_seed_efficacy_20260802T151542Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-02T15:15:42.599139Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-293"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-293": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "ghost_cluster_separates_from_valueflat_and_aims_at_target",
+    "criteria": [
+      {
+        "name": "C1_ghost_cluster_separates_from_valueflat",
+        "load_bearing": true,
+        "passed": true,
+        "n_comparable": 7,
+        "n_attempted": 7,
+        "n_wins": 7,
+        "win_threshold": 4,
+        "effect_size_bar": 2.0
+      },
+      {
+        "name": "C2_separation_aimed_at_target_direction",
+        "load_bearing": false,
+        "passed": true,
+        "n_c1_winning_seeds": 7,
+        "n_c2_positive": 4,
+        "mean_alignment": 0.02684802083032472
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_ghost_cluster_separates_from_valueflat": true,
+      "C2_separation_aimed_at_target_direction": true
+    },
+    "combination_rule": "outcome = FAIL/non_contributory if n_comparable < 4 (substrate_not_engaged, never weakens); else PASS/(supports if C2 also majority-positive else mixed) iff C1 (ghost cluster separates from value-flat cluster by > effect_size_bar in >= proportional >=4/7 of comparable seeds); else FAIL/weakens. C2 never gates the outcome -- it distinguishes a clean 'supports' from a 'mixed' PASS, never turns a PASS into a FAIL."
+  },
+  "machine": "DLAPTOP-5.local",
+  "machine_class": "darwin-arm64-py3.13-torch2.12.0",
+  "substrate_hash": "aa8db10ae38db7de3828acbd2bbfe51036ecf56c8749f568eb1f6d326b6ebc13",
+  "substrate_commit": {
+    "commit": "a72526c795fe117b2ad76643cee47fc06b2883ab",
+    "dirty": true,
+    "dirty_count": 1,
+    "dirty_paths": [
+      "experiments/_lib/baselines/exq878_mech332_efference_aic_baseline.py"
+    ],
+    "branch": "main"
+  }
+}
