@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-03T18:04:03Z",
+  "generated_at": "2026-08-03T18:37:50Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5535,6 +5535,161 @@
         "priority": 28,
         "claim_ids": [
           "ARC-045"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-a183d14d-spawned_task",
+      "stable_hash": "a183d14d7ce5",
+      "igw_id_at_assign": "IGW-20260803-207",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-sd092-subgoal-credit-wiring (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: SD-092",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "SD-092",
+          "MECH-427",
+          "MECH-428"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-5c97197f-spawned_task",
+      "stable_hash": "5c97197f94d5",
+      "igw_id_at_assign": "IGW-20260803-208",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-sd-modchannel-decomp-gate-fix (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: SD-modulatory-channel-route-decomp-gate-fix",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": []
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-cf2eb338-spawned_task",
+      "stable_hash": "cf2eb33887c2",
+      "igw_id_at_assign": "IGW-20260803-209",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-mech090-arc071-attick-handle-fix (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: mech090-arc071-attick-persistent-handle-fix",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-090",
+          "ARC-071"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-e4d80465-spawned_task",
+      "stable_hash": "e4d80465a76a",
+      "igw_id_at_assign": "IGW-20260803-210",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-sd094-waypoint-arrival-fix (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/implement-substrate",
+        "title": "Substrate ready: SD-094",
+        "lane": "substrate",
+        "priority": 25,
+        "claim_ids": [
+          "MECH-428"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-1b7d2a6e-spawned_task",
+      "stable_hash": "1b7d2a6eeea6",
+      "igw_id_at_assign": "IGW-20260803-235",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-confirm-mech203 (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-203 (lit 0.88, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-203"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-305a3159-spawned_task",
+      "stable_hash": "305a31591360",
+      "igw_id_at_assign": "IGW-20260803-236",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-confirm-sd014 (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: SD-014 (lit 0.87, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "SD-014"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260803T183750Z-36954c42-spawned_task",
+      "stable_hash": "36954c42d3f5",
+      "igw_id_at_assign": "IGW-20260803-237",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T18:37:50Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "Routed to metaworker-dispatch chip chip-20260803-igw-confirm-mech191 (interactive session, 2026-08-03) -- do not independently re-stage/spawn this item while the chip is open.",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: MECH-191 (lit 0.87, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "MECH-191"
         ]
       }
     }
