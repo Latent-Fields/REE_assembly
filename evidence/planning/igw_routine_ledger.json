@@ -2360,7 +2360,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-226-literature-proposal-for-mech-472 && claude --resume 40c6592b-c407-43c7-81a1-bddf0d276b3e",
       "task_claim_session_id": "igw-auto-igw-226-literature-proposal-for-mech-472-20260803T091039Z",
       "assigned_at": "2026-08-03T09:10:20Z",
-      "status": "spawned"
+      "status": "completed",
+      "completed_at": "2026-08-03T09:45:49Z",
+      "completion_summary": "lit-pull MECH-472: 4 entries (Cobbe2019/Zhang2017/Lake2018 supports + Feldman2020 mixed) landed REE_assembly d87a766f4e, literature_confidence 0.858",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "lit-pull MECH-472: 4 entries (Cobbe2019/Zhang2017/Lake2018 supports + Feldman2020 mixed) landed REE_assembly d87a766f4e, literature_confidence 0.858"
     }
   ],
   "dispositions": [
@@ -3193,6 +3197,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-03T00:40:13Z",
       "re_eligible_after": "2026-08-05T00:40:13Z"
+    },
+    {
+      "stable_hash": "301666c46fa0",
+      "igw_id_at_disposition": "IGW-20260803-226",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-472"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-472",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-03T09:45:49Z",
+      "re_eligible_after": "2026-08-05T09:45:49Z"
     }
   ]
 }
