@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- WORKSET_VERSION: 2026-08-02.1 -->
+<!-- WORKSET_VERSION: 2026-08-03.1 -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -431,7 +431,7 @@ const LANE_ORDER = ['governance', 'experiment', 'substrate', 'plan', 'lit', 'ops
 async function load() {
   const wsRes = await fetch('/api/workset');
   WS = await wsRes.json();
-  applyUrlParams();
+  applySettings();
   populateFilters();
   document.getElementById('hdr-meta').textContent =
     (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
@@ -443,7 +443,54 @@ async function load() {
   renderAll();
   syncUrl();
   hydrateClosure();
+  startAutoRefresh();
 }
+
+// ---- Refresh data on an interval so claims/assignments/status show up
+// without a manual reload. Re-fetches the same three endpoints load() does,
+// but skips applySettings()/populateFilters() so it never resets the
+// filters you have set or duplicates dropdown options, and skips the
+// scroll-to-first-match jump renderAll() does on a real filter change.
+const AUTOREFRESH_MS = 20000;
+let autoRefreshTimer = null;
+
+async function refreshLiveData() {
+  // Don't yank the card grid out from under an in-progress "assign as
+  // other" entry -- wait for the next tick instead.
+  if (document.querySelector('.assign-menu')) return;
+  let wsRes;
+  try {
+    wsRes = await fetch('/api/workset');
+    WS = await wsRes.json();
+  } catch (e) {
+    return;  // transient network hiccup -- keep showing the last good data
+  }
+  document.getElementById('hdr-meta').textContent =
+    (WS.schema_version || '?') + ' | generated ' + (WS.generated_at || 'never') +
+    ' | ' + (WS.items || []).length + ' packages';
+  await loadRecentActivity();
+  await loadChips();
+  renderSummary();
+  renderLeverageRail();
+  renderAll({ scrollOnFilter: false });
+}
+
+function startAutoRefresh() {
+  stopAutoRefresh();
+  autoRefreshTimer = setInterval(() => {
+    if (document.visibilityState === 'visible') refreshLiveData();
+  }, AUTOREFRESH_MS);
+}
+
+function stopAutoRefresh() {
+  if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+}
+
+// Catch up immediately when the tab regains focus, rather than waiting out
+// whatever's left of the interval.
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') refreshLiveData();
+});
 
 async function loadRecentActivity() {
   try {
@@ -604,7 +651,60 @@ function mergeClosurePlansIntoFilter() {
   }
 }
 
-function applyUrlParams() {
+// ---- Settings persistence (localStorage + URL) -----------------------
+//
+// URL query params remain the shareable/bookmarkable form (unchanged
+// behaviour). localStorage is the fallback so a plain refresh or a bare
+// "/workset" nav (e.g. clicking back in from Explorer) still comes back
+// the way you left it, not just when the query string happens to survive.
+// URL params win when both are present, so a shared link still overrides
+// whatever you last had open locally.
+const SETTINGS_KEY = 'ree_workset_settings_v1';
+
+function loadStoredSettings() {
+  try {
+    const raw = localStorage.getItem(SETTINGS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (e) {
+    return {};  // storage unavailable (private mode, quota) -- degrade to URL-only
+  }
+}
+
+function saveStoredSettings() {
+  try {
+    const ra = document.getElementById('recent-activity');
+    const pc = document.getElementById('pending-chips');
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+      group: GROUP_BY,
+      plan: PLAN_FILTER,
+      lens: LENS_FILTER,
+      version: VERSION_FILTER,
+      q: CLAIM_SEARCH,
+      status: STATUS_FILTER,
+      raHours: RA.hours,
+      recentOpen: ra ? ra.open : undefined,
+      chipsOpen: pc ? pc.open : undefined,
+    }));
+  } catch (e) {
+    // storage unavailable -- nothing to persist beyond this page's URL
+  }
+}
+
+function applySettings() {
+  const stored = loadStoredSettings();
+  if (stored.group === 'plan' || stored.group === 'lane' || stored.group === 'priority') GROUP_BY = stored.group;
+  if (stored.plan) PLAN_FILTER = stored.plan;
+  if (stored.lens) LENS_FILTER = stored.lens;
+  if (stored.version) VERSION_FILTER = stored.version;
+  if (stored.q) CLAIM_SEARCH = stored.q;
+  if (stored.status) STATUS_FILTER = stored.status;
+  if (typeof stored.raHours === 'number' && stored.raHours > 0) RA.hours = stored.raHours;
+  const ra = document.getElementById('recent-activity');
+  if (ra && typeof stored.recentOpen === 'boolean') ra.open = stored.recentOpen;
+  const pc = document.getElementById('pending-chips');
+  if (pc && typeof stored.chipsOpen === 'boolean') pc.open = stored.chipsOpen;
+
+  // URL params take precedence over the stored settings above.
   const p = new URLSearchParams(location.search);
   const g = p.get('group');
   if (g === 'plan' || g === 'lane' || g === 'priority') GROUP_BY = g;
@@ -631,9 +731,13 @@ function syncUrl() {
   const qs = p.toString();
   const url = qs ? '?' + qs : location.pathname;
   history.replaceState(null, '', url);
+  saveStoredSettings();
 }
 
 function populateFilters() {
+  const raSel = document.getElementById('ra-hours');
+  if (raSel) raSel.value = String(RA.hours);
+
   const groupSel = document.getElementById('group-by');
   groupSel.value = GROUP_BY;
   groupSel.addEventListener('change', () => {
@@ -1028,7 +1132,8 @@ function renderCard(it) {
     '<div class="actions">' + actions + '</div></article>';
 }
 
-function renderAll() {
+function renderAll(opts) {
+  const scrollOnFilter = !opts || opts.scrollOnFilter !== false;
   const items = filterItems();
   const sections = buildSections(items);
   const root = document.getElementById('sections');
@@ -1093,7 +1198,7 @@ function renderAll() {
     });
   });
 
-  if (LENS_FILTER || PLAN_FILTER || VERSION_FILTER || CLAIM_SEARCH.trim()) {
+  if (scrollOnFilter && (LENS_FILTER || PLAN_FILTER || VERSION_FILTER || CLAIM_SEARCH.trim())) {
     const first = root.querySelector('.card');
     if (first) first.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -1275,9 +1380,18 @@ if (_raHoursSel) {
     if (!isNaN(h) && h > 0) {
       RA.hours = h;
       loadRecentActivity();
+      saveStoredSettings();
     }
   });
 }
+
+// Persist the open/closed state of the two collapsible panels -- these
+// aren't URL-shareable (no reason to put them in a link), so they're
+// localStorage-only.
+['recent-activity', 'pending-chips'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('toggle', saveStoredSettings);
+});
 document.addEventListener('click', (e) => {
   const chip = e.target.closest('#recent-summary-chip');
   if (chip) {
