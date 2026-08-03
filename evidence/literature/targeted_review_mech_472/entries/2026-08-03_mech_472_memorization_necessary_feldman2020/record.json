@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_472",
+  "entry_id": "2026-08-03_mech_472_memorization_necessary_feldman2020",
+  "timestamp_utc": "2026-08-03T09:16:27Z",
+  "claim_ids_tested": ["MECH-472"],
+  "source": {
+    "title": "Does Learning Require Memorization? A Short Tale about a Long Tail",
+    "authors": ["Vitaly Feldman"],
+    "year": 2020,
+    "venue": "Proceedings of the 52nd Annual ACM SIGACT Symposium on Theory of Computing (STOC)",
+    "doi": "10.1145/3357713.3384290",
+    "url": "https://arxiv.org/abs/1906.05271"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the honest counterweight to the other three entries. Feldman proves that on long-tailed data distributions, memorising atypical / low-frequency training examples is NECESSARY for close-to-optimal generalisation error. That does not overturn MECH-472's premise (held-out evidence is still the right test of acquisition), but it sharply qualifies the naive reading that ANY in-context-vs-held-out gap is pathological: some apparent 'memorisation' is functional, and a competence can legitimately retain instance-specific content it needed to learn the tail. Confidence is moderate because it is a theoretical result under distributional assumptions, and its bearing on MECH-472 is about calibrating the THRESHOLD, not the existence of the test.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Because memorisation of rare examples is provably necessary for optimal generalisation on long-tailed data, a nonzero in-context-vs-held-out gap does NOT by itself imply the competence failed to generalise -- MECH-472's threshold must tolerate the functional memorisation the tail requires.",
+    "A promotion rule that treats any held-out gap as memorisation-and-therefore-block would suppress competences that legitimately encode tail-specific structure, harming generalisation rather than protecting it."
+  ],
+  "tags": ["mech-472", "memorization", "long-tail", "generalization", "threshold-calibration", "counterweight"],
+  "mapping": {
+    "source_claim_statement": "Under a mixture-of-subpopulations model of natural (long-tailed) data, algorithms that achieve close-to-optimal generalisation error must memorise labels of atypical, low-frequency training examples; memorisation is not merely a side-effect of over-parameterisation but a requirement for optimal learning when frequencies are long-tailed.",
+    "ree_translation": "MECH-472 treats the in-context-vs-held-out gap as a memorisation-vs-acquisition signal to threshold. Feldman shows that not all instance-specific retention is bad: on realistic long-tailed task distributions some memorisation is exactly what an optimal learner must do. So the mapping to MECH-472 is that the gap is a graded, threshold-calibrated signal -- not a binary 'gap => memorised => reject'.",
+    "mapping_caveat": "This is a theoretical result under a specific generative model (subpopulation mixture, long-tailed frequencies) about supervised classification error; it does not measure an agent's held-out competence directly, and 'memorisation' in Feldman's sense (retaining rare-example labels) is not identical to MECH-472's 'memorisation' (a competence that only works in its generating contexts). It bounds the STRONG interpretation of MECH-472, it does not test the claim itself.",
+    "source_context": "Theoretical learning theory; supervised classification under a mixture-of-subpopulations data model; no agent, no RL, no biological data."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "High-quality theory (STOC) but its role is to calibrate MECH-472's threshold and guard against an over-strong reading, not to confirm or refute the core claim. The two senses of 'memorisation' are related but not identical, which is the main fidelity discount."
+  }
+}

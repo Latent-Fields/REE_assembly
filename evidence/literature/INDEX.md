@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-02T20:39:45.146808Z`
+Generated: `2026-08-03T09:23:39.126429Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -256,6 +256,7 @@ Generated: `2026-08-02T20:39:45.146808Z`
 | `targeted_review_mech_457_consolidation` | [`2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024`](targeted_review_mech_457_consolidation/entries/2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024/record.json) | 5 | [`summary`](targeted_review_mech_457_consolidation/entries/2026-07-29_mech_476_synaptic_tagging_capture_binibrahim2024/summary.md) |
 | `targeted_review_mech_459` | [`2026-07-19_mech_459_percentile_return_norm_hafner2023`](targeted_review_mech_459/entries/2026-07-19_mech_459_percentile_return_norm_hafner2023/record.json) | 3 | [`summary`](targeted_review_mech_459/entries/2026-07-19_mech_459_percentile_return_norm_hafner2023/summary.md) |
 | `targeted_review_mech_466` | [`2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022`](targeted_review_mech_466/entries/2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022/record.json) | 2 | [`summary`](targeted_review_mech_466/entries/2026-07-22_mech_466_partially_nested_state_boundaries_geerligs2022/summary.md) |
+| `targeted_review_mech_472` | [`2026-08-03_mech_472_rl_heldout_generalization_cobbe2019`](targeted_review_mech_472/entries/2026-08-03_mech_472_rl_heldout_generalization_cobbe2019/record.json) | 4 | [`summary`](targeted_review_mech_472/entries/2026-08-03_mech_472_rl_heldout_generalization_cobbe2019/summary.md) |
 | `targeted_review_mech_900` | [`2026-02-15_mech900_reproducible_computational_science_science2011`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/record.json) | 1 | [`summary`](targeted_review_mech_900/entries/2026-02-15_mech900_reproducible_computational_science_science2011/summary.md) |
 | `targeted_review_medications_sleep_dementia` | [`2026-04-05_mech176_suvorexant_alzheimer_herring2020`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/record.json) | 10 | [`summary`](targeted_review_medications_sleep_dementia/entries/2026-04-05_mech176_suvorexant_alzheimer_herring2020/summary.md) |
 | `targeted_review_memory_lifecycle_store` | [`2026-06-13_mech_391_systems_consolidation_staging_frankland2005`](targeted_review_memory_lifecycle_store/entries/2026-06-13_mech_391_systems_consolidation_staging_frankland2005/record.json) | 7 | [`summary`](targeted_review_memory_lifecycle_store/entries/2026-06-13_mech_391_systems_consolidation_staging_frankland2005/summary.md) |

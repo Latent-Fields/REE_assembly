@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_472",
+  "entry_id": "2026-08-03_mech_472_rl_heldout_generalization_cobbe2019",
+  "timestamp_utc": "2026-08-03T09:16:27Z",
+  "claim_ids_tested": ["MECH-472"],
+  "source": {
+    "title": "Quantifying Generalization in Reinforcement Learning",
+    "authors": ["Karl Cobbe", "Oleg Klimov", "Chris Hesse", "Taehoon Kim", "John Schulman"],
+    "year": 2019,
+    "venue": "Proceedings of the 36th International Conference on Machine Learning (ICML), PMLR 97",
+    "doi": "",
+    "url": "https://arxiv.org/abs/1812.02341"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.82,
+  "confidence_rationale": "This is the closest domain match to MECH-472's substrate: a reward-driven agent whose competence is measured on procedurally generated CONTEXTS (levels), with training and test sets held strictly disjoint. The paper's central empirical result -- that agents overfit even to large training sets and that same-environment evaluation systematically overstates competence -- is exactly the mechanism MECH-472 asserts. High source_quality (canonical, widely replicated benchmark from a strong group) and high mapping_fidelity (RL agent, held-out CONTEXT, not merely held-out samples); the only discount is that CoinRun measures generalization at test time rather than gating a PROMOTION-to-durable decision, which is REE's specific framing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "An agent can reach near-ceiling reward on its training levels while performing substantially worse on held-out levels drawn from the same generator -- so training-context success is not evidence of acquired skill.",
+    "Overfitting persists up into training sets of thousands of distinct levels, so a small held-out gap is only obtained with very large context diversity; a modest number of training contexts guarantees the gap MECH-472 is trying to detect."
+  ],
+  "tags": ["mech-472", "reinforcement-learning", "generalization-gap", "held-out-context", "memorization"],
+  "mapping": {
+    "source_claim_statement": "Using the same environments for training and testing gives little insight into an agent's ability to generalize; with procedurally generated environments split into disjoint train/test sets, agents overfit to surprisingly large training sets, and the train-vs-test performance gap is the honest measure of generalization.",
+    "ree_translation": "MECH-472 asserts that a competence update should be promoted to durable only on evidence from contexts that did NOT generate it. Cobbe et al. operationalise precisely this: the held-out level set is the 'context that did not generate the competence', and the observed train-minus-test gap is the memorisation-vs-acquisition signal MECH-472 proposes to threshold on.",
+    "mapping_caveat": "CoinRun evaluates generalization as a reporting metric at the end of training; it does not gate a promotion decision or distinguish 'durable' from 'provisional' competence stores, which is the specific control-plane action MECH-472 adds. The transfer is from 'held-out evaluation reveals memorisation' (well supported) to 'therefore gate promotion on held-out evidence' (a design inference REE must still justify on its own substrate).",
+    "source_context": "Deep RL (PPO) on the CoinRun / procedurally generated platformer benchmark; simulated 2D game levels, no biological or human data."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.25,
+    "notes": "Transfer risk is low because REE's own agents are RL-like and evaluated over contexts, so the animal->human / task->REE gap that discounts many neuroscience pulls does not apply here. The residual risk is framing, not domain: measurement vs promotion-gating."
+  }
+}

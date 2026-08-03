@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_472",
+  "entry_id": "2026-08-03_mech_472_compositional_heldout_lake2018",
+  "timestamp_utc": "2026-08-03T09:16:27Z",
+  "claim_ids_tested": ["MECH-472"],
+  "source": {
+    "title": "Generalization without Systematicity: On the Compositional Skills of Sequence-to-Sequence Recurrent Networks",
+    "authors": ["Brenden M. Lake", "Marco Baroni"],
+    "year": 2018,
+    "venue": "Proceedings of the 35th International Conference on Machine Learning (ICML), PMLR 80",
+    "doi": "",
+    "url": "https://arxiv.org/abs/1711.00350"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Direct support for the SPECIFIC structural point in MECH-472's non-degeneracy design: what counts as 'held-out' matters enormously, and how you construct the held-out split determines whether it detects memorisation. Lake & Baroni show a random held-out split gives near-perfect accuracy (masking the failure) while a compositional held-out split on the SAME learned system collapses -- the clearest published demonstration that in-generating-distribution success and genuine skill acquisition come apart, and that only a well-chosen held-out set exposes it. Discount for the domain gap (supervised seq2seq language, not an RL agent's competence promotion) and for the fact that the 'add jump' split's near-zero baseline is itself the floor-artefact regime MECH-472's guard is about, making it a double-edged example.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A model reaching near-100% on a RANDOM train/test split of the same data drops below ~40% on a split requiring a primitive ('jump') to be recombined in novel commands -- so a poorly chosen held-out split can certify a skill the system does not have.",
+    "The 'add jump' split has near-zero baseline accuracy for the held-out combinations, which is exactly MECH-472's floor-artefact warning: a large in-context vs held-out gap can reflect an unreachable held-out set rather than memorisation."
+  ],
+  "tags": ["mech-472", "compositional-generalization", "held-out-split", "systematicity", "memorization", "non-degeneracy-guard"],
+  "mapping": {
+    "source_claim_statement": "Sequence-to-sequence RNNs achieve near-perfect accuracy on a random train/test split of SCAN but fail badly on splits that require compositional recombination of learned primitives (e.g. using 'jump' in novel commands after seeing it only in isolation), showing they generalise without systematicity.",
+    "ree_translation": "MECH-472 hinges on evaluating a learned competence in contexts that did not generate it and thresholding the gap. Lake & Baroni demonstrate that the CHOICE of held-out context is decisive: a random hold-out hides memorisation (small gap, false 'acquired'), while a compositional hold-out on the identical model exposes it (large gap, true 'memorised'). This directly informs how REE must construct the non-generating contexts so the falsifier is not vacuous.",
+    "mapping_caveat": "The task is supervised sequence-to-sequence language translation on a synthetic grammar, not an RL agent promoting a competence to durable storage; the 'skill' is compositional parsing rather than a behavioural competence. Also the sharpest split (add-jump) sits at near-zero baseline, so it simultaneously illustrates the memorisation signal AND the floor-artefact confound MECH-472 warns about -- it should be read as evidence about split CONSTRUCTION, not as a clean template to copy.",
+    "source_context": "Supervised seq2seq (LSTM/GRU, with and without attention) on the SCAN synthetic command->action dataset; no agent, no reward."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Value here is less about the headline (nets fail at compositionality) and more about the methodological lesson for MECH-472's split design -- that a held-out set can be trivially passable OR unreachable, and both break the falsifier. That lesson transfers even though the task domain does not match REE closely."
+  }
+}

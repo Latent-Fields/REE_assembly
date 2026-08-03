@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_472",
+  "entry_id": "2026-08-03_mech_472_memorization_random_labels_zhang2017",
+  "timestamp_utc": "2026-08-03T09:16:27Z",
+  "claim_ids_tested": ["MECH-472"],
+  "source": {
+    "title": "Understanding Deep Learning Requires Rethinking Generalization",
+    "authors": ["Chiyuan Zhang", "Samy Bengio", "Moritz Hardt", "Benjamin Recht", "Oriol Vinyals"],
+    "year": 2017,
+    "venue": "International Conference on Learning Representations (ICLR) -- Best Paper",
+    "doi": "",
+    "url": "https://openreview.net/pdf?id=Sy8gdB9xx"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Foundational, high-quality evidence for the UNDERLYING premise of MECH-472 -- that low training-context error carries essentially no information about acquisition, because a sufficiently expressive learner can drive training error to zero on random labels it cannot possibly have 'understood'. That is the strongest possible demonstration that in-context success and genuine competence are dissociable. Mapping fidelity is discounted because the setting is supervised image classification with i.i.d. train/test SAMPLES, not an agent generalising across CONTEXTS; MECH-472's held-out CONTEXT notion is stronger than a held-out sample split, so the paper supports the principle but not the specific held-out-context construct.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A network can reach zero training error on data with randomly permuted labels, proving that perfect fit to the training distribution is achievable with no generalisable structure whatsoever -- so training-context performance cannot certify acquisition.",
+    "Explicit regularisation is neither necessary nor sufficient to control the generalisation gap, so one cannot infer 'this competence generalises' from the presence of a regulariser or a low training loss."
+  ],
+  "tags": ["mech-472", "memorization", "generalization-gap", "held-out-evaluation", "capacity"],
+  "mapping": {
+    "source_claim_statement": "Deep networks can perfectly fit training data with random labels or random pixels, achieving zero training error while generalising at chance; their effective capacity is enough to memorise the entire dataset, and traditional complexity measures fail to explain their generalisation.",
+    "ree_translation": "MECH-472 assumes that success measured on the contexts that produced a competence update is uninformative about whether real skill was acquired. Zhang et al. give the sharpest form of that assumption: a learner can drive in-context error to zero purely by memorising, with zero transfer -- hence the necessity of evaluating on data the competence was not fit to.",
+    "mapping_caveat": "The demonstration is in supervised classification with held-out SAMPLES from the same distribution, not an agent evaluated on held-out CONTEXTS/tasks. MECH-472's construct is stronger (a context that did not generate the competence, not just an unseen i.i.d. point), so this paper supports the general dissociation of fit-vs-acquisition but does not itself instantiate held-out-context evaluation.",
+    "source_context": "Supervised deep learning; CIFAR-10 and ImageNet image classification with Inception/AlexNet/MLP architectures; no agent, no reward, no sequential decision-making."
+  },
+  "confidence_components": {
+    "source_quality": 0.95,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Weighted toward mapping_fidelity for this architectural/methodological claim: the finding is rock-solid but one abstraction level up from REE's competence-promotion setting. Transfer risk reflects the supervised->agentic and sample->context jumps."
+  }
+}
