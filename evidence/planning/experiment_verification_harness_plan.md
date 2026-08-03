@@ -1,6 +1,6 @@
 # Experiment Verification Harness — Plan of Record
 
-**Status:** in progress. **Owner:** interactive sessions (no dedicated chip yet).
+**Status:** all 3 gaps landed. **Owner:** interactive sessions (no dedicated chip yet).
 **Repos touched:** `ree-v3` (lint corpus, precommit gate), `REE_assembly` (this doc),
 `REE_Working` (a new generic JSON-locality check, umbrella repo).
 
@@ -86,7 +86,20 @@ to the structural delta. Points at the CLAUDE.md guidance in its own message.
 |---|---|---|---|
 | 1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | **done** | ree-v3 `a249c708b2` (main) |
 | 2 | `tests/contracts/LINT_INDEX.md` | **done** | ree-v3 `74011a8981` (main) |
-| 3 | `scripts/check_json_edit_locality.py` | not started | — |
+| 3 | `scripts/check_json_edit_locality.py` | **done** | REE_Working `8cc401e` (master) |
+
+Gap 3 verification: 12 new tests, red/green-checked. Also caught a real bug
+via a production-scale smoke test (not just synthetic fixtures) against this
+repo's own live 1735-line `TASK_CLAIMS.json`: `--repo .` resolved against the
+SCRIPT's own location's parent (always a directory -> always "found") rather
+than the caller's cwd, so a worktree invocation silently checked the wrong
+repo's staged set. Fixed (CWD-relative resolution tried first), pinned by
+`test_repo_dot_resolves_against_cwd_not_script_location`, and re-verified at
+production scale (silent on a real narrow append, warns on a real whole-file
+reformat of the live file, both staged-then-reverted, never committed).
+Standalone tool only -- **not wired into any PreToolUse hook.** That would
+affect every commit across every session/worktree/machine in the fleet and
+is a separate decision from building the check itself.
 
 Gap 1 verification: 8 new tests added, red/green-checked (5 of 8 genuinely fail
 against the pre-fix script, restored and re-verified green); existing
