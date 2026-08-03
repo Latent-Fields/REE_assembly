@@ -83,9 +83,16 @@ to the structural delta. Points at the CLAUDE.md guidance in its own message.
 
 | Gap | Fix | Status | Landed at |
 |---|---|---|---|
-| 1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | in progress | — |
+| 1 | Block 1c in `precommit_contracts.sh` + `test_precommit_contracts_experiment_lint_scope.py` | **done** | ree-v3 `a249c708b2` (main) |
 | 2 | `tests/contracts/LINT_INDEX.md` | not started | — |
 | 3 | `scripts/check_json_edit_locality.py` | not started | — |
+
+Gap 1 verification: 8 new tests added, red/green-checked (5 of 8 genuinely fail
+against the pre-fix script, restored and re-verified green); existing
+`test_precommit_contracts_gate_scope.py` + `test_precommit_contracts_routing.py`
+(24 tests) re-run clean, no regression. Full ~13min contract suite not run for
+this change since it touches neither `ree_core/` nor `experiments/_lib/` (would
+not trigger Block 2 itself either).
 
 ## Explicitly out of scope
 
