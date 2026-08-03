@@ -64967,6 +64967,23 @@
     epistemic_category/v3_pending are deliberately left unchanged. See ree-v3/CLAUDE.md "SD-091 / MECH-481"
     entry for the full data-flow/guardrail-enforcement writeup and what remains (steps 4-5-7, chipped
     separately). substrate_queue.json SD-091 entry status moved to reflect the partial landing.
+    Steps 4-6 landed 2026-08-03 (ree-v3, chip chip-20260802-sd091-live-wiring): CoalitionController
+    is now instantiated in REEAgent.__init__ (alongside self.salience, use_coalition_controller
+    default False, bit-identical off), reset in REEAgent.reset(), ticked in select_action after
+    coordinator.tick(), and all 8 named consumer-site targets (e1_sensory_encoder,
+    e2_fast_forward_model, e3_candidate_count, hippocampal_anchor_set,
+    hippocampal_persistence_appraisal, e3_commitment_monitor, motor_commitment,
+    hippocampal_write_consolidation) read coalition.write_gate()/channel_gain() at existing
+    scalar/tensor computation points in agent.py. 9 new contract tests
+    (tests/contracts/test_sd091_coalition_controller_wiring.py) confirm bit-identical-off via a
+    live 8-tick action-sequence comparison (not just gate-formula inspection), per-template target
+    isolation, the doc's own step-6 live-tick smoke test through the real agent loop, and the
+    BetaGate never-force-open guardrail via the actual _readiness_margin composition. Still
+    epistemic_category substrate_conditional / v3_pending true -- this is wiring, not evidence:
+    nothing calls request_coalition() from any real upstream signal yet (a future
+    MECH-481-battery driver would), so the mechanism is now ablatable but not yet ablated. Step 7
+    (/queue-experiment the MECH-481 4-arm falsifier) is the one remaining step before this claim
+    can be evaluated. See ree-v3/CLAUDE.md "SD-091 / MECH-481" entry for the full writeup.
 
 - id: MECH-481
   title: "Selective cognitive coalition instantiation: the control plane converts typed control demands (e.g. PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, SOCIAL_MODEL_CHECK) into temporary functional interaction graphs over E1/E2/hippocampal/reality-coherence/social/language/affective/E3 systems, recruiting only the subsystems relevant to the discrepancy type."
@@ -65064,6 +65081,13 @@
     NOT wired into any consumer or REEAgent.select_action -- no EXP proposal minted yet remains accurate;
     the 4-arm falsifier (step 7) still needs steps 4-5 to land first. epistemic_category/v3_pending
     deliberately left unchanged.
+    Steps 4-6 landed 2026-08-03 (ree-v3, chip chip-20260802-sd091-live-wiring) -- see SD-091's notes
+    above for the full description; same landing covers both claims. All 8 named consumer-site
+    targets from this claim's own Section-2 recruit/suppress table are now wired and contract-tested
+    (tests/contracts/test_sd091_coalition_controller_wiring.py, 9 tests). Still no EXP proposal
+    minted -- step 7 (/queue-experiment the 4-arm falsifier) is the one remaining step.
+    epistemic_category/v3_pending deliberately left unchanged: wiring makes the mechanism ablatable,
+    it does not itself constitute evidence.
 
 - id: SD-093
   title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."
