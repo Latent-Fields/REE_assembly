@@ -222,6 +222,139 @@ def _proposal_title(lane: str, claim_id: str | None) -> str:
 # semantic as the canonical "blocked_substrate".
 _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES = {"blocked_substrate", "proposed_blocked_substrate"}
 
+# FM10 (2026-08-03): the broader "a prior session adjudicated this proposal as
+# NOT-QUEUEABLE-NOW" set, consumed by the GOV-CONFIRM-1 confirmer lane. A
+# superset of the blocked_substrate family above, adding the statuses whose
+# semantic is the same STOP arrived at by a different route:
+#   * blocked_on_gate -- an upstream design/claim prerequisite is unresolved.
+#   * gated -- a named session recorded a `gating_reason` (and often a
+#     `release_condition`) on this proposal. This is the SAME kind of manually
+#     written, manually cleared adjudication as blocked_substrate; the only
+#     difference is which field the session reached for.
+#   * skipped -- deliberately not pursued (the one live case, EXP-0131/ARC-018,
+#     is why_now=['active_conflict']).
+#   * deferred_substrate_not_ready -- the self-route verdict spelled out.
+# Deliberately EXCLUDES `executed`, `queued`, and `proposed`: those are not
+# adjudications, they are lifecycle positions ("queued" is already handled by
+# the queue gate, `_confirmer_queued_claims`).
+#
+# TENSION worth stating rather than burying, because it is re-judgeable: the
+# confirmer lane deliberately RELAXES the v3_pending drop (user decision
+# 2026-07-14, gov_confirm_1_plan.md), and 4 of the 5 live `gated` confirmer
+# candidates on 2026-08-03 (MECH-282, SD-055, MECH-339, MECH-340) were gated
+# with the reason "hold_pending_v3_substrate governance verdict +
+# v3_pending=true". Including `gated` therefore re-imposes, via the proposal
+# record, something the lane chose not to impose via the claim record. It is
+# nonetheless the right call HERE only because this predicate does NOT drop the
+# item -- it renders it `blocked` with the gating_reason shown (see
+# _evidence_confirmer_candidates), so the claim stays visible on /workset and
+# flips back to eligible the moment a session clears the gate. If this is ever
+# changed to a drop, revisit `gated`'s membership first.
+_PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES = _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES | {
+    "blocked_on_gate",
+    "gated",
+    "skipped",
+    "deferred_substrate_not_ready",
+}
+
+
+def _proposals_by_claim(statuses: set[str]) -> dict[str, dict]:
+    """claim_id -> first experiment_proposals.v1.json entry whose status is in
+    `statuses`. THE single reader of that file's claim field.
+
+    One parser, deliberately -- FM9's whole lesson was that the retest lane and
+    the confirmer lane each grew their own reader of the same field pair and
+    drifted apart for two months. `_proposal_blocked_substrate_by_claim` (retest
+    lane, FM7) and `_confirmer_adjudicated_proposals` (confirmer lane, FM10) are
+    both thin wrappers over this with different status sets.
+
+    experiment_proposals.v1.json carries the claim as a SINGULAR `claim_id` on
+    every one of its 354 live entries (audited 2026-08-03; zero use the
+    `claim_ids` list form the ree-v3 QUEUE uses). The list form is read anyway so
+    this cannot become the next singular-vs-list blind spot if the schema drifts.
+    First occurrence wins (the file carries duplicate claim ids).
+    """
+    if not PROPOSALS_JSON.exists():
+        return {}
+    try:
+        data = json.loads(PROPOSALS_JSON.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    out: dict[str, dict] = {}
+    for p in data.get("items") or []:
+        if not isinstance(p, dict):
+            continue
+        if p.get("status") not in statuses:
+            continue
+        cids = [str(c) for c in (p.get("claim_ids") or []) if c]
+        single = p.get("claim_id")
+        if single:
+            cids.append(str(single))
+        for cid in cids:
+            if cid and cid not in out:
+                out[cid] = p
+    return out
+
+
+def _confirmer_adjudicated_proposals() -> dict[str, dict]:
+    """claim_id -> the proposal record a prior session adjudicated as not
+    queueable now (FM10). Consumed by the GOV-CONFIRM-1 confirmer lane.
+
+    THE DEFECT THIS CLOSES. `_evidence_confirmer_candidates` is generative: it
+    scans the claim registry for built-substrate + zero-evidence candidates and
+    AUTHORS a confirmer item. Its own docstring anticipates that the per-item
+    /queue-experiment pass "self-routes substrate_not_ready_requeue if only a
+    behavioural DV exists" -- but the lane had NO MEMORY of that outcome, so it
+    re-offered the identical claim on every regeneration and the metaworker
+    dispatcher spent a whole worker re-deriving the same negative.
+
+    Confirmed incident (2026-08-03): MECH-191 was worked TWICE the same day
+    (chips igw-confirm-mech191 and igw-233-mech191-confirm), both resolving
+    "QUEUED NOTHING -- self-routed substrate_not_ready_requeue". The second of
+    those sessions recorded the durable verdict at REE_assembly 38236f6779
+    (20:11Z): EXP-0276 (claim_id MECH-191) status=blocked_substrate, with a
+    gating_reason that had RE-VERIFIED the block against live ree-v3 substrate.
+    The workset regenerated at 22:10Z -- two hours later -- and IGW-20260803-229
+    "Confirm evidence: MECH-191" still rendered `ready`.
+
+    NOT the same gap as FM9 (5aa0d3267a), which fixed the queue gate and
+    explicitly verified this survivor was "genuinely unqueued". That verdict is
+    correct. UNQUEUED IS NOT UNADJUDICATED -- a session can conclude that nothing
+    should be queued at all, and that conclusion has to be readable too.
+
+    Reads the same manually-maintained field the retest lane's FM7 fix consults,
+    via the same parser (`_proposals_by_claim`). Same staleness semantic: no
+    auto-clear, the status sits until a session clears it once the real blocker
+    resolves. That is the intended manually-adjudicated behaviour, not a bug.
+    """
+    return _proposals_by_claim(_PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES)
+
+
+def _proposal_adjudication_reason(prop: dict) -> str:
+    """One-line human reason from an adjudicated proposal, for `blocked_by`.
+
+    Prefers the most specific field the adjudicating session filled in, since
+    which one it reached for varies by status: structured `blocked_by`, then the
+    free-text `gating_reason` / `blocked_note`, then `release_condition`, and
+    finally a bare pointer to the record. Never returns empty -- an item rendered
+    `blocked` with no reason is indistinguishable from a generator bug.
+    """
+    pid = prop.get("proposal_id") or "?"
+    status = prop.get("status") or "?"
+    blocked_by_list = prop.get("blocked_by") or []
+    if blocked_by_list:
+        detail = ", ".join(str(x) for x in blocked_by_list)[:200]
+        return f"experiment_proposals.v1.json {pid} status={status}: blocked by {detail}"
+    for field in ("gating_reason", "blocked_note", "release_condition"):
+        val = prop.get(field)
+        if val:
+            return f"experiment_proposals.v1.json {pid} status={status}: {str(val)[:200]}"
+    return (
+        f"experiment_proposals.v1.json {pid} status={status} "
+        f"(backlog_id {prop.get('backlog_id') or '?'}); see the proposal record "
+        f"for adjudication detail."
+    )
+
 
 def _proposal_blocked_substrate_by_claim() -> dict[str, dict]:
     """claim_id -> first experiment_proposals.v1.json entry whose status is a
@@ -250,24 +383,16 @@ def _proposal_blocked_substrate_by_claim() -> dict[str, dict]:
     the intended manually-adjudicated semantic (matches how the INV-089
     investigator explicitly set it, and how claims.yaml pending_retest_after_substrate
     itself works -- also never auto-cleared).
+
+    FM10: body moved into the shared `_proposals_by_claim` parser so the retest
+    lane and the confirmer lane cannot grow two readers of this file (the exact
+    drift FM9 fixed for the queue). Status set unchanged -- the retest lane's
+    scope is deliberately NARROWER than the confirmer lane's
+    (_PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES): a retest already has an
+    explicit claims.yaml pending_retest_after_substrate flag asking for it, so
+    only a substrate block should hold it back.
     """
-    if not PROPOSALS_JSON.exists():
-        return {}
-    try:
-        data = json.loads(PROPOSALS_JSON.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-    out: dict[str, dict] = {}
-    for p in data.get("items") or []:
-        if not isinstance(p, dict):
-            continue
-        if p.get("status") not in _PROPOSAL_BLOCKED_SUBSTRATE_STATUSES:
-            continue
-        cid = str(p.get("claim_id") or "")
-        if not cid or cid in out:  # first occurrence wins (proposals file carries dup ids)
-            continue
-        out[cid] = p
-    return out
+    return _proposals_by_claim(_PROPOSAL_BLOCKED_SUBSTRATE_STATUSES)
 
 
 def _utc_now() -> str:
@@ -1223,6 +1348,7 @@ def _evidence_confirmer_candidates(
     exp_evidence: set[str],
     substrate_by_id: dict[str, dict],
     queued_claim_ids: set[str] | None = None,
+    adjudicated_by_claim: dict[str, dict] | None = None,
 ) -> list[dict]:
     """GOV-CONFIRM-1 (plan gov_confirm_1_plan.md): candidate/provisional claims
     that are confirmable-but-unconfirmed -- built substrate + thin/zero experimental
@@ -1254,10 +1380,26 @@ def _evidence_confirmer_candidates(
     behaviour DV that the competence wall blocks) -- stays in the per-item
     /queue-experiment pass, which self-routes substrate_not_ready_requeue if only a
     behavioural DV exists. Sorted by lit_conf desc.
+
+    FM10 -- MEMORY OF THAT SELF-ROUTE. A candidate whose backing proposal a prior
+    session already adjudicated as not-queueable (`adjudicated_by_claim`, from
+    `_confirmer_adjudicated_proposals`) is returned with an `adjudication` key
+    rather than being dropped. The call site renders it `blocked` with the
+    session's own reason in `blocked_by`, so:
+      * the dispatcher never spends another worker re-deriving it (the defect:
+        MECH-191 worked twice on 2026-08-03, both self-routing);
+      * it is NOT muted -- the claim stays on /workset carrying the verdict, and
+        re-enters the eligible set automatically when the status is cleared;
+      * it consumes no CONFIRMER_AUTOSPAWN_CAP slot (the cap counts `ready`
+        only), so a real confirmer takes the freed slot the same regeneration.
+    Rendering `blocked` rather than dropping is the FM7 precedent from the retest
+    lane, and is what makes including the broad `gated` status safe -- see
+    _PROPOSAL_ADJUDICATED_NOT_QUEUEABLE_STATUSES for the v3_pending tension.
     """
     lit_conf = _claim_lit_conf()
     built = _claims_implemented_in_substrate()
     queued_claim_ids = queued_claim_ids or set()
+    adjudicated_by_claim = adjudicated_by_claim or {}
     out: list[dict] = []
     for cid, meta in claims_meta.items():
         if cid not in built:  # built-substrate guard FIRST -- also gates the v3_pending relaxation
@@ -1278,12 +1420,23 @@ def _evidence_confirmer_candidates(
         lit = lit_conf.get(cid, 0.0)
         if lit < CONFIRMER_LIT_FLOOR:
             continue
-        out.append({
+        rec = {
             "claim_id": cid,
             "lit_conf": lit,
             "title": meta.get("title") or cid,
             "location": meta.get("location") or "",
-        })
+        }
+        # FM10: carry the prior adjudication through instead of dropping the
+        # candidate; the call site turns it into a `blocked` item.
+        adj = adjudicated_by_claim.get(cid)
+        if adj:
+            rec["adjudication"] = {
+                "proposal_id": adj.get("proposal_id") or "?",
+                "status": adj.get("status") or "?",
+                "reason": _proposal_adjudication_reason(adj),
+                "session": adj.get("gated_by_session") or "",
+            }
+        out.append(rec)
     out.sort(key=lambda d: (-d["lit_conf"], d["claim_id"]))
     return out
 
@@ -2219,30 +2372,50 @@ def build_workset() -> dict:
     # confirmable-but-unconfirmed backlog is honest; the ceiling only guards a pathological
     # flood. Concurrency (how many are autospawn-eligible `ready` at once) is capped
     # separately below, post-assignment-merge, at CONFIRMER_AUTOSPAWN_CAP.
+    # FM10: claims whose backing proposal a prior session already adjudicated as
+    # not-queueable render `blocked` (with that session's reason) instead of
+    # `ready`, so the dispatcher stops re-spending workers on a settled negative.
+    confirmer_adjudicated = _confirmer_adjudicated_proposals()
     for conf in _evidence_confirmer_candidates(
-        claims_meta, exp_evidence, substrate_by_id, confirmer_queued_claims
+        claims_meta, exp_evidence, substrate_by_id, confirmer_queued_claims,
+        confirmer_adjudicated,
     )[:40]:
         cid = conf["claim_id"]
-        add(
-            lane="experiment",
-            skill="/queue-experiment",
-            status=conf_status,
-            # Low priority: sorts BELOW governance(1-8)/substrate(20-25)/retest(28)/
-            # ops(35)/proposals(40) -- confirmers are background fill behind the front.
-            priority=55,
-            severity="low",
-            title=f"Confirm evidence: {cid} (lit {conf['lit_conf']:.2f}, exp ~0)",
-            why_now=(
+        adj = conf.get("adjudication")
+        if adj:
+            item_status = "blocked"
+            blockers = [adj["reason"][:240]]
+            why_now = (
+                f"ALREADY ADJUDICATED -- do not re-investigate. A prior session"
+                + (f" ({adj['session']})" if adj["session"] else "")
+                + f" recorded {adj['proposal_id']} status={adj['status']} in "
+                f"experiment_proposals.v1.json. See blocked_by; re-runs of this "
+                f"confirmer are NO-OPs until that status is cleared."
+            )[:240]
+        else:
+            item_status = conf_status
+            blockers = []
+            why_now = (
                 f"GOV-CONFIRM-1: candidate w/ built substrate (tagged in ree_core), "
                 f"lit_conf {conf['lit_conf']:.2f}, ZERO experimental evidence. Scope a "
                 f"WALL-INDEPENDENT representation/functional-signature confirming DV "
                 f"(self-route substrate_not_ready_requeue if only a behavioural DV exists). "
                 f"loc: {conf['location']}"
-            )[:240],
+            )[:240]
+        add(
+            lane="experiment",
+            skill="/queue-experiment",
+            status=item_status,
+            # Low priority: sorts BELOW governance(1-8)/substrate(20-25)/retest(28)/
+            # ops(35)/proposals(40) -- confirmers are background fill behind the front.
+            priority=55,
+            severity="low",
+            title=f"Confirm evidence: {cid} (lit {conf['lit_conf']:.2f}, exp ~0)",
+            why_now=why_now,
             gap_ids=[],
             claim_ids=[cid],
             owner_exq=None,
-            blocked_by=[],
+            blocked_by=blockers,
             unblocks=[cid],
             confirmer=True,
         )
