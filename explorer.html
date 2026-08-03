@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- EXPLORER_VERSION: 2026-08-02.8 -->
+<!-- EXPLORER_VERSION: 2026-08-03.1 -->
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -416,12 +416,12 @@
     }
 
     tr:hover {
-      background: #faf7f1;
+      background: var(--bg-2);
       cursor: pointer;
     }
 
     tr.selected {
-      background: #f0f7f6;
+      background: var(--bg-2);
     }
 
     .badge {
@@ -525,7 +525,7 @@
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #f0f7f6;
+      background: var(--bg-2);
       font-size: 11px;
       cursor: pointer;
     }
@@ -537,7 +537,7 @@
     }
 
     .excerpt-content {
-      background: #fbfaf6;
+      background: var(--bg-2);
       border: 1px solid var(--border);
       padding: 10px;
       border-radius: 8px;
@@ -735,7 +735,7 @@
       vertical-align: top;
     }
     #paperDoc thead th, .docs-wrap thead th {
-      background: #f6f8fa;
+      background: var(--bg-2);
       font-weight: 600;
       white-space: nowrap;
     }
@@ -1002,7 +1002,7 @@
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #f7f2e9;
+      background: var(--bg-2);
       font-size: 11px;
       text-decoration: none;
       color: var(--ink);
@@ -1171,7 +1171,7 @@
       padding: 2px 8px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #f7f2e9;
+      background: var(--bg-2);
       font-size: 11px;
       cursor: pointer;
     }
@@ -1568,7 +1568,8 @@
     .doc-content ol { padding-left: 20px; margin: 8px 0; }
     .doc-content li { margin-bottom: 4px; }
     .doc-content pre {
-      background: #f7f5f0;
+      background: var(--bg-2);
+      color: var(--ink);
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 8px;
@@ -1576,7 +1577,8 @@
       font-size: 12px;
     }
     .doc-content code {
-      background: #f7f5f0;
+      background: var(--bg-2);
+      color: var(--ink);
       border: 1px solid var(--border);
       border-radius: 4px;
       padding: 1px 4px;
