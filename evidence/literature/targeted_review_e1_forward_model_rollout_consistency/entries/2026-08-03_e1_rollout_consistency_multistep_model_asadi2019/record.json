@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_multistep_model_asadi2019",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135",
+    "INV-088"
+  ],
+  "source": {
+    "title": "Combating the Compounding-Error Problem with a Multi-step Model",
+    "authors": [
+      "Kavosh Asadi",
+      "Dipendra Misra",
+      "Seungchan Kim",
+      "Michel L. Littman"
+    ],
+    "year": 2019,
+    "venue": "arXiv preprint (arXiv:1905.13320)",
+    "doi": "10.48550/arXiv.1905.13320",
+    "url": "https://arxiv.org/abs/1905.13320"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.68,
+  "confidence_rationale": "Two separate things earn this entry its place, and they point at two different claims -- which is why the direction is 'mixed' rather than 'supports'. For MECH-135 it SUPPORTS the remedy path, and supplies a fourth architectural option the autopsy did not name: rather than making an autoregressive composition better behaved, abandon the composition and learn a model that takes a state plus a SEQUENCE of actions and directly outputs the resulting state. That maps unusually well onto REE's actual usage, because the E1_COE evaluator does not need the intermediate states at all -- `_score_sequence_e1coe_with_endpoint` scores only the ENDPOINT, `goal_state.goal_proximity(z_world_curr)` on the final z_world. A direct sequence-to-endpoint model would eliminate the 30-fold composition entirely rather than regularising it. For INV-088 it WEAKENS the claim: the paper's core argument is that one-step prediction quality and multi-step rollout quality are decoupled, with one-step errors 'magnified' under self-composition -- which is direct literature support for the dissociation V3-EXQ-108b measured empirically (CR_real 0.19-0.20 healthy while CR_rollout/CR_real ~3e-6), and therefore direct evidence against INV-088's proposition that evaluator degeneracy is BOUNDED BY z_world's differentiation capacity. Confidence 0.68: the argument is clean and the theory is real, but this remained an arXiv preprint rather than reaching a peer-reviewed venue, and the direct multi-step model has an obvious combinatorial cost the paper does not fully confront at REE's scale.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "One-step prediction errors get magnified when a model is composed with itself to predict multiple steps into the future, so multi-step rollout quality is not bounded below by one-step model quality.",
+    "A model-based agent can hold an accurate one-step transition model and still select poor actions, because value estimation and action selection consume the composed multi-step prediction rather than the one-step one.",
+    "Composing a learned model with itself is a choice, not a necessity: the composition is where the error magnification happens, so a model that predicts the outcome of an action sequence directly does not incur it."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "multi_step_model",
+    "compounding_error",
+    "action_sequence_conditioned",
+    "rollout_collapse",
+    "dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Model-based RL algorithms typically learn a one-step transition model mapping state and action to next state, which is composed with itself to predict multiple steps ahead; one-step prediction errors get magnified under this composition, leading to unacceptable inaccuracy that plagues planning and undermines model-based RL. The authors instead introduce a multi-step model that takes a state paired with a sequence of actions and directly outputs the outcome of executing that sequence, and report theoretical and empirical results indicating it is more conducive to efficient value-function estimation and yields better action selection than the one-step model.",
+    "ree_translation": "Two mappings. First, the remedy (MECH-135): this names a fourth candidate the V3-EXQ-108b autopsy did not list, and it fits REE's usage better than the three that were listed. `_score_sequence_e1coe_with_endpoint` iterates E1 thirty times but consumes only the final z_world, scoring it with `goal_state.goal_proximity`. Every intermediate prediction is discarded. A model in Asadi et al.'s sense -- (z_start, action_sequence) -> z_endpoint -- would give the evaluator exactly what it consumes with no self-composition at all, removing the error-magnification mechanism rather than regularising it. Second, the dissociation (INV-088): the paper's central argument is that one-step and multi-step model quality are decoupled. INV-088 asserts that world-goal-evaluator degeneracy is bounded by z_world's differentiation capacity. V3-EXQ-108b measured those two coming apart (healthy CR_real, collapsed CR_rollout); this paper says that coming-apart is the expected behaviour of composed learned models, which is literature grounding for the 'weakens' reading governance already confirmed for INV-088 on this pathway.",
+    "mapping_caveat": "The direct multi-step model has a cost the paper does not confront at REE's scale, and it is the obvious objection: the space of action sequences is |A|^H, which for the 108b setting (30 steps over the CausalGridWorldV2 action set) is astronomically larger than the 40 candidate sequences actually scored. A sequence-conditioned model must therefore generalise across sequences it has never seen, and the paper's empirical settings are far smaller than that. There is also a scope mismatch: E1 is a general world model with consumers beyond the evaluator (HippocampalModule priors, MECH-151 action_bias, MECH-216 schema salience), all of which need the per-step trajectory, so a sequence-to-endpoint model could not REPLACE E1 -- it would be an additional evaluator-specific head, which is a different and larger design than the substrate_queue entry currently describes. Finally, on the INV-088 side, the paper is a general argument about learned models, not a measurement of REE's substrate: it makes the dissociation expected, it does not independently confirm REE's instance of it.",
+    "source_context": "Model-based reinforcement learning; tabular and small continuous-control benchmarks with value-function estimation and action selection as the downstream measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.76,
+    "transfer_risk": 0.4,
+    "notes": "Source quality is the weak leg: a 2019 arXiv preprint from a strong group (Littman) with both theory and experiments, but it did not land at a peer-reviewed venue and the empirical scale is small. Mapping fidelity is high on both legs -- the endpoint-only usage in REE's scorer is an unusually exact fit for the direct multi-step formulation, and the decoupling argument is exactly the dissociation 108b measured. Transfer risk 0.40 for the |A|^H generalisation problem at horizon 30."
+  }
+}

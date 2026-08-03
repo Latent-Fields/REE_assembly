@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_dad_multistep_venkatraman2015",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135"
+  ],
+  "source": {
+    "title": "Improving Multi-step Prediction of Learned Time Series Models",
+    "authors": [
+      "Arun Venkatraman",
+      "Martial Hebert",
+      "J. Andrew Bagnell"
+    ],
+    "year": 2015,
+    "venue": "Proceedings of the Twenty-Ninth AAAI Conference on Artificial Intelligence (AAAI 2015)",
+    "doi": null,
+    "url": "https://ojs.aaai.org/index.php/AAAI/article/view/9590"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "This is the cleanest statement in the literature of the exact failure V3-EXQ-108b hit, and it is a statement about the general class of single-step-trained time-series models rather than about one architecture -- which is what makes it transfer to E1's LSTM without the architecture-conditionality caveat that limits the latent-overshooting entry. The paper names the mechanism precisely (single-step training optimises under the data distribution; autoregressive rollout feeds the model its own outputs, so the input distribution at step k is one the model was never trained on, breaking the i.i.d. assumption that justified the single-step fit) and offers a fix -- Data as Demonstrator -- that is unusually cheap: it requires no architecture change, no new loss form, no distributional machinery, only additional training pairs harvested from the model's own rollouts with the ground-truth continuation as the correction target. For REE that cheapness matters, because it makes DaD the natural FIRST intervention to try. Confidence is held below 0.8 because the paper predates deep latent-dynamics work by several years, its guarantees are no-regret reductions in the imitation-learning sense rather than statements about learned latent spaces, and it says nothing about the action-conditioning gap that this review identifies as logically prior for E1.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Training a time-series model on single-step error and then iterating it autoregressively changes the input distribution at every subsequent step, so the supervised-learning i.i.d. assumption that licensed the single-step fit does not hold at rollout time.",
+    "Compounding error is a distribution-shift problem, not only an accuracy problem: the model is asked to predict from states it never saw during training, and the further into the rollout, the further off-distribution the input.",
+    "A model can be arbitrarily good at one-step prediction and still be useless over a long autoregressive horizon, because one-step accuracy is measured under a distribution the rollout leaves immediately."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "data_as_demonstrator",
+    "dagger",
+    "scheduled_unrolling",
+    "compounding_error",
+    "distribution_shift",
+    "rollout_collapse"
+  ],
+  "mapping": {
+    "source_claim_statement": "Most statistical and machine-learning approaches to time-series modelling optimise single-step prediction error; in multi-step simulation the model is iterated, feeding its previous output back as input. Any predictor introduces errors, and these compounding errors change the input distribution for future prediction steps, breaking the train-test i.i.d. assumption common in supervised learning. The authors formulate multi-step prediction as imitation learning, where the training data acts as a 'demonstrator' supplying corrections for errors made during rollout, and present Data as Demonstrator (DaD), a no-regret meta-algorithm that reuses training data to make the learner robust to its own rollout errors.",
+    "ree_translation": "This is the general form of the V3-EXQ-108b diagnosis, stated for the whole class of single-step-trained iterated predictors rather than for any particular architecture -- so unlike the PlaNet entry it applies to E1's deterministic LSTM directly. It also supplies the grounding for the autopsy's second named candidate, 'scheduled multi-step unrolling': DaD is the principled version of that idea. Concretely for REE, a DaD pass over E1 would roll the current E1 forward from real start states, collect the (predicted-state, true-next-state) pairs generated along its own drifting trajectory, and add them to the training set -- iterating so that E1 is progressively trained on the very off-distribution inputs its 30-step scoring rollout actually visits. Crucially this needs no change to E1's architecture or loss form, only to the data it is fed, which makes it the lowest-cost of the four candidate interventions surveyed here.",
+    "mapping_caveat": "Three boundaries. (1) DaD's no-regret guarantee is an imitation-learning reduction over a hypothesis class, established for the era's linear and shallow time-series models on observable state; it is not a theorem about learned latent spaces, and in REE the 'ground truth' correction target for a drifted z_world is itself an encoder output that may move as the encoder trains. (2) DaD corrects for distribution shift along the rollout; it does not create discriminative structure that the model's inputs cannot express. Since E1's transition takes no action argument, a DaD-trained E1 would follow the real trajectory distribution more faithfully while the forty candidate action sequences still enter only through the z_self-to-prior_generator bottleneck -- so DaD alone is not predicted to move C3 either. (3) The paper is a decade old and predates the latent-dynamics literature; it should be read as the correct diagnosis and a cheap first intervention, not as a current state-of-the-art recommendation.",
+    "source_context": "Learned time-series and dynamical-system models (including controlled systems via the authors' `dad_control` variant); classical benchmarks, not deep latent-state RL."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.78,
+    "transfer_risk": 0.35,
+    "notes": "AAAI 2015, well-cited, Bagnell's group -- solid but not a Nature/NeurIPS-headline paper, and empirically demonstrated on models much simpler than E1. Mapping fidelity is the highest in this review's ML set because the paper's claim is explicitly about the general single-step-trained-then-iterated construction, which is exactly and without reinterpretation what the 108b driver does. Transfer risk is moderate: the mechanism transfers cleanly, the no-regret guarantee does not."
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_temporal_distance_hippocampus_addis2008",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135"
+  ],
+  "source": {
+    "title": "Constructive episodic simulation: temporal distance and detail of past and future events modulate hippocampal engagement",
+    "authors": [
+      "Donna Rose Addis",
+      "Daniel L. Schacter"
+    ],
+    "year": 2008,
+    "venue": "Hippocampus, 18(2):227-37",
+    "doi": "10.1002/hipo.20405",
+    "url": "https://doi.org/10.1002/hipo.20405"
+  },
+  "evidence_class": "fmri_connectivity",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the depth-dependence half of the biological reference the V3-EXQ-108b autopsy asked for, and it is the more architecturally informative of the two biology entries even though the Hassabis lesion study is the more famous. Its finding is that bilateral hippocampal activity correlates with the increasing REMOTENESS of imagined future events -- simulating further ahead recruits MORE machinery, not the same machinery run longer. The authors interpret this as reflecting the increasing disparateness of details in remote future events and the intensive relational processing required to integrate them into a coherent simulation. Mapped onto REE that is a direct architectural argument: E1's 30-step rollout is the same single-step map composed thirty times, with no additional mechanism, no additional objective term, and nothing whose contribution scales with depth -- which is precisely the design biology does not use. It converges with the ML side of this review (train at the horizon you plan at) from an entirely independent direction, which is why I weight it despite modest source-quality numbers. Confidence 0.60 reflects that this is a parametric-modulation fMRI correlation in a small sample, that increased BOLD signal admits several readings besides 'more computation is required', and that the mapping is to an architectural principle rather than to any measurable REE quantity.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Simulating further into the future is not the same operation run for longer: hippocampal engagement scales with the temporal remoteness of the simulated event, implying additional integrative work rather than mere iteration.",
+    "Constructing a coherent remote simulation requires relational processing to integrate increasingly disparate details -- so depth of simulation imposes its own binding demand that a single-step transition map does not supply.",
+    "An architecture that reaches long horizons purely by composing a one-step model with itself has no component whose contribution grows with depth, which is the opposite of the biological arrangement."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "episodic_simulation",
+    "hippocampus",
+    "temporal_distance",
+    "horizon_depth",
+    "relational_binding",
+    "constructive_simulation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Participants constructed past or future events in response to a cue, then elaborated and rated them, during event-related fMRI. Parametric modulation analyses using temporal distance and amount of detail as covariates found that the left posterior hippocampus responded to the amount of detail comprising both past and future events, while the left anterior hippocampus responded differentially to detail comprising future events. For temporal distance, activity in the bilateral hippocampus correlated significantly with the increasing remoteness of future events. The authors propose this reflects the increasing disparateness of details likely included in remote future events and the intensive relational processing required to integrate them into a coherent episodic simulation of the future.",
+    "ree_translation": "The biological reference class for HORIZON DEPTH specifically, which is the axis V3-EXQ-108b failed on and the axis the sibling E2 review does not cover. Biology treats deeper simulation as demanding progressively more integrative work: hippocampal recruitment scales with how far ahead is being simulated. REE-v3's E1 does the opposite -- `predict_long_horizon` composes one LSTM step thirty times in a plain Python loop (`for _ in range(horizon)`, feeding each prediction back as the next input), with no term, module or objective whose contribution scales with depth, and trained at horizon=1 throughout. The biological arrangement is an independent argument for the ML side's convergent recommendation that the training objective must cover the horizon actually planned at, and it slightly favours the candidates that add depth-scaled structure (TD-MPC's H-step unroll, Asadi's sequence-conditioned model) over those that only regularise an unchanged composition.",
+    "mapping_caveat": "The inference from increased BOLD signal to 'more computational work is required at greater depth' is an interpretation, and not the only available one -- greater remoteness may recruit more hippocampus because remote events are more novel, more schematic, less constrained by retrieved detail, or simply harder in ways unrelated to integrative load. The authors' own reading (increasing disparateness of details plus relational processing) is plausible and is the reading REE relies on, but it is inference from a parametric correlation in a modest sample, not a demonstration of computational necessity. Second, biological temporal distance spans days to years of subjective time, while REE's rollout depth is thirty substrate ticks in a grid world; these are not commensurable scales and the mapping is by analogy of ARCHITECTURAL PRINCIPLE only. Third, this entry motivates depth-aware structure in general and does not discriminate among the four candidate fixes -- it should not be cited as evidence for any specific one.",
+    "source_context": "Event-related fMRI in healthy adults; cued construction and elaboration of past and future autobiographical events, with temporal distance and self-rated detail as parametric covariates."
+  },
+  "confidence_components": {
+    "source_quality": 0.68,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.45,
+    "notes": "Hippocampus 2008, well-cited within the constructive-episodic-simulation literature, from Schacter's group -- solid but a modest-sample parametric fMRI study of an era before large-sample norms, and BOLD-to-computation inference is soft. Mapping fidelity 0.62: the architectural principle (depth demands its own machinery) transfers well and is exactly the axis 108b failed on, while the quantitative scales are incommensurable. Transfer risk 0.45 for human-fMRI-to-LSTM and for the interpretive step from signal to computational necessity."
+  }
+}

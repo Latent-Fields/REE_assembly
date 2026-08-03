@@ -1,0 +1,55 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_scene_construction_amnesia_hassabis2007",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135"
+  ],
+  "source": {
+    "title": "Patients with hippocampal amnesia cannot imagine new experiences",
+    "authors": [
+      "Demis Hassabis",
+      "Dharshan Kumaran",
+      "Seralynne D. Vann",
+      "Eleanor A. Maguire"
+    ],
+    "year": 2007,
+    "venue": "Proceedings of the National Academy of Sciences of the United States of America, 104(5):1726-31",
+    "doi": "10.1073/pnas.0610561104",
+    "url": "https://doi.org/10.1073/pnas.0610561104"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "The V3-EXQ-108b autopsy's biological-reference triage explicitly flagged the multi-step-imagination-versus-intact-perception parallel as PLAUSIBLE BUT NOT LIT-CONFIRMED and asked this lit-pull to verify it with actual citations. This is the canonical citation, and it does confirm the DISSOCIATION half of the parallel with unusual clarity: amnesic patients with primary bilateral hippocampal damage were markedly impaired at constructing new imagined experiences from simple verbal cues, while their perception of present circumstances was not the deficit under study -- the simulation machinery fails while the elements remain available. That is the correct existence-proof shape for 'z_world encoder differentiates real states fine (CR_real 0.19-0.20) while the rollout built on it collapses'. The direction is held at 'mixed' rather than 'supports' for a reason I consider decisive and which the autopsy's proposed parallel did not anticipate: the FAILURE SIGNATURE is arguably the opposite of REE's. The patients' imagined experiences 'lacked spatial coherence, consisting instead of fragmented images in the absence of a holistic representation' -- that is a loss of BINDING, producing scattered, incoherent content. REE's E1 rollout fails by CONVERGENCE, with forty distinct imagined trajectories landing on near-identical endpoints (variance ~1e-13 against a 0.002 threshold). Fragmentation and homogenisation are different pathologies, and a review that reported this entry as clean support would be overselling it.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Imagination and perception dissociate: the machinery that constructs novel multi-element experiences can fail while the ability to perceive and describe present circumstances is spared.",
+    "Constructive simulation requires a holistic spatial context into which disparate elements are bound; without the hippocampal contribution the elements are still produced but the integrated scene is not.",
+    "The observed biological failure mode is fragmentation and loss of coherence, NOT convergence of distinct imagined scenarios onto a common average -- so 'imagination machinery is damaged' does not by itself predict which degenerate form the output takes."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "scene_construction",
+    "hippocampus",
+    "imagination",
+    "mental_simulation",
+    "dissociation",
+    "amnesia"
+  ],
+  "mapping": {
+    "source_claim_statement": "A group of amnesic patients with primary bilateral hippocampal damage was tested on constructing new imagined experiences in response to short verbal cues outlining simple commonplace scenarios. Patients were markedly impaired relative to matched controls. The authors identified a possible source: the patients' imagined experiences lacked spatial coherence, consisting instead of fragmented images in the absence of a holistic representation of the environmental setting. They conclude the hippocampus may make a critical contribution to the creation of new experiences by providing the spatial context into which the disparate elements of an experience can be bound.",
+    "ree_translation": "This is the biological existence proof the V3-EXQ-108b autopsy asked for, discharging the 'biological reference: absent (for this specific axis)' row of its four-layer diagnosis. The mapping is at the level of ARCHITECTURAL SEPARABILITY, not failure signature: biology instantiates constructive multi-element simulation as a system distinct from, and additional to, intact perception of the present -- damage the former and the latter survives. REE-v3 shows the same separability, measured rather than lesioned: the sanctioned-trained z_world encoder differentiates real states healthily (CR_real 0.193/0.201, holdout probe accuracy 0.80-0.94) while the E1 rollout built on that same encoder is fully degenerate (CR_rollout/CR_real ~2.6e-6 to 3.2e-6). The relevance to MECH-135 is that multi-step imagined rollout is not a free by-product of a good state representation in biology either; it is a separately-implemented capability with its own failure mode.",
+    "mapping_caveat": "Two caveats and the first is serious enough to have set the direction. (1) The failure SIGNATURES differ and arguably invert: the patients produce fragmented, incoherent imagined content (loss of binding), whereas E1 produces excessively coherent content -- forty distinct action sequences converging on near-identical endpoints (loss of variance). Both are degenerate simulation, but they are not the same pathology, and the biological result does not predict REE's specific form. Anyone using this entry to argue 'biology shows imagination machinery is separable, therefore REE's collapse is the biologically expected failure' would be overreaching. (2) This is a lesion study in five patients with hippocampal damage, mapped onto an LSTM forward model with no hippocampal analogue in the pathway under test -- REE's HippocampalModule is DOWNSTREAM of E1's generate_prior rather than being the rollout mechanism itself, so the anatomical correspondence is loose. The entry supports the SEPARABILITY premise and should not be read as supporting any particular fix.",
+    "source_context": "Human lesion study; amnesic patients with primary bilateral hippocampal damage versus matched controls; verbally-cued construction of novel imagined commonplace scenarios, scored for experiential richness and spatial coherence."
+  },
+  "confidence_components": {
+    "source_quality": 0.88,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "PNAS 2007, foundational and heavily cited, methodologically careful with matched controls -- source quality is excellent. Mapping fidelity is the low leg at 0.45 and drives the aggregate down hard, because for an architectural claim it is the mapping that decides: the separability premise transfers well, the failure signature does not transfer at all (fragmentation versus convergence). Transfer risk 0.55 for human-lesion-to-LSTM plus the loose anatomical correspondence."
+  }
+}

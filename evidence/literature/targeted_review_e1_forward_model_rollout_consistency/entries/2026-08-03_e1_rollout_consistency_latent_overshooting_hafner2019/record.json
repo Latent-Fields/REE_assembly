@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_latent_overshooting_hafner2019",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": ["MECH-135"],
+  "source": {
+    "title": "Learning Latent Dynamics for Planning from Pixels",
+    "authors": ["Danijar Hafner", "Timothy Lillicrap", "Ian Fischer", "Ruben Villegas", "David Ha", "Honglak Lee", "James Davidson"],
+    "year": 2019,
+    "venue": "Proceedings of the 36th International Conference on Machine Learning (ICML 2019), PMLR 97",
+    "doi": "10.48550/arXiv.1811.04551",
+    "url": "https://arxiv.org/abs/1811.04551"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "This is the canonical anchor for the autopsy's first named candidate ('latent overshooting'), and it grounds the candidate as a real, precisely-specified objective rather than a gesture -- the paper's own words are that latent overshooting 'can be interpreted as a regularizer in latent space that encourages consistency between one-step and multi-step predictions', which is exactly the property V3-EXQ-108b's E1 lacks. Confidence is held at 0.62 rather than higher because the paper's OWN ablation is equivocal about it: Appendix D reports that latent overshooting substantially improved purely stochastic models (DRNN) but slightly REDUCED performance of their proposed RSSM on all six tasks, and the paper states plainly that 'our final agent using the RSSM model does not require it'. Hafner's follow-on work (Dreamer, ICLR 2020) then dropped it outright -- 'We did not find latent overshooting for learning the model ... necessary.' So the literature grounds the candidate but does not endorse it as a default; its benefit appears conditional on the transition architecture. That conditionality is the load-bearing content for REE, not the technique itself.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A latent dynamics model trained only on one-step transitions has no term in its objective tying its d-step predictions to the corresponding filtered posteriors, so nothing prevents multi-step rollouts from drifting away from the one-step-accurate manifold.",
+    "The benefit of a multi-step consistency regulariser is architecture-conditional: in Hafner et al.'s own ablation it helped a purely stochastic recurrent model and slightly hurt the deterministic-plus-stochastic RSSM, so 'add latent overshooting' is not a safe default fix.",
+    "An architecture whose recurrent path already carries deterministic state across steps may absorb much of the compounding-error problem on its own, making an added overshooting term redundant or mildly harmful."
+  ],
+  "tags": ["mech_135", "inv_088", "e1", "latent_overshooting", "multi_step_consistency", "world_model", "compounding_error", "rollout_collapse"],
+  "mapping": {
+    "source_claim_statement": "PlaNet proposes latent overshooting, a multi-step variational inference objective generalising the standard one-step variational bound: the model is trained on multi-step predictions at all distances 1 <= d <= D by adding, for each d, a KL divergence between the d-step prior prediction and the corresponding filtered posterior, computed purely in latent space without decoding observations. Gradients through the posteriors are stopped for d > 1 so multi-step predictions are pulled toward the informed posteriors and not vice versa. The stated purpose is improved long-term consistency and reduced compounding error during planning.",
+    "ree_translation": "REE-v3's E1 (E1DeepPredictor) is trained in V3-EXQ-108b by single-step MSE only -- `agent.e1(total_prev, horizon=1)` regressed on the next real transition -- and then applied autoregressively 30 times at scoring time. Latent overshooting is the direct, named remedy for that exact objective/usage-horizon mismatch: it would add, for d = 2..D, a consistency term between E1's d-step prediction and the encoder's posterior at t+d, so the rollout the E1_COE evaluator actually consumes is a rollout the objective actually trained. The paper's ablation is however the reason this entry is 'mixed' rather than 'supports': E1 is an LSTM, i.e. a deterministic recurrent transition closer in spirit to RSSM's deterministic path than to the purely stochastic DRNN that benefited most, so the architecture class where latent overshooting helped least is the class E1 most resembles.",
+    "mapping_caveat": "Two boundaries, and the second is the serious one. (1) PlaNet's setting is pixel-based control with a variational latent-state model; latent overshooting is formulated as a KL between distributions, whereas E1 is a deterministic LSTM emitting point predictions under MSE, so the objective must be transposed (e.g. to an L2 consistency term against detached encoder targets) rather than adopted -- that transposition loses the variational justification the paper's derivation rests on. (2) Decisively, PlaNet's transition model is ACTION-CONDITIONED: latent overshooting regularises p(s_t | s_t-1, a_t-1) over multiple steps. REE's E1 transition takes no action argument at all (verified in `ree_core/predictors/e1_deep.py` -- `predict_long_horizon(current_state, horizon)` and `forward(current_state, horizon, z_goal)` have no action parameter). Latent overshooting applied to an action-unconditioned E1 would make its single trajectory more self-consistent while leaving the 40 candidate action sequences no more distinguishable than they are now. This paper therefore does not, on its own, license the V3-EXQ-108b fix.",
+    "source_context": "Pixel-based continuous control (DeepMind Control Suite: cartpole, reacher, cheetah, finger, cup, walker); model-based planning by online CEM search in latent space."
+  },
+  "confidence_components": {
+    "source_quality": 0.90,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.50,
+    "notes": "ICML 2019, heavily cited, the canonical source for the technique the autopsy named -- source quality is not in question. Mapping fidelity is pulled down by the action-conditioning gap (PlaNet regularises an action-conditioned transition; E1 has no action input) and by the variational-to-deterministic transposition. Transfer risk is elevated because the paper's own ablation shows the technique's sign of effect flips with transition architecture, and E1 resembles the architecture where it did not help."
+  }
+}

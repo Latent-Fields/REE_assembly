@@ -1,0 +1,56 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135",
+    "INV-088"
+  ],
+  "source": {
+    "title": "Learning with Imperfect Models: When Multi-step Prediction Mitigates Compounding Error",
+    "authors": [
+      "Anne Somalwar",
+      "Bruce D. Lee",
+      "George J. Pappas",
+      "Nikolai Matni"
+    ],
+    "year": 2025,
+    "venue": "arXiv preprint (arXiv:2504.01766), eess.SY / Systems and Control",
+    "doi": "10.48550/arXiv.2504.01766",
+    "url": "https://arxiv.org/abs/2504.01766"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.58,
+  "confidence_rationale": "This entry is here because it is the only paper found that asks the question governance actually needs answered -- not 'does multi-step training help?' but 'WHEN does it help, and when is it wasted complexity?' -- and its answer is a genuine boundary condition rather than an endorsement. The result: when the model class is well-specified and accurately captures the system dynamics, SINGLE-step models achieve lower asymptotic prediction error; multi-step predictors win specifically when the model class is MISSPECIFIED due to partial observability. That is a discriminating test REE can actually apply to itself, and it happens to point the favourable way -- E1 predicts a learned latent from partial grid-world observation through a world_dim=32 bottleneck, which is squarely the misspecified-under-partial-observability regime the paper says multi-step training is for. Confidence is capped at 0.58 for two honest reasons. First, the analysis is rigorous only for LINEAR dynamical systems; E1 is a nonlinear LSTM and the extension is not proved. Second, this cuts BOTH ways for REE and I do not want the favourable reading to be the only one recorded: the same theorem says that if E1's real problem is not misspecification, multi-step training buys nothing and costs learning complexity, which makes it an argument for probing before building.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Multi-step prediction training is not universally beneficial: under a well-specified model class it yields HIGHER asymptotic prediction error than single-step training, because the more complex predictor is harder to learn without a compensating bias reduction.",
+    "The benefit of multi-step training comes from bias reduction under model misspecification, so a system whose model class already captures the true dynamics gains nothing and pays the added learning complexity.",
+    "Partial observability is a specific and identifiable source of the misspecification that makes multi-step prediction worthwhile -- which means 'is my model class misspecified?' is the question to answer before choosing the training objective."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "compounding_error",
+    "multi_step_prediction",
+    "misspecification",
+    "partial_observability",
+    "boundary_condition",
+    "probe_gated"
+  ],
+  "mapping": {
+    "source_claim_statement": "Compounding error, where small prediction mistakes accumulate over time, limits model-based reinforcement learning and imitation learning. One common mitigation is to train multi-step predictors directly rather than autoregressively rolling out a single-step model, but it is not well understood when the benefits outweigh the added complexity of learning a more complicated model. For linear dynamical systems, the authors show that when the model class is well-specified and accurately captures the system dynamics, single-step models achieve lower asymptotic prediction error; when the model class is misspecified due to partial observability, direct multi-step predictors significantly reduce bias and outperform single-step approaches. They also empirically evaluate the intermediate strategy of training a single-step model with a multi-step loss.",
+    "ree_translation": "This paper converts the substrate_queue's node_class -- 'complex (probe-gated)' rather than 'complicated (buildable)' -- from a procedural label into a concrete, answerable question. Every other entry in this review tells REE HOW to train multi-step; this one tells REE what to check FIRST, and supplies the discriminating variable: is E1's model class misspecified relative to the true dynamics? On the evidence available the answer looks like yes -- E1 predicts a learned latent from partial CausalGridWorldV2 observation through a world_dim=32 encoder bottleneck, and the agent never observes full environment state, which is the partial-observability-induced misspecification the theorem names. The paper's third contribution is also directly useful: it empirically evaluates the intermediate strategy of training a SINGLE-step model with a MULTI-step loss, which is exactly the cheap middle option between leaving E1 as-is and rebuilding it as a sequence-conditioned model.",
+    "mapping_caveat": "The load-bearing caveat is the model class: the rigorous analysis is for LINEAR dynamical systems, and E1 is a nonlinear LSTM over a learned latent. The paper's numerical experiments extend beyond the linear theory but its guarantees do not, so the misspecification criterion should be treated as a well-motivated heuristic for REE, not an applicable theorem. Second, 'misspecified due to partial observability' is a precise technical condition in a linear-systems setting (the true system has hidden state the model class cannot represent); REE's situation is arguably different in kind -- E1's latent IS learned, so the model class is flexible in a way the paper's fixed classes are not, and it is not obvious the criterion carries over cleanly. Third, and most important for how this entry should be used: this paper does not tell REE that multi-step training will work. It tells REE that the question has a determinate answer, that the answer depends on a property of the substrate that has not been measured, and that the honest next step is to measure it.",
+    "source_context": "Linear dynamical systems theory with numerical experiments; prediction error and closed-loop control performance as the measures."
+  },
+  "confidence_components": {
+    "source_quality": 0.62,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "2025 arXiv preprint, not yet peer-reviewed, from a credible control-theory group (Matni, Pappas at Penn) -- rigorous within its stated scope, which is narrow. Mapping fidelity moderate: the QUESTION it answers is exactly REE's question, but the setting (linear, fixed model class) is far from E1's (nonlinear LSTM, learned latent). Transfer risk is the highest in this review at 0.55, and deliberately so -- a linear-systems asymptotic result should not be leaned on hard for a nonlinear recurrent model. The entry earns its place by framing the decision, not by settling it."
+  }
+}

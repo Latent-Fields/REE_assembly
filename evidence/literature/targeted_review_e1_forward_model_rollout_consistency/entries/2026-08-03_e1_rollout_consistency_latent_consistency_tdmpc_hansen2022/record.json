@@ -1,0 +1,54 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_e1_forward_model_rollout_consistency",
+  "entry_id": "2026-08-03_e1_rollout_consistency_latent_consistency_tdmpc_hansen2022",
+  "timestamp_utc": "2026-08-03T14:22:13Z",
+  "claim_ids_tested": [
+    "MECH-135"
+  ],
+  "source": {
+    "title": "Temporal Difference Learning for Model Predictive Control",
+    "authors": [
+      "Nicklas Hansen",
+      "Xiaolong Wang",
+      "Hao Su"
+    ],
+    "year": 2022,
+    "venue": "Proceedings of the 39th International Conference on Machine Learning (ICML 2022), PMLR 162",
+    "doi": "10.48550/arXiv.2203.04955",
+    "url": "https://arxiv.org/abs/2203.04955"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.76,
+  "confidence_rationale": "This is the strongest single template in the review for what a fixed E1 should look like, because it is the one paper here that combines all three properties REE needs simultaneously: the consistency objective is a plain L2 in latent space (not a KL, so it transposes to E1's deterministic MSE setting with no reinterpretation), the model is unrolled H steps during training so the training horizon matches the planning horizon by construction, and the latent dynamics function is explicitly action-conditioned -- d_theta(z_i, a_i) regressed onto h_theta-(s_i+1), the target-network encoding of the true next observation. It also arbitrates the autopsy's third candidate on empirical rather than a-priori grounds: TD-MPC's authors adopted latent consistency in preference to reconstruction and contrastive alternatives, reporting it as the more consistent choice, which is a directly relevant data point given that the sibling E2 review's leading recommendation was contrastive. Confidence is held at 0.76 rather than higher because TD-MPC's consistency term is entangled with reward prediction and TD value learning in a joint objective -- the paper does not isolate the consistency term's contribution to long-horizon rollout distinctiveness specifically -- and because its planning horizon is short (single-digit steps) against REE's 30.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A latent dynamics model whose training horizon is shorter than its planning horizon has no objective term covering the steps the planner actually consumes.",
+    "Reconstruction-based objectives spend capacity on observation detail irrelevant to control, and in the authors' comparison were a less consistent choice than direct latent-space consistency for learning a model used in planning.",
+    "A consistency objective that is not action-conditioned regularises the trajectory a model produces without constraining how that trajectory differs across candidate action sequences."
+  ],
+  "tags": [
+    "mech_135",
+    "inv_088",
+    "e1",
+    "td_mpc",
+    "latent_consistency",
+    "multi_step_unrolling",
+    "action_conditioned",
+    "world_model",
+    "rollout_collapse"
+  ],
+  "mapping": {
+    "source_claim_statement": "TD-MPC learns a Task-Oriented Latent Dynamics (TOLD) model trained jointly for reward prediction, temporal-difference value learning, and a latent state consistency loss, and plans by local trajectory optimisation in the learned latent space. The consistency term (Eq. 10) penalises || d_theta(z_i, a_i) - h_theta-(s_i+1) ||^2 -- the action-conditioned latent dynamics prediction against the target-network encoding of the true next state -- accumulated over an H-step unroll during training, circumventing prediction of observations altogether. The authors adopt this in preference to reconstruction and contrastive losses, reporting it as yielding more consistent results.",
+    "ree_translation": "This is the closest available blueprint for what a repaired E1 would look like in REE's actual setting. The transposition PlaNet required (variational KL to deterministic L2) is already done here: TD-MPC's consistency term is an ordinary squared error between a predicted latent and a detached encoder target, which is the same shape as E1's existing MSE and could be added without changing E1's loss family. The H-step unroll is the concrete form of 'train at the horizon you plan at' -- for REE that means unrolling E1 toward its 30-step scoring horizon rather than the current horizon=1. And the dynamics function being d(z, a) rather than d(z) is the property this review identifies as logically prior: TD-MPC's consistency term constrains how the latent trajectory differs BETWEEN action sequences, which is precisely the quantity C3 measures via e1coe_score_var and which an action-blind E1 cannot express.",
+    "mapping_caveat": "Four boundaries. (1) The consistency term in TD-MPC is one of three jointly-optimised objectives; the paper does not ablate it against long-horizon rollout DISTINCTIVENESS specifically, so its contribution to the quantity REE cares about (variance of scores across candidate sequences) is inferred from the objective's form rather than measured. (2) TD-MPC's planning horizon is short -- single-digit steps -- while REE's E1_COE rollout is 30, and nothing in the paper establishes that the technique holds at that depth. (3) TOLD is explicitly TASK-oriented: it is trained to model what matters for reward, deliberately discarding task-irrelevant dynamics. REE's E1 is a general world model feeding several consumers beyond the goal evaluator (HippocampalModule priors via generate_prior, MECH-151 action_bias, MECH-216 schema salience), so importing a task-oriented objective wholesale risks degrading those other consumers. (4) The action-conditioning that makes this template attractive is exactly what REE's E1 lacks, so adopting it is an interface change to E1, not merely an added loss term -- a larger piece of work than the substrate_queue hint currently implies.",
+    "source_context": "Continuous control from state and pixels (DeepMind Control Suite, Meta-World); short-horizon MPC with a learned latent model plus TD value bootstrapping."
+  },
+  "confidence_components": {
+    "source_quality": 0.86,
+    "mapping_fidelity": 0.74,
+    "transfer_risk": 0.35,
+    "notes": "ICML 2022, strong empirical results (near 10x sample-efficiency gains on DMControl Humanoid/Dog), widely adopted and extended (TD-MPC2). Mapping fidelity is high because the objective's mathematical form transposes to E1 without reinterpretation and the multi-step-plus-action-conditioned combination is exactly the diagnosis this review converges on. Transfer risk moderate: task-oriented latent versus REE's multi-consumer general world model, and a much shorter planning horizon than 30."
+  }
+}

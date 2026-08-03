@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-03T11:32:49.695169Z`
+Generated: `2026-08-03T14:31:44.874645Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -170,6 +170,7 @@ Generated: `2026-08-03T11:32:49.695169Z`
 | `targeted_review_developmental_exploration_hippocampal_retrieval` | [`2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/record.json) | 19 | [`summary`](targeted_review_developmental_exploration_hippocampal_retrieval/entries/2026-05-16_topic7_intrinsic_motivation_neural_kaplan2007/summary.md) |
 | `targeted_review_devrobotics_play_frame` | [`2026-05-16_devrobotics_sim2real_policy_transfer_khor2025`](targeted_review_devrobotics_play_frame/entries/2026-05-16_devrobotics_sim2real_policy_transfer_khor2025/record.json) | 6 | [`summary`](targeted_review_devrobotics_play_frame/entries/2026-05-16_devrobotics_sim2real_policy_transfer_khor2025/summary.md) |
 | `targeted_review_drive_arbitration` | [`2026-06-13_sd_060_grooming_behavioural_homeostasis_mu2020`](targeted_review_drive_arbitration/entries/2026-06-13_sd_060_grooming_behavioural_homeostasis_mu2020/record.json) | 5 | [`summary`](targeted_review_drive_arbitration/entries/2026-06-13_sd_060_grooming_behavioural_homeostasis_mu2020/summary.md) |
+| `targeted_review_e1_forward_model_rollout_consistency` | [`2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025`](targeted_review_e1_forward_model_rollout_consistency/entries/2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025/record.json) | 7 | [`summary`](targeted_review_e1_forward_model_rollout_consistency/entries/2026-08-03_e1_rollout_consistency_when_multistep_helps_somalwar2025/summary.md) |
 | `targeted_review_e2_dual_function_mode_distinction` | [`2026-04-18_e2_dual_shenhav2016_dacc`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/record.json) | 5 | [`summary`](targeted_review_e2_dual_function_mode_distinction/entries/2026-04-18_e2_dual_shenhav2016_dacc/summary.md) |
 | `targeted_review_e2_forward_model_action_divergence` | [`2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023`](targeted_review_e2_forward_model_action_divergence/entries/2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023/record.json) | 6 | [`summary`](targeted_review_e2_forward_model_action_divergence/entries/2026-05-28_e2_action_divergence_vestibular_cerebellum_cullen2023/summary.md) |
 | `targeted_review_ethological_play_signals` | [`2026-05-16_arc049_wenig2021_raven_play_emotional_contagion`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/record.json) | 8 | [`summary`](targeted_review_ethological_play_signals/entries/2026-05-16_arc049_wenig2021_raven_play_emotional_contagion/summary.md) |
