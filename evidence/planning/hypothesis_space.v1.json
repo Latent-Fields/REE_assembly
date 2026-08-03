@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-03T12:15:01Z",
+  "generated_at": "2026-08-03T12:21:26Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -40,11 +40,10 @@
       "reduction_pct_vs_current": 42.4,
       "net_narrowing_pct": 28.8,
       "convergence_classes": {
-        "narrowing": 9,
+        "narrowing": 10,
         "static": 9,
         "circling": 3,
         "indeterminate": 1,
-        "refining": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
@@ -2369,24 +2368,13 @@
       "initial_frozen_count": 3,
       "initial_frozen_count_at_registration": 2,
       "fanout_added": 1,
-      "fanout_growth_events": [
-        {
-          "recorded_utc": "2026-08-03T08:42:37Z",
-          "pre_registered_utc": "2026-08-02T12:16:43Z",
-          "fanout_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
-          "added_hids": [
-            "H-dynamics-collapse"
-          ],
-          "delta": 1,
-          "note": "108b's own disambiguation run eliminated both pre-registered hypotheses and surfaced a third, previously-unconsidered mechanism (E1 rollout-dynamics collapse) in the same run that resolves it -- registered and resolved together per Step 9b's same-cycle rule."
-        }
-      ],
+      "fanout_growth_events": [],
       "fanout_growth_note": null,
       "net_narrowing_ratio": 0.5,
       "bits_removed_vs_registration": 1.0,
       "convergence": {
-        "convergence_class": "refining",
-        "reason": "3 families closed out; the latest growth opened fresh territory",
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 2 families, 3 fully closed",
         "families_closed": [
           "constitution",
           "instrumentation",
@@ -2398,24 +2386,7 @@
         ],
         "families_fresh": [],
         "unclassified_axes": [],
-        "growth_events": [
-          {
-            "recorded_utc": "2026-08-03T08:42:37Z",
-            "fanout_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
-            "event_class": "refining",
-            "added": [
-              {
-                "hid": "H-dynamics-collapse",
-                "family": "constitution"
-              }
-            ],
-            "re_entered": [],
-            "families_already_dead": [
-              "instrumentation",
-              "representation"
-            ]
-          }
-        ]
+        "growth_events": []
       },
       "surviving": 1,
       "alive": 0,

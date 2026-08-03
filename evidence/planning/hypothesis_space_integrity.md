@@ -1,10 +1,10 @@
 # Hypothesis-Space Integrity Audit (anti-Goodhart)
 
-Generated: 2026-08-03T12:15:04Z
+Generated: 2026-08-03T12:21:29Z
 
 GENERATED FILE -- do not edit by hand. Advisory, non-blocking sibling of `check_closure_drift.py`. It audits `hypothesis_space_registry.v1.json` + `hypothesis_space_timeseries.v1.jsonl` for the four ways the Narrow/Decide dashboard could be gamed (design rule 5). Flags are review hints, never a gate. LABELLED GOV-FANOUT-1 growth of an existing question is reported separately as advisory (see the final section) rather than counted as a bucket-(b) violation.
 
-Audited **24** open question(s) across **16** time-series snapshot(s). **2** flag(s) raised, **27** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **0** discovery-growth note(s), **0** discovery-recurrence overlay(s).
+Audited **24** open question(s) across **16** time-series snapshot(s). **0** flag(s) raised, **28** advisory note(s), **16** git-witnessed pre-registration(s), **0** unverifiable, **1** fan-out recurrence overlay(s), **1** discovery-growth note(s), **0** discovery-recurrence overlay(s).
 
 ## (a) Un-backed surviving-count drop (0)
 
@@ -12,12 +12,11 @@ _A question's surviving count fell with no adjudicated `weakens`/discrimination 
 
 _None._
 
-## (b) Post-hoc enlargement of a frozen set (2)
+## (b) Post-hoc enlargement of a frozen set (0)
 
 _The frozen initial enumeration grew WITHOUT a valid labelled fan-out record, or a hypothesis was pre-registered after its own adjudicating run. Labelled GOV-FANOUT-1 growth is NOT counted here -- see the advisory section below._
 
-- `inv088_evaluator_degeneracy_cause` fan-out failure_autopsy_V3-EXQ-108b_2026-08-03.json: condition (a) unmet for H-dynamics-collapse (adjudicating run already RESOLVED when the leg was added; `failure_autopsy_V3-EXQ-108b_2026-08-03.json` was committed 2026-08-03, AFTER resolution 2026-08-02 -- self-reported pre_registered_utc 2026-08-02 is unwitnessed) -- a leg added by fan-out must pre-date the run that adjudicates it.
-- `inv088_evaluator_degeneracy_cause`: grew 2 -> 3 (+1) but only 0 leg(s) are covered by a valid fanout_growth_events/discovery_growth_events entry -- 1 unaccounted, which is post-hoc enlargement.
+_None._
 
 ## (c) Confirmed without a passed control (0)
 
@@ -31,7 +30,7 @@ _An `eliminated`/`split` hypothesis is missing part of the bar (met_elimination_
 
 _None._
 
-## Advisory -- labelled fan-out growth (27, NOT violations)
+## Advisory -- labelled fan-out growth (28, NOT violations)
 
 _An existing question's hypothesis set grew because a GOV-FANOUT-1 discrimination portfolio enumerated new rival explanations as earlier axes were eliminated. This is permitted when the growth satisfies (a) each new leg pre-dates its adjudicating run, (b) it is recorded in `fanout_growth_events[]` naming the autopsy that opened the portfolio, and (c) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
@@ -52,6 +51,7 @@ _An existing question's hypothesis set grew because a GOV-FANOUT-1 discriminatio
 - `arousal-variance-amplifier`: denominator grew 3 -> 4 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - `policy_decomposition_discrimination`: +2 leg(s) (H-representation-axis, H-algorithm-axis) added by labelled fan-out from `failure_autopsy_2026-07-28-sweep.json` -- conditions (a)-(c) satisfied, advisory not a violation.
 - `policy_decomposition_discrimination`: denominator grew 4 -> 6 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
+- `inv088_evaluator_degeneracy_cause`: denominator grew 2 -> 3 across 1 labelled event(s) (fan-out + discovery). Legitimate; report the reduction ratio BOTH ways. Whether this growth is REFINEMENT (a family closed, survivors on fresh territory) or CIRCLING (re-entry into already-eliminated territory) is decided by the axis-family discriminator -- read `convergence.convergence_class` for this question in hypothesis_space.v1.json rather than assuming either.
 - time series 2026-07-17 -> 2026-07-18: total_initial grew by 16, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 16 leg(s)) -- advisory, not a violation.
 - time series 2026-07-18 -> 2026-07-19: total_initial grew by 7, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 7 leg(s)) -- advisory, not a violation.
 - time series 2026-07-19 -> 2026-07-20: total_initial grew by 4, fully attributed to labelled sources landing in this window (new-question registrations + fanout_growth_events, 4 leg(s)) -- advisory, not a violation.
@@ -83,13 +83,13 @@ _Complementary to GOV-DIAG-1, not redundant with it: that rule counts pure-diagn
 
 - `competence_floor`: 5 distinct labelled fan-out portfolios (>= N=3); denominator 7 -> 20, 0 leg(s) still alive. Each portfolio cleared conditions (a)-(c) individually -- the RECURRENCE is the signal. Reading: the question may be MIS-POSED rather than under-enumerated. Re-pose the operationalization before opening portfolio 6; enumerating another round of rivals on an unchanged framing is the denominator-side twin of re-running a braked experiment harder. Sources: `failure_autopsy_MECH-457-fanout-770-771-772_2026-07-18.json`, `failure_autopsy_V3-EXQ-769_2026-07-17.json`, `failure_autopsy_batch-793a-817-819_2026-07-26.json`, `failure_autopsy_mech476-mech475-cluster_2026-07-29.json`, `mech457_retention_portfolio_2026-07-18.md`
 
-## Advisory -- labelled discovery growth (0, NOT violations)
+## Advisory -- labelled discovery growth (1, NOT violations)
 
 _An existing question's hypothesis set grew because a genuinely serendipitous explanation was found DURING the same analysis that resolves it -- discovered while explaining away already-pre-registered rivals, never anticipated beforehand. This is DIFFERENT from labelled fan-out growth above: by construction no artifact can pre-date a discovery made by the very run that reveals it, so this path does not require (and cannot honestly satisfy) the pre-dates-the-run witness fan-out growth needs. It is permitted instead when (i) the hypothesis is born already resolved in the same edit (never left `alive`), (ii) it is recorded in `discovery_growth_events[]` naming the discovering-and-resolving autopsy plus a `rationale` grounding why this is principled abduction and not motivated post-hoc reasoning, and (iii) `initial_frozen_count_at_registration` is preserved. These are LABELLED, not flagged._
 
 **A hypothesis left `alive` never qualifies here.** If a leg is not resolved in the same edit, it needed Mode A pre-registration BEFORE its adjudicating run instead -- back-dating `pre_registered_utc` to make an actually-anticipated rival look like a discovery is exactly the (b) violation this ledger polices, whichever door it is walked through.
 
-_None._
+- `inv088_evaluator_degeneracy_cause`: +1 leg(s) (H-dynamics-collapse) added by labelled discovery from `failure_autopsy_V3-EXQ-108b_2026-08-03.json` -- conditions (i)-(iii) satisfied, advisory not a violation. Rationale: H-dynamics-collapse draws on an independent, established mechanism -- the classic model-based-RL compounding-error/mode-collapse failure mode, where a dynamics model trained only on single-step transitions is rolled out autoregressively far beyond its training horizon and converges toward a training-distribution-average attractor -- not intuition applied after the fact. It was genuinely unconsidered before 108b ran: the two hypotheses pre-registered on 2026-08-02 (H-undertrained-instrument, H-dimension-ceiling) both concerned z_world's REPRESENTATION (bespoke-loss adequacy, dimension=32 capacity); neither anticipated a DYNAMICS-training-objective explanation. 108b's own instrumentation is what surfaces it: separately measuring the antecedent (CR_real, healthy at 0.19-0.20) from the coupling-leg (CR_rollout, collapsed to ~3e-6 of CR_real) is what let the run's own decision tree eliminate both pre-registered rivals (branch 1 and branch 2) and land on branch 3 (downstream_dynamics_collapse) -- a mechanism the pre-registration could not have named because the CR_real/CR_rollout dissociation that reveals it did not exist as a finding until this run produced it. Re-filed from fanout_growth_events (2026-08-03T12:15:04Z integrity audit, bucket (b)): that path requires pre-registration to precede its adjudicating run, evidenced by a commit that pre-dates the run's resolution -- but failure_autopsy_V3-EXQ-108b_2026-08-03.json (the only artifact naming this hypothesis) was committed 2026-08-03T09:47:09+01:00 (ree-v3 commit 9c48f834231ca20f3476112ad151808e1352986e), AFTER the run's resolved_utc of 2026-08-02T12:16:43Z -- unwitnessed by construction, since the hypothesis was discovered BY that run's own analysis, not anticipated before it. Discovery growth is the honest path: pre_registered_utc is set to the same instant as resolved_utc (2026-08-02T12:16:43Z) because that is genuinely when the hypothesis was learned to exist, not a claim of prior knowledge.
 
 ## Discovery-growth recurrence (ACTIONABLE, 0) -- N >= 3 discovery events on one question
 

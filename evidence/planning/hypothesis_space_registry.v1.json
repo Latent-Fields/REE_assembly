@@ -2579,16 +2579,16 @@
       "is_hero": false,
       "initial_frozen_count": 3,
       "initial_frozen_count_at_registration": 2,
-      "fanout_growth_events": [
+      "fanout_growth_events": [],
+      "discovery_growth_events": [
         {
-          "recorded_utc": "2026-08-03T08:42:37Z",
-          "pre_registered_utc": "2026-08-02T12:16:43Z",
-          "fanout_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
+          "recorded_utc": "2026-08-03T12:20:39Z",
+          "discovery_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
           "added_hids": [
             "H-dynamics-collapse"
           ],
           "delta": 1,
-          "note": "108b's own disambiguation run eliminated both pre-registered hypotheses and surfaced a third, previously-unconsidered mechanism (E1 rollout-dynamics collapse) in the same run that resolves it -- registered and resolved together per Step 9b's same-cycle rule."
+          "rationale": "H-dynamics-collapse draws on an independent, established mechanism -- the classic model-based-RL compounding-error/mode-collapse failure mode, where a dynamics model trained only on single-step transitions is rolled out autoregressively far beyond its training horizon and converges toward a training-distribution-average attractor -- not intuition applied after the fact. It was genuinely unconsidered before 108b ran: the two hypotheses pre-registered on 2026-08-02 (H-undertrained-instrument, H-dimension-ceiling) both concerned z_world's REPRESENTATION (bespoke-loss adequacy, dimension=32 capacity); neither anticipated a DYNAMICS-training-objective explanation. 108b's own instrumentation is what surfaces it: separately measuring the antecedent (CR_real, healthy at 0.19-0.20) from the coupling-leg (CR_rollout, collapsed to ~3e-6 of CR_real) is what let the run's own decision tree eliminate both pre-registered rivals (branch 1 and branch 2) and land on branch 3 (downstream_dynamics_collapse) -- a mechanism the pre-registration could not have named because the CR_real/CR_rollout dissociation that reveals it did not exist as a finding until this run produced it. Re-filed from fanout_growth_events (2026-08-03T12:15:04Z integrity audit, bucket (b)): that path requires pre-registration to precede its adjudicating run, evidenced by a commit that pre-dates the run's resolution -- but failure_autopsy_V3-EXQ-108b_2026-08-03.json (the only artifact naming this hypothesis) was committed 2026-08-03T09:47:09+01:00 (ree-v3 commit 9c48f834231ca20f3476112ad151808e1352986e), AFTER the run's resolved_utc of 2026-08-02T12:16:43Z -- unwitnessed by construction, since the hypothesis was discovered BY that run's own analysis, not anticipated before it. Discovery growth is the honest path: pre_registered_utc is set to the same instant as resolved_utc (2026-08-02T12:16:43Z) because that is genuinely when the hypothesis was learned to exist, not a claim of prior knowledge."
         }
       ],
       "hypotheses": [
@@ -2646,7 +2646,7 @@
           "desc": "Neither pre-registered hypothesis: the sanctioned-trained z_world encoder differentiates REAL states fine (CR_real ~0.19-0.20, healthy), but E1's forward-rollout DYNAMICS collapse distinct 30-step imagined action-sequence endpoints toward near-identical predictions (CR_rollout/CR_real ~2.6e-6 to 3.2e-6, code-verified against the CR_ROLLOUT_COLLAPSE_RATIO=0.1 threshold). Root cause traced in code: agent.e1 is trained ONLY via single-step MSE loss (_train_agent, 100 episodes, horizon=1) yet applied autoregressively 30 times at eval (_score_sequence_e1coe_with_endpoint) -- a single-step-trained dynamics model rolled out far beyond its training horizon, the classic model-based-RL compounding-error/mode-collapse failure. Independent of z_world's own representational capacity (INV-088's literal framing) -- the bottleneck is E1's training OBJECTIVE (learning-signal), not the representation.",
           "axis": "learning-signal",
           "pre_registered_utc": "2026-08-02T12:16:43Z",
-          "pre_registration_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
+          "discovery_source": "failure_autopsy_V3-EXQ-108b_2026-08-03.json",
           "adjudicating_runs": [
             "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3"
           ],
