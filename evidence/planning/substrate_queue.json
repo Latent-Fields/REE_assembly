@@ -6244,11 +6244,11 @@
     {
       "sd_id": "MECH-217",
       "title": "Offline VALENCE_WANTING back-spread during SWS/REM reverse replay (temporal_wanting_propagation) -- decayed update_valence write along the reversed approach path",
-      "status": "proposed",
+      "status": "implemented",
       "implementation_status": "implemented",
       "implemented_session": "clever-fermat-ea60a4",
       "implemented_utc": "2026-07-31T19:37:27Z",
-      "implementation_note_update": "MECH-217 substrate landed 2026-07-30 (ree-v3 commit 1024624, IGW-20260729-195); this queue entry was never flipped at landing time, causing duplicate IGW work items on 2026-07-31 (IGW-20260731-196/197). See ree-v3/CLAUDE.md MECH-217 entry (lines 2295-2367) and claims.yaml implementation_note for full detail.",
+      "implementation_note_update": "MECH-217 substrate landed 2026-07-30 (ree-v3 commit 1024624, IGW-20260729-195); this queue entry was never flipped at landing time, causing duplicate IGW work items on 2026-07-31 (IGW-20260731-196/197). See ree-v3/CLAUDE.md MECH-217 entry (lines 2295-2367) and claims.yaml implementation_note for full detail. | 2026-08-03 (session metaworker-chip-sqdrift-mech-217, chip-sqdrift-mech-217): the `status` field itself was STILL 'proposed' -- the 2026-07-31 flip corrected implementation_status/implemented_utc/implemented_session and wrote this note, but left `status` behind, so the same field_disagreement that caused IGW-20260731-196/197 was still armed three days later. Corrected 'proposed' -> 'implemented', verified against the substrate rather than inferred from this note: ree-v3 main 1024624c6545e2d418f1b045b7b80a0731ee6731 adds HippocampalModule.spread_reverse_replay_wanting() (ree_core/hippocampal/module.py:2762-2805) and the REEAgent.run_rem_attribution_pass() call site (ree_core/agent.py:10715, emitting rem_wanting_spread_n_steps / rem_wanting_spread_mean), behind HippocampalConfig.use_offline_wanting_spread (default False, bit-identical OFF) with offline_wanting_spread_gamma/gain, all three threaded through REEConfig.from_dims (ree_core/utils/config.py:6483-6485, 7792-7794). Claim maturity is unchanged and still lives in claims.yaml (MECH-217 status=candidate, implementation_phase=v3, implementation_note already reading IMPLEMENTED 2026-07-30) -- nothing here promotes MECH-217, and the validation diagnostic in this entry's validation_experiment field is still owed.",
       "added_session": "igw-212-proposal-for-mech-217",
       "added_utc": "2026-07-28T21:26:00Z",
       "priority": 3,
