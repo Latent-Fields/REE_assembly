@@ -1,0 +1,76 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T08:42:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3",
+      "queue_id": "V3-EXQ-108b",
+      "claim_ids": ["MECH-135", "INV-088"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "weakened (INV-088, this pathway) / non_contributory (MECH-135, declared null per 108a)",
+        "biological_reference": "absent for this specific axis; plausible parallel to multi-step imagined-future construction vs intact perception, not yet lit-confirmed for REE",
+        "prerequisites": "present -- SD-070 sanctioned encoder training confirmed engaged",
+        "implementation": "complete, but training-objective mismatched to eval-time usage horizon",
+        "environment": "adequate",
+        "measurement": "adequate -- CR_real/CR_rollout instrumentation resolved the disambiguation",
+        "integration": "isolated -- collapse intrinsic to E1's rollout, not upstream representation",
+        "scale": "not implicated -- world_dim=32 confirmed adequate for real-state differentiation"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal-neocortical constructive episodic simulation / multi-step imagined-future construction",
+        "dependencies": ["intact perceptual/scene encoding", "multi-step consolidation/replay-supported simulation machinery"],
+        "is_formal_import": true,
+        "divergence": "E1 is trained on a generic single-step MSE objective (a formal ML transition-model import) then used for 30-step autoregressive rollout at eval time -- no biological or REE-specific literature yet confirms or refutes this specific multi-step-rollout-consistency requirement",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-135": "competence_implementation_gap",
+        "INV-088": "competence_implementation_gap"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-135": "non_contributory",
+        "INV-088": "weakens"
+      },
+      "recommended_evidence_quality_note": "[failure_autopsy_V3-EXQ-108b_2026-08-03] V3-EXQ-108b (disambiguation of 108a's near-total evaluator-degeneracy) eliminates BOTH pre-registered hypotheses on inv088_evaluator_degeneracy_cause: the sanctioned-trained z_world encoder differentiates real states fine (CR_real 0.19-0.20, well above the degeneracy floor), ruling out both 'bespoke loss undertrained' and 'world_dim=32 is a structural ceiling.' The actual bottleneck, confirmed in code and in both seeds: E1's forward-rollout model is trained only via single-step MSE (100 episodes) yet applied autoregressively 30 steps at eval time, collapsing 40 distinct imagined trajectories toward near-identical endpoints (CR_rollout/CR_real ~3e-6). Evidence direction: weakens (this pathway) -- the coupling INV-088 proposes (evaluator bounded by z_world differentiation) is dissociated from the observed failure, which is instead a training-objective/usage-horizon mismatch specific to E1. Routed to /lit-pull (targeted_review_e1_forward_model_rollout_consistency) before a substrate fix is committed.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "SD-e1-rollout-consistency-training",
+        "title": "E1 forward-model multi-step rollout-consistency training objective",
+        "implementation_hint": "Add a multi-step/rollout-consistency term to E1's training objective (candidates per the commissioned /lit-pull: latent overshooting, scheduled multi-step unrolling, or a contrastive next-state objective analogous to the E2 fix already surveyed in targeted_review_e2_forward_model_action_divergence) so autoregressive rollouts beyond the single-step training horizon do not collapse to a training-distribution-average attractor.",
+        "unblocks_claims": ["INV-088", "MECH-135"],
+        "depends_on_unresolved": ["targeted_review_e1_forward_model_rollout_consistency (lit-pull, not yet commissioned)"],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_108b_mech135_inv088_zworld_disambiguation_20260802T121643Z_v3",
+          "experiment_type": "v3_exq_108b_mech135_inv088_zworld_disambiguation",
+          "metric": "e1coe_score_var (both seeds ~1e-13 to 1e-14) vs C3_VAR_THRESHOLD=0.002; CR_rollout/CR_real ratio ~3e-6 vs CR_ROLLOUT_COLLAPSE_RATIO=0.1",
+          "target": "e1coe_score_var >= 0.002 and CR_rollout/CR_real >= 0.1 under a multi-step-trained E1"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": ["failure_autopsy_V3-EXQ-108a_2026-08-02"],
+        "refused_requeue": false,
+        "route_to": "lit-pull",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "INV-088's evaluator-degeneracy coupling, as literally framed, is not the operative mechanism on this pathway -- a narrower, more specific mechanism (E1 rollout-dynamics collapse) is confirmed instead.",
+        "A design that instruments both the antecedent (CR_real) and the coupling-leg (CR_rollout) in the SAME run can eliminate both pre-registered hypotheses and surface a third, rather than merely confirming or denying the two anticipated ones.",
+        "A formal-ML training-objective import with no dedicated biology/ML lit entry for its specific axis routes to /lit-pull before a substrate fix, per Step 4 -- the sibling E2 review is a strong prior, not a substitute."
+      ],
+      "routing": "lit-pull"
+    }
+  ],
+  "cluster_pattern": null
+}

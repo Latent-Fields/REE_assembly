@@ -1,0 +1,75 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T08:42:37Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_867a_mech321_harm_aware_selection_hazard_tuned_20260802T203309Z_v3",
+      "queue_id": "V3-EXQ-867a",
+      "claim_ids": ["MECH-321"],
+      "failed_criterion": "discrimination",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- underpowered, not weighted either direction",
+        "biological_reference": "clear -- unchanged from 844/867 (threat-modulated defensive path-selection, Fanselow/Mobbs)",
+        "prerequisites": "present -- SD-hazard-aware-policy-decomposition implemented+ready",
+        "implementation": "complete -- three-flag substrate fix (affective/sensory harm streams, valence-harm-enabled) + SD-029 overlay confirmed engaging",
+        "environment": "adequate now -- hazard-density overlay + affective-stream wiring both confirmed live this run",
+        "measurement": "underpowered -- both_decompose matched-pair tier set by chance, only 2/6 seeds qualified",
+        "integration": "n/a",
+        "scale": "n/a"
+      },
+      "biological_reference": {
+        "closest_mechanism": "threat-modulated defensive path-selection (Fanselow/Mobbs)",
+        "dependencies": ["MECH-288", "MECH-269", "MECH-094", "ARC-070"],
+        "is_formal_import": false,
+        "divergence": "none new -- reference established and unchanged from 844's lit-pull; this autopsy's finding is a measurement/sampling-design issue, not a biology gap",
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_epistemic_category_per_claim": {
+        "MECH-321": "measurement_test_design_defect"
+      },
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_direction_per_claim": {
+        "MECH-321": "non_contributory"
+      },
+      "recommended_evidence_quality_note": "[failure_autopsy_V3-EXQ-867a_2026-08-03] V3-EXQ-867a confirms the manipulation now genuinely engages (867's three additional structural gaps -- affective/sensory harm streams + valence-harm-enabled -- fixed alongside the SD-029 hazard overlay; harm_bias_engages precondition met, 972 nonzero calls). The load-bearing task-outcome test is underpowered: only 2 seeds qualified for the matched-pair (both_decompose) design tier, with opposite-signed deltas (-0.040, +0.0125), netting a small negative mean (-0.0139) that fails the (already weak) 1xSE bar. A third, correctly-excluded unmatched seed shows a substantially larger beneficial effect (+0.127) in the intended direction. Read as measurement_test_design_defect / non_contributory rather than a confident weakens -- the matched-seed sample size is set by chance (whether decomposition independently fires mid-execution in both arms), not by design control. Routed to /queue-experiment 867b to grow the matched-seed pool or retune the trigger schedule; no substrate build needed.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": "No substrate build needed -- SD-hazard-aware-policy-decomposition and the three-flag harm-stream wiring are both confirmed complete and engaging. The open gap is sampling design (grow the both_decompose matched-seed pool or retune the trigger schedule), handled via /queue-experiment 867b.",
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": 3,
+        "failure_record_entry": {
+          "run_id": "v3_exq_867a_mech321_harm_aware_selection_hazard_tuned_20260802T203309Z_v3",
+          "experiment_type": "v3_exq_867a_mech321_harm_aware_selection_hazard_tuned",
+          "metric": "C1_TASK_OUTCOME_IMPROVES measured -0.0139 vs threshold 0.0, n=2 matched (both_decompose) seeds, opposite-signed deltas",
+          "target": "positive mean paired delta over >=2 matched seeds, with a design that reliably grows the matched-seed count beyond chance"
+        }
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "refused_requeue": false,
+        "route_to": "queue-experiment",
+        "upstream_substrate": null
+      },
+      "learning_extracted": [
+        "Fixing 867's environment-adequacy defect (SD-029 overlay) alone was not sufficient -- three further structural wiring gaps (affective harm stream, sensory harm stream, valence-harm-enabled) had to be fixed together before the manipulation could engage at all; now confirmed as a genuine substrate prerequisite for this lineage.",
+        "The manipulation now genuinely engages; the remaining gap is sampling design, not implementation or environment -- the both_decompose matched-pair tier is set by chance rather than experimenter control, so n=2 is too thin to trust the negative mean.",
+        "The excluded unmatched seed's large beneficial-direction effect (+0.127) is a material covariate motivating a bigger matched-seed sample rather than accepting the current negative mean as a confident null."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null
+}
