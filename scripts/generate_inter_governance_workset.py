@@ -29,6 +29,17 @@ timeout/non-zero exit, GENERATOR_TIMEOUT_SEC=420). Staleness in this lane is
 therefore a CLASSIFICATION defect, not a freshness one -- do not go looking for
 a stale snapshot.
 
+THAT LAST SENTENCE IS TRUE OF THE SUBSTRATE LANE ONLY -- SEE FM8
+-----------------------------------------------------------------
+It holds because substrate_queue.json lives in THIS repo, next to this script,
+so a regen necessarily sees what the session sees. The EXPERIMENT lane's main
+input does not: `ree-v3/experiment_queue.json` is a file in a DIFFERENT repo
+that this generator never syncs and no IGW tick pulls, so it goes stale
+silently and without bound. Read as a general claim about the whole generator,
+the sentence above sends you looking for a classification bug that is not there
+-- which is what happened on 2026-08-03 (FM8, `_load_queue`). When auditing the
+EXPERIMENT lane, check the freshness of the INPUT first.
+
 FM3 (2026-08-03): `implemented_pending_validation` was classified `ready`.
 Both `_status_resolved` and `_status_terminal` hard-veto on the substring
 "pending", which is right for the retest-blocker question they answer and wrong
@@ -701,6 +712,27 @@ def _queued_retest_coverage(queue_items: list[dict]) -> dict[str, str]:
             if cid_s and cid_s not in out:
                 out[cid_s] = str(qid)
     return out
+
+
+def _confirmer_queued_claims(queue_items: list[dict]) -> set[str]:
+    """Claims that already have an experiment in the queue, for the GOV-CONFIRM-1
+    anti-double-spawn gate.
+
+    FM9 (2026-08-03): this was an inline set comprehension over `claim_ids` ONLY,
+    so it could not see the singular `claim_id` string form -- the exact defect a
+    2026-06-04 audit fixed in `_queued_retest_coverage` (see its docstring) and
+    which was never propagated to this lane. Singular is the COMMON form, not an
+    edge case: 7 of the 8 live queue entries on 2026-08-03 used it, including the
+    one that exposed this -- V3-EXQ-887 carries `claim_id: "SD-014"` and no
+    `claim_ids` at all, so "Confirm evidence: SD-014" kept rendering `ready` while
+    its confirming experiment sat pending in the queue.
+
+    Deliberately a thin wrapper over `_queued_retest_coverage` rather than a
+    second reader of the same field pair: one parser, so the retest lane and the
+    confirmer lane cannot drift apart again. Pinned by
+    `ConfirmerAndRetestLanesAgreeTest`.
+    """
+    return set(_queued_retest_coverage(queue_items))
 
 
 _SUBSTRATE_RESOLVED_STATUSES = {
@@ -2182,17 +2214,7 @@ def build_workset() -> dict:
     # CONFIRMER_AUTOSPAWN_ENABLED to emit "ready" (autospawn-eligible) at low priority.
     conf_status = "ready" if CONFIRMER_AUTOSPAWN_ENABLED else "surfaced"
     # Exclude claims that already have a confirmer EXQ in the queue (anti-double-spawn).
-    #
-    # FM9 (2026-08-03): this set was built by an inline comprehension over
-    # `claim_ids` ONLY, so it was blind to the singular `claim_id` string form --
-    # the exact defect a 2026-06-04 audit fixed in `_queued_retest_coverage` (see
-    # its docstring) and which was never propagated here. Singular is not an edge
-    # case: 7 of the 8 live queue entries on 2026-08-03 used it, INCLUDING the one
-    # that made this visible -- V3-EXQ-887 carries `claim_id: "SD-014"` and no
-    # `claim_ids`, so "Confirm evidence: SD-014" kept rendering `ready` while its
-    # confirmer sat pending in the queue. Reuse the shared helper rather than a
-    # second inline reader, so the two lanes cannot drift apart again.
-    confirmer_queued_claims = set(_queued_retest_coverage(queue_items))
+    confirmer_queued_claims = _confirmer_queued_claims(queue_items)
     # Cap generous (40): confirmers are LOW-priority background fill, so showing the full
     # confirmable-but-unconfirmed backlog is honest; the ceiling only guards a pathological
     # flood. Concurrency (how many are autospawn-eligible `ready` at once) is capped
