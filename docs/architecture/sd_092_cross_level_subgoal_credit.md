@@ -2,9 +2,9 @@
 title: "SD-092: Cross-Level Subgoal Credit"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 92
-status: provisional
-status_asof: 2026-08-02
+nav_order: 19
+status: candidate
+status_asof: 2026-08-03
 status_claim: SD-092
 ---
 

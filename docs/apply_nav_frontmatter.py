@@ -166,6 +166,9 @@ ASSIGN = {
     "mech_314a_phase2_novelty_source_design.md": "goals",
     "sd_061_difficulty_gated_proposal_entropy.md": "goals",
     "sd_hazard_aware_policy_decomposition.md": "goals",
+    "sd_092_cross_level_subgoal_credit.md": "goals",
+    "sd_093_progress_velocity_maintenance.md": "goals",
+    "sd_mech267_horizon_depth_modulation.md": "memory",
 
     # --- Affect, Harm & Nociception ---
     "affect_primitives.md": "affect", "affect_terminology_instinct_protoemotion.md": "affect",

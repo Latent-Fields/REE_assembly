@@ -2,7 +2,7 @@
 title: Serotonin
 parent: "Control, Precision & Neuromodulation"
 grandparent: Architecture
-nav_order: 16
+nav_order: 17
 ---
 
 # Serotonin

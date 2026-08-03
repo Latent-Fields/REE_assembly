@@ -2,9 +2,9 @@
 title: "SD-093: Progress-Velocity Effort/Persistence Modulation"
 parent: "Goals, Drives & Motivation"
 grandparent: Architecture
-nav_order: 21
-status: IMPLEMENTED
-status_asof: 2026-08-02
+nav_order: 20
+status: candidate
+status_asof: 2026-08-03
 status_claim: SD-093
 ---
 
