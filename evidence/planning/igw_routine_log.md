@@ -1350,3 +1350,4 @@ One line per hourly tick. ASCII only.
 2026-08-03T01:36:52Z GC sweep removed 1 orphan worktree(s), kept 8
 2026-08-03T01:36:52Z skip IGW-20260803-224: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-03T08:09:55Z skip IGW-20260803-225: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-03T09:10:20Z SPAWN IGW-20260803-226 skill=/lit-pull prio=40 uuid=40c6592b-c407-43c7-81a1-bddf0d276b3e pid=86523 worktree=igw-226-literature-proposal-for-mech-472
