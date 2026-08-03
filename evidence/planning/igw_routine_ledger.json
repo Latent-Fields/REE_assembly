@@ -3277,6 +3277,21 @@
       "note": "Auto-deferred 48h after spawn reaped (completed); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-03T14:02:08Z",
       "re_eligible_after": "2026-08-05T14:02:08Z"
+    },
+    {
+      "stable_hash": "1363df4288b3",
+      "igw_id_at_disposition": "IGW-20260803-203",
+      "owner_exq": null,
+      "claim_ids": [
+        "SD-091",
+        "MECH-481"
+      ],
+      "gap_ids": [],
+      "skill": "/implement-substrate",
+      "title": "Substrate ready: SD-091",
+      "decision": "DONE",
+      "note": "Landed interactively (not via IGW dispatch): ree-v3 87a7e2115c + REE_assembly 88375d0126, chip-20260802-sd091-live-wiring resolved done. CoalitionController wired into REEAgent.__init__/reset/select_action + all 8 named consumer sites (E1/E2/hippocampal/BetaGate), 9 new contract tests, use_coalition_controller default False bit-identical off. substrate_queue.json status -> implemented_pending_validation. Do not re-stage or re-launch.",
+      "noted_at": "2026-08-03T17:06:13Z"
     }
   ]
 }
