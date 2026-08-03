@@ -44,6 +44,22 @@ closure_plan:
       owner_exq: null
       last_updated: 2026-08-03
       completion_note: ""
+    - id: "substrate_stability:P1c-prospective-recording"
+      title: "Prospective-only recording of enabled default-off REEConfig flags into future manifests, via a new reusable helper (generalizing q081_profile.py's _read_flag pattern) + an optional stamp_recording_core()/write_flat_manifest() kwarg. Cannot retroactively cover manifests already on disk (see section 6)."
+      phase: 1
+      status: open
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: ""
+    - id: "substrate_stability:P1d-interprocedural-hop"
+      title: "One-hop interprocedural extension to Phase 1b: when a changed function's body is only calls, follow direct callees (name-resolved, conservative -- ALL same-named candidates must agree) and treat the change as inert if every resolved callee's own top-of-body gate is confirmed-False. Complementary to, not dependent on, P1c. Higher risk/complexity -- scoped in section 7, not yet built."
+      phase: 1
+      status: open
+      severity: medium
+      owner_exq: null
+      last_updated: 2026-08-03
+      completion_note: ""
     - id: "substrate_stability:ISO-design"
       title: "Structural isolation design (freeze substrate for a run's own duration, distinct from the after-the-fact drift detector above): pause-the-puller mutex (recommended default) vs. pinned git worktree per run (for high-value/long-running experiments) vs. rsync snapshot (rejected -- duplicates a documented .git-file-vs-directory trap for no benefit over the worktree option). Designed in section 3; not built."
       phase: 0
@@ -56,7 +72,7 @@ closure_plan:
 
 # Substrate Stability + Claim-Drift Detection -- Design Plan
 
-**Status:** Phases 0, 1, AND 1b of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Both Phase 1 (section 4.5) and Phase 1b (section 4.6) surfaced real, load-bearing findings against the actual corpus, and both found the SAME result for a DIFFERENT reason: zero noise reduction for the 2 pilot claims. Phase 1 (scope narrowing) is defeated by legitimate dependence on a hub file (`ree_core/agent.py`); Phase 1b (default-off-diff filtering) is defeated by the dominant real pattern in this repo's recent history being new hook METHODS whose flag check lives in a different file's callee, not an in-place conditional in the same changed file -- structurally invisible to a same-file analysis. Neither is a bug in the filters (49 unit tests, including real git-repo fixtures, confirm both work correctly on the patterns they target); both are honest findings about what this codebase's actual change shape is. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built; given two independent filters have now both come up empty on real data, Phase 2 should not proceed until a human decides whether a THIRD lever (interprocedural reachability, or recording actual REEConfig values prospectively) is worth building, or whether whole-tree Phase-0 reporting is simply the ceiling for this approach on hub-file-dependent claims.
+**Status:** Phases 0, 1, AND 1b of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Both Phase 1 (section 4.5) and Phase 1b (section 4.6) surfaced real, load-bearing findings against the actual corpus, and both found the SAME result for a DIFFERENT reason: zero noise reduction for the 2 pilot claims. Phase 1 (scope narrowing) is defeated by legitimate dependence on a hub file (`ree_core/agent.py`); Phase 1b (default-off-diff filtering) is defeated by the dominant real pattern in this repo's recent history being new hook METHODS whose flag check lives in a different file's callee, not an in-place conditional in the same changed file -- structurally invisible to a same-file analysis. Neither is a bug in the filters (49 unit tests, including real git-repo fixtures, confirm both work correctly on the patterns they target); both are honest findings about what this codebase's actual change shape is. Two follow-on levers are now DESIGNED (not yet built): **P1c** (section 6) -- prospective-only recording of actual `REEConfig` flag values into future manifests, replacing Phase 1b's textual proxy with certainty, researched against the real manifest-write path (no REEConfig flows through it today; 1072 of 1252 drivers construct one directly; `q081_profile.py`'s `_read_flag` is an existing, generalizable precedent) -- and **P1d** (section 7) -- a one-hop interprocedural extension that follows a changed function's direct callees to find a gate living in a different file, the specific gap P1c cannot close on its own. The two are complementary, not sequential dependencies. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built, held pending a human decision on which of these two levers (or accepting Phase-0's ceiling) to pursue.
 **Created:** 2026-08-03T16:56Z
 **Author session:** failure-autopsy-10b982
 **Motivation chip:** user question during the V3-EXQ-875 (MECH-471) failure autopsy, 2026-08-03 -- "is there a way that the substrate could be updated as it will be as we develop ree but experiments keep stable substrate across their runs. Experiments should know their substrate build (as in we have versioning or similar for substrate) and updated substrate which is relevant could potentially become a reason to run experiments again?"
@@ -321,6 +337,118 @@ or (c) above is a real design fork worth a deliberate choice, not a default cont
   behaviour across machine classes; that is `arm_reuse_fingerprint_plan.md`'s Regime B, a
   separate and harder problem.
 
+## 6. Prospective-only recording of enabled default-off flags (P1c, designed 2026-08-03)
+
+### 6.1 What it fixes, and what it does NOT fix
+
+Phase 1b's `flag_status_from_driver_source` is a textual proxy: a flag is "confirmed disabled"
+only if its name never appears anywhere in the driver source, because a bare substring hit
+cannot distinguish "sets it True" from "sets it False" from "mentioned in a comment." This
+recording feature replaces that proxy with the RUN'S ACTUAL `REEConfig` field values, recorded
+at manifest-write time. It removes the "is this flag really off" uncertainty. **It does NOT, by
+itself, solve section 4.6's finding** (a gate living in a different file than the one that
+changed) -- that is a reach problem (can the analysis find the gate at all), not a precision
+problem (is the value known for certain). The two are complementary; see section 7.
+
+### 6.2 Why this is prospective-only, structurally, not by choice
+
+Researched before designing (not assumed): no REEConfig object flows through the manifest-write
+path today. `ree-v3/experiments/pack_writer.py:366` `write_flat_manifest(..., config=None, ...)`
+and `ree-v3/experiments/_lib/manifest_core.py:430` `stamp_recording_core(..., config=None, ...)`
+both type `config` as `Mapping[str, Any]` and forward it into the JSON verbatim -- it is the
+driver's own experiment-level dict (env params, hyperparameters, schedule), never a live
+REEConfig instance. `REEConfig` is constructed **inside** each driver (confirmed:
+`v3_exq_875_...py:244`, `v3_exq_867a_...py:300`, both call `REEConfig.from_dims(...)` in a
+per-cell helper), and of 1252 `experiments/v3_exq_*.py` drivers, **1072 construct their own
+REEConfig directly**; only 11 use the shared `_train_all_on_agent` helper, which itself never
+builds one. So there is no single choke point to retrofit -- adoption is necessarily per-driver
+and opt-in, which is exactly what makes this prospective: a driver that already ran and wrote
+its manifest cannot retroactively gain a field it never computed, and most drivers discard their
+REEConfig/agent per cell once the result dict is built, so there is nothing left to introspect
+after the fact even for a driver willing to adopt this today.
+
+### 6.3 Design -- generalizing an existing pattern, not inventing one
+
+`ree-v3/experiments/_lib/q081_profile.py` already does almost exactly this, for a hand-curated
+flag list: `_read_flag(cfg, name)` (line 176) checks `cfg`, `cfg.latent`, `cfg.hippocampal`,
+`cfg.goal` in turn for the named attribute, and `q081_substrate_declaration(config=None)`
+(line 189) builds a `non_default_substrate` manifest block recording each flag's
+`stock_default`/`profile_value`/`effective_value`. Called as
+`q081_substrate_declaration(agent.config)` at `v3_exq_838_...py:512` -- proof the "thread
+`agent.config` to manifest-build time" pattern already works in this codebase.
+
+The new helper generalizes this from a hand-curated list to ALL default-off knobs
+`default_off_drift_guard.parse_knobs()` already enumerates, and from a hardcoded holder list to
+a recursive walk (`_read_flag`'s four hardcoded holders miss any current or future nested
+sub-dataclass not on that list):
+
+```python
+def record_enabled_default_off_flags(config, knob_names: set[str]) -> dict[str, Any]:
+    """{flag_name: actual_value} for every knob_names entry whose live value differs from its
+    coded default -- i.e. was actually enabled for this run. Recurses into nested dataclass
+    fields (config.latent, config.hippocampal, ...) generically via dataclasses.is_dataclass(),
+    not a hardcoded holder list (q081_profile.py's _read_flag names exactly four; a fifth
+    sub-config added later would silently miss every flag on it under that approach)."""
+```
+
+Wiring: an optional `config_obj=` kwarg on `stamp_recording_core`/`write_flat_manifest`
+(additive, non-breaking, matches how `agent=`/`z_goal_stream_stats` were already added there) --
+a driver that still holds its final `agent`/`config` at manifest-build time passes it and gets
+the new field; one that has already discarded it (the common case today) gets nothing, exactly
+as before. First real adoption should be **new** drivers authored via `/queue-experiment` going
+forward (update that skill's template to call the helper when the driver's own design keeps a
+live config reference), not a retrofit of the 1072 existing ones.
+
+### 6.4 Consumer-side change (small)
+
+`flag_status_from_driver_source` gets a sibling `flag_status_from_recorded_config(manifest,
+knob_names)` reading the new field when present; `main()` prefers it and falls back to the
+textual proxy when absent -- so old manifests keep today's (weaker) proxy behaviour and new,
+adopting manifests get exact flag-status resolution, with no change to the Kleene evaluator
+itself (it already accepts a `flag_status: Dict[str, bool]` regardless of source).
+
+## 7. One-hop interprocedural extension to Phase 1b (P1d, designed 2026-08-03, higher risk)
+
+### 7.1 The gap this closes
+
+Section 4.6's actual finding: `notify_subgoal_attainment` (`ree_core/agent.py:8810`)
+unconditionally calls `self.goal_state.credit_subgoal_attainment(...)`; the
+`use_hierarchical_goal_credit` gate lives entirely inside `GoalState.credit_subgoal_attainment`
+in `ree_core/goal.py`, by the method's own docstring ("not duplicated here so the flag has one
+source of truth"). A same-file AST walk cannot see this. Closing it needs the analysis to
+follow at least one function call outside the changed file.
+
+### 7.2 Design sketch -- deliberately narrow, not general call-graph analysis
+
+For a changed function `F` whose body is not itself gated (per Phase 1b's existing check):
+1. Restrict to the case where `F`'s body consists ENTIRELY of simple statements plus calls (no
+   other logic) -- a narrow, checkable precondition, not "any function."
+2. For each `Call` in `F`'s body, resolve a candidate target by NAME ONLY (the called
+   attribute/function name, e.g. `credit_subgoal_attainment`) -- true type-directed resolution
+   (knowing `self.goal_state`'s static type) is real static analysis this script's stdlib-only,
+   no-torch posture cannot support cheaply.
+3. Search every `.py` file in the current substrate globs for a function/method definition
+   matching that name. **Conservative by construction, mirroring Phase 1b's own safety rule**:
+   if more than one candidate definition exists anywhere in scope, ALL of them must
+   independently resolve to a confirmed-inert top-of-body gate (via the SAME
+   `_eval_flag_formula`/Kleene logic already built) for the call to count as inert; if even one
+   candidate is ungated or unresolvable, treat the whole call -- and therefore `F` -- as NOT
+   confirmed inert. A wrong resolution must fail toward "stays a candidate," never toward a
+   false all-clear.
+4. `F` is inert only if EVERY call in its body resolves this way (an AND across calls, same
+   safety direction as everything else in this plan).
+
+### 7.3 Why this is scoped as higher-risk and not committed yet
+
+Name-based resolution is a real approximation: two unrelated classes with a same-named method
+(`step`, `reset`, `close` are common enough) would force "ALL candidates must agree," which
+could make the filter over-conservative to the point of rarely firing -- the opposite failure
+mode from a false all-clear, but still worth measuring before investing further. Recommend
+prototyping against the SAME two pilot claims' actual candidates (a small, known corpus) before
+generalizing, rather than building it corpus-wide on faith. Complementary to, not blocked by,
+section 6 -- P1c sharpens `flag_status` regardless of which file the gate lives in; P1d extends
+WHERE the gate can be found, for whichever flag-status source (proxy or recorded) is in use.
+
 ## Status table
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
@@ -328,5 +456,7 @@ or (c) above is a real design fork worth a deliberate choice, not a default cont
 | P0-detector | 0 | done | -- | none; run on demand via `/opt/local/bin/python3 scripts/check_substrate_staleness_candidates.py` | null | 2026-08-03 |
 | P1-scope-schema | 1 | done | -- | none; 2 pilot claims declared (MECH-471, MECH-321). Real corpus result: 0/2 pilots' candidates filtered -- see section 4.5 | null | 2026-08-03 |
 | P1b-default-off-filter | 1 | done | -- | none; real corpus result: 0/2 pilots' candidates filtered, for a DIFFERENT reason than P1 (same-file conditionals aren't this repo's actual pattern -- see section 4.6) | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | A human decision (section 4.6): pursue interprocedural analysis, real-flag recording (prospective-only), or accept Phase-0 whole-tree as the practical ceiling for hub-file claims | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
+| P1c-prospective-recording | 1 | open | User decision (2026-08-03): pursue this. Not yet built. | Add record_enabled_default_off_flags() helper (section 6.3) + config_obj= kwarg on stamp_recording_core/write_flat_manifest + a flag_status_from_recorded_config() consumer; update /queue-experiment template for new drivers | null | 2026-08-03 |
+| P1d-interprocedural-hop | 1 | open | Section 7.3: prototype against the 2 known pilots' candidates before generalizing | Not yet started -- awaiting a build decision alongside or after P1c | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | P1c and/or P1d landing with a real noise-reduction result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |
