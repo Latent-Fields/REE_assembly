@@ -20,7 +20,9 @@
       "task_claim_session_id": "igw-auto-igw-030-retest-after-substrate-arc-062-20260526T171454Z",
       "assigned_at": "2026-05-26T17:14:51Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-27T05:55:44Z"
+      "reaped_at": "2026-05-27T05:55:44Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "REE_assembly commit f00f716662 'IGW-20260526-030: RESOLVE (superseded by V3-EXQ-543l)' -- session determined V3-EXQ-543l (completed 2026-05-26, claim_ids incl. ARC-062) already answered the retest question; deliberate no-new-experiment-needed triage, not an omission."
     },
     {
       "igw_id": "IGW-20260530-038",
@@ -41,7 +43,9 @@
       "task_claim_session_id": "igw-auto-igw-038-retest-after-substrate-inv-074-20260530T010437Z",
       "assigned_at": "2026-05-30T01:04:35Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-30T02:05:31Z"
+      "reaped_at": "2026-05-30T02:05:31Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 27618c2 'queue: V3-EXQ-610a (INV-074 crystallization necessity retest)' landed 2026-05-30T01:13:34Z, inside this session's window."
     },
     {
       "igw_id": "IGW-20260530-038",
@@ -62,7 +66,9 @@
       "task_claim_session_id": "igw-auto-igw-038-retest-after-substrate-inv-074-20260530T020531Z",
       "assigned_at": "2026-05-30T02:05:29Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-30T03:06:26Z"
+      "reaped_at": "2026-05-30T03:06:26Z",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "TASK_CLAIMS completion_note: 'NO-OP close: duplicate IGW auto-spawn. V3-EXQ-610a already queued 2026-05-30T01:13Z by the earlier session.' Superseded by session_uuid 987e19f6."
     },
     {
       "igw_id": "IGW-20260530-038",
@@ -83,7 +89,9 @@
       "task_claim_session_id": "igw-auto-igw-038-retest-after-substrate-inv-074-20260530T030626Z",
       "assigned_at": "2026-05-30T03:06:25Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-30T04:07:20Z"
+      "reaped_at": "2026-05-30T04:07:20Z",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "TASK_CLAIMS completion_note: 'NO-OP close: third duplicate IGW auto-spawn.' No files modified; superseded by session_uuid 987e19f6."
     },
     {
       "igw_id": "IGW-20260530-038",
@@ -104,7 +112,9 @@
       "task_claim_session_id": "igw-auto-igw-038-retest-after-substrate-inv-074-20260530T040720Z",
       "assigned_at": "2026-05-30T04:07:19Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-30T05:08:16Z"
+      "reaped_at": "2026-05-30T05:08:16Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "Found V3-EXQ-610a had ERROR/FAILed with no manifests and re-queued via ree-v3 commit 848548d 'queue: re-queue V3-EXQ-610a', landed 2026-05-30T04:14:05Z, inside this session's window."
     },
     {
       "igw_id": "IGW-20260530-028",
@@ -125,7 +135,9 @@
       "task_claim_session_id": "igw-auto-igw-028-retest-after-substrate-inv-074-20260530T201541Z",
       "assigned_at": "2026-05-30T20:15:40Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-30T21:16:27Z"
+      "reaped_at": "2026-05-30T21:16:27Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "TASK_CLAIMS completion_note: 'Orphan auto-spawn shell: worktree created, IGW_START_HERE.md brief generated, agent never ran /queue-experiment. No evidence/ edits. No commits.'"
     },
     {
       "igw_id": "IGW-20260531-028",
@@ -146,7 +158,9 @@
       "task_claim_session_id": "igw-auto-igw-028-retest-after-substrate-arc-065-20260531T021649Z",
       "assigned_at": "2026-05-31T02:16:47Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-05-31T03:17:53Z"
+      "reaped_at": "2026-05-31T03:17:53Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "TASK_CLAIMS completion_note: 'Orphan auto-spawn shell: worktree created, IGW_START_HERE.md brief generated, agent never ran /queue-experiment. No evidence/ edits. No commits on worktree branch beyond umbrella main.'"
     },
     {
       "igw_id": "IGW-20260601-028",
@@ -194,7 +208,9 @@
       "task_claim_session_id": "igw-auto-igw-028-retest-after-substrate-mech-229-20260601T194056Z",
       "assigned_at": "2026-06-01T19:40:54Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T04:58:35Z"
+      "reaped_at": "2026-06-03T04:58:35Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "TASK_CLAIMS.json shows reaper auto-closed this claim ('no longer needed'); the same-day commit e093015 'IGW-20260601-028: V3-EXQ-610c complete' is an unrelated, differently-stable_hash IGW-20260601-028 (INV-074), not this MECH-229 item -- igw_id was reused same day."
     },
     {
       "igw_id": "IGW-20260603-029",
@@ -236,7 +252,9 @@
       "task_claim_session_id": "igw-auto-igw-029-retest-after-substrate-inv-074-20260603T055950Z",
       "assigned_at": "2026-06-03T05:59:43Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T07:00:57Z"
+      "reaped_at": "2026-06-03T07:00:57Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "No landing trace in session window (05:59-07:00Z); V3-EXQ-610c had already FAILed and the next queuing commit (610d, ree-v3 47972ab) landed at 07:19:49Z, after this session's window closed."
     },
     {
       "igw_id": "IGW-20260603-032",
@@ -257,7 +275,9 @@
       "task_claim_session_id": "igw-auto-igw-032-retest-after-substrate-inv-074-20260603T070058Z",
       "assigned_at": "2026-06-03T07:00:56Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T08:02:03Z"
+      "reaped_at": "2026-06-03T08:02:03Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 47972ab 'queue: V3-EXQ-610d ... supersedes V3-EXQ-610c' landed 2026-06-03T07:19:49Z, inside this session's window (07:00-08:02Z)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -278,7 +298,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T080205Z",
       "assigned_at": "2026-06-03T08:02:01Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T09:03:11Z"
+      "reaped_at": "2026-06-03T09:03:11Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (08:02-09:03Z); no landing trace of its own (coincides in time with the unrelated V3-EXQ-514l failure-autopsy close but is not that session). Same respawn-loop bug as sibling rows (fixed by ree-v3 41723d82f7)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -299,7 +321,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T090311Z",
       "assigned_at": "2026-06-03T09:03:09Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T10:04:16Z"
+      "reaped_at": "2026-06-03T10:04:16Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (09:03-10:04Z); no commit references this session/igw_id. Root cause: ree-v3 commit 41723d82f7 fixed a respawn-loop bug ('MECH-229 8x') that blindly re-spawned this same item hourly because the retest-coverage detector missed singular claim_id fields."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -320,7 +344,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T100416Z",
       "assigned_at": "2026-06-03T10:04:14Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T11:05:20Z"
+      "reaped_at": "2026-06-03T11:05:20Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (10:04-11:05Z); no landing commit found. Same respawn-loop bug as sibling rows (fixed by ree-v3 41723d82f7)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -341,7 +367,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T110520Z",
       "assigned_at": "2026-06-03T11:05:19Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T12:06:28Z"
+      "reaped_at": "2026-06-03T12:06:28Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (11:05-12:06Z); no landing commit found. Same respawn-loop bug as sibling rows (fixed by ree-v3 41723d82f7)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -362,7 +390,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T120628Z",
       "assigned_at": "2026-06-03T12:06:27Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T13:07:32Z"
+      "reaped_at": "2026-06-03T13:07:32Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (12:06-13:07Z); no landing commit found. Same respawn-loop bug as sibling rows (fixed by ree-v3 41723d82f7)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -383,7 +413,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T130732Z",
       "assigned_at": "2026-06-03T13:07:31Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T14:08:36Z"
+      "reaped_at": "2026-06-03T14:08:36Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Hourly retry spawn (13:07-14:08Z); no landing commit found. Same respawn-loop bug as sibling rows (fixed by ree-v3 41723d82f7)."
     },
     {
       "igw_id": "IGW-20260603-031",
@@ -404,7 +436,9 @@
       "task_claim_session_id": "igw-auto-igw-031-retest-after-substrate-mech-229-20260603T140837Z",
       "assigned_at": "2026-06-03T14:08:35Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T15:09:40Z"
+      "reaped_at": "2026-06-03T15:09:40Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Last hourly retry (14:08-15:09Z); no commits in or after the window reference MECH-229, this igw_id, or this session_uuid. The real MECH-229 retest (V3-EXQ-514l) was already autopsied and closed hours earlier (08:00-08:02Z) by unrelated sessions."
     },
     {
       "igw_id": "IGW-20260603-024",
@@ -430,7 +464,9 @@
       "task_claim_session_id": "igw-auto-igw-024-substrate-ready-modulatory-bias-20260603T150941Z",
       "assigned_at": "2026-06-03T15:09:39Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-03T16:10:45Z"
+      "reaped_at": "2026-06-03T16:10:45Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "Umbrella-repo commits c631605 ('session: land /implement-substrate modulatory-bias-selection-authority + stand down igw-024 collision'), 39b33bb, 0b1e9a2 ('session-land: log IGW-024 ARC-062 substrate-ready closure') confirm this landed and was closed out normally."
     },
     {
       "igw_id": "IGW-20260604-030",
@@ -473,7 +509,9 @@
       "assigned_at": "2026-06-04T03:13:29Z",
       "status": "completed",
       "completed_at": "2026-06-04T03:18:14Z",
-      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Verified: (1) experiment script has all three required fixes (real REINFORCE, stepped expansion_parameters, ewc_penalty in loss) with mandatory startup assertion; (2) queue entry correctly configured (2 arms, 3 seeds, 2500 episodes, supersedes V3-EXQ-610d, claim_id=INV-074). No additional work needed - experiment was properly queued in previous IGW-030 session. Estimated completion: ~14h from claim time = ~2026-06-04T11:00Z."
+      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Verified: (1) experiment script has all three required fixes (real REINFORCE, stepped expansion_parameters, ewc_penalty in loss) with mandatory startup assertion; (2) queue entry correctly configured (2 arms, 3 seeds, 2500 episodes, supersedes V3-EXQ-610d, claim_id=INV-074). No additional work needed - experiment was properly queued in previous IGW-030 session. Estimated completion: ~14h from claim time = ~2026-06-04T11:00Z.",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Completion note: 'V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z) ... No additional work needed.' That queuing (ree-v3 b8bcb49) was by an out-of-scope session, not this one."
     },
     {
       "igw_id": "IGW-20260604-032",
@@ -495,7 +533,9 @@
       "assigned_at": "2026-06-04T05:14:37Z",
       "status": "completed",
       "completed_at": "2026-06-04T05:17:05Z",
-      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Same stable_hash as IGW-20260604-030 which verified all required fixes. No additional work needed."
+      "completion_summary": "V3-EXQ-610e already queued and running (claimed by ree-cloud-1 at 2026-06-03T21:19:06Z). Same stable_hash as IGW-20260604-030 which verified all required fixes. No additional work needed.",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Completion note: 'V3-EXQ-610e already queued and running ... Same stable_hash as IGW-030 which verified all fixes. No additional work needed.'"
     },
     {
       "igw_id": "IGW-20260611-200",
@@ -516,7 +556,9 @@
       "task_claim_session_id": "igw-auto-igw-200-proposal-exp-0138-mech-329-20260611T084043Z",
       "assigned_at": "2026-06-11T08:40:37Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-11T09:41:52Z"
+      "reaped_at": "2026-06-11T09:41:52Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit e196c0e (~50min before reaped_at) 'V3-EXQ-669: MECH-329 wanting-before-liking goal seeding sequence', commit body states 'Proposal EXP-0138 (MECH-329)' verbatim; manifest at REE_assembly/evidence/experiments/v3_exq_669*_mech329_wanting_first_goal_seeding*."
     },
     {
       "igw_id": "IGW-20260611-201",
@@ -558,7 +600,9 @@
       "task_claim_session_id": "igw-auto-igw-201-proposal-exp-0150-mech-025b-20260611T104304Z",
       "assigned_at": "2026-06-11T10:42:58Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-11T11:44:13Z"
+      "reaped_at": "2026-06-11T11:44:13Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 493fea2 (~1hr before reaped_at) 'Queue V3-EXQ-671: MECH-025b precision-responsibility attribution probe', body states 'EXP-0150 dispatch (IGW-201)' verbatim; manifest at REE_assembly/evidence/experiments/v3_exq_671_mech025b_precision_responsibility*."
     },
     {
       "igw_id": "IGW-20260611-202",
@@ -579,7 +623,9 @@
       "task_claim_session_id": "igw-auto-igw-202-proposal-exp-0151-mech-044-20260611T114414Z",
       "assigned_at": "2026-06-11T11:44:08Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-11T12:45:26Z"
+      "reaped_at": "2026-06-11T12:45:26Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "No landing trace for EXP-0151/MECH-044 in ree-v3 queue history, commit log, or experiment_proposals.v1.json (slot stayed 'proposed' until reused for MECH-057b same day 21:34+01:00); TASK_CLAIMS note is generic reaper close text only."
     },
     {
       "igw_id": "IGW-20260611-204",
@@ -600,7 +646,9 @@
       "task_claim_session_id": "igw-auto-igw-204-proposal-exp-0152-mech-057b-20260611T144545Z",
       "assigned_at": "2026-06-11T14:45:38Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-11T16:47:06Z"
+      "reaped_at": "2026-06-11T16:47:06Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 7211211 (~1hr43min before reaped_at) 'V3-EXQ-672: MECH-057b trajectory-promotion-gate experiment', body states 'EXP-0152 dispatch from IGW-20260611-204' verbatim; manifest at REE_assembly/evidence/experiments/v3_exq_672_mech057b_trajectory_promotion_gate*."
     },
     {
       "igw_id": "IGW-20260611-203",
@@ -642,7 +690,9 @@
       "task_claim_session_id": "igw-auto-igw-203-proposal-exp-0153-mech-171-20260611T204847Z",
       "assigned_at": "2026-06-11T20:48:40Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-11T21:50:01Z"
+      "reaped_at": "2026-06-11T21:50:01Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "REE_assembly commit 586d89ab94 'EXP-0153 (MECH-171) queued as V3-EXQ-673'; ree-v3 commit 2a203aa queues the script; manifest at REE_assembly/evidence/experiments/v3_exq_673_mech171_vicious_cycle_sleep_disruption*. Later retired via failure_autopsy_batch9 (fee17a5f66) as out_of_domain -- doesn't change that it landed/ran."
     },
     {
       "igw_id": "IGW-20260612-192",
@@ -661,7 +711,9 @@
       "task_claim_session_id": "igw-auto-igw-192-v3-exq-669-20260612T180226Z",
       "assigned_at": "2026-06-12T18:01:10Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-12T19:04:40Z"
+      "reaped_at": "2026-06-12T19:04:40Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit ddc288b 'diagnose-errors: V3-EXQ-669a fixes V3-EXQ-669 ERROR (stale agent loop -> StepHarness)' queued V3-EXQ-669a with supersedes=V3-EXQ-669, claim_ids=[MECH-329, MECH-189], matching the ledger's owner_exq exactly."
     },
     {
       "igw_id": "IGW-20260612-216",
@@ -682,7 +734,9 @@
       "task_claim_session_id": "igw-auto-igw-216-proposal-exp-0144-mech-423-20260612T230543Z",
       "assigned_at": "2026-06-12T23:05:21Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-13T00:07:03Z"
+      "reaped_at": "2026-06-13T00:07:03Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "EXP-0144 (MECH-423) was only renumbered (-> EXP-0153 in REE_assembly commit 860514c765) then silently deleted from experiment_proposals.v1.json in commit 837f59bce3 (2026-06-14); no commit ever references IGW-20260612-216 or this session. MECH-423's actual progress (V3-EXQ-680 series) traces to a separate manual proposal EXP-0380 (ree-v3 commit 5335617), unrelated to this session."
     },
     {
       "igw_id": "IGW-20260613-218",
@@ -703,7 +757,9 @@
       "task_claim_session_id": "igw-auto-igw-218-proposal-exp-0190-mech-048-20260613T000704Z",
       "assigned_at": "2026-06-13T00:06:55Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-13T01:08:15Z"
+      "reaped_at": "2026-06-13T01:08:15Z",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "No landing trace for EXP-0190/MECH-048 in ree-v3 or TASK_CLAIMS/WORKSPACE_STATE history (generic reaper close note only); proposal_id 0190 later reused for MECH-044 then INV-050 (ree-v3 commit a7632f1). Superseded by this retry-group's later successful attempts (session_uuids 2349b2b1, b25d383b)."
     },
     {
       "igw_id": "IGW-20260613-217",
@@ -724,7 +780,9 @@
       "task_claim_session_id": "igw-auto-igw-217-proposal-exp-0196-mech-180-20260613T120936Z",
       "assigned_at": "2026-06-13T12:09:29Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-13T13:10:47Z"
+      "reaped_at": "2026-06-13T13:10:47Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 2f2d129 (~9min after reaped_at) queued V3-EXQ-677 'MECH-180 novelty-driven adaptive sleep upregulation', message states 'Routed from IGW-20260613-217 (EXP-0196)'; run executed, manifest v3_exq_677_mech180_novelty_sleep_upregulation_probe_20260613T161241Z_v3.json."
     },
     {
       "igw_id": "IGW-20260613-220",
@@ -766,7 +824,9 @@
       "task_claim_session_id": "igw-auto-igw-223-proposal-exp-0197-mech-185-20260613T181233Z",
       "assigned_at": "2026-06-13T18:12:28Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-13T19:13:42Z"
+      "reaped_at": "2026-06-13T19:13:42Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "TASK_CLAIMS.json commit 4d108ac: 'EXP-0197/EVB-0090 (MECH-185) blocked_substrate. Multi-agent environment + z_beta leakage + OTHER_SELFLIKE coupling all V4 social systems features not yet implemented ... Updated experiment_proposals.v1.json status -> blocked_substrate, rebuilt indexes. Committed REE_assembly 15f382b40d + e63f91fb26' -- deliberate terminal blocked-status disposition, same day as reaped_at."
     },
     {
       "igw_id": "IGW-20260613-220",
@@ -787,7 +847,9 @@
       "task_claim_session_id": "igw-auto-igw-220-proposal-exp-0194-mech-191-20260613T221403Z",
       "assigned_at": "2026-06-13T22:13:56Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-13T23:15:21Z"
+      "reaped_at": "2026-06-13T23:15:21Z",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "No queue entry for EXP-0194 anywhere; same-day manual triage commit 71f58ab explicitly deferred MECH-191 to this worktree but no landing followed. Superseded by the later IGW-20260616-196 attempt (session_uuid be888c3e)."
     },
     {
       "igw_id": "IGW-20260613-214",
@@ -808,7 +870,9 @@
       "task_claim_session_id": "igw-auto-igw-214-proposal-exp-0195-mech-270-20260613T231523Z",
       "assigned_at": "2026-06-13T23:15:16Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-14T00:16:34Z"
+      "reaped_at": "2026-06-14T00:16:34Z",
+      "outcome": "DUPLICATE",
+      "outcome_evidence": "Proposal backlog EVB-0092/MECH-270 left in status 'proposed' (unchanged) by this session; re-surfaced under new proposal_id EXP-0187 for the same backlog_id by the later IGW-20260616-200 attempt (session_uuid 2122da85) -- superseded by that later retry."
     },
     {
       "igw_id": "IGW-20260615-202",
@@ -829,7 +893,9 @@
       "task_claim_session_id": "igw-auto-igw-202-proposal-exp-0187-mech-271-20260615T005545Z",
       "assigned_at": "2026-06-15T00:55:37Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-15T01:56:58Z"
+      "reaped_at": "2026-06-15T01:56:58Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "No trace of EXP-0187 or any MECH-271 queue entry in ree-v3 history (git log -S'EXP-0187' empty); generic reaper close note only."
     },
     {
       "igw_id": "IGW-20260615-201",
@@ -850,7 +916,9 @@
       "task_claim_session_id": "igw-auto-igw-201-proposal-exp-0182-mech-048-20260615T025712Z",
       "assigned_at": "2026-06-15T02:57:01Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-15T03:58:21Z"
+      "reaped_at": "2026-06-15T03:58:21Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "TASK_CLAIMS.json commit 49c31ef: 'DONE. Queued V3-EXQ-683 (MECH-048 mu/kappa stability overlay probe) -- EXP-0182 targeted_probe ... ree-v3: on main, pushed (7c9a9d6)'; ree-v3 commit 7c9a9d6 adds V3-EXQ-683 to experiment_queue.json."
     },
     {
       "igw_id": "IGW-20260615-178",
@@ -871,7 +939,9 @@
       "task_claim_session_id": "igw-auto-igw-178-retest-after-substrate-arc-063-20260615T055834Z",
       "assigned_at": "2026-06-15T05:58:29Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-15T07:00:21Z"
+      "reaped_at": "2026-06-15T07:00:21Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "No ARC-063-specific queue entry or claims/plan-doc note landed in the window around reaped_at (checked ree-v3/experiment_queue.json 05:55-08:00Z window and TASK_CLAIMS.json/ WORKSPACE_STATE.md -- only unrelated concurrent sessions appear); TASK_CLAIMS close note is the generic reaper text only."
     },
     {
       "igw_id": "IGW-20260615-194",
@@ -892,7 +962,9 @@
       "task_claim_session_id": "igw-auto-igw-194-proposal-exp-0182-mech-044-20260615T175545Z",
       "assigned_at": "2026-06-15T17:55:37Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-15T18:56:59Z"
+      "reaped_at": "2026-06-15T18:56:59Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "No landing trace for EXP-0182/MECH-044 (only ree-v3 hits for MECH-044 are V3-EXQ-688/688a under a different proposal EXP-0184, dated 2026-06-18/19, a week later, by an independent session); experiment_proposals.v1.json slot stayed 'proposed' for 3 days then reused for INV-050."
     },
     {
       "igw_id": "IGW-20260616-196",
@@ -913,7 +985,9 @@
       "task_claim_session_id": "igw-auto-igw-196-proposal-exp-0186-mech-191-20260616T015929Z",
       "assigned_at": "2026-06-16T01:59:22Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-16T03:00:39Z"
+      "reaped_at": "2026-06-16T03:00:39Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit e3cc81c (~12min after reaped_at): 'session: V3-EXQ-686 queued (MECH-191 signal-state discriminability) ... Proposal EXP-0186/EVB-0091 from IGW-20260616-196', adds V3-EXQ-686 + new script to experiment_queue.json."
     },
     {
       "igw_id": "IGW-20260616-200",
@@ -934,7 +1008,9 @@
       "task_claim_session_id": "igw-auto-igw-200-proposal-exp-0187-mech-270-20260616T050056Z",
       "assigned_at": "2026-06-16T05:00:49Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-16T06:02:21Z"
+      "reaped_at": "2026-06-16T06:02:21Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "Same backlog EVB-0092/MECH-270 remains unexecuted to this day -- current experiment_proposals.v1.json shows it re-numbered EXP-0277, status 'gated' (2026-08-02, 'REE-v3 is a discrete-time RL substrate with no extracellular-field/ephaptic model'); no queue entry or run for MECH-270 via this proposal was ever found."
     },
     {
       "igw_id": "IGW-20260617-195",
@@ -955,7 +1031,9 @@
       "task_claim_session_id": "igw-auto-igw-195-proposal-exp-0183-mech-048-20260617T073705Z",
       "assigned_at": "2026-06-17T07:36:58Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-17T08:39:10Z"
+      "reaped_at": "2026-06-17T08:39:10Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "ree-v3 commit 75f9883 (~10min after reaped_at): 'IGW-20260617-195 ... Proposal EXP-0183 ... Queue V3-EXQ-683 (EXP-0183/EVB-0337)'; re-applied by recovery commit 0e18580 after a phase3-queue snapshot had dropped it."
     },
     {
       "igw_id": "IGW-20260617-193",
@@ -976,7 +1054,9 @@
       "task_claim_session_id": "igw-auto-igw-193-proposal-exp-0188-mech-271-20260617T113944Z",
       "assigned_at": "2026-06-17T11:39:35Z",
       "status": "completed_resumable",
-      "reaped_at": "2026-06-17T12:40:58Z"
+      "reaped_at": "2026-06-17T12:40:58Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "git log -S'EXP-0188' empty, no evidence/experiments/ runs for MECH-271, generic reaper close note only. MECH-271's current live proposal (2026-08-02) is a different id EXP-0278, status 'gated' on MECH-270's missing field-coherence substrate -- consistent with MECH-271 never having landed an experiment in this window."
     },
     {
       "igw_id": "IGW-20260618-182",
