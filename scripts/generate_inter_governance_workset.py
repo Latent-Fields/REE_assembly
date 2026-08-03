@@ -53,6 +53,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -69,6 +70,11 @@ EVIDENCE = ROOT / "evidence" / "experiments"
 CLAIMS_YAML = ROOT / "docs" / "claims" / "claims.yaml"
 REE_V3_QUEUE = ROOT.parent / "ree-v3" / "experiment_queue.json"
 REE_V3_CORE = ROOT.parent / "ree-v3" / "ree_core"
+# Remote-tracking ref the committed queue snapshot is read from (see _load_queue).
+# ree-v3's default branch is `main`; the remote-tracking ref, not the local
+# branch, because the local branch is exactly what goes stale in a checkout
+# nobody pulls.
+QUEUE_GIT_REF = "origin/main"
 
 # --- GOV-CONFIRM-1 evidence-confirmer lane (plan: gov_confirm_1_plan.md) -------
 # Generative-discovery complement to the consume-only _proposed_experiments lane:
@@ -292,14 +298,113 @@ def _pending_review_count() -> int:
     return int(m.group(1)) if m else 0
 
 
-def _load_queue() -> list[dict]:
+def _queue_items_from_bytes(raw: str) -> list[dict] | None:
+    try:
+        data = json.loads(raw)
+    except Exception:
+        return None
+    return [x for x in (data.get("items") or []) if isinstance(x, dict)]
+
+
+def _queue_from_worktree() -> list[dict]:
     if not REE_V3_QUEUE.exists():
         return []
     try:
-        data = json.loads(REE_V3_QUEUE.read_text(encoding="utf-8"))
+        raw = REE_V3_QUEUE.read_text(encoding="utf-8")
     except Exception:
         return []
-    return [x for x in (data.get("items") or []) if isinstance(x, dict)]
+    return _queue_items_from_bytes(raw) or []
+
+
+def _queue_from_git(ref: str = QUEUE_GIT_REF) -> list[dict] | None:
+    """experiment_queue.json as committed on ree-v3's remote-tracking `ref`.
+
+    Returns None (never []) when the snapshot cannot be read, so the caller can
+    tell "no committed snapshot available" apart from "committed queue is empty".
+    Reads an already-fetched local ref -- deliberately NO `git fetch`: this
+    generator runs on an hourly IGW tick, and a network call there can hang the
+    tick behind GENERATOR_TIMEOUT_SEC for no benefit the next tick would not get.
+    """
+    repo = REE_V3_QUEUE.parent
+    if not (repo / ".git").exists():
+        return None
+    try:
+        proc = subprocess.run(
+            ["git", "-C", str(repo), "show", f"{ref}:experiment_queue.json"],
+            capture_output=True, text=True, timeout=20,
+        )
+    except Exception:
+        return None
+    if proc.returncode != 0:
+        return None
+    return _queue_items_from_bytes(proc.stdout)
+
+
+def _merge_queue_snapshots(
+    worktree: list[dict], committed: list[dict]
+) -> list[dict]:
+    """Union of the two snapshots, keyed on queue_id, committed body preferred.
+
+    Committed-first because that file is materialised by the coordinator's
+    `phase3-queue:` writer from the DB and is the authoritative snapshot; a
+    working-tree entry with the same queue_id is at best equal and at worst a
+    stale checkout of it. Worktree-only entries are still appended -- that is an
+    experiment queued locally and not yet pushed, which must count as queued.
+    """
+    out: list[dict] = list(committed)
+    seen = {
+        str(it.get("queue_id"))
+        for it in committed
+        if it.get("queue_id")
+    }
+    for item in worktree:
+        qid = item.get("queue_id")
+        if qid and str(qid) in seen:
+            continue
+        out.append(item)
+    return out
+
+
+def _load_queue() -> list[dict]:
+    """The experiment queue, as fresh as this checkout can make it.
+
+    FM8 (2026-08-03) -- THE WORKING-TREE READ ALONE IS A STALENESS BUG, and it is
+    the one this file's header note did NOT cover. That note says staleness here
+    is "a CLASSIFICATION defect, not a freshness one -- do not go looking for a
+    stale snapshot", and for the SUBSTRATE lane that is true: substrate_queue.json
+    lives in THIS repo, alongside this script, so a regen sees whatever the
+    session sees. `ree-v3/experiment_queue.json` is the opposite case -- a file in
+    a DIFFERENT repo that this generator never syncs and whose checkout no IGW
+    tick pulls. It goes stale silently and without limit.
+
+    Confirmed incident (2026-08-03T21:55Z, metaworker cycle 275): the ree-v3
+    checkout was 26 commits behind origin/main and its queue held 2 entries
+    against origin/main's 8. Every suppression predicate downstream of this
+    function was therefore reasoning about experiments that already existed:
+      * "Retest after substrate: ARC-045" rendered `ready` although V3-EXQ-436d
+        (claim_ids ARC-045/SD-017/MECH-166) was pending -- `_queued_retest_coverage`
+        is CORRECT and would have absorbed it; it was never shown the entry.
+      * "Queue depth low (0 pending)" against 4 genuinely-pending items.
+    Verified by running build_workset() twice on one code base, swapping only this
+    function's return: both items drop out with the committed snapshot, and no new
+    item appears. So the predicates were never the defect here -- the INPUT was.
+
+    Union rather than replacement because the two sources fail in opposite
+    directions: the committed ref misses an experiment queued locally and not yet
+    pushed, the working tree misses everything landed since it was last pulled.
+    For the question every caller actually asks -- "does an experiment for this
+    claim already exist?" -- presence in EITHER is the honest answer.
+
+    Fails open to the old behaviour (worktree only) whenever the committed
+    snapshot cannot be read: no ree-v3 checkout, no such ref, git missing or slow,
+    unparseable blob. A generator that dies because a sibling repo moved would be
+    a worse failure than the staleness it is fixing.
+    """
+    worktree = _queue_from_worktree()
+    committed = _queue_from_git()
+    if committed is None:
+        return worktree
+    return _merge_queue_snapshots(worktree, committed)
 
 
 def _running_exqs() -> dict[str, str]:
@@ -1681,7 +1786,16 @@ def build_workset() -> dict:
     items: list[dict] = []
     seq = 0
     live = _running_exqs()
-    queue_items = _load_queue()
+    # Keep both raw snapshots so the summary can report which one the merged
+    # queue actually came from -- a silently-stale sibling checkout (FM8) is
+    # otherwise invisible in the generated artifact, which is the only thing the
+    # metaworker dispatcher ever reads.
+    queue_worktree = _queue_from_worktree()
+    queue_committed = _queue_from_git()
+    queue_items = (
+        queue_worktree if queue_committed is None
+        else _merge_queue_snapshots(queue_worktree, queue_committed)
+    )
     gap_nodes = _plan_gap_items()
     gaps_by_id = {g["gap_id"]: g for g in gap_nodes}
 
@@ -2068,9 +2182,17 @@ def build_workset() -> dict:
     # CONFIRMER_AUTOSPAWN_ENABLED to emit "ready" (autospawn-eligible) at low priority.
     conf_status = "ready" if CONFIRMER_AUTOSPAWN_ENABLED else "surfaced"
     # Exclude claims that already have a confirmer EXQ in the queue (anti-double-spawn).
-    confirmer_queued_claims = {
-        c for it in queue_items for c in (it.get("claim_ids") or [])
-    }
+    #
+    # FM9 (2026-08-03): this set was built by an inline comprehension over
+    # `claim_ids` ONLY, so it was blind to the singular `claim_id` string form --
+    # the exact defect a 2026-06-04 audit fixed in `_queued_retest_coverage` (see
+    # its docstring) and which was never propagated here. Singular is not an edge
+    # case: 7 of the 8 live queue entries on 2026-08-03 used it, INCLUDING the one
+    # that made this visible -- V3-EXQ-887 carries `claim_id: "SD-014"` and no
+    # `claim_ids`, so "Confirm evidence: SD-014" kept rendering `ready` while its
+    # confirmer sat pending in the queue. Reuse the shared helper rather than a
+    # second inline reader, so the two lanes cannot drift apart again.
+    confirmer_queued_claims = set(_queued_retest_coverage(queue_items))
     # Cap generous (40): confirmers are LOW-priority background fill, so showing the full
     # confirmable-but-unconfirmed backlog is honest; the ceiling only guards a pathological
     # flood. Concurrency (how many are autospawn-eligible `ready` at once) is capped
@@ -2175,6 +2297,21 @@ def build_workset() -> dict:
         "spawned_task_auto_released": len(auto_released),
         "pending_review_count": pr,
         "queue_pending": len(pending_q),
+        "queue_snapshot": {
+            "ref": QUEUE_GIT_REF,
+            "worktree_items": len(queue_worktree),
+            "committed_items": (
+                -1 if queue_committed is None else len(queue_committed)
+            ),
+            "merged_items": len(queue_items),
+            # How many queue entries the working-tree checkout was missing. A
+            # non-zero value means ree-v3 is behind and every suppression
+            # predicate would have been reasoning about a short queue (FM8).
+            "worktree_behind_by": (
+                0 if queue_committed is None
+                else max(0, len(queue_items) - len(queue_worktree))
+            ),
+        },
         "live_exqs": sorted(live.keys()),
         "auto_absorbed_retests": auto_absorbed_retests,
         "by_version": {v: by_version[v] for v in sorted(by_version)},
@@ -2274,6 +2411,32 @@ def main() -> int:
     # status string silently becomes a spawned /implement-substrate chip. Name
     # them rather than letting the default stay invisible. Never fatal -- a
     # genuinely-unbuilt entry with an unusual status must still be emitted.
+    # FM8 advisory: the ree-v3 checkout is a sibling repo this generator never
+    # syncs, so it can sit arbitrarily far behind origin/main. The merge in
+    # _load_queue makes that harmless for suppression, but a persistently-behind
+    # checkout still means every OTHER ree-v3 reader in this tree is stale, which
+    # is worth surfacing rather than silently papering over.
+    snap = data["summary"].get("queue_snapshot") or {}
+    if snap.get("committed_items") == -1:
+        print(
+            f"NOTE: could not read the committed queue snapshot "
+            f"({snap.get('ref')}:experiment_queue.json) -- fell back to the "
+            f"ree-v3 WORKING TREE alone ({snap.get('worktree_items')} entries). "
+            f"Queued-experiment suppression may be stale; see the FM8 note on "
+            f"_load_queue in this file.",
+            file=sys.stderr,
+        )
+    elif snap.get("worktree_behind_by"):
+        print(
+            f"NOTE: the ree-v3 working tree is missing "
+            f"{snap['worktree_behind_by']} queue entr(ies) present on "
+            f"{snap.get('ref')} ({snap.get('worktree_items')} vs "
+            f"{snap.get('merged_items')} merged). This workset is correct -- the "
+            f"snapshots are merged -- but that checkout is behind; consider "
+            f"`git -C ree-v3 pull` so other readers agree with it.",
+            file=sys.stderr,
+        )
+
     drift = _unclassified_ready_items()
     if drift:
         print(
