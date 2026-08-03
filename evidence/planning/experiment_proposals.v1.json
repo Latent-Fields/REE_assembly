@@ -8359,12 +8359,15 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "distinct_seeds",
-      "status": "blocked_substrate",
+      "status": "executed",
       "suggested_experiment_type": "claim_probe_sd_014",
       "target_repo": "ree-v3",
       "why_now": [
         "low_exp_conf"
-      ]
+      ],
+      "executed_by": "V3-EXQ-887",
+      "executed_queue_id": "V3-EXQ-887",
+      "gating_reason_superseded_note": "SUPERSEDED 2026-08-03 by direct empirical probe (session metaworker-chip-20260803-igw-confirm-sd014). Blocks (1) and (2) of the gating_reason above DO NOT HOLD. (1) 'NODE-VALENCE-VECTOR ABSENT' is FALSE: RBFLayer.valence_vecs is a [num_centers, VALENCE_DIM] buffer in ree_core/residue/field.py updated at the nearest active center by ResidueField.update_valence(), present since commit 9dba0d6d; the original grep was scoped to ree_core/hippocampal/ and missed ree_core/residue/. (2) 'surprise-write path not operational' NO LONGER HOLDS: probe measured surprise_write_count=616 with 26 nodes carrying non-zero VALENCE_SURPRISE once update_residue() is called on EVERY step with surprise_gated_replay=True (V3-EXQ-432's zero is consistent with a driver calling it on harm steps only). All FOUR channels populate: a 12-episode engagement check measured wanting 24 / liking 15 / harm_discriminative 31 / surprise 32 nodes. (3) The approach-behaviour / EXP-0098 wall DOES still hold, and V3-EXQ-887 is designed to be independent of it: it measures no behavioural DV, only the per-node valence store (representational) and priority(node)=dot(V,d) through the real get_valence_priority (functional). SEPARATE DEFECT FOUND: ree_core/agent.py::_do_replay builds a 4-element drive_state against the VALENCE_DIM=6 field (widened by MECH-307 2026-05-11), so the agent-level valence-weighted replay entry point raises RuntimeError with no try/except. Routed to /implement-substrate; it does not block V3-EXQ-887, which exercises the prioritisation function with a correctly sized vector."
     },
     {
       "acceptance_checks": [
