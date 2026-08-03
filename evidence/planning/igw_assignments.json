@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-03T22:55:11Z",
+  "generated_at": "2026-08-03T23:53:50Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -5956,6 +5956,29 @@
       "released_at": null,
       "released_by": null,
       "released_reason": null,
+      "note": "routed to chip chip-20260803-igw-confirm-sd039 by metaworker-dispatch cycle 286 (ree-cloud-5); headless worker pid 85697, session 56c262c0-575a-403f-9cc9-284716949862",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Confirm evidence: SD-039 (lit 0.86, exp ~0)",
+        "lane": "experiment",
+        "priority": 55,
+        "claim_ids": [
+          "SD-039"
+        ]
+      }
+    },
+    {
+      "event_id": "rel-20260803T235350Z-055690e1-spawned_task",
+      "stable_hash": "055690e17356",
+      "igw_id_at_assign": "IGW-20260803-231",
+      "agent": "spawned_task",
+      "agent_label": null,
+      "source": "cli",
+      "assigned_at": "2026-08-03T23:53:50Z",
+      "released_at": "2026-08-03T23:53:50Z",
+      "released_by": "metaworker-dispatch cycle 298 (ree-cloud-5)",
+      "released_reason": "COMPLETE: chip chip-20260803-igw-confirm-sd039 resolved done 2026-08-03T23:22:06Z (SELF-ROUTED substrate_not_ready_requeue; driver landed ree-v3 99d0d3f439, deliberately not queued). Confirmer verdict since written back to EXP-0508/EVB-0141 (executed -> deferred_substrate_not_ready) by REE_assembly 784435d51a under the FM11 writeback fix, so the confirmer lane now suppresses this item; the workset copy read this cycle predates that (generated 2026-08-03T22:43:12Z).",
+      "released_event_for": "asn-20260803T225511Z-055690e1-spawned_task",
       "note": "routed to chip chip-20260803-igw-confirm-sd039 by metaworker-dispatch cycle 286 (ree-cloud-5); headless worker pid 85697, session 56c262c0-575a-403f-9cc9-284716949862",
       "item_snapshot": {
         "skill": "/queue-experiment",
