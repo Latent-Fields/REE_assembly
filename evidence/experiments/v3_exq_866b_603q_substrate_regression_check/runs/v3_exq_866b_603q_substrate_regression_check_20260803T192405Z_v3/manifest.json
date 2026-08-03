@@ -1,0 +1,118 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_866b_603q_substrate_regression_check",
+  "run_id": "v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-03T19:24:05Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "SD-059",
+    "MECH-358"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "SD-059": "non_contributory",
+    "MECH-358": "non_contributory"
+  },
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "substrate_reproduces_603q_reference",
+    "preconditions": [
+      {
+        "name": "curriculum_reached_hazard_stage",
+        "kind": "readiness",
+        "description": "The curriculum must reach Stage-H (no abort before it) on >=2/3 seeds, else the survival number cannot be measured at all -> substrate_not_ready_requeue (a measurability failure, NOT a regression finding). A low-but-measured survival is a genuine regression verdict and does NOT trip this.",
+        "control": "603q ARM_BASE_IA_ONLY full curriculum run to Stage-H.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "stage0_forced_feed_lights_zgoal_on_base",
+        "kind": "readiness",
+        "description": "Stage-0 forced supra-threshold benefit lights z_goal (>0.4) on >=2/3 seeds -- the goal-FORMATION positive control. 866a confirmed healthy Stage-0 z_goal formation; if z_goal does not even form here, the goal machinery itself is broken and nothing downstream (survival, the z_goal decay trajectory) can be read -> substrate_not_ready_requeue.",
+        "control": "run_stage0_nursery forced-feed.",
+        "measured": 0.6666666666666666,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "survival_measured_non_starved",
+        "kind": "readiness",
+        "description": "The load-bearing survival criterion is genuinely EVALUATED (not starved) iff seeds reached Stage-H AND produced episode lengths. When this holds, a below-reference base_mean_survival is a real regression verdict, not a starved criterion -- this is the same-statistic starvation guard for the survival-routed load-bearing criterion.",
+        "control": "Stage-H produced >=1 episode length on >=2/3 seeds.",
+        "measured": 1.0,
+        "threshold": 0.6666666666666666,
+        "direction": "lower",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "arms_reached_hazard_stage": true,
+      "survival_measured_non_degenerate": true,
+      "stage0_zgoal_formed": true,
+      "harm_landscape_recorded": true
+    },
+    "criteria": [
+      {
+        "name": "base_survival_reproduces_603q_reference",
+        "load_bearing": true,
+        "passed": true
+      }
+    ],
+    "grid": {
+      "reproduces": "base survival >= 0.5*ref -> substrate stable; 866a's ~7x shortfall is HARNESS-specific, not substrate regression; 603q's PASS stands.",
+      "regression_confirmed": "base survival < 0.5*ref (near 866a's ~5) -> substrate REGRESSED over the 47-day gap; 603q's PASS is in question; 866a's shortfall is explained by drift. Localise via z_goal_trajectory_mean (which stage decays goal maintenance) + per_seed_harm_eval_range (flat -> harm-pathway training regressed; healthy -> downstream).",
+      "not_ready": "curriculum aborted before Stage-H OR Stage-0 z_goal never forms -> the measurement could not be taken -> requeue, NOT a verdict."
+    }
+  },
+  "machine": "ree-worker-3",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "8e275408b8f9f742f943a58a6125061a3aeca85a65b38ac2120118d5f7501faf",
+  "substrate_commit": {
+    "commit": "c4247794ef4b9700323aa7765bd64478cb9e32d8",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 92956,
+    "ticks_active": 92953,
+    "writer_calls": 3347,
+    "active_frac": 0.9999677266663798,
+    "writer_defect": false,
+    "n_agents": 3,
+    "goal_state_present": true
+  }
+}
