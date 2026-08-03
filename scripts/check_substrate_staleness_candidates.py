@@ -416,6 +416,35 @@ def flag_status_from_driver_source(driver_source: Optional[str], knob_names: Set
     return out
 
 
+def flag_status_from_recorded_config(manifest: Dict[str, Any], knob_names: Set[str]) -> Dict[str, bool]:
+    """{knob_name: bool} from the manifest's PROSPECTIVELY RECORDED
+    `enabled_default_off_flags` field (ree-v3 experiments/_lib/manifest_core.py's
+    stamp_recording_core, when the driver passed agent=). See
+    substrate_stability_and_drift_detection_plan.md section 6.
+
+    EXACT, not conservative-by-omission like flag_status_from_driver_source: every
+    knob_names entry NOT present in the recorded dict is CONFIRMED disabled (its actual
+    runtime value did not differ from the coded default -- not merely "not mentioned in
+    source text"), and every one present was genuinely enabled. Matches on the recorded
+    key's TRAILING dotted segment, since manifest_core records a nested path (e.g.
+    "goal.use_hierarchical_goal_credit") while knob_names are bare field names from
+    parse_knobs()'s flat AST parse of config.py.
+
+    Returns {} ONLY when the manifest has no such field at all (absent -- this run's
+    driver never passed agent=, or predates P1c) -- the caller's signal to fall back to
+    flag_status_from_driver_source. A manifest that DID record (even an empty {},
+    meaning "measured, nothing enabled" -- see manifest_core's own docstring for why
+    that is recorded rather than omitted) yields one entry per knob_names member, so
+    this function's return is only empty when there was truly nothing recorded, PROVIDED
+    knob_names itself is non-empty (always true in practice -- ~300+ real knobs).
+    """
+    recorded = manifest.get("enabled_default_off_flags")
+    if not isinstance(recorded, dict):
+        return {}
+    enabled_bare_names = {str(key).rsplit(".", 1)[-1] for key in recorded}
+    return {name: (name in enabled_bare_names) for name in knob_names}
+
+
 def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[str, bool]) -> Optional[bool]:
     """Kleene (3-valued) evaluation of `node` as a pure boolean formula over `knob_names`
     references. Returns True/False when fully resolvable, None ("Unknown") the instant node
@@ -626,7 +655,14 @@ def main() -> int:
             )
         return driver_source_cache[key]
 
-    def is_default_off_only(commit: str, experiment_type: str, path: str, flag_status: Dict[str, bool]) -> Optional[bool]:
+    def is_default_off_only_cached(commit: str, experiment_type: str, path: str, flag_status: Dict[str, bool]) -> Optional[bool]:
+        # ONLY safe to cache by (commit, experiment_type, path): the textual-proxy
+        # flag_status is a pure function of that key (same driver source for every
+        # manifest sharing a commit+experiment_type). The RECORDED-config flag_status is
+        # NOT -- it is specific to one manifest's own run (two arms of the same
+        # experiment_type at the same commit could genuinely record different enabled
+        # flags) -- see the caller below, which routes recorded-config lookups around
+        # this cache entirely rather than risk a stale cross-manifest hit.
         key = (commit, experiment_type, path)
         if key not in default_off_cache:
             default_off_cache[key] = file_is_default_off_only(
@@ -634,6 +670,7 @@ def main() -> int:
         return default_off_cache[key]
 
     by_claim_default_off: Dict[str, List[Tuple[Path, Dict[str, Any], Optional[List[str]]]]] = {}
+    n_recorded_config_used = 0
 
     if knob_names:
         narrowed_candidate: Dict[str, List[Tuple[Path, Dict[str, Any], Optional[List[str]]]]] = {}
@@ -650,9 +687,24 @@ def main() -> int:
                     kept.append((path, manifest, changed))
                     continue
                 experiment_type = str(manifest.get("experiment_type", ""))
-                flag_status = flag_status_from_driver_source(
-                    driver_source_for(commit, experiment_type), knob_names)
-                verdicts = [is_default_off_only(commit, experiment_type, f, flag_status) for f in relevant_files]
+                # Prefer the prospectively-RECORDED config (exact) over the textual
+                # driver-source proxy (conservative-by-omission) whenever this manifest
+                # has it -- P1c (substrate_stability_and_drift_detection_plan.md sec 6).
+                recorded_status = flag_status_from_recorded_config(manifest, knob_names)
+                if recorded_status:
+                    n_recorded_config_used += 1
+                    flag_status = recorded_status
+                    verdicts = [
+                        file_is_default_off_only(ree_v3_root, commit, args.ref, f, knob_names, flag_status)
+                        for f in relevant_files
+                    ]
+                else:
+                    flag_status = flag_status_from_driver_source(
+                        driver_source_for(commit, experiment_type), knob_names)
+                    verdicts = [
+                        is_default_off_only_cached(commit, experiment_type, f, flag_status)
+                        for f in relevant_files
+                    ]
                 if verdicts and all(v is True for v in verdicts):
                     by_claim_default_off.setdefault(claim_id, []).append((path, manifest, changed))
                 else:
@@ -672,6 +724,7 @@ def main() -> int:
     print("  %4d  drift candidate manifest(s) (recorded substrate differs, not yet actioned)" % len(candidate_manifests))
     print("  %4d  (claim, run) pair(s) filtered OUTSIDE a declared substrate_scope (Phase 1)" % n_out_of_scope_pairs)
     print("  %4d  (claim, run) pair(s) filtered as DEFAULT-OFF ONLY (Phase 1b, %d default-off knob(s) known)" % (n_default_off_pairs, len(knob_names)))
+    print("  %4d  (claim, run) pair(s) used the RECORDED config (P1c, exact) rather than the driver-source proxy" % n_recorded_config_used)
     print("  %4d  (claim, run) pair(s) remain DRIFT CANDIDATES after scope + default-off filtering" % n_candidate_pairs)
     print()
 

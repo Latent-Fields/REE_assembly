@@ -45,13 +45,13 @@ closure_plan:
       last_updated: 2026-08-03
       completion_note: ""
     - id: "substrate_stability:P1c-prospective-recording"
-      title: "Prospective-only recording of enabled default-off REEConfig flags into future manifests, via a new reusable helper (generalizing q081_profile.py's _read_flag pattern) + an optional stamp_recording_core()/write_flat_manifest() kwarg. Cannot retroactively cover manifests already on disk (see section 6)."
+      title: "Prospective-only recording of enabled default-off REEConfig flags into future manifests, via a new reusable helper (generalizing q081_profile.py's _read_flag pattern) + reuse of the EXISTING agent= kwarg already threaded through stamp_recording_core/write_flat_manifest for z_goal_stream. Cannot retroactively cover manifests already on disk (see section 6)."
       phase: 1
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       last_updated: 2026-08-03
-      completion_note: ""
+      completion_note: "ree-v3/experiments/_lib/manifest_core.py: enabled_default_off_flags(config) (recursive dataclass-field walk, generalizing q081_profile.py's 4-holder hardcoded _read_flag) + enabled_default_off_flags_for_agents(agent) (pools one-or-many agents, same normalisation as z_goal_stream_stats) + wired into stamp_recording_core() as a new best-effort block reusing the EXISTING agent= parameter -- no new kwarg needed on write_flat_manifest at all, since it already forwards agent= for z_goal_stream and that threading is already live for ~28 of 565 stepping drivers today. 24 new pytest tests in tests/contracts/test_recording_standard.py (fixture dataclasses, no torch/ree_core import needed, matching manifest_core.py's own stdlib-only posture), plus a real end-to-end smoke against the actual REEConfig. FOUND AND FIXED A REAL PRECISION GAP mid-implementation, before landing: the first draft followed z_goal_stream's 'omit when nothing to report' convention, which for THIS field silently collapsed two different, important cases into the same omission -- 'no agent passed' (never measured) and 'agent passed, nothing enabled' (measured, legitimately all-defaults) -- indistinguishable to a downstream consumer that needs the second case to say 'every other known flag is confirmed disabled,' not 'unknown.' Fixed: enabled_default_off_flags_for_agents returns None (omit) only when no config-bearing agent was found at all, and an actual (possibly empty {}) dict otherwise -- caught and corrected by writing the consumer-side test before shipping, not by manual review. Consumer side: check_substrate_staleness_candidates.py's flag_status_from_recorded_config() reads the field when present (matching parse_knobs()'s bare field names against the recorded dict's trailing dotted-path segment, e.g. 'goal.use_hierarchical_goal_credit' -> 'use_hierarchical_goal_credit') and main() prefers it over the textual driver-source proxy whenever a manifest has it; also fixed the existing default_off_cache (keyed by commit+experiment_type+path) to route AROUND that cache for recorded-config lookups, since -- unlike the driver-source proxy -- the recorded status is manifest-specific, not a pure function of that key (two arms of one experiment_type at one commit could genuinely record different enabled flags). 6 new unit tests for the consumer function + 1 integration test proving the recorded path succeeds where the proxy has nothing to read (55 tests total in the suite). REAL corpus run confirms this is genuinely prospective, as designed: 0 of 621 manifests have the new field yet (no driver has been updated to adopt it), so 0 pairs used it -- exactly the expected result for a feature that only benefits FUTURE runs, not a null finding like P1/P1b's. Landing this into new /queue-experiment drivers (so it actually starts accumulating coverage) is the natural next step, not done this session."
     - id: "substrate_stability:P1d-interprocedural-hop"
       title: "One-hop interprocedural extension to Phase 1b: when a changed function's body is only calls, follow direct callees (name-resolved, conservative -- ALL same-named candidates must agree) and treat the change as inert if every resolved callee's own top-of-body gate is confirmed-False. Complementary to, not dependent on, P1c. Higher risk/complexity -- scoped in section 7, not yet built."
       phase: 1
@@ -72,7 +72,22 @@ closure_plan:
 
 # Substrate Stability + Claim-Drift Detection -- Design Plan
 
-**Status:** Phases 0, 1, AND 1b of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Both Phase 1 (section 4.5) and Phase 1b (section 4.6) surfaced real, load-bearing findings against the actual corpus, and both found the SAME result for a DIFFERENT reason: zero noise reduction for the 2 pilot claims. Phase 1 (scope narrowing) is defeated by legitimate dependence on a hub file (`ree_core/agent.py`); Phase 1b (default-off-diff filtering) is defeated by the dominant real pattern in this repo's recent history being new hook METHODS whose flag check lives in a different file's callee, not an in-place conditional in the same changed file -- structurally invisible to a same-file analysis. Neither is a bug in the filters (49 unit tests, including real git-repo fixtures, confirm both work correctly on the patterns they target); both are honest findings about what this codebase's actual change shape is. Two follow-on levers are now DESIGNED (not yet built): **P1c** (section 6) -- prospective-only recording of actual `REEConfig` flag values into future manifests, replacing Phase 1b's textual proxy with certainty, researched against the real manifest-write path (no REEConfig flows through it today; 1072 of 1252 drivers construct one directly; `q081_profile.py`'s `_read_flag` is an existing, generalizable precedent) -- and **P1d** (section 7) -- a one-hop interprocedural extension that follows a changed function's direct callees to find a gate living in a different file, the specific gap P1c cannot close on its own. The two are complementary, not sequential dependencies. The structural-isolation problem (section 3) is designed but **not built** this session. Phase 2 (section 4.4) is designed but not built, held pending a human decision on which of these two levers (or accepting Phase-0's ceiling) to pursue.
+**Status:** Phases 0, 1, AND 1b of the drift detector LANDED (read-only, zero validity risk throughout -- mirrors `arm_reuse_fingerprint_plan.md`'s own Phase-0 posture). Both Phase 1 (section 4.5) and Phase 1b (section 4.6) surfaced real, load-bearing findings against the actual corpus, and both found the SAME result for a DIFFERENT reason: zero noise reduction for the 2 pilot claims. Phase 1 (scope narrowing) is defeated by legitimate dependence on a hub file (`ree_core/agent.py`); Phase 1b (default-off-diff filtering) is defeated by the dominant real pattern in this repo's recent history being new hook METHODS whose flag check lives in a different file's callee, not an in-place conditional in the same changed file -- structurally invisible to a same-file analysis. Neither is a bug in the filters (49 unit tests, including real git-repo fixtures, confirm both work correctly on the patterns they target); both are honest findings about what this codebase's actual change shape is. **P1c is now BUILT and LANDED** (section 6.5): `enabled_default_off_flags`/
+`enabled_default_off_flags_for_agents` in `ree-v3/experiments/_lib/manifest_core.py`, wired into
+`stamp_recording_core`'s EXISTING `agent=` parameter (no new kwarg needed -- simpler than
+originally designed, since that threading already existed for `z_goal_stream`), plus a consumer
+`flag_status_from_recorded_config` in `check_substrate_staleness_candidates.py` that `main()`
+now prefers over the textual proxy. 30 new tests across both repos. Caught and fixed two real
+correctness issues before landing (an omission-vs-empty-dict ambiguity, and a cache keyed on an
+assumption that stopped holding once a manifest-specific flag source was added) -- see 6.5 for
+both. Confirmed genuinely prospective on the real corpus: 0 of 621 manifests carry the field yet,
+since no driver has adopted `agent=` for this reason specifically. **P1d** (section 7) remains
+DESIGNED, not built: a one-hop interprocedural extension that follows a changed function's
+direct callees to find a gate living in a different file -- the specific gap P1c cannot close on
+its own (P1c sharpens WHICH flags are on; P1d would extend WHERE the gate can be found). The
+structural-isolation problem (section 3) is designed but **not built** this session. Phase 2
+(section 4.4) remains held pending a human decision: land P1c into `/queue-experiment` so new
+drivers start accumulating coverage, pursue P1d, or accept Phase-0's whole-tree ceiling.
 **Created:** 2026-08-03T16:56Z
 **Author session:** failure-autopsy-10b982
 **Motivation chip:** user question during the V3-EXQ-875 (MECH-471) failure autopsy, 2026-08-03 -- "is there a way that the substrate could be updated as it will be as we develop ree but experiments keep stable substrate across their runs. Experiments should know their substrate build (as in we have versioning or similar for substrate) and updated substrate which is relevant could potentially become a reason to run experiments again?"
@@ -407,6 +422,43 @@ textual proxy when absent -- so old manifests keep today's (weaker) proxy behavi
 adopting manifests get exact flag-status resolution, with no change to the Kleene evaluator
 itself (it already accepts a `flag_status: Dict[str, bool]` regardless of source).
 
+### 6.5 Built and landed (2026-08-03) -- simpler than designed, plus a real bug caught
+
+Turned out **simpler** than 6.3 anticipated: `write_flat_manifest`/`stamp_recording_core`
+*already* threads an `agent=` parameter through for the `z_goal_stream` block (added earlier,
+2026-07-something, for a different reason -- see that block's own docstring). No new
+`config_obj=` kwarg was needed at all; `enabled_default_off_flags_for_agents(agent)` just reads
+`.config` off whatever `agent` the caller already passes, so a driver adopting this needs to
+change *nothing* about how it calls the writer -- if it already passes `agent=` for
+`z_goal_stream` (roughly 28 of 565 stepping drivers today, per that block's own docstring
+count), it gets this field automatically, immediately, no opt-in step at all.
+
+**Caught a real precision gap while writing the consumer-side test, before landing.** The
+first draft copied `z_goal_stream`'s "omit the block when there is nothing to report"
+convention verbatim. For `z_goal_stream` that is safe (its stats are never all-zero unless
+genuinely unmeasured). For THIS field it is not: "agent given, nothing enabled" is an
+extremely common, entirely legitimate outcome (an all-defaults run), and omitting it made that
+case indistinguishable from "no agent was ever given" -- exactly the ambiguity this feature
+exists to remove. Fixed before landing: the helper returns `None` (omit) only when no
+config-bearing agent was found at all, and an actual dict -- possibly `{}` -- otherwise. Caught
+by writing the consumer test first (`flag_status_from_recorded_config` needs to tell these two
+apart to correctly say "every other knob is confirmed disabled"), not by re-reading the code.
+
+**A second correctness issue surfaced wiring the consumer into `main()`**: the existing
+`default_off_cache` (Phase 1b) is keyed by `(commit, experiment_type, path)`, which is only a
+valid cache key when `flag_status` is a pure function of that key -- true for the driver-source
+proxy (same source, same commit+type), **false** for the recorded config, which is specific to
+one manifest's own run (two arms of the same `experiment_type` at the same commit could
+genuinely differ). Fixed by routing recorded-config lookups around that cache entirely rather
+than risk a stale cross-manifest hit -- correctness over the (currently negligible, since no
+manifest has this field yet) performance cost.
+
+Real corpus run confirms the prospective framing precisely: **0 of 621 manifests carry the new
+field**, so 0 pairs used it -- not a null finding the way Phase 1/1b's real-corpus results were,
+just the expected state of a feature that has not been adopted by any driver yet. Landing it
+into `/queue-experiment`'s template so *new* drivers start passing `agent=` is the natural next
+step, and is what would actually start accumulating coverage -- not done this session.
+
 ## 7. One-hop interprocedural extension to Phase 1b (P1d, designed 2026-08-03, higher risk)
 
 ### 7.1 The gap this closes
@@ -456,7 +508,7 @@ WHERE the gate can be found, for whichever flag-status source (proxy or recorded
 | P0-detector | 0 | done | -- | none; run on demand via `/opt/local/bin/python3 scripts/check_substrate_staleness_candidates.py` | null | 2026-08-03 |
 | P1-scope-schema | 1 | done | -- | none; 2 pilot claims declared (MECH-471, MECH-321). Real corpus result: 0/2 pilots' candidates filtered -- see section 4.5 | null | 2026-08-03 |
 | P1b-default-off-filter | 1 | done | -- | none; real corpus result: 0/2 pilots' candidates filtered, for a DIFFERENT reason than P1 (same-file conditionals aren't this repo's actual pattern -- see section 4.6) | null | 2026-08-03 |
-| P1c-prospective-recording | 1 | open | User decision (2026-08-03): pursue this. Not yet built. | Add record_enabled_default_off_flags() helper (section 6.3) + config_obj= kwarg on stamp_recording_core/write_flat_manifest + a flag_status_from_recorded_config() consumer; update /queue-experiment template for new drivers | null | 2026-08-03 |
-| P1d-interprocedural-hop | 1 | open | Section 7.3: prototype against the 2 known pilots' candidates before generalizing | Not yet started -- awaiting a build decision alongside or after P1c | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | P1c and/or P1d landing with a real noise-reduction result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
+| P1c-prospective-recording | 1 | done | -- | none; 0 of 621 manifests carry the field yet (genuinely prospective) -- next real step is updating /queue-experiment's template so new drivers pass agent= for this reason | null | 2026-08-03 |
+| P1d-interprocedural-hop | 1 | open | Section 7.3: prototype against the 2 known pilots' candidates before generalizing | Not yet started -- awaiting a build decision | null | 2026-08-03 |
+| P2-governance-surface | 2 | open | P1c accumulating real coverage (needs new/re-run drivers) and/or P1d landing with a real noise-reduction result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |

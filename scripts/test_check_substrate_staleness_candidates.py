@@ -285,6 +285,38 @@ class FlagStatusFromDriverSourceTests(unittest.TestCase):
         self.assertEqual(MOD.flag_status_from_driver_source(None, {"use_foo"}), {})
 
 
+class FlagStatusFromRecordedConfigTests(unittest.TestCase):
+    """P1c consumer: substrate_stability_and_drift_detection_plan.md section 6."""
+
+    def test_no_field_at_all_yields_empty(self):
+        # {} here means "field absent" -- the caller's signal to fall back to the proxy.
+        status = MOD.flag_status_from_recorded_config({}, {"use_foo", "use_bar"})
+        self.assertEqual(status, {})
+
+    def test_recorded_and_empty_confirms_every_knob_disabled(self):
+        # A manifest that DID record (agent given, nothing enabled) must yield a full
+        # entry per knob -- all False -- not {} (which would look like "never measured").
+        manifest = {"enabled_default_off_flags": {}}
+        status = MOD.flag_status_from_recorded_config(manifest, {"use_foo", "use_bar"})
+        self.assertEqual(status, {"use_foo": False, "use_bar": False})
+
+    def test_recorded_flag_is_confirmed_enabled(self):
+        manifest = {"enabled_default_off_flags": {"use_foo": True}}
+        status = MOD.flag_status_from_recorded_config(manifest, {"use_foo", "use_bar"})
+        self.assertEqual(status, {"use_foo": True, "use_bar": False})
+
+    def test_matches_on_trailing_dotted_segment(self):
+        # manifest_core records nested paths (e.g. "goal.use_hierarchical_goal_credit");
+        # knob_names from parse_knobs() are bare field names -- must still match.
+        manifest = {"enabled_default_off_flags": {"goal.use_hierarchical_goal_credit": True}}
+        status = MOD.flag_status_from_recorded_config(manifest, {"use_hierarchical_goal_credit"})
+        self.assertEqual(status, {"use_hierarchical_goal_credit": True})
+
+    def test_non_dict_field_yields_empty(self):
+        self.assertEqual(MOD.flag_status_from_recorded_config({"enabled_default_off_flags": None}, {"use_foo"}), {})
+        self.assertEqual(MOD.flag_status_from_recorded_config({"enabled_default_off_flags": "garbage"}, {"use_foo"}), {})
+
+
 class LoadDefaultOffKnobNamesTests(unittest.TestCase):
     @unittest.skipUnless(REAL_DEFAULT_OFF_GUARD.exists(), "default_off_drift_guard.py not present")
     def test_real_guard_and_config_yield_a_nonempty_set(self):
@@ -363,6 +395,24 @@ class ChangedLineNumbersAndDefaultOffOnlyTests(unittest.TestCase):
             self.repo, self.commit_a, self.commit_b, "ree_core/gated.txt",
             {"use_foo"}, {"use_foo": False})
         self.assertIsNone(verdict)
+
+    def test_recorded_config_succeeds_where_the_proxy_has_nothing_to_read(self):
+        # This fixture has no experiments/<type>.py driver at all, so
+        # flag_status_from_driver_source(None, ...) can only ever return {} (Unknown).
+        # A manifest that instead RECORDED enabled_default_off_flags (P1c) resolves the
+        # gate with certainty regardless -- proving the two are genuinely independent
+        # flag_status sources feeding the SAME downstream file_is_default_off_only.
+        proxy_status = MOD.flag_status_from_driver_source(None, {"use_foo"})
+        self.assertEqual(proxy_status, {})  # the proxy has nothing to work with here
+
+        manifest = {"enabled_default_off_flags": {}}  # recorded: measured, nothing enabled
+        recorded_status = MOD.flag_status_from_recorded_config(manifest, {"use_foo"})
+        self.assertEqual(recorded_status, {"use_foo": False})
+
+        verdict = MOD.file_is_default_off_only(
+            self.repo, self.commit_a, self.commit_b, "ree_core/gated.py",
+            {"use_foo"}, recorded_status)
+        self.assertTrue(verdict)
 
 
 class DisplayPathTests(unittest.TestCase):
