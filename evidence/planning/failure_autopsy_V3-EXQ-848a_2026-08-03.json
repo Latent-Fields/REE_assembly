@@ -1,0 +1,93 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-03T09:01:56Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_848a_arc005_precision_only_decoupled_ladder_calibrated_20260802T120712Z_v3",
+      "queue_id": "V3-EXQ-848a",
+      "claim_ids": ["ARC-005"],
+      "failed_criterion": "discrimination",
+      "self_route_label": "precision_channel_authority_weak_calibrated",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact",
+        "biological_reference": "clear (channel 2, pre-existing LC-NE/phasic-mode grounding) / partial (channel 1 dACC goal-readout sub-pathway, no dedicated lit entry -- qualitative direction consistent with an EVC-style graded-proximity response)",
+        "prerequisites": "present -- INV-008, INV-009, INV-014, ARC-004 all implemented",
+        "implementation": "complete -- calibration fix (dacc_goal_readout_weight=0.5, dacc_goal_readout_normalize=True) confirmed genuinely engaged this run (total_dacc_bias_calls=25289), build-time guard held",
+        "environment": "adequate -- unchanged CausalGridWorldV2 content/arena from 802/846/848",
+        "measurement": "under-instrumented -- the load-bearing finding: |Spearman rho| over a 3-point ladder (L0/L1/L2) can only take values in {-1,-0.5,0,0.5,1}; the c_rho_abs_floor=0.6 threshold is therefore reachable only by a perfect ordering (rho=1.0), so a real-but-weak monotonic effect and pure noise both land at the same sub-threshold rho=0.5",
+        "integration": "isolated as designed (channels 3/4 deliberately excluded, out of scope)",
+        "scale": "not implicated"
+      },
+      "biological_reference": {
+        "closest_mechanism": "dACC value-of-control / effort-allocation scaling with goal proximity (Shenhav, Botvinick & Cohen 2013 Expected Value of Control); channel 2's phasic-burst gain already grounded via Aston-Jones & Cohen 2005 LC-NE adaptive gain (reused from SD-069/MECH-104)",
+        "dependencies": ["INV-008", "INV-009", "INV-014", "ARC-004"],
+        "is_formal_import": false,
+        "divergence": "none identified -- qualitative direction (7/10 units positive-signed rho) is consistent with the biological EVC-style graded-proximity story; the bottleneck is instrumentation resolution, not a biology/formal-import mismatch",
+        "lit_status": "partial -- channel 2 has an existing anchor; channel 1's dACC goal-readout sub-pathway has no dedicated targeted_review entry yet (secondary follow-on, not required to resolve this autopsy)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "[2026-08-03 governance, V3-EXQ-848a, confirmed failure_autopsy_V3-EXQ-848a_2026-08-03, successor of V3-EXQ-848]: calibration fix (dacc_goal_readout_weight=0.5, dacc_goal_readout_normalize=True, IGW-20260801-199) confirmed genuinely engaged this run (25,289 dACC bias calls, build-time guard held) -- the wiring/calibration line of inquiry 848 opened is CLOSED. C_precision_monotonicity still only 1/10 units satisfied, but the per-unit rho distribution (7/10 positive-signed, 6 at exactly 0.5) is the signature of a 3-point-ladder Spearman-rho resolution ceiling, not a clean null (802's genuinely-null channels showed bit-identical rho=0.0). Routed to /queue-experiment for a ladder-granularity redesign (V3-EXQ-848b: 5+ levels and/or a magnitude-based statistic), NOT to further substrate work. epistemic_category=standard (not substrate_ceiling). No status change (already active). PROMOTES/DEMOTES NOTHING.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null,
+        "sd_id_suggested": null,
+        "title": null,
+        "implementation_hint": null,
+        "unblocks_claims": [],
+        "depends_on_unresolved": [],
+        "priority_suggested": null,
+        "failure_record_entry": null
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "supersedes_autopsy": null,
+        "refused_requeue": false,
+        "route_to": null,
+        "upstream_substrate": null
+      },
+      "fanout_recommendation": null,
+      "learning_extracted": [
+        "The calibration fix (IGW-20260801-199) works as designed and is now empirically confirmed engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry 848's autopsy opened.",
+        "848's own autopsy already predicted this exact outcome and cause: a per-unit Spearman rho over only 3 ladder levels is too coarse to discriminate a weak real effect from noise, and recommended more ladder levels rather than more seeds. This run is a second, cleaner confirmation of an already-recorded prediction, not a new discovery.",
+        "This is measurement-debt, not recording-debt: every needed quantity was captured (per-unit rho, engagement counters, seed-level trajectories); the 3-point ladder structurally cannot express the needed resolution regardless of what is recorded from it.",
+        "Sign-count read (informative, not a formal test): 7 of 10 units positive-signed vs 2 negative, unlike 802's near-symmetric bit-identical-null channels -- consistent with a real weak effect muddied by resolution, not a clean null."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": null,
+  "re_derive_brake_check": {
+    "claim": "ARC-005",
+    "ceiling_hits": 0,
+    "prior_targets": [
+      {"slug": "failure_autopsy_backlog_2026-07-24", "run_id": "v3_exq_802_arc005_control_plane_routing_double_dissociation_20260722T212125Z_v3", "category": "standard"},
+      {"slug": "failure_autopsy_V3-EXQ-848_2026-08-01", "run_id": "v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3", "category": "standard"}
+    ]
+  },
+  "granularity_debt_check": {
+    "claim": "ARC-005",
+    "fires": false,
+    "reason": "2 prior targets (802, 848) plus this one, alignment distribution 'intact'=3, no target reads 'weakened' -- measurement debt on one sub-question, not granularity debt on the claim"
+  },
+  "hypothesis_space_ledger": {
+    "mode": "B (single-cycle pre-register + resolve)",
+    "question_qid": "arc005_precision_channel_measurement_resolution",
+    "new_question": true,
+    "hypotheses_appended": ["H-arc005-calibrated-channel-monotonic"],
+    "resolution_state": "alive",
+    "integrity_flags": "build_hypothesis_space.py / check_hypothesis_space_integrity.py could not run: pre-existing unrelated AttributeError from inv088_evaluator_degeneracy_cause's malformed synthesis field (bare string, not {surviving_label,text}) -- confirmed present in HEAD before this edit. Own question manually verified against schema instead. Chipped as a standalone fix."
+  },
+  "user_confirmation": {
+    "gate_ts": "2026-08-03T09:00:00Z",
+    "outcome": "Agree: measurement redesign (Recommended)"
+  }
+}

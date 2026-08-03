@@ -2888,6 +2888,58 @@
         "decision_log_ref": null,
         "distance_phrase": "2 of 2 tested upstream-signal mechanisms eliminated (noise-scale alone; noise-scale+horizon-depth together) -- both wash out identically at production iters=3. 3 untested loci remain, on 3 distinct design axes (selection/iteration-count, representation/scoring, algorithm/pool-architecture). Not yet decidable which (if any) resolves the wash-out."
       }
+    },
+    {
+      "qid": "arc005_precision_channel_measurement_resolution",
+      "title": "Does the calibrated ARC-005 precision-routing channel (dACC goal-readout + serotonin) produce a monotonic precision response, and can the current 3-level Spearman-rho ladder design detect it?",
+      "short_title": "ARC-005 precision-channel measurement resolution",
+      "claims": [
+        "ARC-005"
+      ],
+      "registered_utc": "2026-08-03T09:01:56Z",
+      "fanout_sources": [
+        "failure_autopsy_V3-EXQ-848a_2026-08-03.json"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "hypotheses": [
+        {
+          "hid": "H-arc005-calibrated-channel-monotonic",
+          "label": "calibrated dACC goal-readout + serotonin channel routes precision monotonically",
+          "desc": "With dacc_goal_readout_weight=0.5 and dacc_goal_readout_normalize=True genuinely engaged (unlike V3-EXQ-848's silent-zero confound), channel 1 (5-HT + dACC goal-readout) produces a detectable monotonic log10-precision response across the L0/L1/L2 ladder",
+          "axis": "measurement",
+          "pre_registered_utc": "2026-08-02T12:07:12Z",
+          "adjudicating_runs": [
+            "V3-EXQ-848a"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-848a"
+            ],
+            "evidence_direction": "mixed",
+            "epistemic_category": "standard",
+            "self_route_label": "precision_channel_authority_weak_calibrated",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-02T12:07:12Z",
+            "basis": "V3-EXQ-848a (30 cells, 10 units): calibration confirmed genuinely engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry. Only 1/10 units satisfied |rho|>=0.6, but 7/10 are positive-signed (6 at exactly rho=0.5, the second-highest value a 3-point ladder can produce short of a perfect ordering) vs 802's genuinely-null channels which showed bit-identical rho=0.0. Confirmed autopsy failure_autopsy_V3-EXQ-848a_2026-08-03: the result does not discriminate a real weak effect from noise at this ladder resolution -- an observation bottleneck (3-point Spearman-rho ceiling), not an elimination. Routed to /queue-experiment for a ladder-granularity redesign (candidate V3-EXQ-848b) rather than further substrate work."
+          }
+        }
+      ],
+      "synthesis": null,
+      "decision": {
+        "decision_question": "Does the calibrated ARC-005 precision channel route monotonically, or is the current 3-level ladder design too coarse to tell?",
+        "live_gate": "A ladder-granularity redesign (5+ levels and/or a magnitude-based statistic replacing per-unit Spearman rho) is needed before this question can be decided -- not yet queued under a new letter.",
+        "decidable": false,
+        "decision_log_ref": null,
+        "distance_phrase": "1 of 1 tested leg (calibrated channel, 3-level ladder) inconclusive -- 7/10 units positive-signed but clustered at the rho=0.5 resolution ceiling, insufficient to clear the 0.6 threshold short of a perfect ordering. Not yet decidable whether this reflects a real weak effect or noise; needs a finer-grained design.",
+        "observation_bottleneck": "3-point Spearman-rho ladder cannot resolve intermediate monotonic-signal strength from sampling noise -- both land at rho=0.5."
+      }
     }
   ]
 }
