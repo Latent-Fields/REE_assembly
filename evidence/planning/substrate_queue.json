@@ -6676,7 +6676,7 @@
       "sd_id": "SD-092",
       "title": "Cross-level subgoal credit: GoalState parent/subgoal attractor split + up-level credit-propagation channel (MECH-427 maintenance-direction / MECH-428 formation-direction)",
       "node_class": "complicated (buildable)",
-      "status": "partially_implemented_pending_consumer_wiring",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": "docs/architecture/sd_092_cross_level_subgoal_credit.md",
       "depends_on_unresolved": [],
@@ -6700,13 +6700,13 @@
       "what_is_NOT_owed": "Not a call site: nothing in agent.py or causal_grid_world.py calls credit_subgoal_attainment() yet -- it is unit-tested standalone but unreachable from the live agent loop. Not a REEConfig.from_dims passthrough -- the new GoalConfig fields are set directly on the dataclass, matching how GoalConfig is already exercised in test_goalstate_forced_seed_positive_control.py. Not a decision on WHICH representation a future call site credits (env waypoint z_world vs. the agent settled child-level z_goal) -- left to /queue-experiment Step-2.5 by design (the primitive takes an explicit argument rather than assuming one).",
       "validation_experiment": "EXP-0385 (MECH-427) and EXP-0390 (MECH-428), both flipped blocked_substrate -> proposed in experiment_proposals.v1.json on this basis. Neither is queued yet -- /queue-experiment Step-2.5 must design/verify the harness-side subgoal-attainment call site first.",
       "origin": "MECH-427/MECH-428 registered 2026-06-12 (thought-digestion-proxy-progress-goal-maint); confirmed blocked_substrate 2026-08-02 by this session investigating the chip-20260802-mech427-parent-subgoal-credit chip -> /implement-substrate this pass.",
-      "implementation_progress": "2026-08-02 (ree-v3, session insights-34f9b4): the primitive landed in ree_core/goal.py (GoalConfig.use_hierarchical_goal_credit/parent_goal_alpha/parent_goal_decay/subgoal_credit_min; GoalState._z_goal_parent/credit_subgoal_attainment()/parent_goal_norm()/z_goal_parent/parent_is_active(), plus update()/reset()/state_dict/with_injection wiring for the new attractor), 19 contract tests pass (tests/contracts/test_sd092_cross_level_subgoal_credit.py). Landed on ree-v3 main as 500fd67398, merged with a concurrent SD-093/MECH-426 landing that touched the same files for a different mechanism (throwaway-worktree cherry-pick reconciliation, no code lost on either side). No call site in agent.py or the environment -- module is a pure extension to the existing GoalState class but every new branch is flag-gated and unreachable from any existing consumer, so status is partially_implemented_pending_consumer_wiring rather than implemented (mirrors SD-091). See ree-v3/CLAUDE.md \"SD-092\" entry for the full writeup. Follow-up chip left for the call-site wiring + /queue-experiment Step-2.5."
+      "implementation_progress": "2026-08-02 (ree-v3, session insights-34f9b4): the primitive landed in ree_core/goal.py (GoalConfig.use_hierarchical_goal_credit/parent_goal_alpha/parent_goal_decay/subgoal_credit_min; GoalState._z_goal_parent/credit_subgoal_attainment()/parent_goal_norm()/z_goal_parent/parent_is_active(), plus update()/reset()/state_dict/with_injection wiring for the new attractor), 19 contract tests pass (tests/contracts/test_sd092_cross_level_subgoal_credit.py). Landed on ree-v3 main as 500fd67398, merged with a concurrent SD-093/MECH-426 landing that touched the same files for a different mechanism (throwaway-worktree cherry-pick reconciliation, no code lost on either side). No call site in agent.py or the environment -- module is a pure extension to the existing GoalState class but every new branch is flag-gated and unreachable from any existing consumer, so status is partially_implemented_pending_consumer_wiring rather than implemented (mirrors SD-091). See ree-v3/CLAUDE.md \"SD-092\" entry for the full writeup. Follow-up chip left for the call-site wiring + /queue-experiment Step-2.5.\n\nConsumer call site wired 2026-08-02/03: ree-v3 d9e0586 (wire credit_subgoal_attainment into REEAgent, MECH-427/428 call site), on top of the primitive itself (500fd67398). Reachable from the live loop now, flag-gated (use_hierarchical_goal_credit, default False, bit-identical off). Discovered stale in the IGW workset 2026-08-03 (item still listed status=ready/substrate lane; workset regen had not caught up) during a metaworker-dispatch interactive-session review -- confirmed via git log, not re-built."
     },
     {
       "sd_id": "SD-modulatory-channel-route-decomp-gate-fix",
       "title": "Decouple modulatory-channel routing (lateral_pfc/curiosity/gated_policy/mech295) from the e3_score_decomp_enabled diagnostic flag",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6724,13 +6724,14 @@
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
       "last_seen_session": "epic-mirzakhani-4928b5",
-      "origin": "Confirmed failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02 (governance, session determined-ritchie-55a3a6); create recommendation applied by /governance 2026-08-03."
+      "origin": "Confirmed failure_autopsy_V3-EXQ-863-route-decomp-gate_2026-08-02 (governance, session determined-ritchie-55a3a6); create recommendation applied by /governance 2026-08-03.",
+      "implementation_progress": "Landed 2026-08-03: ree-v3 3db7d23 (modulatory-channel route decomp-gate fix), tests/contracts/test_modulatory_route_decomp_gate_decoupling.py 9/9 pass. Chip chip-20260803-route-decomp-gate-fix closed done. Discovered stale in the IGW workset 2026-08-03 (item still listed status=ready/substrate lane) during a metaworker-dispatch interactive-session review -- confirmed via git log + TASK_CHIPS.json resolution_note, not re-built."
     },
     {
       "sd_id": "mech090-arc071-attick-persistent-handle-fix",
       "title": "E3 AT-tick commit selection should preserve an existing unexpired persistent committed trajectory (ARC-071 chunk-sourced) instead of unconditionally recreating it every E3 tick",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
+      "status": "implemented_pending_validation",
       "ready": true,
       "design_doc": null,
       "depends_on_unresolved": [],
@@ -6751,7 +6752,8 @@
       "added_session": "epic-mirzakhani-4928b5",
       "added_utc": "2026-08-03T11:45:20Z",
       "last_seen_session": "epic-mirzakhani-4928b5",
-      "origin": "Confirmed failure_autopsy_V3-EXQ-871a_2026-08-03; create recommendation applied by /governance 2026-08-03."
+      "origin": "Confirmed failure_autopsy_V3-EXQ-871a_2026-08-03; create recommendation applied by /governance 2026-08-03.",
+      "implementation_progress": "Landed 2026-08-01: ree-v3 31ed78e (E3-tick reselection short-circuit for unexpired arc071_chunk commitments), flag REEConfig.use_e3_reselection_shortcircuit (default False, bit-identical; requires use_persistent_committed_program_handle=True). This IS the AT-E3-tick mirror of the between-tick fast-path fix this queue entry described. Discovered stale in the IGW workset 2026-08-03 (item still listed status=ready/substrate lane) during a metaworker-dispatch interactive-session review -- confirmed via git log, not re-built."
     },
     {
       "sd_id": "SD-094",
