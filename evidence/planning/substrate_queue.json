@@ -2842,6 +2842,7 @@
         }
       ],
       "implementation_hint": "IMPLEMENTED 2026-04-19 (E2HarmAForward in ree_core/predictors/e2_harm_a.py; precision weighting in cingulate/dacc.py). Owned by self_attribution_plan.md Phase 1 from the comparator-output side; cross-link to commitment_closure_plan.md for the consumer-side dACC bundle sequencing (MECH-258 is the input channel feeding the commit-chain decisions). Phase 1 forensic read of EXQ-445h compares ARC-033 path vs ARC-058 shared-trunk path.",
+      "implementation_note_update": "2026-08-03 (session metaworker-chip-sqdrift-mech-258, chip-sqdrift-mech-258): status corrected 'candidate_v3_pending' -> 'implemented'. The build landed 2026-04-19 in ree-v3 2ae52be4 (adds ree_core/predictors/e2_harm_a.py:E2HarmAForward; precision weighting in ree_core/cingulate/dacc.py; consumed via REEConfig.harm_surprise_pe_enabled in ree_core/agent.py:9594-9599), matching implementation_status/implemented_utc/implemented_session already on this entry -- verified against the substrate, not inferred. The stale 'candidate_v3_pending' was mirroring the CLAIM's governance maturity (claims.yaml MECH-258 status=candidate, v3_pending=true), which is NOT what this field records: the sibling entry from the same cingulate-cluster landing (SD-032b) carries the identical claim maturity and correctly reads status='implemented'. Claim maturity is unchanged and still lives in claims.yaml -- nothing here promotes MECH-258. Correcting it clears the substrate_queue_writeback_drift.py E1 field_disagreement, whose hazard is the IGW substrate lane failing OPEN to 'ready' and spawning a duplicate /implement-substrate chip (the MECH-217 precedent, 2026-07-31).",
       "implementation_status": "implemented",
       "implemented_session": "2026-04-19-cingulate-cluster-implementation",
       "implemented_utc": "2026-04-19T00:00:00Z",
@@ -2850,7 +2851,7 @@
       "ready": true,
       "ready_blocked_by": null,
       "sd_id": "MECH-258",
-      "status": "candidate_v3_pending",
+      "status": "implemented",
       "title": "z_harm_a enters action selection as precision-weighted PE (harm_surprise_PE / SD-020) against E2_harm_a forward model, not raw magnitude. Upgrades SD-020 from provisional to prerequisite for SD-032b dACC-analog.",
       "unblocks_claims": [
         "SD-032b"
