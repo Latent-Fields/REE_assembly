@@ -2665,7 +2665,10 @@
           }
         }
       ],
-      "synthesis": "Both pre-registered hypotheses eliminated by V3-EXQ-108b (2026-08-02): the sanctioned-trained z_world encoder differentiates real states fine, ruling out both undertraining and a dimension ceiling. The actual bottleneck is E1's forward-rollout dynamics collapsing over the 30-step horizon -- a single-step-trained dynamics model applied far beyond its training horizon (a learning-signal/training-objective gap, not a representational-capacity one). Routed to /lit-pull (targeted_review_e1_forward_model_rollout_consistency) given no existing biology/ML lit entry covers this specific multi-step-rollout-consistency axis (the sibling targeted_review_e2_forward_model_action_divergence covers a related but distinct single-step action-divergence failure).",
+      "synthesis": {
+        "surviving_label": "E1 forward-rollout dynamics collapse (new, third mechanism) -- neither pre-registered hypothesis; a single-step-trained dynamics model rolled out 30 steps beyond its training horizon at eval",
+        "text": "Both pre-registered hypotheses eliminated by V3-EXQ-108b (2026-08-02): the sanctioned-trained z_world encoder differentiates real states fine, ruling out both undertraining and a dimension ceiling. The actual bottleneck is E1's forward-rollout dynamics collapsing over the 30-step horizon -- a single-step-trained dynamics model applied far beyond its training horizon (a learning-signal/training-objective gap, not a representational-capacity one). Routed to /lit-pull (targeted_review_e1_forward_model_rollout_consistency) given no existing biology/ML lit entry covers this specific multi-step-rollout-consistency axis (the sibling targeted_review_e2_forward_model_action_divergence covers a related but distinct single-step action-divergence failure)."
+      },
       "decision": {
         "decision_question": "Does swapping 108a's bespoke-trained z_world for the sanctioned sd_zworld_warmup_optimizer_group-trained stack resolve the near-total evaluator-degeneracy (var ~1.5e-14 vs 0.002 threshold), and does the antecedent contrast-ratio characterisation on 108a's own rollout endpoints match the 2026-07-18 zworld_near_static_characterisation low-and-untrainable signature?",
         "live_gate": null,
