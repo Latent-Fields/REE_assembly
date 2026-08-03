@@ -71,11 +71,11 @@ closure_plan:
     - id: "substrate_stability:parse-knobs-file-coverage"
       title: "Teach REE_assembly/scripts/default_off_drift_guard.py's parse_knobs() to follow each REEConfig field(default_factory=XConfig) reference to wherever XConfig is actually declared (an import resolution, not a hardcoded second/third file path), so nested config classes declared outside ree_core/utils/config.py (confirmed: GoalConfig, SerotoninConfig) are no longer invisible to it. Discovered as the real blocker behind P1d's still-0 real-corpus result (section 7.4), not built this session -- a separate, well-scoped follow-on one layer below everything else in this plan."
       phase: 1
-      status: open
+      status: done
       severity: medium
       owner_exq: null
       last_updated: 2026-08-03
-      completion_note: ""
+      completion_note: "LANDED 2026-08-03 (session metaworker-chip-20260803-parse-knobs-coverage). parse_knobs() now follows every field(default_factory=XConfig) -- and the x: XConfig = XConfig() spelling -- to whichever module declares XConfig, by parsing the declaring module's own import statements and locating the target file on disk, recursively (_import_bindings/_resolve_module_file/_resolve_class_ref/_nested_config_refs). NO hardcoded paths: goal.py and serotonin.py appear nowhere in the script, so an 11th nested config in a third location needs no further change. Files are AST-parsed, never imported (ree_core/goal.py imports torch; the script is stdlib-only). Two deliberate asymmetries: the entry module contributes every dataclass in it as before, a FOLLOWED module contributes only the referenced class (goal.py also declares classes REEConfig does not compose); first declaration wins with config.py walked first, so no existing knob's owner/line/attribution can shift. MEASURED: 316 -> 330 default-off knobs (+12 GoalConfig, +2 SerotoninConfig), 225 -> 236 claim-tagged, 206 -> 210 joined rows, and the guard's 9 gating FAIL findings are UNCHANGED -- no new drift surfaced by the newly-visible knobs. One near-miss surfaced for governance, not acted on here: SD-011 / use_progress_velocity_effort_modulation (status stable) has ZERO confirmed experiment enablements and is held off the FAIL list only by a single unresolved-RHS site. Corpus re-run of check_substrate_staleness_candidates.py is numerically IDENTICAL (622 manifests, 186 drift-candidate manifests, 0 filtered by scope, 0 filtered default-off-only, 258 pairs remaining); the only changed line in the whole report is '316 default-off knob(s) known' -> '330' -- exactly what section 7.4 predicted. Targeted probe on the MECH-471 candidate: use_hierarchical_goal_credit goes from ABSENT-from-the-knob-set (hence Unknown) to present and confirmed-False, and inert line ranges over ree_core/agent.py go 143 -> 147, but none of the new ranges intersect the changed lines (32 of 236 covered, before and after), so the cached-state-check pattern (if self.coalition is not None:) remains the live blocker. Corrects section 7.4's own figure: use_coalition_controller is NOT a REEConfig field today (prose-only in ree_core/claustrum/), so it is Unknown before and after and the measured uncovered count is 204, not 183. Names a second, distinct residual gap out of this fix's reach by construction: config dataclasses not composed into REEConfig at all (CoalitionControllerConfig, built at its own call site) have no reference to follow. 8 new tests (33 total in test_default_off_drift_guard.py), all against real files on disk with real import statements; 6 of the 8 verified FAILING against the pre-fix module, the other 2 being negative controls against over-broadening. 132 tests green across the guard + both staleness suites. See section 7.5."
 ---
 
 # Substrate Stability + Claim-Drift Detection -- Design Plan
@@ -100,7 +100,12 @@ repeat: `default_off_drift_guard.py`'s `parse_knobs()` (reused as ground truth t
 plan) only parses `ree_core/utils/config.py`, and 2 of REEConfig's 10 nested sub-config classes
 (`GoalConfig` -- holding the exact flag this case needs -- and `SerotoninConfig`) are declared in
 OTHER files, invisible to it entirely. P1c's runtime-introspection recording does not share this
-limitation. Flagged as a well-scoped follow-on, not fixed here. The structural-isolation problem
+limitation. **That gap is now FIXED too** (section 7.5): `parse_knobs()` follows
+`field(default_factory=XConfig)` by import resolution, `use_hierarchical_goal_credit` resolves
+confirmed-False, and the knob set goes 316 -> 330 -- but the corpus numbers do not move (still
+0/0 filtered, 258 pairs remaining), because the newly-inert ranges do not intersect the changed
+lines; the cached-state-check pattern is now the sole remaining blocker for the pilots. The
+guard's own 9 gating findings are unchanged, i.e. no new drift was hiding behind the gap. The structural-isolation problem
 (section 3) is designed but **not built** this session. Phase 2 (section 4.4) remains held
 pending a human decision: land P1c into `/queue-experiment` so new
 drivers start accumulating coverage, pursue P1d, or accept Phase-0's whole-tree ceiling.
@@ -588,6 +593,92 @@ Flagged, not fixed: extending `parse_knobs()`'s file coverage is a well-scoped, 
 follow-on with a clear owner and a clear test (does `use_hierarchical_goal_credit` newly
 resolve).
 
+### 7.5 That `parse_knobs()` gap is now FIXED -- the flag resolves, the corpus numbers do not
+### move (2026-08-03, session `metaworker-chip-20260803-parse-knobs-coverage`)
+
+`default_off_drift_guard.py`'s `parse_knobs()` now follows every
+`field(default_factory=XConfig)` (and the `x: XConfig = XConfig()` spelling) to whichever
+module actually declares `XConfig`, by reading the declaring module's own `import` statements
+and locating the target file on disk, recursively. **No file path is hardcoded** -- `goal.py`
+and `serotonin.py` appear nowhere in the script, so an 11th nested config in a third location
+is picked up with no further change. Files are AST-parsed, never imported (`ree_core/goal.py`
+imports torch; this script is stdlib-only by design). Two deliberate asymmetries: the ENTRY
+module (config.py) contributes every dataclass in it as before, while a FOLLOWED module
+contributes only the class actually referenced (`goal.py` also declares dataclasses REEConfig
+does not compose); and name collisions keep the FIRST declaration, with config.py walked
+first, so no pre-existing knob's owner / line / attribution can be changed by this.
+
+**The target assertion holds.** `use_hierarchical_goal_credit` is now in `parse_knobs()`'s
+returned set (`owner=GoalConfig`, `ree_core/goal.py:335`) and, for the MECH-471 candidate's
+driver, resolves as **confirmed-False** where it previously resolved Unknown -- it was not
+merely unresolved before, it was not a knob at all.
+
+**Measured before -> after, the guard's own audit** (real corpus, `--no-fail`):
+
+| | before | after |
+|---|---|---|
+| default-off knobs known | 316 | **330** (+12 `GoalConfig`, +2 `SerotoninConfig`) |
+| knobs carrying a claim id | 225 | 236 |
+| joined claim/knob rows | 206 | 210 |
+| gating FAIL findings | 9 | **9 (unchanged)** |
+
+**No new drift was surfaced by the newly-visible knobs** -- the failing set is identical
+before and after. The 4 new rows are all non-gating: `SD-012`/`drive_floor` (exp 18),
+`MECH-230`/`use_incentive_token_bank` (exp 67), `SD-008`/`super_ordinal_cue_centering`
+(exp 1), and `SD-011`/`use_progress_velocity_effort_modulation`. **That last one is the
+near-miss worth a governance eye**: status `stable`, ZERO confirmed experiment enablements,
+held off the FAIL list only by a single unresolved-RHS experiment site (`Row.gating`'s
+`exp_unresolved == 0` clause). Surfaced here, deliberately not acted on -- disposition is a
+`/governance` question, not a tooling session's.
+
+**Corpus re-run of `check_substrate_staleness_candidates.py`: every number unchanged**, as
+section 7.4 predicted. 622 claim-tagged manifests, 186 drift-candidate manifests, **0**
+filtered outside scope (Phase 1), **0** filtered default-off-only (Phase 1b/1d), **258** pairs
+remaining -- identical before and after. The only difference in the whole report is
+`316 default-off knob(s) known` -> `330`.
+
+**Why it still does not move, measured rather than assumed.** Probing the MECH-471 candidate
+(`v3_exq_875_mech471_competence_provenance...`, recorded commit `a816b01ca405` vs
+`origin/main`) directly: the fix does buy real analysis coverage -- confirmed-inert line
+ranges over `ree_core/agent.py` go 143 -> 147 -- but **none of the newly-inert ranges intersect
+that file's changed lines**: 32 of 236 changed lines covered, before AND after. The remaining
+204 are the harder pattern 7.4 already named (cached-state checks like
+`if self.coalition is not None:`), which needs data-flow tracking and is untouched here.
+
+**One correction to 7.4's own numbers.** That section reports "183 of 236 changed lines remain
+uncovered (`use_coalition_controller` DID resolve correctly, confirmed False, since it lives
+in config.py directly)". This does not reproduce: **`use_coalition_controller` is not a field
+of any REEConfig dataclass today.** It occurs in `ree_core/` only as prose
+(`claustrum/coalition_controller.py:152`, `claustrum/__init__.py:19`), so it is Unknown both
+before and after, and the measured figure is 204 uncovered, not 183. The qualitative
+conclusion is unaffected.
+
+**A second, distinct coverage class this fix does NOT close, named so it is not re-discovered
+as a surprise.** `CoalitionControllerConfig` (`ree_core/claustrum/coalition_controller.py:147`)
+is a real config dataclass that is **not composed into REEConfig at all** -- it is constructed
+at its own call site (`self._config = config or CoalitionControllerConfig()`). Import-following
+from `config.py` cannot reach it by construction: there is no reference to follow.
+`parse_knobs()` is by definition "the default-off fields of REEConfig"; whether non-REEConfig
+config classes should also count as knobs is a separate scoping question, not a bug in this fix.
+
+Tests: 8 new in `REE_assembly/scripts/test_default_off_drift_guard.py` (33 total, was 25), all
+against REAL files on disk with real import statements, since import resolution is the thing
+under test -- nested class in another module, two-level subpackage, `as`-alias, relative
+`from .sub import`, module-qualified `sub.QualConfig`, the direct-construction spelling, an
+A<->B config cycle (termination), first-declaration-wins across modules, unresolvable imports,
+and a live-tree assertion that `use_hierarchical_goal_credit` is present with the right owner
+and source file. **6 of the 8 fail against the pre-fix module** (verified by running the new
+tests against `git show <pre-fix>:scripts/default_off_drift_guard.py`); the other 2 are
+negative controls against the fix being too broad and pass either way by design. Full run
+green: 132 tests across `test_default_off_drift_guard.py`,
+`test_check_substrate_staleness_candidates.py`, `test_substrate_staleness_gate.py`.
+
+Report-format note for anyone diffing an old audit against a new one: the table's
+`config.py:line` column is now `declared at` and renders `utils/config.py:4342` /
+`goal.py:335` relative to `ree-v3/ree_core/`, because a bare line number would silently
+misattribute a `goal.py` knob to config.py. The JSON gains `source_file` beside the
+(unchanged, now slightly misnamed) `config_line`.
+
 ## Status table
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
@@ -597,6 +688,6 @@ resolve).
 | P1b-default-off-filter | 1 | done | -- | none; real corpus result: 0/2 pilots' candidates filtered, for a DIFFERENT reason than P1 (same-file conditionals aren't this repo's actual pattern -- see section 4.6) | null | 2026-08-03 |
 | P1c-prospective-recording | 1 | done | -- | none; 0 of 621 manifests carry the field yet (genuinely prospective) -- next real step is updating /queue-experiment's template so new drivers pass agent= for this reason | null | 2026-08-03 |
 | P1d-interprocedural-hop | 1 | done | -- | none; real corpus result: still 0/2 pilots' candidates filtered, for a THIRD reason (default_off_drift_guard.py's parse_knobs() misses config classes declared outside config.py) -- see section 7.4 | null | 2026-08-03 |
-| parse-knobs-file-coverage | 1 | open | Section 7.4's finding | Teach default_off_drift_guard.py's parse_knobs() to follow field(default_factory=XConfig) to wherever XConfig is actually declared, not a hardcoded single-file scan | null | 2026-08-03 |
+| parse-knobs-file-coverage | 1 | done | -- | none; landed 2026-08-03: parse_knobs() follows field(default_factory=XConfig) via import resolution (no hardcoded paths). 316 -> 330 knobs, use_hierarchical_goal_credit now resolves confirmed-False, guard's 9 FAIL findings unchanged (no new drift), staleness corpus numbers unchanged (0/0 filtered, 258 remain) -- see section 7.5 | null | 2026-08-03 |
 | P2-governance-surface | 2 | open | P1c accumulating real coverage (needs new/re-run drivers), and/or the parse_knobs file-coverage fix landing with a re-measured result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |

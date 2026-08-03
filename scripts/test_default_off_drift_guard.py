@@ -232,6 +232,197 @@ def test_parse_knobs_defaults_and_exclusions(tmp_path):
 
 
 # --------------------------------------------------------------------------- #
+# parse_knobs -- nested sub-config classes declared in OTHER modules           #
+#                                                                              #
+# The 2026-08-03 gap: REEConfig composes 10 nested config classes, 2 of which  #
+# (GoalConfig, SerotoninConfig) are declared outside config.py. A one-file AST #
+# parse never saw their fields AT ALL -- not "unresolved", never a knob -- so   #
+# every consumer that treats parse_knobs() as ground truth for "what is a      #
+# default-off knob" (check_substrate_staleness_candidates.py Phase 1b/1d) was  #
+# silently blind to them. Fixtures below are REAL files on disk with REAL      #
+# import statements, because the thing under test is import resolution.        #
+# --------------------------------------------------------------------------- #
+
+
+def _pkg(root: Path, *parts: str) -> Path:
+    """Create a package directory tree with __init__.py at each level."""
+    d = root
+    for part in parts:
+        d = d / part
+        d.mkdir(exist_ok=True)
+        (d / "__init__.py").write_text("")
+    return d
+
+
+def _nested_fixture(tmp_path: Path) -> Path:
+    """A miniature of the real shape: config.py importing two classes from elsewhere."""
+    core = _pkg(tmp_path, "pkg_core")
+    _pkg(tmp_path, "pkg_core", "neuro")
+    (core / "goal.py").write_text(
+        "from dataclasses import dataclass\n"
+        "@dataclass\n"
+        "class GoalConfig:\n"
+        "    # SD-092: hierarchical subgoal credit.\n"
+        "    use_hierarchical_goal_credit: bool = False\n"
+        "    goal_decay: float = 0.9\n"        # not default-off -> excluded
+        "@dataclass\n"
+        "class UnrelatedConfig:\n"
+        "    never_referenced_by_root: bool = False\n"   # NOT composed -> must stay out
+    )
+    (core / "neuro" / "serotonin.py").write_text(
+        "from dataclasses import dataclass\n"
+        "@dataclass\n"
+        "class SerotoninConfig:\n"
+        "    # SD-500: patience.\n"
+        "    use_patience_gate: bool = False\n"
+    )
+    utils = _pkg(tmp_path, "pkg_core", "utils")
+    (utils / "config.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg_core.goal import GoalConfig\n"
+        "from pkg_core.neuro.serotonin import SerotoninConfig\n"
+        "@dataclass\n"
+        "class LocalConfig:\n"
+        "    local_flag: bool = False\n"
+        "@dataclass\n"
+        "class RootConfig:\n"
+        "    root_flag: bool = False\n"
+        "    local: LocalConfig = field(default_factory=LocalConfig)\n"
+        "    goal: GoalConfig = field(default_factory=GoalConfig)\n"
+        "    serotonin: SerotoninConfig = field(default_factory=SerotoninConfig)\n"
+        "    mapping: dict = field(default_factory=dict)\n"
+        "    scales: list = field(default_factory=lambda: [1, 2])\n"
+    )
+    return utils / "config.py"
+
+
+def test_parse_knobs_follows_nested_config_to_another_module(tmp_path):
+    knobs = g.parse_knobs(_nested_fixture(tmp_path))
+    assert "use_hierarchical_goal_credit" in knobs   # was invisible before 2026-08-03
+    assert "use_patience_gate" in knobs              # two hops deep, in a subpackage
+    assert knobs["use_hierarchical_goal_credit"].owner == "GoalConfig"
+    assert knobs["use_hierarchical_goal_credit"].claim_ids == {"SD-092": "decl"}
+    assert knobs["use_hierarchical_goal_credit"].source.endswith("goal.py")
+    # Local classes still covered, and non-default-off fields still excluded.
+    assert {"root_flag", "local_flag"} <= set(knobs)
+    assert "goal_decay" not in knobs
+
+
+def test_parse_knobs_ignores_dataclasses_the_root_never_composes(tmp_path):
+    """A followed module contributes only the class that was referenced.
+
+    `ree_core/goal.py` declares classes REEConfig does not compose; hoovering up every
+    dataclass in a followed file would widen the knob set beyond REEConfig's real shape.
+    """
+    knobs = g.parse_knobs(_nested_fixture(tmp_path))
+    assert "never_referenced_by_root" not in knobs
+
+
+def test_parse_knobs_resolves_import_alias_and_relative_import(tmp_path):
+    core = _pkg(tmp_path, "pkg2")
+    (core / "sub.py").write_text(
+        "from dataclasses import dataclass\n"
+        "@dataclass\n"
+        "class AliasedConfig:\n"
+        "    aliased_flag: bool = False\n"
+        "@dataclass\n"
+        "class SiblingConfig:\n"
+        "    sibling_flag: int = 0\n"
+    )
+    (core / "config.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg2.sub import AliasedConfig as AC\n"     # alias
+        "from .sub import SiblingConfig\n"               # relative
+        "@dataclass\n"
+        "class RootConfig:\n"
+        "    a: AC = field(default_factory=AC)\n"
+        "    b: SiblingConfig = SiblingConfig()\n"       # direct-construction spelling
+    )
+    knobs = g.parse_knobs(core / "config.py")
+    assert {"aliased_flag", "sibling_flag"} <= set(knobs)
+
+
+def test_parse_knobs_follows_module_qualified_reference(tmp_path):
+    core = _pkg(tmp_path, "pkg3")
+    (core / "sub.py").write_text(
+        "from dataclasses import dataclass\n"
+        "@dataclass\n"
+        "class QualConfig:\n"
+        "    qualified_flag: bool = False\n"
+    )
+    (core / "config.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg3 import sub\n"
+        "@dataclass\n"
+        "class RootConfig:\n"
+        "    q: sub.QualConfig = field(default_factory=sub.QualConfig)\n"
+    )
+    knobs = g.parse_knobs(core / "config.py")
+    assert "qualified_flag" in knobs
+
+
+def test_parse_knobs_survives_unresolvable_and_missing_modules(tmp_path):
+    """Best-effort: an import that resolves to nothing must not raise or lose local knobs."""
+    cfg = tmp_path / "config.py"
+    cfg.write_text(
+        "from dataclasses import dataclass, field\n"
+        "from nowhere.at_all import GhostConfig\n"
+        "import torch\n"                       # importable-but-irrelevant third party
+        "@dataclass\n"
+        "class RootConfig:\n"
+        "    kept_flag: bool = False\n"
+        "    ghost: GhostConfig = field(default_factory=GhostConfig)\n"
+    )
+    knobs = g.parse_knobs(cfg)
+    assert set(knobs) == {"kept_flag"}
+
+
+def test_parse_knobs_terminates_on_a_config_import_cycle(tmp_path):
+    """A <-> B mutual composition must not loop forever."""
+    core = _pkg(tmp_path, "pkg4")
+    (core / "a.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg4.b import BConfig\n"
+        "@dataclass\n"
+        "class AConfig:\n"
+        "    a_flag: bool = False\n"
+        "    b: BConfig = field(default_factory=BConfig)\n"
+    )
+    (core / "b.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg4.a import AConfig\n"
+        "@dataclass\n"
+        "class BConfig:\n"
+        "    b_flag: bool = False\n"
+        "    a: AConfig = field(default_factory=AConfig)\n"
+    )
+    knobs = g.parse_knobs(core / "a.py")
+    assert {"a_flag", "b_flag"} <= set(knobs)
+
+
+def test_parse_knobs_first_declaration_wins_across_modules(tmp_path):
+    """Entry module is walked first, so a followed module cannot re-own an existing name."""
+    core = _pkg(tmp_path, "pkg5")
+    (core / "sub.py").write_text(
+        "from dataclasses import dataclass\n"
+        "@dataclass\n"
+        "class SubConfig:\n"
+        "    shared_flag: bool = False\n"
+    )
+    (core / "config.py").write_text(
+        "from dataclasses import dataclass, field\n"
+        "from pkg5.sub import SubConfig\n"
+        "@dataclass\n"
+        "class RootConfig:\n"
+        "    shared_flag: bool = False\n"
+        "    s: SubConfig = field(default_factory=SubConfig)\n"
+    )
+    knobs = g.parse_knobs(core / "config.py")
+    assert knobs["shared_flag"].owner == "RootConfig"
+    assert knobs["shared_flag"].source.endswith("config.py")
+
+
+# --------------------------------------------------------------------------- #
 # Row.gating -- unresolved experiment sites suppress a FAIL                    #
 # --------------------------------------------------------------------------- #
 
@@ -288,6 +479,31 @@ def test_real_config_parses():
     # from_dims mirror is excluded: no knob should be attributed to that method body.
     # (Spot-check: the parse found only dataclass fields, so counts are plausible.)
     assert "use_differentiable_cem" in knobs
+
+
+def test_real_config_reaches_goalconfig_declared_in_goal_py():
+    """The exact regression: a knob on a nested config class declared in ANOTHER file.
+
+    `use_hierarchical_goal_credit` is declared on `GoalConfig` in `ree_core/goal.py`,
+    reached only via `goal: GoalConfig = field(default_factory=GoalConfig)` in config.py.
+    Before 2026-08-03 it was absent from this set entirely, which is what defeated
+    Phase 1b/1d of the substrate-staleness detector (plan doc section 7.4).
+    """
+    base = Path(g.os.environ.get("REE_WORKING", Path(g.__file__).resolve().parents[2]))
+    cfg = base / "ree-v3/ree_core/utils/config.py"
+    if not cfg.exists():
+        pytest.skip("live config.py not present")
+    knobs = g.parse_knobs(cfg)
+    assert "use_hierarchical_goal_credit" in knobs
+    knob = knobs["use_hierarchical_goal_credit"]
+    assert knob.owner == "GoalConfig"
+    assert knob.source.endswith("ree_core/goal.py")
+    # ...and the site rendering says so, rather than misattributing the line to config.py.
+    assert g.knob_site(knob, base.resolve()) == "goal.py:%d" % knob.lineno
+    # The other externally-declared nested config (SerotoninConfig) is reached too.
+    assert any(k.owner == "SerotoninConfig" for k in knobs.values())
+    # Every knob names the file it was actually declared in.
+    assert all(k.source for k in knobs.values())
 
 
 if __name__ == "__main__":
