@@ -1,0 +1,206 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_867b_mech321_harm_aware_selection_matched_pool",
+  "run_id": "v3_exq_867b_mech321_harm_aware_selection_matched_pool_20260804T015912Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-04T01:59:12Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-321"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "harm_aware_selection_task_effect_underpowered",
+    "preconditions": [
+      {
+        "name": "ARM_SELECTION_OFF::multi_action_commits_present",
+        "precondition": "multi_action_commits_present",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM committed a MULTI-ACTION program. Gate (6) of the mid-execution conjunction requires len(remaining) > 1 -- carried over from 839/844/867/867a's identical precondition. EXISTENTIAL, both arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 293.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::decomposition_precommit_live",
+        "precondition": "decomposition_precommit_live",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "Pre-commit decomposition evaluated at least once -- a zero means the decomposition machinery is not running at all.",
+        "control": "BEST cell of this arm (positive control)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 3155.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::midexec_decomposition_occurs",
+        "precondition": "midexec_decomposition_occurs",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM shows decomp_n_decomposed_midexec > 0 THIS run. Both arms have the abort mechanism enabled here, so this applies to BOTH arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 46.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::off_forward_pe_varies",
+        "precondition": "off_forward_pe_varies",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: committed-trajectory forward PE must have non-zero variance across the whole run. Mirrors 816/839/844/867/867a's P3.",
+        "control": "WORST OFF-arm cell (min variance)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 5.095504376097646e-08,
+        "threshold": 1e-12,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_OFF::off_forward_pe_bounded",
+        "precondition": "off_forward_pe_bounded",
+        "arm": "ARM_SELECTION_OFF",
+        "kind": "readiness",
+        "description": "OFF-arm positive control: forward PE must be bounded (no explosion / divergence in the online forward model).",
+        "control": "WORST OFF-arm cell (max mean)",
+        "direction": "upper",
+        "applies": true,
+        "measured": 0.009466991965503742,
+        "threshold": 1000000.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_ON::multi_action_commits_present",
+        "precondition": "multi_action_commits_present",
+        "arm": "ARM_SELECTION_ON",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM committed a MULTI-ACTION program. Gate (6) of the mid-execution conjunction requires len(remaining) > 1 -- carried over from 839/844/867/867a's identical precondition. EXISTENTIAL, both arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 320.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_ON::decomposition_precommit_live",
+        "precondition": "decomposition_precommit_live",
+        "arm": "ARM_SELECTION_ON",
+        "kind": "readiness",
+        "description": "Pre-commit decomposition evaluated at least once -- a zero means the decomposition machinery is not running at all.",
+        "control": "BEST cell of this arm (positive control)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 2993.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_ON::midexec_decomposition_occurs",
+        "precondition": "midexec_decomposition_occurs",
+        "arm": "ARM_SELECTION_ON",
+        "kind": "readiness",
+        "description": "At least one cell of this ARM shows decomp_n_decomposed_midexec > 0 THIS run. Both arms have the abort mechanism enabled here, so this applies to BOTH arms.",
+        "control": "BEST cell of this arm (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 50.0,
+        "threshold": 0.0,
+        "met": true
+      },
+      {
+        "name": "ARM_SELECTION_ON::harm_bias_engages",
+        "precondition": "harm_bias_engages",
+        "arm": "ARM_SELECTION_ON",
+        "kind": "readiness",
+        "description": "ARM_SELECTION_ON's Stage-1 graded harm bias actually engages at least once this run (decomp_n_harm_bias_nonzero > 0). Re-confirmed reachable on the current substrate by this session's 2026-08-03 probe (ON arm 33 at 4 episodes, OFF arm 0). A below-floor reading would mean the substrate is not ready for a FURTHER reason -- substrate_not_ready_requeue, never a C1 verdict on an inert treatment. EXISTENTIAL, ON arm only.",
+        "control": "BEST ON-arm cell (max)",
+        "direction": "lower",
+        "applies": true,
+        "measured": 1005.0,
+        "threshold": 0.0,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_TASK_OUTCOME_IMPROVES",
+        "load_bearing": true,
+        "passed": false,
+        "measured": -0.04854643096699164,
+        "threshold": 0.0,
+        "statement": "On seeds where mid-execution decomposition fired in BOTH arms (matched-abort-rate pairing), the paired post-divergence-window mean harm signal, restricted to FRESH e3-selection ticks, is LESS negative (less harmful) in ARM_SELECTION_ON than ARM_SELECTION_OFF, by an effect exceeding 1.0 x SE over >= 6 paired seeds. Bar unchanged from 844/867/867a; only the required n moved (2 -> 6) and the floor is now applied hard."
+      },
+      {
+        "name": "C2_FORWARD_PE_CORROBORATES",
+        "load_bearing": false,
+        "passed": false,
+        "measured": -7.617472184865727e-05,
+        "threshold": 0.0,
+        "statement": "Consistency check (non-load-bearing, carried over from 844's established finding): on the SAME matched-abort-pair window, forward-prediction error is also lower in ON than OFF."
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_TASK_OUTCOME_IMPROVES": false,
+      "C2_FORWARD_PE_CORROBORATES": false
+    },
+    "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2b47ee45a7c952b44bd5baa988c4a10d2632c087d4563a22e17447773ea4e880",
+  "substrate_commit": {
+    "commit": "46569178541c0cb6bfd5d24257cd4b6e220ad083",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 30960,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 89,
+    "goal_state_present": false
+  }
+}
