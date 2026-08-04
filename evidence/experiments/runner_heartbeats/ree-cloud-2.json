@@ -1,7 +1,7 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-04T08:11:24Z",
+  "last_tick_utc": "2026-08-04T11:57:11Z",
   "state": "running",
   "current_exq": "V3-EXQ-149b",
   "current_exq_started_utc": "2026-08-02T21:41:00.781204+00:00",
@@ -12,12 +12,12 @@
     "run_label": "Seed 42 / SLOW_TAU",
     "runs_done": 4,
     "runs_total": 6,
-    "episodes_done": 100,
+    "episodes_done": 500,
     "episodes_total": 600,
-    "overall_pct": 69.4
+    "overall_pct": 80.6
   },
-  "seconds_elapsed": 124224,
-  "seconds_remaining": 55870,
+  "seconds_elapsed": 137771,
+  "seconds_remaining": 35553,
   "recent_lines": [
     "=== V3-EXQ-149b: Q-004 tau_R Calibration at Larger Budget (selection-fixed) ===",
     "Conditions: ['FAST_TAU', 'DEFAULT_TAU', 'SLOW_TAU']  Seeds: [42, 123]",
@@ -99,7 +99,15 @@
     "--- Condition: SLOW_TAU ---",
     "Seed 42 Condition SLOW_TAU",
     "[train] SLOW_TAU seed=42 ep 50/600 harm_events=1617 harm_rate=0.1617 hippo_fallback_rate=0.0000",
-    "[train] SLOW_TAU seed=42 ep 100/600 harm_events=3626 harm_rate=0.1813 hippo_fallback_rate=0.0000"
+    "[train] SLOW_TAU seed=42 ep 100/600 harm_events=3626 harm_rate=0.1813 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 150/600 harm_events=5246 harm_rate=0.1749 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 200/600 harm_events=6974 harm_rate=0.1744 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 250/600 harm_events=8605 harm_rate=0.1721 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 300/600 harm_events=10045 harm_rate=0.1674 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 350/600 harm_events=11722 harm_rate=0.1675 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 400/600 harm_events=13250 harm_rate=0.1656 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 450/600 harm_events=14999 harm_rate=0.1667 hippo_fallback_rate=0.0000",
+    "[train] SLOW_TAU seed=42 ep 500/600 harm_events=16492 harm_rate=0.1649 hippo_fallback_rate=0.0000"
   ],
   "queue_depth": null,
   "queue_id_at_head": null,
