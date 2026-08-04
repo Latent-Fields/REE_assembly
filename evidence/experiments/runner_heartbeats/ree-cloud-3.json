@@ -1,31 +1,48 @@
 {
   "machine": "ree-cloud-3",
   "hostname": "ree-worker-3",
-  "last_tick_utc": "2026-08-03T19:28:13Z",
-  "state": "running",
-  "current_exq": "V3-EXQ-848b",
-  "current_exq_started_utc": "2026-08-03T19:26:22.700935+00:00",
-  "current_title": "ARC-005 precision monotonicity, finer 7-level ladder (breaks 848a 3-point Spearman-rho ceiling)",
-  "current_claim_id": "",
-  "current_description": "",
-  "progress": {
-    "run_label": "Seed 0 / L0_A",
-    "runs_done": 0,
-    "runs_total": 70,
-    "episodes_done": 0,
-    "episodes_total": 2000,
-    "overall_pct": 0.0
-  },
-  "seconds_elapsed": 111,
-  "seconds_remaining": 26400,
-  "recent_lines": [
-    "Seed 0 Condition L0_A"
+  "last_tick_utc": "2026-08-04T07:59:06Z",
+  "state": "idle",
+  "current_exq": null,
+  "current_exq_started_utc": null,
+  "current_title": null,
+  "current_claim_id": null,
+  "current_description": null,
+  "progress": null,
+  "seconds_elapsed": null,
+  "seconds_remaining": null,
+  "recent_lines": null,
+  "queue_depth": 3,
+  "queue_id_at_head": "V3-EXQ-875a",
+  "recent_completed": [
+    {
+      "queue_id": "V3-EXQ-843",
+      "result": "FAIL",
+      "completed_at": "2026-08-01T19:53:01.070812+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-864",
+      "result": "PASS",
+      "completed_at": "2026-08-01T20:03:59.367887+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-863",
+      "result": "PASS",
+      "completed_at": "2026-08-02T12:13:14.357552+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-866b",
+      "result": "PASS",
+      "completed_at": "2026-08-03T19:24:06.174504+00:00"
+    },
+    {
+      "queue_id": "V3-EXQ-888",
+      "result": "PASS",
+      "completed_at": "2026-08-04T07:52:57.551542+00:00"
+    }
   ],
-  "queue_depth": null,
-  "queue_id_at_head": null,
-  "recent_completed": [],
   "runner_pid": 923,
-  "runner_version": "r4809 c424779 2026-08-03",
+  "runner_version": "r4830 832792f 2026-08-04 (running r4828 5c58ed0)",
   "gpu": {
     "available": false
   },
