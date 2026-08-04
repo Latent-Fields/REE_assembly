@@ -1,0 +1,89 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_149b_q004_tau_r_calibration_largebudget",
+  "run_id": "v3_exq_149b_q004_tau_r_largebudget_20260804T234245Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-04T23:42:45.356893+00:00",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "Q-004"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "slow_tau_preferred",
+    "preconditions": [
+      {
+        "name": "candidate_action_diversity",
+        "description": "distinct TRUE first-action classes across a post-training positive-control candidate set, per cell",
+        "control": "post-training positive-control probe (CONTROL_PROBE_STEPS ticks, pure hippocampal selection)",
+        "measured": 2.0,
+        "threshold": 1.5,
+        "direction": "lower",
+        "met": true
+      },
+      {
+        "name": "hippo_fallback_rate_eval_bounded",
+        "description": "fraction of eval ticks where propose_trajectories returned no candidates (fell back to random), worst cell",
+        "control": "measured on the same eval pass the DV is read from",
+        "measured": 0.0,
+        "threshold": 0.5,
+        "direction": "upper",
+        "met": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C1_fast_wins": true,
+      "C2_slow_wins": true,
+      "C4_fast_contrast": true
+    }
+  },
+  "machine": "ree-cloud-2",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "7c92c38f6796e51470ef93a073d756be26b0cfa311456e31859cbda172da7c2d",
+  "substrate_commit": {
+    "commit": "2edeb8ce9342de69d11209245bdeb54434a118a3",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 6,
+    "goal_state_present": false
+  }
+}
