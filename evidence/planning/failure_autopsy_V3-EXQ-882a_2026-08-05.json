@@ -1,0 +1,78 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-05T16:34:31Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_882a_mech472_context_memorization_generalization_20260805T110228Z_v3",
+      "queue_id": "V3-EXQ-882a",
+      "supersedes": "v3_exq_882_mech472_context_memorization_generalization",
+      "claim_ids": ["MECH-472"],
+      "failed_criterion": "precondition (acquisition-floor fraction gate, 0.25 achieved vs 0.5 required)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear -- decisive comparison unreached for the second generation running",
+        "biological_reference": "absent / not applicable -- ML-methodology import, unchanged from V3-EXQ-882",
+        "prerequisites": "missing -- depends_on MECH-471, whose own acquisition-reliability question (mech471_competence_acquisition_reliability) is open and unresolved",
+        "implementation": "complete and exercised -- both confirmed V3-EXQ-882 defects (frozen z_world, worst-of-3-seed veto) fixed and verified present in the manifest",
+        "environment": "stable, reproduced split -- same corner reef geometry as 882 and V3-EXQ-875/875a variant A; per-seed difficulty split reproduces qualitatively at n=8",
+        "measurement": "adequate -- fraction-basis non-degeneracy guard correctly withheld a decisive read a second time",
+        "integration": "coupled and stable -- z_goal_stream writer_defect=false, substrate_stable_across_run=true",
+        "scale": "open question -- 10x exposure sweep produced no improving trend on 6/8 seeds; whether this is environment-difficulty variance or an acquisition-recipe capacity ceiling is the unresolved mech471_competence_acquisition_reliability question"
+      },
+      "biological_reference": {
+        "closest_mechanism": "none -- ML-methodology import (generalization-gap-as-promotion-gate)",
+        "dependencies": [],
+        "is_formal_import": true,
+        "divergence": "not applicable",
+        "lit_status": "present (ML/CS: Cobbe 2019, Zhang 2017, Feldman 2020, Lake 2018, per V3-EXQ-882's own triage)"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-05 failure autopsy, V3-EXQ-882a, confirmed failure_autopsy_V3-EXQ-882a_2026-08-05]: SECOND experimental test of MECH-472, both confirmed defects from the first test (frozen z_world, worst-of-3-seed veto) fixed and verified applied. non_degenerate=false again, correctly, per the claim's own guard: acquisition-floor clear fraction 0.25 (2/8 seeds) did not exceed the 0.5 majority floor at the lowest exposure, and none of the 6 non-clearing seeds approach the floor even at 10x exposure budget. The decisive in-context/held-out comparison remains unreached. With the z_world confound now ruled out, this result is best read as a symptom of MECH-472's own registered dependency on MECH-471 -- the same acquisition-reliability split (seed 43 solves, most others do not) independently reproduces on overlapping seeds in V3-EXQ-875a (MECH-471), and is now tracked as the open hypothesis-space question mech471_competence_acquisition_reliability. No claim-status change; v3_pending stays as registered. HOLD on any V3-EXQ-882b or other same-recipe MECH-472 successor until mech471_competence_acquisition_reliability resolves (via its recommended cheap many-seed diagnostic probe, now prioritised) -- re-queuing on the same acquisition recipe before then would very likely reproduce the identical ~25% clear rate.",
+      "recommended_substrate_queue_entry": {
+        "action": "none",
+        "target_sd_id": null
+      },
+      "pending_retest_after_substrate": false,
+      "pending_retest_after_upstream_question": "mech471_competence_acquisition_reliability",
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "threshold": 2,
+        "prior_substrate_ceiling_autopsies": [],
+        "note": "0 prior substrate_ceiling-category autopsies on MECH-472 (V3-EXQ-882 is precondition_unmet, which does not count per R3). Formal brake does not fire. The recommended hold on V3-EXQ-882b is a user-confirmed informal application of the brake's spirit, not a formal firing -- do not count it as a substrate_ceiling hit in future recurrence counts."
+      },
+      "fanout_recommendation": {},
+      "cross_claim_evidence": {
+        "target_question": "mech471_competence_acquisition_reliability",
+        "relationship": "independent replication -- same acquisition recipe, overlapping seeds, identical qualitative split",
+        "treatment": "informative context only, per user confirmation at this autopsy's Step 8 gate -- not a formal resolution of any of the three live hypotheses (H-exploration-init-variance, H-hazard-layout-difficulty-variance, H-bias-head-ofc-interaction)",
+        "specific_content": "seed 43 clears strongly in both V3-EXQ-875a and V3-EXQ-882a; seeds 42 and 45 fail to clear in both; 5 new seeds sampled by 882a (46-50) show 1/5 (seed 50) clearing, 4/5 failing identically to 42/45's pattern; the flat, non-improving trajectory across a 10x exposure sweep on 6/8 seeds weighs against H-exploration-init-variance's early-optimum-escapable-with-training framing without formally eliminating it"
+      },
+      "learning_extracted": [
+        "Both prescribed fixes (z_world warmup, fraction-basis gate) correctly and verifiably applied; the driver's own docstring correctly pre-registered the informativeness of either outcome",
+        "The MECH-471 acquisition-reliability split recurs, on overlapping seeds, in an independently-authored MECH-472 experiment sharing the same training machinery -- a cross-claim convergent signal",
+        "With the z_world confound ruled out and seed count raised 3->8, the flat non-improving 10x-exposure trend is markedly stronger evidence than V3-EXQ-882 alone that more training on the same recipe will not resolve this"
+      ],
+      "routing": "governance-hold"
+    }
+  ],
+  "cluster_pattern": null,
+  "queued_followon": {
+    "description": "mech471_competence_acquisition_reliability cheap many-seed diagnostic probe (recommended 2026-08-05T06:20:43Z, V3-EXQ-875a autopsy Step 8 gate; not this autopsy's own routing -- independently confirmed twice, once this morning and once live in this session)",
+    "routing": "queue-experiment",
+    "chipped_this_session": true,
+    "priority_change": "raised, per user confirmation at this autopsy's Step 8 gate, given V3-EXQ-882a's n=8 independent replication"
+  },
+  "interactive_gate": {
+    "confirmed_utc": "2026-08-05T16:34Z",
+    "decisions": [
+      {"question": "cross-claim merge into mech471_competence_acquisition_reliability", "user_selected": "record_as_informative_context_only"},
+      {"question": "routing for a future V3-EXQ-882b", "user_selected": "hold_explicitly_pending_mech471_probe"},
+      {"question": "priority on mech471 diagnostic probe", "user_selected": "chip_now_at_higher_priority"}
+    ]
+  }
+}
