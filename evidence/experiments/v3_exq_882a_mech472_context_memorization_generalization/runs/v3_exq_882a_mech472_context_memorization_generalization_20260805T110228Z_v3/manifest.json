@@ -1,0 +1,61 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_882a_mech472_context_memorization_generalization",
+  "run_id": "v3_exq_882a_mech472_context_memorization_generalization_20260805T110228Z_v3",
+  "status": "FAIL",
+  "timestamp_utc": "2026-08-05T11:02:28Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-472"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "unknown",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "2ffa5afdc7be4c9d2b6a2da5acb4b5d3174a0e230c2c19c6d3ab0354c2d7068a",
+  "substrate_commit": {
+    "commit": "d0aed144883bdcd8bd6d64a9bf4d4e984714e6d6",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 431847,
+    "ticks_active": 118907,
+    "writer_calls": 431847,
+    "active_frac": 0.2753452032780128,
+    "writer_defect": false,
+    "n_agents": 32,
+    "goal_state_present": true
+  }
+}
