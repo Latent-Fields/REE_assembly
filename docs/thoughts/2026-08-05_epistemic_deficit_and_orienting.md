@@ -1,7 +1,14 @@
 # Thought Intake: Epistemic Deficit and Orienting as an Information-Seeking Drive
 
+Status: processed
+
+Processed in:
+- docs/claims/claims.yaml#MECH-482
+- docs/claims/claims.yaml#MECH-483
+- docs/claims/claims.yaml#Q-089
+
 **Date:** 2026-08-05  
-**Status:** Candidate architectural and developmental intake  
+**Original status label:** Candidate architectural and developmental intake  
 **Scope:** Information need, uncertainty, curiosity, boredom, orienting, prediction failure, learning progress, replay, and developmental competence acquisition  
 **Related mechanisms:** MECH-313, MECH-314, MECH-314a, MECH-314b, MECH-314c, MECH-320, ARC-065, SD-070, E1 prediction machinery, hippocampal proposal generation, residue, and replay  
 **Likely version:** Conceptual registration now; implementation should probably follow V3 closure unless a minimal diagnostic is cheap and directly relevant to competence acquisition.

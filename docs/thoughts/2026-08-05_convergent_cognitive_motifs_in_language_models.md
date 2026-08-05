@@ -1,6 +1,11 @@
 # Thought Intake: Convergent Cognitive Motifs in Language Models
 
-Status: Conceptual hypothesis.
+Status: processed
+
+Processed in:
+- docs/claims/claims.yaml#RA-003
+
+Original status label: Conceptual hypothesis.
 
 Core hypothesis: Human language contains statistical traces of the cognitive machinery that generated it. Therefore, sufficiently capable models trained to predict language may independently develop computational motifs analogous to some of those underlying human cognition. This predicts functional convergence rather than architectural identity.
 

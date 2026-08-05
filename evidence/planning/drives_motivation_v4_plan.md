@@ -4,7 +4,7 @@ closure_plan:
   generation: v4
   title: "Drives & Motivation (V4 forward roadmap)"
   registered: 2026-06-10
-  last_updated: 2026-06-14
+  last_updated: 2026-08-05
   scope_claims: [SD-012, MECH-216, MECH-295, MECH-111, MECH-347, ARC-073, SD-057]
   sibling_plans: [goal_pipeline, object_representation_v4]
   roadmap_note: >
@@ -233,3 +233,26 @@ substrate work is honest to build.
   necessary-but-insufficient currency TERM, paired with a per-axis-differentiated
   benefit gradient (MECH-359). Falsification condition stated. promote/demote
   suppressed (substrate_conditional V4).
+- **2026-08-05** -- MECH-482 (epistemic_deficit accumulator) and MECH-483
+  (orient/survey behavioural regime) REGISTERED from the 2026-08-05
+  "Epistemic Deficit and Orienting" thought intake (thought-digestion/-intake
+  session). Both candidate, mechanism_hypothesis, epistemic_category
+  substrate_conditional, implementation_phase v4, v3_pending: MECH-482 is a
+  persistent target-bound model-inadequacy accumulator distinguished from
+  MECH-314a/b/c (novelty/uncertainty/learning-progress) and MECH-313 (noise
+  floor); MECH-483 is a third primitive behavioural regime (orient/survey,
+  alongside approach/avoid) hypothesised to be gated by MECH-482, distinguished
+  from MECH-395 (cue-triggered narrow orienting for a specific vector, vs.
+  MECH-483's diffuse pre-cue survey). Both carry falsification conditions with
+  explicit non-degeneracy preconditions; conservative reading stated in the
+  intake -- extend the existing curiosity stream (MECH-314 family), do not add
+  a wholly separate module. Also registered Q-089 (open_question): whether
+  epistemic-deficit-driven orienting explains the observed cold-start
+  competence split, framed by the intake as one hypothesis among several. Q-089
+  wires depends_on=[MECH-457] as the conceptual match for the "some seeds enter
+  a competent regime, others don't" framing, but flags a citation ambiguity:
+  the intake's own cited runs (V3-EXQ-875a/882a) are tagged in
+  pending_review.md to MECH-471/MECH-472, not MECH-457 -- recorded as
+  related_claims rather than silently resolved. No experiment proposal minted
+  (substrate not V3-tractable as stated); no claims.yaml promotion (digestion,
+  not governance). DO NOT build in V3.

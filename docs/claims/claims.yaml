@@ -50225,6 +50225,58 @@
     architectural axis layer (ARC-086), the syndrome-as-vector question (Q-064), and the p-factor
     analogue (MECH-371); it does not contradict any existing claim. Reaped from the 2026-06-06
     psychiatric-genetic-overlap intake.
+
+- id: RA-003
+  title: "Convergent cognitive motifs in language models: sufficiently capable models trained to predict human language may independently develop computational motifs functionally analogous to specific REE mechanisms (orienting, replay, self-representation, other-agent modelling, prediction-error management, arbitration, epistemic uncertainty, long-term goals), because language statistically encodes traces of the cognitive machinery that generated it. Predicts functional convergence, not architectural identity."
+  claim_type: research_anchor
+  subject: comparative_cognition.llm_convergent_motifs
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: '2026-08-05'
+    needs_review: false
+  epistemic_category: out_of_domain
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered_utc: '2026-08-05'
+  depends_on:
+    - MECH-191   # REE's own cross-architecture signal legibility -- sibling comparative-cognition claim, opposite direction
+  location: docs/thoughts/2026-08-05_convergent_cognitive_motifs_in_language_models.md
+  source:
+    - docs/thoughts/2026-08-05_convergent_cognitive_motifs_in_language_models.md
+  what_would_answer: |
+    out_of_domain research_anchor: the test domain is mechanistic interpretability
+    of trained external language models, not REE's own V3 substrate -- no REE
+    experiment can confirm or collapse this anchor. CONFIRMING signature: an
+    independent mechanistic-interpretability study identifies internal
+    computational circuits in a language model that are FUNCTIONALLY analogous
+    (same input-output role, not shared architecture) to a named REE mechanism
+    (e.g. an uncertainty-driven exploration bonus resembling MECH-314b, a
+    self-referential state tracker, an arbitration-like competition between
+    candidate continuations), established via causal ablation/activation-patching
+    rather than behavioural similarity alone. COLLAPSING signature:
+    interpretability work finds the analogous behaviour is produced by
+    mechanisms with no principled functional correspondence to the REE
+    mechanism (e.g. pure memorised pattern-completion with no separable
+    "uncertainty" or "arbitration" subcircuit), or convergence claims fail to
+    replicate across model families/scales. Never resolved by a REE experiment;
+    resolved only by tracking external interpretability literature (a lit-pull
+    target, not a queued experiment).
+  notes: >
+    Reaped from the 2026-08-05 "Convergent Cognitive Motifs in Language Models"
+    thought intake. Distinct from EXT-001..009 (claim_type external_failure_mode:
+    named LLM failure modes REE's architecture is claimed to avoid) -- this is
+    the opposite framing, asking whether LLMs independently RECAPITULATE
+    REE-like computational motifs, used as a comparative-cognition vocabulary
+    rather than a design critique. Also distinct from MECH-191 (REE's own
+    stereotyped signals being legible to OTHER observers) -- RA-003 is about
+    LLMs' internal computation converging on REE-shaped motifs, not about REE's
+    outputs being read by others. Action item per the intake: track
+    mechanistic-interpretability literature (induction heads, in-context
+    learning circuits, "world model" probing studies) as it bears on named REE
+    mechanisms; do not attempt a REE-side experiment against this anchor.
+
 - id: ARC-086
   title: "REE's failure-mode taxonomy is indexed on TWO axes simultaneously: (1) named failure mode (the existing mechanistically-distinct entries -- psychosis/hypothesis-tag loss, confabulation, derealization, OCD, depressive attractor, catatonia subtypes, etc.) AND (2) a finite, named set of cross-cutting LATENT VULNERABILITY AXES that span the named entries (precision/confidence allocation; commitment-threshold/action-release authority; provenance/source tagging; agency attribution; residue/consequence persistence; goal/salience/incentive coupling; self-other coupling; offline integration/replay; social-contagion/cross-agent coupling; global instability). Named clinical syndromes are emergent clusters -- weighted combinations -- over these axes, not primitive natural kinds; comorbidity is overlapping axis activation and pleiotropy is one mechanism loading multiple axes. The axis layer is an INDEXING layer, never a merging layer: it does not collapse mechanistically-distinct failure modes into one another."
   claim_type: architectural_commitment
@@ -64815,6 +64867,70 @@
   - evidence/planning/thought_intake_2026-06-24_evolutionary_retention_and_post_ree_cognifold_compilation.md
   what_would_answer: 'Pick one mechanism registered as developmentally necessary -- INV-055''s infant stage is the natural candidate (already instrumented via the curriculum). Run (a) mature-state lesion and (b) development-without-the-mechanism. PASS = the two protocols DISSOCIATE (mature lesion says tolerable, redevelopment says not, or the reverse), establishing the expensive protocol buys something and justifying a standing requirement for this claim class. FAIL = they AGREE, establishing mature lesion suffices here and the expensive protocol is NOT justified -- a useful negative that closes the question rather than inviting a second attempt. NON-DEGENERACY: the mature-lesion arm must produce a measurable effect at all (non-zero cross-arm and cross-seed variance on the discriminating metric); a mechanism whose mature lesion AND develop-without are both no-ops is simply inert -- a GOV-CEIL-1 matter, self-routes substrate_not_ready.'
   notes: Reaped from the 2026-06-24 evolutionary-retention intake (candidate 3), written 2026-07-21 by confident-pare-9273f1, registered 2026-08-01 by cool-sutherland-623d3f. EXPENSIVE on its own terms (a full development run per arm) -- framed as ONE decisive probe, not a standing requirement. Queue via /queue-experiment with that cost stated, ONLY after GOV-CEIL-2 and SD-090's classification report (the classification determines the right probe target; INV-055 is the current best guess, not a settled choice). Do not generalise the protocol before the probe reports.
+
+- id: Q-089
+  title: "Does epistemic-deficit-driven information-seeking (MECH-482 accumulator + MECH-483 orient/survey regime) explain the observed cold-start competence split -- i.e. do seeds that acquire transferable competence differ from seeds that do not in how early/strongly they enter orient/survey mode and resolve target-bound uncertainty, as opposed to the split arising from environmental difficulty, initialisation, premature deaths, or curriculum timing alone?"
+  claim_type: open_question
+  subject: drive.epistemic_deficit_competence_split_hypothesis
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-05'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: '2026-08-05'
+  depends_on:
+    - MECH-457   # cold-start competence-floor cluster this hypothesis's framing conceptually matches (GOV-FANOUT-1 portfolio)
+    - MECH-482   # epistemic_deficit accumulator
+    - MECH-483   # orient/survey regime
+  related_claims:
+    - MECH-471   # competence-provenance/rollback -- the V3-EXQ-875a run the intake cites tags to THIS claim, not MECH-457 (see notes)
+    - MECH-472   # held-out-context generalisation -- the V3-EXQ-882a run the intake cites tags to THIS claim, not MECH-457 (see notes)
+  location: evidence/planning/drives_motivation_v4_plan.md
+  source:
+    - docs/thoughts/2026-08-05_epistemic_deficit_and_orienting.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires seeds to show non-degenerate variance
+    in BOTH the competence outcome (some acquire transferable competence, some
+    do not) AND a measurable information-seeking trajectory statistic
+    (informative-transition timing, orient-mode entry/exit, uncertainty-reduction
+    rate) -- if the latter is floor-pinned or ceiling-saturated across all seeds
+    the run self-routes substrate_not_ready, not a verdict. CONFIRMING signature:
+    across many seeds, successful seeds measurably encounter informative
+    transitions earlier, enter orient/survey before premature policy commitment,
+    and show faster target-bound uncertainty reduction than unsuccessful seeds,
+    and this difference predicts the eventual competence split better than
+    environmental-difficulty/initialisation controls alone. FALSIFYING
+    signature: successful and unsuccessful seeds show no distinguishable
+    difference in information-seeking trajectories, or the split is fully
+    accounted for by environmental difficulty / initialisation / premature
+    death / curriculum timing with no residual explained by epistemic-deficit
+    dynamics.
+  notes: >
+    Reaped from the 2026-08-05 epistemic-deficit-and-orienting thought intake,
+    Section 7 ("Relevance to the recent competence split"), which explicitly
+    frames this as one hypothesis among several competing explanations for a
+    recently observed competence split -- NOT a confirmed mechanism. CITATION
+    AMBIGUITY flagged rather than silently resolved: the intake names
+    V3-EXQ-875a and V3-EXQ-882a as the motivating runs, but per
+    evidence/experiments/pending_review.md those two FAIL runs are tagged to
+    MECH-471 (competence-provenance/rollback discipline) and MECH-472
+    (held-out-context generalisation) respectively -- not to MECH-457 (the
+    separate cold-start competence-floor / GOV-FANOUT-1 cluster whose framing
+    this hypothesis's "some seeds enter a competent regime, others don't"
+    language actually matches conceptually). depends_on wires the conceptual
+    match (MECH-457); related_claims records the literal citation (MECH-471/
+    MECH-472) so a later reader can resolve which was intended without
+    re-deriving this from scratch. Should not be conflated with the existing
+    MECH-457 4-axes-eliminated analysis (see project memory
+    project_mech457_competence_floor_coldstart) -- this is a NEW candidate axis,
+    not a re-litigation of the eliminated ones. Gated on MECH-482/MECH-483
+    substrate existing; not V3-tractable as stated.
+
 - id: SENT-17
   title: Any mechanism substitution must preserve internal ethical-process representations and their causal authority, not merely the action distribution. A substitution that reproduces actions while deleting the representations of uncertainty, vulnerability, harm, others and responsibility -- or severing their causal authority over selection -- fails the criterion regardless of behavioural match.
   claim_type: governance_rule
@@ -65133,6 +65249,105 @@
     minted -- step 7 (/queue-experiment the 4-arm falsifier) is the one remaining step.
     epistemic_category/v3_pending deliberately left unchanged: wiring makes the mechanism ablatable,
     it does not itself constitute evidence.
+
+- id: MECH-482
+  title: "epistemic_deficit: a persistent, target-bound accumulator representing unresolved, consequential, potentially-resolvable model inadequacy -- distinct from raw novelty (MECH-314a), raw uncertainty (MECH-314b), transient prediction error, and learning-progress (MECH-314c). Rises with unresolved importance x uncertainty x expected_resolvability x persistence; falls with verified resolution, established irrelevance, or accepted irreducibility."
+  claim_type: mechanism_hypothesis
+  subject: drive.epistemic_deficit_accumulator
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-05'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: '2026-08-05'
+  depends_on:
+    - MECH-314   # parent structured-curiosity bonus this accumulator is distinguished from / extends
+    - MECH-314a  # novelty -- distinguished: novelty can be high with no learnable structure
+    - MECH-314b  # uncertainty -- distinguished: currently a global scalar; can also be irreducible noise
+    - MECH-314c  # learning-progress -- distinguished: transient signal, not an accumulating deficit state
+    - MECH-313   # stochastic noise floor -- distinguished: undirected, not target-bound
+  location: evidence/planning/drives_motivation_v4_plan.md
+  source:
+    - docs/thoughts/2026-08-05_epistemic_deficit_and_orienting.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires a substrate where target-bound
+    uncertainty can be tracked per-candidate/per-region (MECH-314b is currently
+    a global scalar per the existing curiosity intake -- not yet built in V3)
+    AND where cross-seed/cross-condition variance in the accumulator is
+    non-zero (not floor-pinned at zero or ceiling-saturated) -- below that the
+    run self-routes substrate_not_ready, not a verdict. CONFIRMING signature
+    (once built): an unresolved, consequential uncertainty accumulates across
+    time steps even as raw novelty and instantaneous prediction error fall to
+    baseline, AND providing diagnostic/resolving evidence specifically quenches
+    the accumulator (satiation) rather than only reducing raw uncertainty.
+    FALSIFYING signature: no persistent deficit state is needed to explain
+    information-seeking behaviour -- raw novelty (MECH-314a) or raw uncertainty
+    (MECH-314b) alone predict exploration equally well, OR the accumulator
+    remains elevated after verified resolution (no satiation), OR the system
+    preferentially engages irreducible noise over learnable uncertainty (would
+    falsify the expected_resolvability term).
+  notes: >
+    Reaped from the 2026-08-05 "Epistemic Deficit and Orienting" thought
+    intake. Conservative implementation path per the intake: extend the
+    existing curiosity stream (MECH-314 family) rather than add a wholly
+    separate module. Candidate inputs: candidate-specific predictive
+    uncertainty, persistent prediction error, disagreement between predictive
+    systems, failed replay resolution, competence-blocking uncertainty. DO NOT
+    build in V3 -- gated on a target-bound (not global-scalar) uncertainty
+    substrate not yet built. See MECH-483 (orient/survey regime this is
+    hypothesised to gate) and Q-089 (tie to the cold-start competence split).
+
+- id: MECH-483
+  title: "orient/survey: a third primitive behavioural regime (alongside approach and avoid) -- a temporary, diffuse reduction in commitment during which the agent widens behavioural sampling and gathers situational information before committing to approach/avoidance, driven by accumulated epistemic_deficit (MECH-482) rather than a specific cue. Distinct from MECH-395 (cue-triggered, need-gated orienting that resolves a SPECIFIC directional/affordance vector for an already-identified cue): orient/survey is diffuse and precedes cue identification, MECH-395 is narrow and follows it."
+  claim_type: mechanism_hypothesis
+  subject: policy.orient_survey_regime
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-05'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  v3_pending: true
+  version_relevance: v4_v5
+  registered_utc: '2026-08-05'
+  depends_on:
+    - MECH-482   # epistemic_deficit -- the accumulator whose magnitude/persistence gates entry into and exit from orient/survey
+    - MECH-395   # pre-approach orienting -- distinguished: cue-triggered specific-vector-finding, not diffuse survey
+    - MECH-320   # tonic vigour -- orient/survey reduces commitment without reducing vigour/passivity
+    - ARC-065    # behavioural diversity generation pathway -- orient/survey is a candidate coordinating regime over existing diversity substrates, not a new one
+  location: evidence/planning/drives_motivation_v4_plan.md
+  source:
+    - docs/thoughts/2026-08-05_epistemic_deficit_and_orienting.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires trajectories to be classifiable as
+    orient-mode vs random-exploration vs directed-approach on some structural
+    measure (state-coverage, trajectory structure, observation-before-commitment)
+    with non-zero variance across conditions -- a run where all three regimes
+    are behaviourally indistinguishable self-routes substrate_not_ready.
+    CONFIRMING signature: a structured orient/survey condition improves LATER
+    action-selection quality (not just entropy/state-coverage) relative to
+    matched stochastic-exploration-only and no-orienting baselines, and
+    terminates (commitment resumes) once uncertainty measurably falls.
+    FALSIFYING signature: orient/survey behaviour is indistinguishable from
+    random wandering with no benefit to later competence, OR orienting
+    persists despite already-adequate information (no termination condition),
+    OR the same benefit is fully explained by existing MECH-313/314/320/ARC-065
+    substrates with no need for a distinct regime.
+  notes: >
+    Reaped from the 2026-08-05 "Epistemic Deficit and Orienting" thought
+    intake (its Section 6, "orient as a third regime"). May emerge from
+    interaction among existing substrates rather than requiring a wholly
+    separate architectural subsystem -- the intake explicitly flags this as
+    the conservative reading. DO NOT build in V3. See MECH-482 for the
+    accumulator hypothesised to gate this regime's persistence, and Q-089 for
+    the tie to the observed cold-start competence split.
 
 - id: SD-093
   title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."

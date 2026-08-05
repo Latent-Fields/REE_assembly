@@ -1,6 +1,14 @@
 # Language as a cooperation interface to nonverbal cognition
 
-Status: superseded 2026-06-23 — split into separate unprocessed thought intakes
+Status: processed
+
+Processed in:
+- `docs/thoughts/2026-06-23_cross_system_resonance_and_inference_calibration.md` (split-off 1/3, resonance/coupled-inference-loop leg)
+- `docs/thoughts/2026-06-23_language_as_cooperation_interface.md` (split-off 2/3, language-as-cooperation-interface leg)
+- `evidence/planning/thought_intake_2026-06-23_language_as_cooperation_interface.md` (structured intake for split-off 2/3)
+- `docs/thoughts/2026-06-23_introspection_as_architectural_evidence_for_ree.md` (split-off 3/3, introspection-as-evidence leg)
+
+Split 2026-06-23 -- split into separate thought intakes (this file is now a split record, superseded by the three successors below).
 
 ## Split record
 

@@ -1,10 +1,10 @@
 # Thought Intake: Orthogonal Plasticity for Strategy Authority and Habit Execution
 
-Status: processed 2026-08-02
+Status: processed
 
 Processed in:
-- docs/claims/claims.yaml#MECH-480
-- evidence/planning/manual_proposals.v1.json#EXP-0413
+- docs/claims/claims.yaml#MECH-480 (2026-08-02)
+- evidence/planning/manual_proposals.v1.json#EXP-0413 (2026-08-02)
 
 ## Summary
 A recent Nature Communications paper demonstrates a causal dissociation between ACC-dependent maintenance of goal-directed behavioural control and LOFC→central striatal control of habitual execution. This aligns strongly with the existing SD-032 cingulate integration substrate, particularly SD-032b and MECH-260, while suggesting a further decomposition between strategy authority and execution gain.

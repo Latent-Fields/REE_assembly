@@ -374,6 +374,8 @@
   },
   "ARC-045": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "hippocampus.bidirectional_information_flow",
@@ -604,6 +606,8 @@
   },
   "ARC-071": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "mech090-arc071-attick-persistent-handle-fix",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "policy.composition_via_repeated_grounding",
@@ -3115,7 +3119,7 @@
   },
   "MECH-074": {
     "assembly_state": "gated_v3",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "amygdala.hippocampal_map_readwrite_head",
     "title": "Amygdala functions as read/write head for valenced hippocampal map \u2014 parent claim split into MECH-074a-d (2026-04-21).",
@@ -3135,7 +3139,7 @@
     "assembly_state": "gated_v3",
     "assembly_status": "built",
     "awaiting": "SD-035",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "shown",
     "status": "candidate",
     "subject": "amygdala.bla_retrieval_bias_content_selective",
     "title": "BLA analogue writes a content-selective per-trace arousal tag at encoding and applies a per-trace retrieval weight vector (NOT a scalar gain) on hippocampal readout.",
@@ -3283,8 +3287,8 @@
   },
   "MECH-090": {
     "assembly_state": "mature",
-    "assembly_status": "in_progress",
-    "awaiting": "MECH-090",
+    "assembly_status": "built",
+    "awaiting": "mech090-arc071-attick-persistent-handle-fix",
     "epistemic_stance": "shown",
     "status": "active",
     "subject": "control_plane.commitment_gated_policy_output",
@@ -3661,6 +3665,8 @@
   },
   "MECH-135": {
     "assembly_state": "gated_v3",
+    "assembly_status": "queued",
+    "awaiting": "SD-e1-rollout-consistency-training",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "planning.e1_e2_parallel_rollout",
@@ -3921,6 +3927,8 @@
   },
   "MECH-166": {
     "assembly_state": "gated_v3",
+    "assembly_status": "built",
+    "awaiting": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "hippocampus.slot_formation_filling_temporal_separation",
@@ -6159,7 +6167,7 @@
   },
   "MECH-427": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-092",
     "epistemic_stance": "shown",
     "status": "candidate",
@@ -6170,7 +6178,7 @@
   },
   "MECH-428": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-092",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -6652,7 +6660,7 @@
   },
   "MECH-481": {
     "assembly_state": "awaiting_substrate",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-091",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -6660,6 +6668,24 @@
     "title": "Selective cognitive coalition instantiation: the control plane converts typed control demands (e.g. PROVENANCE_CHECK, COUNTERFACTUAL_EXPANSION, SOCIAL_MODEL_CHECK) into temporary functional interaction graphs over E1/E2/hippocampal/reality-coherence/social/language/affective/E3 systems, recruiting only the subsystems relevant to the discrepancy type.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "Four-arm ablation on a task battery deliberately constructed to contain at least two distinct discrepancy types (e.g. a perceptual-doubt trial requiring resampling and a provenance-doubt trial requiring source reconstruction) at matched base difficulty. Arm 1 (monitoring-only): agent registers a typed low-confidence/conflict signal but the processing configuration never changes. Arm 2 (parametric-only): agent may adjust precision/commitment threshold on a typed signal but cannot recruit additional subsystems. Arm 3 (untyped coalition): agent may recruit arbitrary additional subsystems but all discrepancy types collapse into one undifferentiated REFLECT trigger (no typing). Arm 4 (typed coalition, the mechanism under test): discrepancy type is matched to a coalition template that recruits only the relevant subsystems. PASS (supports): Arm 4 shows selective improvement concentrated in the matched problem class (e.g. provenance-doubt trials improve on the provenance-coalition, not on perceptual-doubt trials) at lower computational cost than Arm 3, and Arms 1-3 each show their predicted deficit signature (1: accurate confidence but no behavioural improvement; 2: generic caution/deferral without resolving type-specific uncertainty; 3: costly over-recruitment / interference / unstable switching). FAIL (does not support): Arm 4 does not outperform Arm 3 on the matched problem class (typing does no discriminative work beyond raw recruitment), or Arm 2 alone matches Arm 4 (coalition/topology control adds nothing beyond existing parametric modulation). NON-DEGENERACY: the underlying typed discrepancy signals (confidence/provenance/coherence-conflict) must show non-zero cross-trial-type variance in Arm 1's baseline; if the agent cannot distinguish discrepancy types at all, the typing manipulation in Arms 3 vs 4 is vacuous and the run is substrate_not_ready, not a verdict. A fifth check (coalition persistence -- premature dissolution vs over-long engagement, scenario 5 in the source thought) is a follow-on refinement, not part of this claim's primary falsifier -- register separately if Arm 4 passes.\n"
+  },
+  "MECH-482": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "drive.epistemic_deficit_accumulator",
+    "title": "epistemic_deficit: a persistent, target-bound accumulator representing unresolved, consequential, potentially-resolvable model inadequacy -- distinct from raw novelty (MECH-314a), raw uncertainty (MECH-314b), transient prediction error, and learning-progress (MECH-314c). Rises with unresolved importance x uncertainty x expected_resolvability x persistence; falls with verified resolution, established irrelevance, or accepted irreducibility.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires a substrate where target-bound\nuncertainty can be tracked per-candidate/per-region (MECH-314b is currently\na global scalar per the existing curiosity intake -- not yet built in V3)\nAND where cross-seed/cross-condition variance in the accumulator is\nnon-zero (not floor-pinned at zero or ceiling-saturated) -- below that the\nrun self-routes substrate_not_ready, not a verdict. CONFIRMING signature\n(once built): an unresolved, consequential uncertainty accumulates across\ntime steps even as raw novelty and instantaneous prediction error fall to\nbaseline, AND providing diagnostic/resolving evidence specifically quenches\nthe accumulator (satiation) rather than only reducing raw uncertainty.\nFALSIFYING signature: no persistent deficit state is needed to explain\ninformation-seeking behaviour -- raw novelty (MECH-314a) or raw uncertainty\n(MECH-314b) alone predict exploration equally well, OR the accumulator\nremains elevated after verified resolution (no satiation), OR the system\npreferentially engages irreducible noise over learnable uncertainty (would\nfalsify the expected_resolvability term).\n"
+  },
+  "MECH-483": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "policy.orient_survey_regime",
+    "title": "orient/survey: a third primitive behavioural regime (alongside approach and avoid) -- a temporary, diffuse reduction in commitment during which the agent widens behavioural sampling and gathers situational information before committing to approach/avoidance, driven by accumulated epistemic_deficit (MECH-482) rather than a specific cue. Distinct from MECH-395 (cue-triggered, need-gated orienting that resolves a SPECIFIC directional/affordance vector for an already-identified cue): orient/survey is diffuse and precedes cue identification, MECH-395 is narrow and follows it.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires trajectories to be classifiable as\norient-mode vs random-exploration vs directed-approach on some structural\nmeasure (state-coverage, trajectory structure, observation-before-commitment)\nwith non-zero variance across conditions -- a run where all three regimes\nare behaviourally indistinguishable self-routes substrate_not_ready.\nCONFIRMING signature: a structured orient/survey condition improves LATER\naction-selection quality (not just entropy/state-coverage) relative to\nmatched stochastic-exploration-only and no-orienting baselines, and\nterminates (commitment resumes) once uncertainty measurably falls.\nFALSIFYING signature: orient/survey behaviour is indistinguishable from\nrandom wandering with no benefit to later competence, OR orienting\npersists despite already-adequate information (no termination condition),\nOR the same benefit is fully explained by existing MECH-313/314/320/ARC-065\nsubstrates with no need for a distinct regime.\n"
   },
   "Q-001": {
     "assembly_state": "mature",
@@ -7448,6 +7474,15 @@
     "type": "open_question",
     "what_would_answer": "Pick one mechanism registered as developmentally necessary -- INV-055's infant stage is the natural candidate (already instrumented via the curriculum). Run (a) mature-state lesion and (b) development-without-the-mechanism. PASS = the two protocols DISSOCIATE (mature lesion says tolerable, redevelopment says not, or the reverse), establishing the expensive protocol buys something and justifying a standing requirement for this claim class. FAIL = they AGREE, establishing mature lesion suffices here and the expensive protocol is NOT justified -- a useful negative that closes the question rather than inviting a second attempt. NON-DEGENERACY: the mature-lesion arm must produce a measurable effect at all (non-zero cross-arm and cross-seed variance on the discriminating metric); a mechanism whose mature lesion AND develop-without are both no-ops is simply inert -- a GOV-CEIL-1 matter, self-routes substrate_not_ready."
   },
+  "Q-089": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "drive.epistemic_deficit_competence_split_hypothesis",
+    "title": "Does epistemic-deficit-driven information-seeking (MECH-482 accumulator + MECH-483 orient/survey regime) explain the observed cold-start competence split -- i.e. do seeds that acquire transferable competence differ from seeds that do not in how early/strongly they enter orient/survey mode and resolve target-bound uncertainty, as opposed to the split arising from environmental difficulty, initialisation, premature deaths, or curriculum timing alone?",
+    "type": "open_question",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires seeds to show non-degenerate variance\nin BOTH the competence outcome (some acquire transferable competence, some\ndo not) AND a measurable information-seeking trajectory statistic\n(informative-transition timing, orient-mode entry/exit, uncertainty-reduction\nrate) -- if the latter is floor-pinned or ceiling-saturated across all seeds\nthe run self-routes substrate_not_ready, not a verdict. CONFIRMING signature:\nacross many seeds, successful seeds measurably encounter informative\ntransitions earlier, enter orient/survey before premature policy commitment,\nand show faster target-bound uncertainty reduction than unsuccessful seeds,\nand this difference predicts the eventual competence split better than\nenvironmental-difficulty/initialisation controls alone. FALSIFYING\nsignature: successful and unsuccessful seeds show no distinguishable\ndifference in information-seeking trajectories, or the split is fully\naccounted for by environmental difficulty / initialisation / premature\ndeath / curriculum timing with no residual explained by epistemic-deficit\ndynamics.\n"
+  },
   "RA-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "asked",
@@ -7465,6 +7500,15 @@
     "title": "Clinically distinct psychiatric diagnoses share a small set of latent genomic factors that cut across diagnostic boundaries: large-scale genomic structural-equation modelling across 14 childhood- and adult-onset psychiatric disorders (>1 million individuals) finds that the majority of case-vs-control genetic variance is captured by FIVE shared genomic factors (Compulsive; Schizophrenia-bipolar / psychotic-mood; Neurodevelopmental; Internalizing; Substance-use) spanning 238 variants, with factor-specific biology (e.g. oligodendrocyte genes enriched in the Internalizing factor) acting early in brain development. Psychiatric categories are surface expressions over overlapping latent dimensions, not genetically discrete kinds.",
     "type": "research_anchor",
     "what_would_answer": "out_of_domain research_anchor: the test domain is a human-genetics cohort; no\nREE substrate distinguishes genomic factors, so the anchor is confirmed or\ncollapsed by external genomics replication, never by a V3 run, and it must\nnever be cited as REE mechanism evidence. Discriminating empirical signature\nthat CONFIRMS the anchor: an independent large-scale genomic\nstructural-equation modelling effort across childhood- and adult-onset\npsychiatric disorders reproduces a SMALL number (~five) of shared\ncross-diagnostic latent genomic factors (Compulsive;\nSchizophrenia-bipolar/psychotic-mood; Neurodevelopmental; Internalizing;\nSubstance-use) that capture the majority of case-vs-control genetic variance,\nwith factor-specific developmental biology (e.g. oligodendrocyte-gene\nenrichment in the Internalizing factor) -- i.e. the genomic structure is\nlow-dimensional and cuts ACROSS diagnostic boundaries (the Grotzinger et al.\n2025 Nat Genet result, >1M individuals, 238 variants). COLLAPSES the anchor if\nreplication instead recovers factors that align ONE-TO-ONE with DSM categories\n(no cross-diagnostic sharing), or if the dimensionality is not low (no\nparsimonious small factor set survives out-of-sample), or if the factor\nstructure is unstable across ancestries/cohorts. GUARDRAIL (anti-determinism):\ngenetic overlap does NOT make diagnoses meaningless and individual\npresentations cannot be read off polygenic factors -- the load-bearing\nextraction is the SURFACE-CLUSTER principle (categories are emergent clusters\nover overlapping latent axes), which REE already holds (IMPL-005, INV-061). A\nconfirming replication motivates the architectural axis layer (ARC-086), the\nsyndrome-as-vector question (Q-064), and the p-factor analogue (MECH-371); the\nfactor labels and 238-variant count are from the abstract plus press summaries\nand should be cross-checked against the full paper.\n"
+  },
+  "RA-003": {
+    "assembly_state": "deferred_future",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "comparative_cognition.llm_convergent_motifs",
+    "title": "Convergent cognitive motifs in language models: sufficiently capable models trained to predict human language may independently develop computational motifs functionally analogous to specific REE mechanisms (orienting, replay, self-representation, other-agent modelling, prediction-error management, arbitration, epistemic uncertainty, long-term goals), because language statistically encodes traces of the cognitive machinery that generated it. Predicts functional convergence, not architectural identity.",
+    "type": "research_anchor",
+    "what_would_answer": "out_of_domain research_anchor: the test domain is mechanistic interpretability\nof trained external language models, not REE's own V3 substrate -- no REE\nexperiment can confirm or collapse this anchor. CONFIRMING signature: an\nindependent mechanistic-interpretability study identifies internal\ncomputational circuits in a language model that are FUNCTIONALLY analogous\n(same input-output role, not shared architecture) to a named REE mechanism\n(e.g. an uncertainty-driven exploration bonus resembling MECH-314b, a\nself-referential state tracker, an arbitration-like competition between\ncandidate continuations), established via causal ablation/activation-patching\nrather than behavioural similarity alone. COLLAPSING signature:\ninterpretability work finds the analogous behaviour is produced by\nmechanisms with no principled functional correspondence to the REE\nmechanism (e.g. pure memorised pattern-completion with no separable\n\"uncertainty\" or \"arbitration\" subcircuit), or convergence claims fail to\nreplicate across model families/scales. Never resolved by a REE experiment;\nresolved only by tracking external interpretability literature (a lit-pull\ntarget, not a queued experiment).\n"
   },
   "SD-001": {
     "assembly_state": "remaining",
@@ -7602,8 +7646,8 @@
   },
   "SD-017": {
     "assembly_state": "mature",
-    "assembly_status": "queued",
-    "awaiting": "SD-016",
+    "assembly_status": "built",
+    "awaiting": "MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION",
     "epistemic_stance": "shown",
     "status": "stable",
     "subject": "sleep_phase.minimal_sleep_infrastructure_v3",
@@ -8340,7 +8384,7 @@
   },
   "SD-091": {
     "assembly_state": "awaiting_substrate",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-091",
     "epistemic_stance": "believed",
     "status": "candidate",
@@ -8351,7 +8395,7 @@
   },
   "SD-092": {
     "assembly_state": "gated_v3",
-    "assembly_status": "queued",
+    "assembly_status": "built",
     "awaiting": "SD-092",
     "epistemic_stance": "believed",
     "status": "candidate",
