@@ -1,0 +1,261 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-05T06:20:43Z",
+  "scope": "cluster",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_875_mech471_competence_provenance_20260803T120202Z_v3",
+      "queue_id": "V3-EXQ-875",
+      "claim_ids": ["MECH-471"],
+      "failed_criterion": "absolute (readiness/acquisition precondition)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not yet tested -- readiness gate unmet",
+        "biological_reference": "partial -- catastrophic/retrograde interference literature grounds the general phenomenon (Krakauer 2005, Walker 2003, cited via sibling claim MECH-476's targeted_review_mech_457_consolidation) but no MECH-471-specific targeted_review exists",
+        "prerequisites": "missing -- SD-070 z_world P0a warmup never enabled (zworld_p0_episodes defaulted to 0), the documented SD-070 defect",
+        "implementation": "complete but unexercised on this run -- z_world stayed a frozen random projection",
+        "environment": "adequate -- reef/hazard survival task, no obvious mismatch",
+        "measurement": "adequate -- readiness metrics correctly capture whether competence was acquired",
+        "integration": "coupled -- bias_head + OFC-devaluation REINFORCE + e2 frozen + z_world encoder",
+        "scale": "insufficient budget for the intended encoder-then-policy staging"
+      },
+      "biological_reference": {
+        "closest_mechanism": "retrograde/catastrophic interference between sequentially-acquired competences on a shared representation",
+        "dependencies": ["SD-070 z_world encoder warmup"],
+        "is_formal_import": false,
+        "divergence": "none identified -- readiness gate never cleared, so the interference test itself never ran",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "precondition_unmet",
+      "recommended_evidence_direction": "unknown",
+      "recommended_evidence_quality_note": "V3-EXQ-875 (2026-08-03, FAIL, substrate_not_ready_requeue): readiness/acquisition precondition unmet -- all three _train_all_on_agent calls omitted zworld_p0_episodes (defaulted to 0), the documented SD-070 defect (matches the pre-fix V3-EXQ-728 'seeds_failed=3/3' signature). Self-route correctly says requeue, not a verdict on MECH-471. Superseded by V3-EXQ-875a.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false},
+      "learning_extracted": [
+        "Confirms the SD-070 zworld_p0_episodes defect propagates to any _train_all_on_agent driver that omits it -- same signature as V3-EXQ-728 pre-fix.",
+        "This run's own manifest data is not usable evidence (readiness-unmet FAIL); superseded by 875a."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_875a_mech471_competence_provenance_20260804T114106Z_v3",
+      "queue_id": "V3-EXQ-875a",
+      "claim_ids": ["MECH-471"],
+      "failed_criterion": "absolute (readiness/acquisition precondition)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not yet tested -- readiness gate still unmet after the diagnosed fix",
+        "biological_reference": "partial -- see 875; no MECH-471-specific targeted_review exists",
+        "prerequisites": "SD-070 z_world P0a warmup ADDED (zworld_p0_episodes=60) and confirmed engaged (probe: 4/4 world_encoder tensors moved) -- necessary fix correctly applied, but not sufficient",
+        "implementation": "complete and exercised -- z_world genuinely trains this run",
+        "environment": "adequate but reveals seed-dependent difficulty or training instability not visible in 875",
+        "measurement": "adequate",
+        "integration": "coupled; ONE seed (43) clears the floor strongly (172/181 ticks near a 200-tick episode ceiling), demonstrating the pipeline CAN work end-to-end",
+        "scale": "budget aligned to V3-EXQ-728's validated recipe (~2.7x 875's), yet 2 of 3 seeds (42, 45) stay near the random-walk baseline (~15-24 ticks) -- more of the SAME budget did not close the gap for those seeds"
+      },
+      "biological_reference": {
+        "closest_mechanism": "reinforcement-learning acquisition reliability / exploration-dependent competence installation",
+        "dependencies": ["SD-070 z_world encoder warmup (now satisfied)"],
+        "is_formal_import": false,
+        "divergence": "the bimodal seed pattern (one seed near-ceiling, two near-floor on the identical recipe) is not explained by the diagnosed z_world defect and was not anticipated by the 875a fix",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "competence_implementation_gap",
+      "recommended_evidence_direction": "unknown",
+      "recommended_evidence_quality_note": "V3-EXQ-875a (2026-08-04, FAIL, substrate_not_ready_requeue, supersedes V3-EXQ-875): the diagnosed SD-070 fix (zworld_p0_episodes=60) was applied and confirmed engaged, and budget was aligned to V3-EXQ-728's validated recipe -- necessary but not sufficient. readiness.acquisition_ok still False: seed 43 clears the (now higher) 120-tick survival floor strongly (a=172.25, b=181.2), seeds 42 and 45 stay near the random-walk baseline (a=15.95/51.25, b=23.75/50.45). This is a seed-dependent/bimodal training-reliability pattern, not a resolved instrumentation defect -- a further same-recipe budget increase (875b) is not recommended without first characterizing WHY the split occurs. Routed to a cheap many-seed diagnostic probe (see fanout_recommendation and the mech471_competence_acquisition_reliability hypothesis-space question) rather than a third full ~19-20h dose-response run.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "note": "not a substrate_ceiling read (R3 excludes this category); documented instead as a recurring readiness-gate FAIL with a materially different underlying cause each time, which is why a cheap diagnostic probe is recommended over a third full-budget same-design re-queue."},
+      "fanout_recommendation": {
+        "is_discrimination": true,
+        "live_hypotheses": [
+          "H-exploration-init-variance: exploration/initialization variance traps some seeds in early bad-hazard-avoidance local optima",
+          "H-hazard-layout-difficulty-variance: per-seed hazard-field/reef layout randomization creates genuinely harder survival tasks for some seeds",
+          "H-bias-head-ofc-interaction: bias_head/OFC-devaluation REINFORCE interacts adversely with survival-competence acquisition in a seed-dependent way"
+        ],
+        "suggested_probes": [
+          {"hypothesis": "all three", "axis": "exploration/environment/arbitration", "sketch": "a single cheap, many-seed diagnostic probe: run ONLY competence-A acquisition (skip the expensive Phase-2 targeted-update stage) across 10-20 seeds at modest budget, to characterize the seed-success-rate distribution and check for an early-death correlation (favors H1), a hazard-layout-difficulty correlation (favors H2), or neither (favors H3)."}
+        ],
+        "note": "User-confirmed at the Step 8 gate: cheap many-seed diagnostic probe (recommended), not a full-budget same-design re-queue (875b) and not a blind route to /implement-substrate. Pre-registered as mech471_competence_acquisition_reliability in the hypothesis-space ledger (Mode A, unresolved -- adjudicating_runs empty pending the probe)."
+      },
+      "learning_extracted": [
+        "The SD-070 zworld_p0 fix was necessary but not sufficient for this driver -- a second, distinct reliability problem exists underneath it.",
+        "Seed 43's strong success proves the all-ON stack CAN acquire this survival competence end-to-end; the failure is not a representational ceiling.",
+        "A uniform budget increase (P0/P1/steps/eval all raised ~1.5-1.8x) did not close the gap for the two failing seeds -- more of the same training does not obviously fix this.",
+        "Both 875 and 875a ran the FULL expensive dose-response design (~19-20h each) to discover readiness-gate problems that a cheap, narrow diagnostic (acquisition-phase-only, many seeds) could have surfaced far more cheaply."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_867b_mech321_harm_aware_selection_matched_pool_20260804T015912Z_v3",
+      "queue_id": "V3-EXQ-867b",
+      "claim_ids": ["MECH-321"],
+      "failed_criterion": "absolute (matched-pair power floor, n_pairs=4 < MIN_DECOMPOSING_SEEDS=6)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "not yet tested at adequate power -- fourth consecutive attempt (844/867/867a/867b) inconclusive for a different reason each time",
+        "biological_reference": "adequate -- threat-modulated defensive path-selection is well-grounded (targeted_review_threat_modulated_defensive_path_selection, 9 entries, 2026-08-01, Fanselow/Hoffman/Mobbs/Evans/Dayan)",
+        "prerequisites": "SD-hazard-aware-policy-decomposition substrate present and engaged (per_arm_gate all_green=true, harm_bias engages 1005 times on-arm)",
+        "implementation": "complete -- both arms decompose, harm bias fires, build-time guards hold",
+        "environment": "adequate for engaging the mechanism, but the SD-029 hazard-tuning needed to make mid-execution decomposition occur reliably enough for MATCHED comparison is not yet achieved even at a 48-candidate screen",
+        "measurement": "under-instrumented for this specific design -- the matched-abort-pair windowing statistic assumes short-screen decomposition behaviour predicts full-schedule behaviour; screen_soundness_check falsifies that on 5/7 screen-matched seeds this run",
+        "integration": "coupled but structurally unstable for measurement purposes -- the very intervention under test (harm-aware selection) appears to change WHETHER/WHEN mid-execution decomposition fires, which is what the matched-pair design needs to hold constant to isolate the harm-outcome effect",
+        "scale": "48-candidate screen exhausted the available pool without reaching the 6-pair floor"
+      },
+      "biological_reference": {
+        "closest_mechanism": "threat-modulated defensive action selection (graded threat input, thresholded regime switch, graded output within regime -- Fanselow & Hoffman 2024, Mobbs 2007/2020, Evans 2018)",
+        "dependencies": ["SD-hazard-aware-policy-decomposition build (present)", "SD-029 scheduled external hazard tuning (present, enabled this run)"],
+        "is_formal_import": false,
+        "divergence": "none in the mechanism itself; the divergence is in the MEASUREMENT design's assumption of matchability, not in the biology",
+        "lit_status": "present (targeted_review_threat_modulated_defensive_path_selection, 9 entries, 2026-08-01)"
+      },
+      "recommended_epistemic_category": "measurement_test_design_defect",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "V3-EXQ-867b (2026-08-04, FAIL, harm_aware_selection_task_effect_underpowered, supersedes V3-EXQ-867a): fixed 867a's vacuous power guard (hard floor n>=6, deleted the min() softening) and screened a 48-candidate pool in-process on the measuring machine -- still only 4 matched-abort pairs, pool EXHAUSTED. NEW structural finding this cycle: screen_soundness_check shows 5 of 7 screen-matched seeds do NOT hold at full measurement schedule (held=false) -- the assumption that a short screen predicts full-schedule matched behaviour is falsified, not merely under-sampled. This suggests the ON-arm harm-aware-selection manipulation itself perturbs whether/when mid-execution decomposition fires, undermining the matched-pair premise structurally. Fourth generation (844/867/867a/867b), each inconclusive for a different reason. Refuse a same-design 867c (a bigger pool against the same screen-then-match methodology); route to a DV/matching redesign instead -- e.g. an unconditional whole-episode harm-rate comparison across all measurement seeds that does not require divergence-tick matching.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "note": "none of the 844/867/867a/867b lineage is stamped substrate_ceiling (R3 of the counting convention excludes this case), so the literal brake does not fire. Documented instead as a 4-generation recurring measurement-debt pattern where the redesign, not another same-design iteration, is the recommended next step -- user-confirmed at the Step 8 gate."},
+      "learning_extracted": [
+        "The matched-abort-pair screening premise (short screen predicts full-schedule matched behaviour) is falsified on this run's own data, not merely under-powered.",
+        "This is evidence the intervention under test changes decomposition timing/occurrence itself, which is a genuinely informative negative about the MEASUREMENT approach even though it says nothing yet about the harm-outcome question.",
+        "Four generations of fixing successive instrumentation defects (environment tuning -> power guard -> screen pool size) have each revealed a NEW defect rather than converging on a decisive test -- the pattern itself is the signal that the design, not the sample size, needs to change."
+      ],
+      "routing": "queue-experiment"
+    },
+    {
+      "run_id": "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3",
+      "queue_id": "V3-EXQ-887",
+      "claim_ids": ["SD-014"],
+      "failed_criterion": "discrimination (C1 functional drive-gating, C2 representational separability; C3 passes)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- a fair, well-instrumented, non-degenerate test; the mechanism was given every opportunity to express itself and did not",
+        "biological_reference": "strong literature grounding (targeted_review_sd_014, 4 entries, 2026-04-17: Smith/Berridge/Aldridge 2011 wanting/liking dissociation, Kennedy & Shapiro 2009 drive-state-dependent CA1, Carey/van der Meer 2019 revaluation-biased replay, Lansink 2009 hippocampus-striatum sequencing)",
+        "prerequisites": "SD-070/MECH-307 drive_state-width defect found and fixed BEFORE this run (ree-v3 32edd553), probe refreshed same day (46569178) -- both landed cleanly ahead of the run",
+        "implementation": "complete and confirmed exercised -- all four valence channels populate (WANTING 21-26, LIKING 18-26, HARM_DISC, SURPRISE nodes), instrument control confirms the tau/rho statistics CAN detect separability when present",
+        "environment": "single-arm, measurement-only design with no active dissociating manipulation -- classic Berridge wanting/liking dissociation studies use dopamine sensitization or devaluation to REVEAL the dissociation; this design instead probes the STORED representation directly via synthetic drive vectors, which should not need behavioral manipulation IF the write-paths are genuinely independent",
+        "measurement": "adequate and instrument-verified (orthogonal synthetic control: tau=-0.011 vs ceiling 0.5)",
+        "integration": "coupled at the SOURCE -- see biological_reference divergence below",
+        "scale": "3 seeds, all consistent (C1 and C2 both fail on every seed) -- not a power problem"
+      },
+      "biological_reference": {
+        "closest_mechanism": "Berridge incentive-salience wanting/liking dissociation: dopamine-mediated wanting (NAcc/VP), opioid-mediated liking (hedonic hotspots) -- two genuinely independent neurochemical systems that CAN be pulled apart by sensitization or devaluation manipulations",
+        "dependencies": ["independent input signals for wanting vs liking", "SD-070/MECH-307 drive_state width (satisfied)"],
+        "is_formal_import": false,
+        "divergence": "LOAD-BEARING: read directly from ree_core/agent.py -- update_liking() (line 10287) writes VALENCE_LIKING from raw benefit_exposure (threshold-gated); update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure), a smoothed/calibrated transform of the SAME underlying signal. Unlike the biological system's genuinely separate dopamine/opioid pathways, the current implementation derives both channels from one shared input via different transforms -- collinearity is close to guaranteed by construction, independent of environment richness or behavioral manipulation.",
+        "lit_status": "present (targeted_review_sd_014, 4 entries)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-887 (2026-08-04, FAIL, node_valence_collapsible_to_composite): SD-014's first-ever genuine experimental evidence (previously lit_conf=0.868, experimental_confidence=0 across 4 prior non_contributory/measurement-gap runs). Readiness gate green, instrument-verified (orthogonal synthetic control confirms the tau/rho statistics detect separability when present), non-degenerate. Both load-bearing criteria fail on every seed: C1 (drive-gating) tau 0.87-0.89 vs 0.85 ceiling; C2 (separability) rho(w,l) 0.93-0.97 vs 0.90 ceiling. Source-level root cause (this session, ree_core/agent.py:10230-10309): update_liking() and update_benefit_salience()/VALENCE_WANTING both derive from the same raw benefit_exposure signal via different transforms -- not independent pathways the way real dopamine-wanting/opioid-liking systems are. Eliminated AS CURRENTLY IMPLEMENTED, with a concrete buildable fix (decouple wanting's computation from raw benefit_exposure, e.g. an incentive-sensitization term per Smith/Berridge/Aldridge 2011 so wanting can diverge from liking over repeated exposure). A retest after that fix opens a fresh hypothesis rather than resolving this one.",
+      "recommended_substrate_queue_entry": {
+        "action": "create",
+        "sd_id_suggested": "sd014-decouple-wanting-liking-writepath",
+        "title": "Decouple VALENCE_WANTING's write-path from raw benefit_exposure so wanting and liking are computed from genuinely independent signals",
+        "implementation_hint": "Currently ree_core/agent.py::update_liking() writes VALENCE_LIKING from raw benefit_exposure (threshold-gated at liking_threshold), while update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure) -- a smoothed/EMA-calibrated transform of the SAME input. Introduce an incentive-sensitization mechanism for wanting (per Smith/Berridge/Aldridge 2011: dopamine sensitization increases wanting without increasing liking) so wanting can diverge from raw hedonic magnitude over repeated exposure/training -- e.g. a separate, learnable gain term on VALENCE_WANTING that is not a monotone function of the same benefit_exposure liking reads. Confirmed unblocking test: V3-EXQ-887's own instrument (orthogonal synthetic control) is already validated and can be reused to retest C1/C2 once the write-path changes.",
+        "unblocks_claims": ["SD-014"],
+        "depends_on_unresolved": [],
+        "priority_suggested": 2,
+        "failure_record_entry": {
+          "run_id": "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3",
+          "experiment_type": "v3_exq_887_sd014_node_valence_representational_functional",
+          "metric": "C2 max_abs_channel_spearman(wanting, liking) = 0.93-0.97 across all 3 seeds",
+          "target": "must clear <= 0.90 (RHO_MAX) for representational separability to hold"
+        }
+      },
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false},
+      "learning_extracted": [
+        "SD-014's first genuine experimental evidence is a clean, non-degenerate weakens -- not a measurement artifact, an instrumentation gap, or an underpowered test.",
+        "The failure has a concrete, source-level mechanistic explanation: wanting and liking share a common input signal in the current write-paths, unlike the genuinely independent neurochemical pathways the claim's own literature is grounded in.",
+        "This is a case where reading the substrate source code directly (not just the manifest) was necessary to distinguish an implementation gap from an environment/design gap or a genuine claim falsification."
+      ],
+      "routing": "implement-substrate"
+    },
+    {
+      "run_id": "v3_exq_848b_arc005_precision_only_finer_ladder_20260804T064758Z_v3",
+      "queue_id": "V3-EXQ-848b",
+      "claim_ids": ["ARC-005"],
+      "failed_criterion": "discrimination (C_precision_monotonicity_finer, 4/10 units vs 7/10 needed)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "intact -- ARC-005 itself already satisfied via a different (MODEPRIOR) channel per its own disjunctive test design (V3-EXQ-846); this is a narrower precision-specific sub-question",
+        "biological_reference": "plausible -- dACC/5-HT precision-weighting is a real predictive-coding mechanism (e.g. Yu & Dayan 2005 norepinephrine/uncertainty), but NO dedicated ARC-005 literature review exists at all",
+        "prerequisites": "calibration (dacc_goal_readout_weight=0.5, normalize=True) confirmed engaged since 848a (25,289 dACC bias calls)",
+        "implementation": "complete -- build-time guard holds, per_arm_gate all_green across all 14 arms/70 cells",
+        "environment": "adequate",
+        "measurement": "the RESOLUTION bottleneck (3-point Spearman-rho ceiling) that made 848a inconclusive is now CLOSED by the 7-level ladder (n_distinct_rho_values_observed=10, all distinct, vs 848a's discrete pile at exactly +0.5)",
+        "integration": "coupled as designed -- channel 1 (5-HT/dACC) genuinely weighted, channel 2 (phasic gain) architecturally expected null (argmax-invariant temperature)",
+        "scale": "5 seeds x 2 content sets x 7 levels -- adequate cell count, but the TRUE effect (~1e-3 log10-precision-units) is ~180x smaller than cross-seed SD (~0.18), which is a genuine power problem independent of cell count"
+      },
+      "biological_reference": {
+        "closest_mechanism": "norepinephrine/dACC-mediated precision-weighting of prediction error in hierarchical predictive coding (Yu & Dayan 2005; Friston precision-weighting literature)",
+        "dependencies": ["calibrated dACC goal-readout channel (present, confirmed engaged)"],
+        "is_formal_import": true,
+        "divergence": "unknown -- cannot assess divergence without a literature review; this claim currently rests on formal predictive-coding precision-weighting concepts with no biology-grounding lit-pull",
+        "lit_status": "absent"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "mixed",
+      "recommended_evidence_quality_note": "V3-EXQ-848b (2026-08-04, FAIL, precision_channel_authority_weak_finer_ladder, supersedes V3-EXQ-848a): pure measurement-resolution redesign (ladder 3-level -> 7-level), no substrate changes. Breaks the resolution ceiling that made 848a inconclusive (n_distinct_rho_values_observed=10, all distinct, spanning -0.536 to 0.964, vs 848a's pile at exactly +0.5). 4/10 units now clear |rho|>=0.6 (up from 1/10), 2/10 additionally Mann-Kendall significant -- genuinely dispersed, not a resolution artifact -- but still short of the 7/10 bar. all_near_zero_null=false (not a clean negative either). The raw effect (~1e-3 log10-precision-units) is ~180x smaller than cross-seed SD (~0.18): swamped by noise, not absent. Accept mixed as the final reading for this design (no further same-design lettered iteration recommended -- resolution is no longer the bottleneck, statistical power against a tiny effect is). No dedicated ARC-005 literature review exists; commissioning /lit-pull.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "note": "explicitly does not fire per the run's own routing note -- 0 substrate_ceiling autopsies tag ARC-005, and this is a test-design redesign, not a re-test circling a ceiling."},
+      "learning_extracted": [
+        "A finer measurement resolution can convert an ambiguous 'is this noise or a resolution artifact' result into a clear read: the effect is real but small, not a resolution ceiling and not a clean null.",
+        "Breaking a resolution bottleneck can reveal a NEW bottleneck (statistical power against a tiny effect) rather than a decisive answer -- worth recognizing before queuing yet another same-design iteration.",
+        "ARC-005 has no dedicated literature review despite resting on a real, citable predictive-coding mechanism (dACC/norepinephrine precision-weighting) -- a gap that predates this specific sub-question."
+      ],
+      "routing": "lit-pull"
+    },
+    {
+      "run_id": "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3",
+      "queue_id": "V3-EXQ-436d",
+      "claim_ids": ["SD-017", "ARC-045", "MECH-166"],
+      "failed_criterion": "discrimination (C1 slot-differentiation directionality, 2/5 seeds vs 3/5 needed)",
+      "four_layer_diagnosis": {
+        "claim_alignment": "unclear pending a methodological check -- the first test in this lineage with no KNOWN instrumentation/substrate defect, but a new, unexplained baseline anomaly surfaced",
+        "biological_reference": "strong literature grounding on both sides (targeted_review_arc_045: 3 entries supports, targeted_review_mech_166: 3 entries supports, targeted_review_sd_017: 4 entries, all 2026-04-05)",
+        "prerequisites": "ContextMemory.write() write_gate defect (436c's root cause) FIXED via contextmemory_gated_content_write=True (ree-v3 5f331fe), empirically confirmed to break homogenization (200-write probe: legacy cosine 0.99993 -> 0.02487 with the flag on)",
+        "implementation": "complete -- P0 gate met (pooled sws_n_writes=800, rem_n_rollouts=600, both floor-clearing)",
+        "environment": "adequate",
+        "measurement": "non_degenerate=true (healthy waking-phase action-class entropy per the degeneracy self-check) but the WAKING_ONLY baseline itself is suspiciously high-variance (cosine 0.0009-0.47 across 5 seeds) instead of clustering near 1.0 as ARC-045's own experimental_implication predicts ('waking-only remains at cosine_sim -> 1.0 regardless of training duration') -- this is either DV-computation noise or a genuine confound not yet identified",
+        "integration": "coupled",
+        "scale": "5 seeds -- adequate cell count for the pre-registered n>=3/5 bar, but not necessarily adequate given the baseline's own variance"
+      },
+      "biological_reference": {
+        "closest_mechanism": "SWS/REM-analog offline consolidation differentiating hippocampal context representations (Diekelmann & Born 2010; Tse 2007 schema consolidation; Born 2010 SWS hippocampal-neocortical dialogue)",
+        "dependencies": ["ContextMemory write path (now confirmed live and non-constant)"],
+        "is_formal_import": false,
+        "divergence": "none identified in the mechanism itself; the open question is whether the WAKING_ONLY baseline's measured behaviour matches the claim's own stated prediction, which it currently does not on its face",
+        "lit_status": "present (3 targeted reviews, 10 entries total, all supports, none opposing)"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "weakens",
+      "recommended_evidence_quality_note": "V3-EXQ-436d (2026-08-04, FAIL, sws_then_rem_does_not_differentiate_slots, supersedes V3-EXQ-436c): fourth generation (436a bug -> 436b recording gap -> 436c write_gate substrate defect -> 436d), the first to clear P0 (writes fire) with no KNOWN instrumentation or substrate defect and non_degenerate=true (healthy waking-phase action-class entropy). C1 fails (2/5 seeds pass, need 3/5). HELD PENDING A METHODOLOGICAL CHECK (user-confirmed at the Step 8 gate) before treating as decisive: the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed (200) shows sleep INCREASING similarity (0.0009->0.49), opposite the predicted direction. This pattern is not obviously the signature of a clean negative -- recommend a quick check of the slot_cosine_sim computation (does it include empty/unwritten memory slots; is there a content-diversity confound driving WAKING_ONLY variance) before this result is used to discharge pending_retest_after_substrate on SD-017/ARC-045/MECH-166 or to inform a demotion discussion.",
+      "recommended_substrate_queue_entry": {"action": "none"},
+      "pending_retest_after_substrate": true,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {"fired": false, "note": "not counted -- neither 436b nor 436c is stamped substrate_ceiling (measurement_gap and measurement_test_design_defect respectively), so R3 excludes them from the count regardless."},
+      "learning_extracted": [
+        "436d is the first test in this 4-letter lineage to clear all known instrumentation and substrate defects, which makes its result the most decision-relevant so far -- but that does not automatically make it decisive.",
+        "A baseline (WAKING_ONLY) that contradicts the claim's own stated prediction is itself diagnostic information, worth checking BEFORE using the comparison arm's result as a governance-ready finding.",
+        "This is exactly the skill's own core stance in practice: the self-route (weakens) is a hypothesis about what the data means, not a verdict, even when non_degenerate=true and no KNOWN defect is present."
+      ],
+      "routing": "queue-experiment"
+    }
+  ],
+  "cluster_pattern": {
+    "shape": "N independent bugs/questions swept in one governance cycle, not one structural property",
+    "is_independent_bugs": true,
+    "structural_property": null,
+    "readings": [
+      "Across five independent claim-lineages, four of six FAILs are lettered iterations (3rd or 4th generation) where each successive letter fixed the PRIOR letter's diagnosed defect and still failed -- but for a genuinely NEW reason each time (875/875a: readiness fix revealed seed-dependent bimodality; 867b: power-guard fix revealed a screening-methodology falsification; 436d: substrate fix revealed a baseline anomaly). This recurring shape -- fix-the-diagnosed-defect, still fail, for a different reason -- is common enough across unrelated claims this cycle to be worth naming as a pattern in its own right, even though the underlying MECHANISMS are unrelated: iterative same-design re-queuing tends to surface successive INSTRUMENTATION/DESIGN layers rather than converging on a claim-level verdict, and each of those three cases was routed toward either a genuinely different measurement approach or a targeted diagnostic rather than a further same-design letter.",
+      "The other two targets (887/SD-014, 848b/ARC-005) are the CONTROL CASE for that pattern: both are lettered/staged iterations that DID reach a clean, decisive-enough reading once their respective instrumentation gaps were closed -- 887 by finding the actual literature-divergent root cause in source, 848b by resolving into a well-characterized (if still underpowered) real effect rather than an ambiguous artifact."
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-03T12:21:26Z",
+  "generated_at": "2026-08-05T06:24:58Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
@@ -8,16 +8,16 @@
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
       "total_modules": 144,
-      "built_modules": 115,
-      "fraction_built": 0.7986,
+      "built_modules": 118,
+      "fraction_built": 0.8194,
       "state_counts": {
-        "proposed": 29,
-        "implemented": 81,
+        "proposed": 26,
+        "implemented": 84,
         "implemented_pending_validation": 19,
         "validated": 15
       },
-      "build_proof_gap": 100,
-      "build_proof_gap_note": "115 modules built, 100 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
+      "build_proof_gap": 103,
+      "build_proof_gap_note": "118 modules built, 103 still unvalidated (per substrate_queue.json self-declared state; validation is usually stamped via claim promotion, so this is a conservative floor).",
       "source": "evidence/planning/substrate_queue.json",
       "independent_of": "Dim 2 (a module can be built while its claim is still candidate/v3_pending)"
     },
@@ -31,127 +31,133 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 47,
-      "total_initial": 85,
-      "total_initial_at_registration": 66,
+      "total_surviving": 52,
+      "total_initial": 91,
+      "total_initial_at_registration": 72,
       "total_fanout_added": 19,
-      "total_resolved_out": 36,
+      "total_resolved_out": 37,
       "total_confirmed": 17,
-      "reduction_pct_vs_current": 42.4,
-      "net_narrowing_pct": 28.8,
+      "reduction_pct_vs_current": 40.7,
+      "net_narrowing_pct": 27.8,
       "convergence_classes": {
-        "narrowing": 10,
-        "static": 9,
+        "static": 12,
+        "narrowing": 11,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "47 alive against 66 originally enumerated, and against 85 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
-      "open_questions": 24
+      "honest_pair_note": "52 alive against 72 originally enumerated, and against 91 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "open_questions": 28
     },
     "decide": {
       "question": "can a design choice legitimately be made?",
-      "ready": 11,
-      "open_questions": 24
+      "ready": 12,
+      "open_questions": 28
     }
   },
   "hero_series": [
     {
       "date": "2026-07-11",
-      "surviving": 84,
+      "surviving": 90,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-13",
-      "surviving": 82,
+      "surviving": 88,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-15",
-      "surviving": 78,
+      "surviving": 84,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-16",
-      "surviving": 77,
+      "surviving": 83,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-17",
-      "surviving": 74,
+      "surviving": 80,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-18",
-      "surviving": 68,
+      "surviving": 74,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-19",
-      "surviving": 64,
+      "surviving": 70,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-20",
-      "surviving": 63,
+      "surviving": 69,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-24",
-      "surviving": 62,
+      "surviving": 68,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-25",
-      "surviving": 61,
+      "surviving": 67,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-27",
-      "surviving": 59,
+      "surviving": 65,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-29",
-      "surviving": 58,
+      "surviving": 64,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-07-31",
-      "surviving": 57,
+      "surviving": 63,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-08-01",
-      "surviving": 55,
+      "surviving": 61,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
       "date": "2026-08-02",
-      "surviving": 49,
+      "surviving": 55,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
     },
     {
-      "date": "2026-08-03",
-      "surviving": 47,
+      "date": "2026-08-04",
+      "surviving": 54,
       "closure_pct": 76.9,
-      "build_pct": 79.9
+      "build_pct": 81.9
+    },
+    {
+      "date": "2026-08-05",
+      "surviving": 52,
+      "closure_pct": 76.9,
+      "build_pct": 81.9
     }
   ],
   "questions": [
@@ -2670,9 +2676,10 @@
           "axis": "measurement",
           "state": "alive",
           "evidence_runs": [
-            "V3-EXQ-848a"
+            "V3-EXQ-848a",
+            "V3-EXQ-848b"
           ],
-          "basis": "V3-EXQ-848a (30 cells, 10 units): calibration confirmed genuinely engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry. Only 1/10 units satisfied |rho|>=0.6, but 7/10 are positive-signed (6 at exactly rho=0.5, the second-highest value a 3-point ladder can produce short of a perfect ordering) vs 802's genuinely-null channels which showed bit-identical rho=0.0. Confirmed autopsy failure_autopsy_V3-EXQ-848a_2026-08-03: the result does not discriminate a real weak effect from noise at this ladder resolution -- an observation bottleneck (3-point Spearman-rho ceiling), not an elimination. Routed to /queue-experiment for a ladder-granularity redesign (candidate V3-EXQ-848b) rather than further substrate work.",
+          "basis": "V3-EXQ-848b (70 cells, 10 units, 7-level ladder) breaks the 3-point Spearman-rho ceiling that made 848a inconclusive: n_distinct_rho_values_observed=10 (all distinct, vs 848a's discrete pile at rho=0.5), per-unit rho now spans -0.536 to 0.964. 4/10 units clear |rho|>=0.6 (2/10 additionally Mann-Kendall significant), up from 1/10 on 848a, but short of the 7/10 bar. The observation bottleneck named in the prior resolution (ladder resolution) is CLOSED. New bottleneck: the true effect is ~1e-3 log10-precision-units, ~180x smaller than cross-seed SD (~0.18) -- underpowered relative to noise, not a clean null (all_near_zero_null=false). failure_autopsy_2026-08-05_pending_review_batch (confirmed): accept mixed as the final reading for this design; route to /lit-pull (no ARC-005-specific literature review exists) rather than a further same-design lettered iteration.",
           "children": [],
           "met_elimination_bar": false
         }
@@ -2680,10 +2687,10 @@
       "decision": {
         "readiness_state": "observation_bottleneck",
         "evidence_decile": 2,
-        "decision_question": "Does the calibrated ARC-005 precision channel route monotonically, or is the current 3-level ladder design too coarse to tell?",
-        "distance_phrase": "1 of 1 tested leg (calibrated channel, 3-level ladder) inconclusive -- 7/10 units positive-signed but clustered at the rho=0.5 resolution ceiling, insufficient to clear the 0.6 threshold short of a perfect ordering. Not yet decidable whether this reflects a real weak effect or noise; needs a finer-grained design.",
-        "live_gate": "A ladder-granularity redesign (5+ levels and/or a magnitude-based statistic replacing per-unit Spearman rho) is needed before this question can be decided -- not yet queued under a new letter.",
-        "observation_bottleneck": "3-point Spearman-rho ladder cannot resolve intermediate monotonic-signal strength from sampling noise -- both land at rho=0.5."
+        "decision_question": "Does the calibrated ARC-005 precision channel route monotonically, and is the current 7-level-ladder design powered to detect it?",
+        "distance_phrase": "2 of 2 tested legs (calibrated channel, 3-level then 7-level ladder) show a real but small, seed-inconsistent effect (4/10 units on the finer ladder, 2/10 independently significant). Resolution is no longer the limiting factor -- statistical power against a tiny effect size is.",
+        "live_gate": "Ladder-resolution bottleneck closed by 848b. Remaining gate is statistical power: the effect is real but ~180x smaller than cross-seed noise, so 7/10 units would need either more seeds/measurement duration or is simply not achievable by this channel at this magnitude.",
+        "observation_bottleneck": "True effect (~1e-3 log10-precision-units) is swamped ~180x by cross-seed SD (~0.18); a rank-based per-unit statistic at n=5 seeds cannot reliably clear the 7/10 bar for an effect this small."
       }
     },
     {
@@ -2859,9 +2866,335 @@
         "live_gate": "A re-run with more seeds and a fraction-based acquisition gate (V3-EXQ-882a) is needed before MECH-472's actual discrimination question (does the in-context/held-out gap track memorisation) becomes testable.",
         "observation_bottleneck": "Worst-of-3-seed acquisition-floor veto cannot distinguish a genuine training-recipe ceiling from ordinary per-seed environment-difficulty variance at small N."
       }
+    },
+    {
+      "qid": "mech321_harm_aware_selection_task_effect",
+      "title": "Does harm-aware selection at mid-execution policy decomposition reduce task-level harm outcome, and can a screened matched-abort-pair design actually test it?",
+      "short_title": "MECH-321 harm-aware selection task effect",
+      "claims": [
+        "MECH-321"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-harm-aware-reduces-task-harm",
+          "label": "harm-aware mid-execution leaf selection reduces realised task harm relative to harm-blind selection",
+          "desc": "When a divergence-eligible decomposition fires in both the harm-aware (ON) and harm-blind (OFF) arms on a matched seed, the ON arm's post-divergence harm signal is less negative than OFF's by >=1SE over >=6 paired seeds.",
+          "axis": "selection",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-844",
+            "V3-EXQ-867",
+            "V3-EXQ-867a",
+            "V3-EXQ-867b"
+          ],
+          "basis": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- it suggests the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires, which undermines the matched-pair premise structurally, not just statistically. failure_autopsy_2026-08-05_pending_review_batch (confirmed): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does harm-aware selection reduce task-level harm, given the matched-pair design cannot currently produce enough held comparisons to test it?",
+        "distance_phrase": "4 of 4 tested legs (844/867/867a/867b) inconclusive for structurally different reasons each time; the design itself, not the sample size, is now the suspect.",
+        "live_gate": "A redesigned DV/matching strategy that does not depend on post-hoc divergence-tick matching is needed before this question is testable at adequate power -- not yet queued.",
+        "observation_bottleneck": "Matched-pair screening assumes short-screen decomposition behaviour predicts full-schedule behaviour; 867b's own screen_soundness_check falsifies that assumption on 5/7 screen-matched seeds."
+      }
+    },
+    {
+      "qid": "sd014_wanting_liking_representational_separability",
+      "title": "Are wanting and liking stored as functionally-separable, drive-gated valence channels in hippocampal map nodes, per SD-014?",
+      "short_title": "SD-014 wanting/liking separability",
+      "claims": [
+        "SD-014"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 1.0,
+      "bits_removed_vs_registration": null,
+      "convergence": {
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
+          "representation"
+        ],
+        "families_touched": [
+          "representation"
+        ],
+        "families_fresh": [],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 0,
+      "alive": 0,
+      "resolved_out": 1,
+      "confirmed": 0,
+      "reduction_numerator": 1,
+      "reduction_ratio": 1.0,
+      "bits_removed": null,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-wanting-liking-separable-drive-gated",
+          "label": "the current write-path implementation stores wanting/liking as separable, drive-gated valence channels",
+          "desc": "Drive-state vectors probed through get_valence_priority meaningfully re-rank replay-candidate nodes (C1, functional drive-gating), and the stored wanting/liking channels are not collinear across nodes (C2, representational separability).",
+          "axis": "representation",
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-887"
+          ],
+          "basis": "V3-EXQ-887 (3 seeds, first-ever genuine experimental evidence for SD-014): readiness gate green (R1-R4 all met, instrument's own orthogonal synthetic control confirms it CAN detect separability, tau=-0.011 vs ceiling 0.5), non_degenerate=true. Both load-bearing criteria fail on every seed: C1 mean_pairwise_tau_dissociated 0.87-0.89 (near 1.0 = rankings barely move with drive state) vs TAU_MAX=0.85; C2 max_abs_channel_spearman(w,l) 0.93-0.97 vs RHO_MAX=0.90 (highly collinear). Root cause read directly from ree_core/agent.py: update_liking() (line 10287) writes VALENCE_LIKING from raw benefit_exposure (threshold-gated); update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure) -- a smoothed/calibrated transform of the SAME underlying signal, not an independent pathway the way dopamine-mediated wanting and opioid-mediated liking are in the cited biology (Smith/Berridge/Aldridge 2011). Eliminated AS CURRENTLY IMPLEMENTED -- a concrete buildable fix exists (decouple wanting's computation from raw benefit_exposure, e.g. an incentive-sensitization term), and a retest after that fix would open a fresh hypothesis, not resolve this one.",
+          "children": [],
+          "met_elimination_bar": true
+        }
+      ],
+      "decision": {
+        "readiness_state": "decidable_now",
+        "evidence_decile": 9,
+        "decision_question": "Does the CURRENT implementation store wanting/liking separably, and if not, does a decoupled write-path fix it?",
+        "distance_phrase": "1 of 1 tested leg eliminated with a concrete, source-level root cause -- this SPECIFIC implementation does not separably encode wanting/liking. Decidable now for the as-implemented question.",
+        "live_gate": "A substrate change decoupling wanting's write-path from liking's raw benefit_exposure input (e.g. an incentive-sensitization term per Smith/Berridge/Aldridge 2011) is needed before a retest is meaningful.",
+        "observation_bottleneck": null
+      }
+    },
+    {
+      "qid": "sd017_arc045_mech166_slot_differentiation_sleep",
+      "title": "Does an SWS/REM-analog sleep phase differentiate hippocampal context slots relative to waking-only encoding, per SD-017/ARC-045/MECH-166?",
+      "short_title": "SD-017/ARC-045/MECH-166 sleep-driven slot differentiation",
+      "claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 1,
+      "initial_frozen_count_at_registration": 1,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "instrumentation"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-sleep-differentiates-context-slots",
+          "label": "SWS_THEN_REM sleep differentiates context slots relative to WAKING_ONLY (slot_cosine_sim lower with sleep)",
+          "desc": "slot_cosine_sim(SWS_THEN_REM) < slot_cosine_sim(WAKING_ONLY) in >=3/5 seeds, given the ContextMemory write path is confirmed live (P0 gate).",
+          "axis": "measurement",
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-436b",
+            "V3-EXQ-436c",
+            "V3-EXQ-436d"
+          ],
+          "basis": "436b: recording gap (write counters never captured) -- measurement_gap, not a real test. 436c: P0 met but the write_gate acted as constant content (sigmoid-midpoint), homogenizing cosine toward 1.0 -- measurement_test_design_defect (substrate bug, not instrumentation). 436d fixes that exact defect (contextmemory_gated_content_write=True), P0 met (writes fire), non_degenerate=true (healthy action-class entropy) -- the first test with no KNOWN instrumentation or substrate defect. C1 still fails (2/5 seeds pass, need 3/5). BUT the WAKING_ONLY baseline itself is high-variance (cosine 0.0009-0.47 across seeds) rather than clustering near 1.0 as ARC-045's own prediction requires ('waking-only remains at cosine_sim -> 1.0 regardless of training duration'), and one seed (200) shows sleep INCREASING similarity (0.0009->0.49), the opposite of the predicted direction. failure_autopsy_2026-08-05_pending_review_batch (confirmed): control_passed left FALSE pending a quick check of the slot_cosine_sim computation (e.g. empty/unwritten-slot inclusion, content-diversity confound in the baseline) before this leg is treated as a decisive elimination or used to discharge pending_retest_after_substrate on the three claims.",
+          "children": [],
+          "met_elimination_bar": false
+        }
+      ],
+      "decision": {
+        "readiness_state": "observation_bottleneck",
+        "evidence_decile": 2,
+        "decision_question": "Does sleep differentiate context slots, or does the WAKING_ONLY baseline's own unexplained variance mean the DV isn't cleanly measuring what ARC-045 predicts?",
+        "distance_phrase": "3 of 3 recorded legs (436b/436c/436d) still short of a clean, uncaveated elimination -- 436d clears the known instrumentation/substrate defects but surfaces a new baseline anomaly that needs checking first.",
+        "live_gate": "A quick methodological check on slot_cosine_sim's computation (does it include empty/unwritten slots; is there a content-diversity confound driving WAKING_ONLY variance) is needed before this leg's result is used for a governance demotion discussion.",
+        "observation_bottleneck": "WAKING_ONLY baseline cosine ranges 0.0009-0.47 rather than clustering near 1.0 as predicted; one seed shows sleep increasing similarity, opposite the predicted direction. Unclear whether this is DV computation noise or a genuine confound."
+      }
+    },
+    {
+      "qid": "mech471_competence_acquisition_reliability",
+      "title": "Why does survival-competence acquisition on the all-ON REE stack succeed reliably for some seeds and fail near-baseline for others, even after the SD-070 z_world fix and an aligned training budget?",
+      "short_title": "MECH-471 competence-acquisition seed reliability",
+      "claims": [
+        "MECH-471"
+      ],
+      "is_hero": false,
+      "initial_frozen_count": 3,
+      "initial_frozen_count_at_registration": 3,
+      "fanout_added": 0,
+      "fanout_growth_events": [],
+      "fanout_growth_note": null,
+      "net_narrowing_ratio": 0.0,
+      "bits_removed_vs_registration": 0.0,
+      "convergence": {
+        "convergence_class": "static",
+        "reason": "no fan-out growth; nothing ruled out yet",
+        "families_closed": [],
+        "families_touched": [],
+        "families_fresh": [
+          "process",
+          "world"
+        ],
+        "unclassified_axes": [],
+        "growth_events": []
+      },
+      "surviving": 3,
+      "alive": 3,
+      "resolved_out": 0,
+      "confirmed": 0,
+      "reduction_numerator": 0,
+      "reduction_ratio": 0.0,
+      "bits_removed": 0.0,
+      "synthesis": null,
+      "hypotheses": [
+        {
+          "hid": "H-exploration-init-variance",
+          "label": "exploration/initialization variance in the all-ON REINFORCE stack traps some seeds in early bad-hazard-avoidance local optima",
+          "desc": "Failing seeds (42, 45 in V3-EXQ-875a) get stuck early in training and never escape, regardless of remaining budget; a per-seed reward-curve trajectory would show early divergence between the succeeding and failing seeds.",
+          "axis": "exploration",
+          "state": "untested",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": null
+        },
+        {
+          "hid": "H-hazard-layout-difficulty-variance",
+          "label": "per-seed hazard-field/reef layout randomization creates genuinely harder survival tasks for some seeds",
+          "desc": "The failure is task-difficulty variance, not learning variance -- some seeds draw a harder hazard/resource layout that no amount of the same training recipe would overcome.",
+          "axis": "environment",
+          "state": "untested",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": null
+        },
+        {
+          "hid": "H-bias-head-ofc-interaction",
+          "label": "bias_head/OFC-devaluation REINFORCE interacts adversely with the survival objective for certain seeds",
+          "desc": "The shared all-ON stack's other drives (bias_head, OFC-devaluation) compete with survival-competence acquisition in a seed-dependent way, an implementation-level drive-arbitration problem rather than pure exploration or task difficulty.",
+          "axis": "arbitration",
+          "state": "untested",
+          "evidence_runs": [],
+          "basis": null,
+          "children": [],
+          "met_elimination_bar": null
+        }
+      ],
+      "decision": {
+        "readiness_state": "discriminative_ready",
+        "evidence_decile": 7,
+        "decision_question": "Which of exploration/initialization variance, hazard-layout difficulty variance, or drive-arbitration interaction explains the bimodal seed-success pattern in survival-competence acquisition?",
+        "distance_phrase": "0 of 3 hypotheses tested. Two full-budget attempts (875, 875a) each cost ~19-20h and diagnosed a genuine readiness-gate fix, but neither was designed to discriminate among these three explanations for the residual bimodality -- a cheap targeted probe is queued as the discriminator.",
+        "live_gate": "A cheap, many-seed diagnostic probe (competence-A acquisition ONLY, skipping the expensive Phase-2 targeted-update stage, 10-20 seeds at modest budget) to characterize the seed-success-rate distribution and look for an early-death or hazard-layout correlation -- not yet queued.",
+        "observation_bottleneck": null
+      }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-436d",
+      "all_runs": [
+        "V3-EXQ-436b",
+        "V3-EXQ-436c",
+        "V3-EXQ-436d"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "sd017_arc045_mech166_slot_differentiation_sleep",
+      "claims": [
+        "SD-017",
+        "ARC-045",
+        "MECH-166"
+      ],
+      "moved": "436b: recording gap (write counters never captured) -- measurement_gap, not a real test. 436c: P0 met but the write_gate acted as constant content (sigmoid-midpoint), homogenizing cosine toward 1.0 -- measurement_test_design_defect (substrate bug, not instrumentation). 436d fixes that exact defect (contextmemory_gated_content_write=True), P0 met (writes fire), non_degenerate=true (healthy action-class entropy) -- the first test with no KNOWN instrumentation or substrate defect. C1 still fails (2/5 seeds pass, need 3/5). BUT the WAKING_ONLY baseline itself is high-variance (cosine 0.0009-0.47 across seeds) rather than clustering near 1.0 as ARC-045's own prediction requires ('waking-only remains at cosine_sim -> 1.0 regardless of training duration'), and one seed (200) shows sleep INCREASING similarity (0.0009->0.49), the opposite of the predicted direction. failure_autopsy_2026-08-05_pending_review_batch (confirmed): control_passed left FALSE pending a quick check of the slot_cosine_sim computation (e.g. empty/unwritten-slot inclusion, content-diversity confound in the baseline) before this leg is treated as a decisive elimination or used to discharge pending_retest_after_substrate on the three claims.",
+      "resolved_utc": "2026-08-04T07:15:41Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-848b",
+      "all_runs": [
+        "V3-EXQ-848a",
+        "V3-EXQ-848b"
+      ],
+      "momentum_class": "inconclusive",
+      "qid": "arc005_precision_channel_measurement_resolution",
+      "claims": [
+        "ARC-005"
+      ],
+      "moved": "V3-EXQ-848b (70 cells, 10 units, 7-level ladder) breaks the 3-point Spearman-rho ceiling that made 848a inconclusive: n_distinct_rho_values_observed=10 (all distinct, vs 848a's discrete pile at rho=0.5), per-unit rho now spans -0.536 to 0.964. 4/10 units clear |rho|>=0.6 (2/10 additionally Mann-Kendall significant), up from 1/10 on 848a, but short of the 7/10 bar. The observation bottleneck named in the prior resolution (ladder resolution) is CLOSED. New bottleneck: the true effect is ~1e-3 log10-precision-units, ~180x smaller than cross-seed SD (~0.18) -- underpowered relative to noise, not a clean null (all_near_zero_null=false). failure_autopsy_2026-08-05_pending_review_batch (confirmed): accept mixed as the final reading for this design; route to /lit-pull (no ARC-005-specific literature review exists) rather than a further same-design lettered iteration.",
+      "resolved_utc": "2026-08-04T06:47:58Z",
+      "evidence_direction": "mixed"
+    },
+    {
+      "run": "V3-EXQ-887",
+      "all_runs": [
+        "V3-EXQ-887"
+      ],
+      "momentum_class": "ruled_out",
+      "qid": "sd014_wanting_liking_representational_separability",
+      "claims": [
+        "SD-014"
+      ],
+      "moved": "V3-EXQ-887 (3 seeds, first-ever genuine experimental evidence for SD-014): readiness gate green (R1-R4 all met, instrument's own orthogonal synthetic control confirms it CAN detect separability, tau=-0.011 vs ceiling 0.5), non_degenerate=true. Both load-bearing criteria fail on every seed: C1 mean_pairwise_tau_dissociated 0.87-0.89 (near 1.0 = rankings barely move with drive state) vs TAU_MAX=0.85; C2 max_abs_channel_spearman(w,l) 0.93-0.97 vs RHO_MAX=0.90 (highly collinear). Root cause read directly from ree_core/agent.py: update_liking() (line 10287) writes VALENCE_LIKING from raw benefit_exposure (threshold-gated); update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure) -- a smoothed/calibrated transform of the SAME underlying signal, not an independent pathway the way dopamine-mediated wanting and opioid-mediated liking are in the cited biology (Smith/Berridge/Aldridge 2011). Eliminated AS CURRENTLY IMPLEMENTED -- a concrete buildable fix exists (decouple wanting's computation from raw benefit_exposure, e.g. an incentive-sensitization term), and a retest after that fix would open a fresh hypothesis, not resolve this one.",
+      "resolved_utc": "2026-08-04T02:25:47Z",
+      "evidence_direction": "weakens"
+    },
+    {
+      "run": "V3-EXQ-867b",
+      "all_runs": [
+        "V3-EXQ-844",
+        "V3-EXQ-867",
+        "V3-EXQ-867a",
+        "V3-EXQ-867b"
+      ],
+      "momentum_class": "underpowered",
+      "qid": "mech321_harm_aware_selection_task_effect",
+      "claims": [
+        "MECH-321"
+      ],
+      "moved": "Four generations, each fixing the defect the last one surfaced, none yet a decisive test. 844: mechanistic PE-reduction supported (C2) but harm-outcome (C1) weakens -- competence_implementation_gap. 867: harm bias never engaged (no SD-029 hazard tuning) -- environment_adequacy_defect, mechanism untestable. 867a: hazard tuning added, bias engages, but the power guard was vacuous (min(6, n_observed)) and only n=2 matched pairs -- measurement_test_design_defect. 867b: hard floor (n>=6) + a 48-candidate in-process screen -- still only 4 matched pairs, pool EXHAUSTED. NEW finding this cycle: screen_soundness_check shows monotonicity_violations on 5 of 7 screen-matched seeds (held=false) -- most seeds that screen-match at a short probe do NOT hold at full measurement schedule. This is not simply 'screen a bigger pool' -- it suggests the ON-arm manipulation itself perturbs whether/when mid-execution decomposition fires, which undermines the matched-pair premise structurally, not just statistically. failure_autopsy_2026-08-05_pending_review_batch (confirmed): refuse a same-design 867c; recommend a DV/matching redesign (e.g. unconditional whole-episode harm rate, not divergence-tick-matched windowing) as the next probe on this question.",
+      "resolved_utc": "2026-08-04T01:59:12Z",
+      "evidence_direction": "unknown"
+    },
     {
       "run": "V3-EXQ-882",
       "all_runs": [
@@ -2947,20 +3280,6 @@
       "moved": "108b used the SANCTIONED sd_zworld_warmup_optimizer_group training route (encoder_trained precondition met, world_encoder_max_abs_delta 0.22-0.24, holdout balanced accuracy 0.80-0.94) and C3 STILL failed (e1coe_score_var ~2.25e-14 vs 0.002 threshold) -- directly refutes 'the bespoke loss just wasn't adequate training'.",
       "resolved_utc": "2026-08-02T12:16:43Z",
       "evidence_direction": "non_contributory"
-    },
-    {
-      "run": "V3-EXQ-848a",
-      "all_runs": [
-        "V3-EXQ-848a"
-      ],
-      "momentum_class": "inconclusive",
-      "qid": "arc005_precision_channel_measurement_resolution",
-      "claims": [
-        "ARC-005"
-      ],
-      "moved": "V3-EXQ-848a (30 cells, 10 units): calibration confirmed genuinely engaged (total_dacc_bias_calls=25289, build-time guard held) -- closes the wiring/calibration line of inquiry. Only 1/10 units satisfied |rho|>=0.6, but 7/10 are positive-signed (6 at exactly rho=0.5, the second-highest value a 3-point ladder can produce short of a perfect ordering) vs 802's genuinely-null channels which showed bit-identical rho=0.0. Confirmed autopsy failure_autopsy_V3-EXQ-848a_2026-08-03: the result does not discriminate a real weak effect from noise at this ladder resolution -- an observation bottleneck (3-point Spearman-rho ceiling), not an elimination. Routed to /queue-experiment for a ladder-granularity redesign (candidate V3-EXQ-848b) rather than further substrate work.",
-      "resolved_utc": "2026-08-02T12:07:12Z",
-      "evidence_direction": "mixed"
     },
     {
       "run": "V3-EXQ-869",
