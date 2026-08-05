@@ -2539,7 +2539,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-230-literature-proposal-for-mech-471 && claude --resume 844924a5-7fdf-4343-8a29-1dc442fea957",
       "task_claim_session_id": "igw-auto-igw-230-literature-proposal-for-mech-471-20260805T064340Z",
       "assigned_at": "2026-08-05T06:43:07Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-05T07:44:44Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-08-05T07:44:46Z"
     }
   ],
   "dispositions": [
@@ -3429,6 +3433,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-03T18:04:03Z",
       "re_eligible_after": "2026-08-05T18:04:01Z"
+    },
+    {
+      "stable_hash": "e1f28ddf5091",
+      "igw_id_at_disposition": "IGW-20260805-230",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-471"
+      ],
+      "skill": "/lit-pull",
+      "title": "Literature proposal for MECH-471",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-05T07:44:44Z",
+      "re_eligible_after": "2026-08-07T07:44:44Z"
     }
   ]
 }

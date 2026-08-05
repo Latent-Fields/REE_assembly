@@ -1410,3 +1410,7 @@ One line per hourly tick. ASCII only.
 2026-08-05T04:41:48Z skip IGW-20260805-230: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-05T05:42:31Z skip IGW-20260805-230: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-05T06:43:07Z SPAWN IGW-20260805-230 skill=/lit-pull prio=40 uuid=844924a5-7fdf-4343-8a29-1dc442fea957 pid=91705 worktree=igw-230-literature-proposal-for-mech-471
+2026-08-05T07:44:44Z auto-defer IGW-20260805-230 hash=e1f28ddf5091 for 48h (reaped -> completed_resumable)
+2026-08-05T07:44:44Z reaped TASK_CLAIMS igw-auto-igw-230-literature-proposal-for-mech-471-20260805T064340Z (ledger IGW-20260805-230 -> completed_resumable)
+2026-08-05T07:44:46Z GC removed worktree igw-230-literature-proposal-for-mech-471 post-reap (ledger IGW-20260805-230 -> completed_resumable; removed; branch deleted)
+2026-08-05T07:44:32Z skip IGW-20260805-238: no fresh runner heartbeat (experiment-lane item would just sit in queue)
