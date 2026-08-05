@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_859_arc062_lateral_pfc_route_mech448_449_ablation
 
-Generated: `2026-08-03T11:32:49.695169Z`
+Generated: `2026-08-05T06:04:48.895375Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

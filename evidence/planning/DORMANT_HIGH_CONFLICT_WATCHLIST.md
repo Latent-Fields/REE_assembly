@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-08-03T11:32:49.695169Z`
+Generated: `2026-08-05T06:04:48.895375Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -11,18 +11,15 @@ Sorted worst-conflict-first.
 
 | claim_id | pattern | conflict_ratio | current_status | recent_targeted_batches |
 |---|---|---|---|---|
-| `MECH-322` | `dormant_low_activity` | 1 | `candidate` | 1 |
 | `Q-084` | `dormant_low_activity` | 1 | `candidate` | 0 |
 | `SD-031` | `dormant_low_activity` | 1 | `candidate` | 1 |
 | `MECH-295` | `chronic_under_threshold` | 0.923 | `candidate` | 16 |
 | `MECH-186` | `chronic_under_threshold` | 0.8 | `candidate` | 2 |
 | `MECH-093` | `chronic_under_threshold` | 0.75 | `provisional` | 19 |
-| `MECH-321` | `chronic_under_threshold` | 0.75 | `candidate` | 6 |
 | `SD-016` | `chronic_under_threshold` | 0.75 | `implemented` | 15 |
 | `ARC-032` | `chronic_under_threshold` | 0.727 | `candidate` | 8 |
 | `MECH-099` | `chronic_under_threshold` | 0.727 | `candidate` | 6 |
 | `MECH-116` | `chronic_under_threshold` | 0.727 | `candidate` | 7 |
-| `MECH-135` | `chronic_under_threshold` | 0.727 | `candidate` | 10 |
 | `ARC-024` | `chronic_under_threshold` | 0.72 | `provisional` | 15 |
 | `SD-049` | `chronic_under_threshold` | 0.714 | `candidate` | 14 |
 | `ARC-030` | `chronic_under_threshold` | 0.706 | `candidate` | 22 |
@@ -37,7 +34,7 @@ Sorted worst-conflict-first.
 | `MECH-112` | `chronic_under_threshold` | 0.667 | `candidate` | 23 |
 | `MECH-118` | `chronic_under_threshold` | 0.667 | `candidate` | 4 |
 | `MECH-150` | `chronic_under_threshold` | 0.667 | `candidate` | 3 |
-| `MECH-166` | `chronic_under_threshold` | 0.667 | `candidate` | 6 |
+| `MECH-322` | `chronic_under_threshold` | 0.667 | `candidate` | 2 |
 | `MECH-333` | `chronic_under_threshold` | 0.667 | `candidate` | 7 |
 | `MECH-445` | `chronic_under_threshold` | 0.667 | `candidate` | 8 |
 | `MECH-459` | `dormant_low_activity` | 0.667 | `candidate` | 1 |
@@ -52,3 +49,4 @@ Sorted worst-conflict-first.
 | `ARC-042` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
 | `MECH-075` | `chronic_under_threshold` | 0.571 | `candidate` | 5 |
 | `MECH-128` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
+| `MECH-135` | `chronic_under_threshold` | 0.571 | `candidate` | 10 |
