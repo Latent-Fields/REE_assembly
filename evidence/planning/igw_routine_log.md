@@ -1414,3 +1414,4 @@ One line per hourly tick. ASCII only.
 2026-08-05T07:44:44Z reaped TASK_CLAIMS igw-auto-igw-230-literature-proposal-for-mech-471-20260805T064340Z (ledger IGW-20260805-230 -> completed_resumable)
 2026-08-05T07:44:46Z GC removed worktree igw-230-literature-proposal-for-mech-471 post-reap (ledger IGW-20260805-230 -> completed_resumable; removed; branch deleted)
 2026-08-05T07:44:32Z skip IGW-20260805-238: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-05T08:45:03Z skip IGW-20260805-238: no fresh runner heartbeat (experiment-lane item would just sit in queue)
