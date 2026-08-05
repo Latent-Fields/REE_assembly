@@ -1,18 +1,29 @@
 {
   "schema_version": "v1",
   "runner_pid": 923,
-  "runner_started_at": "2026-08-03T15:45:35.150669+00:00",
-  "last_updated": "2026-08-03T19:24:06.175377+00:00",
+  "runner_started_at": "2026-08-04T07:17:59.414100+00:00",
+  "last_updated": "2026-08-04T07:52:57.552517+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-867b",
+      "queue_id": "V3-EXQ-875a",
       "backlog_id": "",
-      "claim_id": "MECH-321",
-      "title": "MECH-321 harm-aware selection, screened matched-abort seed pool (supersedes V3-EXQ-867a)",
+      "claim_id": "MECH-471",
+      "title": "MECH-471 local-update interference test (EXP-0399), CORRECTED REQUEUE: adds SD-070 zworld_p0 warmup + aligns training budget to V3-EXQ-728 validated recipe (supersedes V3-EXQ-875, which self-routed substrate_not_ready_requeue)",
       "description": "",
-      "estimated_minutes": 32.0,
+      "estimated_minutes": 944.0,
+      "status": "claimed",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-882a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-472 held-out-context vs task-memorisation: z_world P0a warmup wired + fraction-basis acquisition gate (supersedes V3-EXQ-882)",
+      "description": "",
+      "estimated_minutes": 1322.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
@@ -2193,6 +2204,20 @@
       "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_866b_603q_substrate_regression_check/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json",
       "completed_by": "ree-cloud-3",
       "actual_secs": 12987.5
+    },
+    {
+      "queue_id": "V3-EXQ-888",
+      "backlog_id": "EVB-0074",
+      "claim_id": "MECH-074",
+      "title": "MECH-074 PARENT read/write-head route dissociation (write-strength vs write-address into the shared hippocampal map)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "verdict: PASS | \"outcome\": \"PASS\", | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-888 -> /home/ree/REE_Working/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-888.json",
+      "started_at": "2026-08-04T07:17:59.626150+00:00",
+      "completed_at": "2026-08-04T07:52:57.551542+00:00",
+      "output_file": "/home/ree/REE_Working/REE_assembly/evidence/experiments/v3_exq_888_mech074_readwrite_head_route_dissociation_20260804T075257Z_v3.json",
+      "completed_by": "ree-cloud-3",
+      "actual_secs": 2097.9
     }
   ]
 }

@@ -1,0 +1,436 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate",
+  "run_id": "v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-04T06:23:09Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-322"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {},
+  "experiment_purpose": "diagnostic",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "replay_carveout_fires_and_fails_closed",
+    "preconditions": [
+      {
+        "name": "ARM_OFF::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_OFF",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT_FLAG_OFF::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_STRICT_FLAG_OFF",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (a precursor to any replay-origin test) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a.",
+        "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT_FLAG_OFF::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_STRICT_FLAG_OFF",
+        "kind": "readiness",
+        "description": "Same buffer-reachability precondition as V3-EXQ-810a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+        "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT_FLAG_OFF::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_STRICT_FLAG_OFF",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_STRICT_FLAG_OFF::replay_high_value_candidate_seed_fraction",
+        "precondition": "replay_high_value_candidate_seed_fraction",
+        "arm": "ARM_STRICT_FLAG_OFF",
+        "kind": "readiness",
+        "description": "V3-EXQ-873 FIX: MECH-322 condition (a)'s own readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint -- NOT 873's worst-of-N candidate margin, which let one seed with no candidate veto the whole arm. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt PROBE 2); the DETERMINISTIC per-seed mint is C1, scored over cleared seeds only.",
+        "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.4,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_ON::episode_outcome_spread_supra_floor",
+        "precondition": "episode_outcome_spread_supra_floor",
+        "arm": "ARM_REPLAY_ON",
+        "kind": "readiness",
+        "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (a precursor to any replay-origin test) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a.",
+        "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.34876907575061117,
+        "threshold": 0.05,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_ON::chunk_buffer_supports_size_range",
+        "precondition": "chunk_buffer_supports_size_range",
+        "arm": "ARM_REPLAY_ON",
+        "kind": "readiness",
+        "description": "Same buffer-reachability precondition as V3-EXQ-810a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+        "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+        "direction": "lower",
+        "applies": true,
+        "measured": 9.408333333333333,
+        "threshold": 4.0,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_ON::salient_harm_events_fire",
+        "precondition": "salient_harm_events_fire",
+        "arm": "ARM_REPLAY_ON",
+        "kind": "readiness",
+        "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+        "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.026721120186697783,
+        "threshold": 0.01,
+        "met": true
+      },
+      {
+        "name": "ARM_REPLAY_ON::replay_high_value_candidate_seed_fraction",
+        "precondition": "replay_high_value_candidate_seed_fraction",
+        "arm": "ARM_REPLAY_ON",
+        "kind": "readiness",
+        "description": "V3-EXQ-873 FIX: MECH-322 condition (a)'s own readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint -- NOT 873's worst-of-N candidate margin, which let one seed with no candidate veto the whole arm. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt PROBE 2); the DETERMINISTIC per-seed mint is C1, scored over cleared seeds only.",
+        "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+        "direction": "lower",
+        "applies": true,
+        "measured": 0.875,
+        "threshold": 0.4,
+        "met": true
+      }
+    ],
+    "criteria": [
+      {
+        "name": "C1_carveout_fires_under_valid_conditions",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C2_wake_refusal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_low_value_refusal",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C4_master_switch_refuses_regardless_of_phase_or_value",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C5_off_arm_inert",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C6_corroboration_deadline_tracked",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C7_replay_counters_consistent",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "criteria_non_degenerate": {
+      "C5_off_arm_inert": true,
+      "C4_master_switch_refuses_regardless_of_phase_or_value": true,
+      "C1_carveout_fires_under_valid_conditions": true,
+      "C2_wake_refusal": true,
+      "C3_low_value_refusal": true,
+      "C6_corroboration_deadline_tracked": true,
+      "C7_replay_counters_consistent": true
+    },
+    "per_arm_gate": {
+      "green_arms": [
+        "ARM_OFF",
+        "ARM_STRICT_FLAG_OFF",
+        "ARM_REPLAY_ON"
+      ],
+      "red_arms": [],
+      "structurally_vacuous_arms": [],
+      "vacuity_reason_by_arm": {},
+      "all_green": true,
+      "any_green": true,
+      "failed_preconditions_by_arm": {},
+      "preconditions_scope_note": "All arms passed their gate; every precondition is carried in interpretation.preconditions.",
+      "green": [
+        {
+          "arm": "ARM_OFF",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_OFF::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_OFF",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            }
+          ],
+          "scoped_out": [
+            {
+              "name": "ARM_OFF::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_OFF",
+              "applies": false,
+              "reason": "ARM_OFF never constructs the accumulator (disposition (a))."
+            },
+            {
+              "name": "ARM_OFF::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_OFF",
+              "applies": false,
+              "reason": "ARM_OFF never constructs the accumulator (disposition (a))."
+            },
+            {
+              "name": "ARM_OFF::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_OFF",
+              "applies": false,
+              "reason": "ARM_OFF never constructs the accumulator (disposition (a))."
+            }
+          ]
+        },
+        {
+          "arm": "ARM_STRICT_FLAG_OFF",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_STRICT_FLAG_OFF::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_STRICT_FLAG_OFF",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (a precursor to any replay-origin test) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a.",
+              "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_STRICT_FLAG_OFF::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_STRICT_FLAG_OFF",
+              "kind": "readiness",
+              "description": "Same buffer-reachability precondition as V3-EXQ-810a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+              "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_STRICT_FLAG_OFF::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_STRICT_FLAG_OFF",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_STRICT_FLAG_OFF::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_STRICT_FLAG_OFF",
+              "kind": "readiness",
+              "description": "V3-EXQ-873 FIX: MECH-322 condition (a)'s own readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint -- NOT 873's worst-of-N candidate margin, which let one seed with no candidate veto the whole arm. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt PROBE 2); the DETERMINISTIC per-seed mint is C1, scored over cleared seeds only.",
+              "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.875,
+              "threshold": 0.4,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        },
+        {
+          "arm": "ARM_REPLAY_ON",
+          "gate_green": true,
+          "structurally_vacuous": false,
+          "vacuity_reason": "",
+          "failed_preconditions": [],
+          "preconditions": [
+            {
+              "name": "ARM_REPLAY_ON::episode_outcome_spread_supra_floor",
+              "precondition": "episode_outcome_spread_supra_floor",
+              "arm": "ARM_REPLAY_ON",
+              "kind": "readiness",
+              "description": "MECH-323's evaluative gate is RELATIVE to a running baseline, so real chunk formation (a precursor to any replay-origin test) is structurally impossible on a flat outcome stream. Same statistic as V3-EXQ-810a.",
+              "control": "worst seed in this arm; the hazard/resource grid's per-episode net signal varies",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.34876907575061117,
+              "threshold": 0.05,
+              "met": true
+            },
+            {
+              "name": "ARM_REPLAY_ON::chunk_buffer_supports_size_range",
+              "precondition": "chunk_buffer_supports_size_range",
+              "arm": "ARM_REPLAY_ON",
+              "kind": "readiness",
+              "description": "Same buffer-reachability precondition as V3-EXQ-810a: a per-trial buffer shorter than chunk_max_size makes the tracked-sequence tally too shallow to hold a genuine repeated high-value candidate.",
+              "control": "worst seed in this arm; e3_steps_per_tick periodicity",
+              "direction": "lower",
+              "applies": true,
+              "measured": 9.408333333333333,
+              "threshold": 4.0,
+              "met": true
+            },
+            {
+              "name": "ARM_REPLAY_ON::salient_harm_events_fire",
+              "precondition": "salient_harm_events_fire",
+              "arm": "ARM_REPLAY_ON",
+              "kind": "readiness",
+              "description": "Task-property check shared with V3-EXQ-810a: confirms the hazard-bearing grid is genuinely exercised, so an arm's gate is never vacuously green from zero applied preconditions.",
+              "control": "worst seed in this arm on the 8x8 hazard/proxy grid",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.026721120186697783,
+              "threshold": 0.01,
+              "met": true
+            },
+            {
+              "name": "ARM_REPLAY_ON::replay_high_value_candidate_seed_fraction",
+              "precondition": "replay_high_value_candidate_seed_fraction",
+              "arm": "ARM_REPLAY_ON",
+              "kind": "readiness",
+              "description": "V3-EXQ-873 FIX: MECH-322 condition (a)'s own readiness precondition, aggregated as the FRACTION OF SEEDS in which at least one tracked real sub-sequence had an outcome mean clearing ChunkAccumulator.replay_value_threshold() by the sleep checkpoint -- NOT 873's worst-of-N candidate margin, which let one seed with no candidate veto the whole arm. Measured = n_cleared / n_seeds; a floor. It certifies the arm is ADJUDICABLE (enough seeds can attempt PROBE 2); the DETERMINISTIC per-seed mint is C1, scored over cleared seeds only.",
+              "control": "fraction of this arm's seeds that produced a qualifying candidate; goes red only when candidates rarely emerge (a real substrate/schedule problem), never on one unlucky seed",
+              "direction": "lower",
+              "applies": true,
+              "measured": 0.875,
+              "threshold": 0.4,
+              "met": true
+            }
+          ],
+          "scoped_out": []
+        }
+      ],
+      "red": []
+    },
+    "gate_offending_cells": {
+      "ARM_OFF": {
+        "episode_outcome_spread_supra_floor": "ARM_OFF/seed202",
+        "chunk_buffer_supports_size_range": "ARM_OFF/seed101",
+        "salient_harm_events_fire": "ARM_OFF/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_OFF/seed101, ARM_OFF/seed202, ARM_OFF/seed303, ARM_OFF/seed404, ARM_OFF/seed505, ARM_OFF/seed606, ARM_OFF/seed707, ARM_OFF/seed808"
+      },
+      "ARM_STRICT_FLAG_OFF": {
+        "episode_outcome_spread_supra_floor": "ARM_STRICT_FLAG_OFF/seed202",
+        "chunk_buffer_supports_size_range": "ARM_STRICT_FLAG_OFF/seed303",
+        "salient_harm_events_fire": "ARM_STRICT_FLAG_OFF/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_STRICT_FLAG_OFF/seed303"
+      },
+      "ARM_REPLAY_ON": {
+        "episode_outcome_spread_supra_floor": "ARM_REPLAY_ON/seed202",
+        "chunk_buffer_supports_size_range": "ARM_REPLAY_ON/seed303",
+        "salient_harm_events_fire": "ARM_REPLAY_ON/seed202",
+        "replay_high_value_candidate_seed_fraction": "ARM_REPLAY_ON/seed303"
+      }
+    },
+    "combination_rule": "overall PASS = ARM_REPLAY_ON gate green (readiness: >= 0.40 of seeds produced a qualifying candidate) AND C1 (>= 1.00 of CLEARED seeds minted replay_origin) AND C2..C7. C1 is scored over cleared seeds only -- a no-candidate seed is excluded from C1's denominator, not counted as a mint failure (the V3-EXQ-873 test-design fix)."
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "828d8a71bb9993a89e00d5526156469cb5c2d6b81d8ddf13c41559d91df8f2b0",
+  "substrate_commit": {
+    "commit": "5adb28a232209f0e4e350d68730883da409beeb2",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 201288,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 24,
+    "goal_state_present": false
+  }
+}

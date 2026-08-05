@@ -1,40 +1,62 @@
 {
   "schema_version": "v1",
   "runner_pid": 3973580,
-  "runner_started_at": "2026-08-02T21:52:20.169763+00:00",
-  "last_updated": "2026-08-03T02:20:52.158370+00:00",
+  "runner_started_at": "2026-08-04T02:01:26.883810+00:00",
+  "last_updated": "2026-08-04T06:23:10.298276+00:00",
   "idle": false,
   "current": null,
   "queue": [
     {
-      "queue_id": "V3-EXQ-875",
+      "queue_id": "V3-EXQ-875a",
       "backlog_id": "",
       "claim_id": "MECH-471",
-      "title": "MECH-471 local-update interference test (EXP-0399): does a targeted REINFORCE update on one competence degrade an unrelated, previously-acquired competence?",
+      "title": "MECH-471 local-update interference test (EXP-0399), CORRECTED REQUEUE: adds SD-070 zworld_p0 warmup + aligns training budget to V3-EXQ-728 validated recipe (supersedes V3-EXQ-875, which self-routed substrate_not_ready_requeue)",
       "description": "",
-      "estimated_minutes": 592.0,
+      "estimated_minutes": 944.0,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-874",
+      "queue_id": "V3-EXQ-848b",
       "backlog_id": "",
-      "claim_id": "MECH-467",
-      "title": "MECH-467 distractor battery: sensory capture / rule drift / wrong-target selection dissociation (behavioural capture)",
+      "claim_id": "",
+      "title": "ARC-005 precision monotonicity, finer 7-level ladder (breaks 848a 3-point Spearman-rho ceiling)",
       "description": "",
-      "estimated_minutes": 80.0,
+      "estimated_minutes": 18666.7,
       "status": "claimed",
       "status_reason": "",
       "ree_version": "v3"
     },
     {
-      "queue_id": "V3-EXQ-884",
-      "backlog_id": "EXP-0390",
+      "queue_id": "V3-EXQ-882a",
+      "backlog_id": "",
       "claim_id": "",
-      "title": "MECH-428 subgoal-bootstrapped goal seeding: NO_SUBGOAL / SUBGOAL_BOOTSTRAP / FORCED_SEED 3-arm parent_goal_norm bootstrap test",
+      "title": "MECH-472 held-out-context vs task-memorisation: z_world P0a warmup wired + fraction-basis acquisition gate (supersedes V3-EXQ-882)",
       "description": "",
-      "estimated_minutes": 1.2,
+      "estimated_minutes": 1322.7,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-888",
+      "backlog_id": "EVB-0074",
+      "claim_id": "MECH-074",
+      "title": "MECH-074 PARENT read/write-head route dissociation (write-strength vs write-address into the shared hippocampal map)",
+      "description": "",
+      "estimated_minutes": 64.0,
+      "status": "pending",
+      "status_reason": "",
+      "ree_version": "v3"
+    },
+    {
+      "queue_id": "V3-EXQ-436d",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "ARC-045/SD-017/MECH-166 slot-differentiation retest on repaired ContextMemory write path (gated_content_write=True); supersedes V3-EXQ-436c",
+      "description": "",
+      "estimated_minutes": 266.7,
       "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
@@ -47,39 +69,6 @@
       "description": "",
       "estimated_minutes": 480.0,
       "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-882",
-      "backlog_id": "",
-      "claim_id": "MECH-472",
-      "title": "MECH-472 held-out context vs task memorisation, training-exposure sweep (EXP-0400)",
-      "description": "",
-      "estimated_minutes": 896.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-878",
-      "backlog_id": "EVB-0268",
-      "claim_id": "MECH-332",
-      "title": "MECH-332: efference-copy comparator vs descending-modulation double dissociation",
-      "description": "",
-      "estimated_minutes": 288.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-866a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "INV-034/Q-021: goal-maintenance-vs-avoidance-only ablation, re-run on scaffolded_sd054_onboarding curriculum (supersedes V3-EXQ-866)",
-      "description": "",
-      "estimated_minutes": 300.0,
-      "status": "pending",
       "status_reason": "",
       "ree_version": "v3"
     }
@@ -3732,6 +3721,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_883_mech427_cross_level_subgoal_credit_20260803T022051Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 12.6
+    },
+    {
+      "queue_id": "V3-EXQ-887",
+      "backlog_id": "EVB-0245",
+      "claim_id": "SD-014",
+      "title": "SD-014 node-valence vector: representational separability + drive-gated replay priority (wall-independent confirming DV)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL | VERDICT: FAIL  direction=weakens  label=node_valence_collapsible_to_composite | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-887 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-887.json",
+      "started_at": "2026-08-04T02:01:26.901133+00:00",
+      "completed_at": "2026-08-04T02:25:48.036445+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 1461.1
+    },
+    {
+      "queue_id": "V3-EXQ-873a",
+      "backlog_id": "EVB-0489",
+      "claim_id": "MECH-322",
+      "title": "MECH-322 sleep-replay carve-out: fraction-based readiness gate decoupling stochastic candidate-emergence from deterministic AND-gate minting (supersedes V3-EXQ-873)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "outcome: PASS | corroboration_deadline_fates: {'dissolved': 7, 'still_tracked': 0} | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-873a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-873a.json",
+      "started_at": "2026-08-04T02:25:49.841363+00:00",
+      "completed_at": "2026-08-04T06:23:10.296689+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 14240.5
     }
   ]
 }

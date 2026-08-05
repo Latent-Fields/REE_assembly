@@ -1,0 +1,44 @@
+{
+  "schema_version": "metrics/v1",
+  "values": {
+    "c1_pass": true,
+    "c2_pass": true,
+    "c3_pass": true,
+    "c4_pass": true,
+    "c5_pass": true,
+    "c6_pass": true,
+    "c7_pass": true,
+    "gate_c1_arm_green": true,
+    "gate_any_arm_green": true,
+    "gate_green_by_arm": {
+      "ARM_OFF": true,
+      "ARM_STRICT_FLAG_OFF": true,
+      "ARM_REPLAY_ON": true
+    },
+    "n_seeds": 8,
+    "readiness_seed_fraction_by_arm": {
+      "ARM_OFF": 0.0,
+      "ARM_STRICT_FLAG_OFF": 0.875,
+      "ARM_REPLAY_ON": 0.875
+    },
+    "n_cleared_seeds_by_arm": {
+      "ARM_OFF": 0,
+      "ARM_STRICT_FLAG_OFF": 7,
+      "ARM_REPLAY_ON": 7
+    },
+    "readiness_seed_fraction_floor": 0.4,
+    "c1_cleared_seed_count": 7,
+    "c1_minted_cleared_count": 7,
+    "c1_mint_fraction": 1.0,
+    "c1_mint_fraction_floor": 1.0,
+    "n_replay_attempted_seeds": 8,
+    "n_strict_attempted_seeds": 8,
+    "corroboration_deadline_fates": {
+      "dissolved": 7,
+      "still_tracked": 0
+    },
+    "replay_formed_total": 7,
+    "replay_origin_total": 7,
+    "replay_deadline_dissolutions_total": 7
+  }
+}
