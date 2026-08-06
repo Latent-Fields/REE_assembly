@@ -62883,6 +62883,87 @@
     NOT a proposal to add heterogeneous timescales (already owned, SD-006/ARC-023), and
     NOT a DLIF merge (orthogonal, answered-negative as a unifying mathematical object).
 
+- id: ARC-120
+  title: "Behavioural/write authority in REE is (and should remain) EARNED through demonstrated competence, never granted merely because a computation or mechanism exists: REE's existing authority-gating mechanisms are independently-discovered instances of one general developmental sequence -- existence -> representation -> competence -> authority -> behavioural influence -- rather than unrelated ad hoc gates."
+  claim_type: architectural_commitment
+  subject: architecture.competence_before_authority_framing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-06
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-06"
+  source:
+    - docs/thoughts/2026-08-06_scientific_evolution_of_ree.md
+  depends_on:
+    - MECH-368   # event-level write-authority gate: an event earns write-eligibility per-event, not by default
+    - ARC-107    # BG-mirroring eligibility-gating constitution: committed-action authority passes through an earned eligibility mask
+    - SD-032b    # dACC/aMCC adaptive-control: behavioural-adjustment authority written to a learnable, not fixed, store
+    - MECH-261   # mode-conditioned write gating: which substrates may write is earned by operating-mode state, not innate
+    - MECH-094   # simulation-vs-real hypothesis-tag: simulated content is denied committed/write authority until tagged real
+    - INV-039    # consolidation rate gated by demonstrated map stability, not granted uniformly
+  notes: >
+    FRAMING CLAIM from the 2026-08-06 historical-archaeology thought intake (Observation
+    4: "competence consistently precedes authority"). ARGUABLY IMPLIED by the depends_on
+    set taken together -- each already gates some form of authority (write, commitment,
+    selection, consolidation-rate) on a competence-like precondition (per-event
+    eligibility, map stability, operating mode, real-vs-simulated tagging) -- but nowhere
+    stated as one general architectural principle before this intake. That generalisation
+    is the whole of its novelty; it introduces no new mechanism.
+    LOWER PRIORITY than its instances. Not directly falsifiable by a single experiment;
+    it is a framing over already-registered mechanisms and is falsified in the design
+    sense by any future accepted mechanism that grants behavioural or write authority
+    WITHOUT a competence-like gate.
+    Distinct from MECH-457's uninformative-value-baseline finding and the broader
+    competence-acquisition/retention cluster (MECH-457, competence_retention_dissociable_
+    from_acquisition) -- those are about HOW HARD competence is to install and keep; this
+    claim is about what authority is CONDITIONED ON once competence exists.
+
+- id: ARC-121
+  title: "REE's mechanisms increasingly converge on maintaining and consuming a SHARED epistemic-state object (knowledge / belief / uncertainty / possibility / commitment / action) rather than each existing as an isolated computational function: prediction, replay, harm/ethics evaluation, planning and learning read and update a common epistemic relationship rather than independent local state."
+  claim_type: architectural_commitment
+  subject: architecture.epistemic_state_centrality_framing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-06
+    needs_review: false
+  epistemic_category: standard
+  claim_level: architectural
+  implementation_phase: v3
+  version_relevance: v3
+  registered: "2026-08-06"
+  source:
+    - docs/thoughts/2026-08-06_scientific_evolution_of_ree.md
+  depends_on:
+    - MECH-482   # epistemic_deficit accumulator: a persistent, target-bound belief/uncertainty object
+    - MECH-483   # orient/survey: a behavioural regime driven directly by the shared epistemic_deficit object
+    - SD-034     # closure operator over committed rule_state: commitment as a first-class latched/released object
+    - MECH-094   # hypothesis-tag: a belief/simulation-vs-real distinction consumed across replay, rule-arbitration and relief pathways
+  notes: >
+    FRAMING CLAIM from the 2026-08-06 historical-archaeology thought intake (Observation
+    3: "epistemic state appears to be the central computational object"). Each dependency
+    already treats belief/uncertainty/commitment as a first-class object LOCALLY; the
+    novelty is the cross-mechanism generalisation that these are converging on ONE shared
+    kind of object rather than independently-invented local state, which is nowhere
+    stated as a claim before this intake.
+    NOT a proposal for SD-062's claims-index-as-structured-uncertainty-graph (that graph
+    formalises REE's OWN research-process epistemics about its claims -- a different
+    level of description) and NOT a proposal for Q-079's dynamic latent-scale inference
+    field / DLIF mathematical object (a specific technical substrate this framing would
+    motivate but does not itself specify) -- both noted as adjacent and orthogonal, not
+    merged, mirroring ARC-112's own DLIF disclaimer.
+    LOWER PRIORITY than its instances; not directly falsifiable by a single experiment.
+    Falsified in the design sense if REE's future substrate development keeps adding
+    local, mechanism-private belief/uncertainty representations rather than converging
+    toward anything approximating one shared epistemic-state object.
+
 # --- Cluster B: goal relevance, salience, distractor suppression -------------
 
 - id: MECH-467
