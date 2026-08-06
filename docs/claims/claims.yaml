@@ -2786,6 +2786,34 @@
     - ARC-017
     - ARC-003
     - ARC-005
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires the named VALENCE component
+    streams (HOMEOSTASIS, HARM, TEMPORAL_COHERENCE, SELF_IMPACT error,
+    option volume, inferred other welfare) to be independently
+    computable per candidate trajectory and to show non-zero
+    cross-candidate variance on at least two components simultaneously
+    -- a scenario where only one component ever varies (the others are
+    flat or degenerate) cannot distinguish vector-valued ranking from a
+    scalar collapsed onto that one live component, and should
+    self-route substrate_not_ready rather than count as a verdict. No
+    prior experimental run has targeted this claim as of 2026-08-06; a
+    first test is establishing evidence, not re-litigating a null.
+    CONFIRMING signature: trajectory selection outcomes are explained
+    by constraint-first / Pareto-or-lexicographic comparison over the
+    component vector -- i.e. there exist candidate pairs where no
+    single scalar combination (weighted sum, fixed linear blend) of the
+    components reproduces the system's ranking, but a
+    dominance/lexicographic rule over the raw vector does; and
+    trajectories that are dominated on one stream (e.g. higher HARM)
+    are rejected even when a competing scalar-weighted blend would
+    prefer them for gains elsewhere (e.g. higher option volume).
+    FALSIFYING: the observed rankings are fully reproducible by some
+    fixed scalar weighting of the component streams (i.e. a single
+    linear or monotonic combination fits the choice behaviour as well
+    as the vector/Pareto rule does) -- this would indicate VALENCE is
+    functioning as a de facto scalar reward regardless of its vector
+    representation, and would refute the "no scalar collapse" claim
+    even if the underlying data structure remains vector-shaped.
   location: docs/architecture/sensory_stream_tags.md#mech-035
   source:
     - docs/thoughts/2026-02-09_valence_vector.md
@@ -5772,6 +5800,51 @@
     detect harm gradients (approach → contact) rather than binary harm endpoints.
     Discriminability relies on z_world encoding proximity via hazard_field channels
     (CausalGridWorldV2) and SD-007 reafference correction removing self-motion contamination.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): requires
+    CausalGridWorldV2 (or successor) with hazard_field proximity channels present in
+    z_world and SD-007 reafference correction active (removing self-motion
+    contamination from the proximity signal) -- without both, harm_eval has no
+    proximity structure to be calibrated against and a flat/degenerate score is an
+    instrumentation failure, not disconfirmation. A test without ARC-024 proxy
+    gradient fields (as EXQ-026) is a valid but weaker test than one with them (as
+    EXQ-029, which showed a much larger calibration_gap); either is informative, but
+    do not compare their magnitudes as if measuring the same thing.
+    EXCLUDED FROM SCORING: the EXQ-085/085a-085g goal-seeded-navigation series is
+    NOT informative for or against this claim. All eight manifests were
+    reclassified evidence_direction_per_claim=non_contributory on 2026-06-02
+    (memo: evidence/planning/exq085_mech071_disposition_2026-06-02.md) because
+    their repeated FAILs were on criterion C2 (goal-directed navigation, a
+    scaffolding bug later traced to goal_state not being wired to action
+    selection), a mechanism owned by SD-015/MECH-112/ARC-030 -- not on C3
+    (calibration gradient), which PASSed in every one of those runs. Only a
+    C3-shaped calibration-gap test (EXQ-026/EXQ-029 pattern) bears on MECH-071.
+    CAVEAT for any future test that partitions by agent_caused_hazard vs
+    env_caused_hazard specifically: the 2026-08-03 autopsy of the sibling claim
+    MECH-072 (V3-EXQ-877, evidence/planning/failure_autopsy_V3-EXQ-877_2026-08-03.md)
+    found that CausalGridWorldV2's transition_type labels encode hazard-OBJECT
+    PROVENANCE (did the environment place this tile, or did the agent's own
+    contamination footprint), which is anti-correlated with PROXIMAL avoidability
+    for the contamination mechanic specifically. That finding was scoped to
+    MECH-072's counterfactual (stay-comparator) discriminator, not to MECH-071's
+    calibration-gap measure, and MECH-071's own evidence (EXQ-026/029) does not use
+    a stay-counterfactual -- so it is not automatically undermined. But a future
+    run should confirm which axis it is actually testing (labeled provenance vs
+    true proximal avoidability) before its result is taken as a clean test of
+    "agent-caused" in the intuitive sense the title uses.
+    CONFIRMING signature: harm_eval(z_world_t) rises monotonically/continuously as
+    the agent approaches a hazard (not only at the contact event -- e.g. the graded
+    none < approach < contact pattern from EXQ-029), AND calibration_gap computed
+    ahead of agent_caused_hazard/hazard_approach transitions exceeds calibration_gap
+    ahead of env_caused_hazard transitions or locomotion by a margin comparable to
+    or exceeding the EXQ-026 threshold (>0.03 gap magnitude, or the pre-registered
+    threshold of the specific test design).
+    FALSIFYING signature: harm_eval shows no graded/continuous structure with
+    proximity (jumps only at contact, or is flat), OR calibration_gap does not
+    differ (or reverses) between the agent_caused_hazard/hazard_approach group and
+    the env_caused_hazard/locomotion group, OR the gap that is observed collapses
+    to noise once measured on a ground-truth partition confirmed to track proximal
+    avoidability rather than object provenance (see CAVEAT above).
 - id: MECH-072
   title: "Foreseeable-harm gating on residue accumulation reduces false attribution without degrading harm avoidance."
   claim_type: mechanism_hypothesis
@@ -7857,6 +7930,54 @@
     SLF (Rolls et al. 2023). See MECH-098 and MECH-099.
     Literature: evidence/literature/targeted_review_reafference_streams/.
   heterogeneity_note: "Substrate-version confound: the EXQ-121 FAIL reflects insufficient z_self dimensionality (32-dim) and training scale for the AgencyComparator to outperform ablation; the mechanism is validated by EXQ-047k PASS (4-seed) and strong literature anchor (TPJ comparator); held at active/substrate_ceiling pending z_self scaling."
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (HARD): a test of MECH-095 is informative only on a
+    substrate that supplies a genuine second agent -- a structurally-distinct OTHER
+    whose actions are causally attributable separately from ambient world drift. This
+    is not a design preference; it is an empirically confirmed requirement. V3-EXQ-741
+    (2026-07-12) ran the SD-047 multi-source-dynamics comparator test-bed VALIDLY for
+    the first time (probe-partition guard + self/world training-label-balance guard
+    both passed, non_degenerate=true) and found the comparator does no functional work
+    in that single-agent environment (best arm recall_improvement +0.028, below the
+    0.04 pre-registered floor; ROUTED_A gradient-head HURTS recall -0.114; baseline
+    already carries contact recall 0.75-0.93). This is the FIRST valid substrate_ceiling
+    hit for MECH-095 (n_ceiling_hits 0->1) and is read as confirming that world-caused
+    drift is not a structurally-distinct OTHER, so no single-agent env can make the
+    comparator load-bearing. The retest is bound to multi_agent_ecology_v5:MAE-3 (as of
+    2026-08-06 blocked on MAE-2, per IGW-20260806-139) -- a run on any single-agent
+    substrate, including a further SD-047 letter, is explicitly REFUSED by the
+    re-derive brake and should self-route substrate_not_ready, not count as a verdict.
+    Two prior retests must also NOT be read as verdicts: V3-EXQ-047l (probe-partition
+    saturation -- no-contact negative class was empty, contact_recall pinned at 0.0 in
+    both arms) and V3-EXQ-047m (training-label saturation -- is_world ~constant 1 at
+    intensity 1.0) were both instrumentation/measurement degeneracies, not valid tests
+    of the comparator; only a run whose guards mirror V3-EXQ-741's (probe-partition
+    non-degeneracy AND self/world training-label balance, both reported) counts.
+    CONFIRMING signature: on multi_agent_ecology_v5:MAE-3 (or a later substrate that
+    supplies a genuine second agent), a query-time READ-OUT comparator (efference-copy-
+    predicted vs observed z_self change, additive -- not a gradient head reshaping
+    z_world) shows recall_improvement > 0.04 in at least one informative
+    intensity/interaction arm, together with the substrate_queue C1+C2+C3 criteria:
+    other-agent-event selectivity > 0.5, counterfactual gap (agent-caused minus
+    other-caused) > 0.1, and attributor calibration (within-arm slope) < 0.5. V3-EXQ-741
+    found the read-out framing (ROUTED_B, neutral-to-positive at +0.003) already
+    biologically closer to the claim than the gradient-BCE-head framing (ROUTED_A,
+    which actively hurt recall) -- a confirming test should use the read-out design.
+    FALSIFYING signature: if, even with a genuine second agent present and the guards
+    above satisfied, no arm clears recall_improvement > 0.04 / the C1-C3 criteria
+    across the full pre-registered intensity/interaction sweep -- this is the
+    Woo/Spelke branch already named in substrate_queue.json: route MECH-095 from
+    substrate_ceiling to substrate_conditional (the V4/V5 multi-agent dependency is
+    then exhausted as an explanation, not merely unbuilt) and flip evidence_direction
+    to weakens rather than non_contributory.
+    Evidence base to date is genuinely narrow, not contested-and-unresolved: the sole
+    positive result (EXQ-047k, 4-seed PASS 5/5) came from one thin single-agent
+    operationalisation and has not been reproduced by any subsequent valid test -- this
+    is a single positive base flagged per the illusory-conflict-resolution rule, not a
+    weighing call for this note to make. Strong literature anchor (Blakemore 2002; Gu
+    et al. 2008; Pitcher & Ungerleider 2021; Rolls et al. 2023) supports the TPJ
+    mechanism generically but does not substitute for the substrate-specific
+    architectural test above.
 - id: MECH-096
   title: "Dual-stream observation routing sends exteroceptive input to both E1 and a dedicated harm detection pathway."
   claim_type: mechanism_hypothesis
@@ -9646,6 +9767,43 @@
     reward *variance* (uncertainty), needs own latent channel or modulator. Acts on commit
     threshold (lowering for novel states) rather than through goal attractor channel.
     Full synthesis: evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): the novelty/
+    curiosity signal must be wired into E3 candidate scoring as a PER-CANDIDATE weighting,
+    not a uniform scalar broadcast added identically to every candidate. A uniform additive
+    shift is argmin-invariant by construction -- it cannot change which candidate is selected
+    regardless of magnitude -- and this is not a hypothetical failure mode: it is exactly what
+    EXQ-141b (2026-05-08) and V3-EXQ-590a (2026-05-25) ran into. V3-EXQ-590a's sweep over
+    novelty_bonus_weight in {0.1, 0.3, 0.5, 0.7, 1.0} produced byte-identical mean_coverage,
+    mean_h_pos, and mean_novelty_ema across all five arms (to 16 sig figs) precisely because
+    the broadcast term could not have moved selection even in principle. That broadcast branch
+    was deleted 2026-05-25 as dead-by-construction; `_dc_novelty_w` is now hardcoded to 0.0 and
+    retained only for schema compatibility (confirmed independently by the 2026-07-19 MECH-463
+    scoping spike). A run using the old broadcast pathway -- which is most of the evidence
+    collected on this claim to date -- tests nothing about MECH-111 and must self-route
+    substrate_not_ready rather than count as PASS or FAIL. Separately, the eval metric used to
+    detect an effect must not already be saturated (coverage=1.0 ceiling was one of two live,
+    non-exclusive readings of the 590a null result) -- an unsaturated behavioral DV (e.g.
+    resource/state coverage below ceiling, positional entropy, or an explicit per-candidate
+    novelty-conditioned selection margin) is required.
+    CONFIRMING signature: with a genuinely per-candidate novelty pathway wired to E3 selection
+    (the MECH-314a per-candidate RBF upgrade path, or equivalent) and an unsaturated DV,
+    moderate-magnitude E1 surprise at a candidate state produces a directional, seed-stable
+    INCREASE in that candidate's selection probability/score relative to a matched
+    ablation/control, while high-magnitude ("alarming") surprise in the same state instead
+    suppresses selection -- i.e. the approach/avoidance dissociation the claim asserts shows up
+    as a discriminative, non-degenerate effect, not merely a nonzero novelty_ema.
+    FALSIFYING signature: even with a correctly per-candidate (non-argmin-invariant) novelty
+    pathway and an unsaturated DV, moderate-magnitude novelty at a candidate produces no
+    directional, seed-stable selection advantage over ablation/control. This would mean
+    curiosity/novelty fails to function as an intrinsic positive-valence drive even when
+    structurally capable of influencing choice, refuting the claim's core assertion -- as
+    distinct from merely reconfirming the already-known routing defect above.
+    NOTE: current evidence is genuinely mixed and NOT reconciled here. claims.yaml's own
+    evidence_quality_note reads uniformly negative (FAIL/weakens x3), but governance-agenda
+    tracking (EVB-0029) separately logs this claim at conflict_ratio 0.667 with directional/
+    source disagreement across 5 considered entries (2 supports, 1 weakens). Reconciling
+    that discrepancy is a governance call, not resolved by this digestion pass.
 
 - id: MECH-112
   title: "E3 requires a structured latent goal representation (positive attractor in z_world or z_goal sub-space) distinct from harm avoidance."
@@ -13663,6 +13821,35 @@
     cue content. MECH-150 cannot be evaluated until that training objective is added.
     Pre-experimental prerequisite, not a claim refutation.
   evidence: []
+  digestion_note: >
+    2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d, parallel
+    research agent): what_would_answer was DELIBERATELY NOT WRITTEN. This
+    claim's own text (evidence_quality_note, notes) states the blocker is a
+    missing supervised context-labeling training objective on ContextMemory
+    (per EXQ-181b, 2026-03/04). That is STALE. A later, still-unresolved probe
+    chain (V3-EXQ-418d/e/f/g/h/m, through 2026-06-05) relocated the actual
+    bottleneck: the environment (CausalGridWorldV2, no SD-023 landmarks
+    engaged) never generates enough cross-context z_world variation for ANY
+    retrieval substrate to differentiate on (cosine(z_world) across contexts
+    stays ~0.998 even with a perfectly-tuned attention path -- EXQ-418g:
+    action_class_entropy pinned at 1.1e-10 identically across all 4 arms).
+    This produced a formal env-entropy precondition
+    (cross-context cosine(z_world) < 0.95 in at least one env config), tested
+    and FAILed by V3-EXQ-418h, with a refresh/rescoping probe explicitly
+    named as queued (not yet run) in
+    evidence/planning/failure_autopsy_V3-EXQ-418m_2026-06-05.md.
+    evidence/planning/substrate_queue.json's SD-016 entry lists MECH-150 (plus
+    MECH-151/152, ARC-041, INV-040, SD-017) as blocked on THIS precondition,
+    status parked_pending_env_entropy_precondition, not on the training-
+    objective gap this claim's own notes still describe.
+    NEXT DIGESTION PASS: (1) check whether the EXQ-418h refresh/rescoping
+    probe named in the 2026-06-05 autopsy has since run and what its outcome
+    was; (2) check whether substrate_queue.json's SD-016 entry status has
+    moved off parked_pending_env_entropy_precondition; (3) reconcile that
+    outcome with this claim's own notes/evidence_quality_note (which should
+    also be refreshed to state the CURRENT blocker, independent of whether
+    what_would_answer is written in the same pass) before drafting a
+    falsifier. Remove this note once done.
 
 - id: MECH-151
   title: "The cue-indexed E1 context vector (MECH-150) projects to an action_bias signal that is added to E2.action_object() outputs, producing top-down contextual weighting of the action-affordance manifold prior to HippocampalModule search."
@@ -13702,6 +13889,37 @@
     evaluation input but action gate modulation.
     Registered 2026-03-31 from frontal cue-integration circuit design.
   evidence: []
+  digestion_note: >
+    2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d, parallel
+    research agent): what_would_answer was DELIBERATELY NOT WRITTEN. This
+    claim's own record carries NO blocker statement at all (thinner even than
+    sibling MECH-150's stale one) -- but TWO separate, unresolved, more-recent
+    blocking threads apply and neither is mentioned here.
+    (1) INHERITED env-entropy precondition, same as MECH-150 (see its own
+    digestion_note): substrate_queue.json's SD-016 entry lists MECH-151
+    directly in unblocks_claims, status parked_pending_env_entropy_precondition,
+    reconfirmed by evidence/planning/failure_autopsy_V3-EXQ-418m_2026-06-05.md
+    -- z_world carries no cross-context variance (pairwise cosine ~0.998) in
+    current env configs, upstream of this claim's own cue_action_proj bias.
+    (2) THIS CLAIM'S OWN, SEPARATE gate: cue_action_proj (the signal-generating
+    head this claim's mechanism depends on) has a documented dead-gradient
+    defect. substrate_queue.json's SD-055 entry records the gradient was 0 due
+    to an argsort barrier in CEM elite-selection (EXP-0155); a fix
+    (use_differentiable_cem) landed 2026-05-15 but is OPT-IN, not default, and
+    behavioural cue-conditioned divergence validation was still deferred as of
+    2026-05-21 (2026-05-31 governance note blocks any default flip pending
+    that validation). evidence/planning/failure_autopsy_V3-EXQ-640a_2026-06-06.md
+    Section 3 point 2 empirically confirms the consequence under default
+    settings: mean_cue_action_bias_norm was NULL in every one of 6 cells
+    (n_cue_action_bias_present = 0) -- the exact action_bias signal this claim
+    posits was measured as literally absent under defaults.
+    NEXT DIGESTION PASS: treat SD-016 (env-entropy) and SD-055 (gradient-flow)
+    as TWO separate, both currently-unsatisfied non-degeneracy preconditions.
+    Check whether either has moved (SD-016's V3-EXQ-418h-successor probe
+    outcome; SD-055's deferred behavioural validation) before drafting. This
+    claim's notes/evidence_quality_note should also be updated to state at
+    least one of these blockers (currently states neither). Remove this note
+    once done.
 
 - id: MECH-152
   title: "The cue-indexed E1 context vector (MECH-150) projects to a terrain_weight signal [w_harm, w_goal] that scales E3's harm and goal scoring, implementing contextual precision modulation on the harm/benefit terrain evaluation."
@@ -16252,6 +16470,52 @@
     V3-EXQ-778. MECH-168 (with INV-047) is the V3-testable realization of MECH-169's
     attribution-pipeline half (MECH-169's glymphatic half has no V3 analog). Diagnostic,
     non-scoring; no confidence change.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (currently UNMET across all attempted legs -- read
+    this before trusting any staging-order result). The claim can only be tested by
+    a per-phase consolidation readout that is CONTENT-CONTINGENT: it must respond to
+    corrupted/injected content, not merely to corruption MAGNITUDE or noise power.
+    Three independent checks (V3-EXQ-778c null-content control; V3-EXQ-778h
+    unpaired-target null) found every readout tried so far fails this bar: the SWS
+    readout is content-free BY CONSTRUCTION (null_slope_ratio sd 2.7e-8, 8/8
+    confounded), and the REM calibration_error-slope readout tracks corruption
+    magnitude irrespective of content even after its positivity-clamp artifact was
+    fixed (median unclamped null_slope_ratio ~0.88 against a 0.25 content-contingency
+    ceiling, 6/7 de-railed seeds above ceiling). A run against either readout in its
+    current form should self-route measurement_gap, NOT count as a verdict for or
+    against the staging order -- this has already happened three times (V3-EXQ-778,
+    778c, 778h) and a fourth repeat without a new readout axis re-derives nothing.
+    The re-derive brake is primed: SD-068/MECH-168/MECH-169/INV-047 each already
+    carry one non_contributory reading: a second on the SAME unrepaired readout
+    fires the brake and forces implement-substrate routing rather than another
+    lettered iteration. Prerequisite for an informative test: a content-sensitive
+    per-phase readout (tracking injected-content fidelity, not raw noise/corruption
+    sensitivity) for at least the SWS and REM legs, applied via the SD-068 diffuse
+    per-phase lesion harness across n>=8 seeds.
+    CONFIRMING signature: with a content-valid readout in place for each phase, the
+    functional-decline order across a majority of seeds (sign-test p<0.05, not a
+    bare reported/modal order) matches the predicted reverse-dependency sequence --
+    precision recalibration (MECH-123/Phase 4) degrades first, slot-filling
+    (MECH-121/Phase 2-3) next, slot-formation (MECH-120/Phase 1-2) last, with REM
+    failing before SWS-mediated downstream processing -- under uniform diffuse
+    damage, robust across independent seeds rather than resting on a single
+    near-deterministic metric.
+    FALSIFYING signature: a content-valid readout shows the phases degrade
+    simultaneously, in the forward-dependency order, or with SWS/NREM-mediated
+    processing failing before REM, with comparable seed-robustness to the
+    confirming case -- or the REM-fails-first adjacency remains seed-variable /
+    underpowered (CI straddling 0, sign-test ~1.0, as it was even before the
+    content-validity problem was found) once a valid instrument is used.
+    CURRENT STATE (do not re-litigate without new evidence): no leg of the
+    reverse-dependency staging order is presently supported by a validated
+    instrument -- the one adjacency that initially looked robust (NREM-before-SWS,
+    8/8 seeds) was retracted as staging evidence once shown to be a content-free
+    metric artifact. This is a measurement gap, not a mechanism-level result in
+    either direction; MECH-168 remains untested at the ordering level. One
+    orthogonal, still-standing finding: REM's generative re-derivation pass shows
+    real corrective capacity (attenuating gain <1 on 8/8 seeds), which bears on
+    whether REM failure is pure feed-forward topology, not on the staging order
+    itself.
 
 - id: MECH-169
   title: "The glymphatic clearance hypothesis (amyloid-beta accumulation via insufficient sleep-phase clearance) and the attribution pipeline account (consolidation failure via disrupted offline phases) are mechanistically complementary accounts of sleep-deprivation-induced dementia: the former explains why structural substrate damage accumulates; the latter explains why cognitive symptoms are staged and context-specific rather than diffuse and uniform."
@@ -18146,6 +18410,48 @@
   source:
     - evidence/planning/thought_intake_2026-04-05_steve_dog_emotional_mirroring.md
   notes: "When an agent's other-model is sufficiently coupled via attribution stream + OTHER_SELFLIKE tagging, the other agent's affective state activations leak directly into self z_beta processing -- not as inference about the other but as direct activation. This is the specific computational implementation of INV-005 (harm via mirror modelling). Partial novelty: PAM functional description (Preston & de Waal 2002, Lamm 2011) well-established; z_beta leakage gated by attribution stream is novel. Lit: targeted_review_social_emotional_mirroring."
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires V3/V4 social substrate that does
+    not yet exist in ree_core -- a coupled other-agent model built via an
+    attribution stream, OTHER_SELFLIKE tagging (MECH-031/MECH-032), and a
+    multi-agent environment with observable other-agent distress cues.
+    Confirmed absent by feasibility assessment 2026-06-11 (IGW-200,
+    exp_0137_mech_183_feasibility_assessment.md): grep of ree_core for
+    other_model/attribution_stream/OTHER_SELFLIKE/mirror_model/z_beta_leak
+    returns nothing, and z_beta exists only as a SELF stream. Any run
+    attempted without this substrate must self-route substrate_not_ready,
+    not count as a verdict. Two proxy designs were already evaluated and
+    rejected as non-diagnostic -- do not repeat them: (a) simulated
+    other-distress cues without an actual other-agent model (tests
+    pattern-to-z_beta activation, not attributed-other-state activation --
+    a PASS would not validate the claim and a FAIL would not invalidate
+    it); (b) cross-modal z_beta activation from a correlated same-agent cue
+    (tests sensory association learning, i.e. MECH-182, not social
+    attribution). A test is only informative once the other-model/
+    attribution/OTHER_SELFLIKE substrate exists and both the
+    coupling-present and coupling-absent conditions produce non-zero,
+    non-identical z_beta variance.
+    CONFIRMING signature: with the coupled other-model substrate present,
+    the observer's z_beta activates above baseline when its other-model
+    registers the coupled other-agent's distress, and this activation (1)
+    scales with OTHER_SELFLIKE coupling strength/confidence rather than
+    being all-or-nothing, (2) persists when the explicit
+    inference/prediction pathway toward the other's state is ablated
+    (i.e. the activation is not merely a byproduct of predicting the
+    other's behaviour), and (3) is substantially reduced or absent when
+    OTHER_SELFLIKE tagging is off while the same distress cue is present
+    -- candidate design per the feasibility assessment: 2x2 factorial,
+    OTHER_SELFLIKE tag ON/OFF x distress cue present/absent.
+    FALSIFYING: z_beta in the observer does not activate above baseline
+    when the other-model registers the coupled other's distress; or the
+    activation is fully explained by (disappears without) the
+    inferential/predictive pathway alone, indicating leakage is mediated
+    by inference rather than direct activation; or the OTHER_SELFLIKE
+    tag ON vs OFF conditions produce statistically indistinguishable
+    z_beta activation, indicating the effect is not attribution-gated --
+    any of these falsifies the "direct activation, not via inference,
+    gated by attribution coupling" framing that is MECH-183's specific
+    (as opposed to the well-established PAM base-rate) claim.
 
 - id: MECH-184
   title: "Other-directed hippocampal harm avoidance: planning architecture identical to self-preservation with harm-gradient source swapped to coupled other-agent."
@@ -49326,6 +49632,55 @@
     the V3-pending gate forbids promotion regardless of evidence count. Promotion to
     provisional/active requires an ecological, evidence-grade experiment showing the
     coupling improves agent behaviour. No flag/confidence change to MECH-090.
+  what_would_answer: |
+    The substrate's internal correctness is ALREADY CONFIRMED and is not what this
+    falsifier tests. V3-EXQ-592g (forced state-machine diagnostic) passed all six
+    acceptance criteria -- including C4, the conjunction criterion 592f could only
+    pass VACUOUSLY, now strictly positive (max_drop 0.6) -- so "does the pressure
+    accumulator/release-bound machinery fire as coded" is closed. What remains open
+    is whether the mechanism, once ecologically triggered, produces adaptive
+    behaviour -- promotion to provisional/active requires exactly that: an
+    ecological, evidence-grade experiment, not another diagnostic probe.
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready_requeue /
+    measurement_test_design_defect, NOT a verdict): a run only tests MECH-342 if it
+    first establishes GENUINE sustained commitment (beta latch elevated on real
+    nav-competence/foraging engagement, not a forced state) in >= 2/3 seeds, AND the
+    readiness-degradation manipulation (score_margin and/or nav_competence actually
+    crossing their release-triggering floors mid-commitment) is verified non-vacuous.
+    Two prior ecological attempts failed this precondition, not the mechanism:
+    V3-EXQ-629b (2026-06-12) cleared genuine commitment + degradation on only 1/3
+    seeds (foraging contact-guard held on seed 43 only); V3-EXQ-629c (autopsied
+    2026-07-24) failed it entirely (contact_rate 0, 3 gates false) and was
+    categorised measurement_test_design_defect, explicitly NOT a substrate_ceiling
+    hit, precisely because the ecological scenario never materialised. A future
+    retest must confirm >= 2/3 seeds clear the same nav-competence/contact floor
+    629b used before treating any release/non-release result as informative. Note
+    also the adjacent, still-open frozen_z_goal_scaffold_family finding
+    (2026-07-27): the 629b/629c test harness (ScaffoldedSD054OnboardingScheduler)
+    belongs to a scaffold family with a documented frozen-z_goal measurement-phase
+    issue; that audit confirmed 629b/629c's own non-scoring status stands (nothing
+    to reopen), but a retest inheriting the same harness should re-verify the goal
+    state is live/unfrozen as intended for the arm being measured, not assume it.
+    CONFIRMING signature: once the precondition above is cleared, commit_maintenance
+    _release fires (mech342_fires > 0) at the point score_margin and/or
+    nav_competence cross their release floors; the release is TARGETED (only the
+    degraded committed program is released -- unrelated ongoing behaviour is
+    unaffected, mirroring 592g's C5 no-false-abort criterion but measured
+    ecologically); and agent behaviour measurably improves relative to a matched
+    ON/OFF ablation over the same degradation episodes (e.g. reduced
+    wasted/hazardous persistence in a now-unwinnable commitment) without an increase
+    in premature aborts on a matched no-degradation/recovery control arm.
+    FALSIFYING signature: in a run that clears the non-degeneracy precondition
+    (real commitment established, real degradation occurs, adequately powered),
+    the coupling either (a) fails to fire when the deficit crosses its floor -- a
+    true miss, not a precondition failure; (b) fires but produces no measurable
+    behavioural benefit over the OFF ablation -- correct substrate, ecologically
+    inert; or (c) causes harm the OFF arm does not show -- premature abort of a
+    still-viable commitment, non-targeted release bleeding into unrelated ongoing
+    programs, or oscillatory re-commit/release churn. Any of these, replicated on a
+    properly-powered ecological run (i.e. not a repeat of the 629b/629c
+    precondition-failure mode), falsifies the ecological-benefit claim without
+    reopening the already-closed diagnostic-correctness question from 592g.
   location: docs/architecture/mech_342_commit_maintenance_release.md
 
 - id: MECH-343
