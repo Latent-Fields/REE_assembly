@@ -3722,6 +3722,33 @@
     segregation is now owned by ARC-110 (registered same pass); the assembly-map s.D
     artefact-of-collapse hypothesis is ARC-110's falsifier (operationalised as V3-EXQ-700).
     PROMOTES NOTHING (status correction to match the substrate, not an evidence-driven demotion).
+  what_would_answer: |
+    STATUS NOTE (already in this claim, 2026-06-22): the built substrate does
+    NOT implement "coordinated tri-loop gating as the pre-commit eligibility
+    layer" as literally titled -- the BG assembly map confirms the three
+    loops (motor/cognitive-set/motivational) are COLLAPSED into ONE E3
+    selector, feeding in as additive BIAS channels, not as separate striatal
+    loops each owning an eligibility gate. The falsifiable question this
+    claim's title implies -- whether the collapse is an ARTEFACT (a missing
+    SELECTION-STRUCTURE segregation) or the correct architecture -- now
+    belongs to ARC-110, whose falsifier is V3-EXQ-700. This what_would_answer
+    is scoped to MECH-062's own narrower claim, not ARC-110's.
+    NON-DEGENERACY PRECONDITION: requires ARC-110's segregated-loop
+    substrate to exist and be compared against the current collapsed
+    single-selector baseline with non-zero cross-condition variance on
+    committed-selection behaviour.
+    CONFIRMING signature (for MECH-062 as distinct from ARC-110): once a
+    genuinely-segregated tri-loop substrate exists, it reproduces the
+    ORIGINAL PASS evidence this claim already carries (V3-EXQ-502,
+    2026-04-29 supports/PASS) at least as well as the collapsed
+    single-selector does -- segregation does not regress the
+    already-demonstrated coordination behaviour.
+    FALSIFYING: a genuinely-segregated tri-loop substrate performs WORSE
+    than the collapsed single-selector on the same coordination behaviour
+    V3-EXQ-502 validated -- would suggest the collapse is not an artefact
+    but the more parsimonious correct architecture, and MECH-062 as
+    literally titled should be retired/merged into whatever framing
+    ARC-110 settles on.
   depends_on:
     - ARC-003
     - ARC-005
@@ -7336,6 +7363,26 @@
     same SD-006 substrate gap; gap_on=0.014 < 0.04 threshold and per-seed delta
     [0.0198, 0.0094] < 0.02 threshold. Manipulation fired (n_resets=5656) but no
     oscillatory clock to phase-reset. Hold pending SD-006 phase 2.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires SD-006 phase 2 (async multi-rate loop
+    execution) to be built -- without an actual oscillatory/cycle-boundary
+    clock, there is no mechanism under test. Both EXQ-133 runs (2026-03-28,
+    2026-04-21 rerun) confirmed this: the manipulation fired (n_resets=5656)
+    but gap_on/per-seed deltas stayed below threshold because no real clock
+    existed to reset -- reclassified non_contributory, NOT a falsification,
+    both times. A run without SD-006 phase 2 self-routes substrate_not_ready.
+    CONFIRMING signature: once SD-006 phase 2 lands, salient events
+    (completion, unexpected harm, commitment-boundary crossing) measurably
+    reset E3's cycle boundary such that harm/goal estimates from the
+    salient event are FULLY integrated within the following cycle before
+    the next planning window opens -- i.e. no partial-integration
+    artefacts straddling a salient event, compared to a no-reset control
+    where partial integration measurably occurs.
+    FALSIFYING: once the real substrate exists, salient events produce no
+    measurable change in cycle-boundary timing (phase-reset manipulation
+    has no effect beyond noise) -- would falsify the phase-reset mechanism
+    itself, as distinct from the already-ruled-out "no clock exists"
+    explanation for the two prior null results.
   claim_level: mechanistic
   functional_restatement: >
     Salient events (completion, unexpected harm, commitment boundary) resynchronize E3's
@@ -26700,6 +26747,31 @@
     SD-032b + MECH-260 still produces monostrategy, the bias-
     suppression framing is wrong and the fix lies elsewhere (probably
     in exploration noise / entropy regularisation, not in dACC output).
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires dACC-analog (SD-032b) bias_fraction
+    at E3 to be measurably non-zero and varying across ON/OFF arms --
+    V3-EXQ-571 already measured bias_fraction=0.000 for MECH-260's channel
+    specifically, which is why the claim was GOV-CEIL-1 demoted to contested
+    (2026-07-09, 8 confirmed substrate_ceiling autopsies:
+    460b/460c/460f/445h/603c/603d/603e/687). A run reproducing
+    bias_fraction=0.000 is NOT a fresh falsification -- it corroborates the
+    already-recorded finding.
+    CONFIRMING signature (this claim's own stated FALSIFIER): SD-032b +
+    MECH-260 (bias-suppression channel engaged, non-zero bias_fraction)
+    measurably resolves or reduces the monostrategy failure relative to
+    SD-032b alone -- the bias-suppression channel is doing causal work.
+    FALSIFYING signature (this claim's own stated FALSIFIER): implementing
+    SD-032b WITHOUT MECH-260 suppression already resolves the monostrategy
+    failure (MECH-260 unnecessary); OR SD-032b + MECH-260 still produces
+    monostrategy with the channel genuinely engaged (non-zero
+    bias_fraction) -- the bias-suppression framing is wrong and the fix
+    lies in exploration noise / entropy regularisation instead.
+    CURRENT STATUS: CONTESTED candidate since the 2026-07-09 GOV-CEIL-1
+    demotion -- the competing NULL reading (dACC anti-recency is inert /
+    does no work at E3) is carried CO-EQUALLY, not suppressed. Promotion in
+    either direction is re-gated on a future positive discrimination on a
+    richer substrate (same ARC-107/MECH-448/449 basal-ganglia-constitution
+    track as sibling claim MECH-439).
   notes: >
     Registered on the strength of a single paper (Scholl/Kolling 2015);
     warrants a follow-up lit-pull on MCC effort-value + bias suppression
@@ -57099,6 +57171,37 @@
     is whether the thin shortlist margin survives the composite or whether F's variance share must be
     rebalanced directly. External analog on the maintain-diversity-against-a-dominant-fitness-gradient
     side: Quality-Diversity / MAP-Elites (convergence demand-queue CDQ-003).
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (already the pre-registered discriminator in
+    this claim's own notes): requires F's E3 committed-selection-variance
+    share to be independently measurable per arm (established baseline:
+    V3-EXQ-571, F = 88-89% in both plain and full-diversity-stack arms) AND
+    a selection lever to be tested against BOTH a collapsed-proposer control
+    and a matched-noise control with non-zero cross-arm variance on
+    committed-action-class entropy. 11 confirmed substrate_ceiling/
+    non_contributory autopsies (689a/700/700a-d/709/710/711/713) already
+    establish that most tested levers (near-tie parametric shortlist/
+    commit-T combinations, learned cross-loop arbitration, disinhibitory
+    settling, ascending-gain arbitration -- even a FAIR parity win in 713)
+    do NOT convert; none of these count as fresh evidence either way per
+    the confirmed autopsies -- do not re-litigate them.
+    CONFIRMING signature (this claim's own stated FALSIFIER, restated):
+    persistent flat committed-action-class entropy under ANY tested
+    diversity channel WHILE F's E3 variance share stays >0.85 supports the
+    "F-monopoly caps committed diversity" framing.
+    FALSIFYING signature (this claim's own stated FALSIFIER, restated): a
+    selection lever lifts committed-action-class entropy strict-above BOTH
+    collapsed-proposer and matched-noise controls on >=2/3 seeds WITHOUT
+    reducing F's E3 variance share -- refutes the F-monopoly framing.
+    CURRENT STATUS (as of the GOV-CEIL-1 2026-07-09 ceiling-exhaustion
+    demotion): this claim is a CONTESTED candidate -- the competing NULL
+    reading (F-dominance is inert / doing no causal work) is carried
+    CO-EQUALLY, not suppressed. Promotion in either direction is re-gated
+    on a future positive discrimination on the pending ARC-107
+    MECH-448/449 basal-ganglia-constitution validation (V3-EXQ-689g) --
+    this what_would_answer does not resolve the contest, it restates the
+    claim's own pre-registered discriminator so a future reader does not
+    need to re-derive it from 11 autopsies of prose.
 
 - id: MECH-440
   title: "state_conditioned_self_annealing_noise_floor (NoisyNet learned-parametric-weight-noise analog). A mechanistic refinement of MECH-313's tonic exploration noise floor. MECH-313 is registered as a STATE-INDEPENDENT floor (a post-softmax max-entropy/temperature analog); V3-EXQ-687 found that floor NON-PROPAGATING -- the temperature was invisible to the argmax/committed action (selected_action_entropy=0.0, the r1a_entropy_only_artefact the degeneracy gate caught). MECH-440 asserts the LC-NE tonic floor must instead be injected as LEARNED PER-PARAMETER (factorised-Gaussian) WEIGHT NOISE in the E3 selection pathway, so it (i) PROPAGATES into the committed action (it changes which action is argmax, not just a discarded pre-commit temperature), (ii) is STATE-CONDITIONED by construction (weight noise x state-dependent activations perturbs different states differently, with no hand-set per-state schedule), and (iii) SELF-ANNEALS (a gradient-trained per-parameter sigma falls where the policy is confident and stays up where exploration pays, so the floor does not wash out committed-action diversity uniformly). External analog: NoisyNet (Fortunato et al. 2018)."
