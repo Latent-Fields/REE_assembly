@@ -1028,6 +1028,14 @@
     "title": "REE's mechanisms increasingly converge on maintaining and consuming a SHARED epistemic-state object (knowledge / belief / uncertainty / possibility / commitment / action) rather than each existing as an isolated computational function: prediction, replay, harm/ethics evaluation, planning and learning read and update a common epistemic relationship rather than independent local state.",
     "type": "architectural_commitment"
   },
+  "ARC-122": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "architecture.four_phase_developmental_curriculum",
+    "title": "REE's training curriculum must implement four sequential developmental phases: (1) innate coupling with a competent environment, (2) coupling consolidation with plasticity reduction, (3) play/exploration under a consolidated safety net, (4) language acquisition over a trusted channel. Skipping or reordering phases produces an agent with compromised social and ethical capabilities.",
+    "type": "architectural_commitment"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -2531,6 +2539,19 @@
     "status": "candidate",
     "subject": "ethics.skill_optimisation_harm_sensitivity_floor",
     "title": "Skill optimisation must NOT trade harm sensitivity for competence (learning-side ethical constraint): any competence-refinement mechanism must be evaluated JOINTLY on competence gain AND non-degradation of harm sensitivity, residue accumulation, and commitment integrity. A mechanism improving the first by attenuating the second has succeeded on its metric and FAILED AS AN AGENT.",
+    "type": "invariant"
+  },
+  "INV-094": {
+    "assembly_state": "awaiting_substrate",
+    "emergent_from": [
+      "INV-058",
+      "INV-059"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "status": "candidate",
+    "subject": "development.coupling_play_language_ordering",
+    "title": "Developmental ordering constraint: social-coupling consolidation must structurally precede exploratory play, and play must structurally precede language acquisition. Each phase's machinery depends on the prior phase completing -- the ordering is load-bearing, not merely pedagogically convenient.",
     "type": "invariant"
   },
   "MECH-001": {
@@ -6726,6 +6747,14 @@
     "title": "orient/survey: a third primitive behavioural regime (alongside approach and avoid) -- a temporary, diffuse reduction in commitment during which the agent widens behavioural sampling and gathers situational information before committing to approach/avoidance, driven by accumulated epistemic_deficit (MECH-482) rather than a specific cue. Distinct from MECH-395 (cue-triggered, need-gated orienting that resolves a SPECIFIC directional/affordance vector for an already-identified cue): orient/survey is diffuse and precedes cue identification, MECH-395 is narrow and follows it.",
     "type": "mechanism_hypothesis",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires trajectories to be classifiable as\norient-mode vs random-exploration vs directed-approach on some structural\nmeasure (state-coverage, trajectory structure, observation-before-commitment)\nwith non-zero variance across conditions -- a run where all three regimes\nare behaviourally indistinguishable self-routes substrate_not_ready.\nCONFIRMING signature: a structured orient/survey condition improves LATER\naction-selection quality (not just entropy/state-coverage) relative to\nmatched stochastic-exploration-only and no-orienting baselines, and\nterminates (commitment resumes) once uncertainty measurably falls.\nFALSIFYING signature: orient/survey behaviour is indistinguishable from\nrandom wandering with no benefit to later competence, OR orienting\npersists despite already-adequate information (no termination condition),\nOR the same benefit is fully explained by existing MECH-313/314/320/ARC-065\nsubstrates with no need for a distinct regime.\n"
+  },
+  "MECH-484": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "development.sensitive_period_coupling_plasticity_narrowing",
+    "title": "Sensitive-period plasticity narrowing follows social-coupling consolidation: consolidation of the initial coupling pattern is obligate (occurs regardless of coupling quality, adaptive or maladaptive) and is followed by a plasticity-reduction window that closes around whichever pattern existed at consolidation, rather than continuing to update on subsequent coupling quality.",
+    "type": "mechanism_hypothesis"
   },
   "Q-001": {
     "assembly_state": "mature",

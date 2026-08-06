@@ -134,27 +134,29 @@ over mechanisms already registered.
 
 ---
 
-## Candidate Claims (NOT registered -- for future session)
+## Candidate Claims -- REGISTERED 2026-08-06 (thought-ingestion pass; unregistered for 4 months)
 
-### INV-0xx: Developmental ordering constraint
+### INV-094: Developmental ordering constraint
 
 Social coupling consolidation must precede exploratory play, and play must precede language
 acquisition. Each phase depends on the prior completing. The ordering is structural (load-bearing
-dependencies), not merely pedagogical.
+dependencies), not merely pedagogical. `epistemic_category: substrate_conditional`,
+`implementation_phase: v4` -- DO NOT BUILD in V3 (play-mode substrate itself unimplemented).
 
-### MECH-1xx: Sensitive period narrows social coupling plasticity
+### MECH-484: Sensitive period narrows social coupling plasticity
 
 A sensitive period in social coupling reduces plasticity after consolidation. The consolidation is
 obligate -- it occurs regardless of coupling quality, closing around whatever pattern exists
-(adaptive or maladaptive). Open question: does the signal repertoire narrow, the trust calibration
-narrow, or both?
+(adaptive or maladaptive). Open question, carried forward unresolved: does the signal repertoire
+narrow, the trust calibration narrow, or both? `implementation_phase: v4`.
 
-### ARC-0xx: REE training curriculum must implement sequential developmental phases
+### ARC-122: REE training curriculum must implement sequential developmental phases
 
 The REE training curriculum must implement four sequential phases: (1) innate coupling with
 competent environment, (2) coupling consolidation with plasticity reduction, (3) play/exploration
 with consolidated safety net, (4) language acquisition over trusted channel. Skipping or
 reordering phases produces an agent with compromised social and ethical capabilities.
+`implementation_phase: v4`.
 
 ---
 

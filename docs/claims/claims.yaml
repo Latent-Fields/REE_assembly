@@ -19100,6 +19100,109 @@
   location: docs/architecture/play_mode.md
   notes: "If one agent can assert play-frame unilaterally while causing real harm, the frame distinction is exploitable. The signaling that opens and maintains the play frame must be bilateral and monitored -- both parties must sustain the signal for the frame to hold. Frame collapse without mutual signal = real harm with reduced defensive response. This is the play analogue of the hypothesis tag requirement (MECH-094): just as simulation must be internally tagged to prevent post-commit learning, play must be externally co-tagged to prevent exploitation."
 
+- id: INV-094
+  title: "Developmental ordering constraint: social-coupling consolidation must structurally precede exploratory play, and play must structurally precede language acquisition. Each phase's machinery depends on the prior phase completing -- the ordering is load-bearing, not merely pedagogically convenient."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - INV-058
+    - INV-059
+  candidate_emergent_from: []
+  pending_substrate_reconfirmation: false
+  subject: development.coupling_play_language_ordering
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-06
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-06"
+  source:
+    - evidence/planning/thought_intake_2026-04-05_developmental_coupling_progression.md
+  depends_on:
+    - INV-058   # play requires a bounded low-stakes context to exist at all
+    - INV-059   # play requires a mutual frame-maintenance substrate
+  notes: >
+    REGISTERED from the 2026-04-05 thought intake "Developmental Coupling Progression"
+    (candidate claims section was explicit "NOT registered -- for future session", 4
+    months unregistered until this 2026-08-06 ingestion pass). Originally drafted as
+    placeholder id "INV-0xx".
+    DO NOT BUILD in V3: play-mode substrate itself is unimplemented (INV-058/059 are
+    candidate, no play-mode machinery exists in ree_core), so an ordering constraint
+    across coupling/play/language phases is not yet testable. `emergent_from` play
+    because the claim's subject (a required phase ordering) becomes ill-defined without
+    a play-mode substrate to order relative to.
+    RELATED BUT DISTINCT from the approach-before-avoidance ontogenetic-ordering
+    hypothesis under active MECH-457 investigation (competence-floor cold-start,
+    2026-07 GOV-FANOUT-1 portfolio) -- that ordering is approach-vs-avoidance drive
+    sequencing within a single training run; this ordering is social-coupling ->
+    play -> language phase sequencing across a training curriculum. Both are
+    "developmental ordering matters" claims but at different grains and over
+    different variables; do not merge.
+
+- id: MECH-484
+  title: "Sensitive-period plasticity narrowing follows social-coupling consolidation: consolidation of the initial coupling pattern is obligate (occurs regardless of coupling quality, adaptive or maladaptive) and is followed by a plasticity-reduction window that closes around whichever pattern existed at consolidation, rather than continuing to update on subsequent coupling quality."
+  claim_type: mechanism_hypothesis
+  subject: development.sensitive_period_coupling_plasticity_narrowing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-06
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-06"
+  source:
+    - evidence/planning/thought_intake_2026-04-05_developmental_coupling_progression.md
+  depends_on:
+    - INV-094   # the phase-ordering constraint this mechanism instantiates at the coupling->play boundary
+    - MECH-183  # z_beta leakage: the coupling substrate whose plasticity this claim says narrows
+    - MECH-193  # social-reward reinforcement loop strengthening the pattern that then gets consolidated
+  notes: >
+    REGISTERED from the same 2026-04-05 intake as INV-094 (placeholder id "MECH-1xx").
+    OPEN QUESTION carried verbatim from the intake, not yet resolved: does the sensitive
+    period narrow the SIGNAL REPERTOIRE, the TRUST CALIBRATION, or both? Needs a
+    dedicated architecture note before this is queueable even at v4 -- currently only a
+    directional hypothesis. DO NOT BUILD in V3 (no coupling-consolidation substrate
+    exists to have a sensitive period over).
+
+- id: ARC-122
+  title: "REE's training curriculum must implement four sequential developmental phases: (1) innate coupling with a competent environment, (2) coupling consolidation with plasticity reduction, (3) play/exploration under a consolidated safety net, (4) language acquisition over a trusted channel. Skipping or reordering phases produces an agent with compromised social and ethical capabilities."
+  claim_type: architectural_commitment
+  subject: architecture.four_phase_developmental_curriculum
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-06
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-06"
+  source:
+    - evidence/planning/thought_intake_2026-04-05_developmental_coupling_progression.md
+  depends_on:
+    - INV-094   # the ordering constraint this curriculum design is built to satisfy
+    - MECH-484  # the consolidation/plasticity mechanism phase 2 depends on
+    - INV-058   # phase 3 (play) structural necessity
+    - INV-059   # phase 3 (play) frame-maintenance necessity
+    - ARC-048   # phase 4 (language) as externalization requiring prior functional-state referents
+  notes: >
+    REGISTERED from the same 2026-04-05 intake as INV-094/MECH-484 (placeholder id
+    "ARC-0xx"). Curriculum-design-level claim -- the "how to train it" complement to
+    INV-094's "why the order matters". NEXT STEPS carried from the original intake and
+    still open: lit-pull on attachment sensitive periods (what specifically consolidates,
+    on what timescale) and on play-as-dependent-on-secure-attachment (Bowlby/Ainsworth
+    secure-base literature); an architecture doc for the four-phase curriculum design
+    (connects to docs/architecture/social.md and the ARC-048 stub). DO NOT BUILD in V3:
+    gated on INV-058/059 (play-mode substrate) which is itself unimplemented.
+
 - id: MECH-194
   title: "Play mode operates by substituting synthetic z_goal and z_harm signals while permitting full learning flow through E3/E2/E1 as if signals were real."
   claim_type: mechanism_hypothesis
