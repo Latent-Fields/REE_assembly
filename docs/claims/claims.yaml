@@ -3336,6 +3336,32 @@
     (no actual committed sequence generation; identical condition metrics) and should not
     move confidence. They are tracked as invalid_run exclusions. MECH-057a still needs a
     genuine V3 action-sequence substrate test before promotion beyond provisional.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires committed action sequences to
+    ACTUALLY BE GENERATED at the training scale tested (EXQ-139 already
+    failed this: mean_committed_seq_len_on=0.0, gate never triggered) -- a
+    run where committed sequences never form self-routes substrate_not_ready,
+    it cannot test the mechanism. Requires the genuine V3 action-sequence
+    substrate (ARC-023 heartbeat + MECH-090 beta-gated propagation + SD-006),
+    not the V1/V2 atomic-action substrates that produced all prior FAILs
+    (confirmed substrate-limited, not falsifying, per the 2026-04-25
+    revalidation audit).
+    CONFIRMING signature: during a genuinely-generated committed action
+    sequence, sensory precision reweighting is measurably suppressed
+    relative to an uncommitted/ablated control, with the suppression
+    targeting PRECISION UPDATES specifically (not motor output blocking --
+    the 2026-04-02 framing clarification distinguishes these). Degradation
+    should show the architecturally-predicted ordering FULL < NO_ATTRIBUTION
+    < NO_GATING (as the informative-but-sub-threshold EVB-0042 baseline
+    already showed directionally: 4.5% vs 1.9% harm-rate degradation).
+    FALSIFYING: precision reweighting is equally suppressed (or unsuppressed)
+    regardless of commitment state once sequences genuinely generate; or the
+    effect is better explained by MECH-090's alternative framing (beta gates
+    E3->action PROPAGATION, not E3's internal precision updating) with no
+    residual effect once that pathway is accounted for -- this claim's own
+    notes flag MECH-090 as "probably the more correct framing," so a run
+    finding MECH-090 alone sufficient would fold MECH-057a into it rather
+    than support it as a distinct mechanism.
   depends_on:
     - ARC-015
     - ARC-005
@@ -3632,6 +3658,31 @@
     (clean separation enables better policy learning than blending). The commit boundary is
     operationally load-bearing at ree-v1-minimal scale — not a cosmetic architectural feature.
     Validates retain_ree adjudication. Status remains active.
+  what_would_answer: |
+    ALREADY CONFIRMED at ree-v1-minimal scale (EVB-0041 PASS, 2026-02-26):
+    pre-commit E2 predictions and post-commit realized harm carry distinct
+    information (mean |pre_post_corr|=0.044, well below the 0.7 threshold),
+    and the commit boundary is operationally load-bearing -- WITH-BOUNDARY
+    harm 0.805 vs BLENDED 0.935 (3 seeds), i.e. boundary-helps confirmed.
+    This what_would_answer targets the un-retested V3-scale extension.
+    NON-DEGENERACY PRECONDITION: requires a V3 substrate run with both
+    pre-commit and post-commit error streams instrumented and non-zero
+    variance in the pre/post correlation across seeds -- a run where the
+    two streams are trivially identical (correlation pinned at 1.0) or
+    trivially uncorrelated by construction (no shared signal at all) cannot
+    discriminate the mechanism.
+    CONFIRMING signature: at V3 scale, the same two criteria replicate --
+    distinct-signals (|pre_post_corr| < 0.7) and boundary-helps
+    (WITH-BOUNDARY policy learning measurably outperforms a BLENDED/
+    no-boundary control on the same task).
+    FALSIFYING: at V3 scale, pre-commit and post-commit error streams
+    become highly correlated (|corr| >= 0.7, the distinct-signals criterion
+    fails) -- would suggest the V1-minimal result was scale-specific and
+    the commit-boundary token is not carrying independent information at
+    V3's richer representation; or a BLENDED (no-boundary) control performs
+    AT LEAST as well as WITH-BOUNDARY at V3 scale -- would falsify
+    boundary-helps and suggest V1-minimal's simpler substrate exaggerated
+    the boundary's operational value.
   adjudication_recommendation: retain_ree
   depends_on:
     - ARC-003
@@ -6830,6 +6881,29 @@
     steps -- data quality OK). Strengthens context-gated interpretation: uniform temporal
     smoothing is harmful at any tested batch size. Genuine weakening for static-k variant.
     Hold at active; context-dependent gating design needed before promotion.
+  what_would_answer: |
+    ALREADY-ESTABLISHED (do not re-litigate): uniform static-k theta batching
+    (k=1, 2, 4) is CONFIRMED HARMFUL for harm attribution (EXQ-066: batched
+    error 2.28x worse than raw; EXQ-122: harm_auc delta=-0.135 adverse
+    direction, C1/C2/C3 fail). This is settled; only the context-gated
+    redesign remains open.
+    NON-DEGENERACY PRECONDITION: requires a context-dependent (non-uniform)
+    theta window implementation to exist and be tested against a fixed
+    static-k baseline with non-zero cross-condition variance on harm_auc /
+    prediction-error metrics -- a run using only static-k configurations
+    cannot reopen this question, it can only reproduce the already-confirmed
+    weakening.
+    CONFIRMING signature: a context-gated theta window (batching only during
+    stable/uncommitted windows, not uniformly) shows harm_auc and
+    prediction-error metrics AT LEAST at raw (unbatched) levels during
+    volatile/committed windows, while still providing the batching benefit
+    (reduced update-rate cost to E3) during stable windows -- i.e. the gating
+    recovers what static k=2/k=4 lost.
+    FALSIFYING: a context-gated variant STILL shows the adverse direction
+    (batched worse than raw) even during stable windows, or no context-gating
+    scheme recovers the static-k losses -- would indicate E1->E3 temporal
+    batching is not a viable mechanism at any granularity and the
+    theta-gamma framing should be retired in favour of raw pass-through.
   depends_on:
     - ARC-023
     - ARC-021
@@ -10569,6 +10643,31 @@
     BOUNDED/non-catastrophic rather than absent -- not a clean protective win over no-sleep.
     exp_conf 0.575 (< 0.62 promotion gate) + implementation_phase v3 -> status candidate
     unchanged (held_pending_v3_substrate).
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires committed-action-class diversity to
+    be measurable and non-degenerate across sleep-ON vs sleep-OFF arms
+    (already established by V3-EXQ-691: 2/3 seeds non-degenerate) -- a run
+    where diversity collapses identically in both arms cannot discriminate
+    the mechanism.
+    CONFIRMING signature: sleep-ON (SHY-style SWS denoising) preserves
+    committed-action-class diversity AT LEAST AS WELL AS sleep-OFF across
+    extended training, with the erosion-bound reading (V3-EXQ-691: sleep-ON
+    eroded marginally MORE than sleep-OFF, t2 0.569 vs 0.645) either closing
+    (sleep-ON >= sleep-OFF) or staying within a small, non-catastrophic bound
+    -- i.e. SWS denoising is protective-or-neutral, never actively worse
+    beyond a small margin. A minimal mind without ANY sleep substrate shows
+    monostrategy convergence under extended training (already the observed
+    V3 no-sleep signature, per Suppermpool et al. 2024's zebrafish
+    single-neuron-SHY prediction).
+    FALSIFYING: sleep-ON systematically and substantially erodes diversity
+    MORE than sleep-OFF (beyond the small bounded margin already observed),
+    i.e. the Hebbian-erosion risk is not bounded but active harm -- would
+    falsify the "protective-or-neutral" reading and suggest SHY-style
+    downscaling without a working MECH-094 hypothesis-tag protection
+    actively damages rather than restores signal-to-noise. Also falsifying:
+    monostrategy convergence does NOT emerge in a no-sleep-substrate agent
+    under extended training (removes the predicted signature MECH-120's
+    absence is supposed to explain).
 
 - id: MECH-121
   title: "The NREM sub-phase of offline mode replays recent episodic content via SWR-equivalent sequences, transferring episodic traces from E3/hippocampal buffer to E1/neocortical schematic representation."
@@ -10654,6 +10753,28 @@
     (harm AND goal traces, not harm-dominated) must be implemented before MECH-121
     to prevent MECH-124 consolidation-mediated contraction.
     Registered 2026-03-23. V4 scope.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION (already established by governance 2026-06-10): requires
+    (1) the SD-017 retest cohort's upstream ARC-065 rule-creator substrate to be
+    built (currently unbuilt -- the sleep_substrate:GAP-2 blocker), and (2) balanced
+    replay scheduling across harm AND goal traces (not harm-dominated, to avoid the
+    MECH-124 consolidation-mediated-contraction confound) to exist. Without both, a
+    monomodal-collapsed agent yields bit-identical sleep-vs-waking metrics (nothing
+    diverse to consolidate) and any run self-routes substrate_not_ready, not a
+    verdict -- this is why the claim is held pending upstream substrate rather than
+    surfaced as ready /queue-experiment work.
+    CONFIRMING signature: once built, E1's goal-conditioned world model (MECH-116)
+    measurably improves across a sleep cycle relative to a matched waking-only
+    control, with the improvement concentrated in goal-relevant ABSTRACTED patterns
+    (not verbatim episode replay) and scaling with the volume/diversity of
+    NREM-replayed episodic traces (approach sequences + harm encounters, balanced).
+    FALSIFYING: E1's world-model quality is statistically indistinguishable between
+    sleep-enabled and sleep-disabled conditions once the substrate exists and traces
+    are balanced; or E1 shows verbatim episodic memorisation rather than schematic
+    abstraction (falsifies the semantic-abstraction reading distinct from lossless
+    replay); or the harm/goal balance has no effect on which patterns get
+    consolidated (collapses the "balanced scheduling matters" prerequisite into a
+    non-factor).
 
 - id: MECH-122
   title: "Thalamo-cortical spindle-equivalent bursts package E3/hippocampal replay content for z_theta delivery AND gate external sensory input, protecting the consolidation episode from interruption."
@@ -10784,9 +10905,11 @@
   polarity: asserts
   status: candidate
   live_status:
-    reading: candidate
-    as_of: 2026-07-11
+    reading: candidate/substrate_conditional
+    as_of: '2026-08-06'
     needs_review: false
+  epistemic_category: substrate_conditional
+  v3_pending: true
   implementation_phase: v3
   phase_provenance: derived
   phase_derived_from: MECH-204
@@ -10831,6 +10954,37 @@
     during REM, hallucinatory content accumulates in the residue field as if it
     were real experience -- the psychosis mechanism (MECH-094 notes).
     Registered 2026-03-23. V4 scope.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires the full offline-phase architecture
+    (MECH-030 modes, MECH-092 replay, MECH-094 hypothesis tag, ARC-016
+    dynamic precision, MECH-093) to be live AND the REM sub-phase's
+    commit-gate suppression (ARC-016 running_variance threshold effectively
+    infinite) to be independently confirmed non-degenerate (commitment
+    genuinely does not fire during REM, not merely rare) -- without this the
+    mechanism cannot be distinguished from ordinary waking operation.
+    Registered V4 scope per this claim's own notes; not V3-tractable as
+    stated (epistemic_category/v3_pending set explicitly 2026-08-06 to match
+    that prose, mirroring sibling MECH-121).
+    CONFIRMING signature: during REM, (a) commit-gate suppression is
+    measurable (zero commitments recorded across the REM window, not merely
+    reduced); (b) E1 generates world-model trajectories that are coherently
+    self-consistent for a genuinely-adequate world model and INCOHERENT in
+    proportion to real model limitations (REM "dream content" tracks actual
+    model quality, not noise); (c) precision parameters (z_beta, z_delta)
+    measurably recalibrate toward a low-arousal / low-bias baseline across
+    the REM window, distinguishable from a matched non-REM control.
+    FALSIFYING: commit-gate suppression is incomplete or absent during REM
+    (commitments still fire); REM-generated trajectory coherence is
+    uncorrelated with independently-measured world-model quality (the
+    hypothesis-testing framing is not doing real work); or precision
+    parameters show no measurable REM-specific recalibration relative to a
+    matched non-REM control (the mechanism collapses to ordinary waking
+    operation under a different label). CRITICAL FAILURE MODE (already named
+    in this claim's own notes): if the MECH-094 hypothesis tag fails during
+    REM, hallucinatory content accumulates in the residue field as real
+    experience -- this is the psychosis mechanism, and a run showing that
+    failure mode is evidence AGAINST the tag's reliability, not against
+    MECH-123 itself.
 
 - id: MECH-124
   title: "When harm-trace salience dominates offline replay content, consolidation selectively amplifies harm predictions, progressively contracting option space -- a distinct failure mode from Q-021 behavioral flatness."
@@ -26931,6 +27085,35 @@
     Validation experiment: V3-EXQ-446 confirms gate values are in [0, 1]
     and respond to operating_mode changes; full forward-propagation bias
     test (EXP-0148) deferred until SD-033 substrates land.
+  what_would_answer: |
+    NOTE: the WRITE-GATE mechanism itself is already `stable` (33 supports / 3
+    weakens across 16 exp + 20 lit entries; V3-EXQ-446/455/453 validated the
+    landing). This what_would_answer targets the one part still genuinely
+    open per the claim's own 2026-04-19 notes: the SALIENCE-NETWORK-AS-
+    COORDINATOR overlay, which is REE-specific and has no direct rodent
+    validation.
+    NON-DEGENERACY PRECONDITION: requires the EXP-0148 SD-032a-ablation arm
+    (forcing operating_mode to a fixed external_task vector) to exist and be
+    compared against the live coordinator-driven operating_mode with non-zero
+    cross-arm variance in post-quiescence action-selection bias -- deferred
+    until SD-033 substrates land; a run without that ablation contrast
+    self-routes substrate_not_ready.
+    CONFIRMING signature (primary): a purely local per-substrate gating
+    scheme (no shared operating-mode vector from SD-032a) FAILS to reproduce
+    the post-quiescence action-selection bias toward recently replayed
+    trajectories that the full coordinator-driven mechanism produces --
+    i.e. the shared coordinator overlay is doing real work, not decoration.
+    CONFIRMING signature (secondary): ablating SD-032a (forcing a fixed
+    external_task operating_mode) ABOLISHES the forward-propagation bias
+    (Tambini/Davachi 2019 signature) -- confirms coordination is genuinely
+    salience-network-mediated rather than locally emergent.
+    FALSIFYING: local per-substrate gating alone reproduces the
+    forward-propagation bias just as well as the full SD-032a-coordinated
+    mechanism (MECH-261's coordinator overlay is over-specification -- the
+    claim's own EXP-0148 falsifiable-primary clause); or ablating SD-032a
+    does NOT abolish the bias (the coordinator overlay is not load-bearing;
+    forward propagation is coordinated locally rather than by the salience
+    network).
   location: evidence/literature/targeted_review_systems_consolidation_waking_propagation/synthesis.md
 - id: SD-033
   title: "PFC subdivision architecture: a network-level module with lateral-PFC-analog (mid-lateral rule/goal), OFC-analog (specific-outcome prediction and task-structure map), vmPFC-analog (value integration), premotor/SMA-analog (sequence execution), and frontopolar-analog (branching / nested control; V4 scope) subdivisions. Primary output: the rule/policy context that gates action selection and the natural write target for MECH-261 mode-conditioned gating."
@@ -29494,6 +29677,44 @@
     are unchanged. Promotion still requires EXQ-471 unlock test and
     return-of-avoidance test -- V3-EXQ-478 queued as the Phase 3
     diagnostic validation for the MECH-284+MECH-269 coupling.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires live per-stream V_s(t) alignment
+    telemetry and anchor/probe labels to actually be emitted at runtime by
+    HippocampalModule.propose_trajectories -- confirmed ABSENT through the
+    2026-04-25/05-08 diagnostics (V3-EXQ-478/480/481/476c all found the
+    read-side hook missing or the MECH-284+MECH-269 online coupling
+    wired-but-behaviourally-inert: freeze_recommit_count and
+    vs_commit_release_count pinned at 0 across every arm). A run without
+    live per-stream V_s telemetry and non-zero cross-arm anchor-invalidation
+    counts self-routes substrate_not_ready, NOT a verdict on the hypothesis --
+    the instrumentation gap must close first (implement-substrate work), not
+    another parameter sweep against the existing dead hook.
+    CONFIRMING signature (primary, anchor-selection): anchored-eligible-only
+    rollouts show a smaller prediction-vs-outcome gap than indiscriminate
+    (no-anchor-selection) rollouts; probe-tagged rollouts preferentially
+    target high-PE regions and do NOT populate the ARC-018 viability map
+    until realized-experience validation; streamwise partial-anchor plans
+    degrade gracefully rather than catastrophically relative to a
+    no-anchor-selection baseline.
+    CONFIRMING signature (secondary): manipulating salience/harm load shifts
+    the observed anchor/probe mixture without retraining.
+    CONFIRMING signature (anchor-reset, primary): under EXQ-471 conditions
+    with MECH-287 trigger + MECH-284 accumulator + MECH-269 anchor-reset all
+    enabled, anchor invalidation (mark_inactive) fires within a bounded
+    number of PAG releases (target ~2-3), not the 1000/1000 freeze the
+    catatonic-lock failure mode (V3-EXQ-475) produces.
+    CONFIRMING signature (anchor-reset, dual-trace): after extinction,
+    re-presenting the original avoid-context cues re-activates the OLD
+    (inactive, not erased) anchor -- return-of-avoidance -- rather than
+    triggering a from-scratch re-learning trajectory, while a genuinely
+    different context leaves the new anchor operative (Bouton 2004).
+    FALSIFYING: anchor-eligible-only rollouts perform no better than
+    indiscriminate anchoring; probe rollouts contaminate the viability map
+    before validation (breaking the probe/anchor separation); anchor
+    invalidation never fires within bounded PAG releases once the hooks
+    genuinely exist (a real freeze, not an instrumentation gap); or
+    re-presented extinction cues trigger from-scratch relearning rather
+    than return-of-avoidance (falsifies the dual-trace/Bouton 2004 reading).
   location: docs/architecture/v_s_invalidation_runtime.md
 
 - id: MECH-270
