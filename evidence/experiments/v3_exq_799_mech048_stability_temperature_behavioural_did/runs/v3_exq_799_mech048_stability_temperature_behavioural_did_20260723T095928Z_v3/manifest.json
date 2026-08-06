@@ -23,8 +23,10 @@
     "MECH-048"
   ],
   "evidence_class": "simulation",
-  "evidence_direction": "unknown",
-  "evidence_direction_per_claim": {},
+  "evidence_direction": "non_contributory",
+  "evidence_direction_per_claim": {
+    "MECH-048": "non_contributory"
+  },
   "experiment_purpose": "diagnostic",
   "producer_capabilities": {
     "sd005_split_latent": true,
@@ -288,5 +290,6 @@
   },
   "machine": "ree-cloud-2",
   "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
-  "substrate_hash": "66e422215d137734f0bb6fee6e039d150eb88fd427b2660a57c6de4210566d0b"
+  "substrate_hash": "66e422215d137734f0bb6fee6e039d150eb88fd427b2660a57c6de4210566d0b",
+  "decision": "competence_implementation_gap"
 }

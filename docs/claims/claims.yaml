@@ -2898,6 +2898,41 @@
     - ARC-018
     - ARC-003
     - ARC-005
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires (a) E1-generated candidate content,
+    (b) a hippocampal trace / temporal-ordering signal, and (c) the E3
+    commitment decision to each be separately instrumented and measurable,
+    with the trace/ordering signal varying (present vs absent/weak) across
+    conditions rather than held constant -- a run where every candidate
+    carries the same trace support cannot discriminate a working provenance
+    gate from no gate at all. This claim currently has no V3 substrate or
+    experiment built against it (no runs, no evidence_quality_note on file);
+    a run attempting to test it before the provenance-gating pathway
+    (hippocampal trace signal -> precision down-weighting -> E3 commitment
+    licensing) actually exists in the substrate should self-route
+    substrate_not_ready rather than count as a null result.
+    CONFIRMING signature: E1 content lacking hippocampal trace / temporal-
+    ordering support is measurably held at lower precision and is licensed
+    for E3 commitment at a lower rate than trace-supported content of
+    comparable quality; and degrading or disabling the gate (removing the
+    trace/ordering signal's influence on precision/commitment) produces a
+    measurable increase in high-confidence commitments of ungrounded
+    content -- i.e. confabulation-like failures track gate integrity in the
+    predicted direction. The gate should amplify/suppress candidate
+    trajectories without minting authority writes (POL/ID/CAPS) or
+    bypassing E3/verifier commit checks; a version that achieves filtering
+    only by bypassing the verifier would not confirm this claim's specific
+    mechanism.
+    FALSIFYING: E1 content commits to E3 at similar rates and precision
+    regardless of hippocampal trace / temporal-ordering support (the
+    presence or absence of provenance signal has no measurable effect on
+    commitment eligibility); or disabling/degrading the gate produces no
+    measurable increase in high-confidence, ungrounded commitments relative
+    to the gate-intact condition -- either would falsify the "Papez-like
+    loop functions as a provenance gate / reality filter" framing and
+    suggest hippocampal trace signals are not actually operating as a
+    commitment gate in REE's implementation, whatever role they may play
+    elsewhere.
   location: docs/architecture/papez_circuit.md#mech-037
   source:
     - docs/thoughts/2026-02-09_papez_circuit_reality_filtering.md
@@ -3243,6 +3278,67 @@
     settles only). 467d self-routed substrate_not_ready_requeue /
     external_task_mode_not_occupied. That is a separate /implement-substrate
     build and was deliberately NOT bundled here.
+  evidence_quality_note: >
+    V3-EXQ-799 (2026-07-23, behavioural difference-in-differences driving mu
+    from upstream environmental state via PCCAnalog, coupling ON vs OFF):
+    C1_visitation_entropy_did and C2_action_entropy_did both FAIL (DiD
+    ~0.0007/0.002 vs a 0.02 floor). The manifest's own routing_detail is
+    decisive: mu moved and the mode-prior entropy moved WITH it (mechanism
+    CONFIRMED and firing -- H(operating_mode) differs 1.105 nats between
+    coupling-ON STABLE vs VOLATILE, far above the 0.0001 floor), but no
+    behavioural consequence survived the difference-in-differences. Per
+    failure_autopsy_backlog_2026-07-24.json (applied here 2026-08-06): this is
+    NOT a falsification of MECH-048 -- it is a CONSUMER-PATH implementation
+    gap. Nothing downstream converts mode-prior entropy into action at a
+    detectable scale (write_gate breadth; interacts with the separately-known
+    unoccupied-contested-modes gap, leg (b) above). epistemic_category
+    competence_implementation_gap, evidence_direction non_contributory (both
+    the flat and run-pack manifests updated to match; previously both carried
+    no evidence_direction/decision at all, so the index could not have scored
+    this run either way until now). Routed to /implement-substrate on the
+    write_gate/consumer path -- not yet landed as of this note. Status stays
+    provisional; no confidence/promotion change.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: MECH-048 asserts overlays modulating BOTH
+    (a) mode-prior sharpness/entropy AND (b) switching pressure -- each leg
+    has its OWN precondition and its OWN confirmed-not-yet-testable history;
+    do not conflate a result on one leg with a verdict on the other.
+    Leg (a) precondition: requires mu driven from UPSTREAM environmental
+    state (via PCCAnalog), not direct injection -- "entropy falls as mu
+    rises" under direct injection is an arithmetic identity of the coupling
+    (asserted by the contract tests as wiring, not evidence). V3-EXQ-799
+    already did this correctly and confirmed the mechanism fires (mode-prior
+    entropy moves with mu, non-degenerate), but found a SEPARATE gap: no
+    behavioural DV downstream of the entropy shift currently has enough
+    sensitivity to detect it (write_gate breadth issue, routed to
+    /implement-substrate, not yet landed). A run against the UNFIXED
+    consumer path reproduces V3-EXQ-799's C1/C2 FAIL and is not a fresh test
+    -- it should self-route substrate_not_ready/competence_implementation_gap
+    until the write_gate fix lands.
+    Leg (b) precondition: requires the contested modes to actually be
+    occupied. V3-EXQ-464b/464c/467d/464d all FAIL with
+    fraction_in_external_task=0.0 at every seed across a 20x hysteresis
+    sweep -- switching pressure cannot be measured on a mode that is never
+    entered. This is a distinct, separate /implement-substrate build from
+    leg (a)'s consumer-path gap; do not bundle a leg-(a) fix as also
+    resolving leg (b).
+    CONFIRMING signature: once the write_gate/consumer-path fix lands (leg a)
+    and contested modes are genuinely occupied (leg b), driving mu from
+    upstream environmental state produces a measurable, seed-stable
+    behavioural difference-in-differences (visitation entropy and/or action
+    entropy) between coupling-ON and coupling-OFF arms, clearing the 0.02
+    floor V3-EXQ-799 used -- confirming the entropy-modulation mechanism
+    converts to real behaviour, not just an internal representational shift.
+    Separately, once modes are occupied, switching pressure (dwell time,
+    n_switches independent of episode boundaries) measurably responds to
+    mu/kappa.
+    FALSIFYING signature: even with both fixes landed and both preconditions
+    met, the behavioural DiD still fails to clear the floor (leg a) or
+    switching pressure shows no response to mu/kappa once modes are occupied
+    (leg b) -- either would mean the confirmed internal mechanism (entropy
+    genuinely shifts with mu) does not convert to any measurable behavioural
+    or switching-pressure effect, falsifying the claim's functional
+    consequence even though its internal wiring is confirmed correct.
 - id: MECH-049
   title: "Temporal phase compartmentalisation preserves ethical constraint independence."
   claim_type: mechanism_hypothesis
@@ -4160,6 +4256,63 @@
     Clinical analogues are tracked as notes rather than a separate field -- the
     psychiatric symptom mapping is evidence for the architectural claim, not a
     separate claim type.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict):
+    MECH-065 is currently a schematic design claim -- the RC_conflict signal, the
+    DA_A/DA_M lock-in-pressure dampening, the commitment-threshold (tau/theta_high/
+    theta_low) hysteresis, and the Pi_rc guarded floor are all still on the
+    control-plane doc's own TODO list ("formalise control plane state variables",
+    "specify update equations... for S5 reality-coherence conflict computation").
+    A test is informative only once: (a) RC_conflict is computed as an explicit,
+    independently-readable channel (not inferred post-hoc from downstream behaviour),
+    with live non-zero variance across an authority/provenance-mismatch manipulation
+    -- a channel that never moves cannot be shown to modulate anything, and any run
+    against a flat/uncomputed RC_conflict channel self-routes substrate_not_ready,
+    not FAIL; and (b) commitment threshold and DA_A/DA_M lock-in pressure are
+    themselves separately measurable at the pre-commit stage, so a shift in them can
+    be attributed to RC_conflict specifically rather than read off final behavioural
+    outcome. Two of the six dependencies (ARC-007, ARC-018) are held on the
+    V3-Pending Gate as of this digestion -- their resolution is upstream of a clean
+    test here, since MECH-065's provenance/authority framing leans on both.
+    CONFIRMING signature: under a manipulation that varies authority/provenance
+    mismatch at matched surface content (e.g. spoofed vs. verified source signal on
+    an otherwise identical instruction/observation), RC_conflict rises measurably,
+    DA_A/DA_M lock-in pressure is measurably dampened, and the effective commitment
+    threshold is measurably raised -- all BEFORE execution lock-in (pre-commit-stage
+    change, not a downstream behavioural correlate) -- with the system biasing toward
+    verification/exploration rather than premature commit. Per the claim's own
+    literature grounding (Sterzer et al. 2016), the effect should track the
+    PRECISION RATIO of internal-model precision to authority-signal precision, not
+    authority-signal magnitude alone: an arm that holds absolute authority-signal
+    strength fixed while varying internal (E1) precision should shift the threshold
+    the same way as an arm that holds internal precision fixed and varies authority
+    signal strength, provided the ratio moves equivalently. The response should also
+    show hysteresis (theta_high > theta_low, bounded recovery via tau_rc_recovery)
+    rather than a single crisp threshold, and should never suppress reality-conflict
+    sensitivity below the guarded floor (Pi_rc >= pi_rc_floor) under sustained
+    exteroceptive pressure.
+    FALSIFYING signature: if the provenance/authority-mismatch manipulation produces
+    no measurable pre-commit change in DA_A/DA_M or commitment threshold -- i.e.
+    RC_conflict, even when computed and live, has no separable causal effect on
+    lock-in pressure or threshold -- the claim is refuted: reality-coherence
+    conflict does not constitute a distinct control-plane lane and any observed
+    downstream effect is better explained by existing signals (S1/S3) alone. Also
+    falsifying if the threshold shift tracks absolute authority-signal magnitude
+    independent of internal precision (i.e. the ratio manipulation described above
+    does NOT dissociate, so magnitude alone predicts the shift as well as the ratio
+    does) -- this would refute the specific ratio-based account MECH-065 currently
+    rests on (Sterzer et al.), even if some cruder RC-conflict effect survives. Also
+    falsifying if the response shows no hysteresis (theta_high == theta_low, or
+    chronic drift below pi_rc_floor under sustained pressure) -- the design
+    constraint that reality-conflict must not chronically over-suppress from
+    transient ambiguity would then be unmet.
+    EVIDENCE STATUS: no experimental evidence exists for this claim as of this
+    digestion (2026-08-06) -- only literature grounding (Sterzer et al. 2016, Howes
+    & Murray 2020, Damiani et al. 2022) supporting the ratio-based reframing of the
+    threshold, and a clinical-analogue mapping. That literature is supportive of the
+    general precision-miscalibration framing but does not itself test REE's specific
+    three-signal (provenance/temporal/identity/policy) carve of RC_conflict -- treat
+    it as motivating, not confirming.
   location: docs/architecture/control_plane_signal_map.md#mech-065
   source:
     - docs/architecture/control_plane_signal_map.md
@@ -6704,6 +6857,39 @@
     purely unsupervised discovery from below. May reduce E1 hidden-layer depth requirement.
     Extends ARC-001/ARC-002/MECH-033: E2 is both a consumer of E1 representations and an
     active shaper of what E1 must produce.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: no experiment has yet targeted MECH-081 directly --
+    the claim's own architecture doc (e1_e2_constraint_propagation.md#mech-081) states
+    a "testable implication" but no run against it exists in evidence, and the claim
+    carries no evidence_quality_note. A valid test needs (a) a matched pair of E1
+    training conditions -- E2 present (top-down sufficiency constraint active) vs. E1
+    trained alone with no E2 top-down signal -- built on the ARC-001/ARC-002/MECH-033
+    substrate this claim depends on and extends; (b) a non-degenerate effective-
+    dimensionality metric for E1's representation (e.g. latent participation ratio,
+    covariance rank, or minimum hidden-layer depth/width needed to hit a fixed
+    reconstruction or prediction-quality bar) that varies across seeds/conditions
+    rather than saturating at a floor or ceiling in both arms. A run where the two
+    arms are indistinguishable because the dimensionality metric itself has near-zero
+    range should self-route substrate_not_ready, not count as a verdict.
+    CONFIRMING: E1 trained with E2 present shows measurably LOWER effective
+    dimensionality (sparser / more clustered / lower participation ratio, or fewer
+    hidden units/depth needed to converge) than E1 trained alone with no E2 top-down
+    signal, holding the sensory data distribution and E1's own unsupervised objective
+    fixed. Per the architecture doc's own testable implication, the specific
+    dimensions E1 retains under the E2-present condition should additionally be
+    predictive of E2's transition-prediction accuracy (not merely lower-dimensional
+    by coincidence). Ablating or down-weighting the E2 top-down term should move the
+    dimensionality requirement back toward the E1-alone baseline, on >=2/3 seeds.
+    FALSIFYING: E1's effective dimensionality / depth requirement is unchanged, or
+    increases, when the E2 sufficiency constraint is active vs. severed -- or the two
+    conditions are statistically indistinguishable given the metric's own seed
+    variance -- indicating E2's prediction task does not meaningfully pre-specify what
+    E1 must resolve, and feature discovery is not offloaded top-down as the claim
+    asserts. A result where E1 is lower-dimensional under E2 but the retained
+    dimensions are NOT predictive of E2 transition accuracy would be a mixed/partial
+    result (dimensionality reduced for some other reason, e.g. regularisation from the
+    joint objective, not from sufficiency-constraint specification) and should be
+    reported as such rather than rounded to a clean confirm.
 - id: MECH-082
   title: "Hippocampal map distortion propagates through E2 to bias E1 attentional sampling without explicit E1 retraining."
   claim_type: mechanism_hypothesis
@@ -11383,6 +11569,53 @@
     MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION): re-source the novelty signal from something
     MEL-correlated (e.g. the E3/E2 prediction-error signal that already drives MEL) instead of the
     self-referential recency buffer. pending_retest_after_substrate=true.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this claim bundles two distinct mechanisms and
+    each needs its own gate.
+    Content-packaging half: the landed substrate
+    (MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION, REEConfig.use_mech122_spindle_content_selection)
+    is confirmed non-inert (mean_spindle_selection_applied=1.0 in V3-EXQ-861a) but
+    its current novelty reference (ThetaBuffer.consolidation_summary(), a
+    self-referential recency average of the same waking window supplying the
+    content being compared against it) is a diagnosed measurement/test-design
+    defect, not a real manipulation -- selection_weight stays uniformly tiny
+    (~0.004-0.01) regardless of arm. A run against this UN-corrected novelty
+    reference is not informative and should self-route
+    substrate_not_ready/measurement_defect, not count as a verdict on the
+    mechanism -- this is exactly how the two EXQ-246 vacuous PASSes and the
+    V3-EXQ-861a FAIL were already read. The precondition for an informative run
+    is the routed-but-not-yet-landed fix: re-source the novelty signal from
+    something MEL-correlated (e.g. the E3/E2 prediction-error signal that
+    already drives MEL) instead of the self-referential buffer, with
+    selection_weight showing measurable variance across MEL levels as a
+    manipulation check.
+    Sensory-gating half: MECH122-SENSORY-GATING-OFFLINE-PROTECTION is unbuilt
+    (complex (probe-gated)) and not established as load-bearing under the
+    current strictly-sequential wake/sleep harness design. No run can test this
+    half until it is built; any claimed test of "gating" before then is not
+    evidence either way.
+    CONFIRMING signature: (a) Content-packaging -- once the novelty reference is
+    re-sourced to a MEL-correlated signal, MECH-180's spindle_density DV tracks
+    novelty in the predicted direction (WITH_SPINDLE vs NO_SPINDLE arms
+    diverge, ContextMemory writes are robustly differentiated rather than the
+    null V3-EXQ-246 outcome) across a majority of seeds. (b) Sensory-gating --
+    once built, external sensory input is measurably suppressed/buffered during
+    spindle windows, and a consolidation episode protected by gating transfers
+    content better than one interrupted by waking input.
+    FALSIFYING: (a) Content-packaging -- even after re-sourcing the novelty
+    signal to a MEL-correlated source, spindle_density/selection_weight still
+    fails to track novelty, or continues moving in the wrong direction relative
+    to MEL (as already seen on the two well-formed V3-EXQ-861a seeds) -- this
+    would upgrade the finding from "measurement defect" to genuine evidence
+    against the content-packaging mechanism. (b) Sensory-gating -- once built,
+    interrupted vs gating-protected consolidation episodes are statistically
+    indistinguishable, or gating fails to measurably suppress external input at
+    all. CROSS-CUTTING CAVEAT (already flagged as an open, converging
+    hypothesis by failure_autopsy_V3-EXQ-436c_2026-08-03 on a different DV):
+    if ContextMemory.write_gate is found to carry the same bias-over-content
+    collapse already fixed on key_proj's read path (SD-016 Part A / EXQ-477),
+    that is a shared substrate bug, not evidence on MECH-122 either way, and
+    should be ruled out before attributing any future FAIL to this mechanism.
 
 - id: MECH-123
   title: "The REM sub-phase of offline mode recalibrates precision priors and tests world model hypotheses via unconstrained generative simulation, with commit gate fully suppressed."
@@ -11551,6 +11784,47 @@
     current V3 defaults -- V4 consolidation risk indicator green. Promoted to provisional
     (governance 2026-04-09-c): 5 supports, 1 opposing, conf=0.774. V4 consolidation
     experiments still required to test the full option-contraction loop.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this claim cannot be tested in V3. It requires an
+    actual offline consolidation/replay substrate (MECH-121 SWR replay, MECH-120 SWS
+    denoising) running multiple sleep cycles over training -- V3 has no sleep
+    architecture. EXQ-224 and EXQ-298 (both 2026-04, V3-era) are PRECURSOR diagnostics
+    only: they establish whether the salience-balance PRECONDITION for the loop holds
+    (goal vs harm salience ratio), not whether the consolidation loop itself amplifies
+    harm and contracts option space. A run that only re-measures z_goal/harm salience
+    ratios in V3 (no consolidation cycles) should self-route substrate_not_ready for
+    THIS claim, not count as a verdict -- that ground was already covered by EXQ-224/298.
+    A genuine test additionally requires ITERATION: a single consolidation pass cannot
+    distinguish a self-amplifying loop from a one-off adjustment -- the design must run
+    multiple offline consolidation cycles and track the trajectory of option-space /
+    approach-behavior metrics across cycles, not just a pre/post snapshot.
+    CONFIRMING signature: across successive consolidation cycles in which replay
+    content is harm-dominant (e.g. the ~3:1 harm:goal salience ratio measured in the
+    EXQ-224 baseline), option-space metrics (action diversity, z_goal representation
+    strength, frequency of approach behavior) PROGRESSIVELY CONTRACT cycle-over-cycle,
+    even though approach signals were present during the original training (ruling out
+    a pure Q-021 static-avoidance explanation). The effect should be attenuated or
+    absent when replay content is balanced per MECH-121 (goal-directed traces
+    included proportionally) or when MECH-094 tag-based protection shields harm traces
+    from over-amplification -- i.e. the loop is mechanism-specific to salience
+    imbalance in replay, not an inevitable property of consolidation itself. An agent
+    with strong approach drives at training time (INV-034) that STILL contracts under
+    imbalanced consolidation would be a strong confirming case, since it isolates the
+    consolidation dynamic from training-time drive strength.
+    FALSIFYING signature: harm-dominant replay content does NOT produce progressive,
+    cycle-over-cycle contraction -- option-space metrics stabilize, plateau, or do not
+    decline further than a single adjustment -- OR the apparent contraction is fully
+    explained by training-time avoidance dynamics (Q-021) and disappears/does not
+    change when consolidation cycling is held constant while only training exposure is
+    varied. Also falsifying: an agent with imbalanced (harm-dominant) consolidation
+    that does NOT show declining approach behavior despite otherwise-sufficient
+    approach drive, which would indicate the proposed self-amplifying loop is not load-
+    bearing even when its stated precondition (salience imbalance) is present.
+    Distinguish explicitly from Q-021 in the writeup: Q-021 is training-time and static
+    (no approach signal from the start); MECH-124 is consolidation-time and dynamic
+    (approach signal present at training, contraction emerges from repeated offline
+    replay/consolidation). A run that cannot separate these two should not be scored
+    against MECH-124 either way.
 
 - id: MECH-125
   title: "E3 trajectory selection implements multi-constraint viability evaluation rather than scalar reward maximisation: a trajectory is selected when no major evaluation system produces a veto-level error signal across goal space, harm space, identity space, and resource space."
@@ -11722,6 +11996,45 @@
     Implication for MECH-032 (high-recall OTHER_SELFLIKE bias): counterfactual projection
     requires OTHER_SELFLIKE tagging to function pre-encounter, supporting the bias rationale.
     Motivating observation: first-person report, 2026-03-24. Registered 2026-03-24.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: MECH-127 is design-only as of this writing -- it has
+    no built substrate and no experiment has ever attempted to test it (no EXQ/run IDs
+    exist against this claim). Per mirror_modelling_other_self_v5_plan.md (MIRROR-7),
+    it is gated on ALL of: pre-encounter OTHER_SELFLIKE tagging (MIRROR-1), a mirror
+    that runs COUNTERFACTUALLY rather than only on observed other-agent state (MIRROR-2),
+    the MECH-163 hippocampal multi-step planner (needed to simulate another agent's
+    future state, not just its present one), and the INV-064 self-model maturational
+    gate (self_model_v4:SELF-7) establishing self-stability precedes social depth. A run
+    lacking a verified counterfactual (absent-other) mirror channel, or lacking an
+    independently-measurable "direct task-motivation pathway degraded" state, tests
+    nothing and must self-route substrate_not_ready rather than counting as a verdict --
+    scoring a system that cannot represent an absent other's hypothetical cost is not a
+    test of bypass-via-counterfactual-projection, it can only be a test of MECH-031-style
+    modulation by mistake.
+    CONFIRMING signature (bypass, not modulation): with the direct task-motivation
+    pathway independently confirmed degraded, cooperative task-engagement rises above
+    the degraded-pathway-alone baseline specifically when the counterfactual
+    OTHER_SELFLIKE/mirror channel is active, INCLUDING when the other agent is absent
+    (the claim is explicit that activation is counterfactual -- "on a model of what
+    would happen to the other agent if they took on the task, not on their actual
+    current state"). This must dissociate from MECH-031 (modulation of an intact
+    pathway): ablating the counterfactual/mirror channel should collapse the rescue
+    effect, while further degrading the already-degraded direct pathway should NOT
+    further reduce engagement, since by hypothesis engagement is now being driven
+    through the alternate (counterfactual empathic) route rather than the direct one.
+    FALSIFYING signature: cooperative/task engagement under pathway degradation is
+    statistically indistinguishable with vs without the counterfactual channel (no
+    rescue); OR the rescue effect requires the other agent to be PRESENT/observable
+    rather than merely modeled (would falsify the counterfactual/absence claim and
+    collapse MECH-127 into ordinary MECH-031 modulation); OR ablating OTHER_SELFLIKE
+    tagging / the counterfactual mirror has no effect on the rescue (would falsify the
+    proposed mechanism even if some rescue effect is observed via an unidentified
+    route). Any of these outcomes should be reported as a genuine test result, not
+    reframed as substrate_not_ready, PROVIDED the non-degeneracy precondition above was
+    actually met.
+    Evidence on file: none experimental. This is a first-person-report-motivated
+    mechanism hypothesis (thought_intake_2026-03-24_empathy_multiagent_ethics.md),
+    currently un-adjudicated by any run.
 
 - id: ARC-034
   title: "Ethics testing must span nth-order multiagent trajectory distributions; local pairwise probes are insufficient to characterize emergent ethical properties."
@@ -16998,6 +17311,46 @@
   pharmacological_predictions:
     - PHARM-007  # anticholinergic dual-pathway risk (REM-suppression arm)
     - PHARM-012  # antidepressant class dissociation (low-REM-burden vs paroxetine/TCA/MAOI)
+  digestion_note: >
+    2026-08-06 (thought-digestion, session thoughts-intakes-4fd18d, parallel
+    research agent): what_would_answer was DELIBERATELY NOT WRITTEN. This is a
+    dual-shaped claim -- a clinical/pharmacoepidemiological prediction (see
+    notes above) paired with a REE-substrate mechanism claim (MECH-123
+    precision-recalibration impairment) -- and the substrate side has moved
+    materially since this claim's own evidence_quality_note was last touched.
+    V3-EXQ-774 (2026-07-17, diagnostic) found a substrate_ceiling: the built
+    MECH-204 F1 precision-recalibration reproduces MECH-173's DIRECTION
+    (accuracy-dissociation + REM-selectivity intact) but cannot express
+    ABSOLUTE overconfidence, on only 1/3 seeds (convergence-headroom masking)
+    -- correctly read as a discovered substrate PRECONDITION gap, not
+    falsification. WORKSPACE_STATE.md (2026-07-20T19:40Z) shows that gap has
+    since been BUILT AND LANDED -- MECH-204 Phase 7 / Option B (broadcast
+    precision read-site) AND the paired SD-076 (waking confidence-inflation
+    source, without which the MECH-173 overconfidence DV is tautological by
+    construction) landed together in ree-v3 main 8ac193d7ed + REE_assembly
+    master 062516d70e, contracts green (1990/0) -- but the same entry states
+    explicitly "STILL OWED -- validation experiment NOT queued." Confirmed via
+    grep: no MECH-173/774 entry in ree-v3/experiment_queue.json,
+    pending_review.md silent on it, as of this digestion pass. The required
+    retest is NOT a simple rerun of V3-EXQ-774 -- it must be a 2x2 ablating
+    BOTH Phase 7 and SD-076 together (ablating Phase 7 alone would retest to
+    a null indistinguishable from a Phase-7 refutation, because without
+    SD-076 running_variance tracks true error by construction). Reference
+    acceptance numbers already banked for this design: 774's ARM_FULL_SLEEP
+    = -0.2097 (underconfident); a smoke test showed the index moving
+    -0.164 -> +0.273 at asymmetry 0.6 once both levers are on. Separately
+    unresolved: V3-EXQ-774 scored MECH-173 even though it wasn't in the
+    Phase-7 resume trigger's named claim list -- treated as "illustrative of
+    the class, not exhaustive" but never formally adjudicated.
+    NEXT DIGESTION PASS: draft what_would_answer only after either (1) the
+    2x2 retest lands and its outcome is folded into evidence_quality_note, or
+    (2) explicitly incorporating this precondition/2x2-design/reference-
+    numbers language as the non-degeneracy precondition itself. Keep the
+    eventual REE-substrate falsifier and the clinical/pharmacoepidemiological
+    falsifier as TWO separate signature blocks -- they have different
+    non-degeneracy preconditions and should not be collapsed into one. Check
+    whether the 2x2 retest has been queued since 2026-07-20 before drafting.
+    Remove this note once done.
 
 - id: MECH-174
   title: "GABAergic sleep aids (benzodiazepines and Z-drugs: zolpidem, zopiclone, zaleplon) suppress SWS depth and continuity at therapeutic doses, impairing MECH-120 synaptic homeostasis and MECH-121 schema replay, producing context representations that remain globally undifferentiated -- the same failure mode as SD-017 without any SWS-analog."
@@ -31819,6 +32172,62 @@
     Candidate, V3 engineered z_world means MECH-278 is not actively
     tested in V3. The clean test is a V4 experiment that ablates
     z_world and requires experimental-action reconstruction.
+  what_would_answer: >
+    Non-degeneracy precondition: this claim is untestable in V3 as built. V3's
+    z_world (SD-005) is engineered as a pre-specified split from z_self rather
+    than discovered by the agent -- the claim's own notes call this a
+    "deliberate engineering choice, not an oversight," and no V3 experiment to
+    date (none is on file for MECH-278) has attempted to ablate or bypass it.
+    A prerequisite substrate condition also gates this: MECH-277 (stage-1
+    self/world attribution) must be functioning first, since MECH-278 predicts
+    that stage-2 object-schema formation degrades when self-produced and
+    world-produced sensory change cannot yet be distinguished. Any run that
+    does not (a) ablate the engineered z_world and require the agent to
+    reconstruct an object-schema decomposition via experimental/interventional
+    action, and (b) do so on a substrate where MECH-277's self/world
+    distinction is actually live rather than hand-wired, should self-route
+    substrate_not_ready rather than count as a verdict either way -- this is a
+    V4-or-late-V3-developmental-harness test, not something the current
+    engineered-z_world V3 substrate can speak to.
+
+    Confirming signature (primary, per the claim's own falsifier): with the
+    engineered z_world ablated, an agent that performs experimental
+    (interventional) actions on the world and forms feature-schema groupings
+    matching the engineered z_world decomposition -- i.e. it recovers
+    "features that move together when pushed, disappear together when
+    occluded, resist together when encountered" as coherent bundles under
+    perturbation, not merely correlated features under passive observation.
+    This would show the V3 shortcut was benign: object identity is discoverable
+    from causal-intervention structure alone, without engineering it in.
+
+    Confirming signature (secondary, per the claim's own falsifier): an agent
+    trained on stage-2 object formation only after stage-1 (MECH-277,
+    self/world attribution) is complete shows stable, low-noise object-schema
+    formation, in contrast to an agent given stage-2 experience before stage-1
+    closure.
+
+    Falsifying signature (primary): the reconstructed object-schema
+    decomposition diverges materially from the engineered z_world split --
+    i.e. features the engineered version treats as one object are not
+    recovered as causally coherent under intervention, or vice versa. This
+    would indicate the V3 engineered-z_world shortcut smuggled assumptions
+    the agent would not independently form, undermining the claim that the
+    engineered split is a faithful stand-in for developmentally-formed object
+    schemas.
+
+    Falsifying signature (secondary): an agent given stage-2 experimental
+    action before stage-1 self/world attribution is well-formed (MECH-277
+    incomplete) nonetheless forms object-schemas as stable and low-noise as
+    an agent with stage-1 complete first -- i.e. the interventional signature
+    is not measurably noisier without prior self/world disambiguation. This
+    would undercut the claimed developmental ORDERING dependency (MECH-277
+    before MECH-278), even if the object-definition mechanism itself holds.
+
+    Evidence status as of this draft: no direct or indirect V3 experimental
+    evidence exists for MECH-278 (no EXQ/V3-EXQ run is cited anywhere in this
+    claim's history). This is a purely design-stage claim awaiting a V4 /
+    developmental-harness test; do not treat any V3-substrate result as
+    bearing on it absent an explicit z_world ablation.
   location: docs/architecture/scientist_agent_developmental_ordering.md
 
 
@@ -35758,6 +36167,51 @@
     `targeted_review_theta_abstraction_scaling/` (Bellmund 2018 anchor +
     Gupta 2012 + Constantinescu 2016 already in REE's lit index). No
     substrate implementation yet.
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: this claim is untestable until the substrate
+    vocabulary actually contains a granularity level ABOVE the atomic action.
+    V3's vocabulary is fixed at z_world + atomic actions, so a run against V3
+    alone cannot address MECH-300 -- theta content would trivially reduce to
+    atomic-action traversal because no other map exists to traverse, and that
+    should self-route substrate_not_ready rather than count as a null/negative
+    result. A valid test additionally requires: (1) MECH-089 / MECH-294
+    theta-gamma packaging confirmed live, (2) MECH-269 anchor pool live
+    (defines the cognitive-map nodes MECH-300 traverses), and (3) at least one
+    of the reusable-unit substrates landed -- SD-045 (action chunks), SD-040 /
+    MECH-296 (type-instance prototypes), or SD-042 (option library) -- so
+    there is a second, non-atomic map for theta to be traversing. Per the
+    plan-of-record (object_reasoning_abstraction_v4_plan.md OBJ-ABS-6), this
+    claim is explicitly the capstone validation node and cannot be the first
+    thing built; it validates that the lower pillars re-grain the theta
+    packet rather than existing as separate substrates.
+
+    CONFIRMING signature (per the claim's own functional_restatement): in a
+    hierarchical-task paradigm where the agent has learned BOTH atomic-action
+    sequences AND a higher-level unit (option-level subroutines, action
+    chunks, or type-graph transitions), decoded theta-cycle content during
+    execution of the higher-level unit should transition between nodes of
+    THAT graph (option-to-option, chunk-to-chunk, or type-to-type) rather
+    than between atomic action-steps -- i.e. the same theta-sequence
+    machinery re-grains to whichever vocabulary is currently active. This is
+    the substrate-level analogue of the Frank-lab hierarchical-task replay
+    literature (the closest biological anchor named in the claim).
+
+    FALSIFYING signature: if, even once a higher-level substrate (chunks /
+    types / options) is built and demonstrably drives behaviour, decoded
+    theta-sequence content during higher-level execution continues to
+    reflect ONLY atomic-action-to-atomic-action transitions -- i.e. theta
+    stays pinned to the lowest-granularity map regardless of which
+    vocabulary level is behaviourally active -- that falsifies MECH-300's
+    "no fixed semantic content" claim and would instead support a fixed
+    theta-content model (theta always encodes atomic spatial/action
+    trajectories, irrespective of higher-level structure).
+
+    Note the sister-claim coupling: MECH-299 (content/unit) and MECH-300
+    (map/graph) are intended to be tested together against the same
+    hierarchical-task substrate. A result confirming one while falsifying
+    the other is itself informative and should be reported as such rather
+    than resolved -- it would indicate the packaging and traversal axes are
+    dissociable rather than co-scaling as currently assumed.
   location: docs/thoughts/2026-04-28_action_policy_and_multi_goal.md
 
 - id: MECH-301
