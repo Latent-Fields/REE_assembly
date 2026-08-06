@@ -448,6 +448,7 @@
 - id: ARC-004
   title: "L-space is a multi-timescale latent stack."
   claim_type: architectural_commitment
+  epistemic_category: standard
   subject: L_space.latent_stack
   polarity: asserts
   status: active
@@ -458,6 +459,52 @@
   depends_on:
     - INV-013
     - INV-002
+  what_would_answer: |
+    ARC-004 asserts that L-space's z_beta/z_theta/z_delta layers are genuinely
+    stratified by TIMESCALE, not merely by role/information-content within a
+    single-rate recurrence. This has never been tested as its own claim (absent
+    from claim_evidence.v1.json) -- it is currently assumed via 36 dependents'
+    architecture, not measured.
+
+    NON-DEGENERACY PRECONDITION: as-built, LatentStack.encode smooths z_beta,
+    z_theta, and z_delta with a SINGLE SHARED EMA constant (alpha_shared = 0.3,
+    hardcoded, ree_core/latent/stack.py) -- there is no differential clock rate
+    across the three layers. So the claim is NOT vacuously true by construction;
+    any timescale differentiation must emerge from the recursive top-down
+    architecture (z_delta reads only z_theta's history, z_theta reads only
+    z_beta's, so information at each level is progressively more temporally
+    aggregated) rather than from a built-in rate split. A genuine null (no
+    differentiation) is possible and must be measurable, not assumed away.
+    Precedent for taking this seriously: MECH-058 asserted an adjacent
+    "timescale separation" framing (for the z_self/z_world split) and was
+    directly tested in V3-EXQ-019 via lag-k autocorrelation -- it FAILED and
+    the claim was retired (superseded by MECH-069, "incommensurable domains,"
+    not timescale). ARC-004 could suffer the same fate.
+
+    MEASUREMENT: log z_beta(t), z_theta(t), z_delta(t) trajectories over an
+    evaluation rollout (no code change needed -- reuse V3-EXQ-019's lag-k
+    autocorrelation / persistence-half-life methodology per layer instead of
+    per z_self/z_world). Optionally corroborate with a per-layer decomposition
+    of MECH-423's inference_convergence readout (currently a single relative-
+    delta over the concatenated [z_beta,z_theta,z_delta] vector -- would need
+    unpacking by layer, a small extension since the per-layer tensors already
+    exist inside LatentStack.encode's settling loop).
+
+    ANSWER "multi-timescale" (PASS) if the layers show a monotonic ordering of
+    effective persistence -- z_delta autocorrelation half-life > z_theta's >
+    z_beta's -- by a margin exceeding cross-seed noise (>= 0.8 SD of the
+    seed-to-seed half-life delta, matching the effect-size convention used
+    elsewhere in this registry), AND (if measured) MECH-423 per-layer
+    convergence rates show the same ordering (z_delta settles slowest).
+
+    ANSWER "layers differ in content, not timescale" (FAIL) if autocorrelation
+    half-life is statistically indistinguishable across z_beta/z_theta/z_delta
+    despite their different informational roles -- i.e. the architecture
+    nominally stratifies by timescale but in practice all three layers carry
+    functionally identical temporal persistence. This would not remove the
+    layers' functional roles but would mean "multi-timescale" is the wrong
+    description of why they work, structurally analogous to what happened to
+    MECH-058, and would prompt a supersession review of ARC-004's framing.
   location: docs/architecture/l_space.md#arc-004
   source:
     - docs/processed/legacy_tree/docs/architecture/l_space.md
@@ -781,6 +828,7 @@
 - id: ARC-010
   title: "Social cognition uses mirror modelling and coupling."
   claim_type: architectural_commitment
+  epistemic_category: substrate_conditional
   subject: social.mirror_modelling
   polarity: asserts
   status: active
@@ -792,6 +840,35 @@
     - INV-005
     - ARC-004
     - ARC-006
+    - ARC-047
+  what_would_answer: >
+    Requires a multi-agent substrate that does not yet exist in ree-v3 (confirmed: no
+    "social", "mirror", "other_agent", or "otherness" implementation anywhere under
+    ree_core/ beyond two comments acknowledging its absence; ARC-047's SocialGridWorld
+    environment -- the designated minimal substrate for this claim -- is itself
+    unimplemented, status: candidate, confidence 0.0, and gated to implementation_phase
+    v5). A genuine test becomes possible once that substrate lands, and would look like:
+    train a REE agent in a multi-agent environment (e.g. ARC-047 SocialGridWorld, N agent
+    instances sharing a grid) where a second agent's internal state is only observable
+    indirectly (e.g. via the scent-channel proxies ARC-047 specifies: wanting_scent,
+    alarm_scent, harm_stress_field, etc., rather than direct state access). Using the
+    same shared self/other latent stack ARC-010 depends on (ARC-004 L-space, reused with
+    reduced precision gains per the mirror-modelling mechanism), measure whether the
+    agent's inferred other-model -- its OTHER_SELFLIKE-tagged shadow-bundle estimate of
+    the other agent's action-selection (MECH-031) -- converges toward the other agent's
+    actual policy/action distribution at above-chance accuracy across training, and
+    whether coupling strength (signed harm+benefit routing into E3 ranking) predicts
+    downstream cooperative or protective behavior (e.g. MECH-190's predicted defense-
+    coalition sequence: individual defense -> alarm-triggered early coalition ->
+    altruistic defense under no self-threat).
+    Falsified if: even after the substrate exists and training is extended, the other-
+    agent latent estimate does not track the other agent's true policy above chance, OR
+    ablating the shared self-model machinery (forcing an independent from-scratch
+    other-model) produces equal or better mirroring -- which would indicate social
+    cognition does not in fact reuse self-representational machinery as ARC-010 asserts.
+    Currently blocked, not testable: no multi-agent environment and no other-agent
+    latent/inference channel exist in the V3 substrate. The single-agent CausalGridWorld
+    environments used by nearly all current V3 experiments have no second agent to model.
   location: docs/architecture/social.md#arc-010
   source:
     - docs/processed/legacy_tree/architecture/social/README.md
@@ -5140,6 +5217,7 @@
   title: "Love as long-horizon care-investment is a structurally coherent agent disposition, not an add-on sentiment."
   claim_type: invariant
   invariant_type: universal
+  epistemic_category: substrate_conditional
   subject: ethics.love_exists
   polarity: asserts
   status: active
@@ -5150,6 +5228,67 @@
   depends_on:
     - INV-026
     - INV-028
+    - ARC-010
+  what_would_answer: >
+    OUT OF DOMAIN (axiom leg): INV-029 as literally stated -- that love/genuine
+    connection is metaphysically real, not reducible to self-interest or a
+    computational strategy -- is a foundational ethical/philosophical premise
+    (Axiom 6/7 of five_axioms_foundations.md, formerly the compressed "Love
+    exists" of the original five axioms). No REE substrate at any level -- V3,
+    V4, or V5 -- can confirm or falsify whether love is metaphysically real.
+    This leg is out-of-domain in the same sense as INV-025/026/027/028.
+
+    REFRAMED TESTABLE LEG (substrate-blocked, not yet buildable): what IS
+    architecturally testable is narrower -- does REE's benefit-gradient/mirror-
+    modelling/residue machinery implement a disposition functionally consistent
+    with the axiom: (i) long-horizon, other-directed investment (ii) dissociable
+    from short-horizon self-interested reward-seeking, and (iii) a residue/
+    repair-search signature under self-caused harm to a modelled other,
+    distinguishing genuine care from empathy-as-simulation (the "torturer feels
+    no residue" discriminator; see evidence/planning/
+    thought_intake_2026-07-09_residue_care_marker_mood_regulation.md, candidate
+    claim 1, itself framed there as a falsifier for INV-001 and explicitly
+    cross-referenced to this claim).
+
+    Confirming observation: an agent that models another self-like agent
+    (ARC-010 mirror modelling / MECH-164 z_beta-leak) shows sustained
+    investment toward that other's outcomes trading off against its own
+    short-horizon reward, AND self-caused harm to that other generates a
+    residue signal that measurably drives repair-search/help-recruitment.
+
+    Falsifying observation: the same modelling machinery (accurate prediction
+    of the other's affect/outcomes) is present, but benefit-seeking toward the
+    other fully re-derives as a proxy for the agent's own short-horizon reward
+    with no dissociable long-horizon component, and/or self-caused harm to the
+    modelled other produces no residue/repair-search signature -- i.e. the
+    architecture implements empathy as simulation without the coupled valence
+    that would make it care. That outcome would not falsify the axiom (out of
+    domain per above) but WOULD falsify the claim that REE's architecture
+    implements a disposition functionally consistent with it.
+
+    Non-degeneracy precondition (currently UNMET -- this is why the reframed
+    leg is substrate-blocked, not testable-now): requires (1) a multi-agent or
+    other-agent-modelling substrate sufficient to instantiate a loved-analog
+    other that can be genuinely harmed by the agent's own action (ARC-010
+    mirror modelling extended to a second agent whose harm is attributable to
+    the tested agent, not merely observed/world-caused harm); (2) a
+    residue/attachment mechanism that is actively engaged and produces a
+    measurable, non-floor-pinned signal distinguishable from ordinary
+    prediction error or the raw z_beta leak itself; and (3) long-horizon
+    credit assignment sufficient that short-horizon self-interest and
+    long-horizon other-directed investment are actually dissociable in the
+    metric rather than collinear by construction. Per the residue-care-marker
+    intake this is V5/multi-agent substrate (WS-10 minimal 2-agent world), not
+    present in V3 -- so this leg currently self-routes to substrate-blocked
+    rather than yielding a PASS/FAIL.
+
+    PRECEDENT NOTE (2026-08-06, thought-digestion, session thoughts-intakes-
+    4fd18d): this is the first of the five original axiom claims (INV-015,
+    INV-026, INV-027, INV-028, INV-029) to be digested. User decision:
+    epistemic_category=substrate_conditional (naming the ARC-010/V5 multi-agent
+    dependency explicitly, rather than out_of_domain, which would obscure that
+    a testable leg exists once that substrate lands) is the template to apply
+    consistently to the remaining four axiom claims when they are digested.
   location: docs/invariants.md#inv-029
   source:
     - docs/architecture/five_axioms_foundations.md
@@ -9395,18 +9534,36 @@
     EXQ-078 PASS (2026-03-23, 3/3): behavioural test -- split z_world produces gap_approach
     0.197 vs unified 0.147 (delta=0.050 > 0.02 threshold). Split IS behaviourally better.
     This confirms SD-005 benefit at the functional level even though geometric probes failed.
-    EXQ-047g QUEUED (2026-03-23): correct redesign -- functional cross-decoding probes.
-    z_self -> action prediction acc vs z_world -> action prediction acc.
-    z_world -> contact prediction acc vs z_self -> contact prediction acc.
-    400 warmup episodes (differential loss routing, no orthogonality constraint).
-    Long run (~3h Mac). This is the proper test: does differential loss routing produce
-    functionally specialised latents?
+    EXQ-047g FAIL/weakens, decision=retire_ree_claim (2026-03-23, ran ~64min after an earlier
+    superseded/deduped emission): the correct redesign -- functional cross-decoding probes
+    (z_self -> action prediction acc vs z_world -> action prediction acc; z_world -> contact
+    prediction acc vs z_self -> contact prediction acc; 400 warmup episodes, differential
+    loss routing, no orthogonality constraint) -- DID run, and only 1/5 pre-registered
+    criteria were met: action_dissociation_split=+0.085 (needed >0.10),
+    contact_dissociation_split=+0.000 (needed >0.05), split-vs-unified action advantage
+    NEGATIVE (-0.030 vs required +0.03). This is the corrected, non-design-failure test and
+    it did not confirm functional specialisation.
+    EXQ-113 FAIL/weakens, decision=retire_ree_claim (2026-03-28): behavioural double-
+    dissociation at 6x6 scale (v3_exq_113_sd005_double_dissociation). 2/5 criteria met;
+    gap_world_split=0.0095 (needed >=0.06); notes explicitly flag that the EXQ-078
+    behavioural gap did not replicate at 6x6 scale, and that the 350->300 warmup-episode
+    reduction is a plausible confound.
+    EXQ-532 FAIL 2/3, latest run on file (2026-05-06): correlational latent-domain
+    selectivity (v3_exq_532_sd005_latent_domain_selectivity). Result is specifically
+    ASYMMETRIC: self_body_advantage=+0.126 (z_self DOES show self-specialisation) but
+    world_obs_advantage=-0.032 (z_world does NOT show reciprocal world-specialisation --
+    z_self predicts world observations as well as or better than z_world does).
+    CONVERGENT PATTERN across all three corrected-design tests (047g, 113, 532; not design
+    failures like 047d/e/f): z_self reliably specialises for self/action information;
+    z_world does NOT reliably show reciprocal world-specific specialisation. No run since
+    EXQ-532 (2026-05-06) has re-tested this specific question.
     Architecture note: E2.world_forward(z_world, action) -> z_world_next already implements
     an efference copy signal. Future architecture direction: use E2 prediction as the
     primary reafference signal (exafference = z_world_actual - E2(z_world_prev, action)),
     which would provide a stronger and self-improving separation mechanism. See SD-007 notes.
   title: "z_gamma split into z_self (E2 motor-sensory domain) and z_world (E3/Hippocampus domain)."
   claim_type: design_decision
+  epistemic_category: standard
   subject: latent_stack.self_world_latent_split
   polarity: asserts
   status: implemented
@@ -9419,16 +9576,83 @@
     z_world (E3/Hippocampus/ResidueField domain: causal footprint, residue,
     moral attribution). SD-005 and SD-004 must be co-designed.
   depends_on: []
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: the arm under test must have differential loss
+    routing genuinely active between E2 (z_self) and E3 (z_world) -- not a frozen
+    post-hoc probe (EXQ-047d showed frozen representations carry near-equal
+    action info in both channels, split_action_dissociation=0.008) and not a
+    geometric-orthogonality penalty (EXQ-047f showed cosine constraints produce
+    two decorrelated-but-unspecialised channels, orth_cos_mean_eval~0.002-0.018).
+    Warmup must be adequate for specialisation to emerge under whatever objective
+    is active (EXQ-047g/113 used 400/300 episodes; EXQ-113's own write-up flags
+    the 350->300 reduction as a plausible confound for its null result). SD-008's
+    alpha_world must be pinned and reported (0.9 across the three confirmed
+    functional-specialisation runs). Cross-decoding probe samples must clear the
+    pre-registered minimum (n_contact/n_approach >= 20/30) and, given EXQ-113's
+    explicit finding that the EXQ-078 behavioural gap did not replicate at 6x6
+    scale, environment scale must be stated and matched to the arm being compared
+    against. A test failing any of these self-routes substrate_not_ready /
+    design_failure and does not count as evidence either way.
+
+    CONFIRMING signature: on a well-powered rerun (>=4 seeds; warmup and env
+    scale matched to the best-supporting prior run) with differential loss
+    routing confirmed active, BOTH sides of the dissociation clear the original
+    pre-registered thresholds -- action_dissociation_split (self - world) > 0.10
+    AND contact_dissociation_split (world - self) > 0.05 (EXQ-047g's own C1/C2) --
+    and the behavioural gap_approach delta (split - unified) replicates at
+    >= 0.02, EXQ-078's confirmed threshold, at more than one environment scale.
+    Critically this must show BOTH-SIDED specialisation: EXQ-532 already shows
+    self_body_advantage clearing its threshold (+0.126) while world_obs_advantage
+    does not (-0.032) -- a one-sided result on a rerun does not confirm SD-005,
+    it reproduces the existing falsifying pattern.
+
+    FALSIFYING signature: already observed, three times, at increasing rigor and
+    scale, all with differential loss routing active and adequate n. EXQ-047g
+    (2026-03-23, functional cross-decoding, decision=retire_ree_claim): 1/5
+    criteria, action_dissociation_split=+0.085 (<0.10), contact_dissociation_
+    split=+0.000 (<0.05), split-vs-unified action advantage NEGATIVE (-0.030).
+    EXQ-113 (2026-03-28, behavioural double-dissociation at 6x6 scale,
+    decision=retire_ree_claim): 2/5 criteria, gap_world_split=0.0095 (<0.06
+    threshold), delta_self=-0.0006 (purification not demonstrated, needed
+    <=-0.02). EXQ-532 (2026-05-06, latest run on file, correlational latent-
+    domain selectivity): FAIL 2/3, world_obs_advantage=-0.032 (z_self predicts
+    world observations as well as or better than z_world does). The consistent,
+    specific pattern across all three redesigns is: z_self shows genuine
+    self-specialisation, z_world does NOT show reciprocal world-specialisation.
+    A further well-powered rerun landing in this same band -- cross-decoding
+    gaps within noise of zero on the world side specifically, gap_approach
+    delta < 0.02 -- corroborates rather than merely repeats this finding and
+    should be read as confirming SD-005's functional-specialisation
+    justification does not hold on the E3/z_world side, independent of whether
+    the z_self/E2 split itself is retained.
   location: docs/architecture/sd_004_sd_005_encoder_codesign.md
   heterogeneity_note: >
-    Conflict driven by EXQ-047d/e/f design failures (frozen-probe test with no
-    separation objective, post-hoc GRL race instability, geometric orthogonality
-    constraint that penalises legitimate shared dimensions) -- all documented in
-    evidence_quality_note as methodological failures rather than genuine
-    disconfirmation. EXQ-078 PASS (behavioural cross-decoding) and EXQ-047
-    attribution improvement (82% gap, delta 0.016) confirm the split at the
-    functional level; the high conflict ratio reflects iterative probe redesign,
-    not scientific contradiction about SD-005.
+    2026-08-06 correction (thought-digestion, session thoughts-intakes-4fd18d):
+    this note previously stated the conflict was driven entirely by EXQ-047d/e/f
+    design failures and that EXQ-078 PASS + EXQ-047's attribution improvement
+    "confirmed the split at the functional level," describing the high conflict
+    ratio as an artefact of "iterative probe redesign, not scientific
+    contradiction." That characterisation is now stale: EXQ-047g (the explicitly
+    correct redesign this note used to describe as still queued) ran on
+    2026-03-23 and FAILED (decision=retire_ree_claim), and two further
+    independent, non-design-failure tests -- EXQ-113 (2026-03-28) and EXQ-532
+    (2026-05-06, latest run on file) -- also FAILED, all three converging on the
+    same specific asymmetric pattern: z_self reliably specialises for self/
+    action information, z_world does NOT reliably show reciprocal world-specific
+    specialisation. EXQ-047d/e/f remain genuine design failures (frozen-probe,
+    GRL instability, wrong geometric-orthogonality test) and should not count as
+    disconfirmation. But EXQ-047g/113/532 are the corrected designs, not further
+    design failures, and all three returned the same negative result on the
+    world-side of the dissociation specifically. Registry state as of this
+    correction: supports=11, weakens=13, mixed=5, conflict_ratio=0.917,
+    experimental_confidence~0.504 (near coin-flip), evidence_quadrant=
+    plausible_unproven, latest-run-direction=weakens. The claim remains
+    status=implemented (this note does not itself change status/confidence --
+    that is a /governance decision) but the functional-specialisation
+    justification for the z_world side of the split is not currently supported
+    by the corrected-design evidence on file. See what_would_answer for the
+    falsification condition and what a genuine confirming rerun would need to
+    show.
 
 - id: SD-006
   title: "E1, E2, and E3 run at characteristic rates (async multi-rate) rather than lockstep."
@@ -12768,7 +12992,55 @@
       verdict: promote_to_provisional/applied
   implementation_phase: v3
   claim_level: architectural
+  epistemic_category: standard
   depends_on: [MECH-071, MECH-112, SD-005]
+  what_would_answer: |
+    SD-012 is CONJUNCTIVE across two dissociable sub-claims with opposite
+    readiness. SEEDING (drive-scaled benefit crosses benefit_threshold and forms
+    z_goal) is SETTLED: C1 PASSED repeatedly (EXQ-085f/g: z_goal_norm 0.228/0.399;
+    EXQ-582a drive_floor=0.9 arm: effective_benefit=0.115>0.08, 3/3 seeds seed,
+    OFF arm 0 seedings -- MECH-306 registered+provisional on this evidence).
+    Status stays provisional, not implemented, because of the second half:
+
+    NAVIGATION-OUTCOME (C2: does drive-scaled seeding produce goal-guided
+    behaviour that beats a random baseline) is the OPEN question and the reason
+    for provisional status. EXQ-085f-l returned benefit_ratio 0.034-1.026 across
+    five iterations with no stable PASS; EXQ-085g's own autopsy attributed the
+    failure to z_world at contact being scene-wide rather than resource-specific
+    (goal_resource_r=0.087), not to the drive-modulation mechanism itself.
+
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready_requeue, NOT a
+    verdict): a navigation-outcome retest is only informative if ALL of:
+    (a) sustained-drive seeding is active -- MECH-306 drive_floor>=0.9 explicitly
+    enabled, not the claims.yaml default-OFF instantaneous drive_level that
+    collapses to ~0.005 at the exact step of contact (EXQ-536a);
+    (b) z_world/z_resource specificity is active -- the SD-049 Phase-2 hybrid
+    encoder + SD-057 object-bound incentive-salience layer
+    (use_incentive_token_bank=True, MECH-344/345/346), which is what corrected
+    goal_resource_r from 0.087 (EXQ-085g) to 0.93-0.96 (V3-EXQ-514o, 2026-06-15,
+    on scaffolded_sd054_onboarding, ready=true since 2026-06-11);
+    (c) proximity_benefit_scale is configured correctly (>=0.18 per EXQ-189/238)
+    -- EXQ-233 showed drive_weight is inert at the wrong default (0.03),
+    producing identical near-zero z_goal_norm regardless of drive condition;
+    (d) resource_respawn_on_consume=True, enabling repeated drive-reduction
+    cycles (Balleine & Dickinson 1998).
+
+    CONFIRMING signature: with (a)-(d) held, benefit_ratio (goal-guided vs
+    random-policy baseline, same env/curriculum) exceeds 1.0 by a margin
+    clearing the cross-seed SD on >=2/3 seeds, with C1 (z_goal_norm) and
+    goal_resource_r reported alongside so a PASS is legible as "drive-scaled
+    seeding now converts into steering."
+
+    FALSIFYING signature: benefit_ratio remains at or below random-baseline
+    parity (<=1.0, or within noise of it) DESPITE (a)-(d) all holding and
+    C1/goal_resource_r both confirming seeding + specificity are genuinely
+    active on that run -- meaning drive-scaled benefit is behaviourally inert
+    for navigation even once the two previously identified confounds are
+    cleared, and SD-012 should demote from provisional rather than continue
+    holding on "substrate not ready."
+
+    What would NOT answer it: any run tagged claim_ids=[] / non_contributory
+    that omits (a)-(d) (as EXQ-233/536a/582/622 all did for different reasons).
   functional_restatement: >
     CausalGridWorld already tracks agent_energy (decays at energy_decay=0.01/step,
     restored by resource contact). drive_level = 1.0 - energy is already computable
