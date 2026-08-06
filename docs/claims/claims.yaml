@@ -804,6 +804,7 @@
 - id: ARC-009
   title: "Language is a symbolic mediation and coordination layer."
   claim_type: architectural_commitment
+  epistemic_category: substrate_conditional
   subject: language.symbolic_mediation
   polarity: asserts
   status: active
@@ -811,6 +812,40 @@
     reading: active
     as_of: 2026-07-11
     needs_review: false
+  what_would_answer: >
+    Requires two layers of substrate that do not yet exist in ree-v3, neither of which
+    has an implementation and only the first has even a named design target. Layer 1
+    (shared with ARC-010): a multi-agent environment -- ARC-047's SocialGridWorld is the
+    designated minimal substrate, itself status: candidate, confidence 0.0, gated to
+    implementation_phase v5, and unbuilt. Layer 2 (specific to ARC-009): a discrete
+    symbolic communication channel between agents -- confirmed absent from ree_core/
+    entirely (no "language", "symbol", "communication", or "message-passing"
+    inter-agent machinery anywhere; the one reference, control_demand.py's
+    LANGUAGE_EXPLICITATION enum label, has no implementation behind it). MECH-014
+    ("Minimal signalling channel requirements") is the closest existing design artifact
+    for this layer, but it is a prose interface sketch only (inputs: latent-state
+    summaries/residue flags; outputs: discrete-or-continuous signals other agents can
+    condition on) with no substrate, no confidence score, and no queued experiment --
+    it is not an ARC-047-equivalent scoped build target.
+
+    A genuine test becomes possible once both layers land: two (or more) REE agent
+    instances in a shared multi-agent environment (per ARC-010/ARC-047), given access
+    to a shared discrete symbol channel (per MECH-014's sketch, built out as a real
+    interface), on a task with information asymmetry -- one agent observes something
+    the other needs to act correctly on, and coordination/reward requires the
+    information to cross the channel (a standard emergent-communication paradigm,
+    e.g. a referential/signalling game or a coordinated-response variant of ARC-047's
+    predator-avoidance setup). Evidence for the claim would be: (1) agents given the
+    symbol channel achieve significantly better task/coordination performance than a
+    no-communication baseline; (2) the symbols carry recoverable meaning -- e.g.
+    probe accuracy predicting the sender's underlying latent state (z_theta/z_delta
+    slice, residue flag, or intent) from the emitted symbol above chance; and (3)
+    ablating the channel, or shuffling the symbol-to-meaning mapping post-hoc,
+    degrades coordination specifically (not just general task performance), showing
+    the effect is mediated by the symbolic layer rather than some other shared signal
+    (e.g. the scent-channel proxies ARC-047 already specifies). Until both the
+    multi-agent substrate and a real (non-sketch) symbol-passing channel exist, no
+    version of this claim is falsifiable in V3.
   depends_on:
     - INV-003
     - INV-007
@@ -1759,6 +1794,7 @@
 - id: ARC-015
   title: "Self-impact attribution and responsibility flow are required."
   claim_type: architectural_commitment
+  epistemic_category: substrate_conditional
   subject: agency.self_impact_attribution
   polarity: asserts
   status: provisional
@@ -1774,6 +1810,75 @@
     - ARC-004
     - ARC-013
     - ARC-007
+    - MECH-095
+  what_would_answer: |
+    ARC-015 bundles two testably-separable sub-claims: (1) SELF-IMPACT ATTRIBUTION --
+    discriminating self-caused from externally-caused state change via an
+    efference-copy/reafference comparator (operationalised as MECH-095, the TPJ
+    agency-detection comparator at the z_self/z_world interface); and (2)
+    RESPONSIBILITY FLOW -- routing that attribution into commit-boundary-gated
+    learning with pre-commit/post-commit channel separation (MECH-060/061/066/067)
+    and action/thought-loop completion gates (MECH-057a/057b).
+
+    These two halves currently have DIFFERENT evidentiary status and different
+    substrate requirements. Do not treat ARC-015 as a single testable-now unit.
+
+    == HALF 2 (responsibility flow / commit-boundary separation): already has
+    supporting evidence, testable now ==
+    MECH-060 (V1, EVB-0043/EXQ-005 PASS) and MECH-061 (channel independence,
+    |corr|=0.114) already confirm write-locus separation is enforceable and
+    beneficial. MECH-057a has informative sub-threshold V1/V2 evidence
+    (FULL < NO_ATTRIBUTION < NO_GATING, correctly ordered) and is now V3-eligible
+    because V3 supports multi-step committed actions, which V2's atomic single-step
+    actions could not provide. A clean V3 re-test of MECH-057a on multi-step action
+    sequences would CONFIRM this half if the completion-gate ablation degrades
+    responsibility-attribution quality above the pre-registered threshold, and would
+    FALSIFY it if gating vs. no-gating remains indistinguishable at V3 scale.
+
+    == HALF 1 (self-impact attribution / self-vs-world discrimination):
+    CONFIRMED substrate-blocked on single-agent V3, do not re-test as-is ==
+
+    NON-DEGENERACY PRECONDITION: a genuine test requires an environment containing
+    BOTH self-caused and externally-caused outcomes that are causally
+    indistinguishable from surface features alone -- discriminable only via the
+    agent's own efference copy / action history. CausalGridWorld's native hazards
+    and resource dynamics do NOT satisfy this: hazard drift and resource respawn
+    are environment-authored processes with no "intent" for the comparator to
+    contrast against the agent's own commanded action, so mismatch collapses to
+    noise regardless of comparator quality.
+
+    This was tested directly, not assumed. SD-047 (multi-source environmental
+    dynamics) was purpose-built to supply a structurally distinct "other" cause.
+    V3-EXQ-741 (2026-07-12, confirmed failure autopsy, governance-consumed) is the
+    first VALID test of MECH-095 on the SD-047 substrate: non-degenerate on both
+    the probe-partition and self/world-balance guards, all 4 intensity arms
+    exercised as pre-registered. Result: no arm discriminates (best routing
+    improvement +0.028, below the 0.04 pre-registered floor); the BASELINE already
+    carries strong contact recall (0.75-0.93) without the comparator. Recorded
+    interpretation: SD-047's world-caused drift is not a structurally-distinct
+    OTHER, so a single-agent environment -- however richly instrumented -- cannot
+    make the comparator load-bearing. This is registered as the 1st valid
+    substrate_ceiling hit for MECH-095 and empirically confirms
+    multi_agent_ecology_v5:MAE-3's standing prediction that this mechanism is
+    intrinsically relational.
+
+    CONFIRMING signature (once MAE-3 / a genuine second agent is available):
+    on a multi-agent environment where some negative/positive outcomes are caused
+    by the OTHER agent's actions and some by the focal agent's own actions
+    (surface-matched, causally distinguishable only via each agent's own action
+    history), MECH-095's routing improvement on an other-caused-event partition
+    exceeds the pre-registered 0.04 floor over baseline, with contact_recall_routed
+    and action-dissociation metrics both clearing their thresholds on >=3 seeds.
+
+    FALSIFYING signature: even against a genuine second agent's actions, the
+    comparator's routed condition fails to discriminate self-caused from
+    other-caused outcomes -- this would exhaust the mapped substrate ceiling and
+    force a mechanism-level reconsideration of MECH-095's TPJ-comparator
+    translation, not merely another substrate enrichment attempt.
+
+    Until MAE-3 lands, ARC-015's self-impact-attribution half stays at the same
+    disposition as ARC-010 (mirror modelling of other agents): substrate-blocked,
+    pending_retest_after_substrate=true, bound to multi_agent_ecology_v5:MAE-3.
   location: docs/architecture/agency_responsibility_flow.md#arc-015
   source:
     - docs/thoughts/2026-02-08_control_plane_modes_responsibility_flow.md
@@ -5187,6 +5292,7 @@
   title: "Shared-world ethics requires modelling others as co-inhabitants of the same consequence space."
   claim_type: invariant
   invariant_type: universal
+  epistemic_category: substrate_conditional
   subject: ethics.shared_world
   polarity: asserts
   status: active
@@ -5197,6 +5303,64 @@
   depends_on:
     - INV-026
     - INV-027
+    - ARC-010
+  what_would_answer: >
+    OUT OF DOMAIN (axiom leg): INV-028 as literally stated -- that other agents'
+    harm and benefit are real "by exactly the same grounds as the agent's own,"
+    because they are selves (INV-026) in the same world (INV-027) -- is a
+    foundational ethical/metaphysical premise (Axiom 4 of
+    five_axioms_foundations.md, "Others share this world"). No REE substrate at
+    any level -- V3, V4, or V5 -- can confirm or falsify whether another agent's
+    harm is metaphysically real by the same grounds as the agent's own. This leg
+    is out-of-domain in the same sense as INV-025/026/027/029.
+
+    REFRAMED TESTABLE LEG (substrate-blocked, not yet buildable): what IS
+    architecturally testable is narrower -- INV-028's own architectural
+    consequence names it directly: "when another self is represented using the
+    same predictive machinery as the self, their harm generates the same error
+    signal structure as own-harm" (grounds mirror modelling, INV-005, at the
+    REE-specific level via ARC-010). The testable question is whether
+    self-caused harm to a MODELLED OTHER (via ARC-010 mirror modelling --
+    reused self/other latent stack, ARC-004 L-space with reduced precision
+    gains) generates an error-signal / harm-evaluation structure statistically
+    indistinguishable from self-caused harm to the agent's own outcomes -- i.e.
+    whether the self-other distinction is actually just "a routing difference
+    within the same architecture, not a different architecture," once it is
+    measurable rather than asserted.
+
+    Confirming observation: comparing self-caused harm to the agent's own
+    modelled outcomes against self-caused harm to a mirror-modelled other
+    (ARC-010's OTHER_SELFLIKE-tagged shadow-bundle estimate), the harm-error
+    signal driving E3 ranking/routing shows the same functional form,
+    magnitude scaling, and downstream repair/avoidance pull in both
+    conditions -- i.e. no separate "other-harm" pathway exists; own-harm and
+    modelled-other-harm route through the same machinery.
+
+    Falsifying observation: self-caused harm to a mirror-modelled other
+    produces a measurably different error-signal structure than self-caused
+    harm to the agent's own outcomes -- e.g. attenuated magnitude, a distinct
+    functional form, or no coupling into the same E3 ranking/routing pathway --
+    even though the same predictive machinery is confirmed to be representing
+    both self and other. That outcome would not falsify the axiom (out of
+    domain per above) but WOULD falsify the claim that REE's architecture
+    implements the "routing difference, not architecture difference" mechanism
+    INV-028 asserts as its consequence.
+
+    Non-degeneracy precondition (currently UNMET -- this is why the reframed
+    leg is substrate-blocked, not testable-now): same V5/multi-agent substrate
+    gap as ARC-010 and INV-029 -- requires ARC-047 SocialGridWorld (or
+    equivalent multi-agent environment) where a second agent's harm is
+    attributable to the tested agent's own action (not merely observed/
+    world-caused harm), so that a genuine self-harm vs. other-harm error-signal
+    comparison is possible. ARC-047 is unimplemented (status: candidate,
+    confidence 0.0, implementation_phase v5); see ARC-010's own
+    what_would_answer for the full substrate description. Do not re-derive --
+    cross-reference.
+
+    PRECEDENT NOTE: applies the epistemic_category=substrate_conditional
+    template established for INV-029 (2026-08-06, thought-digestion session
+    thoughts-intakes-4fd18d) to this, the second of the five original axiom
+    claims to be digested (INV-015, INV-026, INV-027, INV-028, INV-029).
   location: docs/invariants.md#inv-028
   source:
     - docs/architecture/five_axioms_foundations.md
@@ -5932,6 +6096,7 @@
 - id: ARC-021
   title: "Three BG-like cortico-striatal loops require distinct learning channels."
   claim_type: architectural_commitment
+  epistemic_category: standard
   subject: basal_ganglia.three_loop_learning_channel_separation
   polarity: asserts
   status: provisional
@@ -5944,6 +6109,52 @@
     showed attribution mechanism produces correct-direction signal only when environment
     provides sufficient per-step variation — consistent with three distinct error channels
     requiring separate learning pathways. Dense hazards (EXQ-010, gap=+0.027) strongest signal.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires the three error channels to be
+    genuinely separately optimized in the substrate under test. Confirmed
+    currently true: E1 (E1DeepPredictor), E2 (E2WorldForward / E2HarmSForward /
+    E2HarmAForward), and E3 (E3TrajectorySelector) each run as independent
+    nn.Modules with their own torch.optim.Adam instance and own loss
+    (ree-v3/ree_core/predictors/e1_deep.py, e2_world.py, e2_harm_s.py,
+    e2_harm_a.py, e3_selector.py) -- a shared-trunk/single-optimizer collapse
+    would void the precondition. Note this is NOT the MECH-062 situation
+    (BG-selector's internal motor/cognitive-set/motivational loop-gating,
+    corrected stable->candidate 2026-06-22 per the BG assembly map, now owned
+    by ARC-110): that claim is about arbitration-loop structure inside E3;
+    ARC-021 is about the E1/E2/E3 predictor-level channel split, which the
+    substrate genuinely instantiates today.
+
+    CONFIRMING signature (per the SD-003 / V3-EXQ-007-010 causal-signature
+    methodology): the calibration gap
+    mean_causal_sig(near_hazard) - mean_causal_sig(safe), computed from E2's
+    action-conditioned causal signature E2(z_t, a_actual) - E2(z_t, a_cf)
+    (MECH-069), should be reliably positive and clear a pre-registered bar
+    (the EXQ-007-010 series used >0.05) under sufficient per-step observation
+    variation -- and widening E2's capacity to force harm attribution through
+    it (the EXQ-009 manipulation) should NOT improve attribution, only overfit
+    (already shown, and the basis for MECH-069's stable promotion). A
+    load-bearing confirmation of ARC-021 itself additionally requires an
+    ABLATION not yet run: merging E1/E2/E3 into a shared trunk/single optimizer
+    (a joint-channel condition) should measurably DEGRADE calibration_gap
+    and/or harm-attribution accuracy relative to the separated-channel
+    baseline, isolating channel separation as the causal factor rather than
+    only observing that separated channels trend the right direction.
+
+    FALSIFYING signature: if a merged/shared-channel condition (single trunk,
+    single optimizer, one loss combining sensory + motor-sensory + harm/goal
+    error) produces calibration_gap and attribution accuracy statistically
+    indistinguishable from -- or better than -- the separated-channel baseline,
+    across the same near-hazard/safe probe design and both dense- and
+    sparse-hazard conditions, that falsifies the REQUIRED part of ARC-021: a
+    single shared channel would suffice, and the three-way split would be
+    unnecessary engineering rather than a load-bearing requirement. Calibrate
+    expectations against current evidence: all four EXQ-007/008/009/010 runs
+    are formally FAIL against their own >0.05 bar (only EXQ-010, dense hazards,
+    was positive-direction: +0.0267; EXQ-007/008/009 were -0.0151/-0.0066/
+    -0.0184). So existing evidence supports "separation trends correctly and
+    does not obviously hurt under sufficient per-step variation," not yet
+    "separation is required" -- the merged-channel ablation above is the
+    missing test and has never been run.
   depends_on:
     - Q-019
     - ARC-004
@@ -18216,6 +18427,7 @@
   title: "Any agent that builds a model of the world, acts in that world, and learns from experience cannot safely update its world model while using it to navigate the world; it therefore requires periodic offline phases in which action is suspended and the model is reorganised via replay and simulation -- this is not a biological contingency but a general computational necessity for model-building agents."
   claim_type: invariant
   invariant_type: universal
+  epistemic_category: substrate_conditional
   subject: architecture.offline_update_necessity_general_principle
   polarity: asserts
   status: candidate
@@ -18227,6 +18439,37 @@
     - INV-044
     - INV-045
     - SD-017
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: infant_substrate_expansion.md's graduated harm zones,
+    microhabitat heterogeneity, and non-accidental benefit encounters (INF-ENV-001/002/003)
+    are landed in ree_core (causal_grid_world.py: harm_gradient_enabled, microhabitat_enabled,
+    transient_benefit_enabled) and substrate-confirmed (V3-EXQ-576, V3-EXQ-577a, V3-EXQ-589
+    PASS) -- but all three default OFF, so any retest driver must explicitly enable them, else
+    per EXQ-150's own finding no offline operation can produce context-specific representations
+    regardless of validity, and any result self-routes substrate_not_ready (exactly what
+    happened to EXQ-385/385a, which are correctly excluded from confidence scoring already).
+    SD-017 slot-forming infrastructure must ALSO be active and functioning as predicted -- and
+    is currently NOT confirmed: V3-EXQ-436b/436c/436d (2026-08-02 to 2026-08-04, most recent
+    retest FAIL) found SWS_THEN_REM sleep collapses slot_cosine_sim toward ~1.0 (homogenization)
+    rather than differentiating contexts, the opposite of SD-017's prediction, with a suspected
+    untested ContextMemory.write_gate bias-collapse root cause (same failure class as the SD-016
+    read-path bug fixed in EXQ-477) routed to /implement-substrate and unresolved. Until that is
+    fixed and re-confirmed, EXQ-IDEV-006 in particular is at live risk of reproducing the same
+    undifferentiated-slot failure for substrate reasons unrelated to INV-049's own claim.
+
+    CONFIRMING signature: with infant_substrate_expansion.md's env features explicitly enabled
+    AND the SD-017 write-gate issue fixed and re-confirmed (slot_cosine_sim differentiates
+    post-sleep, not just write-counters clearing their floor), EXQ-IDEV-001 (longitudinal
+    replay quality) and/or EXQ-IDEV-006 (SD-017 functional context discrimination:
+    WITH_OFFLINE context_cosine_sim < 0.95 by cycle 3, WITHOUT_OFFLINE stays > 0.95) show
+    WITH_OFFLINE outperforming WITHOUT_OFFLINE on slot_diversity/pred_loss/harm criteria.
+
+    FALSIFYING signature: with the substrate gap genuinely closed (infant substrate features
+    enabled and substrate-confirmed, SD-017's write-gate mechanism fixed and its own P0
+    readiness gates clearing), offline consolidation STILL shows no advantage over online-only
+    learning on EXQ-IDEV-001/006's own metrics -- this would be a real falsification of INV-049,
+    unlike EXQ-385/385a (substrate-confounded) or EXQ-436b/c/d (SD-017-mechanism-confounded,
+    not yet an INV-049 test at all).
   notes: >
     Registered 2026-04-06. This is the general law of which INV-044 (Bayesian
     staging: prior construction must precede posterior inference) and INV-045
