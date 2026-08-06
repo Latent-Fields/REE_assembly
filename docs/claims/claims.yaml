@@ -2599,6 +2599,37 @@
     Hobson & Friston 2012 (REM precision recalibration), Walker & Stickgold 2004
     (maladaptive consolidation / PTSD model -> MECH-124). Evidence confidence: 0.79-0.88.
     Updated 2026-03-23 to add sub-phase claims.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: this is the PARENT claim for four sub-phase
+    mechanisms (MECH-120 SWS denoising, MECH-121 NREM SWR replay, MECH-122
+    spindle packaging, MECH-123 REM precision recalibration -- each now
+    carries its own what_would_answer with its own preconditions and
+    signatures; this wwa targets the COMPOSITE claim, not any single
+    sub-phase). Requires ALL of: MECH-092 quiescent replay validated;
+    MECH-094 hypothesis tag working; D_eff monitoring (MECH-113) with a
+    stable setpoint; z_goal representation (MECH-112/116) validated;
+    multi-rate execution (SD-006, already PASSED per EXQ-052b); ThetaBuffer
+    extended to the sleep direction (currently waking-direction only,
+    MECH-122 requires the reverse). V4 scope; not V3-tractable as a whole.
+    CONFIRMING signature: across a full sleep cycle in sequence, (a) each
+    sub-phase's own confirming signature holds (see MECH-120/121/122/123
+    individually), AND (b) the composite effect is genuinely MULTI-PHASE
+    rather than reducible to any single sub-phase alone -- running only
+    one sub-phase in isolation (e.g. SWS denoising without NREM replay)
+    produces a measurably WORSE outcome (consolidation quality,
+    behavioural diversity preservation, or residue/ethical-trace
+    handling) than the full sequence, establishing the phases are jointly
+    load-bearing rather than redundant.
+    FALSIFYING: a single sub-phase (e.g. MECH-121 NREM replay alone)
+    reproduces the SAME consolidation quality as the full multi-phase
+    sequence -- the other phases would be shown non-load-bearing for the
+    composite claim even if individually confirmed in isolation; or the
+    full sequence performs WORSE than a single-phase baseline (phase
+    interactions destructive, not synergistic) -- falsifies "consolidate
+    ... across regimes" (regimes fighting rather than cooperating).
+    NOTE: EXQ-127 (2026-03-29) attempted this in V3 without a real sleep
+    substrate and was correctly superseded/non-informative -- do not
+    re-attempt without the V4 substrate above in place.
 - id: MECH-031
   title: "Derived social tags and empathy coupling via control-plane knobs."
   claim_type: mechanism_hypothesis
@@ -3620,6 +3651,29 @@
     - ARC-015
     - MECH-054
     - MECH-057a
+  what_would_answer: |
+    ALREADY CONFIRMED at ree-v1-minimal scale (EVB-0037 PASS, 2026-02-26):
+    the confidence/precision channel and residual prediction-error
+    channel carry distinct information (|corr(score_dispersion, PE)| =
+    0.067, well below the 0.3 threshold), and keeping them SEPARATE is
+    operationally load-bearing -- SEPARATED harm 0.663 vs MERGED 0.875
+    (lower harm is better here). This what_would_answer targets the
+    un-retested V3-scale extension.
+    NON-DEGENERACY PRECONDITION: requires a V3 substrate run with both
+    the confidence channel and residual-error channel instrumented and
+    non-zero variance in their correlation across seeds -- a run where
+    the two channels are trivially identical (correlation pinned near
+    1.0) cannot discriminate the mechanism.
+    CONFIRMING signature: at V3 scale, the same two criteria replicate --
+    distinct-signals (|corr| < 0.3) and separation-helps (a SEPARATED
+    channel condition measurably outperforms a MERGED condition on task
+    harm/performance).
+    FALSIFYING: at V3 scale, the confidence channel and residual error
+    become highly correlated (|corr| >= 0.3, distinct-signals fails) --
+    would suggest the V1-minimal result was scale-specific; or a MERGED
+    condition performs AT LEAST as well as SEPARATED at V3 scale -- would
+    falsify separation-helps and suggest V1-minimal's simpler substrate
+    exaggerated the separation's operational value.
   location: docs/architecture/agency_responsibility_flow.md#mech-059
   source:
     - docs/architecture/agency_responsibility_flow.md
@@ -3677,6 +3731,33 @@
     - ARC-015
     - INV-012
     - MECH-057a
+  what_would_answer: |
+    ALREADY CONFIRMED at ree-v1-minimal scale (EVB-0043/EXQ-005 PASS,
+    2026-02-27): write-locus contamination is DETECTABLE -- a
+    contaminated (pre-commit sim_error leaking into the persistent
+    residue field) condition shows total_residue inflated 46x versus
+    clean (CONT_RESIDUE 8520 vs FULL 186), and the clean (write-boundary
+    enforced) condition sustains BETTER harm ordering (FULL 0.929 <=
+    max_contaminated x 1.05). This what_would_answer targets the
+    un-retested V3-scale extension.
+    NON-DEGENERACY PRECONDITION: requires a V3 substrate run with both a
+    clean (write-boundary enforced) condition and a deliberately
+    contaminated (pre-commit sim_error allowed to write into the
+    persistent residue field) condition, with non-zero variance in
+    residue accumulation and harm ordering across seeds -- a run where
+    residue is flat regardless of contamination cannot discriminate the
+    mechanism.
+    CONFIRMING signature: at V3 scale, the same two criteria replicate --
+    residue inflation (contaminated condition's total_residue
+    substantially exceeds clean's) and harm ordering (clean condition's
+    harm outcome is at least as good as contaminated, within a small
+    margin).
+    FALSIFYING: at V3 scale, contamination produces no measurable residue
+    inflation (write-locus separation has no detectable effect on the
+    residue field) -- would suggest the V1-minimal result was
+    scale-specific; or the contaminated condition performs AT LEAST as
+    well as clean on harm ordering -- would falsify write-boundary
+    enforcement as operationally load-bearing at V3 scale.
   location: docs/architecture/agency_responsibility_flow.md#mech-060
   source:
     - docs/architecture/agency_responsibility_flow.md
@@ -10220,6 +10301,40 @@
     decay parameter independent of E1 conditioning. Correct test: compare E1 prediction
     error on goal vs neutral trajectory segments. Redesign required; 076f classified
     non_contributory (does not test the claim's stated mechanism).
+  what_would_answer: |
+    TEST-DESIGN HISTORY (already established, do not repeat): three prior
+    attempts (EXQ-076d/e/f) all measured the WRONG thing -- z_goal_norm
+    decay/persistence directly -- and found zero measurable difference
+    between goal-conditioned and unconditioned E1 in every variant (076d
+    budget too small; 076e/f blocked by SD-012 seeding quality producing
+    near-zero z_goal_norm in BOTH conditions by step 6000, so E1
+    conditioning had nothing to maintain). The 2026-04-04 user-adjudicated
+    correction: this claim's own stated mechanism is about E1 PREDICTION
+    ERROR on goal-directed trajectory segments, NOT z_goal decay rate
+    (governed by a separate decay_goal parameter independent of E1
+    conditioning). A test of z_goal_norm persistence does not test this
+    claim at all -- 076f was correctly classified non_contributory.
+    NON-DEGENERACY PRECONDITION: requires (a) z_goal seeding to be
+    reliable enough that goal-directed trajectory segments are genuinely
+    identifiable (not the near-zero-by-step-6000 collapse 076e/f
+    exhibited), and (b) E1 prediction error to be measured SEPARATELY on
+    goal-approaching vs. non-goal segments, with non-zero cross-condition
+    variance.
+    CONFIRMING signature: E1 prediction error on goal-approaching
+    trajectory segments is measurably LOWER when E1 is goal-conditioned
+    (receives z_goal_latent) versus unconditioned, while non-goal
+    segments show NO measurable difference between conditions -- E1
+    "predicts better because it knows what it is predicting toward,"
+    specifically on the segments where that knowledge is relevant.
+    FALSIFYING: goal-conditioned and unconditioned E1 show no measurable
+    difference in prediction error on goal-approaching segments (once
+    z_goal seeding is reliable) -- the LSTM hidden state is not
+    functioning as a goal-conditioned working-memory substrate; or
+    conditioning affects non-goal segments equally (would suggest a
+    general regularisation effect rather than goal-specific working
+    memory). Separately open: whether MECH-116 is a WM subcomponent of
+    SD-033a or a distinct E1 recurrent-WM substrate (flagged 2026-04-19,
+    unresolved governance question, not this wwa's job to settle).
 
 - id: MECH-117
   title: "The wanting signal (goal-distance scoring via z_goal_latent) and the liking signal (benefit_eval_head receipt predictor) are functionally dissociable in trajectory scoring."
@@ -13644,6 +13759,40 @@
     harm modulation works) but C2 FAIL (r_w_goal=-0.007, w_goal constant). EXQ-194a
     (phased training) also ran. Hold at candidate: harm pathway validated but goal
     pathway not yet functional. Promote only after w_goal validation. (governance 2026-04-01)
+  what_would_answer: |
+    CURRENT EVIDENCE STATE: MIXED (EXQ-194/194a, 2026-04-01) -- the HARM
+    pathway is validated (C1 PASS 3/3, r_w_harm=0.70: harm-context
+    modulation works as specified) but the GOAL pathway is NOT (C2 FAIL,
+    r_w_goal=-0.007: w_goal stays constant regardless of context). Held
+    at provisional on the harm-pathway strength alone; promotion requires
+    w_goal validation.
+    NON-DEGENERACY PRECONDITION: requires resource-proximate contexts to
+    be genuinely distinguishable from hazard-gradient contexts in the
+    training distribution, with non-zero variance in E1's
+    cue_terrain_proj output across contexts -- w_goal's current flatness
+    could reflect either a genuine mechanism absence OR insufficiently
+    varied goal-context training data; this wwa does not resolve which.
+    CONFIRMING signature: with adequate goal-context variation, w_goal
+    becomes measurably context-sensitive (r_w_goal comparable in
+    magnitude to r_w_harm=0.70) -- resource-proximate contexts drive
+    w_goal > 0.8, hazard-gradient contexts drive w_goal < 0.5, mirroring
+    the already-validated harm pathway. Separately, per the 2026-04-02
+    gain-control linkage: if terrain_weight is genuine PRECISION gain
+    (not just magnitude scaling), high w_harm should measurably REDUCE
+    harm-evaluation variability, not merely scale its mean -- the
+    discriminator between MECH-152-as-precision-gain and
+    MECH-152-as-simple-magnitude-scaling, and also for whether MECH-152
+    and ARC-016 (temporal gain) are the SAME mechanism at different
+    levels of description (both subsumed by ARC-044).
+    FALSIFYING: w_goal remains flat even with adequate goal-context
+    variation (the goal pathway is genuinely absent, not merely
+    undertrained) -- falsifies the symmetric harm/goal contextual-
+    precision framing, leaving MECH-152 a harm-only mechanism,
+    contradicting its own title; or w_harm modulation scales magnitude
+    without reducing variability -- falsifies the precision-gain
+    reading in favour of simple magnitude scaling, and would NOT support
+    collapsing MECH-152 into ARC-016 (specifically about precision/
+    variance, not magnitude).
   evidence: []
 
 - id: ARC-041
@@ -18968,6 +19117,41 @@
     - ARC-049
   location: docs/architecture/play_mode.md
   notes: "The synthetic nature of play signals is tracked by the play frame tag (ARC-049), not by suppressing gradients. Within the episode, weight updates proceed normally -- E3 trajectory competence, E2 forward model, E1 world model all update as if signals were real. Play is not simulation (which suppresses post-commit learning) -- play is authorized-synthetic learning. The frame tag authorizes the synthetic signals as legitimate training targets for the duration of the episode. REFINEMENT (2026-05-16): z_harm_s and z_harm_a are NOT suppressed during play -- they remain active with a raised escalation threshold. This is the Panksepp (1998) PLAY system property: opioid-mediated elevation of the harm escalation threshold, not harm signal suppression. Play episodes thus provide graduated exposure to harm-adjacent signals under conditions where the threshold is shifted upward, training the commitment architecture in the realistic range. Separately, z_goal_synthetic must encode learning progress d(PE)/dt (competence-based), not flat or entropy-based magnitude -- per Oudeyer 2007 (intrinsic motivation), Andersen 2022, and Lynch 2020 (Play-LMP: task-agnostic play trains policy structure, not magnitude). This connects to MECH-327 (E1 PE locus upweights probe-action selection) and MECH-328 (goal-space continuity)."
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: play mode (ARC-049 frame tag + this
+    substitution mechanism) is UNIMPLEMENTED in V3 (substrate_conditional).
+    Requires: the play-frame tag (ARC-049) authorizing synthetic z_goal/
+    z_harm as legitimate training targets for episode duration; z_harm_s/
+    z_harm_a remaining ACTIVE during play with a RAISED escalation
+    threshold (not suppressed -- the Panksepp 1998 opioid-mediated
+    threshold-elevation reading, distinct from simulation's gradient
+    suppression); and z_goal_synthetic encoding learning-progress
+    d(PE)/dt (competence-based per Oudeyer 2007), not flat/entropy-based
+    magnitude.
+    NON-DEGENERACY PRECONDITION: requires play episodes and matched
+    non-play (real-signal) episodes to produce measurably different
+    training dynamics -- if E3/E2/E1 update identically regardless of
+    play-frame status, the substitution mechanism is either absent or
+    inert.
+    CONFIRMING signature: during play episodes, E3 trajectory competence,
+    E2 forward model, and E1 world model all update AS IF the synthetic
+    signals were real (weight updates proceed normally, not suppressed)
+    -- distinguishing play from simulation (which suppresses post-commit
+    learning). Separately, z_harm_s/z_harm_a remain active but with a
+    measurably RAISED escalation threshold during play relative to
+    non-play episodes (graduated harm-adjacent exposure, not harm
+    blindness), and z_goal_synthetic tracks learning-progress rate rather
+    than a flat or entropy-derived magnitude.
+    FALSIFYING: play episodes produce IDENTICAL learning dynamics to
+    simulation (gradients suppressed) -- collapses play into simulation,
+    contradicting "play is authorized-synthetic learning, not
+    simulation"; or z_harm during play shows NO threshold elevation
+    (full suppression or unchanged threshold) -- falsifies the
+    opioid-mediated-threshold-elevation reading, supporting either harm
+    blindness (dangerous) or no functional difference from waking harm
+    processing; or z_goal_synthetic tracks flat/entropy-based magnitude
+    rather than learning-progress rate -- falsifies the competence-based
+    framing.
 
 - id: MECH-195
   title: "Strategy and calibration dissociate at play episode close: policy structure transfers to real episodes; goal/harm magnitude calibration is re-anchored by real homeostatic and harm signals."
