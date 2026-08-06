@@ -55,12 +55,23 @@ closure_plan:
       completion_note: "SPLIT NODE. The attractor is the best-evidenced object in this
         whole lane -- INV-053 is `stable`, 7 experimental entries, 7 PASS / 0 FAIL,
         exp_conf 0.775, confirmed_established. The PIPELINE that is supposed to explain
-        it is not: MECH-186 0 PASS / 2 FAIL, MECH-188 0 PASS / 1 FAIL, MECH-187 1 PASS,
-        INV-054 (depressive maintenance loop) 0 PASS / 3 FAIL. So the phenomenon
-        replicates and the proposed mechanism keeps failing -- that gap, not the
-        attractor, is what this node tracks. Note the source doc marks MECH-186/187/188
-        as V4 scope while claims.yaml has all three at implementation_phase v3; that
-        disagreement is itself unresolved."
+        it is not: MECH-186 0 PASS / 2 FAIL (2026-08-06 correction: those 2 FAILs were
+        governance-reclassified non_contributory/substrate_limitation on 2026-04-08 --
+        the reclassification was already applied to the flat manifests but had never
+        propagated to the run-pack manifests or the derived claim_evidence.v1.json
+        index, so exp_conf read 0.175/weakens=2 until the pack copies were re-synced
+        and the index regenerated 2026-08-06; MECH-186 now correctly reads 0 genuine
+        experimental entries either direction, confidence carried entirely by
+        literature at 0.742), MECH-188 0 PASS / 1 FAIL, MECH-187 1 PASS, INV-054
+        (depressive maintenance loop) 0 PASS / 3 FAIL. So the phenomenon replicates and
+        the proposed mechanism remains untested-at-V3-scale (MECH-186) or failing
+        (MECH-187/188/INV-054) -- that gap, not the attractor, is what this node
+        tracks. V3-vs-V4 SCOPE RESOLVED 2026-08-06 (user decision): MECH-186/187/188
+        are V3 scope, matching claims.yaml's implementation_phase -- the phase-label-
+        follows-dependency rule applies (if a claim is needed to complete V3, it is V3
+        scope regardless of what an older planning doc's framing says); the source
+        doc's V4-scope framing is superseded and should not be treated as authoritative
+        going forward."
     - id: "clinical_failure_modes:CATATONIA-II"
       title: "Catatonia subtype II: harm-stream lock-in (SD-036 decay regulator, MECH-279 PAG freeze gate)"
       status: partial
