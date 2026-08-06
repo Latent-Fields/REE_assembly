@@ -2616,6 +2616,32 @@
     - ARC-015
     - ARC-006
     - INV-005
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires reliable object persistence/
+    binding to exist (an entity must be trackable as a stable target
+    before AGENCY/OTHER_SELFLIKE tags can attach to it -- see
+    entities_and_binding.md) and the derived tags must show non-zero
+    cross-condition variance -- an agent that tags everything or nothing
+    as OTHER_SELFLIKE cannot discriminate the mechanism.
+    CONFIRMING signature: the agent correctly discriminates interveners
+    from passive dynamics (AGENCY tag) using only the existing
+    self/world/impact machinery -- no dedicated social-cognition module
+    -- and assigns OTHER_SELFLIKE probability that tracks whether a
+    target genuinely runs a self/world-separation and self-impact loop
+    (higher for agents exhibiting boundary-maintaining, error-correcting
+    behaviour; lower for passive/mechanical dynamics). Downstream empathy
+    coupling (MECH-036's other-harm veto threshold, gated by
+    lambda_empathy/v_other_veto) should then correctly scale with
+    OTHER_SELFLIKE probability -- higher-confidence targets produce
+    stronger empathy coupling.
+    FALSIFYING: AGENCY/OTHER_SELFLIKE tags require a dedicated
+    social-cognition module to reproduce (the reused self/world/impact
+    machinery is insufficient) -- falsifies the "derived, not separate
+    module" framing; or OTHER_SELFLIKE probability does not track genuine
+    self-model possession (e.g. equally high for a scripted NPC with no
+    self/world loop as for a genuinely self-modelling agent) -- falsifies
+    the tag as measuring the intended construct rather than a confound
+    such as mere movement complexity.
   location: docs/architecture/social.md#mech-031
   source:
     - docs/thoughts/2026-02-09_empathy.md
@@ -3857,6 +3883,39 @@
     at or past threshold on this claim -- a further same-granularity lettered iteration should
     be REFUSED in favour of the two substrate builds above. Sub-claims (i) and (ii) both remain
     experimentally untested; the claim is untested, not unsupported.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION (two independent sub-claims, each with a NAMED
+    buildable fix -- do not re-litigate with another lettered iteration
+    per the 2026-07-19 re-derive-brake note): sub-claim (i), orthogonal
+    axes, requires SD-074 (probe.trained_enough_agent_warmup, IMPLEMENTED
+    2026-07-18) -- V3-EXQ-777a already showed near-perfect orthogonality
+    on the best-conditioned seed (sin_angle 0.9883) but was capped by
+    informative-seed yield (28.6%) from an untrained-agent sampling
+    defect, now repaired by SD-074. Sub-claim (ii), tonic/phasic split,
+    requires sd_phasic_ema_episode_continuity (routed to
+    /implement-substrate 2026-07-19) -- V3-EXQ-779b already verified the
+    episode-cap exposure fix took effect (stop_reason
+    episode_cap->step_cap) yet the precondition still did not move, so
+    the phasic-EMA-continuity gate is LOAD-BEARING, not spurious.
+    CONFIRMING signature (i): once SD-074-warmed agents are used, the
+    population-level c1_robust criterion (not just the single best seed)
+    clears the orthogonality margin across a representative seed sample
+    -- the tonic and phasic axes are genuinely dissociable directions in
+    control-plane space, not collinear.
+    CONFIRMING signature (ii): once sd_phasic_ema_episode_continuity
+    lands, the phasic-surprise EMA baseline persists correctly across
+    episode boundaries and the tonic (MECH-313)/phasic (SD-069) axes
+    become independently toggleable with behaviourally DISSOCIABLE
+    effects (toggling one without the other produces a measurably
+    different behavioural signature).
+    FALSIFYING (i): even with SD-074-warmed agents and adequate
+    informative-seed yield, sin_angle remains below the orthogonality
+    margin population-wide -- the two axes collapse toward one scalar
+    direction.
+    FALSIFYING (ii): once episode-continuity is fixed, toggling tonic vs
+    phasic axes independently produces NO measurable behavioural
+    dissociation -- the two axes are structurally distinct but not
+    functionally separable.
 - id: MECH-064
   title: "Typed authority/control-store separation blocks direct exteroceptive writes into policy and identity stores."
   claim_type: mechanism_hypothesis
@@ -38651,6 +38710,37 @@
     (epistemic_category stays standard). Gated on the same MECH-457 competence-floor substrate as the
     rest of the committed-behaviour campaign (MECH-260/Q-045 co-tagged) -- not independently
     re-queueable until that substrate clears.
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: requires the MECH-457 competence-floor
+    substrate to clear first -- V3-EXQ-687a (2026-07-30) already found all
+    4 arms of the Q-045 design failing committed_sufficiency at the
+    absolute floor, which is a readiness failure shared with the whole
+    committed-behaviour campaign (MECH-260/Q-045 co-tagged), NOT a
+    discrimination result; this claim is not independently re-queueable
+    until MECH-457 clears. Also requires the 4-arm design (both-OFF /
+    313-only / 260-only / both-ON) to reach adequate N once readiness is
+    met -- the N=1-per-cell cross-substrate signals already on file
+    (603/603a/603b/605, all same-direction, all sub-threshold) are
+    suggestive but explicitly not sufficient per this claim's own notes.
+    CONFIRMING signature (this claim's own stated FALSIFIER, restated):
+    on the SD-054 reef substrate with ARC-062 gated-policy enabled,
+    behaviour diversity (action-distribution entropy at probe states;
+    reef/forage occupancy CoV across seeds) ranks both-ON > {313-only,
+    260-only} > both-OFF at adequate N -- the two mechanisms (MECH-313
+    state-independent noise floor, MECH-260 state-dependent recency
+    penalty) are mutually load-bearing. If 313-only alone matches
+    both-ON, MECH-260 is contributory-not-necessary; if 260-only alone
+    matches both-ON, MECH-313 is contributory-not-necessary (this is
+    Q-045's question, answered by the same design).
+    FALSIFYING: both-OFF does NOT collapse to monomodal behaviour (some
+    OTHER anti-monostrategy mechanism is doing the work, independent of
+    both); or 313-only produces no measurable entropy lift over both-OFF
+    at adequate N -- would corroborate the co-equal NULL reading carried
+    since the 2026-07-09 GOV-CEIL-1 demotion ("the LC-NE noise floor is
+    inert / does no work").
+    CURRENT STATUS: CONTESTED candidate since 2026-07-09 (7 confirmed
+    substrate_ceiling autopsies: 573/603c/603d/603e/610f/655/687) -- the
+    competing null reading is carried CO-EQUALLY.
   location: docs/architecture/mech_313_stochastic_noise_floor.md
 
 - id: MECH-314
