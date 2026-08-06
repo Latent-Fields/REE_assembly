@@ -2587,7 +2587,10 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-207-retest-after-substrate-arc-045 && claude --resume c9a94139-3954-4518-8334-475c81ea0662",
       "task_claim_session_id": "igw-auto-igw-207-retest-after-substrate-arc-045-20260806T065704Z",
       "assigned_at": "2026-08-06T06:56:45Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-06T07:57:55Z",
+      "outcome": "USEFUL_LANDED",
+      "outcome_evidence": "proposal EXP-0003 -> gated (triage landed)"
     }
   ],
   "dispositions": [
@@ -3466,7 +3469,7 @@
     },
     {
       "stable_hash": "7aac4893a7c6",
-      "igw_id_at_disposition": "IGW-20260803-212",
+      "igw_id_at_disposition": "IGW-20260806-207",
       "owner_exq": null,
       "claim_ids": [
         "ARC-045"
@@ -3475,8 +3478,8 @@
       "title": "Retest after substrate: ARC-045",
       "decision": "AUTO_DEFER",
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
-      "noted_at": "2026-08-03T18:04:03Z",
-      "re_eligible_after": "2026-08-05T18:04:01Z"
+      "noted_at": "2026-08-06T07:58:05Z",
+      "re_eligible_after": "2026-08-08T07:57:55Z"
     },
     {
       "stable_hash": "e1f28ddf5091",
