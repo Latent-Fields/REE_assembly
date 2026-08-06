@@ -1,6 +1,6 @@
 {
   "schema_version": "igw_assignments/v1",
-  "generated_at": "2026-08-05T17:50:18Z",
+  "generated_at": "2026-08-06T06:57:11Z",
   "note": "Sole source of truth for 'this IGW work package has been handed to an agent'. Append-only event log; current state is derived by walking entries (later events override earlier ones for the same stable_hash + agent). Written by REE_assembly/scripts/igw_assignments_lib.py via igw_routine_tick.py (automatic spawn) and serve.py POST /api/workset/assign (manual UI). Read by generate_inter_governance_workset.py and merged onto each item as 'assignments: [...]'.",
   "agent_kinds": [
     "claude_local",
@@ -6189,6 +6189,28 @@
         "priority": 55,
         "claim_ids": [
           "MECH-074d"
+        ]
+      }
+    },
+    {
+      "event_id": "asn-20260806T065645Z-7aac4893-claude_local",
+      "stable_hash": "7aac4893a7c6",
+      "igw_id_at_assign": "IGW-20260806-207",
+      "agent": "claude_local",
+      "agent_label": null,
+      "source": "igw_routine_tick",
+      "assigned_at": "2026-08-06T06:56:45Z",
+      "released_at": null,
+      "released_by": null,
+      "released_reason": null,
+      "note": "session_uuid=c9a94139-3954-4518-8334-475c81ea0662 branch=claude/igw-207-retest-after-substrate-arc-045",
+      "item_snapshot": {
+        "skill": "/queue-experiment",
+        "title": "Retest after substrate: ARC-045",
+        "lane": "experiment",
+        "priority": 28,
+        "claim_ids": [
+          "ARC-045"
         ]
       }
     }
