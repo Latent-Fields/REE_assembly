@@ -2,77 +2,10 @@
   "schema_version": "v1",
   "runner_pid": 3973580,
   "runner_started_at": "2026-08-04T02:01:26.883810+00:00",
-  "last_updated": "2026-08-04T06:23:10.298276+00:00",
+  "last_updated": "2026-08-06T04:19:29.580798+00:00",
   "idle": false,
   "current": null,
-  "queue": [
-    {
-      "queue_id": "V3-EXQ-875a",
-      "backlog_id": "",
-      "claim_id": "MECH-471",
-      "title": "MECH-471 local-update interference test (EXP-0399), CORRECTED REQUEUE: adds SD-070 zworld_p0 warmup + aligns training budget to V3-EXQ-728 validated recipe (supersedes V3-EXQ-875, which self-routed substrate_not_ready_requeue)",
-      "description": "",
-      "estimated_minutes": 944.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-848b",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-005 precision monotonicity, finer 7-level ladder (breaks 848a 3-point Spearman-rho ceiling)",
-      "description": "",
-      "estimated_minutes": 18666.7,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-882a",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "MECH-472 held-out-context vs task-memorisation: z_world P0a warmup wired + fraction-basis acquisition gate (supersedes V3-EXQ-882)",
-      "description": "",
-      "estimated_minutes": 1322.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-888",
-      "backlog_id": "EVB-0074",
-      "claim_id": "MECH-074",
-      "title": "MECH-074 PARENT read/write-head route dissociation (write-strength vs write-address into the shared hippocampal map)",
-      "description": "",
-      "estimated_minutes": 64.0,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-436d",
-      "backlog_id": "",
-      "claim_id": "",
-      "title": "ARC-045/SD-017/MECH-166 slot-differentiation retest on repaired ContextMemory write path (gated_content_write=True); supersedes V3-EXQ-436c",
-      "description": "",
-      "estimated_minutes": 266.7,
-      "status": "pending",
-      "status_reason": "",
-      "ree_version": "v3"
-    },
-    {
-      "queue_id": "V3-EXQ-149b",
-      "backlog_id": "EVB-0179",
-      "claim_id": "",
-      "title": "Q-004 tau_R calibration at larger training budget, selection-instrument fixed (supersedes V3-EXQ-149)",
-      "description": "",
-      "estimated_minutes": 480.0,
-      "status": "claimed",
-      "status_reason": "",
-      "ree_version": "v3"
-    }
-  ],
+  "queue": [],
   "completed": [
     {
       "queue_id": "EXQ-005",
@@ -3749,6 +3682,34 @@
       "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3.json",
       "completed_by": "ree-cloud-1",
       "actual_secs": 14240.5
+    },
+    {
+      "queue_id": "V3-EXQ-882a",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-472 held-out-context vs task-memorisation: z_world P0a warmup wired + fraction-basis acquisition gate (supersedes V3-EXQ-882)",
+      "description": "",
+      "result": "FAIL",
+      "result_summary": "verdict: FAIL (exposure=500 seed=50 in_context=60.0 held_out=68.166667 gap=-8.166667) | outcome: FAIL label=substrate_not_ready_requeue direction=unknown acquisition_ok=False clear_fraction=0.25 holdout_reachable_ok=True non_degenerate=False | [experiment_protocol] sentinel written: outcome=FAIL queue_id=V3-EXQ-882a -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-882a.json",
+      "started_at": "2026-08-04T06:23:12.104867+00:00",
+      "completed_at": "2026-08-05T11:02:28.560006+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_882a_mech472_context_memorization_generalization_20260805T110228Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 103156.5
+    },
+    {
+      "queue_id": "V3-EXQ-890",
+      "backlog_id": "",
+      "claim_id": "",
+      "title": "MECH-471 cheap many-seed acquisition-reliability diagnostic probe (mints hypothesis-space registry qid mech471_competence_acquisition_reliability; chip-20260805-mech471-acquisition-reliability-probe)",
+      "description": "",
+      "result": "PASS",
+      "result_summary": "outcome: PASS label=early_divergence_supports_h1_framing non_degenerate=True n_cleared=2 n_not_cleared=14 | h1=early_divergence_supports_h1_framing h2=difficulty_correlate_not_evident | [experiment_protocol] sentinel written: outcome=PASS queue_id=V3-EXQ-890 -> /home/ree/REE_Working_runner/REE_assembly/evidence/experiments/_runner_signals/V3-EXQ-890.json",
+      "started_at": "2026-08-05T18:02:55.199296+00:00",
+      "completed_at": "2026-08-06T04:19:29.578959+00:00",
+      "output_file": "/home/ree/REE_Working_runner/REE_assembly/evidence/experiments/v3_exq_890_mech471_acquisition_reliability_probe_20260806T041928Z_v3.json",
+      "completed_by": "ree-cloud-1",
+      "actual_secs": 36994.4
     }
   ]
 }
