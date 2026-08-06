@@ -1443,3 +1443,4 @@ One line per hourly tick. ASCII only.
 2026-08-06T07:58:05Z reaped TASK_CLAIMS igw-auto-igw-207-retest-after-substrate-arc-045-20260806T065704Z (ledger IGW-20260806-207 -> completed_resumable)
 2026-08-06T07:58:05Z GC keep igw-207-retest-after-substrate-arc-045 (ledger IGW-20260806-207 -> completed_resumable; outcome=USEFUL_LANDED (kept for user to resume))
 2026-08-06T07:57:42Z skip IGW-20260806-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-06T08:58:11Z skip IGW-20260806-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
