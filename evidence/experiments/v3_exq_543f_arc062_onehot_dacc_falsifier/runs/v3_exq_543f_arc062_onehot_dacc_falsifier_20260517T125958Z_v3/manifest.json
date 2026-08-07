@@ -27,7 +27,7 @@
   "evidence_class": "simulation",
   "evidence_direction": "non_contributory",
   "evidence_direction_per_claim": {
-    "ARC-062": "weakens",
+    "ARC-062": "non_contributory",
     "MECH-309": "non_contributory"
   },
   "experiment_purpose": "evidence",
@@ -45,5 +45,6 @@
     "config_hash": "unknown",
     "tier": "causal_grid_world_v3"
   },
-  "failure_signatures": []
+  "failure_signatures": [],
+  "evidence_direction_note": "dry_run=true smoke manifest; evidence_direction_per_claim ARC-062:weakens corrected to non_contributory by /governance GOV-DRY-1 cleanup 2026-08-07. The a6fda79367 family-match sweep stamped the 543f FLATS with evidence_direction=superseded / epistemic_category=substrate_ceiling but never reached this pack, which still asserted a directional verdict from smoke metrics in the canonical file the indexer reads. This manifest is NOT evidence; see the flat sibling evidence/experiments/v3_exq_543f_arc062_onehot_dacc_falsifier_20260517T125958Z_v3.json for the adjudicated disposition (superseded, epistemic_category=substrate_ceiling)."
 }
