@@ -19405,9 +19405,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
       as_of: 2026-08-07
-      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
+      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -19480,17 +19480,34 @@
     #5, successor to V3-EXQ-436c]: fourth generation (436a bug -> 436b recording gap -> 436c
     write_gate substrate defect -> 436d), the FIRST to clear P0 (writes fire) with no known
     instrumentation or substrate defect and non_degenerate=true (healthy waking-phase action-class
-    entropy). C1 fails 2/5 seeds pass, need 3/5. RECORDED HERE BUT NOT ACTED ON -- HELD PENDING A
-    METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at governance walk 2026-08-07):
-    the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds rather than clustering near 1.0
-    as ARC-045's own prediction requires, and one seed (200) shows sleep INCREASING similarity
-    (0.0009->0.49), opposite the predicted direction. This pattern is not obviously the signature of
-    a clean negative. Owed before this result can be treated as decisive: a check of the
-    slot_cosine_sim computation (does it include empty/unwritten memory slots; is there a
-    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
-    true and is explicitly NOT discharged by this run; this FAIL does NOT weight toward a demotion
-    discussion for SD-017/ARC-045/MECH-166 until the methodology check lands. PROMOTES/DEMOTES
-    NOTHING this cycle.
+    entropy). C1 fails 2/5 seeds pass, need 3/5. HELD PENDING A METHODOLOGICAL CHECK at the walk
+    (autopsy's own recommendation): the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds
+    rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed (200) shows
+    sleep INCREASING similarity, opposite the predicted direction.
+    [2026-08-07 REVERSED, confirmed failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07,
+    user-confirmed]: the hold resolves AGAINST the metric, not in favour of the FAIL.
+    slot_cosine_sim is a whole-bank mean off-diagonal cosine with NO occupancy mask, and the
+    WAKING_ONLY arm executed ZERO ContextMemory writes this run (all three write sites closed by
+    sd016_writepath_mode='off' plus sleep_passes=0, corroborated by the manifest's own
+    sws_n_writes_total=0.0) -- its entire 0.0009-0.47 spread is reproduced by Adam-optimizer drift
+    of context_memory.memory (an nn.Parameter carried in the driver's own optimiser) alone, at
+    0.05-0.37 on the real substrate with zero writes. The metric also tracks
+    content-similarity x occupancy-fraction, so it scores an arm recruiting 12 well-separated slots
+    WORSE (0.076) than a single-slot arm (0.009) -- anti-correlated with the differentiation
+    SD-017/ARC-045/MECH-166 actually predict. Seeds 13 and 200 sit inside the untouched-bank null
+    (z=+1.21, +0.09), making C1 unsatisfiable there by construction (effective denominator <=3, not
+    5). ARC-045's near-1.0 undifferentiated-baseline premise is reachable only under the legacy
+    write_gate-as-payload defect that 436d itself repaired -- i.e. C1 was calibrated against a
+    substrate that no longer exists. P0 clearance is unaffected and stands: 436d remains the first
+    lineage run with a working write path. evidence_direction weakens -> non_contributory;
+    epistemic_category -> measurement_test_design_defect. pending_retest_after_substrate stays true,
+    now re-scoped from "after-substrate" to "after-DV-repair" -- a V3-EXQ-436e re-run on an
+    occupied-slots-only DV is owed (chipped) before this lineage's slot-differentiation question can
+    be tested at all. Does NOT weight toward a demotion discussion. Related: sws_slot_diversity
+    (1 - slot_cosine_sim, same whole-bank formula) is emitted by every sleep-pass driver and
+    inherits the identical confound -- v3_exq_242/243/245/245a/245b/246 share the shape; any
+    criterion pre-registered on it should be re-read with this in mind. PROMOTES/DEMOTES NOTHING
+    this cycle (a corrected DV, not this cycle's data, is what would move status).
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
   claim_type: architectural_commitment
@@ -19503,9 +19520,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
       as_of: 2026-08-07
-      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
+      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -19554,15 +19571,24 @@
 
     [2026-08-07 governance, V3-EXQ-436d, confirmed failure_autopsy_2026-08-05_pending_review_batch
     #5, successor to V3-EXQ-436c]: fourth generation, first to clear P0 with no known instrumentation
-    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). RECORDED BUT NOT
-    ACTED ON -- HELD PENDING A METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at
-    governance walk 2026-08-07): the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds
-    rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed shows sleep
-    INCREASING similarity, opposite the predicted direction -- not obviously the signature of a
-    clean negative. Owed: a check of the slot_cosine_sim computation (empty/unwritten slots;
-    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
-    true, explicitly NOT discharged; does NOT weight toward a demotion discussion until the
-    methodology check lands. PROMOTES/DEMOTES NOTHING this cycle.
+    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). HELD PENDING A
+    METHODOLOGICAL CHECK at the walk: the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across
+    seeds rather than clustering near 1.0 as ARC-045's own prediction requires, one seed shows sleep
+    INCREASING similarity, opposite the predicted direction.
+    [2026-08-07 REVERSED, confirmed failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07,
+    user-confirmed]: hold resolves AGAINST the metric. slot_cosine_sim has NO occupancy mask; the
+    WAKING_ONLY arm executed ZERO ContextMemory writes this run (sd016_writepath_mode='off' +
+    sleep_passes=0, sws_n_writes_total=0.0) -- its spread is pure Adam-optimizer drift of
+    context_memory.memory, reproduced at 0.05-0.37 with zero writes. Metric also tracks
+    content-similarity x occupancy-fraction, so a 12-slot arm scores WORSE (0.076) than a 1-slot arm
+    (0.009) -- anti-correlated with predicted differentiation. Seeds 13/200 sit inside the
+    untouched-bank null (z=+1.21, +0.09); effective C1 denominator <=3, not 5. ARC-045's near-1.0
+    undifferentiated-baseline premise was reachable only under the legacy write_gate-as-payload
+    defect 436d itself repaired. P0 clearance stands. evidence_direction weakens -> non_contributory;
+    epistemic_category -> measurement_test_design_defect. pending_retest_after_substrate stays true,
+    re-scoped after-DV-repair; V3-EXQ-436e chipped on an occupied-slots-only DV. Does NOT weight
+    toward demotion. sws_slot_diversity (same whole-bank formula) inherits the identical confound
+    across v3_exq_242/243/245/245a/245b/246. PROMOTES/DEMOTES NOTHING this cycle.
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
   claim_type: mechanism_hypothesis
@@ -19575,9 +19601,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07"
       as_of: 2026-08-07
-      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
+      verdict: "non_contributory/measurement_test_design_defect -- confirmed metric confound, NOT a genuine C1 FAIL (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -74792,4 +74818,113 @@
     built for its own V3 content to stand. The phase-consistency WARN is a known false-positive
     here (the checker cannot read the depends_on inline comment's qualifying language); no action
     owed unless ARC-085 becomes an actual load-bearing dependency later.
+  evidence: []
+
+- id: SD-097
+  title: "REE requires a general, typed, multi-relation possibility topology -- not merely the existing parent/subgoal edge -- in which represented possibilities/goals are connected by explicit relation types (requires, enables, is_part_of, prevents, conflicts_with, substitutes_for, provides_information_about, may_become_useful_under_context) below active-goal salience; the active goal/subgoal hierarchy is a temporary, context-sensitive executive projection from this larger structure, discovered and revised through action rather than merely traversed."
+  claim_type: substrate_design
+  subject: goal.general_relational_possibility_topology
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-07'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-08-07'
+  depends_on:
+    - SD-004    # action objects as hippocampal map backbone -- existing relational/path substrate this generalizes
+    - SD-039    # dual-trace hippocampal anchors storing goal snapshots -- existing persistence mechanism this extends to typed relations
+    - MECH-292  # ghost-goal bank -- existing retention-below-active-salience mechanism; this claim generalizes its single "goal-match" relevance dimension to a typed relation set
+    - MECH-293  # waking hippocampal probe search over ghost goals -- existing route back to active consideration; this claim's context-dependent-promotion behaviour would ride the same channel
+    - MECH-189  # persistent cue-indexed super-ordinal goal memory -- existing upward/superordinate discovery precedent
+    - SD-092    # explicit parent/subgoal relation + cross-level credit -- the SINGLE relation type this claim proposes generalizing to a typed family
+    - MECH-427  # cross-level subgoal maintenance credit -- one concrete relation-instance (is_part_of / parent) this generalizes beyond
+    - MECH-428  # cross-level subgoal formation/bootstrap credit -- companion to MECH-427, same generalization target
+  location: evidence/literature/targeted_review_relational_possibility_topology/
+  source:
+    - evidence/planning/thought_intake_2026-08-07_dynamic_goal_structure_relational_possibility_topology.md
+    - docs/thoughts/2026-08-07_dynamic_goal_structure_relational_possibility_topology.md
+  what_would_answer: |
+    Registered 2026-08-07 from a dedicated lit-pull commissioned by the Stage 2
+    thought intake's own "Next steps" (Section 13): a search across hippocampal/
+    entorhinal relational-map literature, goal-reconsideration/opportunistic-
+    planning literature, and hierarchical-RL/subgoal-discovery literature.
+    Literature: evidence/literature/targeted_review_relational_possibility_topology/
+    (5 entries).
+
+    GROUNDING the literature supplies: Whittington et al. 2020 (Cell, Tolman-
+    Eichenbaum Machine) and Park, Miller & Boorman 2021 (Nat Neurosci,
+    multidimensional social-hierarchy grid code) both show the hippocampal-
+    entorhinal system represents RELATIONAL structure that generalizes well beyond
+    spatial parent/child navigation -- direct support that a typed-relation
+    substrate is biologically plausible, not merely a symbolic graph bolted onto
+    the architecture. Khetarpal et al. 2020 (ICML, Theory of Affordances in RL)
+    supplies a second, independent relation type (what-can-I-do-here / enables)
+    already formalized in the RL literature, evidence that "requires/enables" is
+    not an ad hoc addition. Veeriah et al. 2021 (NeurIPS, meta-learned subgoal
+    discovery) evidences the DISCOVERY-THROUGH-ACTION half of the claim -- that
+    useful subgoal structure can be learned online rather than pre-specified.
+
+    NON-DEGENERACY / SKEPTICAL BASELINE the lit-pull deliberately sought out:
+    Kinny & Georgeff 1991 (IJCAI, commitment in situated Tileworld agents) show a
+    "bold" agent with NO stored relational structure at all -- only a scalar
+    policy for how many plan-steps to execute before reconsidering -- achieves
+    near-perfect effectiveness whenever the environment is not highly dynamic,
+    with the entire bold/cautious tradeoff explained by one scalar (rate of world
+    change). This is real evidence that a large share of ordinary goal
+    reconsideration needs no topology at all. Its explicit limit: it has no
+    analogue of RETAINING an inactive possibility across time for later
+    reactivation (MECH-292/293's job), so it stress-tests only the discovery/
+    reconsideration half of this claim, not the retention half.
+
+    CONFIRMED if an agent is shown to (a) discover, mid-episode, a possibility
+    related to its current goal by a relation type OTHER than parent/subgoal
+    (e.g. enables or conflicts_with), (b) retain it at sub-goal salience without
+    acting on it, and (c) later retrieve and act on it when context changes -- AND
+    this requires representing the relation TYPE itself (not merely a scalar
+    relevance/priority value) to succeed: a model built only from SD-092's
+    parent/subgoal edge plus MECH-292's ghost-goal ranking, tuned on the same
+    relevance signals, must be shown to fail or require an ad hoc special case
+    per new relation type, where the typed-topology model does not.
+
+    FALSIFIED if the same behaviour is fully reproduced by a Kinny & Georgeff-
+    shaped scalar-commitment-dynamism baseline (no stored relation types, only a
+    reconsideration-rate parameter) plus the EXISTING MECH-292/293 ghost-goal
+    ranking -- i.e. if nothing beyond the already-registered substrate is needed
+    to produce the behaviour the raw thought described.
+
+    NON-DEGENERACY PRECONDITION: any test must first confirm the baseline model
+    (scalar relevance + parent/subgoal only) is actually exercised under
+    non-degenerate conditions (live cross-seed variance in which possibilities get
+    revisited) before concluding the typed-relation extension adds function --
+    an untrained or degenerate baseline would make the typed model look necessary
+    when it is merely the only one that was actually tested.
+  notes: >
+    Registered 2026-08-07 from the 2026-08-07 dynamic-goal-structure /
+    relational-possibility-topology thought (docs/thoughts/2026-08-07_dynamic_goal_
+    structure_relational_possibility_topology.md), whose own Stage 2 intake
+    (evidence/planning/thought_intake_2026-08-07_dynamic_goal_structure_relational_
+    possibility_topology.md) explicitly deferred claim registration pending this
+    literature pull. Deliberately registers ONLY the novel remainder identified in
+    that intake's Section 6/11 (the general typed-relation topology and its
+    discover-retain-reactivate behaviour) -- NOT a restatement of hierarchical
+    goals, persistent inactive goals, superordinate goals, parent/subgoal credit,
+    or hippocampal reactivation of old goals, all of which are already covered by
+    the depends_on claims above and should not be re-litigated by this entry.
+    Intake Section 11's three prose-level candidates (general relational topology;
+    context-dependent promotion; topology revision during action) are folded into
+    this single claim rather than split into three, since the what_would_answer
+    above tests discovery, retention, and reactivation as one bundled behaviour;
+    splitting can be revisited if a build effort finds the three legs separable in
+    practice. claim_type: substrate_design (parallels SD-092, the single relation
+    type this generalizes) rather than mechanism_hypothesis, since the primary
+    claim is representational (a substrate REE needs), with the falsification
+    condition carried in what_would_answer per house digestion style. stance:
+    asked (epistemic_category substrate_conditional; no ree-v3 code implements any
+    form of typed multi-relation possibility storage as of registration -- MECH-292/
+    293's ghost-goal bank and SD-092's parent/subgoal edge are each single-relation
+    special cases, not a general typed-relation store).
   evidence: []
