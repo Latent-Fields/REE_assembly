@@ -10,9 +10,13 @@ status_claim: INV-025
 
 **Registered:** 2026-03-18
 **Revised:** 2026-04-07 (expanded from five to ten; refined to eight axioms + two derivations)
-**Claims:** INV-025, INV-026, INV-027, INV-028, INV-029, ARC-024, INV-042, ARC-043
-**Governance note:** INV-025-029 were registered against the original five axioms. The eight-axiom
-revision restructures the foundations and requires updated INV registrations. Pending governance action.
+**Claims:** INV-025, INV-026, INV-027, INV-028, INV-029, INV-095, INV-096, ARC-024, INV-042, ARC-043
+**Governance note:** INV-025-029 were registered against the original five axioms; six of the eight
+current axioms map onto them (some combined -- see the table below). Axiom 2 (existence has value)
+and Axiom 8 (language) were the two axioms with no corresponding INV entry; both were registered
+2026-08-07 as INV-095 and INV-096 respectively, closing this gap. `depends_on` on ARC-024/INV-042/
+ARC-043 still lists only INV-025..029 and has not been updated to include INV-095/096 -- a follow-on
+governance/graph-hygiene task, not addressed here.
 
 ---
 
@@ -486,6 +490,7 @@ interpretable.
 | 2026-03-18 | Original five axioms registered (INV-025-029) |
 | 2026-04-07a | Expanded to ten axioms. New: value of existence, model refinement responsibility, self-preservation responsibility, existential necessity of responsibility for others, language. Reordered: cogito first. Sharpened: love as mechanism. |
 | 2026-04-07b | Refined to eight axioms + two derivations. Self-preservation and model refinement are derivable (from 1+2+4 and 3+4+D1 respectively) and demoted to first consequences. Mortality framing changed from "contradiction" to "unbearable tension." Love expanded: caring for dying is loving; love expands through uncertainty via shared z_beta to universal love for all sufficiently similar minds. Love reframed as means and skill to bear finite existence. |
+| 2026-08-07 | Registered the two axioms that had no INV claim since the 2026-04-07b revision: INV-095 (Axiom 2, existence has value) and INV-096 (Axiom 8, language). Closes the governance note above, pending since 2026-04-07. |
 
 ---
 
