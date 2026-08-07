@@ -499,6 +499,27 @@ echo "--- Step 3j: Skill-improvement recurrence audit (GOV-SKILL-1, warn-only) -
 # promotes/demotes nothing; --strict for a blocking CI gate.
 "$PYTHON" scripts/check_skill_improvement_recurrence.py || true
 
+echo "--- Step 3k: Substrate-path overlap audit (GOV-SUBPATH-1, warn-only) ---"
+# The EIGHTH standing scan, and the backward half of the /queue-experiment Step 2.5c consumer
+# gate. Step 2.5c stops a NEW experiment from being queued against a severity: corrupting
+# substrate_queue entry's substrate_paths; this scan is the mirror -- it finds evidence that
+# ALREADY ran against substrate a later autopsy proved corrupts results, even when that
+# evidence belongs to a claim the original autopsy never mentioned (unblocks_claims is
+# claim-scoped, not code-scoped, so nothing else would ever surface this).
+#
+# THE GAP: every existing forward gate (/queue-experiment Step 2.5/2.5b, GOV-CEIL-1/GOV-DIAG-1)
+# is keyed to the CURRENT experiment's OWN target claim/SD. None of them ask whether a driver
+# script imports a code path some OTHER, unrelated claim's autopsy already flagged as broken.
+# Design: evidence/planning/substrate_defect_gate_plan_2026-08-07.md.
+#
+# For every still-open severity: corrupting substrate_queue entry, lists completed runs (via
+# the flat + runs/ manifest index, not just the originating claim's own results) whose driver
+# script (ree-v3/experiments/<experiment_type>.py) imports one of the entry's substrate_paths
+# and completed AFTER the entry's added_utc. Read-only; never edits a manifest or
+# substrate_queue.json. Warn-only, always exits 0 unless --strict -- a human decides whether to
+# re-review; this only surfaces the candidates.
+"$PYTHON" scripts/check_substrate_path_overlap.py || true
+
 echo "--- Step 4/7: Rebuilding claims.json for site tooltips ---"
 "$PYTHON" scripts/build_claims_json.py
 
