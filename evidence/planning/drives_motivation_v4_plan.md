@@ -74,20 +74,21 @@ closure_plan:
       title: "Orienting/surveying drive: pre-approach active-sensing control state"
       phase: 3
       status: blocked
-      blocker_class: v3_gate
+      blocker_class: v3_assembly_sequence
       severity: high
       owner_exq: null
       unblocks_claims: ["MECH-395"]
       depends_on: ["drives_motivation_v4:DRV-1"]
       cross_plan_link: []
-      blocking_on: "Gated on the live cue-recall diagnostic thread: register the orienting MECH only if V3-EXQ-640+ shows the discriminating pattern (cue fires, no contact, AND no orienting/surveying occurs). 640 must first separate missing-orienting from raw cue-to-action-authority failure."
+      blocking_on: "RE-SCOPED 2026-08-07 (session elegant-ishizaka-ddd4f6): the V3-EXQ-640 gate this entry originally named has been RUN, twice over (640, 640a) -- the discriminating pattern did not resolve to orienting. 640 found the cue barely moves z_goal (~0.4% nudge) with zero approach lift over background; 640a ruled out magnitude (25x gain x 5x kappa sweep, still flat/negative) and reclassified the gap as a shared E3 selection-authority ceiling (same shape as the MECH-314/320/341 modulatory-bias-drowning cluster). Orienting is therefore UNDIAGNOSED, not ruled out: no clean post-cue signal exists yet to test it against. Current gate = the cue-authority thread closing (V3-EXQ-812, 2026-07-24, most recent attempt, failed on a readiness precondition -- candidate pool not differentiated enough to evaluate selection authority; same candidate-pool-collapse confound as the GAP-A cluster). This is in-sequence V3 assembly work, not a cross-generation V4 deferral -- see version_relevance/implementation_phase note below."
       readiness_gate:
         - "V3 LIVE upstream cue chain the orienting mode sits between: SD-057 / MECH-347 cue-triggered wanting (cue recall fires), MECH-295 drive->liking->approach (assumes an approach vector already exists)"
         - "V3 LIVE distinct neighbours to keep separate: MECH-111 curiosity/novelty (broad info-seeking, not cue-triggered local sampling), attention/precision-selection (content weighting, not motor active-sensing)"
-        - "Live diagnostic thread: V3-EXQ-638a (cue fires, contact does not lift) + V3-EXQ-640 (post-cue action/gradient instrumentation) -- the routing-table discriminator in thought_intake_2026-06-04_orienting_surveying_drive.md S5"
-        - "Snail-race method: build the orient/survey DIAGNOSTIC (orient_mode_entries_after_cue, survey_steps, heading_entropy, gradient_information_gain) BEFORE any orienting substrate"
-      last_updated: 2026-06-10
-      completion_note: "thought_intake_2026-06-04_orienting_surveying_drive.md S3/S4: a cue-triggered, need-gated, pre-approach active-sensing mode -- distinct from curiosity, cue recall, and approach. It is what FINDS the approach vector MECH-295 assumes. Currently a routing hypothesis; the gate is the 640 result pattern. New claim proposed."
+        - "RESOLVED diagnostic thread: V3-EXQ-638a + V3-EXQ-640 + V3-EXQ-640a (post-cue action/gradient instrumentation + gain sweep) -- routed to cue-to-action / E3 selection-authority ceiling, NOT to orienting. See failure_autopsy_V3-EXQ-640_2026-06-05.md and failure_autopsy_V3-EXQ-640a_2026-06-06.md."
+        - "Current live thread: V3-EXQ-812 (2026-07-24) -- MECH-295 cue-authority direct test, FAILED on candidate_proximity_evaluable readiness precondition (measured 0.0). Resume DRV-4's own diagnostic once a cue-authority channel clears this precondition."
+        - "Snail-race method (still valid, now second-in-sequence behind cue-authority): build the orient/survey DIAGNOSTIC (orient_mode_entries_after_cue, survey_steps, heading_entropy, gradient_information_gain) once a cue reliably reaches action selection -- BEFORE any orienting substrate."
+      last_updated: 2026-08-07
+      completion_note: "thought_intake_2026-06-04_orienting_surveying_drive.md S3/S4: a cue-triggered, need-gated, pre-approach active-sensing mode -- distinct from curiosity, cue recall, and approach. It is what FINDS the approach vector MECH-295 assumes. RECLASSIFIED 2026-08-07 (session elegant-ishizaka-ddd4f6, user-directed): implementation_phase moved v4 -> v3 on MECH-395 (claims.yaml amendment pending -- see WORKSPACE_STATE.md / TASK_CLAIMS for the in-flight claims.yaml session this depends on). Rationale: V3 is not a closed, tested substrate being checked against a fixed spec -- it is still being assembled. DRV-4/MECH-395 is sequenced, gated-but-in-scope V3 assembly work (waiting on the cue-authority/E3-selection-authority thread, which is itself live V3 work), not deferred-generation roadmap. Treating it as 'v4' hid it from V3 closure tracking and let its own gating text go stale for two months after the gate it named was actually cleared."
     - id: "drives_motivation_v4:DRV-5"
       title: "Non-terminal failure-grade taxonomy as a transfer-world launch profile"
       phase: 4
@@ -108,7 +109,15 @@ closure_plan:
 # Drives & Motivation -- V4 Forward Roadmap
 
 **Registered:** 2026-06-10
-**Generation:** v4 (forward roadmap; excluded from the V3 closure %)
+**Generation:** v4 (forward roadmap; excluded from the V3 closure %) for DRV-1/2/3/5.
+**DRV-4 (orienting) RE-SCOPED 2026-08-07:** V3 assembly-sequence, not V4-deferred --
+see DRV-4's `blocking_on` above and the claims.yaml MECH-395/482/483/Q-089
+`implementation_phase` amendment it depends on (in-flight as of this edit; see
+WORKSPACE_STATE.md). Rationale: V3 is still being assembled, not a closed
+substrate under test, so a claim gated on in-progress V3 work (the E3
+selection-authority / cue-authority thread) is V3-scope, not a separate future
+generation. DRV-1/2/3/5 remain genuinely V4 (no live V3 thread motivates pulling
+them forward).
 **Status:** roadmap
 **Scope:** sequence the motivational layer beyond REE's single homeostatic
 food/energy axis -- a register of non-terminal needs (DRV-1), an arbitration
@@ -144,7 +153,7 @@ substrate work is honest to build.
 | 1 -- drive register | DRV-1 | SD-012 + MECH-111/ARC-073 (NEW register) | V4 first decision | unify scattered drive seeds into first-class axes |
 | 2 -- arbitration | DRV-2 | MECH-295/216/290/307 + ARC-073 (NEW policy) | V4 | DRV-1 register exists; goal_pipeline arbitration settled |
 | 2 -- grounding | DRV-3 | NEW arbitration claim | cross-cutting | drive-competition / opportunity-cost biology lit-pull |
-| 3 -- orienting drive | DRV-4 | SD-057/MECH-347/MECH-295 (NEW MECH) | V4, gated on 640 | EXQ-640 shows cue-fires-no-contact-no-orienting |
+| 3 -- orienting drive | DRV-4 | SD-057/MECH-347/MECH-295 (NEW MECH) | V3 assembly-sequence (re-scoped 2026-08-07), gated on cue-authority thread | V3-EXQ-812 successor clears the candidate-proximity readiness precondition AND shows cue-to-action authority; then resume the orienting diagnostic |
 | 4 -- launch profile | DRV-5 | scaffolded_sd054_onboarding (NEW criterion) | deferred / transfer-world | only when transfer-world work is scheduled |
 
 ---
@@ -154,11 +163,15 @@ substrate work is honest to build.
 - **No new drive axes are added to ree-v3 now.** SD-012's single food/energy
   axis stays the only live homeostatic drive. The register (DRV-1) is a V4
   design decision; registering this roadmap changes no V3 behaviour.
-- **The orienting drive is NOT registered as a claim yet.** Per
-  `thought_intake_2026-06-04_orienting_surveying_drive.md`, it is a routing
-  hypothesis whose gate is the V3-EXQ-640 result pattern. DRV-4 is `blocked` on
-  that diagnostic; do not build an orienting substrate before 640 discriminates
-  missing-orienting from cue-to-action-authority failure.
+- **The orienting drive IS now registered (STALE bullet, corrected 2026-08-07):**
+  MECH-395 (narrow, cue-triggered orienting; registered 2026-06-10) and
+  MECH-482/MECH-483/Q-089 (broader epistemic-deficit-driven orienting cluster;
+  registered 2026-08-05) all exist in claims.yaml. What has NOT happened is a
+  substrate build for any of them -- the V3-EXQ-640/640a diagnostics ran and
+  did NOT discriminate for orienting; they routed to a shared E3
+  selection-authority ceiling instead (see DRV-4's `blocking_on`). DRV-4 stays
+  `blocked`; do not build an orienting substrate before a cue reliably reaches
+  action selection.
 - **The failure-grade taxonomy stays deferred (transfer-world).** DRV-5 is
   explicitly self-scoped by its intake as future new-ecology work, off the V3
   critical path. It is `deferred`, not `open`, to honour that containment.
@@ -256,3 +269,32 @@ substrate work is honest to build.
   related_claims rather than silently resolved. No experiment proposal minted
   (substrate not V3-tractable as stated); no claims.yaml promotion (digestion,
   not governance). DO NOT build in V3.
+- **2026-08-07** (session `elegant-ishizaka-ddd4f6`, user-directed reclassification) --
+  Traced the actual current status of the diagnostic thread DRV-4/MECH-395's gate
+  named (V3-EXQ-640): it ran, plus a follow-on gain sweep (640a) and a July retest
+  (V3-EXQ-812, 2026-07-24). None discriminated for orienting; all three routed to a
+  shared E3 selection-authority / cue-authority ceiling (same shape as the
+  MECH-314/320/341 modulatory-bias-drowning cluster; 812 failed on a
+  candidate-pool-collapse readiness precondition, still open). DRV-4's
+  `blocking_on`/`readiness_gate` text updated above to reflect this -- it had gone
+  stale for two months, still describing 640 as a future diagnostic.
+  Separately traced what MECH-482 (epistemic_deficit) actually needs --
+  target-bound/per-candidate uncertainty -- against `substrate_queue.json`'s
+  GAP-A entry (extend MECH-314b/314c to per-candidate treatment): same
+  capability, already scoped, priority 1, unclaimed, its main blocker (a clamp
+  saturation bug) cleared 2026-07-21. `substrate_queue.json` amended in this
+  session to fix its own stale `ready_blocked_by` text and record this link.
+  **Reclassification decision (user-directed):** MECH-395, MECH-482, MECH-483,
+  and Q-089 should carry `implementation_phase: v3` / `version_relevance: v3`
+  (not `v4`), because V3 is not a closed substrate being tested against a fixed
+  spec -- it is still being assembled, and these claims are gated on identified,
+  partially-cleared, IN-PROGRESS V3 assembly work (the selection-authority
+  thread; the GAP-A per-candidate extension), not on a separate future
+  generation. `v3_pending: true` and `DO NOT build YET` both stay -- the
+  reclassification changes which roadmap these show up on and whether they
+  count toward V3 closure tracking, not their buildability today. The
+  claims.yaml edit itself is PENDING as of this note: `claims.yaml` was held by
+  a concurrent active claim (session `cool-torvalds-a82359`, thought-digestion,
+  claimed 2026-08-07T13:32:33Z) at write time, so the amendment was drafted and
+  handed to the user rather than applied. See WORKSPACE_STATE.md Recent Work
+  for the drafted diff and its landing status.
