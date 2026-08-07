@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_087",
+  "entry_id": "2026-08-07_q_087_ml_reproducibility_barriers_semmelrock2024",
+  "timestamp_utc": "2026-08-07T23:13:32Z",
+  "claim_ids_tested": ["Q-087"],
+  "source": {
+    "title": "Reproducibility in Machine Learning-based Research: Overview, Barriers and Drivers",
+    "authors": ["Harald Semmelrock", "Tony Ross-Hellauer", "Simone Kopeinik", "Dieter Theiler", "Armin Haberl", "Stefan Thalmann", "Dominik Kowald"],
+    "year": 2024,
+    "venue": "AI Magazine (accepted 2025); preprint arXiv:2406.14325",
+    "doi": "10.48550/arXiv.2406.14325",
+    "url": "https://arxiv.org/abs/2406.14325"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.5,
+  "confidence_rationale": "Recent multi-author survey (moderate-to-good source quality). It bears on Q-087 in two opposite ways, hence mixed: (a) it DISCONFIRMS the green-board-plus-reproducibility-check candidate -- if ML reproduction is frequently unattained even in principle, then gating closure on a reproducibility check risks the same 'may never fire' inertness that sank the strict-green-board option, which indirectly supports the chosen governance-acceptance; but (b) it also CAUTIONS on the feasibility of GOV-V3FREEZE-1's PASS criterion (an independent reader reproduces the flagship result from the frozen spec alone), which governance-acceptance-based closure is meant to enable. Mapping is indirect (it addresses the reproducibility candidate and the freeze package, not the event-definition question head-on), so confidence is held to moderate.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "'Reproducibility experiments have found worryingly low degrees of similarity with original results' -- if reproduction routinely fails, a reproducibility-check closure gate could be as unsatisfiable as the strict green board Q-087 rejected.",
+    "'Lack of transparency, data or code, poor adherence to standards, and the sensitivity of ML training conditions mean that many papers are not even reproducible in principle' -- a direct caution against GOV-V3FREEZE-1's requirement that a flagship result be reproducible from the frozen spec alone.",
+    "The survey concerns third-party reproduction of published ML research; a project reproducing its OWN frozen substrate (with full code/seed/data access) faces materially lower barriers, so the paper likely overstates the difficulty for REE's own closure package."
+  ],
+  "tags": ["q-087", "reproducibility", "ml-research", "freeze-package", "governance", "disconfirming"],
+  "mapping": {
+    "source_claim_statement": "The survey reports that reproducibility experiments 'have found worryingly low degrees of similarity with original results,' and that 'lack of transparency, data or code, poor adherence to standards, and the sensitivity of ML training conditions mean that many papers are not even reproducible in principle,' while warning that 'the general community continues to take this issue too lightly.'",
+    "ree_translation": "This weakens the 'green-board-plus-reproducibility-check' candidate for defining V3 closure: making closure contingent on a successful reproduction risks inheriting the same never-fires inertness that led Q-087 to reject the strict green board, since ML reproduction is frequently unattained even in principle. That indirectly supports Q-087's chosen governance-acceptance. Simultaneously it is a caution on GOV-V3FREEZE-1's own PASS criterion (reproduce the flagship result from the frozen spec alone), which governance-acceptance-based closure is meant to unblock.",
+    "mapping_caveat": "The survey studies third-party reproduction of published ML research broadly, not a single team freezing and reproducing its own substrate with full internal access to code, seeds, and data -- self-reproduction of a frozen artefact is materially easier than external replication, so the transfer overstates the difficulty for REE's closure package. It speaks to the reproducibility CANDIDATE and the freeze package's feasibility, only indirectly to Q-087's event-definition question.",
+    "source_context": "Machine-learning methodology; survey of the state of reproducibility in ML-based research, its barriers, and drivers."
+  },
+  "confidence_components": {
+    "source_quality": 0.65,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "Moderate-to-good source quality (recent multi-author survey accepted at AI Magazine, but a survey/opinion synthesis rather than a primary reproducibility study). Mapping fidelity moderate-low: it addresses a rejected candidate and the freeze package indirectly rather than the event definition directly. Transfer risk moderate-high: third-party ML reproduction -> self-reproduction of a frozen substrate is a real gap that cuts in REE's favour."
+  }
+}

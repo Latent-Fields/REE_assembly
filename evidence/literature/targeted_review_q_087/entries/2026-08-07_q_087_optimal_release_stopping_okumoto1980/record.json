@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_087",
+  "entry_id": "2026-08-07_q_087_optimal_release_stopping_okumoto1980",
+  "timestamp_utc": "2026-08-07T23:13:32Z",
+  "claim_ids_tested": ["Q-087"],
+  "source": {
+    "title": "Optimum release time for software systems based on reliability and cost criteria",
+    "authors": ["K. Okumoto", "Amrit L. Goel"],
+    "year": 1980,
+    "venue": "Journal of Systems and Software, 1(4), 315-318",
+    "doi": "10.1016/0164-1212(79)90033-5",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/0164121279900335"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "Foundational, heavily-cited peer-reviewed paper (high source_quality), but the mapping to Q-087 is by structural analogy rather than direct application: it optimises a continuous timing decision for a single software product under a quantifiable reliability/cost criterion, whereas Q-087 concerns a discrete, deliberately NON-metric governance milestone across a heterogeneous research substrate. It grounds the resolution's core reasoning (readiness is a chosen criterion applied under uncertainty, not the passive attainment of a defect-free state) but cannot itself adjudicate a governance judgement call, so confidence is held to moderate and mapping_fidelity is weighted heavily.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model presupposes a quantifiable software-reliability metric and a cost function; a governance-acceptance criterion is explicitly non-metric, so the paper's optimisation machinery does not transfer, only its framing that release is a decision against a criterion.",
+    "It optimises WHEN to release a converging reliability curve, not WHAT event constitutes closure of a system with permanently-blocked components -- the 'may never converge' case Q-087's strict-green-board candidate faced is outside the model's assumptions."
+  ],
+  "tags": ["q-087", "software-release", "stopping-rule", "reliability-growth", "governance"],
+  "mapping": {
+    "source_claim_statement": "The paper addresses 'the problem of determining the optimum time when testing can stop and a system can be considered ready for operational use,' which 'depends on both the model for the software failure phenomenon and the criterion used for evaluating system readiness'; two criteria are investigated -- software reliability and total expected cost -- and 'based on the cost criterion, an optimum release policy is derived.'",
+    "ree_translation": "Declaring a software version 'ready' (closed) is a decision derived from an explicitly-chosen readiness criterion under uncertainty, not the emergent arrival of a defect-free or all-green state. This supports Q-087's resolution that V3 closure be a governance decision recorded against a criterion (governance_acceptance), and specifically supports the resolution's rejection of the strict-green-board candidate on the grounds that an exhaustive-completeness event 'may never fire.'",
+    "mapping_caveat": "The transfer is analogical. Okumoto-Goel still assumes a measurable reliability metric that monotonically improves and a cost model to trade against it; Q-087 deliberately chose a non-metric governance event precisely because the metric (green-board node count) may never reach completion. The paper concerns a deployed software product's operational readiness, not the freezing of a research substrate as a causal reference artefact.",
+    "source_context": "Software reliability engineering; analytical optimisation of software release timing for a single product using the Goel-Okumoto NHPP failure model."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "High source quality (canonical, peer-reviewed, decades of citation). Mapping fidelity moderate: the paper's decision-theoretic framing maps well, but its metric/cost apparatus does not transfer to a non-metric governance event. Transfer risk moderate-to-high: software-product-timing -> governance-milestone-definition is a domain jump. Aggregate weighted toward mapping_fidelity as an architectural/governance claim."
+  }
+}

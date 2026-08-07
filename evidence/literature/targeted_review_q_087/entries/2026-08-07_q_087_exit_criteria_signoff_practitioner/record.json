@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_087",
+  "entry_id": "2026-08-07_q_087_exit_criteria_signoff_practitioner",
+  "timestamp_utc": "2026-08-07T23:13:32Z",
+  "claim_ids_tested": ["Q-087"],
+  "source": {
+    "title": "Exit criteria and QA sign-off in software testing: when to stop testing and declare release-ready (practitioner consensus, multiple sources)",
+    "authors": ["PractiTest (When Should You Stop Testing? Exit Criteria in Software Testing)", "Enov8 (Entry and Exit Criteria in Software Testing, Explained)", "BrowserStack (Entry and Exit Criteria in Testing: A 2026 Guide)", "testRigor (QA Sign-Off: The Final Seal of Approval Explained)"],
+    "year": 2026,
+    "venue": "Software-testing practitioner references / industry guides (non-peer-reviewed)",
+    "doi": "",
+    "url": "https://www.practitest.com/resource-center/article/when-should-you-stop-testing/"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.45,
+  "confidence_rationale": "Practitioner consensus (non-peer-reviewed guides) so source_quality is low, but mapping_fidelity is high because these sources name BOTH of Q-087's competing candidates almost verbatim: an objective, measurable exit-criteria gate 'removing subjectivity' (= the rejected strict-green-board) and a stakeholder risk-based sign-off (= the chosen governance-acceptance). The direction is genuinely mixed: the same literature that legitimises governance sign-off as normal practice also advocates objective gates precisely to avoid the subjectivity/drift that Q-087 acknowledges as governance-acceptance's known risk. This is the entry's disconfirming/mixed contribution.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dominant 'best practice' framing is that exit criteria should be objective and measurable in order to 'remove subjectivity and deadline pressure from the decision' -- a direct argument for the strict-green-board candidate and against the chosen governance-acceptance, whose known failure mode is exactly judgement drift.",
+    "Sign-off practice concerns per-release QA of a deployed product against agreed thresholds; it does not model a system where the objective board CANNOT be made green (permanently-blocked nodes), which is the specific condition that made Q-087 reject the objective gate."
+  ],
+  "tags": ["q-087", "exit-criteria", "qa-sign-off", "release-readiness", "governance", "objective-vs-subjective-gate"],
+  "mapping": {
+    "source_claim_statement": "'Exit criteria provide a clear, measurable finish line for testing, removing subjectivity and deadline pressure from the decision' and 'serve as a quality assurance gate'; yet 'release decisions are often made in collaboration with developers, product owners, business stakeholders, and release managers,' where 'the decision behind each sign-off is typically based on risk assessment, considering the impact of unresolved issues against the project timeline, business needs, and customer expectations.'",
+    "ree_translation": "The two normative poles in release practice map directly onto Q-087's two live candidates: (i) an objective measurable exit-criteria gate = the strict-green-board option, advocated to remove subjectivity; (ii) a stakeholder risk-based sign-off = the governance-acceptance option, chosen. The practitioner consensus endorses BOTH -- the objective gate as the ideal, the risk-based sign-off as the operative reality -- which both legitimises Q-087's chosen governance sign-off AND preserves the standing argument for the objective gate it declined.",
+    "mapping_caveat": "These are practitioner guides, not peer-reviewed studies, so evidential weight is low. They describe recurring per-release QA of deployed products, not a singular research-substrate freeze, and -- critically -- they assume the objective board CAN in principle be made green; Q-087's decisive reason for rejecting the objective gate (nine permanently-blocked nodes, so it may never fire) is a condition this literature does not consider. The 'remove subjectivity' norm is an argument against the chosen option, which is why this entry is mixed, not supporting.",
+    "source_context": "Commercial software QA / release management practice; guidance on entry/exit criteria and sign-off for product releases."
+  },
+  "confidence_components": {
+    "source_quality": 0.35,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.4,
+    "notes": "Low source quality: aggregated non-peer-reviewed practitioner guides representing industry consensus rather than empirical study. High mapping fidelity: the sources articulate Q-087's exact objective-vs-subjective-gate dichotomy in near-identical terms. Moderate transfer risk: product-QA sign-off -> governance-substrate-closure. Aggregate held low by source quality despite strong mapping."
+  }
+}
