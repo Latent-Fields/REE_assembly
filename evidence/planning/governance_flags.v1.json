@@ -1,0 +1,54 @@
+{
+  "schema_version": "governance_flags/v1",
+  "generated_at_utc": "2026-08-07T16:46:37Z",
+  "purpose": "Structured, mechanically-discoverable registry of 'GOVERNANCE FLAG'-style callouts raised inline in claims.yaml prose (what_would_answer / evidence_quality_note / digestion_note) or in WORKSPACE_STATE.md Recent Work, most often by /thought-digestion sessions honouring the standing rule 'flag for /governance review, do not promote or resolve yourself mid-digestion'. Before this file existed, such flags were discoverable only by a human or agent noticing distinctive wording while reading a long, ever-growing WORKSPACE_STATE.md during /governance's own Session Startup Protocol orientation step -- which works only if the flag is recent enough to still be near the top. Confirmed staleness this caused: the ARC-033 promotion flag (GFLAG-0001, raised 2026-08-06) was still unactioned a full day later; the SD-014 discrepancy flag (GFLAG-0003, raised 2026-08-06) had already been resolved by an experiment run on 2026-08-04 that a LATER session had to independently re-discover from scratch because nothing pointed it at the open flag.",
+  "authority": "This file is a derive-only, human/agent-adjudicated INPUT, exactly like sibling evidence/planning/*.v1.json files (see hypothesis_space_registry.v1.json's own authority note for the pattern). It never mutates claims.yaml, closure weights, or claim status by itself -- raising or resolving a flag here is bookkeeping, not a governance decision. /governance's own interactive review (see .claude/skills/governance/SKILL.md) is where a flag's substance actually gets acted on; this registry only guarantees the flag surfaces there instead of depending on luck.",
+  "flag_types": [
+    "promotion_review",
+    "evidence_discrepancy",
+    "stale_note",
+    "contested_disposition"
+  ],
+  "flag_type_notes": {
+    "promotion_review": "A claim's status looks ready to move (e.g. candidate -> provisional/stable) but the flagging session deliberately did not promote it -- promotion is /governance's call, not a digestion-pass call.",
+    "evidence_discrepancy": "A numeric, terminological, or structural mismatch was noticed (e.g. a claim describing N components when the substrate or a sibling claim implies a different N) that needs reconciliation, not just a note.",
+    "stale_note": "A prose note (evidence_quality_note, live_status pointer, etc.) is suspected or confirmed to be pointing at outdated evidence and needs a governance-reviewed refresh.",
+    "contested_disposition": "Two sessions, or a session and the user, reached different conclusions about how a claim should be classified or routed, and the disagreement was not resolved inline."
+  },
+  "items": [
+    {
+      "flag_id": "GFLAG-0001",
+      "claim_ids": ["ARC-033"],
+      "flag_type": "promotion_review",
+      "summary": "ARC-033 (SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s operating within the sensory-discriminative harm stream) is flagged as a stable-promotion candidate: status remains 'provisional' despite V3-EXQ-525 (2026-05-06, 4 seeds) passing all 6 pre-registered criteria on every seed tested -- hf_r2 = 0.9191 +/- 0.0037 (tight, non-bimodal, resolving the earlier EXQ-166 bimodal-encoder pattern), attribution_gap positive in all 4 seeds (0.102-0.126), intact_vs_ablated > 0 in 4/4 seeds. Flagged for /governance promotion review rather than promoted mid-digestion, per this project's standing rule against self-promotion during /thought-digestion.",
+      "raised_by_session": "thoughts-intakes-4fd18d",
+      "raised_at": "2026-08-06T18:27:55Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0002",
+      "claim_ids": ["INV-050"],
+      "flag_type": "promotion_review",
+      "summary": "INV-050 (sleep phase architecture regulated by a third, Model-Error-Load drive) has now cleanly passed its core DVs (sws_power, replay_rate) 2/3 seeds in three consecutive autopsy-confirmed runs (V3-EXQ-845 2026-08-01, V3-EXQ-861 2026-08-01, V3-EXQ-861a 2026-08-02/03) with zero FAILs -- an unusually strong record for a 'believed'/candidate-stance claim. Flagged for /governance promotion review (candidate -> provisional/stable); NOT promoted during this digestion pass. Governance must weigh the non-independence of the three runs against the raw repeat-PASS count: all three share the IDENTICAL environment (CausalGridWorldV2 / SD-MEL-PRODUCER world_rule_shift knob) and the IDENTICAL 3 seeds (42, 123, 456), so per the project's own V3-EXQ-718a lesson this is one configuration confirmed three times, not three independent replications. Full non-degeneracy precondition (new seeds, and/or a held-out environment, and/or a consumer-absent control) is written into the claim's own what_would_answer in claims.yaml.",
+      "raised_by_session": "cool-torvalds-a82359",
+      "raised_at": "2026-08-07T16:38:50Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
+    },
+    {
+      "flag_id": "GFLAG-0003",
+      "claim_ids": ["SD-014"],
+      "flag_type": "evidence_discrepancy",
+      "summary": "thought-digestion flagged a 4-vs-6 valence-vector discrepancy on SD-014 (hippocampal map nodes storing a 4-component valence vector [wanting, liking, harm-discriminative, surprise] vs. a proposed 6-component amendment adding VALENCE_EXCITEMENT/VALENCE_DREAD channels) for /failure-autopsy + /governance to reconcile, deliberately excluding SD-014 from that digestion pass's what_would_answer batch rather than resolving the discrepancy inline.",
+      "raised_by_session": "thoughts-intakes-4fd18d",
+      "raised_at": "2026-08-06T18:27:55Z",
+      "status": "resolved",
+      "resolved_at": "2026-08-07T16:38:50Z",
+      "resolution_note": "Already resolved by executed evidence before the flag was reconciled, and independently re-discovered rather than looked up -- the concrete gap this registry exists to close. V3-EXQ-887 (2026-08-04) ran a dedicated, instrument-validated test of SD-014's core 4-component representational claim (C1 functional drive-gating, C2 representational separability, C3 replay-set selectivity), with the V3-EXQ-432 surprise-write pipeline gap confirmed fixed as a readiness precondition. Result: FAIL/weakens, confirmed non-degenerate by failure_autopsy_2026-08-05_pending_review_batch.md (#3): C1 (tau<=0.85) and C2 (Spearman<=0.90) fail on all 3 seeds (tau 0.867-0.889; Spearman 0.93-0.97); C3 passes. Root cause: VALENCE_WANTING and VALENCE_LIKING are both derived from the same underlying benefit_exposure signal via different transforms, not the independent dopamine/opioid pathways the cited biology (Berridge & Robinson 1998; Smith/Berridge/Aldridge 2011) requires. Hypothesis H-wanting-liking-separable-drive-gated registered eliminated in hypothesis_space_registry.v1.json. This directly eliminates the SD-014 4-component claim as specified, which supersedes rather than answers the original 4-vs-6-channel question (MECH-307 anticipatory_affect_conjunction vs. the proposed 6-channel SD-014 amendment): the amendment question is moot until the underlying 4-component wanting/liking dissociation is itself fixed. Autopsy-confirmed routing (user-confirmed, not yet ratified by /governance or chipped as of 2026-08-07): accept weakens, decouple VALENCE_WANTING's write-path via /implement-substrate. Full account in SD-014's own digestion_note in claims.yaml (session cool-torvalds-a82359, REE_assembly commit f33a36411d)."
+    }
+  ],
+  "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
+}
