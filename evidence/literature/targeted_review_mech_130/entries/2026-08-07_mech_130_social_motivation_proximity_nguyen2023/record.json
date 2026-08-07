@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_130",
+  "entry_id": "2026-08-07_mech_130_social_motivation_proximity_nguyen2023",
+  "timestamp_utc": "2026-08-07T23:50:05Z",
+  "claim_ids_tested": ["MECH-130"],
+  "source": {
+    "title": "Social Motivation for Modelling Other Agents under Partial Observability in Decentralised Training",
+    "authors": ["Dung Nguyen", "Hung Le", "Kien Do", "Svetha Venkatesh", "Truyen Tran"],
+    "year": 2023,
+    "venue": "Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence (IJCAI 2023), paper 454",
+    "doi": "10.24963/ijcai.2023/454",
+    "url": "https://doi.org/10.24963/ijcai.2023/454"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "The most direct behavioural confirmation of MECH-130's posited mechanism found in this pull: an agent-directed intrinsic motivation, keyed on the poverty of the agent's model of others, that literally produces approach and proximity-maintenance toward other agents. Peer-reviewed at IJCAI with an empirical evaluation, and the mapping is unusually clean because the paper's reward is exactly the object MECH-130 says needs gating. Held below 0.8 because the confirmation is INADVERTENT -- the authors report approach-toward-others as a desirable outcome in cooperative tasks, and never test the adversarial or harmful-agent condition that would turn it into MECH-130's failure mode. Assessed from the published abstract and proceedings record rather than a full-text read.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The intrinsic motivation 'encourages agents to stay near each other to obtain better observations and construct a model of others' -- an agent-directed intrinsic signal whose direct behavioural output is sustained approach and proximity, which is precisely the chronic approach pressure MECH-130 predicts.",
+    "The trigger condition is model poverty or poor task performance: agents approach 'when their model of other agents is poor, or the overall task performance is bad'. That rule is monotone in how poorly modelled the other agent is, so the least-modellable agent attracts the most approach -- and an adversary that maintains surface unpredictability holds the trigger permanently on, which is MECH-130's third failure mode as a design property rather than a bug.",
+    "No harm, risk or threat term appears anywhere in the reward; approach is gated on epistemic state alone, so there is no path by which a high harm estimate could inhibit the approach the signal is generating.",
+    "The evaluation is cooperative, so the regime in which approach-on-model-poverty is dangerous is outside the tested envelope entirely -- the method's reported success is evidence about the cooperative case only and says nothing about the mixed-motive or adversarial case."
+  ],
+  "tags": ["mech-130", "multi-agent-rl", "social-motivation", "agent-modelling", "intrinsic-reward", "approach-behaviour"],
+  "mapping": {
+    "source_claim_statement": "Under decentralised training with partial observability, agents must learn models of other agents in order to cooperate. Modelled on human social motivation 'that entices humans to meet and understand each other, especially when experiencing a utility loss', the authors' intrinsic motivation 'encourages agents to stay near each other to obtain better observations and construct a model of others. They do so when their model of other agents is poor, or the overall task performance is bad during the learning phase.' This significantly improves performance on cooperative tasks.",
+    "ree_translation": "MECH-130 predicts that an intrinsic signal keyed on how poorly another agent is understood will produce chronic approach pressure toward that agent, and that this pressure will compete with harm avoidance on the same entity because nothing in the signal knows about harm. Nguyen et al. build exactly that signal, deliberately, and report that it does exactly that -- agents approach and stay near others in proportion to how poorly modelled they are. The mechanism MECH-130 posits is therefore not speculative: it is a working, published method. What MECH-130 adds is the observation that the same mechanism, run in an environment containing a harmful or adversarial agent, is a liability rather than an asset, and that the missing piece is a harm-conditioned gate between the agent-novelty signal and the approach action.",
+    "mapping_caveat": "The confirmation is inadvertent and the setting is favourable, which limits what it licenses. The paper's tasks are cooperative, so approach-toward-the-poorly-modelled is straightforwardly correct there and its failure regime is simply not exercised; nothing in the paper is evidence that the mechanism misbehaves under adversarial conditions, only that the mechanism exists and produces approach. The trigger is also model uncertainty rather than novelty per se -- close to MECH-111's signal but not identical, since a well-modelled but high-entropy agent would attract less approach here than raw novelty would predict. Finally, this entry was assessed from the published abstract and IJCAI proceedings record, not a full-text read, so the precise reward formulation and any implicit safety constraints are unverified.",
+    "source_context": "Decentralised multi-agent RL under partial observability during training; cooperative benchmark tasks including coordination problems requiring joint effort; no adversarial, mixed-motive or harm-bearing condition."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.80,
+    "transfer_risk": 0.30,
+    "notes": "Mapping fidelity is the strongest component and drives the aggregate: the paper's reward is the very object MECH-130 says needs a gate, so the correspondence needs no interpretive stretch. Source quality carries a modest discount for abstract-level assessment. The aggregate stays below the mapping-fidelity figure because the paper confirms the mechanism's existence, not its danger."
+  }
+}

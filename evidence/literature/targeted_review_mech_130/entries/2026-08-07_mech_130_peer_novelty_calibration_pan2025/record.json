@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_130",
+  "entry_id": "2026-08-07_mech_130_peer_novelty_calibration_pan2025",
+  "timestamp_utc": "2026-08-07T23:50:05Z",
+  "claim_ids_tested": ["MECH-130"],
+  "source": {
+    "title": "Wonder Wins Ways: Curiosity-Driven Exploration through Multi-Agent Contextual Calibration",
+    "authors": ["Yiyuan Pan", "Zhe Liu", "Hesheng Wang"],
+    "year": 2025,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS 2025); arXiv:2509.20648",
+    "url": "https://arxiv.org/abs/2509.20648"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.70,
+  "confidence_rationale": "The single most directly on-point paper found in this pull, and it cuts both ways with unusual sharpness. It states MECH-130's premise almost verbatim ('existing curiosity mechanisms exhibit a uniform novelty bias, treating all unexpected observations equally') and then separates peer-behaviour novelty from environmental stochasticity as distinct signal categories -- which is the world/agent typing MECH-130 asks for, built and evaluated at NeurIPS. That FALSIFIES the strong form of the proposal note that the distinction is absent from the literature. But the entire motivation is exploration EFFICIENCY: peer novelty is treated as under-exploited signal to be amplified, never as approach pressure to be gated; safety, harm, risk and adversarial agents appear nowhere. Confidence held at 0.70 rather than higher because it is a 2025 paper with no independent replication and I read the abstract and venue record rather than the full method.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "'Existing curiosity mechanisms exhibit a uniform novelty bias, treating all unexpected observations equally' -- an independent, peer-reviewed statement as of 2025 that the untyped signal MECH-130 objects to is still the field default, made by authors whose own contribution is to replace it.",
+    "The paper's remedy amplifies attention to peer-behaviour novelty because it 'encode[s] latent task dynamics' -- so a system built on CERMIC's logic would increase, not decrease, approach pressure toward the least-predictable agent, since that agent carries the most peer-novelty signal.",
+    "Neither the abstract nor the venue record mentions safety, harm, risk, or adversarial agents; the evaluation suites (VMAS, Meltingpot, SMACv2) are scored on task return, so an agent that is exploited by a peer maintaining surface unpredictability would register as an exploration success up to the point where return degrades."
+  ],
+  "tags": ["mech-130", "curiosity", "multi-agent-rl", "peer-novelty", "novelty-typing", "exploration"],
+  "mapping": {
+    "source_claim_statement": "Artificial curiosity 'often confuses environmental stochasticity with meaningful novelty', and 'existing curiosity mechanisms exhibit a uniform novelty bias, treating all unexpected observations equally', so that 'peer behavior novelty, which encode latent task dynamics, are often overlooked'. CERMIC filters noisy surprise and calibrates intrinsic curiosity against inferred multi-agent context, outperforming SoTA on VMAS, Meltingpot and SMACv2 in sparse-reward settings.",
+    "ree_translation": "MECH-130 asserts (a) that an untyped novelty signal is the default and is wrong, and (b) that the correction is to distinguish world-state novelty from agent-policy novelty and route the latter differently. This paper independently asserts (a) in nearly the same words and implements a version of (b) -- peer-behaviour novelty is separated out and handled by dedicated machinery conditioned on inferred multi-agent context. What it does NOT do is (c), MECH-130's actual distinctive content: routing agent-novelty through social modelling BEFORE approach is gated, and inhibiting that approach when harm risk is high. CERMIC types agent novelty in order to follow it more effectively; MECH-130 types it in order to decide whether following it is safe.",
+    "mapping_caveat": "This is the entry that revises the proposal's framing, so the boundary must be drawn precisely. The distinction is no longer absent from the literature -- claiming otherwise in any REE write-up would now be false. What remains unclaimed is the SAFETY-ARBITRATION use of the distinction: no part of CERMIC gates approach on harm, models an adversary, or treats a peer's unpredictability as a reason for caution rather than attention. A second caveat on strength: this is a 2025 paper assessed from its abstract, venue record and arXiv listing rather than a full-text read of the method, so the specific mechanism by which peer novelty is separated is not verified here; and 'often overlooked' is the authors' own characterisation of their field, which is a motivated claim in a paper whose contribution depends on it being true.",
+    "source_context": "Deep multi-agent RL; decentralised, communication-free settings; sparse-reward benchmark suites VMAS, Meltingpot and SMACv2; cooperative and mixed-motive task scoring by return, with no safety or harm objective."
+  },
+  "confidence_components": {
+    "source_quality": 0.80,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "NeurIPS 2025 acceptance and a three-suite empirical evaluation support source quality; the discount is for recency (no independent replication) and for assessment from abstract rather than full text. Mapping fidelity is the highest in this directory because the paper addresses the exact distinction MECH-130 names -- it is high precisely because the paper is close enough to constrain MECH-130's originality claim."
+  }
+}

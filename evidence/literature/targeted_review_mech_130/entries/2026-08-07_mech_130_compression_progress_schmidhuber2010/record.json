@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_130",
+  "entry_id": "2026-08-07_mech_130_compression_progress_schmidhuber2010",
+  "timestamp_utc": "2026-08-07T23:50:05Z",
+  "claim_ids_tested": ["MECH-130"],
+  "source": {
+    "title": "Formal Theory of Creativity, Fun, and Intrinsic Motivation (1990-2010)",
+    "authors": ["Juergen Schmidhuber"],
+    "year": 2010,
+    "venue": "IEEE Transactions on Autonomous Mental Development 2(3):230-247",
+    "doi": "10.1109/TAMD.2010.2056368",
+    "url": "https://doi.org/10.1109/TAMD.2010.2056368"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "Entered deliberately as counter-evidence to MECH-130's NECESSITY argument, not to its premise. Schmidhuber's reward is the derivative of compressibility -- reward comes from patterns that are 'novel, surprising ... allowing for improved prediction or data compression', so an unpredictable-but-unlearnable source yields no reward at all. If an adversarial agent's opacity is irreducible, the field has had a source-AGNOSTIC fix for MECH-130's failure mode 1 since 1991, and typing by source would be redundant machinery. Confidence held at 0.55 because the rebuttal is inferential (the paper never discusses multiagent novelty, so I am applying a general principle to a case it does not address) and because there is a real counter-counter-argument: another agent's policy is non-stationary and partially learnable, which under a learning-progress signal may make it an ENDURING rather than a decaying attractor -- worse for MECH-130's concern, not better.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A learning-progress / compression-progress signal already discounts irreducible unpredictability by construction, so MECH-130's failure mode 1 as stated ('highest unpredictability = highest information = strongest approach') does not follow for any curiosity signal built on this principle -- it holds only for raw-novelty or raw-prediction-error signals, which narrows the class of MECH-111 implementations for which MECH-130 is load-bearing.",
+    "Because the fix is source-agnostic, a world-versus-agent classifier would be redundant for the noise case specifically: MECH-130 must therefore justify source typing by what reducibility typing CANNOT do -- routing to social modelling, and harm-conditioned inhibition -- rather than by the entropy-seeking failure alone.",
+    "The theory's own attractor is the currently-learnable-but-not-yet-mastered pattern; another agent's policy is continually shifting yet learnable, so under this signal an agent may present as a persistently high-progress target that never exhausts, which would sustain approach pressure indefinitely without any of the entropy-seeking pathology the theory was designed to remove."
+  ],
+  "tags": ["mech-130", "curiosity", "compression-progress", "learning-progress", "intrinsic-motivation", "counter-evidence"],
+  "mapping": {
+    "source_claim_statement": "Intrinsic reward should be given for the active creation or discovery of novel, surprising patterns that allow for improved prediction or data compression -- that is, for compression PROGRESS rather than for surprise itself -- encouraging agents to provoke event sequences exhibiting previously unknown but LEARNABLE algorithmic regularities, under limited computational resources.",
+    "ree_translation": "MECH-130 argues from failure mode 1 that novelty must be typed by SOURCE (world feature vs agent policy). Schmidhuber's framework types by REDUCIBILITY instead: a source that is unpredictable but not compressible yields no reward, so the agent is not captured by it. Applied to MECH-130, this says that if the danger is an agent whose opacity is irreducible, the correct fix is already available and does not require knowing that the source is an agent. MECH-130's distinctive requirements -- routing agent-novelty through social modelling before approach, and inhibiting approach under harm risk -- are not delivered by reducibility typing and remain the parts of the claim this paper leaves standing.",
+    "mapping_caveat": "The rebuttal is inferential and should be labelled as such: Schmidhuber writes about single-agent creativity, science, art and humour, and never addresses novelty whose source is another agent, so I am extending a general principle to a case the paper does not consider. The extension is also contestable in a way that matters. A noisy TV is irreducibly random and a learning-progress signal correctly ignores it; another agent's policy is neither irreducible nor stationary -- it is learnable and it keeps changing, in part in response to the observer. A learning-progress signal facing a continually shifting learnable target may therefore find another agent an ENDURING source of positive progress. If so this paper does not weaken MECH-130 at all; it relocates the failure mode from entropy-seeking to progress-chasing, which is arguably harder to gate. This entry is recorded as 'weakens' because the stated failure-mode-1 argument does not survive as written, not because MECH-130 is refuted.",
+    "source_context": "Formal/theoretical survey of the author's 1990-2010 programme in artificial curiosity and creativity; single-agent framing throughout; no multiagent, social, or harm-avoidance content."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.50,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (IEEE TAMD, canonical, the reference statement of the learning-progress principle) against low mapping fidelity: nothing in the paper is about agents-as-novelty-sources, so the objection it raises is one I am constructing from its principle rather than one the author makes. Transfer risk is the highest in this directory because the extension crosses from irreducible noise to a non-stationary strategic actor, which is where the argument is most likely to break."
+  }
+}
