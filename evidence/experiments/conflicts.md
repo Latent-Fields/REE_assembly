@@ -1,6 +1,6 @@
 # Evidence Conflict Report
 
-Generated: `2026-08-07T22:56:39.828281Z`
+Generated: `2026-08-07T23:49:23.276711Z`
 Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ## Conflict Queue
@@ -94,6 +94,8 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 | `Q-074` | directional | 2 | 1 | 0.667 | `2026-07-01_q_074_tolman_eichenbaum_machine_whittington2020` | 3 |
 | `Q-082` | directional, mixed_evidence | 1 | 2 | 0.667 | `2026-07-22_q_082_target_facilitation_without_suppression_forschack2022` | 4 |
 | `Q-084` | directional, mixed_evidence | 1 | 1 | 1 | `2026-07-25_q_084_tem_pairwise_transition_generalization_whittington2020` | 3 |
+| `Q-089` | directional, mixed_evidence | 3 | 1 | 0.5 | `2026-08-07_q_089_seed_variance_confound_henderson2018` | 5 |
+| `Q-090` | directional, mixed_evidence | 2 | 2 | 1 | `2026-08-07_q_090_regret_counterfactual_dissociation_camille2004` | 5 |
 | `SD-004` | directional, source_disagreement | 19 | 5 | 0.417 | `2026-08-07_sd_004_tolman_eichenbaum_relational_generalization_whittington2020` | 24 |
 | `SD-005` | directional, source_disagreement, mixed_evidence | 11 | 13 | 0.917 | `v3_exq_532_sd005_latent_domain_selectivity_20260506T090607Z_v3` | 29 |
 | `SD-007` | directional, mixed_evidence | 16 | 7 | 0.609 | `v3_exq_145_sd008_sd007_sd003_integration_20260329T215806Z_v3` | 24 |
@@ -929,7 +931,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-104
 - Conflict types: directional, mixed_evidence
-- Evidence breakdown: supports=14, weakens=1, conflict_ratio=0.133, exp_conf=0.776, lit_conf=0.87, overall_confidence_legacy=0.823
+- Evidence breakdown: supports=14, weakens=1, conflict_ratio=0.133, exp_conf=0.776, lit_conf=0.871, overall_confidence_legacy=0.824
 - Recent entries:
   - `2026-04-18T18:10:54Z` `literature` `targeted_review_connectome_mech_104` direction=`supports` confidence=0.82
   - `2026-04-20T15:58:34Z` `experimental` `v3_exq_126_mech104_surprise_gate_pair` direction=`superseded` confidence=0.55
@@ -1256,7 +1258,7 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 ### MECH-216
 - Conflict types: directional
-- Evidence breakdown: supports=6, weakens=1, conflict_ratio=0.286, exp_conf=0.39, lit_conf=0.853, overall_confidence_legacy=0.668
+- Evidence breakdown: supports=6, weakens=1, conflict_ratio=0.286, exp_conf=0.39, lit_conf=0.852, overall_confidence_legacy=0.667
 - Recent entries:
   - `2026-05-03T10:18:42Z` `literature` `targeted_review_sd_049` direction=`supports` confidence=0.86
   - `2026-05-08T18:54:04Z` `experimental` `v3_exq_539_mech307_commit_gating_check` direction=`supports` confidence=0.55
@@ -1807,6 +1809,46 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
   - Add one replication run with seed sweep to reduce variance ambiguity.
   - If disagreement persists, split claim scope into separable subclaims.
 
+### Q-089
+- Conflict types: directional, mixed_evidence
+- Evidence breakdown: supports=3, weakens=1, conflict_ratio=0.5, exp_conf=0, lit_conf=0.67, overall_confidence_legacy=0.67
+- Recent entries:
+  - `2026-08-07T23:16:23Z` `literature` `targeted_review_q_089` direction=`supports` confidence=0.5
+  - `2026-08-07T23:16:23Z` `literature` `targeted_review_q_089` direction=`supports` confidence=0.5
+  - `2026-08-07T23:16:23Z` `literature` `targeted_review_q_089` direction=`supports` confidence=0.55
+  - `2026-08-07T23:16:23Z` `literature` `targeted_review_q_089` direction=`mixed` confidence=0.6
+  - `2026-08-07T23:16:23Z` `literature` `targeted_review_q_089` direction=`weakens` confidence=0.55
+- Recurring failure signatures:
+  - `The dissociation is between individual humans with different genotypes, not between random seeds of one learner; a seed's 'directed-exploration parameter' has no genetic analogue and may be pinned or degenerate.` (1)
+  - `Directed exploration here is measured on a temporal decision task with explicitly signalled uncertainty; in a sparse REE environment the uncertainty signal driving orient/survey may be absent or unmeasurable, so the parameter that varies in humans may not even be observable across seeds.` (1)
+  - `Directed exploration is induced here by manipulating the decision horizon within each subject; it does not show that STABLE individual/seed differences in directed exploration exist or predict a learning-outcome split.` (1)
+  - `The task provides explicit reward-distribution information and a defined horizon; a sparse REE cold-start provides neither, so the directed-exploration signal that is cleanly measurable here may be unmeasurable or degenerate across REE seeds.` (1)
+  - `The review documents that intrinsically-motivated information seeking exists and organises development, but also that several distinct computational drivers (novelty, surprise, learning-progress, information-gain) can produce it -- so 'epistemic deficit' is under-determined and a REE seed's split could be driven by a different intrinsic signal than the one Q-089 names.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
+### Q-090
+- Conflict types: directional, mixed_evidence
+- Evidence breakdown: supports=2, weakens=2, conflict_ratio=1, exp_conf=0, lit_conf=0.575, overall_confidence_legacy=0.575
+- Recent entries:
+  - `2026-08-07T23:42:01Z` `literature` `targeted_review_q_090` direction=`supports` confidence=0.5
+  - `2026-08-07T23:42:01Z` `literature` `targeted_review_q_090` direction=`weakens` confidence=0.58
+  - `2026-08-07T23:42:01Z` `literature` `targeted_review_q_090` direction=`supports` confidence=0.5
+  - `2026-08-07T23:42:01Z` `literature` `targeted_review_q_090` direction=`mixed` confidence=0.62
+  - `2026-08-07T23:42:01Z` `literature` `targeted_review_q_090` direction=`weakens` confidence=0.55
+- Recurring failure signatures:
+  - `The review characterises the fronto-basal-ganglia stopping network as producing a GLOBAL, non-selective suppression of basal-ganglia output; if the same signal were the sole admission criterion for retention, retention would likewise be non-selective, which is precisely what a goal-match criterion is proposed to prevent.` (1)
+  - `The paper offers no evidence that sub-threshold unexpected events -- the ones that do not trigger the interrupt -- are retained at all, so a lower cut-point on the same scale is an extrapolation the source does not license.` (1)
+  - `Recruitment is described as driven by unexpectedness/surprise rather than by predicted-harm magnitude specifically; if surprise and predicted harm dissociate in REE, the mapping to MECH-485's single magnitude term fails.` (1)
+  - `When predictions were correct, larger prediction errors ENHANCED memory; when predictions were incorrect, larger prediction errors IMPAIRED memory -- so retention is not a monotone function of magnitude and cannot be produced by any single cut-point on a single scale.` (1)
+  - `The moderator is prediction-outcome correctness rather than goal-match, so the result disconfirms the same-scale horn without confirming the independent-relevance-criterion horn; a third reading (magnitude gated by a correctness/confidence term) fits better than either.` (1)
+- Suggested resolution actions:
+  - Run one targeted adjudication experiment with narrower stop criteria.
+  - Add one replication run with seed sweep to reduce variance ambiguity.
+  - If disagreement persists, split claim scope into separable subclaims.
+
 ### SD-004
 - Conflict types: directional, source_disagreement
 - Evidence breakdown: supports=19, weakens=5, conflict_ratio=0.417, exp_conf=0.666, lit_conf=0.9, overall_confidence_legacy=0.783
@@ -1888,11 +1930,11 @@ Conflict scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 - Conflict types: directional, mixed_evidence
 - Evidence breakdown: supports=36, weakens=4, conflict_ratio=0.2, exp_conf=0.655, lit_conf=0.85, overall_confidence_legacy=0.752
 - Recent entries:
+  - `2026-05-08T17:07:53Z` `literature` `targeted_review_hippocampal_affect_stream_count` direction=`supports` confidence=0.8
+  - `2026-05-08T17:07:53Z` `literature` `targeted_review_hippocampal_affect_stream_count` direction=`supports` confidence=0.8
   - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.68
   - `2026-05-10T08:56:17Z` `literature` `targeted_review_mech_312_arbitration_divergences` direction=`supports` confidence=0.78
   - `2026-06-05T19:44:17Z` `literature` `targeted_review_fatigue_vs_helplessness_dissociation` direction=`supports` confidence=0.84
-  - `20260408T190019Z` `experimental` `v3_exq_241a_sd011_second_source_validation` direction=`non_contributory` confidence=0
-  - `20260408T231939Z` `experimental` `v3_exq_241b_sd011_second_source_info_gain` direction=`non_contributory` confidence=0
 - Recurring failure signatures:
   - `If S1 is inconsistently activated across pain studies (which subsequent meta-analyses have shown is the case -- S1 activation is not present in all pain neuroimaging studies), the claim that z_harm_s has a dedicated sensory-discriminative cortical substrate would be weaker, and the ARC-033 forward model would need to target a different or more distributed signal.` (1)
   - `The lateral/medial pain system framing has been criticized as too simplistic -- both systems are typically co-activated, and their relative engagement depends on attention, context, and prior experience. If z_harm_s and z_harm_a are not cleanly separated by experimental conditions, the stream-separated REE architecture may be over-specified.` (1)

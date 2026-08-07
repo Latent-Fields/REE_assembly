@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-08-07T22:56:39.828281Z`
+Generated: `2026-08-07T23:49:23.276711Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -164,6 +164,9 @@ Use this as the human-in-the-loop review queue.
 | `Q-080` | `open` | Question narrowing review | `narrow_open_question` | `applied` |
 | `Q-082` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `Q-084` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
+| `Q-087` | `resolved` | Question narrowing review | `narrow_open_question` | `pending_user` |
+| `Q-089` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
+| `Q-090` | `candidate` | Hold — V3 substrate required before meaningful evidence can be collected | `hold_pending_v3_substrate` | `pending_user` |
 | `SD-015` | `candidate` | Literature conflict noted; claim stays gated pending upstream probe/substrate | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-021` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
 | `SD-023` | `candidate` | Conflict resolution before promotion | `hold_candidate_resolve_conflict` | `applied` |
@@ -2894,6 +2897,51 @@ Use this as the human-in-the-loop review queue.
 - Last selected option: Keep candidate and run conflict-resolution experiments (most balanced)
 - Last rationale: Governance review 2026-07-26: lit-only or near-zero V3 evidence, no new signal this cycle to shift the call; hold acknowledged, no status change. Dedicated experiments still needed to resolve the conflict.
 
+### Q-087
+- Current status: `resolved`
+- Decision needed: Question narrowing review
+- Why this decision is needed: epistemic_category=answer_state, exp_conf=0, conflict_ratio=0, exp_entries=0, lit_entries=4; directions supports=2, weakens=0, mixed=2, unknown=0, conflict_ratio=0
+- Recommendation: `narrow_open_question`
+- Options (pros/cons):
+  - Narrow the question into testable sub-questions (higher tractability)
+  - Keep broad question (flexibility, weaker experiment planning)
+  - Convert one branch into candidate mechanism (progress, possible overcommitment)
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-089
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim is flagged v3_pending (explicit manual gate). No promotion or demotion should be applied until this flag is cleared.; directions supports=3, weakens=1, mixed=1, unknown=0, conflict_ratio=0.5
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
+### Q-090
+- Current status: `candidate`
+- Decision needed: Hold — V3 substrate required before meaningful evidence can be collected
+- Why this decision is needed: Claim has implementation_phase=v3 but no V3 experimental runs yet. No promotion or demotion should be applied until V3 experiments complete.; directions supports=2, weakens=2, mixed=1, unknown=0, conflict_ratio=1
+- Recommendation: `hold_pending_v3_substrate`
+- Options (pros/cons):
+  - Wait for V3 substrate implementation (correct path).
+  - Mark as legacy/deferred if claim is being superseded.
+  - Demote to candidate to acknowledge insufficient evidence.
+- Discussion scope with Codex:
+  - Which uncertainty source dominates: model variance, threshold choice, or claim scope?
+  - What single additional experiment or literature extraction would most reduce uncertainty?
+  - If this decision is wrong, what downstream architecture risk is largest?
+- Decision status: `pending_user`
+
 ### SD-015
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
@@ -3345,6 +3393,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-111` | `candidate` | 1 |
 | `MECH-445` | `candidate` | 1 |
 | `Q-084` | `candidate` | 1 |
+| `Q-090` | `candidate` | 1 |
 | `SD-031` | `candidate` | 1 |
 | `SD-076` | `candidate` | 1 |
 | `MECH-098` | `candidate` | 0.857 |
@@ -3383,6 +3432,7 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `MECH-188` | `candidate` | 0.5 |
 | `MECH-256` | `candidate` | 0.5 |
 | `MECH-321` | `candidate` | 0.5 |
+| `Q-089` | `candidate` | 0.5 |
 | `SD-021` | `candidate` | 0.5 |
 | `SD-032c` | `candidate` | 0.5 |
 | `SD-087` | `candidate` | 0.5 |
@@ -3420,4 +3470,4 @@ Claims with `conflict_ratio > 0.3` that lack a `heterogeneity_note` field in cla
 | `ARC-018` | `provisional` | 0.32 |
 | `MECH-457` | `candidate` | 0.316 |
 
-WARNING: 80 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
+WARNING: 82 active claim(s) have conflict_ratio > 0.3 without a heterogeneity_note. Add the field to each entry in docs/claims/claims.yaml before the next governance promotion decision.
