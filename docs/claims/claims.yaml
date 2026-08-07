@@ -44,6 +44,34 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: >
+    VIOLATED by: any component computing a distinct "morality"/"ethics" value
+    from inputs not already covered by REE's registered harm/benefit/
+    residue/self-other machinery, feeding that value into action selection
+    as its own scoring channel. Also violated if the existing
+    ethical_scorer/compute_ethical_cost path (e3_selector.py) is extended to
+    take genuinely new, non-harm-derived inputs rather than remaining a
+    learned projection of harm_eval symmetric with the reality/benefit cost
+    heads.
+
+    CONFIRMED by: an architectural audit finding every "ethics"-named
+    component resolves to harm evaluation over z_world/z_harm with no
+    separate moral-value signal, and REE's prosocial behaviour traces to the
+    interaction of already-registered mechanisms rather than a dedicated
+    moral-scoring pass. GOV-PROC-1's governance tooling (preflights,
+    release-gates) is NOT evidence either way -- it governs the
+    development/release process, never feeds a score into the agent's own
+    action-selection loop, a categorically different thing from what this
+    invariant scopes.
+
+    Standing drift-risk noted 2026-08-07: ethical_scorer/compute_ethical_cost
+    naming is legacy and functionally a harm-cost head, not a distinct moral
+    channel -- but the name alone invites the misreading this falsifier
+    guards against; candidate for renaming toward harm-cost terminology.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 12.)
   location: docs/invariants.md#inv-001
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -13142,6 +13170,36 @@
     - ARC-004
     - ARC-003
     - ARC-007
+  epistemic_category: derivational
+  what_would_answer: |
+    CONFIRMING: architectural audit finds state identity is never reducible
+    to sensory/perceptual embedding alone -- every code path treating two
+    states as "the same" for commitment, rollout-caching, or trajectory
+    scoring also conditions on temporal position, active commitment,
+    goal-relation, or applicable constraints.
+
+    FALSIFYING: a reachable code path found where two states with identical
+    sensory encoding but different T/C/G/A are treated as identical (e.g. a
+    rollout cache keyed purely on z_world/z_self).
+
+    NON-DEGENERACY PRECONDITION: audit must be run against a live case where
+    two perceptually-similar-but-context-different observations actually
+    reach a shared code path -- not a synthetic non-co-occurring case.
+
+    Preliminary read (2026-08-07): LatentState carries z_theta + explicit
+    timestamp distinct from z_world/z_self; e3_selector.py tracks commitment
+    as first-class state (ARC-016 dynamic threshold); goal.py supplies a
+    separate slow-attractor z_goal_latent. No dedup-by-raw-embedding path
+    found in hippocampal/module.py (first-pass only). TWO GAPS the full
+    audit must address, not silently pass over: (1) no literal "antigoal"
+    field/term exists anywhere in ree_core -- function currently carried by
+    the z_harm* family and E3's reality-constraint scorer F(zeta); audit
+    must confirm this substitution is functionally adequate, not assume it.
+    (2) no "social context" field/term exists anywhere in ree_core -- this
+    axis is currently unaudited/possibly absent from the live substrate.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 12.)
   location: docs/architecture/state.md
   source:
     - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
@@ -13161,6 +13219,14 @@
     emergent on ARC-003 (E3 committing), ARC-004 (L-space latent stack), and ARC-007
     (hippocampal paths through residue-field terrain). All three substrates are currently
     'active' so no pending_substrate_reconfirmation is applied.
+    CORRECTION (2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 12): "all three substrates are currently 'active'" is imprecise.
+    ARC-003 and ARC-004 have status: active. ARC-007's top-level status is
+    provisional (only live_status.reading is active) -- the same is true of
+    ARC-018 (an INV-036 dependency, not this claim's). Not a blocker to this
+    claim (live_status.reading is the operative field and does read active
+    for all three), but a future reader diffing status literally would flag
+    a false discrepancy without this note.
 
 - id: INV-036
   title: "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state."
@@ -13182,6 +13248,33 @@
     - ARC-007
     - ARC-018
     - ARC-003
+  epistemic_category: derivational
+  what_would_answer: |
+    CONFIRMING: every representation participating in hippocampal rollout or
+    E3 path evaluation always carries live transition-prediction grounding,
+    valence/antigoal tagging, and structured uncertainty -- load-bearing
+    (not merely present as unused fields).
+
+    FALSIFYING: a representation found participating in rollout/scoring
+    while missing, or with vacuous/unused, one of the three -- e.g. E3
+    ranking trajectories without consulting precision.
+
+    Builds on INV-035's audit rather than repeating it -- same live-case
+    method, additionally tracing whether R/G/A/U are actually consumed
+    downstream, not merely computed and discarded.
+
+    NON-DEGENERACY PRECONDITION: audit must inspect a live case that
+    actually reaches E3 scoring or rollout -- not dead or disabled code.
+
+    Preliminary read (2026-08-07): all three floor requirements have
+    identifiable live implementations -- transition prediction (e1_deep.py,
+    e2_fast.py, e2_world.py, e2_world_uncertainty.py), valence/antigoal (the
+    z_harm family), uncertainty (LatentState.precision, confirmed
+    non-vacuous -- consumed by variance_commit_threshold()). Fuller audit
+    should still confirm consumption, not just presence, at each site.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 12.)
   location: docs/architecture/state.md
   source:
     - evidence/planning/thought_intake_2026-03-24_state_definition_hippocampal_primitives.md
@@ -65409,6 +65502,34 @@
     - GOV-HEALTH-1
     - GOV-SEC-1
     - GOV-JUST-1
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier -- this specifies the OBSERVABLE
+    PROCESS STATE that would show the rule is genuinely binding versus
+    stalled at aspiration. No EXP-#### should be minted against this claim.
+
+    CURRENT STATE (2026-08-07): Phase 0 DONE, Phase 1 DONE, Phase 2
+    keystones DONE but P2-V4-REGISTERS deferred, Phase 3 deferred, Phase 4
+    tooling deferred -- confirmed via ethics_perimeter_plan.md +
+    closure_status.md (regenerated 2026-08-03). None of the named future
+    tooling (check_ethics_preflight.py, check_release_sensitivity.py,
+    Explorer > Ethics Gates) exists anywhere in the repo. "Experiment
+    preflights" and "release gates" are currently documentary conventions,
+    not enforced mechanisms.
+
+    POSITIVE TRIGGER: watch the 50 tagged V4/V5/V6 roadmap nodes
+    (requires_welfare_review / forbidden_combinations) for the first one to
+    gain an owner_exq or get queued -- confirm its owning register/tooling
+    lands FIRST, not retrospectively.
+
+    NEGATIVE / STALL SIGNAL: a tagged node gets built WITHOUT its register
+    or tooling landing first, or Phase 4 tooling stays unbuilt even after
+    Phase 2/3 registers are stable -- would mean the rule never reached
+    enforcement on 3 of its 5 named channels.
+
+    (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
+    wave 12. Precedent for future governance_rule claims: point at the
+    owning plan-of-record's closure_plan tracker rather than inventing new
+    criteria.)
   functional_restatement: >
     Ethics must become process, not just prose. V3 stays lightweight and
     non-blocking; V4/V5/V6 gates become progressively binding as self-model,

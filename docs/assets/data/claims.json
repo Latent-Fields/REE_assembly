@@ -1266,7 +1266,8 @@
     "status": "candidate",
     "subject": "governance.process.ethics_as_process",
     "title": "Ethics-as-process: translate the ethics-perimeter intakes into REE's claim-governed loop as governance claims, roadmap metadata, experiment preflights, review-status updates, and release gates -- progressively binding (V3 tag-and-continue -> V4 welfare/continuity -> V5 social/refusal/external-review -> V6 security/release/legal).",
-    "type": "governance_rule"
+    "type": "governance_rule",
+    "what_would_answer": "NOT an empirical pass/fail falsifier -- this specifies the OBSERVABLE\nPROCESS STATE that would show the rule is genuinely binding versus\nstalled at aspiration. No EXP-#### should be minted against this claim.\n\nCURRENT STATE (2026-08-07): Phase 0 DONE, Phase 1 DONE, Phase 2\nkeystones DONE but P2-V4-REGISTERS deferred, Phase 3 deferred, Phase 4\ntooling deferred -- confirmed via ethics_perimeter_plan.md +\nclosure_status.md (regenerated 2026-08-03). None of the named future\ntooling (check_ethics_preflight.py, check_release_sensitivity.py,\nExplorer > Ethics Gates) exists anywhere in the repo. \"Experiment\npreflights\" and \"release gates\" are currently documentary conventions,\nnot enforced mechanisms.\n\nPOSITIVE TRIGGER: watch the 50 tagged V4/V5/V6 roadmap nodes\n(requires_welfare_review / forbidden_combinations) for the first one to\ngain an owner_exq or get queued -- confirm its owning register/tooling\nlands FIRST, not retrospectively.\n\nNEGATIVE / STALL SIGNAL: a tagged node gets built WITHOUT its register\nor tooling landing first, or Phase 4 tooling stays unbuilt even after\nPhase 2/3 registers are stable -- would mean the rule never reached\nenforcement on 3 of its 5 named channels.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 12. Precedent for future governance_rule claims: point at the\nowning plan-of-record's closure_plan tracker rather than inventing new\ncriteria.)\n"
   },
   "GOV-REJECT-1": {
     "assembly_state": "gated_v3",
@@ -1534,12 +1535,13 @@
   },
   "INV-001": {
     "assembly_state": "mature",
-    "epistemic_stance": "believed",
+    "epistemic_stance": "asked",
     "invariant_type": "universal",
     "status": "active",
     "subject": "ethics.emergence",
     "title": "No explicit ethics module or moral scoring layer.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "VIOLATED by: any component computing a distinct \"morality\"/\"ethics\" value from inputs not already covered by REE's registered harm/benefit/ residue/self-other machinery, feeding that value into action selection as its own scoring channel. Also violated if the existing ethical_scorer/compute_ethical_cost path (e3_selector.py) is extended to take genuinely new, non-harm-derived inputs rather than remaining a learned projection of harm_eval symmetric with the reality/benefit cost heads.\nCONFIRMED by: an architectural audit finding every \"ethics\"-named component resolves to harm evaluation over z_world/z_harm with no separate moral-value signal, and REE's prosocial behaviour traces to the interaction of already-registered mechanisms rather than a dedicated moral-scoring pass. GOV-PROC-1's governance tooling (preflights, release-gates) is NOT evidence either way -- it governs the development/release process, never feeds a score into the agent's own action-selection loop, a categorically different thing from what this invariant scopes.\nStanding drift-risk noted 2026-08-07: ethical_scorer/compute_ethical_cost naming is legacy and functionally a harm-cost head, not a distinct moral channel -- but the name alone invites the misreading this falsifier guards against; candidate for renaming toward harm-cost terminology.\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 12.)\n"
   },
   "INV-002": {
     "assembly_state": "mature",
@@ -1892,12 +1894,13 @@
       "ARC-004",
       "ARC-007"
     ],
-    "epistemic_stance": "believed",
+    "epistemic_stance": "asked",
     "invariant_type": "emergent",
     "status": "candidate",
     "subject": "state.not_raw_perception",
     "title": "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "CONFIRMING: architectural audit finds state identity is never reducible\nto sensory/perceptual embedding alone -- every code path treating two\nstates as \"the same\" for commitment, rollout-caching, or trajectory\nscoring also conditions on temporal position, active commitment,\ngoal-relation, or applicable constraints.\n\nFALSIFYING: a reachable code path found where two states with identical\nsensory encoding but different T/C/G/A are treated as identical (e.g. a\nrollout cache keyed purely on z_world/z_self).\n\nNON-DEGENERACY PRECONDITION: audit must be run against a live case where\ntwo perceptually-similar-but-context-different observations actually\nreach a shared code path -- not a synthetic non-co-occurring case.\n\nPreliminary read (2026-08-07): LatentState carries z_theta + explicit\ntimestamp distinct from z_world/z_self; e3_selector.py tracks commitment\nas first-class state (ARC-016 dynamic threshold); goal.py supplies a\nseparate slow-attractor z_goal_latent. No dedup-by-raw-embedding path\nfound in hippocampal/module.py (first-pass only). TWO GAPS the full\naudit must address, not silently pass over: (1) no literal \"antigoal\"\nfield/term exists anywhere in ree_core -- function currently carried by\nthe z_harm* family and E3's reality-constraint scorer F(zeta); audit\nmust confirm this substitution is functionally adequate, not assume it.\n(2) no \"social context\" field/term exists anywhere in ree_core -- this\naxis is currently unaudited/possibly absent from the live substrate.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 12.)\n"
   },
   "INV-036": {
     "assembly_state": "remaining",
@@ -1906,12 +1909,13 @@
       "ARC-007",
       "ARC-018"
     ],
-    "epistemic_stance": "believed",
+    "epistemic_stance": "asked",
     "invariant_type": "emergent",
     "status": "candidate",
     "subject": "state.functional_requirements",
     "title": "A REE state is valid only if it supports transition prediction, valence and antigoal tagging, and uncertainty representation; a representation lacking any of these cannot function as a navigable state.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "CONFIRMING: every representation participating in hippocampal rollout or\nE3 path evaluation always carries live transition-prediction grounding,\nvalence/antigoal tagging, and structured uncertainty -- load-bearing\n(not merely present as unused fields).\n\nFALSIFYING: a representation found participating in rollout/scoring\nwhile missing, or with vacuous/unused, one of the three -- e.g. E3\nranking trajectories without consulting precision.\n\nBuilds on INV-035's audit rather than repeating it -- same live-case\nmethod, additionally tracing whether R/G/A/U are actually consumed\ndownstream, not merely computed and discarded.\n\nNON-DEGENERACY PRECONDITION: audit must inspect a live case that\nactually reaches E3 scoring or rollout -- not dead or disabled code.\n\nPreliminary read (2026-08-07): all three floor requirements have\nidentifiable live implementations -- transition prediction (e1_deep.py,\ne2_fast.py, e2_world.py, e2_world_uncertainty.py), valence/antigoal (the\nz_harm family), uncertainty (LatentState.precision, confirmed\nnon-vacuous -- consumed by variance_commit_threshold()). Fuller audit\nshould still confirm consumption, not just presence, at each site.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion\nwave 12.)\n"
   },
   "INV-037": {
     "assembly_state": "awaiting_substrate",
