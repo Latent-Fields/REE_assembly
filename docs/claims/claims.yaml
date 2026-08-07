@@ -924,6 +924,7 @@
     needs_review: false
   depends_on:
     - SD-026
+    - MECH-485  # threshold-gated predicted-harm/confidence pipeline; supplies Leg 3's retained-alternative candidates
   epistemic_category: substrate_conditional
   what_would_answer: |
     CORRECTION (2026-08-07, same digestion session, user-caught): the
@@ -1028,6 +1029,92 @@
     seeds. Until then, Leg 2 is untestable by construction, not merely
     unfavored -- absence of a benefit_ratio lift right now would say
     nothing, because the channel does not yet exist to test.
+
+    LEG 3 (retrospective, substrate_conditional, gated -- added 2026-08-07
+    from a same-day user thought, docs/thoughts/2026-08-07_responsibility_
+    counterfactual_memory.md, Stage 2: evidence/planning/thought_intake_
+    2026-08-07_responsibility_counterfactual_memory.md): responsibility
+    additionally requires the agent to (a) retain that a genuinely
+    differentiated alternative existed at a past decision point -- not just
+    that "some other action was abstractly possible" -- and roughly what it
+    was, for the sub-interrupt-threshold cases MECH-485 routes to retention
+    rather than to real-time correction; (b) evaluate counterfactually
+    whether that alternative would have avoided the harm actually incurred
+    or better achieved the goal actually pursued; and (c) attribute the
+    resulting outcome to the agent's OWN choice specifically, as opposed to
+    circumstance -- tied to sense-of-self machinery (INV-033, second-order
+    epistemic access to one's own epistemic states), not a bare
+    causal-attribution computation alone (SD-003/MECH-276 already provide
+    the causal-attribution half, for training, not the narrative-retention
+    half).
+
+    Depends on MECH-485 (the retained-alternative supply -- candidates that
+    crossed neither the fast-interrupt threshold nor triggered orient/
+    survey, per Q-090's still-open admission-criterion question) AND on a
+    retention mechanism for rejected/uncommitted E3 candidates that does
+    NOT YET EXIST in ree-v3 in any form: e3_selector.select() discards
+    every non-winning candidate every tick; the nearest partial exception,
+    SD-033e/MECH-264 (frontopolar counterfactual value), reduces the best
+    unchosen alternative to a transient scalar (cfv_now) overwritten every
+    tick, with nothing about WHICH alternative existed surviving past the
+    tick it was computed on. That retention mechanism is deliberately NOT
+    registered as its own claim as of this writing -- an earlier session's
+    memory (project_imagination_learning_constraints.md, 2026-05-10) staged
+    an adjacent candidate registration for this exact territory and
+    explicitly gated it "do NOT register without dedicated lit-pull";
+    respected here rather than overridden. ARC-085 (autobiographical event
+    tokens, V4/V5, unbuilt) is the nearest candidate eventual host, but its
+    current schema has no field for "sibling alternatives considered and
+    rejected here."
+
+    CONFABULATION-RISK CAUTION (load-bearing, not decorative -- stated
+    explicitly by the user as the central danger of this leg): admitting
+    retained/imagined alternative content into this evaluation with the
+    wrong weighting is a plausible computational account of a hard-learned
+    delusion -- a positive feedback loop reinforcing a belief that was
+    never actually tested against reality, distinct from a one-off
+    hallucination because it is reinforced into stability by its own
+    imagined "confirmations." This is why Leg 3 is explicitly a
+    METACOGNITIVE requirement (INV-033), not merely a memory-engineering
+    one: distinguishing "this happened" from "this was imagined, and I am
+    only using it to evaluate a counterfactual" is a second-order judgment
+    about the source and status of one's own mental content. Any future
+    retention mechanism must follow the MECH-322 template (bounded,
+    audited, provisional-until-corroborated) -- REE's one existing
+    precedent for letting imagined content through the MECH-094
+    imagination/reality write gate under narrow, audited conditions -- not
+    a general relaxation of MECH-094.
+
+    Non-degeneracy precondition for Leg 3: Leg 0 cleared (E3 selects among
+    genuinely differentiated candidates -- currently unmet) AND the
+    retention mechanism exists and demonstrably retains content past the
+    current tick AND retained content remains distinguishable in
+    provenance from committed/real content (MECH-094's committed_vs_imagined
+    tag) AND retained alternatives show non-degenerate variance in whether
+    they would have avoided the harm/achieved the goal (not floor- or
+    ceiling-saturated). Until all four hold, Leg 3 is untestable by
+    construction, not merely unfavored.
+
+    CONFIRMED if, given the above substrate, an agent that retains and
+    correctly counterfactually evaluates rejected alternatives shows
+    measurably different self-attribution behavior (narrative/self-report,
+    or an internal attribution signal) between "harm followed from my
+    choice, a retained better alternative existed" and "harm followed from
+    my choice, no better alternative existed" cases, AND this attribution
+    does not degrade into elevated confidence for imagined-only
+    (never-executed) content in real-experience channels (residue,
+    valence, hippocampal writes) -- i.e. the confabulation guard holds
+    under test, not merely by design intent.
+
+    FALSIFIED if retained-alternative content cannot be kept
+    distinguishable from committed content without a hand-tuned,
+    case-by-case gate (no general MECH-322-shaped template suffices) --
+    meaning the confabulation risk is not tractably bounded and Leg 3
+    should be retired or radically narrowed -- OR if providing retained
+    alternatives produces no measurable change in self-attribution/
+    responsibility-relevant behavior over an ablated (discard-immediately)
+    baseline, i.e. retention supplies no function beyond what SD-033e/
+    MECH-264's existing transient scalar already provides.
   location: docs/invariants.md#inv-012
   source:
     - docs/processed/legacy_tree/docs/invariants.md
