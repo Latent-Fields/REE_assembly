@@ -135,6 +135,39 @@ def load_dry_run_run_ids() -> set:
     return ids
 
 
+AUTOPSY_GLOB = "evidence/planning/failure_autopsy_*.json"
+
+
+def load_confirmed_autopsy_run_ids() -> set:
+    """Run_ids covered by at least one CONFIRMED failure_autopsy_*.json target.
+
+    Mirrors check_unapplied_autopsy_recommendations.load_confirmed()'s run-id
+    extraction (kept as a small standalone re-scan, not an import, so this
+    script has no dependency on that CLI tool's argv/exit-code surface).
+    Used by the diagnostic-autopsy-required gate below: coverage here means
+    "adjudicated at least once", not "adjudicated correctly" or "current" --
+    GOV-APPLY-1 (check_unapplied_autopsy_recommendations.py) is the audit for
+    whether a *confirmed* recommendation was actually applied.
+    """
+    ids: set[str] = set()
+    if not EVIDENCE_DIR.parent.is_dir():
+        return ids
+    for p in sorted((ROOT).glob(AUTOPSY_GLOB)):
+        try:
+            data = json.loads(p.read_text())
+        except Exception:
+            continue
+        if not isinstance(data, dict) or str(data.get("status")) != "confirmed":
+            continue
+        for target in data.get("targets", []) or []:
+            if not isinstance(target, dict):
+                continue
+            rid = target.get("run_id")
+            if isinstance(rid, str) and rid:
+                ids.add(rid)
+    return ids
+
+
 def _manifest_pass_fail(d: dict) -> str | None:
     """Resolve PASS/FAIL from V3 manifests (result, verdict, outcome, or metrics).
 
@@ -224,6 +257,15 @@ def _accumulate_pending_run(by_run: dict, e: dict, default_claim: str) -> None:
             # flagged self-route is visible before governance acts on it.
             "adjudication": e.get("adjudication", "n/a"),
             "interpretation_label": e.get("interpretation_label", ""),
+            # experiment_purpose (2026-08-07): 'diagnostic' vs 'evidence'. Used
+            # by the diagnostic-autopsy-required gate below -- ALL diagnostic
+            # results (PASS or FAIL), not only ones the indexer flagged
+            # untrustworthy via `adjudication`, must clear /failure-autopsy
+            # before governance marks them reviewed. See CLAUDE.md / user
+            # standing instruction: a diagnostic result's self-routed reading
+            # is not verified until adjudicated, regardless of whether it
+            # happens to route a visible governance decision.
+            "experiment_purpose": e.get("experiment_purpose", "evidence"),
             # Recorded (NON-GATING) preconditions (2026-07-20): unmet entries from
             # interpretation.recorded_preconditions[] -- guard findings the run's
             # author deliberately did NOT gate on (an arm-symmetric prior, or a
@@ -648,6 +690,27 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
     # does not act on the label before it is adjudicated.
     flagged = [r for r in runs
                if r.get("adjudication") in BLOCKING_ADJUDICATIONS]
+    # Diagnostic-autopsy-required gate (2026-08-07, user-instructed broadening):
+    # `flagged` above only catches a diagnostic whose self-route the indexer
+    # marked untrustworthy. That is a NARROWER net than "every diagnostic
+    # result needs /failure-autopsy" -- a diagnostic PASS/FAIL that cleared its
+    # own preconditions carries no `adjudication` flag and sailed straight into
+    # the ordinary PASS/FAIL tables with no signal it needed adjudication at
+    # all. Confirmed live 2026-08-07 governance cycle: two experiment_purpose
+    # "diagnostic" PASSes (a substrate-regression check, a safety-gate fire
+    # test) were about to be applied as routine evidence PASSes purely because
+    # neither carried a blocking adjudication flag. This bucket is the
+    # blanket, purpose-keyed net: ANY experiment_purpose == "diagnostic" run
+    # (PASS or FAIL) not covered by at least one CONFIRMED failure_autopsy_*
+    # target, regardless of adjudication flag or whether it visibly "routes a
+    # decision". Membership here does not remove the run from its normal
+    # PASS/FAIL table -- same non-exclusionary pattern as `flagged`.
+    confirmed_autopsy_run_ids = load_confirmed_autopsy_run_ids()
+    needs_diagnostic_autopsy = [
+        r for r in runs
+        if r.get("experiment_purpose") == "diagnostic"
+        and r["run_id"] not in confirmed_autopsy_run_ids
+    ]
     # Recorded (NON-GATING) preconditions -- a SEPARATE, non-blocking list. These
     # runs are NOT flagged: their author put the finding in
     # recorded_preconditions[] precisely because it does not invalidate the run's
@@ -680,6 +743,8 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         f" {len(unclaimed)} unclaimed manifest(s),"
         f" {len(error_manifests)} ERROR manifest(s)"
         f"; {len(flagged)} diagnostic self-route(s) flagged for adjudication"
+        + (f"; {len(needs_diagnostic_autopsy)} diagnostic run(s) with no confirmed autopsy"
+           if needs_diagnostic_autopsy else "")
         + (f"; {len(recorded)} run(s) with recorded (non-gating) preconditions"
            if recorded else "")
         + (f"; {len(zgoal_dead)} run(s) with a DEAD z_goal stream"
@@ -733,6 +798,27 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
                     f"| `{r['run_id']}` | {r['status']} | {label} | "
                     f"**{r['adjudication']}** |"
                 )
+            lines.append("")
+
+        if needs_diagnostic_autopsy:
+            lines += ["## Diagnostic -- autopsy required (no confirmed adjudication)", ""]
+            lines += [
+                "Every `experiment_purpose: \"diagnostic\"` result (PASS or FAIL) needs "
+                "a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before "
+                "governance marks it reviewed or applies anything from it -- not only the "
+                "ones the indexer flagged untrustworthy above. A diagnostic's self-routed "
+                "reading is a hypothesis about what it found, not a verdict; only the "
+                "autopsy's four-layer diagnosis confirms it. This list is broader than "
+                "'Diagnostic adjudication required' above: it fires on `experiment_purpose` "
+                "alone, regardless of `adjudication` flag or whether the result visibly "
+                "routes a decision.",
+                "",
+                "| Run ID | Status | Self-route label |",
+                "|--------|--------|-------------------|",
+            ]
+            for r in needs_diagnostic_autopsy:
+                label = r.get("interpretation_label") or "—"
+                lines.append(f"| `{r['run_id']}` | {r['status']} | {label} |")
             lines.append("")
 
         if recorded:
@@ -908,6 +994,7 @@ def write_pending_review(runs: list[dict], runner_undiscussed: list[dict],
         "- Unclaimed manifests (PASS/FAIL, no claim tags): add the manifest stem (filename minus `.json`) to `discussed_experiment_dirs`",
         "- ERROR manifests (crash-before-manifest / runner ERROR record): run `/diagnose-errors`, re-queue under a NEW letter, then add the manifest stem to `discussed_experiment_dirs`",
         "- Diagnostic self-route flagged (`precondition_unmet` / `vacuous_pass`): adjudicate via `/failure-autopsy` before the label drives a governance action; clearing the run for review does not clear the adjudication flag (the manifest's `interpretation` is the source of truth -- a re-queued successor supersedes it).",
+        "- Diagnostic (`experiment_purpose: \"diagnostic\"`), no confirmed autopsy: ALL diagnostic PASS/FAIL results require a confirmed `/failure-autopsy` target before governance marks them reviewed -- not only ones the indexer flagged untrustworthy. Run `/failure-autopsy` (accepts a PASS target too), then mark reviewed once confirmed.",
         "- Recorded (non-gating) preconditions: nothing to clear. The run is reviewed and closed by the normal PASS/FAIL route above; the recorded finding is an audit trail to read alongside the result, not a flag to adjudicate.",
         "- Update `last_review_utc`, then re-run this script to confirm the list clears.",
         "",

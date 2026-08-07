@@ -260,5 +260,172 @@ class ZGoalSectionRenderTests(unittest.TestCase):
             self.assertIn("1 PASS, 0 FAIL", text)
 
 
+class LoadConfirmedAutopsyRunIdsTests(unittest.TestCase):
+    """load_confirmed_autopsy_run_ids() -- the diagnostic-autopsy-gate's index."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _with_planning(self, files):
+        td = tempfile.TemporaryDirectory()
+        root = Path(td.name)
+        planning = root / "evidence" / "planning"
+        planning.mkdir(parents=True)
+        for name, content in files.items():
+            (planning / name).write_text(json.dumps(content))
+        return td, root
+
+    def test_confirmed_target_run_id_is_indexed(self):
+        td, root = self._with_planning({
+            "failure_autopsy_V3-EXQ-1_2026-08-07.json": {
+                "status": "confirmed",
+                "targets": [{"run_id": "v3_exq_1_x_20260101T000000Z_v3"}],
+            },
+        })
+        orig = self.mod.ROOT
+        self.mod.ROOT = root
+        try:
+            ids = self.mod.load_confirmed_autopsy_run_ids()
+        finally:
+            self.mod.ROOT = orig
+            td.cleanup()
+        self.assertIn("v3_exq_1_x_20260101T000000Z_v3", ids)
+
+    def test_draft_autopsy_target_is_excluded(self):
+        """Only status == 'confirmed' counts -- a draft is not adjudication."""
+        td, root = self._with_planning({
+            "failure_autopsy_V3-EXQ-2_2026-08-07.json": {
+                "status": "draft",
+                "targets": [{"run_id": "v3_exq_2_x_20260101T000000Z_v3"}],
+            },
+        })
+        orig = self.mod.ROOT
+        self.mod.ROOT = root
+        try:
+            ids = self.mod.load_confirmed_autopsy_run_ids()
+        finally:
+            self.mod.ROOT = orig
+            td.cleanup()
+        self.assertNotIn("v3_exq_2_x_20260101T000000Z_v3", ids)
+
+
+class DiagnosticAutopsyRequiredSectionTests(unittest.TestCase):
+    """The blanket experiment_purpose=='diagnostic' gate (2026-08-07).
+
+    Confirmed live during the 2026-08-07 governance cycle: a diagnostic PASS
+    with no `adjudication` flag (both its own preconditions cleared) sailed
+    into the ordinary PASS table with zero signal it needed /failure-autopsy.
+    This section is the purpose-keyed net that catches it regardless of
+    adjudication flag or whether it visibly "routes a decision".
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.mod = _load_module()
+
+    def _render(self, runs, root):
+        import io
+        from contextlib import redirect_stdout
+        written = {}
+
+        class _FakeOut:
+            def __init__(self, store):
+                self.store = store
+
+            def write_text(self, text):
+                self.store["text"] = text
+
+            def relative_to(self, _root):
+                return "evidence/experiments/pending_review.md"
+
+        orig_out = self.mod.OUTPUT
+        orig_root = self.mod.ROOT
+        self.mod.OUTPUT = _FakeOut(written)
+        self.mod.ROOT = root
+        try:
+            with redirect_stdout(io.StringIO()):
+                self.mod.write_pending_review(
+                    list(runs), [], [], [], "2026-07-27T00:00:00Z")
+        finally:
+            self.mod.OUTPUT = orig_out
+            self.mod.ROOT = orig_root
+        return written.get("text", "")
+
+    def _run(self, run_id, experiment_purpose, **kw):
+        r = {"run_id": run_id, "timestamp_utc": "2026-08-07T10:00:00Z",
+             "status": "PASS", "claims": ["MECH-1"], "failure_signatures": [],
+             "adjudication": "n/a", "interpretation_label": "some_label",
+             "experiment_purpose": experiment_purpose,
+             "recorded_preconditions_unmet": [], "preconditions_scope_note": "",
+             "z_goal_stream": {}}
+        r.update(kw)
+        return r
+
+    def _empty_planning_root(self):
+        td = tempfile.TemporaryDirectory()
+        root = Path(td.name)
+        (root / "evidence" / "planning").mkdir(parents=True)
+        return td, root
+
+    def test_uncovered_diagnostic_pass_is_flagged(self):
+        td, root = self._empty_planning_root()
+        try:
+            text = self._render(
+                [self._run("v3_exq_866b_x_20260101T000000Z_v3", "diagnostic")],
+                root)
+        finally:
+            td.cleanup()
+        self.assertIn("Diagnostic -- autopsy required", text)
+        self.assertIn("v3_exq_866b_x_20260101T000000Z_v3", text)
+        self.assertIn("1 diagnostic run(s) with no confirmed autopsy", text)
+        # Non-exclusionary: it must still appear in the ordinary PASS table.
+        self.assertIn("## PASS (verify & close)", text)
+        pass_section = text.split("## PASS")[1].split("## Diagnostic")[0]
+        self.assertIn("v3_exq_866b_x_20260101T000000Z_v3", pass_section)
+
+    def test_diagnostic_covered_by_confirmed_autopsy_is_not_flagged(self):
+        td, root = self._empty_planning_root()
+        (root / "evidence" / "planning" / "failure_autopsy_V3-EXQ-866b_2026-08-07.json").write_text(
+            json.dumps({
+                "status": "confirmed",
+                "targets": [{"run_id": "v3_exq_866b_x_20260101T000000Z_v3"}],
+            }))
+        try:
+            text = self._render(
+                [self._run("v3_exq_866b_x_20260101T000000Z_v3", "diagnostic")],
+                root)
+        finally:
+            td.cleanup()
+        self.assertNotIn("Diagnostic -- autopsy required", text)
+
+    def test_evidence_purpose_run_is_never_flagged(self):
+        td, root = self._empty_planning_root()
+        try:
+            text = self._render(
+                [self._run("v3_exq_888_x_20260101T000000Z_v3", "evidence")],
+                root)
+        finally:
+            td.cleanup()
+        self.assertNotIn("Diagnostic -- autopsy required", text)
+
+    def test_indexer_flagged_diagnostic_is_not_double_counted(self):
+        """A run in the narrower `flagged` bucket (adjudication flag) that is
+        ALSO an uncovered diagnostic appears in both sections (they answer
+        different questions) but the summary counts are independent."""
+        td, root = self._empty_planning_root()
+        try:
+            text = self._render(
+                [self._run("v3_exq_1_x_20260101T000000Z_v3", "diagnostic",
+                            adjudication="precondition_unmet")],
+                root)
+        finally:
+            td.cleanup()
+        self.assertIn("Diagnostic adjudication required", text)
+        self.assertIn("Diagnostic -- autopsy required", text)
+        self.assertIn("1 diagnostic self-route(s) flagged for adjudication", text)
+        self.assertIn("1 diagnostic run(s) with no confirmed autopsy", text)
+
+
 if __name__ == "__main__":
     unittest.main()
