@@ -2610,7 +2610,11 @@
       "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-240-confirm-evidence-mech-232-lit-0 && claude --resume 5a684bae-85c8-4ca5-a517-65f12d2feacc",
       "task_claim_session_id": "igw-auto-igw-240-confirm-evidence-mech-232-lit-0-20260807T060851Z",
       "assigned_at": "2026-08-07T06:08:23Z",
-      "status": "spawned"
+      "status": "completed_resumable",
+      "reaped_at": "2026-08-07T07:09:51Z",
+      "outcome": "NO_OP",
+      "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
+      "worktree_gc_at": "2026-08-07T07:10:02Z"
     }
   ],
   "dispositions": [
@@ -3528,6 +3532,20 @@
       "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
       "noted_at": "2026-08-05T17:50:18Z",
       "re_eligible_after": "2026-08-07T17:50:10Z"
+    },
+    {
+      "stable_hash": "aafe9a1e69e6",
+      "igw_id_at_disposition": "IGW-20260807-240",
+      "owner_exq": null,
+      "claim_ids": [
+        "MECH-232"
+      ],
+      "skill": "/queue-experiment",
+      "title": "Confirm evidence: MECH-232 (lit 0.78, exp ~0)",
+      "decision": "AUTO_DEFER",
+      "note": "Auto-deferred 48h after spawn reaped (completed_resumable); prevents hourly NO-OP respawn. Re-eligible after the window if the workset still lists it ready.",
+      "noted_at": "2026-08-07T07:10:01Z",
+      "re_eligible_after": "2026-08-09T07:09:51Z"
     }
   ]
 }

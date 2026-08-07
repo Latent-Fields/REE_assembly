@@ -1465,3 +1465,7 @@ One line per hourly tick. ASCII only.
 2026-08-07T04:07:28Z skip IGW-20260807-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-07T05:07:56Z skip IGW-20260807-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-07T06:08:23Z SPAWN IGW-20260807-240 skill=/queue-experiment prio=55 uuid=5a684bae-85c8-4ca5-a517-65f12d2feacc pid=27479 worktree=igw-240-confirm-evidence-mech-232-lit-0
+2026-08-07T07:10:01Z auto-defer IGW-20260807-240 hash=aafe9a1e69e6 for 48h (reaped -> completed_resumable)
+2026-08-07T07:10:01Z reaped TASK_CLAIMS igw-auto-igw-240-confirm-evidence-mech-232-lit-0-20260807T060851Z (ledger IGW-20260807-240 -> completed_resumable)
+2026-08-07T07:10:02Z GC removed worktree igw-240-confirm-evidence-mech-232-lit-0 post-reap (ledger IGW-20260807-240 -> completed_resumable; removed; branch deleted)
+2026-08-07T07:09:33Z no eligible item (skipped 249): IGW-20260807-001:skill /governance not allowed; IGW-20260807-006:skill /governance not allowed; IGW-20260807-209:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
