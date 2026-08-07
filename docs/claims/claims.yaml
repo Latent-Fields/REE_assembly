@@ -11035,6 +11035,18 @@
     now implemented. User-confirmed: flag for re-queue/retest (chipped at session close, not
     governance's own build). pending_retest_after_substrate stays true until that retest actually
     runs and resolves it.
+    [2026-08-07 CORRECTION, chip-20260807-arc030-mech307-retest]: the "ceiling-may-have-lifted"
+    reading above was PREMATURE. The retest chip's own STOP-CHECK (confirm MECH-307 genuinely
+    wired, not just claims.yaml-implemented) found MECH-307 unreachable through
+    REEConfig.from_dims() -- all 12 params are absent from its signature and silently dropped into
+    **kwargs, so all 84 experiment drivers that request MECH-307 via from_dims (including the
+    scaffolded lineage this retest is built on: V3-EXQ-603q/866a/866b) ran with it entirely OFF.
+    See evidence/planning/mech307_from_dims_unreachable_2026-08-07.md. The chip correctly did NOT
+    queue the retest (setting sub-flags by hand would change the substrate under the COMBINED arm's
+    G0 non-degeneracy precondition -- 866a already failed G0 on a smaller deviation); routed instead
+    to /implement-substrate (chip-20260807-mech307-fromdims-wiring) to fix the from_dims wiring
+    gap first. pending_retest_after_substrate STAYS true; genuinely still blocked, now on a sharper,
+    correctly-identified blocker (from_dims reachability, not claims.yaml implementation status).
   depends_on:
     - ARC-021
     - MECH-069
