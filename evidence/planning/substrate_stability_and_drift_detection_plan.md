@@ -679,6 +679,157 @@ Report-format note for anyone diffing an old audit against a new one: the table'
 misattribute a `goal.py` knob to config.py. The JSON gains `source_file` beside the
 (unchanged, now slightly misnamed) `config_line`.
 
+### 7.6 P1e -- the data-flow tracking, built. Per-file coverage roughly DOUBLES; the corpus
+### number does not move, and measuring WHY finally locates the real ceiling (2026-08-07,
+### session `metaworker-chip-20260807-substrate-drift-dataflow-tracking`)
+
+This is the "actual data-flow tracking" 7.4 deferred and 7.5 re-confirmed as the sole
+remaining blocker for the pilots. It works, on its own terms, and it is still not enough --
+but for the first time the residual has been measured instead of inferred, and the answer is
+not the one the previous four phases were chasing.
+
+**What was built.** Two additions to `check_substrate_staleness_candidates.py` (NOT
+`default_off_drift_guard.py` -- that script only supplies knob names; all the AST gate analysis
+has lived in the staleness script since Phase 1b, which is worth stating because the chip
+brief for this work named the wrong file):
+
+*(a) Cached-state checks.* `flag_gated_none_attributes()` decides, PER CLASS, which
+`self.<attr>` names are provably always None for a run. It walks the class body carrying an
+`unreachable` bit -- set when an enclosing `if`'s test is a confirmed-False flag formula for the
+`body` arm, or a confirmed-TRUE one for the `orelse` arm -- records every assignment to a
+`self.<attr>` target as (assigns-literal-None, unreachable), and claims an attribute only when
+at least one REACHABLE assignment exists and every reachable assignment assigns literal `None`.
+`_eval_flag_formula()` then resolves `self.coalition is not None` to False (and `is None` to
+True, and bare `self.coalition` truthiness to False), after which Phase 1b's existing machinery
+covers the body with no further change.
+
+The real shape it targets, verbatim from `ree_core/agent.py`, is NOT the ternary the design
+sketch assumed -- it is an unconditional None init followed by a gated build:
+
+```python
+self.coalition: Optional[CoalitionController] = None      # unconditional
+if getattr(config, "use_coalition_controller", False):    # the flag gate
+    self.coalition = CoalitionController(...)             # only reachable under it
+...
+if self.coalition is not None:                            # the gate that reads no flag
+```
+
+Three conservatisms carry the soundness. It is **class-scoped**, recomputed per `ClassDef`, so
+a sibling class assigning the same attribute name unconditionally cannot leak a verdict.
+Any unmodellable write **poisons** that attribute rather than being ignored (`+=`, `del`, a
+`for`/`with` target, tuple-unpack, `setattr(self, "x", ...)`); a `setattr` with a non-constant
+name poisons the whole class. And **external mutation** -- the one hole an intra-class analysis
+cannot see -- is closed by requiring the caller to pass `externally_assigned` from
+`driver_assigned_attributes()`, an AST scan of the run's own driver; `None` (driver
+unresolvable or unparseable) disables the rule entirely. That guard is not theoretical: an AST
+scan of `ree-v3/experiments/` finds **4 of the 65 candidate attributes** genuinely written
+straight onto an agent object by a driver (`agent.e2_harm_s`, `agent._committed_anchor_keys`,
+`agent.super_ordinal_goal_memory`, `agent.phasic_burst`; 11 sites).
+
+*(b) Non-executable changed lines.* Found by measuring what (a) left behind, and **larger than
+(a)**. A changed line carrying no executable token cannot alter behaviour, so requiring it to
+sit inside a confirmed-inert `if` body was never meaningful. Classified with `tokenize`, not a
+`.strip().startswith("#")` test, so a `#` inside a string literal is not mistaken for a comment
+and a blank line inside a triple-quoted string still counts as executable. One trap worth
+recording because the first implementation fell into it and a test caught it: a post-image-only
+check reads `-    side_effect()` / `+    # explain` as a comment-only change, since that is a
+single modify hunk whose only new-file line is a comment. `_changed_lines_and_deletions()` now
+reports the pre-image side too, and the "provably inert" verdict additionally requires every
+REMOVED line to be non-executable in the OLD file.
+
+**Measured: `ree_core/agent.py` for the MECH-471 candidate** (`v3_exq_875_mech471_competence_provenance...`,
+recorded commit `a816b01ca405` vs `origin/main`, 279 changed lines):
+
+| | changed lines covered |
+|---|---|
+| Phase 1b/1d only | 53 / 279 |
+| + 1e(a) cached-state checks | **104 / 279** |
+| + 1e(b) drop non-executable | **85 / 115 executable** -- 30 genuinely live lines remain |
+
+**This is the first movement any phase has produced on this number.** 7.5 measured 32/236
+before and after its own fix; (a) alone takes the equivalent figure from 53 to 104, and (b)
+accounts for a further 164 of the 279 as comment/blank. Of the 175 lines left uncovered after
+(a), **140 were comments and 5 were blank -- 83% of the residual -- against 28 real code
+lines.** That composition is why (b) exists and why it was in scope: without it the honest
+report would have been "104/279", which materially understates how much of that diff is inert.
+
+**Corpus-level: UNCHANGED. 269 -> 269 pairs remaining, 0 -> 0 filtered.** The only line that
+differs in the entire report is the label `Phase 1b` -> `Phase 1b/1d/1e`. The pair filter is
+all-or-nothing across every relevant file, and 30 live lines remain in `agent.py` alone.
+
+**Why -- and this is the part that changes the Phase 2 question.** The 269 was instrumented
+directly rather than reasoned about, and it decomposes cleanly:
+
+| | pairs |
+|---|---|
+| no recorded `substrate_commit` -- **no diff exists to analyse** | **185** (69%) |
+| evaluable (diffable commit AND relevant changed files) | 84 (31%) |
+| ...of which filtered by Phase 1b/1d/1e | **0** |
+
+Across those 84 evaluable pairs there were **1320 relevant-file verdicts and not one of them
+came back inert.** Residual genuinely-live executable changed lines per remaining pair:
+
+| live lines | pairs |
+|---|---|
+| 0 | 0 |
+| 1-5 | 0 |
+| 6-20 | 11 |
+| 21-100 | 2 |
+| **100+** | **71** |
+
+**Not a single pair is within five lines of being filtered, and 71 of 84 carry 100+ live
+changed lines.** The files that most often block a pair are the busiest files in the substrate
+-- `e3_selector.py` (80 pairs), `agent.py` (73), `hippocampal/module.py` (72),
+`environment/causal_grid_world.py` (71), `utils/config.py` (70).
+
+**The honest conclusion, which contradicts the premise the whole 1b/1d/1e line of work rests
+on.** Phases 1b through 1e all assume the remaining candidates are NOISE -- runs whose recorded
+substrate differs only in code that was inert for them, needing a smarter inertness proof to
+dismiss. For the evaluable subset that assumption is simply **false**. These are not
+near-misses that a sixth gate idiom would clear; the substrate genuinely moved by 100+ live
+lines under them, in files central to what those claims measure. They are TRUE positives. No
+amount of additional static analysis can filter a real change, and any analysis that did would
+be wrong.
+
+The actual ceiling is therefore two things, neither of them a gate-recognition problem:
+
+1. **69% of remaining pairs cannot be assessed at all** -- they record a `substrate_hash` but
+   no `substrate_commit.commit`, so there is no diff. This is a recording gap, retroactively
+   unfixable by construction (section 6.2's argument, applied one level up), and it is a
+   strictly larger effect than every static-analysis phase combined.
+2. **The other 31% are real drift**, and the useful product for them is not a filter but a
+   summary: which files, how many live lines, which claims -- which the report already has.
+
+**What this means for Phase 2 -- recommendation: PROCEED, with the surface reframed.** The
+2026-08-07 decision held Phase 2 on the grounds of a near-zero actionable rate. That framing
+assumed the 269 were mostly noise. They are not: the evaluable third are true positives, and
+the other two-thirds are a recording gap that a governance surface should EXPOSE rather than
+silently carry. Concretely -- do not ship Phase 2 as a filter whose value is the count it
+suppresses; ship it as (i) the 84 real drift candidates ranked by live-line count, which is
+now computable and is a genuine, non-noisy work queue, and (ii) a standing count of the 185
+pairs that cannot be assessed, as the argument for `substrate_commit` coverage. Both are
+actionable today; neither needs another inertness phase. This is a recommendation, not a
+decision -- the call is the user's or `/governance`'s.
+
+**Do NOT build Phase 1f.** The next gate idiom would be worth at best a few lines against a
+100+-line median residual. If a future session is tempted, re-run the near-miss decomposition
+above first -- it is the measurement that settles it, and it is cheap.
+
+Tests: **63 new** in `REE_assembly/scripts/test_check_substrate_staleness_candidates.py`
+(150 total, was 87), including the real `self.coalition` shape as a positive control and
+negative controls for every conservatism -- unconditional assignment, unknown flag, enabled
+flag, a second unconditional assignment in another method, the `orelse` arm both ways, no
+assignment at all, each poisoning construct, class scoping across two classes, `== None` vs
+`is None`, `other.coalition` vs `self.coalition`, and the empty-`none_attrs` back-compat case.
+**All 63 verified FAILING against the pre-change module** (run against
+`git show <pre-1e>:scripts/check_substrate_staleness_candidates.py` in a staged tree). One
+test pins that `(self.thing := ...)` is a `SyntaxError`, so the `NamedExpr` poisoning arm is
+unreachable defence rather than a live path -- it was written as a live fixture first and the
+test caught it. `default_off_drift_guard.py` was not modified; its output is **byte-identical**
+and its **9 gating FAIL findings are unchanged**, re-run and diffed. 195 green across
+`test_check_substrate_staleness_candidates.py`, `test_default_off_drift_guard.py`,
+`test_substrate_staleness_gate.py`.
+
 ## Status table
 
 | Gap | Phase | Status | Blocking on | Next action | Owner-EXQ | Last updated |
@@ -689,5 +840,8 @@ misattribute a `goal.py` knob to config.py. The JSON gains `source_file` beside 
 | P1c-prospective-recording | 1 | done | -- | none; 0 of 621 manifests carry the field yet (genuinely prospective) -- next real step is updating /queue-experiment's template so new drivers pass agent= for this reason | null | 2026-08-03 |
 | P1d-interprocedural-hop | 1 | done | -- | none; real corpus result: still 0/2 pilots' candidates filtered, for a THIRD reason (default_off_drift_guard.py's parse_knobs() misses config classes declared outside config.py) -- see section 7.4 | null | 2026-08-03 |
 | parse-knobs-file-coverage | 1 | done | -- | none; landed 2026-08-03: parse_knobs() follows field(default_factory=XConfig) via import resolution (no hardcoded paths). 316 -> 330 knobs, use_hierarchical_goal_credit now resolves confirmed-False, guard's 9 FAIL findings unchanged (no new drift), staleness corpus numbers unchanged (0/0 filtered, 258 remain) -- see section 7.5 | null | 2026-08-03 |
-| P2-governance-surface | 2 | open | P1c accumulating real coverage (needs new/re-run drivers), and/or the parse_knobs file-coverage fix landing with a re-measured result | Do NOT wire a 0%-actionable signal into a regular human-facing cycle by default; get a decision first | null | 2026-08-03 |
+| P1e-dataflow-cached-state | 1 | done | -- | none; landed 2026-08-07. Cached-state-check data-flow tracking + non-executable-line exclusion. MECH-471/agent.py coverage 53/279 -> 104/279 -> 85/115 executable (30 live lines remain) -- the first movement any phase has produced. Corpus UNCHANGED (269 -> 269, 0 filtered). See section 7.6 | null | 2026-08-07 |
+| P1f-more-gate-idioms | 1 | **will not build** | -- | none. Measured 2026-08-07: 71 of 84 evaluable pairs carry 100+ genuinely-live changed lines and none is within 5 lines of filtering, so a further inertness idiom cannot move the corpus number. Re-run section 7.6's near-miss decomposition before re-proposing | null | 2026-08-07 |
+| P2-governance-surface | 2 | open -- **recommended to PROCEED, reframed** | A user/`/governance` decision on the reframing, not on more tooling | The hold was premised on "269 pairs are mostly noise". Measured 2026-08-07: 84 are TRUE positives (100+ live lines each) and 185 simply have no `substrate_commit` to diff. Ship the surface as (i) 84 real candidates ranked by live-line count and (ii) a standing unassessable-pair count -- not as a filter. See section 7.6 | null | 2026-08-07 |
+| substrate-commit-coverage | 1 | open | Nothing -- this is now the LARGEST single effect, bigger than every static-analysis phase combined | 185 of 269 remaining pairs (69%) record a `substrate_hash` but no `substrate_commit.commit`, so no diff exists and no filter can ever assess them. Retroactively unfixable; the prospective fix is the same class as P1c. Quantify how many recent drivers still omit it, then close it in the recording standard | null | 2026-08-07 |
 | ISO-design | 0 | open | A dedicated follow-on session (executable-code-plane change to `experiment_runner.py`, needs `integration/<slug>` staging per this repo's git policy) | Build option A2 (pause-the-puller mutex) behind a flag, test on a cloud worker before merging to `main` | null | 2026-08-03 |
