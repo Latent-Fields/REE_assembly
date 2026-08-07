@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-08-07_inv087_dynamic_potential_shaping_devlin2012",
+  "timestamp_utc": "2026-08-07T22:50:41Z",
+  "claim_ids_tested": ["INV-087"],
+  "source": {
+    "title": "Dynamic Potential-Based Reward Shaping",
+    "authors": ["Sam Devlin", "Daniel Kudenko"],
+    "year": 2012,
+    "venue": "Proceedings of the 11th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2012), Vol. 1, pp. 433-440",
+    "url": "https://eprints.whiterose.ac.uk/id/eprint/75121/"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the single result that most directly addresses INV-087's stated transfer caveat -- 'the Ng et al. invariance is exact only for a stationary, state-only potential; REE's maintenance proxy is learned and non-stationary'. Devlin & Kudenko prove that a potential allowed to change during learning, Phi(s,t), still preserves the optimal-policy set provided the shaping term is written as the potential DIFFERENCE across the transition actually taken, F = gamma*Phi(s',t') - Phi(s,t). This converts INV-087's tethering constraint from an off-the-shelf-impossible target (a fixed potential the agent does not have) into a tractable one for a learned proxy that keeps changing. Source quality is high (peer-reviewed AAMAS, formal proof plus grid-world demonstration) but not maximal (older, single-lab, and the guarantee is on-policy). Mapping fidelity is good but capped by the on-policy restriction: REE's E3 selection and replay machinery are partly off-policy, where the telescoping cancellation that underwrites the proof does not hold. Direction is 'supports' rather than 'mixed' because the paper's net effect is to REMOVE the main obstacle INV-087 itself flags, while honestly bounding where the removal applies.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dynamic-potential invariance proof is on-policy: it requires that the potential used to compute Phi(s,t) at the time a transition is experienced is consistent with the potential in force. Off-policy learning with experience replay stores transitions labelled with the potential from an earlier time, so the telescoping sum gamma*Phi(s',t') - Phi(s,t) no longer cancels across the episode and policy invariance is not guaranteed.",
+    "Time-indexing the potential removes stationarity as an obstacle but does NOT tell you WHICH potential to track; a badly-chosen or adversarially-drifting Phi(s,t) can still be arbitrarily unhelpful (it just cannot change the optimal set on-policy).",
+    "The guarantee is about the optimal-policy SET at convergence, not about the LEARNED policy under finite samples or function approximation -- a dynamic potential still reshapes the learning trajectory."
+  ],
+  "tags": ["inv-087", "candidate:proxy_tethering_guard", "reward-shaping", "potential-based", "non-stationary", "dynamic-shaping", "strand-B"],
+  "mapping": {
+    "source_claim_statement": "Potential-based reward shaping can be extended to a potential that changes over the course of learning, Phi(s,t), and still guarantees policy invariance in the single-agent case (and consistent Nash equilibria in the multi-agent case), provided the shaping reward is the potential difference over the transition, F(s,t,s',t') = gamma*Phi(s',t') - Phi(s,t). The previous assumption that the potential of a state is fixed during learning -- 'often broken, especially if the reward-shaping function is generated automatically' -- is not required.",
+    "ree_translation": "This directly discharges INV-087's central mapping caveat. REE's maintenance/progress proxy is a LEARNED, NON-STATIONARY estimate of goal-proximity Phi, so the classical Ng/Harada/Russell (stationary) certificate did not strictly apply to it. Devlin & Kudenko show the tethering constraint survives non-stationarity: if REE writes the proxy contribution as gamma*Phi(s',t') - Phi(s,t) using the CURRENT proxy at each decision, the drift of the learned proxy does not, on-policy, move the true-goal optimal policy. This is the mechanism that makes 'tether the maintenance proxy to a potential difference' implementable as the proxy learns, rather than only in the limit.",
+    "mapping_caveat": "The guarantee is ON-POLICY. REE's E3 trajectory selection and its reverse-replay wanting-spread (MECH-217) are not purely on-policy, and any off-policy reuse of past proxy values reintroduces exactly the divergence risk INV-087 warns about, because the potential-difference telescoping no longer cancels for replayed transitions carrying stale potentials. So this certificate applies to the on-policy write path of the proxy, not to replay-based credit assignment, and does not by itself cover REE's multi-drive non-stationary objective.",
+    "source_context": "Reinforcement-learning theory (single- and multi-agent MDPs / stochastic games); tabular grid-world demonstration."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.42,
+    "notes": "AAMAS peer-reviewed with a formal proof; the transfer risk is concentrated in the on-policy-vs-off-policy gap, which is real for REE's replay path but does not touch the on-policy proxy write. Mapping fidelity is higher than the base Ng1999 entry precisely because this paper relaxes the stationarity assumption that capped Ng1999's fidelity for a learned proxy."
+  }
+}

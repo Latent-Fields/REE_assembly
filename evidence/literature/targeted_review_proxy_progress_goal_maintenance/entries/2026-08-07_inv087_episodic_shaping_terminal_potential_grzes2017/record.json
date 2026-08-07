@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_proxy_progress_goal_maintenance",
+  "entry_id": "2026-08-07_inv087_episodic_shaping_terminal_potential_grzes2017",
+  "timestamp_utc": "2026-08-07T22:50:41Z",
+  "claim_ids_tested": ["INV-087"],
+  "source": {
+    "title": "Reward Shaping in Episodic Reinforcement Learning",
+    "authors": ["Marek Grzes"],
+    "year": 2017,
+    "venue": "Proceedings of the 16th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2017), pp. 565-573",
+    "url": "https://www.ifaamas.org/Proceedings/aamas2017/pdfs/p565.pdf"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.68,
+  "confidence_rationale": "This is the sharpest disconfirming source for INV-087 as stated, and it targets exactly the regime REE occupies. INV-087 asserts that the potential-DIFFERENCE form gamma*Phi(s')-Phi(s) 'leaves the true-goal optimal policy INVARIANT' -- full stop. Grzes shows that in EPISODIC (finite-horizon, goal-terminating) tasks that guarantee has an extra necessary condition that Ng/Harada/Russell's infinite-horizon statement hides: the potential of every TERMINAL state must be zero. The episodic return relation G(pi') = G(pi) + gamma^n*Phi(s_n) - Phi(s_0) shows the gamma^n*Phi(s_n) term modifies the optimal policy whenever a nonzero-potential state can be terminal. REE's goal-proximity potential is by construction LARGEST at the goal, and REE goals are episodic (a goal is reached and the episode ends there), so REE's proposed tethering potential violates the terminal-zero condition precisely at the state that matters most. Confidence is high for direction but the source is a single-author conference paper (0.68 not higher), and it WEAKENS the unconditional wording, not the repairable core: the fix (zero out terminal potentials, or subtract the goal potential) is known, so this is a boundary correction rather than a refutation.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In an episodic MDP the shaped return satisfies G(pi') = G(pi) + gamma^n*Phi(s_n) - Phi(s_0); the gamma^n*Phi(s_n) term depends on which state the episode terminates in and can change which policy is optimal, so potential-based shaping is NOT policy-invariant unless the potential of all terminal states is zero.",
+    "A goal-proximity potential is maximal at the goal, and the goal is a terminal state, so a naive goal-proximity tethering potential MAXIMALLY violates the terminal-zero condition at exactly the decision it is meant to protect.",
+    "Setting terminal potentials to zero restores invariance but couples the potential's meaning to whether a given state happens to terminate a trajectory, so the same state can carry different potentials in different episodes -- a fragility that automatic/learned potentials must handle explicitly."
+  ],
+  "tags": ["inv-087", "candidate:proxy_tethering_guard", "reward-shaping", "potential-based", "episodic", "terminal-state", "disconfirming", "strand-B"],
+  "mapping": {
+    "source_claim_statement": "Potential-based reward shaping preserves the optimal policy in infinite-horizon settings and in episodic settings only when episodes terminate in zero-potential absorbing states. In a general episodic (finite-horizon) MDP the shaped and unshaped returns differ by gamma^n*Phi(s_n) - Phi(s_0), and the gamma^n*Phi(s_n) term -- which depends on the terminal state -- can alter the set of optimal policies. The necessary-and-sufficient repair is to assume a null potential Phi = 0 for every terminal state.",
+    "ree_translation": "INV-087's tethering form is stated as unconditionally policy-invariant, borrowing the infinite-horizon Ng/Harada/Russell theorem. Grzes shows that in REE's actual setting -- episodic, goal-terminating trajectories -- invariance requires an additional condition (terminal potentials zero) that REE's natural tethering candidate, a goal-proximity potential, breaks by construction, because proximity is maximal at the goal and the goal terminates the episode. So the guard as literally worded would still admit divergence via the terminal term; the tethered proxy is safe only if REE also zeroes (or subtracts) the potential at goal-attainment / episode end. This is a real, load-bearing correction to the claim's design target, not a peripheral caveat.",
+    "mapping_caveat": "Grzes analyses a single-objective, discounted episodic MDP with well-defined terminal states. REE's episodes and 'goal attainment' are softer and multi-drive, so the exact gamma^n*Phi(s_n) decomposition does not transcribe term-for-term; what transfers is the structural warning -- a nonzero potential at a terminating/absorbing goal state re-opens the divergence INV-087 is meant to close. The magnitude of the effect in REE's substrate is untested and could be small.",
+    "source_context": "Reinforcement-learning theory (episodic / finite-horizon MDPs); tabular and function-approximation experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.78,
+    "mapping_fidelity": 0.66,
+    "transfer_risk": 0.5,
+    "notes": "Rigorous and directly on-point, but single-author conference paper and the analysis assumes clean terminal states REE does not exactly have. The direction (weakens) is confidently assigned; the magnitude in REE's setting is what the transfer risk reflects. This is the required disconfirming/mixed source: it does not overturn INV-087 but shows its as-worded invariance is conditional on a terminal-zero requirement the claim's own goal-proximity potential violates."
+  }
+}
