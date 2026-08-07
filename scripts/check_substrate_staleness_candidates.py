@@ -159,6 +159,70 @@ section 7.3 for why (name-collision risk could make it over-conservative at dept
 was recommended to be prototyped against known cases before generalising, not built
 corpus-wide on faith).
 
+PHASE 1e (added 2026-08-07): CACHED-STATE-CHECK GATES + NON-EXECUTABLE CHANGED LINES
+--------------------------------------------------------------------------------------
+Two independent additions. The first is the data-flow tracking sections 7.4/7.5 deferred; the
+second was found by measuring what the first LEFT BEHIND, and turned out to be the larger of
+the two.
+
+(a) CACHED-STATE CHECKS -- `flag_gated_none_attributes()` + the `none_attrs` arm of
+`_eval_flag_formula()`. Phase 1b/1d both key on a gate that REFERENCES a flag. This repo's
+third idiom never does: an attribute is built once at `__init__` under a flag gate, and every
+later use tests only the ATTRIBUTE's identity.
+
+    self.coalition: Optional[CoalitionController] = None      # unconditional None init
+    if getattr(config, "use_coalition_controller", False):    # ... flag gate here ...
+        self.coalition = CoalitionController(...)             # ... only reachable under it
+    ...
+    if self.coalition is not None:                            # ... but the GATE reads no flag
+
+`flag_gated_none_attributes()` decides, per CLASS, which `self.<attr>` names are provably
+always None for this run: it walks the class body carrying an `unreachable` bit (set when an
+enclosing `if`'s test is a confirmed-False flag formula for the `body` arm, or a confirmed-TRUE
+one for the `orelse` arm), records every assignment to a `self.<attr>` target as
+(assigns-literal-None, unreachable), and returns the attrs for which at least one REACHABLE
+assignment exists and EVERY reachable assignment assigns literal `None`. `_eval_flag_formula`
+then resolves `self.<attr> is not None` to False (and `is None` to True, and a bare
+`self.<attr>` truthiness test to False) for exactly those names -- after which Phase 1b's
+existing machinery covers the body with no further change.
+
+Three deliberate conservatisms, each of which is the difference between this being sound and
+merely plausible:
+  1. It is CLASS-SCOPED, not module-scoped. `inert_line_ranges()` recomputes the set per
+     `ClassDef` and applies it only within that class, so a second class in the same file that
+     sets the same attribute name unconditionally cannot leak a false verdict into the first.
+  2. Any construct whose effect on an attribute cannot be modelled POISONS that attribute
+     (never silently ignored): `+=` on it, `del`, a `for`/`with`/walrus target, tuple-unpack
+     (the unpacked value is unknown, so it counts as a non-None assignment), or
+     `setattr(self, "x", ...)`. A `setattr(self, <non-constant>, ...)` poisons the WHOLE class,
+     since which attribute it hits is unknowable. An attribute with NO reachable assignment at
+     all is likewise not claimed -- it may be set from outside, or not exist.
+  3. EXTERNAL MUTATION is the one hole an intra-class analysis cannot see, and it is REAL, not
+     theoretical: an AST scan of `ree-v3/experiments/` finds 4 of the 65 candidate attributes
+     assigned directly on an agent object by a driver (`agent.e2_harm_s = ...` and 3 others,
+     11 sites). So the rule is DISABLED unless the caller supplies `externally_assigned` --
+     the set of attribute names this run's own driver assigns on a non-`self` object, from
+     `driver_assigned_attributes()`. `None` (driver source unresolvable or unparseable) turns
+     the whole Phase-1e cached-state rule OFF for that run rather than guessing, which is the
+     same posture `flag_status_from_driver_source` takes for a knob it cannot resolve.
+  `flag_gated_none_attributes()` evaluates its own enclosing-`if` tests WITHOUT `none_attrs`,
+  deliberately: the set is what is being computed, so feeding it back in would be circular.
+
+(b) NON-EXECUTABLE CHANGED LINES -- `non_executable_line_numbers()`. A changed line that
+carries no executable token (a comment-only line, a blank line) cannot alter behaviour, so
+requiring it to fall inside a confirmed-inert `if` body was never meaningful. Measured on the
+MECH-471 candidate's `ree_core/agent.py` diff: of the 175 lines still uncovered after (a), 140
+were comments and 5 were blank -- 83% of the residual, against 28 genuine code lines. Lines
+are classified with `tokenize`, not a `.strip().startswith("#")` test, so a `#` inside a string
+literal is not mistaken for a comment and a blank line inside a triple-quoted string still
+counts as executable. Docstrings deliberately count as executable (a STRING token), which is
+conservative rather than exact.
+  Interaction with pure deletions: `changed_line_numbers()` reports POST-image lines, so a
+  hunk that only deletes contributes none. If every remaining changed line is non-executable
+  the verdict is "provably inert" -- but ONLY when the diff contains no pure-deletion hunk,
+  since "the one line added is a comment" says nothing about ten lines of code removed beside
+  it. `_changed_lines_and_deletions()` reports both so that case bails instead.
+
 Nothing here can invalidate an experiment or alter scoring. Read the report, then a human
 decides whether to hand-edit a flat manifest's `pending_retest_after_substrate` (or the
 per-claim variants) -- exactly as `/failure-autopsy` already does today for other reasons.
@@ -183,7 +247,9 @@ import sys
 import tempfile
 import uuid
 import ast
+import io
 import re
+import tokenize
 from pathlib import Path
 from typing import Any, Dict, FrozenSet, List, Optional, Set, Tuple
 
@@ -483,7 +549,21 @@ def flag_status_from_recorded_config(manifest: Dict[str, Any], knob_names: Set[s
     return {name: (name in enabled_bare_names) for name in knob_names}
 
 
-def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[str, bool]) -> Optional[bool]:
+def _self_attr_name(node: ast.AST) -> Optional[str]:
+    """'coalition' from `self.coalition`; None for any other expression (including
+    `other.coalition` and `self.a.b`). Phase 1e -- the ONLY attribute shape this file's
+    data-flow tracking recognises, on either side of the read/write divide."""
+    if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name) and node.value.id == "self":
+        return node.attr
+    return None
+
+
+def _eval_flag_formula(
+    node: ast.AST,
+    knob_names: Set[str],
+    flag_status: Dict[str, bool],
+    none_attrs: FrozenSet[str] = frozenset(),
+) -> Optional[bool]:
     """Kleene (3-valued) evaluation of `node` as a pure boolean formula over `knob_names`
     references. Returns True/False when fully resolvable, None ("Unknown") the instant node
     contains anything that is not a recognised flag reference (a Compare, a Call, an
@@ -491,9 +571,28 @@ def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[st
     Kleene AND/OR mean a single confirmed-False leaf can still resolve the whole formula to
     False even beside an Unknown sibling (`False and Unknown` == `False`), which is exactly
     the guarantee this filter needs: one confirmed-disabled flag in an AND-gate is enough.
+
+    `none_attrs` (Phase 1e) is the set of `self.<attr>` names proven always-None for this run
+    by `flag_gated_none_attributes()`. It is EMPTY by default, so every pre-1e caller keeps
+    bit-identical behaviour; when supplied it makes `self.<attr> is not None` resolve to False,
+    `self.<attr> is None` to True, and a bare `self.<attr>` truthiness test to False.
     """
+    if none_attrs:
+        # A cached-state check on a provably-None attribute -- the Phase 1e gate idiom.
+        if isinstance(node, ast.Compare) and len(node.ops) == 1 and len(node.comparators) == 1:
+            comparator = node.comparators[0]
+            if (_self_attr_name(node.left) in none_attrs
+                    and isinstance(comparator, ast.Constant) and comparator.value is None):
+                if isinstance(node.ops[0], ast.IsNot):
+                    return False
+                if isinstance(node.ops[0], ast.Is):
+                    return True
+        # Bare truthiness (`if self.coalition:`) -- None is falsy. Checked before the
+        # knob_names arm below so a self-attribute is never read as a config flag.
+        if isinstance(node, ast.Attribute) and _self_attr_name(node) in none_attrs:
+            return False
     if isinstance(node, ast.BoolOp):
-        vals = [_eval_flag_formula(v, knob_names, flag_status) for v in node.values]
+        vals = [_eval_flag_formula(v, knob_names, flag_status, none_attrs) for v in node.values]
         if isinstance(node.op, ast.And):
             if any(v is False for v in vals):
                 return False
@@ -507,7 +606,7 @@ def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[st
                 return None
             return False
     if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
-        v = _eval_flag_formula(node.operand, knob_names, flag_status)
+        v = _eval_flag_formula(node.operand, knob_names, flag_status, none_attrs)
         return None if v is None else (not v)
     if isinstance(node, ast.Attribute) and node.attr in knob_names:
         return flag_status.get(node.attr)
@@ -529,6 +628,192 @@ def _eval_flag_formula(node: ast.AST, knob_names: Set[str], flag_status: Dict[st
     return None
 
 
+# --------------------------------------------------------------------------------------- #
+# Phase 1e -- cached-state-check data-flow tracking (module docstring has the full design)  #
+# --------------------------------------------------------------------------------------- #
+
+# Sentinel poisoning EVERY attribute of a class: a `setattr(self, <non-constant>, ...)`, whose
+# target attribute is unknowable, so no attribute in that class can be claimed.
+_ALL_ATTRS_POISONED = "*"
+
+
+def flag_gated_none_attributes(
+    class_node: ast.ClassDef, knob_names: Set[str], flag_status: Dict[str, bool],
+) -> FrozenSet[str]:
+    """The `self.<attr>` names that are provably ALWAYS None for this run, within this class:
+    at least one REACHABLE assignment to the attribute exists, and every reachable assignment
+    assigns literal `None`. "Reachable" excludes an assignment sitting under an `if` whose test
+    is a confirmed-False flag formula (or in the `orelse` of a confirmed-TRUE one).
+
+    See the module docstring (Phase 1e) for the idiom this recognises and for the three
+    conservatisms -- class scoping, poisoning on any unmodellable construct, and the external-
+    mutation hole that `driver_assigned_attributes()` closes at the caller.
+
+    Enclosing-`if` tests are evaluated WITHOUT `none_attrs`: that set is precisely what this
+    function computes, so feeding it back in would be circular.
+    """
+    records: Dict[str, List[Tuple[bool, bool]]] = {}  # attr -> [(assigns_literal_None, unreachable)]
+    poisoned: Set[str] = set()
+
+    def note(target: ast.AST, assigns_none: bool, unreachable: bool) -> None:
+        name = _self_attr_name(target)
+        if name is not None:
+            records.setdefault(name, []).append((assigns_none, unreachable))
+
+    def poison(target: ast.AST) -> None:
+        name = _self_attr_name(target)
+        if name is not None:
+            poisoned.add(name)
+
+    def scan_for_dynamic_writes(stmt: ast.AST) -> None:
+        """Walrus targets and `setattr(self, ...)` anywhere in this statement's subtree.
+        Deliberately over-broad (it descends into nested bodies that `walk` visits again, and
+        into nested classes): it can only ever POISON, which is the safe direction."""
+        for sub in ast.walk(stmt):
+            if isinstance(sub, ast.NamedExpr):
+                poison(sub.target)
+            elif (isinstance(sub, ast.Call) and isinstance(sub.func, ast.Name)
+                    and sub.func.id == "setattr" and sub.args
+                    and isinstance(sub.args[0], ast.Name) and sub.args[0].id == "self"):
+                if (len(sub.args) >= 2 and isinstance(sub.args[1], ast.Constant)
+                        and isinstance(sub.args[1].value, str)):
+                    poisoned.add(sub.args[1].value)
+                else:
+                    poisoned.add(_ALL_ATTRS_POISONED)
+
+    def walk(body: List[ast.AST], unreachable: bool) -> None:
+        for stmt in body:
+            if isinstance(stmt, ast.ClassDef):
+                continue  # a nested class binds its own `self`
+            scan_for_dynamic_writes(stmt)
+            if isinstance(stmt, ast.If):
+                verdict = _eval_flag_formula(stmt.test, knob_names, flag_status)
+                walk(stmt.body, unreachable or verdict is False)
+                walk(stmt.orelse, unreachable or verdict is True)
+            elif isinstance(stmt, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                walk(stmt.body, unreachable)
+            elif isinstance(stmt, (ast.For, ast.AsyncFor)):
+                poison(stmt.target)  # loop-bound value is unknown
+                walk(stmt.body, unreachable)
+                walk(stmt.orelse, unreachable)
+            elif isinstance(stmt, ast.While):
+                walk(stmt.body, unreachable)
+                walk(stmt.orelse, unreachable)
+            elif isinstance(stmt, (ast.With, ast.AsyncWith)):
+                for item in stmt.items:
+                    if item.optional_vars is not None:
+                        poison(item.optional_vars)
+                walk(stmt.body, unreachable)
+            elif isinstance(stmt, ast.Try) or type(stmt).__name__ == "TryStar":
+                walk(stmt.body, unreachable)
+                walk(stmt.orelse, unreachable)
+                walk(stmt.finalbody, unreachable)
+                for handler in stmt.handlers:
+                    walk(handler.body, unreachable)
+            elif isinstance(stmt, ast.Assign):
+                assigns_none = isinstance(stmt.value, ast.Constant) and stmt.value.value is None
+                for target in stmt.targets:
+                    if isinstance(target, (ast.Tuple, ast.List)):
+                        for element in target.elts:
+                            note(element, False, unreachable)  # unpacked value is unknown
+                    else:
+                        note(target, assigns_none, unreachable)
+            elif isinstance(stmt, ast.AnnAssign):
+                if stmt.value is not None:
+                    note(stmt.target,
+                         isinstance(stmt.value, ast.Constant) and stmt.value.value is None,
+                         unreachable)
+                # a bare `self.x: T` annotation is a runtime no-op -- neither an assignment
+                # nor a reason to poison
+            elif isinstance(stmt, ast.AugAssign):
+                poison(stmt.target)
+            elif isinstance(stmt, ast.Delete):
+                for target in stmt.targets:
+                    poison(target)
+
+    walk(list(class_node.body), False)
+
+    if _ALL_ATTRS_POISONED in poisoned:
+        return frozenset()
+    proven: Set[str] = set()
+    for attr, entries in records.items():
+        if attr in poisoned:
+            continue
+        reachable = [assigns_none for assigns_none, unreachable in entries if not unreachable]
+        if reachable and all(reachable):
+            proven.add(attr)
+    return frozenset(proven)
+
+
+def driver_assigned_attributes(driver_source: Optional[str]) -> Optional[Set[str]]:
+    """Attribute names this driver assigns on a NON-`self` object -- `agent.e2_harm_s = ...`,
+    `setattr(agent, "dacc", ...)`, `obj.x += ...`, `del obj.x`, `for obj.x in ...`. These are
+    exactly the writes an intra-class analysis of `ree_core` cannot see, so Phase 1e must not
+    claim them (module docstring, conservatism 3).
+
+    Returns None -- meaning "unknown, disable the Phase 1e cached-state rule entirely" -- when
+    the driver source is absent or does not parse. A `setattr` with a non-constant attribute
+    name likewise yields None, since which attribute it writes is unknowable.
+    """
+    if not driver_source:
+        return None
+    try:
+        tree = ast.parse(driver_source)
+    except SyntaxError:
+        return None
+    assigned: Set[str] = set()
+    for node in ast.walk(tree):
+        targets: List[ast.AST] = []
+        if isinstance(node, ast.Assign):
+            targets = list(node.targets)
+        elif isinstance(node, (ast.AnnAssign, ast.AugAssign, ast.NamedExpr)):
+            targets = [node.target]
+        elif isinstance(node, (ast.For, ast.AsyncFor)):
+            targets = [node.target]
+        elif isinstance(node, ast.Delete):
+            targets = list(node.targets)
+        elif (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+                and node.func.id == "setattr" and len(node.args) >= 2):
+            name_arg = node.args[1]
+            if isinstance(name_arg, ast.Constant) and isinstance(name_arg.value, str):
+                assigned.add(name_arg.value)
+            else:
+                return None  # unknowable target -- refuse to vouch for anything
+            continue
+        flat: List[ast.AST] = []
+        for target in targets:
+            if isinstance(target, (ast.Tuple, ast.List)):
+                flat.extend(target.elts)
+            else:
+                flat.append(target)
+        for target in flat:
+            if isinstance(target, ast.Attribute) and _self_attr_name(target) is None:
+                assigned.add(target.attr)
+    return assigned
+
+
+def non_executable_line_numbers(file_source: str) -> Set[int]:
+    """1-indexed line numbers carrying NO executable token -- comment-only and blank lines.
+
+    Uses `tokenize` rather than a `.strip().startswith("#")` test so that a `#` inside a string
+    literal is not read as a comment, and a blank line inside a triple-quoted string still
+    counts as executable (the STRING token spans it). A docstring counts as executable, which
+    is conservative rather than exact. Best effort: an untokenizable source yields the empty
+    set (nothing claimed non-executable), never a crash.
+    """
+    executable: Set[int] = set()
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(file_source).readline):
+            if token.type in (tokenize.COMMENT, tokenize.NL, tokenize.NEWLINE,
+                              tokenize.INDENT, tokenize.DEDENT, tokenize.ENDMARKER):
+                continue
+            for lineno in range(token.start[0], token.end[0] + 1):
+                executable.add(lineno)
+    except (tokenize.TokenError, IndentationError, SyntaxError):
+        return set()
+    return {n for n in range(1, len(file_source.splitlines()) + 1) if n not in executable}
+
+
 def _line_span(nodes) -> Tuple[Optional[int], Optional[int]]:
     los: List[int] = []
     his: List[int] = []
@@ -545,29 +830,55 @@ def _line_span(nodes) -> Tuple[Optional[int], Optional[int]]:
     return min(los), max(his)
 
 
-def inert_line_ranges(file_source: str, knob_names: Set[str], flag_status: Dict[str, bool]) -> List[Tuple[int, int]]:
+def inert_line_ranges(
+    file_source: str,
+    knob_names: Set[str],
+    flag_status: Dict[str, bool],
+    externally_assigned: Optional[Set[str]] = None,
+) -> List[Tuple[int, int]]:
     """Line ranges (1-indexed, inclusive) whose containing `if` body is confirmed inert for
     this run -- the `if`'s test evaluates to definite False under flag_status. Best effort:
     a syntax error in file_source yields [] (nothing confirmed inert), never a crash.
+
+    `externally_assigned` (Phase 1e) enables the cached-state-check rule: it is the set of
+    attribute names this run's driver writes on a non-`self` object, which are subtracted from
+    every class's proven-None set. `None` -- the default, and what every pre-1e caller passes
+    -- DISABLES the rule entirely, keeping behaviour bit-identical to Phase 1b/1d.
     """
     try:
         tree = ast.parse(file_source)
     except SyntaxError:
         return []
     ranges: List[Tuple[int, int]] = []
-    for node in ast.walk(tree):
-        if not isinstance(node, ast.If):
-            continue
-        verdict = _eval_flag_formula(node.test, knob_names, flag_status)
-        if verdict is False:
-            _, hi = _line_span(node.body)  # body span for the END; orelse is NOT inert
-            if hi is not None:
-                # Start at node.lineno (the `if <test>:` line itself), not the body's own
-                # start -- a newly-added "if <confirmed-false>:" line has zero effect on
-                # anything, precisely because the condition is False, so it is just as inert
-                # as its body. Using node.lineno rather than _line_span(node.body)'s own `lo`
-                # is what makes the if-line itself count as covered.
-                ranges.append((node.lineno, hi))
+
+    def visit(node: ast.AST, none_attrs: FrozenSet[str]) -> None:
+        for child in ast.iter_child_nodes(node):
+            child_attrs = none_attrs
+            if isinstance(child, ast.ClassDef):
+                # Recomputed PER CLASS and applied only within it -- a sibling class setting
+                # the same attribute name unconditionally must not leak a verdict in here.
+                if externally_assigned is None:
+                    child_attrs = frozenset()
+                else:
+                    child_attrs = frozenset(
+                        flag_gated_none_attributes(child, knob_names, flag_status)
+                        - set(externally_assigned)
+                    )
+            elif isinstance(child, ast.If):
+                verdict = _eval_flag_formula(child.test, knob_names, flag_status, none_attrs)
+                if verdict is False:
+                    _, hi = _line_span(child.body)  # body span for the END; orelse is NOT inert
+                    if hi is not None:
+                        # Start at child.lineno (the `if <test>:` line itself), not the body's
+                        # own start -- a newly-added "if <confirmed-false>:" line has zero
+                        # effect on anything, precisely because the condition is False, so it
+                        # is just as inert as its body. Using child.lineno rather than
+                        # _line_span(child.body)'s own `lo` is what makes the if-line itself
+                        # count as covered.
+                        ranges.append((child.lineno, hi))
+            visit(child, child_attrs)
+
+    visit(tree, frozenset())
     return ranges
 
 
@@ -722,48 +1033,75 @@ def one_hop_inert_line_ranges(
     return ranges
 
 
-def changed_line_numbers(ree_v3_root: Path, recorded_commit: str, ref: str, path: str) -> Optional[List[int]]:
-    """New-file (post-image) line numbers touched by recorded_commit..ref for `path`, from
-    `git diff --unified=0` hunk headers (`@@ -a,b +c,d @@`) -- exact, not context-window
-    guesswork. None if the diff itself could not be produced.
+def _changed_lines_and_deletions(
+    ree_v3_root: Path, recorded_commit: str, ref: str, path: str,
+) -> Tuple[Optional[List[int]], bool]:
+    """(post-image changed line numbers, saw_pure_deletion_hunk) for recorded_commit..ref.
+
+    The second element matters only to Phase 1e(b): a pure-deletion hunk contributes no
+    post-image line, so a diff that removes ten lines of code and adds one comment would
+    otherwise look like a comment-only change. Callers that would return "provably inert" on
+    the strength of every remaining line being non-executable must bail when it is True.
     """
     rc, out, err = _run(
         ["git", "diff", "--unified=0", f"{recorded_commit}..{ref}", "--", path],
         cwd=ree_v3_root,
     )
     if rc != 0:
-        return None
+        return None, False
     lines: List[int] = []
+    saw_pure_deletion = False
     for hunk in re.finditer(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", out, re.MULTILINE):
         start = int(hunk.group(1))
         count = int(hunk.group(2)) if hunk.group(2) is not None else 1
         if count == 0:
-            continue  # pure deletion in the new file -- no new-file lines to check
+            saw_pure_deletion = True  # pure deletion in the new file -- no new-file lines
+            continue
         lines.extend(range(start, start + count))
-    return lines
+    return lines, saw_pure_deletion
+
+
+def changed_line_numbers(ree_v3_root: Path, recorded_commit: str, ref: str, path: str) -> Optional[List[int]]:
+    """New-file (post-image) line numbers touched by recorded_commit..ref for `path`, from
+    `git diff --unified=0` hunk headers (`@@ -a,b +c,d @@`) -- exact, not context-window
+    guesswork. None if the diff itself could not be produced.
+    """
+    return _changed_lines_and_deletions(ree_v3_root, recorded_commit, ref, path)[0]
 
 
 def file_is_default_off_only(
     ree_v3_root: Path, recorded_commit: str, ref: str, path: str,
     knob_names: Set[str], flag_status: Dict[str, bool],
     function_index: Optional[Dict[str, List[Any]]] = None,
+    externally_assigned: Optional[Set[str]] = None,
 ) -> Optional[bool]:
-    """True iff every changed line in `path` sits inside a confirmed-inert range for this run
-    -- either an in-place gated `if` body (Phase 1b) or a one-hop-inert function (Phase 1d,
-    only checked when `function_index` is given). False if at least one changed line is not
-    covered (a genuine live change). None if this could not be determined (not a .py file,
-    unreadable, undiffable, no changed lines) -- callers must treat None the same as False
-    (stays a candidate), never as True.
+    """True iff every EXECUTABLE changed line in `path` sits inside a confirmed-inert range for
+    this run -- an in-place gated `if` body (Phase 1b, extended by Phase 1e's cached-state
+    checks when `externally_assigned` is supplied) or a one-hop-inert function (Phase 1d, only
+    checked when `function_index` is given). False if at least one such line is not covered (a
+    genuine live change). None if this could not be determined (not a .py file, unreadable,
+    undiffable, no changed lines) -- callers must treat None the same as False (stays a
+    candidate), never as True.
+
+    Phase 1e(b): comment-only and blank changed lines are dropped before the coverage test --
+    they cannot alter behaviour, so requiring them to sit inside a gated body was never
+    meaningful. If that leaves nothing, the change is provably inert -- UNLESS the diff also
+    contained a pure-deletion hunk, whose removed code has no post-image line to test.
     """
     if not path.endswith(".py"):
         return None
-    lines = changed_line_numbers(ree_v3_root, recorded_commit, ref, path)
+    lines, saw_pure_deletion = _changed_lines_and_deletions(ree_v3_root, recorded_commit, ref, path)
     if not lines:
         return None
     source = _git_show(ree_v3_root, ref, path)
     if source is None:
         return None
-    ranges = inert_line_ranges(source, knob_names, flag_status)
+    non_executable = non_executable_line_numbers(source)
+    lines = [ln for ln in lines if ln not in non_executable]
+    if not lines:
+        # Every changed line is a comment or blank. Inert -- unless code was also deleted.
+        return None if saw_pure_deletion else True
+    ranges = inert_line_ranges(source, knob_names, flag_status, externally_assigned)
     if function_index is not None:
         ranges = ranges + one_hop_inert_line_ranges(source, function_index, knob_names, flag_status)
     if not ranges:
@@ -872,6 +1210,20 @@ def main() -> int:
             )
         return driver_source_cache[key]
 
+    externally_assigned_cache: Dict[Tuple[str, str], Optional[Set[str]]] = {}
+
+    def externally_assigned_for(commit: str, experiment_type: str) -> Optional[Set[str]]:
+        """Phase 1e conservatism 3 -- the attribute names THIS run's driver writes on a
+        non-`self` object, which the cached-state rule must not claim. Computed from the same
+        driver source the textual proxy uses, and independently of which flag_status source
+        won, since an external write invalidates the rule either way. None (unresolvable or
+        unparseable driver) disables the cached-state rule for this run."""
+        key = (commit, experiment_type)
+        if key not in externally_assigned_cache:
+            externally_assigned_cache[key] = driver_assigned_attributes(
+                driver_source_for(commit, experiment_type))
+        return externally_assigned_cache[key]
+
     def is_default_off_only_cached(commit: str, experiment_type: str, path: str, flag_status: Dict[str, bool]) -> Optional[bool]:
         # ONLY safe to cache by (commit, experiment_type, path): the textual-proxy
         # flag_status is a pure function of that key (same driver source for every
@@ -882,10 +1234,13 @@ def main() -> int:
         # this cache entirely rather than risk a stale cross-manifest hit. function_index is
         # the SAME object across the whole report run, so it is safe to fold into this key's
         # cached value without being part of the key itself.
+        # externally_assigned is likewise a pure function of (commit, experiment_type) -- it
+        # is derived from the same driver source -- so it needs no place in the key either.
         key = (commit, experiment_type, path)
         if key not in default_off_cache:
             default_off_cache[key] = file_is_default_off_only(
-                ree_v3_root, commit, args.ref, path, knob_names, flag_status, function_index)
+                ree_v3_root, commit, args.ref, path, knob_names, flag_status, function_index,
+                externally_assigned_for(commit, experiment_type))
         return default_off_cache[key]
 
     by_claim_default_off: Dict[str, List[Tuple[Path, Dict[str, Any], Optional[List[str]]]]] = {}
@@ -915,7 +1270,8 @@ def main() -> int:
                     flag_status = recorded_status
                     verdicts = [
                         file_is_default_off_only(
-                            ree_v3_root, commit, args.ref, f, knob_names, flag_status, function_index)
+                            ree_v3_root, commit, args.ref, f, knob_names, flag_status, function_index,
+                            externally_assigned_for(commit, experiment_type))
                         for f in relevant_files
                     ]
                 else:
@@ -943,7 +1299,7 @@ def main() -> int:
     print("  %4d  already actioned (pending_retest_after_substrate / superseded_by_substrate / superseded already set)" % len(already_actioned))
     print("  %4d  drift candidate manifest(s) (recorded substrate differs, not yet actioned)" % len(candidate_manifests))
     print("  %4d  (claim, run) pair(s) filtered OUTSIDE a declared substrate_scope (Phase 1)" % n_out_of_scope_pairs)
-    print("  %4d  (claim, run) pair(s) filtered as DEFAULT-OFF ONLY (Phase 1b, %d default-off knob(s) known)" % (n_default_off_pairs, len(knob_names)))
+    print("  %4d  (claim, run) pair(s) filtered as DEFAULT-OFF ONLY (Phase 1b/1d/1e, %d default-off knob(s) known)" % (n_default_off_pairs, len(knob_names)))
     print("  %4d  (claim, run) pair(s) used the RECORDED config (P1c, exact) rather than the driver-source proxy" % n_recorded_config_used)
     print("  %4d  (claim, run) pair(s) remain DRIFT CANDIDATES after scope + default-off filtering" % n_candidate_pairs)
     print()
