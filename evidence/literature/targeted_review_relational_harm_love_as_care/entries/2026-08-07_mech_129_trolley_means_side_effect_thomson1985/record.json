@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-08-07_mech_129_trolley_means_side_effect_thomson1985",
+  "timestamp_utc": "2026-08-07T23:42:06Z",
+  "claim_ids_tested": [
+    "MECH-129"
+  ],
+  "source": {
+    "title": "The Trolley Problem",
+    "authors": [
+      "Judith Jarvis Thomson"
+    ],
+    "year": 1985,
+    "venue": "The Yale Law Journal, 94(6), 1395-1415",
+    "doi": "10.2307/796133"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "Thomson's value to MECH-129 is structural, not topical. The trolley cases themselves are about harm-to-AGENT (death), so the paper is NOT direct evidence for the harm-to-agency category. What it supplies is a rigorously worked demonstration that HOW a harm is brought about -- as an intended means versus a foreseen side-effect, and as a doing versus an allowing -- is a morally load-bearing distinction that changes the verdict on otherwise identical outcomes. That is exactly MECH-129 discriminant 3 (whether an obstruction is incidental or constitutive). Held at 0.58 because the transfer is by analogy of the discriminant structure, not by shared subject matter, and Thomson's own conclusions are contested within the trolleyology literature.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Thomson herself later (2008) repudiated the permissibility verdict of the original Bystander case, showing the means/side-effect intuitions the paper trades on are not stable even for their author -- a REE substrate that hard-codes discriminant 3 (incidental vs constitutive obstruction) as a crisp binary inherits a distinction whose boundary cases the philosophical literature has not settled.",
+    "The doing/allowing and means/side-effect distinctions require attributing INTENT and identifying the causal role of the harm in the agent's plan; a goal-interference signal computed purely over trajectory geometry (did my path raise the cost of yours) cannot recover whether the obstruction was a means or a side-effect without a model of my own plan structure, so discriminant 3 is not computable from the obstruction signal alone."
+  ],
+  "tags": [
+    "mech_129",
+    "philosophy_of_harm",
+    "trolley_problem",
+    "means_vs_side_effect",
+    "doing_vs_allowing",
+    "incidental_vs_constitutive",
+    "discriminant_3"
+  ],
+  "mapping": {
+    "source_claim_statement": "Cases with identical outcomes (one dies so five live) can differ in permissibility depending on the causal structure by which the harm is produced: turning a trolley so it kills one as a foreseen side-effect of saving five (Bystander) is widely judged permissible, whereas pushing a person to their death to stop the trolley (or transplanting one to save five) uses the victim's death as a means and is judged impermissible. The Doctrine of Doing and Allowing and the means/side-effect distinction do genuine moral work.",
+    "ree_translation": "MECH-129 states that whether an action constitutes harm-to-agency depends inter alia on '(3) whether the obstruction is incidental or constitutive'. Thomson's means-versus-side-effect distinction IS that discriminant in its most rigorously argued form: a constitutive obstruction (the other agent's goal-failure is a means to, or the point of, my action) is a different moral -- and, MECH-129 argues, different architectural -- object from an incidental one (their goal-failure is a foreseen by-product of my own independent goal-pursuit). Thomson supplies the warrant that this incidental/constitutive cut is real and outcome-independent, which MECH-129 needs to justify representing obstruction with structure rather than as a scalar cost.",
+    "mapping_caveat": "Thomson's cases are about lethal harm-to-AGENT, so this is evidence for the DISCRIMINANT STRUCTURE MECH-129 imposes on obstruction, not for the harm-to-agency category itself. The means/side-effect and doing/allowing distinctions also presuppose intent-attribution and plan structure that a purely geometric goal-interference signal does not carry -- so Thomson identifies a discriminant REE must represent while implying it is not derivable from the obstruction magnitude alone.",
+    "source_context": "Analytic moral philosophy; thought-experiment methodology in normative ethics (trolleyology)"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Landmark, heavily cited. Mapping fidelity moderate-low: the transfer is structural (discriminant 3) not topical (the cases are harm-to-agent). Transfer risk elevated because the distinctions require intent/plan attribution not present in a geometric obstruction signal, and the trolley intuitions are themselves contested (Thomson recanted the Bystander verdict in 2008)."
+  }
+}

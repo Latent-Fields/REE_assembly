@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-08-07_mech_129_attainable_utility_preservation_turner2020",
+  "timestamp_utc": "2026-08-07T23:42:06Z",
+  "claim_ids_tested": [
+    "MECH-129"
+  ],
+  "source": {
+    "title": "Conservative Agency via Attainable Utility Preservation",
+    "authors": [
+      "Alexander Matt Turner",
+      "Dylan Hadfield-Menell",
+      "Prasad Tadepalli"
+    ],
+    "year": 2020,
+    "venue": "Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society (AIES '20)",
+    "doi": "10.1145/3375627.3375851"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "This is the highest-mapping-fidelity AI entry in the pull because it operates at REE's own level of description: a computable signal, added alongside the primary task reward, that measures IMPACT as the change an action makes to the ATTAINABLE UTILITY of a set of auxiliary reward functions -- i.e. the change in an agent's ability to still optimise a range of goals. Agency, formalised, IS attainable utility / optionality; harm-to-agency IS a reduction in it. AUP thus supplies MECH-129 a concrete instantiation of a distinct harm signal that is NOT the primary cost signal and is computed over reachability, which is precisely the 'distinct architecture' the claim asserts is required. Held at 0.72 (not higher) because as published AUP measures the agent's impact on its OWN auxiliary attainable utility (a proxy for reversibility/low-impact), not another agent's -- extending it to OTHER-agent attainable utility is the natural but non-trivial step MECH-129's requirement (a) demands and AUP does not itself provide.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "AUP as published penalises change to the AGENT'S OWN attainable utility over auxiliary rewards (a self-referential low-impact/reversibility proxy); applied to harm-to-agency it must be re-pointed at ANOTHER agent's attainable utility, which requires inferring that agent's reward set -- so the formalism is only a harm-to-agency signal once composed with other-agent goal modelling, and AUP alone would penalise the agent's own optionality loss, not the other's, a different quantity.",
+    "AUP's impact measure is acutely sensitive to the choice of auxiliary reward set and the baseline (stepwise vs inaction); Turner et al. show random auxiliary rewards suffice for LOW-IMPACT but the paper does not establish that any auxiliary set faithfully tracks a SPECIFIC other agent's goal -- so a harm-to-agency signal built on AUP inherits an unresolved baseline/auxiliary-selection problem (the same counterfactual-baseline issue flagged in the Feinberg entry)."
+  ],
+  "tags": [
+    "mech_129",
+    "ai_alignment",
+    "attainable_utility_preservation",
+    "impact_measure",
+    "optionality",
+    "reachability",
+    "harm_to_agency_formalized",
+    "low_impact"
+  ],
+  "mapping": {
+    "source_claim_statement": "An agent optimising a possibly-misspecified primary reward can be made conservative by penalising IMPACT, defined as the change its actions cause to the ATTAINABLE UTILITY of a set of auxiliary reward functions -- the agent's ability, after acting, to still achieve a range of (even randomly generated) goals. Preserving attainable utility preserves the option value needed for later correction and empirically avoids irreversible side-effects in gridworld benchmarks, even when the auxiliary rewards are uninformative about the true objective.",
+    "ree_translation": "MECH-129 asserts harm-to-agency is a DISTINCT signal type requiring a DISTINCT architecture -- computed not over the agent's own cost stream but over obstruction of goal-pursuit. AUP is the closest existing computational instantiation: agency, made precise, is ATTAINABLE UTILITY (the ability to still reach a range of goals), and harm-to-agency is a REDUCTION in attainable utility. AUP demonstrates that such a quantity is (i) computable, (ii) meaningfully separate from the primary task reward, and (iii) effective at suppressing irreversible impact -- exactly the shape of the second harm signal MECH-129 says must be added to E3 alongside the existing harm-to-agent signal, and computed over reachability/option sets rather than sensorimotor cost.",
+    "mapping_caveat": "As published, AUP measures the agent's impact on ITS OWN attainable utility over auxiliary rewards -- a self-referential reversibility/low-impact proxy -- not another agent's. Turning it into a harm-to-agency signal requires re-pointing the measure at ANOTHER agent's attainable utility, which needs that agent's (inferred) reward set: AUP supplies the signal FORM but not the other-agent goal model MECH-129 lists as requirement (a). The measure is also sensitive to the auxiliary-reward set and baseline choice, and is validated in small gridworlds; scaling and faithful other-agent auxiliary construction are open.",
+    "source_context": "AI safety / reinforcement learning; peer-reviewed at AIES 2020, validated on AI-safety gridworld side-effect benchmarks"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Peer-reviewed AIES paper with empirical gridworld validation. Mapping fidelity high because AUP operates at REE's level -- a distinct, computable impact signal over attainable utility/optionality, which is the formal shell of harm-to-agency. Transfer risk moderate: own-impact vs other-impact re-pointing, auxiliary/baseline sensitivity, and gridworld-scale validation."
+  }
+}

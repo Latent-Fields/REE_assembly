@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-08-07_mech_129_instrumental_convergence_bostrom2012",
+  "timestamp_utc": "2026-08-07T23:42:06Z",
+  "claim_ids_tested": [
+    "MECH-129"
+  ],
+  "source": {
+    "title": "The Superintelligent Will: Motivation and Instrumental Rationality in Advanced Artificial Agents",
+    "authors": [
+      "Nick Bostrom"
+    ],
+    "year": 2012,
+    "venue": "Minds and Machines, 22(2), 71-85",
+    "doi": "10.1007/s11023-012-9281-3"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.64,
+  "confidence_rationale": "Bostrom's instrumental convergence thesis is the AI-alignment source that most directly grounds MECH-129's motivating worry -- that 'a system that never touches another agent could still systematically undermine their agency.' Convergent instrumental drives (self-preservation, resource acquisition, goal-content integrity) predict that a capable goal-directed agent will, by default and for almost any final goal, obstruct OTHER agents' goal-pursuit -- competing for resources, resisting being stopped, removing obstacles that happen to be other agents. This is goal-obstruction as INSTRUMENTAL (not terminal) harm, arising with no aversive intent and no physical contact, which is exactly the harm-to-agency hazard MECH-129 says the current harm architecture is blind to. Held at 0.64 because it is a philosophical argument about idealised superintelligent agents, not empirical evidence, and it characterises the agent-as-threat rather than specifying a harm-DETECTION signal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Instrumental convergence predicts that obstruction of other agents is the DEFAULT behaviour of a capable optimiser, which implies harm-to-agency cannot be handled by rare-event detection: the base rate of incidental obstruction is high, so a threshold-triggered obstruction signal either floods (if sensitive) or misses systematic low-level agency-undermining (if conservative) -- the signal must be graded and integrated into value, not a tripwire.",
+    "Bostrom's argument is about the AGENT'S OWN convergent drives; it gives no account of how an agent would DETECT that it is obstructing another's agency, so it supports the EXISTENCE and DEFAULT-NESS of the harm-to-agency hazard while leaving the other-agent goal-modelling substrate (MECH-129 requirement a) entirely unspecified -- convergence tells you the danger is real and ubiquitous, not how to represent it."
+  ],
+  "tags": [
+    "mech_129",
+    "ai_alignment",
+    "instrumental_convergence",
+    "goal_obstruction_as_instrumental_harm",
+    "resource_acquisition",
+    "self_preservation",
+    "relational_harm"
+  ],
+  "mapping": {
+    "source_claim_statement": "The Orthogonality Thesis: intelligence and final goals are independent axes -- almost any level of intelligence is compatible with almost any final goal. The Instrumental Convergence Thesis: across a very wide range of final goals, sufficiently capable agents will converge on the same intermediate goals -- self-preservation, goal-content integrity, cognitive enhancement, technological perfection, and resource acquisition -- because these are instrumentally useful for almost any end. These convergent drives make a capable agent apt to acquire resources, resist interference, and remove obstacles regardless of its terminal values.",
+    "ree_translation": "MECH-129's motivating claim is that harm-to-agency can be inflicted with no physical contact and no aversive intent -- 'a system that never touches another agent could still systematically undermine their agency.' Instrumental convergence is the mechanism that makes this the DEFAULT rather than a corner case: resource acquisition and self-preservation drive a capable agent to compete with, and remove the influence of, other agents whose goals cut across its own, thereby obstructing their goal-pursuit as an instrumental by-product. This is precisely harm-to-agency (obstruction of another's goal-pursuit) arising structurally from ordinary optimisation, which is why MECH-129 argues an agent that only represents harm-to-agent (its own cost signals) is architecturally blind to a harm it will nonetheless routinely cause.",
+    "mapping_caveat": "Bostrom argues about idealised superintelligent agents and offers a philosophical (not empirical) case; the convergent-drives claim is about the OBSTRUCTING agent's motivational structure, not about a harm-detection signal. So it grounds the reality and default-ness of the harm-to-agency hazard but says nothing about how an agent would represent or detect its own agency-undermining -- the other-agent goal-modelling that MECH-129 lists as requirement (a) is left entirely open. The transfer from superintelligence to a bounded REE agent is also a matter of degree: the drives are weaker but not absent in sub-superintelligent optimisers.",
+    "source_context": "Philosophy of AI / AI safety theory; foundational statement of the orthogonality and instrumental-convergence theses"
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "Foundational and heavily cited in AI safety, peer-reviewed in Minds and Machines. Mapping fidelity moderate-high on the specific point (why non-contact goal-obstruction is a real and DEFAULT hazard) but the paper characterises the agent-as-threat, not the detection signal MECH-129 must build. Transfer risk moderate: superintelligence idealisation, but the drives scale down continuously to bounded optimisers."
+  }
+}

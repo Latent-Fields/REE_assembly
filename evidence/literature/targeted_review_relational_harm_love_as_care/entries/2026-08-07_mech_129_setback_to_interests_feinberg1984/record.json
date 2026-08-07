@@ -1,0 +1,47 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-08-07_mech_129_setback_to_interests_feinberg1984",
+  "timestamp_utc": "2026-08-07T23:42:06Z",
+  "claim_ids_tested": [
+    "MECH-129"
+  ],
+  "source": {
+    "title": "Harm to Others: The Moral Limits of the Criminal Law, Volume 1",
+    "authors": [
+      "Joel Feinberg"
+    ],
+    "year": 1984,
+    "venue": "Oxford University Press",
+    "url": "https://global.oup.com/academic/product/harm-to-others-9780195046649"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Feinberg's setback-to-interests analysis is the canonical philosophy-of-harm account and supplies MECH-129 its foundational move: harm is a setback to an INTEREST, not necessarily a physical hurt, so a non-contact obstruction of another's goal-pursuit is a genuine harm rather than a metaphor. His own two-way split -- welfare interests (minimal, generic conditions of any life-plan) versus ulterior interests (one's specific projects and goals) -- maps closely onto MECH-129's two categories (harm-to-agent = setback to welfare/bodily interests; harm-to-agency = setback to the ulterior interest in pursuing a specific goal). Held at 0.7 rather than higher because Feinberg is a normative account of criminal-law liability, not an architecture, and the welfare/ulterior split is adjacent to but not identical with agent/agency (a bodily assault sets back a welfare interest but is still harm-to-agent; only the goal-obstruction sense of ulterior-interest-setback is harm-to-agency).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Feinberg's account is counterfactual-comparative: X is harmed iff X is left worse off (in interest terms) than X would otherwise have been. Applied naively to a REE goal-interference signal this inherits the well-known baseline problem -- 'worse off than WHAT?' -- so an obstruction signal computed against a mis-specified counterfactual baseline (e.g. the other agent's default trajectory absent me) can register spurious harm-to-agency or miss real cases, the same baseline-selection hazard that plagues low-impact AI measures (see the Turner AUP entry).",
+    "Setback-to-interests is a non-normative core wrapped in a normative one (harm-as-wrong requires the setback be unjustified and rights-violating); MECH-129's raw goal-interference signal corresponds only to the non-normative core, so a substrate that fires on any obstruction without a consent/justification gate (discriminant 4) over-reports -- Feinberg himself excludes consented-to and justified setbacks from harm-as-wrong."
+  ],
+  "tags": [
+    "mech_129",
+    "philosophy_of_harm",
+    "setback_to_interests",
+    "welfare_vs_ulterior_interests",
+    "harm_to_agency",
+    "relational_harm"
+  ],
+  "mapping": {
+    "source_claim_statement": "To harm someone is to set back one of their interests -- to leave them worse off with respect to some interest than they would otherwise have been. Interests divide into welfare interests (the minimal, generic prerequisites of pursuing any goals at all -- health, bodily integrity, a modicum of resources and liberty) and ulterior interests (the specific projects, goals and aspirations that give a life its particular direction). Harm is thus not identical with physical hurt or damage: setting back an ulterior interest without touching the body is a genuine harm.",
+    "ree_translation": "MECH-129 asserts exactly Feinberg's decoupling of harm from physical contact. Harm-to-agent (SD-010/SD-011 cost signals localised to the agent's own sensorimotor trajectory) corresponds to setbacks to WELFARE interests -- damage to the minimal conditions of the agent's own operation. Harm-to-agency -- obstruction of another agent's goal-pursuit -- corresponds to setbacks to the other agent's ULTERIOR interest in reaching that goal. Feinberg supplies the philosophical warrant that these are two genuinely distinct kinds of setback (different objects of the interest, different conditions for the setback to occur), which is precisely MECH-129's 'distinct signal types requiring distinct architectures'.",
+    "mapping_caveat": "Feinberg's welfare/ulterior split is adjacent to, not congruent with, MECH-129's agent/agency split: a welfare-interest setback (a bodily assault) is still harm-to-AGENT, and only the goal-pursuit reading of ulterior-interest-setback is harm-to-AGENCY. The account is also normative-legal and counterfactual-comparative, importing a baseline-selection problem that a computational obstruction signal must solve independently. Feinberg says nothing about the SUBSTRATE by which one detects another's ulterior interest -- that is the other-agent goal-modelling requirement MECH-129 states separately.",
+    "source_context": "Analytic legal/moral philosophy; foundational treatise on the harm principle and the moral limits of criminalisation"
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.75,
+    "transfer_risk": 0.4,
+    "notes": "Canonical, field-defining. Mapping fidelity high because Feinberg's core distinction (harm as interest-setback, not physical hurt) IS the load-bearing premise of MECH-129, and his welfare/ulterior split parallels the agent/agency split. Transfer risk moderate: normative-legal -> computational-signal transfer, plus the counterfactual-baseline problem the account carries in."
+  }
+}

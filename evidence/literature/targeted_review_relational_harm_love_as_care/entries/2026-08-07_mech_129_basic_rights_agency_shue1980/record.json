@@ -1,0 +1,48 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_harm_love_as_care",
+  "entry_id": "2026-08-07_mech_129_basic_rights_agency_shue1980",
+  "timestamp_utc": "2026-08-07T23:42:06Z",
+  "claim_ids_tested": [
+    "MECH-129"
+  ],
+  "source": {
+    "title": "Basic Rights: Subsistence, Affluence, and U.S. Foreign Policy",
+    "authors": [
+      "Henry Shue"
+    ],
+    "year": 1980,
+    "venue": "Princeton University Press",
+    "url": "https://press.princeton.edu/books/paperback/9780691140681/basic-rights"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Shue's basic-rights framework supplies MECH-129 two things: (i) the concept of a PROTECTABLE INTEREST that is basic in the sense of being a precondition for enjoying every other interest -- security and subsistence -- which is the normative shape of 'agency' as something whose obstruction is a distinct category of harm; and (ii) his tripartite duty analysis (duties to AVOID depriving, to PROTECT from deprivation, and to AID the deprived) which shows that a single interest generates structurally different obligations, paralleling MECH-129's insistence that harm-to-agency needs its own architecture rather than reusing the harm-to-agent one. Held at 0.6 because Shue's project is the correlative-duty structure of human rights in political philosophy, several inferential steps from a per-timestep goal-interference signal, and 'agency' in Shue is closer to the standing capacity for rights-enjoyment than to a specific in-flight goal.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Shue's 'avoid depriving / protect / aid' triad implies that harm-to-agency has a POSITIVE-duty component (protect and aid the obstructed) that a purely aversive obstruction-avoidance signal cannot capture -- a REE substrate that only penalises the agent's OWN obstructive trajectories satisfies at most the 'avoid depriving' duty and remains architecturally blind to the protect/aid duties Shue argues are equally basic, so obstruction-avoidance under-implements the interest.",
+    "Shue's basic rights are STANDING capacities (security, subsistence) rather than in-flight goals; mapping harm-to-agency onto 'setback to a basic right' risks conflating obstruction of a momentary goal (which may be trivial or competitive) with deprivation of the enduring capacity for goal-pursuit -- only the latter is basic in Shue's sense, so an unweighted obstruction signal over-counts trivial interference as harm-to-agency."
+  ],
+  "tags": [
+    "mech_129",
+    "philosophy_of_harm",
+    "basic_rights",
+    "agency_as_protectable_interest",
+    "correlative_duties",
+    "avoid_protect_aid",
+    "relational_harm"
+  ],
+  "mapping": {
+    "source_claim_statement": "Some rights are BASIC: their enjoyment is a necessary condition for the enjoyment of all other rights, so that to be deprived of a basic right is to be undermined in the pursuit of everything else. Security and subsistence are the paradigm basic rights. Every basic right, whether 'negative' or 'positive' in the old typology, generates a threefold set of correlative duties: duties to AVOID depriving, duties to PROTECT from deprivation, and duties to AID the deprived. The negative/positive dichotomy therefore mis-describes rights; all basic rights impose both avoidance and provision duties.",
+    "ree_translation": "MECH-129 needs 'agency' to be the kind of thing whose obstruction is a distinct, weighty harm-category -- not merely one more cost. Shue's 'basic right' is exactly a protectable interest that is foundational because it conditions the pursuit of all others; the standing capacity to pursue goals (agency) is basic in precisely Shue's sense. His tripartite-duty analysis also directly supports MECH-129's architectural thesis: a single interest (agency) generates STRUCTURALLY DIFFERENT obligations (don't obstruct; prevent others' obstruction; help the obstructed), which cannot be discharged by a single avoidance mechanism -- mirroring the claim that harm-to-agency requires its own architecture rather than a re-use of the harm-to-agent cost signal.",
+    "mapping_caveat": "Shue's framework is about human rights and the correlative duties of institutions/persons in political philosophy; the transfer to a per-trajectory goal-interference signal is several inferential steps. Crucially, Shue's basic rights are STANDING capacities (security, subsistence), whereas MECH-129's harm-to-agency is often about a specific in-flight goal -- these coincide only when the obstruction threatens the enduring capacity for goal-pursuit, not merely a momentary aim. And Shue's protect/aid duties have no counterpart in a purely aversive obstruction-avoidance signal.",
+    "source_context": "Political philosophy / applied ethics of human rights and foreign policy; foundational text in the rights-and-duties literature"
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Field-defining in rights theory. Mapping fidelity moderate: Shue grounds 'agency as a protectable, foundational interest' and (via the duty triad) the 'needs its own architecture' claim, but 'agency' as standing-capacity is only a partial match for in-flight goal obstruction, and the positive protect/aid duties exceed what an obstruction-avoidance signal represents. Transfer risk elevated (human institutions -> agent substrate)."
+  }
+}
