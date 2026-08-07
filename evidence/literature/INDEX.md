@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:06:48.375893Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -11,6 +11,7 @@ Generated: `2026-08-07T19:48:16.303510Z`
 | `targeted_review_actor_critic_action_learning` | [`2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/record.json) | 10 | [`summary`](targeted_review_actor_critic_action_learning/entries/2026-07-13_actor_critic_rnd_unsupervised_exploration_burda2018/summary.md) |
 | `targeted_review_affect_stream_relief_safety_soothing` | [`2026-06-05_soothing_social_buffering_hpa_review_hostinar2014`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/record.json) | 5 | [`summary`](targeted_review_affect_stream_relief_safety_soothing/entries/2026-06-05_soothing_social_buffering_hpa_review_hostinar2014/summary.md) |
 | `targeted_review_arc017_vestibular` | [`2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/record.json) | 1 | [`summary`](targeted_review_arc017_vestibular/entries/2026-03-19_arc017_vestibular_lopez_blanke2011_thalamocortical/summary.md) |
+| `targeted_review_arc_005` | [`2026-08-07_arc_005_uncertainty_neuromodulation_yu2005`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/record.json) | 4 | [`summary`](targeted_review_arc_005/entries/2026-08-07_arc_005_uncertainty_neuromodulation_yu2005/summary.md) |
 | `targeted_review_arc_014` | [`2026-04-05_arc014_rangel_camerer_montague_2008`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/record.json) | 3 | [`summary`](targeted_review_arc_014/entries/2026-04-05_arc014_rangel_camerer_montague_2008/summary.md) |
 | `targeted_review_arc_022` | [`2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/record.json) | 6 | [`summary`](targeted_review_arc_022/entries/2026-04-04_arc_022_corticocortical_loops_prediction_residuals_mumford1992/summary.md) |
 | `targeted_review_arc_024` | [`2026-03-28_arc_024_threat_proximity_gradient_mobbs2007`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/record.json) | 3 | [`summary`](targeted_review_arc_024/entries/2026-03-28_arc_024_threat_proximity_gradient_mobbs2007/summary.md) |
