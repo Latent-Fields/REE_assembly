@@ -18,18 +18,22 @@
   "items": [
     {
       "flag_id": "GFLAG-0001",
-      "claim_ids": ["ARC-033"],
+      "claim_ids": [
+        "ARC-033"
+      ],
       "flag_type": "promotion_review",
       "summary": "ARC-033 (SD-003 counterfactual attribution requires a dedicated harm forward model E2_harm_s operating within the sensory-discriminative harm stream) is flagged as a stable-promotion candidate: status remains 'provisional' despite V3-EXQ-525 (2026-05-06, 4 seeds) passing all 6 pre-registered criteria on every seed tested -- hf_r2 = 0.9191 +/- 0.0037 (tight, non-bimodal, resolving the earlier EXQ-166 bimodal-encoder pattern), attribution_gap positive in all 4 seeds (0.102-0.126), intact_vs_ablated > 0 in 4/4 seeds. Flagged for /governance promotion review rather than promoted mid-digestion, per this project's standing rule against self-promotion during /thought-digestion.",
       "raised_by_session": "thoughts-intakes-4fd18d",
       "raised_at": "2026-08-06T18:27:55Z",
-      "status": "open",
-      "resolved_at": null,
-      "resolution_note": null
+      "status": "resolved",
+      "resolved_at": "2026-08-07T19:32:56Z",
+      "resolution_note": "Promoted ARC-033 provisional -> stable (/governance 2026-08-07): V3-EXQ-525 passed all 6 pre-registered criteria on all 4 seeds. claims.yaml status + live_status updated."
     },
     {
       "flag_id": "GFLAG-0002",
-      "claim_ids": ["INV-050"],
+      "claim_ids": [
+        "INV-050"
+      ],
       "flag_type": "promotion_review",
       "summary": "INV-050 (sleep phase architecture regulated by a third, Model-Error-Load drive) has now cleanly passed its core DVs (sws_power, replay_rate) 2/3 seeds in three consecutive autopsy-confirmed runs (V3-EXQ-845 2026-08-01, V3-EXQ-861 2026-08-01, V3-EXQ-861a 2026-08-02/03) with zero FAILs -- an unusually strong record for a 'believed'/candidate-stance claim. Flagged for /governance promotion review (candidate -> provisional/stable); NOT promoted during this digestion pass. Governance must weigh the non-independence of the three runs against the raw repeat-PASS count: all three share the IDENTICAL environment (CausalGridWorldV2 / SD-MEL-PRODUCER world_rule_shift knob) and the IDENTICAL 3 seeds (42, 123, 456), so per the project's own V3-EXQ-718a lesson this is one configuration confirmed three times, not three independent replications. Full non-degeneracy precondition (new seeds, and/or a held-out environment, and/or a consumer-absent control) is written into the claim's own what_would_answer in claims.yaml.",
       "raised_by_session": "cool-torvalds-a82359",
@@ -40,7 +44,9 @@
     },
     {
       "flag_id": "GFLAG-0003",
-      "claim_ids": ["SD-014"],
+      "claim_ids": [
+        "SD-014"
+      ],
       "flag_type": "evidence_discrepancy",
       "summary": "thought-digestion flagged a 4-vs-6 valence-vector discrepancy on SD-014 (hippocampal map nodes storing a 4-component valence vector [wanting, liking, harm-discriminative, surprise] vs. a proposed 6-component amendment adding VALENCE_EXCITEMENT/VALENCE_DREAD channels) for /failure-autopsy + /governance to reconcile, deliberately excluding SD-014 from that digestion pass's what_would_answer batch rather than resolving the discrepancy inline.",
       "raised_by_session": "thoughts-intakes-4fd18d",
