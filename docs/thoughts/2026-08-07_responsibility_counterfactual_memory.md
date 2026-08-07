@@ -141,6 +141,67 @@ Findings, for whoever picks this up next:
   at `select()` if this is ever built (currently discards losing candidates
   outright).
 
+## Addendum (same session, later): the "two memory types" framing
+
+While reviewing wave 11 of `/thought-digestion` (specifically INV-021's drafted
+falsifier, which lists "uncommitted exploratory evaluation leaving a lasting
+trace" as a candidate write-pathway exception to check), the user restated the
+above in a sharper, more general form:
+
+> "Ree needs to remember what it does through committed action but also what
+> it has thought but not committed to. Earlier work referenced this."
+
+This is not quite the same question as points 1-6 above (which are about
+responsibility specifically -- retaining WHICH alternative existed, evaluating
+it counterfactually, attributing outcomes to self). It's one level more basic:
+does REE have **two distinct memory types** at all -- (a) memory of what it
+did (committed, real-consequence, already exists: hippocampal/residue writes
+gated by MECH-094), and (b) memory of what it considered and did not do
+(currently: nothing retains this past the tick it was computed on, per the
+architectural-grounding findings above). Responsibility (points 1-6) is one
+consumer of memory type (b) if it existed; it is not the only possible reason
+to want it.
+
+**"Earlier work referenced this" -- confirmed, this is
+`[[feedback_imagination_learning_constraints]]`** (memory file
+`project_imagination_learning_constraints.md`, surfaced 2026-05-10, session
+`73bd79e3-6c91-4ba8-af2b-56b430db003d`). That memory's LICIT taxonomy already
+names the adjacent category directly: "Counterfactual exploration -- explore
+'what if' branches to surface implicit preferences without committing.
+Plausibly licit but the surfaced preferences are *priors for future waking
+testing*, not knowledge claims themselves." That entry answers the WHETHER
+question (is retaining/using uncommitted-thought content licit at all, and
+under what constraint) but stops short of specifying a MECHANISM -- it was
+written as a candidate ARC/MECH/Q registration shape, explicitly "do NOT
+register without dedicated lit-pull," and nothing has been registered since.
+
+**Three independent surfacing points now on record for the same gap, none yet
+converted into a registered claim:**
+1. `project_imagination_learning_constraints.md` (2026-05-10) -- the
+   LICIT/FORBIDDEN learning-from-imagination taxonomy; names "counterfactual
+   exploration -> priors for future waking testing" as licit in principle.
+2. This file's own "Architectural grounding" section (2026-08-07, earlier
+   this session) -- confirms no mechanism retains rejected E3 candidates past
+   the current tick; SD-033e/MECH-264 reduces to a transient scalar; ARC-085
+   is the nearest eventual host substrate but is V4/V5, unbuilt, and its
+   schema has no field for "sibling alternatives considered and rejected."
+3. INV-021's `what_would_answer` Leg 1 (2026-08-07, wave 11, this session) --
+   lists "uncommitted exploratory evaluation leaving a lasting trace" as a
+   candidate exception to the claim that all durable updates occur at
+   ARC-003 commit boundaries. If REE ever builds mechanism (b), INV-021
+   itself would need to be re-evaluated: a durable trace of an uncommitted
+   thought would be a counter-example to INV-021's exclusivity claim as
+   currently stated, UNLESS such traces are explicitly typed as a distinct,
+   non-responsibility-bearing update class (i.e. "durable but not
+   commit-boundary-gated AND not responsibility-bearing" is a coherent third
+   category INV-021 does not currently name).
+
+**Confabulation-risk framing (points 4-6 above) applies here with equal
+force, and MECH-322 is still the right template**, not a general relaxation:
+whatever mechanism (b) looks like, it needs the same bounded/audited/
+provisional-until-corroborated shape MECH-322 already demonstrates for the
+one exception REE currently allows through the MECH-094 write gate.
+
 ## Next steps (not done in this session)
 
 - Structured Stage 2 intake (`evidence/planning/thought_intake_2026-08-07_
@@ -149,6 +210,16 @@ Findings, for whoever picks this up next:
   `ARC-085`, and a considered claim-registration proposal (likely a new
   claim depending on `INV-012`, rather than folding into it, given how much
   distinct content this is).
+- Per the addendum above, the Stage 2 intake should ALSO reconcile against
+  `project_imagination_learning_constraints.md`'s pending candidate
+  registration (`ARC-XXX imagination_learning_constraint_principle` and its
+  Q-XXX/MECH-XXX children, "do NOT register without dedicated lit-pull") --
+  three independent sessions have now surfaced the same underlying gap
+  (uncommitted-thought retention) from three different angles (learning-
+  licitness, responsibility, INV-021's write-pathway exclusivity check)
+  without any of them converting it into a registered claim. That
+  convergence itself is worth naming explicitly in the Stage 2 intake as
+  evidence this is ripe, not merely recurring noise.
 - Whoever picks this up should re-verify the architectural grounding above
   against current `ree-v3` state before relying on it -- it reflects a
   single research pass on 2026-08-07, not a full audit.
