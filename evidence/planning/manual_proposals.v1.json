@@ -2135,6 +2135,75 @@
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting ARC-044's what_would_answer. No prior ARC-044-tagged experiment or proposal existed. Next step is /queue-experiment.",
       "backlog_id": "EVB-0584"
+    },
+    {
+      "proposal_id": "EXP-0583",
+      "claim_id": "ARC-028",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "seed_policy": "matched_shared_seeds",
+      "min_shared_seeds": 3,
+      "require_pre_registered_thresholds": true,
+      "objective": "First causal test of ARC-028's HippocampalModule-completion -> BetaGate coupling. The wiring is already implemented in ree-v3 source (agent.py:5280-5302, HippocampalModule.compute_completion_signal() -> BetaGate.receive_hippocampal_completion(), confirmed by direct source inspection and an independent 2026-06-02 code-trace audit) but has never been isolated in an ablation -- existing runs exercise it entangled with 4 other BetaGate release pathways (MECH-091 urgency-interrupt, V_s anchor invalidation, SD-034 closure operator).",
+      "design": "Controlled ablation, matched seeds/config: ON arm with the hippocampal-completion pathway live (completion_release_threshold at its configured value, e.g. 0.75) vs OFF arm with the pathway suppressed (completion_release_threshold pinned above 1.0, or the call site short-circuited), holding every other BetaGate release pathway at identical trigger conditions across both arms. Requires config.heartbeat.beta_gate_bistable=True (already set True in the MECH-090/SD-034 experiment family).",
+      "acceptance_checks": [
+        "Non-degeneracy: beta_gate_bistable=True, agent reaches beta_gate.is_elevated at least once, completion_signal takes a non-degenerate range of values (not saturating at 0 or 1) across trajectories.",
+        "CONFIRMING: BetaGate release timing/rate measurably and reproducibly contingent on completion_signal -- releases attributable to this pathway specifically (firing in the ON arm at ticks where no other pathway's trigger condition is independently met) occur at non-trivial rate, and suppressing the pathway measurably shifts release latency distribution or total release count.",
+        "FALSIFYING: release timing/rate statistically indistinguishable between ON and OFF arms once the other 4 pathways (per evidence/planning/mech090_release_path_audit_2026-06-02.md) are accounted for.",
+        "Report claim_ids_tested=['ARC-028'] and evidence_direction."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-07",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting ARC-028's what_would_answer. No new substrate build required -- config-level ablation on an already-built pathway. Next step is /queue-experiment.",
+      "backlog_id": "EVB-0585"
+    },
+    {
+      "proposal_id": "EXP-0584",
+      "claim_id": "ARC-038",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "seed_policy": "matched_shared_seeds",
+      "min_shared_seeds": 3,
+      "require_pre_registered_thresholds": true,
+      "objective": "Retest of ARC-038 (waking consolidation mode necessary for viability-map integration), previously blocked pending_retest_after_substrate on MECH-261 (mode-conditioned write gating). MECH-261 landed 2026-04-22 and has been stable substrate for 3+ months with no retest since. MECH-092's triggering half (V3-EXQ-761, PASS 2026-07-15) and ARC-018's map-writing leg (EXQ-042/053/120, unaffected by ARC-018's 2026-07-25 leg-scoped demotion) are both independently confirmed live.",
+      "design": "Reuses EXQ-355a's three-arm design: Phase0 harm rate (pre-consolidation baseline), Phase1 harm rate with waking-consolidation-mode ENABLED (offline_consolidation write-gate open per MECH-261, replay triggered per MECH-092 at low task-demand, no z_goal, map-geometry update from recent trajectory), Phase1 harm rate with waking-consolidation ABLATED (replay suppressed or write-gate held closed). Matched seeds (>=3, matching 355a).",
+      "acceptance_checks": [
+        "Non-degeneracy (drawn from why 355a was voided): confirm MECH-261's write gate is LIVE in-run via a direct gate-state check (open during ENABLED, closed during ABLATED), not inferred from harm-rate outcome. Bit-identical ENABLED=ABLATED despite this check passing = new degeneracy signature, self-route substrate_not_ready, not a FAIL.",
+        "CONFIRMING: Phase1-ENABLED harm rate meaningfully lower than Phase1-ABLATED (effect >= 0.8 SD of cross-seed delta) AND shows the predicted Phase0->Phase1 improvement while ABLATED does not.",
+        "FALSIFYING: Phase1-ENABLED and Phase1-ABLATED remain statistically indistinguishable on >=2/3 seeds despite the gate-state check passing.",
+        "Report claim_ids_tested=['ARC-038'] and evidence_direction. Recommend registering as a lettered successor (EXQ-355b) per the repo's bug-fix-vs-new-question convention -- same scientific question, previously blocked by a now-resolved implementation gap."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-07",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting ARC-038's what_would_answer. Next step is /queue-experiment.",
+      "backlog_id": "EVB-0586"
+    },
+    {
+      "proposal_id": "EXP-0585",
+      "claim_id": "SD-056",
+      "proposal_type": "experimental",
+      "target_repo": "ree-v3",
+      "priority": "medium",
+      "dispatch_mode": "discriminative_pair",
+      "seed_policy": "matched_shared_seeds",
+      "require_pre_registered_thresholds": true,
+      "objective": "Re-queue of the V3-EXQ-569e-equivalent Pathway A vs Pathway B mechanism probe SD-056's own evidence_quality_note names as its closing gate. The numerical-stability precondition (V3-EXQ-617, multi-step contrastive horizon h=5 + per-step output norm clamp) PASSED 2026-05-31, but the re-run itself was never queued -- ~7 weeks elapsed. The downstream target this was meant to unblock (ARC-065 GAP-A) closed 2026-06-17 via a DIFFERENT mechanism (V3-EXQ-569i, E3-side top-k shortlist conversion), which does NOT answer SD-056's own mechanism-attribution question (is it per-candidate z_world divergence from SD-056's contrastive training [Pathway A], or E2 rollout-landscape shift [Pathway B], or solely the independent shortlist fix, that produces the selected-action-entropy lift over the matched-noise control).",
+      "design": "Re-run the original V3-EXQ-569e 8-arm Pathway A vs Pathway B mechanism probe (SP-CEM main-path ON, MECH-341 OFF, MECH-313 OFF, MECH-269 default) at behavioural-runtime P1 budget (50 episodes / 200 steps) on the amended substrate (multistep contrastive horizon + output-norm clamp, both now available), with the three script-side acceptance-criteria fixes from the 569e autopsy Section 6 applied: (i) a genuine per-tick NaN-fix gate for C1 rather than 'at least one finite value per seed'; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric overflow cannot register as 'operative' divergence; (iii) resolution of the acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged.",
+      "acceptance_checks": [
+        "Non-degeneracy: clean numerics at the re-run's own measurement budget (max-NaN-fraction < 0.05, rollout magnitudes within 2x of the ARM_0 OFF baseline) -- must be independently reconfirmed, V3-EXQ-617's synthetic stress test does not guarantee real multi-arm training dynamics stay clean.",
+        "CONFIRMING (closes SD-056 v3_pending on this axis): re-run resolves non-degenerately (M1/M3/M4/M5 all finite/interpretable) AND attributes the selected-action-entropy lift over matched-noise control (>= 569c's ~2.4x / 0.30-nat floor) to Pathway A.",
+        "FALSIFYING (mechanism, not outcome): re-run resolves cleanly but shows Pathway B dominates, or the effect vanishes once decoupled from the top-k-shortlist lever -- GAP-A's closure is then properly credited entirely to the independent E3-side fix, not to SD-056's contrastive training objective.",
+        "ESCALATION (not falsification): probe again short-circuits to INSTRUMENTATION_FAILURE despite the amended substrate and script fixes -- falls back per SD-056's own contingency to PLSM lever A or SWIRL lever C.",
+        "Explicitly note in the manifest that V3-EXQ-569i's PASS is NOT a substitute for this run -- it validates a different, additional lever."
+      ],
+      "status": "proposed",
+      "added_utc": "2026-08-07",
+      "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment.",
+      "backlog_id": "EVB-0587"
     }
   ]
 }

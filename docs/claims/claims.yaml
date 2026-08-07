@@ -10631,6 +10631,43 @@
   location: docs/architecture/control_plane_heartbeat.md#arc-028
   source:
     - docs/architecture/control_plane_heartbeat.md
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the wiring this claim asserts is ALREADY BUILT in ree-v3, not
+    merely proposed -- HippocampalModule.compute_completion_signal() (ree_core/hippocampal/
+    module.py) feeds BetaGate.receive_hippocampal_completion() (ree_core/heartbeat/beta_gate.py),
+    called at agent.py:5280-5302 under an explicit "ARC-028 / MECH-105" comment, gated by
+    config.heartbeat.beta_gate_bistable (default False, but True in the MECH-090/SD-034
+    experiment family) and beta_gate.is_elevated. Confirmed by direct source inspection
+    (2026-08-07) and independently by evidence/planning/mech090_release_path_audit_2026-06-02.md.
+    A run is non-degenerate only if beta_gate_bistable=True, the agent actually reaches
+    beta_gate.is_elevated at least once (real committed episodes occur), and completion_signal
+    takes a non-degenerate range of values across trajectories rather than saturating at 0 or 1.
+    Existing runs with beta_gate_bistable=True already satisfy this; no new substrate build is
+    required.
+
+    CONFIRMING signature: a controlled ablation -- matched seeds/config, ON arm with the
+    hippocampal-completion pathway live (completion_release_threshold at its configured value,
+    e.g. 0.75) vs. OFF arm with the pathway suppressed (e.g. completion_release_threshold pinned
+    above 1.0) while holding every OTHER BetaGate release pathway (MECH-091 urgency-interrupt,
+    V_s anchor invalidation, SD-034 closure operator) at identical trigger conditions across both
+    arms -- shows BetaGate release timing and/or release rate measurably and reproducibly
+    contingent on HippocampalModule's completion_signal: releases attributable to this pathway
+    specifically (releases that fire in the ON arm at ticks where no other pathway's trigger
+    condition is independently met) occur at non-trivial rate, and removing the pathway measurably
+    shifts release latency distribution or total release count relative to the intact ON arm.
+
+    FALSIFYING signature: BetaGate release timing and rate are statistically indistinguishable
+    between the ON and OFF arms once the other release pathways are accounted for -- every release
+    attributed to the hippocampal-completion pathway would have fired anyway via one of the other
+    four release pathways audited in mech090_release_path_audit_2026-06-02.md, or completion_signal
+    never (or trivially rarely) crosses completion_release_threshold under realistic
+    trajectory-quality distributions. In that case the two gates remain functionally decoupled in
+    practice despite the code-level wiring existing.
+
+    KNOWN DOCUMENTATION DRIFT (not corrected here, flagged for a separate pass): MECH-105 and
+    MECH-290's own claims.yaml notes still describe this coupling as absent/untested ("without
+    ARC-028 wiring, this claim cannot be tested experimentally"). That is stale relative to the
+    code as of 2026-08-07.
   notes: >
     MECH-057b (hippocampal candidacy gate) and MECH-090 (BG beta propagation gate)
     are currently architecturally independent in V3. ARC-028 commits to coupling
@@ -15930,6 +15967,49 @@
     manifest. Same substrate gap confirmed: redesign requires consolidation-mode replay.
     EXQ-355a FAIL (2026-04-18, weakens): Optimizer-isolation fix (e3_consolidation_opt scoped to harm_eval_head only) did not restore differential signal. Phase0 harm=Phase1 harm=ablated harm (all 0.0130) across 3 seeds; C2 0/3 and C3 0/3. Architectural abstraction of waking-consolidation necessity may need refinement -- current implementation does not produce measurable dependence on consolidation mode.
     EXQ-355a reclassified non_contributory (2026-04-19, governance): after SD-032 cingulate integration substrate cluster registration, the bit-identical ENABLED=ABLATED Phase1 harm rate (per-seed match to 10+ decimal places) is understood as a write-gating-propagation failure, not evidence against ARC-038. Consolidation loss accumulates (harm_eval_head IS updated) but updates do not reach Phase1 online action selection. Missing substrate: MECH-261 (mode-conditioned write gating). pending_retest_after_substrate once MECH-261 implemented. Useful-before-implementation: lit-pull on waking-consolidation -> action-selection propagation (systems consolidation, hippocampal-cortical dialogue).
+    [thought-digestion currency check, 2026-08-07] MECH-261 landed 2026-04-22 (V3-EXQ-446/455/453,
+    promoted candidate->provisional 2026-04-24, provisional->stable 2026-04-25, conf 0.891) and
+    has held stable for over three months with NO ARC-038 retest since. ARC-018's viability-map
+    leg (the map ARC-038 needs to integrate into) is unaffected by ARC-018's 2026-07-25 leg-scoped
+    demotion (that demotion concerns only the separate explicit-rollout leg; EXQ-042/053/120
+    remain consistent PASSes on the leg ARC-038 depends on). MECH-092's triggering half is now
+    independently confirmed live (V3-EXQ-761, PASS/supports, 2026-07-15: "replay fires selectively
+    on quiescent E3 cycles via the real production path"). All three 2026-04-19 blockers have
+    moved and none has been re-tested against ARC-038 -- this claim is stale relative to available
+    substrate, not still blocked.
+  what_would_answer: >
+    ANSWER via EXQ-355a's own design, re-run with MECH-261 now operative (see the currency note
+    above): three-arm contrast of Phase0 harm rate (pre-consolidation baseline), Phase1 harm rate
+    with waking-consolidation-mode ENABLED (offline_consolidation write-gate open per MECH-261,
+    replay triggered per MECH-092 at low task-demand / beta elevation / no active commitment, no
+    z_goal, map-geometry update from recent trajectory per this claim's (a)-(c) specification),
+    and Phase1 harm rate with waking-consolidation ABLATED (replay suppressed or write-gate held
+    closed). Matched seeds across arms (>=3, matching 355a's seed count).
+
+    NON-DEGENERACY PRECONDITION (drawn directly from why 355a was voided, not usable as a
+    verdict): confirm MECH-261's mode-conditioned write gate is LIVE in-run -- i.e. the
+    offline_consolidation-mode write path is demonstrably open during ENABLED and closed during
+    ABLATED (a direct gate-state check, not inferred from the harm-rate outcome). If ENABLED and
+    ABLATED Phase1 harm rates are bit-identical (as in 355a, 10+ decimal places) despite this check
+    passing, that is a NEW degeneracy signature -- self-route substrate_not_ready_requeue and do
+    not record it as a FAIL against ARC-038.
+
+    CONFIRMING (waking-consolidation mode is architecturally necessary for viability-map
+    integration): Phase1-ENABLED harm rate is meaningfully lower than Phase1-ABLATED (effect >=
+    0.8 SD of the cross-seed delta), AND Phase1-ENABLED shows the predicted Phase0->Phase1
+    integration improvement (harm rate drops from Phase0 baseline) while Phase1-ABLATED does not
+    (harm rate stays at or near Phase0 baseline -- the ABLATED arm should now reproduce 355a's
+    non-propagation pattern deliberately, as the control, rather than as an unexplained
+    degeneracy).
+
+    FALSIFYING (waking-consolidation mode is NOT architecturally necessary / does no integration
+    work distinct from other write paths): even with the MECH-261 gate confirmed live and MECH-092
+    confirmed triggering, Phase1-ENABLED and Phase1-ABLATED harm rates remain statistically
+    indistinguishable (no meaningful delta, gate-state check passing so this cannot be attributed
+    to the 355a degeneracy) on >=2/3 seeds -- the map integrates (or fails to) regardless of
+    whether waking-consolidation-mode gating is engaged, indicating either the map updates through
+    some other path or the task-focused/consolidation replay-mode distinction ARC-038 asserts does
+    no architectural work.
   evidence: []
 
 - id: ARC-039
@@ -27698,6 +27778,72 @@
   depends_on:
     - INV-025
     - INV-028
+  epistemic_category: substrate_conditional
+  implementation_phase: v5
+  what_would_answer: >
+    OUT OF DOMAIN (axiom leg): INV-070 as literally stated -- that misclassification of similarity
+    and threat is MORALLY relevant, not merely practically inconvenient, because the agent is
+    responsible for refining models it necessarily acts under -- is a foundational ethical premise
+    (Axiom 4 of the 10-axiom extension). No REE substrate at any level (V3, V4, or V5) can confirm
+    or falsify whether an epistemic failure carries MORAL weight in the metaphysical sense the
+    axiom asserts, as opposed to merely producing a functional analogue (a behavioural cost) of
+    that weight. This leg is out of domain in the same sense as INV-025/026/027/028/029/096.
+
+    LEG 1 (DERIVATIONAL -- resolves by argument, not experiment): does INV-070 hold together as
+    the loophole-closing step its notes claim, without contradicting a sibling axiom? INV-070's
+    stated function is narrow and checkable by inspection: INV-025 (Axiom 3) establishes only that
+    action is model-mediated, and is silent on whether inference quality is itself an obligation;
+    INV-070 adds exactly that obligation, closing the "I acted under an honest model, therefore my
+    violence was justified" loophole INV-028 (Axiom 7, "others are sufficiently self-like") would
+    otherwise leave open, since INV-028 says nothing about whether the "sufficiently self-like"
+    judgement was arrived at responsibly. CONFIRMING: INV-070 is shown internally consistent with
+    INV-025 and INV-028 -- it strictly ADDS an inference-quality obligation without altering what
+    either dependency asserts -- and demonstrably closes the honest-model loophole without
+    reopening a different one (e.g. without licensing paralysis-by-uncertainty, or without making
+    INV-025's "must act under models" impossible to satisfy in finite time). FALSIFYING: a coherent
+    counterexample exists where treating misclassification as morally relevant (a) axiom-conflicts
+    with INV-028 or another sibling (e.g. by making "sufficiently self-like" recursively
+    unknowable, so INV-028's protection can never engage), or (b) reintroduces a perverse incentive
+    the loophole-closing was meant to avoid (e.g. an agent incentivised to avoid ever forming a
+    similarity/threat judgement at all, to avoid the responsibility INV-070 attaches to getting one
+    wrong -- epistemic paralysis as evasion). This leg is testable now, by argument, independent of
+    substrate.
+
+    LEG 2 (SUBSTRATE-EMPIRICAL, currently SUBSTRATE-BLOCKED, doubly so): what IS architecturally
+    testable is narrower -- does REE's harm/residue/ethical-cost machinery implement a
+    DISTINGUISHABLE causal pathway from MISCLASSIFICATION of similarity/threat specifically (not
+    just any prediction error) into ethical cost, over and above that error's ordinary role as a
+    learning signal? CONFIRMING: a similarity/threat estimate that is measurably WRONG relative to
+    a later-revealed ground truth (e.g. an agent modelled as threatening that in fact was not, or
+    vice versa) drives a distinguishable increment in harm_eval/z_harm/residue-field cost, over and
+    above the increment an equal-magnitude but non-classification prediction error of the same kind
+    would produce -- i.e. misclassification specifically is weighted as ethically costly, not
+    merely absorbed into E1/E2/E3's ordinary forward-model loss. FALSIFYING: misclassification of
+    similarity/threat has NO distinguishable ethical-cost pathway in the substrate -- it is trained
+    and weighted exactly like any other prediction error (as currently: z_harm_a/z_harm_s train via
+    plain MSE, ree_core/predictors/e2_harm_a.py:186-204 and e2_harm_s.py:158-178, with no separate
+    misclassification label or extra weighting term), with no invariant enforcing the
+    moral-relevance INV-070 asserts.
+
+    NON-DEGENERACY PRECONDITION for Leg 2 (currently UNMET, on an axis more basic than INV-028's/
+    INV-096's own gap -- confirmed by direct grep, 2026-08-07, reproducing and extending their
+    audit): INV-070 requires not only the ARC-010/ARC-047 multi-agent substrate INV-028/INV-029/
+    INV-096 are already blocked on (a SocialGridWorld or equivalent, where a second agent's
+    harm/threat is attributable to the tested agent's own action -- ARC-047 status: candidate,
+    confidence 0.0, implementation_phase v5), but a similarity/threat CLASSIFIER for that other
+    agent to exist in the first place. Neither exists in ree_core/ today: zero matches for
+    mirror_model/shadow_bundle/other_self/ARC-010; the only "similarity" computations found are
+    unrelated cosine-similarity uses (safety-prototype gating, harm-stream regularisation,
+    memory-slot diversity); the only "threat" computation is accumulated internal hazard magnitude
+    (z_harm_a), never a classification of another agent's intent. So the reframed leg is not merely
+    awaiting a multi-agent world to run an experiment in (INV-028's gap) -- it is awaiting the
+    classifier the experiment would need to misfire in the first place.
+
+    PRECEDENT NOTE: applies the epistemic_category=substrate_conditional template established for
+    INV-028/INV-029/INV-096 (per INV-025's own caution, not mechanically -- checked here via direct
+    grep, not assumed) to this, the fourth of the ten-axiom-extension claims (INV-070, INV-071,
+    INV-072) to be digested. Cross-referenced against INV-096's near-identical Leg 2 structure (the
+    paired Axiom 10/INV-071 language-repair claim) rather than re-derived.
   notes: >
     The 10th-axiom extension of the five-axiom ethical foundation (INV-025-029).
     Axiom 3 (INV-025) establishes that action is model-mediated but does not constrain
@@ -42533,6 +42679,37 @@
     Three script-side acceptance-criteria fixes bundled with the post-amend
     re-run per autopsy Section 8 sequencing. Artifact:
     evidence/planning/failure_autopsy_V3-EXQ-569e_2026-05-31.{md,json}.
+    [thought-digestion currency check, 2026-08-07 -- CORRECTS the framing above] V3-EXQ-617
+    (multi-step stability substrate-readiness diagnostic) PASSED 2026-05-31T11:31Z: 0/25728
+    NaN/Inf cells at a 200-step stress horizon under 20x weight amplification, 0/1608
+    norm-clamp-bound violations, bit-identical OFF backward-compat confirmed. But the
+    "569e-equivalent Pathway A vs B re-run" this note names as the closing gate was NEVER
+    actually queued -- ~7 weeks passed with no re-run, despite the numerical precondition being
+    met the same day. The 569 lineage continued as 569f/g/h/i (2026-06-10 -> 2026-06-16), but
+    those test a DIFFERENT lever (an E3-side top-k shortlist conversion mechanism), not the
+    SD-056-specific Pathway A/B dissociation. The downstream target this was meant to unblock,
+    ARC-065 GAP-A, closed 2026-06-17 via V3-EXQ-569i's PASS on that different lever -- so "569c
+    headline + 569d PASS remain load-bearing on ARC-065 GAP-A pending the amend-and-re-run
+    cycle" above is now STALE: GAP-A's closure is properly credited to the top-k-shortlist fix,
+    NOT to a resolution of whether SD-056's own Pathway A (per-candidate divergence) or Pathway
+    B (rollout-landscape shift) is what's doing the work. substrate_queue.json's SD-056
+    amend_history entry (status: implemented, ready: false) still lists the same
+    next_validation text, untouched since 2026-05-31. See digestion_note below.
+  digestion_note: >
+    [2026-08-07, thought-digestion] The falsifier this claim needs already exists in full
+    (V3-EXQ-569e's own script + the three script-side acceptance-criteria fixes named in its
+    autopsy Section 6: (i) a genuine per-tick NaN-fix gate for C1 rather than "at least one
+    finite value per seed"; (ii) a sanity ceiling on the C3 rollout-divergence gate so numeric
+    overflow cannot register as "operative" divergence; (iii) resolution of the
+    acceptance_criteria-dict-vs-verdict_cell contradiction the autopsy flagged) and its
+    precondition (V3-EXQ-617 numerical stability) is already met -- but it was never re-queued,
+    and the downstream track it fed (ARC-065 GAP-A) has since closed via an unrelated mechanism
+    without answering SD-056's own mechanism-attribution question. Defer a full what_would_answer
+    until either (a) the 569e-equivalent re-run is queued and reports, or (b) governance
+    explicitly re-scopes what SD-056 needs to show given GAP-A's independent closure. Do NOT
+    treat V3-EXQ-569i's PASS as evidence for or against SD-056 -- it validates a different lever
+    and cannot dissociate Pathway A from Pathway B. Remove this note once the re-run is queued
+    (EXP-0585, minted in manual_proposals.v1.json) and reports, or governance re-scopes.
   notes: >
     Plan-of-record memo: REE_assembly/evidence/planning/e2_action_divergence_substrate_design.md
     (commissioned 2026-05-28T17:43:10Z by session
@@ -58337,6 +58514,58 @@
     - INV-058
     - INV-060
   location: docs/architecture/externalised_dmn_play_private_speech.md#arc-090
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: ARC-090 requires TWO absent pieces of V3 substrate before any run
+    can be informative. (1) A staged developmental curriculum capable of running a play-type
+    progression (sensorimotor -> constructive -> pretend -> games-with-rules -> cooperative, per
+    INV-060/MECH-197) with the play frame tag mechanism (ARC-049's play_frame_tag/frame_open/
+    frame_close) actually implemented and independently observable -- confirmed absent by direct
+    search of ree_core (2026-08-07): zero occurrences of play_frame_tag, frame_open, frame_close,
+    or ambiguity_threshold anywhere in the substrate (also reconfirmed by ARC-049's and INV-058's
+    own what_would_answer entries). (2) A self-narration control surface that can externalise the
+    candidate DMN-analog functions (self-reference, future simulation, counterfactual thought,
+    narrative construction) as inspectable, measurable output during play -- the one V3-compatible
+    reduced form is MECH-384's traceable self-narration field set, itself unbuilt: a direct grep of
+    ree_core/ and experiments/ for self_narration, private_speech, and narration_control returns
+    zero hits (checked 2026-08-07). Both pieces are required jointly: without (1) there is no
+    externalised play frame to instrument; without (2) any DMN-function correspondence in play
+    cannot be measured as distinct from ordinary behavior. A run attempted before both exist should
+    self-route substrate_not_ready, not count as a verdict.
+
+    NOT WEAKENED BY ARC-014's 2026-08-02 promotion: ARC-014 (the internal-DMN end-state this claim
+    asserts play compresses INTO) gained confirming evidence (V3-EXQ-880 PASS, commitment
+    suppression under simulation mode) since this claim's last review. That strengthens the target
+    state's own standing but does not touch the externalised-precursor mechanism ARC-090 asserts --
+    the precondition gap is entirely on the play/self-narration side, which is unaffected.
+
+    CONFIRMING signature (once both preconditions are built): during pretend-play episodes
+    (MECH-198's hypothesis-tag x play-frame-tag intersection), the agent's externalised behavior --
+    narrated self-talk, object substitution ("this block is a house"), role assertion ("I am the
+    doctor"), and spoken future/counterfactual statements -- recruits the SAME underlying machinery
+    that ARC-014/MECH-029 later instantiate as internal DMN replay (the same hippocampal-replay-
+    adjacent generative call site and the same E3/reflective evaluation circuitry ARC-014's Leg A
+    and MECH-029 already require), rather than an unrelated behavioral system -- measured as
+    structural correspondence (shared representational content, shared activation of the
+    replay/evaluation call sites) between externalised-play episodes and internal-DMN episodes for
+    matched scenario content. AND a developmental compression signature: across the play-type
+    progression / developmental stages, externalised markers (frequency of spoken self-narration,
+    object substitution, overt role assertion) systematically DECREASE while internal-DMN activity
+    (per ARC-014/MECH-029's own readouts -- replay frequency, E3 evaluation engagement on
+    non-externalised trajectories) systematically INCREASES for functionally equivalent tasks,
+    consistent with a genuine externalise-then-internalise handoff rather than two independently-
+    scaling capacities that happen to co-occur.
+
+    FALSIFYING signature: externalised play-phase behavior and later internal-DMN operation show NO
+    structural correspondence -- they recruit distinct, non-overlapping mechanisms (e.g. play
+    narration is driven by a separate motor/language-output pathway with no shared trace to the
+    hippocampal-replay/E3-evaluation circuitry ARC-014/MECH-029 depend on) -- OR there is no
+    compression signature: externalised-play markers and internal-DMN activity co-occur or scale
+    together (both increase, both decrease, or vary independently) across development rather than
+    trading off, indicating externalised play is a parallel capacity unrelated to internal-DMN
+    development rather than its developmental precursor. Either result would mean ARC-090's
+    externalise->internalise bridging claim fails even though the two endpoints (ARC-049/MECH-198
+    play mechanics; ARC-014/MECH-029 internal DMN) may independently remain sound -- see MECH-381
+    for the narrower general-compression-ladder claim this would also bear on.
   notes: "Umbrella for the 2026-06-08 play/private-speech/externalised-DMN intake. The internal DMN (ARC-014 safe imagination without commitment; MECH-029 reflective/moral evaluation of replay) is the END-STATE; this claim asserts that in development the same functions first run EXTERNALLY -- in play, where simulation is pushed outward into objects/roles/movement/spoken narration and temporary as-if worlds ('this block is a house'; 'I am the doctor'; 'the dragon is coming'). The organism can let-this-be-true-temporarily, act inside it, observe what follows, and exit without catastrophe -- a developmental root of safe counterfactual cognition. NEW relative to existing claims: neither the internal-DMN claims (ARC-014/MECH-029) nor the play cluster (ARC-049/050, MECH-194-199, INV-058-060) currently frames play AS externalised DMN, nor the externalise->internalise compression. The existing play cluster covers the bounded-low-stakes-learning, synthetic-signal, and bilateral-frame-tag mechanics (cross-ref, not duplicated here). substrate_conditional + implementation_phase v4: depends on a staged developmental curriculum and a self-narration control surface absent in V3, so it is correctly invisible to the IGW proposal lane (a V3 probe would be vacuous). Off the V3 green-board critical path. Reaped from docs/thoughts/2026-06-08_play_private_speech_externalised_dmn.md."
 - id: MECH-380
   title: "Private speech is the external phase of a cognitive-control system: overt self-narration regulates attention, action, affect, and task sequence as an inspectable control surface, and the Vygotskian internalisation ladder (other-regulation -> overt self-regulation -> inner speech -> compressed control) is the developmental route by which that external control surface becomes internal."
