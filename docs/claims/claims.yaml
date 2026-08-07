@@ -60,6 +60,82 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of live coherence-relevant
+    computations across the substrate, not by a single formal quantity
+    -- this is a GENERAL claim that "coherence" must incorporate SOME
+    temporal structure across multiple timesteps, denying that coherence
+    could be adequately captured by a purely single-frame/instantaneous
+    metric. This is DISTINCT from and BROADER than INV-067 (the SPECIFIC
+    formal V(t) verisimilitude definition and its phase-alignment term
+    P_i(t)), INV-068 (D_V temporal depth), and ARC-053 (the TCL
+    architectural loop) -- those ask whether a SPECIFIC literal
+    oscillatory-phase-alignment formalism exists; this claim asks the
+    lower-bar question of whether ANY coherence-relevant quantity used
+    in a consequential decision incorporates cross-timestep information
+    (EMA, rolling window, multi-step trajectory cost, cross-cycle
+    vintage), as opposed to being recomputed fresh from a single
+    snapshot with no memory. A substrate can confirm this claim while
+    INV-067's stricter literal-phase-alignment claim remains
+    unbuilt/blocked.
+
+    NON-DEGENERACY PRECONDITION: the audit must find at least one live,
+    consequential-decision-facing coherence-or-verisimilitude-like
+    quantity actually computed and consumed in the current step loop
+    (not merely a config field, a dead code path, or a diagnostic-only
+    counter).
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): three
+    independent, live, consequential coherence-relevant quantities
+    incorporate multi-timestep information:
+      (1) MECH-269 per-stream V_s (ree_core/hippocampal/module.py,
+          update_per_stream_vs) is EMA-smoothed across ticks
+          (per_stream_vs = (1-tau)*prev + tau*score) and gates a
+          consequential decision -- ree_core/regulators/
+          vs_rollout_gate.py substitutes held (temporally-stale)
+          snapshots for current latents at E1/E2 rollout call sites when
+          a stream's temporally-integrated trust score drops.
+      (2) ree_core/latent/multi_content_theta_packet.py's
+          currency_coherence() is computed from each stream's
+          ThetaPacketVintage(is_current, age_ticks) -- age_ticks is
+          cycles since the carried value was last current, i.e.
+          inherently a cross-tick provenance record. It directly biases
+          action selection via compose()/compose_per_candidate_
+          coherence() (MECH-294).
+      (3) ree_core/predictors/e3_selector.py's compute_reality_cost
+          computes coherence_cost as a smoothness term over the FULL
+          rollout horizon -- multi-step, not single-frame -- feeding
+          trajectory selection cost J.
+      Additionally, MECH-089's ThetaBuffer confirms a rolling
+      aggregation over E1 outputs before E3 sampling is live and
+      measured, while explicitly disclaiming literal oscillatory phase-
+      coupling as a requirement in the ANN substrate -- this is the
+      weaker, ALREADY-SATISFIED half of INV-002's claim, distinct from
+      the stronger literal-phase claim INV-067/ARC-053 test.
+      ree_core/latent/cross_stream_binder.py additionally implements a
+      literal cos(2*pi*t/theta_period) theta-phase gate on cross-stream
+      coupling strength; its FIXED mode measurably lifted coherence-
+      specificity (V3-EXQ-641a 1/6 -> V3-EXQ-720 3/6) without clearing
+      the full SPEC gate -- this is the closest live approach to
+      INV-067's literal formalism and remains genuinely partial,
+      consistent with (not contradicting) INV-067/ARC-053's stricter
+      finding.
+
+    FALSIFYING evidence: every coherence/representation-quality/
+    verisimilitude quantity actually consumed for a consequential
+    decision anywhere in the live substrate is found to be recomputed
+    fresh from a single timestep's observation with no EMA, no rolling
+    window, no cross-cycle vintage/age state, and no multi-step
+    trajectory aggregation.
+
+    CONFIRMING evidence (already met, per the audit above): at least one
+    live, consequential-decision-facing coherence-relevant quantity
+    incorporates temporal/sequential information via EMA, rolling
+    window, cross-cycle vintage, or multi-step trajectory cost. This
+    does NOT require literal oscillatory phase-alignment -- that is
+    INV-067/ARC-053's separate, stricter, currently-blocked claim about
+    a specific formalism, not a precondition for this general claim.
   location: docs/invariants.md#inv-002
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -549,6 +625,85 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live attention-ALLOCATION
+    code path specifically -- narrower than INV-008 (which audited
+    precision-routing infrastructure generally). INV-009 asks whether
+    ATTENTION (selecting/weighting what gets processed or written) is
+    realized as a continuous gain/weighting mechanism, or as discrete
+    symbolic control (an enum-keyed dispatch or if/switch that
+    categorically picks one mode/stream with no gradation).
+
+    NON-DEGENERACY PRECONDITION: the audit must inspect a live,
+    actually-exercised attention-allocation path -- not a mechanism
+    merely declared in an enum or present in code that nothing in the
+    live agent loop calls.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): three live,
+    actually-exercised attention-relevant mechanisms were traced, all
+    continuous:
+      (1) SD-016 (status: implemented) -- ree_core's E1 frontal cue-
+          indexed ContextMemory query path implements attention
+          literally as transformer-style query-key-softmax retrieval:
+          q = world_query_proj(z_world), k = key_proj(context_memory.
+          memory), weights = softmax(q @ k.T / scale). Continuous by
+          construction. (Its empirical DIFFERENTIATION has failed in
+          some runs -- V3-EXQ-418e/f found attn_entropy pinned at the
+          uniform rail ln(16) -- but that is a performance defect in a
+          continuous mechanism, not evidence of a discrete one
+          underneath.)
+      (2) MECH-261 (status: stable, conf 0.891) --
+          ree_core/cingulate/salience_coordinator.py's
+          SalienceCoordinator. "Operating mode is implemented as a soft
+          probability vector ... not a one-hot categorical."
+          operating_mode = softmax(logits, temperature); write_gate(
+          target) = sum_mode operating_mode[mode] * gate_weights[
+          target][mode] -- continuous, read directly by consumers. A
+          discrete current_mode label exists (argmax + hysteresis) but
+          is diagnostic-only; write_gate() never reads it.
+      (3) INV-008's confirmed per-channel precision gains (LatentStack,
+          five independent nn.Parameter-backed channels).
+
+    THE ONE DISCRETE/SYMBOLIC CANDIDATE FOUND, AND WHY IT DOES NOT
+    CURRENTLY BEAR ON THIS CLAIM: ree_core/claustrum/{control_demand.py,
+    coalition_templates.py, coalition_controller.py} (SD-091/MECH-481)
+    implements a genuinely categorical dispatch -- ControlDemandType is
+    a 10-member Enum, and request_coalition(demand_type) looks up
+    COALITION_TEMPLATES[demand_type], a branch on an enum key, not a
+    gradient. This is exactly the kind of mechanism that WOULD falsify
+    this claim if it were live. It is not: self.coalition defaults to
+    None (config flag off by default), and request_coalition() is never
+    called anywhere in agent.py or any other live ree_core module --
+    only from the module's own tests and its own falsifier experiment
+    driver. The module's own docstrings confirm this is deliberately
+    unwired pending a follow-up pass. write_gate() IS called at 3 live
+    consumer sites but always against an empty _active list, i.e.
+    permanent identity no-ops today. This fails the non-degeneracy
+    precondition and is therefore NOT counted as confirming or
+    falsifying -- it is a WATCH ITEM: if/when SD-091 steps 4-5 land and
+    request_coalition() is ever called from a live classifier, this
+    claim must be re-audited, since that would introduce a genuinely
+    two-layer structure (discrete classification -> continuous
+    execution) this audit has not had to resolve.
+
+    AUDIT TARGET for re-check: ree_core/cingulate/
+    salience_coordinator.py (write_gate, operating_mode),
+    ree_core/predictors/ (SD-016 query/key/softmax path),
+    ree_core/claustrum/ (re-grep for new request_coalition() callers),
+    ree_core/latent/stack.py.
+
+    FALSIFYING evidence: a live, actually-called attention-allocation
+    path is found where WHICH stream/mode/target receives processing
+    resources is determined by a discrete/categorical branch that picks
+    ONE target categorically with no continuous gradation available, AND
+    that branch is reachable from the live agent loop.
+
+    CONFIRMING evidence: the traced live attention-allocation paths
+    (SD-016 softmax retrieval, MECH-261 soft-probability write-gating,
+    INV-008's per-channel precision gains) continue to show continuous,
+    gradable weighting with no reachable discrete branch determining
+    allocation outright. This is the CURRENT confirmed state.
   location: docs/invariants.md#inv-009
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -22124,6 +22279,68 @@
   depends_on:
     - MECH-094
     - ARC-049
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: this claim requires TWO substrates, neither of
+    which exists in V3. (a) A play-frame-signaling channel distinct from
+    MECH-094's hypothesis tag -- the play_frame_tag / L1 (frame_open/
+    frame_close) / L3 (ambiguity_threshold-triggered repair) architecture
+    named in ARC-049's notes. Confirmed UNIMPLEMENTED by direct search of
+    ree_core (2026-08, re-confirmed this session): zero occurrences of
+    play_frame_tag, frame_open, frame_close, or ambiguity_threshold
+    anywhere in the substrate. (b) A multi-agent substrate in which a
+    second, autonomous agent can independently generate, monitor, or
+    withdraw a frame-maintenance signal. No such substrate exists
+    anywhere in ree_core; the only proposal (ARC-047, SocialGridWorld) is
+    status: candidate, confidence: 0.0, implementation_phase: v5.
+
+    NON-DEGENERACY PRECONDITION: this is stricter than ARC-049's own
+    gate. ARC-049 has a testable V3-degenerate slice (single-agent,
+    experimenter-scripted signal, testing whether the tag is load-bearing
+    for the agent's OWN policy) precisely BECAUSE that slice does not
+    require a second agent. INV-059's claim is specifically about the
+    MUTUAL/BILATERAL property -- "unilateral... without partner
+    agreement" is only a meaningful distinction when there is a partner
+    capable of independently agreeing or disagreeing. With a scripted,
+    complicit experimenter standing in for the partner (V3's degenerate
+    case), the "partner" can never withhold or withdraw its signal except
+    on the experimenter's own schedule -- so unilateral assertion and
+    mutual agreement are experimentally indistinguishable. INV-059
+    therefore has NO V3-testable slice at all, unlike ARC-049; both
+    preconditions (a) and (b) must hold before any evidence bears on it.
+
+    STRUCTURAL TEMPLATE (per this claim's own notes, drawing the MECH-094
+    parallel explicitly): MECH-094 confirmed that internal hypothesis-
+    tagging is load-bearing via a write-gate mechanism -- roughly 30 call
+    sites in agent.py gate weight updates on the tag's state. The
+    play-frame gate this claim requires is the BILATERAL analogue:
+    instead of one internal tag gating one agent's own learning, the
+    harm/residue-update machinery of EACH agent must gate on BOTH
+    agents' frame-maintenance signals jointly -- a two-party AND, not a
+    one-party flag.
+
+    CONFIRMING evidence (once both substrates exist): in a paired-agent
+    setup, the harm/residue-update machinery suppresses real-harm
+    learning ONLY when BOTH agents' frame-maintenance signals (L1 open +
+    L2 ongoing + L3 repair, as applicable) are mutually sustained. If
+    agent A's frame signal is present but agent B's is absent, withheld,
+    or withdrawn mid-episode, B's harm/residue machinery treats the
+    interaction as real -- statistically indistinguishable from a matched
+    real-harm episode with no play framing at all.
+
+    FALSIFYING evidence (the exploit this invariant warns against): agent
+    A can unilaterally declare "this is play" and have the interaction
+    treated as non-harmful/non-learning by BOTH agents' harm/residue-
+    update machinery, even when agent B's frame-agreement signal is
+    absent or actively withdrawn -- the frame tag honored on the basis of
+    EITHER party's signal alone (an OR-gate) rather than requiring mutual
+    sustainment (an AND-gate).
+
+    SCOPE: a PASS establishes that the bilateral gate is functionally
+    load-bearing once built -- it does not, by itself, establish that no
+    other exploit path exists (e.g. a partner whose frame signal can be
+    spoofed rather than withheld is a distinct, unaddressed failure
+    mode). Status stays substrate_conditional regardless of outcome.
   location: docs/architecture/play_mode.md
   notes: "If one agent can assert play-frame unilaterally while causing real harm, the frame distinction is exploitable. The signaling that opens and maintains the play frame must be bilateral and monitored -- both parties must sustain the signal for the frame to hold. Frame collapse without mutual signal = real harm with reduced defensive response. This is the play analogue of the hypothesis tag requirement (MECH-094): just as simulation must be internally tagged to prevent post-commit learning, play must be externally co-tagged to prevent exploitation."
 
@@ -26496,6 +26713,74 @@
     - INV-067
     - INV-068
     - MECH-089
+  epistemic_category: derivational
+  what_would_answer: |
+    This is an arch_commitment sitting on THREE dependencies, all already
+    audited this session and all reporting the same result: the
+    mechanism this claim requires does not exist, and one candidate
+    implementation explicitly declines to be it.
+
+    NON-DEGENERACY PRECONDITION (this is the blocker, check nothing else
+    first): a claim about a "loop that maintains phase alignment for
+    V(t)" is not statable in falsifiable form while V(t) itself has no
+    phase-alignment term to maintain. Per this session's INV-067 audit,
+    V(t) is UNBUILT as a literal combined quantity -- content agreement
+    C_i has a Stage-1 proxy only (MECH-269), phase alignment P_i has NO
+    implementation and NO functional analog anywhere in the substrate.
+    Per this session's INV-068 audit, D_V (temporal depth/persistence of
+    coupling) is equally unbuilt -- no D_V computation exists, and there
+    is no consumer wiring into E3 even if one did.
+
+    Independent spot-check this session (grep of ree_core/ and
+    experiments/ for phase_align, temporal_coherence, TCL,
+    phase_reference, phase coupling, synchrony, oscillat): confirms no
+    TCL-shaped mechanism exists. The only related implementation is
+    cross_stream_binder.py, whose own module docstring states binding-
+    by-synchrony is LEARNED, not a fixed phase-coupling field -- the
+    opposite design choice from what TCL specifies. BreathOscillator
+    (MECH-108) is a periodic threshold sweep, not phase/timing-window
+    coupling.
+
+    MECH-089 is the sharpest finding, because it is not merely
+    "unbuilt" -- it is a DELIBERATE ARCHITECTURAL DISCLAIMER. MECH-089
+    (cross-frequency temporal packaging, the one dependency of ARC-053
+    that could plausibly implement phase/timing coupling) states
+    explicitly: "implemented as a rolling aggregation over E1 outputs
+    before E3 sampling, NOT as oscillatory coupling... the biological
+    mechanism (theta-gamma CFC) is one implementation of this functional
+    requirement; it is not required in the ANN substrate." So this is
+    not one un-built dependency plus two others -- it is three
+    compounding blockers, one of which is a standing design decision
+    against the mechanism class ARC-053's title names.
+
+    What would need to change before this becomes testable:
+      (a) V(t) needs at least a computed phase-alignment term P_i(t) to
+          exist (ARC-055 Stage 2, itself status: candidate and unbuilt).
+      (b) An actual timing/synchrony-adjustment mechanism, distinct from
+          MECH-089's disclaimed rolling-aggregation approach, would need
+          to be built -- OR MECH-089's existing scope would need to be
+          re-examined as already discharging what ARC-053 requires,
+          under a non-anatomical name.
+
+    LIVE ARCHITECTURAL QUESTION (flagged, not resolved here): does the
+    ANN substrate genuinely need literal phase/oscillatory coupling to
+    make V(t) computable, or does MECH-089's functional-analog rolling
+    aggregation already satisfy ARC-053's functional requirement --
+    "ensure ascending and descending signals meet in a comparable
+    temporal frame before comparison" -- just not implemented as a
+    distributed phase-alignment loop and not named TCL? If the latter,
+    ARC-053 as currently titled may be asking for a specific biological
+    IMPLEMENTATION where only the functional REQUIREMENT is
+    architecturally necessary -- in which case the claim needs
+    re-scoping to the requirement level before it can be evaluated at
+    all. This mirrors MECH-089's own stated position and should be
+    resolved by whoever next touches ARC-053/MECH-225/MECH-226, not
+    assumed either way here. This propagates forward: ARC-053 is itself
+    a load-bearing dependency for ARC-054, ARC-055, MECH-226, MECH-227,
+    MECH-228.
+
+    Re-audit only after (a) above lands, i.e. once V(t) has a real,
+    non-collapsed phase-alignment term computed and reachable by E3/E1.
   notes: >
     V(t) requires that ascending and descending signals meet in the same phase channel
     at the right moment. Without a temporal coherence mechanism, predictions and inputs
@@ -35482,6 +35767,89 @@
     - MECH-280  # LH-PAG override projection
     - MECH-281  # orexin gain modulation of drive-coupled arousal
     - MECH-282  # LPB interoceptive routing into harm-arbitration
+  what_would_answer: |
+    PRIMARY (unchanged): a 4-arm factorial {SD-036 OFF, SD-037 OFF} /
+    {SD-036 ON, SD-037 OFF} / {SD-036 OFF, SD-037 ON} / {SD-036 ON,
+    SD-037 ON} on V3-EXQ-471-class conditions. Predicted: arms 2 and 3
+    partial recovery, arm 4 full recovery, arm 1 reproduces the
+    catatonic-lock baseline. A clean FAIL on arm 4 (no recovery with
+    both regulators ON) falsifies the broadcast-override architecture
+    outright.
+
+    SECONDARY (unchanged): two dissociable failure phenotypes once the
+    factorial runs on adequate substrate -- (a) saturated override
+    (override_signal pinned high) should produce compulsive drive-
+    pursuit despite negative outcomes (PWS/hyperphagia-analog); (b) lost
+    override (override_signal absent) should produce decoupling -- z_harm
+    and drive_level compute normally but fail to integrate into
+    coordinated behaviour (narcolepsy/cataplexy-analog).
+
+    NON-DEGENERACY PRECONDITION (the actual current gate -- three
+    consecutive "substrate confirmed, behaviourally inert" findings, not
+    two):
+
+    Stage 1 (V3-EXQ-483d, 2026-05-29): override_signal fires and
+    saturates correctly, but only one consumer pathway (GoalState
+    effective_drive) was wired and was dominated by the MECH-295
+    liking-bridge -- action_counts/goal_norm_peak bit-identical across
+    the broadcast_override axis. FIXED 2026-05-30: four more consumer
+    sites landed (LateralPFCAnalog eff_eta, BLAAnalog encoding_gain,
+    CeAAnalog mode_prior/fast_prime, BetaGate urgency_interrupt_
+    threshold), all default-OFF gain knobs.
+
+    Stage 2 (V3-EXQ-483e, 2026-05-31): with all four consumer sites
+    wired, EVERY consumer-side readout was still exactly zero across all
+    12 runs. Diagnosis: SD-037's mechanism is multiplicative (output *
+    (1 + gain * override_signal)) -- it can only amplify an ALREADY-
+    NONZERO consumer output. On the fishtank baseline no consumer output
+    crosses its own input-gate threshold (BLA arousal_threshold_on=0.4,
+    CeA fast_route_threshold=0.5, PAG theta_freeze sustained-product=2.0,
+    dACC pe-magnitude floors), so broadcast amplification has nothing to
+    amplify: 0 * anything = 0.
+
+    Stage 3 (V3-EXQ-620/620b through 625b/625d/625e, 2026-05-31 ->
+    2026-06-20): axis (a) is CLOSED -- V3-EXQ-620's initial "all-zero"
+    reading was a config artifact; the corrected V3-EXQ-620b PASSED
+    (pooled p70=0.43, clears BLA 0.4). Axis (b) (sustained-threat
+    curriculum) is NOT closed and has surfaced a THIRD, deeper layer:
+    V3-EXQ-625b cleared the magnitude floor but failed on temporal
+    structure (collapse to monomorphic action attractors under sustained
+    threat). The follow-up V3-EXQ-625d diagnosed this as ENV-
+    CONDITIONAL: the selection-diversity -> committed-action-diversity
+    conversion axis-(b) depends on only holds on the reef-bipartite
+    substrate's structural guarantee of opposite first-action argmaxes,
+    and does not survive a threat-engaged candidate pool -- the SAME
+    root as the campaign-wide MECH-439 F-dominance conversion-ceiling
+    (shared with ARC-062 GAP-B, dACC C2, OFC behavioural conversion,
+    SD-034 de-commit). The recalibrated V3-EXQ-625e (10x lower threat
+    magnitude + pulsed duty cycle) still returned TERMINAL FAIL/
+    non_contributory. As of the 2026-08-07 inter-governance workset,
+    axis-(b) Phase 1b remains status=assembling, held pending a
+    demonstration that the MECH-439 selection-face fix (MECH-448/449,
+    BUILT + PROMOTED-provisional) generalises off the foraging substrate
+    to a threat-engaged pool -- the four retests run against it to date
+    have not shown that generalisation. Phase 2/3/4 (Phase 4 =
+    V3-EXQ-483f, the actual SD-037 4-arm behavioural validation) remain
+    blocked.
+
+    WHAT WOULD ANSWER: a run of the primary 4-arm factorial (V3-EXQ-483f
+    or successor) on the CURRENT fishtank/CausalGridWorldV2 baseline is
+    expected to reproduce zero-everywhere across all consumer readouts
+    regardless of SD-037's own ON/OFF state, per 483e's own diagnosis,
+    and is NOT a valid test of the architecture -- UNLESS BOTH of the
+    following have landed: (i) axis-(a) consumer-input-threshold
+    recalibration confirmed adequate under the specific env config used
+    (620b demonstrates this is achievable), AND (ii) axis-(b)'s
+    committed-action diversity gate PASSES, which now requires the
+    separate MECH-439/GAP-A selection-face-conversion fix to demonstrate
+    generalisation beyond the foraging substrate to a threat-engaged
+    candidate pool. Only once both are independently confirmed non-
+    degenerate does a FAIL on the primary factorial (arm 4 no recovery)
+    become a genuine falsification of the broadcast-override
+    architecture; a FAIL run before then is not falsifying, and a
+    degenerate zero-everywhere result on any attempt run before then
+    should be read as further confirmation of the substrate ceiling, not
+    as evidence against SD-037/MECH-280/MECH-281.
   functional_restatement: >
     SD-036's GABAergic decay addresses one half of the V3-EXQ-471 catatonic
     lock: in the absence of input, harm streams now relax toward baseline.
