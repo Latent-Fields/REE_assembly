@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-08-07T23:49:23.276711Z",
+  "generated_at_utc": "2026-08-07T23:57:27.393114Z",
   "items": [
     {
       "acceptance_checks": [
@@ -8281,7 +8281,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-036 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0524",
+      "proposal_id": "EXP-0498",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8320,7 +8320,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for ARC-039 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0525",
+      "proposal_id": "EXP-0524",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8358,7 +8358,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-022 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0526",
+      "proposal_id": "EXP-0525",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8397,7 +8397,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for Q-016 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0527",
+      "proposal_id": "EXP-0526",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8436,7 +8436,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-030 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0528",
+      "proposal_id": "EXP-0527",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8475,7 +8475,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-047 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0529",
+      "proposal_id": "EXP-0528",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -8514,7 +8514,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-048 via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0530",
+      "proposal_id": "EXP-0529",
       "proposal_type": "experimental",
       "release_condition": "A mu/kappa stability-overlay control plane exists in ree-v3/ree_core as a perturbable, claim-mapped knob that modulates mode entropy and switching pressure INDEPENDENTLY of the action-selection softmax temperature (so that the DV is not an arithmetic function of the IV). Until then any probe re-derives the softmax identity. Retest under a NEW queue id (V3-EXQ-683 is burned).",
       "require_pre_registered_thresholds": false,
@@ -8551,7 +8551,7 @@
       "min_shared_seeds": 0,
       "objective": "Reduce uncertainty for MECH-074b via targeted experiment runs.",
       "priority": "medium",
-      "proposal_id": "EXP-0531",
+      "proposal_id": "EXP-0530",
       "proposal_type": "experimental",
       "require_pre_registered_thresholds": false,
       "required_pack_contract": {
@@ -10143,6 +10143,9 @@
       "added_utc": "2026-03-25",
       "backlog_id": "EVB-0513",
       "claim_id": "MECH-130",
+      "executed_by": "metaworker-chip-litpull-lit0096",
+      "executed_note": "Literature pull landed as evidence/literature/targeted_review_mech_130 (5 entries): Oudeyer & Kaplan 2007 typology (mixed, 0.55 -- three-class taxonomy has no novelty-SOURCE axis, and social presence motivation is classified as NON-intrinsic); Burda et al. 2019 noisy-TV (supports, 0.68 -- untyped prediction-error curiosity is an entropy-seeker 'even with a perfect dynamics model'); Pan, Liu & Wang 2025 CERMIC/NeurIPS (mixed, 0.70); Nguyen et al. 2023 IJCAI social motivation (supports, 0.72 -- agent-directed intrinsic reward that literally produces approach/stay-near, triggered by model poverty, with no harm term); Schmidhuber 2010 (weakens, 0.55 -- compression-progress types by REDUCIBILITY, a source-agnostic fix for failure mode 1). MECH-130 literature_confidence 0 -> 0.687. KEY CORRECTION to this proposal's premise: the world-vs-agent novelty distinction is NOT absent from the literature -- CERMIC (NeurIPS 2025) names 'uniform novelty bias' and separates 'peer behavior novelty' explicitly. What remains unclaimed is the SAFETY-ARBITRATION use of the distinction: no found work gates agent-novelty approach on harm risk. Proposal sources substituted with reasons: Pathak 2017 ICM subsumed by Burda 2019 (same line, and it is Burda that reports the stochasticity limitation); Houthooft VIME and Baker 2019 autocurricula surveyed but not entered, displaced by the two directly on-point MARL papers found during search (Nguyen 2023, Pan 2025). Landed REE_assembly 783f5b116f + aeb7bb76ee.",
+      "executed_utc": "2026-08-07T23:50:05Z",
       "key_sources": [
         "Schmidhuber (1991/2010) - Formal theory of creativity and curiosity and beauty (IEEE Transactions on Autonomous Mental Development) -- compression progress as novelty signal",
         "Oudeyer & Kaplan (2007) - What is intrinsic motivation? A typology of computational approaches (Frontiers in Neurorobotics) -- systematic taxonomy of curiosity signals",
@@ -10156,7 +10159,7 @@
       "proposal_id": "LIT-0096",
       "proposal_type": "literature",
       "source": "manual",
-      "status": "proposed",
+      "status": "executed",
       "target_repo": "REE_assembly"
     },
     {
