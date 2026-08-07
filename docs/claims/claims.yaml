@@ -15574,6 +15574,27 @@
       verdict: FAIL/weakens -- eliminated (H-wanting-liking-separable-drive-gated), non-degenerate, root-caused
   implementation_phase: v3
   pending_retest_after_substrate: true
+  implementation_note: >
+    [/implement-substrate, 2026-08-07] Write-path decouple LANDED in ree-v3 (SD-014
+    incentive-sensitization). The V3-EXQ-887 root cause -- VALENCE_WANTING written as
+    serotonin.benefit_salience(benefit_exposure) = tonic_5ht * benefit_exposure while
+    VALENCE_LIKING is written as raw benefit_exposure, both monotone transforms of ONE
+    shared signal -- is addressed by a per-node, drive-coupled, saturating incentive-
+    sensitization gain g_i on the WANTING write (Smith/Berridge/Aldridge 2011: dopamine
+    sensitization raises wanting, not liking): w += benefit_salience * (1 +
+    sensitization_coupling * g_i), with g_i <- min(sensitization_max, g_i +
+    sensitization_rate * drive_level). drive_level (SD-012 homeostatic depletion) is
+    orthogonal to the benefit magnitude VALENCE_LIKING reads, which is what decouples the
+    two channels. Config incentive_sensitization_enabled defaults False (no-op;
+    update_benefit_salience is bit-identical when disabled). New surface:
+    RBFLayer.sensitization_gain buffer + update_sensitization_gain();
+    ResidueField._nearest_active_center() + update_wanting_sensitized();
+    REEAgent.update_benefit_salience(benefit_exposure, drive_level). Smoke PASS (OFF path
+    bit-identical, gain 0; ON path |Spearman(w,l)| 1.0 -> 0.85 on an independent drive
+    axis). See docs/architecture/sd_014_wanting_liking_decouple.md and ree-v3/CLAUDE.md.
+    Validation retest V3-EXQ-887a queued (887 instrument unchanged + feature enabled);
+    pending_retest_after_substrate stays true until it lands. No status/confidence change
+    made here -- that is a governance action requiring the retest evidence.
   digestion_note: >
     [thought-digestion, 2026-08-07] Falsifier superseded by executed evidence. live_status was
     stale (pointed at an unrelated 2026-05-17 MECH-307 cluster autopsy). Since then, V3-EXQ-887

@@ -6837,9 +6837,9 @@
       "sd_id": "sd014-decouple-wanting-liking-writepath",
       "title": "Decouple VALENCE_WANTING's write-path from raw benefit_exposure so wanting and liking are computed from genuinely independent signals",
       "node_class": "complicated (buildable)",
-      "status": "pending_implementation",
-      "ready": true,
-      "design_doc": null,
+      "status": "implemented_pending_validation",
+      "ready": false,
+      "design_doc": "docs/architecture/sd_014_wanting_liking_decouple.md",
       "depends_on_unresolved": [],
       "unblocks_claims": [
         "SD-014"
@@ -6857,7 +6857,11 @@
       "added_session": "cool-torvalds-a82359",
       "added_utc": "2026-08-07T19:28:08Z",
       "last_seen_session": "cool-torvalds-a82359",
-      "origin": "Confirmed failure_autopsy_2026-08-05_pending_review_batch (target #4, V3-EXQ-887); create recommendation ratified by /governance 2026-08-07. SD-014's first-ever genuine experimental evidence -- eliminated AS CURRENTLY IMPLEMENTED with a concrete buildable fix; not a substrate ceiling."
+      "origin": "Confirmed failure_autopsy_2026-08-05_pending_review_batch (target #4, V3-EXQ-887); create recommendation ratified by /governance 2026-08-07. SD-014's first-ever genuine experimental evidence -- eliminated AS CURRENTLY IMPLEMENTED with a concrete buildable fix; not a substrate ceiling.",
+      "implemented_utc": "2026-08-07T20:02:46Z",
+      "implemented_by_session": "metaworker-chip-20260807-sd014-decouple-wanting-liking",
+      "validation_experiment": "V3-EXQ-887a",
+      "implementation_note": "Incentive-sensitization write-path decouple landed ree-v3 2026-08-07. Per-node, drive-coupled, saturating gain g_i on VALENCE_WANTING (Smith/Berridge/Aldridge 2011): w += benefit_salience*(1+coupling*g_i), g_i<-min(gmax, g_i+rate*drive_level). drive_level (SD-012) is orthogonal to the benefit magnitude VALENCE_LIKING reads. Config incentive_sensitization_enabled default False (no-op). New: RBFLayer.sensitization_gain + update_sensitization_gain(); ResidueField._nearest_active_center()+update_wanting_sensitized(); REEAgent.update_benefit_salience(benefit_exposure, drive_level). Smoke PASS (OFF bit-identical, gain 0; ON |Spearman(w,l)| 1.0->0.85 independent drive axis). Validation V3-EXQ-887a queued (887 instrument + feature enabled); status flips to implemented_validated on its PASS. docs/architecture/sd_014_wanting_liking_decouple.md; ree-v3/CLAUDE.md; claims.yaml SD-014."
     }
   ],
   "schema_version": "substrate_queue/v2"
