@@ -7607,6 +7607,40 @@
     showed attribution mechanism produces correct-direction signal only when environment
     provides sufficient per-step variation — consistent with three distinct error channels
     requiring separate learning pathways. Dense hazards (EXQ-010, gap=+0.027) strongest signal.
+  evidence_quality_note: |
+    PROVENANCE OF THE PROVISIONAL STATUS (reconstructed 2026-08-07 from git history +
+    claim_evidence.v1.json; recorded because the registry-hygiene audit of that date found
+    12 provisional architectural_commitment claims and only 6 carrying this field).
+    Registered 2026-03-14 as `candidate` in REE_assembly c9210c440d ("SD-003 design:
+    self-attribution experiments EXQ-027/028 + SD-005 V3 note"), from
+    docs/thoughts/2026-03-14_three_bg_systems_error_signals.md. Promoted candidate ->
+    provisional in REE_assembly 480dba5733 ("chore(governance): V3 transition cycle --
+    rebuild indexes, ingest V3 results, apply holds"), committed 2026-03-18. The
+    status_note above dates the promotion 2026-03-17; that is the SD-003 RUN date, not the
+    commit date -- both are correct, they just refer to different events.
+
+    BASIS, and its exact strength. The promotion rests on the SD-003 causal-signature
+    series V3-EXQ-007/008/009/010 (all run 2026-03-17, all evidence_direction=mixed), which
+    are tagged in claim_evidence.v1.json to SD-003 and NOT to ARC-021 -- i.e. the promotion
+    reasoned one hop, from SD-003's substrate result to ARC-021's architectural assertion.
+    Calibration gaps: EXQ-007 -0.0151, EXQ-008 -0.0066, EXQ-009 -0.0184, EXQ-010 (dense
+    hazards) +0.0267. ALL FOUR ARE FORMALLY FAIL against the series' own pre-registered
+    >0.05 bar, and only EXQ-010 is even positive-direction. So the honest reading is
+    "channel separation trends correctly, and does not obviously hurt, under sufficient
+    per-step observation variation" -- not "channel separation is required". This is the
+    same caveat what_would_answer states; it is repeated here because this is the field
+    governance reads at promotion/demotion review.
+
+    DIRECTLY TAGGED EVIDENCE (index generated 2026-08-06): 2 exp + 9 lit, exp_conf 0.613,
+    lit_conf 0.869, overall 0.767. The two exp entries both predate the promotion by two
+    days: 20260316T231327Z_v3_exq_005_mech069_error_scale_v3 (supports, conf 0.75) and
+    20260316T232412Z_v3_exq_004_arc021_incommensurability_v3 (mixed, conf 0.5).
+
+    OUTSTANDING: the load-bearing test has never been run. Nothing in this evidence
+    isolates channel separation as the CAUSAL factor; that needs the merged-channel
+    ablation specified in what_would_answer (shared trunk, single optimizer, one combined
+    loss) measurably degrading calibration_gap relative to the separated-channel baseline.
+    Until then ARC-021 should not advance beyond provisional.
   what_would_answer: |
     NON-DEGENERACY PRECONDITION: requires the three error channels to be
     genuinely separately optimized in the substrate under test. Confirmed
@@ -7997,6 +8031,42 @@
     distinguish "compute new value" (denied) from "embody geometrically-encoded prior value"
     (permitted); (B) reject MECH-073 and treat NC-01 as external neuroscience model only.
     Pending Q-020 adjudication.
+  evidence_quality_note: |
+    PROVENANCE OF THE PROVISIONAL STATUS (reconstructed 2026-08-07 from git history,
+    decision_log.v1.jsonl and claim_evidence.v1.json).
+    Registered 2026-03-15 as `candidate` in REE_assembly 8fd823ee4a ("Sync claims,
+    explorer, evidence, and architecture docs"). Promoted candidate -> provisional by a
+    recorded USER decision, not an automatic rule: evidence/decisions/decision_log.v1.jsonl
+    carries actor=user, timestamp_utc 2026-04-03T22:00:00Z, recommendation
+    promote_to_provisional, decision_status applied, selected_option "Promote now (faster
+    convergence, risk premature lock-in)" -- the alternatives offered and declined were
+    "hold until one additional confirming run" and "hold and request targeted literature
+    triangulation". Applied in REE_assembly 860bac026c ("Governance cycle
+    (cowork-2026-04-03-b): ARC-022 promoted, manifest corrections"). This is the decision
+    the live_status.evidence.from pointer resolves to.
+
+    BASIS AT THE TIME (promotion_demotion_recommendations.md as of 860bac026c^):
+    overall_conf=0.81, conflict_ratio=0, exp_entries=2, lit_entries=1, directions
+    supports=3 / weakens=0 / mixed=0 / unknown=0. The two exp entries were both
+    v3_exq_208_arc022_hierarchical_pipeline_probe runs (2026-04-03, supports, conf 0.75
+    each); the one lit entry was 2026-03-30_hippo_cognitive_map_behrens2018
+    (lit:theoretical_review, supports, conf 0.87). The ARC-007 / ARC-014 conflict was
+    explicitly considered and judged non-blocking for provisional, with resolution deferred
+    to Q-020 and tracked in conflict_note (Q-020 Resolution A, 2026-03-16, is recorded on
+    MECH-073).
+
+    THE EXPERIMENTAL LEG OF THAT PROMOTION NO LONGER COUNTS -- flagged, not repaired here.
+    Both V3-EXQ-208 manifests carry outcome: null, so the indexer scores them as
+    non-genuine; only one of the two even survives as an entry in claim_evidence.v1.json.
+    The current index (generated 2026-08-06) reports ARC-022 with genuine_exp_count 0,
+    experimental_confidence 0.0, 7 lit entries, lit_conf 0.827, overall 0.827. So the
+    promotion's stated "3 supports (2 exp + 1 lit)" is NOT reproducible from today's index,
+    and ARC-022's provisional standing is presently carried by literature alone. This is a
+    bookkeeping gap rather than a negative result -- nothing weakened, the runs simply never
+    received a PASS/FAIL outcome -- but it means a demotion review that reads only the
+    current index will see a literature-only claim. Cheapest repair: adjudicate the two
+    V3-EXQ-208 runs to a real outcome, or re-run the probe with one. Re-adjudication is
+    GOVERNANCE work and is deliberately not applied here.
   depends_on:
     - ARC-001
     - ARC-002
