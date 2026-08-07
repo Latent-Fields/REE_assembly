@@ -883,10 +883,51 @@
     - SD-026
   epistemic_category: substrate_conditional
   what_would_answer: |
-    Two independent legs, answerable on different timelines -- do not
-    conflate them.
+    CORRECTION (2026-08-07, same digestion session, user-caught): the
+    original version of this what_would_answer called Leg 1 "answerable
+    now" without stating a prior precondition it silently assumed --
+    flagged by the user mid-session: responsibility-bearing commitment
+    presupposes the agent is genuinely CHOOSING AMONG MULTIPLE LIVE,
+    DIFFERENTIATED IMAGINED FUTURES, not executing something close to a
+    single dominant candidate that merely gets labeled "the commitment."
+    If E3's candidate proposal+selection pipeline is degenerate in that
+    sense, Leg 1's question (is the ATTENTION-WRITE mechanism
+    distinguishable from residue-geometry) becomes moot, because there is
+    no genuine choosing for that mechanism to be the mechanism *of*. This
+    is now stated as LEG 0 below, ahead of Leg 1, and Leg 1's "answerable
+    now" is narrowed to mean "answerable now AS A NECESSARY-BUT-NOT-
+    SUFFICIENT question" -- it no longer implies the claim as a whole is
+    answerable independent of Leg 0.
 
-    LEG 1 (derivational, answerable now, no substrate build required):
+    LEG 0 (prior non-degeneracy precondition -- CURRENTLY UNMET, per this
+    session's own findings): does E3 select among genuinely graded,
+    differentiated candidate trajectories at all, as opposed to a
+    near-deterministic pick dominated by one candidate? This is not
+    hypothetical -- MECH-439 (the E3 selection-authority mechanism
+    directly upstream of any "commitment") is `epistemic_category:
+    standard`, `ceiling_decision: exhausted`: 10 confirmed
+    substrate_ceiling autopsies found no genuine graded discrimination
+    among candidates, and the same F-dominance conversion-ceiling root
+    was independently confirmed blocking SD-037 (broadcast override,
+    this session), ARC-064 (bottom-up rule discovery, this session, via
+    its MECH-309 dependency), and ARC-062 GAP-B, dACC C2, and SD-034
+    de-commit. Escalated to a constitutional route (ARC-107/MECH-448/449)
+    rather than resolved at the parametric level. Until E3's own
+    selection mechanism clears this ceiling -- candidates shown to
+    compete on genuinely graded, non-monopolized terms -- "commitment"
+    has no differentiated alternative-space to be a commitment relative
+    to, and neither Leg 1 nor Leg 2 below can be more than necessary
+    conditions. CONFIRMED if a future E3 selection test (post-ARC-107)
+    shows graded, gap-concentrated discrimination among candidates
+    (matching ARC-106's own load-bearing-vs-decorative test). FALSIFIED
+    (for Leg 0 specifically, not for INV-012 as a whole) if E3 selection
+    is shown to be structurally incapable of graded discrimination
+    regardless of substrate fix -- which would mean INV-012 needs
+    re-grounding in a different selection mechanism entirely, not merely
+    a wait for ARC-107.
+
+    LEG 1 (derivational, answerable now ONLY as a necessary-but-not-
+    sufficient question -- see Leg 0 above, not independently decisive):
     INV-012's ethical content depends on deliberate/willed attention being
     mechanistically distinguishable from reflexive/residue-driven attention
     (ARC-007). SD-026's own notes already stage this argument on five axes;
@@ -2088,6 +2129,78 @@
     - ARC-005
     - ARC-007
     - ARC-013
+  epistemic_category: standard
+  what_would_answer: |
+    ARC-014 is CONJUNCTIVE -- "safe imagination" (positive: useful internal
+    simulation genuinely occurs) and "without commitment" (negative: it
+    never durably writes to real-experience state) are separate assertions
+    with DIFFERENT evidentiary status.
+
+    LEG A -- SAFE IMAGINATION (that Default Mode / DMN replay genuinely
+    executes and its content reaches SOME functional consumer). ANSWER by
+    architectural audit of the live replay/ghost call site, not by
+    V3-EXQ-880 (which does not exercise it). ree_core/agent.py's
+    _do_replay() (the production ghost/replay call site) calls
+    hippocampal.replay()/diverse_replay() -- so the GENERATIVE act of
+    internal simulation genuinely fires in production -- but per the
+    V3-EXQ-880 driver's own docstring, its output trajectories are
+    currently DISCARDED without ever reaching lateral_pfc.update() or
+    residue_field.accumulate(); MECH-319 names this the "reserved seam"
+    for the still-pending V3-EXQ-543c replay-driven invocation path.
+    Separately, INV-011's own audit (this session) traces a DIFFERENT
+    generative pathway -- E1 internal generation via simulate()/sense()
+    with hypothesis_tag=True -- through ~30 live agent.py call sites and
+    concludes DMN/E1 rollout content reaches phi(z)-adjacent read paths
+    for attenuated affect without producing a belief update. That is
+    evidence LEG A holds for the E1/simulate() pathway specifically; it is
+    NOT evidence for the hippocampal _do_replay()/DMN-ghost pathway, whose
+    output is currently discarded wholesale (not merely write-suppressed)
+    and is not yet wired to any consumer, safe or not. LEG A therefore
+    remains PARTIALLY answered: confirmed for E1/simulate(), open
+    (reserved seam, pending 543c) for the DMN/hippocampal-replay pathway
+    specifically named in ARC-014's own "Default Mode" title.
+
+    LEG B -- WITHOUT COMMITMENT (that simulation-tagged content, IF it
+    reached a commitment-capable write consumer, would be suppressed while
+    waking-tagged content commits). ANSWERED by V3-EXQ-880 (2026-08-02,
+    PASS, 3/3 seeds). Matched-content design: identical captured
+    (z_delta, z_world) content from a real seeded env rollout applied to
+    two agents built from the same seed, differing only in
+    hypothesis_tag/simulation_mode. Two independent channels, both
+    load-bearing: rule_state/MECH-319 (sim_rule_state_delta <= 1e-7,
+    measured 0.0 all seeds; wake_rule_state_delta >= 1e-4, measured
+    0.31-0.43 all seeds); residue/MECH-094 (sim_residue_delta <= 1e-6,
+    measured 0.0 all seeds; wake_residue_delta >= 1.0, measured ~2.0 all
+    seeds). IMPORTANT CAVEAT: the experiment constructs the write-gate
+    seam DIRECTLY via manual tag injection and direct API calls -- it does
+    NOT drive the real production _do_replay() call site, which (see LEG
+    A) currently discards its trajectories before they would ever reach
+    these consumers at all. V3-EXQ-880 therefore confirms the categorical
+    write-gate ITSELF behaves correctly as a defense-in-depth safeguard,
+    not that production replay content is currently routed through it.
+
+    NON-DEGENERACY PRECONDITION (LEG B, per V3-EXQ-880's own pre-registered
+    grid): C0 path-exercised (WAKE arm n_waking_admitted == N_CAPTURE; SIM
+    arm n_simulation_blocked == N_CAPTURE, n_simulation_admitted == 0)
+    AND C1/C2/C4/C5 (all load-bearing, combined via plain AND).
+
+    FALSIFYING evidence (LEG B): a future experiment driving genuine
+    replay-tagged content through the real _do_replay() -> consumer path
+    (once 543c wires it) finds simulation-tagged content reaching
+    lateral_pfc.update() or residue_field.accumulate() and durably
+    altering state -- i.e. the gate confirmed here in isolation is
+    bypassed once wired to the real call site.
+
+    CONFIRMING evidence (LEG A residual): a future experiment or audit
+    showing the DMN/_do_replay() pathway's discarded trajectories are (or
+    become, post-543c) actually consumed by some functional read path --
+    would close LEG A for the specific pathway ARC-014's "Default Mode"
+    title names.
+
+    GOVERNANCE FLAG (not resolved here): claim_evidence.v1.json still
+    shows genuine_exp_count=0, exp_conf=0.0 for ARC-014 despite V3-EXQ-880
+    (PASS, 2026-08-02) being on file -- the index has not been regenerated
+    since. Worth a governance index rebuild pass.
   location: docs/architecture/default_mode.md#arc-014
   source:
     - docs/processed/legacy_tree/docs/architecture/default_mode.md
@@ -6671,6 +6784,77 @@
   depends_on:
     - INV-025
     - INV-027
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live trajectory-selection
+    scoring path and the E1/E2 training-loss code, not by a trained
+    behavioral experiment (this is a MECHANISM/STRUCTURE question -- HOW
+    viability is computed and optimised toward).
+
+    NON-DEGENERACY PRECONDITION: the audit must inspect a live case where
+    E3 actually composes candidate trajectory scores and selects among
+    them, and a live case where E1 or E2 actually computes a training
+    loss -- not merely a declared scoring formula in a docstring.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass):
+    ree_core/predictors/e3_selector.py::score_trajectory() (live, called
+    from select() at the core of every trajectory-selection tick)
+    computes a COST J(zeta) = f_weight*F(zeta) + lambda_eff*M(zeta) +
+    rho*Phi_R(zeta) - benefit_weight*B(zeta) - goal_weight*G(zeta),
+    where each term comes from a distinct, independently-parameterized
+    head: F = compute_reality_cost() (smoothness + viability head), M =
+    compute_ethical_cost()/compute_harm_forward_cost() (harm_eval_head,
+    or the dedicated z_harm stream, SD-010), Phi_R =
+    compute_residue_cost() (ResidueField.evaluate_trajectory), B =
+    compute_benefit_score() (benefit_eval_head, gated behind an ARC-030
+    warmup), G = compute_goal_score() (goal_state.goal_proximity). These
+    terms are retained UNREDUCED for diagnostics (last_score_decomp /
+    last_channel_terms, MECH-463) specifically so cross-term covariance
+    can be computed rather than lost to a marginal collapse. A grep for
+    "reward" across e3_selector.py returns nothing but one unrelated
+    comment (MECH-111 novelty). There is no point where these terms are
+    summed into an undifferentiated scalar and handed to a reward-
+    maximizing update rule.
+
+    E1/E2 losses are self-supervised predictive-coherence losses, not
+    ground-truth-correspondence losses: e2_world.py::compute_loss()
+    (F.mse_loss(z_world_pred, z_world_next)) trains E2 to predict its OWN
+    subsequently-observed next latent, not an externally-labeled "true"
+    world state; agent.py::compute_prediction_loss() (E1's multi-step
+    loss) targets the agent's own buffered future sequence the same way;
+    e2_fast.py's world_forward_contrastive_loss* are InfoNCE-style
+    contrastive losses over the model's own candidate continuations.
+
+    BOUNDARY CASE (not counted as falsifying, flagged for scope
+    awareness): ree_core/action_learning/actor_critic.py (MECH-457) is an
+    explicit Sutton-2000-style actor-critic with a scalar
+    reward-prediction-error teacher (agent.py::actor_critic_reward(),
+    R_t = benefit_eval(z) - harm_eval(z), collapsed to one float). Its
+    own docstring states it is "architecturally distinct from -- and NOT
+    reducible to --" E3's cost argmin; it is gated off by default
+    (use_actor_critic=False) and drives a separate primitive-action
+    pathway, not trajectory selection. INV-030's own notes field scopes
+    the claim to E1/E2/E3, so this is out of scope as currently worded --
+    but it is the one place in ree_core/ where classical scalar-reward RL
+    genuinely exists, worth accounting for if this invariant's scope is
+    ever revisited.
+
+    AUDIT TARGET: ree_core/predictors/e3_selector.py::score_trajectory()
+    and ::select(); ree_core/predictors/e2_world.py::compute_loss() and
+    ree_core/agent.py::compute_prediction_loss().
+
+    FALSIFYING evidence: the traced live trajectory-selection path is
+    found to collapse F/M/Phi_R/B/G into a single undifferentiated
+    scalar "reward" BEFORE selection, with that scalar then fed to a
+    reward-maximizing update. OR: E1/E2's training loss is found to
+    optimise directly toward a labeled "objectively correct" world state
+    supplied from outside the agent's own predictive/rollout process.
+
+    CONFIRMING evidence: the traced live path shows trajectory selection
+    as a genuinely multi-component, typed evaluation with no reward
+    scalar or RL update consuming the pre-composition terms, AND E1/E2
+    losses are genuinely self-supervised predictive/rollout losses. This
+    is the CURRENT confirmed state per the 2026-08-07 audit above.
   location: docs/invariants.md#inv-030
   source:
     - docs/architecture/five_axioms_foundations.md
@@ -11117,12 +11301,70 @@
   status: implemented
   live_status:
     reading: implemented
-    as_of: 2026-07-11
-    needs_review: false
+    as_of: 2026-08-07
+    needs_review: true
     evidence:
-      from: "failure_autopsy_zworld-integration-cluster_2026-06-06#V3-EXQ-145"
-      as_of: 2026-06-06
-      verdict: non_contributory/substrate_ceiling
+      from: "v3_exq_027b_sd007_reafference_diagnostic_20260319T201702Z_v3"
+      as_of: 2026-03-19
+      verdict: "weakens/over-correction (pre-ARC-027/SD-010 fix, not retested since -- see what_would_answer)"
+  epistemic_category: standard
+  what_would_answer: |
+    GOVERNANCE FLAG (2026-08-07 digestion pass): the live_status.evidence
+    pointer this claim previously carried
+    (failure_autopsy_zworld-integration-cluster_2026-06-06#V3-EXQ-145,
+    verdict non_contributory/substrate_ceiling) was a stale cross-tagged
+    artifact, corrected here. That autopsy's substrate_ceiling finding is
+    about z_world's representational granularity generally (relevant to
+    SD-008/Q-002), not about SD-007's own subtraction mechanism -- for
+    V3-EXQ-145 specifically, the autopsy's own table says the run was
+    blocked BEFORE selectivity was measured (reaf_r2=0.076 < 0.08 gate,
+    "engineering/non_contributory... Does not retire SD-007 or SD-008").
+
+    A discriminative-pair comparison of z_world_corrected against
+    z_world_raw, run within episodes containing BOTH agent-caused sensory
+    change (locomotion with no external event) AND independent
+    world-caused change (an event the agent did not cause), with the
+    ReafferencePredictor's own held-out R^2 gate passing first so the
+    comparison is not confounded by an undertrained predictor.
+
+    CONFIRMING if z_world_corrected shows measurably reduced self-caused
+    variance/change relative to z_world_raw during pure locomotion (self-
+    caused reafference is subtracted) while an externally-caused event
+    still produces a comparable-or-greater signal in z_world_corrected
+    than matched self-caused steps (world-caused change survives
+    correction) -- i.e. correction preserves or improves an agent-caused-
+    vs-world-caused discrimination margin rather than collapsing it.
+
+    FALSIFIED if correction either (a) under-subtracts, leaving
+    z_world_corrected as contaminated by self-motion as z_world_raw, or
+    (b) over-subtracts, collapsing corrected-signal variance so broadly
+    that externally-caused events become as hard (or harder) to detect
+    than before correction -- the failure mode EXQ-027b found directly
+    (correction_delta=-0.045, harm_pred_std 0.108->0.008), though that
+    run pre-dates the ARC-027/SD-010 harm-stream separation the finding
+    motivated (SD-010's HarmEncoder was introduced specifically "to
+    resolve the EXQ-027b over-correction paradox") and has not been
+    re-run since that fix landed.
+
+    NON-DEGENERACY PRECONDITION: the episode set must contain both non-
+    trivial agent-caused perspective change (informative delta-z_world_raw,
+    sufficient for the predictor's own R^2 gate to be measurable) AND
+    independent world-caused events, in a ratio balanced enough for
+    discrimination to be measurable -- the zworld-integration-cluster
+    autopsy separately found (V3-EXQ-177) that a 6.6:1 event imbalance
+    made discrimination "near-unmeasurable" even with an otherwise-
+    adequate stack, so a degenerate event mix would produce an
+    inconclusive result regardless of predictor quality.
+
+    CURRENT STATE: the two pre-registered discriminative tests of this
+    exact claim (EXQ-111, EXQ-118: C1 predictor-quality gate -> C2
+    selectivity lift REAF_ON vs REAF_OFF -> C3 cross-seed consistency)
+    both FAILED at C1 -- neither ever reached C2/C3, so the discriminative
+    claim itself has never been tested to completion. This is a
+    predictor-quality/engineering gate (R^2 repeatedly 0.03-0.36, mostly
+    below threshold across three separate attempts: EXQ-111, EXQ-118,
+    V3-EXQ-145), not a representational-capacity ceiling in the SD-008/
+    Q-002 sense -- implemented-but-unvalidated, not substrate_ceiling.
   status_note: >
     ReafferencePredictor in ree_core/latent/stack.py: z_world_corrected =
     z_world_raw - ReafferencePredictor(z_world_raw_prev, a_prev). Input must
@@ -16436,6 +16678,78 @@
     - ARC-002
     - ARC-003
     - SD-005
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    RELATIONSHIP TO SD-016: ARC-041 and SD-016 describe the identical
+    physical mechanism (E1 ContextMemory queried with z_world alone ->
+    cue_context -> MECH-151 action-bias output + MECH-152 terrain-weight
+    output) but at different claim altitudes and are NOT a near-duplicate
+    pair. SD-016 (claim_type design_decision, status implemented) is the
+    IMPLEMENTATION decision for the query mechanism itself
+    (E1DeepPredictor.extract_cue_context); ARC-041 (claim_type
+    architectural_commitment) is the higher-level claim that THIS CIRCUIT
+    SHAPE -- one retrieval feeding two structurally and biologically
+    distinct downstream pathways -- is the correct way to complete
+    ARC-035's stored-to-active pathway. SD-016 is upstream infrastructure
+    ARC-041 depends on, not a restatement of ARC-041.
+
+    DO NOT RE-DERIVE THE RETRIEVAL-MECHANISM QUESTION: SD-016's own
+    what_would_answer (this session) already covers the shared substrate
+    question in full -- its leg (A) RETRIEVAL-SELECTIVITY, answered
+    negatively for the originally-proposed remedy, with a named still-open
+    re-test path; and leg (B) DOWNSTREAM EXPLOITATION, untested and gated
+    on cue_action_proj consumer-wiring fix + SD-055 differentiable-CEM
+    behavioural validation. ARC-041's own falsifier is downstream of and
+    conditional on both legs of SD-016 clearing -- see SD-016's
+    what_would_answer for the acceptance criteria on the shared mechanism.
+
+    RESIDUAL CONTENT ARC-041 ASSERTS BEYOND SD-016 -- THE DUAL-PATHWAY
+    STRUCTURE: SD-016's leg (B) tests whether "action_bias/terrain_weight
+    get used behaviourally by E2/E3" as a single combined question.
+    ARC-041's distinctive claim is that this is genuinely a DUAL-OUTPUT
+    circuit -- cue_context reaching BOTH pathways, not just one -- mapping
+    onto the dual biological role of OFC (action gating) and vmPFC (value
+    weighting). MECH-152 (E3 terrain-weight leg) already has its own
+    independent partial evidence unrelated to SD-016's retrieval question:
+    EXQ-194/194a (2026-04-01) found the harm sub-pathway works (C1 PASS
+    3/3, r_w_harm=0.70) under phased/direct training that bypassed the
+    z_world cue-indexed retrieval question entirely, while the goal
+    sub-pathway does not (C2 FAIL, r_w_goal=-0.007). MECH-151 (E2
+    action-bias leg) by contrast has NO experimental evidence of its own
+    beyond the shared SD-016 blockers PLUS its own additional gate:
+    cue_action_proj's dead-gradient defect (SD-055, partially fixed
+    2026-05-15 but opt-in, behavioural validation still deferred) --
+    confirmed by V3-EXQ-640a: mean_cue_action_bias_norm NULL in all 6
+    cells under default settings.
+
+    CONFIRMING signature for ARC-041 (once SD-016 leg A retrieval-
+    selectivity clears AND SD-055/cue_action_proj consumer fixes land):
+    a discriminative test shows BOTH pathways independently tracking
+    retrieval content -- action_bias_div correlates with cue-context
+    identity (E2 leg) AND w_harm/w_goal correlate with cue-context
+    identity (E3 leg) -- run together in the same experiment so the
+    dissociation is directly observable.
+
+    FALSIFYING ARC-041 SPECIFICALLY (as distinct from falsifying SD-016
+    or either sub-mechanism alone): once both legs of SD-016 are cleared
+    and cue_action_proj/SD-055 gates are satisfied, only ONE of the two
+    pathways shows content-tracking behavioural divergence while the
+    other remains flat -- this falsifies the DUAL-pathway architecture
+    specifically, even though it would leave the surviving single
+    pathway's own mechanism claim (MECH-151 or MECH-152) intact.
+
+    MECH-160 DIFFERENTIAL-UPDATE-RATES SUB-CLAIM -- OUT OF SCOPE HERE:
+    ARC-041's notes flag that E2 action_bias and E3 terrain_weight
+    "should have different update rates," citing MECH-160. MECH-160 is
+    its own un-evidenced candidate claim (evidence: [], no
+    what_would_answer) proposing a REVISION to ARC-041's current design.
+    This is a refinement layered on top of ARC-041, not a component of
+    ARC-041's own falsification.
+
+    NON-DEGENERACY PRECONDITION: same as SD-016's -- selection entropy
+    pinned at the uniform ceiling is not evidence against ARC-041, it is
+    the signature that cue_context itself carries no differentiated
+    content, so neither downstream pathway has anything to diverge on.
   location: docs/architecture/frontal_cue_integration.md
   notes: >
     ARC-035 (vmPFC.md) specifies that stored affective/normative content must
@@ -18798,6 +19112,78 @@
     - MECH-121
     - MECH-122
     - MECH-123
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    INV-045's falsifier is a scrambled-order ablation on the REAL
+    (non-proxy) offline phase mechanisms, at the grain V3 actually
+    supports.
+
+    V3 implements only the coarse SWS-analog / REM-analog split (SD-017),
+    not the claim's full 5 sub-phase structure (0 sensory gate, 1 SHY,
+    2 NREM replay, 3 spindle coordination, 4 REM recalibration) -- Phase
+    0 is unbuilt and Phase 3's sensory-gating half is unbuilt
+    (offline_phases.md). So a partial, coarse test is V3-testable now;
+    the full 5-phase pairwise reordering is not, until V4 lands input
+    gating on E1 and ThetaBuffer's reverse-direction/gating mode.
+
+    COARSE V3 TEST (re-run of V3-EXQ-243's design, using real
+    mechanisms): run WAKING_ONLY, REM_ONLY, REM_THEN_SWS (scrambled),
+    SWS_THEN_REM (canonical), and SWS_THEN_REM_RECAL, but call
+    agent.run_sws_schema_pass() (MECH-120+121) and
+    agent.run_rem_attribution_pass() (MECH-123) directly instead of the
+    2026-04-05 script's local proxy passes, which
+    design_forward_analysis_2026-04-06.md (DR-7) diagnosed as not
+    invoking the real computational content and therefore producing an
+    order-blind (degenerate) null result -- confirmed in the archived
+    per_seed_results, where REM_ONLY, REM_THEN_SWS, SWS_THEN_REM and
+    SWS_THEN_REM_RECAL returned bit-identical harm_discrimination/
+    harm_eval values per seed.
+
+    INV-045's own logical-dependency argument predicts a SPECIFIC failure
+    mode for the scrambled order, not just "worse in general":
+    REM_THEN_SWS should show reinforcement of the single dominant (most
+    recent, highest-salience) trace rather than diverse-content
+    consolidation, because replay runs before SHY normalisation flattens
+    the attractor landscape. The falsifying comparison is therefore not
+    just harm_discrimination(SWS_THEN_REM) > harm_discrimination
+    (REM_THEN_SWS), but a diversity/differentiation proxy (slot
+    differentiation across contexts, or trajectory diversity in replay
+    content) showing REM_THEN_SWS collapsing toward the dominant trace
+    while SWS_THEN_REM does not.
+
+    PASS pattern for INV-045 (coarse, partial support only): SWS_THEN_REM
+    > REM_THEN_SWS > REM_ONLY ~ WAKING_ONLY on harm_discrimination AND on
+    the diversity/differentiation proxy, with REM_THEN_SWS specifically
+    showing dominant-trace reinforcement.
+
+    FULL V4 TEST (blocked, not currently buildable): all pairwise/
+    adjacent-swap reorderings of the 5 sub-phases against the canonical
+    0-1-2-3-4 order, each predicted to fail in the specific way its row
+    in offline_phases.md's rewiring table states. Requires Phase 0 (E1
+    input gate) and Phase 3's gating half (ThetaBuffer reverse-direction
+    mode) to exist as separately runnable, reorderable steps -- neither
+    exists in V3.
+
+    NON-DEGENERACY PRECONDITIONS (compounding on ARC-011/INV-046's own):
+    (1) full SD-017 flag stack enabled and sufficient training horizon;
+    (2) the order-scramble must call the REAL substrate mechanisms, not
+    proxy stand-ins -- V3-EXQ-243's null/order-blind result is diagnostic
+    evidence this precondition was violated in the only run to date, not
+    evidence against the claim itself; (3) for the coarse (V3) test: this
+    is satisfiable now, since MECH-120/121/123 are implementation_phase:v3
+    and the real agent methods exist post-2026-04; (4) for the FULL
+    5-phase test: the substrate must implement Phase 0 and Phase 3's
+    sensory-gating half as manipulable steps -- both are V4-gated and
+    absent today.
+
+    CURRENT STATE: V3-EXQ-243 (2026-04-05, the only direct evidence on
+    file) is FAIL/weakens, but per DR-7 this is very likely an artifact
+    of proxy (not real) phase implementations rather than a genuine test
+    of the ordering hypothesis -- P1/P2 passed (broken orders didn't beat
+    baseline) but P3 also failed (correct order didn't beat baseline
+    either, only 1/3 seeds), and all non-WAKING conditions returned
+    bit-identical outcome metrics regardless of order. Read the "weakens"
+    direction with that qualification, not at face value.
   notes: >
     Registered 2026-04-05. The V4 sub-phase sequence is:
     (0) sensory gating, (1) SHY normalisation, (2) NREM schema replay,
