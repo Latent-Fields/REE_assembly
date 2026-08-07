@@ -1,0 +1,51 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_uncommitted_candidate_retention",
+  "entry_id": "2026-08-07_mech_486_reality_filter_vs_source_monitoring_bouzerdawahlen2015",
+  "timestamp_utc": "2026-08-07T18:22:16Z",
+  "claim_ids_tested": [
+    "MECH-486"
+  ],
+  "source": {
+    "title": "An electrophysiological dissociation between orbitofrontal reality filtering and context source monitoring.",
+    "authors": [
+      "Aurelie Bouzerda-Wahlen",
+      "Louis Nahum",
+      "Maria Chiara Liverani",
+      "Adrian G Guggisberg",
+      "Armin Schnider"
+    ],
+    "year": 2015,
+    "venue": "Journal of Cognitive Neuroscience",
+    "doi": "10.1162/jocn_a_00686",
+    "url": "https://doi.org/10.1162/jocn_a_00686"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "Clean behavioural + ERP double dissociation showing 'is this content real/actionable now' is a separate mechanism from 'in what context was this content acquired'. Supports separating MECH-486's actionability tag from its which-alternative content. Confidence moderate: healthy-subject scalp-ERP paradigm, indirect mapping to a computational retention buffer.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Collapsing the actionability/reality tag into the same mechanism that stores which alternative was considered predicts they cannot be independently impaired -- contradicted here; so a retention design that fuses them mis-models the biology and loses the ability to keep 'which alternative' while denying 'act on it'.",
+    "Reality filtering is fast (200-300 ms) and source monitoring slow (>400 ms) and less accurate; a retention read-out that relies on the slow, error-prone content check to gate actionability inherits its error rate."
+  ],
+  "tags": [
+    "mech_486",
+    "reality_filtering",
+    "source_monitoring",
+    "provenance_tag",
+    "dissociation"
+  ],
+  "mapping": {
+    "source_claim_statement": "Within one continuous-recognition task, orbitofrontal reality filtering (sensing whether an upcoming thought refers to present reality and can be acted on) dissociates behaviourally and electrophysiologically from context source monitoring (remembering in what past context information was acquired): reality filtering shows a frontal positivity and posterior-medial OFC activity at 200-300 ms, source monitoring a slower, less accurate frontal positivity from 400 ms.",
+    "ree_translation": "MECH-486 must carry two separable things about a retained rejected candidate: (a) an actionability/reality tag ('this was imagined, do not treat as executed') and (b) content about which alternative it was and where in the decision it arose. This paper shows those are distinct mechanisms in the brain, supporting a design where the MECH-094-style provenance tag is a fast, standalone gate rather than something inferred from the retained content itself -- and warns that leaning on the slow, error-prone content/source check to decide actionability imports its higher error rate, which is the confabulation-adjacent failure MECH-486's guard exists to avoid.",
+    "mapping_caveat": "Healthy-subject scalp evoked potentials over a recognition-memory task; a dissociation of two memory-control processes, not a demonstration of a stored-alternative buffer. The transfer to 'retain a rejected planning candidate and tag it non-actionable' is architectural analogy, not measured equivalence.",
+    "source_context": "Healthy young adults; high-resolution evoked potentials during a continuous-recognition task; orbitofrontal / frontal midline sources."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Well-controlled dissociation. Mapping is by analogy (two memory-control processes -> two fields of a retention record); transfer_risk elevated by the healthy-ERP-to-substrate jump."
+  }
+}

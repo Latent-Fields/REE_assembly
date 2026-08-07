@@ -1,0 +1,53 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_uncommitted_candidate_retention",
+  "entry_id": "2026-08-07_mech_486_bounded_imagined_rollouts_mbpo_janner2019",
+  "timestamp_utc": "2026-08-07T18:22:16Z",
+  "claim_ids_tested": [
+    "MECH-486",
+    "MECH-322"
+  ],
+  "source": {
+    "title": "When to Trust Your Model: Model-Based Policy Optimization.",
+    "authors": [
+      "Michael Janner",
+      "Justin Fu",
+      "Marvin Zhang",
+      "Sergey Levine"
+    ],
+    "year": 2019,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS)",
+    "doi": "10.48550/arXiv.1906.08253",
+    "url": "https://arxiv.org/abs/1906.08253"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "Provides the computational template the chip's confabulation caution demands: imagined (model-generated) trajectories are usable but only within a bounded, uncertainty-gated regime -- short rollouts branched from real data, horizon decoupled from task horizon and set by measured model generalization, with a monotonic-improvement guarantee. Structurally identical to MECH-322 (bounded/audited/provisional-until-corroborated). Confidence discounted: MBPO bounds VALUE error, not provenance/confabulation confusion -- the analogy is structural, not a validated transfer of the specific guard.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Trusting imagined rollouts at long horizon lets the policy exploit regions where the learned model deviates from reality (model exploitation / compounding error); the REE analogue is retained-candidate content that, used unboundedly, drifts off the real manifold and self-reinforces.",
+    "Without an uncertainty-gated trust bound, model-generated data ceases to be preferable to real off-policy data -- i.e. unbounded retention/imagination use is not merely risky but provably worse than using less of it."
+  ],
+  "tags": [
+    "mech_486",
+    "mech_322",
+    "mech_094",
+    "model_based_rl",
+    "imagined_rollouts",
+    "bounded_provisional",
+    "mbpo"
+  ],
+  "mapping": {
+    "source_claim_statement": "MBPO uses short model rollouts branched from real environment states to reduce compounding model error and decouple the model (imagination) horizon from the task horizon; a monotonic-improvement analysis shows real off-policy data is preferable to model-generated data unless an empirical estimate of model generalization justifies limited model usage, which then yields faster, higher-performing learning.",
+    "ree_translation": "This is the computational form of the MECH-322 template the chip requires MECH-486 to follow. Retained rejected candidates (imagined, non-executed content) may feed evaluation/learning only under a bounded, uncertainty-gated, corroboration-limited regime: MBPO's short trust horizon gated by measured model error maps onto MECH-322's fail-closed conditions plus accelerated dissolution of any chunk not corroborated by real waking execution. It also gives a concrete knob: the trust bound should scale inversely with model uncertainty -- REE's epistemic_deficit (MECH-482) -- linking leg 3 retention to the same confidence term that gates the orient/survey leg of MECH-485.",
+    "mapping_caveat": "MBPO bounds VALUE-estimation error for policy optimization; it does not address provenance confusion or the confabulation/reality-monitoring failure that is MECH-486's central hazard. The transfer is structural (bounded, provisional, corroboration-gated use of imagined content), not a validated import of the specific confabulation guard -- Schnider/Bouzerda-Wahlen supply that half, MBPO supplies the bounding discipline.",
+    "source_context": "Deep model-based reinforcement learning; continuous-control MuJoCo benchmarks; learned probabilistic dynamics-model ensembles with short branched rollouts."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.5,
+    "notes": "Landmark, well-cited result with a formal bound. Mapping is a structural analogy to the MECH-322 template; transfer_risk high because MBPO's guarantee is about value error, not confabulation/provenance -- deliberately paired with the Schnider entries which cover the other half."
+  }
+}

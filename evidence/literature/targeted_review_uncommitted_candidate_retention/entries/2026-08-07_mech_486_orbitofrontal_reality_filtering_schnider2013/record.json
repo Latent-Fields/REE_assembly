@@ -1,0 +1,49 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_uncommitted_candidate_retention",
+  "entry_id": "2026-08-07_mech_486_orbitofrontal_reality_filtering_schnider2013",
+  "timestamp_utc": "2026-08-07T18:22:16Z",
+  "claim_ids_tested": [
+    "MECH-486",
+    "MECH-094"
+  ],
+  "source": {
+    "title": "Orbitofrontal reality filtering.",
+    "authors": [
+      "Armin Schnider"
+    ],
+    "year": 2013,
+    "venue": "Frontiers in Behavioral Neuroscience",
+    "doi": "10.3389/fnbeh.2013.00067",
+    "url": "https://doi.org/10.3389/fnbeh.2013.00067"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Canonical review by the lab that defined reality filtering; the phenomenon (preconscious OFC/reward tagging of whether an evoked memory pertains to now and can be acted on; failure -> confabulation) is exactly the provenance-guard requirement MECH-486 must satisfy. Confidence held below 0.8 because it maps the GUARD requirement, not a retention BUFFER, and the mapping is human-clinical to computational.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A retention store for rejected/imagined alternatives that lacks a distinct 'does-this-pertain-to-present-reality' tag reproduces the confabulation failure mode: retained-but-never-executed content is treated as actionable/real.",
+    "The guard is preconscious and fast (200-300 ms frontal positivity); a provenance check bolted on only at readout, after retained content has already entered valuation, is the wrong architecture."
+  ],
+  "tags": [
+    "mech_486",
+    "mech_094",
+    "reality_filtering",
+    "confabulation",
+    "provenance_tag",
+    "orbitofrontal"
+  ],
+  "mapping": {
+    "source_claim_statement": "The orbitofrontal cortex, with reward-system structures, runs a phylogenetically old preconscious 'reality filter' (an extinction-based faculty) that determines whether an evoked memory refers to ongoing reality and can be acted upon; its failure produces confabulation and disorientation.",
+    "ree_translation": "Any MECH-486 mechanism that retains rejected/uncommitted E3 candidate trajectories past the current tick must carry a provenance/reality tag (REE's MECH-094 committed_vs_imagined register) that keeps retained content marked as considered-but-not-real, so it is never read as committed experience by residue/valence/hippocampal write paths. This is the biological warrant for making Leg-3 retention a METACOGNITIVE (source-tagged) mechanism rather than bare memory, and for following the MECH-322 bounded/audited template instead of relaxing MECH-094.",
+    "mapping_caveat": "Human lesion/ERP evidence about a filter over evoked memories, not about a computational buffer that stores which unchosen alternative existed. It establishes that a dedicated provenance filter is architecturally necessary; it does not specify the retention buffer's form.",
+    "source_context": "Human clinical neuropsychology (confabulating/disoriented patients) plus healthy-subject continuous-recognition ERP paradigms; orbitofrontal cortex and reward system."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Authoritative review, strong construct. Mapping_fidelity high for the guard requirement, lower as a model of the retention store itself; transfer_risk moderate (clinical human -> REE substrate)."
+  }
+}
