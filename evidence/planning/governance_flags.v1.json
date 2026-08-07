@@ -54,6 +54,19 @@
       "status": "resolved",
       "resolved_at": "2026-08-07T16:38:50Z",
       "resolution_note": "Already resolved by executed evidence before the flag was reconciled, and independently re-discovered rather than looked up -- the concrete gap this registry exists to close. V3-EXQ-887 (2026-08-04) ran a dedicated, instrument-validated test of SD-014's core 4-component representational claim (C1 functional drive-gating, C2 representational separability, C3 replay-set selectivity), with the V3-EXQ-432 surprise-write pipeline gap confirmed fixed as a readiness precondition. Result: FAIL/weakens, confirmed non-degenerate by failure_autopsy_2026-08-05_pending_review_batch.md (#3): C1 (tau<=0.85) and C2 (Spearman<=0.90) fail on all 3 seeds (tau 0.867-0.889; Spearman 0.93-0.97); C3 passes. Root cause: VALENCE_WANTING and VALENCE_LIKING are both derived from the same underlying benefit_exposure signal via different transforms, not the independent dopamine/opioid pathways the cited biology (Berridge & Robinson 1998; Smith/Berridge/Aldridge 2011) requires. Hypothesis H-wanting-liking-separable-drive-gated registered eliminated in hypothesis_space_registry.v1.json. This directly eliminates the SD-014 4-component claim as specified, which supersedes rather than answers the original 4-vs-6-channel question (MECH-307 anticipatory_affect_conjunction vs. the proposed 6-channel SD-014 amendment): the amendment question is moot until the underlying 4-component wanting/liking dissociation is itself fixed. Autopsy-confirmed routing (user-confirmed, not yet ratified by /governance or chipped as of 2026-08-07): accept weakens, decouple VALENCE_WANTING's write-path via /implement-substrate. Full account in SD-014's own digestion_note in claims.yaml (session cool-torvalds-a82359, REE_assembly commit f33a36411d)."
+    },
+    {
+      "flag_id": "GFLAG-0004",
+      "claim_ids": [
+        "ARC-045"
+      ],
+      "flag_type": "stale_note",
+      "summary": "claims.yaml's pending_retest_after_substrate=true for ARC-045 is stale and drove IGW-20260807-216 to surface as ready /queue-experiment work, but the routed re-run already happened and was reviewed: V3-EXQ-436d (2026-08-04T07:15:41Z, review_tracker.json confirms reviewed=true) is ARC-045's latest tagged experimental run. Current claim_evidence.v1.json shows 3/3 genuine experimental runs weaken ARC-045 (experimental_confidence 0.417 vs literature_confidence 0.819, overall 0.618, evidence_quadrant plausible_unproven). Governance should clear the stale pending_retest_after_substrate flag and decide ARC-045's disposition given the 3/3 weakens experimental evidence, rather than a fresh /queue-experiment dispatch being run against a question already answered by 436d.",
+      "raised_by_session": "interactive-metaworker-dispatcher-mac-20260807",
+      "raised_at": "2026-08-07T22:00:23Z",
+      "status": "open",
+      "resolved_at": null,
+      "resolution_note": null
     }
   ],
   "notes": "Append-only. A resolved (or superseded) entry is NEVER deleted -- flip status and set resolved_at + resolution_note, mirroring claims.yaml's own supersession-not-deletion convention, so the trail stays auditable. Raise new entries and resolve existing ones only via scripts/governance_flag.py (raise / resolve subcommands), which commits via scripts/ree_commit.py in the same step -- this file lives under evidence/planning/, one of CLAUDE.md's exposed high-contention files, and a hand-edited whole-file read-modify-write here would silently adopt any other session's uncommitted edit (see CLAUDE.md 'Read-modify-write contamination'). /governance reads open items at the start of every cycle (see .claude/skills/governance/SKILL.md); the read is additive/informational only and never auto-resolves or auto-promotes anything -- governance is interactive and a flag's substance is always the user's call."
