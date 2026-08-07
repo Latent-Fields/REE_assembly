@@ -114,6 +114,75 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live harm-computation code path,
+    not by a trained behavioral experiment (this is a MECHANISM question --
+    HOW other-harm contribution is computed -- not an accuracy/convergence
+    question, which is ARC-010's separate substrate-conditional claim).
+
+    NON-DEGENERACY PRECONDITION: the audit must be run against a live case
+    where other-harm contribution is actually being evaluated -- some code
+    path must take a second agent's state/action as input and produce a
+    signal reaching ethical cost / E3 ranking. Checking for "absence of a
+    rule table" in dead or unreached code is vacuous: a substrate with no
+    other-harm computation at all trivially satisfies "no symbolic rules"
+    while equally failing to exhibit mirror modelling.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): ree_core/ has NO
+    other-agent harm computation of any kind yet. No hits across ree_core/
+    for "other_agent", "otherness", "OTHER_SELFLIKE", "shadow_bundle"/
+    MECH-031, or a wired "social" mechanism -- only a register-only enum
+    value with no implementation (ControlDemandType.SOCIAL_MODEL_CHECK in
+    ree_core/claustrum/control_demand.py, explicitly untemplated) and a
+    forward-looking comment about "V5 multi-agent social synchronisation
+    experiments." ARC-010's own what_would_answer independently confirms
+    this (no multi-agent substrate; ARC-047 SocialGridWorld unimplemented,
+    confidence 0.0). The audit is therefore CURRENTLY BLOCKED BY
+    NON-DEGENERACY -- not answerable in either direction today. Note INV-005
+    does NOT require ARC-047's full trained-convergence apparatus to become
+    auditable (that is ARC-010's separate, heavier bar): a minimal, even
+    untrained, code path computing SOME other-harm signal is sufficient,
+    since this is a structural question, not an accuracy question.
+
+    AUDIT TARGET once such a path exists: trace whatever function(s) turn
+    "another agent imposed/risked harm" into a signal reaching ethical cost
+    / trajectory selection. Candidate landing sites, given the current
+    self-harm architecture: ree_core/predictors/e3_selector.py
+    (harm_eval/benefit_eval and their E3-ranking consumers),
+    ree_core/predictors/e2_harm_a.py and e2_harm_s.py (z_harm_a/z_harm_s
+    forward models), ree_core/amygdala/bla.py and cea.py,
+    ree_core/latent/stack.py (shared latent stack), and whatever
+    ARC-047/MECH-031 machinery eventually lands for OTHER_SELFLIKE tagging.
+
+    FALSIFYING evidence: the traced path terminates in a symbolic/rule-table
+    mechanism -- a lookup table, an if/switch keyed on action- or agent-role
+    taxonomy, a hand-authored harm-scoring rule set, or any hardcoded
+    mapping from (other-agent action type) -> (harm cost) that bypasses the
+    agent's own predictive/latent machinery. Finding this ANYWHERE in the
+    live other-harm-contribution path falsifies INV-005 -- independent of
+    whether INV-001 (no ethics module) otherwise holds, since INV-005 is
+    specifically about the MECHANISM by which other-harm enters ethical
+    cost, not about modularity.
+
+    CONFIRMING evidence: the traced path shows other-harm contribution
+    computed by the SAME predictive/simulative machinery used for the
+    agent's own harm (per INV-028: "the self-other distinction is a routing
+    difference within the same architecture, not a different architecture")
+    -- the other agent's state is projected into the shared self/other
+    latent representation (ARC-004 L-space, per ARC-010) and the resulting
+    simulated/predicted harm is scored by the existing harm_eval/z_harm_a
+    -style forward-model machinery, with reduced precision or different
+    routing weights but not a categorically different computational
+    primitive. This confirms even if the resulting other-model is
+    inaccurate -- accuracy/convergence is ARC-010's separate claim; INV-005
+    only requires the MECHANISM be simulative, not that it converge
+    correctly.
+
+    Next step is a code-path audit at (or shortly after) whichever build
+    first wires an other-agent harm signal into E3 ranking -- likely the
+    first ARC-047/SocialGridWorld-adjacent implementation -- not a new V3
+    experiment in its own right.
   location: docs/invariants.md#inv-005
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -250,6 +319,69 @@
     needs_review: false
   depends_on:
     - SD-026
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    Two independent legs, answerable on different timelines -- do not
+    conflate them.
+
+    LEG 1 (derivational, answerable now, no substrate build required):
+    INV-012's ethical content depends on deliberate/willed attention being
+    mechanistically distinguishable from reflexive/residue-driven attention
+    (ARC-007). SD-026's own notes already stage this argument on five axes;
+    axis 5 ("the INV-012 argument itself") is CIRCULAR -- it cites INV-012's
+    requirement as evidence for SD-026's distinctness in order to establish
+    INV-012's coherence, which assumes the conclusion. The genuine proof
+    obligation rests on the remaining four: (i) causality direction
+    (retrospective outcome-driven vs prospective intent-driven), (ii)
+    neuromodulatory gating (DA-gated vs ACh/NA-gated), (iii) clinical
+    dissociation (amnestic vs frontal-lobe syndromes), (iv) representational
+    format (episodic specificity vs cross-situational feature generality).
+    CONFIRMED if a formal/architectural argument (or, once SD-026 is
+    implemented, a code-level inspection) shows the proposed dan_feedback
+    channel is structurally distinct from residue-geometry writes on at
+    least 2 of these 4 axes (e.g. genuinely separate source signal +
+    separate decay constant + no shared write path other than the common
+    additive E1-prior register). FALSIFIED if the channel turns out to be
+    functionally redundant with ARC-007 on all 4 axes despite the
+    architectural label -- e.g. if "prospective vs retrospective" collapses
+    to a parameter setting (decay constant) on what is otherwise the same
+    write mechanism, or if the neuromodulatory/clinical dissociations
+    invoked have no analogue in REE's own implementation. A falsification
+    here means "commitment" has no mechanistically real referent and
+    reduces to "whatever was already conditioned" -- INV-012 would need to
+    be narrowed or retired, independent of any experiment.
+
+    LEG 2 (substrate_conditional, empirical/behavioral, gated): whether the
+    distinguishable channel -- once it exists -- actually produces willed
+    (goal-directed, non-reflexive) perception is a behavioral question that
+    cannot be tested until: (a) SD-014 reaches >= provisional [status as of
+    this digestion: still candidate, and the most recent evidence
+    (V3-EXQ-887, 2026-08-04, weakens, unreviewed) moves AWAY from the gate,
+    not toward it -- FAILED both C1 functional_drive_gating and C2
+    representational_separability for the SD-014 node-valence vector on all
+    3 seeds]; (b) SD-026 is implemented (currently unbuilt: no manifest
+    exercises MECH-251/dan_feedback, no queue entry references SD-026 or
+    dan_feedback -- the "do not queue until SD-014 >= provisional" hold in
+    SD-026's own evidence_quality_note is being honored); and (c) SD-026's
+    own pre-registered five-step validation sequence completes: (i) z_goal
+    seeds (SD-012), (ii) z_resource separates (SD-014), (iii) dan_feedback
+    enabled/disabled as ablation, (iv) benefit_ratio measured against random
+    baseline, (v) feature-channel precision measured on goal-relevant vs
+    irrelevant dimensions. CONFIRMED if dan_feedback=on lifts benefit_ratio
+    substantially over dan_feedback=off, with goal-relevant feature channels
+    showing higher precision than irrelevant ones under dan_feedback=on.
+    FALSIFIED if dan_feedback=off performs equivalently (replicating the
+    EXQ-085h-l seed-but-inert pattern regardless of ablation state) -- i.e.
+    z_goal's behavioral effect, if any, is fully mediated by pathways other
+    than the claimed prospective channel, and the "willed vs reflexive"
+    distinction has no behavioral signature even if Leg 1's architectural
+    distinction holds.
+
+    Non-degeneracy precondition for Leg 2 as a whole: SD-014 >= provisional
+    AND SD-026 landed AND steps (i)-(v) above all completed on non-degenerate
+    seeds. Until then, Leg 2 is untestable by construction, not merely
+    unfavored -- absence of a benefit_ratio lift right now would say
+    nothing, because the channel does not yet exist to test.
   location: docs/invariants.md#inv-012
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -698,6 +830,53 @@
   depends_on:
     - ARC-004
     - INV-002
+  what_would_answer: |
+    ARC-006 asserts entities are (i) sparse, (ii) persistent, (iii) bindable
+    structures. Two of the three properties already have direct
+    experimental support one hop away: MECH-045's V3-EXQ-658 (2026-06-09,
+    PASS/supports) exercises ree_core/entities/object_file_buffer.py's
+    token-continuity association (C1/C5) and occlusion-persistence (C3) and
+    shows the buffer re-identifies a moved entity across occlusion
+    (reid_frac INTACT=1.0 vs SHUFFLE=0.3 vs OFF=0.0, feature term
+    non-degenerate d_cos_min=0.92, 3/3 seeds) -- "persistent" and "bindable
+    [across motion]" are effectively answered, but the evidence is tagged
+    only to MECH-045's claim_ids, not to ARC-006. [Note: a prior digestion
+    memory calling this "V3 pending" was stale as of this pass -- MECH-045
+    landed 2026-06-09.]
+
+    The third property, "sparse," is NOT yet exercised: V3-EXQ-658
+    deliberately set obf_max_tokens = N_DISTRACTORS + 2 (one slot of
+    headroom) to guarantee zero capacity evictions, isolating reid/
+    persistence from competitive contention. The buffer's C4
+    capacity-eviction machinery (_enforce_capacity(), _n_capacity_evictions,
+    default max_tokens=5) exists and is wired but has never run
+    over-capacity.
+
+    What would answer this (no new substrate build -- only a new experiment
+    config over the existing ObjectFileBuffer):
+    1. Bridge existing evidence: tag/synthesize V3-EXQ-658 onto ARC-006's
+       own evidence block so "persistent"/"bindable-across-motion" support
+       is visible at the parent-claim level.
+    2. Run a capacity-contention arm: N entities > max_tokens (e.g. 8
+       salient candidates against max_tokens=5), varying per-entity
+       salience, and test whether _enforce_capacity's evictions track the
+       TRUE salience ranking above a shuffle/random-eviction control (same
+       INTACT/SHUFFLE/OFF logic as V3-EXQ-658, applied to eviction choice).
+       PASS = eviction selectivity beats shuffle control on >=2/3 seeds;
+       FAIL = evictions are salience-independent (effectively FIFO/random),
+       falsifying "sparse [attention-gated]" even though the raw capacity
+       cap trivially holds.
+    3. Complementary confirming test (structurally parallel to SD-015's
+       z_resource identity-recovery probe): a linear probe recovering
+       per-token identity from the buffer's stored feature embedding should
+       generalise across nuisance transformations (position, occlusion-gap
+       length) well above a token-shuffled control -- operationalising
+       "bindable" as identity-stability under transformation.
+
+    NON-DEGENERACY GUARD: uninformative if _n_capacity_evictions stays 0
+    throughout (contention never triggered) or distractor salience values
+    are near-identical. Add G3 (capacity actually exceeded) to V3-EXQ-658's
+    existing G0-G2 gates.
   location: docs/architecture/entities_and_binding.md#arc-006
   source:
     - docs/processed/legacy_tree/docs/architecture/entities_and_binding.md
@@ -2440,6 +2619,43 @@
     - ARC-005
     - ARC-003
     - ARC-015
+  digestion_note: |
+    [2026-08-07, thought-digestion, session cool-torvalds-a82359] DEFERRED --
+    do not draft a what_would_answer until this is resolved, remove this
+    note once resolved.
+
+    ARC-017's evidence_quality_note records two FAILs (EXQ-129, EXQ-135,
+    both 2026-03-29) and has not been touched since -- five months with no
+    re-run, autopsy, or diagnostic. Both FAILs share a suspicious shape: the
+    pre-registered discrimination floor (C1, gap >= 0.04) was missed by the
+    INTACT condition itself (TYPED_TAGS_ON / REALITY_COHERENCE_ON both
+    measured gap=0.0153), not just by the ablation comparison -- meaning the
+    underlying z_world representation may never have cleared its own
+    readiness bar before the typed-routing/reality-coherence ablation was
+    tested on top of it. Both original manifests hedge this explicitly at
+    FAIL time ("a FAIL here may reflect insufficient warmup rather than a
+    genuine claim refutation"; the reality-coherence proxy is "only
+    partially approximated"). This codebase has since (2026-07-18 onward,
+    SD-070 and failure_autopsy_V3-EXQ-728/875/875a/882) established a
+    recurring, distinct-but-analogous pattern where a floor-failing
+    discrimination gap in the intact arm indicates an undertrained/
+    not-yet-converged representation rather than a genuine architectural
+    negative result -- and nobody has checked whether an equivalent
+    readiness problem (e.g. 400-episode single-run warmup being
+    insufficient for this proxy's E1+E2-loss-only training path) explains
+    EXQ-129/135's result.
+
+    Recommend a /failure-autopsy pass on both runs to determine (i) whether
+    the C1 floor-failure is a genuine representation ceiling under this
+    proxy design or an undertraining artifact, and (ii) whether the
+    typed-stream-separation and reality-coherence mechanisms should be
+    re-tested with a warmup/scale precondition once (i) is resolved -- only
+    then can a what_would_answer be honestly drafted for this claim, since
+    ARC-017's reality-coherence lane is architecturally load-bearing for
+    INV-012 (responsibility/commitment gating) and a falsifier drafted on
+    top of an unresolved floor-failure risks either prematurely
+    re-litigating a dead design or quietly re-endorsing an untrustworthy
+    negative result.
   location: docs/architecture/sensory_stream_tags.md#arc-017
   source:
     - docs/thoughts/2026-02-08_sensory_stream_tags.md
@@ -11753,6 +11969,55 @@
     - ARC-030
     - MECH-112
     - Q-021
+  what_would_answer: |
+    See Q-021's own what_would_answer for the full two-arm ablation design
+    (approach arm: z_goal attractor + novelty/self-maintenance ON vs
+    avoidance-only arm: harm gradient only, Go drive ablated) -- not
+    re-derived here. INV-034 is answered by the SAME ablation, on the SAME
+    substrate (currently scaffolded_sd054_onboarding), but needs the fuller
+    criterion battery below (C4-C6), not just Q-021's flatness dissociation
+    (C3) alone.
+
+    MANDATORY non-degeneracy precondition (G0, shared with Q-021): FULL-arm
+    resource_visit_rate must exceed RANDOM baseline by >=0.05 on >=2/3 seeds.
+    CURRENTLY FAILING on both harnesses tried: V3-EXQ-866 (lightweight
+    direct-REEConfig harness, FULL 0.0046 < RANDOM 0.0217, 2026-08-02) and
+    V3-EXQ-866a (scaffolded_sd054_onboarding curriculum, FULL 0.0033 < RANDOM
+    0.0103, 2026-08-03). A run failing G0 self-routes
+    non_contributory/substrate_not_ready_requeue -- a competence-floor
+    failure, not evidence against INV-034/Q-021.
+
+    Substrate-regression question is RESOLVED: the follow-up diagnostic
+    V3-EXQ-866b (fresh, commit-verifiable 603q re-run, PASS 2026-08-03T19:24Z)
+    confirms base_survival_reproduces_603q_reference -- the substrate has NOT
+    regressed over the 47-day gap; 866a's ~7x shortfall against 603q, and its
+    Stage-0-to-P2 z_goal decay (peak ~0.5 -> P2 mean 0.12, below the C6 floor
+    of 0.4), are specific to scaffolded_sd054_onboarding's hazard-only
+    intervening curriculum stages, not a substrate-wide defect. The fix path
+    is therefore curriculum/harness repair (rebalance hazard-stage exposure
+    so z_goal survives to the P2 measurement window), not a substrate
+    rebuild. [866b is still unreviewed in pending_review.md as of this
+    digestion pass -- not yet folded into Q-021's own evidence_quality_note.]
+
+    Once G0 clears, ANSWER "yes -- goal maintenance necessary for agency"
+    requires ALL of, on >=2/3 seeds (identical formulas to V3-EXQ-866/866a):
+    C1 harm-avoidance parity (harm_rate_AVOIDANCE_ONLY <= harm_rate_FULL*1.15);
+    C2 survival parity (episode_survival_rate_AVOIDANCE_ONLY >=
+    episode_survival_rate_FULL-0.1); C3 quiescence (Q-021's own flatness
+    criterion); C4 approach restored by goal maintenance
+    (resource_visit_rate_FULL >= resource_visit_rate_AVOIDANCE_ONLY+0.10) --
+    the agentic-commitment reading Q-021's own falsifier does not by itself
+    test; C5 entropy signature (policy_entropy_AVOIDANCE_ONLY <=
+    policy_entropy_FULL-0.10); and C6 z_goal mechanistic check
+    (z_goal_norm_mean_FULL>0.4 AND z_goal_norm_mean_AVOIDANCE_ONLY<0.1) --
+    already confirmed independently PASS-able under the lightweight 866
+    harness on all three seeds, so C6 failing under 866a is itself downstream
+    of the same z_goal-survival-to-P2 gap G0/866b localise, not a fresh
+    mechanistic problem. ANSWER "no -- goal maintenance not necessary" if
+    G0+C1+C2 pass but C3-C6 fail to show the predicted
+    approach-restores-commitment gap on >=2/3 seeds (avoidance-only arm
+    sustains foraging/entropy/z_goal engagement comparable to the approach
+    arm despite lacking the Go drive).
   location: docs/architecture/approach_avoidance_symmetry.md#inv-034
   source:
     - evidence/planning/literature_synthesis_2026-03-22_approach_avoidance_drives.md
@@ -13997,6 +14262,75 @@
     - SD-012
     - MECH-112
     - SD-005
+  what_would_answer: |
+    SD-015 is CONJUNCTIVE across two dissociable sub-claims, and only one is
+    answered.
+
+    REPRESENTATION-ADEQUACY (does the ResourceEncoder learn a
+    position-invariant, resource-specific z_resource usable for goal
+    formation) is SETTLED, PASS. EXQ-182a (2026-04-01, oracle ceiling) showed
+    a perfect handcrafted goal cue drives 11.14x benefit ratio -- action
+    selection CAN convert a clean goal signal into navigation. EXQ-085l
+    (2026-03-30) showed the trained encoder achieves prox_r2=0.908-0.921,
+    enc_contact_acc=0.927. Most recently V3-EXQ-514o (2026-06-15, PASS) -- run
+    under the now-landed SD-057 object-bound incentive-salience substrate on
+    the ready scaffolded_sd054_onboarding curriculum -- measured
+    goal_resource_r (cosine similarity of z_goal direction to true
+    resource-type embedding) at 0.93-0.96 across 3 seeds, up from the
+    EXQ-085g baseline of 0.066-0.087, under realistic foraging (not a
+    forced/oracle probe). Do not re-test this sub-claim.
+
+    BEHAVIOURAL-SUFFICIENCY (does SD-015 + adequate downstream
+    foraging-competence CAUSALLY produce goal-directed navigation -- the
+    agent reaching resources at a rate beating a random-policy baseline, not
+    merely correlating its z_goal direction with them) is the OPEN question
+    and the reason this claim stays candidate/substrate_ceiling. No run has
+    reported a behavioural-navigation metric (benefit_ratio or equivalent)
+    under the SAME configuration that produced 514o's representational PASS.
+    SD-012's own what_would_answer names this identical unresolved test as
+    its own NAVIGATION-OUTCOME sub-claim (C2) -- SD-012 and SD-015 share ONE
+    open behavioural test, not two independent ones.
+
+    NON-DEGENERACY PRECONDITION (else substrate_not_ready_requeue, NOT a
+    verdict): a navigation-outcome retest for SD-015 is only informative if
+    ALL of: (a) the SD-057 object-bound incentive-salience layer is active
+    (use_incentive_token_bank=True, MECH-344/345/346) on the SAME ready
+    scaffolded_sd054_onboarding curriculum that produced 514o's
+    goal_resource_r lift -- not a coarse pre-enrichment config (538a's
+    failure mode) and not a stale pre-514n harness fork (693's failure
+    mode); (b) MECH-306 sustained-drive seeding is active (drive_floor>=0.9),
+    mirroring SD-012's identical precondition; (c) a FRESH non-degeneracy
+    check on this exact curriculum/harness config has been re-confirmed --
+    V3-EXQ-866a (2026-08-03, INV-034/Q-021, gated on the SAME SD-049-reef
+    foraging-competence family) found the FULL arm's resource_visit_rate
+    BELOW the RANDOM baseline on the nominally-"ready" curriculum in a
+    hazard-heavy stretch; the follow-up diagnostic V3-EXQ-866b (PASS,
+    2026-08-03) has since confirmed this is curriculum-specific, not
+    substrate-wide regression -- see INV-034's what_would_answer -- so
+    "ready=true" is not further undermined, but any retest should still
+    avoid the same hazard-heavy stretch until the curriculum fix lands; (d)
+    resource_respawn_on_consume=True and proximity_benefit_scale configured
+    correctly (>=0.18), matching SD-012's (c)/(d).
+
+    CONFIRMING signature: with (a)-(d) held, a behavioural navigation metric
+    (benefit_ratio or equivalent, reported alongside goal_resource_r for
+    continuity with 514o) exceeds 1.0 by a margin clearing cross-seed SD on
+    >=2/3 seeds.
+
+    FALSIFYING signature: benefit_ratio remains at or below random-baseline
+    parity DESPITE (a)-(d) all holding and goal_resource_r independently
+    confirming representation specificity is active on that run -- meaning
+    the now-accurate z_resource-driven z_goal direction is behaviourally
+    inert for navigation even once every previously-identified confound is
+    cleared. That would be the first genuine falsifier of the FULL claim and
+    should demote SD-015 rather than continue holding on "substrate not
+    ready."
+
+    What would NOT answer it: any run tagged claim_ids=[] / non_contributory
+    that omits (a)-(d); any run (like 693/538a) reporting only
+    representational metrics without a behavioural-navigation readout; any
+    non-degeneracy check that pre-dates 866b's resolution without
+    re-confirming the gate still clears on the exact intended configuration.
   functional_restatement: >
     EXQ-085f/085g established that seeding z_goal from z_world at resource contact does not
     produce a goal representation that guides navigation toward resources. Root cause:
@@ -29640,6 +29974,72 @@
     - MECH-151         # vmPFC value integration (existing, folds into SD-033c)
     - MECH-152         # vmPFC value integration (existing, folds into SD-033c)
     - MECH-235         # vmPFC-related mechanism (existing, folds into SD-033c)
+  epistemic_category: standard
+  what_would_answer: |
+    SD-033's load-bearing falsifiable content is carried by its first
+    subdivision, SD-033a (lateral-PFC-analog), which IS implemented
+    (ree-v3/ree_core/pfc/lateral_pfc_analog.py, landed 2026-04-20) -- this is
+    a comparative ablation test, not a substrate-existence test. SD-033b
+    (OFC-analog) remains unbuilt (second V3 priority); SD-033c/d are
+    registration-only consolidations of already-active substrate
+    (ARC-035/MECH-151/152/235; E3 trajectory machinery) and are not
+    separately falsifiable; SD-033e is V4-deferred (only a V3 forward-compat
+    hook exists).
+
+    ANSWER "SD-033a is over-specification, E3 alone suffices" if a ree-v3
+    implementation WITHOUT SD-033a's rule/goal substrate reproduces, without
+    degradation, all three MECH-262 functional signatures relative to the
+    SD-033a-ON arm: (i) stimulus-abstracted generalisation -- transfer to
+    novel stimuli under the same rule produces equivalent representational/
+    behavioural effect; (ii) distractor-resistant persistence -- rule-
+    selective effect survives internal_replay / MECH-092 micro-quiescence
+    intervals; (iv) training-dependent emergence -- the effect strengthens
+    with training exposure rather than being present from init. ANSWER
+    "SD-033a is required" (falsifies the over-specification hypothesis) if
+    E3-alone fails any of the three and the SD-033a-ON arm passes it.
+
+    CURRENT STATE (partial, mixed -- not "untested"): signature (ii) has
+    DIRECT SUPPORTING evidence (V3-EXQ-484: replay_drift/task_drift ratio
+    0.088, C1-C4 PASS, canonical governance replica). Substrate wiring
+    integrity (frozen-silent vs trainable-nonzero contrast) is confirmed
+    PASS across V3-EXQ-598/598b/598c. Signature (iv)'s causal test
+    (V3-EXQ-598b) and the closure-coupled persistence probe (V3-EXQ-461c)
+    both reached SD-033a's own decision boundary correctly but could not
+    complete, because of substrate ceilings IN OTHER CLAIMS, not in
+    SD-033a: MECH-309 monomodal collapse (blocks iv) and the SD-034
+    ClosureOperator's env->emit_closure() hook being unwired on the
+    foraging-competent agent (blocks the closure-coupled persistence read).
+    Both are recorded non_contributory/substrate_ceiling,
+    pending_retest_after_substrate, explicitly NOT a weakening of SD-033a.
+    Signature (i), stimulus-abstracted generalisation to a novel stimulus
+    under a held rule, has no experiment at all yet -- this is the one
+    clean gap, not a substrate block.
+
+    NON-DEGENERACY PRECONDITION: a run of this ablation is vacuous, in
+    either direction, unless the agent demonstrably occupies the states the
+    test depends on. Confirmed failure modes to guard against (all from the
+    SD-034 closure-cluster-ext autopsy, 2026-06-12): (a) the agent must
+    actually enter external_task / internal_planning mode with nonzero
+    occupancy -- V3-EXQ-464c/467c passed their own non-vacuity gate while
+    fraction_in_external_task=0.0 for the entire run, because that gate
+    counted episode-boundary mode settles rather than genuine mode
+    occupancy; (b) if the persistence read is closure-coupled (as in the
+    461c design), SD-034's closure-coupled-resolution trigger must actually
+    fire (n_closure_coupled_resolutions >= 1) -- committed Hold-window
+    formation alone is not sufficient, and this precondition silently
+    failed on the foraging-competent substrate; (c) the agent must clear
+    whatever generic competence floor gates task engagement on the chosen
+    environment (the recurring MECH-457 cold-start / foraging_contact_guard
+    pattern) -- an incompetent agent trivially "passes" the E3-alone arm by
+    producing no rule-conditioned behaviour of any kind, which is not
+    evidence E3 suffices, it is evidence nothing is being tested. A clean
+    run must report all three preconditions explicitly, not just the three
+    MECH-262 signature contrasts.
+
+    GOVERNANCE FLAG (not resolved here): evidence_quality_note still reads
+    "pre-implementation, no V3 evidence yet" (2026-04-19 lit-pull basis
+    only); it is stale for the SD-033a piece specifically, which now has
+    direct V3 experimental evidence (V3-EXQ-484/456/598/598b/598c/461c).
   functional_restatement: >
     MECH-261 commits to writing into "a PFC-analog policy/rule-level
     substrate" but ree-v3 has no registered substrate corresponding to
@@ -30781,6 +31181,85 @@
     - MECH-074b
     - MECH-074c
     - MECH-074d
+  what_would_answer: |
+    SD-035 already carries its own falsifiers, previously embedded in
+    functional_restatement rather than this field -- extracted here, not
+    reinvented:
+
+      EXQ-A (CeA mode-prior ablation): CeA ON must beat OFF on mode-switch
+      LATENCY, AND a zeroed-prior control must match OFF.
+      EXQ-B (BLA encoding + remap): the gain condition must improve
+      threat-context RECALL in the live loop without harming neutral recall,
+      AND remap_signal must fire in the expected window.
+      Secondary/backward-compat: with use_amygdala_analog=False, an existing
+      EXQ must reproduce bit-identical metrics.
+
+    STATUS: this falsifier is ALREADY LARGELY ANSWERED, not untested --
+    read this claim's current evidence before proposing new experiments.
+
+    ANSWERED (do not re-run without new reason):
+      - Backward-compat / bit-identical-OFF: V3-EXQ-473 + V3-EXQ-474, each
+        c1_backward_compat_entropy_delta = 0.0 across 3 seeds; now also
+        contract-guarded (test_flag_inertness.py probe F-P1,
+        test_feature_flag_boot_matrix.py tpj_and_amygdala row).
+      - Substrate-readiness / mechanism presence: V3-EXQ-473 (CeA fires on
+        threat, mode_prior/fast_prime reach the SalienceCoordinator, bound
+        respected) and V3-EXQ-474 (BLA inverted-U encoding-gain curve,
+        attribution-gated remap, post-event window monotonicity).
+      - Behavioral discrimination that the analog form is load-bearing:
+        V3-EXQ-501 (2026-04-29), analog beat binary sign-only 3/3 seeds on
+        approach/avoid smoothness, intermediate-valence discrimination, and
+        mode-transition lag.
+      - Live-loop encoding-gain follow-up owed by 474's live-loop gap:
+        V3-EXQ-659 (2026-06-09), PASS/supports for MECH-074a.
+      - Since the 2026-07-10 governance refresh, two further genuine PASSes
+        have landed on the same cluster (not yet folded into this claim's
+        evidence_quality_note as of this digestion pass): V3-EXQ-762
+        (2026-07-14, reviewed 2026-07-15) -- first genuine MECH-046 support,
+        CeA mode_prior present/context-varying/monotone/bounded across
+        graded threat contexts; and V3-EXQ-888 (2026-08-04, STILL PENDING
+        REVIEW as of this digestion pass) -- first genuine MECH-074b
+        support, address-route vs strength-route separability.
+
+    RESIDUAL, NOT YET ANSWERED (the literal-wording gap, honestly named):
+      None of the seven runs above -- nor anything queued since -- executes
+      either falsifier as literally worded. Specifically missing:
+        (i) A direct CeA-ON-vs-OFF comparison on MODE-SWITCH LATENCY (501
+            substituted an ANALOG-vs-BINARY contrast instead), plus the
+            paired zeroed-prior control matching OFF.
+        (ii) A single LIVE-LOOP (in-environment, not replay-buffer/synthetic)
+             threat-context RECALL run under the BLA gain condition,
+             contrasted against neutral recall. 474's C2-C5 were synthetic
+             BLAAnalog.tick() unit tests (env.step 5-tuple unpacking bug,
+             bla_n_ticks=0); 659 and 888 are replay/AOR-buffer measures of
+             encoding-gain and retrieval-bias, not an in-loop recall task.
+
+    NON-DEGENERACY NOTE if either rerun is ever queued: SD-032b's dACC FAIL
+    context (v3_exq_445, affective PE path underperforming) means EXQ-A/B
+    acceptance criteria must be calibrated against that -- don't expect a
+    clean mode-prior-ablation signal if upstream PE is broken; a null result
+    could reflect the PE ceiling rather than falsify SD-035.
+
+    ANSWER "SD-035 substrate as specified" (current reading, stable) if the
+    residual gap above is judged proxy-adequate -- accumulated genuine
+    evidence (7 PASS runs total, spanning substrate-readiness,
+    discrimination, and two independent live encoding/retrieval mechanisms)
+    covers the scientific intent even though the two literal EXQ-A/EXQ-B
+    wordings were never executed verbatim.
+
+    ANSWER "SD-035 falsified on the letter of its own registration" only if
+    a literal ON-vs-OFF mode-switch-latency run, or a literal live-loop
+    threat-vs-neutral recall run, is executed and fails -- this is the only
+    outcome that would move this claim off its current PASS trajectory
+    rather than merely closing a documentation gap.
+
+    GOVERNANCE FLAG (2026-08-07 digestion pass, not resolved here): stance
+    is still "believed" despite status:stable and 6 landed + 1 pending PASS
+    runs -- likely the exp_conf threshold discounting the proxy gap above.
+    Worth a governance call on whether to close the literal-wording gap with
+    a small targeted rerun, or reassess for "shown" given accumulated proxy
+    coverage. evidence_quality_note is two runs stale (762, 888) as of this
+    pass.
   functional_restatement: >
     SD-035 registers a two-module amygdala analogue in ree-v3 --
     BLAAnalog (basolateral) and CeAAnalog (central) as peer modules,
@@ -61244,6 +61723,61 @@
     The non-sentience boundary is a maintained claim, not a permanent fact:
     re-assert or revise it at each generation boundary (V4/V5/V6).
   notes: "Wording: SENT-CLAIM-022. Compressed: V3 := not_sentient AND pre_ethical_substrate. Ethical agency != moral patienthood is the spine of the whole perimeter."
+  what_would_answer: |
+    NOT an empirical pass/fail falsifier -- SENT-0 is a governance_rule
+    (policy assertion), so this specifies the REASSESSMENT TRIGGER and the
+    evidence that would inform it, not an experiment result that could
+    confirm/refute a mechanism.
+
+    TRIGGER: the next generation boundary (V4 design/scoping kickoff), per
+    this claim's own text ("re-assert or revise it at each generation
+    boundary"). Reassessment should happen at V4 SCOPING -- before V4
+    components go behaviourally live -- per SENT-1 ("before V4 proceeds
+    beyond individual-mind integration") and SENT-5 (denial-of-sentience
+    audit, which depends on SENT-0 + SENT-1).
+
+    EVIDENCE RELEVANT AT THAT REASSESSMENT (candidates to score, not
+    thresholds already crossed -- drawn from the source risk register's
+    per-generation risk table and SENT-1's indicator list):
+      - V4-introduced components flagged by the risk register as raising
+        moral-patient ambiguity: self-model, autobiographical memory,
+        belief-state inference, affect expression, memory lifecycle, richer
+        offline integration.
+      - SENT-1's 12-indicator matrix scored against the actual V4
+        architecture (recurrent processing, global availability,
+        attention-like selection, self-model, agency, persistent goals,
+        valenced states, memory continuity, offline replay,
+        reportability/proto-reportability, social modelling,
+        preference-like behaviour).
+      - SENT-3's combination-gate condition: does V4 co-instantiate
+        persistent self-model + autobiographical memory + sustained
+        negative-valence/suffering-like accumulator + inescapability/low
+        controllability + social modelling + language/preference
+        signalling? (Each alone is judged low-risk; the combination is the
+        trigger.)
+      - SENT-13's assembly-routing risk class (Class 0-5) assigned to
+        whatever V4 actually builds.
+      - V3's already-existing welfare-relevant primitives named in this
+        claim's own functional_restatement (harm streams, residue,
+        suffering-like accumulators, replay) should be RE-scored in the V4
+        context, not re-discovered from scratch.
+
+    WHAT WOULD ACTUALLY REVISE THE BOUNDARY: a SENT-5 denial-of-sentience
+    audit conducted at the V4 boundary that cannot cleanly answer "why is
+    the system still below the precautionary moral-patient threshold" --
+    i.e. the SENT-1 matrix scores enough indicators present/plausible, or
+    the SENT-3 combination condition is met by the planned V4 assembly,
+    such that the audit's honest answer becomes "we can no longer clearly
+    say no." That failure-to-clear-the-audit is the operative falsifier of
+    the boundary statement -- not any single experiment, metric, or run.
+
+    READER NOTE: this is a POLICY RE-EVALUATION TRIGGER, not an empirical/
+    mechanistic falsifier -- do not read it as "run experiment X, check
+    metric Y." The reassessment mechanism already exists as sibling
+    governance_rule claims (SENT-1 indicator matrix, SENT-3 combination
+    gate, SENT-5 denial-of-sentience audit, SENT-6 external review gate at
+    V5); SENT-0 points to that cluster rather than defining new criteria in
+    isolation. No EXP-#### should be minted against this claim.
 - id: SENT-1
   title: "Indicator matrix: score the architecture against candidate consciousness/sentience indicators before V4 proceeds beyond individual-mind integration."
   claim_type: governance_rule
