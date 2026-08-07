@@ -1857,7 +1857,7 @@
     "type": "invariant"
   },
   "INV-033": {
-    "assembly_state": "remaining",
+    "assembly_state": "awaiting_substrate",
     "emergent_from": [
       "ARC-016"
     ],
@@ -1867,7 +1867,8 @@
     "status": "candidate",
     "subject": "epistemic.second_order_self_monitoring",
     "title": "REE agents require second-order epistemic access to their own model confidence, structurally represented and wired into commit gating, not just observable from performance metrics.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: requires a real second-order self-confidence\nsignal structurally READ by the commit decision itself, not merely computed\nand logged or used as a training-time penalty. As of 2026-08-07 UNMET:\nree_core/agent.py implements compute_z_self_d_eff() (MECH-113) and\ncompute_self_maintenance_loss(), but both are called only from experiment\nscripts as measurement/loss-shaping -- neither is read in\nree_core/predictors/e3_selector.py, where the live commit decision is\n`committed = running_variance < commit_threshold` (world-side only).\nMECH-114 is the claim that would perform this wiring and is itself still\ncandidate, unbuilt -- added to depends_on above as the actual live gap.\n\nCorrection to this claim's own prior blocking note (see the dated\nCORRECTION inserted in `notes` below): ARC-016 is NOT the current blocker.\nARC-016 was promoted stable 2026-07-25 (v3_exq_818, gate_green,\ncommit-gating locus real and exercised in code). What remains missing is\nthe second-order signal being wired into it (MECH-114), not the locus\nitself.\n\nCONFIRMING: once D_eff is wired into E3TrajectorySelector.select() per\nMECH-114, an experiment dissociating world-confidence from self-confidence\n(perturb z_self coherence while holding running_variance flat) shows the\ncombined gate withholds commitment during high-D_eff episodes the\nvariance-only gate would have allowed, AND commitments made under the\nvariance-only gate during those same episodes are measurably more\nerroneous/lower-quality than when D_eff is low.\n\nFALSIFYING: either the world/self dissociation cannot be produced\n(replicating MECH-113's own EXQ-142 FAIL x2 pattern at the gating level),\nor the dissociation is produced but commit-quality is statistically\nindistinguishable between D_eff-gated and variance-only conditions -- i.e.\nfirst-order signals alone already explain commit-quality outcomes.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave\n10. ARC-016/MECH-114 currency independently verified against source --\nsee notes CORRECTION below.)\n"
   },
   "INV-034": {
     "assembly_state": "enriching",
@@ -2157,7 +2158,8 @@
     "status": "candidate",
     "subject": "development.infant_stage_necessity",
     "title": "A pre-childhood infant stage is developmentally necessary: prior to deliberate planning, the agent must accumulate a valence map, behavioral repertoire, and harm/benefit geography through novelty-driven, sleep-dominant, damage-protected exploration.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION (else substrate_not_ready, NOT a verdict): the\ninfant-curriculum substrate must land before this claim is testable at all.\nTwo of its three original prerequisites are already clear -- MECH-307\ndefault recalibration (V3-EXQ-540g) and non-trivial goal_pipeline z_goal in\ndefault config (V3-EXQ-603n PASS, all four load-bearing gates including\nG3_p2_zgoal_consumption non-degenerate) -- and the InfantCurriculumScheduler\nPhase 0->1 gate-criterion question is resolved and wired (crossing-count\ncriterion, 591f PASS -> live scheduler 2026-06-19, infant_substrate:GAP-14-c2).\nWhat remains open is GAP-14's residual leg (c-1): seed-46 exploration-strength\ncollapse, currently gated on the behavioural-competence wall (V3-EXQ-724\ncompetence_deficit_diffuse; MECH-457 cold-start/competence-floor thread) rather\nthan on any selection-authority or goal-pipeline defect. Until (c-1) clears and\nEXQ-ISEF-005 (the V3-EXQ-591 successor) can be authored and run, any attempt to\nscore this claim self-routes substrate_not_ready, not a verdict -- do not queue\nEXQ-ISEF-005 on partial clearance alone (documented standing instruction).\n\nOnce EXQ-ISEF-005 runs, apply the claim's own gate criterion: z_goal norm above\nthreshold AND behavioral entropy below ceiling (repertoire established, not a\npure random walk).\n\nCONFIRMING: the phased infant-curriculum arm reaches this gate criterion, while\nflat-parameter baselines run for the same total budget without a distinct\ninfant phase do NOT.\n\nFALSIFYING: flat-parameter baselines reach the same gate criterion at a\ncomparable or better rate, or with comparable resulting valence-map coverage\nand behavioral repertoire diversity, when matched for compute budget -- would\ndemote INV-055 to at most \"helpful, not necessary.\"\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 10.\nCurrency re-verified against IGW-20260807-098 -- substrate still\nblocked_pending_substrate, categorization unchanged.)\n"
   },
   "INV-056": {
     "assembly_state": "remaining",
@@ -2184,13 +2186,14 @@
     "type": "invariant"
   },
   "INV-058": {
-    "assembly_state": "remaining",
+    "assembly_state": "awaiting_substrate",
     "epistemic_stance": "believed",
     "invariant_type": "universal",
     "status": "candidate",
     "subject": "play.structural_necessity",
     "title": "Play is a structurally necessary behavioral mode: without a bounded low-stakes learning context, strategy acquisition requires accepting real harm risk or forgoing novel exploration entirely.",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION: play-mode substrate does not exist in V3 -- grep across ree-v3/ree_core and ree-v3/experiments for play_mode, play_frame_tag, z_goal_synthetic, set_play_mode, and play_harm_threshold_shift returns zero hits. play_substrate_design.md (Status: Draft, 2026-05-16) specifies the required implementation but its own Phase 0 infrastructure checklist is entirely unbuilt, and no EXQ-PLAY-00{1..5} has ever been queued. All three of INV-058's own evidence entries are literature-only (DIAYN/Eysenbach 2019, IMGEP/Forestier 2022, robot-mediated-play/Panelli 2025); no V3 experimental run has ever tested this claim. Both depends_on claims are themselves unresolved: INV-049 is candidate/substrate_conditional (unfixed SD-017 ContextMemory.write_gate bias-collapse, V3-EXQ-436d FAIL 2026-08-04) and SD-012's C2 navigation-outcome sub-claim is open. Until Phase 0 is built and at minimum EXQ-PLAY-005 (play-to-real transfer) runs, any result is substrate_not_ready_requeue, not a verdict.\nCONFIRMING: once built, EXQ-PLAY-005's matched-episode-count design (play-pretrained vs cold-start) shows play-pretrained significantly outperforming cold-start on real-episode goal-pursuit performance, E3 trajectory selection diversity, and time-to-criterion -- without inflating real-harm-event rate during acquisition (calibration-leakage KL < 0.05 nat per MECH-195).\nFALSIFYING: cold-start matches or exceeds play-pretrained at matched episode count -- OR play-pretrained shows apparent transfer only by leaking synthetic-signal calibration into real episodes (KL > 0.1 nat) or by producing MORE real-harm events during acquisition than cold-start -- i.e. play fails to actually decouple strategy acquisition from harm exposure.\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 10.)\n"
   },
   "INV-059": {
     "assembly_state": "awaiting_substrate",
@@ -2262,7 +2265,7 @@
     "what_would_answer": "INV-064's own falsifiable content is the E1->E2->E3 maturational\nORDERING-NECESSITY claim itself (unchanged by the 2026-07-12\ndecomposition), not a fresh single experiment against the umbrella.\nDo NOT queue a new direct probe against INV-064 -- the re-derive\nbrake already refuses a same-observable 740b, and any direct test\nwould duplicate what its children already carry. The umbrella's\nstatus is read off the AGGREGATE verdict of its two registered\nchildren, each an independently falsifiable stream-specific bound:\nINV-088 (E3 goal/world-evaluator quality bounded by z_world/E1\ndifferentiation) and INV-089 (E3 harm-evaluator quality bounded by\nz_harm/HarmEncoder differentiation -- itself narrowed 2026-07-16 to\nthe ceiling reading, with the companion growth-coupling/driver\nreading split out to a grandchild, INV-090).\n\nCONFIRMS (umbrella): both INV-088 and INV-089/INV-090 individually\nreach a clean confirming verdict for their own stream-specific bound\n-- i.e. E1/E2 differentiation demonstrably gates E3 evaluator quality\non both the world/goal stream and the harm stream, per each child's\nown decision criteria. That jointly confirms the general E1->E2->E3\ninformation-bottleneck mechanism this umbrella asserts, with no test\nrun at the umbrella level.\n\nPROMPTS FURTHER REVISION/SPLIT (umbrella, distinct from a mere\nbound-quantification miss): if a child's falsifier undercuts the\nORDERING-NECESSITY FRAMING itself rather than just its bound's\nmagnitude -- e.g. a child's evaluator trains productively BEFORE its\ninput stream differentiates, or a child's degeneracy is traced to a\nmechanism outside the E1/E2->E3 information-bottleneck story\nentirely. This has already happened once on the world leg:\nV3-EXQ-108b traced INV-088's evaluator degeneracy to an E1\nsingle-step-training/multi-step-rollout-at-eval mismatch, NOT to\nz_world's own differentiation capacity\n(epistemic_category=competence_implementation_gap, not\nsubstrate_ceiling) -- a competence-implementation confound, not yet a\nframing falsification, but the kind of finding this clause exists to\ncatch if it recurs or sharpens.\n\nFALSIFIED (umbrella, partial or full): a clean, met-precondition\nfalsification of EITHER child's bound (evaluator quality demonstrably\nindependent of, or inversely related to, its input stream's\ndifferentiation) that survives re-derive-brake scrutiny refutes that\nstream's leg of the E1/E2->E3 bottleneck. Whether that falsifies the\nordering-necessity claim as a whole or only narrows it to the\nsurviving stream is a /claim-synthesis judgment at that point.\n\nCURRENT STATE (2026-08-07): neither child has reached a clean confirm\nor falsify. INV-088 is candidate, coupling leg real-but-weak (744a)\nthen confounded with a competence-implementation-gap finding (108b),\npending_retest_after_substrate on an unbuilt E1\nrollout-consistency-training substrate (routed to\n/implement-substrate). INV-089 is provisional on 743's positive\ncontrol alone, its own bound-coupling test still pending a valid\nmet-precondition run, and its driver reading has been carved off\nentirely to INV-090 (candidate/substrate_conditional, blocked on an\nunbuilt binding-regime maturation curriculum). So the umbrella\ncorrectly stays candidate/pending_substrate_reconfirmation -- unmoved\nby any of this, since none of it is a verdict AT the umbrella level.\nNeither child needs its own digestion pass -- both already carry\ndetailed, current, actively-maintained falsification conditions.\n"
   },
   "INV-065": {
-    "assembly_state": "remaining",
+    "assembly_state": "awaiting_substrate",
     "assembly_status": "built",
     "awaiting": "SD-015",
     "emergent_from": [
@@ -2275,7 +2278,8 @@
     "status": "candidate",
     "subject": "goal.multi_step_planning",
     "title": "proxy_goal_necessity",
-    "type": "invariant"
+    "type": "invariant",
+    "what_would_answer": "INV-065 is the umbrella prediction over MECH-216 and MECH-217. As of 2026-08-07,\nNEITHER underlying mechanism has cleared to a state that supports a direct\nbehavioural test of INV-065 itself.\n\nNON-DEGENERACY PRECONDITION:\n  - Test environment must place a resource genuinely beyond the CEM horizon\n    (~10 steps) under sparse/distal reward.\n  - MECH-217's mechanism-readiness leg is CONFIRMED PASS (V3-EXQ-842,\n    2026-07-30) -- reusable, do not re-test.\n  - MECH-216's density-floor precondition (positive_label_rate > 0.10) has NOT\n    cleared: EXQ-332a measured 0.00128, ~78x below floor, no retest since.\n\nCONFIRMS if, once cleared: a four-cell {MECH-216 ON/OFF} x {MECH-217 ON/OFF}\ndesign in the beyond-horizon environment shows BOTH-ON exceeding BOTH-OFF by a\nmargin clearing cross-seed SD, BOTH-OFF is indistinguishable from a\nno-gradient/random-walk floor, and acquisition rate scales with proxy-goal\ndensity in the intermediate cells per each mechanism's own spatial signature.\n\nFALSIFIES if: BOTH-OFF is statistically indistinguishable from BOTH-ON --\nproxy-goal density has no measurable effect on beyond-horizon planning,\ncontradicting the \"architectural necessity\" claim.\n\nINCONCLUSIVE if MECH-216's density floor still fails to clear after redesign,\nor the apparatus itself is unbuilt.\n\nCURRENCY (2026-08-07): no experiment currently targets this four-cell design.\nIt generalizes (not duplicates) MECH-217's own not-yet-built LEG 2 apparatus.\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 10.\nExtracted from MECH-216/MECH-217's already-digested what_would_answer blocks.)\n"
   },
   "INV-066": {
     "assembly_state": "mature",
@@ -7949,14 +7953,15 @@
     "type": "design_decision"
   },
   "SD-029": {
-    "assembly_state": "gated_v3",
+    "assembly_state": "enriching",
     "assembly_status": "built",
     "awaiting": "MECH-269",
     "epistemic_stance": "believed",
     "status": "candidate",
     "subject": "self_attribution.comparator_z_harm_s",
     "title": "Single-pass agency attribution via forward-model comparator on the z_harm_s reafferent stream: residual = z_harm_s_observed - E2_harm_s(z_harm_s_{t-1}, a_actual).",
-    "type": "design_decision"
+    "type": "design_decision",
+    "what_would_answer": "NON-DEGENERACY PRECONDITION (must clear before C2 is evaluable at all): the\ncomparator mechanism is built and exercised across 13+ runs (EXQ-330 through\nEXQ-537a) with C1 and C3 repeatedly passing clean -- but C2 has never once been\nevaluable, because training/eval produces near-single-class agent-caused vs\nenv-caused hazard-event distributions (monomodal policy; SD-050 reef enrichment\ntried, did not fix it). Depends on MECH-269/MECH-269b's V_s landing behavioural\ndiversity -- as of 2026-08-07 both remain candidate/v3_pending. The diagnostic-\nprobe evidence (R4.b, 2026-05-29) is scoring_excluded and does not lift\nv3_pending; the non-diagnostic behavioural-sufficiency retest (V3-EXQ-475b,\nauthored 2026-07-31) is not yet queued. Deeper shared root: MECH-439\nF-dominance monostrategy collapse (~88-89% of E3's variance) -- identical to\nthe ceiling already documented on ARC-062's GAP-B falsifier (21 runs) --\nremains candidate/substrate_ceiling/pending_retest_after_substrate as of the\n2026-08-01 governance cycle.\n\nCONFIRMING: residual_harm shows the Shergill (2003) partial-attenuation\npattern -- measurably smaller for self- vs externally-caused harm events, but\nnot reduced to zero (graded, not binary) -- while C1 and C3 continue to hold.\n\nFALSIFYING: once C0 is met, EITHER no measurable attenuation (self/ext ratio\n~1.0, agency-blind residual despite clean C1), OR binary/near-total\nattenuation (inconsistent with Shergill), OR C1 degrades below 0.9 under the\nbalanced-event regime (would indicate earlier clean C1 reads were an artifact\nof training under a degenerate distribution).\n\n(Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion wave 10.)\n"
   },
   "SD-030": {
     "assembly_state": "deferred_future",
