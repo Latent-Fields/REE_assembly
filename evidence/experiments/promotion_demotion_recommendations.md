@@ -1,6 +1,6 @@
 # Promotion / Demotion Recommendations
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 Decision scope: `current_epoch_applicable,epoch=ree_hybrid_guardrails_v1`
 
 This file proposes decisions only. No claim status changes are applied automatically.
@@ -915,7 +915,7 @@ Use this as the human-in-the-loop review queue.
 ### MECH-095
 - Current status: `candidate`
 - Decision needed: Literature conflict noted; claim stays gated pending upstream probe/substrate
-- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.542, conflict_ratio=0.462, exp_entries=11, lit_entries=24; directions supports=20, weakens=6, mixed=9, unknown=0, conflict_ratio=0.462
+- Why this decision is needed: epistemic_category=substrate_ceiling, exp_conf=0.541, conflict_ratio=0.462, exp_entries=11, lit_entries=24; directions supports=20, weakens=6, mixed=9, unknown=0, conflict_ratio=0.462
 - Evidence quality note: [multi_sense_audit_2026_05_08_cleared] EXQ-047i/j/k: audit re-examined the multi-sense flag on the 047 cluster and confirmed it is a deliberate probe pattern (sense E_t -> step -> sense E_{t+1} -> step), giving exactly 1 sense per env state. Not the EXQ-471 cohort bug. Direction and confidence unchanged.
 - Recommendation: `hold_candidate_resolve_conflict`
 - Options (pros/cons):

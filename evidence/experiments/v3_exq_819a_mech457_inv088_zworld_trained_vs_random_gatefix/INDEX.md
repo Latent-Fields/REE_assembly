@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_819a_mech457_inv088_zworld_trained_vs_random_gatefix
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

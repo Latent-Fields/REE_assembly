@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_467_mech266_mode_stickiness
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

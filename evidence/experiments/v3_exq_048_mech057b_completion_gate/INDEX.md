@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_048_mech057b_completion_gate
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_864a_sd076_wci_rv_trajectory_crossover_diagnostic
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

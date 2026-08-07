@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_847a_arc062_pd_context_modeswitch_committed_class_divergence
 
-Generated: `2026-08-07T18:48:38.910408Z`
+Generated: `2026-08-07T19:48:16.303510Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

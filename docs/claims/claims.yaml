@@ -34009,11 +34009,24 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: false
   claim_level: architectural
   registered_utc: 2026-04-19
   instantiates: SD-033
+  reclassification_note: >
+    [2026-08-07 governance, phase-label-follows-dependency, user-directed]: implementation_phase
+    v4 -> v3. check_claim_phase_consistency.py flagged this claim as directly needed by MECH-487, a
+    v3 build commitment (MECH-487 depends on "the SD-033e/MECH-264 transient-scalar substrate" per
+    its own registration note). Standing rule: anything directly needed for a v3 build is marked
+    v3 so v3 can complete. NUANCE preserved, not overwritten: what MECH-487 actually depends on is
+    the ALREADY-LANDED V3-narrow parameter-free geometric de-commit lever (implementation_note
+    above, 2026-07-09), not the FULL learned-substrate scope this claim's title and
+    v4_scope_deferred note describe (MECH-264 counterfactual-value head + MECH-265 monitor,
+    prerequisites still genuinely V4-bound per MECH-163/CausalGridWorldV2). The claim as a whole
+    reclassifies because the phase label tracks closure/roadmap counting for the DEPENDED-UPON
+    claim, not a re-scoping of its full content -- the v4_scope_deferred text below still
+    correctly describes what remains actually deferred.
   implementation_note: >
     V3-NARROW DE-COMMIT LEVER LANDED 2026-07-09 (user-directed; PROMOTES NOTHING,
     status/confidence unchanged). A deliberate low-odds-but-owed V3-narrow slice --
@@ -35043,13 +35056,21 @@
       from: "decision:MECH-264@2026-06-06T07:53:48.739107Z"
       as_of: 2026-06-06
       verdict: held_v4_by_architectural_commitment/applied
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
   claim_level: mechanistic
   registered_utc: 2026-04-19
+  reclassification_note: >
+    [2026-08-07 governance, phase-label-follows-dependency, user-directed]: implementation_phase
+    v4 -> v3 (v3_pending stays true, unchanged). check_claim_phase_consistency.py flagged this
+    claim as directly needed by MECH-487, a v3 build commitment. Standing rule: anything directly
+    needed for a v3 build is marked v3 so v3 can complete. As the implementation_note below already
+    documents, a V3-narrow geometric slice of THIS mechanism landed 2026-07-09 -- the full
+    parallel-maintained multi-step substrate remains genuinely V4-gated (MECH-163 prerequisite
+    unmet), which is exactly why v3_pending stays true even as the phase label moves.
   implementation_note: >
     V3-NARROW GEOMETRIC INSTANTIATION LANDED 2026-07-09 (user-directed; PROMOTES
-    NOTHING, stays candidate / implementation_phase v4 / v3_pending true). A
+    NOTHING, stays candidate / v3_pending true). A
     parameter-free geometric reading of the MECH-264 counterfactual value -- the
     goal-proximity ADVANTAGE of the best UNCHOSEN candidate over the committed
     endpoint in z_world space, ||z_chosen - z_goal|| - ||z_alt - z_goal|| -- was
@@ -74679,4 +74700,15 @@
     field). stance: asked until a /thought-digestion pass or a build refines it,
     but a house-style what_would_answer is provided above because the commissioning
     lit-pull grounded a concrete mechanism shape.
+    [2026-08-07 governance, phase-label-follows-dependency review]: check_claim_phase_consistency.py
+    WARNs that this v3 build commitment depends_on 3 v4-labelled claims (ARC-085, MECH-264,
+    SD-033e). Reviewed all three individually per the standing rule (anything DIRECTLY needed for
+    a v3 build is marked v3): MECH-264 and SD-033e reclassified v4 -> v3 (both have an
+    ALREADY-LANDED V3-narrow slice this claim's actual dependency uses -- see their own
+    reclassification_note fields). ARC-085 left at v4 DELIBERATELY, not reclassified: this claim's
+    own depends_on comment and the notes text above both already say ARC-085 is a "candidate
+    eventual host," not a current requirement -- MECH-487 does not need ARC-085 to exist or be
+    built for its own V3 content to stand. The phase-consistency WARN is a known false-positive
+    here (the checker cannot read the depends_on inline comment's qualifying language); no action
+    owed unless ARC-085 becomes an actual load-bearing dependency later.
   evidence: []

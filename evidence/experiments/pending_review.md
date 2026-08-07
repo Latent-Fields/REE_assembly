@@ -1,8 +1,8 @@
 # Pending Experiment Review
 
-Generated: `2026-08-07T19:29:29Z`  
+Generated: `2026-08-07T19:48:28Z`  
 Last review: `2026-08-07T19:28:08Z`  
-Pending: **4** item(s) -- 3 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy
+Pending: **4** item(s) -- 4 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy
 
 ## PASS (verify & close)
 
@@ -11,6 +11,7 @@ Pending: **4** item(s) -- 3 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 1
 | `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` | 2026-08-03T19:24 | MECH-358, SD-059 |
 | `v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3` | 2026-08-04T06:23 | MECH-322 |
 | `v3_exq_890_mech471_acquisition_reliability_probe_20260806T041928Z_v3` | 2026-08-06T04:19 | MECH-471 |
+| `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` | 2026-08-07T18:56 | MECH-286 |
 
 ## Diagnostic -- autopsy required (no confirmed adjudication)
 
@@ -21,14 +22,6 @@ Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED
 | `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` | PASS | substrate_reproduces_603q_reference |
 | `v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3` | PASS | replay_carveout_fires_and_fails_closed |
 | `v3_exq_890_mech471_acquisition_reliability_probe_20260806T041928Z_v3` | PASS | early_divergence_supports_h1_framing |
-
-## Unclaimed manifests (PASS/FAIL with no claim tags)
-
-These manifests are on disk with PASS/FAIL but their run_id is absent from `claim_evidence.v1.json`. Common causes: substrate-readiness or environment-probe diagnostics that intentionally tag no claims, or runs the runner mis-logged as ERROR/UNKNOWN while the manifest landed cleanly. Mark discussed by adding the **manifest stem** (filename minus `.json`) to `discussed_experiment_dirs` -- queue_id-level marking is unsafe here, see header docstring.
-
-| Result | Manifest stem | Experiment type | Queue ID | Direction |
-|--------|---------------|-----------------|----------|-----------|
-| PASS | `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` | v3_exq_891_mech286_sleep_onset_conjunction_signature | V3-EXQ-891 | supports |
 
 ---
 
