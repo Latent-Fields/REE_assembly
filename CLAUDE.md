@@ -188,6 +188,44 @@ Resolved values + dispatch:
 | `out_of_domain` | EXPLICIT only -- the question is empirical but its test domain is outside REE (clinical cohort, pharmacology, etc.); no substrate at any level helps | promote/demote suppressed; `narrow_open_question` suppressed. These claims may belong as `research_anchor` or `literature_synthesis` claim_type rather than `open_question`. |
 | `governance_rule` | EXPLICIT only -- a standing governance gate (welfare / release / legal / security / process policy), NOT a testable mechanism | promote/demote suppressed; `narrow_open_question` suppressed; conflict alerts may fire. Used for the SENT-* / GOV-* ethics-perimeter claims (paired with `claim_type: governance_rule`, which is outside `SUBSTRATE_CLAIM_TYPES` so it does not enter the substrate-status map). The right response is to advance the owning governance artifact, not to run an experiment. See `evidence/planning/ethics_perimeter_plan.md`. |
 
+**`substrate_ceiling` vs `substrate_conditional`, sharpened (2026-08-07,
+thought-digestion session `thoughts-intakes-4fd18d`).** The table above already
+treats these as distinct, but in practice the digestion pass that produced this
+note initially mis-tagged one claim as the other, so the operational
+discriminator is worth stating explicitly rather than re-derived per claim.
+**`substrate_conditional`** means the mechanism has genuinely never been
+exercised -- the code it needs does not exist yet, so zero non-degenerate
+experimental attempts are possible and no evidence has been (or could have
+been) banked either way. Confirmed example: ARC-063's `CandidateRuleField` has
+landed only 4 of its 6 distinctive mechanisms (hippocampal-rollout-eligibility
+shaping, the full status lifecycle, structured evidence-trace records, and
+sleep wiring are all absent from `ree_core/`); ARC-023's SD-006 phase 2 (true
+async execution) hasn't landed at all. **`substrate_ceiling`** means the
+mechanism IS built and HAS been exercised, repeatedly, under genuinely
+non-degenerate conditions -- readiness/precondition gates keep passing
+cleanly -- but the causal signal it produces cannot reach the outcome metric
+because something else, downstream and usually SHARED across multiple claims,
+absorbs it first. Confirmed example: ARC-062's GAP-B behavioural falsifier has
+run 21 times; every run's C1 readiness gates pass non-degenerately (the
+rule-apprehension bias demonstrably reaches the E3 accumulator with real
+authority) and every run's C2 (committed-class entropy lift) fails, because
+MECH-439 (F-dominance, ~88-89% of E3's variance) swamps the signal before it
+can move committed action -- the identical blocker independently hits
+SD-032b's dACC pathway (`failure_autopsy_V3-EXQ-445h`), and ARC-108/MECH-450
+tracks the fix. **Practical convergence, real difference:** both categories
+currently resolve to the same recommendation ("stop re-running the existing
+design, work on substrate first"), but they carry different amounts of banked
+confidence in the claim's own mechanism (`substrate_ceiling` claims have real
+positive evidence up to the handoff point; `substrate_conditional` claims have
+none yet) and point at different-shaped fixes (`substrate_ceiling` blockers
+are often shared across several claims at once, so one fix can unblock a whole
+cohort; `substrate_conditional` blockers are usually claim-specific
+engineering work). Note MECH-439 itself is not treated as a settled, permanent
+wall -- it was demoted from `substrate_ceiling` to "contested candidate" on
+2026-07-09 after a ceiling-exhaustion review (10 autopsies, no positive
+discrimination) -- so "ceiling" here means best current read from repeated
+real attempts, not architectural impossibility.
+
 The resolver lives in `evidence/experiments/scripts/build_experiment_indexes.py`
 as `_resolve_epistemic_category(claim_type, invariant_type, explicit_category)`.
 The recommendation function `_recommendation_for_claim` reads the resolved
