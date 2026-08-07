@@ -2615,6 +2615,29 @@
       "outcome": "NO_OP",
       "outcome_evidence": "no queue/experiment landing, no worktree commits, no blocked-triage disposition, no duplicate marker",
       "worktree_gc_at": "2026-08-07T07:10:02Z"
+    },
+    {
+      "igw_id": "IGW-20260807-208",
+      "stable_hash": "3633e36807dc",
+      "skill": "/implement-substrate",
+      "lane": "substrate",
+      "priority": 25,
+      "claim_ids": [
+        "SD-014"
+      ],
+      "owner_exq": null,
+      "title": "Substrate ready: sd014-decouple-wanting-liking-writepath",
+      "worktree": ".claude/worktrees/igw-208-substrate-ready-sd014-decouple-w",
+      "branch": "claude/igw-208-substrate-ready-sd014-decouple-w",
+      "session_uuid": null,
+      "pid": null,
+      "launch_command": "/opt/local/bin/python3 /Users/dgolden/REE_Working/scripts/igw_routine_tick.py launch IGW-20260807-208",
+      "resume_command": "cd /Users/dgolden/REE_Working/.claude/worktrees/igw-208-substrate-ready-sd014-decouple-w && claude \"$(cat IGW_START_HERE.md)\"",
+      "task_claim_session_id": "igw-auto-igw-208-substrate-ready-sd014-decouple-w-20260807T201602Z",
+      "requires_human_reason": "skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)",
+      "assigned_at": "2026-08-07T20:15:28Z",
+      "staged_at": "2026-08-07T20:15:28Z",
+      "status": "staged"
     }
   ],
   "dispositions": [
