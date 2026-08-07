@@ -65,13 +65,28 @@
     action-selection loop, a categorically different thing from what this
     invariant scopes.
 
-    Standing drift-risk noted 2026-08-07: ethical_scorer/compute_ethical_cost
-    naming is legacy and functionally a harm-cost head, not a distinct moral
-    channel -- but the name alone invites the misreading this falsifier
-    guards against; candidate for renaming toward harm-cost terminology.
+    Standing drift-risk noted 2026-08-07, PARTIALLY RESOLVED same day: the
+    two symbols local to e3_selector.py were renamed (self.ethical_scorer ->
+    self.harm_cost_fallback_scorer, compute_ethical_cost() ->
+    compute_harm_cost_fallback()) -- confirmed zero external callers (grepped
+    the full ree-v3 tree), landed on main, verified via
+    tests/test_sd016.py (35/35 pass on the cloud hub, including the fallback-
+    path test). NOT renamed, by explicit user decision (narrow scope chosen
+    over full scope): the `lambda_ethical` E3Config field itself
+    (ree_core/utils/config.py) -- it's referenced as a bare kwarg or
+    serialized JSON key in 30+ experiment scripts (e.g.
+    v3_exq_735_drive_reward_balance_sweep.py, v3_exq_785b_mech463_...py,
+    v3_exq_858_arc062_...py) and inside already-completed experiment result
+    manifests. A full rename needs a backward-compat alias (existing
+    manifests read `"lambda_ethical"` as a literal output key) and, per
+    CLAUDE.md's Git Policy, should go through an integration/<slug> branch
+    with the contract suite run before merge, not a same-session edit --
+    this is exactly the "breaks the fleet if half-landed" class of change.
+    Deferred; see WORKSPACE_STATE.md 2026-08-07 for the pointer to pick this
+    back up.
 
     (Digested 2026-08-07, session cool-torvalds-a82359, thought-digestion
-    wave 12.)
+    wave 12; naming fix same day, same session.)
   location: docs/invariants.md#inv-001
   source:
     - docs/processed/legacy_tree/docs/invariants.md
