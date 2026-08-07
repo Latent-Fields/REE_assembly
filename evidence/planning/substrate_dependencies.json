@@ -3,7 +3,7 @@
   "purpose": "Date-stamped registry mapping each substrate landing to the claims that mechanistically depend on it, so the architecture-epoch stale-evidence cross-reference (does pre-landing evidence still weight a dependent claim?) can be automated on each governance run. Populated initially from the 2026-06-02 scoped review (evidence/planning/epoch_stale_evidence_review_2026-06-02.md); extend on each substrate landing via the /implement-substrate + /governance evidence-staleness audit step.",
   "how_to_use": "For each landing: list any experimental scoring entry on a dependent claim whose timestamp_utc predates landed_utc as candidate-stale. Decide per-entry: REVALIDATE (queue EXQ) / MARK (set pending_retest_after_substrate:true on the nested runs/<run_id>/manifest.json -- NOT the flat file) / KEEP (weak/orthogonal dependence). The indexer (build_experiment_indexes.py) honors pending_retest_after_substrate + superseded_by_substrate on the NESTED manifest only, tagging scoring_excluded='stale_substrate'.",
   "primary_source_of_truth": "ree-v3/CLAUDE.md substrate-landing sections (dates) + REE_assembly/docs/claims/claims.yaml (depends_on / emergent_from).",
-  "last_updated_utc": "2026-08-02T13:49:49Z",
+  "last_updated_utc": "2026-08-07T21:49:13Z",
   "landings": [
     {
       "substrate": "ARC-062",
@@ -733,6 +733,22 @@
         }
       ],
       "candidate_stale_note": "Single candidate-stale entry found (V3-EXQ-869, the run that motivated this SD). V3-EXQ-462/465 (2026-04-21) are experiment_purpose=diagnostic and already scoring_excluded, so out of scope for this audit (no confidence weighting to de-weight)."
+    },
+    {
+      "substrate": "MECH-307-FROM-DIMS-REACHABILITY",
+      "landed_utc": "2026-08-07T21:49:13Z",
+      "code_landed_utc": "2026-08-07T21:49:13Z",
+      "code_landed_commit": "ree-v3 e02f2a3f1c",
+      "description": "utils.config.REEConfig.from_dims MECH-307 passthrough. WIRING REPAIR, not a mechanism change: the MECH-307 substrate has been correct and contract-verified since the 2026-05-11 landing, but all twelve of its parameters were REEConfig dataclass fields with no entry in the from_dims() signature, so each fell into **kwargs and was silently discarded. from_dims(use_mech307_conjunction=True) returned a config with all four gaps OFF and raised nothing. Adds the twelve to the signature (site 2) plus the post-cls() re-apply of the __post_init__ OR-only master resolver (site 3, independently required because from_dims assigns fields after cls()). The [memory] reference-reeconfig-from-dims-silent-kwargs failure mode. Write-up: evidence/planning/mech307_from_dims_unreachable_2026-08-07.md.",
+      "mechanism_changing": true,
+      "mechanism_changing_note": "MECHANISM-CHANGING for the 84 experiment drivers that pass use_mech307_conjunction=True into REEConfig.from_dims: they go from MECH-307 entirely OFF to ON (split surprise + schema multichannel + predicted-location write). AST scan of ree-v3/experiments/**/*.py at ree-v3 4656917854: 84 drivers pass the master flag into from_dims, 0 use direct REEConfig(...) construction, and no driver passes any of the other eleven parameters into from_dims -- so the behaviour delta is exactly 'master flag now resolves' and nothing else. NOT mechanism-changing for any driver that does not mention MECH-307: the twelve signature defaults match the dataclass defaults exactly (pinned by test_defaults_parity_bit_identical_off). NOT mechanism-changing for the 18 drivers that setattr MECH-307 SUB-flags post-hoc -- sub-flag setattr always worked and is the route the pre-existing MECH-307 contracts use. Also unchanged: goal_stream_enabled drivers, because the from_dims body block is deliberately assigned BEFORE the goal_stream_enabled block so enable_goal_stream() keeps its existing precedence (pinned by test_goal_stream_bundle_precedence_is_unchanged).",
+      "dependent_claims": [
+        "MECH-307",
+        "MECH-455",
+        "ARC-030"
+      ],
+      "candidate_stale": [],
+      "candidate_stale_note": "DELIBERATELY NOT TRIAGED BY THIS LANDING SESSION -- reported, not applied. The candidate-stale set here is unusually large and unusually shaped: it is not 'the mechanism changed under prior evidence' but 'prior evidence recorded a config requesting MECH-307 and did not get it', so every behavioural run from any of the 84 drivers since 2026-05-11 measured MECH-307 OFF while its manifest config block says it was requested ON. That includes the scaffolded lineage ARC-030's Go/NoGo retest is built on (V3-EXQ-603q, V3-EXQ-866a, V3-EXQ-866b). Two reasons not to MARK any of it here: (1) de-weighting evidence is a governance action requiring user confirmation per /implement-substrate Step 8.5, and this session is headless with no user to confirm; (2) most of those runs are like-for-like comparisons measured with MECH-307 off at BOTH ends, which stay internally valid -- what is invalid is any claim ATTRIBUTING a result to MECH-307 being active. Routed to /governance to triage which of the 84 drivers' results carry a MECH-307 attribution. Note v3_exq_866b_603q_substrate_regression_check_...'s 'substrate reproduces 603q' finding stands unaffected (off at both ends), as does V3-EXQ-540g's readiness PASS (it sets the sub-flags directly and never used the master-flag-through-from_dims route)."
     }
   ]
 }
