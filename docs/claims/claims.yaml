@@ -61032,12 +61032,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending/substrate_conditional
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
-  version_relevance: v4_v5
+  version_relevance: v3
   registered_utc: 2026-06-10
   depends_on:
     - SD-057     # cue recall (the cue that triggers orienting)
@@ -61051,6 +61051,22 @@
     hypothesis gated on the V3-EXQ-640 result pattern (cue fires, no contact, no
     orienting); register only if 640+ shows that discriminating row. substrate_conditional
     on a V4 drives substrate not yet built. DO NOT build in V3.
+
+    [2026-08-07 reclassification, session elegant-ishizaka-ddd4f6, user-directed]:
+    implementation_phase v4 -> v3, version_relevance v4_v5 -> v3. V3-EXQ-640 (and
+    a follow-on gain sweep, 640a) ran; the discriminating pattern this claim was
+    gated on did NOT resolve to orienting -- it routed to a shared E3
+    selection-authority / cue-authority ceiling instead (see
+    evidence/planning/failure_autopsy_V3-EXQ-640_2026-06-05.md and
+    failure_autopsy_V3-EXQ-640a_2026-06-06.md). Rationale for the phase move: V3
+    is not a closed substrate under test but is still being assembled: this claim
+    is gated on identified, partially-cleared, IN-PROGRESS V3 assembly work (the
+    cue-authority thread; most recent attempt V3-EXQ-812, 2026-07-24, failed on a
+    readiness precondition, still open), not on a separate future generation.
+    v3_pending stays true and DO NOT build YET stays in force -- this changes
+    which roadmap the claim is tracked against, not its buildability today. See
+    evidence/planning/drives_motivation_v4_plan.md DRV-4 (blocking_on +
+    2026-08-07 changelog entry) for the full trace.
 
 - id: Q-071
   title: "Transfer-world launch profile is evaluated on a four-grade non-terminal failure taxonomy (terminal / soft-rescue / developmental / autonomous): minimise terminal failure while preserving developmental failure as a real learning signal."
@@ -72094,12 +72110,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending/substrate_conditional
-    as_of: '2026-08-05'
+    as_of: '2026-08-07'
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
-  version_relevance: v4_v5
+  version_relevance: v3
   registered_utc: '2026-08-05'
   depends_on:
     - MECH-457   # cold-start competence-floor cluster this hypothesis's framing conceptually matches (GOV-FANOUT-1 portfolio)
@@ -72148,6 +72164,11 @@
     project_mech457_competence_floor_coldstart) -- this is a NEW candidate axis,
     not a re-litigation of the eliminated ones. Gated on MECH-482/MECH-483
     substrate existing; not V3-tractable as stated.
+
+    [2026-08-07 reclassification, session elegant-ishizaka-ddd4f6, user-directed]:
+    implementation_phase v4 -> v3, version_relevance v4_v5 -> v3, tracking
+    MECH-482/MECH-483 above. Still gated on those two existing (not
+    V3-tractable as stated); v3_pending stays true.
 
 - id: SENT-17
   title: Any mechanism substitution must preserve internal ethical-process representations and their causal authority, not merely the action distribution. A substitution that reproduces actions while deleting the representations of uncertainty, vulnerability, harm, others and responsibility -- or severing their causal authority over selection -- fails the criterion regardless of behavioural match.
@@ -72476,12 +72497,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending/substrate_conditional
-    as_of: '2026-08-05'
+    as_of: '2026-08-07'
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
-  version_relevance: v4_v5
+  version_relevance: v3
   registered_utc: '2026-08-05'
   depends_on:
     - MECH-314   # parent structured-curiosity bonus this accumulator is distinguished from / extends
@@ -72520,6 +72541,17 @@
     substrate not yet built. See MECH-483 (orient/survey regime this is
     hypothesised to gate) and Q-089 (tie to the cold-start competence split).
 
+    [2026-08-07 reclassification, session elegant-ishizaka-ddd4f6, user-directed]:
+    implementation_phase v4 -> v3, version_relevance v4_v5 -> v3. The
+    target-bound uncertainty substrate this claim needs is not a hypothetical
+    -- it is substrate_queue.json's GAP-A entry ("extend Phase-2 per-candidate
+    treatment to MECH-314b/314c"), already scoped, priority 1, unclaimed, with
+    its main blocker (a clamp-saturation bug) cleared 2026-07-21. Rationale for
+    the phase move: this claim is gated on identified, mostly-cleared,
+    IN-PROGRESS V3 assembly work, not on a separate future generation. Still
+    DO NOT build YET (the GAP-A extension itself is unbuilt) and v3_pending
+    stays true.
+
 - id: MECH-483
   title: "orient/survey: a third primitive behavioural regime (alongside approach and avoid) -- a temporary, diffuse reduction in commitment during which the agent widens behavioural sampling and gathers situational information before committing to approach/avoidance, driven by accumulated epistemic_deficit (MECH-482) rather than a specific cue. Distinct from MECH-395 (cue-triggered, need-gated orienting that resolves a SPECIFIC directional/affordance vector for an already-identified cue): orient/survey is diffuse and precedes cue identification, MECH-395 is narrow and follows it."
   claim_type: mechanism_hypothesis
@@ -72528,12 +72560,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending/substrate_conditional
-    as_of: '2026-08-05'
+    as_of: '2026-08-07'
     needs_review: false
   epistemic_category: substrate_conditional
-  implementation_phase: v4
+  implementation_phase: v3
   v3_pending: true
-  version_relevance: v4_v5
+  version_relevance: v3
   registered_utc: '2026-08-05'
   depends_on:
     - MECH-482   # epistemic_deficit -- the accumulator whose magnitude/persistence gates entry into and exit from orient/survey
@@ -72566,6 +72598,13 @@
     the conservative reading. DO NOT build in V3. See MECH-482 for the
     accumulator hypothesised to gate this regime's persistence, and Q-089 for
     the tie to the observed cold-start competence split.
+
+    [2026-08-07 reclassification, session elegant-ishizaka-ddd4f6, user-directed]:
+    implementation_phase v4 -> v3, version_relevance v4_v5 -> v3. Gated on the
+    same GAP-A per-candidate extension as MECH-482 (its accumulator), plus the
+    shared E3 selection-authority thread MECH-395 is also waiting on -- both
+    IN-PROGRESS V3 assembly work, not a separate future generation. Still DO
+    NOT build YET; v3_pending stays true.
 
 - id: SD-093
   title: "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring."
