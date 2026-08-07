@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_090",
+  "entry_id": "2026-08-07_q_090_prioritized_memory_access_mattar2018",
+  "timestamp_utc": "2026-08-07T23:42:01Z",
+  "claim_ids_tested": ["Q-090"],
+  "source": {
+    "title": "Prioritized memory access explains planning and hippocampal replay",
+    "authors": ["Marcelo G. Mattar", "Nathaniel D. Daw"],
+    "year": 2018,
+    "venue": "Nature Neuroscience 21(11):1609-1617",
+    "doi": "10.1038/s41593-018-0232-z",
+    "url": "https://doi.org/10.1038/s41593-018-0232-z"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Direction is stated relative to the SAME-CUT-SCALE horn (convention note in the wessel2017 entry). Recorded as MIXED because it is the one source in this pull that speaks to both horns at once and endorses neither: the normative answer it derives is a PRODUCT of a magnitude-like term and a relevance-like term, so the same-scale horn is right that magnitude belongs in the criterion and the independent-criterion horn is right that a relevance term is indispensable, and both are wrong to think either suffices alone. This is the highest-confidence entry in the pull for three reasons: it is a normative derivation rather than a correlational finding, so it says what the criterion OUGHT to be rather than merely what covaried in one sample; it is validated against a broad set of independent replay phenomena rather than a single effect; and it is already the anchor citation for MECH-292, so adopting its two-factor structure for leg 3 keeps the retention story internally consistent with the ghost-goal bank rather than introducing a rival formalism. It is held below 0.7 by a genuine term-by-term mismatch: 'gain' is policy-improvement value in an MDP, not predicted-harm magnitude, and 'need' is expected future state occupancy, not MECH-292's goal-match. The structural claim transfers; the terms do not, one-to-one.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The derived priority is a PRODUCT of gain and need, so either factor at zero zeroes the priority -- a high-magnitude alternative with no prospective relevance is not retained, which the same-cut-scale horn cannot express, and a highly relevant alternative with no potential to change behaviour is also not retained, which a pure goal-match criterion cannot express either.",
+    "A multiplicative two-factor rule cannot be reduced to any threshold on a single scale, so implementing leg 3 as a low cut-point on the leg-1 magnitude is not a simplification of this account but a different and worse rule.",
+    "'Gain' is defined as expected improvement in future decisions, which is prospective; MECH-485's magnitude is a predicted harm/success size, which is not the same quantity, so an implementation that substitutes one for the other inherits none of the normative guarantee.",
+    "The authors note the mechanism's dysfunction 'may underlie pathologies like rumination and craving' -- a leg-3 retention rule tuned toward over-admission has a named failure mode, namely an agent that will not stop revisiting alternatives it did not take."
+  ],
+  "tags": ["q-090", "prioritized-replay", "gain-need", "two-factor-criterion", "hippocampal-replay", "mech-292", "mech-293", "mech-485"],
+  "mapping": {
+    "source_claim_statement": "'To make decisions, animals must evaluate candidate choices by accessing memories of relevant experiences. Yet little is known about which experiences are considered or ignored during deliberation, which ultimately governs choice.' The authors 'propose a normative theory predicting which memories should be accessed at each moment to optimize future decisions', in which 'an agent accesses memories of locations sequentially, ordered by utility: how much extra reward would be earned due to better choices. This prioritization balances two desiderata: the need to evaluate imminent choices versus the gain from propagating newly encountered information to preceding locations.'",
+    "ree_translation": "This is the closest thing in the literature to a direct normative answer to Q-090's underlying question -- which non-current, non-actual items deserve a slot in a limited memory-access budget. The answer is neither of the readings Q-090 offers. Priority is the product of a gain term (how much would knowing this change what I do) and a need term (how likely am I to be in a position where it matters). Mapped onto MECH-485 leg 3: the admission criterion for a retained alternative should be two-argument and multiplicative, with a magnitude-like term supplying gain and a relevance-like term supplying need. The same-scale horn captures the gain half and drops need; the goal-match horn captures the need half and drops gain. Because this same paper is already the normative anchor for MECH-292's ghost-goal ranking -- where priority scales with wanting, goal-match, staleness and recoverability rather than staleness alone -- adopting its structure for leg 3 makes the retention criterion and the ghost-goal bank two applications of one principle rather than two unrelated inventions.",
+    "mapping_caveat": "The structural claim transfers cleanly and the terms do not. 'Gain' is expected improvement in future decisions within a well-specified MDP with known reward, not the magnitude of a predicted harm or success; an agent facing a large predicted harm it can do nothing about has high magnitude and near-zero gain, and this theory says do not retain it, which may or may not be what REE wants for responsibility attribution. 'Need' is expected future state occupancy under the current policy, a formal quantity, not MECH-292's goal-match, which carries semantic content about what the agent wants. Reading need as goal-match is an interpretation, not an identity. Further: the theory is validated against hippocampal REPLAY -- which memory is reactivated during deliberation and rest -- whereas Q-090 asks about ADMISSION at encoding time; prioritising access to something already stored is not the same operation as deciding to store it, and the theory presupposes the item is in the store. The empirical validation is against rodent place-cell data, and the responsibility-attribution use MECH-485 leg 3 names has no analogue anywhere in this framework.",
+    "source_context": "Normative computational theory with simulation, validated against rodent hippocampal place-cell replay phenomena in spatial navigation tasks; unifies planning, learning and consolidation accounts of replay."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Nature Neuroscience, a normative derivation rather than a fitted correlation, validated against a wide range of independent replay findings rather than one effect, and heavily built on since. Mapping fidelity 0.6: the two-factor multiplicative structure transfers directly and is the load-bearing content, but gain and need do not map term-by-term onto predicted-harm magnitude and goal-match, and the theory addresses access to stored memories rather than admission to storage. Transfer risk 0.4: rodent spatial navigation and formal MDP assumptions -> an agent's commitment triage, held down because the transferred claim is a structural principle about what a rational prioritisation rule must contain rather than a parameter or a species-specific finding."
+  }
+}

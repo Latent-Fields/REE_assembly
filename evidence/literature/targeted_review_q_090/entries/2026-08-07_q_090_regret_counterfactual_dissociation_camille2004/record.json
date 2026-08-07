@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_090",
+  "entry_id": "2026-08-07_q_090_regret_counterfactual_dissociation_camille2004",
+  "timestamp_utc": "2026-08-07T23:42:01Z",
+  "claim_ids_tested": ["Q-090"],
+  "source": {
+    "title": "The involvement of the orbitofrontal cortex in the experience of regret",
+    "authors": ["Nathalie Camille", "Giorgio Coricelli", "Jerome Sallet", "Pascale Pradat-Diehl", "Jean-Rene Duhamel", "Angela Sirigu"],
+    "year": 2004,
+    "venue": "Science 304(5674):1167-1170",
+    "doi": "10.1126/science.1094550",
+    "url": "https://doi.org/10.1126/science.1094550"
+  },
+  "evidence_class": "clinical_case",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "Direction is stated relative to the SAME-CUT-SCALE horn (convention note in the wessel2017 entry); this entry WEAKENS it. A lesion double-dissociation is the strongest available evidence that two functions are separably implemented, and this one shows that the counterfactual-alternative machinery can be removed while the machinery for evaluating what actually happened survives. If the alternative-handling pathway is anatomically separable from factual outcome evaluation, then the presumption that leg 3 is merely a second cut on leg 1's scale loses its main attraction, which was parsimony. Confidence sits at 0.55 rather than higher for one specific reason that the source cannot overcome: the paradigm hands participants the unchosen outcome externally on every trial, so it tests counterfactual EVALUATION and never tests ADMISSION -- nothing in the design requires the patient to have decided what to retain. Q-090 is an admission question. Very strong source, materially off-target mechanism.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Orbitofrontal lesion patients 'did not report regret or anticipate negative consequences of their choices' while continuing to respond to the outcomes they actually obtained -- a dissociation between factual and counterfactual evaluation that a single shared magnitude scale does not predict.",
+    "The unchosen gamble's outcome is DISPLAYED to the participant on each trial, so the study measures what is done with an alternative once it is present, not which alternatives are admitted in the first place -- the admission criterion Q-090 asks about is never exercised.",
+    "Lesion patients are few, heterogeneous in extent and aetiology, and often chronically reorganised, so a null finding (no regret reported) is weaker evidence than the same result in an intact-brain manipulation.",
+    "Regret is a self-reported affective state; absence of reported regret may reflect impaired affective report or impaired comparison rather than absent retention of the alternative."
+  ],
+  "tags": ["q-090", "counterfactual", "regret", "orbitofrontal", "lesion-dissociation", "disconfirming", "mech-485"],
+  "mapping": {
+    "source_claim_statement": "'Facing the consequence of a decision we made can trigger emotions like satisfaction, relief, or regret, which reflect our assessment of what was gained as compared to what would have been gained by making a different decision. These emotions are mediated by a cognitive process known as counterfactual thinking.' Normal subjects 'reported emotional responses consistent with counterfactual thinking; they chose to minimize future regret and learned from their emotional experience. Patients with orbitofrontal cortical lesions, however, did not report regret or anticipate negative consequences of their choices.' The authors conclude 'the orbitofrontal cortex has a fundamental role in mediating the experience of regret.'",
+    "ree_translation": "The processing of what-would-have-happened is implemented by identifiable machinery that can be lost while the processing of what-did-happen is preserved. Translated to MECH-485, the counterfactual leg is not simply the low tail of the same distribution the interrupt reads from its top -- it depends on a separable substrate. The chief argument for the same-cut-scale horn was parsimony: one magnitude, two cut-points, no new mechanism. This finding removes that argument, because the biology evidently DID build a distinct pathway for handling alternatives rather than reusing the factual-evaluation pathway with a different threshold. It also supplies the responsibility-attribution link that MECH-485 leg 3 names explicitly, since regret is the paradigm case of an agent holding itself to account against an alternative it did not take.",
+    "mapping_caveat": "This is the sharpest limit in the pull and it should not be softened. In the Camille paradigm the unchosen gamble's outcome is shown to the participant on every trial. The alternative is therefore SUPPLIED, not retained -- the participant never has to decide which alternatives are worth keeping, which is precisely the admission criterion Q-090 asks about. What the study establishes is that counterfactual COMPARISON has separable substrate; whether ADMISSION TO RETENTION has a separable criterion is a further inference the data do not license. It is genuine evidence against the same-scale horn only under the additional assumption that a separable evaluation pathway implies a separable gate feeding it, which is plausible but unproven. Secondary limits: small heterogeneous lesion samples; and regret is measured as self-reported affect, so an alternative reading is preserved retention with impaired affective comparison or report.",
+    "source_context": "Human patients with orbitofrontal cortical lesions versus healthy controls; modified two-option gambling task in which the outcome of the unchosen gamble is revealed; self-reported emotional ratings plus skin-conductance measurement; choice behaviour analysed for regret minimisation and learning."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.4,
+    "notes": "Source quality high: Science, a causal lesion design (the strongest form for separability claims), converging self-report, autonomic and choice measures, and a finding that has anchored two decades of subsequent regret work. Held below 0.9 by the small heterogeneous patient sample inherent to lesion studies. Mapping fidelity low-moderate at 0.45 and the binding constraint: the paradigm supplies the alternative rather than requiring its retention, so it addresses counterfactual evaluation and not the admission criterion the claim is about. Transfer risk 0.4, the lowest in this pull, because the construct being transferred -- counterfactual evaluation of a not-taken option for responsibility attribution -- is unusually close to what MECH-485 leg 3 describes in its own terms."
+  }
+}

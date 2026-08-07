@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_090",
+  "entry_id": "2026-08-07_q_090_global_suppression_interrupt_scale_wessel2017",
+  "timestamp_utc": "2026-08-07T23:42:01Z",
+  "claim_ids_tested": ["Q-090"],
+  "source": {
+    "title": "On the Globality of Motor Suppression: Unexpected Events and Their Influence on Behavior and Cognition",
+    "authors": ["Jan R. Wessel", "Adam R. Aron"],
+    "year": 2017,
+    "venue": "Neuron 93(2):259-280",
+    "doi": "10.1016/j.neuron.2016.12.013",
+    "url": "https://doi.org/10.1016/j.neuron.2016.12.013"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "DIRECTION CONVENTION for every Q-090 entry: direction is stated relative to the SAME-CUT-SCALE horn (retention admission reads the same predicted-harm magnitude scale as the interrupt, at a lower cut-point). 'supports' = evidence for that horn; 'weakens' = evidence for the independent-relevance-criterion horn; 'mixed' = evidence that neither horn alone accounts for the data. This is a highly-cited Neuron review by the two principal authors of the surprise/stopping literature, so source_quality is high. But it is a review rather than a single decisive experiment, and -- decisively for the confidence -- it speaks ONLY to the interrupt leg of MECH-485's triage, never to the retention leg that Q-090 actually asks about. It establishes the PRECONDITION for the same-scale reading (that the interrupt is recruited by a content-indifferent magnitude-like signal) without showing that retention reads that same signal. Mapping fidelity is therefore weighted down hard, which is what holds the aggregate at 0.5 despite the strong source.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review characterises the fronto-basal-ganglia stopping network as producing a GLOBAL, non-selective suppression of basal-ganglia output; if the same signal were the sole admission criterion for retention, retention would likewise be non-selective, which is precisely what a goal-match criterion is proposed to prevent.",
+    "The paper offers no evidence that sub-threshold unexpected events -- the ones that do not trigger the interrupt -- are retained at all, so a lower cut-point on the same scale is an extrapolation the source does not license.",
+    "Recruitment is described as driven by unexpectedness/surprise rather than by predicted-harm magnitude specifically; if surprise and predicted harm dissociate in REE, the mapping to MECH-485's single magnitude term fails."
+  ],
+  "tags": ["q-090", "interrupt-threshold", "subthalamic-nucleus", "global-suppression", "surprise", "mech-485"],
+  "mapping": {
+    "source_claim_statement": "Unexpected events 'come in several varieties -- action errors, unexpected action outcomes, and unexpected perceptual events -- and they lead to motor slowing and cognitive distraction.' The authors 'propose that unexpected events recruit a fronto-basal-ganglia network for stopping,' which 'includes specific prefrontal cortical nodes and is posited to project to the subthalamic nucleus, with a putative global suppressive effect on basal-ganglia output,' arguing this 'provides a common mechanistic basis for different types of unexpected events.'",
+    "ree_translation": "The real-time interrupt that MECH-485 leg 1 routes through the MECH-090/MECH-141/MECH-138 hyperdirect and cancel-window pathways is, in the biology, recruited by a single common mechanism that does not care what KIND of event surprised the agent -- only that something did. That is the signature of a scalar magnitude criterion rather than a content-addressed relevance criterion. If the interrupt side of the triage is genuinely scalar and content-indifferent, then the same-cut-scale reading of Q-090 is at least architecturally coherent: one magnitude, two cut-points, differing only in where the line is drawn.",
+    "mapping_caveat": "This is support for one half of the disjunction only, and by inference rather than by measurement. The review establishes that the INTERRUPT is magnitude-scaled and content-indifferent; Q-090 asks about the RETENTION criterion, on which this paper is silent. Reading it as support for the same-scale horn assumes the very thing in question -- that retention is fed by the same signal -- so it should be treated as showing the same-scale horn is buildable, not that it is true. Note also the substitution of 'unexpectedness' for 'predicted-harm magnitude': these coincide in the stopping paradigms reviewed but need not coincide in REE, where a fully-expected large harm should still interrupt.",
+    "source_context": "Human cognitive neuroscience review synthesising motor-inhibition, performance-monitoring, attention and working-memory literatures; stop-signal, novelty-oddball and error-monitoring paradigms; primarily human EEG/fMRI with supporting intracranial and patient work."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.4,
+    "transfer_risk": 0.45,
+    "notes": "Source quality high: Neuron, senior authors in the field, broad convergent synthesis. Mapping fidelity low and heavily weighted: the paper covers the interrupt leg, not the retention leg Q-090 is about, so its bearing on the question is indirect. Transfer risk moderate: human laboratory stopping paradigms -> an artificial agent's commitment triage is a real but familiar leap, and the 'surprise vs predicted harm' substitution adds to it."
+  }
+}

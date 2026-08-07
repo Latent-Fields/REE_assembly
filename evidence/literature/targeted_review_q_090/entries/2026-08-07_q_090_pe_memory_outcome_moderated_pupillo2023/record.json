@@ -1,0 +1,39 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_090",
+  "entry_id": "2026-08-07_q_090_pe_memory_outcome_moderated_pupillo2023",
+  "timestamp_utc": "2026-08-07T23:42:01Z",
+  "claim_ids_tested": ["Q-090"],
+  "source": {
+    "title": "The effect of prediction error on episodic memory encoding is modulated by the outcome of the predictions",
+    "authors": ["Francesco Pupillo", "Javier Ortiz-Tudela", "Rasmus Bruckner", "Yee Lee Shing"],
+    "year": 2023,
+    "venue": "npj Science of Learning 8(1):18",
+    "doi": "10.1038/s41539-023-00166-x",
+    "url": "https://doi.org/10.1038/s41539-023-00166-x"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "weakens",
+  "confidence": 0.58,
+  "confidence_rationale": "Direction is stated relative to the SAME-CUT-SCALE horn (convention note in the wessel2017 entry); this entry WEAKENS that horn. It is the sharpest disconfirming source in the pull because it attacks the same-scale reading at its structural weak point rather than merely failing to support it. A single threshold on a single magnitude scale is a monotone admission rule: more magnitude, more likely retained. Pupillo et al. report that the sign of the prediction-error-to-memory relationship FLIPS depending on a second variable (whether the prediction was correct), which no monotone cut on one scale can express. Confidence is held at 0.58 rather than higher because the moderating variable they identify is prediction-outcome correctness, not goal-match: the paper refutes 'pure magnitude' cleanly but supplies no support for Q-090's specific alternative, so it eliminates one horn without electing the other. Trial-wise model-derived PE estimates raise source quality; the modest sample and the fact that the flip is an interaction (historically the least replicable effect class) hold it down.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "When predictions were correct, larger prediction errors ENHANCED memory; when predictions were incorrect, larger prediction errors IMPAIRED memory -- so retention is not a monotone function of magnitude and cannot be produced by any single cut-point on a single scale.",
+    "The moderator is prediction-outcome correctness rather than goal-match, so the result disconfirms the same-scale horn without confirming the independent-relevance-criterion horn; a third reading (magnitude gated by a correctness/confidence term) fits better than either.",
+    "If REE implemented leg 3 as a simple low threshold on the leg-1 magnitude, this result predicts it would retain exactly the wrong alternatives in the incorrect-prediction regime -- keeping high-magnitude items the biology discards.",
+    "The interaction is a moderation effect in a modest sample; the direction-flip is the entire load-bearing finding and an unreplicated interaction is the weakest place to put that load."
+  ],
+  "tags": ["q-090", "prediction-error", "episodic-encoding", "non-monotonic", "moderation", "disconfirming", "mech-485"],
+  "mapping": {
+    "source_claim_statement": "Using a reinforcement-learning model to derive 'subject-specific trial-to-trial estimates of prediction error at encoding', the authors found these 'influenced subsequent memory as a function of the outcome of participants' predictions (correct vs incorrect). When participants correctly predicted the object category, stronger prediction errors (as a consequence of weak expectations) led to enhanced memory. In contrast, when participants incorrectly predicted the object category, stronger prediction errors (as a consequence of strong expectations) led to impaired memory.' They attribute this to 'interactions between the hippocampal and striatal dopaminergic systems.'",
+    "ree_translation": "The admission of an item to episodic retention is not read off a magnitude scale by a threshold. The same magnitude produces opposite retention outcomes depending on a second, categorically different variable. Applied to MECH-485 leg 3, this says the low-cut-point implementation of the same-scale horn is not merely under-specified but structurally wrong: a scalar cut has no way to represent a rule whose sign depends on another term. Whatever leg 3's criterion is, it takes at least two arguments. That does not vindicate goal-match, but it does mean Q-090's disjunction is probably false as posed -- the honest answer is a two-argument criterion, and the open question becomes what the second argument is.",
+    "mapping_caveat": "The second argument this paper identifies is whether the agent's own prediction turned out right, which is much closer to MECH-485's epistemic_deficit / confidence term than to MECH-292/293's goal-match. So the correct reading is that it disconfirms the same-scale horn AS STATED while pointing at a third candidate that Q-090 does not currently list -- not that it supports the goal-match horn. Treating it as evidence FOR goal-match would be a misreading. Two further limits: the retained items are experienced object images rather than unexecuted alternatives, so the same percept-versus-counterfactual-branch gap as the kalbe2019 entry applies; and the finding is an interaction in a single study, which is the effect class most likely not to survive replication. Note that PubMed types this record as 'Journal Article, Review' while the abstract describes a primary experiment with participants and trial-wise modelling -- I have classed it as behavioral_human on the strength of the reported design, and a governance reader should verify the article type before leaning on it hard.",
+    "source_context": "Healthy adult humans; task learning context/object-category associations of graded strength, with predictions and outcome feedback; reinforcement-learning model supplying trial-wise prediction-error estimates; subsequent recognition-memory test."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.45,
+    "notes": "Source quality moderate-good: npj Science of Learning, computationally explicit with model-derived trial-wise PE rather than a categorical proxy, but a single modest-sample study whose key result is an unreplicated interaction, and with an ambiguous PubMed article-type tag. Mapping fidelity the highest in this pull (0.6): the paper is directly about what determines admission to episodic retention as a function of a magnitude signal, which is exactly Q-090's subject matter, and its structural result -- non-monotonicity -- transfers to the architecture regardless of the biological details. Transfer risk 0.45: laboratory learning task -> agent commitment triage, mitigated because the claim being transferred is structural (a scalar cut cannot express a sign flip) rather than parametric."
+  }
+}

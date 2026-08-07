@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_090",
+  "entry_id": "2026-08-07_q_090_prediction_error_memory_admission_kalbe2019",
+  "timestamp_utc": "2026-08-07T23:42:01Z",
+  "claim_ids_tested": ["Q-090"],
+  "source": {
+    "title": "Beyond arousal: Prediction error related to aversive events promotes episodic memory formation",
+    "authors": ["Felix Kalbe", "Lars Schwabe"],
+    "year": 2020,
+    "venue": "Journal of Experimental Psychology: Learning, Memory, and Cognition 46(2):234-246",
+    "doi": "10.1037/xlm0000728",
+    "url": "https://doi.org/10.1037/xlm0000728"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Direction is stated relative to the SAME-CUT-SCALE horn (see the convention note in the wessel2017 entry). Two experiments, the second explicitly replicating and extending the first while controlling for the confound the paper is named after, which is better internal evidence than a single study. It is the closest thing in this pull to a direct test of 'does a scalar magnitude signal decide what enters episodic retention', and the answer is yes, dissociably from arousal. What holds confidence at 0.5 rather than higher is a specific gap rather than a general one: the study dissociates prediction error from AROUSAL, not from GOAL-RELEVANCE, and goal relevance was never manipulated. Q-090's alternative horn is goal-match, so the paper rules out the wrong competitor. It constrains the magnitude term to be real and causally efficacious without touching the disjunction Q-090 actually poses.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Goal-relevance was never manipulated or measured, so the study cannot discriminate the two Q-090 horns; a goal-match criterion correlated with shock-predictiveness would produce the same result.",
+    "The prediction errors concern outcomes the participant actually EXPERIENCED, whereas MECH-485 leg 3 concerns alternatives that were predicted and then not acted on -- the retained item in the study is a real encoded percept, not a counterfactual branch.",
+    "Prediction error was binary and unsigned in Experiment 1 (derived from explicit shock-expectancy ratings), so the paper supports 'PE promotes encoding' more strongly than it supports 'encoding scales continuously with PE magnitude', and a lower CUT-POINT on a continuous scale is what the same-scale horn requires."
+  ],
+  "tags": ["q-090", "prediction-error", "episodic-encoding", "retention-admission", "arousal-dissociation", "mech-485"],
+  "mapping": {
+    "source_claim_statement": "Testing 'whether memory formation is driven by the unpredictable nature of aversive events (i.e., aversive prediction errors)' rather than by arousal alone, the authors report that 'unsigned binary prediction errors derived from explicit shock expectancy ratings in each trial were also linked to enhanced recognition and model fits showed that the impact of prediction errors on memory was dissociable from the impact of arousal,' and in a second experiment 'the memory-promoting effect of prediction errors remained even after controlling for arousal.' They conclude that prediction-error-related learning contributes to emotional memory enhancement 'above and beyond the well-established effects of arousal.'",
+    "ree_translation": "A scalar prediction-error signal, of the same family as the predicted-harm magnitude MECH-485 posits, does in fact govern which items are admitted to episodic retention -- and it does so as a mechanism in its own right, not as a downstream shadow of general activation. For Q-090 this is the load-bearing plausibility argument on the same-scale side: retention admission demonstrably CAN be driven by a magnitude signal, so leg 3 reading a lower cut-point off the same magnitude that leg 1 cuts high is not an invented architecture. It also matters that the effect survives control for arousal, since arousal is the obvious candidate for a confound that would make magnitude look causal when it was not.",
+    "mapping_caveat": "The dissociation is prediction-error-versus-arousal, and Q-090's contest is prediction-error-magnitude-versus-goal-match. Ruling out arousal leaves the actual rival untouched: nothing in the design prevents a goal-relevance criterion from being what tracked with shock-predictiveness and did the real work. Beyond that, the items retained here are experienced stimuli encoded near an aversive event, whereas leg 3 retains an unexecuted alternative -- a counterfactual branch that was computed and discarded. Whether the machinery that admits a perceived object to memory is the same machinery that admits a rejected plan is not addressed, and I would not assume it. The aversive-conditioning framing also fixes valence to harm, so nothing here speaks to the predicted-SUCCESS side of MECH-485's magnitude term.",
+    "source_context": "Healthy adult humans; combined Pavlovian fear-conditioning and incidental-encoding paradigm with trial-wise explicit shock-expectancy ratings and skin-conductance measurement; surprise recognition test approximately 24 hours later; two experiments."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.5,
+    "notes": "Source quality good: peer-reviewed, two experiments with an internal replication that adds the arousal control, explicit computational modelling of trial-wise PE. Not higher because sample sizes in this paradigm are modest and the PE construct is binary/unsigned rather than graded. Mapping fidelity low-moderate: right mechanism family (magnitude drives retention) but wrong contrast (arousal, not goal-match) and wrong retained object (experienced percept, not unexecuted alternative). Transfer risk moderate: human laboratory fear conditioning -> agent commitment triage, with an added valence restriction to aversive events."
+  }
+}
