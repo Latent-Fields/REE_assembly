@@ -1534,6 +1534,19 @@
     precision-routing effect the biology would actually predict, since the raw effect being merely
     small (not absent) makes a power calculation meaningless without a target effect size. No status
     change (already active). PROMOTES/DEMOTES NOTHING.
+    [2026-08-07 governance, /lit-pull landed, chip-20260807-arc005-litpull-precision-effect-size]:
+    targeted_review_arc_005 (4 entries) registered -- Nuiten 2024 (atomoxetine precision-weighting,
+    d'=0.39), Cook 2019 (methylphenidate causally shifts volatility-driven learning rate), Kanen 2021
+    (dose-dependent 5-HT reversal-learning deficit), Yu & Dayan 2005 (the mechanism). Verdict:
+    biology predicts precision-channel manipulations produce SMALL-TO-MODERATE detectable effects
+    (Cohen d ~0.2-0.5, often dose-dependent) -- REE's own channel-1 effect/noise ratio (~0.006) is
+    ~30-80x BELOW the smallest typical biological precision effect in this literature. This favours
+    the undertrained-dACC-adapter reading (848a's own finding: the adapter has never been trained on
+    non-degenerate goal_proximity values) over a genuine biological ceiling -- a power calculation
+    against a d~0.006 target was never what the biology predicts should be needed. ARC-005's
+    lit_status: now present (was absent). No status change; does not itself reopen the 848-line
+    (still FINAL per the note above) -- informs whether a future redesign should target instrument
+    fix (adapter training) rather than more seeds/power against the current tiny effect.
   what_would_answer: |
     The falsifiable content is NOT "a control plane exists" (that is a design fact --
     we built one). It is that the control plane ROUTES: has causal authority over
@@ -19648,15 +19661,24 @@
 
     [2026-08-07 governance, V3-EXQ-436d, confirmed failure_autopsy_2026-08-05_pending_review_batch
     #5, successor to V3-EXQ-436c]: fourth generation, first to clear P0 with no known instrumentation
-    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). RECORDED BUT NOT
-    ACTED ON -- HELD PENDING A METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at
-    governance walk 2026-08-07): the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds
-    rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed shows sleep
-    INCREASING similarity, opposite the predicted direction -- not obviously the signature of a
-    clean negative. Owed: a check of the slot_cosine_sim computation (empty/unwritten slots;
-    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
-    true, explicitly NOT discharged; does NOT weight toward a demotion discussion until the
-    methodology check lands. PROMOTES/DEMOTES NOTHING this cycle.
+    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). HELD PENDING A
+    METHODOLOGICAL CHECK at the walk: the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across
+    seeds rather than clustering near 1.0 as ARC-045's own prediction requires, one seed shows sleep
+    INCREASING similarity, opposite the predicted direction.
+    [2026-08-07 REVERSED, confirmed failure_autopsy_V3-EXQ-436d-methodology-check_2026-08-07,
+    user-confirmed]: hold resolves AGAINST the metric. slot_cosine_sim has NO occupancy mask; the
+    WAKING_ONLY arm executed ZERO ContextMemory writes this run (sd016_writepath_mode='off' +
+    sleep_passes=0, sws_n_writes_total=0.0) -- its spread is pure Adam-optimizer drift of
+    context_memory.memory, reproduced at 0.05-0.37 with zero writes. Metric also tracks
+    content-similarity x occupancy-fraction, so a 12-slot arm scores WORSE (0.076) than a 1-slot arm
+    (0.009) -- anti-correlated with predicted differentiation. Seeds 13/200 sit inside the
+    untouched-bank null (z=+1.21, +0.09); effective C1 denominator <=3, not 5. ARC-045's near-1.0
+    undifferentiated-baseline premise was reachable only under the legacy write_gate-as-payload
+    defect 436d itself repaired. P0 clearance stands. evidence_direction weakens -> non_contributory;
+    epistemic_category -> measurement_test_design_defect. pending_retest_after_substrate stays true,
+    re-scoped after-DV-repair; V3-EXQ-436e chipped on an occupied-slots-only DV. Does NOT weight
+    toward demotion. sws_slot_diversity (same whole-bank formula) inherits the identical confound
+    across v3_exq_242/243/245/245a/245b/246. PROMOTES/DEMOTES NOTHING this cycle.
 - id: MECH-167
   title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
   claim_type: mechanism_hypothesis
