@@ -38,6 +38,37 @@ intake.
 
 ## 3. Candidate claims
 
+**REGISTERED 2026-08-07 -- ARC-123, INV-097, MECH-486, Q-091** (this intake was a genuine
+3-month orphan: nothing in `claims.yaml` or any plan doc covered it, unlike its cluster siblings).
+Placeholder-free mapping, in the order below:
+
+| candidate | registered as |
+|---|---|
+| **ARC (language-tom-architecturally-separable)** | **ARC-123** `language.tom_architecturally_separable` |
+| **INV (preserve-agent-unity)** | **INV-097** `architecture.agent_unity_not_duplication` (`invariant_type: universal`) |
+| **MECH (interference-avoidance)** | **MECH-486** `language.tom_representational_interference` |
+| **Q (fluency-masks-empathy)** | **Q-091** `language.fluency_masks_empathy` |
+
+All four `status: candidate` / `epistemic_category: substrate_conditional` /
+`implementation_phase: v4` / `version_relevance: v4_v5`, each carrying **DO NOT BUILD in V3** --
+which preserves this intake's own scoping (section 5: V4-scope, explicitly not a V3 blocker).
+Checked for prior ownership before registering: ARC-009/ARC-010 (language layer, mirror
+modelling), ARC-094/MECH-405/MECH-408 (the fast-empathy stream-binding cluster, i.e. this
+cluster's *content* half), INV-003/INV-007 (language emerges; language cannot override harm
+sensing) -- all cross-referenced via `depends_on`, none of them covering the separability
+constraint, the unity prohibition, the interference mechanism, or the fluency-masking question.
+MECH-486 is the falsifiable member: ARC-123 and INV-097 are commitments, and if the interference
+hypothesis comes back negative the architectural argument rests on the developmental evidence
+alone.
+
+**Still open, noticed while registering this file (NOT actioned here):** the routing/lateralisation
+sibling `thought_intake_2026-04-16_language_lateralisation.md` has the same shape of gap -- its
+"Candidate ARC (language.routing_vs_affect_separation)" and "Candidate MECH
+(affect.bilateral_right_biased_coupling)" are prose-only and unregistered -- but
+`thought_intake_audit.py` classifies that file `all_registered` because its candidate section
+incidentally mentions the already-existing ARC-009. That is a real (narrow) blind spot in the
+audit: an incidentally-cited existing id masks unregistered siblings in the same section.
+
 - **ARC (language-tom-architecturally-separable)** -- in later REE, language and fast-empathy/ToM
   are implemented as partially-homologous but developmentally-separate specialist systems sharing
   the self/world/action core, with distinct connectivity / training / gating. *[novel]*

@@ -247,6 +247,41 @@ A replacement test must therefore evaluate process and developmental equivalence
 
 ## 8. Candidate claims for later extraction
 
+**REGISTERED 2026-08-07 -- INV-098, INV-099, INV-100, ARC-124, ARC-125, SD-095, SD-096.** The ten
+`CAND-CONT-*` seeds below used an ad-hoc id namespace with no home anywhere else in the repo (a
+repo-wide grep for `CAND-CONT` returned this file and nothing else), so they were tracked by
+nothing and were a genuine 6-week orphan. They are now real claims, consolidated 10 -> 7 where two
+seeds are one constraint seen from two sides:
+
+| seed(s) | registered as |
+|---|---|
+| CAND-CONT-01 + CAND-CONT-10 | **INV-098** `continuity.profile_not_scalar` (`invariant_type: universal`) -- the profile AND its non-compensable dimensions, together, because a profile whose dimensions all trade off is a weighted average under another name |
+| CAND-CONT-02 | **INV-099** `continuity.residue_bearing` (`emergent`, `emergent_from: MECH-056 + INV-006`) |
+| CAND-CONT-03 + CAND-CONT-04 | **ARC-124** `continuity.branching_successors` -- branches plus independent post-branch standing, together, because the second is what stops the first collapsing back into original-vs-replica ("the real one survived, so the other is expendable") |
+| CAND-CONT-05 | **ARC-125** `continuity.commitment_inheritance` |
+| CAND-CONT-06 | **SD-095** `continuity.process_sensitive_replacement` (`design_decision`) |
+| CAND-CONT-07 | **INV-100** `continuity.coupling_dependence` (`emergent`, `emergent_from: SD-012 + SD-048`, `pending_substrate_reconfirmation: true` -- SD-012 is `provisional`) |
+| CAND-CONT-08 + CAND-CONT-09 | **SD-096** `continuity.provenance_ledger_and_rollback` (`design_decision`) -- the ledger and the rollback-as-branch-creation rule, together, because the ledger is what makes the rollback rule enforceable rather than aspirational |
+
+All seven `status: candidate` / `epistemic_category: substrate_conditional` /
+`implementation_phase: v4` / `version_relevance: v4_v5`, each carrying **DO NOT BUILD in V3** --
+which preserves section 9's "remain dormant until it no longer competes with V3 closure".
+Registration is not activation: it makes the seeds visible to governance and to the `/thought-
+digestion` backlog instead of leaving them readable only by someone who opens this file.
+
+Checked for prior ownership first. **SENT-16** (`governance.welfare.continuity_identity`,
+registered 2026-06-19 from a different thought) already owns the GOVERNANCE framing of
+pause/copy/branch/reset/delete, and is cross-referenced via `depends_on` from INV-098, ARC-124 and
+SD-096 rather than duplicated; what it does not carry is the substrate-side content -- residue
+continuity, branch standing, commitment inheritance, process-sensitive replacement, coupling
+dependence -- which is what these seven add. INV-004/INV-006 (post-commit traces are persistent
+and cannot be erased, only integrated) are the in-run analogue INV-099 extends across a
+discontinuity.
+
+Two things deliberately NOT registered: the section-4 nine-dimension list is left as prose inside
+INV-098 rather than minted per-dimension (nine more claims would be registry bloat for one
+constraint), and section 9's phased research line stays a plan sketch, not a claim.
+
 These are claim-generative seeds for later adjudication.
 
 ### CAND-CONT-01 — Multidimensional continuity

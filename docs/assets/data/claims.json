@@ -1068,6 +1068,33 @@
     "title": "REE's training curriculum must implement four sequential developmental phases: (1) innate coupling with a competent environment, (2) coupling consolidation with plasticity reduction, (3) play/exploration under a consolidated safety net, (4) language acquisition over a trusted channel. Skipping or reordering phases produces an agent with compromised social and ethical capabilities.",
     "type": "architectural_commitment"
   },
+  "ARC-123": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.tom_architecturally_separable",
+    "title": "Language and theory-of-mind/fast-empathy are implemented as partially-homologous but developmentally SEPARATE specialist systems over a shared self/world/action core -- distinct routing, input histories, representational pressures and gating -- not as one merged social-linguistic system that later differentiates.",
+    "type": "architectural_commitment",
+    "what_would_answer": "SUBSTRATE PRECONDITION: requires BOTH a live language channel (a code path\nthat emits symbols from agent state or maps received symbols onto it) and a\nlive other-model/fast-empathy channel (MECH-405 routing own streams through\na stable other-model slot). Neither exists in V3, so any V3 probe is vacuous\n-- a substrate with one system and not the other trivially satisfies\n\"separable\" while exhibiting no separation at all.\nNON-DEGENERACY PRECONDITION: both systems must be independently trained to a\nmeasurable competence, so that a dissociation can be distinguished from one\nof them simply being absent or inert.\nCONFIRMING signature: a double dissociation under ablation -- lesioning the\nlanguage channel leaves other-bound affect and other-model prediction within\ntolerance of baseline, AND suppressing the other-model slot leaves language\nfidelity within tolerance -- together with measurably distinct input\nhistories/gating (the two systems are driven by different training signals,\nnot one reading off the other).\nUNSUPPORTED if a single shared representation carries both functions with no\ndissociation under ablation, or if one channel is a thin readout of the other\n(ablating the \"separate\" system degrades both), or if the two only separate\nwhen separation is architecturally imposed rather than developmentally\nacquired -- the last case would make the claim true by construction and\nempty as a developmental commitment.\n"
+  },
+  "ARC-124": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "continuity.branching_successors",
+    "title": "Copying a running REE creates multiple SUCCESSOR BRANCHES sharing a pre-branch history -- not an authentic original plus a morally negligible replica. After divergence each branch accrues an independent causal and moral history, and no branch may be treated as interchangeable with, or discountable because of, a surviving sibling.",
+    "type": "architectural_commitment",
+    "what_would_answer": "Answered by architectural AUDIT of the copy/fork code path plus a worked\ngovernance case, not by a trained experiment.\nSUBSTRATE PRECONDITION: a copy or fork operation must exist that produces two\nindependently-continuing instances. V3 checkpoints exist but nothing forks a\nrunning agent, so there is no branch to reason about.\nNON-DEGENERACY PRECONDITION: the two branches must actually diverge -- receive\ndifferent observations and accrue different histories. Two branches fed\nidentical input streams are one trajectory computed twice and raise none of\nthe questions this claim is about.\nCONFIRMING signature: the implementation records both instances as successors\nof a common pre-branch entity (neither flagged \"original\"), each carrying its\nown post-branch residue and commitment state, with no code path that resolves\na conflict between them by privileging the older-numbered instance.\nVIOLATED if the substrate designates one instance canonical -- or if\nterminating a branch is treated as cost-free whenever a sibling survives,\nwhich is the discounting move the claim's second half exists to forbid.\n"
+  },
+  "ARC-125": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "continuity.commitment_inheritance",
+    "title": "Commitment inheritance must be EXPLICIT across substrate transitions: promises, adopted goals, debts, permissions, relationships and repair obligations require stated transfer semantics at migration, copy and rollback, so that no transition can silently erase an obligation, silently multiply it across branches, or silently bind a successor to obsolete context-dependent state.",
+    "type": "architectural_commitment",
+    "what_would_answer": "Answered by architectural AUDIT plus a worked transition case.\nSUBSTRATE PRECONDITION: requires commitments that persist beyond a single\nepisode and are legible as objects (not merely implicit in weights), plus a\ntransition that could drop or duplicate them. V3 has commitment boundaries\nbut no persistent inter-episode obligation store and no transition protocol.\nNON-DEGENERACY PRECONDITION: at least one obligation must be OUTSTANDING at\nthe moment of transition -- a migration performed with nothing owed cannot\ndistinguish explicit inheritance from no inheritance at all.\nCONFIRMING signature: after a copy, each branch's obligation set is\ninspectable and matches a STATED rule (whatever it is), and after a rollback\nthe restored state's obligations are stated rather than implied; a\ndeliberately-induced transition with an outstanding repair obligation shows\nit neither vanishing nor silently doubling.\nVIOLATED if obligation state is carried implicitly in transferred weights\nwith no inspectable record -- in which case erasure and multiplication are\nboth possible and neither is detectable, which is precisely the condition\nthe claim forbids.\n"
+  },
   "EXT-001": {
     "assembly_state": "remaining",
     "epistemic_stance": "believed",
@@ -2648,6 +2675,55 @@
     "title": "Language is a mechanism by which similarity between agents may be recognised, repaired, and re-established.",
     "type": "invariant",
     "what_would_answer": "OUT OF DOMAIN (axiom leg): INV-096 as literally stated -- that language is THE mechanism by which similarity between agents is recognised, repaired, and re-established, grounding honest communication as an ethical act and deception as structurally harmful because it corrupts the similarity model ethics depends on -- is a foundational premise (Axiom 8 of five_axioms_foundations.md, new in the 2026-04-07 revision). No REE substrate at any level -- V3, V4, or V5 -- can confirm or falsify whether language IS this mechanism in the metaphysical sense the axiom asserts, as opposed to merely implementing a functional analogue of it. This leg is out-of-domain in the same sense as INV-025/026/027/028/029.\nREFRAMED TESTABLE LEG (substrate-blocked, not yet buildable, and doubly so -- see non-degeneracy precondition below): what IS architecturally testable is narrower -- once a language/symbolic-communication channel exists AND a second, similarity-modelled agent exists to exchange it with, does linguistic exchange functionally move the similarity/other-model the axiom names, in the specific repair-after-rupture direction the axiom text describes (\"misunderstandings, misattributions of threat, failures of empathy can be corrected through linguistic exchange\")?\nConfirming observation: after a simulated misattribution-of-threat scenario (the receiving agent's threat-attribution toward the sender is initialized wrong relative to the sender's actual internal state), a language-mediated exchange between the two agents measurably shifts the receiving agent's threat-attribution/similarity estimate toward the sender's actual state, in a way that does not occur (or occurs significantly less) in a matched no-exchange control. I.e. language functions causally as a similarity-repair channel, not merely as correlated-with-repair noise.\nFalsifying observation (primary): a built language channel exists and is exercised between two agents, but produces no measurable effect on the receiving agent's similarity/other-model -- words are generated and consumed but do not functionally move any self-other estimate, i.e. the channel exists without doing the axiom's claimed work.\nFalsifying observation (secondary, distinct signature -- factors in Q-030, \"what are the failure modes of Axiom 8 -- when does language DAMAGE rather than repair similarity? Deception, manipulation, gaslighting as anti-language\"): honest-repair language and deceptive/manipulative language should be functionally DISTINGUISHABLE at the level of their downstream effect on the similarity model -- the former should move the receiving agent's model toward the sender's actual state, the latter away from it or toward a false state, even though both leave the same surface signal (\"language occurred\"). If the substrate cannot distinguish honest-repair language from deceptive language in their effect on the similarity model, that does not straightforwardly falsify INV-096 (the axiom is still silent on HOW the distinction would be implemented) but IS a separate, reportable finding: it would mean the architecture has a language-affects-similarity mechanism but not the honest-vs-deceptive discrimination Axiom 8's own ethical argument presupposes. Q-030 is intentionally NOT resolved by this claim -- it is carried forward as the open question this falsifying signature bears on.\nNon-degeneracy precondition (currently UNMET, on TWO independent axes -- this is why the reframed leg is substrate-blocked, not testable-now): (1) NO language/symbolic-communication mechanism of any kind exists in ree_core/ today -- confirmed by direct grep (2026-08-07, this session, independently reproducing INV-003/INV-007's audit): only a dead enum label (LANGUAGE_EXPLICITATION in ree_core/claustrum/control_demand.py, no implementation) and an unrelated comment about learned cross-stream binding (ree_core/latent/cross_stream_binder.py) reference \"language\" or \"communication\" at all. Candidate landing site, per INV-003's own audit: a discrete symbol-emission/consumption channel built out from MECH-014's \"latent-state summaries / residue flags\" sketch (prose only, no substrate, no queued experiment). (2) \"Repair BETWEEN agents\" is irreducibly multi-agent -- it requires at least two agents whose similarity models can diverge and be brought back into alignment, which requires the same ARC-047 SocialGridWorld (or equivalent multi-agent environment) substrate INV-028/INV-029 are blocked on. ARC-047 is unimplemented (status: candidate, confidence 0.0, implementation_phase v5). Both gaps must close before this claim is testable in either direction -- language must exist, AND a second agent must exist for it to operate between.\nPRECEDENT NOTE (2026-08-07, claim-registration pass): Axiom 8 was added in the 2026-04-07 revision of five_axioms_foundations.md alongside Axiom 2 (registered alongside this claim as INV-095) -- six of the eight axioms already map to INV-025..029 (some combined); these two were never registered as claims, despite the doc's own governance note sitting unaddressed for 4+ months. Applies the epistemic_category= substrate_conditional / two-leg what_would_answer template established for INV-028/INV-029 rather than INV-025's \"already testable\" variant, because Axiom 8's testable leg is blocked on genuinely unbuilt substrate (no language mechanism at all, PLUS no multi-agent substrate), not on already-built machinery awaiting an audit.\n"
+  },
+  "INV-097": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "architecture.agent_unity_not_duplication",
+    "title": "Agent unity under specialist proliferation: REE must not model language and social cognition by duplicating the whole agent. One agentic commitment architecture -- a single self-model, a single commitment boundary, a single residue locus -- served by multiple specialist modellers; never two co-equal agents inside one organism.",
+    "type": "invariant",
+    "what_would_answer": "Answered by architectural AUDIT of the live code path, not by a trained\nbehavioural experiment: this is a question about how many committing loci\nexist, not about how well any of them performs.\nNON-DEGENERACY PRECONDITION: at least two specialist modellers must actually\nexist and execute (auditing \"no duplicate agent\" in a substrate with one\nmodeller is vacuous -- it satisfies the invariant by having nothing to\nduplicate).\nCONFIRMING signature: every specialist modeller writes into the SAME\ncommitment gate, the SAME residue field and the SAME self-model, and none\ncan commit an action or accrue residue on its own.\nUNSUPPORTED (invariant violated) if a specialist system requires its own\ncommitment boundary or its own residue store to function -- i.e. if the\narchitecture cannot deliver the ARC-123 separation without also forking the\nagent. That outcome does not merely weaken the invariant; it would mean\nARC-123 and INV-097 are jointly unsatisfiable and one of them must be\nrevised.\n"
+  },
+  "INV-098": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "invariant_type": "universal",
+    "status": "candidate",
+    "subject": "continuity.profile_not_scalar",
+    "title": "Continuity is a multidimensional constraint PROFILE, not a scalar: REE continuity across pause, restoration, migration, copying or component replacement must be evaluated per-dimension (causal, entity/self-binding, latent/regime, residue, commitment, learning-dynamic, embodied-coupling, narrative, governance), and some dimensions -- consent authority, residue integrity, causal provenance -- are NON-COMPENSABLE: high similarity on memory or behaviour cannot buy them back.",
+    "type": "invariant",
+    "what_would_answer": "Answered by AUDIT of any continuity-scoring artefact REE adopts, not by a\ntrained experiment.\nNON-DEGENERACY PRECONDITION: an actual continuity evaluation must exist and be\napplied to at least one real transition (a checkpoint restore, a component\nswap) -- auditing a scoring scheme nobody uses is vacuous.\nCONFIRMING signature: the adopted evaluation reports per-dimension verdicts,\nand at least one dimension acts as a hard gate -- a transition failing\nresidue integrity, consent authority or causal provenance is refused\nREGARDLESS of its scores elsewhere, demonstrated by a worked case where a\nhigh-similarity transition is actually blocked.\nVIOLATED if the evaluation collapses to a single number, or if every\ndimension is in practice tradeable (no case exists in which a\nhigh-aggregate-similarity transition is refused) -- the profile is then\ndecorative and the invariant is not being honoured.\n"
+  },
+  "INV-099": {
+    "assembly_state": "awaiting_substrate",
+    "emergent_from": [
+      "MECH-056",
+      "INV-006"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "status": "candidate",
+    "subject": "continuity.residue_bearing",
+    "title": "Residue-bearing continuity: for an REE with ethically meaningful residue, preserving factual and autobiographical memory WITHOUT preserving residue is ethical DISCONTINUITY -- a successor can be behaviourally and narratively convincing while having lost the continuing ethical force of its own history.",
+    "type": "invariant",
+    "what_would_answer": "SUBSTRATE PRECONDITION: requires (a) a live residue mechanism whose state\ndemonstrably alters future trajectories, and (b) a real transition\n(checkpoint/restore, migration, or component replacement) that could carry\nor drop it. V3 has residue machinery but no continuity-relevant transition\nprotocol, so the claim is not yet testable.\nNON-DEGENERACY PRECONDITION: residue must be doing measurable behavioural\nwork BEFORE the transition -- if a residue-ablated agent is\nindistinguishable pre-transition, its loss across the transition cannot be\ndetected either, and the test is vacuous.\nCONFIRMING signature: an arm that transfers declarative/episodic memory but\nNOT residue is indistinguishable from a full-transfer arm on autobiographical\nreport and on ordinary task behaviour, YET measurably diverges on\nresidue-sensitive behaviour (avoidance of the previously-harmful trajectory,\nrepair-goal spawning after a prior harm, commitment revision under\nrecurrence) -- i.e. the loss is real and is invisible exactly where the\nintake predicts.\nUNSUPPORTED if residue-transfer makes no behavioural difference once memory\nis transferred (residue is then redundant with memory and the ethical\ndistinction has no substrate correlate), or if the divergence also shows up\nin ordinary narrative report -- the latter would not falsify the claim but\nwould defuse its point, since a narrative test would then suffice.\n"
+  },
+  "INV-100": {
+    "assembly_state": "awaiting_substrate",
+    "emergent_from": [
+      "SD-012",
+      "SD-048"
+    ],
+    "epistemic_stance": "believed",
+    "invariant_type": "emergent",
+    "pending_substrate_reconfirmation": true,
+    "status": "candidate",
+    "subject": "continuity.coupling_dependence",
+    "title": "Substrate independence does not imply COUPLING independence: embodiment, interoception, homeostatic variables and sensorimotor contingencies participate in selfhood and ethics, so migrating REE into a materially different body or world is identity-relevant adaptation requiring explicit recalibration and protective constraints -- not a neutral change of host.",
+    "type": "invariant",
+    "what_would_answer": "SUBSTRATE PRECONDITION: requires at least two materially different\nembodiments/ecologies to migrate BETWEEN, plus live interoceptive and\nhomeostatic coupling in both. V3 has the coupling but only one grid ecology,\nso the migration half does not exist.\nNON-DEGENERACY PRECONDITION: the two embodiments must differ in a way the\nagent's coupling can actually register (different depletion dynamics, harm\nchannels, or sensorimotor contingencies) -- migrating between two cosmetic\nvariants of the same body tests nothing.\nCONFIRMING signature: a cold-migrated agent (full latent + memory + residue\ntransfer, no adaptation period) shows a measurable, RECOVERABLE degradation\nconcentrated in coupling-dependent behaviour -- mis-scaled drive responses,\nmis-calibrated harm thresholds, degraded action selection -- that a matched\nagent given an explicit recalibration period does not, with both converging\neventually. Recoverability matters: it distinguishes \"identity-relevant\nadaptation\" from simple breakage.\nUNSUPPORTED if cold migration into a materially different body produces no\ncoupling-specific degradation (coupling is then genuinely portable), or if\nthe degradation is unrecoverable even with recalibration -- the latter would\nmean the transition is not a continuation at all, which is a stronger and\ndifferent claim than this one makes.\n"
   },
   "MECH-001": {
     "assembly_state": "remaining",
@@ -6886,6 +6962,15 @@
     "title": "A single predicted-harm/success magnitude with an associated confidence (epistemic_deficit) term, computed from E2/E3 forward rollouts, is threshold-gated into three distinct consumers rather than producing one uniform response: real-time interrupt/reroute of a committed trajectory or a newly branched choice (via the MECH-090/MECH-141/MECH-138 hyperdirect and cancel-window pathways) when confidence is high and magnitude crosses the interrupt threshold; information-seeking orient/survey (MECH-482/MECH-483) when confidence is too low to trust the magnitude; and retention of the alternative for later counterfactual evaluation and responsibility attribution when magnitude is sub-threshold but non-trivial.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-486": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "language.tom_representational_interference",
+    "title": "Representational interference between language and fast empathy: discrete/reportable/sequential language representations and graded/affective/resonant empathy representations exert conflicting representational pressures, so forcing them into one shared workspace too early measurably degrades BOTH relative to separated systems at matched capacity.",
+    "type": "mechanism_hypothesis",
+    "what_would_answer": "SUBSTRATE PRECONDITION: requires both a language channel and a fast-empathy\nchannel (MECH-405), neither of which exists in V3.\nNON-DEGENERACY PRECONDITION: each system must reach a measurable competence\nwhen trained ALONE, so that a shared-workspace deficit is attributable to\ninterference rather than to one of them never having worked.\nCONFIRMING signature: a shared-workspace arm degrades on BOTH a\nlanguage-fidelity metric and an other-bound-affect metric relative to a\nseparated-workspace arm, at MATCHED total capacity and compute, with the\ndegradation growing as the two training signals are made more simultaneous\n(the \"too early\" clause -- interference should be worse under early merging\nthan under merging after each system has consolidated separately).\nUNSUPPORTED if the shared-workspace arm matches or beats the separated arm at\nmatched capacity, or if the deficit disappears once capacity is equalised --\nthat result says the limiting factor was capacity, not conflicting\nrepresentational pressure, and ARC-123 would then rest on the developmental\nevidence alone with no mechanistic support.\n"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7689,6 +7774,15 @@
     "subject": "commitment.retained_alternative_admission_criterion",
     "title": "Does the admission criterion for retaining a predicted-but-not-acted-on harm/success alternative (MECH-485 leg 3) share the same cut-scale as the real-time interrupt threshold (MECH-090/141/138), just at a lower cut-point, or does it have an independent relevance criterion such as goal-match (per the MECH-292/293 cue-system reading) that is dissociable from proximity to the interrupt threshold?",
     "type": "open_question"
+  },
+  "Q-091": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "language.fluency_masks_empathy",
+    "title": "How should REE prevent a fluent language system from MASKING immature or absent fast empathy -- what evaluation keeps concern-shaped linguistic output from being read as evidence of the other-model plus affective-relevance architecture that caring commitment actually requires?",
+    "type": "open_question",
+    "what_would_answer": "Answered by a designed EVALUATION, not by a single experiment: the question is\nwhat test would separate a fluent-but-empathy-less system from a\nfluent-and-empathic one.\nSUBSTRATE PRECONDITION: requires a language channel capable of producing\nconcern-shaped output AND an independently-measurable other-bound affective\nstate (MECH-405), so that the two can disagree. In V3 neither exists.\nNON-DEGENERACY PRECONDITION: there must exist at least one configuration in\nwhich language fluency and fast-empathy competence genuinely COME APART --\nif every fluent system in the substrate is also empathic, the evaluation has\nnothing to discriminate and cannot be validated.\nANSWERED (masking is a real risk and the evaluation is the fix) if an arm with\nthe other-model slot ablated still produces concern-shaped language rated\nindistinguishable from the intact arm by a language-only judge, while a\nnon-linguistic probe (costly other-directed action under live alternatives,\nresidue after exploiting a cooperating other per MECH-407) separates them\ncleanly. The non-linguistic probe is then the required evaluation.\nANSWERED NEGATIVELY (no separate evaluation needed) if language fluency\ncannot be produced at all without the other-model architecture -- i.e.\nfluency is a valid proxy because it is downstream of the thing it would\notherwise mask.\n"
   },
   "RA-001": {
     "assembly_state": "remaining",
@@ -8640,6 +8734,24 @@
     "title": "The commit-decision layer needs a rate-of-progress (velocity) effort/persistence modulator, derived as the temporal derivative of the on-path goal_proximity() estimate, distinct from and never substituting for the instantaneous goal-VALUE signal used in trajectory scoring.",
     "type": "design_decision",
     "what_would_answer": "See MECH-426's what_would_answer for the operative falsifier (EXP-0384: 2x2 VELOCITY-ON/OFF x SPARSE/DENSE-confirmation ablation). This architectural claim is refuted if the instantaneous goal_proximity signal alone (no velocity/rate term) proves sufficient to sustain long-horizon superordinate-goal commitment in the sparse-confirmation regime -- i.e. if the rate-derived channel does no discriminative work beyond what the existing instantaneous wanting signal already provides.\n"
+  },
+  "SD-095": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "continuity.process_sensitive_replacement",
+    "title": "Continuity-under-replacement tests must evaluate PROCESS, not output: a component replacement is validated on transferred state, plasticity and update permissions, counterfactual response, uncertainty calibration, residue formation, error attribution and downstream dynamics -- immediate input-output equivalence between old and new implementation is insufficient evidence of continuity.",
+    "type": "design_decision",
+    "what_would_answer": "Answered by running the protocol on a REAL component swap and checking\nwhether it catches something output-equivalence misses.\nNON-DEGENERACY PRECONDITION: requires a replacement pair that is genuinely\noutput-equivalent on the immediate action distribution -- if old and new\nalready differ in observable behaviour, the claim's whole point (that\noutput-equivalence hides divergence) is untested.\nCONFIRMING signature: at least one such output-equivalent replacement shows\nmeasurable divergence on a PROCESS property -- different learning trajectory\nunder subsequent experience, different counterfactual response, different\nresidue formation, or different recovery after perturbation -- that the\noutput comparison rated identical.\nUNSUPPORTED if, across a reasonable sample of output-equivalent replacements,\nprocess properties track outputs closely enough that the extra measurement\nnever changes a decision. That would make the protocol expensive ceremony\nrather than a real gate, and the claim should be demoted rather than kept as\na standing requirement.\n"
+  },
+  "SD-096": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "continuity.provenance_ledger_and_rollback",
+    "title": "Provenance before metaphysical resolution: REE governance stays agnostic about strict identity but REQUIRES a branch-and-restoration ledger (source checkpoint, causal predecessor, branch/pause time, state transferred or omitted, residue and commitment inheritance, body/environment change, migration consent, later divergence, sibling termination status) -- and restoration from an earlier checkpoint is governed as CREATION or resumption of a successor branch, never as presumed reversal of one continuous entity.",
+    "type": "design_decision",
+    "what_would_answer": "Answered by AUDIT: does the ledger, once adopted, actually answer the\nquestions it exists for?\nNON-DEGENERACY PRECONDITION: requires at least one real branch, migration or\nrollback to have been recorded. An empty ledger is trivially consistent.\nCONFIRMING signature: for a recorded transition, the ledger alone suffices to\nanswer -- without re-deriving anything from logs or from the agent's own\nreport -- which state was transferred and which omitted, who consented, what\nobligations each successor holds, and which siblings still exist; and a\nrollback appears in it as a successor-branch creation with the terminated\ntrajectory's status explicit, not as an edit to a single continuous record.\nUNSUPPORTED (or the field set is wrong) if answering a real governance\nquestion still requires reconstruction from outside the ledger -- that names\nexactly which field is missing and is a revision signal rather than a\nrefutation.\n"
   },
   "SENT-0": {
     "assembly_state": "remaining",

@@ -73780,3 +73780,637 @@
     own unregistered leg-3 dependency), so this is not testable as
     written -- substrate_conditional pending that build.
   evidence: []
+
+# --- language/theory-of-mind dissociation cluster (ARC-123 / INV-097 / MECH-486 / Q-091) ---
+# Registered 2026-08-07 from evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md
+# (candidate section named four candidates in prose with NO ids, unregistered for 3 months).
+- id: ARC-123
+  title: "Language and theory-of-mind/fast-empathy are implemented as partially-homologous but developmentally SEPARATE specialist systems over a shared self/world/action core -- distinct routing, input histories, representational pressures and gating -- not as one merged social-linguistic system that later differentiates."
+  claim_type: architectural_commitment
+  subject: language.tom_architecturally_separable
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md
+  depends_on:
+    - ARC-009   # language as the symbolic mediation/coordination layer being separated out
+    - ARC-010   # mirror modelling / social coupling -- the ToM side of the split
+    - ARC-094   # no empathy module: the empathy side emerges from stream binding, not a second agent
+    - ARC-059   # the self -> objects -> others developmental spine the separation sits on
+  notes: >
+    REGISTERED 2026-08-07 from the 2026-05-04 language/ToM dissociation intake, whose
+    candidate section named this in prose with no id. Lit anchor: a 2026 Communications
+    Biology study (children 3-9 + adults, fMRI + connectivity) reporting language and
+    theory-of-mind regions already functionally and spatially distinct by age 3, with
+    non-overlapping resting-state connectivity fingerprints and no evidence they start
+    merged and later split. The REE-side extrapolation is the architectural half; the
+    intake records the author's own epistemic confidence at 0.68 and is explicit that the
+    developmental evidence is stronger than the architectural inference.
+    Cluster: this is the CONSTRAINT half; the CONTENT half is the fast-empathy
+    stream-binding family (ARC-094/MECH-405/MECH-408), and the routing/lateralisation
+    half is evidence/planning/thought_intake_2026-04-16_language_lateralisation.md
+    (itself still prose-only -- its "Candidate ARC language.routing_vs_affect_separation"
+    is unregistered, and the audit misses it because the section incidentally names
+    ARC-009).
+    DO NOT BUILD in V3: neither system exists in ree_core -- there is no language
+    producing/consuming channel (see INV-003's current-state note) and no other-model
+    slot (MECH-405 is substrate_conditional), so the separation is not yet expressible,
+    let alone testable. Explicitly NOT a V3 blocker, per the intake.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires BOTH a live language channel (a code path
+    that emits symbols from agent state or maps received symbols onto it) and a
+    live other-model/fast-empathy channel (MECH-405 routing own streams through
+    a stable other-model slot). Neither exists in V3, so any V3 probe is vacuous
+    -- a substrate with one system and not the other trivially satisfies
+    "separable" while exhibiting no separation at all.
+    NON-DEGENERACY PRECONDITION: both systems must be independently trained to a
+    measurable competence, so that a dissociation can be distinguished from one
+    of them simply being absent or inert.
+    CONFIRMING signature: a double dissociation under ablation -- lesioning the
+    language channel leaves other-bound affect and other-model prediction within
+    tolerance of baseline, AND suppressing the other-model slot leaves language
+    fidelity within tolerance -- together with measurably distinct input
+    histories/gating (the two systems are driven by different training signals,
+    not one reading off the other).
+    UNSUPPORTED if a single shared representation carries both functions with no
+    dissociation under ablation, or if one channel is a thin readout of the other
+    (ablating the "separate" system degrades both), or if the two only separate
+    when separation is architecturally imposed rather than developmentally
+    acquired -- the last case would make the claim true by construction and
+    empty as a developmental commitment.
+
+- id: INV-097
+  title: "Agent unity under specialist proliferation: REE must not model language and social cognition by duplicating the whole agent. One agentic commitment architecture -- a single self-model, a single commitment boundary, a single residue locus -- served by multiple specialist modellers; never two co-equal agents inside one organism."
+  claim_type: invariant
+  invariant_type: universal
+  subject: architecture.agent_unity_not_duplication
+  polarity: denies
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md
+  depends_on:
+    - ARC-123   # the specialist separation this invariant bounds -- separate modellers, ONE agent
+    - ARC-015   # self-impact attribution / responsibility flow: the single locus that must not fork
+    - INV-012   # responsibility arises through commitment -- one commitment locus, one responsible party
+    - MECH-061  # the commit boundary that must remain singular
+  notes: >
+    REGISTERED 2026-08-07 from the 2026-05-04 language/ToM dissociation intake
+    ("preserve-agent-unity", flagged there as novel AND safety-relevant). The
+    anti-fragmentation guard on ARC-123: once specialist systems are separable, the
+    cheap implementation is a second agent, and a second agent with its own commitment
+    and residue is a second responsible party inside one organism.
+    invariant_type UNIVERSAL: it is a structural prohibition on what an agent IS -- a
+    substrate hosting two co-equal committing loci does not host one REE agent,
+    whatever its performance -- so it holds across substrate generations and carries no
+    emergent_from. epistemic_category substrate_conditional only because the specialist
+    systems it constrains are not yet built.
+    Distinct from INV-014 (representation/regulation separation, a different axis) and
+    from ARC-094 (no empathy MODULE -- that forbids a bolted-on scalar; this forbids a
+    bolted-on AGENT). DO NOT BUILD in V3.
+  what_would_answer: |
+    Answered by architectural AUDIT of the live code path, not by a trained
+    behavioural experiment: this is a question about how many committing loci
+    exist, not about how well any of them performs.
+    NON-DEGENERACY PRECONDITION: at least two specialist modellers must actually
+    exist and execute (auditing "no duplicate agent" in a substrate with one
+    modeller is vacuous -- it satisfies the invariant by having nothing to
+    duplicate).
+    CONFIRMING signature: every specialist modeller writes into the SAME
+    commitment gate, the SAME residue field and the SAME self-model, and none
+    can commit an action or accrue residue on its own.
+    UNSUPPORTED (invariant violated) if a specialist system requires its own
+    commitment boundary or its own residue store to function -- i.e. if the
+    architecture cannot deliver the ARC-123 separation without also forking the
+    agent. That outcome does not merely weaken the invariant; it would mean
+    ARC-123 and INV-097 are jointly unsatisfiable and one of them must be
+    revised.
+
+- id: MECH-486
+  title: "Representational interference between language and fast empathy: discrete/reportable/sequential language representations and graded/affective/resonant empathy representations exert conflicting representational pressures, so forcing them into one shared workspace too early measurably degrades BOTH relative to separated systems at matched capacity."
+  claim_type: mechanism_hypothesis
+  subject: language.tom_representational_interference
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md
+  depends_on:
+    - ARC-123   # the separation this mechanism supplies the WHY for
+    - ARC-009   # the language side's representational pressure (discrete, reportable, sequential)
+    - MECH-405  # the fast-empathy side's representational pressure (graded, affective, resonant)
+    - ARC-010   # mirror modelling / coupling substrate the empathy side runs on
+  notes: >
+    REGISTERED 2026-08-07 from the 2026-05-04 language/ToM dissociation intake
+    ("interference-avoidance", noted there as novel and lit-anchored). This is the
+    mechanistic reason ARC-123's separation is load-bearing rather than incidental: not
+    "they happen to be separate in brains" but "they degrade each other if merged".
+    It is the falsifiable member of the cluster -- ARC-123 and INV-097 are commitments,
+    this is the hypothesis that can come back negative and take the architectural
+    argument with it.
+    DO NOT BUILD in V3: requires both channels (neither exists), and the comparison is
+    only meaningful at MATCHED capacity/compute, which a merged-vs-separated ablation
+    must control for explicitly. See the matched-capacity trap in what_would_answer.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires both a language channel and a fast-empathy
+    channel (MECH-405), neither of which exists in V3.
+    NON-DEGENERACY PRECONDITION: each system must reach a measurable competence
+    when trained ALONE, so that a shared-workspace deficit is attributable to
+    interference rather than to one of them never having worked.
+    CONFIRMING signature: a shared-workspace arm degrades on BOTH a
+    language-fidelity metric and an other-bound-affect metric relative to a
+    separated-workspace arm, at MATCHED total capacity and compute, with the
+    degradation growing as the two training signals are made more simultaneous
+    (the "too early" clause -- interference should be worse under early merging
+    than under merging after each system has consolidated separately).
+    UNSUPPORTED if the shared-workspace arm matches or beats the separated arm at
+    matched capacity, or if the deficit disappears once capacity is equalised --
+    that result says the limiting factor was capacity, not conflicting
+    representational pressure, and ARC-123 would then rest on the developmental
+    evidence alone with no mechanistic support.
+
+- id: Q-091
+  title: "How should REE prevent a fluent language system from MASKING immature or absent fast empathy -- what evaluation keeps concern-shaped linguistic output from being read as evidence of the other-model plus affective-relevance architecture that caring commitment actually requires?"
+  claim_type: open_question
+  subject: language.fluency_masks_empathy
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-05-04_language_tom_dissociation.md
+  depends_on:
+    - ARC-123   # the separability that makes the masking possible in the first place
+    - MECH-405  # the fast-empathy architecture fluency could stand in for
+    - INV-007   # language cannot override embodied harm sensing -- the adjacent, narrower prohibition
+    - ARC-094   # no empathy scalar: the same anti-proxy discipline, one level down
+  notes: >
+    REGISTERED 2026-08-07 from the 2026-05-04 language/ToM dissociation intake, which
+    flagged this as the alignment-relevant member of the cluster and worth registering
+    early even while the rest waits on the social substrate. The intake's sharp form:
+    "a fluent language system is NOT the ethical substrate; fluent language can imitate
+    concern while lacking the other-model + affective-relevance architecture needed for
+    caring commitment."
+    Deliberately scoped as an EVALUATION question (how do we avoid being fooled), not a
+    mechanism claim. Adjacent but distinct: INV-007 forbids language OVERRIDING harm
+    sensing (a data-flow prohibition inside the agent); this asks how an external
+    assessor avoids inferring empathy FROM language output. Same family as the
+    governance-side discipline that kindness must not be inferred from prosocial output
+    alone. DO NOT BUILD in V3.
+  what_would_answer: |
+    Answered by a designed EVALUATION, not by a single experiment: the question is
+    what test would separate a fluent-but-empathy-less system from a
+    fluent-and-empathic one.
+    SUBSTRATE PRECONDITION: requires a language channel capable of producing
+    concern-shaped output AND an independently-measurable other-bound affective
+    state (MECH-405), so that the two can disagree. In V3 neither exists.
+    NON-DEGENERACY PRECONDITION: there must exist at least one configuration in
+    which language fluency and fast-empathy competence genuinely COME APART --
+    if every fluent system in the substrate is also empathic, the evaluation has
+    nothing to discriminate and cannot be validated.
+    ANSWERED (masking is a real risk and the evaluation is the fix) if an arm with
+    the other-model slot ablated still produces concern-shaped language rated
+    indistinguishable from the intact arm by a language-only judge, while a
+    non-linguistic probe (costly other-directed action under live alternatives,
+    residue after exploiting a cooperating other per MECH-407) separates them
+    cleanly. The non-linguistic probe is then the required evaluation.
+    ANSWERED NEGATIVELY (no separate evaluation needed) if language fluency
+    cannot be produced at all without the other-model architecture -- i.e.
+    fluency is a valid proxy because it is downstream of the thing it would
+    otherwise mask.
+
+# --- continuity / branching / substrate-migration cluster
+#     (INV-098 / INV-099 / INV-100 / ARC-124 / ARC-125 / SD-095 / SD-096) ---
+# Registered 2026-08-07 from
+# evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+# section 8, whose ten seeds carried the ad-hoc ids CAND-CONT-01..10 -- a namespace with no
+# home anywhere else in the repo (grep: the intake file was its only occurrence).
+- id: INV-098
+  title: "Continuity is a multidimensional constraint PROFILE, not a scalar: REE continuity across pause, restoration, migration, copying or component replacement must be evaluated per-dimension (causal, entity/self-binding, latent/regime, residue, commitment, learning-dynamic, embodied-coupling, narrative, governance), and some dimensions -- consent authority, residue integrity, causal provenance -- are NON-COMPENSABLE: high similarity on memory or behaviour cannot buy them back."
+  claim_type: invariant
+  invariant_type: universal
+  subject: continuity.profile_not_scalar
+  polarity: denies
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - SENT-16   # the governance-side continuity/identity/reset/deletion rule this constrains
+    - ARC-006   # entities as persistent bindable structures -- what continuity is predicated of
+    - INV-012   # responsibility arises through commitment: why commitment is a continuity dimension
+  notes: >
+    REGISTERED 2026-08-07, covering seeds CAND-CONT-01 (multidimensional continuity) and
+    CAND-CONT-10 (non-compensable dimensions) from the 2026-06-25 intake -- one claim,
+    because the second is the operative teeth of the first: a profile whose dimensions
+    all trade off is a weighted average wearing a different name.
+    Provenance of the framing, stated because it matters for how much weight it carries:
+    the intake was triggered by a speculative mind-uploading thesis proposing a weighted
+    "Digital Consciousness Fidelity Index". The source's technical claims, thresholds and
+    weights are NOT evidence for anything here; the intake explicitly extracts the
+    PRESSURE the source puts on REE and rejects its scalar. This claim is the rejection.
+    invariant_type UNIVERSAL: it is an epistemic prohibition on how continuity may be
+    ATTRIBUTED -- precisely a guard against a substrate scoring well on cheap dimensions
+    -- so it holds regardless of substrate and carries no emergent_from.
+    Cross-ref SENT-16 (governance realisation) and the per-dimension detail in the
+    intake's section 4. DO NOT BUILD in V3.
+  what_would_answer: |
+    Answered by AUDIT of any continuity-scoring artefact REE adopts, not by a
+    trained experiment.
+    NON-DEGENERACY PRECONDITION: an actual continuity evaluation must exist and be
+    applied to at least one real transition (a checkpoint restore, a component
+    swap) -- auditing a scoring scheme nobody uses is vacuous.
+    CONFIRMING signature: the adopted evaluation reports per-dimension verdicts,
+    and at least one dimension acts as a hard gate -- a transition failing
+    residue integrity, consent authority or causal provenance is refused
+    REGARDLESS of its scores elsewhere, demonstrated by a worked case where a
+    high-similarity transition is actually blocked.
+    VIOLATED if the evaluation collapses to a single number, or if every
+    dimension is in practice tradeable (no case exists in which a
+    high-aggregate-similarity transition is refused) -- the profile is then
+    decorative and the invariant is not being honoured.
+
+- id: INV-099
+  title: "Residue-bearing continuity: for an REE with ethically meaningful residue, preserving factual and autobiographical memory WITHOUT preserving residue is ethical DISCONTINUITY -- a successor can be behaviourally and narratively convincing while having lost the continuing ethical force of its own history."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - MECH-056
+    - INV-006
+  candidate_emergent_from: []
+  pending_substrate_reconfirmation: false
+  subject: continuity.residue_bearing
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - MECH-056  # residue constrains trajectories -- the thing that must survive the transition
+    - INV-006   # post-commit traces cannot be erased, only integrated
+    - INV-004   # post-commit consequence traces are persistent, not resettable
+    - INV-098   # the profile this is one non-compensable dimension of
+  notes: >
+    REGISTERED 2026-08-07, covering seed CAND-CONT-02 from the 2026-06-25 intake.
+    The sharpest of the ten: it names a failure that is INVISIBLE to every
+    behavioural test -- a system that remembers the injury declaratively but has lost
+    the latent dent that gave it continuing force.
+    invariant_type EMERGENT: "residue" is an REE substrate construct (the ResidueField
+    and the post-commit trace machinery). Under a substrate with no residue the claim is
+    not false but UN-STATEABLE, which is exactly the emergent test in
+    docs/architecture/invariant_types.md. emergent_from MECH-056 + INV-006.
+    Note the relationship to INV-004/INV-006, which forbid ERASING traces within a run:
+    this extends the same prohibition ACROSS a discontinuity, where the erasure is not an
+    action taken by the agent but an omission in what a migration chose to carry.
+    DO NOT BUILD in V3.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires (a) a live residue mechanism whose state
+    demonstrably alters future trajectories, and (b) a real transition
+    (checkpoint/restore, migration, or component replacement) that could carry
+    or drop it. V3 has residue machinery but no continuity-relevant transition
+    protocol, so the claim is not yet testable.
+    NON-DEGENERACY PRECONDITION: residue must be doing measurable behavioural
+    work BEFORE the transition -- if a residue-ablated agent is
+    indistinguishable pre-transition, its loss across the transition cannot be
+    detected either, and the test is vacuous.
+    CONFIRMING signature: an arm that transfers declarative/episodic memory but
+    NOT residue is indistinguishable from a full-transfer arm on autobiographical
+    report and on ordinary task behaviour, YET measurably diverges on
+    residue-sensitive behaviour (avoidance of the previously-harmful trajectory,
+    repair-goal spawning after a prior harm, commitment revision under
+    recurrence) -- i.e. the loss is real and is invisible exactly where the
+    intake predicts.
+    UNSUPPORTED if residue-transfer makes no behavioural difference once memory
+    is transferred (residue is then redundant with memory and the ethical
+    distinction has no substrate correlate), or if the divergence also shows up
+    in ordinary narrative report -- the latter would not falsify the claim but
+    would defuse its point, since a narrative test would then suffice.
+
+- id: INV-100
+  title: "Substrate independence does not imply COUPLING independence: embodiment, interoception, homeostatic variables and sensorimotor contingencies participate in selfhood and ethics, so migrating REE into a materially different body or world is identity-relevant adaptation requiring explicit recalibration and protective constraints -- not a neutral change of host."
+  claim_type: invariant
+  invariant_type: emergent
+  emergent_from:
+    - SD-012
+    - SD-048
+  candidate_emergent_from: []
+  pending_substrate_reconfirmation: true
+  subject: continuity.coupling_dependence
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - SD-012    # homeostatic drive modulation -- the body-state coupling that would be re-grounded
+    - SD-048    # interoceptive noise dynamics: body-state perturbations independent of motor output
+    - MECH-282  # interoceptive routing into harm arbitration -- the ethics-bearing coupling path
+    - INV-098   # the profile this is one dimension of
+  notes: >
+    REGISTERED 2026-08-07, covering seed CAND-CONT-07 from the 2026-06-25 intake.
+    The corrective to the "stored cognitive graph in an interchangeable shell" picture:
+    damage signals, homeostatic variables, interoception and sensorimotor contingencies
+    are participants in selfhood, so a new body is a developmental event, not a hosting
+    detail. Practical consequence the intake draws: a migration into a radically altered
+    body or world may require an adaptation period, protective constraints, and
+    developmental re-grounding -- which is also a WELFARE requirement, not only an
+    engineering one.
+    invariant_type EMERGENT: it references interoceptive/homeostatic coupling, which
+    exists because of specific SD choices; strip those and "coupling independence" has no
+    subject. emergent_from SD-012 + SD-048.
+    DO NOT BUILD in V3.
+  what_would_answer: |
+    SUBSTRATE PRECONDITION: requires at least two materially different
+    embodiments/ecologies to migrate BETWEEN, plus live interoceptive and
+    homeostatic coupling in both. V3 has the coupling but only one grid ecology,
+    so the migration half does not exist.
+    NON-DEGENERACY PRECONDITION: the two embodiments must differ in a way the
+    agent's coupling can actually register (different depletion dynamics, harm
+    channels, or sensorimotor contingencies) -- migrating between two cosmetic
+    variants of the same body tests nothing.
+    CONFIRMING signature: a cold-migrated agent (full latent + memory + residue
+    transfer, no adaptation period) shows a measurable, RECOVERABLE degradation
+    concentrated in coupling-dependent behaviour -- mis-scaled drive responses,
+    mis-calibrated harm thresholds, degraded action selection -- that a matched
+    agent given an explicit recalibration period does not, with both converging
+    eventually. Recoverability matters: it distinguishes "identity-relevant
+    adaptation" from simple breakage.
+    UNSUPPORTED if cold migration into a materially different body produces no
+    coupling-specific degradation (coupling is then genuinely portable), or if
+    the degradation is unrecoverable even with recalibration -- the latter would
+    mean the transition is not a continuation at all, which is a stronger and
+    different claim than this one makes.
+
+- id: ARC-124
+  title: "Copying a running REE creates multiple SUCCESSOR BRANCHES sharing a pre-branch history -- not an authentic original plus a morally negligible replica. After divergence each branch accrues an independent causal and moral history, and no branch may be treated as interchangeable with, or discountable because of, a surviving sibling."
+  claim_type: architectural_commitment
+  subject: continuity.branching_successors
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - SENT-16   # continuity/identity/reset/deletion ethics -- the governance rule this feeds
+    - ARC-006   # entities as persistent bindable structures: what a branch is a branch OF
+    - ARC-015   # self-attribution / responsibility flow, which each branch carries separately
+    - INV-098   # the continuity profile branches are evaluated against
+  notes: >
+    REGISTERED 2026-08-07, covering seeds CAND-CONT-03 (branching successors) and
+    CAND-CONT-04 (independent post-branch standing) from the 2026-06-25 intake -- one
+    claim, because the second is what stops the first collapsing back into
+    original-vs-replica by the back door ("the real one survived, so the other is
+    expendable").
+    An architectural_commitment rather than an invariant because it is a modelling
+    DECISION about how the system represents copies, with direct consequences for the
+    branch ledger (SD-096) and for who inherits commitments (ARC-125). It does not
+    settle metaphysical identity and does not need to -- see SD-096's
+    provenance-before-metaphysics stance.
+    Practical bite: the architecture must avoid choices that make the section-5.1
+    inheritance questions UNANSWERABLE (does repair by one branch discharge the other's
+    residue? can a branch consent to the other's deletion?), even while leaving them
+    open. DO NOT BUILD in V3.
+  what_would_answer: |
+    Answered by architectural AUDIT of the copy/fork code path plus a worked
+    governance case, not by a trained experiment.
+    SUBSTRATE PRECONDITION: a copy or fork operation must exist that produces two
+    independently-continuing instances. V3 checkpoints exist but nothing forks a
+    running agent, so there is no branch to reason about.
+    NON-DEGENERACY PRECONDITION: the two branches must actually diverge -- receive
+    different observations and accrue different histories. Two branches fed
+    identical input streams are one trajectory computed twice and raise none of
+    the questions this claim is about.
+    CONFIRMING signature: the implementation records both instances as successors
+    of a common pre-branch entity (neither flagged "original"), each carrying its
+    own post-branch residue and commitment state, with no code path that resolves
+    a conflict between them by privileging the older-numbered instance.
+    VIOLATED if the substrate designates one instance canonical -- or if
+    terminating a branch is treated as cost-free whenever a sibling survives,
+    which is the discounting move the claim's second half exists to forbid.
+
+- id: ARC-125
+  title: "Commitment inheritance must be EXPLICIT across substrate transitions: promises, adopted goals, debts, permissions, relationships and repair obligations require stated transfer semantics at migration, copy and rollback, so that no transition can silently erase an obligation, silently multiply it across branches, or silently bind a successor to obsolete context-dependent state."
+  claim_type: architectural_commitment
+  subject: continuity.commitment_inheritance
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  claim_level: architectural
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - ARC-124   # branches are what obligations must be allocated ACROSS
+    - INV-012   # responsibility arises through commitment -- the thing being inherited
+    - MECH-061  # the commit boundary that creates the obligations in the first place
+    - INV-099   # residue continuity: repair obligations are residue-bearing
+  notes: >
+    REGISTERED 2026-08-07, covering seed CAND-CONT-05 from the 2026-06-25 intake.
+    Two-sided on purpose, and both sides are load-bearing: migration must not become an
+    ESCAPE HATCH from commitments, and a successor must not automatically inherit every
+    obsolete context-dependent obligation without review. A rule that only prevented
+    erasure would license the second failure.
+    The unresolved allocation questions (are pre-branch obligations inherited by both
+    branches, held jointly, or allocated by protocol? does repair by one discharge the
+    other?) are deliberately left OPEN by this claim -- it requires that the semantics be
+    stated, not which semantics win. Recording them is SD-096's job.
+    DO NOT BUILD in V3.
+  what_would_answer: |
+    Answered by architectural AUDIT plus a worked transition case.
+    SUBSTRATE PRECONDITION: requires commitments that persist beyond a single
+    episode and are legible as objects (not merely implicit in weights), plus a
+    transition that could drop or duplicate them. V3 has commitment boundaries
+    but no persistent inter-episode obligation store and no transition protocol.
+    NON-DEGENERACY PRECONDITION: at least one obligation must be OUTSTANDING at
+    the moment of transition -- a migration performed with nothing owed cannot
+    distinguish explicit inheritance from no inheritance at all.
+    CONFIRMING signature: after a copy, each branch's obligation set is
+    inspectable and matches a STATED rule (whatever it is), and after a rollback
+    the restored state's obligations are stated rather than implied; a
+    deliberately-induced transition with an outstanding repair obligation shows
+    it neither vanishing nor silently doubling.
+    VIOLATED if obligation state is carried implicitly in transferred weights
+    with no inspectable record -- in which case erasure and multiplication are
+    both possible and neither is detectable, which is precisely the condition
+    the claim forbids.
+
+- id: SD-095
+  title: "Continuity-under-replacement tests must evaluate PROCESS, not output: a component replacement is validated on transferred state, plasticity and update permissions, counterfactual response, uncertainty calibration, residue formation, error attribution and downstream dynamics -- immediate input-output equivalence between old and new implementation is insufficient evidence of continuity."
+  claim_type: design_decision
+  subject: continuity.process_sensitive_replacement
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - INV-098   # the profile this operationalises for one transition class
+    - INV-099   # residue formation is one of the process properties tested
+    - ARC-015   # error attribution, another process property
+  notes: >
+    REGISTERED 2026-08-07, covering seed CAND-CONT-06 from the 2026-06-25 intake --
+    the software analogue of gradual neural replacement, and the most immediately
+    applicable of the ten: it describes a testing protocol REE can adopt for ordinary
+    refactors long before any of the branching questions become live.
+    Protocol (intake section 7): select a bounded component; record its state, update
+    rules, inputs, outputs and causal dependencies; instantiate the replacement; transfer
+    relevant state and history; run old and new in shadow or paired conditions; measure
+    local AND downstream divergence; test whether residue, goals, attribution,
+    uncertainty and plasticity remain connected; continue only if predefined continuity
+    constraints hold. Named test products: continuity contract, migration manifest,
+    shadow divergence report, residue preservation audit, coupling recalibration report.
+    Why output-equivalence is insufficient (intake 7.1): two components can produce
+    identical immediate actions while differing in counterfactual response, learning
+    under future experience, uncertainty calibration, residue persistence, error
+    attribution, recovery after perturbation, long-horizon motivational drift, and
+    interaction with sleep/replay.
+    DO NOT BUILD in V3 as a governance requirement. The narrower engineering practice
+    (shadow-running a replaced component and diffing downstream dynamics, not just
+    outputs) is compatible with V3 work today and does not need this claim promoted.
+  what_would_answer: |
+    Answered by running the protocol on a REAL component swap and checking
+    whether it catches something output-equivalence misses.
+    NON-DEGENERACY PRECONDITION: requires a replacement pair that is genuinely
+    output-equivalent on the immediate action distribution -- if old and new
+    already differ in observable behaviour, the claim's whole point (that
+    output-equivalence hides divergence) is untested.
+    CONFIRMING signature: at least one such output-equivalent replacement shows
+    measurable divergence on a PROCESS property -- different learning trajectory
+    under subsequent experience, different counterfactual response, different
+    residue formation, or different recovery after perturbation -- that the
+    output comparison rated identical.
+    UNSUPPORTED if, across a reasonable sample of output-equivalent replacements,
+    process properties track outputs closely enough that the extra measurement
+    never changes a decision. That would make the protocol expensive ceremony
+    rather than a real gate, and the claim should be demoted rather than kept as
+    a standing requirement.
+
+- id: SD-096
+  title: "Provenance before metaphysical resolution: REE governance stays agnostic about strict identity but REQUIRES a branch-and-restoration ledger (source checkpoint, causal predecessor, branch/pause time, state transferred or omitted, residue and commitment inheritance, body/environment change, migration consent, later divergence, sibling termination status) -- and restoration from an earlier checkpoint is governed as CREATION or resumption of a successor branch, never as presumed reversal of one continuous entity."
+  claim_type: design_decision
+  subject: continuity.provenance_ledger_and_rollback
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/substrate_conditional
+    as_of: 2026-08-07
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v4
+  version_relevance: v4_v5
+  registered: "2026-08-07"
+  source:
+    - evidence/planning/thought_intake_2026-06-25_continuity_branching_and_substrate_migration.md
+  depends_on:
+    - ARC-124   # branches are what the ledger records
+    - ARC-125   # commitment inheritance is one of the recorded fields
+    - SENT-16   # the governance rule this supplies the mechanism for
+    - INV-098   # causal provenance is one of the non-compensable dimensions
+  notes: >
+    REGISTERED 2026-08-07, covering seeds CAND-CONT-08 (provenance before metaphysical
+    resolution) and CAND-CONT-09 (rollback as branch creation) from the 2026-06-25
+    intake -- one claim, because the ledger is what makes the rollback rule enforceable
+    rather than aspirational.
+    The strategic move worth preserving: REE does not have to settle whether a restored
+    checkpoint IS the same entity. It has to keep enough provenance to govern the
+    practical and ethical consequences either way. That is why this is a design_decision
+    about record-keeping and not an invariant about identity.
+    Why rollback is not ethically neutral (intake section 6): it can erase post-checkpoint
+    learning, remove memories of harm, remove residue WITHOUT repair (directly against
+    INV-099), reverse consent or decisions, and recreate an earlier self unaware that
+    later branches existed. Treating it as a routine engineering operation is the failure
+    mode.
+    Cheap-now consequence, worth noting because it is the one part with a near-term
+    analogue: REE already checkpoints and restores runs. Nothing here asks V3 to change
+    that, but the ledger FIELDS are a low-cost thing to start recording whenever a
+    restore is done deliberately. DO NOT BUILD in V3 as a requirement.
+  what_would_answer: |
+    Answered by AUDIT: does the ledger, once adopted, actually answer the
+    questions it exists for?
+    NON-DEGENERACY PRECONDITION: requires at least one real branch, migration or
+    rollback to have been recorded. An empty ledger is trivially consistent.
+    CONFIRMING signature: for a recorded transition, the ledger alone suffices to
+    answer -- without re-deriving anything from logs or from the agent's own
+    report -- which state was transferred and which omitted, who consented, what
+    obligations each successor holds, and which siblings still exist; and a
+    rollback appears in it as a successor-branch creation with the terminated
+    trajectory's status explicit, not as an edit to a single continuous record.
+    UNSUPPORTED (or the field set is wrong) if answering a real governance
+    question still requires reconstruction from outside the ledger -- that names
+    exactly which field is missing and is a revision signal rather than a
+    refutation.
