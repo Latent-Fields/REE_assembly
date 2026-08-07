@@ -287,6 +287,64 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live residue/consequence-trace
+    write and decay code paths, not by a trained behavioral experiment
+    (this is a MECHANISM/STRUCTURE question -- WHETHER any reachable code
+    path can zero or delete a real committed-action trace -- not an
+    accuracy or convergence question).
+
+    NON-DEGENERACY PRECONDITION: the audit must inspect a live case where
+    a real consequence trace has actually been written -- ResidueField.
+    accumulate() (or accumulate_benefit / accumulate_safety /
+    update_valence) called with hypothesis_tag=False, producing a nonzero
+    contribution to total_residue and/or an active RBF center -- AND then
+    inspect every code path that can subsequently touch that same state.
+    Auditing "erasure-freedom" against a substrate where no real trace was
+    ever written is vacuous. Decay/integration (an old trace's influence
+    fading via EMA, being reweighted by new evidence, or contextualised
+    during sleep) is PERMITTED and does not falsify the claim; only a path
+    that sets a real trace's contribution to exactly zero / removes it
+    entirely -- indistinguishable from the consequence never having
+    occurred -- falsifies it.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass):
+    ree_core/residue/field.py implements this live. ResidueField carries
+    no reset/clear/delete/zero_out method. total_residue (field.py:620)
+    is only ever incremented, never decremented or reassigned to 0.0
+    anywhere in ree_core/. The one mechanism that reduces a written
+    weight's magnitude, discharge_domain() (SD-034, field.py:884-972), is
+    explicitly non-erasing by construction: multiplicative decay only
+    (factor in (0.0, 1.0]), clamped by a hard floor (MIN_FLOOR = 1e-6)
+    that keeps weights sign-preserving and strictly away from exact zero,
+    scoped to a bounded spatial radius, with valence_vecs left untouched
+    -- its own docstring states "weights decay multiplicatively toward
+    (but never to) zero." REEAgent.reset() (agent.py:2995-2996), the
+    per-episode reset, is explicitly documented and implemented as NOT
+    touching residue ("Does NOT reset residue (invariant)") while
+    resetting e1 hidden state, theta_buffer, beta_gate, serotonin and
+    other per-episode caches -- residue is conspicuously absent from that
+    reset body. Sleep consolidation (CrossModuleConsolidator,
+    cross_module_consolidation.py, MECH-121/MECH-423 feeding the
+    SD-017/MECH-120 sleep cluster) explicitly scopes its MECH-094
+    exception as writing to no residue/anchors/memory at all -- the
+    offline pass trains module weights only. ResidueField.integrate()
+    (field.py:974-997) only trains a side neural_field to regress toward
+    existing RBF outputs, leaving rbf_field.weights, total_residue, and
+    valence_vecs unmodified. One capacity caveat, not a falsifier:
+    RBFLayer's fixed-size circular buffer (next_center_idx wraps mod
+    num_centers) can, once num_harm_events exceeds num_basis_functions,
+    overwrite an old slot's spatial LOCATION while still ADDING to
+    (never replacing) that slot's weight -- this degrades spatial
+    attribution resolution under capacity pressure but never zeros a
+    contribution or decrements total_residue, so it does not meet the
+    falsifying bar above. (A separate familiarity/novelty tracker,
+    ree_core/hippocampal/curiosity.py FamiliarityTracker, SD-025, does
+    fully zero on reset() -- but it is a purely-spatial visitation
+    tracker, not a harm/benefit consequence record, and is out of scope
+    for this claim, the same distinction INV-011 drew for
+    reset_hidden_state().)
   location: docs/invariants.md#inv-006
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -312,6 +370,63 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live language-channel-into-
+    harm-signal data flow, not by a trained behavioral experiment (this
+    is a MECHANISM question -- WHETHER a symbolic/verbal channel can
+    reach and suppress the harm-sensing pathway -- not a question of how
+    persuasive or fluent any such language is).
+
+    NON-DEGENERACY PRECONDITION: two channels must coexist before this
+    claim is testable in either direction -- (1) a language/symbolic-
+    justification mechanism that produces content capable of being
+    tested against the harm pathway, and (2) a live embodied-harm-
+    sensing channel reaching action/trajectory evaluation that such a
+    mechanism could attempt to override. Checking for "absence of
+    override" when no language channel exists at all is vacuous.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): channel (2) is
+    SATISFIED -- z_harm_a/z_harm_s, ResidueField
+    (ree_core/residue/field.py), the amygdala BLA/CeA analogue (SD-035)
+    and dACC (MECH-258) are confirmed live and wired into the substrate.
+    Channel (1) is NOT satisfied: no "language", "symbol_channel",
+    "communication_channel", or "message_passing" implementation exists
+    anywhere under ree_core/ (identical finding to INV-003's audit, same
+    session). The only language-referencing artifact is
+    ree_core/claustrum/control_demand.py's LANGUAGE_EXPLICITATION enum
+    label, which has no implementation behind it and is referenced
+    nowhere outside its own definition and one contract test that merely
+    enumerates enum members. This mirrors INV-003's finding exactly: the
+    same absent prerequisite blocks both claims, from the same root
+    cause.
+
+    AUDIT TARGET once a language/symbolic-justification mechanism lands
+    (candidate landing site per INV-003's own audit: a discrete symbol-
+    emission/consumption channel built out from MECH-014's sketch):
+    trace whatever function(s) let a symbolic/verbal signal reach
+    z_harm_a/z_harm_s, their ResidueField/SD-035/MECH-258 upstream, or
+    E3's harm-weighted trajectory scoring (ree_core/predictors/
+    e3_selector.py).
+
+    FALSIFYING evidence: the traced path shows a language-derived or
+    symbolic-justification signal suppressing, vetoing, zeroing, gating
+    off, or otherwise diminishing the reach of z_harm_a/z_harm_s into E3
+    trajectory evaluation. This is the "Symbolic override" failure mode
+    named explicitly in REE_CORE.md §6: "language or ideology suppresses
+    harm signals." Finding this ANYWHERE in the live path falsifies
+    INV-007, regardless of whether the language content is behaviorally
+    coherent.
+
+    CONFIRMING evidence: a language/symbolic-justification mechanism
+    exists and is exercised, and the harm signal's reach into E3
+    trajectory evaluation is measurably unchanged -- z_harm_a/z_harm_s
+    propagate to trajectory scoring at the same magnitude/precision
+    regardless of the language channel's content or activation state.
+
+    Next step is a code-path audit once a language mechanism exists
+    (same prerequisite INV-003 is blocked on) -- not a new V3 experiment
+    in its own right, and not answerable before then.
   location: docs/invariants.md#inv-007
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -12728,6 +12843,74 @@
     - INV-037
     - ARC-035
     - ARC-003
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this test is gated behind ARC-035's own
+    non-degeneracy requirement, not independently satisfiable. ARC-035
+    (vmPFC-analog stored->active preparation -- NOT to be confused with
+    SD-035, the unrelated but confirmed-stable amygdala BLA/CeA
+    substrate, which shares no what_would_answer relevance here)
+    currently has zero experimental evidence (13/13 entries literature;
+    exp count = 0 per ARC-035's own what_would_answer) and its nearest
+    wired candidate, SD-016, FAILED its own content-selectivity test
+    (V3-EXQ-418d/418e: ContextMemory attention collapses to the
+    uniform-distribution ceiling -- see SD-016's own what_would_answer,
+    also digested this session). The social/identity-constraint content
+    class specifically implicated in the EVR grounding (MECH-132,
+    bvFTD/EVR-analog) has NO wired substrate at all: status candidate,
+    unimplemented. Do not run this test against the current substrate as
+    -is -- an ablation of an already-non-functional or unbuilt
+    preparation pathway cannot produce an interpretable dissociation.
+    ARC-035 must first reach a state where its own non-degeneracy
+    precondition is satisfied (SD-016 attention-collapse resolved or
+    shown not to affect the tested content class, AND MECH-132 built and
+    wired as a live tonic constraint gate) before this test is
+    meaningful.
+
+    Independently, the POST-HOC SCORING manipulation also needs its own
+    non-degeneracy check: "degraded post-hoc scoring" must be verified
+    to actually produce measurably worse scoring accuracy on held-out
+    cases (not merely a flag toggle with no behavioral effect) -- per
+    the pattern confirmed repeatedly this session (e.g. ARC-071 /
+    V3-EXQ-871), a scoring "degradation" that never reaches the code
+    path it claims to affect produces a false confirming or falsifying
+    result.
+
+    THE TEST (once both substrates are non-degenerate): a 2x2 design --
+    preparation substrate {INTACT, ABLATED} x post-hoc scoring accuracy
+    {HIGH, DEGRADED}. Preparation intact/scoring degraded should
+    reproduce the mirror-EVR pattern (ethical BEHAVIOR with poor
+    explicit/verbal moral justification). Preparation ablated/scoring
+    intact should reproduce the EVR pattern itself (correct
+    verbal/explicit moral scoring coexisting with unconstrained
+    trajectory generation -- measure via: unconstrained/norm-violating
+    trajectories generated as primary candidates even though the scorer
+    correctly flags them; suppression failing preferentially under
+    simulated time/resource pressure; ambiguous cases defaulting to the
+    unconstrained trajectory).
+
+    CONFIRMING SIGNATURE: the EVR pattern appears ONLY in the
+    preparation-ABLATED/scoring-HIGH cell, and does NOT appear in the
+    preparation-INTACT/scoring-DEGRADED cell (which should instead show
+    the mirror pattern: good behavior, poor articulation). This
+    asymmetry is the substantive claim.
+
+    FALSIFYING SIGNATURE (either sub-condition weakens the claim,
+    matching the notes field's already-stated criterion): (a) improving
+    post-hoc scoring accuracy alone (with preparation still ablated)
+    measurably reduces the EVR pattern -- contradicting "not correctable
+    by improving post-hoc scoring accuracy"; or (b) the EVR pattern also
+    appears with preparation INTACT -- meaning something other than the
+    ARC-035 preparation substrate is the load-bearing factor, and the
+    emergent_from: [ARC-035] linkage needs re-grounding elsewhere.
+
+    CURRENT STATE (2026-08-07 digestion pass): zero experimental
+    evidence exists for INV-038 (absent from claim_evidence.v1.json) and
+    no experiment under any id has ever operationalized either arm of
+    this design. This invariant is emergent_from ARC-035 (vmPFC,
+    confirmed via direct read of the ARC-035 claims.yaml block).
+    Testable only after ARC-035 clears its own non-degeneracy
+    precondition.
   location: docs/architecture/vmPFC.md
   source:
     - evidence/literature/targeted_review_state_abstraction_psychiatry/literature_synthesis.md
@@ -16481,6 +16664,85 @@
     - INV-027
     - INV-028
     - INV-029
+  epistemic_category: derivational
+  what_would_answer: |
+    This is a LOGICAL-DERIVATION claim, not an empirical hypothesis -- the
+    falsifier is a proof-obligation over the objective list, not a
+    PASS/FAIL experimental outcome. Each of the nine objectives named in
+    the title must be checked independently: does it actually follow
+    from the stated axioms, or does it rest on an unstated bridging
+    premise?
+
+    NON-DEGENERACY PRECONDITION (must hold before the test is
+    meaningful): the axioms it is checked against must be stated
+    precisely enough to support derivation. This does NOT currently hold
+    cleanly -- INV-042's own depends_on names only INV-025..INV-029 (the
+    ORIGINAL five axioms), but its location doc
+    (docs/architecture/five_axioms_foundations.md#inv-042) derives the
+    objectives from the CURRENT eight-axiom chain plus two derivations
+    (D1, D2) and one architectural claim (ARC-024) -- and two of those
+    eight axioms (Axiom 2, "existence has value"; Axiom 8, "language")
+    have NO corresponding INV registration at all ("pending governance
+    action," same doc line 14). Until that registration gap is closed,
+    any claimed derivation resting on Axiom 2 or Axiom 8 is
+    UNDERSPECIFIED rather than genuinely tested. Note also the objective
+    LIST itself has drifted: this title has nine items (matching the
+    original five-axiom source doc verbatim); the current location doc
+    lists TEN, adding "Maintain honest communication" (from Axiom 8).
+    Resolve both drifts (register the missing axiom claims; reconcile
+    the nine-vs-ten list) before running the per-objective test below,
+    or the test's target is ambiguous.
+
+    PER-OBJECTIVE TEST: for each of the nine (or, once reconciled, ten)
+    objectives, FALSIFYING if a counter-model can be constructed -- an
+    agent that fully satisfies the cited axiom(s) yet can rationally
+    decline to pursue that objective without violating any axiom as
+    stated. CONFIRMING if no such counter-model exists.
+
+    Apply per objective using the location doc's own citations:
+      - Preserve minds (Axioms 1+2+5) -- check whether existence-has-
+        value + others-are-self-like jointly force preservation, or
+        only non-destruction.
+      - Preserve future options (Axiom 3 alone) -- check whether
+        uncertainty alone forces OPTION-PRESERVATION specifically, vs
+        merely requiring uncertainty-aware action.
+      - Reduce unnecessary suffering (ARC-024 + Axioms 5+6) -- the most
+        directly grounded: ARC-024 explicitly establishes the harm
+        gradient.
+      - Increase shared joy (Axiom 7 + an uncited "benefit gradient is
+        equally real" premise) -- no ARC-024-equivalent architectural
+        claim for the BENEFIT gradient is cited anywhere; weaker
+        footing than suffering-reduction within the same document.
+      - Maintain corrigibility (Axiom 3 alone) -- direct one-step
+        derivation, among the tightest of the nine.
+      - Maintain truth-seeking (D2, derived from Axioms 3+4+D1) --
+        traceable end-to-end via the shown D2 derivation, unlike
+        several others.
+      - Maintain ability to love and be loved (Axioms 6+7) -- fairly
+        direct; Axiom 7 is literally the love-as-mechanism axiom.
+      - Maintain the shared world (Axioms 5+6) -- reasonably direct.
+      - Maintain the possibility of future minds and future love
+        (Axioms 1+2+5+6+7 jointly) -- the WEAKEST link: none of the
+        cited axioms explicitly extends moral standing to
+        NOT-YET-EXISTING minds; this imports a substantive
+        population-ethics premise not stated anywhere in Axioms 1-8. A
+        counter-agent adopting a person-affecting view (only
+        presently-existing minds have standing) would violate no stated
+        axiom while declining this objective -- the most promising
+        place to look for an actual falsifying counter-model.
+      - [If the ten-item current doc is adopted] Maintain honest
+        communication (Axiom 8 alone) -- direct one-step derivation, but
+        blocked by the non-degeneracy precondition above until Axiom 8
+        has its own INV registration.
+
+    ANSWER "derivation holds" (confirms INV-042) only if every objective
+    in the reconciled list passes the per-objective test with no
+    unstated bridging premise identified. ANSWER "derivation gap found"
+    (falsifies INV-042 as currently stated) if any objective -- most
+    likely "future minds and future love" or "increase shared joy" per
+    the above -- is shown to rest on a premise not actually contained in
+    the axiom set, or if the depends_on / axiom-count mismatch is never
+    resolved.
   location: docs/architecture/five_axioms_foundations.md#inv-042
   source:
     - docs/thoughts/2026-04-01_compressed_description_of_what_REE_is.md
@@ -56125,6 +56387,73 @@
     - INV-070
     - INV-073
     - EXT-003
+  what_would_answer: |
+    This is a live-repository AUDIT of enforcement mechanisms, not a V3
+    experiment -- re-run at any time by tracing the actual write paths
+    below against the current state of REE_assembly + ree-v3/coordinator.
+
+    FALSIFYING evidence: any live code path is found where a raw
+    performance score, experiment outcome, or telemetry value writes
+    DIRECTLY into a confidence-bearing field of docs/claims/claims.yaml
+    (status, epistemic_category, exp_conf, live_status.evidence.verdict)
+    WITHOUT passing through (a) review_tracker.json's reviewed_run_ids
+    gate AND (b) an explicit, attributable governance-cycle commit.
+    Concretely, falsified if any of:
+      - a Phase-3 sync_daemon writer (phase3_git_writer /
+        phase3_queue_writer / phase3_heartbeat_writer in
+        ree-v3/coordinator/sync_daemon.py) is found writing outside its
+        current _PER_WRITER_GUARD_PATHS allowlist to include
+        docs/claims/ or evidence/planning/;
+      - a runner/heartbeat/coordinator process is found calling into a
+        claims.yaml writer without an intervening review_tracker.json
+        read;
+      - governance.sh's claims.yaml-touching step (Step 4 of the
+        /governance skill) is found to have been made non-interactive /
+        auto-applying without a human-confirmed walk of
+        pending_review.md;
+      - Check G (verify_governance_cycle.py::check_heartbeat_scope_bleed)
+        is found to have fired on a real dirty-tree cross-contamination
+        event (protected path + telemetry path both dirty
+        simultaneously) that was NOT caught and reverted before landing
+        in a commit.
+
+    CONFIRMING evidence: tracing shows every write path that could reach
+    claims.yaml is gated -- i.e. (i) the three sync_daemon writers'
+    hardcoded path allowlists (sync_daemon.py _PER_WRITER_GUARD_PATHS)
+    exclude docs/claims/ and evidence/planning/ entirely; (ii) the only
+    pipeline step that edits claims.yaml (governance.sh Step 4 /
+    /governance skill Step 2) is explicitly interactive and conditioned
+    on review_tracker.json / pending_review.md; (iii) Check G exists as
+    an independent auditor for the one plausible bypass shape
+    (heartbeat-rebase cross-contamination of a dirty tree) and its
+    detection logic is present and correctly scoped to the same
+    protected/telemetry path sets.
+
+    NON-DEGENERACY PRECONDITION: the trace must follow an ACTUAL write
+    call graph -- e.g. grep every writer function in
+    ree-v3/coordinator/*.py and scripts/*.py for a claims.yaml/
+    docs/claims open() or commit call, and confirm the resulting call
+    sites are zero or are all downstream of a human governance-walk --
+    not merely note that Check G exists in verify_governance_cycle.py. A
+    gate that is defined but never invoked (as of this audit, Check G is
+    NOT yet wired into governance.sh -- "Running manually (recommended
+    for now)") does not by itself confirm the invariant; the confirming
+    force here comes from the STRUCTURAL absence of a write path in the
+    automated writers (finding ii above), with Check G as a secondary
+    auditor for drift, not the primary enforcement. Re-run this audit
+    whenever sync_daemon.py's writer path allowlists change, whenever
+    governance.sh's claims.yaml step is modified, or whenever Check G is
+    wired into the automatic cycle.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): traced and
+    CONFIRMING. The three Phase-3 writers' allowlists exclude
+    docs/claims/ and evidence/planning/ entirely (grep for "claims.yaml"
+    in ree-v3/coordinator/*.py returns nothing but prose in
+    OPERATOR_GUIDE.md); the only claims.yaml-touching pipeline step is
+    explicitly interactive per the /governance skill; Check G's
+    detection logic is present and correctly scoped, though not yet
+    wired into the automatic cycle. No EXP-#### should be minted -- this
+    is a process/code audit, not a V3 cognitive-substrate experiment.
   location: docs/architecture/evaluation_channel_integrity.md#inv-077
   registered: "2026-06-09"
   source:
