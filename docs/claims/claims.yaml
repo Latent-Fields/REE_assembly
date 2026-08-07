@@ -56038,8 +56038,34 @@
     decided here): a retest of SD-058's own Stage-H harness with the SD-059/MECH-358
     bridge wired in is now unblocked but has not been queued -- this is what
     ARC-060/MECH-320/ARC-068/SD-054's shared pending_retest_after_substrate flag is
-    still waiting on. Design doc:
-    docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
+    still waiting on.
+
+    ADDENDUM (2026-08-07, same session, found while closing out): the picture is
+    fuller than "just wire in the bridge." `evidence/planning/substrate_queue.json`'s
+    composite scaffolded-onboarding node (added_session
+    governance-20260529T212835Z) shows a SECOND, independent confound was found and
+    partially fixed AFTER the 603h FAIL: V3-EXQ-603i traced 603h's
+    "engaged-but-insufficient" pattern to E3.harm_eval_head never being trained (a
+    near-constant ~0.523 score -- the whole harm landscape was noise, so SD-058/
+    MECH-357 and SD-059/MECH-358 were biasing selection within noise, not a real
+    signal). A harm-pathway-training fix (scaffold_train_harm_pathway, default
+    off/bit-identical) was implemented and V3-EXQ-603k PASSED (2026-06-09,
+    claim_ids=[], diagnostic -- acceptance.overall_pass true, harm_pathway_trained
+    true, on_nav_survives_2of3 true) -- confirming the fix works AT THE SURVIVAL-LEG
+    LEVEL. But per that node's own text: "READY STAYS FALSE -- the full curriculum
+    gate (G1 foraging + G2 survival + G3 ecological in ONE run with harm-pathway ON)
+    is owed; 603k clears only G2 ... Residual = foraging/benefit-contact (P2)." The
+    node's current_pending_amend still reads status=implemented_pending_validation,
+    ready=false as of this check -- unchanged since. So the actual remaining gap for
+    SD-058 to clear v3_pending is narrower and more specific than "queue a retest
+    with the bridge": it is the still-unqueued FULL combined curriculum gate
+    (G1+G2+G3, harm-pathway-training ON, bridge wired in), and a separate
+    z_goal-never-updates hook bug the same node names (ScaffoldedSD054OnboardingScheduler
+    never calls agent.update_z_goal) may also need resolving first for G1 to be
+    reachable. NOT fully traced further this session -- this substrate_queue node is
+    large (autopsy_refs spanning V3-EXQ-490g/603a-d/604/605/625b/460b-466b/603m) and
+    genuinely warrants a dedicated pass, not a same-session digestion follow-up.
+    Design doc: docs/architecture/sd_058_instrumental_avoidance_acquisition.md.
   what_would_answer:
     confirms: >
       A retest of V3-EXQ-603h's design with SD-059/MECH-358's escape-affordance
