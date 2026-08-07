@@ -71,7 +71,7 @@ confidence LOW          confidence OK,            confidence OK,
 
 ## 5. Affected existing claims
 
-- **`INV-012`** -- candidate Leg 3 (retrospective retention + counterfactual evaluation + self-attribution, tied to sense-of-self machinery). NOT edited this pass -- actively owned by a concurrent session as of 2026-08-07T16:25Z (`cool-torvalds-a82359`). Hand off explicitly: whoever next digests INV-012 should read this file's section 1.1 and treat it as a proposed Leg 3, numbered to not collide with the already-staged Leg 2.
+- **`INV-012`** -- **UPDATE (2026-08-07, later same day):** the owning session (`cool-torvalds-a82359`) closed its claim; Leg 3 (retrospective retention + counterfactual evaluation + self-attribution, tied to sense-of-self machinery via INV-033) has now been added directly to INV-012's `what_would_answer`, in the same house style as Legs 0-2, with `depends_on` extended to include `MECH-485`. See `docs/claims/claims.yaml#INV-012` (REE_assembly `c7530416d7`).
 - **`MECH-090`, `MECH-141`** -- no edit made; `MECH-138` should be cross-referenced into their fast-interrupt discussion in a future pass (not attempted here to avoid touching three existing claims' notes fields in one already-large pass).
 - **`INV-021`** -- flagged for future re-evaluation if a retention mechanism (Addendum 1) is ever built, since a durable trace of an uncommitted thought would need explicit typing as a non-responsibility-bearing update class or it becomes a counter-example to INV-021's exclusivity claim. Not resolved or edited here.
 
@@ -83,15 +83,17 @@ confidence LOW          confidence OK,            confidence OK,
 
 **`Q-090`** -- the leg-3 admission-criterion question (same-scale vs. independent goal-match criterion), with the dissociable-prediction sketch from section 4 recorded in its `notes:`. See `docs/claims/claims.yaml#Q-090`. Also `stance: asked`, no formal `what_would_answer` yet.
 
+Also registered later the same day, once the blocking condition cleared:
+
+**INV-012 Leg 3** -- added directly to `INV-012`'s `what_would_answer` once the concurrent owning session (`cool-torvalds-a82359`) closed its claim (see section 5). Written in the same house style as Legs 0-2 (non-degeneracy precondition, CONFIRMED/FALSIFIED signatures), including the confabulation-risk caution and the MECH-322-template requirement carried over verbatim in substance from the raw thought's points 4-6 and Addendum 1.
+
 ### 6b. Deliberately NOT registered this pass
 
-1. **Retention of rejected/uncommitted E3 candidates (Addendum 1's "two memory types," leg 3's substrate).** This is the load-bearing missing mechanism the whole pipeline's leg 3 depends on -- but memory `[[feedback_imagination_learning_constraints]]` (`project_imagination_learning_constraints.md`, 2026-05-10) already staged an adjacent candidate registration shape for exactly this territory and explicitly said **"do NOT register without dedicated lit-pull."** That is a specific, deliberate gate set by an earlier session, not this thought's own caution -- respected here rather than overridden. `MECH-485`'s `notes:` names this as an unregistered, load-bearing dependency so it is not invisible to anyone reading the pipeline claim.
-2. **INV-012 Leg 3** -- see section 5. Not registered/edited because INV-012 is actively owned by a concurrent session right now; editing it would collide with in-progress work, not merely with a stale claim.
+1. **Retention of rejected/uncommitted E3 candidates (Addendum 1's "two memory types," leg 3's substrate).** This is the load-bearing missing mechanism both `MECH-485` leg 3 and `INV-012` Leg 3 depend on -- but memory `[[feedback_imagination_learning_constraints]]` (`project_imagination_learning_constraints.md`, 2026-05-10) already staged an adjacent candidate registration shape for exactly this territory and explicitly said **"do NOT register without dedicated lit-pull."** That is a specific, deliberate gate set by an earlier session, not this thought's own caution -- respected here rather than overridden. Both `MECH-485`'s and `INV-012` Leg 3's notes name this as an unregistered, load-bearing dependency so it is not invisible to anyone reading either claim.
 
 ## 7. Next steps
 
-- **Coordinate the INV-012 Leg 3 handoff.** Either flag this file to the session currently digesting INV-012, or pick it up in a later `/thought-digestion` pass once Legs 0-2 have settled. Do not add Leg 3 language to INV-012 without re-reading its current `what_would_answer` block first (it may have changed further since this was written).
-- **When the dedicated lit-pull for `project_imagination_learning_constraints.md`'s candidate registration happens, register the retention mechanism and wire `MECH-485`'s `depends_on` to it.**
+- **When the dedicated lit-pull for `project_imagination_learning_constraints.md`'s candidate registration happens, register the retention mechanism and wire both `MECH-485`'s and `INV-012` Leg 3's `depends_on` to it.**
 - **Cross-reference `MECH-138` into `MECH-090`/`MECH-141`'s notes** as a third relevant timescale (pre-lock-in veto), not attempted this pass.
 - **A future `/thought-digestion` pass should draft `what_would_answer` for both `MECH-485` and `Q-090`** -- `Q-090` already has most of a falsification sketch in section 4 to extract from rather than invent fresh.
 - **Re-verify the architectural grounding in the raw thought file** (ghost-goal retrieval-level status, MECH-439 ceiling status, MECH-482/483 build status) against current `ree-v3` state before any of this is used to design a build -- it reflects research passes from a single session on 2026-08-07, not a full audit.
