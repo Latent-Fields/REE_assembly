@@ -3291,8 +3291,23 @@
           "desc": "Failing seeds (42, 45 in V3-EXQ-875a) get stuck early in training and never escape, regardless of remaining budget; a per-seed reward-curve trajectory would show early divergence between the succeeding and failing seeds.",
           "axis": "exploration",
           "pre_registered_utc": "2026-08-05T06:20:43Z",
-          "adjudicating_runs": [],
-          "resolution": null
+          "adjudicating_runs": [
+            "V3-EXQ-890"
+          ],
+          "resolution": {
+            "state": "confirmed",
+            "resolving_runs": [
+              "V3-EXQ-890"
+            ],
+            "evidence_direction": "supports",
+            "epistemic_category": "standard",
+            "self_route_label": "early_divergence_supports_h1_framing",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": false,
+            "resolved_utc": "2026-08-06T04:19:28Z",
+            "basis": "93% of the eventual group-gap (60.49 of 64.94 ticks) is already present after the first checkpoint (episode 20 of 160); this early-divergence signature independently replicates under both the driver's own narrower official 2-seed split and a data-driven 5-seed natural upper-cluster grouping the driver did not use (both show elevation from checkpoint 1 onward). Necessary-not-sufficient: does not itself rule out H-bias-head-ofc-interaction contributing; met_elimination_bar left false accordingly. Confirmed via failure_autopsy_V3-EXQ-890_2026-08-07 (user-confirmed at Step 8 gate)."
+          }
         },
         {
           "hid": "H-hazard-layout-difficulty-variance",
@@ -3300,8 +3315,23 @@
           "desc": "The failure is task-difficulty variance, not learning variance -- some seeds draw a harder hazard/resource layout that no amount of the same training recipe would overcome.",
           "axis": "environment",
           "pre_registered_utc": "2026-08-05T06:20:43Z",
-          "adjudicating_runs": [],
-          "resolution": null
+          "adjudicating_runs": [
+            "V3-EXQ-890"
+          ],
+          "resolution": {
+            "state": "eliminated",
+            "resolving_runs": [
+              "V3-EXQ-890"
+            ],
+            "evidence_direction": "weakens",
+            "epistemic_category": "standard",
+            "self_route_label": "difficulty_correlate_not_evident",
+            "control_passed": true,
+            "non_degenerate": true,
+            "met_elimination_bar": true,
+            "resolved_utc": "2026-08-06T04:19:28Z",
+            "basis": "Random-walk baseline anchors (a task-intrinsic difficulty measure independent of any learned policy) are statistically indistinguishable between the cleared and not-cleared groups across all 16 seeds (diff_frac=0.0026; both groups tightly clustered 8.5-12.1 ticks). If per-seed hazard-layout difficulty explained the split, the random-walk control would differ between groups; it does not, under either the official 2-seed or the natural 5-seed grouping. Eliminated via failure_autopsy_V3-EXQ-890_2026-08-07 (user-confirmed at Step 8 gate)."
+          }
         },
         {
           "hid": "H-bias-head-ofc-interaction",
@@ -3309,17 +3339,32 @@
           "desc": "The shared all-ON stack's other drives (bias_head, OFC-devaluation) compete with survival-competence acquisition in a seed-dependent way, an implementation-level drive-arbitration problem rather than pure exploration or task difficulty.",
           "axis": "arbitration",
           "pre_registered_utc": "2026-08-05T06:20:43Z",
-          "adjudicating_runs": [],
-          "resolution": null
+          "adjudicating_runs": [
+            "V3-EXQ-890"
+          ],
+          "resolution": {
+            "state": "alive",
+            "resolving_runs": [
+              "V3-EXQ-890"
+            ],
+            "evidence_direction": "unknown",
+            "epistemic_category": null,
+            "self_route_label": null,
+            "control_passed": false,
+            "non_degenerate": null,
+            "met_elimination_bar": false,
+            "resolved_utc": null,
+            "basis": "Exploratory only -- the driver declares no pre-registered threshold and this signal does not gate outcome. lPFC-bias-head norms are nearly identical between groups at every checkpoint (~4.36-4.39 both). OFC-devaluation norms differ modestly early (4.29 cleared vs 4.41 not-cleared at checkpoint 1) but converge by checkpoint 8 (4.71 vs 4.71 both). Neither pattern clears a discrimination bar because none was pre-registered; remains an open rival pending a purpose-built probe. Reviewed but not resolved via failure_autopsy_V3-EXQ-890_2026-08-07."
+          }
         }
       ],
       "synthesis": null,
       "decision": {
         "decision_question": "Which of exploration/initialization variance, hazard-layout difficulty variance, or drive-arbitration interaction explains the bimodal seed-success pattern in survival-competence acquisition?",
-        "live_gate": "A cheap, many-seed diagnostic probe (competence-A acquisition ONLY, skipping the expensive Phase-2 targeted-update stage, 10-20 seeds at modest budget) to characterize the seed-success-rate distribution and look for an early-death or hazard-layout correlation -- not yet queued.",
+        "live_gate": "A /claim-synthesis pass examining the MECH-457<->MECH-471<->Q-089 relationship (not yet run). A purpose-built H-bias-head-ofc-interaction discriminator remains open but low-priority and not yet queued -- left open at the interactive gate rather than blocking claim-synthesis.",
         "decidable": false,
         "decision_log_ref": null,
-        "distance_phrase": "0 of 3 hypotheses formally resolved via a designed discriminator. Two full-budget MECH-471 attempts (875, 875a) each cost ~19-20h and diagnosed a genuine readiness-gate fix, but neither was designed to discriminate among these three explanations for the residual bimodality. V3-EXQ-882a (2026-08-05, a MECH-472 experiment sharing the identical acquisition recipe and environment, cross-referenced in failure_autopsy_V3-EXQ-882a_2026-08-05.json) independently replicated the split at n=8 (seeds 43/50 solve, 6/8 never approach the floor across a 10x exposure sweep with no improving trend) -- informative corroboration (weighs against H-exploration-init-variance's early-optimum-escapable-with-training framing) but not a designed discriminator among the three hypotheses, per user confirmation at that autopsy's Step 8 gate. The dedicated cheap many-seed probe remains the correct instrument to formally discriminate them, and is now chipped at higher priority given this independent replication.",
+        "distance_phrase": "2 of 3 hypotheses formally resolved via V3-EXQ-890 (2026-08-06, autopsied failure_autopsy_V3-EXQ-890_2026-08-07, user-confirmed): H-exploration-init-variance CONFIRMED (early-divergence signature, 93% of final gap present by episode 20, robust across two different split definitions); H-hazard-layout-difficulty-variance ELIMINATED (random-walk baseline anchors statistically indistinguishable between groups, diff_frac=0.0026). H-bias-head-ofc-interaction remains ALIVE -- exploratory only, no discrimination bar cleared. Routed to /claim-synthesis to formally examine whether this exploration-init-variance mechanism is the same failure family as MECH-457's already-established (7+ autopsies) REINFORCE-bias-head substrate-ceiling finding, per Q-089's flagged but previously-unresolved MECH-457<->MECH-471 cross-reference.",
         "observation_bottleneck": null
       }
     }

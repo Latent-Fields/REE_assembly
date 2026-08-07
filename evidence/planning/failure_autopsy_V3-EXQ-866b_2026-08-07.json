@@ -1,0 +1,51 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-07T20:04:51Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3",
+      "queue_id": "V3-EXQ-866b",
+      "claim_ids": ["SD-059", "MECH-358"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "n/a -- non_contributory by design, tagged for discoverability only",
+        "biological_reference": "n/a -- substrate-integrity check, not a mechanism test",
+        "prerequisites": "present",
+        "implementation": "complete -- byte-identical config re-run verified line-by-line against 603q",
+        "environment": "adequate -- same 5-stage curriculum, same seeds",
+        "measurement": "partial -- substrate-hash provenance disagrees between seed-cell-start snapshot (bb755658...) and manifest-write time (8e275408...), ~2.5h apart, on a run whose entire purpose is verifying substrate stability",
+        "integration": "n/a -- single-arm check",
+        "scale": "adequate -- arm-mean statistic clears the pre-registered floor comfortably (33.9 vs 18.86); per-seed spread (29.1/20.45/52.15) matches 603q's own reference spread (67.6/9.1/36.4)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "n/a for this run -- SD-059/MECH-358's own grounding (Moscarello & LeDoux 2013 ilPFC relief/safety pathway; Martinez-Rivera et al. 2018 PL/IL->BLA/ventral-striatum tracing) is unaffected by a substrate-integrity check",
+        "dependencies": [],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "non_contributory",
+      "recommended_evidence_quality_note": "[2026-08-07 governance: V3-EXQ-866b (confirmed autopsy, failure_autopsy_V3-EXQ-866b_2026-08-07) re-confirms 603q's substrate-reproduction: base_mean_survival=33.9 vs reference 37.725 (ratio 0.90), clears the 0.5x floor. Non_contributory by design (byte-identical config re-run; scoring_excluded='diagnostic_probe'), does not change confidence or pending_retest_after_substrate. Note: the run's own substrate-hash provenance disagreed between seed-cell-start and manifest-write time (~2.5h apart) -- treated as a recording-harness gap, not grounds to distrust this run's own internally-consistent per-seed numbers.]",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false
+      },
+      "learning_extracted": [
+        "The numeric 'reproduces 603q' verdict is sound: 33.9 vs an 18.86 floor (ratio 0.90 of reference); per-seed variance (29.1/20.45/52.15) matches 603q's own spread (67.6/9.1/36.4) rather than being novel.",
+        "Substrate-hash provenance gap: seed-cell-start snapshot hash (bb755658...) disagrees with manifest-write-time hash (8e275408...), ~2.5h apart, on a run whose entire purpose is verifying substrate stability. Recommend recording the substrate hash at seed-cell completion time, not only at manifest-write time, for future substrate-regression diagnostics -- an infra/tooling fix, not a claim-level action.",
+        "866a's own 'harness-specific decay' explanation for its ~7x survival shortfall and z_goal collapse (peak ~0.5 -> P2 0.12) is now unsupported: 866b's byte-identical re-run of 603q's actual config shows z_goal holding steady (~0.41-0.47) rather than collapsing. The 'substrate stable' conclusion still stands (866b's survival number independently confirms it), but why 866a specifically diverged from both 603q and 866b remains an unexplained mystery (known data, wrong frame) -- not blocking, flagged for if INV-034/Q-021 work resumes."
+      ],
+      "routing": "infra-tooling-fix (spawn a follow-on chip for the substrate-hash-capture-timing fix; not itself failure-autopsy or governance work)"
+    }
+  ],
+  "cluster_pattern": null
+}

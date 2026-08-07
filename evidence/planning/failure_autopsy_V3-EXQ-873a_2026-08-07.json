@@ -1,0 +1,52 @@
+{
+  "schema_version": "failure_autopsy/v1",
+  "generated_utc": "2026-08-07T20:04:51Z",
+  "scope": "single",
+  "status": "confirmed",
+  "dry_run_checked": true,
+  "excluded_dry_run_ids": [],
+  "targets": [
+    {
+      "run_id": "v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3",
+      "queue_id": "V3-EXQ-873a",
+      "claim_ids": ["MECH-322"],
+      "failed_criterion": null,
+      "four_layer_diagnosis": {
+        "claim_alignment": "strengthened -- first genuine experimental support; AND-gate mechanics validated on all three conditions",
+        "biological_reference": "clear -- Albouy 2013 sleep-replay motor consolidation, Graybiel striatal-chunking literature, Thompson 2026 DLS procedural replay surviving hippocampal lesion",
+        "prerequisites": "present -- ARC-071/MECH-094/SD-017/SD-039/SD-014 all built and validated (V3-EXQ-810a, 8/8 seeds)",
+        "implementation": "complete -- fixed instrument correctly separates stochastic readiness from deterministic mint-correctness; caught a real SerotoninModule co-requisite-flag defect during review",
+        "environment": "adequate -- reuses the validated ARC-071/810a schedule and env",
+        "measurement": "adequate -- 8 seeds, fraction-based readiness decoupled from mint-correctness (the exact fix 873's autopsy prescribed)",
+        "integration": "coupled -- exercises MECH-322 through MECH-323/324's real chunk-formation substrate and SD-017's sleep-phase gating together",
+        "scale": "adequate for what's tested -- 8 seeds sufficient for the fraction-gate statistic; not designed to test corroboration-survival (a distinct question)"
+      },
+      "biological_reference": {
+        "closest_mechanism": "hippocampal-striatal offline replay driving sleep-dependent procedural-memory consolidation",
+        "dependencies": ["ARC-071", "MECH-094", "SD-017"],
+        "is_formal_import": false,
+        "divergence": null,
+        "lit_status": "present"
+      },
+      "recommended_epistemic_category": "standard",
+      "recommended_evidence_direction": "supports",
+      "recommended_evidence_quality_note": "[2026-08-07 governance: V3-EXQ-873a (confirmed autopsy, failure_autopsy_V3-EXQ-873a_2026-08-07) supports MECH-322 -- first genuine experimental evidence for this claim. Fixed 873's seed-veto instrument defect (decoupled stochastic readiness from deterministic mint-correctness, n=8 seeds). 7/8 seeds cleared readiness; all 7 minted correctly; all fail-closed checks (wake, low-value, master-switch-off) held across 8 seeds x 3 arms. Note: all 7 minted replay-origin chunks dissolved without real-execution corroboration by run's end -- expected safety-valve behavior, not a defect, but leaves 'can a replay-origin chunk survive corroboration' as a distinct open question for a future low-priority probe. evidence_direction: supports.]",
+      "recommended_substrate_queue_entry": {
+        "action": "none"
+      },
+      "pending_retest_after_substrate": false,
+      "narrow_supports_flag": false,
+      "re_derive_brake": {
+        "fired": false,
+        "prior_substrate_ceiling_autopsies": []
+      },
+      "learning_extracted": [
+        "MECH-322's AND-gate mechanics are now validated: fires when all three conditions hold (7/7 cleared seeds minted); fails closed independently on each condition (0 spurious mints across 8 seeds x 3 arms on wake/low-value/master-switch-off checks).",
+        "The 873->873a instrument-fix pattern (decouple stochastic per-seed readiness from deterministic mint-correctness) is confirmed correct, and generalizes -- 873's own autopsy already cross-referenced the same pattern in V3-EXQ-882 (MECH-472, unrelated claim, same day).",
+        "Open follow-up, not blocking: no minted replay-origin chunk was corroborated by real re-execution within this run's window (7/7 dissolved). Whether a replay-origin chunk can survive corroboration in practice is untested here."
+      ],
+      "routing": "queue-experiment (new EXQ number, low priority: does a replay-origin chunk survive its corroboration deadline under realistic conditions -- not a lettered continuation of 873a, whose own question is answered)"
+    }
+  ],
+  "cluster_pattern": null
+}

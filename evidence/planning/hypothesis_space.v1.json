@@ -1,17 +1,17 @@
 {
   "schema_version": "hypothesis_space/v1",
-  "generated_at": "2026-08-07T18:49:18Z",
+  "generated_at": "2026-08-07T20:04:28Z",
   "generator": "scripts/build_hypothesis_space.py",
   "contract": "derive-only; exits 0; never a gate; no write-back to claims.yaml/closure/scorer.",
   "registry": "evidence/planning/hypothesis_space_registry.v1.json",
   "needles": {
     "build": {
       "question": "how much of the intended V3 architecture physically exists?",
-      "total_modules": 144,
+      "total_modules": 145,
       "built_modules": 118,
-      "fraction_built": 0.8194,
+      "fraction_built": 0.8138,
       "state_counts": {
-        "proposed": 26,
+        "proposed": 27,
         "implemented": 84,
         "implemented_pending_validation": 19,
         "validated": 15
@@ -31,23 +31,23 @@
     },
     "narrow": {
       "question": "how many rival explanations still survive?",
-      "total_surviving": 52,
+      "total_surviving": 50,
       "total_initial": 91,
       "total_initial_at_registration": 72,
       "total_fanout_added": 19,
-      "total_resolved_out": 37,
-      "total_confirmed": 17,
-      "reduction_pct_vs_current": 40.7,
-      "net_narrowing_pct": 27.8,
+      "total_resolved_out": 38,
+      "total_confirmed": 18,
+      "reduction_pct_vs_current": 41.8,
+      "net_narrowing_pct": 30.6,
       "convergence_classes": {
-        "static": 12,
-        "narrowing": 11,
+        "narrowing": 12,
+        "static": 11,
         "circling": 3,
         "indeterminate": 1,
         "scattering": 1
       },
       "convergence_note": "A growing denominator is not one phenomenon. `refining` = a family was closed out and the new legs opened fresh territory (count grows, understanding narrows). `circling` = new legs re-entered an already-eliminated family -- the real non-convergence signal. `indeterminate` = an axis label is missing from the declared axis_families map. See each question's `convergence` block.",
-      "honest_pair_note": "52 alive against 72 originally enumerated, and against 91 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
+      "honest_pair_note": "50 alive against 72 originally enumerated, and against 91 including 19 added by labelled fan-out. The second denominator always flatters; read the first.",
       "open_questions": 28
     },
     "decide": {
@@ -61,103 +61,109 @@
       "date": "2026-07-11",
       "surviving": 90,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-13",
       "surviving": 88,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-15",
       "surviving": 84,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-16",
       "surviving": 83,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-17",
       "surviving": 80,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-18",
       "surviving": 74,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-19",
       "surviving": 70,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-20",
       "surviving": 69,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-24",
       "surviving": 68,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-25",
       "surviving": 67,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-27",
       "surviving": 65,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-29",
       "surviving": 64,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-07-31",
       "surviving": 63,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-01",
       "surviving": 61,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-02",
       "surviving": 55,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-04",
       "surviving": 54,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
+    },
+    {
+      "date": "2026-08-06",
+      "surviving": 53,
+      "closure_pct": 76.9,
+      "build_pct": 81.4
     },
     {
       "date": "2026-08-07",
-      "surviving": 52,
+      "surviving": 50,
       "closure_pct": 76.9,
-      "build_pct": 81.9
+      "build_pct": 81.4
     }
   ],
   "questions": [
@@ -3063,27 +3069,30 @@
       "fanout_added": 0,
       "fanout_growth_events": [],
       "fanout_growth_note": null,
-      "net_narrowing_ratio": 0.0,
-      "bits_removed_vs_registration": 0.0,
+      "net_narrowing_ratio": 0.6667,
+      "bits_removed_vs_registration": 1.58,
       "convergence": {
-        "convergence_class": "static",
-        "reason": "no fan-out growth; nothing ruled out yet",
-        "families_closed": [],
-        "families_touched": [],
-        "families_fresh": [
-          "process",
+        "convergence_class": "narrowing",
+        "reason": "no fan-out growth; eliminations in 1 family, 1 fully closed",
+        "families_closed": [
           "world"
+        ],
+        "families_touched": [
+          "world"
+        ],
+        "families_fresh": [
+          "process"
         ],
         "unclassified_axes": [],
         "growth_events": []
       },
-      "surviving": 3,
-      "alive": 3,
-      "resolved_out": 0,
-      "confirmed": 0,
-      "reduction_numerator": 0,
-      "reduction_ratio": 0.0,
-      "bits_removed": 0.0,
+      "surviving": 1,
+      "alive": 1,
+      "resolved_out": 1,
+      "confirmed": 1,
+      "reduction_numerator": 1,
+      "reduction_ratio": 0.3333,
+      "bits_removed": 1.58,
       "synthesis": null,
       "hypotheses": [
         {
@@ -3091,46 +3100,66 @@
           "label": "exploration/initialization variance in the all-ON REINFORCE stack traps some seeds in early bad-hazard-avoidance local optima",
           "desc": "Failing seeds (42, 45 in V3-EXQ-875a) get stuck early in training and never escape, regardless of remaining budget; a per-seed reward-curve trajectory would show early divergence between the succeeding and failing seeds.",
           "axis": "exploration",
-          "state": "untested",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "confirmed",
+          "evidence_runs": [
+            "V3-EXQ-890"
+          ],
+          "basis": "93% of the eventual group-gap (60.49 of 64.94 ticks) is already present after the first checkpoint (episode 20 of 160); this early-divergence signature independently replicates under both the driver's own narrower official 2-seed split and a data-driven 5-seed natural upper-cluster grouping the driver did not use (both show elevation from checkpoint 1 onward). Necessary-not-sufficient: does not itself rule out H-bias-head-ofc-interaction contributing; met_elimination_bar left false accordingly. Confirmed via failure_autopsy_V3-EXQ-890_2026-08-07 (user-confirmed at Step 8 gate).",
           "children": [],
-          "met_elimination_bar": null
+          "met_elimination_bar": false
         },
         {
           "hid": "H-hazard-layout-difficulty-variance",
           "label": "per-seed hazard-field/reef layout randomization creates genuinely harder survival tasks for some seeds",
           "desc": "The failure is task-difficulty variance, not learning variance -- some seeds draw a harder hazard/resource layout that no amount of the same training recipe would overcome.",
           "axis": "environment",
-          "state": "untested",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "eliminated",
+          "evidence_runs": [
+            "V3-EXQ-890"
+          ],
+          "basis": "Random-walk baseline anchors (a task-intrinsic difficulty measure independent of any learned policy) are statistically indistinguishable between the cleared and not-cleared groups across all 16 seeds (diff_frac=0.0026; both groups tightly clustered 8.5-12.1 ticks). If per-seed hazard-layout difficulty explained the split, the random-walk control would differ between groups; it does not, under either the official 2-seed or the natural 5-seed grouping. Eliminated via failure_autopsy_V3-EXQ-890_2026-08-07 (user-confirmed at Step 8 gate).",
           "children": [],
-          "met_elimination_bar": null
+          "met_elimination_bar": true
         },
         {
           "hid": "H-bias-head-ofc-interaction",
           "label": "bias_head/OFC-devaluation REINFORCE interacts adversely with the survival objective for certain seeds",
           "desc": "The shared all-ON stack's other drives (bias_head, OFC-devaluation) compete with survival-competence acquisition in a seed-dependent way, an implementation-level drive-arbitration problem rather than pure exploration or task difficulty.",
           "axis": "arbitration",
-          "state": "untested",
-          "evidence_runs": [],
-          "basis": null,
+          "state": "alive",
+          "evidence_runs": [
+            "V3-EXQ-890"
+          ],
+          "basis": "Exploratory only -- the driver declares no pre-registered threshold and this signal does not gate outcome. lPFC-bias-head norms are nearly identical between groups at every checkpoint (~4.36-4.39 both). OFC-devaluation norms differ modestly early (4.29 cleared vs 4.41 not-cleared at checkpoint 1) but converge by checkpoint 8 (4.71 vs 4.71 both). Neither pattern clears a discrimination bar because none was pre-registered; remains an open rival pending a purpose-built probe. Reviewed but not resolved via failure_autopsy_V3-EXQ-890_2026-08-07.",
           "children": [],
-          "met_elimination_bar": null
+          "met_elimination_bar": false
         }
       ],
       "decision": {
         "readiness_state": "discriminative_ready",
         "evidence_decile": 7,
         "decision_question": "Which of exploration/initialization variance, hazard-layout difficulty variance, or drive-arbitration interaction explains the bimodal seed-success pattern in survival-competence acquisition?",
-        "distance_phrase": "0 of 3 hypotheses formally resolved via a designed discriminator. Two full-budget MECH-471 attempts (875, 875a) each cost ~19-20h and diagnosed a genuine readiness-gate fix, but neither was designed to discriminate among these three explanations for the residual bimodality. V3-EXQ-882a (2026-08-05, a MECH-472 experiment sharing the identical acquisition recipe and environment, cross-referenced in failure_autopsy_V3-EXQ-882a_2026-08-05.json) independently replicated the split at n=8 (seeds 43/50 solve, 6/8 never approach the floor across a 10x exposure sweep with no improving trend) -- informative corroboration (weighs against H-exploration-init-variance's early-optimum-escapable-with-training framing) but not a designed discriminator among the three hypotheses, per user confirmation at that autopsy's Step 8 gate. The dedicated cheap many-seed probe remains the correct instrument to formally discriminate them, and is now chipped at higher priority given this independent replication.",
-        "live_gate": "A cheap, many-seed diagnostic probe (competence-A acquisition ONLY, skipping the expensive Phase-2 targeted-update stage, 10-20 seeds at modest budget) to characterize the seed-success-rate distribution and look for an early-death or hazard-layout correlation -- not yet queued.",
+        "distance_phrase": "2 of 3 hypotheses formally resolved via V3-EXQ-890 (2026-08-06, autopsied failure_autopsy_V3-EXQ-890_2026-08-07, user-confirmed): H-exploration-init-variance CONFIRMED (early-divergence signature, 93% of final gap present by episode 20, robust across two different split definitions); H-hazard-layout-difficulty-variance ELIMINATED (random-walk baseline anchors statistically indistinguishable between groups, diff_frac=0.0026). H-bias-head-ofc-interaction remains ALIVE -- exploratory only, no discrimination bar cleared. Routed to /claim-synthesis to formally examine whether this exploration-init-variance mechanism is the same failure family as MECH-457's already-established (7+ autopsies) REINFORCE-bias-head substrate-ceiling finding, per Q-089's flagged but previously-unresolved MECH-457<->MECH-471 cross-reference.",
+        "live_gate": "A /claim-synthesis pass examining the MECH-457<->MECH-471<->Q-089 relationship (not yet run). A purpose-built H-bias-head-ofc-interaction discriminator remains open but low-priority and not yet queued -- left open at the interactive gate rather than blocking claim-synthesis.",
         "observation_bottleneck": null
       }
     }
   ],
   "momentum": [
+    {
+      "run": "V3-EXQ-890",
+      "all_runs": [
+        "V3-EXQ-890"
+      ],
+      "momentum_class": "confirmed",
+      "qid": "mech471_competence_acquisition_reliability",
+      "claims": [
+        "MECH-471"
+      ],
+      "moved": "93% of the eventual group-gap (60.49 of 64.94 ticks) is already present after the first checkpoint (episode 20 of 160); this early-divergence signature independently replicates under both the driver's own narrower official 2-seed split and a data-driven 5-seed natural upper-cluster grouping the driver did not use (both show elevation from checkpoint 1 onward). Necessary-not-sufficient: does not itself rule out H-bias-head-ofc-interaction contributing; met_elimination_bar left false accordingly. Confirmed via failure_autopsy_V3-EXQ-890_2026-08-07 (user-confirmed at Step 8 gate).",
+      "resolved_utc": "2026-08-06T04:19:28Z",
+      "evidence_direction": "supports"
+    },
     {
       "run": "V3-EXQ-436d",
       "all_runs": [
