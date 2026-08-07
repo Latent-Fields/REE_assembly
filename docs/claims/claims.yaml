@@ -925,6 +925,7 @@
   depends_on:
     - SD-026
     - MECH-485  # threshold-gated predicted-harm/confidence pipeline; supplies Leg 3's retained-alternative candidates
+    - MECH-487  # Leg 3's retention mechanism -- persists WHICH rejected/uncommitted E3 candidate existed past the tick, provenance-tagged (registered 2026-08-07 by the dedicated lit-pull; was the "retention mechanism ... does NOT YET EXIST" named in Leg 3's what_would_answer)
   epistemic_category: substrate_conditional
   what_would_answer: |
     CORRECTION (2026-08-07, same digestion session, user-caught): the
@@ -73705,6 +73706,7 @@
     - MECH-292  # ghost-goal bank -- candidate grounding for "compare to goals"
     - MECH-293  # awake ghost-goal probe search
     - MECH-439  # E3 selection-authority conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates, nothing for the magnitude to be computed over)
+    - MECH-487  # leg-3 retained-alternative supply -- the rejected/uncommitted-candidate retention mechanism, registered 2026-08-07 (was the LOAD-BEARING UNREGISTERED DEPENDENCY named in notes)
   location: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
   source:
     - docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md
@@ -74430,3 +74432,122 @@
     question still requires reconstruction from outside the ledger -- that names
     exactly which field is missing and is a revision signal rather than a
     refutation.
+- id: MECH-487
+  title: "A bounded, provenance-tagged retention buffer for rejected/uncommitted E3 candidate trajectories: it persists WHICH differentiated alternative was considered (identity plus a trajectory/value sketch, not merely a transient scalar) past the tick it was rejected on, so a later stage can counterfactually evaluate it and attribute responsibility -- admitted and typed under the MECH-322 template (audited replay_origin-style flag, fail-closed admission, accelerated dissolution if not corroborated by real waking execution), riding ON the MECH-094 imagination/reality write gate rather than relaxing it."
+  claim_type: mechanism_hypothesis
+  subject: memory.uncommitted_candidate_retention_provenance_tagged
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-07'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-08-07'
+  depends_on:
+    - MECH-094  # imagination/reality write gate this rides ON and must not relax
+    - MECH-322  # bounded/audited/provisional-until-corroborated carve-out template to follow
+    - SD-033e   # frontopolar counterfactual value -- the mechanism this extends from transient to persistent
+    - MECH-264  # cfv_now transient scalar overwritten each tick -- exactly what this adds identity+persistence to
+    - ARC-085   # autobiographical event tokens -- candidate eventual host (V4/V5); needs a rejected-siblings field
+    - MECH-439  # E3 selection conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates -> nothing to retain)
+    - MECH-485  # threshold-gated predicted-harm triage whose leg 3 supplies retention's admission
+    - INV-012   # responsibility-through-commitment; INV-012 leg 3 consumes this retention
+    - MECH-482  # epistemic_deficit / model-uncertainty -- candidate gate on the trust bound (MBPO analogue)
+    - INV-033   # second-order epistemic access -- the metacognitive typing that keeps retained-content != real
+  location: evidence/literature/targeted_review_uncommitted_candidate_retention/
+  source:
+    - evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
+    - docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md
+  what_would_answer: |
+    Registered 2026-08-07 from the dedicated lit-pull commissioned by MECH-485 /
+    INV-012 leg 3 and by memory project_imagination_learning_constraints.md
+    (2026-05-10), which gated this exact registration "do NOT register without
+    dedicated lit-pull". Literature: evidence/literature/
+    targeted_review_uncommitted_candidate_retention/ (5 entries).
+
+    MECHANISM SHAPE the lit-pull grounds -- TWO disciplines, both required:
+    (1) a TYPING discipline (Schnider 2013 orbitofrontal reality filtering,
+    10.3389/fnbeh.2013.00067; Bouzerda-Wahlen 2015 reality-filter / source-
+    monitoring dissociation, 10.1162/jocn_a_00686): retained content must carry a
+    fast, standalone provenance/reality tag -- separable from the "which
+    alternative" content -- that keeps it typed considered-but-not-real and off
+    the residue/valence/hippocampal write paths committed action gets; the failure
+    mode of an untyped store is confabulation. This is REE's MECH-094
+    committed_vs_imagined bit, made load-bearing.
+    (2) a BOUNDING discipline (Janner 2019 MBPO, arXiv:1906.08253): imagined /
+    non-executed content may feed evaluation/learning only within a bounded,
+    uncertainty-gated, corroboration-limited regime -- MBPO's short model-trust
+    horizon is the algorithmic form of MECH-322's fail-closed admission plus
+    accelerated dissolution of any chunk not corroborated by real waking
+    execution; the trust bound should scale with model uncertainty (REE
+    epistemic_deficit / MECH-482), tying retention to the same confidence term
+    that routes MECH-485's orient/survey leg.
+
+    LICITNESS (the other half of the lit-pull's question): Boorman 2011
+    (10.1371/journal.pbio.1001093) shows a dedicated frontopolar network tracks
+    the BEST counterfactual (unchosen) option and carries a counterfactual
+    prediction error for learning from hypothetical feedback -- so retaining and
+    learning from rejected options is a normal adaptive function, not confabulation
+    by construction, PROVIDED it stays a prior for future testing (memory LICIT
+    category #4) under the bounding discipline above. Its selectivity (the BEST
+    option, not all) bears on Q-090's admission criterion.
+
+    WHAT IS ALREADY BUILT vs MISSING: Boorman 2009 (10.1016/j.neuron.2009.05.014)
+    is the biological anchor for REE's SD-033e/MECH-264 frontopolar counterfactual
+    value, but the signal is an ONLINE relative-advantage magnitude -- exactly
+    MECH-264's cfv_now transient scalar overwritten every tick. So the substrate
+    for representing a rejected alternative's VALUE exists; what does NOT exist in
+    ree-v3 in any form is persistence of WHICH alternative existed, past the tick,
+    in a store usable for retrospective evaluation. That identity + persistence is
+    MECH-487's novel content.
+
+    CONFIRMED if a built retention buffer (a) persists a rejected E3 candidate's
+    identity / trajectory-sketch past the tick it was rejected on, (b) keeps it
+    provenance-distinguishable from committed/real content under test (no elevated
+    confidence for imagined-only content leaking into residue/valence/hippocampal
+    channels -- the confabulation guard holds behaviourally, not just by design),
+    and (c) supplies a function -- measurably different counterfactual evaluation
+    or self-attribution behaviour -- BEYOND what MECH-264's existing transient
+    scalar already provides, over a discard-immediately ablation baseline.
+
+    FALSIFIED if retained-alternative content cannot be kept distinguishable from
+    committed content without a hand-tuned, case-by-case gate (no general
+    MECH-322-shaped template suffices) -- i.e. the confabulation risk is not
+    tractably bounded, and the mechanism should be retired or radically narrowed --
+    OR if a bounded, provenance-tagged retention buffer produces no measurable
+    change in counterfactual-evaluation / responsibility-relevant behaviour over
+    the discard-immediately (MECH-264-only) baseline, i.e. persistence-of-identity
+    adds no function beyond the existing transient scalar.
+
+    NON-DEGENERACY PRECONDITION (shared with MECH-485 / INV-012 leg 3): MECH-439's
+    E3 selection conversion ceiling must clear first (ceiling_decision: exhausted
+    as of registration) -- with no genuinely differentiated candidates to select
+    among, there is nothing to retain, so no retention test is meaningful. Do NOT
+    build ahead of that clearing, or ahead of Q-090's admission-criterion
+    resolution (same-scale vs independent goal-match). Architectural synthesis
+    grounded in the cited literature; not yet verified against a built ree-v3
+    retention buffer, which does not exist.
+  notes: >
+    Registered 2026-08-07 as the load-bearing retention mechanism that MECH-485
+    and INV-012 leg 3 both name as an unregistered dependency. It is the third
+    independent surfacing of one gap, now converted: (1) memory
+    project_imagination_learning_constraints.md (2026-05-10, learning-licitness
+    angle, which set the "do NOT register without dedicated lit-pull" gate now
+    discharged); (2) the 2026-08-07 responsibility thought
+    (thought_intake_2026-08-07_responsibility_counterfactual_memory.md 6b.1);
+    (3) INV-021's own falsifier draft ("uncommitted exploratory evaluation leaving
+    a lasting trace"). If a minimal V3 retention buffer is ever built, INV-021
+    needs re-evaluation -- a durable trace of an uncommitted thought must be
+    explicitly typed as a non-responsibility-bearing update class or it becomes a
+    counter-example to INV-021's commit-boundary exclusivity. Distinct from
+    SD-033e/MECH-264 (adds identity + persistence to their transient value scalar),
+    from MECH-094/MECH-322 (an application of the carve-out template to a new
+    content type, not a relaxation of the gate), and from ARC-085 (a candidate host
+    substrate, V4/V5 unbuilt, whose schema currently lacks a rejected-siblings
+    field). stance: asked until a /thought-digestion pass or a build refines it,
+    but a house-style what_would_answer is provided above because the commissioning
+    lit-pull grounded a concrete mechanism shape.
+  evidence: []
