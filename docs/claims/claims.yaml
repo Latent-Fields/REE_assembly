@@ -1467,9 +1467,9 @@
     as_of: 2026-07-11
     needs_review: false
     evidence:
-      from: v3_exq_848_arc005_precision_only_decoupled_ladder_20260801T134855Z_v3
-      as_of: 2026-08-01
-      verdict: "supports (846, occupancy) + mixed (848, precision) -- see evidence_quality_note"
+      from: "v3_exq_848b_arc005_precision_only_finer_ladder_20260804T064758Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-05
+      verdict: "supports (846, occupancy) + mixed (848b, precision, final reading for this design) -- see evidence_quality_note"
   depends_on:
     - INV-008
     - INV-009
@@ -1519,6 +1519,21 @@
     substrate_ceiling). Route: /queue-experiment V3-EXQ-848b for a ladder-granularity redesign (5+
     levels and/or a magnitude-based statistic), NOT further substrate work. No status change
     (already active). PROMOTES/DEMOTES NOTHING.
+    [2026-08-07 governance, V3-EXQ-848b, confirmed failure_autopsy_2026-08-05_pending_review_batch
+    #4, successor of V3-EXQ-848a]: pure measurement-resolution redesign (ladder 3-level -> 7-level,
+    no substrate changes) -- broke the resolution ceiling that made 848a inconclusive
+    (n_distinct_rho_values_observed=10, all distinct, spanning -0.536 to 0.964, vs 848a's pile at
+    exactly +0.5). 4/10 units now clear |rho|>=0.6 (up from 1/10), 2/10 additionally
+    Mann-Kendall-significant -- genuinely dispersed, not a resolution artifact -- but still short of
+    the 7/10 bar. all_near_zero_null=false (not a clean negative either). The raw effect
+    (~1e-3 log10-precision-units) is ~180x smaller than cross-seed SD (~0.18): swamped by noise, not
+    absent. mixed accepted as the FINAL reading for this design line -- no further same-design
+    lettered iteration (autopsy's own recommendation: resolution is no longer the bottleneck,
+    statistical power against a genuinely tiny effect is). No dedicated ARC-005 literature review
+    exists; a /lit-pull is commissioned (chipped at session close) to ground what magnitude of
+    precision-routing effect the biology would actually predict, since the raw effect being merely
+    small (not absent) makes a power calculation meaningless without a target effect size. No status
+    change (already active). PROMOTES/DEMOTES NOTHING.
   what_would_answer: |
     The falsifiable content is NOT "a control plane exists" (that is a design fact --
     we built one). It is that the control plane ROUTES: has causal authority over
@@ -13109,15 +13124,15 @@
   claim_type: architectural_commitment
   subject: harm_stream.sensory_discriminative_forward_model
   polarity: asserts
-  status: provisional
+  status: stable
   live_status:
-    reading: provisional
-    as_of: 2026-07-11
+    reading: stable
+    as_of: 2026-08-07
     needs_review: false
     evidence:
       from: v3_exq_525_sd003_attribution_anchor_20260506T065102Z_v3
       as_of: 2026-05-06
-      verdict: supports/PASS
+      verdict: "supports/PASS -- promoted provisional -> stable /governance 2026-08-07 (GFLAG-0001): all 6 pre-registered criteria pass on all 4 seeds, hf_r2=0.9191+/-0.0037 (tight, non-bimodal, resolving the earlier EXQ-166 bimodal-encoder pattern), attribution_gap positive 4/4 seeds (0.102-0.126), intact_vs_ablated>0 4/4 seeds"
   implementation_phase: v3
   claim_level: architectural
   epistemic_category: standard
@@ -15545,6 +15560,7 @@
       as_of: 2026-08-05
       verdict: FAIL/weakens -- eliminated (H-wanting-liking-separable-drive-gated), non-degenerate, root-caused
   implementation_phase: v3
+  pending_retest_after_substrate: true
   digestion_note: >
     [thought-digestion, 2026-08-07] Falsifier superseded by executed evidence. live_status was
     stale (pointed at an unrelated 2026-05-17 MECH-307 cluster autopsy). Since then, V3-EXQ-887
@@ -15558,16 +15574,17 @@
     benefit_exposure signal via different transforms, not the independent dopamine/opioid
     pathways the cited biology (Berridge & Robinson 1998; Smith/Berridge/Aldridge 2011) requires.
     Registered eliminated (H-wanting-liking-separable-drive-gated) in
-    evidence/planning/hypothesis_space_registry.v1.json. Confirmed autopsy routing (user-confirmed):
-    accept weakens, decouple VALENCE_WANTING's write-path (e.g. an incentive-sensitization term)
-    via /implement-substrate -- NOT YET ratified by /governance or chipped as of 2026-08-07.
-    Defer further what_would_answer drafting until that routing is ratified; the eventual falsifier
-    should reuse V3-EXQ-887's own validated instrument (readiness: channels populated + drive_state
-    dimensionality matches live VALENCE_DIM; CONFIRMING: C1 tau<=0.85 AND C2 |Spearman(w,l)|<=0.90
-    AND C3 Jaccard<=0.80 on every seed post-fix; FALSIFYING: C1 or C2 still fails post-fix) rather
-    than the EXP-0098/EVB-0132 behavioral design in the notes below, which V3-EXQ-887 has
-    superseded as the operative falsifier. Remove this note once the substrate fix is chipped and
-    a fresh what_would_answer can be drafted against the corrected implementation.
+    evidence/planning/hypothesis_space_registry.v1.json. [/governance 2026-08-07: RATIFIED] accept
+    weakens, decouple VALENCE_WANTING's write-path (e.g. an incentive-sensitization term) via
+    /implement-substrate. substrate_queue.json entry sd014-decouple-wanting-liking-writepath
+    created this cycle (unblocks_claims: SD-014); a chip for the /implement-substrate build is
+    spawned separately at session close. The eventual falsifier should reuse V3-EXQ-887's own
+    validated instrument (readiness: channels populated + drive_state dimensionality matches live
+    VALENCE_DIM; CONFIRMING: C1 tau<=0.85 AND C2 |Spearman(w,l)|<=0.90 AND C3 Jaccard<=0.80 on
+    every seed post-fix; FALSIFYING: C1 or C2 still fails post-fix) rather than the
+    EXP-0098/EVB-0132 behavioral design in the notes below, which V3-EXQ-887 has superseded as the
+    operative falsifier. Remove this note once the substrate fix lands and a fresh
+    what_would_answer can be drafted against the corrected implementation.
   depends_on:
     - ARC-036
     - SD-011
@@ -19337,9 +19354,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436c_2026-08-03"
-      as_of: 2026-08-03
-      verdict: weakens/measurement_test_design_defect
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-07
+      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - MECH-092
@@ -19407,6 +19424,22 @@
     DIFFERENT DV (touched-slot diversity, MECH-180/MECH-122) via the same write path -- two
     independent DVs now point at the same untested write-gate hypothesis. Routed /implement-substrate,
     amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.
+
+    [2026-08-07 governance, V3-EXQ-436d, confirmed failure_autopsy_2026-08-05_pending_review_batch
+    #5, successor to V3-EXQ-436c]: fourth generation (436a bug -> 436b recording gap -> 436c
+    write_gate substrate defect -> 436d), the FIRST to clear P0 (writes fire) with no known
+    instrumentation or substrate defect and non_degenerate=true (healthy waking-phase action-class
+    entropy). C1 fails 2/5 seeds pass, need 3/5. RECORDED HERE BUT NOT ACTED ON -- HELD PENDING A
+    METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at governance walk 2026-08-07):
+    the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds rather than clustering near 1.0
+    as ARC-045's own prediction requires, and one seed (200) shows sleep INCREASING similarity
+    (0.0009->0.49), opposite the predicted direction. This pattern is not obviously the signature of
+    a clean negative. Owed before this result can be treated as decisive: a check of the
+    slot_cosine_sim computation (does it include empty/unwritten memory slots; is there a
+    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
+    true and is explicitly NOT discharged by this run; this FAIL does NOT weight toward a demotion
+    discussion for SD-017/ARC-045/MECH-166 until the methodology check lands. PROMOTES/DEMOTES
+    NOTHING this cycle.
 - id: ARC-045
   title: "Bidirectional hippocampus-neocortex information flow is architecturally necessary for attribution mapping convergence: the SWS-direction (hippocampus to cortex) installs context schema structure; waking and REM-direction reactivations fill those structures with causal attribution estimates. Without bidirectional flow, context representations remain globally undifferentiated despite locally coherent online encoding."
   claim_type: architectural_commitment
@@ -19419,9 +19452,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436c_2026-08-03"
-      as_of: 2026-08-03
-      verdict: weakens/measurement_test_design_defect
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-07
+      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -19467,6 +19500,18 @@
     bias-over-content collapse fixed on key_proj's read path (SD-016/EXQ-477); converges with
     failure_autopsy_V3-EXQ-861a_2026-08-03's independent finding on a different DV (MECH-180/MECH-122).
     Routed /implement-substrate, amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.
+
+    [2026-08-07 governance, V3-EXQ-436d, confirmed failure_autopsy_2026-08-05_pending_review_batch
+    #5, successor to V3-EXQ-436c]: fourth generation, first to clear P0 with no known instrumentation
+    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). RECORDED BUT NOT
+    ACTED ON -- HELD PENDING A METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at
+    governance walk 2026-08-07): the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds
+    rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed shows sleep
+    INCREASING similarity, opposite the predicted direction -- not obviously the signature of a
+    clean negative. Owed: a check of the slot_cosine_sim computation (empty/unwritten slots;
+    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
+    true, explicitly NOT discharged; does NOT weight toward a demotion discussion until the
+    methodology check lands. PROMOTES/DEMOTES NOTHING this cycle.
 - id: MECH-166
   title: "Context slot-formation (schema abstraction: which distinctions between contexts are worth representing) and slot-filling (causal attribution: which evidence populates each slot) are computationally separated functions that cannot be co-computed in a single online pass. Slot structure must be consolidated during an SWS-analog phase before slot-filling during a REM-analog phase can yield reliable attribution signal."
   claim_type: mechanism_hypothesis
@@ -19479,9 +19524,9 @@
     as_of: 2026-08-03
     needs_review: false
     evidence:
-      from: "failure_autopsy_V3-EXQ-436c_2026-08-03"
-      as_of: 2026-08-03
-      verdict: weakens/measurement_test_design_defect
+      from: "v3_exq_436d_sd017_mech166_writepath_retest_20260804T071541Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-07
+      verdict: "FAIL, C1 fails 2/5 (need 3/5) -- HELD pending slot_cosine_sim methodology check, not yet actionable (see evidence_quality_note)"
   implementation_phase: v3
   depends_on:
     - SD-017
@@ -19523,6 +19568,18 @@
     bias-over-content collapse fixed on key_proj's read path (SD-016/EXQ-477); converges with
     failure_autopsy_V3-EXQ-861a_2026-08-03's independent finding on a different DV (MECH-180/MECH-122).
     Routed /implement-substrate, amend MECH122-CONTENT-PACKAGING-SPINDLE-SELECTION.
+
+    [2026-08-07 governance, V3-EXQ-436d, confirmed failure_autopsy_2026-08-05_pending_review_batch
+    #5, successor to V3-EXQ-436c]: fourth generation, first to clear P0 with no known instrumentation
+    or substrate defect and non_degenerate=true. C1 fails 2/5 seeds (need 3/5). RECORDED BUT NOT
+    ACTED ON -- HELD PENDING A METHODOLOGICAL CHECK (autopsy's own recommendation, user-confirmed at
+    governance walk 2026-08-07): the WAKING_ONLY baseline cosine ranges 0.0009-0.47 across seeds
+    rather than clustering near 1.0 as ARC-045's own prediction requires, and one seed shows sleep
+    INCREASING similarity, opposite the predicted direction -- not obviously the signature of a
+    clean negative. Owed: a check of the slot_cosine_sim computation (empty/unwritten slots;
+    content-diversity confound driving WAKING_ONLY variance). pending_retest_after_substrate stays
+    true, explicitly NOT discharged; does NOT weight toward a demotion discussion until the
+    methodology check lands. PROMOTES/DEMOTES NOTHING this cycle.
 - id: MECH-167
   title: "z_harm_a (harm-driven affective accumulation) and drive_level (energy-depletion homeostatic deviation) instantiate the same computational motif -- slow interoceptive integration converging on ACC-type processing -- without sharing information or overlapping downstream gates. The motif predicts: (a) similar temporal dynamics (slow EMA-type accumulation), (b) orthogonal signal content (cos_sim -> 0), (c) distinct downstream gates: z_harm_a gates harm evaluation; drive_level gates z_goal seeding."
   claim_type: mechanism_hypothesis
@@ -21632,6 +21689,13 @@
     re-tested by this run's substrate change; still stands from 845/861." So this is one configuration
     confirmed three times, not three independent confirmations -- see what_would_answer's
     non-degeneracy precondition below, and see the governance-flag note in WORKSPACE_STATE.md.
+    [2026-08-07 governance, GFLAG-0002 resolved]: user-confirmed HOLD at candidate. 3 clean
+    autopsy-confirmed PASSes with zero FAILs is a genuinely strong record but does NOT promote on
+    pseudo-replicated evidence -- per this project's own V3-EXQ-718a lesson, three runs sharing one
+    identical environment and one identical seed set are one confirmed configuration, not three
+    independent replications. Promotion re-gated on a genuinely independent test (new seeds, and/or
+    a held-out environment, and/or a consumer-absent control per the claim's own what_would_answer
+    non-degeneracy precondition). No status change. PROMOTES NOTHING.
   pending_retest_after_substrate: true
   pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent. SUPERSEDED 2026-08-01: the deferred substrate (SD-MEL-PRODUCER) landed and validated 2026-07-21/29; epistemic_category is now standard (see evidence_quality_note RESOLVED entry). pending_retest_after_substrate STAYS true, now pointed at the narrower MECH-122 content-packaging gap tracked on sibling MECH-180."
   depends_on:
@@ -49817,8 +49881,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
+    evidence:
+      from: "v3_exq_867b_mech321_harm_aware_selection_matched_pool_20260804T015912Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-05
+      verdict: FAIL/non_contributory -- measurement_test_design_defect (pool-exhausted AND screen-soundness falsified; 867c refused, redesigned DV/matching strategy owed)
   implementation_phase: v3
   pending_retest_after_substrate: true  # 2026-08-01: awaiting SD-hazard-aware-policy-decomposition build
   v3_pending: true
@@ -50487,7 +50555,7 @@
     precondition (2) has been built or queued. V3-EXQ-867a/867b already tried "grow the matched-abort-
     pair pool from HAZARD_TUNED_SEED_POOL" and hit exhaustion (48 screened, 7 matched, only 4
     measurable, still below the n>=6 floor) plus the screen-soundness falsification above; the
-    2026-08-05 failure-autopsy (routing confirmed but not yet ratified by /governance) explicitly
+    2026-08-05 failure-autopsy (routing RATIFIED by /governance 2026-08-07) explicitly
     recommends AGAINST a same-design V3-EXQ-867c and instead calls for a redesigned DV/matching
     strategy. Tracked as hypothesis_space_registry qid mech321_harm_aware_selection_task_effect,
     decision.decidable=false, live_gate="redesigned DV/matching strategy... not yet queued". Do not
@@ -71069,9 +71137,34 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-22
+    as_of: 2026-08-07
     needs_review: false
+    evidence:
+      from: "v3_exq_875a_mech471_competence_provenance_20260804T114106Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-05
+      verdict: "FAIL/unknown -- competence_implementation_gap (requeue, not a verdict on the claim; see evidence_quality_note)"
   epistemic_category: standard
+  pending_retest_after_substrate: true
+  evidence_quality_note: >
+    [2026-08-07 governance] V3-EXQ-875 (2026-08-03, FAIL, confirmed failure_autopsy_V3-EXQ-875_2026-08-03
+    + superseding failure_autopsy_2026-08-05_pending_review_batch #1): readiness/acquisition
+    precondition unmet -- all three _train_all_on_agent call sites omitted zworld_p0_episodes
+    (defaulted to 0), the documented SD-070 defect (matches the pre-fix V3-EXQ-728 signature).
+    Self-route correctly says requeue, not a verdict on MECH-471. epistemic_category
+    precondition_unmet; evidence_direction unknown. Superseded by V3-EXQ-875a.
+    V3-EXQ-875a (2026-08-04, FAIL, confirmed failure_autopsy_2026-08-05_pending_review_batch #2,
+    successor of V3-EXQ-875): SD-070 fix applied, training budget aligned to V3-EXQ-728's validated
+    recipe. epistemic_category competence_implementation_gap; evidence_direction unknown -- still
+    not a verdict on the claim itself, reflects an acquisition-reliability characterization gap.
+    pending_retest_after_substrate=true. This is the FIRST leg of what is now tracked as the open
+    hypothesis-space question mech471_competence_acquisition_reliability: a reproducible ~12.5%
+    (2/16 seeds) acquisition clear-rate pattern, independently corroborated on overlapping seeds by
+    MECH-472's V3-EXQ-882a (same seed-43-solves signature) and characterized further by the
+    diagnostic V3-EXQ-890 (bimodal split confirmed, early-divergence, hazard-layout-difficulty ruled
+    out) -- V3-EXQ-890 is ROUTED FOR /failure-autopsy (2026-08-07 user-instructed broadening: all
+    experiment_purpose=diagnostic results require adjudication regardless of adjudication flag) and
+    NOT yet applied to this claim; do not treat its early-divergence finding as adjudicated until
+    that autopsy confirms. No status change; PROMOTES/DEMOTES NOTHING this cycle.
   implementation_phase: v3
   version_relevance: v3
   registered: "2026-07-22"
@@ -71134,8 +71227,12 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-22
+    as_of: 2026-08-07
     needs_review: false
+    evidence:
+      from: "v3_exq_882a_mech472_context_memorization_generalization_20260805T110228Z_v3#failure_autopsy_V3-EXQ-882a_2026-08-05"
+      as_of: 2026-08-05
+      verdict: "FAIL/non_contributory -- precondition_unmet (see evidence_quality_note; HOLD on same-recipe successors)"
   epistemic_category: standard
   implementation_phase: v3
   version_relevance: v3
@@ -71191,6 +71288,20 @@
     which rules out this confound and strengthens the genuine-difficulty-split reading).
     V3-EXQ-882a is NOT YET QUEUED as of this addendum (verified against ree-v3/experiment_queue.json,
     2026-08-03T18:22:41Z) -- it must not be queued with the driver unchanged.
+    [2026-08-07 governance, V3-EXQ-882a, confirmed failure_autopsy_V3-EXQ-882a_2026-08-05, second
+    experimental test of MECH-472]: both confirmed defects from the first test (frozen z_world,
+    worst-of-3-seed veto) fixed and verified applied. non_degenerate=false again, correctly, per the
+    claim's own guard: acquisition-floor clear fraction 0.25 (2/8 seeds) did not exceed the 0.5
+    majority floor at the lowest exposure, and none of the 6 non-clearing seeds approach the floor
+    even at 10x exposure budget -- the decisive in-context/held-out comparison remains unreached.
+    With the z_world confound ruled out, this is best read as a symptom of MECH-472's own registered
+    dependency on MECH-471's acquisition-reliability problem (same seed-43-solves pattern
+    independently reproduced on overlapping seeds by V3-EXQ-875a, characterized further by the
+    diagnostic V3-EXQ-890 -- see MECH-471's evidence_quality_note). NO CLAIM-STATUS CHANGE
+    (autopsy's own recommendation, ratified); v3_pending stays as registered. HOLD confirmed on any
+    V3-EXQ-882b or other same-recipe MECH-472 successor until mech471_competence_acquisition_reliability
+    resolves -- re-queuing on the same acquisition recipe before then would very likely reproduce the
+    identical ~25% clear rate. PROMOTES/DEMOTES NOTHING.
 
 - id: MECH-473
   title: "REJECTED-ADAPTATION MEMORY improves later recovery and transfer: retaining failed behavioural revisions together with their failure conditions improves adaptation when conditions later change. A failed adaptation should remain available as evidence about what was tried, why it failed, and under what conditions it might later become useful."

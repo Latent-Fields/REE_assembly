@@ -28,7 +28,7 @@
     }
   },
   "last_seen_session": "epic-mirzakhani-4928b5",
-  "last_updated_utc": "2026-08-03T11:45:20Z",
+  "last_updated_utc": "2026-08-07T19:28:08Z",
   "next_implement_substrate": {
     "rationale": "RECONCILE PASS 2026-06-06 (insights-recs): the 2026-04-27 pointer was 6 weeks stale -- it parked next-implement on a 'governance decision pending Q-040 (V3-EXQ-490b)' that has since been SUPERSEDED. The entire EXQ-471/483/490/490b Q-040 cohort was found contaminated 2026-05-07 (swallowed TypeError in update_z_goal left GoalState.is_active() always False) and superseded; the live successor is V3-EXQ-490j (MECH-295 cascade, behavioural sign-test PASS 3/3 seeds, 2026-05-30). The selection-authority question migrated to the modulatory-bias-selection-authority thread: it is IMPLEMENTED (e3_selector.py, 2026-06-03) and its validation V3-EXQ-643 (modulatory_authority_validation) is queued + claimed, blocking V3-EXQ-603f. The live critical-path substrate residual is the scaffolded_sd054_onboarding foraging-competence / cue-to-action selection-authority ceiling (foraging_competence_residual IMPLEMENTED 2026-06-05; substrate-readiness gate still FALSE pending a full-scale run -- z_goal_at_contact>0.4 AND P1 survival AND P2 contact, each >=2/3 seeds). Next implement-substrate target is therefore a governance decision GATED on the V3-EXQ-643 selection-authority validation + the scaffolded_sd054_onboarding readiness run, NOT on the dead Q-040/490b diagnostic. In-flight: V3-EXQ-610f (INV-074 crystallization-necessity), V3-EXQ-643 (modulatory authority), V3-EXQ-641a (coherence-ablation non-reducibility).",
     "sd_id": null,
@@ -6818,6 +6818,32 @@
       "added_utc": "2026-08-03T11:45:20Z",
       "last_seen_session": "epic-mirzakhani-4928b5",
       "origin": "Confirmed failure_autopsy_V3-EXQ-108b_2026-08-03; create recommendation applied by /governance 2026-08-03. Blocked pending a commissioned /lit-pull (targeted_review_e1_forward_model_rollout_consistency)."
+    },
+    {
+      "sd_id": "sd014-decouple-wanting-liking-writepath",
+      "title": "Decouple VALENCE_WANTING's write-path from raw benefit_exposure so wanting and liking are computed from genuinely independent signals",
+      "node_class": "complicated (buildable)",
+      "status": "pending_implementation",
+      "ready": true,
+      "design_doc": null,
+      "depends_on_unresolved": [],
+      "unblocks_claims": [
+        "SD-014"
+      ],
+      "failure_record": [
+        {
+          "run_id": "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3",
+          "experiment_type": "v3_exq_887_sd014_node_valence_representational_functional",
+          "metric": "C2 max_abs_channel_spearman(wanting, liking) = 0.93-0.97 across all 3 seeds",
+          "target": "must clear <= 0.90 (RHO_MAX) for representational separability to hold"
+        }
+      ],
+      "implementation_hint": "Currently ree_core/agent.py::update_liking() writes VALENCE_LIKING from raw benefit_exposure (threshold-gated at liking_threshold), while update_benefit_salience() writes VALENCE_WANTING from serotonin.benefit_salience(benefit_exposure) -- a smoothed/EMA-calibrated transform of the SAME input. Introduce an incentive-sensitization mechanism for wanting (per Smith/Berridge/Aldridge 2011: dopamine sensitization increases wanting without increasing liking) so wanting can diverge from raw hedonic magnitude over repeated exposure/training -- e.g. a separate, learnable gain term on VALENCE_WANTING that is not a monotone function of the same benefit_exposure liking reads. Confirmed unblocking test: V3-EXQ-887's own instrument (orthogonal synthetic control) is already validated and can be reused to retest C1/C2 once the write-path changes.",
+      "priority": 2,
+      "added_session": "cool-torvalds-a82359",
+      "added_utc": "2026-08-07T19:28:08Z",
+      "last_seen_session": "cool-torvalds-a82359",
+      "origin": "Confirmed failure_autopsy_2026-08-05_pending_review_batch (target #4, V3-EXQ-887); create recommendation ratified by /governance 2026-08-07. SD-014's first-ever genuine experimental evidence -- eliminated AS CURRENTLY IMPLEMENTED with a concrete buildable fix; not a substrate ceiling."
     }
   ],
   "schema_version": "substrate_queue/v2"
