@@ -22387,6 +22387,288 @@
     "developmental ordering matters" claims but at different grains and over
     different variables; do not merge.
 
+- id: INV-095
+  title: "Existence has value sufficient to justify its continuation."
+  claim_type: invariant
+  invariant_type: universal
+  epistemic_category: standard
+  subject: existence.value
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-07
+    needs_review: false
+  depends_on:
+    - INV-026
+    - ARC-024
+  what_would_answer: >
+    OUT OF DOMAIN (axiom leg): Axiom 2 as literally stated -- "existence is
+    worth continuing... not derived from pleasure, utility, or purpose -- it
+    is axiomatic" (five_axioms_foundations.md Axiom 2) -- is a foundational
+    normative/metaphysical premise about the INTRINSIC value of existence
+    itself. No REE experiment can prove or disprove that existence has
+    intrinsic value; an experiment can only show that REE's architecture
+    BEHAVES AS IF existence has value (treats harm/terminal-state signals as
+    informative rather than arbitrary), never that existence really does
+    carry value independent of any valuing agent. This leg is out-of-domain
+    in the same sense as INV-025/026/027/028/029.
+
+    LIVE UNCERTAINTY ON THE AXIOM'S OWN STATUS (do not silently resolve):
+    the doc's own Open Questions table flags this directly -- Q-031 "Is
+    Axiom 2 (existence has value) truly axiomatic, or is it derivable from
+    Axiom 1 + Axiom 4? Does vulnerability alone generate value, or must
+    value be stipulated?" The 2026-04-07 revision itself only states Axiom 2
+    was "implicit" in the original five-axiom compression, not that it is
+    settled as independently axiomatic rather than derivable. This claim
+    registers the axiom as currently stated in the canonical doc; it does
+    not adjudicate Q-031.
+
+    REFRAMED TESTABLE LEG (testable now -- NOT substrate-blocked; per
+    INV-025's precedent note, check what the architectural-consequence
+    machinery actually requires rather than defaulting to
+    substrate_conditional): the axiom's own text names the consequence
+    directly -- "this axiom makes the harm gradient non-arbitrary: harm
+    matters because existence matters. If existence had no value, harm
+    signals would be noise rather than information." The testable question
+    is narrower than the axiom: does REE's harm-gradient/residue machinery
+    actually function as a signal ABOUT something that matters -- i.e. is it
+    functionally load-bearing for commitment/self-preservation-relevant
+    behaviour and connected to genuine consequences -- or is it
+    architecturally indistinguishable from noise that could be swapped out
+    with no behavioural effect. (Architectural Mapping table, row "2.
+    Existence has value": "Harm gradient non-arbitrariness, homeostatic
+    drive grounding" -- this claim's testable leg covers the first
+    consequence named; the second, homeostatic drive/terminal-state
+    avoidance (D1, SD-012), is a separate, not-yet-registered consequence
+    and is out of scope here.)
+
+    MACHINERY CONFIRMED LIVE AND WIRED (2026-08-07 digestion pass,
+    INV-006/INV-007 audits, this session): ResidueField
+    (ree_core/residue/field.py), z_harm_a/z_harm_s, the amygdala BLA/CeA
+    analogue (SD-035), and dACC (MECH-258) are confirmed live, and INV-007's
+    audit traces their reach into E3's harm-weighted trajectory scoring
+    (ree_core/predictors/e3_selector.py). So the causal PATHWAY the axiom's
+    consequence requires -- harm signal -> trajectory evaluation -- exists
+    structurally; this is a precondition for the leg being testable at all,
+    not itself confirming evidence for non-arbitrariness.
+
+    STRUCTURAL SUPPORT ALREADY ON RECORD (ARC-024, provisional): EXQ-028
+    PASS and EXQ-029 PASS (2026-03-18), reconfirmed on genuinely-trained
+    substrate by V3-EXQ-032d PASS 5/5 (2026-07-29), show the world generates
+    a genuine, spatially graded proxy-gradient field (not a binary/
+    decorative contact-only signal) and that E3.harm_eval learns a graded
+    danger model extending backward from contact to approach
+    (none=0.373/approach=0.612/contact=0.666, EXQ-029). This is evidence
+    that the WORLD-MODEL layer of the harm signal is structured and
+    learnable, not noise -- but it is not yet the specific ablation/
+    noise-substitution contrast this claim's falsifier requires (see next).
+
+    OPEN FALSIFIER, NOT YET CLEANLY TESTED: V3-EXQ-533
+    (mech102_harm_stream_ablation, 2026-05-06) attempted a harm-stream
+    ablation in this space but returned verdict
+    "non_contributory/measurement_test_design_defect" -- inconclusive due to
+    a measurement/design defect, not informative in either direction. No
+    other located experiment directly contrasts an intact harm/residue
+    signal against a distribution-matched noise substitute on
+    commitment-relevant or survival-relevant behavioural outcomes.
+
+    Confirming observation: a harm/residue-signal ablation or
+    noise-substitution experiment (correcting V3-EXQ-533's design defect)
+    shows measurable degradation in commitment-relevant behaviour (e.g.
+    E3 hazard-avoidance trajectory selection, RBF-driven repair/avoidance
+    pull) when z_harm_a/z_harm_s/ResidueField output is replaced by
+    distribution-matched random noise, relative to the intact signal --
+    extending ARC-024's structural finding into a genuine signal-vs-noise
+    contrast.
+
+    Falsifying observation: replacing the harm/residue signal with
+    distribution-matched random noise produces NO measurable degradation in
+    E3 trajectory selection or downstream commitment-relevant behaviour --
+    i.e. the signal is architecturally decorative and could be swapped for
+    noise with no behavioural consequence. This would not falsify the axiom
+    (out of domain, per Leg 1 and Q-031's own live uncertainty) but WOULD
+    falsify the claim that REE's harm/residue machinery implements the
+    axiom's own named architectural consequence.
+
+    PRECEDENT NOTE (2026-08-07, claim-registration pass): drafted alongside
+    INV-096 (Axiom 8), the other axiom in the eight-axiom family the doc's
+    governance note flags as pending registration. Per INV-025's own
+    precedent (do not apply substrate_conditional mechanically), the
+    reframed leg here rests on already-built, already-wired V3 machinery
+    (INV-006/INV-007's 2026-08-07 audit) plus one supportive-but-adjacent
+    architectural claim (ARC-024) -- but the specific noise-vs-signal
+    falsifier is UNTESTED, not substrate-blocked. status: candidate reflects
+    that evidentiary gap, not a substrate ceiling.
+  location: docs/architecture/five_axioms_foundations.md
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 2 (2026-04-07 revision, new -- not present in the original
+    five-axiom compression, marked "(implicit)" in the doc's own mapping
+    table): "Having established that I exist, the next irreducible
+    commitment: that existence is worth continuing. This is not derived
+    from pleasure, utility, or purpose -- it is axiomatic. Without it, there
+    is no ground for self-preservation, no reason to avoid terminal states,
+    and no basis for extending the same valuation to others. This axiom
+    makes the harm gradient non-arbitrary: harm matters because existence
+    matters. If existence had no value, harm signals would be noise rather
+    than information." (five_axioms_foundations.md lines 67-77.)
+    Depends on Axiom 1 / INV-026 ("Having established that I exist...") --
+    existence-of-a-self is the precondition Axiom 2 assigns value to.
+    Architectural Mapping table (five_axioms_foundations.md line 352) names
+    two consequences: "Harm gradient non-arbitrariness, homeostatic drive
+    grounding" -- this claim's what_would_answer covers the first; the
+    second (D1 self-preservation / SD-012 homeostatic drive) is a distinct,
+    still-unregistered consequence and out of this claim's scope.
+    Q-031 (open question, same doc) asks whether Axiom 2 is truly axiomatic
+    or derivable from Axiom 1 + Axiom 4 -- left explicitly unresolved by
+    this registration; see what_would_answer LEG 1.
+    Governance note (doc header): "INV-025-029 were registered against the
+    original five axioms. The eight-axiom revision restructures the
+    foundations and requires updated INV registrations. Pending governance
+    action" -- unaddressed for 4+ months as of this drafting session
+    (doc revised 2026-04-07; today 2026-08-07). This claim is one of the
+    two axioms (Axiom 2 and Axiom 8/"language") that action was pending
+    for; the other (Axiom 8) is registered as INV-096.
+
+- id: INV-096
+  title: "Language is a mechanism by which similarity between agents may be recognised, repaired, and re-established."
+  claim_type: invariant
+  invariant_type: universal
+  epistemic_category: substrate_conditional
+  subject: language.similarity_repair_mechanism
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate
+    as_of: 2026-08-07
+    needs_review: false
+  implementation_phase: v5
+  depends_on:
+    - INV-003
+    - INV-028
+    - INV-029
+  what_would_answer: >
+    OUT OF DOMAIN (axiom leg): INV-096 as literally stated -- that language is
+    THE mechanism by which similarity between agents is recognised, repaired,
+    and re-established, grounding honest communication as an ethical act and
+    deception as structurally harmful because it corrupts the similarity model
+    ethics depends on -- is a foundational premise (Axiom 8 of
+    five_axioms_foundations.md, new in the 2026-04-07 revision). No REE
+    substrate at any level -- V3, V4, or V5 -- can confirm or falsify whether
+    language IS this mechanism in the metaphysical sense the axiom asserts, as
+    opposed to merely implementing a functional analogue of it. This leg is
+    out-of-domain in the same sense as INV-025/026/027/028/029.
+
+    REFRAMED TESTABLE LEG (substrate-blocked, not yet buildable, and doubly so
+    -- see non-degeneracy precondition below): what IS architecturally
+    testable is narrower -- once a language/symbolic-communication channel
+    exists AND a second, similarity-modelled agent exists to exchange it with,
+    does linguistic exchange functionally move the similarity/other-model the
+    axiom names, in the specific repair-after-rupture direction the axiom
+    text describes ("misunderstandings, misattributions of threat, failures
+    of empathy can be corrected through linguistic exchange")?
+
+    Confirming observation: after a simulated misattribution-of-threat
+    scenario (the receiving agent's threat-attribution toward the sender is
+    initialized wrong relative to the sender's actual internal state), a
+    language-mediated exchange between the two agents measurably shifts the
+    receiving agent's threat-attribution/similarity estimate toward the
+    sender's actual state, in a way that does not occur (or occurs
+    significantly less) in a matched no-exchange control. I.e. language
+    functions causally as a similarity-repair channel, not merely as
+    correlated-with-repair noise.
+
+    Falsifying observation (primary): a built language channel exists and is
+    exercised between two agents, but produces no measurable effect on the
+    receiving agent's similarity/other-model -- words are generated and
+    consumed but do not functionally move any self-other estimate, i.e. the
+    channel exists without doing the axiom's claimed work.
+
+    Falsifying observation (secondary, distinct signature -- factors in
+    Q-030, "what are the failure modes of Axiom 8 -- when does language
+    DAMAGE rather than repair similarity? Deception, manipulation,
+    gaslighting as anti-language"): honest-repair language and
+    deceptive/manipulative language should be functionally DISTINGUISHABLE at
+    the level of their downstream effect on the similarity model -- the
+    former should move the receiving agent's model toward the sender's actual
+    state, the latter away from it or toward a false state, even though both
+    leave the same surface signal ("language occurred"). If the substrate
+    cannot distinguish honest-repair language from deceptive language in
+    their effect on the similarity model, that does not straightforwardly
+    falsify INV-096 (the axiom is still silent on HOW the distinction would be
+    implemented) but IS a separate, reportable finding: it would mean the
+    architecture has a language-affects-similarity mechanism but not the
+    honest-vs-deceptive discrimination Axiom 8's own ethical argument
+    presupposes. Q-030 is intentionally NOT resolved by this claim -- it is
+    carried forward as the open question this falsifying signature bears on.
+
+    Non-degeneracy precondition (currently UNMET, on TWO independent axes --
+    this is why the reframed leg is substrate-blocked, not testable-now):
+    (1) NO language/symbolic-communication mechanism of any kind exists in
+    ree_core/ today -- confirmed by direct grep (2026-08-07, this session,
+    independently reproducing INV-003/INV-007's audit): only a dead enum
+    label (LANGUAGE_EXPLICITATION in ree_core/claustrum/control_demand.py,
+    no implementation) and an unrelated comment about learned cross-stream
+    binding (ree_core/latent/cross_stream_binder.py) reference "language" or
+    "communication" at all. Candidate landing site, per INV-003's own audit:
+    a discrete symbol-emission/consumption channel built out from MECH-014's
+    "latent-state summaries / residue flags" sketch (prose only, no
+    substrate, no queued experiment). (2) "Repair BETWEEN agents" is
+    irreducibly multi-agent -- it requires at least two agents whose
+    similarity models can diverge and be brought back into alignment, which
+    requires the same ARC-047 SocialGridWorld (or equivalent multi-agent
+    environment) substrate INV-028/INV-029 are blocked on. ARC-047 is
+    unimplemented (status: candidate, confidence 0.0, implementation_phase
+    v5). Both gaps must close before this claim is testable in either
+    direction -- language must exist, AND a second agent must exist for it
+    to operate between.
+
+    PRECEDENT NOTE (2026-08-07, claim-registration pass): Axiom 8 was added
+    in the 2026-04-07 revision of five_axioms_foundations.md alongside Axiom
+    2 (registered alongside this claim as INV-095) -- six of the eight axioms
+    already map to INV-025..029 (some combined); these two were never
+    registered as claims, despite the doc's own governance note sitting
+    unaddressed for 4+ months. Applies the epistemic_category=
+    substrate_conditional / two-leg what_would_answer template established
+    for INV-028/INV-029 rather than INV-025's "already testable" variant,
+    because Axiom 8's testable leg is blocked on genuinely unbuilt substrate
+    (no language mechanism at all, PLUS no multi-agent substrate), not on
+    already-built machinery awaiting an audit.
+  location: docs/architecture/five_axioms_foundations.md#axiom-8
+  source:
+    - docs/architecture/five_axioms_foundations.md
+  notes: >
+    Axiom 8 (new in the 2026-04-07 revision): "Language is a powerful
+    mechanism by which similarity may be recognised, repaired, and
+    re-established between agents." Full text: "Language is not merely
+    communication -- it is a mechanism for operating on the similarity that
+    Axiom 5 establishes and Axiom 7 requires. Through language, agents can:
+    Recognise similarity ('you are like me' becomes articulable and
+    testable); Repair broken similarity models (misunderstandings,
+    misattributions of threat, failures of empathy can be corrected through
+    linguistic exchange); Re-establish similarity after rupture (conflict,
+    betrayal, and harm damage the similarity model; language is the primary
+    mechanism by which it is rebuilt). This axiom grounds the importance of
+    honest communication as an ethical act (not merely a social convention),
+    explains why deception is structurally harmful (it corrupts the
+    similarity model that ethics depends on), and positions language as a
+    bridge between isolated minds that would otherwise have only behavioral
+    inference to work with." Connects to the Steve signal-legibility work
+    (2026-04-06 thought intake) and to the developmental language bootstrap.
+    Open Questions table (five_axioms_foundations.md line 501): "Q-030: What
+    are the failure modes of Axiom 8 -- when does language damage rather than
+    repair similarity? (Deception, manipulation, gaslighting as
+    anti-language.)" -- carried forward explicitly in what_would_answer above,
+    not silently resolved.
+    Source: docs/architecture/five_axioms_foundations.md, lines 237-254
+    (Axiom 8 body) and line 501 (Q-030).
+    Axiom 8's own text: language "operates on the similarity that Axiom 5
+    establishes and Axiom 7 requires." Axiom 5 extends the original Axiom 4
+    (INV-028); Axiom 7 sharpens the original Axiom 5 (INV-029) -- hence
+    depends_on [INV-028, INV-029], not the surface axiom numbers.
+
 - id: MECH-484
   title: "Sensitive-period plasticity narrowing follows social-coupling consolidation: consolidation of the initial coupling pattern is obligate (occurs regardless of coupling quality, adaptive or maladaptive) and is followed by a plasticity-reduction window that closes around whichever pattern existed at consolidation, rather than continuing to update on subsequent coupling quality."
   claim_type: mechanism_hypothesis
