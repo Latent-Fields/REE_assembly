@@ -68,6 +68,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-2`
 
@@ -133,6 +134,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-3`
 
@@ -198,6 +200,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-4`
 
@@ -263,6 +266,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-5`
 
@@ -328,6 +332,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-6`
 
@@ -393,6 +398,7 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 
 ## `inference_belief_state_v4:INF-7`
 
@@ -458,4 +464,5 @@ Source plan: `evidence/planning/inference_belief_state_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-27T05:56Z` [autopsy] `failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27#V3-EXQ-543 (and b,c,d,f,g,h,i,j,k,l)` -> [`evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json`](../../../../evidence/planning/failure_autopsy_sd081-spearman-degenerate-dv_2026-07-27.json) :: autopsy unchanged/measurement_gap routing=governance-annotation (no re-adjudication)
 - `2026-08-01T12:54Z` [autopsy] `failure_autopsy_V3-EXQ-851_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-851_2026-08-01.json) :: autopsy non_contributory/measurement_test_design_defect routing=queue-experiment **<- live head**
+- `2026-08-03T19:24Z` [manifest] `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` -> [`evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json`](../../../../evidence/experiments/v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3.json) :: PASS manifest non_contributory
 

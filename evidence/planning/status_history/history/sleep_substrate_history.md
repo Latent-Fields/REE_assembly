@@ -64,7 +64,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-2`
 
@@ -126,7 +127,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-3`
 
@@ -188,7 +190,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-3b`
 
@@ -250,7 +253,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-4`
 
@@ -312,7 +316,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-5`
 
@@ -374,7 +379,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-5b`
 
@@ -436,7 +442,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-6`
 
@@ -498,7 +505,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-7`
 
@@ -560,7 +568,8 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `sleep_substrate:GAP-8`
 
@@ -622,5 +631,6 @@ Source plan: `evidence/planning/sleep_substrate_plan.md`
 - `2026-08-01T21:50Z` [autopsy] `failure_autopsy_V3-EXQ-861_2026-08-01` -> [`evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861_2026-08-01.json) :: autopsy mixed/standard routing=implement-substrate
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
 - `2026-08-03T08:24Z` [autopsy] `failure_autopsy_V3-EXQ-861a_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-861a_2026-08-03.json) :: autopsy non_contributory/measurement_test_design_defect routing=implement-substrate
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 

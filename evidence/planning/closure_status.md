@@ -1,6 +1,6 @@
 # REE-v3 Closure Status (snapshot)
 
-Generated: 2026-08-03T11:33:09Z
+Generated: 2026-08-07T18:49:16Z
 
 GENERATED FILE -- do not edit by hand. This is a static, server-free snapshot of the closure map that serve.py serves live at `/api/closure` -> `/closure`. It is rebuilt from the `closure_plan` frontmatter of every `evidence/planning/*_plan.md` (auto-discovered, not whitelisted). Regenerate with `python scripts/generate_closure_snapshot.py` (runs automatically in `governance.sh`).
 
@@ -71,7 +71,7 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 
 | plan | node | title | status | awaiting | assembly_status | revisit_after | last_updated |
 |------|------|-------|--------|----------|-----------------|---------------|--------------|
-| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=implement-substrate | exhausted |  | 2026-07-06 |
+| behavioral_diversity_isolation_plan.md | `behavioral_diversity_isolation:GAP-K` | ARC-108 learned cortico-striatal gating + MECH-450 recurrent-settling  | assembling | routing=queue-experiment | exhausted |  | 2026-07-06 |
 | commitment_closure_plan.md | `commitment_closure:GAP-8` | SD-033b behavioural validation (devaluation + perceptual discriminatio | assembling | routing=implement-substrate | built |  | 2026-06-23 |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:CAMPAIGN` | Umbrella: assemble the multi-face substrate that converts per-candidat | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
 | conversion_ceiling_campaign_plan.md | `conversion_ceiling_campaign:FULLSTACK` | The real test: co-armed full-stack arm (demotion + Go/No-Go + floor +  | assembling | routing=queue-experiment | ran_exhausted_for_substrate |  |  |
@@ -161,11 +161,12 @@ Nodes whose honest state is "the substrate for this is being assembled" -- NOT a
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-7` -- Multi-episode driver pattern not standardised (sleep cycles fire once at K=1)
 - `sleep_substrate_plan.md` `sleep_substrate:GAP-8` -- MECH-272 routing weights flip but HippocampalRouter does not consume them
 
-## Plans WITHOUT closure_plan frontmatter (2)
+## Plans WITHOUT closure_plan frontmatter (3)
 
 These `*_plan.md` files exist but carry no `closure_plan` block, so their gaps are invisible to the structured closure map (they show as empty placeholder cards in the dashboard). Retrofit frontmatter to fold them in.
 
 - `evidence/planning/e3_fresh_select_migration_plan.md`
+- `evidence/planning/experiment_verification_harness_plan.md`
 - `evidence/planning/explorer_ui_improvement_plan.md`
 
 ## V4 / V5 forward roadmap (excluded from v3 closure %)
@@ -176,7 +177,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 - **DEFERRED**: 0.0% across 0 non-deferred nodes in 1 plan(s).
 - **GOVERNANCE**: 100.0% across 6 non-deferred nodes in 1 plan(s).
 - **META**: 79.0% across 20 non-deferred nodes in 3 plan(s).
-- **PROCESS**: 85.7% across 28 non-deferred nodes in 5 plan(s).
+- **PROCESS**: 83.3% across 36 non-deferred nodes in 6 plan(s).
 - **V4**: 31.5% across 99 non-deferred nodes in 14 plan(s).
 - **V5**: 16.0% across 40 non-deferred nodes in 6 plan(s).
 - **V6**: 21.4% across 29 non-deferred nodes in 5 plan(s).
@@ -190,6 +191,8 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | gov_confirm_1_plan.md | `gov_confirm_1:P0` | Plan-of-record + register GOV-CONFIRM-1 governance_rule claim | done | high |  | 2026-07-14 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P0` | Phase 0 -- instrument only: arm_fingerprint lib (substrate content-has | done | medium |  | 2026-06-06 |
 | process | derived_evidence_index_plan.md | `derived_evidence_index:P0` | Phase 0 -- caching only, no DB. Memoize the uncached claim_evidence.v1 | done | medium |  | 2026-07-18 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P0-detector` | Phase 0 -- instrument only: check_substrate_staleness_candidates.py. S | done | medium |  | 2026-08-03 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:ISO-design` | Structural isolation design (freeze substrate for a run's own duration | open | medium |  | 2026-08-03 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:MINT` | Baseline pre-minting -- canonical baseline modules + low-priority clou | done | low |  | 2026-06-07 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-1` | Two-levels-of-abstraction distinction (the load-bearing scoping claim) | done | load-bearing | No substrate prerequisite -- this is a DESIGN/SCOPING claim, registrable now as the spine  | 2026-06-13 |
 | v4 | affect_expression_v4_plan.md | `affect_expression_v4:AE-1` | FOUNDATION -- per-candidate multi-channel affect vector substrate (MEC | blocked | load-bearing | V3 NARROW instance is already DONE and is NOT this node: V3-EXQ-643a PASS established the  | 2026-06-10 |
@@ -235,8 +238,13 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-2` | Open, extensible affect-stream taxonomy (handles, not a final ontology | done | medium | V3 SEED present: affect_primitives.md already registers a three-way harm dissociation (SD- | 2026-06-13 |
 | v6 | grammar_primitive_mining_v6_plan.md | `grammar_primitive_mining_v6:GRAM-2` | Grammar->substrate mapping table (the mining artifact): per primitive, | open | medium | No substrate gate to AUTHOR the table -- it is a living V5/V6 design artifact (doc + metho | 2026-06-10 |
 | v4 | plasticity_neuromodulation_v4_plan.md | `plasticity_neuromodulation_v4:PLW-2` | Biology grounding lit-pull (Hensch / Bear-Singer / Froemke / Kilgard / | done | medium | Project rule feedback_biology_before_formal_definitions: commission this /lit-pull BEFORE  | 2026-06-17 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1b-default-off-filter` | Phase 1b -- a changed file whose diff is confined to code reachable on | done | medium |  | 2026-08-03 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1c-prospective-recording` | Prospective-only recording of enabled default-off REEConfig flags into | done | medium |  | 2026-08-03 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1d-interprocedural-hop` | One-hop interprocedural extension to Phase 1b: build a corpus-wide fun | done | medium |  | 2026-08-03 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:parse-knobs-file-coverage` | Teach REE_assembly/scripts/default_off_drift_guard.py's parse_knobs()  | done | medium |  | 2026-08-03 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-cite` | First live use -- explicit-cite consumer (V3-EXQ-647) reuses all three | done | low |  | 2026-06-09 |
 | process | arm_reuse_fingerprint_plan.md | `arm_reuse_fingerprint:P1-auto` | First AUTOMATED index-HIT in the wild -- next genuinely-needed iterati | done | low | The natural trigger is GONE: the WATCH MARKER fork resolved to (b). V3-EXQ-655 LANDED 2026 | 2026-06-15 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P1-scope-schema` | Phase 1 -- optional per-claim substrate_scope declarations in claims.y | done | low |  | 2026-08-03 |
 | v6 | abstract_relational_reasoning_v6_plan.md | `abstract_relational_reasoning_v6:ARR-2` | Compositional generalisation over named primitives (recombine grounded | blocked | load-bearing | language_emergence_bootstrap_v6: stable proto-symbols grounded to pre-linguistic primitive | 2026-06-10 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-2` | Unified autobiographical event-token store (ARC-085): ONE self-tagged  | blocked | load-bearing | ARC-007 retrospective replay (paths through residue-field terrain) -- present in V3, desig | 2026-06-10 |
 | v4 | biology_grounding_convergence_v4_plan.md | `biology_grounding_convergence_v4:BG-2` | Action selector (E3) grounding L2 -> L3 [V3 instance -- mirrors GAP-I  | done | load-bearing | V3-OWNED by behavioral_diversity_isolation:GAP-I (falsifier front, generation:v3) AND beha | 2026-07-24 |
@@ -304,6 +312,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-6` | Adaptor-maturity curriculum gate: each sense admitted when its adaptor | open | medium | ARC-019 staged developmental curriculum (provisional) -- the existing curriculum-stages cl | 2026-06-10 |
 | v4 | perceptual_adaptors_v4_plan.md | `perceptual_adaptors_v4:PA-7` | Biology grounding completion (perceptual-manifold / colour-geometry /  | done | medium | L1 perceptual-manifold / similarity geometry -- PULLED 2026-06-12 (IGW-20260612-156): Shep | 2026-06-12 |
 | v5 | relational_harm_moral_semantics_v5_plan.md | `relational_harm_moral_semantics_v5:RHM-6` | Biology grounding for relational harm + love-as-care (harm-to-agency,  | closed | medium | Project rule feedback_biology_before_formal_definitions: MECH-129 (harm-to-agency), MECH-1 | 2026-06-12 |
+| process | substrate_stability_and_drift_detection_plan.md | `substrate_stability:P2-governance-surface` | Phase 2 -- surface Phase-0/1 candidates in /governance or morning-dige | open | low |  | 2026-08-03 |
 | v4 | autobiographical_memory_v4_plan.md | `autobiographical_memory_v4:ABM-3` | Provenance-bearing event token + one-way committed-vs-imagined gate (M | blocked | load-bearing | MECH-094 (simulation-mode vs real-experience distinction; failure = confabulation) -- the  | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-3` | Guilt-as-repair routing: self-attributed harm opens repair-search + po | blocked | load-bearing | V3 BEGINNING present: the moral-residue cluster (MECH-056 et al.) already RECORDS residue; | 2026-06-10 |
 | v5 | fast_empathy_v5_plan.md | `fast_empathy_v5:EMP-4` | Falsifiable dissociation: prediction != reciprocity-reward != residue- | blocked | load-bearing | EMP-3 stream-binding mechanism in place (the thing whose absence/presence the four variant | 2026-06-10 |
@@ -322,7 +331,7 @@ Forward-roadmap plans (`generation: v4` / `v5`). These are NOT closure maps -- V
 | process | convergence_demand_pipeline_plan.md | `convergence_demand_pipeline:HIGH-CDQ007-COMPETENCE-BOOTSTRAP` | Execute CDQ-007 (HIGH) -- DreamerV3 stabilisation lens + VPT/AlphaStar | done | high | DONE 2026-07-18 (session hopeful-mcclintock-9b9948; CDQ-007). Routed by failure_autopsy_ME | 2026-07-18 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-4` | PILLAR -- private speech as external cognitive-control surface (MECH-3 | blocked | high | INV-034 goal-maintenance target (the thing private speech regulates) must be the live arbi | 2026-06-10 |
 | v4 | developmental_dmn_v4_plan.md | `developmental_dmn_v4:DMN-5` | PILLAR -- developmental compression ladder (MECH-381): externalise-the | blocked | high | INV-060 + MECH-197 play-type progression (sensorimotor->constructive->pretend->rule-based- | 2026-06-10 |
-| v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-4` | Orienting/surveying drive: pre-approach active-sensing control state | blocked | high | V3 LIVE upstream cue chain the orienting mode sits between: SD-057 / MECH-347 cue-triggere | 2026-06-10 |
+| v4 | drives_motivation_v4_plan.md | `drives_motivation_v4:DRV-4` | Orienting/surveying drive: pre-approach active-sensing control state | blocked | high | V3 LIVE upstream cue chain the orienting mode sits between: SD-057 / MECH-347 cue-triggere | 2026-08-07 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-4` | Anti-shame safety invariants: no-global-self-condemnation write + cont | blocked | high | Self-attributed harm must bind to actions / commitments / predictions / repair obligations | 2026-06-10 |
 | v5 | ethics_as_coherence_v5_plan.md | `ethics_as_coherence_v5:ETH-5` | Love as agent-indexed terrain inference: infer another agent's goal/ha | blocked | high | V3 BEGINNING present: INV-005 (harm to others via mirror modelling) is the negative-side p | 2026-06-10 |
 | v4 | goal_deliberation_v4_plan.md | `goal_deliberation_v4:GDL-3` | PILLAR 2 -- counterfactual-value tracking and switch-to-alternative ga | blocked | high | V3 has the CHOSEN-option value signal (SD-033c vmPFC value integration, v3); MECH-264 adds | 2026-06-10 |

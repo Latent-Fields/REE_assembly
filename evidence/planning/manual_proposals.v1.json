@@ -2083,7 +2083,7 @@
         "Report claim_ids_tested=['ARC-006'] (also tag MECH-045 for continuity with V3-EXQ-658) and evidence_direction.",
         "Also, separately from this experiment: bridge V3-EXQ-658's existing PASS evidence onto ARC-006's own evidence block (currently tagged only to MECH-045's claim_ids) so the already-answered persistent/bindable-across-motion legs are visible at the parent-claim level -- this is a claim-synthesis/tagging action, not part of this experiment's acceptance criteria."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07) while drafting ARC-006's what_would_answer. No new substrate build required -- reuses ree_core/entities/object_file_buffer.py and the V3-EXQ-658 harness with a config change (remove the artificial max_tokens headroom). Next step is /queue-experiment, not further digestion.",
       "backlog_id": "EVB-0582"
@@ -2107,7 +2107,7 @@
         "Report claim_ids_tested=['INV-050'] and evidence_direction.",
         "Separately from acceptance: this run's outcome should be folded into the /governance promotion-review flag already raised for INV-050 (3x repeated-PASS pattern on a non-independent configuration) -- see the claim's own what_would_answer and evidence_quality_note in claims.yaml."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting INV-050's what_would_answer. Design mirrors the non-degeneracy precondition documented in the claim's own what_would_answer text. Next step is /queue-experiment.",
       "backlog_id": "EVB-0583"
@@ -2131,10 +2131,12 @@
         "FALSIFYING: interaction term is additive or null despite both non-degeneracy preconditions holding.",
         "Report claim_ids_tested=['ARC-044'] and evidence_direction. Explicitly flag in the manifest that this run does not adjudicate the MECH-026/MECH-093 facets of ARC-044's title."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 1) while drafting ARC-044's what_would_answer. No prior ARC-044-tagged experiment or proposal existed. Next step is /queue-experiment.",
-      "backlog_id": "EVB-0584"
+      "backlog_id": "EVB-0584",
+      "executed_by": "V3-EXQ-832",
+      "executed_queue_id": "V3-EXQ-832"
     },
     {
       "proposal_id": "EXP-0583",
@@ -2154,7 +2156,7 @@
         "FALSIFYING: release timing/rate statistically indistinguishable between ON and OFF arms once the other 4 pathways (per evidence/planning/mech090_release_path_audit_2026-06-02.md) are accounted for.",
         "Report claim_ids_tested=['ARC-028'] and evidence_direction."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting ARC-028's what_would_answer. No new substrate build required -- config-level ablation on an already-built pathway. Next step is /queue-experiment.",
       "backlog_id": "EVB-0585"
@@ -2177,7 +2179,7 @@
         "FALSIFYING: Phase1-ENABLED and Phase1-ABLATED remain statistically indistinguishable on >=2/3 seeds despite the gate-state check passing.",
         "Report claim_ids_tested=['ARC-038'] and evidence_direction. Recommend registering as a lettered successor (EXQ-355b) per the repo's bug-fix-vs-new-question convention -- same scientific question, previously blocked by a now-resolved implementation gap."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting ARC-038's what_would_answer. Next step is /queue-experiment.",
       "backlog_id": "EVB-0586"
@@ -2200,10 +2202,11 @@
         "ESCALATION (not falsification): probe again short-circuits to INSTRUMENTATION_FAILURE despite the amended substrate and script fixes -- falls back per SD-056's own contingency to PLSM lever A or SWIRL lever C.",
         "Explicitly note in the manifest that V3-EXQ-569i's PASS is NOT a substitute for this run -- it validates a different, additional lever."
       ],
-      "status": "proposed",
+      "status": "executed",
       "added_utc": "2026-08-07",
       "notes": "Minted by /thought-digestion (session cool-torvalds-a82359, 2026-08-07 wave 2) while drafting SD-056's what_would_answer / digestion_note. Design is the pre-existing 569e script + the 3 fixes already named in its own autopsy -- reactivation, not a fresh design. Next step is /queue-experiment.",
-      "backlog_id": "EVB-0587"
+      "backlog_id": "EVB-0587",
+      "executed_by": "v3_exq_210_mech156_theta_traversal_probe"
     }
   ]
 }

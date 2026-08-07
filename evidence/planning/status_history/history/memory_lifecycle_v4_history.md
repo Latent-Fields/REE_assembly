@@ -60,7 +60,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-2`
 
@@ -118,7 +119,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-3`
 
@@ -176,7 +178,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-4`
 
@@ -234,7 +237,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-5`
 
@@ -292,7 +296,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-6`
 
@@ -350,7 +355,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-7`
 
@@ -408,7 +414,8 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 
 ## `memory_lifecycle_v4:MEM-8`
 
@@ -466,5 +473,6 @@ Source plan: `evidence/planning/memory_lifecycle_v4_plan.md`
 - `2026-07-25T16:55Z` [decision] `decision:ARC-007@2026-07-25T16:55:22.896761Z` -> [`evidence/decisions/decision_log.v1.jsonl#L378`](../../../../evidence/decisions/decision_log.v1.jsonl#L378) :: decision demote_to_provisional (applied)
 - `2026-07-28T20:14Z` [manifest] `v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3` -> [`evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json`](../../../../evidence/experiments/v3_exq_835_mech068_consolidation_selectivity_ablation_20260728T201442Z_v3.json) :: PASS manifest supports
 - `2026-08-02T10:50Z` [autopsy] `failure_autopsy_V3-EXQ-436b_2026-08-02` -> [`evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436b_2026-08-02.json) :: autopsy non_contributory/measurement_gap routing=queue-experiment
-- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate **<- live head**
+- `2026-08-03T10:16Z` [autopsy] `failure_autopsy_V3-EXQ-436c_2026-08-03` -> [`evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json`](../../../../evidence/planning/failure_autopsy_V3-EXQ-436c_2026-08-03.json) :: autopsy weakens/measurement_test_design_defect routing=implement-substrate
+- `2026-08-05T06:20Z` [autopsy] `failure_autopsy_2026-08-05_pending_review_batch#V3-EXQ-436d` -> [`evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json`](../../../../evidence/planning/failure_autopsy_2026-08-05_pending_review_batch.json) :: autopsy weakens/standard routing=queue-experiment **<- live head**
 

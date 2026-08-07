@@ -1,5 +1,37 @@
 {
   "hits_by_key": {
+    "autopsy|failure_autopsy_2026-08-05_pending_review_batch|0|0": {
+      "artifact": "failure_autopsy_2026-08-05_pending_review_batch",
+      "claim_ids": [
+        "MECH-471"
+      ],
+      "embedded_ids": [
+        "070",
+        "728",
+        "v3-exq-728"
+      ],
+      "flags": [
+        "same_signature"
+      ],
+      "item_index": 0,
+      "run_id": "v3_exq_875_mech471_competence_provenance_20260803T120202Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "Confirms the SD-070 zworld_p0_episodes defect propagates to any _train_all_on_agent driver that omits it -- same signature as V3-EXQ-728 pre-fix.",
+      "tokens": [
+        "confirms",
+        "defect",
+        "driver",
+        "episodes",
+        "omits",
+        "pre-fix",
+        "propagates",
+        "same",
+        "train_all_on_agent",
+        "zworld_p"
+      ]
+    },
     "autopsy|failure_autopsy_543i_2026-05-19|0|1": {
       "artifact": "failure_autopsy_543i_2026-05-19",
       "claim_ids": [
@@ -777,6 +809,92 @@
         "weakened"
       ]
     },
+    "autopsy|failure_autopsy_V3-EXQ-875_2026-08-03|0|0": {
+      "artifact": "failure_autopsy_V3-EXQ-875_2026-08-03",
+      "claim_ids": [
+        "MECH-471"
+      ],
+      "embedded_ids": [
+        "728",
+        "875",
+        "v3-exq-728",
+        "v3-exq-875"
+      ],
+      "flags": [
+        "recurring",
+        "twice"
+      ],
+      "item_index": 0,
+      "run_id": "v3_exq_875_mech471_competence_provenance_20260803T120202Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "Recurring driver-configuration defect class: the opt-in zworld_p0_episodes default-0 design in _train_all_on_agent is silent and easy to omit -- confirmed twice now (V3-EXQ-728 originally, V3-EXQ-875 here). Worth a standing lint flagging _train_all_on_agent call sites with no zworld_p0_episodes in drivers whose acceptance criteria depend on z_world-derived representations. Not fixed in this session; flagged as follow-on.",
+      "tokens": [
+        "acceptance",
+        "call",
+        "class",
+        "criteria",
+        "default",
+        "defect",
+        "depend",
+        "design",
+        "driver-configuration",
+        "drivers",
+        "easy",
+        "episodes",
+        "fixed",
+        "flagged",
+        "flagging",
+        "follow-on",
+        "lint",
+        "omit",
+        "opt-in",
+        "originally",
+        "representations",
+        "session",
+        "silent",
+        "sites",
+        "standing",
+        "train_all_on_agent",
+        "with",
+        "worth",
+        "z_world-derived",
+        "zworld_p"
+      ]
+    },
+    "autopsy|failure_autopsy_V3-EXQ-882a_2026-08-05|0|1": {
+      "artifact": "failure_autopsy_V3-EXQ-882a_2026-08-05",
+      "claim_ids": [
+        "MECH-472"
+      ],
+      "embedded_ids": [
+        "471"
+      ],
+      "flags": [
+        "recurs"
+      ],
+      "item_index": 1,
+      "run_id": "v3_exq_882a_mech472_context_memorization_generalization_20260805T110228Z_v3",
+      "source": "autopsy",
+      "strong_severity": false,
+      "target_index": 0,
+      "text": "The MECH-471 acquisition-reliability split recurs, on overlapping seeds, in an independently-authored MECH-472 experiment sharing the same training machinery -- a cross-claim convergent signal",
+      "tokens": [
+        "acquisition-reliability",
+        "convergent",
+        "cross-claim",
+        "independently-authored",
+        "machinery",
+        "overlapping",
+        "same",
+        "seeds",
+        "sharing",
+        "signal",
+        "split",
+        "training"
+      ]
+    },
     "autopsy|failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30|0|0": {
       "artifact": "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30",
       "claim_ids": [],
@@ -973,10 +1091,11 @@
       ]
     }
   },
-  "last_swept_at": "2026-08-03T11:33:33Z",
+  "last_swept_at": "2026-08-07T18:49:44Z",
   "schema_version": "v1",
   "seen_autopsy_mtimes": {
     "failure_autopsy_2026-07-28-sweep.json": 1785272911.3774624,
+    "failure_autopsy_2026-08-05_pending_review_batch.json": 1785911231.3115022,
     "failure_autopsy_543i_2026-05-19.json": 1779174575.9095929,
     "failure_autopsy_569f-661-654a_2026-06-10.json": 1781070238.6106122,
     "failure_autopsy_604a-624a-630_2026-06-03.json": 1780466987.5052085,
@@ -987,6 +1106,7 @@
     "failure_autopsy_767-768-cluster_2026-07-16.json": 1784224153.9598727,
     "failure_autopsy_816-820-policy-decomposition-cluster_2026-07-26.json": 1785046398.6454847,
     "failure_autopsy_816c-822_2026-07-26.json": 1785076958.4158823,
+    "failure_autopsy_ARC-017-EXQ-129-135_2026-08-07.json": 1786123073.1804678,
     "failure_autopsy_EXQ-539-540_MECH307_2026-05-17.json": 1779027850.595478,
     "failure_autopsy_EXQ-541_MECH204_2026-05-17.json": 1779027958.5701818,
     "failure_autopsy_EXQ-543e_2026-05-17.json": 1779001150.605681,
@@ -1285,9 +1405,11 @@
     "failure_autopsy_V3-EXQ-871a_2026-08-03.json": 1785750817.702033,
     "failure_autopsy_V3-EXQ-873_2026-08-03.json": 1785753508.358407,
     "failure_autopsy_V3-EXQ-874_2026-08-03.json": 1785752411.6759791,
+    "failure_autopsy_V3-EXQ-875_2026-08-03.json": 1785775822.2251773,
     "failure_autopsy_V3-EXQ-877_2026-08-03.json": 1785753388.3781018,
     "failure_autopsy_V3-EXQ-878_2026-08-03.json": 1785753397.1385481,
     "failure_autopsy_V3-EXQ-882_2026-08-03.json": 1785753529.3023105,
+    "failure_autopsy_V3-EXQ-882a_2026-08-05.json": 1785948337.6145957,
     "failure_autopsy_V3-EXQ-884_2026-08-03.json": 1785750199.6627288,
     "failure_autopsy_backlog_2026-07-24.json": 1784969983.4732661,
     "failure_autopsy_batch-687a-707c-840-748a-833-842-810b-673-614-798afail_2026-07-30.json": 1785527184.2260716,
@@ -1309,5 +1431,5 @@
     "failure_autopsy_v3-exq-838_2026-07-29.json": 1785362475.8221185,
     "failure_autopsy_zworld-integration-cluster_2026-06-06.json": 1780751397.9365296
   },
-  "seen_review_tracker_mtime": 1785673110.4389727
+  "seen_review_tracker_mtime": 1785758323.2837274
 }

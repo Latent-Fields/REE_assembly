@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_251_mech186_valence_wanting_floor
 
-Generated: `2026-08-06T17:54:26.555660Z`
+Generated: `2026-08-07T18:48:38.910408Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

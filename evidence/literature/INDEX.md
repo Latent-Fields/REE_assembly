@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-05T06:04:48.895375Z`
+Generated: `2026-08-07T18:48:38.910408Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -415,6 +415,7 @@ Generated: `2026-08-05T06:04:48.895375Z`
 | `targeted_review_theta_abstraction_scaling` | [`2026-04-28_theta_abstraction_remote_replay_karlsson2009`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/record.json) | 5 | [`summary`](targeted_review_theta_abstraction_scaling/entries/2026-04-28_theta_abstraction_remote_replay_karlsson2009/summary.md) |
 | `targeted_review_threat_modulated_defensive_path_selection` | [`2026-08-01_mech_321_synaptic_threshold_escape_decision_evans2018`](targeted_review_threat_modulated_defensive_path_selection/entries/2026-08-01_mech_321_synaptic_threshold_escape_decision_evans2018/record.json) | 9 | [`summary`](targeted_review_threat_modulated_defensive_path_selection/entries/2026-08-01_mech_321_synaptic_threshold_escape_decision_evans2018/summary.md) |
 | `targeted_review_tolerance_gated_rule_availability` | [`2026-06-04_arc_063_dynamic_threshold_stn_frank2006`](targeted_review_tolerance_gated_rule_availability/entries/2026-06-04_arc_063_dynamic_threshold_stn_frank2006/record.json) | 3 | [`summary`](targeted_review_tolerance_gated_rule_availability/entries/2026-06-04_arc_063_dynamic_threshold_stn_frank2006/summary.md) |
+| `targeted_review_uncommitted_candidate_retention` | [`2026-08-07_mech_487_reality_filter_vs_source_monitoring_bouzerdawahlen2015`](targeted_review_uncommitted_candidate_retention/entries/2026-08-07_mech_487_reality_filter_vs_source_monitoring_bouzerdawahlen2015/record.json) | 5 | [`summary`](targeted_review_uncommitted_candidate_retention/entries/2026-08-07_mech_487_reality_filter_vs_source_monitoring_bouzerdawahlen2015/summary.md) |
 | `targeted_review_v3_hippocampal_rollout` | [`2026-04-02_arc_018_vte_lookahead_johnson2007`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/record.json) | 17 | [`summary`](targeted_review_v3_hippocampal_rollout/entries/2026-04-02_arc_018_vte_lookahead_johnson2007/summary.md) |
 | `targeted_review_v3_jepa_mapping_limits` | [`2026-02-15_mech059_lit-0019_completion`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/record.json) | 5 | [`summary`](targeted_review_v3_jepa_mapping_limits/entries/2026-02-15_mech059_lit-0019_completion/summary.md) |
 | `targeted_review_v3_prefrontal_control` | [`2026-02-15_mech060_lit-0021_completion`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/record.json) | 5 | [`summary`](targeted_review_v3_prefrontal_control/entries/2026-02-15_mech060_lit-0021_completion/summary.md) |

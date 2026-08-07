@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_749_mech457_hrep_x_hexplore_rawview_dense_actor_critic
 
-Generated: `2026-08-05T06:04:48.895375Z`
+Generated: `2026-08-07T18:48:38.910408Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
