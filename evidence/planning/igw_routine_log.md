@@ -1483,3 +1483,4 @@ One line per hourly tick. ASCII only.
 2026-08-07T19:15:14Z workset committed (regen -- 246 items, 26 ready, 0 in flight)
 2026-08-07T19:15:02Z no eligible item (skipped 246): IGW-20260807-001:skill /governance not allowed; IGW-20260807-008:skill /governance not allowed; IGW-20260807-210:status=blocked blocked_by=ready_blocked_by: Phase 1 (env-only substrate) IMPLEMENTED 2026-05-03 (SD-047 file released). Phase 2 (z_resource encoder identity expansion + SD-032 consumer cascade reading per_axis_drive directly + V3-EXQ-514 behavi
 2026-08-07T20:15:46Z workset committed (regen -- 246 items, 27 ready, 0 in flight)
+2026-08-07T20:15:28Z STAGE IGW-20260807-208 skill=/implement-substrate prio=25 worktree=igw-208-substrate-ready-sd014-decouple-w (skill /implement-substrate needs human assent (REQUIRES_HUMAN_SKILLS)); awaiting human launch
