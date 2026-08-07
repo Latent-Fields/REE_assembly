@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-07T23:55:50.543898Z`
+Generated: `2026-08-07T23:59:20.554126Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -238,7 +238,7 @@ Generated: `2026-08-07T23:55:50.543898Z`
 | `targeted_review_mech_103_multisensory` | [`2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/record.json) | 3 | [`summary`](targeted_review_mech_103_multisensory/entries/2026-03-19_mech103_zhang_2025_seeg_sts_audiovisual/summary.md) |
 | `targeted_review_mech_106` | [`2026-04-05_mech_106_stn_dynamic_threshold_frank2006`](targeted_review_mech_106/entries/2026-04-05_mech_106_stn_dynamic_threshold_frank2006/record.json) | 5 | [`summary`](targeted_review_mech_106/entries/2026-04-05_mech_106_stn_dynamic_threshold_frank2006/summary.md) |
 | `targeted_review_mech_124` | [`2026-04-04_mech_124_threat_goal_salience_competition_kim2019`](targeted_review_mech_124/entries/2026-04-04_mech_124_threat_goal_salience_competition_kim2019/record.json) | 4 | [`summary`](targeted_review_mech_124/entries/2026-04-04_mech_124_threat_goal_salience_competition_kim2019/summary.md) |
-| `targeted_review_mech_130` | [`2026-08-07_mech_130_noisy_tv_stochastic_curiosity_burda2018`](targeted_review_mech_130/entries/2026-08-07_mech_130_noisy_tv_stochastic_curiosity_burda2018/record.json) | 2 | [`summary`](targeted_review_mech_130/entries/2026-08-07_mech_130_noisy_tv_stochastic_curiosity_burda2018/summary.md) |
+| `targeted_review_mech_130` | [`2026-08-07_mech_130_social_motivation_proximity_nguyen2023`](targeted_review_mech_130/entries/2026-08-07_mech_130_social_motivation_proximity_nguyen2023/record.json) | 5 | [`summary`](targeted_review_mech_130/entries/2026-08-07_mech_130_social_motivation_proximity_nguyen2023/summary.md) |
 | `targeted_review_mech_135` | [`2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998`](targeted_review_mech_135/entries/2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998/record.json) | 4 | [`summary`](targeted_review_mech_135/entries/2026-03-29_mech_135_mosaic_parallel_forward_models_wolpert1998/summary.md) |
 | `targeted_review_mech_154_156_e1_manifold` | [`2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018`](targeted_review_mech_154_156_e1_manifold/entries/2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018/record.json) | 4 | [`summary`](targeted_review_mech_154_156_e1_manifold/entries/2018-10-24_mech_155_cognitive_map_abstract_knowledge_behrens2018/summary.md) |
 | `targeted_review_mech_166` | [`2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020`](targeted_review_mech_166/entries/2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020/record.json) | 3 | [`summary`](targeted_review_mech_166/entries/2026-04-05_mech_166_up_down_states_corticohippocampal_tukker2020/summary.md) |
