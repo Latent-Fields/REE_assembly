@@ -8729,6 +8729,10 @@
     the create/amend pathway. Flagged explicitly as orphaned rather than silently read as mapped or
     self-handled; route to /implement-substrate only if the regression diagnostic confirms a real
     substrate fix is needed.
+    [2026-08-07 governance, ceiling-audit ACTIONABLE finding, user-confirmed]: check_substrate_ceiling_audit.py
+    reconfirms this claim genuinely orphaned (no design owner, not parked, not self-handled). Flagged
+    for /failure-autopsy to produce the substrate-regression diagnostic prescribed by 866a's own
+    autopsy (re-run 603q fresh, commit-verified) rather than routing here inline from a verdict alone.
   depends_on:
     - ARC-030
     - MECH-111
@@ -11026,6 +11030,11 @@
     pending_retest_after_substrate (gate: EXQ-247 + SD-015 resource indicator encoding).
 
     [2026-05-08 governance]: EXQ-536a + EXQ-536b diagnostic non_contributory. Per user review, previous diagnostics revealed two crossed wiring paths for goal seeding -- neither was properly wired. Diagnostic results reflect substrate breakage, not mechanism falsification. Re-test required after wiring is canonicalized.
+    [2026-08-07 governance, ceiling-audit ACTIONABLE finding]: check_substrate_ceiling_audit.py flags
+    "ceiling-may-have-lifted" -- MECH-307 (the substrate this claim's retest gate was blocked on) is
+    now implemented. User-confirmed: flag for re-queue/retest (chipped at session close, not
+    governance's own build). pending_retest_after_substrate stays true until that retest actually
+    runs and resolves it.
   depends_on:
     - ARC-021
     - MECH-069
@@ -13391,6 +13400,10 @@
     diagnostic (fresh 603q re-run) rather than a third lettered iteration -- v3_pending KEPT. NOTE
     (6a-v ceiling audit): DELIBERATELY flagged as orphaned, not mapped or parked -- the routing is a
     diagnostic re-run checking for substrate regression, not a build.
+    [2026-08-07 governance, ceiling-audit ACTIONABLE finding, user-confirmed]: check_substrate_ceiling_audit.py
+    reconfirms this claim genuinely orphaned. Flagged for /failure-autopsy to produce the
+    substrate-regression diagnostic prescribed by 866a's own autopsy (re-run 603q fresh,
+    commit-verified) -- same routing as sibling Q-021.
 - id: INV-035
   title: "A REE state must not be defined purely by sensory appearance; two perceptually identical situations that differ in temporal position, active commitment, goal/antigoal relation, social context, or operative constraints constitute distinct states."
   claim_type: invariant
@@ -19317,6 +19330,11 @@
     it is whether the SELECTION mechanism (Path 3 feedforward cue->slot tagger, implemented
     2026-06-05, substrate-readiness validation still pending per the paragraph above) can
     exploit the existing richness once retrieval selectivity itself is fixed.
+    [2026-08-07 governance, ceiling-audit ACTIONABLE finding, user-confirmed]: check_substrate_ceiling_audit.py
+    flags this claim genuinely orphaned despite status=implemented -- the substrate exists but the
+    substrate_ceiling reading (selectivity, not richness, is the open bottleneck) has no design owner.
+    Flagged for /failure-autopsy to produce an enrichment recommendation targeting the SELECTION
+    mechanism question above, rather than routing here inline from the ceiling stamp alone.
   functional_restatement: >
     E1's ContextMemory stores 16 associative slots and can in principle retrieve hazard-relevant
     associations when z_world encodes a cue-dense context. But no downstream pathway existed
