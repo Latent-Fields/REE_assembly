@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_005",
+  "entry_id": "2026-08-07_arc_005_uncertainty_neuromodulation_yu2005",
+  "timestamp_utc": "2026-08-07T20:03:05Z",
+  "claim_ids_tested": ["ARC-005"],
+  "source": {
+    "title": "Uncertainty, Neuromodulation, and Attention",
+    "authors": ["Angela J. Yu", "Peter Dayan"],
+    "year": 2005,
+    "venue": "Neuron",
+    "doi": "10.1016/j.neuron.2005.04.026",
+    "url": "https://www.cell.com/neuron/fulltext/S0896-6273(05)00362-4"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, heavily-cited theoretical/computational formalization of exactly the mechanism ARC-005 imports: neuromodulatory precision-weighting of top-down expectation vs bottom-up evidence (ACh = expected uncertainty, NE = unexpected uncertainty). High mapping fidelity to the ARC-005 premise that a control plane can route precision. But it is a MODEL paper, not an effect-size measurement, so it establishes that the routing mechanism is real and functionally consequential without itself bounding the magnitude an intervention should produce -- hence 0.72, not higher.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The model predicts precision-weighting is FUNCTIONALLY LOAD-BEARING -- it changes how much sensory evidence updates belief -- not a negligible perturbation. A precision channel whose downstream effect is ~180x below cross-seed noise is not routing in the sense this model requires; it is decorative at the readout.",
+    "The model treats NE/ACh gain as multiplicative on the inference, so a channel that is architecturally invariant under normal committed operation (REE channel 2, ~97% committed) or reads a collapsed/degenerate upstream signal (REE channel 1's dACC adapter, response 4-7 orders of magnitude off scale) fails to implement the mechanism this paper describes."
+  ],
+  "tags": ["arc-005", "precision_weighting", "norepinephrine", "acetylcholine", "predictive_coding", "uncertainty", "control_plane"],
+  "mapping": {
+    "source_claim_statement": "Acetylcholine and norepinephrine report expected and unexpected uncertainty respectively, and these signals set the relative weighting (precision) of top-down predictions against bottom-up sensory input during inference and learning in noisy, changeable environments.",
+    "ree_translation": "This is the formal import underlying ARC-005's control plane: a neuromodulatory channel (REE's 5-HT rigidity / phasic-burst gain / dACC precision readout) that routes precision -- i.e. exerts causal authority over how strongly evidence is weighted -- dissociable from the content being processed. The paper is the biological warrant that such routing exists and is causal, which is precisely the existence claim ARC-005 makes.",
+    "mapping_caveat": "This is a normative model, not a measured intervention. It says the mechanism is real and functionally consequential but does not by itself quantify how large a downstream readout shift a within-range channel manipulation should produce -- that number has to come from the empirical pharmacology entries in this review. The model also assumes the precision signal is actually wired into the inference update; REE's channel 1 finding (dACC adapter untrained on non-degenerate goal_proximity) is exactly a case where the wiring is present but the transmitted signal is off-scale.",
+    "source_context": "Theoretical/computational neuroscience; approximate-Bayesian inference model of attentional cueing (Posner-style) with ACh/NE as uncertainty signals; no species/task-specific effect size."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.8,
+    "transfer_risk": 0.45,
+    "notes": "Venue and citation weight are very high; mapping fidelity to the ARC-005 premise is strong. Transfer risk is non-trivial because a formal model of biological neuromodulation does not automatically license quantitative predictions for REE's engineered channel implementation -- it grounds the mechanism, not the magnitude."
+  }
+}

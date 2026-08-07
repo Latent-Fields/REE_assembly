@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_005",
+  "entry_id": "2026-08-07_arc_005_catecholaminergic_metalearning_cook2019",
+  "timestamp_utc": "2026-08-07T20:03:05Z",
+  "claim_ids_tested": ["ARC-005"],
+  "source": {
+    "title": "Catecholaminergic modulation of meta-learning",
+    "authors": ["Jennifer L. Cook", "Jennifer C. Swart", "Monja I. Frobose", "Andreea O. Diaconescu", "Dirk E. Geurts", "Hanneke E. den Ouden", "Roshan Cools"],
+    "year": 2019,
+    "venue": "eLife",
+    "doi": "10.7554/eLife.51439",
+    "url": "https://elifesciences.org/articles/51439"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.73,
+  "confidence_rationale": "Large-N (102) placebo-controlled human pharmacology establishing a CAUSAL link between catecholamine enhancement (methylphenidate) and the adjustment of a meta-learning parameter -- learning rate as a function of environmental volatility -- which is the closest empirical analogue to REE's precision-routing readout (the precision channel should modulate how strongly evidence updates internal state as a function of context). Direction is supports for ARC-005's routing premise; confidence 0.73 reflects strong design but a specific/partial effect (experiential learning only, no effect on inferred-value learning) and the usual pharmacology-to-engineered-substrate transfer gap.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The catecholamine effect on learning-rate adaptation was significant only for direct/experiential learning and NOT for inferred-value learning -- precision-routing effects are real but conditional on the pathway being the one the neuromodulator actually gates. A REE channel wired to a degenerate or off-scale upstream signal is the analogue of the inferred-value pathway: the manipulation lands on nothing.",
+    "The effect is a detectable shift in a volatility-driven learning-rate parameter, i.e. a routing effect of measurable magnitude in a 102-person sample -- categorically unlike REE channel 1's ~180x-below-noise footprint, which no comparable sample would detect."
+  ],
+  "tags": ["arc-005", "precision_weighting", "catecholamine", "dopamine", "norepinephrine", "methylphenidate", "learning_rate", "volatility", "meta_learning"],
+  "mapping": {
+    "source_claim_statement": "The catecholamine transporter blocker methylphenidate causally enhanced participants' ability to optimize learning rate as a function of environmental volatility (higher learning rates in volatile vs stable phases under drug vs placebo), significant for direct experiential learning but not for inferred-value learning.",
+    "ree_translation": "Learning-rate-as-a-function-of-volatility is a precision-weighting readout: it is exactly the quantity a precision channel should route -- how strongly incoming evidence updates internal state given the current uncertainty regime. This paper is the tightest available biological demonstration that a catecholaminergic control channel causally routes such a precision readout, which is the ARC-005 existence claim. Its pathway-specificity (experiential yes, inferred-value no) maps onto REE's channel-by-channel asymmetry: a precision manipulation only routes where it is actually wired into the update.",
+    "mapping_caveat": "The paper reports statistical significance and a causal direction but the effect is on a model-fit learning-rate parameter rather than a single standardized d, so it is a weaker source than Nuiten 2024 for a precise magnitude number -- it anchors DETECTABILITY-in-a-large-sample and pathway-specificity rather than an exact SD. Methylphenidate elevates both dopamine and noradrenaline, so it is not a clean single-channel manipulation. As with all pharmacology entries, the push is stronger than REE's within-range ladder step.",
+    "source_context": "Healthy adult humans (N=102), placebo-controlled methylphenidate; probabilistic reinforcement-learning task with interleaved stable and volatile phases; hierarchical Bayesian/RL model-fit learning rates."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.42,
+    "notes": "Large sample, placebo-controlled, causal design, eLife -- high source quality. Mapping fidelity good: learning-rate-vs-volatility is a genuine precision readout. Transfer risk moderate: dual-catecholamine drug, model-fit parameter rather than a clean standardized effect, and pharmacology-vs-engineered-channel gap."
+  }
+}

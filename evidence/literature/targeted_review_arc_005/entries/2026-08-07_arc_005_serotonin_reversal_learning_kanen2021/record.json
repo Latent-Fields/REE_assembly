@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_005",
+  "entry_id": "2026-08-07_arc_005_serotonin_reversal_learning_kanen2021",
+  "timestamp_utc": "2026-08-07T20:03:05Z",
+  "claim_ids_tested": ["ARC-005"],
+  "source": {
+    "title": "Serotonin depletion impairs both Pavlovian and instrumental reversal learning in healthy humans",
+    "authors": ["Jonathan W. Kanen", "Annemieke M. Apergis-Schoute", "Robyn Yellowlees", "Frederique E. Arntz", "Febe E. van der Flier", "Annabel Price", "Rudolf N. Cardinal", "David M. Christmas", "Luke Clark", "Barbara J. Sahakian", "Molly J. Crockett", "Trevor W. Robbins"],
+    "year": 2021,
+    "venue": "Molecular Psychiatry",
+    "doi": "10.1038/s41380-021-01240-9",
+    "url": "https://www.nature.com/articles/s41380-021-01240-9"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.74,
+  "confidence_rationale": "Double-blind, randomized, placebo-controlled acute tryptophan depletion in healthy humans (N=97) directly manipulating the serotonergic channel -- the biological analogue of REE's channel-1 '5-HT rigidity' -- with a DOSE-DEPENDENT downstream behavioral effect (reversal deficit magnitude correlated with extent of depletion). Dose-dependence is the strongest possible evidence that the channel routes: the readout tracks the manipulation monotonically, which is exactly the C_precision_monotonicity property REE is trying to demonstrate. Supports ARC-005's routing premise. Confidence 0.74: strong design and the most on-target channel (5-HT rigidity), tempered by reversal-learning being a flexibility readout rather than a direct precision readout.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The serotonergic manipulation produced a DOSE-DEPENDENT reversal deficit: the downstream readout scaled monotonically with the size of the manipulation. This is precisely the monotonicity ARC-005's C_precision_monotonicity criterion demands, achieved biologically -- a REE channel that produces only 4/10 units with |rho|>=0.6 and an effect ~180x below noise is failing to reproduce a property the biology shows cleanly at N=97.",
+    "The 5-HT channel here has a real, replicable, behaviorally consequential footprint on a flexibility readout; REE's homologous channel-1 (5-HT rigidity / dACC precision) footprint is ~2 orders of magnitude below noise -- the gap points to an implementation deficit (untrained dACC adapter) rather than a biologically tiny effect."
+  ],
+  "tags": ["arc-005", "serotonin", "5-ht", "rigidity", "reversal_learning", "cognitive_flexibility", "dose_dependent", "precision_channel"],
+  "mapping": {
+    "source_claim_statement": "Acute tryptophan depletion (lowering serotonin) impaired both instrumental and Pavlovian reversal learning in healthy humans, with the magnitude of the reversal deficit correlated with the extent of tryptophan depletion.",
+    "ree_translation": "REE channel 1 is described as '5-HT rigidity' -- the serotonergic setting that controls how readily the agent updates a committed strategy. This paper is the direct biological homologue: manipulating serotonin causally and dose-dependently changes how readily behavior updates to changed contingencies (reversal). The dose-dependence is the key transfer: the downstream readout tracks the channel setting monotonically, which is exactly the C_precision_monotonicity property V3-EXQ-848b is trying (and largely failing) to demonstrate for REE's implementation of this channel.",
+    "mapping_caveat": "Reversal learning is a cognitive-FLEXIBILITY readout, not the same construct as REE's E3 log10-precision readout; serotonin's role in flexibility is well established but its identification with 'precision-weighting' specifically is a theoretical bridge, not a measured identity. So this entry evidences that REE's channel-1 neuromodulator has a real, dose-dependent, monotonic downstream effect in the biology -- strong support for 'the channel routes' -- without asserting the readouts are the same measurement. Acute tryptophan depletion is also a strong global manipulation.",
+    "source_context": "Healthy adult humans (N=97 across two experiments), double-blind randomized placebo-controlled acute tryptophan depletion; instrumental (stimulus-response-outcome) and Pavlovian (skin-conductance) serial reversal."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.42,
+    "notes": "Strong: large N, double-blind RCT, dose-response, Molecular Psychiatry. Mapping fidelity held at 0.68 because reversal-flexibility is a cousin of, not identical to, the E3 precision readout. Transfer risk moderate: strong global 5-HT manipulation vs REE's within-range channel-1 ladder, and flexibility-vs-precision construct bridge."
+  }
+}

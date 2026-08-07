@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_arc_005",
+  "entry_id": "2026-08-07_arc_005_catecholamine_perceptual_sensitivity_nuiten2024",
+  "timestamp_utc": "2026-08-07T20:03:05Z",
+  "claim_ids_tested": ["ARC-005"],
+  "source": {
+    "title": "Pharmacological Elevation of Catecholamine Levels Improves Perceptual Decisions, But Not Metacognitive Insight",
+    "authors": ["Stijn A. Nuiten", "Jan Willem de Gee", "Jasper B. Zantvoord", "Johannes J. Fahrenfort", "Simon van Gaal"],
+    "year": 2024,
+    "venue": "eNeuro",
+    "doi": "10.1523/ENEURO.0019-24.2024",
+    "url": "https://www.eneuro.org/content/11/7/ENEURO.0019-24.2024"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "mixed",
+  "confidence": 0.7,
+  "confidence_rationale": "Placebo-controlled crossover pharmacological manipulation (atomoxetine, a noradrenergic reuptake blocker = a direct precision/gain-channel intervention) with clean, reported effect sizes on a downstream perceptual-sensitivity readout. This is the single most directly quotable effect-size anchor for the commissioning question. It is 'mixed' for ARC-005 because it cuts both ways: it confirms a catecholaminergic gain channel DOES route a detectable downstream effect (supports routing), while showing that effect is small-to-moderate and channel/readout-specific (null on metacognition) -- which is exactly the yardstick against which REE's ~180x-below-noise effect looks anomalously tiny. Small N (27, male-only) holds confidence at 0.7.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Atomoxetine improved perceptual sensitivity d' with Cohen's d = 0.39 (t(26)=2.06, p=0.02) -- i.e. the downstream effect of a noradrenergic gain manipulation is ~0.39 SD. REE channel 1's raw effect is ~1/180 SD (d~0.006), roughly 65x smaller than this biological benchmark, which the biology does NOT predict for a functioning precision channel.",
+    "The effect was readout-specific: metacognitive sensitivity meta-d' was unaffected (d=0.16, BF01=3.55 favouring the null). Precision manipulations produce localized, not diffuse, downstream footprints -- consistent with REE channel 2 being architecturally null, but NOT with channel 1's footprint being ~2 orders of magnitude below any detectable biological effect."
+  ],
+  "tags": ["arc-005", "precision_weighting", "norepinephrine", "catecholamine", "atomoxetine", "effect_size", "perceptual_decision"],
+  "mapping": {
+    "source_claim_statement": "Elevating catecholamine levels with atomoxetine (noradrenergic reuptake blockade) causally improved perceptual decision sensitivity (d') with a small-to-medium effect (Cohen's d = 0.39), while leaving metacognitive sensitivity (meta-d') unchanged; neurally it boosted centroparietal evidence-accumulation signals without changing early sensory representations.",
+    "ree_translation": "A within-subject noradrenergic gain manipulation -- the biological analogue of stepping REE's precision channel along its ladder -- shifts a downstream behavioral readout by ~0.39 SD of the cross-condition variance. This is the empirical yardstick for the commissioning question: the biology predicts a precision-channel manipulation should move a downstream readout by roughly a fifth to a half of a standard deviation, not by ~1/180 of one. REE's channel-1 footprint is therefore ~50-80x below what a healthy biological precision channel produces, favouring the undertrained-dACC-adapter interpretation over a genuine biological ceiling.",
+    "mapping_caveat": "The readouts are not identical: eNeuro measures signal-detection d' on a visual discrimination task; REE measures a log10-precision-unit E3 readout monotonicity across a channel ladder. The commensurable quantity is the STANDARDIZED effect (effect / cross-condition SD), which is exactly Cohen's d and exactly REE's effect/cross-seed-SD ratio -- so the ~0.39 vs ~0.006 comparison is apples-to-apples on the ratio even though the underlying units differ. Atomoxetine is also a supra-physiological pharmacological push, likely an UPPER bound on what a within-normal-range channel step would elicit; but even discounting heavily it cannot close a 65x gap.",
+    "source_context": "Healthy adult humans (N=27, male), double-blind placebo-controlled crossover; atomoxetine 40 mg vs donepezil vs placebo; visual discrimination with confidence, concurrent EEG."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.4,
+    "notes": "Well-designed placebo-controlled crossover with pre-registered-style analysis and reported effect sizes; source quality held below 0.8 by small, male-only sample. Mapping fidelity good on the ratio comparison. Transfer risk moderate: pharmacological push vs REE's engineered ladder, and perceptual-task d' vs E3 precision readout."
+  }
+}
