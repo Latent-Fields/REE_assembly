@@ -9658,6 +9658,7 @@
     - ARC-023
     - ARC-021
     - MECH-057a
+    - MECH-138
   location: docs/architecture/control_plane_heartbeat.md#mech-090
   source:
     - docs/architecture/control_plane_heartbeat.md
@@ -9672,6 +9673,20 @@
     (cortex->STN->GPi) provides fast interrupt for urgent stop-change without waiting for
     completion. Explains MECH-057a FAIL: experiment modelled binary gate (E3 blind until
     completion), not beta-gated propagation within continuous stream.
+
+    TIMESCALE CROSS-REFERENCE (2026-08-07): the hyperdirect fast interrupt above acts
+    MID-EXECUTION -- it re-opens an already-closed gate on a sequence that is already
+    running. MECH-138 names a distinct, EARLIER veto point: a dFMC/pre-SMA top-down
+    suppressive pathway that can cancel the transition BEFORE execution lock-in, while the
+    commit token's cancel_window_open flag is still true. These are not the same gate at
+    two speeds -- MECH-138 acts on the commit boundary itself (the transition zone between
+    simulation-complete and execution-locked), whereas the hyperdirect pathway acts after
+    lock-in. Together with MECH-141's slow proactive prefrontal-caudate pathway (which
+    pre-sets gate bias before commitment) that gives three segregated timescales at which
+    a committed trajectory can be stopped: proactive bias-setting (MECH-141), pre-lock-in
+    veto (MECH-138), mid-execution interrupt (this claim). Surfaced 2026-08-07 while
+    registering MECH-485; see section 3 of
+    evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
 
     SCOPE REFINEMENT (2026-04-08, from lit-pull): The output-only gating claim applies
     specifically to BG-level beta (STN/striatum). Cortical beta in premotor areas (SMA)
@@ -16435,6 +16450,7 @@
     needs_review: false
   depends_on:
     - MECH-062
+    - MECH-138
     - MECH-140
     - ARC-005
     - Q-016
