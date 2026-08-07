@@ -1,48 +1,52 @@
 {
   "machine": "ree-cloud-2",
   "hostname": "ree-cloud-2",
-  "last_tick_utc": "2026-08-07T21:15:39Z",
-  "state": "idle",
-  "current_exq": null,
-  "current_exq_started_utc": null,
-  "current_title": null,
-  "current_claim_id": null,
-  "current_description": null,
-  "progress": null,
-  "seconds_elapsed": null,
-  "seconds_remaining": null,
-  "recent_lines": null,
-  "queue_depth": 1,
-  "queue_id_at_head": "V3-EXQ-887a",
-  "recent_completed": [
-    {
-      "queue_id": "V3-EXQ-872",
-      "result": "PASS",
-      "completed_at": "2026-08-02T14:58:05.260686+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-876",
-      "result": "FAIL",
-      "completed_at": "2026-08-02T21:40:06.278798+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-877",
-      "result": "FAIL",
-      "completed_at": "2026-08-02T21:40:51.422517+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-880",
-      "result": "PASS",
-      "completed_at": "2026-08-02T21:40:59.055572+00:00"
-    },
-    {
-      "queue_id": "V3-EXQ-149b",
-      "result": "PASS",
-      "completed_at": "2026-08-04T23:42:45.875821+00:00"
-    }
+  "last_tick_utc": "2026-08-07T21:37:39Z",
+  "state": "running",
+  "current_exq": "V3-EXQ-887a",
+  "current_exq_started_utc": "2026-08-07T21:17:42.172061+00:00",
+  "current_title": "SD-014 wanting/liking representational-separability RETEST (incentive-sensitization decouple)",
+  "current_claim_id": "",
+  "current_description": "",
+  "progress": {
+    "run_label": "Seed 2026 / node_valence_repfunc",
+    "runs_done": 2,
+    "runs_total": 1,
+    "episodes_done": 20,
+    "episodes_total": 40,
+    "overall_pct": 33.3
+  },
+  "seconds_elapsed": 1197,
+  "seconds_remaining": 0,
+  "recent_lines": [
+    "v3_exq_887a_sd014_node_valence_repfunc_sensitized  dry_run=False",
+    "[P0] instrument control: mean_pairwise_tau=0.1972 (ceiling 0.5) nodes=16",
+    "Seed 42 Condition node_valence_repfunc",
+    "[train] rollout seed=42 ep 1/40",
+    "[train] rollout seed=42 ep 10/40",
+    "[train] rollout seed=42 ep 20/40",
+    "[train] rollout seed=42 ep 30/40",
+    "[train] rollout seed=42 ep 40/40",
+    "seed=42 tau_diss=0.8625 tau_comp=1.0000 max_rho=0.9248 rho_wl=0.9248 mean_jaccard=0.6190 nodes=32",
+    "verdict: FAIL",
+    "Seed 137 Condition node_valence_repfunc",
+    "[train] rollout seed=137 ep 1/40",
+    "[train] rollout seed=137 ep 10/40",
+    "[train] rollout seed=137 ep 20/40",
+    "[train] rollout seed=137 ep 30/40",
+    "[train] rollout seed=137 ep 40/40",
+    "seed=137 tau_diss=0.8525 tau_comp=1.0000 max_rho=0.9193 rho_wl=0.9193 mean_jaccard=0.6389 nodes=32",
+    "verdict: FAIL",
+    "Seed 2026 Condition node_valence_repfunc",
+    "[train] rollout seed=2026 ep 1/40",
+    "[train] rollout seed=2026 ep 10/40",
+    "[train] rollout seed=2026 ep 20/40"
   ],
+  "queue_depth": null,
+  "queue_id_at_head": null,
+  "recent_completed": [],
   "runner_pid": 836,
-  "runner_version": "r4842 d8a94bd 2026-08-07",
+  "runner_version": "r4843 00eb6c7 2026-08-07 (running r4842 d8a94bd)",
   "gpu": {
     "available": false
   },
