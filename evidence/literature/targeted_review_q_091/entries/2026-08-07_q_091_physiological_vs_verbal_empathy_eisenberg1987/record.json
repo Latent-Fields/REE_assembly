@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_091",
+  "entry_id": "2026-08-07_q_091_physiological_vs_verbal_empathy_eisenberg1987",
+  "timestamp_utc": "2026-08-07T23:41:03Z",
+  "claim_ids_tested": ["Q-091"],
+  "source": {
+    "title": "The relation of empathy to prosocial and related behaviors",
+    "authors": ["Nancy Eisenberg", "Paul A. Miller"],
+    "year": 1987,
+    "venue": "Psychological Bulletin",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/3562705/"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Quantitative review directly on Q-091's methodological question: which MEASURE of empathy tracks genuine other-directed behaviour. It finds physiological and facial/expressive measures correlate with prosocial behaviour more strongly than self-report/verbal measures, and -- the load-bearing point -- physiological indices are LESS subject to voluntary, top-down manipulation than verbal or facial responses. That is exactly the property Q-091's evaluation needs: a channel an agent cannot fake by choosing what to say. Source quality high (Psychological Bulletin meta-analytic review, heavily cited). Held at 0.68 because it concerns measurement of empathy in humans, not the masking of absent empathy by a fluent LANGUAGE system specifically, and it predates and does not address artificial agents.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Self-reported / verbal empathy measures correlate more weakly with actual prosocial behaviour than physiological and facial measures do -- so a verbal channel is the WEAKEST evidentiary basis for inferring genuine other-directed disposition.",
+    "Verbal and facial responses are subject to voluntary top-down manipulation in a way physiological responses are not -- an agent can produce the report it judges will be well-received, which is precisely the capacity a fluent language system has in abundance."
+  ],
+  "tags": ["q-091", "empathy_measurement", "physiological_measures", "self_report_limits", "non_linguistic_probe"],
+  "mapping": {
+    "source_claim_statement": "Across studies, empathy relates positively to prosocial behaviour, but the strength of the relation depends heavily on how empathy is measured: physiological and facial/expressive indices correlate with prosocial behaviour more strongly than self-report (including verbal) measures, and physiological assessments are less subject to voluntary, top-down manipulation by the subject than facial or verbal responses.",
+    "ree_translation": "This gives Q-091's answer its measurement-theoretic spine: the more a channel is under the subject's voluntary control, the worse it is as evidence of genuine other-directed disposition -- and a linguistic channel is maximally voluntary. It supports designing REE's empathy evaluation around a signal the agent cannot strategically produce (a costly other-directed action under live alternatives; residue after exploiting a cooperating other, per MECH-407), analogous to the human physiological index, rather than around the language channel that is the machine equivalent of the manipulable verbal self-report.",
+    "mapping_caveat": "The human 'physiological measure' has no literal REE analogue -- REE has no autonomic system -- so the transfer is by ANALOGY of the underlying property (involuntary, hard-to-fake) rather than of the measure itself. The paper also concerns how well a measure tracks empathy that IS present, not how a fluent system masks empathy that is ABSENT; the inference to the masking case is one step of reasoning beyond what it directly shows. It is a human developmental/social-psychology finding, pre-dating artificial agents entirely.",
+    "source_context": "Meta-analytic review of the human empathy-prosociality literature (developmental and social psychology); compares empathy operationalisations (self-report, facial/expressive, physiological) against prosocial-behaviour outcomes."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.5,
+    "notes": "High source quality (Psychological Bulletin meta-analysis). Mapping fidelity moderate-good: it directly addresses the measurement question (which channel is trustworthy) that Q-091's answer turns on, but by analogy of the manipulability property rather than a like-for-like measure, and for present-empathy rather than absent-empathy masking. Transfer risk 0.5: no autonomic analogue in REE, 1987 human data to a V4 artificial substrate."
+  }
+}

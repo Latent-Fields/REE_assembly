@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_091",
+  "entry_id": "2026-08-07_q_091_moral_cognition_tom_vs_affective_bzdok2012",
+  "timestamp_utc": "2026-08-07T23:41:03Z",
+  "claim_ids_tested": ["Q-091"],
+  "source": {
+    "title": "Parsing the neural correlates of moral cognition: ALE meta-analysis on morality, theory of mind, and empathy",
+    "authors": ["Danilo Bzdok", "Leonhard Schilbach", "Kai Vogeley", "Karla Schneider", "Angela R. Laird", "Robert Langner", "Simon B. Eickhoff"],
+    "year": 2012,
+    "venue": "Brain Structure & Function",
+    "doi": "10.1007/s00429-012-0380-y"
+  },
+  "evidence_class": "meta_analysis",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "Included deliberately as the disconfirming/mixed counterweight. Its finding cuts partly AGAINST Q-091's implicit premise that caring/moral output requires an affective-sharing (fast-empathy) architecture: across 247 experiments the neural network for moral decisions overlaps MORE with Theory-of-Mind (cognitive) than with empathy (affective), and the authors state the topography 'disfavors a role of affective sharing during moral decisions'. If much moral/caring output is cognitively rather than affectively mediated even in humans, then a fluent cognitive/linguistic system is less obviously 'masking' a missing essential component -- weakening the strong form of Q-091's worry. But it still confirms the systems are DISSOCIABLE into cognitive and affective sub-systems, which supports the separability half. Confidence 0.6: high-quality meta-analysis but the relevance to Q-091 is inferential and its message is genuinely double-edged.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The neurotopographical overlap between morality and empathy disfavors a role of affective sharing during moral decisions -- so an evaluation premised on 'caring output MUST reflect an affective-relevance architecture' may over-attribute necessity to the affective component that Q-091 treats as the thing being masked.",
+    "If moral cognition is largely ToM/cognitively mediated, a system that is fluent on the cognitive/linguistic axis but weak on affective sharing might still produce genuinely appropriate moral output -- which would make the fluency-masks-empathy framing a partial mischaracterisation rather than a clean masking hazard."
+  ],
+  "tags": ["q-091", "moral_cognition", "theory_of_mind", "affective_empathy", "disconfirming", "mixed"],
+  "mapping": {
+    "source_claim_statement": "An ALE meta-analysis of 2,607 peak coordinates from 247 neuroimaging experiments (1,790 participants) found the brain regions consistently engaged in moral decisions converge more with the theory-of-mind network than with the empathy network; the neurotopographical overlap between morality and empathy 'disfavors a role of affective sharing during moral decisions', and the moral network is dissociable into cognitive and affective sub-systems.",
+    "ree_translation": "For Q-091 this is a genuine complication, not a confirmation. Q-091 assumes caring commitment requires an other-model PLUS affective-relevance architecture, and that fluent language could mask the affective part. Bzdok et al. suggest that in humans much moral decision-making leans on the COGNITIVE (ToM) system rather than on affective sharing -- so a system strong on the cognitive/linguistic side and weaker on affective sharing is not necessarily deficient in the thing that actually drives moral output. This weakens the strong reading of Q-091 (that a non-linguistic affective probe is strictly necessary to certify caring) while still supporting the weaker structural point that cognitive and affective components are dissociable.",
+    "mapping_caveat": "The study is about the neural correlates of MORAL DECISION tasks, which are not the same as caring COMMITMENT in the REE sense, and 'affective sharing' in a moral-judgement paradigm is narrower than the 'affective-relevance architecture' Q-091 names. The disconfirmation is therefore partial and inferential: it complicates Q-091's necessity premise rather than refuting the masking hazard. Human fMRI-meta-analytic data; substantial transfer distance to an REE substrate.",
+    "source_context": "Activation-likelihood-estimation meta-analysis of human neuroimaging studies of morality, theory of mind, and empathy; 247 experiments, 1,790 participants."
+  },
+  "confidence_components": {
+    "source_quality": 0.82,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.5,
+    "notes": "High source quality (large ALE meta-analysis). Mapping fidelity deliberately lower (0.5): its relevance to Q-091 is inferential and double-edged -- it complicates the necessity premise (affective sharing may matter less to moral output than assumed) while confirming dissociability. Kept as the required mixed/disconfirming counterweight so the matrix is not one-directional."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_091",
+  "entry_id": "2026-08-07_q_091_chatbot_empathy_ratings_ayers2023",
+  "timestamp_utc": "2026-08-07T23:41:03Z",
+  "claim_ids_tested": ["Q-091"],
+  "source": {
+    "title": "Comparing Physician and Artificial Intelligence Chatbot Responses to Patient Questions Posted to a Public Social Media Forum",
+    "authors": ["John W. Ayers", "Adam Poliak", "Mark Dredze", "Eric C. Leas", "Zechariah Zhu", "Jessica B. Kelley", "Dennis J. Faix", "Aaron M. Goodman", "Christopher A. Longhurst", "Michael Hogarth", "Davey M. Smith"],
+    "year": 2023,
+    "venue": "JAMA Internal Medicine",
+    "doi": "10.1001/jamainternmed.2023.1838"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.7,
+  "confidence_rationale": "Direct, high-visibility demonstration in an actual artificial system that concern-shaped linguistic output can be produced with no affective or other-model architecture whatsoever and rated as MORE empathetic than trained human clinicians by an expert language-only judging panel. This is the masking hazard of Q-091 realised, not analogised: a licensed-professional panel preferred ChatGPT responses ~79% of the time and rated them higher on 'empathy or bedside manner'. Source quality is high (JAMA Internal Medicine, pre-registered cross-sectional design, triplicate rating). Held at 0.7 because the study measures RATED empathy of text, not whether an underlying empathic architecture exists -- it demonstrates that a language-only evaluation is foolable, which is Q-091's premise, but does not by itself validate the specific non-linguistic probe Q-091 seeks.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "A panel of licensed healthcare professionals rated a system with categorically no affective or other-model architecture (an LLM) as MORE empathetic than human physicians and preferred its responses ~79% of the time -- a language-only evaluation inverted the true ordering of empathic capacity.",
+    "The authors note ChatGPT tended to produce longer responses, which raters may erroneously associate with greater empathy -- a concrete surface-feature confound showing how easily a linguistic judge is captured by form rather than by any underlying caring state."
+  ],
+  "tags": ["q-091", "llm_empathy", "evaluation_foolability", "chatbot", "masking"],
+  "mapping": {
+    "source_claim_statement": "In a cross-sectional study of 195 physician-answered questions from Reddit's r/AskDocs, a panel of licensed health-care professionals, blinded and rating anonymised randomly-ordered responses in triplicate, preferred ChatGPT's responses to physicians' in ~79% of evaluations and rated the chatbot's responses significantly higher on both quality of information and on 'empathy or bedside manner'.",
+    "ree_translation": "This is a live instance of the exact evaluation failure Q-091 warns about: a system with no other-model and no affective-relevance architecture produced concern-shaped language that expert judges scored as more empathetic than humans who (presumably) possess that architecture. It confirms that an evaluation which reads empathy off linguistic output cannot discriminate a fluent-but-empathy-less system from an empathic one -- so REE's evaluation of caring commitment must not rest on judged linguistic concern, and must instead use a probe (costly other-directed action, residue after exploiting a cooperating other) that a language-only imitator cannot pass.",
+    "mapping_caveat": "The study measures human raters' PERCEIVED empathy of physician vs chatbot text; it does not measure or claim anything about the presence of an internal empathic state in either party, nor does it test a non-linguistic discriminating probe. It shows the language-only judge is foolable (Q-091's premise) but does not itself establish the fix. Domain transfer from clinical Q&A text to an REE V4 caring-commitment substrate is substantial.",
+    "source_context": "Cross-sectional study, 195 anonymised public medical Q&A exchanges, blinded triplicate ratings by licensed clinicians; text-only comparison of a general-purpose LLM (ChatGPT) against verified physicians."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (JAMA IM, blinded triplicate design). Mapping fidelity good for the PREMISE (language-only evaluation is foolable, demonstrated in a real artificial system) but only indirect for the ANSWER Q-091 seeks (a validated non-linguistic probe). Transfer risk elevated: clinical Q&A text is far from an REE caring-commitment setting, and 'rated empathy' is a perception measure, not an architecture measure."
+  }
+}

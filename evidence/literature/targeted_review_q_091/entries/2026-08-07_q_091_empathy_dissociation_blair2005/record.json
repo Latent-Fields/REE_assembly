@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_091",
+  "entry_id": "2026-08-07_q_091_empathy_dissociation_blair2005",
+  "timestamp_utc": "2026-08-07T23:41:03Z",
+  "claim_ids_tested": ["Q-091"],
+  "source": {
+    "title": "Responding to the emotions of others: dissociating forms of empathy through the study of typical and psychiatric populations",
+    "authors": ["R. J. R. Blair"],
+    "year": 2005,
+    "venue": "Consciousness and Cognition",
+    "doi": "10.1016/j.concog.2005.06.004"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.72,
+  "confidence_rationale": "Canonical, widely-replicated clinical dissociation providing the strongest real-world existence proof that concern-relevant social competence and affective empathy come apart: in psychopathy, cognitive empathy (Theory of Mind) and motor empathy are intact while a SPECIFIC form of emotional empathy is impaired. This is precisely the configuration Q-091 fears in an artificial system -- fluent, structurally competent social output over a missing affective-relevance component. Source quality is high (NIMH review, heavily cited, mechanistically grounded). Confidence held below 0.8 because the dissociation Blair documents is between cognitive-ToM and affective empathy, not specifically between LINGUISTIC FLUENCY and affective empathy; the psychopathy case is an analogy for the masking risk, not a direct measurement of a fluent language system masking absent empathy.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Blair explicitly argues empathy is NOT a unitary system but a loose collection of partially dissociable neurocognitive systems -- so a single behavioural readout (e.g. concern-shaped language) cannot certify that all component systems are present and functioning.",
+    "In psychopathy the impaired component is a specific form of EMOTIONAL empathy while cognitive and motor empathy are intact -- i.e. the population that most convincingly presents concern-shaped social behaviour is exactly the one missing the affective-relevance architecture, the masking hazard made concrete."
+  ],
+  "tags": ["q-091", "empathy_dissociation", "psychopathy", "cognitive_vs_affective_empathy", "masking"],
+  "mapping": {
+    "source_claim_statement": "Empathy is not a unitary function but three partially dissociable systems -- cognitive empathy (Theory of Mind), motor empathy, and emotional empathy. Individuals with psychopathy show clear difficulties with a specific form of emotional empathy but no indications of impairment with cognitive and motor empathy; individuals with autism show the converse profile.",
+    "ree_translation": "The dissociability of empathy sub-systems in humans is the biological warrant for Q-091's worry: because a socially-competent-looking output (intact cognitive/ToM empathy) can be produced while a distinct affective component is absent (psychopathy), an evaluator who reads competent social output as proof of the whole empathy stack will be systematically fooled. In REE terms, the ARC-123/MECH-405 separation means a language channel can be fluent and concern-shaped while the other-model + affective-relevance architecture (the thing caring commitment actually requires) is immature or absent -- so evaluation must probe the affective/other-directed component directly, not infer it from social-linguistic fluency.",
+    "mapping_caveat": "This is a human clinical dissociation between cognitive-ToM empathy and affective empathy, NOT a demonstration that linguistic fluency specifically masks affective empathy, and not a demonstration in any artificial system. Psychopaths' intact 'cognitive empathy' is not the same construct as a language model's fluency, and the transfer to a not-yet-built REE V4 substrate is an analogy about architecture, not a measured effect.",
+    "source_context": "Selective review of the human empathy literature drawing on typical development and two psychiatric populations (autism, psychopathy); cognitive-neuroscience framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.45,
+    "notes": "High source quality (canonical review, robust clinical dissociation). Mapping fidelity moderate: it evidences dissociability of empathy components generally, which underwrites the masking premise, but the specific axis Q-091 names (linguistic fluency vs affective empathy) is one step removed from the cognitive-ToM vs emotional-empathy axis Blair measures. Transfer risk elevated by human-clinical -> artificial-substrate extrapolation."
+  }
+}
