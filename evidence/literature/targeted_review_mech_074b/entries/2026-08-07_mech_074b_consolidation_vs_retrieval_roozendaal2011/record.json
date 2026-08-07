@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_074b",
+  "entry_id": "2026-08-07_mech_074b_consolidation_vs_retrieval_roozendaal2011",
+  "timestamp_utc": "2026-08-07T22:53:17Z",
+  "claim_ids_tested": ["MECH-074b"],
+  "source": {
+    "title": "Memory modulation.",
+    "authors": ["Benno Roozendaal", "James L. McGaugh"],
+    "year": 2011,
+    "venue": "Behavioral Neuroscience",
+    "doi": "10.1037/a0026187",
+    "url": "https://doi.org/10.1037/a0026187"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.62,
+  "confidence_rationale": "Authoritative synthesis of the amygdala memory-modulation literature. It SUPPORTS the parent MECH-074 / MECH-074a encoding-side story (noradrenergic BLA gates consolidation of significant experiences) but WEAKENS MECH-074b's specific retrieval-time locus: the best-established amygdala memory effect is on CONSOLIDATION, and at RETRIEVAL the amygdala/glucocorticoid effect is documented as IMPAIRING, not a positive per-trace enhancement. Confidence 0.62 reflects high source quality against a real but locus-specific (not wholesale) contradiction.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dominant, best-replicated amygdala memory effect is on CONSOLIDATION of newly acquired memories, not on retrieval -- so MECH-074b's placement of the content-selective weight at retrieval time is not the mainstream mechanistic locus.",
+    "At retrieval, adrenal stress hormones acting via the basolateral amygdala IMPAIR memory retrieval (and working memory). A retrieval-time BLA signal that is net-impairing is the opposite sign to MECH-074b's w_i = 1 + alpha*arousal_tag_i (>= 1) positive retrieval weight."
+  ],
+  "tags": ["mech-074b", "amygdala", "consolidation", "retrieval-impairment", "noradrenergic", "disconfirming"],
+  "mapping": {
+    "source_claim_statement": "Emotionally significant experiences activate hormonal and brain systems that regulate the CONSOLIDATION of newly acquired memories, integrated through noradrenergic activation of the basolateral amygdala. In contrast to their enhancing effects on consolidation, adrenal stress hormones IMPAIR memory retrieval and working memory; such retrieval-impairing effects also require noradrenergic activation of the basolateral amygdala.",
+    "ree_translation": "MECH-074b asserts the BLA analogue applies a POSITIVE, content-selective weight at RETRIEVAL time (w_i >= 1) that grows with trace age. Roozendaal & McGaugh locate the amygdala's beneficial, selective memory action at CONSOLIDATION, and characterise its RETRIEVAL-time action (via glucocorticoids) as impairing. This partially contradicts MECH-074b's locus and sign: the content-selective gating it needs is real but is an ENCODING/consolidation phenomenon (MECH-074a's arousal_tag write), while a positive retrieval-time weight is not the established amygdala function.",
+    "mapping_caveat": "The retrieval impairment they document is specifically the acute glucocorticoid/stress-at-retrieval effect, which is not identical to the standing per-trace weight MECH-074b posits; the review does not test a slow, trace-age-growing retrieval bias, so it constrains rather than outright refutes. It weakens the 'positive weight at retrieval' locus without excluding a distinct, non-stress retrieval-bias mechanism.",
+    "source_context": "Review of animal and human memory-modulation research; pharmacology, lesion, and behavioural evidence on BLA noradrenergic/glucocorticoid regulation of consolidation, retrieval, extinction, and working memory."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "Very high source quality (canonical review by the field's originators). Mapping fidelity moderate: it clearly bears on the encode-vs-retrieve locus but the retrieval-impairment it cites is the acute-stress case, not a direct test of a slow content-selective retrieval weight. Transfer risk moderate: heavily rodent-pharmacology grounded, mapped to REE hippocampal readout."
+  }
+}

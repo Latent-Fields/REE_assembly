@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_074b",
+  "entry_id": "2026-08-07_mech_074b_arousal_biased_competition_mather2011",
+  "timestamp_utc": "2026-08-07T22:53:17Z",
+  "claim_ids_tested": ["MECH-074b"],
+  "source": {
+    "title": "Arousal-Biased Competition in Perception and Memory.",
+    "authors": ["Mara Mather", "Matthew R. Sutherland"],
+    "year": 2011,
+    "venue": "Perspectives on Psychological Science",
+    "doi": "10.1177/1745691611400234",
+    "url": "https://doi.org/10.1177/1745691611400234"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Provides the mechanistic theory that arousal is a PRIORITY-WEIGHTED (not uniform) modulator -- it enhances high-priority representations and impairs low-priority ones -- which is precisely the vector-not-scalar constraint at the heart of MECH-074b. Confidence moderate because the theory operates primarily at perception/encoding and does not specifically assert a retrieval-time weight applied to stored hippocampal traces, and because it is a theoretical synthesis rather than a single decisive experiment.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Arousal-biased competition sets priority largely at perception/encoding and via consolidation; the theory does not require, and does not by itself supply, a retrieval-time re-weighting of already-stored traces, so it under-determines MECH-074b's specific retrieval locus.",
+    "The theory predicts arousal will sometimes IMPAIR memory (for low-priority items); if REE's substrate applied the weight only additively (w_i = 1 + alpha*tag_i, always >= 1) it could reproduce relative enhancement of central items but not the absolute suppression of peripheral items that ABC and the lesion data both show."
+  ],
+  "tags": ["mech-074b", "arousal-biased-competition", "priority-weighting", "content-selective", "not-scalar"],
+  "mapping": {
+    "source_claim_statement": "Arousal during an event increases the bias in favour of high-priority stimuli in both perception and long-term memory; arousal-biased competition theory predicts when arousal will enhance memory for events and when it will impair it, resolving contradictions in the emotional-memory literature.",
+    "ree_translation": "MECH-074b's core design decision -- a per-trace weight vector rather than a scalar gain -- is the substrate realisation of arousal-biased competition: high-priority (central/threat-associated) traces get amplified weight, low-priority (peripheral) traces are relatively suppressed. ABC is the theoretical warrant that the biologically correct modulation is priority-weighted, so a scalar 'retrieval gain on all traces' is the wrong functional form.",
+    "mapping_caveat": "ABC is agentic about WHEN priority is set (bottom-up salience + top-down goals, mostly at perception/encoding) but agnostic-to-contrary about MECH-074b's claim that the weight is applied at RETRIEVAL and grows with trace age. The theory also predicts genuine impairment of low-priority items, which a purely additive w_i >= 1 rule cannot produce -- a substrate-form caveat, not just a locus caveat.",
+    "source_context": "Theoretical review / model synthesis across human perception and memory; integrates behavioural, neuroimaging and pharmacological findings."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.72,
+    "transfer_risk": 0.35,
+    "notes": "Influential, highly-cited theoretical synthesis (high citation impact, but a review not an experiment -> source_quality 0.75). Mapping fidelity high on the vector-not-scalar point, discounted by the retrieval-locus gap and the additive-vs-competitive form issue. Transfer risk moderate: human attention/memory theory -> REE hippocampal readout."
+  }
+}

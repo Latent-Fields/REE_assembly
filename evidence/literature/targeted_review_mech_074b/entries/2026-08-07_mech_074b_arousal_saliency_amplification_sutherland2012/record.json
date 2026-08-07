@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_074b",
+  "entry_id": "2026-08-07_mech_074b_arousal_saliency_amplification_sutherland2012",
+  "timestamp_utc": "2026-08-07T22:53:17Z",
+  "claim_ids_tested": ["MECH-074b"],
+  "source": {
+    "title": "Negative arousal amplifies the effects of saliency in short-term memory.",
+    "authors": ["Matthew R. Sutherland", "Mara Mather"],
+    "year": 2012,
+    "venue": "Emotion",
+    "doi": "10.1037/a0027860",
+    "url": "https://doi.org/10.1037/a0027860"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.6,
+  "confidence_rationale": "A clean randomized-controlled behavioural demonstration that arousal is a selective (saliency-amplifying) modulator, not a uniform one: high-salience recall rises while low-salience recall does not change. This directly evidences the non-scalar functional form MECH-074b needs. Confidence held at 0.6 because the paradigm is short-term memory for letter arrays under pre-exposed arousing sounds -- attention/STM, not hippocampal long-term retrieval -- so transfer risk to MECH-074b's retrieval-weight-on-stored-traces mechanism is substantial.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The selectivity is demonstrated in SHORT-TERM memory / attentional report of letter arrays, not in long-term declarative retrieval; it does not show a weight applied to consolidated hippocampal traces, and cannot speak to MECH-074b's trace-age growth claim.",
+    "Low-salience recall was unchanged (not impaired) on arousing trials -- so this experiment shows selective enhancement but not the absolute peripheral suppression seen in lesion data, leaving the additive-vs-competitive form question open."
+  ],
+  "tags": ["mech-074b", "arousal", "saliency", "selective-enhancement", "not-scalar", "behavioral"],
+  "mapping": {
+    "source_claim_statement": "Negative emotional arousal increases the selectivity of attention: on arousing trials recall of high-salience letters increased while recall of low-salience letters did not, providing evidence for arousal-biased competition (arousal enhances representations that have priority).",
+    "ree_translation": "This is the empirical leg under MECH-074b's vector-not-scalar constraint: arousal amplifies the already-privileged (high-salience/central) items specifically, rather than lifting all items equally. It operationalises the per-trace weight w_i as a saliency-dependent multiplier -- high tag -> larger weight, low tag -> baseline -- exactly the shape MECH-074b posits.",
+    "mapping_caveat": "Modality and timescale mismatch: this is visual short-term memory for letter arrays under fear-conditioned auditory arousal, measured seconds after presentation. MECH-074b concerns long-term hippocampal retrieval with a weight that grows over minutes-to-a-week. The direction of selectivity transfers; the retrieval-time and long-timescale claims do not.",
+    "source_context": "Human behavioural RCT; participants heard negative-arousing vs neutral sounds before briefly viewing letter arrays with salience manipulated via visual contrast; partial-report recall."
+  },
+  "confidence_components": {
+    "source_quality": 0.72,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.5,
+    "notes": "Solid controlled experiment (RCT design) -> source_quality 0.72. Mapping fidelity moderate: correct direction of selectivity, wrong memory system/timescale. Transfer risk high (0.5): STM/attention -> hippocampal LTM retrieval is a real leap."
+  }
+}
