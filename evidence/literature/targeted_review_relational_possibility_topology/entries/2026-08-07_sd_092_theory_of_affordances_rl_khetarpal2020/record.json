@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_possibility_topology",
+  "entry_id": "2026-08-07_sd_092_theory_of_affordances_rl_khetarpal2020",
+  "timestamp_utc": "2026-08-07T20:48:50Z",
+  "claim_ids_tested": ["SD-092"],
+  "source": {
+    "title": "What can I do here? A Theory of Affordances in Reinforcement Learning",
+    "authors": ["Khimya Khetarpal", "Zafarali Ahmed", "Gheorghe Comanici", "David Abel", "Doina Precup"],
+    "year": 2020,
+    "venue": "Proceedings of the 37th International Conference on Machine Learning (ICML), PMLR 119",
+    "doi": "",
+    "url": "https://proceedings.mlr.press/v119/khetarpal20a.html"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.62,
+  "confidence_rationale": "A formal, peer-reviewed (ICML) treatment that gives exactly one of the intake's proposed relation types -- 'enables' -- a precise mathematical definition (an affordance restricts the state-action space to where a given intent is achievable) and proves planning-loss bounds from using that restricted structure instead of the full model. Confidence held at 0.62 because it formalizes only ONE relation type in isolation, is a pure ML-theory paper with no neural/biological mapping, and does not address multi-relation-type co-representation or discovery/revision through action.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The paper defines and analyzes a single affordance/intent relation at a time; it does not construct or analyze a graph with multiple co-present, qualitatively distinct relation types (requires, enables, conflicts-with, etc.) over the same state-action space, so it cannot speak to whether such a multi-relation structure is tractable or useful the way a single-relation affordance model is shown to be.",
+    "Affordances in this paper are given or learned from a fixed data distribution and then used to restrict planning; the paper does not model an agent discovering a NEW affordance/relation mid-episode as a side effect of pursuing an unrelated goal, which is the 'discovery through action' mechanism central to the intake's Section 8 formulation."
+  ],
+  "tags": ["sd-092", "relational_possibility_topology", "affordance", "reinforcement_learning", "state_abstraction", "options"],
+  "mapping": {
+    "source_claim_statement": "An affordance is formalized as an 'intent' (a target state distribution an action should achieve) paired with the subset of states where that intent is satisfied to a given precision. Restricting planning to affordance-permitted state-action pairs (an affordance-based partial model) provably bounds the value/planning loss relative to the full MDP model, both when affordances are given and when they are learned from data, and empirically improves generalization and learning stability.",
+    "ree_translation": "Gives formal RL grounding to one of the specific relation types the intake's candidate topology proposes ('enables': a possibility affords/enables an action's success). SD-092's explicit parent/subgoal relation is one instance of a labeled relation over the possibility space; this paper demonstrates that a DIFFERENT labeled relation type (enables/affords) over the same kind of space is independently well-defined, learnable, and provably useful for planning -- supporting the intake's premise that parent/subgoal need not be the only formalizable relation type worth representing explicitly.",
+    "mapping_caveat": "Gathered to evaluate the NOT-YET-REGISTERED general topology candidate. This paper is evidence that at least one additional relation type beyond parent/subgoal (enables) is independently formalizable and useful in an RL setting resembling REE's E3/action-selection substrate -- it does not itself argue for or against a UNIFIED multi-relation-type graph, and it is pure theory/simulation (no biological or REE-architecture validation), so treat this as supporting the FORMAL FEASIBILITY of typed relations beyond parent/subgoal, not as evidence the hippocampal substrate specifically implements them this way.",
+    "source_context": "Theoretical RL paper (MDP formalism, PAC-style bounds) with gridworld/simple-domain empirical illustrations; no animal or human data, so there is no biological transfer step to evaluate -- the only transfer risk is ML-formalism-to-REE-substrate, which is moderate given REE's E3/action-selection machinery already operates in a comparable MDP-like framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.45,
+    "notes": "source_quality good (top-tier ML venue, provides formal proofs plus empirical illustration, though a single-paper theoretical contribution rather than a replicated body of work). mapping_fidelity moderate: strong on 'a second labeled relation type is formalizable and useful', weak on the multi-relation-graph and in-action-discovery claims. transfer_risk moderate-high: architecturally REE's substrate is not the tabular/function-approximation MDP setting this paper analyzes, so direct implementation transfer is unproven."
+  }
+}

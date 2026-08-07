@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_possibility_topology",
+  "entry_id": "2026-08-07_sd_004_tolman_eichenbaum_relational_generalization_whittington2020",
+  "timestamp_utc": "2026-08-07T20:48:50Z",
+  "claim_ids_tested": ["SD-004"],
+  "source": {
+    "title": "The Tolman-Eichenbaum Machine: Unifying Space and Relational Memory through Generalization in the Hippocampal Formation",
+    "authors": ["James C R Whittington", "Timothy H Muller", "Shirley Mark", "Guifen Chen", "Caswell Barry", "Neil Burgess", "Timothy E J Behrens"],
+    "year": 2020,
+    "venue": "Cell",
+    "doi": "10.1016/j.cell.2020.10.024",
+    "url": "https://doi.org/10.1016/j.cell.2020.10.024"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.78,
+  "confidence_rationale": "High source quality (Cell, extensively cited, confirmed against real place/grid cell remapping data) and strong conceptual mapping fidelity to SD-004's claim that hippocampal action-object structure is a general-purpose relational backbone, not a spatial-only one. Confidence held below 0.85 because TEM's 'relations' are graph edges over a single learned transition structure (spatial/associative adjacency), not yet a labeled multi-relation-type topology (requires/enables/conflicts-with/etc.) -- it evidences the SUBSTRATE CAPACITY, not the specific relation-typing this thought proposes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "TEM's entorhinal 'structural knowledge' basis is learned as a single abstract relational code per task structure; the paper does not model or require an agent to hold multiple qualitatively distinct relation TYPES (e.g. requires vs. conflicts-with) simultaneously over the same possibility set -- so it under-determines whether one general topology or several parallel task-specific ones is the more faithful reading of the biology.",
+    "Structural transfer is demonstrated for tasks the model has already been trained to represent (e.g. re-mapped spatial environments, non-spatial transitive-inference-like tasks); the paper does not test online discovery/revision of the relational structure DURING goal pursuit, which is the discovery-through-action claim this thought's Section 8 formulation depends on."
+  ],
+  "tags": ["sd-004", "relational_possibility_topology", "cognitive_map", "hippocampus", "entorhinal_cortex", "generalization"],
+  "mapping": {
+    "source_claim_statement": "Medial entorhinal cells form a basis describing structural (relational) knowledge, independent of sensory content; hippocampal cells bind this structural basis to sensory/task-specific content. After training, this single mechanism reproduces grid, place, border, and object-vector cell properties AND generalizes to non-spatial relational tasks, with structural knowledge preserved (not randomly reset) across hippocampal remapping between environments.",
+    "ree_translation": "Directly supports SD-004's premise that the hippocampal map backbone is a general relational/structural code, not a spatial-navigation-specific one -- i.e. the same kind of substrate the thought intake proposes could hold a general topology of possibilities (parent/subgoal, requires, enables, etc.) rather than only goal-subgoal paths. TEM's preserved structural knowledge across remapping is the closest existing empirical analog to 'context imposes a relevance field over a larger stored topology' (Section 4 of the intake): the structure persists and is re-used, only its sensory binding changes with context.",
+    "mapping_caveat": "This paper was gathered specifically to evaluate the NOT-YET-REGISTERED candidate claim (a general relational-possibility topology with multiple explicit relation types, discovered/revised through action). TEM supports the underlying biological/computational PLAUSIBILITY of a general-purpose relational substrate beyond parent/subgoal, but it models one homogeneous relational structure per task rather than a typed multi-relation graph (requires/enables/conflicts-with/etc.), and it does not test structure-revision during active goal pursuit. So it is evidence FOR the substrate SD-004 already claims, and evidence that such a substrate COULD in principle generalize the way the candidate claim needs -- but it does not itself establish the typed-relation or in-action-revision parts of the candidate claim, which remain the open, testable residue.",
+    "source_context": "Computational model (deep learning + Hopfield-network hippocampal readout) validated against rodent electrophysiology (place cells, grid cells, remapping) and human/rodent behavioral non-spatial relational-inference tasks; cross-species/task generalization claims are the paper's central contribution, not a side note."
+  },
+  "confidence_components": {
+    "source_quality": 0.9,
+    "mapping_fidelity": 0.68,
+    "transfer_risk": 0.35,
+    "notes": "source_quality high (flagship venue, since-replicated architecture, direct comparison to real unit recordings). mapping_fidelity moderate: strong on 'hippocampus generalizes relational structure beyond space' (SD-004's core claim), weaker on the specific typed-multi-relation and in-action-discovery extensions this intake is evaluating. transfer_risk moderate: model-to-biology transfer is already partially validated in the paper itself (real unit data), but model-to-REE-architecture transfer (V3 substrate) is untested."
+  }
+}

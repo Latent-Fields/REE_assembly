@@ -50641,7 +50641,9 @@
     (c) replay_origin=True audit flag, carried into the proposal-candidate metadata, plus the
     accelerated-dissolution deadline retiring an uncorroborated chunk direct to DISSOLVED, with any
     real waking execution resetting the counter. Refusals are counted, not silently dropped.
-    Pinned by contracts C3/C4/C5. NO EXPERIMENTAL EVIDENCE YET; v3_pending stays True.
+    Pinned by contracts C3/C4/C5. FIRST EXPERIMENTAL EVIDENCE landed 2026-08-07 (V3-EXQ-873a,
+    supports) -- see evidence_quality_note. v3_pending stays True (single-run supports does not
+    alone clear a v3_pending gate).
   title: "policy_composition.sleep_replay_value_conditioned_chunking_consolidation -- narrow exception path that permits ARC-071 chunk formation from replayed (hypothesis_tag=True) sequences during designated sleep phase, IF the replayed sequence carries a value-tag from prior real-executed episodes AND the formed chunk carries a replay_origin=True audit flag with accelerated dissolution if not corroborated by real waking execution within N episodes. Resolves ARC-071 lit-pull R6 governance escalation (Option B carve-out, picked 2026-05-11)."
   claim_type: mechanism_hypothesis
   subject: policy.composition.sleep_replay_value_conditioned_consolidation
@@ -50649,8 +50651,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
+    evidence:
+      from: "v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3#failure_autopsy_V3-EXQ-873a_2026-08-07"
+      as_of: 2026-08-07
+      verdict: "supports -- first genuine experimental evidence for this claim"
   implementation_phase: v3
   v3_pending: true
   registered_utc: "2026-05-11"
@@ -50831,6 +50837,18 @@
     aggregation conflating a stochastic precondition with a deterministic plumbing check), NOT a
     substrate ceiling or claim weakening. Route: /queue-experiment V3-EXQ-873a with a decoupled,
     fraction-based readiness gate and 6-8 seeds. v3_pending stays true pending the corrected re-run.
+
+    [2026-08-07 governance, V3-EXQ-873a, confirmed failure_autopsy_V3-EXQ-873a_2026-08-07,
+    diagnostic-purpose PASS routed through /failure-autopsy per this cycle's broadened gate]:
+    supports -- MECH-322's first genuine experimental evidence. Fixed 873's seed-veto instrument
+    defect (decoupled stochastic readiness from deterministic mint-correctness, n=8 seeds). 7/8
+    seeds cleared readiness; all 7 minted correctly; all fail-closed checks (wake refusal,
+    low-value refusal, master-switch-off) held across 8 seeds x 3 arms. Note: all 7 minted
+    replay-origin chunks dissolved without real-execution corroboration by run's end -- expected
+    safety-valve behavior, not a defect, but leaves "can a replay-origin chunk survive
+    corroboration" as a distinct open question. Routed to a new low-priority /queue-experiment
+    entry for that question (not a lettered 873b -- 873a's own question is answered). No status
+    change (v3_pending stays true; single-run supports does not alone clear the gate).
   notes: >
     The carve-out is the smallest possible relaxation of
     MECH-094 strict gating that closes the R6 realism gap. The
@@ -57015,12 +57033,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o"
-      as_of: 2026-06-12
-      verdict: ?/?
+      from: "v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3#failure_autopsy_V3-EXQ-866b_2026-08-07"
+      as_of: 2026-08-07
+      verdict: "non_contributory -- diagnostic substrate-regression re-check, not a claim test (see evidence_quality_note)"
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_substrate: false  # 2026-06-17 governance: CLEARED by V3-EXQ-603q PASS (harm-pathway stabilization amend landed -> base harm landscape discriminative -> fair test); was gated 2026-06-09 on the Stage-H nav/survival leg + MECH-303/304 wiring
@@ -57092,6 +57110,16 @@
     (FALSE, explicitly NOT load-bearing per the redesign). evidence_direction supports
     (exp_conf 0.775). pending_retest_after_substrate CLEARED. Promotion still HELD by the v3_pending
     gate + single genuine run (n=1); a confirmatory run would move it toward provisional.]
+
+    [2026-08-07 governance, V3-EXQ-866b, confirmed failure_autopsy_V3-EXQ-866b_2026-08-07,
+    diagnostic-purpose PASS routed through /failure-autopsy per this cycle's broadened gate]:
+    re-confirms 603q's substrate reproduction (base_mean_survival=33.9 vs reference 37.725, ratio
+    0.90, clears the 0.5x floor). non_contributory BY DESIGN -- byte-identical config re-run,
+    scoring_excluded="diagnostic_probe" -- does not change confidence or
+    pending_retest_after_substrate. A substrate-hash provenance discrepancy between seed-cell-start
+    and manifest-write time (~2.5h apart) was found and treated as a recording-harness gap, not
+    grounds to distrust this run's own internally-consistent per-seed numbers; chipped as an
+    infra-tooling fix. No status change.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 - id: MECH-358
@@ -57102,12 +57130,12 @@
   status: candidate
   live_status:
     reading: candidate/v3_pending
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: "failure_autopsy_batch9_2026-06-12#V3-EXQ-603o"
-      as_of: 2026-06-12
-      verdict: ?/?
+      from: "v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3#failure_autopsy_V3-EXQ-866b_2026-08-07"
+      as_of: 2026-08-07
+      verdict: "non_contributory -- diagnostic substrate-regression re-check, not a claim test (see evidence_quality_note)"
   implementation_phase: v3
   v3_pending: true
   pending_retest_after_substrate: false  # 2026-06-17 governance: CLEARED by V3-EXQ-603q PASS (harm-pathway stabilization amend landed -> base harm landscape discriminative -> fair test); was gated 2026-06-09 on the Stage-H nav/survival leg + MECH-303/304 wiring
@@ -57165,6 +57193,16 @@
     preconditions met, criteria_non_degenerate all true (binary G_H supplementary-only). per-claim
     evidence_direction supports (exp_conf 0.775). pending_retest_after_substrate CLEARED; promotion
     HELD by v3_pending + n=1 genuine run.]
+
+    [2026-08-07 governance, V3-EXQ-866b, confirmed failure_autopsy_V3-EXQ-866b_2026-08-07,
+    diagnostic-purpose PASS routed through /failure-autopsy per this cycle's broadened gate]:
+    re-confirms 603q's substrate reproduction (base_mean_survival=33.9 vs reference 37.725, ratio
+    0.90, clears the 0.5x floor). non_contributory BY DESIGN -- byte-identical config re-run,
+    scoring_excluded="diagnostic_probe" -- does not change confidence or
+    pending_retest_after_substrate. A substrate-hash provenance discrepancy between seed-cell-start
+    and manifest-write time (~2.5h apart) was found and treated as a recording-harness gap, not
+    grounds to distrust this run's own internally-consistent per-seed numbers; chipped as an
+    infra-tooling fix. No status change. See sibling SD-059's identical evidence_quality_note.
   location: docs/architecture/sd_059_escape_affordance_bridge.md
 
 # Registered 2026-06-09 -- candidate-differentiated affective gradients (V4/V5 cluster).
@@ -71221,10 +71259,20 @@
     (2/16 seeds) acquisition clear-rate pattern, independently corroborated on overlapping seeds by
     MECH-472's V3-EXQ-882a (same seed-43-solves signature) and characterized further by the
     diagnostic V3-EXQ-890 (bimodal split confirmed, early-divergence, hazard-layout-difficulty ruled
-    out) -- V3-EXQ-890 is ROUTED FOR /failure-autopsy (2026-08-07 user-instructed broadening: all
-    experiment_purpose=diagnostic results require adjudication regardless of adjudication flag) and
-    NOT yet applied to this claim; do not treat its early-divergence finding as adjudicated until
-    that autopsy confirms. No status change; PROMOTES/DEMOTES NOTHING this cycle.
+    out).
+    V3-EXQ-890 AUTOPSY CONFIRMED 2026-08-07 (failure_autopsy_V3-EXQ-890_2026-08-07, routed via
+    /failure-autopsy per this cycle's broadened diagnostic gate): CHARACTERIZES, does not
+    adjudicate, the mech471_competence_acquisition_reliability question. H-hazard-layout-difficulty
+    -variance ELIMINATED (random-walk control indistinguishable between cleared/not-cleared
+    groups). H-exploration-init-variance CONFIRMED necessary-not-sufficient (93% of the eventual
+    gap already present by episode 20, replicates under two split definitions). H-bias-head-ofc-
+    interaction remains open (exploratory only, no pre-registered threshold). Does not test
+    MECH-471's own local-update-interference falsifier directly; evidence_direction stays
+    non_contributory for claim-scoring purposes. Routed to /claim-synthesis to examine the
+    MECH-457<->MECH-471 mechanism cross-reference already flagged by Q-089 (substrate_queue.json
+    has no entry that would unblock MECH-471 directly, and MECH-457's own bottleneck is
+    blocked_pending_discrimination -- an /implement-substrate build would be premature ahead of
+    that synthesis). No status change; PROMOTES/DEMOTES NOTHING this cycle.
   implementation_phase: v3
   version_relevance: v3
   registered: "2026-07-22"

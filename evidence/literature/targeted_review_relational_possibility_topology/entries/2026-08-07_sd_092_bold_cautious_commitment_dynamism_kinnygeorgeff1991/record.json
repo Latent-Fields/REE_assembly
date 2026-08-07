@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_possibility_topology",
+  "entry_id": "2026-08-07_sd_092_bold_cautious_commitment_dynamism_kinnygeorgeff1991",
+  "timestamp_utc": "2026-08-07T20:48:50Z",
+  "claim_ids_tested": ["SD-092"],
+  "source": {
+    "title": "Commitment and Effectiveness of Situated Agents",
+    "authors": ["David N Kinny", "Michael P Georgeff"],
+    "year": 1991,
+    "venue": "Proceedings of the 12th International Joint Conference on Artificial Intelligence (IJCAI-91)",
+    "doi": "",
+    "url": "https://www.ijcai.org/Proceedings/91-1/Papers/014.pdf"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "A foundational, empirically-measured (Tileworld) result directly relevant to the intake's own falsifiability worry (Section 12): whether ordinary intention-reconsideration policies, without any general relational topology, already suffice. It is mixed rather than a clean support/weaken: it argues FOR needing richer machinery specifically under high environmental dynamism, and AGAINST needing any extra machinery under low dynamism, where a single scalar (rate of world change) already predicts agent effectiveness well. Confidence is mid-range because it is a 1991 simplified simulated-world study (Tileworld, single-level planning) with substantial transfer risk to REE's substrate, but the finding itself is a widely-replicated cornerstone of the BDI/agent literature, not a one-off result.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "In the low-dynamism regime (rate of world change gamma <= ~1 in the paper's units), a 'bold' agent that never reconsiders its committed plan achieves the same effectiveness (E close to 1) as any more elaborate reconsideration strategy -- i.e. in a large, non-trivial regime of environments, ordinary hierarchical goal-following with NO reconsideration of structure at all is already optimal, which directly weakens the case that a general relational topology is NEEDED (as opposed to merely helpful) for effective behaviour in general.",
+    "The paper's entire manipulation is a single scalar environmental parameter (rate of world change) and a single scalar agent parameter (planning-steps-before-replanning); it has no representation of relation TYPES at all (no requires/enables/conflicts-with), so it cannot be read as evidence FOR the specific typed-topology extension -- only as a baseline showing how much can be explained without positing one."
+  ],
+  "tags": ["sd-092", "relational_possibility_topology", "intention_reconsideration", "bdi", "commitment", "tileworld"],
+  "mapping": {
+    "source_claim_statement": "Using the Tileworld testbed and the PRS real-time reasoning system, the authors varied the rate of world change (gamma) and the agent's degree of commitment (how many plan steps it executes before reconsidering). A 'bold' agent (never reconsiders mid-plan) achieves near-perfect effectiveness when gamma is low, but effectiveness drops sharply and then asymptotes toward zero as gamma increases past a threshold; a 'cautious' agent (reconsiders after every step) pays a reconsideration cost but tracks changing conditions better as dynamism rises. Which strategy wins is a simple, near-monotonic function of environmental dynamism.",
+    "ree_translation": "Speaks directly to whether SD-092's existing parent/subgoal + reconsideration machinery is already sufficient without a general relational topology. In this classic result, an agent with NO stored relational structure beyond its current plan/goal -- just a policy for when to reconsider -- captures most of the qualitative behaviour the intake's Section 1 describes (sticking with a goal vs. abandoning/revising it) as a function of how often the world invalidates the current commitment. This is the strongest 'ordinary machinery may already be enough' counter-argument found in this pull, and it is exactly the failure mode the intake's own Section 12 asked to be checked for ('falsified without merely implementing a symbolic graph planner').",
+    "mapping_caveat": "Gathered specifically to stress-test the NOT-YET-REGISTERED candidate claim from the sceptical side. This paper does not model a stored topology of retained possibilities at all -- reconsideration in Tileworld means re-planning from the current state, not consulting a persistent structure of previously-noticed subgoals/superordinate-goals/orthogonal options. So it cannot show the general topology is unnecessary in REE's fuller sense (which explicitly includes RETAINING low-relevance possibilities across time, e.g. MECH-292's ghost-goal bank, which Tileworld-style bold/cautious agents have no analog of). What it DOES show is that a large fraction of the 'when should I revise my commitment' behaviour is explained by a cheap scalar policy tied to environmental dynamism, which is a real burden of proof on any claim that a full multi-relation-type topology is needed for that specific sub-problem, as opposed to for the separate retention-and-later-recall sub-problem MECH-292/293 already address.",
+    "source_context": "Simulated-world (Tileworld) AI planning experiment, single-level PRS reasoning agent, purely symbolic/no learning; strong internal validity (systematic parameter sweeps, reproduced in later replications by Schut & Wooldridge and others) but a simplified, discrete, single-hole-at-a-time task far removed from REE's continuous embodied substrate."
+  },
+  "confidence_components": {
+    "source_quality": 0.7,
+    "mapping_fidelity": 0.45,
+    "transfer_risk": 0.55,
+    "notes": "source_quality good for its era and purpose (systematic, quantitative, foundational and widely cited/replicated in the BDI-agent literature). mapping_fidelity moderate-low: directly relevant to the reconsideration/commitment sub-question, not to the retention-of-inactive-possibilities or typed-multi-relation sub-questions. transfer_risk elevated: 1991 symbolic single-level Tileworld agent to REE's continuous, learned, multi-mechanism V3 substrate is a substantial domain jump, deliberately accepted here because the paper's VALUE is as a sceptical baseline, not as a mechanism to import directly."
+  }
+}

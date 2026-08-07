@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_869a_mech267_mode_conditioning_content_persistence_retest
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

@@ -1,27 +1,14 @@
 # Pending Experiment Review
 
-Generated: `2026-08-07T19:48:28Z`  
-Last review: `2026-08-07T19:28:08Z`  
-Pending: **4** item(s) -- 4 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication; 3 diagnostic run(s) with no confirmed autopsy
+Generated: `2026-08-07T20:55:25Z`  
+Last review: `2026-08-07T20:54:17Z`  
+Pending: **1** item(s) -- 1 PASS, 0 FAIL, 0 runner-only (ERROR/UNKNOWN/smoke), 0 unclaimed manifest(s), 0 ERROR manifest(s); 0 diagnostic self-route(s) flagged for adjudication
 
 ## PASS (verify & close)
 
 | Run ID | Timestamp | Claims |
 |--------|-----------|--------|
-| `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` | 2026-08-03T19:24 | MECH-358, SD-059 |
-| `v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3` | 2026-08-04T06:23 | MECH-322 |
-| `v3_exq_890_mech471_acquisition_reliability_probe_20260806T041928Z_v3` | 2026-08-06T04:19 | MECH-471 |
 | `v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3` | 2026-08-07T18:56 | MECH-286 |
-
-## Diagnostic -- autopsy required (no confirmed adjudication)
-
-Every `experiment_purpose: "diagnostic"` result (PASS or FAIL) needs a CONFIRMED `/failure-autopsy` (alias `/diagnostic-autopsy`) target before governance marks it reviewed or applies anything from it -- not only the ones the indexer flagged untrustworthy above. A diagnostic's self-routed reading is a hypothesis about what it found, not a verdict; only the autopsy's four-layer diagnosis confirms it. This list is broader than 'Diagnostic adjudication required' above: it fires on `experiment_purpose` alone, regardless of `adjudication` flag or whether the result visibly routes a decision.
-
-| Run ID | Status | Self-route label |
-|--------|--------|-------------------|
-| `v3_exq_866b_603q_substrate_regression_check_20260803T192405Z_v3` | PASS | substrate_reproduces_603q_reference |
-| `v3_exq_873a_mech322_sleep_replay_carveout_fraction_gate_20260804T062309Z_v3` | PASS | replay_carveout_fires_and_fails_closed |
-| `v3_exq_890_mech471_acquisition_reliability_probe_20260806T041928Z_v3` | PASS | early_divergence_supports_h1_framing |
 
 ---
 

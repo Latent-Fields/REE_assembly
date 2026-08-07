@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_791a_channel_routing_cross_class_magnitude_replication
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

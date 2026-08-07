@@ -1,6 +1,6 @@
 # Dormant / Chronic High-Conflict Watchlist
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 No-deadline visibility report. Lists claims with `conflict_ratio >= 0.55` and an unresolved decision, but invisible to the `mandatory_decision_checkpoint` (which requires `conflict_ratio >= 0.8` AND fresh recent batches). Deliberately carries no deadline -- see `evidence_backlog.v1.json` -> `dormant_high_conflict` for the source record and the full rationale in `build_experiment_indexes.py`.
 
@@ -44,7 +44,6 @@ Sorted worst-conflict-first.
 | `Q-074` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `Q-082` | `dormant_low_activity` | 0.667 | `candidate` | 0 |
 | `SD-078` | `chronic_under_threshold` | 0.667 | `candidate_substrate_landed` | 4 |
-| `SD-004` | `chronic_under_threshold` | 0.583 | `implemented` | 15 |
 | `ARC-042` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |
 | `MECH-075` | `chronic_under_threshold` | 0.571 | `candidate` | 5 |
 | `MECH-128` | `chronic_under_threshold` | 0.571 | `candidate` | 3 |

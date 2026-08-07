@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_relational_possibility_topology",
+  "entry_id": "2026-08-07_mech_427_meta_learned_subgoal_discovery_veeriah2021",
+  "timestamp_utc": "2026-08-07T20:48:50Z",
+  "claim_ids_tested": ["MECH-427"],
+  "source": {
+    "title": "Discovery of Options via Meta-Learned Subgoals",
+    "authors": ["Vivek Veeriah", "Tom Zahavy", "Matteo Hessel", "Zhongwen Xu", "Junhyuk Oh", "Iurii Kemaev", "Hado van Hasselt", "David Silver", "Satinder Singh"],
+    "year": 2021,
+    "venue": "Advances in Neural Information Processing Systems (NeurIPS) 34",
+    "doi": "",
+    "url": "https://arxiv.org/abs/2102.06741"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.58,
+  "confidence_rationale": "A peer-reviewed (NeurIPS) demonstration that useful subgoals/options can be DISCOVERED via a manager-worker cross-level credit signal rather than hand-specified, and that discovered subgoals transfer to genuinely new tasks -- directly relevant to whether MECH-427's parent/subgoal credit machinery could plausibly extend to discovering NEW subgoal-like structure rather than only crediting a pre-given hierarchy. Confidence capped in the high-0.5s because the manager-worker split is a two-level hierarchy, not a general multi-relation-type topology, and discovery here is a slow, across-episode meta-gradient process, not the fast within-episode 'noticed something, made it a subgoal' event the intake describes.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The manager-worker architecture is a fixed two-level hierarchy (task-dependent policy over task-independent options); it does not represent or discover lateral/orthogonal relations (the intake's 'retain for later, unrelated to current pursuit' case) or superordinate-goal relations -- only subgoal-like temporal abstractions consumed by a single level above them.",
+    "Option discovery proceeds via meta-gradients accumulated across many training tasks/episodes, not as an online event triggered by something noticed mid-trajectory during a single episode of goal pursuit -- so it evidences that subgoal discovery from experience is possible in principle, not that it can happen at the time-scale and triggering-by-surprise the intake's Section 1 scenario describes."
+  ],
+  "tags": ["mech-427", "relational_possibility_topology", "hierarchical_reinforcement_learning", "options", "subgoal_discovery", "meta_learning"],
+  "mapping": {
+    "source_claim_statement": "A meta-gradient method trains a manager policy over a mix of primitive actions and task-independent discovered options; each option's subgoal (its reward and termination functions) is itself parameterized and optimized end-to-end via meta-gradients to maximize the option's usefulness across many training tasks. The resulting discovered options transfer usefully to held-out, novel tasks, letting a freshly initialized manager learn faster than with primitive actions alone.",
+    "ree_translation": "Evidences that useful subgoal structure can be DISCOVERED from experience rather than only pre-specified, and that cross-level credit (the manager's reward signal shaping what the worker's subgoal should be) is a workable mechanism for doing so -- directly relevant to MECH-427/428's parent-subgoal credit machinery, and to whether that machinery could, in principle, extend to originating new subgoal candidates rather than only crediting an already-declared hierarchy. This is the ML-side analog of the intake's 'downward discovery' (a new state turns out to be a necessary subgoal): here it is discovered by an optimization process across tasks rather than an in-episode surprise, but the credit-assignment logic (does this subgoal make the manager better off) is structurally similar to what SD-092/MECH-427 already do for a given hierarchy.",
+    "mapping_caveat": "Gathered to evaluate the NOT-YET-REGISTERED general topology candidate, specifically the discovery-through-action half of it. This paper is genuine evidence that subgoal DISCOVERY (not just subgoal CREDIT once given) is tractable and transfers -- but it discovers a flat set of reusable two-level options, not a multi-relation-typed graph with upward/downward/lateral distinctions, and it discovers them by meta-learning across a task distribution rather than the fast within-episode 'noticing' event central to the intake's core scenario. Read this as supporting the general PRINCIPLE that subgoal structure can be learned rather than only declared, not as a mechanism match for online in-episode topology revision.",
+    "source_context": "Deep RL, gridworld and DeepMind Lab (3D navigation/interaction) benchmarks, multi-task training with held-out task generalization tests; domain transfer from these benchmark environments to REE's V3 substrate is a real but not unusual step given REE already draws on options/HRL literature elsewhere (e.g. targeted_review_action_policy_decomposition)."
+  },
+  "confidence_components": {
+    "source_quality": 0.75,
+    "mapping_fidelity": 0.5,
+    "transfer_risk": 0.4,
+    "notes": "source_quality good (NeurIPS, from a DeepMind/Silver-group lineage with established prior work on options and meta-gradients). mapping_fidelity moderate-low: supports 'subgoals can be discovered, not only credited', but does not touch multi-relation-type structure, laterality, or fast in-episode discovery. transfer_risk moderate: RL benchmark environments to REE substrate is a familiar transfer already made elsewhere in the evidence base for related claims."
+  }
+}

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_485m_sd033b_devaluation_decoupled_head_behavioural
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

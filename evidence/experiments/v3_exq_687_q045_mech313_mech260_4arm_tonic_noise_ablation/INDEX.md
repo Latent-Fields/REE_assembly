@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_687_q045_mech313_mech260_4arm_tonic_noise_ablation
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`

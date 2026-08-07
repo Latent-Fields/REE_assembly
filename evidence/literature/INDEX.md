@@ -1,6 +1,6 @@
 # Literature Evidence Index
 
-Generated: `2026-08-07T20:06:48.375893Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 | literature_type | latest entry | total entries | links |
 |---|---|---|---|
@@ -354,6 +354,7 @@ Generated: `2026-08-07T20:06:48.375893Z`
 | `targeted_review_reafference_streams` | [`2026-03-17_three_streams_haak2018`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/record.json) | 4 | [`summary`](targeted_review_reafference_streams/entries/2026-03-17_three_streams_haak2018/summary.md) |
 | `targeted_review_receptor_subtype_layer` | [`2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/record.json) | 11 | [`summary`](targeted_review_receptor_subtype_layer/entries/2026-06-12_mech_088_xanomeline_nond2_emergent3_kaul2024/summary.md) |
 | `targeted_review_relational_harm_love_as_care` | [`2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/record.json) | 5 | [`summary`](targeted_review_relational_harm_love_as_care/entries/2026-06-12_mech_164_perception_action_empathy_preston_dewaal2002/summary.md) |
+| `targeted_review_relational_possibility_topology` | [`2026-08-07_sd_092_theory_of_affordances_rl_khetarpal2020`](targeted_review_relational_possibility_topology/entries/2026-08-07_sd_092_theory_of_affordances_rl_khetarpal2020/record.json) | 5 | [`summary`](targeted_review_relational_possibility_topology/entries/2026-08-07_sd_092_theory_of_affordances_rl_khetarpal2020/summary.md) |
 | `targeted_review_relief_completion_mechanism` | [`2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/record.json) | 8 | [`summary`](targeted_review_relief_completion_mechanism/entries/2026-05-03_relief_completion_vhipp_pl_safety_circuit_meyer2019/summary.md) |
 | `targeted_review_rem_precision_recalibration_timing` | [`2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016`](targeted_review_rem_precision_recalibration_timing/entries/2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016/record.json) | 7 | [`summary`](targeted_review_rem_precision_recalibration_timing/entries/2026-07-15_mech204_serotonin_instructive_not_permissive_beshara2016/summary.md) |
 | `targeted_review_replay_prioritization_mech_319` | [`2026-06-19_mech_443_reward_preplay_olafsdottir2015`](targeted_review_replay_prioritization_mech_319/entries/2026-06-19_mech_443_reward_preplay_olafsdottir2015/record.json) | 5 | [`summary`](targeted_review_replay_prioritization_mech_319/entries/2026-06-19_mech_443_reward_preplay_olafsdottir2015/summary.md) |

@@ -1,6 +1,6 @@
 # Experiment Index: v3_exq_165_mech143_hippocampal_value_sensitivity
 
-Generated: `2026-08-07T19:48:16.303510Z`
+Generated: `2026-08-07T20:54:15.204644Z`
 
 - Experiment profile: `experiment.md`
 - Stop criteria: `../../stop_criteria.v1.yaml`
