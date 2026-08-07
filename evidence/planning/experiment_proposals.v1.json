@@ -1658,13 +1658,17 @@
         "summary": "include scenario, interpretation, and pairwise deltas when dispatch_mode=discriminative_pair"
       },
       "seed_policy": "matched_shared_seeds",
-      "status": "proposed",
+      "status": "blocked_substrate",
       "suggested_experiment_type": "claim_probe_mech_471",
       "target_repo": "ree-v3",
       "why_now": [
         "directional_conflict_alert",
         "missing_literature_evidence"
-      ]
+      ],
+      "gating_reason": "EXP-0194 discriminative pair DECLINED at the /queue-experiment guardrail (session metaworker-chip-proposal-exp-0194, 2026-08-07). NON-DEGENERACY GUARD in MECH-471's own claims.yaml notes: the local-update interference falsifier is vacuous unless the 'unrelated' competences are DEMONSTRABLY ACQUIRED with above-floor performance and live cross-seed variance; testing interference against competences the agent never had self-routes substrate_not_ready. Confirmed autopsy failure_autopsy_V3-EXQ-890_2026-08-07 (status=confirmed) establishes the acquisition clear-rate at 2/16 seeds on the official fixed-threshold split (5/16 on the cleaner natural split), with H-exploration-init-variance CONFIRMED as necessary-not-sufficient (93 pct of the eventual group gap already present by episode 20 of 160, replicating under both split definitions) and H-hazard-layout-difficulty-variance ELIMINATED via the random-walk anchor control. A discriminative pair queued now would measure interference against competences 69-88 pct of seeds never acquire -- precisely the failure V3-EXQ-875 (precondition_unmet, SD-070 zworld_p0 defect) and its corrected successor V3-EXQ-875a (competence_implementation_gap) already hit twice, both FAIL with evidence_direction unknown. That same confirmed autopsy sets recommended_substrate_queue_entry action=none and recommended_evidence_direction=non_contributory, and routes MECH-471 to /claim-synthesis for the MECH-457<->MECH-471 mechanism cross-reference already flagged by Q-089 -- NOT to a new experiment; it deliberately left the one remaining live hypothesis H-bias-head-ofc-interaction UNQUEUED at the interactive gate as low priority. claims.yaml carries pending_retest_after_substrate=true. Mechanically, V3-EXQ-875a is also STILL IN THE QUEUE (status=claimed by ree-cloud-4 since 2026-08-03T16:50:33Z, estimated_minutes=3300), so the already-in-flight check fires independently.",
+      "gated_at_utc": "2026-08-07T20:26:49Z",
+      "gated_by_session": "metaworker-chip-proposal-exp-0194",
+      "release_condition": "Acquisition reliability must reach the point that a majority of seeds clear the survival competence floor, since MECH-471's falsifier needs demonstrably-acquired unrelated competences to interfere WITH. Concretely either (a) a substrate fix at the locus H-exploration-init-variance implicates -- the bias-head REINFORCE readout's exploration/initialization robustness -- lifting the clear-rate above a majority-of-seeds fraction basis (adjudicate on a fraction basis like V3-EXQ-882a, not a worst-of-N veto), or (b) the /claim-synthesis routing on the MECH-457<->MECH-471 cross-reference (Q-089) concludes this is the same substrate-ceiling family MECH-457 has established across 7+ autopsies, in which case the falsifier is not runnable on the current substrate at all and this proposal should move from blocked_substrate to gated. Re-offer EXP-0194 only after the 2026-08-07 governance cycle has applied the V3-EXQ-890 autopsy to claims.yaml AND one of (a)/(b) has resolved."
     },
     {
       "acceptance_checks": [
