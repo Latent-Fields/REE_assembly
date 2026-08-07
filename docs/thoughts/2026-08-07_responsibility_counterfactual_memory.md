@@ -1,4 +1,8 @@
-Status: unprocessed
+Status: processed
+
+Intake: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
+Registered: MECH-485 (threshold-gated predicted-harm/confidence pipeline), Q-090 (leg-3 admission-criterion open question)
+Deliberately NOT registered: INV-012 Leg 3 (candidate extension, owned by a concurrent digestion session as of 2026-08-07T16:25Z -- hand off, do not duplicate); retained-alternative-memory mechanism (gated on dedicated lit-pull per project_imagination_learning_constraints.md, 2026-05-10)
 
 ## The thought (user's own reasoning, session 2026-08-07, captured near-verbatim)
 
@@ -202,8 +206,270 @@ whatever mechanism (b) looks like, it needs the same bounded/audited/
 provisional-until-corroborated shape MECH-322 already demonstrates for the
 one exception REE currently allows through the MECH-094 write gate.
 
+## Addendum 2 (same session, later still): prospective use -- interrupting before harm, not just remembering after
+
+The addendum above ("two memory types") separated *committed* memory from
+*considered-but-not-committed* memory. The user's next point is about a third,
+distinct use of the same underlying machinery -- not retrospective (attributing
+responsibility after the fact) and not passive retention, but **prospective,
+in-the-moment correction**:
+
+> "When committed to a path and the predicted future brings high chance of harm
+> (or indeed success) -- or a recently branched choice space does the same --
+> this gives opportunity for fixing an error before it leads to harm or
+> rerouting a course to get to goal. It does not need to await actual harm or
+> goal to be comparing imagined futures."
+
+Reading: this names two distinct trigger conditions for the same intervention:
+
+1. **Already committed, mid-execution** -- ongoing forward prediction along the
+   currently-committed trajectory crosses a harm (or success) threshold. This is
+   a live re-evaluation of a path already locked in, not a pre-commit
+   comparison among candidates.
+2. **A newly branched choice space** -- a fresh decision point has just opened
+   (new options exist that didn't before), and the same high-predicted-harm /
+   high-predicted-success signal applies there too, independent of (1).
+
+Both cases license the same action: **correct or reroute now**, using the
+predicted (imagined) future as the trigger -- explicitly *not* gated on waiting
+for the harm or the goal to actually materialize. The comparison is between
+imagined futures, evaluated prospectively, not a comparison run only after an
+outcome is known.
+
+**"The fast interrupt may be of particular importance here" (user, flagged
+explicitly).** This points at existing, already-registered architecture rather
+than something new to invent from scratch:
+
+- **`MECH-090`** (BetaGate) -- its own notes already describe exactly this
+  shape: "Hyperdirect pathway (cortex->STN->GPi) provides fast interrupt for
+  urgent stop-change without waiting for completion." I.e. REE already has a
+  registered claim that action-selection updates need not wait for the
+  currently-committed sequence to finish -- an urgent stop-change signal can
+  break beta-gated suppression and let E3's (continuously-updating) internal
+  model state propagate to actual action selection mid-sequence. This is case
+  (1) above, nearly verbatim.
+- **`MECH-141`** (tri-loop dual-timescale arbitration) -- makes explicit that
+  this is architecturally a SEPARATE, faster pathway from ordinary evaluation,
+  not a special mode of it: a slow proactive prefrontal-caudate pathway
+  (seconds-scale, pre-sets gate bias ahead of time) plus a fast reactive
+  hyperdirect STN pathway (milliseconds-scale, fires on an unexpected/urgent
+  signal after commitment). MECH-141's own text warns that collapsing the two
+  into one arbitration signal "loses the fast-interrupt capability" -- i.e. the
+  speed is not incidental, it is the point: a slow deliberative re-evaluation
+  loop cannot substitute for this pathway, because by the time it would fire
+  the harm window may already have closed.
+- **What neither MECH-090 nor MECH-141 currently specifies is the TRIGGER
+  content**: both are about the existence and speed of the interrupt channel,
+  not about what predicted-future comparison feeds it. The user's point here is
+  that the trigger itself should be a live comparison of *imagined* forward
+  trajectories against a harm/success threshold -- which is E2/E3 forward-
+  prediction territory (`ree_core/predictors/e3_selector.py`, the same
+  machinery discussed in the "Architectural grounding" section above for
+  case (2), branch-point re-evaluation) feeding into the MECH-090/MECH-141
+  interrupt pathway for case (1), mid-sequence re-evaluation. Whether that
+  connection (predicted-harm/success magnitude -> hyperdirect interrupt
+  threshold) already exists anywhere in the current substrate, or is itself the
+  gap, was not checked this session -- flagged as a next step below rather than
+  asserted either way.
+- **Same confabulation caution as Addendum 1 applies, arguably more sharply
+  here**: if the "predicted future" feeding the fast interrupt is itself
+  poorly calibrated (a bad forward rollout, an unreliable E2 prediction), a
+  fast, hard-to-veto interrupt pathway acting on it is a *more* dangerous
+  failure mode than a slow deliberative one would be, precisely because its
+  whole design point is to act before there is time for correction. Any future
+  wiring of predicted-harm/success into MECH-090/MECH-141 would need its own
+  non-degeneracy/calibration guard, analogous to MECH-094's role for the
+  imagination/reality write gate discussed above -- not the same mechanism, but
+  the same category of caution.
+
+This addendum's relationship to Addendum 1 ("two memory types"): both are about
+imagined/uncommitted content doing real work rather than being discarded --
+Addendum 1 is about *retention* of rejected alternatives for later narrative/
+responsibility use; this addendum is about *live* use of forward-predicted
+futures to trigger a real-time interrupt. They may share representational
+substrate (E2/E3 forward rollouts) but are functionally distinct consumers.
+
+## Addendum 3 (same session, later still): what the comparison is actually against
+
+Continuing directly from Addendum 2. The user's next point specifies what the
+"imagined futures vs. harm potential" comparison implied there is actually made
+*against*:
+
+> "Implied is an ongoing comparison of imagined futures with harm potentials,
+> which may need to compare to previous harms in some way and also comparing
+> to goals, we may have some of this in the ghost goal and cue system."
+
+Reading: Addendum 2 left the trigger content unspecified -- "predicted harm/
+success magnitude" was named but not grounded in anything that produces that
+magnitude. This point supplies two candidate grounding sources, both flagged
+as *possibly already partially present* rather than asserted as complete:
+
+1. **Comparison against previous harms** -- the closest existing claim is
+   `MECH-131` (vmPFC-analog residue activation): residue (stored curvature
+   over L-space, `ARC-013`) encodes past aversive experience, and MECH-131's
+   specific requirement is that this stored history be *activated as an
+   anticipatory forward-biasing signal at trajectory-evaluation time* --
+   weighting E3 away from harm-associated trajectories *before* candidate
+   generation, not only after. Its own biological grounding (Budhani 2006
+   reversal learning; Bechara 1996 Iowa Gambling Task anticipatory SCR) is
+   precisely about the failure mode of having the harm history stored but not
+   activated into the live evaluation -- which is the gap Addendum 2 was
+   circling without naming.
+2. **Comparison against goals, via the ghost-goal / cue system** -- `MECH-292`/
+   `MECH-293` (ghost-goal bank + waking probe search) plus their substrate
+   `SD-039` (dual-trace anchor goal-snapshot payload) are, per their own
+   2026-05-19 "retrieval-cue reframe," explicitly a **content-addressed cued-
+   recall system**: z_goal/context acts as a cue, the SD-039 payload (goal
+   snapshot + wanting/arousal payload, populated from `bla_output.arousal_tag`
+   among other fields) is the stored trace, and `goal_match` is the cue-to-
+   trace match score. This is architecturally close to what an "ongoing
+   comparison" needs -- a live cue continuously matched against stored traces
+   -- though its current scope is retrieving *stale/inactive anchors* whose
+   goal-payload still matches a live goal, not evaluating *forward-predicted*
+   trajectories against a harm/success threshold. Whether the same cue-
+   matching machinery generalizes to case (1)/(2) in Addendum 2, or is a
+   parallel system that would need its own wiring, is unresolved here.
+
+Neither of these is confirmed to already do what Addendum 2 needs -- MECH-131
+is candidate/unbuilt in this form, and SD-039's own `what_would_answer` (read
+this session) records its retrieval/query level as *still open*, blocked on a
+measured non-degeneracy precondition (z_goal cue collapse across goal-epochs,
+V3-EXQ-889, 2026-08-03) that has not been resolved as of this writing. So the
+honest state is: REE has two separate, partially-built pieces (anticipatory
+harm-residue activation; goal-cued content-addressable retrieval) that
+*could* compose into what Addendum 2 is describing, not a single mechanism
+that already does it.
+
+## Addendum 4 (same session, later still): the missing third option -- when the prediction itself is uncertain
+
+> "Gosh. It also ties into the need more info systems that are not at all
+> implemented I think."
+
+Confirmed: **`MECH-482`** (epistemic_deficit: a persistent, target-bound
+accumulator for unresolved, consequential, potentially-resolvable model
+inadequacy) and **`MECH-483`** (orient/survey: a third primitive behavioural
+regime, alongside approach and avoid, that widens sampling and gathers
+information before committing, driven by MECH-482 rather than a specific cue)
+are both `candidate/v3_pending/substrate_conditional`, registered 2026-08-05
+from `docs/thoughts/2026-08-05_epistemic_deficit_and_orienting.md` -- genuinely
+not built. `Q-089` (whether this explains the cold-start competence split) sits
+on top of both, also unbuilt.
+
+Why this connects here rather than being a separate topic: Addendum 2's own
+confabulation caution left a gap -- "if the predicted future feeding the fast
+interrupt is itself poorly calibrated... a fast, hard-to-veto interrupt
+pathway acting on it is a *more* dangerous failure mode." That caution named
+the danger but not the resolution. MECH-482/MECH-483 are the resolution
+*shape*, even though unbuilt: they describe exactly the missing third option
+between "trust the prediction, interrupt/reroute now" (Addendum 2/3, high
+confidence) and "trust the prediction, do nothing" (ignore a genuinely
+uncertain read) -- namely, when predicted harm/success is *uncertain* rather
+than confidently high, the licensed response is neither of those, but a
+distinct orient/survey regime: reduce commitment, widen sampling, gather
+resolving information, THEN re-evaluate. This turns the earlier three
+sub-threads into a single triage structure by predicted-harm confidence:
+
+- **high-confidence high predicted harm/success** -> MECH-090/MECH-141/MECH-138
+  fast-interrupt or cancel-window pathway (Addendum 2)
+- **low-confidence / high epistemic_deficit** -> MECH-483 orient/survey, gated
+  by MECH-482 (this addendum) -- gather information before committing to
+  either interrupt or continuation
+- **resolved / low predicted harm** -> continue the committed path unchanged
+
+All three legs of that triage are either unbuilt (MECH-482/483) or have an
+unspecified trigger-content connection to forward prediction (MECH-090/141,
+per Addendum 2's own open next-step). So the honest state, updated: this isn't
+one missing connection, it's a whole missing decision layer sitting on top of
+E2/E3 forward prediction, with REE currently holding scattered, individually
+unbuilt pieces (fast interrupt, cancel-window, epistemic-deficit accumulator,
+orient/survey regime, harm-residue activation, goal-cue retrieval) that would
+need to compose into it.
+
+## Addendum 5 (same session, later still): confirmed synthesis -- one signal, threshold-gated into three consumers
+
+The user confirmed the synthesis question my prior assessment (of this file,
+same session) raised: that the fast-interrupt pathway (Addendum 2) and the
+retained-alternative memory (Addendum 1) may be **the same predicted-harm
+signal read at two different regimes**, not two unrelated systems that happen
+to share substrate.
+
+> "And yes, the two predicted harm of your point 1 is very relevant."
+
+Stated explicitly, combining with Addendum 4's triage: this is **one
+continuous signal** -- a predicted-harm/success magnitude plus a confidence/
+epistemic_deficit term, both produced from the same E2/E3 forward-prediction
+substrate discussed throughout this file -- with (at least) **three distinct
+threshold-gated consumers**, not three separate mechanisms that happen to
+overlap:
+
+1. **High confidence, magnitude above the fast-interrupt threshold** ->
+   MECH-090/MECH-141/MECH-138 fire in real time: interrupt or reroute the
+   committed path, or veto before execution lock-in. (Addendum 2)
+2. **Confidence too low to trust the magnitude at all (high epistemic_deficit)**
+   -> MECH-482/MECH-483 fire instead: orient/survey, gather resolving
+   information, defer the interrupt-vs-continue decision until confidence
+   rises. (Addendum 4)
+3. **Confidence adequate, magnitude below the interrupt threshold (or the
+   interrupt pathway didn't fire in time / wasn't wired up / was a genuinely
+   close call)** -> this is not a null outcome. It is precisely the
+   near-miss case the ORIGINAL thought (points 1-6, Addendum 1) needs
+   retained: an alternative that was seriously enough weighted to be worth
+   remembering, evaluating counterfactually after the fact, and using for
+   responsibility attribution and learning -- even though it didn't cross the
+   bar for real-time action.
+
+This reframes the file's own apparent two-thread structure (prospective
+correction vs. retrospective responsibility, which Addendum 2 described as
+"functionally distinct consumers" of shared substrate) into a single
+threshold-gated pipeline instead: the SAME predicted-harm evaluation feeds
+real-time correction at the top of the distribution, information-seeking at
+the low-confidence end, and retrospective memory/responsibility at whatever
+doesn't get consumed by the other two. Under this reading, Addendum 1's
+"nothing retains rejected E3 candidates past the current tick" finding is not
+just a gap in memory -- it is specifically the gap in leg 3 of this pipeline:
+the predicted-harm signal is computed (E3 `select()` scores every candidate)
+but whatever doesn't trigger legs 1 or 2 is simply discarded rather than
+routed to retention. **This is likely the single most important structural
+claim in the whole file for a Stage 2 intake to state as its central
+proposal**, rather than as one of several loosely related findings.
+
+One open question this raises rather than resolves: whether "worth retaining"
+(leg 3's admission criterion) is the same magnitude range as "not quite worth
+interrupting," or a separately-tuned threshold -- i.e. whether legs 1-3
+partition the same scale at two cut-points, or leg 3 has its own independent
+relevance criterion (e.g. gated by goal-match per Addendum 3's ghost-goal/cue
+reading, rather than by harm-magnitude proximity to the interrupt threshold
+alone). Not decided here.
+
+**User's follow-up: this question may need to be resolved empirically, not
+stipulated architecturally.** I.e. rather than a design choice made once at
+build time, whether legs 1-3 share one cut-scale or leg 3 has an independent
+criterion is itself something a behavioral test could distinguish -- the two
+readings make different predictions. A same-scale reading predicts retained
+alternatives cluster just below whatever the interrupt threshold turns out to
+be; an independent-criterion reading predicts retained alternatives are better
+explained by goal-relevance/match than by proximity to the interrupt cutoff,
+and would show cases of low-harm-magnitude-but-high-goal-match alternatives
+retained (or the reverse: high-magnitude-but-goal-irrelevant alternatives NOT
+retained) that the same-scale reading would not produce. This is exactly the
+kind of question the `/thought-digestion` `what_would_answer` step is for
+(not attempted here, per the user's earlier instruction to keep this session
+to direct capture) -- worth stating explicitly in the Stage 2 intake as a
+question with its own falsification condition, rather than a parameter to be
+picked by judgment.
+
 ## Next steps (not done in this session)
 
+- Per Addendum 5 (user-confirmed synthesis): the Stage 2 intake's central
+  proposal should likely be framed as the single threshold-gated pipeline --
+  one predicted-harm/confidence signal off E2/E3 forward prediction, three
+  consumers by regime (fast-interrupt / orient-survey / retain-for-
+  responsibility) -- rather than as a set of loosely related findings. The
+  open leg-3-admission-criterion question at the end of Addendum 5 (shared
+  cut-point vs. independent relevance criterion) should be posed explicitly
+  as a FALSIFIABLE question with its own `what_would_answer` (per the user's
+  follow-up: this is empirically resolvable, not a parameter to stipulate by
+  judgment) rather than something the claim registration decides by fiat.
 - Structured Stage 2 intake (`evidence/planning/thought_intake_2026-08-07_
   responsibility_counterfactual_memory.md`) if/when this gets picked up for
   real design work -- novelty table against `INV-012`/`SD-033e`/`Q-028`/
@@ -223,3 +489,17 @@ one exception REE currently allows through the MECH-094 write gate.
 - Whoever picks this up should re-verify the architectural grounding above
   against current `ree-v3` state before relying on it -- it reflects a
   single research pass on 2026-08-07, not a full audit.
+- Per Addendum 2: check whether current REE substrate ever wires a
+  predicted-harm/success magnitude from E2/E3 forward rollouts into the
+  `MECH-090`/`MECH-141` hyperdirect (STN->GPi) fast-interrupt pathway, or
+  whether that connection is itself the gap. Neither claim currently names a
+  trigger source; both currently describe an urgent/unexpected-signal
+  interrupt, not a continuously-compared-imagined-future one.
+- Per Addendum 4: also pull in `MECH-138` (cancel-window-open flag, dFMC/
+  pre-SMA to premotor veto pathway, vetoes *before* execution lock-in) as a
+  third relevant timescale alongside MECH-090/MECH-141 -- not yet cross-
+  referenced in Addendum 2/4's fast-interrupt discussion. And when this
+  reaches Stage 2, cross-reference `docs/thoughts/2026-08-05_epistemic_deficit
+  _and_orienting.md` / `MECH-482`/`MECH-483`/`Q-089` directly rather than only
+  from this file, since the triage-structure synthesis in Addendum 4 is new
+  content not present in either source on its own.

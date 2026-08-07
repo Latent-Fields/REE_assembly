@@ -6878,6 +6878,14 @@
     "title": "Sensitive-period plasticity narrowing follows social-coupling consolidation: consolidation of the initial coupling pattern is obligate (occurs regardless of coupling quality, adaptive or maladaptive) and is followed by a plasticity-reduction window that closes around whichever pattern existed at consolidation, rather than continuing to update on subsequent coupling quality.",
     "type": "mechanism_hypothesis"
   },
+  "MECH-485": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "believed",
+    "status": "candidate",
+    "subject": "commitment.predicted_harm_confidence_threshold_gated_triage",
+    "title": "A single predicted-harm/success magnitude with an associated confidence (epistemic_deficit) term, computed from E2/E3 forward rollouts, is threshold-gated into three distinct consumers rather than producing one uniform response: real-time interrupt/reroute of a committed trajectory or a newly branched choice (via the MECH-090/MECH-141/MECH-138 hyperdirect and cancel-window pathways) when confidence is high and magnitude crosses the interrupt threshold; information-seeking orient/survey (MECH-482/MECH-483) when confidence is too low to trust the magnitude; and retention of the alternative for later counterfactual evaluation and responsibility attribution when magnitude is sub-threshold but non-trivial.",
+    "type": "mechanism_hypothesis"
+  },
   "Q-001": {
     "assembly_state": "mature",
     "epistemic_stance": "asked",
@@ -7673,6 +7681,14 @@
     "title": "Does epistemic-deficit-driven information-seeking (MECH-482 accumulator + MECH-483 orient/survey regime) explain the observed cold-start competence split -- i.e. do seeds that acquire transferable competence differ from seeds that do not in how early/strongly they enter orient/survey mode and resolve target-bound uncertainty, as opposed to the split arising from environmental difficulty, initialisation, premature deaths, or curriculum timing alone?",
     "type": "open_question",
     "what_would_answer": "NON-DEGENERACY PRECONDITION: requires seeds to show non-degenerate variance\nin BOTH the competence outcome (some acquire transferable competence, some\ndo not) AND a measurable information-seeking trajectory statistic\n(informative-transition timing, orient-mode entry/exit, uncertainty-reduction\nrate) -- if the latter is floor-pinned or ceiling-saturated across all seeds\nthe run self-routes substrate_not_ready, not a verdict. CONFIRMING signature:\nacross many seeds, successful seeds measurably encounter informative\ntransitions earlier, enter orient/survey before premature policy commitment,\nand show faster target-bound uncertainty reduction than unsuccessful seeds,\nand this difference predicts the eventual competence split better than\nenvironmental-difficulty/initialisation controls alone. FALSIFYING\nsignature: successful and unsuccessful seeds show no distinguishable\ndifference in information-seeking trajectories, or the split is fully\naccounted for by environmental difficulty / initialisation / premature\ndeath / curriculum timing with no residual explained by epistemic-deficit\ndynamics.\n"
+  },
+  "Q-090": {
+    "assembly_state": "awaiting_substrate",
+    "epistemic_stance": "asked",
+    "status": "candidate",
+    "subject": "commitment.retained_alternative_admission_criterion",
+    "title": "Does the admission criterion for retaining a predicted-but-not-acted-on harm/success alternative (MECH-485 leg 3) share the same cut-scale as the real-time interrupt threshold (MECH-090/141/138), just at a lower cut-point, or does it have an independent relevance criterion such as goal-match (per the MECH-292/293 cue-system reading) that is dissociable from proximity to the interrupt threshold?",
+    "type": "open_question"
   },
   "RA-001": {
     "assembly_state": "remaining",

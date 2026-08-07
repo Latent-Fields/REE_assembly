@@ -73506,3 +73506,120 @@
     measured (i.e. if a flat representation with within-level credit alone
     already shows the predicted lift, the second attractor and cross-level
     channel are unneeded architecture).
+
+- id: MECH-485
+  title: "A single predicted-harm/success magnitude with an associated confidence (epistemic_deficit) term, computed from E2/E3 forward rollouts, is threshold-gated into three distinct consumers rather than producing one uniform response: real-time interrupt/reroute of a committed trajectory or a newly branched choice (via the MECH-090/MECH-141/MECH-138 hyperdirect and cancel-window pathways) when confidence is high and magnitude crosses the interrupt threshold; information-seeking orient/survey (MECH-482/MECH-483) when confidence is too low to trust the magnitude; and retention of the alternative for later counterfactual evaluation and responsibility attribution when magnitude is sub-threshold but non-trivial."
+  claim_type: mechanism_hypothesis
+  subject: commitment.predicted_harm_confidence_threshold_gated_triage
+  polarity: asserts
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-07'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-08-07'
+  depends_on:
+    - INV-012   # responsibility-through-commitment; candidate Leg 3 extension point, not yet added (owned by a concurrent session as of registration)
+    - MECH-090  # BetaGate hyperdirect fast interrupt -- "without waiting for completion"
+    - MECH-141  # tri-loop dual-timescale arbitration -- slow proactive vs fast reactive legs
+    - MECH-138  # cancel-window-open flag -- third timescale, veto before execution lock-in
+    - MECH-482  # epistemic_deficit accumulator -- gates entry to the orient/survey leg
+    - MECH-483  # orient/survey regime -- the low-confidence consumer
+    - MECH-131  # vmPFC residue activation -- candidate grounding for "compare to previous harms"
+    - MECH-292  # ghost-goal bank -- candidate grounding for "compare to goals"
+    - MECH-293  # awake ghost-goal probe search
+    - MECH-439  # E3 selection-authority conversion ceiling -- shared non-degeneracy precondition (no differentiated candidates, nothing for the magnitude to be computed over)
+  location: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
+  source:
+    - docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md
+  notes: >
+    Registered 2026-08-07 from a same-day, five-addenda raw thought
+    (docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md),
+    developed across the session and confirmed by the user as the intended
+    synthesis (Addendum 5): "the two predicted harm of your point 1 is very
+    relevant" -- confirming that the fast-interrupt pathway and the
+    retained-alternative memory gap (Addendum 1) are the SAME predicted-harm
+    signal read at two different regimes, not two unrelated mechanisms that
+    merely share substrate. A third regime (orient/survey, Addendum 4) was
+    added for the case where confidence in the prediction itself is too low
+    to act on either of the other two.
+
+    Distinctions from each dependency, so this is not read as duplicating
+    any single one: MECH-090/141/138 describe the existence and relative
+    speed of interrupt/veto channels but do not themselves specify a
+    predicted-harm trigger source -- that connection is this claim's own
+    open next-step, not yet verified against current substrate either way.
+    MECH-482/483 describe the low-confidence consumer but say nothing about
+    the high-confidence interrupt or retention legs. MECH-131 and
+    MECH-292/293/SD-039 are the two candidate grounding sources for what the
+    comparison is against (past harm; live goals) but neither is confirmed
+    to already feed a real-time interrupt decision -- MECH-131 is candidate/
+    unbuilt in this form, and SD-039's own retrieval/query level is
+    measured-open (V3-EXQ-889, 2026-08-03 non-degeneracy finding, per that
+    claim's own what_would_answer).
+
+    LOAD-BEARING UNREGISTERED DEPENDENCY: leg 3 (retain-for-responsibility)
+    requires a mechanism that retains rejected/uncommitted E3 candidates
+    beyond the current tick, which does not exist in any form today
+    (confirmed by this session's own architectural-grounding research pass:
+    e3_selector.select() discards every non-winning candidate; SD-033e/
+    MECH-264 reduces the best alternative to a transient overwritten
+    scalar). This mechanism is deliberately NOT registered as its own claim
+    this pass, because an earlier session's memory
+    (project_imagination_learning_constraints.md, 2026-05-10) already staged
+    an adjacent candidate registration for this territory and explicitly
+    gated it "do NOT register without dedicated lit-pull" -- that gate is
+    respected here rather than overridden. Whoever eventually registers that
+    mechanism should wire it into this claim's depends_on.
+
+    DO NOT build any part of this in V3 ahead of: (a) INV-012 Leg 0 clearing
+    (MECH-439 conversion-ceiling currently exhausted -- no differentiated
+    E3 candidates to compute a magnitude over); (b) the leg-3 retention
+    mechanism being registered and built; (c) Q-090 (below) being resolved,
+    since it bears on whether leg 3 needs its own admission criterion or can
+    reuse the interrupt threshold. This is architectural synthesis from a
+    single session's reasoning pass, not yet independently verified against
+    ree-v3 substrate state beyond the specific claims cited above.
+  evidence: []
+
+- id: Q-090
+  title: "Does the admission criterion for retaining a predicted-but-not-acted-on harm/success alternative (MECH-485 leg 3) share the same cut-scale as the real-time interrupt threshold (MECH-090/141/138), just at a lower cut-point, or does it have an independent relevance criterion such as goal-match (per the MECH-292/293 cue-system reading) that is dissociable from proximity to the interrupt threshold?"
+  claim_type: open_question
+  subject: commitment.retained_alternative_admission_criterion
+  polarity: asks
+  status: candidate
+  live_status:
+    reading: candidate/v3_pending/substrate_conditional
+    as_of: '2026-08-07'
+    needs_review: false
+  epistemic_category: substrate_conditional
+  implementation_phase: v3
+  version_relevance: v3_v4
+  registered_utc: '2026-08-07'
+  depends_on:
+    - MECH-485  # the threshold-gated pipeline this question's leg 3 belongs to
+    - MECH-292  # goal-match candidate criterion
+    - MECH-293
+  location: evidence/planning/thought_intake_2026-08-07_responsibility_counterfactual_memory.md
+  source:
+    - docs/thoughts/2026-08-07_responsibility_counterfactual_memory.md
+  notes: >
+    Registered 2026-08-07. Raised by the user explicitly as an empirically
+    resolvable question rather than a parameter to pick by design judgment
+    (Addendum 5 follow-up, same-day session): "the design decision may need
+    to be tested empirically I think." Dissociable predictions, sketched in
+    the raw thought's Addendum 5 (not yet formalized as a house-style
+    what_would_answer -- left for a future /thought-digestion pass):
+    a SAME-SCALE reading predicts retained alternatives cluster just below
+    whatever the interrupt threshold turns out to be; an INDEPENDENT-
+    CRITERION reading predicts retention tracks goal-match instead, and
+    would produce dissociation cases the same-scale reading would not --
+    e.g. a low-harm-magnitude-but-high-goal-match alternative retained, or
+    a high-magnitude-but-goal-irrelevant alternative NOT retained. Both
+    readings currently require substrate that does not exist (MECH-485's
+    own unregistered leg-3 dependency), so this is not testable as
+    written -- substrate_conditional pending that build.
+  evidence: []
