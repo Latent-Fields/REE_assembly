@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_089",
+  "entry_id": "2026-08-07_q_089_information_seeking_curiosity_gottlieb2013",
+  "timestamp_utc": "2026-08-07T23:16:23Z",
+  "claim_ids_tested": ["Q-089"],
+  "source": {
+    "title": "Information-seeking, curiosity, and attention: computational and neural mechanisms",
+    "authors": ["Jacqueline Gottlieb", "Pierre-Yves Oudeyer", "Manuel Lopes", "Adrien Baranes"],
+    "year": 2013,
+    "venue": "Trends in Cognitive Sciences",
+    "doi": "10.1016/j.tics.2013.09.001",
+    "url": "https://doi.org/10.1016/j.tics.2013.09.001"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "supports",
+  "confidence": 0.55,
+  "confidence_rationale": "This review is the closest theoretical match to Q-089's proposed mechanism: it frames curiosity as an intrinsic epistemic drive to seek information for its own sake -- explicitly to reduce uncertainty / close an information gap -- and synthesises computational (learning-progress / information-gain) and neural accounts across humans, animals, and artificial learning agents. That cross-agent framing (including robotic/developmental learners) lowers transfer risk relative to the pure human studies and directly motivates REE's MECH-482 accumulator + MECH-483 orient regime. But it is a framework review, not an empirical test of a seed-competence split, so it supports the mechanism's coherence and generality, not the specific causal claim. 0.55.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The review documents that intrinsically-motivated information seeking exists and organises development, but also that several distinct computational drivers (novelty, surprise, learning-progress, information-gain) can produce it -- so 'epistemic deficit' is under-determined and a REE seed's split could be driven by a different intrinsic signal than the one Q-089 names.",
+    "It is explicit that curiosity-driven exploration can be maladaptive or mis-targeted (seeking learnable-but-useless information), so early strong information seeking does not guarantee eventual transferable competence -- weakening the assumed monotonic seek-early -> succeed link."
+  ],
+  "tags": ["q-089", "curiosity", "information_seeking", "epistemic_value", "intrinsic_motivation", "learning_progress"],
+  "mapping": {
+    "source_claim_statement": "Curiosity is an epistemic motivational mechanism that drives an organism to explore for the primary sake of gaining information (rather than in service of an external goal), plausibly arising from an intrinsic desire to reduce uncertainty; computational models (e.g. learning-progress and information-gain accounts) and neural evidence converge to show that such information seeking is an isolable drive that self-organises learning and development.",
+    "ree_translation": "This is the theoretical parent of REE's mechanism: MECH-482's epistemic-deficit accumulator is an 'information-gap / uncertainty-reduction' signal, and MECH-483's orient/survey regime is the behavioural expression of curiosity-driven sampling. The review's synthesis that this drive is (i) intrinsic, (ii) isolable from extrinsic reward, and (iii) operative in artificial learning agents supports Q-089's premise that an epistemic-deficit information-seeking dynamic is a legitimate causal candidate for how a learner escapes a cold-start floor.",
+    "mapping_caveat": "A review establishing that epistemic information-seeking is real and can organise learning is not evidence that variation in it drives THIS competence split, nor that it out-explains initialisation/difficulty/premature-death/curriculum. The review also shows the intrinsic drive is multiply realisable (novelty vs surprise vs learning-progress vs information-gain), so mapping REE's specific accumulator onto 'curiosity' is a genus->species inference, not an identity.",
+    "source_context": "Cross-domain review spanning human/primate active sampling and eye movements, animal behaviour, developmental psychology, and computational/robotic intrinsically-motivated learning agents."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.65,
+    "transfer_risk": 0.4,
+    "notes": "Highly cited TICS review; authoritative synthesis. Mapping fidelity the highest of the supporting set because it directly articulates the epistemic-deficit/information-gap drive in learning agents. Transfer risk lower (0.4) than the human-only studies because the framework explicitly includes artificial/developmental learners. Still a framework, not a test, so capped at 0.55."
+  }
+}

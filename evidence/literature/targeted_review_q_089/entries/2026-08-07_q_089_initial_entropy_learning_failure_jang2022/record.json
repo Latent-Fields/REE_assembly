@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_089",
+  "entry_id": "2026-08-07_q_089_initial_entropy_learning_failure_jang2022",
+  "timestamp_utc": "2026-08-07T23:16:23Z",
+  "claim_ids_tested": ["Q-089"],
+  "source": {
+    "title": "Entropy-Aware Model Initialization for Effective Exploration in Deep Reinforcement Learning",
+    "authors": ["Sooyoung Jang", "Hyung-Il Kim"],
+    "year": 2022,
+    "venue": "Sensors (Basel)",
+    "doi": "10.3390/s22155845",
+    "url": "https://doi.org/10.3390/s22155845"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "mixed",
+  "confidence": 0.6,
+  "confidence_rationale": "This is the single most machine-class-relevant and most double-edged source for Q-089. On the SUPPORTING side it empirically demonstrates the phenomenon Q-089 is trying to explain: across 50 differently-initialised models on 8 Atari tasks, some seeds fall into a persistent learning-FAILURE regime while others acquire competence, and the split is governed by EARLY-STAGE exploration dynamics -- exactly the shape of the observed REE cold-start competence split. On the WEAKENING side it attributes the driver to INITIAL POLICY ENTROPY set by random weight initialisation, NOT to an epistemic-deficit information-seeking mechanism -- i.e. it operationalises and confirms one of Q-089's named disconfirming alternatives (initialisation). Direction genuinely mixed. Confidence 0.6 because it is a controlled RL experiment in a near-REE machine class with quantified failure counts, making its confound demonstration load-bearing.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Across 50 inits x 8 Atari games the number of learning failures under conventional initialisation was large and highly task-dependent (e.g. 35/50 Pong, 29/50 Enduro, 0/50 Boxing), and was cut sharply by manipulating INITIAL ENTROPY alone (e.g. Pong 35->10, Freeway 25->6) -- showing the competence split can be produced and largely removed by an initialisation knob with no information-seeking mechanism invoked.",
+    "The paper states low initial entropy 'leads to learning failures by inhibiting exploration' because the agent repeats a specific action with high probability -- a purely undirected-exploration-collapse account of the split that does not require any target-bound uncertainty-resolution dynamic."
+  ],
+  "tags": ["q-089", "initial_entropy", "exploration_collapse", "learning_failure", "initialisation_confound", "deep_rl"],
+  "mapping": {
+    "source_claim_statement": "On discrete-action tasks, (1) low initial policy entropy significantly increases the probability of learning failure, (2) the distribution of initial entropy across tasks is biased toward low (exploration-inhibiting) values, and (3) initial entropy varies with both initial weights and task and is hard to control; providing a model with high initial entropy (entropy-aware initialisation) sharply reduces learning failures and improves performance, stability and learning speed. Across 50 initialisations on 8 Atari games, learning-failure counts fell (e.g. Freeway 25->6, Pong 35->10, Qbert 9->0) under entropy-aware initialisation.",
+    "ree_translation": "This is a direct machine-class instance of a cold-start competence split among seeds: identical-architecture agents differing only in random initialisation either escape or fail to escape a competence floor, and which they do is set in the EARLY learning stage. It supports that REE's observed split is a real and expected RL phenomenon. But the demonstrated CAUSE is initial-entropy-driven undirected exploration collapse -- REE's 'initialisation' confound -- not an epistemic-deficit accumulator resolving target-bound uncertainty. It therefore supports the split's existence while weakening the specific MECH-482/483 attribution.",
+    "mapping_caveat": "The mechanism here is UNDIRECTED exploration (policy entropy), which Q-089 explicitly contrasts with DIRECTED, target-bound uncertainty resolution -- so this is evidence for a rival explanation, not a null. It does not rule out that an epistemic-deficit signal ALSO contributes in REE; but it shows a competing, simpler initialisation account can reproduce the split's headline signature, which is exactly the control Q-089 must beat. Atari discrete-action tasks are close to but not identical with the REE substrate.",
+    "source_context": "Deep reinforcement learning; 50 random initialisations x 8 Atari (discrete-action) games; measurement of initial policy entropy and learning-failure rates; an entropy-aware initialisation intervention."
+  },
+  "confidence_components": {
+    "source_quality": 0.6,
+    "mapping_fidelity": 0.7,
+    "transfer_risk": 0.35,
+    "notes": "Sensors (mid-tier venue) but a genuine controlled RL experiment with quantified per-task failure counts. Mapping fidelity high (0.7) -- it directly instantiates a seed-competence split and directly operationalises the initialisation confound. Transfer risk low (0.35) -- deep RL, discrete action, closest machine class to REE of the whole set. Confidence 0.6, weighted by source_quality for an empirical claim but lifted by the high mapping fidelity of the confound demonstration."
+  }
+}

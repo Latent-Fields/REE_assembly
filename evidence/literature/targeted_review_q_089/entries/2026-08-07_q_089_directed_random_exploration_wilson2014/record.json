@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_089",
+  "entry_id": "2026-08-07_q_089_directed_random_exploration_wilson2014",
+  "timestamp_utc": "2026-08-07T23:16:23Z",
+  "claim_ids_tested": ["Q-089"],
+  "source": {
+    "title": "Humans use directed and random exploration to solve the explore-exploit dilemma",
+    "authors": ["Robert C. Wilson", "Andra Geana", "John M. White", "Elliot A. Ludvig", "Jonathan D. Cohen"],
+    "year": 2014,
+    "venue": "Journal of Experimental Psychology: General",
+    "doi": "10.1037/a0038199",
+    "url": "https://doi.org/10.1037/a0038199"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Canonical demonstration that information-seeking (directed) exploration is a distinct, measurable, controllable strategy separable from decision-noise (random) exploration -- the exact construct distinction REE instantiates as an epistemic-deficit accumulator (directed) driving an orient/survey regime. Supports Q-089's premise that a directed information-seeking signal is a real, quantifiable degree of freedom that could differ across agents. It is a within-subject horizon manipulation, not a between-seed individual-difference-predicts-competence study, so it does not test the Q-089 causal split. Held at 0.5: strong construct validity, moderate mapping fidelity, high human->RL transfer risk.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "Directed exploration is induced here by manipulating the decision horizon within each subject; it does not show that STABLE individual/seed differences in directed exploration exist or predict a learning-outcome split.",
+    "The task provides explicit reward-distribution information and a defined horizon; a sparse REE cold-start provides neither, so the directed-exploration signal that is cleanly measurable here may be unmeasurable or degenerate across REE seeds."
+  ],
+  "tags": ["q-089", "directed_exploration", "random_exploration", "information_seeking", "horizon_task"],
+  "mapping": {
+    "source_claim_statement": "By modelling behaviour in a Horizon task across short and long horizons, participants were shown to use two separable strategies: a directed strategy that explicitly biases choices toward information seeking, and a random strategy in which decision noise produces exploration by chance. Both information seeking and choice variability increased with the longer horizon, showing each can be controlled and put to use in the service of exploration.",
+    "ree_translation": "The 'directed' (information-seeking) vs 'random' (noise) decomposition is the same partition REE draws between an epistemic-deficit-driven orient/survey regime (directed) and undirected policy stochasticity (random). Wilson et al. establish that the directed component is real, dissociable, and quantifiable -- validating that REE's proposed accumulator-driven information seeking is a coherent, isolable target rather than a re-labelling of exploration noise, and hence that seeds could in principle differ along it.",
+    "mapping_caveat": "The horizon manipulation shows directed exploration is a controllable strategy WITHIN subjects; it does not evidence stable between-agent variation in it, nor that such variation predicts who acquires transferable competence. Q-089's disconfirming alternatives (initialisation, difficulty, premature death, curriculum) are not addressed at all here.",
+    "source_context": "Human adults; Horizon task (bandit choices with a manipulated future horizon of 1 vs 6 choices); computational modelling of information seeking and decision noise."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "JEP:General, the field-defining Horizon-task paper; strong modelling. Mapping fidelity moderate -- validates the directed/random construct REE uses but tests a within-subject manipulation, not the between-seed competence split. Transfer risk high (signalled-horizon human bandit task -> sparse RL cold-start)."
+  }
+}

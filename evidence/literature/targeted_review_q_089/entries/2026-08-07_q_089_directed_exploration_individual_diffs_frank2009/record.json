@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_089",
+  "entry_id": "2026-08-07_q_089_directed_exploration_individual_diffs_frank2009",
+  "timestamp_utc": "2026-08-07T23:16:23Z",
+  "claim_ids_tested": ["Q-089"],
+  "source": {
+    "title": "Prefrontal and striatal dopaminergic genes predict individual differences in exploration and exploitation",
+    "authors": ["Michael J. Frank", "Bradley B. Doll", "Jen Oas-Terpstra", "Francisco Moreno"],
+    "year": 2009,
+    "venue": "Nature Neuroscience",
+    "doi": "10.1038/nn.2342",
+    "url": "https://doi.org/10.1038/nn.2342"
+  },
+  "evidence_class": "behavioral_human",
+  "evidence_direction": "supports",
+  "confidence": 0.5,
+  "confidence_rationale": "Strong, high-quality demonstration that a distinct 'directed exploration' mechanism -- choosing in proportion to Bayesian uncertainty about whether an unknown option beats the status quo -- exists, varies across individuals, and is controlled by a neural/genetic system (prefrontal COMT) dissociable from the striatal system that governs reward exploitation. This directly supports the PLAUSIBILITY half of Q-089: that agents can differ systematically in an uncertainty-resolution/information-seeking parameter that is separable from raw learning ability. It does NOT test the specific Q-089 claim (that such a difference predicts a cold-start competence split among REE seeds better than initialisation/difficulty/premature-death controls). Confidence held at 0.5 because mapping fidelity is moderate and transfer risk (human genetic individual differences -> RL random-seed differences) is high; it evidences the mechanism's reality, not the causal split.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The dissociation is between individual humans with different genotypes, not between random seeds of one learner; a seed's 'directed-exploration parameter' has no genetic analogue and may be pinned or degenerate.",
+    "Directed exploration here is measured on a temporal decision task with explicitly signalled uncertainty; in a sparse REE environment the uncertainty signal driving orient/survey may be absent or unmeasurable, so the parameter that varies in humans may not even be observable across seeds."
+  ],
+  "tags": ["q-089", "directed_exploration", "individual_differences", "prefrontal_uncertainty", "explore_exploit"],
+  "mapping": {
+    "source_claim_statement": "A gene primarily controlling prefrontal dopamine function (COMT) is associated with a particular type of 'directed exploration', in which exploratory decisions are made in proportion to Bayesian uncertainty about whether other choices might produce outcomes better than the status quo; striatal genes (DARPP-32, DRD2) instead govern exploitative reward learning. Quantitative model fits show genetic factors modulate independent parameters of a reinforcement-learning system.",
+    "ree_translation": "The uncertainty-proportional 'directed exploration' parameter is the biological analogue of REE's MECH-482 epistemic-deficit accumulator and MECH-483 orient/survey regime: a drive to sample in proportion to resolvable uncertainty about whether a better option exists. That this parameter (i) is real, (ii) varies across agents, and (iii) is mechanistically separable from reward-exploitation supports the premise that REE seeds could differ in how strongly/early they enter orient/survey mode independently of their raw competence.",
+    "mapping_caveat": "This evidences only that a directed-exploration mechanism EXISTS and varies between agents -- it does not show that such variation drives a competence SPLIT, nor that it out-predicts the initialisation/difficulty/premature-death/curriculum confounds Q-089 must rule out. The between-human-genotype variation is a poor analogue for between-random-seed variation in a single RL substrate.",
+    "source_context": "Human adults; temporal (clock) decision-making task with a computational reinforcement-learning model; candidate-gene (COMT, DARPP-32, DRD2) association analysis."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.55,
+    "notes": "Nature Neuroscience, canonical and heavily cited; robust computational modelling with a genetic double dissociation. Mapping fidelity moderate because it grounds the mechanism's reality but not the Q-089 causal-split test; transfer risk high (human genotype -> RL seed, signalled-uncertainty task -> sparse REE env)."
+  }
+}

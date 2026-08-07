@@ -1,0 +1,37 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_q_089",
+  "entry_id": "2026-08-07_q_089_seed_variance_confound_henderson2018",
+  "timestamp_utc": "2026-08-07T23:16:23Z",
+  "claim_ids_tested": ["Q-089"],
+  "source": {
+    "title": "Deep Reinforcement Learning that Matters",
+    "authors": ["Peter Henderson", "Riashat Islam", "Philip Bachman", "Joelle Pineau", "Doina Precup", "David Meger"],
+    "year": 2018,
+    "venue": "AAAI Conference on Artificial Intelligence (32nd); arXiv:1709.06560",
+    "doi": "10.1609/aaai.v32i1.11694",
+    "url": "https://arxiv.org/abs/1709.06560"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "weakens",
+  "confidence": 0.55,
+  "confidence_rationale": "This is the disconfirming anchor. Henderson et al. show that in deep RL, non-determinism from random seeds and network initialisation -- combined with variance intrinsic to the algorithms -- can by itself make otherwise-identical runs diverge enough that apparent performance differences are hard to distinguish from noise (their widely-cited demonstration: the same algorithm and set of seeds, split into two groups, can yield statistically different learning curves). This directly instantiates Q-089's 'initialisation' disconfirmer and cautions that a between-seed outcome split need reflect NO systematic strategy difference at all -- it can be pure seed variance. Weakens the presumption that the REE split must have a mechanistic (epistemic-deficit) cause. Confidence 0.55: authoritative and directly on-point for the confound, but it argues variance is possible/large, not that REE's specific split IS mere noise.",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The same algorithm run with only different random seeds can produce statistically significantly different learning curves, so a between-seed competence split is consistent with pure seed/initialisation variance and requires no information-seeking-strategy difference to explain it.",
+    "Reported performance differences in deep RL are frequently within the envelope of seed-and-initialisation noise, so any Q-089 analysis that reads a competence split off a modest number of seeds risks attributing to 'epistemic deficit' what is unremoved sampling variance."
+  ],
+  "tags": ["q-089", "seed_variance", "reproducibility", "initialisation_confound", "deep_rl", "disconfirming"],
+  "mapping": {
+    "source_claim_statement": "Non-determinism in standard benchmark environments, combined with variance intrinsic to the methods, can make reported deep-RL results tough to interpret; performance is sensitive to random seeds, network initialisation, hyperparameters and implementation, and differences across otherwise-identical runs can be large enough to be mistaken for real algorithmic effects (illustrated by splitting one set of random seeds into two groups that then differ statistically).",
+    "ree_translation": "REE's observed cold-start competence split is, on this account, exactly the kind of between-run divergence deep RL produces from seed and initialisation variance alone. This is the strongest general-purpose statement of Q-089's 'initialisation' (and stochasticity) confounder: before crediting an epistemic-deficit mechanism, one must show the split exceeds and is not explained by seed/initialisation noise. It cautions that the split may carry no mechanistic signal at all.",
+    "mapping_caveat": "Henderson et al. show seed/initialisation variance CAN be large and mistaken for real effects; they do not prove any particular split (including REE's) is only noise. So this weakens the Q-089 mechanism's necessity, not its possibility -- it raises the evidential bar rather than refuting the hypothesis. The specific 'split-the-seeds-into-two-groups' result is the paper's well-known headline finding, read here from the abstract and established record rather than a fresh full-text extraction.",
+    "source_context": "Deep reinforcement learning (policy-gradient / actor-critic methods on continuous-control MuJoCo benchmarks); a reproducibility study quantifying sensitivity to seeds, initialisation, hyperparameters and implementation."
+  },
+  "confidence_components": {
+    "source_quality": 0.8,
+    "mapping_fidelity": 0.6,
+    "transfer_risk": 0.4,
+    "notes": "AAAI 2018, one of the most-cited reproducibility studies in deep RL. Mapping fidelity moderate (0.6): it establishes the seed/initialisation confound in general but does not measure REE's substrate. Transfer risk low-moderate (0.4): deep RL, though continuous-control MuJoCo rather than REE's discrete substrate. Held at 0.55 as a disconfirming caution -- it establishes the confound is real and large, not that REE's split is noise."
+  }
+}
