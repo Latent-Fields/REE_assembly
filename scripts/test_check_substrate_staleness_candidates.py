@@ -856,5 +856,640 @@ class EndToEndDetectionTests(unittest.TestCase):
         self.assertEqual(listing.count("\n"), 1, listing)
 
 
+# ---------------------------------------------------------------------------------------- #
+# Phase 1e -- cached-state-check data-flow tracking, and non-executable changed lines        #
+# ---------------------------------------------------------------------------------------- #
+
+
+def _only_class(src: str) -> ast.ClassDef:
+    """The single ClassDef in `src` -- the fixture shape every Phase 1e test below uses."""
+    tree = ast.parse(src)
+    classes = [n for n in tree.body if isinstance(n, ast.ClassDef)]
+    assert len(classes) == 1, "fixture must declare exactly one class"
+    return classes[0]
+
+
+# The REAL shape from ree-v3/ree_core/agent.py (self.coalition, lines ~654-664 at the time of
+# writing), reduced to its skeleton: an unconditional None init, then a build under a
+# getattr() flag gate, then a cached-state check at a use site. This is the positive control
+# the whole of Phase 1e exists for -- if it ever stops being classified, the extension is dead.
+REAL_COALITION_SHAPE = '''
+class REEAgent:
+    def __init__(self, config):
+        self.coalition: Optional[CoalitionController] = None
+        if getattr(config, "use_coalition_controller", False):
+            self.coalition = CoalitionController(
+                CoalitionControllerConfig(enabled=True),
+            )
+
+    def reset(self):
+        if self.coalition is not None:
+            self.coalition.reset()
+            self._coalition_ticks = 0
+'''
+
+
+class FlagGatedNoneAttributesTests(unittest.TestCase):
+    """Which `self.<attr>` names are provably always None. A FALSE POSITIVE here is the
+    dangerous direction -- it would mark genuinely-live changed lines inert and wrongly
+    downgrade a real drift candidate -- so most of these are negative controls."""
+
+    KNOBS = {"use_coalition_controller", "use_dacc", "use_other"}
+    OFF = {"use_coalition_controller": False, "use_dacc": False, "use_other": False}
+
+    def _proven(self, src, knobs=None, status=None):
+        return MOD.flag_gated_none_attributes(
+            _only_class(src), knobs if knobs is not None else self.KNOBS,
+            status if status is not None else self.OFF)
+
+    def test_real_coalition_shape_is_the_positive_control(self):
+        self.assertIn("coalition", self._proven(REAL_COALITION_SHAPE))
+
+    def test_unconditional_assignment_is_not_flag_gated(self):
+        """The primary negative control: an attribute built unconditionally must NEVER be
+        classified, or every `if self.x is not None:` in the file becomes a false verdict."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        self.thing = Thing()
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_gate_on_unknown_flag_is_not_claimed(self):
+        """A flag absent from knob_names evaluates Unknown, so the assignment stays reachable."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_not_a_known_knob", False):
+            self.thing = Thing()
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_gate_on_enabled_flag_is_not_claimed(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+'''
+        proven = self._proven(src, status={"use_dacc": True, "use_coalition_controller": False,
+                                           "use_other": False})
+        self.assertNotIn("thing", proven)
+
+    def test_second_unconditional_assignment_in_another_method_disqualifies(self):
+        """The gated __init__ build is inert, but a later method assigns unconditionally --
+        the attribute is not always None and must not be claimed."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def late_bind(self):
+        self.thing = Thing()
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_assignment_in_orelse_of_confirmed_false_gate_is_reachable(self):
+        """`else` of a False test RUNS. Getting this arm backwards is the easiest way to
+        introduce a silent false positive."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            pass
+        else:
+            self.thing = Thing()
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_assignment_in_orelse_of_confirmed_true_gate_is_unreachable(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if not getattr(config, "use_dacc", False):
+            pass
+        else:
+            self.thing = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_no_assignment_at_all_is_not_claimed(self):
+        """An attribute only ever READ may be set from outside, or may not exist. Requiring at
+        least one reachable assignment is what stops the analysis vouching for either."""
+        src = '''
+class A:
+    def use(self):
+        if self.thing is not None:
+            self.thing.go()
+'''
+        self.assertEqual(self._proven(src), frozenset())
+
+    def test_bare_annotation_is_neither_assignment_nor_poison(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing: Optional[Thing]
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+'''
+        # no reachable assignment exists -> not claimed, but also not an error
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_augmented_assignment_poisons(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def bump(self):
+        self.thing += 1
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_delete_poisons(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def drop(self):
+        del self.thing
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_for_loop_target_poisons(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def loop(self, items):
+        for self.thing in items:
+            pass
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_with_target_poisons(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def ctx(self, cm):
+        with cm as self.thing:
+            pass
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_walrus_cannot_target_an_attribute_at_all(self):
+        """`(self.thing := ...)` is a SyntaxError ("cannot use assignment expressions with
+        attribute"), so the NamedExpr poisoning arm is unreachable defence, not a live path.
+        Pinned so nobody removes the arm believing it fires, or adds a fixture that cannot
+        parse. A walrus on a local NAME is legal and must not poison anything."""
+        with self.assertRaises(SyntaxError):
+            ast.parse("(self.thing := Thing())")
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    def walrus(self):
+        if (local := compute()) is not None:
+            return local
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_tuple_unpack_counts_as_a_non_none_assignment(self):
+        """The unpacked value is unknown, so this is a reachable non-None assignment."""
+        src = '''
+class A:
+    def __init__(self, config, pair):
+        self.thing = None
+        self.thing, self.other = pair
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_setattr_with_constant_name_poisons_only_that_attribute(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        self.safe = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+            self.safe = Thing()
+
+    def late(self):
+        setattr(self, "thing", Thing())
+'''
+        proven = self._proven(src)
+        self.assertNotIn("thing", proven)
+        self.assertIn("safe", proven)
+
+    def test_setattr_with_dynamic_name_poisons_the_whole_class(self):
+        src = '''
+class A:
+    def __init__(self, config, name):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+        setattr(self, name, Thing())
+'''
+        self.assertEqual(self._proven(src), frozenset())
+
+    def test_nested_class_assignment_does_not_leak_into_the_outer_class(self):
+        """A nested class binds its own `self`; its unconditional write must not disqualify
+        the outer class's attribute of the same name."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            self.thing = Thing()
+
+    class Inner:
+        def __init__(self):
+            self.thing = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_assignment_nested_two_gates_deep_stays_unreachable(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            if getattr(config, "use_other", False):
+                self.thing = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_outer_gate_unknown_inner_confirmed_false_still_unreachable(self):
+        """Only ONE enclosing confirmed-False gate is needed, at any depth."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_not_a_known_knob", False):
+            if getattr(config, "use_dacc", False):
+                self.thing = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_assignment_inside_try_body_under_a_gate_is_unreachable(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_dacc", False):
+            try:
+                self.thing = Thing()
+            except Exception:
+                self.thing = Fallback()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_ungated_assignment_inside_try_is_reachable(self):
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        try:
+            self.thing = Thing()
+        except Exception:
+            pass
+'''
+        self.assertNotIn("thing", self._proven(src))
+
+    def test_other_object_attribute_is_never_recorded(self):
+        """`obj.thing = ...` is not `self.thing = ...` and must not be modelled as one."""
+        src = '''
+class A:
+    def __init__(self, config, obj):
+        self.thing = None
+        obj.thing = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+    def test_dotted_self_attribute_is_not_recorded(self):
+        """`self.a.b = ...` writes through `self.a`; it is not an assignment to a self attr."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        self.thing.inner = Thing()
+'''
+        self.assertIn("thing", self._proven(src))
+
+
+class EvalFlagFormulaNoneAttrsTests(unittest.TestCase):
+    """The `none_attrs` arm of the Kleene evaluator."""
+
+    KNOBS = {"use_foo"}
+    NONE_ATTRS = frozenset({"coalition"})
+
+    def _ev(self, src, none_attrs=None):
+        return MOD._eval_flag_formula(
+            _test_expr(src), self.KNOBS, {"use_foo": False},
+            self.NONE_ATTRS if none_attrs is None else none_attrs)
+
+    def test_is_not_none_on_proven_attr_is_false(self):
+        self.assertIs(self._ev("self.coalition is not None"), False)
+
+    def test_is_none_on_proven_attr_is_true(self):
+        self.assertIs(self._ev("self.coalition is None"), True)
+
+    def test_bare_truthiness_on_proven_attr_is_false(self):
+        self.assertIs(self._ev("self.coalition"), False)
+
+    def test_negation_inverts(self):
+        self.assertIs(self._ev("not (self.coalition is not None)"), True)
+
+    def test_and_with_unknown_still_resolves_false(self):
+        self.assertIs(self._ev("self.coalition is not None and whatever(x)"), False)
+
+    def test_or_with_unknown_is_unknown(self):
+        self.assertIsNone(self._ev("self.coalition is not None or whatever(x)"))
+
+    def test_empty_none_attrs_keeps_pre_phase1e_behaviour(self):
+        """Back-compat control: every pre-1e caller passes no none_attrs and must be
+        bit-identical -- a cached-state check stays Unknown, exactly as before."""
+        self.assertIsNone(self._ev("self.coalition is not None", frozenset()))
+
+    def test_unproven_attribute_is_unknown(self):
+        self.assertIsNone(self._ev("self.salience is not None"))
+
+    def test_other_object_attribute_is_unknown(self):
+        """`other.coalition` is a different object -- the proof is about `self`."""
+        self.assertIsNone(self._ev("other.coalition is not None"))
+
+    def test_equality_comparison_is_not_treated_as_identity(self):
+        """`== None` can be overloaded by __eq__; only `is`/`is not` are decidable here."""
+        self.assertIsNone(self._ev("self.coalition == None"))
+
+    def test_comparison_against_non_none_is_unknown(self):
+        self.assertIsNone(self._ev("self.coalition is not sentinel"))
+
+    def test_chained_comparison_is_unknown(self):
+        self.assertIsNone(self._ev("self.coalition is not None is not False"))
+
+
+class InertLineRangesPhase1eTests(unittest.TestCase):
+    """inert_line_ranges end-to-end with the cached-state rule, including its class scoping
+    and the externally_assigned kill-switch."""
+
+    KNOBS = {"use_coalition_controller"}
+    OFF = {"use_coalition_controller": False}
+
+    def _covered(self, src, externally_assigned=frozenset()):
+        ranges = MOD.inert_line_ranges(src, self.KNOBS, self.OFF, externally_assigned)
+        return {n for lo, hi in ranges for n in range(lo, hi + 1)}
+
+    def test_cached_state_check_body_becomes_inert(self):
+        covered = self._covered(REAL_COALITION_SHAPE)
+        lines = REAL_COALITION_SHAPE.splitlines()
+        reset_body = [i + 1 for i, ln in enumerate(lines) if "self.coalition.reset()" in ln]
+        self.assertTrue(reset_body)
+        for lineno in reset_body:
+            self.assertIn(lineno, covered)
+
+    def test_disabled_when_externally_assigned_is_none(self):
+        """None means "driver unresolvable" -- the whole cached-state rule is off, and the
+        result must match pre-1e behaviour exactly."""
+        with_rule = self._covered(REAL_COALITION_SHAPE, frozenset())
+        without = self._covered(REAL_COALITION_SHAPE, None)
+        legacy = MOD.inert_line_ranges(REAL_COALITION_SHAPE, self.KNOBS, self.OFF)
+        self.assertEqual({n for lo, hi in legacy for n in range(lo, hi + 1)}, without)
+        self.assertNotEqual(with_rule, without)
+
+    def test_attribute_the_driver_assigns_is_excluded(self):
+        covered = self._covered(REAL_COALITION_SHAPE, {"coalition"})
+        lines = REAL_COALITION_SHAPE.splitlines()
+        reset_body = [i + 1 for i, ln in enumerate(lines) if "self.coalition.reset()" in ln]
+        for lineno in reset_body:
+            self.assertNotIn(lineno, covered)
+
+    def test_class_scoping_no_leak_between_two_classes(self):
+        """B builds `thing` unconditionally. A's proof must not apply inside B, or B's live
+        code would be marked inert."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_coalition_controller", False):
+            self.thing = Thing()
+
+    def use_a(self):
+        if self.thing is not None:
+            a_only_line()
+
+
+class B:
+    def __init__(self, config):
+        self.thing = Thing()
+
+    def use_b(self):
+        if self.thing is not None:
+            b_only_line()
+'''
+        covered = self._covered(src)
+        lines = src.splitlines()
+        a_line = next(i + 1 for i, ln in enumerate(lines) if "a_only_line()" in ln)
+        b_line = next(i + 1 for i, ln in enumerate(lines) if "b_only_line()" in ln)
+        self.assertIn(a_line, covered)
+        self.assertNotIn(b_line, covered)
+
+    def test_orelse_of_a_cached_state_check_is_not_inert(self):
+        """`if self.thing is not None: ... else: ...` -- the ELSE branch is what actually runs."""
+        src = '''
+class A:
+    def __init__(self, config):
+        self.thing = None
+        if getattr(config, "use_coalition_controller", False):
+            self.thing = Thing()
+
+    def use(self):
+        if self.thing is not None:
+            dead_line()
+        else:
+            live_line()
+'''
+        covered = self._covered(src)
+        lines = src.splitlines()
+        dead = next(i + 1 for i, ln in enumerate(lines) if "dead_line()" in ln)
+        live = next(i + 1 for i, ln in enumerate(lines) if "live_line()" in ln)
+        self.assertIn(dead, covered)
+        self.assertNotIn(live, covered)
+
+    def test_syntax_error_yields_no_ranges(self):
+        self.assertEqual(MOD.inert_line_ranges("def (:", self.KNOBS, self.OFF, frozenset()), [])
+
+
+class DriverAssignedAttributesTests(unittest.TestCase):
+    """The external-mutation kill-switch. Returning None (= disable the rule) is the safe
+    answer whenever the driver cannot be read precisely."""
+
+    def test_plain_attribute_assignment_is_reported(self):
+        self.assertEqual(MOD.driver_assigned_attributes("agent.dacc = Thing()"), {"dacc"})
+
+    def test_self_assignment_is_not_reported(self):
+        """A driver's own class writing its own state says nothing about the agent."""
+        self.assertEqual(
+            MOD.driver_assigned_attributes("class D:\n    def f(self):\n        self.dacc = 1\n"),
+            set())
+
+    def test_augmented_delete_for_and_unpack_targets_are_reported(self):
+        """Every write shape that is not a plain `=`. (A walrus cannot target an attribute --
+        see FlagGatedNoneAttributesTests.test_walrus_cannot_target_an_attribute_at_all.)"""
+        src = (
+            "agent.a += 1\n"
+            "del agent.b\n"
+            "for agent.c in items:\n    pass\n"
+            "agent.e, agent.f = pair\n"
+        )
+        self.assertEqual(MOD.driver_assigned_attributes(src), {"a", "b", "c", "e", "f"})
+
+    def test_annotated_assignment_is_reported(self):
+        self.assertEqual(MOD.driver_assigned_attributes("agent.dacc: Thing = Thing()"), {"dacc"})
+
+    def test_setattr_with_constant_name_is_reported(self):
+        self.assertEqual(
+            MOD.driver_assigned_attributes('setattr(agent, "dacc", Thing())'), {"dacc"})
+
+    def test_setattr_with_dynamic_name_disables_the_rule(self):
+        self.assertIsNone(MOD.driver_assigned_attributes("setattr(agent, name, Thing())"))
+
+    def test_unparseable_driver_disables_the_rule(self):
+        self.assertIsNone(MOD.driver_assigned_attributes("def (:"))
+
+    def test_absent_driver_disables_the_rule(self):
+        self.assertIsNone(MOD.driver_assigned_attributes(None))
+        self.assertIsNone(MOD.driver_assigned_attributes(""))
+
+    def test_read_only_driver_reports_nothing(self):
+        self.assertEqual(
+            MOD.driver_assigned_attributes("x = agent.dacc\nif agent.dacc is not None:\n    pass\n"),
+            set())
+
+
+class NonExecutableLineNumbersTests(unittest.TestCase):
+    """Phase 1e(b). Uses tokenize precisely so that a `#` in a string is not a comment."""
+
+    def test_comment_and_blank_lines_are_non_executable(self):
+        src = "x = 1\n# a comment\n\ny = 2\n"
+        self.assertEqual(MOD.non_executable_line_numbers(src), {2, 3})
+
+    def test_trailing_comment_on_a_code_line_is_executable(self):
+        src = "x = 1  # trailing\n"
+        self.assertEqual(MOD.non_executable_line_numbers(src), set())
+
+    def test_hash_inside_a_string_is_not_a_comment(self):
+        src = 'x = 1\ny = "# not a comment"\n'
+        self.assertEqual(MOD.non_executable_line_numbers(src), set())
+
+    def test_blank_line_inside_a_triple_quoted_string_is_executable(self):
+        src = 'x = """line one\n\nline three"""\n'
+        self.assertEqual(MOD.non_executable_line_numbers(src), set())
+
+    def test_docstring_counts_as_executable(self):
+        """Conservative on purpose -- a STRING token is a real token."""
+        src = 'def f():\n    """doc"""\n    return 1\n'
+        self.assertEqual(MOD.non_executable_line_numbers(src), set())
+
+    def test_untokenizable_source_claims_nothing(self):
+        self.assertEqual(MOD.non_executable_line_numbers('x = "unterminated\n'), set())
+
+    def test_continuation_lines_are_executable(self):
+        src = "x = (\n    1,\n)\n# tail\n"
+        self.assertEqual(MOD.non_executable_line_numbers(src), {4})
+
+
+class FileIsDefaultOffOnlyPhase1eTests(unittest.TestCase):
+    """The two Phase 1e(b) verdicts that need a REAL git diff: a comment-only change is
+    provably inert, and the same change beside a pure deletion is NOT."""
+
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.repo = Path(self._tmp.name) / "ree-v3"
+        self.repo.mkdir()
+        _git(self.repo, "init", "-q", "-b", "main")
+        _git(self.repo, "config", "user.email", "t@t")
+        _git(self.repo, "config", "user.name", "t")
+
+    def tearDown(self):
+        self._tmp.cleanup()
+
+    def _commit(self, body, message):
+        (self.repo / "mod.py").write_text(body)
+        _git(self.repo, "add", "mod.py")
+        _git(self.repo, "commit", "-q", "-m", message)
+        return _git(self.repo, "rev-parse", "HEAD").strip()
+
+    def test_comment_only_change_is_provably_inert(self):
+        base = self._commit("def f():\n    return 1\n", "base")
+        self._commit("def f():\n    # explain\n    return 1\n", "comment")
+        verdict = MOD.file_is_default_off_only(
+            self.repo, base, "HEAD", "mod.py", {"use_foo"}, {"use_foo": False},
+            None, frozenset())
+        self.assertIs(verdict, True)
+
+    def test_code_replaced_by_a_comment_is_not_claimed(self):
+        """The only post-image line is a comment, but the line it replaced was a real call.
+        A post-image-only test reads this as a comment-only change; checking the REMOVED line
+        against the OLD file is what catches it."""
+        base = self._commit("def f():\n    side_effect()\n    return 1\n", "base")
+        self._commit("def f():\n    # explain\n    return 1\n", "comment+delete")
+        verdict = MOD.file_is_default_off_only(
+            self.repo, base, "HEAD", "mod.py", {"use_foo"}, {"use_foo": False},
+            None, frozenset())
+        self.assertIsNot(verdict, True)
+
+    def test_comment_only_change_beside_a_pure_code_deletion_is_not_claimed(self):
+        """Same hazard via a separate pure-deletion hunk rather than an in-place replacement."""
+        base = self._commit(
+            "def f():\n    return 1\n\n\ndef g():\n    side_effect()\n    return 2\n", "base")
+        self._commit(
+            "def f():\n    # explain\n    return 1\n\n\ndef g():\n    return 2\n", "comment+del")
+        verdict = MOD.file_is_default_off_only(
+            self.repo, base, "HEAD", "mod.py", {"use_foo"}, {"use_foo": False},
+            None, frozenset())
+        self.assertIsNot(verdict, True)
+
+    def test_comment_rewritten_in_place_is_still_provably_inert(self):
+        """The negative control for the deletion guard: a comment REPLACING a comment removes
+        a line too, and must not be swept up as a code deletion."""
+        base = self._commit("def f():\n    # old wording\n    return 1\n", "base")
+        self._commit("def f():\n    # new wording\n    return 1\n", "reword")
+        verdict = MOD.file_is_default_off_only(
+            self.repo, base, "HEAD", "mod.py", {"use_foo"}, {"use_foo": False},
+            None, frozenset())
+        self.assertIs(verdict, True)
+
+    def test_live_code_change_is_still_reported(self):
+        base = self._commit("def f():\n    return 1\n", "base")
+        self._commit("def f():\n    return 2\n", "live")
+        verdict = MOD.file_is_default_off_only(
+            self.repo, base, "HEAD", "mod.py", {"use_foo"}, {"use_foo": False},
+            None, frozenset())
+        self.assertIs(verdict, False)
+
+
 if __name__ == "__main__":
     unittest.main()

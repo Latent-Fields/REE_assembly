@@ -1035,30 +1035,33 @@ def one_hop_inert_line_ranges(
 
 def _changed_lines_and_deletions(
     ree_v3_root: Path, recorded_commit: str, ref: str, path: str,
-) -> Tuple[Optional[List[int]], bool]:
-    """(post-image changed line numbers, saw_pure_deletion_hunk) for recorded_commit..ref.
+) -> Tuple[Optional[List[int]], List[int]]:
+    """(post-image changed line numbers, PRE-image removed line numbers) for
+    recorded_commit..ref.
 
-    The second element matters only to Phase 1e(b): a pure-deletion hunk contributes no
-    post-image line, so a diff that removes ten lines of code and adds one comment would
-    otherwise look like a comment-only change. Callers that would return "provably inert" on
-    the strength of every remaining line being non-executable must bail when it is True.
+    The second element matters only to Phase 1e(b). Post-image lines alone cannot see removed
+    code: `-    side_effect()` / `+    # explain` is a single modify hunk whose only post-image
+    line is a comment, so a post-image-only test would read a deleted function call as a
+    comment-only change. Reporting the pre-image side lets the caller check the REMOVED lines
+    against the OLD file's own non-executable set before concluding anything.
     """
     rc, out, err = _run(
         ["git", "diff", "--unified=0", f"{recorded_commit}..{ref}", "--", path],
         cwd=ree_v3_root,
     )
     if rc != 0:
-        return None, False
+        return None, []
     lines: List[int] = []
-    saw_pure_deletion = False
-    for hunk in re.finditer(r"^@@ -\d+(?:,\d+)? \+(\d+)(?:,(\d+))? @@", out, re.MULTILINE):
-        start = int(hunk.group(1))
-        count = int(hunk.group(2)) if hunk.group(2) is not None else 1
-        if count == 0:
-            saw_pure_deletion = True  # pure deletion in the new file -- no new-file lines
-            continue
-        lines.extend(range(start, start + count))
-    return lines, saw_pure_deletion
+    removed: List[int] = []
+    for hunk in re.finditer(
+            r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@", out, re.MULTILINE):
+        old_start = int(hunk.group(1))
+        old_count = int(hunk.group(2)) if hunk.group(2) is not None else 1
+        new_start = int(hunk.group(3))
+        new_count = int(hunk.group(4)) if hunk.group(4) is not None else 1
+        removed.extend(range(old_start, old_start + old_count))
+        lines.extend(range(new_start, new_start + new_count))
+    return lines, removed
 
 
 def changed_line_numbers(ree_v3_root: Path, recorded_commit: str, ref: str, path: str) -> Optional[List[int]]:
@@ -1085,12 +1088,13 @@ def file_is_default_off_only(
 
     Phase 1e(b): comment-only and blank changed lines are dropped before the coverage test --
     they cannot alter behaviour, so requiring them to sit inside a gated body was never
-    meaningful. If that leaves nothing, the change is provably inert -- UNLESS the diff also
-    contained a pure-deletion hunk, whose removed code has no post-image line to test.
+    meaningful. If that leaves nothing, the change is provably inert -- but ONLY once the
+    REMOVED lines have been checked against the OLD file's own non-executable set, since a
+    deleted line has no post-image line to test and would otherwise be invisible.
     """
     if not path.endswith(".py"):
         return None
-    lines, saw_pure_deletion = _changed_lines_and_deletions(ree_v3_root, recorded_commit, ref, path)
+    lines, removed = _changed_lines_and_deletions(ree_v3_root, recorded_commit, ref, path)
     if not lines:
         return None
     source = _git_show(ree_v3_root, ref, path)
@@ -1099,8 +1103,15 @@ def file_is_default_off_only(
     non_executable = non_executable_line_numbers(source)
     lines = [ln for ln in lines if ln not in non_executable]
     if not lines:
-        # Every changed line is a comment or blank. Inert -- unless code was also deleted.
-        return None if saw_pure_deletion else True
+        # Every ADDED line is a comment or blank. Inert only if nothing executable was
+        # REMOVED either -- otherwise this is a deletion wearing a comment as a disguise.
+        if not removed:
+            return True
+        old_source = _git_show(ree_v3_root, recorded_commit, path)
+        if old_source is None:
+            return None
+        old_non_executable = non_executable_line_numbers(old_source)
+        return True if all(ln in old_non_executable for ln in removed) else None
     ranges = inert_line_ranges(source, knob_names, flag_status, externally_assigned)
     if function_index is not None:
         ranges = ranges + one_hop_inert_line_ranges(source, function_index, knob_names, flag_status)
