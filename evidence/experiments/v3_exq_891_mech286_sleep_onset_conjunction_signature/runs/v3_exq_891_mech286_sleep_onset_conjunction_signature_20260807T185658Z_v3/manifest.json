@@ -1,0 +1,101 @@
+{
+  "schema_version": "experiment_pack/v1",
+  "architecture_epoch": "ree_hybrid_guardrails_v1",
+  "experiment_type": "v3_exq_891_mech286_sleep_onset_conjunction_signature",
+  "run_id": "v3_exq_891_mech286_sleep_onset_conjunction_signature_20260807T185658Z_v3",
+  "status": "PASS",
+  "timestamp_utc": "2026-08-07T18:56:58Z",
+  "source_repo": {
+    "name": "ree-v3",
+    "commit": "",
+    "branch": "main"
+  },
+  "runner": {
+    "name": "ree-v3-harness",
+    "version": "3.0.0"
+  },
+  "artifacts": {
+    "metrics_path": "metrics.json",
+    "summary_path": "summary.md"
+  },
+  "stop_criteria_version": "stop_criteria/v1",
+  "claim_ids_tested": [
+    "MECH-286"
+  ],
+  "evidence_class": "simulation",
+  "evidence_direction": "supports",
+  "evidence_direction_per_claim": {
+    "MECH-286": "supports"
+  },
+  "experiment_purpose": "evidence",
+  "producer_capabilities": {
+    "sd005_split_latent": true,
+    "sd004_action_objects": true,
+    "sd006_multirate_clock": true
+  },
+  "environment": {
+    "env_id": "ree.causal_grid_world_v3",
+    "env_version": "3.0.0",
+    "dynamics_hash": "unknown",
+    "reward_hash": "unknown",
+    "observation_hash": "unknown",
+    "config_hash": "unknown",
+    "tier": "causal_grid_world_v3"
+  },
+  "failure_signatures": [],
+  "interpretation": {
+    "label": "three_term_conjunction_confirmed",
+    "checks": {
+      "C5_conjunction_exact": true,
+      "C1_override_necessity_falsifier": true,
+      "C2_staleness_necessity": true,
+      "C3_threat_necessity_novel": true,
+      "C4_conjunction_sufficiency": true
+    },
+    "criteria": [
+      {
+        "name": "C5_conjunction_exact",
+        "load_bearing": true,
+        "passed": true
+      },
+      {
+        "name": "C1_override_necessity_falsifier",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C2_staleness_necessity",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C3_threat_necessity_novel",
+        "load_bearing": false,
+        "passed": true
+      },
+      {
+        "name": "C4_conjunction_sufficiency",
+        "load_bearing": false,
+        "passed": true
+      }
+    ],
+    "combination_rule": "PASS = non_degenerate AND C1 AND C2 AND C3 AND C4 AND C5 (all seeds)"
+  },
+  "machine": "ree-worker-1",
+  "machine_class": "linux-x86_64-py3.10-torch2.12.0+cpu",
+  "substrate_hash": "00cf4e63d0e3c86ed935118ab3e6f36ea282bf2d78201fb0dc55b3352bca90fd",
+  "substrate_commit": {
+    "commit": "763313553bebdb65812192a049d88d349a30d7cd",
+    "dirty": false,
+    "branch": "main"
+  },
+  "z_goal_stream": {
+    "ticks_total": 0,
+    "ticks_active": 0,
+    "writer_calls": 0,
+    "active_frac": null,
+    "writer_defect": null,
+    "n_agents": 1,
+    "goal_state_present": false
+  }
+}
