@@ -59,6 +59,17 @@ P3 out-of-scope: lust.
 
 ## 4. Candidate claims / artifacts
 
+**RESOLVED 2026-08-07 -- REGISTERED, in section 7 below rather than here.** This section correctly
+proposed no new MECH/ARC of its own; the claims the thought's routing produced are
+**MECH-353** (blocked_agency / `z_block`, V3), **MECH-354** (effort/fatigue stop-recover, SD-012
+side, V3-minimal) and **MECH-355** (soothing/comfort autonomic state-gain modulator, V4-social) --
+all three minted 2026-06-05 after their gating `/lit-pull`s landed, plus the pre-existing
+**MECH-302** (relief) / **MECH-303** + **MECH-304** (safety) which the register cross-references
+rather than duplicates. The section-3 deliverable also EXISTS: the rows live in
+`docs/architecture/affect_primitives.md` "Extension Register: Beyond Harm", each carrying its
+neighbour-differentiation. The one item still genuinely open is the Q below -- deliberately
+un-minted, because the register answers it row-by-row rather than as a single claim.
+
 - **Artifact (proto-affective audit register)** -- a planning doc / register, NOT a claim. Likely
   `evidence/planning/proto_affective_register.*` or a section in `affect_primitives.md`.
 - **Q (threshold-A-minimal-affect-set)** -- which proto-feelings are truly necessary for minimal

@@ -52,7 +52,21 @@ experiment settles both intakes.** Do not design two.
 
 ## 4. Candidate claims
 
+**RESOLVED 2026-08-07 -- no registration owed; the gate below was honoured and then DISCHARGED by
+experiment.** The shared coherence-non-reducibility discriminator RAN as the
+`V3-EXQ-641a -> 720 -> 725 -> 725a` lineage and came back **NO-CLAIM**: coherence-SPECIFICITY is
+settled negative. The one decoupled positive salvaged from it is **MECH-456** (entity rebinding
+under perturbation -- the twin binding intake's "Candidate MECH (rebinding-under-perturbation)"),
+registered 2026-07-10 via `/claim-synthesis` from
+`evidence/planning/claim_synthesis_rebinding_under_perturbation_2026-07-10.md`; MECH-456's own
+title and notes record that it rests on `E(tau)` / stability machinery and explicitly does NOT
+inherit the `C(tau)` formal import this intake warned about. See also **MECH-125**
+(`coherence.multiconstraint_viability`), which already carries the
+`C(tau)/R(tau)/F(tau)/I(tau)/P(tau)` selection-functional framing.
+
 - **Candidate Q** (selection.coherence_nonreducibility) -- merged with the binding intake's Q.
+  **SETTLED NO-CLAIM (V3-EXQ-725a). Not registered, and should not be** -- registering an answered
+  question would re-open a closed lineage.
 - **No new MECH/ARC until the ablation runs.** Per memory `feedback_biology_before_formal_definitions`,
   a formal-physics import (path integral / least action) is exactly the "philosophy-right /
   mechanism-wrong" risk class; registering an ARC on the strength of the analogy alone is

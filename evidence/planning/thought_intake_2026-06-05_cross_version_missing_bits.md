@@ -55,6 +55,23 @@ spine, load-bearing in V3 (hazard-interrupt-then-resume) through V5 (aspect: res
 
 ## 4. Candidate claims / artifacts
 
+**REGISTERED 2026-06-10 -- confirmed 2026-08-07.** The event-arc spine did NOT stay prose-only:
+its weakest span is now **MECH-389** (`goal.interrupted_task_resumption_parked_slot` -- "closes the
+event-arc interrupt->reorient->resume span", parked goal slot + Zeigarnik-analog persistence,
+`candidate` / `substrate_conditional` / `implementation_phase: v4` / `v3_pending`), registered from
+node GDL-* of `evidence/planning/goal_deliberation_v4_plan.md`, which cites this intake by name as
+its source for the spine. Its V5 grammatical shadow is **MECH-417**
+(`language.aspect_event_arc_closure_map` -- aspect as a grammatical naming of the pre-linguistic
+ActionEventArc, not a replacement for it) with **MECH-419**
+(`language.event_arc_grammatical_realisation`) alongside, from the grammar/V6 plan family. The gate in the second bullet below was
+honoured: MECH-389 was registered but stays BLOCKED on the same graduation trigger this intake
+names (a 640+ run showing hazard-interrupt WITHOUT resume) -- registration is not promotion.
+Correction carried from that plan node, worth repeating here: **MECH-320 is a tonic-vigor /
+opportunity-cost mechanism and is NOT the resumption mechanism** despite the "candidate MECH-320
+sketch" phrasing in the memory cited in section 3 -- do not reuse that id. The (a) artifact
+(per-version closure maps) is the standing `evidence/planning/closure_status.md` +
+`assembly_vs_closure_plan.md` + the per-version `*_v4/v5/v6_plan.md` node families.
+
 - **Artifact (per-version closure maps)** -- V3/V4/V5 closure maps as living planning docs, each
   with its closure question + executable gates. NOT claims; planning scaffolds.
 - **Candidate cross-version design hypothesis (ActionEventArc spine)** -- action represented as

@@ -46,6 +46,18 @@ transfer-world design, not current V3 work.
 
 ## 3. Candidate claims / artifacts
 
+**REGISTERED 2026-06-10 as Q-071 (`transfer.non_terminal_failure_profile`) -- confirmed 2026-08-07.**
+The line below reading "None registered this pass" was true when written and is now stale: the
+four-grade failure taxonomy was picked up as node DRV-* of
+`evidence/planning/drives_motivation_v4_plan.md` and registered as **Q-071**
+(`claim_type: design_decision`, `status: candidate`, `epistemic_category: substrate_conditional`,
+`implementation_phase: v4`, `v3_pending: true`, depends_on SD-012 + SD-054, "DO NOT build in V3").
+Q-071's own notes fold in the third bullet ("carries the open forgiveness-vs-drive tradeoff
+question"), so the Candidate Q below has a home too. The second bullet
+(`nursery.non_terminal_rescue_state`) is deliberately NOT separately minted -- it is the
+`scaffolded_sd054_onboarding` substrate already named in section 4, and Q-071 depends on SD-054
+directly rather than duplicating it.
+
 - **Candidate design criterion** (transfer.non_terminal_failure_profile) -- a launch profile
   is evaluated on the four-grade taxonomy: minimise terminal, preserve developmental as
   signal. *[design-decision class; V4/transfer scope]*

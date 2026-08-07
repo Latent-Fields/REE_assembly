@@ -48,6 +48,19 @@ cue-to-action authority.
 
 ## 4. Candidate claim (gated behind the result pattern)
 
+**REGISTERED 2026-06-10 as MECH-395 (`drive.pre_approach_orienting_mode`) -- confirmed 2026-08-07.**
+Registered ahead of the gate, deliberately: MECH-395 carries the gate INSIDE the claim
+(`status: candidate`, `v3_pending: true`, "gated on the V3-EXQ-640 result pattern ... DO NOT build
+in V3"), which registers the framing without entering the V3 build. What has since happened to the
+gate, per MECH-395's own 2026-08-07 note: V3-EXQ-640 ran (`evidence_direction: non_contributory`)
+and the follow-on gain sweep 640a with it, and the discriminating row did **NOT** resolve to
+orienting -- it routed to a shared E3 selection-authority / cue-authority ceiling instead
+(`failure_autopsy_V3-EXQ-640_2026-06-05.md`, `failure_autopsy_V3-EXQ-640a_2026-06-06.md`; most
+recent attempt on that thread V3-EXQ-812, 2026-07-24, failed on a readiness precondition and is
+still open). MECH-395 was reclassified the same day from `implementation_phase: v4` to `v3`
+(it is gated on in-progress V3 assembly work, not a future generation) -- see
+`evidence/planning/drives_motivation_v4_plan.md` DRV-4.
+
 - **Candidate MECH (pre-approach-orienting-mode)** -- a control state entered when (cue fires AND
   need-relevant AND no high-confidence approach vector AND hazard not vetoing AND need unresolved),
   exited when (gradient confidence rises / vector stabilises / hazard high / cue decays / survey

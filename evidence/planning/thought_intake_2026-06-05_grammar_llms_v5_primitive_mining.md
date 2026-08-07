@@ -52,6 +52,29 @@ near-term anchor; everything else is V5-horizon.
 
 ## 4. Candidate claims / artifacts
 
+**REGISTERED 2026-06-10 -- confirmed 2026-08-07.** This intake was converted into the V6
+grammar/language plan family (`evidence/planning/grammar_primitive_mining_v6_plan.md` and
+`language_emergence_bootstrap_v6_plan.md`) and every candidate below now has a real claim id, all
+`status: candidate` / `epistemic_category: substrate_conditional` / `v3_pending: true` / "DO NOT
+build in V3":
+
+| candidate below | registered as |
+|---|---|
+| the LLM-as-mine-not-foundation discipline (section 1-2, the load-bearing NEGATIVE commitment) | **ARC-100** `language.primitive_mining_not_import` |
+| **Candidate V5 design hypothesis (language-bootstrap-from-ecology)** | **ARC-101** `language.bootstrap_from_social_ecology` |
+| the addendum's enabling-conditions table (what must be true before language bootstraps) | **ARC-099** `language.bootstrap_enabling_conditions` |
+| the section-3 ARC-063 bridge (predicate-argument-event / exception grammar) | **MECH-415** `language.predicate_argument_event_rule_bridge` |
+| **Artifact (V5 frame inventory)** | **MECH-416** `language.frame_inventory_substrate_bound` |
+| the aspect / event-arc row of the mapping table (shared with the twin intake) | **MECH-417** `language.aspect_event_arc_closure_map`, **MECH-419** `language.event_arc_grammatical_realisation` |
+
+The **Artifact (grammar->substrate mapping table)** itself is the plan doc's own node table in
+`grammar_primitive_mining_v6_plan.md` -- deliberately a plan artifact, not a claim, exactly as
+this section asked. The "register only when V4 social substrate exists" gate below was honoured in
+the form the registry supports: ARC-101 is registered but is the most heavily gated node in the
+cluster (consumes all the V5 social plans + V4 individual substrate + MECH-163) and per
+`feedback_biology_before_formal_definitions` needs the GRAM-7 lit-pull before any promotion beyond
+`candidate`.
+
 - **Artifact (grammar->substrate mapping table)** -- a living V5 design table: per primitive, which
   substrate, which version, grounded-or-merely-named, what behaviour shows grounding. NOT a claim.
 - **Artifact (V5 frame inventory)** -- feeding/hazard/contact/interruption/help-harm/give-receive/
