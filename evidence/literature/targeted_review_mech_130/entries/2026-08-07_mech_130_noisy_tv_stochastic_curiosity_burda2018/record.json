@@ -1,0 +1,36 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_130",
+  "entry_id": "2026-08-07_mech_130_noisy_tv_stochastic_curiosity_burda2018",
+  "timestamp_utc": "2026-08-07T23:50:05Z",
+  "claim_ids_tested": ["MECH-130"],
+  "source": {
+    "title": "Large-Scale Study of Curiosity-Driven Learning",
+    "authors": ["Yuri Burda", "Harri Edwards", "Deepak Pathak", "Amos Storkey", "Trevor Darrell", "Alexei A. Efros"],
+    "year": 2019,
+    "venue": "International Conference on Learning Representations (ICLR 2019); arXiv:1808.04355 (2018)",
+    "url": "https://arxiv.org/abs/1808.04355"
+  },
+  "evidence_class": "computational_model",
+  "evidence_direction": "supports",
+  "confidence": 0.68,
+  "confidence_rationale": "Large empirical study (54 environments) at a top venue, and the noisy-TV result is the field's canonical demonstration that an untyped prediction-error curiosity signal is captured by whatever in the environment is least predictable. That is MECH-130's failure mode 1 mechanism, demonstrated rather than argued. Held below 0.8 by a real disanalogy: the paper's attractor is IRREDUCIBLE stochasticity, whereas another agent's policy is partially learnable and non-stationary, so the two are not the same object and the transfer is by mechanism-analogy rather than by direct test. No multiagent condition is run.",
+  "failure_signatures": [
+    "With a prediction-error intrinsic reward, 'If the transitions in the environment are random, then even with a perfect dynamics model, the expected reward will be the entropy of the transition, and the agent will seek out transitions with the highest entropy' -- i.e. the signal maximises toward the least-modellable thing available, not toward the most informative.",
+    "Adding a literal channel-changing TV to a maze 'drastically slows down learning', so the attractor is strong enough to dominate task-directed behaviour rather than merely perturb it; the agents only 'sometimes converge' to the extrinsic reward, and only when run long enough.",
+    "The failure is not fixed by a better world model -- the paper's statement is explicitly 'even with a perfect dynamics model' -- so no amount of improved prediction capacity in MECH-111 removes it; only a change to what the reward is computed over can."
+  ],
+  "tags": ["mech-130", "curiosity", "prediction-error", "noisy-tv", "stochasticity", "intrinsic-reward"],
+  "mapping": {
+    "source_claim_statement": "Purely curiosity-driven agents rewarded by forward-model prediction error perform surprisingly well across 54 benchmark environments, but the reward is fundamentally limited in stochastic setups: the expected reward equals the entropy of the transition, so the agent seeks maximum-entropy transitions, and a literal 'noisy TV' inserted into a maze drastically slows learning.",
+    "ree_translation": "MECH-130's first failure mode says an untyped MECH-111 novelty signal 'chronically pulls toward the most dangerous agent in the environment (highest unpredictability = highest information = strongest approach)'. Burda et al. demonstrate the general form of that argument empirically: a prediction-error novelty signal is an entropy-seeker, it locks onto whatever is least predictable regardless of whether attending to it is useful, and the capture is behaviourally dominant rather than marginal. In REE's multiagent tier, an agent that is opaque -- because it is adversarial, or because its policy is complex, or because it deliberately maintains surface unpredictability -- occupies exactly the structural position the TV occupies here.",
+    "mapping_caveat": "The disanalogy is load-bearing and must not be glossed. A noisy TV is irreducibly random, so its prediction error never decays; another agent's policy is partially LEARNABLE, so a signal keyed on learning progress rather than raw error would eventually detach from the agent even without any source typing (this is precisely the Schmidhuber 2010 counter-argument, entered separately in this directory). The experiment is single-agent, has no social or harm dimension, and nothing in it tests MECH-130's oscillation or adversarial-exploitation modes. What transfers is the mechanism -- untyped novelty is an entropy-seeker -- not the specific conclusion that agents are noisy TVs.",
+    "source_context": "Deep RL, 54 simulated benchmark environments including Atari, Super Mario Bros and a synthetic maze; single-agent throughout; intrinsic reward from forward-model prediction error in learned, random and pixel feature spaces."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.62,
+    "transfer_risk": 0.40,
+    "notes": "Source quality is high (ICLR, large scale, the noisy-TV finding is widely reproduced downstream). The aggregate sits above the mean of the components because the mechanism -- entropy-seeking under an untyped signal -- is stated by the authors in fully general terms ('even with a perfect dynamics model'), which travels better than the specific maze result does."
+  }
+}

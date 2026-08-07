@@ -1,0 +1,38 @@
+{
+  "schema_version": "literature_evidence/v1",
+  "literature_type": "targeted_review_mech_130",
+  "entry_id": "2026-08-07_mech_130_intrinsic_motivation_typology_oudeyer2007",
+  "timestamp_utc": "2026-08-07T23:50:05Z",
+  "claim_ids_tested": ["MECH-130"],
+  "source": {
+    "title": "What is Intrinsic Motivation? A Typology of Computational Approaches",
+    "authors": ["Pierre-Yves Oudeyer", "Frederic Kaplan"],
+    "year": 2007,
+    "venue": "Frontiers in Neurorobotics 1:6",
+    "doi": "10.3389/neuro.12.006.2007",
+    "url": "https://doi.org/10.3389/neuro.12.006.2007"
+  },
+  "evidence_class": "theoretical_review",
+  "evidence_direction": "mixed",
+  "confidence": 0.55,
+  "confidence_rationale": "Canonical, heavily-cited peer-reviewed taxonomy, so source quality is high; but the support it lends MECH-130 is an argument from SILENCE (the typology has no axis for novelty source) rather than a positive test of any of MECH-130's three failure modes. It also cuts partly the other way: the paper does treat 'social presence motivation' as a distinct reward type -- but classifies it as NON-intrinsic and homeostatic, which is a different distinction from the one MECH-130 asks for. Mapping fidelity is therefore capped, and the 2007 vintage limits what its silence says about the field today (see the Pan 2025 entry, which supplies the current state).",
+  "summary_path": "summary.md",
+  "failure_signatures": [
+    "The typology's three broad classes (knowledge-based, competence-based, morphological) are all defined over an undifferentiated 'sensorimotor flow' -- a surprising event carries no tag for whether it originated in an inanimate environment feature or in another agent's policy, so no model built inside this taxonomy can condition on that distinction.",
+    "Uncertainty Motivation (UM) as formalised here generates reward inversely proportional to an event's probability of observation, with no term for the source or the reducibility of that improbability -- an agent that is unpredictable by construction is scored identically to an unexplored region of the environment.",
+    "'Social presence motivation' is presented in the paper's section on models of NON-intrinsic motivation systems and is keyed on face count relative to an optimum -- a homeostatic set-point over social stimulation, not a typing of the novelty signal itself, so it does not supply the routing MECH-130 requires."
+  ],
+  "tags": ["mech-130", "intrinsic-motivation", "curiosity", "typology", "novelty", "developmental-robotics"],
+  "mapping": {
+    "source_claim_statement": "Computational models of intrinsic motivation can be organised into three broad classes -- knowledge-based (information-theoretic/distributional and predictive sub-approaches), competence-based, and morphological -- all defined as reward functions over the robot's sensorimotor flow; motivations keyed on social stimulation levels are internal but NOT intrinsic, and are presented separately.",
+    "ree_translation": "MECH-130 asserts that a curiosity signal (MECH-111) must be typed by the SOURCE of the novelty -- world-state versus agent-policy -- before it drives approach. This paper is the canonical statement of the alternative: the field's organising axes are what the novelty is measured against (knowledge vs competence vs raw signal morphology) and how it is measured (probability, information gain, surprise, prediction error, learning progress), never what kind of thing produced it. MECH-130's required distinction has no place to live in this taxonomy, which is direct evidence that it is a genuine addition rather than a restatement.",
+    "mapping_caveat": "This is negative evidence: the taxonomy's failure to contain a source axis is not the same as the field having considered and rejected one, and a 2007 survey cannot speak to what has since been built (Pan et al. 2025 shows the distinction does now appear, under an exploration-efficiency framing). The paper is also written for single-robot developmental settings where the multiagent case MECH-130 is about simply does not arise, so its silence is partly a scope artefact rather than an oversight. Finally, the paper is conceptual: it makes no empirical prediction that could confirm or disconfirm MECH-130's chronic-approach failure mode.",
+    "source_context": "Conceptual/formal survey in developmental robotics and computational reinforcement learning; no experiments, no multiagent setting, no safety or harm framing."
+  },
+  "confidence_components": {
+    "source_quality": 0.85,
+    "mapping_fidelity": 0.55,
+    "transfer_risk": 0.35,
+    "notes": "Weighted toward mapping_fidelity because MECH-130 is an architectural claim and the evidence here is structural rather than empirical. Source quality alone would justify a higher number; the argument-from-silence form is what holds it at 0.55."
+  }
+}
