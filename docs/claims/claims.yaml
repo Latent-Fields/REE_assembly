@@ -247,6 +247,98 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    Answered by architectural audit of the live precision-representation and
+    precision-application code paths, not by a trained behavioral experiment
+    (this is a MECHANISM/STRUCTURE question -- HOW precision is stored and
+    applied -- not an accuracy or controllability-authority question, which
+    is ARC-005's separate, already-tested claim about whether the control
+    plane CAN route precision/mode authority).
+
+    NON-DEGENERACY PRECONDITION: the audit must inspect a live case where
+    precision/gain modulation is actually computed and applied to
+    representation or error terms -- not merely declared in a config field
+    or present in dead/unreached code. A substrate with no precision
+    computation at all would trivially satisfy "no single global scalar"
+    while equally failing to exhibit routing. A single scalar that is
+    merely NAMED per-channel in a docstring but numerically shared across
+    channels also does not satisfy non-degeneracy in the confirming
+    direction.
+
+    CONFIRMED CURRENT STATE (2026-08-07 digestion pass): ree_core/latent/
+    stack.py implements this live. LatentState.precision is a
+    Dict[str, torch.Tensor] with five independently-computed channel keys
+    (self, world, beta, theta, delta), each backed by its OWN learnable
+    nn.Parameter logit (self_precision_logit, world_precision_logit, and a
+    separate precision_logit per SharedDepthEncoder instance for
+    beta/theta/delta), each applied as an in-channel elementwise gain
+    within that channel's own forward() -- never a value shared or
+    broadcast across channels. LatentStack.encode() populates this dict
+    every call and is invoked live from agent.py:4044 (not dead code).
+    compute_prediction_error() then weights each channel's error by that
+    SAME channel's own precision term. Separately, e3_selector.py's
+    current_precision (ARC-016) is a distinct, single derived scalar -- but
+    it is scoped specifically to the E3 commitment/trajectory-selection
+    gate and to dACC's affective-PE weighting (cingulate/dacc.py,
+    MECH-258), not broadcast to the stack's per-channel encoding gains.
+    Caveat: LatentStack.modulate_precision() and
+    compute_prediction_error() itself currently have no callers elsewhere
+    in ree-v3 -- the fuller tau-scoped cross-channel update/routing
+    apparatus described in precision_scoping.md (MECH-003) is defined but
+    not demonstrably exercised in the live step loop; what IS live and
+    wired is the encode-time per-channel gain computation and application
+    described above. The audit below is therefore CURRENTLY ANSWERABLE,
+    and reads CONFIRMING -- unlike INV-005 (a structurally similar
+    universal invariant), this claim is not blocked by non-degeneracy.
+
+    AUDIT TARGET: trace the live gain-application path from observation to
+    applied representation. Primary site: ree_core/latent/stack.py
+    (DualStreamEncoder.forward for self/world, SharedDepthEncoder.forward
+    for beta/theta/delta, LatentStack.encode() wiring them together).
+    Secondary consumer sites where a precision value is read and applied to
+    a specific downstream computation, not broadcast globally:
+    ree_core/predictors/e3_selector.py (current_precision, ARC-016 dynamic
+    precision at the commit gate), ree_core/cingulate/dacc.py
+    (_affective_pe, MECH-258), ree_core/predictors/e2_world_uncertainty.py
+    (uncertainty-derived precision, MECH-059, explicitly distinct from
+    e3_selector's). Any future SD-026/attention-gating wiring (SD-026 is
+    currently unbuilt) is a further candidate site, not yet audited here.
+
+    FALSIFYING evidence: the traced live path shows precision/gain
+    modulation implemented as a SINGLE scalar (or single tensor of gains
+    applied identically across z_self/z_world/z_beta/z_theta/z_delta)
+    computed once and multiplied uniformly across the full concatenated
+    representation or across all downstream error/consumer terms, with no
+    channel independently able to carry a different precision value from
+    any other, ANYWHERE in the live gain-application path. Finding
+    e3_selector's current_precision (or any similar single derived value)
+    applied not just to its own scoped consumer (commit gate, dACC
+    affective PE) but ALSO directly gating z_self/z_world/z_beta/z_theta/
+    z_delta encoding with no independent per-channel term would falsify --
+    i.e., what would falsify is discovering the apparent "channel-specific"
+    naming in code is cosmetic and the underlying number is shared.
+
+    CONFIRMING evidence: the traced live path shows precision represented
+    and applied as independently-parameterized, independently-computed
+    values across at least the encoding channels (self/world/beta/theta/
+    delta) AND at least one further, separately-scoped consumer channel
+    (E3 commit-gate / affective-PE), such that no single scalar's value
+    determines all of them and ablating or changing one channel's
+    precision does not move another's. This is the CURRENT confirmed state
+    per the 2026-08-07 audit above: five independent nn.Parameter-backed
+    per-channel gains in LatentStack, applied locally within each stream's
+    own forward pass, plus a structurally distinct E3/dACC precision
+    channel scoped to trajectory-commitment and affective-PE weighting
+    specifically.
+
+    Next step, if this claim is re-audited later, is to re-check the audit
+    target list above for drift (new precision-touching code, e.g. SD-026
+    attention/salience gating landing) and to check whether
+    modulate_precision()/compute_prediction_error() have since gained live
+    callers -- their continued absence is not itself falsifying (the
+    encode-time gain is sufficient), but their presence would strengthen
+    the confirming finding further.
   location: docs/invariants.md#inv-008
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -9860,6 +9952,93 @@
     - MECH-069
     - INV-032
     - SD-010
+  epistemic_category: substrate_ceiling
+  pending_retest_after_substrate: true
+  what_would_answer: |
+    ARC-030 is the most BASIC of three related open questions on this
+    substrate (ARC-030: does Go/NoGo channel SYMMETRY itself produce any
+    behavioural lift over pure-NoGo, at all; INV-034: is prospective
+    goal-MAINTENANCE specifically necessary for ethical agency; SD-015:
+    does the z_resource encoder specifically enable navigation). Do not
+    re-derive the ablation design here -- see INV-034's own
+    what_would_answer for the two-arm approach-vs-avoidance-only protocol
+    and SD-015's for the representation/behaviour split; ARC-030 draws on
+    the SAME substrate family (scaffolded_sd054_onboarding) and the SAME
+    non-degeneracy gate, but asks the prior, narrower architectural
+    question those two do not: whether adding a symmetric Go (approach)
+    sub-channel to the existing NoGo (SD-010/harm) channel measurably
+    changes behaviour vs a pure-NoGo control, independent of whether that
+    change constitutes "agency" (INV-034) or is attributable specifically
+    to the resource encoder (SD-015).
+
+    WIRING STATUS: the "two crossed wiring paths for goal seeding, neither
+    properly wired" defect named in the 2026-05-08 governance note is
+    RESOLVED. V3-EXQ-247 (2026-04-06/07, the note's own named gate) itself
+    FAILED/was non_contributory on both runs -- z_goal_norm=0.0 across
+    every condition -- which is the same defect the 2026-05-08 note
+    diagnosed, not a fresh finding. The fix path since then: GAP-1
+    (MECH-307 split-channel substrate, landed 2026-05-11, readiness
+    V3-EXQ-540g PASS 2026-05-15) and GAP-7/SD-057 (object-bound
+    incentive-salience layer L2-L9, landed 2026-06-04 through 2026-06-15)
+    together replaced the dead seeding path. GAP-2 (the SD-049 Phase-2
+    behavioural line) closed 2026-06-15 on V3-EXQ-514o PASS: object-bound
+    wanting!=liking dissociation 0.80 (>=0.6), goal_resource_r 0.93-0.96,
+    z_goal now fires during real foraging under the SAME
+    scaffolded_sd054_onboarding substrate. BUT: no run since V3-EXQ-536a/
+    536b (2026-05-08) has tagged ARC-030 as a claim_id, and no Go/NoGo
+    symmetry discriminative pair (the EXQ-138a/226 design) has been re-run
+    on the corrected wiring. ARC-030 itself is UNTESTED on the fixed
+    substrate, not merely awaiting a fresh interpretation of old evidence.
+
+    MANDATORY non-degeneracy precondition (shared with INV-034/Q-021, same
+    substrate family): FULL-arm resource_visit_rate must exceed RANDOM
+    baseline by >=0.05 on >=2/3 seeds, using a harness/curriculum window
+    that avoids the hazard-heavy stretch V3-EXQ-866/866a found depresses
+    z_goal (866b PASS 2026-08-03 confirms this is curriculum-specific, not
+    a substrate-wide regression -- see INV-034's what_would_answer -- so
+    the precondition is satisfiable, just not on that stretch). A run
+    failing this gate self-routes substrate_not_ready_requeue, not an
+    ARC-030 verdict.
+
+    Once non-degeneracy clears, the ARC-030-SPECIFIC retest is the Go/NoGo
+    symmetry discriminative pair (EXQ-138a/226 design, re-run on the
+    corrected wiring): COMBINED (Go+NoGo, real z_goal active via SD-057)
+    vs NOGO_ONLY (Go channel ablated), matching EXQ-226's original criteria
+    (benefit_ratio_COMBINED/NOGO_ONLY >= 1.2; harm_ratio <= 1.3 ceiling;
+    avg_goal_norm >= the C6-style floor of 0.4 used elsewhere in this
+    substrate family, confirming the Go channel is actually receiving a
+    live goal signal and not retesting the pre-514o dead-seeding failure
+    mode).
+
+    CROSS-SEED CONSISTENCY REQUIREMENT (the illusory-conflict governance
+    note, 2026-04-06): EXQ-226's aggregate PASS was driven by a single seed
+    (13) where NOGO_ONLY collapsed and COMBINED rescued it, while two of
+    three seeds showed COMBINED roughly equivalent to NOGO_ONLY -- an
+    unrepresentative-seed PASS, not a general one. A retest PASS does not
+    count as confirming ARC-030 unless the benefit_ratio lift clears
+    threshold on >=2/3 seeds INDEPENDENTLY (not via one seed's NOGO_ONLY
+    collapse), consistent with how INV-034/SD-015 both require >=2/3-seed
+    criteria rather than aggregate scoring.
+
+    CONFIRMING signature: with non-degeneracy and cross-seed consistency
+    both held, COMBINED beats NOGO_ONLY on the EXQ-226 criteria on >=2/3
+    seeds INDIVIDUALLY (not just in aggregate).
+
+    FALSIFYING signature: with non-degeneracy held and a live z_goal signal
+    confirmed (avg_goal_norm clears floor, ruling out the pre-514o
+    dead-seeding confound), COMBINED does not beat NOGO_ONLY on >=2/3
+    seeds -- i.e. the symmetric Go channel adds no measurable behavioural
+    lift over pure-NoGo even once the channel itself is known to be live
+    and receiving signal. This is a genuine test now that
+    EXQ-247/536a/536b's dead-seeding confound is retired -- earlier FAILs
+    (EXQ-085m/138a/183/186) could not distinguish "no Go effect" from "no
+    Go signal," and this design can.
+
+    What would NOT answer it: any run predating the 2026-06-15 GAP-2
+    closure (dead-seeding confound not yet retired); any run without a
+    live z_goal check (avg_goal_norm floor) alongside the behaviour metric;
+    any aggregate-only PASS without the per-seed breakdown the
+    illusory-conflict note requires.
   location: docs/architecture/approach_avoidance_symmetry.md#arc-030
   source:
     - evidence/planning/thought_intake_2026-03-22_approach_avoidance_drives.md
@@ -17371,6 +17550,81 @@
     - SD-005
     - SD-010
     - ARC-035
+  epistemic_category: substrate_ceiling
+  what_would_answer: |
+    SD-016 splits into two independently falsifiable sub-questions.
+
+    (A) RETRIEVAL-SELECTIVITY (does z_world-only cue-indexed retrieval
+    differentiate at all?): ALREADY ANSWERED, negatively, for the
+    originally-proposed remedy: environment enrichment does not restore
+    selectivity. V3-EXQ-418j/k (4-arm reef/landmark enrichment ladder,
+    2026-05-05/06) found cos_cross_mean 0.987-0.9999 and separation_gap_mean
+    ~0-0.004 across ALL arms including the enriched ones. Independently
+    reconfirmed by the 2026-07-18 z_world near-static characterisation:
+    contrast ratio is flat (~0.094, 1.52x range) across a 782x foraging
+    change and 17x survival-horizon change, and is highest at the most
+    impoverished rung -- "env enrichment is the wrong lever for this
+    quantity." Both the original q.k selection mechanism (exhausted across
+    418d/e/i) and Path 3 (feedforward cue->slot tagger, V3-EXQ-418m,
+    2026-06-05, FAIL: C1 ON entropy 0/3 seeds <2.5, C1b ON
+    context-divergence 0/3 seeds >0.1, OFF saddle reproduced exactly at
+    ln(16)=2.772589) fail identically because both consume the same
+    near-constant z_world -- the bottleneck sits one level upstream of the
+    selection mechanism, in the encoder, not in which architecture sits on
+    top of it.
+
+    STILL OPEN: whether an encoder-level fix restores cross-context z_world
+    separation enough for ANY selection mechanism to have something to
+    differentiate on. Under the x724/x734 P0 protocol the world encoder is
+    never trained at all (weight-delta 0/61 tensors); the 2026-06-06
+    zworld-integration-cluster autopsy separately found even a TRAINED
+    z_world at dim=32 lacks event-selective structure (substrate_ceiling);
+    SD-070 found the currently-prescribed P0 recipe makes contrast WORSE
+    (0.1222 -> 0.0726 CR), diagnosed as a wiring fault. V3-EXQ-783
+    (dim32/128 x untrained/trained crossing, PASS 2026-07-18) is the live
+    discriminator for this upstream thread but is scoped to Q-002/SD-031
+    and has not been read back onto SD-016's own retest criteria. What
+    would answer this leg: re-run the 418g/418m-shaped acceptance test (C1
+    sel_entropy_mean <2.5 AND C1b context-divergence >0.1, both >=2/3
+    seeds, with OFF reproducing the ln(16) saddle as the ablation-cleanliness
+    check) under an encoder configuration already shown to raise z_world
+    contrast independently of SD-016 (SD-070's replacement recipe, or
+    V3-EXQ-783's trained dim=128 arm) -- NOT the originally-planned
+    SD-023-landmarks probe, which the evidence above renders redundant.
+
+    (B) DOWNSTREAM EXPLOITATION (once selectivity exists, do
+    action_bias/terrain_weight get used behaviourally by E2/E3?): UNTESTED,
+    explicitly gated, and NOT automatic even when selectivity is engineered
+    directly -- V3-EXQ-418g forced slot_diversity=1.000 and
+    attn_entropy=0.000 and action_class_entropy still stayed at 1.105e-10
+    identically across all four arms. Two further named prerequisites: (1)
+    cue_action_proj's own consumer wiring (FAIL/collapsed in V3-EXQ-449,
+    std ~2.7e-8; reportedly fixed in V3-EXQ-449b) and (2) SD-055
+    differentiable-CEM gradient path (substrate landed, V3-EXQ-568 PASS,
+    but its own default-flip note requires a SEPARATE behavioural
+    validation with use_differentiable_cem=True, not yet run per
+    substrate_queue.json). What would answer this leg: once (A) clears, an
+    action_bias_div / terrain-weight discriminative test (418g C4/C5-shaped)
+    run with cue_action_proj confirmed live and SD-055 differentiable CEM
+    engaged, showing behavioural divergence tracks retrieval content rather
+    than staying flat.
+
+    NON-DEGENERACY PRECONDITION: selection entropy pinned at or within
+    ~0.02 of the uniform ceiling ln(16)=2.772589 (as OFF has reproduced
+    exactly, 3/3 seeds, across both the q.k and feedforward-tagger paths)
+    is not evidence against SD-016 -- it is the signature that the
+    selection INPUT (z_world) is not varying, recurring identically across
+    five+ independent probes regardless of selection architecture. A pass
+    on entropy (C1) alone without a context-divergence instrument (C1b) is
+    equally uninformative: 418m's ON arm moved entropy a cosmetic 0.019
+    below ceiling from random-init fixed MLP logits while context-divergence
+    stayed ~0.002 against a 0.1 target -- a static non-uniform-but-fixed
+    selector, not a context-selective one. Any future SD-016 retest must
+    report BOTH instruments, and must independently confirm (via a
+    raw-channel or contrast-ratio control) that the environment/encoder
+    configuration under test actually clears cross-context z_world
+    separation before attributing a pass or fail to the selection mechanism
+    itself.
   status_note: >
     IMPLEMENTED 2026-04-16. E1DeepPredictor.extract_cue_context(z_world) added to
     ree_core/predictors/e1_deep.py. Three new projections gated by sd016_enabled=True:
@@ -27665,6 +27919,72 @@
     - INV-038
     - INV-009
     - MECH-007
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    Non-degeneracy precondition (must ALL hold before this claim is
+    testable by construction, not merely unfavored): (a) SD-014 reaches
+    >= provisional -- status as of this digestion: still candidate, and
+    the only direct evidential run to date (V3-EXQ-887, 2026-08-04,
+    weakens, unreviewed -- absent from review_tracker.json, listed in
+    pending_review.md) FAILED both load-bearing criteria C1
+    (functional_drive_gating) and C2 (representational_separability) on
+    all 3 seeds, with only C3 (replay_set_selectivity) passing. Note for
+    whoever revisits this: the write-path dimension-mismatch bug that
+    made the EARLIER V3-EXQ-432 run vacuous (n_surprise_writes=0) was a
+    genuinely buildable defect and IS fixed (ree-v3 32edd553,
+    2026-08-04, pinned by test_do_replay_drive_state_width.py) -- but
+    that fix is already reflected IN the 887 run's substrate, and 887
+    still failed C1/C2 on the corrected substrate. So the SD-014 gate is
+    not "waiting on a code fix"; it is sitting on an unreviewed
+    weakening result that, if confirmed on governance/autopsy review,
+    argues against the 4-channel node-valence design SD-026 depends on
+    for a "crisp resource representation," not merely against SD-014's
+    timeline. (b) SD-026 itself is implemented: currently fully unbuilt
+    -- no dan_feedback/template_proj code exists anywhere in
+    ree_core/ (verified by direct grep), no commit in either repo's full
+    history ever touched those symbols, no queue entry references
+    SD-026/MECH-251/dan_feedback. The "do not queue until SD-014 >=
+    provisional" hold in this claim's own evidence_quality_note is being
+    honored.
+
+    Once both preconditions clear, the pre-registered five-step
+    validation sequence (queued post-SD-014, per this claim's own note)
+    is: (a) verify z_goal seeds (SD-012 -- already provisional, not
+    gating); (b) verify z_resource separates (SD-014); (c) enable/
+    disable the dan_feedback channel as ablation; (d) measure
+    benefit_ratio against a random baseline; (e) measure feature-channel
+    precision on goal-relevant vs goal-irrelevant dimensions.
+
+    CONFIRMING: dan_feedback=on lifts benefit_ratio substantially over
+    dan_feedback=off, AND goal-relevant feature-channel precision
+    exceeds irrelevant-channel precision specifically under
+    dan_feedback=on (not as an artifact of the ablation toggle alone).
+
+    FALSIFYING (primary): dan_feedback=off performs equivalently to
+    dan_feedback=on, replicating the EXQ-085h-l seed-but-inert pattern
+    regardless of ablation state -- meaning z_goal's behavioral effect,
+    if it exists at all, is fully mediated by pathways other than this
+    claimed channel (e.g. E3 trajectory re-ranking alone, per this
+    claim's own functional_restatement of the pre-SD-026 failure mode).
+
+    FALSIFYING (secondary, SEPARABLE-FROM boundary): even if SOME
+    benefit_ratio lift is observed under dan_feedback=on, the "distinct
+    channel" half of this claim is separately weakened if dan_feedback's
+    effect cannot be dissociated from residue-geometry's (ARC-007)
+    effect -- e.g. via the two channels' claimed distinguishing signature
+    (fast-decay prospective write vs slow-decay retrospective write on
+    the shared additive E1-prior register): if ablating dan_feedback
+    while holding ARC-007 residue geometry fixed produces no differential
+    change in the fast-timescale component of E1-prior bias, or if the
+    effect's decay-constant profile matches ARC-007's slow dynamics
+    rather than the claimed fast dynamics, the two "distinct channels"
+    have collapsed to one and SD-026's separability claim (not just its
+    behavioral-lift claim) is falsified even where benefit_ratio moved.
+    This is the same architectural-distinctness question INV-012's Leg 1
+    stages on 4 axes (causality direction, neuromodulatory gating,
+    clinical dissociation, representational format) -- here it is
+    SD-026's own empirical boundary test, checkable once the channel is
+    built, independent of INV-012's derivational argument.
   functional_restatement: >
     SD-012 establishes that drive-scaled benefit can seed z_goal. EXQ-085f/g
     confirmed z_goal_norm > 0.1 is achievable. EXQ-085h through 085l then
@@ -62842,6 +63162,68 @@
     - SD-011     # canonical grounding SUCCESS -- dual nociceptive streams modelled on biology (L3)
     - SD-033     # region-grounded substrate family -- PFC subdivision architecture
     - ARC-035    # vmPFC -- value/affect grounding exemplar
+  epistemic_category: substrate_coherence
+  what_would_answer: |
+    ARC-106 is a standing construction-method claim, not a single-experiment
+    hypothesis -- confirmation/falsification is read off the AGGREGATE
+    pattern across the divergence ledger's worked examples
+    (docs/architecture/arc_106_biology_grounding_framework.md S5), each
+    scored by the claim's own load-bearing-vs-decorative test (S4.2):
+    ablate/gap-blind the biologically-motivated constraint while holding
+    everything else fixed; if a pre-registered behavioural metric is
+    unchanged, that component's grounding is decorative.
+
+    CONFIRMS (per-component, moves a ledger row to L3): a component's
+    falsifier returns a clean load-bearing verdict -- the biological
+    constraint's ablation measurably degrades the pre-registered metric, and
+    the effect is specific to the biologically-motivated form (not
+    reproduced by an equally-complex non-biological control). SD-011 (dual
+    nociceptive streams) and drive/incentive salience (BG-4, V3-EXQ-514u)
+    are the claim's own confirmed L3 exemplars.
+
+    WEAKENS a SPECIFIC component (drops it to decorative, per S4.2 verbatim):
+    the ablation/gap-blind control matches or exceeds the biologically-named
+    construction on the pre-registered metric -- the biological name was
+    cosmetic.
+
+    CURRENT STATE OF EVIDENCE (first worked example, S6): the E3 action
+    selector (MECH-439 F-dominance) is the claim's own keystone case and
+    sits at L2, not yet L3. V3-EXQ-689a (2026-06-20) is the load-bearing
+    test in practice but returned a MIXED result the framework's simple
+    PASS/uniform-lift/no-lift trichotomy (S6.5) does not cleanly resolve:
+    the combined conflict-graded levers (ARM_A1B1) did not convert (FAIL,
+    non_contributory, conversion_ceiling_persists_despite_conflict_grade),
+    while an isolated single lever (Factor B, gap-scaled commit-T) showed a
+    load-bearing-looking lift (2/3 seeds above both gap-blind controls) that
+    did NOT replicate on isolation retest (V3-EXQ-689c, FAIL/
+    non_contributory). Net: the action-selector row's grounding is NEITHER
+    confirmed load-bearing NOR shown decorative yet -- the claim escalated
+    (per its own G3 guardrail) to the constitutional BG build
+    (ARC-107/MECH-448/449) rather than resolving the L2 ledger row directly,
+    and MECH-439 itself was separately demoted to contested/exhausted on
+    2026-07-09 (GOV-CEIL-1, 10 confirmed substrate_ceiling autopsies)
+    pending a positive discrimination from that constitutional route. This
+    is consistent with the claim's own "no lift => the blocker is
+    downstream, re-ground that row instead" branch (S6.5), not either the
+    PASS or decorative branches -- track it as such, not as a resolved
+    verdict either way.
+
+    ARC-106 WHOLESALE FALSIFICATION / ABANDONMENT: not a single-run result,
+    but a TREND -- if, across a critical mass of worked examples (the
+    action selector plus at minimum 2-3 more ledger rows carried to a
+    falsifier verdict, e.g. the Go/No-Go split, the commitment latch, the
+    dopaminergic RPE substrate), the pattern is that biologically-motivated
+    constraints, when tested under S4.2, repeatedly turn out decorative
+    rather than load-bearing, that is evidence the biology-grounding method
+    itself is not earning its cost and the standing constraint should be
+    revisited or abandoned as a construction discipline. A single
+    non-contributory or ambiguous result (as with 689a above) is explicitly
+    NOT this pattern -- the doc's own S4.4 treats divergence/non-conversion
+    as data, not failure. Revisit only when a worked-example falsifier
+    materially changes the aggregate ledger picture -- i.e. either a run of
+    confirmed decorative verdicts across multiple independent components,
+    or (positive direction) enough L3 confirmations that the method's cost
+    is clearly earning its keep.
   functional_restatement: >
     ARC-106 is a THIN UMBRELLA / standing design constraint + method, not new
     mechanism. It is the CONSTRUCTION-TIME complement to the registration-time
