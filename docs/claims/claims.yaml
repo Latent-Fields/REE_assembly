@@ -449,6 +449,44 @@
     as_of: 2026-07-11
     needs_review: false
   depends_on: []
+  epistemic_category: derivational
+  what_would_answer: |
+    INV-010 is the BARE universal-necessity claim: offline integration
+    exists across cognitive systems and is architecturally required, full
+    stop -- grounded in cross-species biology (e.g. the zebrafish
+    sleep-necessity literature already cited in claim_evidence.v1.json),
+    with no depends_on and no REE-specific mechanism content. This is
+    DISTINCT from its dependent claim ARC-011 ("offline integration is
+    required FOR STABILITY [in REE]"), which stakes the REE-specific,
+    empirically-testable architectural claim (mediated through ARC-007
+    hippocampal replay and ARC-005 control plane) -- see ARC-011's own
+    what_would_answer for that empirical falsifier; do not re-run it here.
+    [Digestion note, flagged not resolved: the two titles read as
+    near-duplicates in wording despite this real distinction in kind --
+    worth a governance pass to make the split explicit in one or both
+    entries.]
+
+    Answered by literature/derivational argument, not a REE experiment:
+    does the biological/computational-cognition literature show ANY
+    complex, stable cognitive system (biological or artificial) that
+    sustains long-horizon operation WITHOUT some form of offline
+    consolidation, or is offline integration a structural universal across
+    every studied case? FALSIFYING: a credible counterexample -- a
+    cognitive system (biological species, or an artificial agent
+    architecture with a comparable operating horizon) demonstrated to
+    remain stable indefinitely with zero offline/consolidation phase.
+    CONFIRMING: the cross-species pattern holds without exception across
+    the literature base already cited for this claim, and no counter-
+    example architecture is found.
+
+    Note: REE's own EXQ-430 (SLEEP harm < NO_SLEEP harm, tagged INV-010)
+    found no differential effect in 0/3 seeds, but governance's own read
+    was "not evidence against INV-010; symptom of missing MECH-261
+    mode-conditioned offline-write gating substrate" -- i.e. inconclusive/
+    substrate-gated, not falsifying, and in any case this REE-level
+    empirical question is ARC-011's falsifier, not INV-010's (a universal
+    invariant is not falsified by one architecture's substrate-readiness
+    gap).
   location: docs/invariants.md#inv-010
   source:
     - docs/processed/legacy_tree/docs/invariants.md
@@ -16914,6 +16952,78 @@
     - ARC-019
     - MECH-052
     - INV-042
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    This claim fuses two legs that resolve on different timescales and by
+    different methods. Neither is answered by the single-agent V3 substrate
+    as it stands.
+
+    LEG A -- DERIVATIONAL (is "architecture necessary but not sufficient" a
+    coherent, non-vacuous claim about REE's own architecture?):
+    Proof obligation: show that fixing REE's architecture (the eight axioms
+    + two derivations INV-025-029, plus the E1/E2/E3 machinery) while
+    varying only developmental/training history yields divergent terminal
+    ethical dispositions (genuine other-directed care vs. survival,
+    domination, or indifference). This is ALREADY SUBSTANTIALLY SKETCHED by
+    MECH-158's existing failure-mode derivation: the "love exists, but not
+    for me" collapse shows the identical axiom set (Axiom 7 / ARC-024
+    benefit gradient) can be structurally present yet motivationally inert
+    for the self-other direction absent an internalised loveability belief
+    -- i.e. a named mechanism by which architecture underdetermines
+    outcome. Residual step: formalise or stress-test this derivation (does
+    the argument hold under every configuration of E1-E3, or only a
+    subset?) rather than treat it as a fresh open question. This leg would
+    be FALSIFIED by a proof or a proxy demonstration that a fully specified
+    REE architecture converges to genuine other-directed care regardless of
+    developmental/training history.
+
+    LEG B -- SUBSTRATE_CONDITIONAL (once multi-agent caregiving modelling
+    exists, is caregiver-love SPECIFICALLY the missing ingredient, as
+    opposed to mere multi-agent exposure, diversity of interaction, or some
+    other developmental factor?):
+    Non-degeneracy precondition (currently unmet, all three required):
+      (i) a multi-agent substrate (ARC-047 / SocialGridWorld or
+          equivalent) -- UNBUILT, confidence 0.0, reassigned V4->V5
+          2026-06-10, no construction activity since;
+      (ii) a caregiving-interaction model able to represent POSITIVE-
+          VALENCE vs NEUTRAL/INSTRUMENTAL vs HOSTILE/ABSENT caregiver
+          behaviour directed AT the developing agent specifically (not
+          just co-presence of other agents); and
+      (iii) a measurable "ethical resolution" outcome metric that
+          discriminates genuine other-directed care from survival/
+          domination/indifference strategies in a multi-agent setting --
+          does not exist; V3's harm/benefit channels are single-agent
+          only.
+    Once built, this would ANSWER via a >=3-arm, multi-seed comparison:
+    Arm 1 (positive-valence caregiver: protection + repair + demonstrated
+    "you are loveable") vs. Arm 2 (mere multi-agent EXPOSURE, neutral/
+    instrumental interaction, no valence directed at self) vs. Arm 3
+    (hostile or inconsistent caregiving), scored on downstream ethical-
+    resolution outcome. If Arm 1 diverges toward care while Arms 2 and 3
+    converge toward survival/domination/indifference, this SUPPORTS
+    caregiver-love SPECIFICALLY as the necessary ingredient. If Arm 2 alone
+    already produces care-like outcomes, this FALSIFIES the love-specific
+    version of the claim -- some other factor would be doing the work
+    instead.
+
+    Existing partial evidence: V3-EXQ-206 (2026-04-02, PASS, diagnostic/
+    supports) is a single-agent proxy testing only whether harm-
+    representation machinery develops differently under harm-rich vs
+    harm-sparse training data. It tests prerequisite structure only and
+    should NOT be read as evidence toward or against the love-specific
+    caregiving mechanism this leg targets. Literature grounding is
+    comparatively strong and decoupled from this precondition (lit_conf
+    0.837, LOVE-7 pull 2026-06-12: attachment/rupture-repair/self-other-
+    coupling anchors) but cannot promote a substrate-blocked empirical
+    claim on its own.
+
+    Currency (2026-08-07): no multi-agent substrate exists anywhere in
+    ree_core (confirmed via the 2026-08-03 GOV-CONFIRM-1 MECH-191
+    reaffirmation against live HEAD); ARC-047 remains candidate/
+    confidence-0.0/V5-gated. INV-041, INV-042, MECH-158, MECH-159 are
+    downstream/sibling candidates in this same developmental/caregiver
+    cluster and will likely hit the same derivational+substrate_conditional
+    fork.
   location: docs/architecture/developmental_curriculum.md#inv-043
   source:
     - docs/thoughts/2026-04-01_Caregivers_childhood_moral_development.md
@@ -24253,6 +24363,69 @@
     at approach positions, contact wanting fires at resource position.
   registered: "2026-04-08"
   depends_on: [SD-014, SD-018, MECH-203, INV-065]
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    A properly-powered retest of the E1-schema predictive-wanting mechanism,
+    run only after a measurement redesign (reward-dense episodes, longer
+    future-target windows, or a denser auxiliary supervision signal) raises
+    positive_label_rate above the quality-density floor established by
+    EXQ-332a.
+
+    NON-DEGENERACY PRECONDITION (must clear before the run counts as
+    evidence either way -- otherwise the result is non_contributory, per
+    the pre-registered rule carried over unchanged from EXQ-332/332a):
+      - positive_label_rate (fraction of P1 steps with future_target=1)
+        > 0.10 (C3 quality gate; EXQ-332a measured 0.00128, ~78x below
+        floor)
+      - future_target_corr in the PREDICTIVE_CUE_ON arm must be a genuine,
+        non-degenerate correlation (not an artifact of near-zero variance
+        in near-empty positive labels) -- adequacy of label density is
+        what C3 checks for before C1 is interpretable at all.
+
+    CONFIRMS MECH-216 (supports) if, once C3 clears:
+      - C1: future_target_corr(schema_salience_t, future_target_t) > 0.10
+        in the PREDICTIVE_CUE_ON condition (schema activation carries
+        predictive signal above noise), AND
+      - C2: PREDICTIVE_CUE_ON future_target_corr > ABLATED
+        future_target_corr (the E1 schema-cue, not some other correlate,
+        is what enables the prediction), AND
+      - the resulting wanting seeding shows the mechanism's own
+        distinguishing spatial signature: schema-driven wanting fires at
+        approach/intermediate positions from which a resource is
+        predictable but not yet contacted, spatially offset from
+        direct-contact wanting, which fires only at the resource position
+        itself. (EXQ-263b's diagnostic dry run already demonstrated this
+        offset in principle: salience_at_landmark_b=0.83 enabled vs 0.0
+        ablated -- this needs re-confirmation under the corrected,
+        dense-label supervision scheme, not fresh invention.)
+
+    FALSIFIES MECH-216 (does_not_support) if, once C3 clears (density
+    floor met, so the run is genuinely diagnostic):
+      - C1 and/or C2 fail -- schema salience does not predict future
+        resource contact above noise, or does no better than an ablated
+        (schema-blind) control, even with adequate positive-label
+        density. This would mean E1's LSTM hidden state does not carry
+        the CS-detector signal the mechanism claims, ruling out a
+        measurement-density explanation for non-support.
+
+    INCONCLUSIVE / hold at provisional (repeat, do not adjudicate) if:
+      - C3 still fails to clear 0.10 after the redesign -- indicates the
+        redesign itself was insufficient and needs a further iteration,
+        not that the mechanism is refuted.
+
+    CURRENCY (2026-08-07): the measurement redesign called for on
+    2026-04-18 has NOT happened -- no MECH-216/schema_wanting retest of
+    any kind since EXQ-332a. The live_status.evidence pointer above
+    ("failure_autopsy_EXQ-539-540_MECH307_2026-05-17#V3-EXQ-540f",
+    verdict superseded/measurement_design_broken_criterion) is a stale
+    cross-tagging artifact: that autopsy is about MECH-307's own C1
+    criterion (liking_writes), not MECH-216's future_target_corr
+    criterion -- MECH-216 was only incidentally co-tagged on EXQ-539's
+    manifest, and the autopsy's "Confirmed Routing" section only retains
+    MECH-216's existing supports direction, never proposes changing this
+    evidence pointer. This field should be corrected by governance
+    separately from this what_would_answer addition -- flagged, not fixed
+    here.
   evidence_quality_note: >
     Promoted to provisional (governance-2026-04-10): conf=0.834, conflict_ratio=0.25,
     7 supports / 1 opposing. EXQ-263b (diagnostic dry run, 2026-04-10) confirmed schema
@@ -25392,6 +25565,77 @@
     reading: candidate
     as_of: 2026-07-11
     needs_review: false
+  epistemic_category: derivational
+  what_would_answer: |
+    This is a formal DEFINITION, not an empirical hypothesis -- the
+    falsifier is definitional coherence, not a PASS/FAIL experimental
+    outcome. Two independent things must be shown before the definition is
+    considered answered, and both require a working V(t) computation to
+    exist first (see non-degeneracy precondition below).
+
+    IRREDUCIBILITY test (does the three-component decomposition hold?):
+    the definition claims C_i (content agreement), P_i (phase alignment),
+    and alpha_i (precision) are three GENUINELY SEPARATE, independently
+    manipulable axes. Confirm this by isolating each:
+      - Manipulate content agreement alone (feed a_i/d_i pairs at fixed
+        phase offset, varying ||a_i - d_i||): V(t) should track C_i and
+        the system should read out as Perception when high, sustained.
+      - Manipulate phase alignment alone (fixed content match, varying
+        phi_a_i - phi_d_i): V(t) should independently degrade as P_i
+        degrades even with C_i pinned high -- this is the critical test,
+        since it is the axis with zero current implementation (see
+        below).
+      - Manipulate precision alone (fixed C_i, P_i; varying alpha_i):
+        contribution to the weighted sum should scale accordingly without
+        moving C_i or P_i.
+    ANSWER "irreducible" (confirms the claim) if each axis can be driven
+    independently and each produces its predicted qualitative category
+    when isolated per the operational definitions: sustained high V(t)
+    with high sensory precision -> Perception; phase-offset/segregated
+    V(t) -> Imagination; internally-generated content producing false
+    high V(t) in the sensory phase channel without external input ->
+    Hallucination. ANSWER "collapsible" (falsifies irreducibility as
+    stated) if two of the three terms covary so tightly in the live
+    substrate that manipulating one always moves the other, or if
+    isolating an axis fails to move V(t) in the predicted direction at
+    all.
+
+    DISCRIMINATION test (does the definition ground what it claims to
+    ground?): the sharpest test is Hallucination vs. ordinary high-
+    confidence correct Perception: both are "high V(t), sustained" by the
+    formula as written (Hallucination is defined only by the SOURCE of
+    the descending signal being internal rather than external, not by any
+    difference visible to V(t) itself). ANSWER "grounds the distinction"
+    if some component of the substrate (precision alpha_i, or a signal
+    external to V(t) proper) reliably discriminates the two cases at the
+    point where V(t) is computed. ANSWER "fails to ground" if the formula
+    as specified is provably unable to tell a hallucination from a
+    correct high-confidence percept from inside the V(t) computation
+    alone.
+
+    NON-DEGENERACY PRECONDITION (check this FIRST): a coherence audit is
+    unanswerable if no component of V(t) is implemented as a computed
+    quantity anywhere in the live substrate. As of this digestion pass,
+    V(t) is UNBUILT as a literal combined quantity: content agreement C_i
+    has a Stage-1 proxy only (MECH-269 per-stream V_s in
+    ree_core/hippocampal/module.py, update_per_stream_vs -- an identity-
+    prediction proxy, not the Gaussian kernel as specified, explicitly
+    staged by ARC-055 as "Stage 1: prediction error only"); phase
+    alignment P_i has NO implementation and no functional analog --
+    MECH-089 (cross-frequency temporal packaging, status active)
+    explicitly disclaims implementing oscillatory/phase coupling in the
+    ANN substrate ("not as oscillatory coupling... the biological
+    mechanism is one implementation of this functional requirement; it
+    is not required"); precision weighting alpha_i exists generically
+    (obf_use_precision_weighting) but is not wired into any V(t)-shaped
+    combination. INV-066 (this claim's stated prerequisite) is itself
+    `status: active`, so it is not the blocker -- the blocker is V(t)
+    having no combined implementation at all. Re-audit once (a) a
+    phase-alignment term P_i is implemented (ARC-055 Stage 2, itself
+    candidate/v4), and (b) the combination formula exists as a computed
+    quantity reachable by E1/E3, per ARC-055's own staged rollout. Until
+    then, this claim can only be evaluated as a design specification for
+    internal consistency, not audited against a running system.
   notes: >
     Formal definition of V(t), the core verisimilitude variable. Three irreducible components:
     (1) content agreement: C_i(t) = exp(-||a_i - d_i||^2 / sigma_i^2); (2) phase alignment:
@@ -25426,6 +25670,58 @@
     needs_review: false
   depends_on:
     - INV-067
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    Behavioural, not definitional (contrast INV-067): does REE's
+    trajectory/action selection (E3) actually use a persistence-weighted
+    verisimilitude signal (D_V, per the ARC-054 V3 rollout-horizon
+    synaptic-EMA form -- see
+    docs/architecture/dv_temporal_depth_v3_form.md) rather than responding
+    only to instantaneous V(t), when choosing between candidate
+    trajectories.
+
+    TEST DESIGN: construct two matched rollout conditions differing only
+    in the temporal PROFILE of coupling quality, not its instantaneous
+    peak -- (a) HIGH-INSTANTANEOUS / LOW-PERSISTENT: V(t) spikes briefly
+    high (e.g. one frame of spurious high content-agreement / anchor
+    match) then collapses; (b) LOW-INSTANTANEOUS / HIGH-PERSISTENT: V(t)
+    stays moderate but sustained across the rollout horizon H.
+
+    CONFIRMED if E3 trajectory selection systematically favours (b) over
+    (a) -- i.e. a persistence-weighted score (D_V, or any functionally
+    equivalent horizon-integrated signal) measurably shifts action/
+    trajectory choice beyond what raw per-step V(t) alone would predict,
+    consistent with "avoid trajectories where D_V collapses" and the
+    mania-delusion failure-mode framing in this claim's notes and in
+    ARC-054.
+
+    FALSIFIED if trajectory selection is indifferent to the temporal
+    profile and tracks only the instantaneous V(t) value at each step (or
+    a simple non-persistence-weighted aggregate, e.g. max or mean without
+    a decay/horizon term) -- i.e. D_V provides no behavioural information
+    beyond what V(t) alone already supplies. This would falsify the
+    specific integration requirement without necessarily falsifying
+    INV-067's underlying V(t) formalism.
+
+    NON-DEGENERACY PRECONDITION: this test presupposes V(t)/D_V exist as
+    a live, trajectory-selection-relevant signal wired into E3 --
+    confirmed as of 2026-08-07 to NOT be the case. MECH-269's
+    per_region_vs (ree_core/hippocampal/module.py) is instantaneous-only;
+    the ARC-054 rollout-horizon D_V EMA, use_arc054_dv flag,
+    predict_rollout_vs(), and arc054_dv_score additive bias are all
+    specified in dv_temporal_depth_v3_form.md but UNIMPLEMENTED (zero
+    hits under ree_core/), and the design's own proposed validation
+    experiment V3-EXQ-491 (4-arm factorial on use_arc054_dv) has never
+    been queued -- no hits in ree-v3/experiment_queue.json, no evidence
+    directory, no git log commits. Until that substrate lands, this claim
+    is non-degeneracy-blocked -- but for a materially DIFFERENT reason
+    than INV-067: INV-067 is blocked because there is no fact of the
+    matter to test (a definitional question); INV-068 is blocked only
+    because the specific consumer machinery (E3's use of D_V) has not yet
+    been built, and becomes immediately testable once ARC-054's V3 form
+    is implemented per its own validation-experiment design (V3-EXQ-491's
+    acceptance criteria C1-C4 in that doc are a ready-made falsifier and
+    should be reused/queued rather than re-derived).
   notes: >
     D_V(t) = temporal integration of V(t), implemented as exponential moving average:
     D_V(t + dt) = lambda * D_V(t) + (1 - lambda) * V(t + dt).
@@ -33930,8 +34226,90 @@
     - MECH-278  # stage-2 specialisation (object-schema formation)
     - ARC-010   # stage-3 substrate (V4)
     - MECH-274  # stage-3 sleep-aggregation (V4)
-    - SD-003    # stage-1 closure (counterfactual self-attribution)
+    - SD-003    # stage-1 closure (counterfactual self-attribution) -- NOTE (2026-08-07 digestion): SD-003 status is superseded (by MECH-256, SD-029) as of 2026-04-18, three days before this claim was registered; functional_restatement/notes still frame this in terms of SD-003. Not changed here (extract-don't-invent scope); flag for governance.
     - SD-005    # z_self / z_world split (currently engineered; developmental construction flagged)
+  epistemic_category: substrate_conditional
+  what_would_answer: |
+    NON-DEGENERACY PRECONDITION: this ordering claim is not yet
+    constructible as a clean ablation on V3 as built, and two distinct
+    gates must clear before either test below is informative. (1) V3
+    currently hand-wires the action space (MECH-277's own note: "V3
+    hand-wires action knowledge into the agent... MECH-277 is not
+    actively tested in V3"), so a literal "withhold stage 1" manipulation
+    must specifically degrade or ablate the counterfactual-backed self/
+    world attribution mechanism the agent would otherwise use -- not
+    merely truncate an arbitrary phase's episode count while the action
+    space stays fully specified underneath. (2) The MECH-276 scientist-
+    agent counterfactual-backed attribution feedstock that MECH-278's
+    stage-2 object-schema signal depends on is not itself substrate-
+    ready: V3-EXQ-703 (2026-06-23, confirmed failure-autopsy) found both
+    of its readiness preconditions unmet -- the P0 world-forward
+    comparator did not converge (world_forward_r2 mean -0.0547, 1/3 seeds
+    cleared the 0.20 threshold) and cf_margin was calibrated above the
+    achievable contrast band (0/3 seeds straddled backed/correlational).
+    This is the same untrained-P0-world-forward confound as
+    V3-EXQ-701/642, not a missing MECH-276 mechanism. The recommended
+    re-queue (converged P0 + recalibrated cf_margin, tentatively
+    V3-EXQ-703a) has not been run as of this draft. This is a different,
+    narrower substrate lineage than the SD-049 / scaffolded_sd054
+    foraging-competence family -- confirmed not the same substrate; do
+    not conflate the two. Until (1) and (2) both clear, a "stage-2-
+    without-stage-1" run that fails to form stable object-schemas is not
+    distinguishable from ordinary undertrained-base-representation noise,
+    and should self-route substrate_not_ready rather than count as a
+    verdict either way.
+
+    PRIMARY (skip-ordering ablation, per the claim's own falsifier): given
+    the precondition holds, an agent given stage-2 training (MECH-278
+    experimental-action object-schema formation) before stage-1 (MECH-277
+    action-space discovery / self-world attribution) is meaningfully
+    complete.
+
+    Confirming signature: the stage-2-before-stage-1 arm shows measurably
+    degraded, noisier, or less stable object-schema formation than a
+    matched stage-1-then-stage-2 arm (same total budget, same eventual
+    environment/feature set) -- because self-produced and world-produced
+    sensory change cannot yet be reliably distinguished. This would
+    confirm the ordering is load-bearing, not merely a convenient
+    scaffold.
+
+    Falsifying signature: the stage-2-before-stage-1 arm forms object-
+    schemas statistically indistinguishable in stability/noise from the
+    properly-ordered arm -- object-schema formation does not measurably
+    depend on prior self/world disambiguation. This would undercut the
+    claimed dependency between MECH-277 and MECH-278 even if the
+    individual stage mechanisms each hold in isolation.
+
+    SECONDARY (SD-005 shortcut-validity check, per the claim's own
+    falsifier -- V4-scoped, and a validity check on OTHER V3 claims that
+    depend on SD-005's engineered z_world, not only on ARC-059 itself):
+    given the precondition holds AND MECH-277's self/world distinction is
+    genuinely live (not hand-wired), ablate the engineered z_world
+    (SD-005) and require the agent to reconstruct an object-schema
+    decomposition via experimental (interventional) action alone.
+
+    Confirming signature: the reconstructed decomposition matches the
+    engineered SD-005 split -- features the engineered version groups as
+    one object are recovered as causally coherent bundles under
+    intervention, and vice versa. This shows the V3 engineered-z_world
+    shortcut was benign for every other V3 claim resting on SD-005's
+    z_world as a stand-in for developmentally-formed object
+    representation.
+
+    Falsifying signature: the reconstructed decomposition diverges
+    materially from the engineered split -- meaning the engineered
+    z_world smuggled assumptions the agent would not independently form,
+    and any OTHER V3 claim resting on SD-005's split needs re-examination
+    once V4's genuine experimental-action construction is available.
+
+    Evidence status (2026-08-07): no V3 experiment has queued or run
+    either prediction. MECH-276 landed substrate 2026-06-23 but its own
+    readiness diagnostic (V3-EXQ-703) FAILed and the recommended re-queue
+    has not been run. MECH-277 and MECH-278 have no experiments on file
+    at all -- V3 hand-wires the former and engineers the latter's target
+    representation. Do not treat any current V3 result as bearing on this
+    claim absent a run that actually satisfies the non-degeneracy
+    precondition above.
   functional_restatement: >
     The agent must discover its own action space before it can form
     object-schemas, and it must have object-schemas before it can
