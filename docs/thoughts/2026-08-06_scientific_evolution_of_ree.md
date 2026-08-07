@@ -6,7 +6,7 @@ Processed in:
 - docs/claims/claims.yaml#ARC-120 (2026-08-06) -- Observation 4 (competence precedes authority)
 - docs/claims/claims.yaml#ARC-121 (2026-08-06) -- Observation 3 (epistemic state as central computational object)
 - docs/claims/claims.yaml#ARC-112 (2026-08-06, cross-ref only, already registered 2026-07-22) -- Observation 2 (society vs pipeline / federation-heterarchy)
-- NOT registered as claims (process/methodology observations about the archaeology-as-instrument, not testable architecture claims): Observations 1, 5, 6, 7, 9. Observation 8 treated as a consequence of ARC-112 + ARC-120 rather than a separate claim. Recommended home: a "lessons from the historical archaeology" section in docs/START_HERE_HOW_REE_DEVELOPS.md -- not added here, flagged for a user decision.
+- NOT registered as claims (process/methodology observations about the archaeology-as-instrument, not testable architecture claims): Observations 1, 5, 6, 7, 9. Observation 8 treated as a consequence of ARC-112 + ARC-120 rather than a separate claim. INTEGRATED 2026-08-07 into docs/START_HERE_HOW_REE_DEVELOPS.md#how-ree-actually-progresses-patterns-from-the-historical-archaeology (user-approved) rather than claims.yaml, since these are process patterns, not testable architecture claims.
 
 Date: 2026-08-05
 Source: REE Historical Archaeology Edition 1.0

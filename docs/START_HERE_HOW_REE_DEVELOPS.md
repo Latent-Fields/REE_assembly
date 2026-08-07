@@ -195,6 +195,26 @@ Agents: read [NEW_AGENT_START_HERE.md](../../NEW_AGENT_START_HERE.md) at the umb
 
 ---
 
+## How REE actually progresses (patterns from the historical archaeology)
+
+A 2026-08-06 historical-reconstruction exercise looked back across REE's development and
+surfaced recurring patterns in *how* the programme progresses, distinct from claims about
+the architecture itself. Two of its observations became architectural claims (ARC-120,
+ARC-121) and one duplicated an already-registered claim (ARC-112) -- see
+[`docs/thoughts/2026-08-06_scientific_evolution_of_ree.md`](thoughts/2026-08-06_scientific_evolution_of_ree.md).
+The five below are process patterns, not testable claims, so they live here rather than in
+`claims.yaml`:
+
+| Pattern | Recognize it by | Implication for this session |
+|---------|------------------|-------------------------------|
+| **Interfaces are discovered as often as mechanisms** | An existing concept is quietly doing two jobs at once (prediction vs. proposal; replay vs. residue; uncertainty vs. commitment; implementation vs. competence; competence vs. authority; architecture vs. governance) | Progress is often sharper ownership of an existing boundary, not a new mechanism -- look for the overload before proposing something new |
+| **History is itself an experimental instrument** | The same concept, failure, or rediscovery keeps showing up across sessions | Treat `WORKSPACE_STATE.md` / `claims.yaml` history as data, not just a log -- a recurring pattern across sessions is a finding, not noise |
+| **Persistent disappearance is informative** | An idea (e.g. orienting, developmental ordering) drops out of active work, then re-emerges later unprompted | Don't dismiss a re-raised idea as "already covered and dropped" -- ask why it keeps coming back before re-shelving it |
+| **Differentiation is the dominant mode of maturation** | One successful concept splits into several specialised claims or mechanisms, raising local complexity | Rising local complexity alongside rising explanatory power is healthy growth here, not scope creep by default -- judge it on the latter, not the former |
+| **Mechanisms are first encountered as explanatory deficits** | The same "we don't have an account for X" gap reappears under different names before anyone proposes a mechanism for it (replay, residue, authority, and orienting each followed this path) | A gap that keeps resurfacing is itself the leading indicator a claim is about to be needed -- worth registering as a thought before the third or fourth time it's independently noticed |
+
+---
+
 ## Where detail lives
 
 - **The single live front (where we are right now):** [CURRENT_FRONT.md](CURRENT_FRONT.md) — short, generated, live-only (no history); links onward to `insights_report.md` and `closure_status.md`.
