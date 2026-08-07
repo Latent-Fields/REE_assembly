@@ -15328,13 +15328,36 @@
   status: candidate
   live_status:
     reading: candidate
-    as_of: 2026-07-11
+    as_of: 2026-08-07
     needs_review: false
     evidence:
-      from: "failure_autopsy_EXQ-539-540_MECH307_2026-05-17#V3-EXQ-540f"
-      as_of: 2026-05-17
-      verdict: superseded/measurement_design_broken_criterion
+      from: "v3_exq_887_sd014_node_valence_representational_functional_20260804T022547Z_v3#failure_autopsy_2026-08-05_pending_review_batch"
+      as_of: 2026-08-05
+      verdict: FAIL/weakens -- eliminated (H-wanting-liking-separable-drive-gated), non-degenerate, root-caused
   implementation_phase: v3
+  digestion_note: >
+    [thought-digestion, 2026-08-07] Falsifier superseded by executed evidence. live_status was
+    stale (pointed at an unrelated 2026-05-17 MECH-307 cluster autopsy). Since then, V3-EXQ-887
+    (2026-08-04) ran a dedicated, instrument-validated test of SD-014's representational claim
+    directly (C1 functional drive-gating, C2 representational separability, C3 replay-set
+    selectivity), with the V3-EXQ-432 surprise-write pipeline gap confirmed fixed as a readiness
+    precondition. Result: FAIL / weakens, confirmed non-degenerate by autopsy
+    (failure_autopsy_2026-08-05_pending_review_batch.md #3): C1 (tau<=0.85) and C2 (Spearman<=0.90)
+    fail on all 3 seeds (tau 0.867-0.889; Spearman 0.93-0.97); C3 passes. Root cause read from
+    source: VALENCE_WANTING and VALENCE_LIKING are both derived from the same underlying
+    benefit_exposure signal via different transforms, not the independent dopamine/opioid
+    pathways the cited biology (Berridge & Robinson 1998; Smith/Berridge/Aldridge 2011) requires.
+    Registered eliminated (H-wanting-liking-separable-drive-gated) in
+    evidence/planning/hypothesis_space_registry.v1.json. Confirmed autopsy routing (user-confirmed):
+    accept weakens, decouple VALENCE_WANTING's write-path (e.g. an incentive-sensitization term)
+    via /implement-substrate -- NOT YET ratified by /governance or chipped as of 2026-08-07.
+    Defer further what_would_answer drafting until that routing is ratified; the eventual falsifier
+    should reuse V3-EXQ-887's own validated instrument (readiness: channels populated + drive_state
+    dimensionality matches live VALENCE_DIM; CONFIRMING: C1 tau<=0.85 AND C2 |Spearman(w,l)|<=0.90
+    AND C3 Jaccard<=0.80 on every seed post-fix; FALSIFYING: C1 or C2 still fails post-fix) rather
+    than the EXP-0098/EVB-0132 behavioral design in the notes below, which V3-EXQ-887 has
+    superseded as the operative falsifier. Remove this note once the substrate fix is chipped and
+    a fresh what_would_answer can be drafted against the corrected implementation.
   depends_on:
     - ARC-036
     - SD-011
@@ -18260,6 +18283,60 @@
     - MECH-093
     - MECH-161
     - ARC-041
+  what_would_answer: >
+    CURRENT EVIDENCE STATE (2026-08-07 digestion pass): ARC-044 has never been tested, in whole or
+    in part. No experiment has varied context and temporal state jointly against either MECH-152 or
+    ARC-016, and no ARC-044-tagged queue entry or proposal exists (checked evidence/experiments/,
+    manual_proposals.v1.json, experiment_proposals.v1.json, governance_agenda.v1.json,
+    substrate_queue.json, ree-v3/experiment_queue.json). The claim's own notes already specify the
+    falsifying design in full: vary context (hazard-gradient vs resource-proximate, i.e. MECH-152's
+    cue_context axis) and temporal state (stable vs volatile, i.e. ARC-016's running_variance regime)
+    simultaneously, and read off whether the two gains combine MULTIPLICATIVELY or merely
+    ADDITIVELY/independently.
+
+    NON-DEGENERACY PRECONDITION: the two mechanisms under test must each be independently confirmed
+    live in the substrate before a null interaction can be read as evidence of independence, rather
+    than as one arm being a wiring gap. ARC-016 (temporal gain): CONFIRMED live -- status stable,
+    gate_green, mean_rho_rv_vs_commit=-0.955 (V3-EXQ-818, 2026-07-25); the substrate already computes
+    volatility_estimate = var(running_variance) over a sliding window (Q-007,
+    ree_core/predictors/e3_selector.py), so the stable-vs-volatile axis is directly instrumented.
+    MECH-152 (contextual gain), harm pathway only: CONFIRMED live -- V3-EXQ-194/194a C1 PASS 3/3,
+    r_w_harm=0.70 (hazard-gradient context drives w_harm as specified). The GOAL pathway (w_goal) is
+    FAIL (r=-0.007, flat) and is explicitly OUT OF SCOPE for this test -- the design must manipulate
+    context along the harm axis, not attempt to recruit the unconfirmed goal pathway. A run in which
+    either running_variance or w_harm shows negligible variance across its manipulated conditions
+    must self-route substrate_not_ready / non_contributory, not be read as a test of ARC-044.
+
+    SCOPE NOTE: the claim's title also names MECH-026 (arousal-mediated vigilance sensitivity) and
+    MECH-093 (z_beta heartbeat-rate modulation) as additional facets of the same unifying mechanism.
+    MECH-093's rate-channel is independently confirmed (V3-EXQ-097b/396b/505), but MECH-026 has zero
+    experimental evidence of its own and explicitly defers its mechanism to MECH-161, whose specific
+    optimal-arousal-regulator controller is described only as something that "could be implemented
+    as" a z_beta-gated controller -- i.e. it reads as UNBUILT, not merely untested (MECH-161:
+    evidence: [], status: candidate). A full 4-facet unification test is therefore NOT testable now;
+    this what_would_answer scopes to the 2-facet (MECH-152 x ARC-016) test the claim's own notes
+    fully specify and that both required substrates already support.
+
+    CONFIRMING: a statistically significant multiplicative interaction term on the combined
+    precision/gain readout (e.g. a 2x2 hazard-gradient/resource-proximate x stable/volatile design;
+    interaction effect on effective_harm_precision, or equivalently on E3 harm-evaluation
+    variability/commit-rate, exceeding what either main effect alone predicts) -- consistent with
+    MECH-152 and ARC-016 being the same gain-control mechanism at different levels of description.
+    Per the gain-control literature already cited in MECH-152's notes (Kanashiro et al. 2017), the
+    confirming signature should also show that high w_harm x low running_variance jointly REDUCES
+    harm-evaluation variability (signal-to-noise gain), not merely scales its magnitude --
+    distinguishing genuine shared precision-gain machinery from two independent magnitude-scaling
+    knobs that happen to both multiply into the same downstream score.
+
+    FALSIFYING: the context x temporal-state interaction term is additive or null -- effects of
+    w_harm and 1/running_variance combine linearly (or not at all) on the harm-evaluation readout,
+    with no interaction term exceeding the main-effects prediction. This would falsify ARC-044's
+    single-mechanism claim for the MECH-152/ARC-016 pair specifically: they would stand as REE
+    currently implements them -- two independent gain knobs that happen to both scale harm
+    evaluation, not facets of one underlying neuromodulatory gain architecture. A null result
+    obtained despite both non-degeneracy preconditions holding (running_variance and w_harm both
+    show healthy variance across their manipulated conditions) is a clean falsifier, not an
+    instrument failure.
   notes: >
     Registered 2026-04-02 from cross-cutting theme identified during literature pull
     batch. Several lit-pull discussions converged on the same architectural question:
@@ -19604,6 +19681,81 @@
     this claim as CONTEXT only and its per-claim evidence_direction is unknown -- this
     amends an annotation, not the claim. See
     evidence/planning/failure_autopsy_V3-EXQ-778c_2026-07-18.
+  what_would_answer: >
+    This is a FUSION claim: an out-of-domain clinical-empirical assertion (leg A) plus a
+    REE-internal, V3-testable mechanistic claim (leg B, operationalized as SD-073). The two legs
+    answer independently and neither substitutes for the other.
+
+    LEG A -- OUT-OF-DOMAIN (clinical/literature; no REE substrate can test this). Whether ACTUAL
+    human Alzheimer's disease follows the specific ordering asserted here (precision/confidence
+    loss -> episodic memory failure -> contextual identity loss -> global disorientation) is a
+    clinical-neurology question the REE substrate cannot itself adjudicate. It resolves by a
+    formal comparison of the claim's predicted symptom-emergence ordering against the published
+    staged-clinical-progression literature (e.g. CDR/FAST staging, MCI-to-AD conversion studies,
+    longitudinal neuropsychological batteries) -- not by the qualitative citation already present
+    in this claim's notes, which has never been formally checked against primary sources.
+    CONFIRMING: a systematic review or meta-analysis of longitudinal staging data shows the
+    predicted ordering (or one consistent with it under this claim's own domain mapping) as the
+    dominant clinical pattern. FALSIFYING: the literature shows the four domains failing in a
+    different order, failing diffusely/simultaneously (consistent with the glymphatic-alone
+    account this claim contrasts itself against), or the ordering is not reproducible across
+    cohorts. Route: /lit-pull, not an experiment.
+
+    LEG B -- REE-INTERNAL (V3-testable via the SD-068 lesion harness; operational scoring site is
+    SD-073, which this claim and MECH-168 jointly feed).
+
+    NON-DEGENERACY PRECONDITION (currently PARTIALLY UNMET -- read before trusting any staging-order
+    result). A per-phase readout is usable for this test only if CONTENT-CONTINGENT: responsive to
+    corrupted/injected content, not merely to corruption magnitude or noise power. Any new falsifier
+    design MUST explicitly re-run this precondition check per phase -- the same null-content control
+    that caught the SWS readout's content-freeness (V3-EXQ-778c) and that a REM unpaired-target null
+    re-confirmed as insufficient (V3-EXQ-778h) -- before that phase's output can count as staging
+    evidence. Status per phase (2026-07-18 SD-068 decomposition, unchanged as of 2026-08-07):
+    NREM (slot-filling, MECH-121) PASSED, content-contingent (null_slope_ratio 0.1445, CI95
+    [0.1438,0.1451], 0/8 seeds confounded, V3-EXQ-778c) -- carried by SD-071. SWS (slot-formation,
+    MECH-120) PASSED after rebuild, content-contingent (null_slope_ratio 0.1495, sd 0.0218, CI95
+    [0.1344,0.1646], ceiling_inside_ci95 false, 8/8 seeds, V3-EXQ-778g) -- carried by SD-071. REM
+    (precision recalibration, MECH-123) FAILED on every design tried -- content-free at both clamp
+    rails (V3-EXQ-778c), still content-free after de-clamping via an unpaired-target null (median
+    ratio ~0.88 vs the 0.25 ceiling, 6/7 de-railed seeds above it, V3-EXQ-778h), generative-gain
+    contrast flat in content scale (V3-EXQ-778f). MECH-462 explains this as a TYPE fact, not a
+    fixable design bug: REM precision recalibration is a second-order quantity over representations
+    (a confidence ABOUT content, not content itself), so no statistic on the direct precision
+    quantity can be content-contingent regardless of null design. This is the leg carrying INV-047's
+    CLINICALLY EARLIEST predicted symptom (precision/confidence loss as the MCI prodrome) -- the
+    missing instrument sits exactly where this claim is most specific and would be most informative.
+
+    BUILD GATE -- complicated (buildable), not probe-gated: the missing piece is a known-shape
+    build. SD-072 specifies the fix: replace the direct REM readout with a downstream
+    behavioural-discrimination measure (a meta-d-prime analogue over post-REM retrieval confidence),
+    applied to the same cells as V3-EXQ-778e, gated by the SAME C1 instrument-validity criterion
+    that admitted NREM and SWS (null_slope_ratio_rem_downstream <= 0.25, ceiling_inside_ci95 false,
+    n>=8, plus a pre-registered content-scale ladder). SD-072 is UNBUILT as of 2026-08-07 -- no
+    queue entry, no run.
+
+    CONFIRMING signature (once SD-072 exists and clears its own instrument-validity gate, scored at
+    SD-073): re-running the staged sweep with all three now-validated content-contingent instruments
+    (SD-071's nrem + sws, SD-072's REM replacement) at a declared insult regime shows the
+    damage-tolerance rank order matching the predicted reverse-dependency sequence -- REM/precision
+    (MECH-123, Phase 4) degrades first, NREM/slot-filling (MECH-121, Phase 2-3) next, SWS/
+    slot-formation (MECH-120, Phase 1-2) last -- on >=6/8 seeds (sign-test p<0.05, not a bare modal
+    order), robust within the declared regime.
+
+    FALSIFYING signature: the validated three-instrument staging run shows simultaneous degradation,
+    the forward-dependency order, an order inverting REM-vs-NREM (as the retracted 2026-07-17 smoke
+    run did), or seed-instability comparable to the pre-778h REM-fails-first finding (CI straddling
+    0, sign-test ~1.0) even with all three legs interpretable. Also FALSIFYING for the REE leg
+    becoming testable at all: if SD-072's downstream discrimination readout is ITSELF content-free
+    at the same C1 ceiling, MECH-462's constructive half is wrong and REM carries no recoverable
+    damage signal by any design tried so far.
+
+    CURRENT STATE (2026-08-07 digestion pass; do not re-litigate without new evidence): neither leg
+    resolved. Leg A never formally run against primary staging literature. Leg B two-thirds
+    instrumented (SD-071 done); one-third gated on a fully specified but unbuilt component (SD-072);
+    SD-073 (the staging order itself) is EXPLICITLY NOT ANSWERABLE until SD-072 lands, per SD-073's
+    own registration. V3-EXQ-778h (2026-07-19) added no new information -- it reconfirmed, via a
+    corrected readiness anchor, the same REM content-freeness already folded into MECH-462/SD-072
+    one day earlier (2026-07-18).
   depends_on:
     - INV-046
     - INV-045
@@ -21216,6 +21368,16 @@
     under both runs. epistemic_category GRADUATED substrate_ceiling -> standard. The remaining gap (MECH-180's
     spindle_density DV specifically) is a NEW, narrower, MECH-122-content-packaging dependency gap -- see MECH-180's
     evidence_quality_note -- not a reason to keep this invariant itself parked at substrate_ceiling.
+    [thought-digestion currency check, 2026-08-07] V3-EXQ-861a (ran 2026-08-02, autopsied 2026-08-03,
+    failure_autopsy_V3-EXQ-861a_2026-08-03.md) was framed as a MECH-180/MECH-122 content-packaging
+    validation run, but shares the identical driver family as 845/861 and so ALSO re-scored this
+    invariant's own two DVs: sws_power and replay_rate again pass 2/3 seeds each, unchanged in
+    direction. This is a THIRD run confirming the same positive signal -- but all three (845, 861,
+    861a) share the IDENTICAL environment (CausalGridWorldV2 / SD-MEL-PRODUCER world_rule_shift knob)
+    and the IDENTICAL 3 seeds (42, 123, 456); 861a's own claim-layer mapping states DV1/DV2 were "not
+    re-tested by this run's substrate change; still stands from 845/861." So this is one configuration
+    confirmed three times, not three independent confirmations -- see what_would_answer's
+    non-degeneracy precondition below, and see the governance-flag note in WORKSPACE_STATE.md.
   pending_retest_after_substrate: true
   pending_retest_substrate: "adaptive sleep-cadence / MEL-consumer (MECH-180) -- DEFERRED (user 2026-06-14); no substrate_queue entry by design. IGW-20260706-188 re-verified 2026-07-06: substrate STILL absent (MECH-180 v3_pending; no MEL-consumer substrate_queue entry; measurability path exhausted -- 701c re-derive brake fired, no 701d). Tagged epistemic_category=substrate_ceiling so the retest lane parks as blocked (not false-ready) until the deferred substrate lands; keep pending_retest_after_substrate=true as the standing retest intent. SUPERSEDED 2026-08-01: the deferred substrate (SD-MEL-PRODUCER) landed and validated 2026-07-21/29; epistemic_category is now standard (see evidence_quality_note RESOLVED entry). pending_retest_after_substrate STAYS true, now pointed at the narrower MECH-122 content-packaging gap tracked on sibling MECH-180."
   depends_on:
@@ -21225,6 +21387,54 @@
     - MECH-120
     - MECH-121
     - MECH-123
+  what_would_answer: >
+    NON-DEGENERACY PRECONDITION: the ecological end-to-end run (SD-MEL-PRODUCER novelty -> waking
+    MEL, SD-MEL-CONSUMER MEL -> offline duration) has now scored the same direction THREE times --
+    V3-EXQ-845 (2026-08-01), V3-EXQ-861 (2026-08-01, write-count-deconfounded redesign), V3-EXQ-861a
+    (2026-08-02/03, MECH-122 content-selection flag validation, DV1/DV2 unaffected and unchanged) --
+    but all three runs share the IDENTICAL environment (CausalGridWorldV2 / SD-MEL-PRODUCER
+    world_rule_shift knob) and the IDENTICAL 3 seeds (42, 123, 456). Per the project's own documented
+    lesson (failure_autopsy_V3-EXQ-718a_2026-07-08: "DV-monotone-in-measured-MEL is near-tautological
+    on a functional consumer, so the producer must be validated with the consumer ABSENT"), a
+    same-environment, same-seed re-run with an orthogonal substrate change elsewhere is not an
+    independent replication -- it re-confirms the same configuration, not the claim's generality. An
+    informative next test must vary at least one of: (a) seeds genuinely uninvolved in 845/861/861a
+    (not a superset that merely adds more), or (b) a held-out environment/world-model instance
+    distinct from the CausalGridWorldV2 instance SD-MEL-PRODUCER was built and validated against, or
+    (c) an explicit MEL-consumer-absent control arm within the same run, isolating whether
+    sws_power/replay_rate track MEASURED MEL because of the third-drive coupling this invariant
+    asserts, or merely because the consumer mechanically guarantees the correlation once MEL is
+    nonzero.
+
+    CONFIRMING: a run satisfying the non-degeneracy precondition above (new seeds and/or a held-out
+    environment, and/or a consumer-absent control) again shows sws_power and replay_rate tracking
+    measured MEL monotonically (non-decreasing across MEL-sorted arms, >=2/3 seeds each) with ON-HIGH
+    > OFF-HIGH in the control arms, AND the correlation is not attributable to the consumer's own
+    deterministic MEL->duration mapping (i.e. it survives a consumer-absent or MEL-injection-decoupled
+    check). A pass under these conditions would be the first genuinely independent confirmation of
+    this invariant's third-drive claim, distinct from same-configuration re-runs.
+
+    FALSIFYING: either (a) sws_power/replay_rate fail to track measured MEL monotonically in a run
+    that meets the non-degeneracy precondition (new seeds/environment/consumer-absent control) -- the
+    positive 845/861/861a signal does not survive leaving the exact configuration it was found in; or
+    (b) the correlation is shown to hold only via the mechanically-guaranteed consumer pathway (e.g.
+    it vanishes or inverts when MEL is decoupled from the consumer's duration-scaling input while
+    still varying environmental novelty) -- the DVs are responding to the consumer's arithmetic, not
+    to a genuine novelty-driven third drive. Either outcome would downgrade the "three times positive"
+    reading from genuine ecological support to a single-configuration artifact.
+
+    OUT OF SCOPE for this falsifier (unaddressed by current or proposed evidence): the claim's
+    stronger "sufficiency" content -- that the third drive determines whether overnight update is
+    SUFFICIENT for the error burden, as opposed to merely correlated with it -- and the
+    "phase-appropriateness" / fragmentation content in the notes (MECH-120/121/122 x MECH-174).
+    Confirming the coupling above supports the drive's EXISTENCE and DIRECTION, not yet its
+    sufficiency or phase-specificity; those remain untested by any run to date.
+
+    GOVERNANCE FLAG (2026-08-07 digestion pass, not resolved here): this invariant's core DVs have
+    now cleanly passed 2/3 seeds in three consecutive autopsy-confirmed runs with zero FAILs -- an
+    unusually strong record for a `believed`-stance claim. Flagged for /governance promotion review
+    (candidate -> provisional/stable); NOT promoted during this digestion pass. Governance should
+    weigh the non-independence of the three runs (above) alongside the raw repeat-PASS count.
   notes: >
     Registered 2026-04-06. Standard two-process sleep regulation (Borbely 1982)
     identifies two drives: (1) circadian -- timing of sleep opportunity gated by
@@ -57195,6 +57405,63 @@
     - PHARM-017  # M1 plasticity x M4 dopamine-selection axes (xanomeline, non-D2)
     - PHARM-018  # kappa/mu commitment-entropy axis (buprenorphine)
   location: docs/architecture/psychiatric_failure_axes.md#arc-086
+  what_would_answer: >
+    LEG 1 (architectural leg, substrate_conditional -- gated on the V4/V5 syndrome-as-weighted-vector
+    substrate; DO NOT queue a V3 experiment): answerable only once the ARC-086 axis vocabulary is
+    instantiated as a substrate that can score a syndrome as a weighted vector over the 10 named axes
+    (the substrate Q-064 asks HOW to build; ARC-086 is the prior claim that such a finite axis set CAN
+    validly index the named failure modes at all). HARD PRECONDITION, shared with Q-064: the axes must
+    first be shown empirically separable (non-degenerate, discriminable loadings) -- if not, no syndrome
+    placement in axis space is meaningful and this leg is untestable, not merely unresolved.
+
+    CONFIRMING: build weighted-axis-vector encodings for a panel of named syndromes spanning the
+    existing mechanistically-distinct entries (psychosis, confabulation, derealization, OCD, depressive
+    attractor, catatonia subtypes, ...) plus known comorbid pairs and at least one pleiotropic
+    mechanism. ARC-086 is CONFIRMED if every syndrome in the panel is expressible as a weighted
+    combination over the SAME finite 10-axis set -- comorbidity recovered as overlapping axis
+    activation, pleiotropy as one mechanism loading multiple axes -- WITHOUT requiring a new axis per
+    syndrome or per comorbid pair, AND without the resulting vectors collapsing mechanistically-distinct
+    entries into one another (the axis layer stays an INDEXING layer, never a MERGING layer -- e.g.
+    psychosis and confabulation must remain separably located even though both load the
+    provenance/source-tagging axis).
+
+    FALSIFYING: a named syndrome in the panel requires a mechanism that cannot be expressed as ANY
+    weighted combination of the 10 named axes, forcing axis proliferation without a natural stopping
+    point -- the axis set fails to be FINITE and CLOSED, the load-bearing structural commitment of
+    ARC-086. Also falsifying, as a distinct failure mode of the same claim: the vector encoding achieves
+    registry economy only by merging mechanistically-distinct named failure modes into indistinguishable
+    axis-loadings (violating the "indexing layer, never a merging layer" guardrail) -- this falsifies
+    ARC-086 even if Q-064's registry-economy test independently reads as a PASS, because the two claims
+    ask different questions (ARC-086: does the two-axis structure hold at all; Q-064: is the vector
+    representation preferable to the current locus mapping).
+
+    LEG 2 (literature-checkable leg, out_of_domain, checkable NOW without V4/V5): three of ARC-086's ten
+    axes carry a biology-first neuromodulator-receptor grounding (precision/terrain <- serotonin
+    5-HT2A-cortical vs 5-HT1A-hippocampal; goal/salience-coupling + commitment-release <- M4-striatal
+    dopamine-selection damping; commitment-threshold/action-release <- kappa/mu opioid
+    commitment-entropy), predictions PHARM-015..018. This is Q-075's own question, kept here as a
+    SECOND, INDEPENDENT leg on ARC-086's confidence rather than folded into Leg 1, because it bears only
+    on the BIOLOGICAL PLAUSIBILITY of 3 of the 10 axes as distinct receptor-grounded systems -- neither
+    necessary nor sufficient to confirm or falsify the architectural claim itself. A receptor-level
+    collapse of e.g. the commitment-threshold and precision/terrain axes into one affective dimension
+    would weaken the biological grounding note without automatically forcing axis proliferation or
+    merging at the computational level in Leg 1, and conversely a clean double-dissociation would not by
+    itself establish Leg 1's registry economy.
+
+    CURRENT STATE OF LEG 2 (2026-07-01 lit-pull, lit_conf=0.708 on Q-075, re-confirmed unmoved as of
+    2026-08-07): MIXED, not resolved. All three receptor limbs are individually plausible
+    (Carhart-Harris & Nutt 2017 supports the 5-HT2A/5-HT1A precision-terrain split; Bruchas/Land/Chavkin
+    2009 supports KOR-dysphoria as distinct from mu-reward; Maggio et al. 2014 is mixed on the
+    dopamine-selection limb), but the clean non-crossing double-dissociation Q-075 needs is not yet what
+    the literature hands over: the KOR/commitment-threshold limb carries an explicit CRF-KOR coupling
+    entanglement warning (threatens collapse toward a general threat/stress axis), and the
+    dopamine-selection limb carries a D2-D3 heteromer transactivation warning. Track via future
+    /lit-pull targeting Q-075's own falsification_conditions (PHARM-015..018); do not re-run this leg's
+    literature review from ARC-086 -- it lives on Q-075.
+
+    LEG 1 substrate check (2026-08-07): the 2026-07-02 IGW auto-proposal pass independently re-confirmed
+    Q-064 blocked from V3 queueing on this exact ground (no registered vector substrate exists), so the
+    gate is not just unchanged but actively re-affirmed since ARC-086's as_of date.
   notes: >
     The genuinely-new ORGANIZING contribution of the psychiatric-genetic-overlap intake. REE already
     holds the surface-cluster STANCE -- IMPL-005 (computational-pathology failure-mode taxonomy), the
