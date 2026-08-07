@@ -1,10 +1,10 @@
 {
   "schema_version": "literature_evidence/v1",
   "literature_type": "targeted_review_uncommitted_candidate_retention",
-  "entry_id": "2026-08-07_mech_486_counterfactual_choice_learning_boorman2011",
+  "entry_id": "2026-08-07_mech_487_counterfactual_choice_learning_boorman2011",
   "timestamp_utc": "2026-08-07T18:22:16Z",
   "claim_ids_tested": [
-    "MECH-486"
+    "MECH-487"
   ],
   "source": {
     "title": "Counterfactual choice and learning in a neural network centered on human lateral frontopolar cortex.",
@@ -21,14 +21,14 @@
   "evidence_class": "fmri_connectivity",
   "evidence_direction": "supports",
   "confidence": 0.7,
-  "confidence_rationale": "Directly supports the LICITNESS half of the chip scope: a dedicated network tracks the best counterfactual option and carries a counterfactual prediction error for learning from hypothetical feedback, with individual variation predicting the ability to learn from it. Retaining-and-using unchosen options is a normal adaptive function. Confidence discounted because the signal is forward/next-decision, not the retrospective responsibility use MECH-486 leg 3 targets, and the authors explicitly separate it from regret theory.",
+  "confidence_rationale": "Directly supports the LICITNESS half of the chip scope: a dedicated network tracks the best counterfactual option and carries a counterfactual prediction error for learning from hypothetical feedback, with individual variation predicting the ability to learn from it. Retaining-and-using unchosen options is a normal adaptive function. Confidence discounted because the signal is forward/next-decision, not the retrospective responsibility use MECH-487 leg 3 targets, and the authors explicitly separate it from regret theory.",
   "summary_path": "summary.md",
   "failure_signatures": [
     "The network encodes the BEST counterfactual option, not an undifferentiated set; a retention mechanism that hoards all rejected candidates indiscriminately diverges from the biology and inflates the confabulation surface.",
     "Counterfactual prediction errors here 'cannot be related to regret theory' -- i.e. this is forward value-learning, not retrospective self-attribution; using it as evidence for the responsibility-attribution use of retention is a transfer that must be flagged, not assumed."
   ],
   "tags": [
-    "mech_486",
+    "mech_487",
     "counterfactual_learning",
     "frontopolar",
     "licitness",
@@ -36,8 +36,8 @@
   ],
   "mapping": {
     "source_claim_statement": "In a three-alternative task, a network centred on lateral frontopolar cortex (with dorsomedial frontal and posteromedial cortex) encodes the reward evidence favouring the BEST counterfactual option at future decisions and carries a counterfactual prediction error for learning from hypothetical feedback; individual variation predicts propensity to switch to profitable choices and ability to learn from hypothetical feedback. These counterfactual prediction errors cannot be related to regret theory.",
-    "ree_translation": "Supports the licitness half of the chip's question: retaining and learning from rejected/unchosen options is a normal, dedicated, adaptive brain function, not an exotic add-on -- so admitting MECH-486 retained candidates into later evaluation is biologically warranted, provided (per the MECH-322/Janner bounding) it stays a prior for future testing rather than a self-validating loop. It also bears on Q-090's admission criterion: the brain retains the BEST counterfactual option, i.e. retention is selective, favouring a same-scale-with-selectivity reading over hoarding all candidates.",
-    "mapping_caveat": "The signal is prospective/next-decision value-learning, not the retrospective responsibility-attribution use MECH-486 leg 3 needs, and the authors explicitly divorce it from regret. Its support is for licitness-of-retain-and-learn and for selectivity of admission, not for the specific self-attribution mechanism.",
+    "ree_translation": "Supports the licitness half of the chip's question: retaining and learning from rejected/unchosen options is a normal, dedicated, adaptive brain function, not an exotic add-on -- so admitting MECH-487 retained candidates into later evaluation is biologically warranted, provided (per the MECH-322/Janner bounding) it stays a prior for future testing rather than a self-validating loop. It also bears on Q-090's admission criterion: the brain retains the BEST counterfactual option, i.e. retention is selective, favouring a same-scale-with-selectivity reading over hoarding all candidates.",
+    "mapping_caveat": "The signal is prospective/next-decision value-learning, not the retrospective responsibility-attribution use MECH-487 leg 3 needs, and the authors explicitly divorce it from regret. Its support is for licitness-of-retain-and-learn and for selectivity of admission, not for the specific self-attribution mechanism.",
     "source_context": "Healthy adults; fMRI; three-alternative decision task with hypothetical feedback; lateral frontopolar / dorsomedial frontal / posteromedial cortex."
   },
   "confidence_components": {

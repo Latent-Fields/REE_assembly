@@ -1,10 +1,10 @@
 {
   "schema_version": "literature_evidence/v1",
   "literature_type": "targeted_review_uncommitted_candidate_retention",
-  "entry_id": "2026-08-07_mech_486_bounded_imagined_rollouts_mbpo_janner2019",
+  "entry_id": "2026-08-07_mech_487_bounded_imagined_rollouts_mbpo_janner2019",
   "timestamp_utc": "2026-08-07T18:22:16Z",
   "claim_ids_tested": [
-    "MECH-486",
+    "MECH-487",
     "MECH-322"
   ],
   "source": {
@@ -30,7 +30,7 @@
     "Without an uncertainty-gated trust bound, model-generated data ceases to be preferable to real off-policy data -- i.e. unbounded retention/imagination use is not merely risky but provably worse than using less of it."
   ],
   "tags": [
-    "mech_486",
+    "mech_487",
     "mech_322",
     "mech_094",
     "model_based_rl",
@@ -40,8 +40,8 @@
   ],
   "mapping": {
     "source_claim_statement": "MBPO uses short model rollouts branched from real environment states to reduce compounding model error and decouple the model (imagination) horizon from the task horizon; a monotonic-improvement analysis shows real off-policy data is preferable to model-generated data unless an empirical estimate of model generalization justifies limited model usage, which then yields faster, higher-performing learning.",
-    "ree_translation": "This is the computational form of the MECH-322 template the chip requires MECH-486 to follow. Retained rejected candidates (imagined, non-executed content) may feed evaluation/learning only under a bounded, uncertainty-gated, corroboration-limited regime: MBPO's short trust horizon gated by measured model error maps onto MECH-322's fail-closed conditions plus accelerated dissolution of any chunk not corroborated by real waking execution. It also gives a concrete knob: the trust bound should scale inversely with model uncertainty -- REE's epistemic_deficit (MECH-482) -- linking leg 3 retention to the same confidence term that gates the orient/survey leg of MECH-485.",
-    "mapping_caveat": "MBPO bounds VALUE-estimation error for policy optimization; it does not address provenance confusion or the confabulation/reality-monitoring failure that is MECH-486's central hazard. The transfer is structural (bounded, provisional, corroboration-gated use of imagined content), not a validated import of the specific confabulation guard -- Schnider/Bouzerda-Wahlen supply that half, MBPO supplies the bounding discipline.",
+    "ree_translation": "This is the computational form of the MECH-322 template the chip requires MECH-487 to follow. Retained rejected candidates (imagined, non-executed content) may feed evaluation/learning only under a bounded, uncertainty-gated, corroboration-limited regime: MBPO's short trust horizon gated by measured model error maps onto MECH-322's fail-closed conditions plus accelerated dissolution of any chunk not corroborated by real waking execution. It also gives a concrete knob: the trust bound should scale inversely with model uncertainty -- REE's epistemic_deficit (MECH-482) -- linking leg 3 retention to the same confidence term that gates the orient/survey leg of MECH-485.",
+    "mapping_caveat": "MBPO bounds VALUE-estimation error for policy optimization; it does not address provenance confusion or the confabulation/reality-monitoring failure that is MECH-487's central hazard. The transfer is structural (bounded, provisional, corroboration-gated use of imagined content), not a validated import of the specific confabulation guard -- Schnider/Bouzerda-Wahlen supply that half, MBPO supplies the bounding discipline.",
     "source_context": "Deep model-based reinforcement learning; continuous-control MuJoCo benchmarks; learned probabilistic dynamics-model ensembles with short branched rollouts."
   },
   "confidence_components": {
