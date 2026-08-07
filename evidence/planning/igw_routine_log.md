@@ -1461,3 +1461,4 @@ One line per hourly tick. ASCII only.
 2026-08-07T00:05:37Z no eligible item (skipped 250): IGW-20260807-001:skill /governance not allowed; IGW-20260807-006:skill /governance not allowed; IGW-20260807-209:status=blocked blocked_by=ready_blocked_by: V3 substrate prerequisite (NOT V4 deferral): goal-pipeline / training-regime substrate enrichment so trained policy survives SD-054 enrichment in default V3 config (V3-EXQ-603c FAIL 2026-05-27 -- requ; free-text: goal-pipeline / training-regime substrate enrichment within V3 (V3-EXQ-603c FAIL 2026-05-27; needs V3-scoped substrate fix, not V4; owned today by IGW-20260528-
 2026-08-07T01:06:05Z skip IGW-20260807-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
 2026-08-07T02:06:32Z skip IGW-20260807-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
+2026-08-07T03:07:01Z skip IGW-20260807-241: no fresh runner heartbeat (experiment-lane item would just sit in queue)
